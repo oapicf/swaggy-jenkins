@@ -1,0 +1,44 @@
+{
+   "_class":"hudson.model.Queue",
+   "discoverableItems":[
+   ],
+   "items":[
+      {
+         "_class":"hudson.model.Queue$BlockedItem",
+         "actions":[
+            {
+               "_class":"hudson.model.CauseAction",
+               "causes":[
+                  {
+                     "_class":"hudson.model.Cause$UserIdCause",
+                     "shortDescription":"Started by user Some User",
+                     "userId":"someuser",
+                     "userName":"Some User"
+                  },
+                  {
+                     "_class":"hudson.model.Cause$UserIdCause",
+                     "shortDescription":"Started by user Some User",
+                     "userId":"someuser",
+                     "userName":"Some User"
+                  }
+               ]
+            }
+         ],
+         "blocked":true,
+         "buildable":false,
+         "id":7,
+         "inQueueSince":1494036164950,
+         "params":"",
+         "stuck":false,
+         "task":{
+            "_class":"hudson.model.FreeStyleProject",
+            "name":"somejob",
+            "url":"http://localhost:8080/job/somejob/",
+            "color":"notbuilt_anime"
+         },
+         "url":"queue/item/7/",
+         "why":"Build #1 is already in progress (ETA:N/A)",
+         "buildableStartMilliseconds":1494036164953
+      }
+   ]
+}
