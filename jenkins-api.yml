@@ -1,0 +1,40 @@
+swagger: '2.0'
+info:
+  title: Swaggy Jenkins
+  description: Jenkins remote access API
+  version: "0.0.1"
+  contact:
+    name: Cliffano Subagio
+    url: http://github.com/cliffano/swaggy-jenkins
+    email: blah@cliffano.com
+schemes:
+  - http
+  - https
+basePath: /
+securityDefinitions:
+  jenkins_auth:
+    type: basic
+paths:
+  /crumbIssuer/api/json:
+    get:
+      description: Get crumb
+      operationId: getCrumb
+      produces:
+        - application/json
+      responses:
+        200:
+          description: Successfully get crumb
+          schema:
+            $ref: "#/definitions/DefaultCrumbIssuer"
+      tags:
+        - jenkins
+definitions:
+  DefaultCrumbIssuer:
+    type: object
+    properties:
+      _class:
+        type: string
+      crumb:
+        type: string
+      crumbRequestField:
+        type: string
