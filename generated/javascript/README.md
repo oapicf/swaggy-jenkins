@@ -73,11 +73,17 @@ All URIs are relative to *http://localhost/*
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
 *SwaggyJenkins.JenkinsApi* | [**getCrumb**](docs/JenkinsApi.md#getCrumb) | **GET** /crumbIssuer/api/json | 
+*SwaggyJenkins.JenkinsApi* | [**getQueue**](docs/JenkinsApi.md#getQueue) | **GET** /queue/api/json | 
 
 
 ## Documentation for Models
 
+ - [SwaggyJenkins.CauseAction](docs/CauseAction.md)
+ - [SwaggyJenkins.CauseUserIdCause](docs/CauseUserIdCause.md)
  - [SwaggyJenkins.DefaultCrumbIssuer](docs/DefaultCrumbIssuer.md)
+ - [SwaggyJenkins.FreeStyleProject](docs/FreeStyleProject.md)
+ - [SwaggyJenkins.Queue](docs/Queue.md)
+ - [SwaggyJenkins.QueueBlockedItem](docs/QueueBlockedItem.md)
 
 
 ## Documentation for Authorization

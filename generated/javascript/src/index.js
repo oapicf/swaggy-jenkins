@@ -14,12 +14,12 @@
 (function(factory) {
   if (typeof define === 'function' && define.amd) {
     // AMD. Register as an anonymous module.
-    define(['ApiClient', 'model/DefaultCrumbIssuer', 'api/JenkinsApi'], factory);
+    define(['ApiClient', 'model/CauseAction', 'model/CauseUserIdCause', 'model/DefaultCrumbIssuer', 'model/FreeStyleProject', 'model/Queue', 'model/QueueBlockedItem', 'api/JenkinsApi'], factory);
   } else if (typeof module === 'object' && module.exports) {
     // CommonJS-like environments that support module.exports, like Node.
-    module.exports = factory(require('./ApiClient'), require('./model/DefaultCrumbIssuer'), require('./api/JenkinsApi'));
+    module.exports = factory(require('./ApiClient'), require('./model/CauseAction'), require('./model/CauseUserIdCause'), require('./model/DefaultCrumbIssuer'), require('./model/FreeStyleProject'), require('./model/Queue'), require('./model/QueueBlockedItem'), require('./api/JenkinsApi'));
   }
-}(function(ApiClient, DefaultCrumbIssuer, JenkinsApi) {
+}(function(ApiClient, CauseAction, CauseUserIdCause, DefaultCrumbIssuer, FreeStyleProject, Queue, QueueBlockedItem, JenkinsApi) {
   'use strict';
 
   /**
@@ -60,10 +60,35 @@
      */
     ApiClient: ApiClient,
     /**
+     * The CauseAction model constructor.
+     * @property {module:model/CauseAction}
+     */
+    CauseAction: CauseAction,
+    /**
+     * The CauseUserIdCause model constructor.
+     * @property {module:model/CauseUserIdCause}
+     */
+    CauseUserIdCause: CauseUserIdCause,
+    /**
      * The DefaultCrumbIssuer model constructor.
      * @property {module:model/DefaultCrumbIssuer}
      */
     DefaultCrumbIssuer: DefaultCrumbIssuer,
+    /**
+     * The FreeStyleProject model constructor.
+     * @property {module:model/FreeStyleProject}
+     */
+    FreeStyleProject: FreeStyleProject,
+    /**
+     * The Queue model constructor.
+     * @property {module:model/Queue}
+     */
+    Queue: Queue,
+    /**
+     * The QueueBlockedItem model constructor.
+     * @property {module:model/QueueBlockedItem}
+     */
+    QueueBlockedItem: QueueBlockedItem,
     /**
      * The JenkinsApi service constructor.
      * @property {module:api/JenkinsApi}
