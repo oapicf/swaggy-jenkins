@@ -29,19 +29,35 @@ function processObject(obj, definitions) {
       definition.properties[key] = {
         type: 'integer'
       };
-    } else if (Array.isArray(value) && value.length > 0) {
-      var itemDefinitionId = getDefinitionIdFromClass(value[0]._class);
+    } else if (Array.isArray(value)) {
+      if (value.length > 0) {
+        var propertyDefinitionId = getDefinitionIdFromClass(value[0]._class);
+        definition.properties[key] = {
+          type: 'array',
+          items: {
+            '$ref': util.format('#/definitions/%s', propertyDefinitionId)
+          }
+        };
+        processObject(value[0], definitions);
+      } else {
+        console.warn('Ignoring property %s with an empty array', key);
+      }
+    } else if (typeof value === 'object') {
+      console.dir(value);
+      var propertyDefinitionId = getDefinitionIdFromClass(value._class);
       definition.properties[key] = {
-        type: 'array',
-        items: {
-          '$ref': util.format('#/definitions/%s', itemDefinitionId)
-        }
+        '$ref': util.format('#/definitions/%s', propertyDefinitionId)
       };
-      processObject(value[0], definitions);
+      processObject(value, definitions);
     }
   });
 
   definitions[definitionId] = definition;
+}
+
+function report(outFile, definitions) {
+  yaml.writeSync(outFile, definitions);
+  console.log('Definitions:\n%s', yaml.dump(definitions));
 }
 
 function main(responseFile, definitions) {
@@ -52,6 +68,7 @@ function main(responseFile, definitions) {
 }
 
 var responseFile = process.argv[2];
+var outFile      = util.format('%s/%s.yml', process.cwd(), responseFile);
 var definitions  = {};
 main(responseFile, definitions);
-console.log('Definitions:\n%s', yaml.dump(definitions));
+report(outFile, definitions);

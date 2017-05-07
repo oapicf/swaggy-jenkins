@@ -1,0 +1,9 @@
+DefaultCrumbIssuer:
+  type: object
+  properties:
+    _class:
+      type: string
+    crumb:
+      type: string
+    crumbRequestField:
+      type: string

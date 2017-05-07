@@ -1,0 +1,63 @@
+Cause$UserIdCause:
+  type: object
+  properties:
+    _class:
+      type: string
+    shortDescription:
+      type: string
+    userId:
+      type: string
+    userName:
+      type: string
+CauseAction:
+  type: object
+  properties:
+    _class:
+      type: string
+    causes:
+      type: array
+      items:
+        $ref: '#/definitions/Cause$UserIdCause'
+FreeStyleProject:
+  type: object
+  properties:
+    _class:
+      type: string
+    name:
+      type: string
+    url:
+      type: string
+    color:
+      type: string
+Queue$BlockedItem:
+  type: object
+  properties:
+    _class:
+      type: string
+    actions:
+      type: array
+      items:
+        $ref: '#/definitions/CauseAction'
+    id:
+      type: integer
+    inQueueSince:
+      type: integer
+    params:
+      type: string
+    task:
+      $ref: '#/definitions/FreeStyleProject'
+    url:
+      type: string
+    why:
+      type: string
+    buildableStartMilliseconds:
+      type: integer
+Queue:
+  type: object
+  properties:
+    _class:
+      type: string
+    items:
+      type: array
+      items:
+        $ref: '#/definitions/Queue$BlockedItem'
