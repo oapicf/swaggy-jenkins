@@ -1,0 +1,54 @@
+FreeStyleProject:
+  type: object
+  properties:
+    _class:
+      type: string
+    name:
+      type: string
+    url:
+      type: string
+    color:
+      type: string
+AllView:
+  type: object
+  properties:
+    _class:
+      type: string
+    name:
+      type: string
+    url:
+      type: string
+UnlabeledLoadStatistics:
+  type: object
+  properties:
+    _class:
+      type: string
+Hudson:
+  type: object
+  properties:
+    _class:
+      type: string
+    mode:
+      type: string
+    nodeDescription:
+      type: string
+    nodeName:
+      type: string
+    numExecutors:
+      type: integer
+    description:
+      type: string
+    jobs:
+      type: array
+      items:
+        $ref: '#/definitions/FreeStyleProject'
+    primaryView:
+      $ref: '#/definitions/AllView'
+    slaveAgentPort:
+      type: integer
+    unlabeledLoad:
+      $ref: '#/definitions/UnlabeledLoadStatistics'
+    views:
+      type: array
+      items:
+        $ref: '#/definitions/AllView'

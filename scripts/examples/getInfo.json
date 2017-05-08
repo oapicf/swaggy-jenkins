@@ -1,0 +1,48 @@
+{
+   "_class":"hudson.model.Hudson",
+   "assignedLabels":[
+      {
+
+      }
+   ],
+   "mode":"NORMAL",
+   "nodeDescription":"the master Jenkins node",
+   "nodeName":"",
+   "numExecutors":2,
+   "description":null,
+   "jobs":[
+      {
+         "_class":"hudson.model.FreeStyleProject",
+         "name":"somejob",
+         "url":"http://localhost:8080/job/somejob/",
+         "color":"blue_anime"
+      },
+      {
+         "_class":"jenkins.branch.OrganizationFolder",
+         "name":"cliffano",
+         "url":"http://localhost:8080/job/somefolder/"
+      }
+   ],
+   "overallLoad":{
+
+   },
+   "primaryView":{
+      "_class":"hudson.model.AllView",
+      "name":"all",
+      "url":"http://localhost:8080/"
+   },
+   "quietingDown":false,
+   "slaveAgentPort":-1,
+   "unlabeledLoad":{
+      "_class":"jenkins.model.UnlabeledLoadStatistics"
+   },
+   "useCrumbs":true,
+   "useSecurity":true,
+   "views":[
+      {
+         "_class":"hudson.model.AllView",
+         "name":"all",
+         "url":"http://localhost:8080/"
+      }
+   ]
+}
