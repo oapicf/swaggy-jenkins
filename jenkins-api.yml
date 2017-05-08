@@ -15,6 +15,19 @@ securityDefinitions:
   jenkins_auth:
     type: basic
 paths:
+  /api/json:
+    get:
+      description: Get info
+      operationId: getInfo
+      produces:
+        - application/json
+      responses:
+        200:
+          description: Successfully get info
+          schema:
+            $ref: "#/definitions/Hudson"
+      tags:
+        - jenkins
   /crumbIssuer/api/json:
     get:
       description: Get crumb
@@ -42,6 +55,15 @@ paths:
       tags:
         - jenkins
 definitions:
+  AllView:
+    type: object
+    properties:
+      _class:
+        type: string
+      name:
+        type: string
+      url:
+        type: string
   Cause$UserIdCause:
     type: object
     properties:
@@ -82,6 +104,35 @@ definitions:
         type: string
       color:
         type: string
+  Hudson:
+    type: object
+    properties:
+      _class:
+        type: string
+      mode:
+        type: string
+      nodeDescription:
+        type: string
+      nodeName:
+        type: string
+      numExecutors:
+        type: integer
+      description:
+        type: string
+      jobs:
+        type: array
+        items:
+          $ref: '#/definitions/FreeStyleProject'
+      primaryView:
+        $ref: '#/definitions/AllView'
+      slaveAgentPort:
+        type: integer
+      unlabeledLoad:
+        $ref: '#/definitions/UnlabeledLoadStatistics'
+      views:
+        type: array
+        items:
+          $ref: '#/definitions/AllView'
   Queue$BlockedItem:
     type: object
     properties:
@@ -114,3 +165,8 @@ definitions:
         type: array
         items:
           $ref: '#/definitions/Queue$BlockedItem'
+  UnlabeledLoadStatistics:
+    type: object
+    properties:
+      _class:
+        type: string

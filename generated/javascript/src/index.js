@@ -14,12 +14,12 @@
 (function(factory) {
   if (typeof define === 'function' && define.amd) {
     // AMD. Register as an anonymous module.
-    define(['ApiClient', 'model/CauseAction', 'model/CauseUserIdCause', 'model/DefaultCrumbIssuer', 'model/FreeStyleProject', 'model/Queue', 'model/QueueBlockedItem', 'api/JenkinsApi'], factory);
+    define(['ApiClient', 'model/AllView', 'model/CauseAction', 'model/CauseUserIdCause', 'model/DefaultCrumbIssuer', 'model/FreeStyleProject', 'model/Hudson', 'model/Queue', 'model/QueueBlockedItem', 'model/UnlabeledLoadStatistics', 'api/JenkinsApi'], factory);
   } else if (typeof module === 'object' && module.exports) {
     // CommonJS-like environments that support module.exports, like Node.
-    module.exports = factory(require('./ApiClient'), require('./model/CauseAction'), require('./model/CauseUserIdCause'), require('./model/DefaultCrumbIssuer'), require('./model/FreeStyleProject'), require('./model/Queue'), require('./model/QueueBlockedItem'), require('./api/JenkinsApi'));
+    module.exports = factory(require('./ApiClient'), require('./model/AllView'), require('./model/CauseAction'), require('./model/CauseUserIdCause'), require('./model/DefaultCrumbIssuer'), require('./model/FreeStyleProject'), require('./model/Hudson'), require('./model/Queue'), require('./model/QueueBlockedItem'), require('./model/UnlabeledLoadStatistics'), require('./api/JenkinsApi'));
   }
-}(function(ApiClient, CauseAction, CauseUserIdCause, DefaultCrumbIssuer, FreeStyleProject, Queue, QueueBlockedItem, JenkinsApi) {
+}(function(ApiClient, AllView, CauseAction, CauseUserIdCause, DefaultCrumbIssuer, FreeStyleProject, Hudson, Queue, QueueBlockedItem, UnlabeledLoadStatistics, JenkinsApi) {
   'use strict';
 
   /**
@@ -60,6 +60,11 @@
      */
     ApiClient: ApiClient,
     /**
+     * The AllView model constructor.
+     * @property {module:model/AllView}
+     */
+    AllView: AllView,
+    /**
      * The CauseAction model constructor.
      * @property {module:model/CauseAction}
      */
@@ -80,6 +85,11 @@
      */
     FreeStyleProject: FreeStyleProject,
     /**
+     * The Hudson model constructor.
+     * @property {module:model/Hudson}
+     */
+    Hudson: Hudson,
+    /**
      * The Queue model constructor.
      * @property {module:model/Queue}
      */
@@ -89,6 +99,11 @@
      * @property {module:model/QueueBlockedItem}
      */
     QueueBlockedItem: QueueBlockedItem,
+    /**
+     * The UnlabeledLoadStatistics model constructor.
+     * @property {module:model/UnlabeledLoadStatistics}
+     */
+    UnlabeledLoadStatistics: UnlabeledLoadStatistics,
     /**
      * The JenkinsApi service constructor.
      * @property {module:api/JenkinsApi}
