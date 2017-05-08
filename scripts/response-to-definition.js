@@ -21,7 +21,7 @@ function processObject(obj, definitions) {
 
   Object.keys(obj).forEach(function (key) {
     value = obj[key];
-    if (typeof value === 'string') {
+    if (typeof value === 'string' || value === null) {
       definition.properties[key] = {
         type: 'string'
       };
@@ -31,24 +31,31 @@ function processObject(obj, definitions) {
       };
     } else if (Array.isArray(value)) {
       if (value.length > 0) {
-        var propertyDefinitionId = getDefinitionIdFromClass(value[0]._class);
-        definition.properties[key] = {
-          type: 'array',
-          items: {
-            '$ref': util.format('#/definitions/%s', propertyDefinitionId)
-          }
-        };
-        processObject(value[0], definitions);
+        if (value[0]._class) {
+          var propertyDefinitionId = getDefinitionIdFromClass(value[0]._class);
+          definition.properties[key] = {
+            type: 'array',
+            items: {
+              '$ref': util.format('#/definitions/%s', propertyDefinitionId)
+            }
+          };
+          processObject(value[0], definitions);
+        } else {
+          console.warn('Ignoring property %s - an array with classless first item', key);
+        }
       } else {
-        console.warn('Ignoring property %s with an empty array', key);
+        console.warn('Ignoring property %s - an empty array', key);
       }
     } else if (typeof value === 'object') {
-      console.dir(value);
-      var propertyDefinitionId = getDefinitionIdFromClass(value._class);
-      definition.properties[key] = {
-        '$ref': util.format('#/definitions/%s', propertyDefinitionId)
-      };
-      processObject(value, definitions);
+      if (Object.keys(value).length > 0) {
+        var propertyDefinitionId = getDefinitionIdFromClass(value._class);
+        definition.properties[key] = {
+          '$ref': util.format('#/definitions/%s', propertyDefinitionId)
+        };
+        processObject(value, definitions);
+      } else {
+        console.warn('Ignoring property %s - a keyless object', key);
+      }
     }
   });
 
