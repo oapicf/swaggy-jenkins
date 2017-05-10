@@ -1,0 +1,71 @@
+{
+   "_class":"hudson.model.ComputerSet",
+   "busyExecutors":0,
+   "computer":[
+      {
+         "_class":"hudson.model.Hudson$MasterComputer",
+         "actions":[
+
+         ],
+         "displayName":"master",
+         "executors":[
+            {
+
+            },
+            {
+
+            }
+         ],
+         "icon":"computer.png",
+         "iconClassName":"icon-computer",
+         "idle":true,
+         "jnlpAgent":false,
+         "launchSupported":true,
+         "loadStatistics":{
+            "_class":"hudson.model.Label$1"
+         },
+         "manualLaunchAllowed":true,
+         "monitorData":{
+            "hudson.node_monitors.SwapSpaceMonitor":{
+               "_class":"hudson.node_monitors.SwapSpaceMonitor$MemoryUsage2",
+               "availablePhysicalMemory":-1,
+               "availableSwapSpace":1518338048,
+               "totalPhysicalMemory":-1,
+               "totalSwapSpace":9663676416
+            },
+            "hudson.node_monitors.TemporarySpaceMonitor":{
+               "_class":"hudson.node_monitors.DiskSpaceMonitorDescriptor$DiskSpace",
+               "timestamp":1494382487933,
+               "path":"/private/var/folders/01/c8x627616lj7sfjxbncx46j40000gn/T",
+               "size":6115172352
+            },
+            "hudson.node_monitors.DiskSpaceMonitor":{
+               "_class":"hudson.node_monitors.DiskSpaceMonitorDescriptor$DiskSpace",
+               "timestamp":1494382486707,
+               "path":"/Users/cliffano/.jenkins",
+               "size":6115172352
+            },
+            "hudson.node_monitors.ArchitectureMonitor":"Mac OS X (x86_64)",
+            "hudson.node_monitors.ResponseTimeMonitor":{
+               "_class":"hudson.node_monitors.ResponseTimeMonitor$Data",
+               "timestamp":1494382486679,
+               "average":0
+            },
+            "hudson.node_monitors.ClockMonitor":{
+               "_class":"hudson.util.ClockDifference",
+               "diff":0
+            }
+         },
+         "numExecutors":2,
+         "offline":false,
+         "offlineCause":null,
+         "offlineCauseReason":"",
+         "oneOffExecutors":[
+
+         ],
+         "temporarilyOffline":false
+      }
+   ],
+   "displayName":"Nodes",
+   "totalExecutors":2
+}
