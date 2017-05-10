@@ -48,6 +48,10 @@ function processObject(obj, definitions) {
       }
     } else if (typeof value === 'object') {
       if (Object.keys(value).length > 0) {
+        if (value._class === undefined) {
+          console.warn('Property %s does not have any _class', key);
+          value._class = util.format('%s_%s', definitionId, key);
+        }
         var propertyDefinitionId = getDefinitionIdFromClass(value._class);
         definition.properties[key] = {
           '$ref': util.format('#/definitions/%s', propertyDefinitionId)
@@ -56,6 +60,8 @@ function processObject(obj, definitions) {
       } else {
         console.warn('Ignoring property %s - a keyless object', key);
       }
+    } else {
+      console.warn('Unsupported property type %s', typeof value);
     }
   });
 
