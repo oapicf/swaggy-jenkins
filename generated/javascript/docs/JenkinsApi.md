@@ -4,10 +4,51 @@ All URIs are relative to *http://localhost/*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**getComputer**](JenkinsApi.md#getComputer) | **GET** /computer/api/json | 
 [**getCrumb**](JenkinsApi.md#getCrumb) | **GET** /crumbIssuer/api/json | 
 [**getInfo**](JenkinsApi.md#getInfo) | **GET** /api/json | 
 [**getQueue**](JenkinsApi.md#getQueue) | **GET** /queue/api/json | 
 
+
+<a name="getComputer"></a>
+# **getComputer**
+> ComputerSet getComputer()
+
+
+
+Get computer
+
+### Example
+```javascript
+var SwaggyJenkins = require('swaggy_jenkins');
+
+var apiInstance = new SwaggyJenkins.JenkinsApi();
+
+var callback = function(error, data, response) {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully. Returned data: ' + data);
+  }
+};
+apiInstance.getComputer(callback);
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**ComputerSet**](ComputerSet.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
 <a name="getCrumb"></a>
 # **getCrumb**

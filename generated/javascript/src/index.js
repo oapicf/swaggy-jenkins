@@ -14,12 +14,12 @@
 (function(factory) {
   if (typeof define === 'function' && define.amd) {
     // AMD. Register as an anonymous module.
-    define(['ApiClient', 'model/AllView', 'model/CauseAction', 'model/CauseUserIdCause', 'model/DefaultCrumbIssuer', 'model/FreeStyleProject', 'model/Hudson', 'model/Queue', 'model/QueueBlockedItem', 'model/UnlabeledLoadStatistics', 'api/JenkinsApi'], factory);
+    define(['ApiClient', 'model/AllView', 'model/CauseAction', 'model/CauseUserIdCause', 'model/ClockDifference', 'model/ComputerSet', 'model/DefaultCrumbIssuer', 'model/DiskSpaceMonitorDescriptorDiskSpace', 'model/FreeStyleProject', 'model/Hudson', 'model/HudsonMasterComputer', 'model/HudsonMasterComputerMonitorData', 'model/Label1', 'model/Queue', 'model/QueueBlockedItem', 'model/ResponseTimeMonitorData', 'model/SwapSpaceMonitorMemoryUsage2', 'model/UnlabeledLoadStatistics', 'api/JenkinsApi'], factory);
   } else if (typeof module === 'object' && module.exports) {
     // CommonJS-like environments that support module.exports, like Node.
-    module.exports = factory(require('./ApiClient'), require('./model/AllView'), require('./model/CauseAction'), require('./model/CauseUserIdCause'), require('./model/DefaultCrumbIssuer'), require('./model/FreeStyleProject'), require('./model/Hudson'), require('./model/Queue'), require('./model/QueueBlockedItem'), require('./model/UnlabeledLoadStatistics'), require('./api/JenkinsApi'));
+    module.exports = factory(require('./ApiClient'), require('./model/AllView'), require('./model/CauseAction'), require('./model/CauseUserIdCause'), require('./model/ClockDifference'), require('./model/ComputerSet'), require('./model/DefaultCrumbIssuer'), require('./model/DiskSpaceMonitorDescriptorDiskSpace'), require('./model/FreeStyleProject'), require('./model/Hudson'), require('./model/HudsonMasterComputer'), require('./model/HudsonMasterComputerMonitorData'), require('./model/Label1'), require('./model/Queue'), require('./model/QueueBlockedItem'), require('./model/ResponseTimeMonitorData'), require('./model/SwapSpaceMonitorMemoryUsage2'), require('./model/UnlabeledLoadStatistics'), require('./api/JenkinsApi'));
   }
-}(function(ApiClient, AllView, CauseAction, CauseUserIdCause, DefaultCrumbIssuer, FreeStyleProject, Hudson, Queue, QueueBlockedItem, UnlabeledLoadStatistics, JenkinsApi) {
+}(function(ApiClient, AllView, CauseAction, CauseUserIdCause, ClockDifference, ComputerSet, DefaultCrumbIssuer, DiskSpaceMonitorDescriptorDiskSpace, FreeStyleProject, Hudson, HudsonMasterComputer, HudsonMasterComputerMonitorData, Label1, Queue, QueueBlockedItem, ResponseTimeMonitorData, SwapSpaceMonitorMemoryUsage2, UnlabeledLoadStatistics, JenkinsApi) {
   'use strict';
 
   /**
@@ -75,10 +75,25 @@
      */
     CauseUserIdCause: CauseUserIdCause,
     /**
+     * The ClockDifference model constructor.
+     * @property {module:model/ClockDifference}
+     */
+    ClockDifference: ClockDifference,
+    /**
+     * The ComputerSet model constructor.
+     * @property {module:model/ComputerSet}
+     */
+    ComputerSet: ComputerSet,
+    /**
      * The DefaultCrumbIssuer model constructor.
      * @property {module:model/DefaultCrumbIssuer}
      */
     DefaultCrumbIssuer: DefaultCrumbIssuer,
+    /**
+     * The DiskSpaceMonitorDescriptorDiskSpace model constructor.
+     * @property {module:model/DiskSpaceMonitorDescriptorDiskSpace}
+     */
+    DiskSpaceMonitorDescriptorDiskSpace: DiskSpaceMonitorDescriptorDiskSpace,
     /**
      * The FreeStyleProject model constructor.
      * @property {module:model/FreeStyleProject}
@@ -90,6 +105,21 @@
      */
     Hudson: Hudson,
     /**
+     * The HudsonMasterComputer model constructor.
+     * @property {module:model/HudsonMasterComputer}
+     */
+    HudsonMasterComputer: HudsonMasterComputer,
+    /**
+     * The HudsonMasterComputerMonitorData model constructor.
+     * @property {module:model/HudsonMasterComputerMonitorData}
+     */
+    HudsonMasterComputerMonitorData: HudsonMasterComputerMonitorData,
+    /**
+     * The Label1 model constructor.
+     * @property {module:model/Label1}
+     */
+    Label1: Label1,
+    /**
      * The Queue model constructor.
      * @property {module:model/Queue}
      */
@@ -99,6 +129,16 @@
      * @property {module:model/QueueBlockedItem}
      */
     QueueBlockedItem: QueueBlockedItem,
+    /**
+     * The ResponseTimeMonitorData model constructor.
+     * @property {module:model/ResponseTimeMonitorData}
+     */
+    ResponseTimeMonitorData: ResponseTimeMonitorData,
+    /**
+     * The SwapSpaceMonitorMemoryUsage2 model constructor.
+     * @property {module:model/SwapSpaceMonitorMemoryUsage2}
+     */
+    SwapSpaceMonitorMemoryUsage2: SwapSpaceMonitorMemoryUsage2,
     /**
      * The UnlabeledLoadStatistics model constructor.
      * @property {module:model/UnlabeledLoadStatistics}

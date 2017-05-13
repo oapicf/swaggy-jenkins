@@ -62,7 +62,7 @@ var callback = function(error, data, response) {
     console.log('API called successfully. Returned data: ' + data);
   }
 };
-api.getCrumb(callback);
+api.getComputer(callback);
 
 ```
 
@@ -72,6 +72,7 @@ All URIs are relative to *http://localhost/*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
+*SwaggyJenkins.JenkinsApi* | [**getComputer**](docs/JenkinsApi.md#getComputer) | **GET** /computer/api/json | 
 *SwaggyJenkins.JenkinsApi* | [**getCrumb**](docs/JenkinsApi.md#getCrumb) | **GET** /crumbIssuer/api/json | 
 *SwaggyJenkins.JenkinsApi* | [**getInfo**](docs/JenkinsApi.md#getInfo) | **GET** /api/json | 
 *SwaggyJenkins.JenkinsApi* | [**getQueue**](docs/JenkinsApi.md#getQueue) | **GET** /queue/api/json | 
@@ -82,11 +83,19 @@ Class | Method | HTTP request | Description
  - [SwaggyJenkins.AllView](docs/AllView.md)
  - [SwaggyJenkins.CauseAction](docs/CauseAction.md)
  - [SwaggyJenkins.CauseUserIdCause](docs/CauseUserIdCause.md)
+ - [SwaggyJenkins.ClockDifference](docs/ClockDifference.md)
+ - [SwaggyJenkins.ComputerSet](docs/ComputerSet.md)
  - [SwaggyJenkins.DefaultCrumbIssuer](docs/DefaultCrumbIssuer.md)
+ - [SwaggyJenkins.DiskSpaceMonitorDescriptorDiskSpace](docs/DiskSpaceMonitorDescriptorDiskSpace.md)
  - [SwaggyJenkins.FreeStyleProject](docs/FreeStyleProject.md)
  - [SwaggyJenkins.Hudson](docs/Hudson.md)
+ - [SwaggyJenkins.HudsonMasterComputer](docs/HudsonMasterComputer.md)
+ - [SwaggyJenkins.HudsonMasterComputerMonitorData](docs/HudsonMasterComputerMonitorData.md)
+ - [SwaggyJenkins.Label1](docs/Label1.md)
  - [SwaggyJenkins.Queue](docs/Queue.md)
  - [SwaggyJenkins.QueueBlockedItem](docs/QueueBlockedItem.md)
+ - [SwaggyJenkins.ResponseTimeMonitorData](docs/ResponseTimeMonitorData.md)
+ - [SwaggyJenkins.SwapSpaceMonitorMemoryUsage2](docs/SwapSpaceMonitorMemoryUsage2.md)
  - [SwaggyJenkins.UnlabeledLoadStatistics](docs/UnlabeledLoadStatistics.md)
 
 

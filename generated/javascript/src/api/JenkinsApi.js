@@ -14,18 +14,18 @@
 (function(root, factory) {
   if (typeof define === 'function' && define.amd) {
     // AMD. Register as an anonymous module.
-    define(['ApiClient', 'model/DefaultCrumbIssuer', 'model/Hudson', 'model/Queue'], factory);
+    define(['ApiClient', 'model/ComputerSet', 'model/DefaultCrumbIssuer', 'model/Hudson', 'model/Queue'], factory);
   } else if (typeof module === 'object' && module.exports) {
     // CommonJS-like environments that support module.exports, like Node.
-    module.exports = factory(require('../ApiClient'), require('../model/DefaultCrumbIssuer'), require('../model/Hudson'), require('../model/Queue'));
+    module.exports = factory(require('../ApiClient'), require('../model/ComputerSet'), require('../model/DefaultCrumbIssuer'), require('../model/Hudson'), require('../model/Queue'));
   } else {
     // Browser globals (root is window)
     if (!root.SwaggyJenkins) {
       root.SwaggyJenkins = {};
     }
-    root.SwaggyJenkins.JenkinsApi = factory(root.SwaggyJenkins.ApiClient, root.SwaggyJenkins.DefaultCrumbIssuer, root.SwaggyJenkins.Hudson, root.SwaggyJenkins.Queue);
+    root.SwaggyJenkins.JenkinsApi = factory(root.SwaggyJenkins.ApiClient, root.SwaggyJenkins.ComputerSet, root.SwaggyJenkins.DefaultCrumbIssuer, root.SwaggyJenkins.Hudson, root.SwaggyJenkins.Queue);
   }
-}(this, function(ApiClient, DefaultCrumbIssuer, Hudson, Queue) {
+}(this, function(ApiClient, ComputerSet, DefaultCrumbIssuer, Hudson, Queue) {
   'use strict';
 
   /**
@@ -44,6 +44,44 @@
   var exports = function(apiClient) {
     this.apiClient = apiClient || ApiClient.instance;
 
+
+    /**
+     * Callback function to receive the result of the getComputer operation.
+     * @callback module:api/JenkinsApi~getComputerCallback
+     * @param {String} error Error message, if any.
+     * @param {module:model/ComputerSet} data The data returned by the service call.
+     * @param {String} response The complete HTTP response.
+     */
+
+    /**
+     * Get computer
+     * @param {module:api/JenkinsApi~getComputerCallback} callback The callback function, accepting three arguments: error, data, response
+     * data is of type: {@link module:model/ComputerSet}
+     */
+    this.getComputer = function(callback) {
+      var postBody = null;
+
+
+      var pathParams = {
+      };
+      var queryParams = {
+      };
+      var headerParams = {
+      };
+      var formParams = {
+      };
+
+      var authNames = [];
+      var contentTypes = [];
+      var accepts = ['application/json'];
+      var returnType = ComputerSet;
+
+      return this.apiClient.callApi(
+        '/computer/api/json', 'GET',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, callback
+      );
+    }
 
     /**
      * Callback function to receive the result of the getCrumb operation.
