@@ -12,7 +12,7 @@ Method | HTTP request | Description
 
 <a name="getComputer"></a>
 # **getComputer**
-> ComputerSet getComputer()
+> HudsonmodelComputerSet getComputer()
 
 
 
@@ -39,7 +39,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**ComputerSet**](ComputerSet.md)
+[**HudsonmodelComputerSet**](HudsonmodelComputerSet.md)
 
 ### Authorization
 
@@ -52,7 +52,7 @@ No authorization required
 
 <a name="getCrumb"></a>
 # **getCrumb**
-> DefaultCrumbIssuer getCrumb()
+> HudsonsecuritycsrfDefaultCrumbIssuer getCrumb()
 
 
 
@@ -79,7 +79,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**DefaultCrumbIssuer**](DefaultCrumbIssuer.md)
+[**HudsonsecuritycsrfDefaultCrumbIssuer**](HudsonsecuritycsrfDefaultCrumbIssuer.md)
 
 ### Authorization
 
@@ -92,7 +92,7 @@ No authorization required
 
 <a name="getInfo"></a>
 # **getInfo**
-> Hudson getInfo()
+> HudsonmodelHudson getInfo()
 
 
 
@@ -119,7 +119,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**Hudson**](Hudson.md)
+[**HudsonmodelHudson**](HudsonmodelHudson.md)
 
 ### Authorization
 
@@ -132,7 +132,7 @@ No authorization required
 
 <a name="getQueue"></a>
 # **getQueue**
-> Queue getQueue()
+> HudsonmodelQueue getQueue()
 
 
 
@@ -159,7 +159,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**Queue**](Queue.md)
+[**HudsonmodelQueue**](HudsonmodelQueue.md)
 
 ### Authorization
 

@@ -25,7 +25,7 @@ paths:
         200:
           description: Successfully get info
           schema:
-            $ref: "#/definitions/Hudson"
+            $ref: "#/definitions/hudsonmodelHudson"
       tags:
         - jenkins
   /computer/api/json:
@@ -38,7 +38,7 @@ paths:
         200:
           description: Successfully get computer
           schema:
-            $ref: "#/definitions/ComputerSet"
+            $ref: "#/definitions/hudsonmodelComputerSet"
       tags:
         - jenkins
   /crumbIssuer/api/json:
@@ -51,7 +51,7 @@ paths:
         200:
           description: Successfully get crumb
           schema:
-            $ref: "#/definitions/DefaultCrumbIssuer"
+            $ref: "#/definitions/hudsonsecuritycsrfDefaultCrumbIssuer"
       tags:
         - jenkins
   /queue/api/json:
@@ -64,40 +64,121 @@ paths:
         200:
           description: Successfully get queue
           schema:
-            $ref: "#/definitions/Queue"
+            $ref: "#/definitions/hudsonmodelQueue"
       tags:
         - jenkins
 definitions:
-  AllView:
+  hudsonmodelLabel1:
     type: object
     properties:
       _class:
         type: string
-      name:
-        type: string
-      url:
-        type: string
-  Cause$UserIdCause:
+  hudsonnode_monitorsSwapSpaceMonitorMemoryUsage2:
     type: object
     properties:
       _class:
         type: string
-      shortDescription:
-        type: string
-      userId:
-        type: string
-      userName:
-        type: string
-  CauseAction:
+      availablePhysicalMemory:
+        type: integer
+      availableSwapSpace:
+        type: integer
+      totalPhysicalMemory:
+        type: integer
+      totalSwapSpace:
+        type: integer
+  hudsonnode_monitorsDiskSpaceMonitorDescriptorDiskSpace:
     type: object
     properties:
       _class:
         type: string
-      causes:
+      timestamp:
+        type: integer
+      path:
+        type: string
+      size:
+        type: integer
+  hudsonnode_monitorsResponseTimeMonitorData:
+    type: object
+    properties:
+      _class:
+        type: string
+      timestamp:
+        type: integer
+      average:
+        type: integer
+  hudsonutilClockDifference:
+    type: object
+    properties:
+      _class:
+        type: string
+      diff:
+        type: integer
+  hudsonmodelHudsonMasterComputer_monitorData:
+    type: object
+    properties:
+      hudson.node_monitors.SwapSpaceMonitor:
+        $ref: '#/definitions/hudsonnode_monitorsSwapSpaceMonitorMemoryUsage2'
+      hudson.node_monitors.TemporarySpaceMonitor:
+        $ref: '#/definitions/hudsonnode_monitorsDiskSpaceMonitorDescriptorDiskSpace'
+      hudson.node_monitors.DiskSpaceMonitor:
+        $ref: '#/definitions/hudsonnode_monitorsDiskSpaceMonitorDescriptorDiskSpace'
+      hudson.node_monitors.ArchitectureMonitor:
+        type: string
+      hudson.node_monitors.ResponseTimeMonitor:
+        $ref: '#/definitions/hudsonnode_monitorsResponseTimeMonitorData'
+      hudson.node_monitors.ClockMonitor:
+        $ref: '#/definitions/hudsonutilClockDifference'
+      _class:
+        type: string
+  hudsonmodelHudsonMasterComputer:
+    type: object
+    properties:
+      _class:
+        type: string
+      displayName:
+        type: string
+      icon:
+        type: string
+      iconClassName:
+        type: string
+      idle:
+        type: boolean
+      jnlpAgent:
+        type: boolean
+      launchSupported:
+        type: boolean
+      loadStatistics:
+        $ref: '#/definitions/hudsonmodelLabel1'
+      manualLaunchAllowed:
+        type: boolean
+      monitorData:
+        $ref: '#/definitions/hudsonmodelHudsonMasterComputer_monitorData'
+      numExecutors:
+        type: integer
+      offline:
+        type: boolean
+      offlineCause:
+        type: string
+      offlineCauseReason:
+        type: string
+      temporarilyOffline:
+        type: boolean
+  hudsonmodelComputerSet:
+    type: object
+    properties:
+      _class:
+        type: string
+      busyExecutors:
+        type: integer
+      computer:
         type: array
         items:
-          $ref: '#/definitions/Cause$UserIdCause'
-  DefaultCrumbIssuer:
+          $ref: '#/definitions/hudsonmodelHudsonMasterComputer'
+      displayName:
+        type: string
+      totalExecutors:
+        type: integer
+  hudsonsecuritycsrfDefaultCrumbIssuer:
     type: object
     properties:
       _class:
@@ -106,7 +187,7 @@ definitions:
         type: string
       crumbRequestField:
         type: string
-  FreeStyleProject:
+  hudsonmodelFreeStyleProject:
     type: object
     properties:
       _class:
@@ -117,7 +198,21 @@ definitions:
         type: string
       color:
         type: string
-  Hudson:
+  hudsonmodelAllView:
+    type: object
+    properties:
+      _class:
+        type: string
+      name:
+        type: string
+      url:
+        type: string
+  jenkinsmodelUnlabeledLoadStatistics:
+    type: object
+    properties:
+      _class:
+        type: string
+  hudsonmodelHudson:
     type: object
     properties:
       _class:
@@ -135,18 +230,44 @@ definitions:
       jobs:
         type: array
         items:
-          $ref: '#/definitions/FreeStyleProject'
+          $ref: '#/definitions/hudsonmodelFreeStyleProject'
       primaryView:
-        $ref: '#/definitions/AllView'
+        $ref: '#/definitions/hudsonmodelAllView'
+      quietingDown:
+        type: boolean
       slaveAgentPort:
         type: integer
       unlabeledLoad:
-        $ref: '#/definitions/UnlabeledLoadStatistics'
+        $ref: '#/definitions/jenkinsmodelUnlabeledLoadStatistics'
+      useCrumbs:
+        type: boolean
+      useSecurity:
+        type: boolean
       views:
         type: array
         items:
-          $ref: '#/definitions/AllView'
-  Queue$BlockedItem:
+          $ref: '#/definitions/hudsonmodelAllView'
+  hudsonmodelCauseUserIdCause:
+    type: object
+    properties:
+      _class:
+        type: string
+      shortDescription:
+        type: string
+      userId:
+        type: string
+      userName:
+        type: string
+  hudsonmodelCauseAction:
+    type: object
+    properties:
+      _class:
+        type: string
+      causes:
+        type: array
+        items:
+          $ref: '#/definitions/hudsonmodelCauseUserIdCause'
+  hudsonmodelQueueBlockedItem:
     type: object
     properties:
       _class:
@@ -154,22 +275,28 @@ definitions:
       actions:
         type: array
         items:
-          $ref: '#/definitions/CauseAction'
+          $ref: '#/definitions/hudsonmodelCauseAction'
+      blocked:
+        type: boolean
+      buildable:
+        type: boolean
       id:
         type: integer
       inQueueSince:
         type: integer
       params:
         type: string
+      stuck:
+        type: boolean
       task:
-        $ref: '#/definitions/FreeStyleProject'
+        $ref: '#/definitions/hudsonmodelFreeStyleProject'
       url:
         type: string
       why:
         type: string
       buildableStartMilliseconds:
         type: integer
-  Queue:
+  hudsonmodelQueue:
     type: object
     properties:
       _class:
@@ -177,107 +304,4 @@ definitions:
       items:
         type: array
         items:
-          $ref: '#/definitions/Queue$BlockedItem'
-  UnlabeledLoadStatistics:
-    type: object
-    properties:
-      _class:
-        type: string
-  Label$1:
-    type: object
-    properties:
-      _class:
-        type: string
-  SwapSpaceMonitor$MemoryUsage2:
-    type: object
-    properties:
-      _class:
-        type: string
-      availablePhysicalMemory:
-        type: integer
-      availableSwapSpace:
-        type: integer
-      totalPhysicalMemory:
-        type: integer
-      totalSwapSpace:
-        type: integer
-  DiskSpaceMonitorDescriptor$DiskSpace:
-    type: object
-    properties:
-      _class:
-        type: string
-      timestamp:
-        type: integer
-      path:
-        type: string
-      size:
-        type: integer
-  ResponseTimeMonitor$Data:
-    type: object
-    properties:
-      _class:
-        type: string
-      timestamp:
-        type: integer
-      average:
-        type: integer
-  ClockDifference:
-    type: object
-    properties:
-      _class:
-        type: string
-      diff:
-        type: integer
-  Hudson$MasterComputer_monitorData:
-    type: object
-    properties:
-      hudson.node_monitors.SwapSpaceMonitor:
-        $ref: '#/definitions/SwapSpaceMonitor$MemoryUsage2'
-      hudson.node_monitors.TemporarySpaceMonitor:
-        $ref: '#/definitions/DiskSpaceMonitorDescriptor$DiskSpace'
-      hudson.node_monitors.DiskSpaceMonitor:
-        $ref: '#/definitions/DiskSpaceMonitorDescriptor$DiskSpace'
-      hudson.node_monitors.ArchitectureMonitor:
-        type: string
-      hudson.node_monitors.ResponseTimeMonitor:
-        $ref: '#/definitions/ResponseTimeMonitor$Data'
-      hudson.node_monitors.ClockMonitor:
-        $ref: '#/definitions/ClockDifference'
-      _class:
-        type: string
-  Hudson$MasterComputer:
-    type: object
-    properties:
-      _class:
-        type: string
-      displayName:
-        type: string
-      icon:
-        type: string
-      iconClassName:
-        type: string
-      loadStatistics:
-        $ref: '#/definitions/Label$1'
-      monitorData:
-        $ref: '#/definitions/Hudson$MasterComputer_monitorData'
-      numExecutors:
-        type: integer
-      offlineCause:
-        type: string
-      offlineCauseReason:
-        type: string
-  ComputerSet:
-    type: object
-    properties:
-      _class:
-        type: string
-      busyExecutors:
-        type: integer
-      computer:
-        type: array
-        items:
-          $ref: '#/definitions/Hudson$MasterComputer'
-      displayName:
-        type: string
-      totalExecutors:
-        type: integer
+          $ref: '#/definitions/hudsonmodelQueueBlockedItem'

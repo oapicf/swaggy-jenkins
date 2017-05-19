@@ -14,12 +14,12 @@
 (function(factory) {
   if (typeof define === 'function' && define.amd) {
     // AMD. Register as an anonymous module.
-    define(['ApiClient', 'model/AllView', 'model/CauseAction', 'model/CauseUserIdCause', 'model/ClockDifference', 'model/ComputerSet', 'model/DefaultCrumbIssuer', 'model/DiskSpaceMonitorDescriptorDiskSpace', 'model/FreeStyleProject', 'model/Hudson', 'model/HudsonMasterComputer', 'model/HudsonMasterComputerMonitorData', 'model/Label1', 'model/Queue', 'model/QueueBlockedItem', 'model/ResponseTimeMonitorData', 'model/SwapSpaceMonitorMemoryUsage2', 'model/UnlabeledLoadStatistics', 'api/JenkinsApi'], factory);
+    define(['ApiClient', 'model/HudsonmodelAllView', 'model/HudsonmodelCauseAction', 'model/HudsonmodelCauseUserIdCause', 'model/HudsonmodelComputerSet', 'model/HudsonmodelFreeStyleProject', 'model/HudsonmodelHudson', 'model/HudsonmodelHudsonMasterComputer', 'model/HudsonmodelHudsonMasterComputerMonitorData', 'model/HudsonmodelLabel1', 'model/HudsonmodelQueue', 'model/HudsonmodelQueueBlockedItem', 'model/HudsonnodeMonitorsDiskSpaceMonitorDescriptorDiskSpace', 'model/HudsonnodeMonitorsResponseTimeMonitorData', 'model/HudsonnodeMonitorsSwapSpaceMonitorMemoryUsage2', 'model/HudsonsecuritycsrfDefaultCrumbIssuer', 'model/HudsonutilClockDifference', 'model/JenkinsmodelUnlabeledLoadStatistics', 'api/JenkinsApi'], factory);
   } else if (typeof module === 'object' && module.exports) {
     // CommonJS-like environments that support module.exports, like Node.
-    module.exports = factory(require('./ApiClient'), require('./model/AllView'), require('./model/CauseAction'), require('./model/CauseUserIdCause'), require('./model/ClockDifference'), require('./model/ComputerSet'), require('./model/DefaultCrumbIssuer'), require('./model/DiskSpaceMonitorDescriptorDiskSpace'), require('./model/FreeStyleProject'), require('./model/Hudson'), require('./model/HudsonMasterComputer'), require('./model/HudsonMasterComputerMonitorData'), require('./model/Label1'), require('./model/Queue'), require('./model/QueueBlockedItem'), require('./model/ResponseTimeMonitorData'), require('./model/SwapSpaceMonitorMemoryUsage2'), require('./model/UnlabeledLoadStatistics'), require('./api/JenkinsApi'));
+    module.exports = factory(require('./ApiClient'), require('./model/HudsonmodelAllView'), require('./model/HudsonmodelCauseAction'), require('./model/HudsonmodelCauseUserIdCause'), require('./model/HudsonmodelComputerSet'), require('./model/HudsonmodelFreeStyleProject'), require('./model/HudsonmodelHudson'), require('./model/HudsonmodelHudsonMasterComputer'), require('./model/HudsonmodelHudsonMasterComputerMonitorData'), require('./model/HudsonmodelLabel1'), require('./model/HudsonmodelQueue'), require('./model/HudsonmodelQueueBlockedItem'), require('./model/HudsonnodeMonitorsDiskSpaceMonitorDescriptorDiskSpace'), require('./model/HudsonnodeMonitorsResponseTimeMonitorData'), require('./model/HudsonnodeMonitorsSwapSpaceMonitorMemoryUsage2'), require('./model/HudsonsecuritycsrfDefaultCrumbIssuer'), require('./model/HudsonutilClockDifference'), require('./model/JenkinsmodelUnlabeledLoadStatistics'), require('./api/JenkinsApi'));
   }
-}(function(ApiClient, AllView, CauseAction, CauseUserIdCause, ClockDifference, ComputerSet, DefaultCrumbIssuer, DiskSpaceMonitorDescriptorDiskSpace, FreeStyleProject, Hudson, HudsonMasterComputer, HudsonMasterComputerMonitorData, Label1, Queue, QueueBlockedItem, ResponseTimeMonitorData, SwapSpaceMonitorMemoryUsage2, UnlabeledLoadStatistics, JenkinsApi) {
+}(function(ApiClient, HudsonmodelAllView, HudsonmodelCauseAction, HudsonmodelCauseUserIdCause, HudsonmodelComputerSet, HudsonmodelFreeStyleProject, HudsonmodelHudson, HudsonmodelHudsonMasterComputer, HudsonmodelHudsonMasterComputerMonitorData, HudsonmodelLabel1, HudsonmodelQueue, HudsonmodelQueueBlockedItem, HudsonnodeMonitorsDiskSpaceMonitorDescriptorDiskSpace, HudsonnodeMonitorsResponseTimeMonitorData, HudsonnodeMonitorsSwapSpaceMonitorMemoryUsage2, HudsonsecuritycsrfDefaultCrumbIssuer, HudsonutilClockDifference, JenkinsmodelUnlabeledLoadStatistics, JenkinsApi) {
   'use strict';
 
   /**
@@ -60,90 +60,90 @@
      */
     ApiClient: ApiClient,
     /**
-     * The AllView model constructor.
-     * @property {module:model/AllView}
+     * The HudsonmodelAllView model constructor.
+     * @property {module:model/HudsonmodelAllView}
      */
-    AllView: AllView,
+    HudsonmodelAllView: HudsonmodelAllView,
     /**
-     * The CauseAction model constructor.
-     * @property {module:model/CauseAction}
+     * The HudsonmodelCauseAction model constructor.
+     * @property {module:model/HudsonmodelCauseAction}
      */
-    CauseAction: CauseAction,
+    HudsonmodelCauseAction: HudsonmodelCauseAction,
     /**
-     * The CauseUserIdCause model constructor.
-     * @property {module:model/CauseUserIdCause}
+     * The HudsonmodelCauseUserIdCause model constructor.
+     * @property {module:model/HudsonmodelCauseUserIdCause}
      */
-    CauseUserIdCause: CauseUserIdCause,
+    HudsonmodelCauseUserIdCause: HudsonmodelCauseUserIdCause,
     /**
-     * The ClockDifference model constructor.
-     * @property {module:model/ClockDifference}
+     * The HudsonmodelComputerSet model constructor.
+     * @property {module:model/HudsonmodelComputerSet}
      */
-    ClockDifference: ClockDifference,
+    HudsonmodelComputerSet: HudsonmodelComputerSet,
     /**
-     * The ComputerSet model constructor.
-     * @property {module:model/ComputerSet}
+     * The HudsonmodelFreeStyleProject model constructor.
+     * @property {module:model/HudsonmodelFreeStyleProject}
      */
-    ComputerSet: ComputerSet,
+    HudsonmodelFreeStyleProject: HudsonmodelFreeStyleProject,
     /**
-     * The DefaultCrumbIssuer model constructor.
-     * @property {module:model/DefaultCrumbIssuer}
+     * The HudsonmodelHudson model constructor.
+     * @property {module:model/HudsonmodelHudson}
      */
-    DefaultCrumbIssuer: DefaultCrumbIssuer,
+    HudsonmodelHudson: HudsonmodelHudson,
     /**
-     * The DiskSpaceMonitorDescriptorDiskSpace model constructor.
-     * @property {module:model/DiskSpaceMonitorDescriptorDiskSpace}
+     * The HudsonmodelHudsonMasterComputer model constructor.
+     * @property {module:model/HudsonmodelHudsonMasterComputer}
      */
-    DiskSpaceMonitorDescriptorDiskSpace: DiskSpaceMonitorDescriptorDiskSpace,
+    HudsonmodelHudsonMasterComputer: HudsonmodelHudsonMasterComputer,
     /**
-     * The FreeStyleProject model constructor.
-     * @property {module:model/FreeStyleProject}
+     * The HudsonmodelHudsonMasterComputerMonitorData model constructor.
+     * @property {module:model/HudsonmodelHudsonMasterComputerMonitorData}
      */
-    FreeStyleProject: FreeStyleProject,
+    HudsonmodelHudsonMasterComputerMonitorData: HudsonmodelHudsonMasterComputerMonitorData,
     /**
-     * The Hudson model constructor.
-     * @property {module:model/Hudson}
+     * The HudsonmodelLabel1 model constructor.
+     * @property {module:model/HudsonmodelLabel1}
      */
-    Hudson: Hudson,
+    HudsonmodelLabel1: HudsonmodelLabel1,
     /**
-     * The HudsonMasterComputer model constructor.
-     * @property {module:model/HudsonMasterComputer}
+     * The HudsonmodelQueue model constructor.
+     * @property {module:model/HudsonmodelQueue}
      */
-    HudsonMasterComputer: HudsonMasterComputer,
+    HudsonmodelQueue: HudsonmodelQueue,
     /**
-     * The HudsonMasterComputerMonitorData model constructor.
-     * @property {module:model/HudsonMasterComputerMonitorData}
+     * The HudsonmodelQueueBlockedItem model constructor.
+     * @property {module:model/HudsonmodelQueueBlockedItem}
      */
-    HudsonMasterComputerMonitorData: HudsonMasterComputerMonitorData,
+    HudsonmodelQueueBlockedItem: HudsonmodelQueueBlockedItem,
     /**
-     * The Label1 model constructor.
-     * @property {module:model/Label1}
+     * The HudsonnodeMonitorsDiskSpaceMonitorDescriptorDiskSpace model constructor.
+     * @property {module:model/HudsonnodeMonitorsDiskSpaceMonitorDescriptorDiskSpace}
      */
-    Label1: Label1,
+    HudsonnodeMonitorsDiskSpaceMonitorDescriptorDiskSpace: HudsonnodeMonitorsDiskSpaceMonitorDescriptorDiskSpace,
     /**
-     * The Queue model constructor.
-     * @property {module:model/Queue}
+     * The HudsonnodeMonitorsResponseTimeMonitorData model constructor.
+     * @property {module:model/HudsonnodeMonitorsResponseTimeMonitorData}
      */
-    Queue: Queue,
+    HudsonnodeMonitorsResponseTimeMonitorData: HudsonnodeMonitorsResponseTimeMonitorData,
     /**
-     * The QueueBlockedItem model constructor.
-     * @property {module:model/QueueBlockedItem}
+     * The HudsonnodeMonitorsSwapSpaceMonitorMemoryUsage2 model constructor.
+     * @property {module:model/HudsonnodeMonitorsSwapSpaceMonitorMemoryUsage2}
      */
-    QueueBlockedItem: QueueBlockedItem,
+    HudsonnodeMonitorsSwapSpaceMonitorMemoryUsage2: HudsonnodeMonitorsSwapSpaceMonitorMemoryUsage2,
     /**
-     * The ResponseTimeMonitorData model constructor.
-     * @property {module:model/ResponseTimeMonitorData}
+     * The HudsonsecuritycsrfDefaultCrumbIssuer model constructor.
+     * @property {module:model/HudsonsecuritycsrfDefaultCrumbIssuer}
      */
-    ResponseTimeMonitorData: ResponseTimeMonitorData,
+    HudsonsecuritycsrfDefaultCrumbIssuer: HudsonsecuritycsrfDefaultCrumbIssuer,
     /**
-     * The SwapSpaceMonitorMemoryUsage2 model constructor.
-     * @property {module:model/SwapSpaceMonitorMemoryUsage2}
+     * The HudsonutilClockDifference model constructor.
+     * @property {module:model/HudsonutilClockDifference}
      */
-    SwapSpaceMonitorMemoryUsage2: SwapSpaceMonitorMemoryUsage2,
+    HudsonutilClockDifference: HudsonutilClockDifference,
     /**
-     * The UnlabeledLoadStatistics model constructor.
-     * @property {module:model/UnlabeledLoadStatistics}
+     * The JenkinsmodelUnlabeledLoadStatistics model constructor.
+     * @property {module:model/JenkinsmodelUnlabeledLoadStatistics}
      */
-    UnlabeledLoadStatistics: UnlabeledLoadStatistics,
+    JenkinsmodelUnlabeledLoadStatistics: JenkinsmodelUnlabeledLoadStatistics,
     /**
      * The JenkinsApi service constructor.
      * @property {module:api/JenkinsApi}

@@ -14,18 +14,18 @@
 (function(root, factory) {
   if (typeof define === 'function' && define.amd) {
     // AMD. Register as an anonymous module.
-    define(['ApiClient', 'model/ComputerSet', 'model/DefaultCrumbIssuer', 'model/Hudson', 'model/Queue'], factory);
+    define(['ApiClient', 'model/HudsonmodelComputerSet', 'model/HudsonmodelHudson', 'model/HudsonmodelQueue', 'model/HudsonsecuritycsrfDefaultCrumbIssuer'], factory);
   } else if (typeof module === 'object' && module.exports) {
     // CommonJS-like environments that support module.exports, like Node.
-    module.exports = factory(require('../ApiClient'), require('../model/ComputerSet'), require('../model/DefaultCrumbIssuer'), require('../model/Hudson'), require('../model/Queue'));
+    module.exports = factory(require('../ApiClient'), require('../model/HudsonmodelComputerSet'), require('../model/HudsonmodelHudson'), require('../model/HudsonmodelQueue'), require('../model/HudsonsecuritycsrfDefaultCrumbIssuer'));
   } else {
     // Browser globals (root is window)
     if (!root.SwaggyJenkins) {
       root.SwaggyJenkins = {};
     }
-    root.SwaggyJenkins.JenkinsApi = factory(root.SwaggyJenkins.ApiClient, root.SwaggyJenkins.ComputerSet, root.SwaggyJenkins.DefaultCrumbIssuer, root.SwaggyJenkins.Hudson, root.SwaggyJenkins.Queue);
+    root.SwaggyJenkins.JenkinsApi = factory(root.SwaggyJenkins.ApiClient, root.SwaggyJenkins.HudsonmodelComputerSet, root.SwaggyJenkins.HudsonmodelHudson, root.SwaggyJenkins.HudsonmodelQueue, root.SwaggyJenkins.HudsonsecuritycsrfDefaultCrumbIssuer);
   }
-}(this, function(ApiClient, ComputerSet, DefaultCrumbIssuer, Hudson, Queue) {
+}(this, function(ApiClient, HudsonmodelComputerSet, HudsonmodelHudson, HudsonmodelQueue, HudsonsecuritycsrfDefaultCrumbIssuer) {
   'use strict';
 
   /**
@@ -49,14 +49,14 @@
      * Callback function to receive the result of the getComputer operation.
      * @callback module:api/JenkinsApi~getComputerCallback
      * @param {String} error Error message, if any.
-     * @param {module:model/ComputerSet} data The data returned by the service call.
+     * @param {module:model/HudsonmodelComputerSet} data The data returned by the service call.
      * @param {String} response The complete HTTP response.
      */
 
     /**
      * Get computer
      * @param {module:api/JenkinsApi~getComputerCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {@link module:model/ComputerSet}
+     * data is of type: {@link module:model/HudsonmodelComputerSet}
      */
     this.getComputer = function(callback) {
       var postBody = null;
@@ -74,7 +74,7 @@
       var authNames = [];
       var contentTypes = [];
       var accepts = ['application/json'];
-      var returnType = ComputerSet;
+      var returnType = HudsonmodelComputerSet;
 
       return this.apiClient.callApi(
         '/computer/api/json', 'GET',
@@ -87,14 +87,14 @@
      * Callback function to receive the result of the getCrumb operation.
      * @callback module:api/JenkinsApi~getCrumbCallback
      * @param {String} error Error message, if any.
-     * @param {module:model/DefaultCrumbIssuer} data The data returned by the service call.
+     * @param {module:model/HudsonsecuritycsrfDefaultCrumbIssuer} data The data returned by the service call.
      * @param {String} response The complete HTTP response.
      */
 
     /**
      * Get crumb
      * @param {module:api/JenkinsApi~getCrumbCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {@link module:model/DefaultCrumbIssuer}
+     * data is of type: {@link module:model/HudsonsecuritycsrfDefaultCrumbIssuer}
      */
     this.getCrumb = function(callback) {
       var postBody = null;
@@ -112,7 +112,7 @@
       var authNames = [];
       var contentTypes = [];
       var accepts = ['application/json'];
-      var returnType = DefaultCrumbIssuer;
+      var returnType = HudsonsecuritycsrfDefaultCrumbIssuer;
 
       return this.apiClient.callApi(
         '/crumbIssuer/api/json', 'GET',
@@ -125,14 +125,14 @@
      * Callback function to receive the result of the getInfo operation.
      * @callback module:api/JenkinsApi~getInfoCallback
      * @param {String} error Error message, if any.
-     * @param {module:model/Hudson} data The data returned by the service call.
+     * @param {module:model/HudsonmodelHudson} data The data returned by the service call.
      * @param {String} response The complete HTTP response.
      */
 
     /**
      * Get info
      * @param {module:api/JenkinsApi~getInfoCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {@link module:model/Hudson}
+     * data is of type: {@link module:model/HudsonmodelHudson}
      */
     this.getInfo = function(callback) {
       var postBody = null;
@@ -150,7 +150,7 @@
       var authNames = [];
       var contentTypes = [];
       var accepts = ['application/json'];
-      var returnType = Hudson;
+      var returnType = HudsonmodelHudson;
 
       return this.apiClient.callApi(
         '/api/json', 'GET',
@@ -163,14 +163,14 @@
      * Callback function to receive the result of the getQueue operation.
      * @callback module:api/JenkinsApi~getQueueCallback
      * @param {String} error Error message, if any.
-     * @param {module:model/Queue} data The data returned by the service call.
+     * @param {module:model/HudsonmodelQueue} data The data returned by the service call.
      * @param {String} response The complete HTTP response.
      */
 
     /**
      * Get queue
      * @param {module:api/JenkinsApi~getQueueCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {@link module:model/Queue}
+     * data is of type: {@link module:model/HudsonmodelQueue}
      */
     this.getQueue = function(callback) {
       var postBody = null;
@@ -188,7 +188,7 @@
       var authNames = [];
       var contentTypes = [];
       var accepts = ['application/json'];
-      var returnType = Queue;
+      var returnType = HudsonmodelQueue;
 
       return this.apiClient.callApi(
         '/queue/api/json', 'GET',
