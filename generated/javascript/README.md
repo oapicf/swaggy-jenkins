@@ -68,14 +68,15 @@ api.getComputer(callback);
 
 ## Documentation for API Endpoints
 
-All URIs are relative to *http://localhost/*
+All URIs are relative to *http://localhost*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*SwaggyJenkins.JenkinsApi* | [**getComputer**](docs/JenkinsApi.md#getComputer) | **GET** /computer/api/json | 
+*SwaggyJenkins.JenkinsApi* | [**getComputer**](docs/JenkinsApi.md#getComputer) | **GET** /computer/api/json?depth&#x3D;1 | 
 *SwaggyJenkins.JenkinsApi* | [**getCrumb**](docs/JenkinsApi.md#getCrumb) | **GET** /crumbIssuer/api/json | 
 *SwaggyJenkins.JenkinsApi* | [**getInfo**](docs/JenkinsApi.md#getInfo) | **GET** /api/json | 
 *SwaggyJenkins.JenkinsApi* | [**getQueue**](docs/JenkinsApi.md#getQueue) | **GET** /queue/api/json | 
+*SwaggyJenkins.JenkinsApi* | [**headVersion**](docs/JenkinsApi.md#headVersion) | **HEAD** / | 
 
 
 ## Documentation for Models
@@ -84,10 +85,13 @@ Class | Method | HTTP request | Description
  - [SwaggyJenkins.HudsonmodelCauseAction](docs/HudsonmodelCauseAction.md)
  - [SwaggyJenkins.HudsonmodelCauseUserIdCause](docs/HudsonmodelCauseUserIdCause.md)
  - [SwaggyJenkins.HudsonmodelComputerSet](docs/HudsonmodelComputerSet.md)
+ - [SwaggyJenkins.HudsonmodelFreeStyleBuild](docs/HudsonmodelFreeStyleBuild.md)
  - [SwaggyJenkins.HudsonmodelFreeStyleProject](docs/HudsonmodelFreeStyleProject.md)
  - [SwaggyJenkins.HudsonmodelHudson](docs/HudsonmodelHudson.md)
  - [SwaggyJenkins.HudsonmodelHudsonMasterComputer](docs/HudsonmodelHudsonMasterComputer.md)
  - [SwaggyJenkins.HudsonmodelHudsonMasterComputerMonitorData](docs/HudsonmodelHudsonMasterComputerMonitorData.md)
+ - [SwaggyJenkins.HudsonmodelHudsonMasterComputerexecutors](docs/HudsonmodelHudsonMasterComputerexecutors.md)
+ - [SwaggyJenkins.HudsonmodelHudsonassignedLabels](docs/HudsonmodelHudsonassignedLabels.md)
  - [SwaggyJenkins.HudsonmodelLabel1](docs/HudsonmodelLabel1.md)
  - [SwaggyJenkins.HudsonmodelQueue](docs/HudsonmodelQueue.md)
  - [SwaggyJenkins.HudsonmodelQueueBlockedItem](docs/HudsonmodelQueueBlockedItem.md)

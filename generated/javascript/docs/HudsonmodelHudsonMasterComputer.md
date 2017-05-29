@@ -5,6 +5,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **_class** | **String** |  | [optional] 
 **displayName** | **String** |  | [optional] 
+**executors** | [**[HudsonmodelHudsonMasterComputerexecutors]**](HudsonmodelHudsonMasterComputerexecutors.md) |  | [optional] 
 **icon** | **String** |  | [optional] 
 **iconClassName** | **String** |  | [optional] 
 **idle** | **Boolean** |  | [optional] 

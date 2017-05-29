@@ -4,6 +4,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **_class** | **String** |  | [optional] 
+**assignedLabels** | [**[HudsonmodelHudsonassignedLabels]**](HudsonmodelHudsonassignedLabels.md) |  | [optional] 
 **mode** | **String** |  | [optional] 
 **nodeDescription** | **String** |  | [optional] 
 **nodeName** | **String** |  | [optional] 

@@ -15,6 +15,18 @@ securityDefinitions:
   jenkins_auth:
     type: basic
 paths:
+  /:
+    head:
+      description: Retrieve version header
+      operationId: headVersion
+      responses:
+        200:
+          description: Successfully retrieved version
+          headers:
+            x-jenkins:
+              type: string
+      tags:
+        - jenkins
   /api/json:
     get:
       description: Get info
@@ -26,9 +38,13 @@ paths:
           description: Successfully get info
           schema:
             $ref: "#/definitions/hudsonmodelHudson"
+        401:
+          $ref: "#/responses/unauthorized"
+        403:
+          $ref: "#/responses/forbidden"
       tags:
         - jenkins
-  /computer/api/json:
+  /computer/api/json?depth=1:
     get:
       description: Get computer
       operationId: getComputer
@@ -39,6 +55,10 @@ paths:
           description: Successfully get computer
           schema:
             $ref: "#/definitions/hudsonmodelComputerSet"
+        401:
+          $ref: "#/responses/unauthorized"
+        403:
+          $ref: "#/responses/forbidden"
       tags:
         - jenkins
   /crumbIssuer/api/json:
@@ -67,7 +87,36 @@ paths:
             $ref: "#/definitions/hudsonmodelQueue"
       tags:
         - jenkins
+responses:
+  unauthorized:
+    description: Authentication failed - incorrect username and/or password
+  forbidden:
+    description: Jenkins requires authentication - please set username and password
 definitions:
+  hudsonmodelFreeStyleBuild:
+    type: object
+    properties:
+      _class:
+        type: string
+      number:
+        type: integer
+      url:
+        type: string
+  hudsonmodelHudsonMasterComputerexecutors:
+    type: object
+    properties:
+      currentExecutable:
+        $ref: '#/definitions/hudsonmodelFreeStyleBuild'
+      idle:
+        type: boolean
+      likelyStuck:
+        type: boolean
+      number:
+        type: integer
+      progress:
+        type: integer
+      _class:
+        type: string
   hudsonmodelLabel1:
     type: object
     properties:
@@ -137,6 +186,10 @@ definitions:
         type: string
       displayName:
         type: string
+      executors:
+        type: array
+        items:
+          $ref: '#/definitions/hudsonmodelHudsonMasterComputerexecutors'
       icon:
         type: string
       iconClassName:
@@ -187,6 +240,11 @@ definitions:
         type: string
       crumbRequestField:
         type: string
+  hudsonmodelHudsonassignedLabels:
+    type: object
+    properties:
+      _class:
+        type: string
   hudsonmodelFreeStyleProject:
     type: object
     properties:
@@ -217,6 +275,10 @@ definitions:
     properties:
       _class:
         type: string
+      assignedLabels:
+        type: array
+        items:
+          $ref: '#/definitions/hudsonmodelHudsonassignedLabels'
       mode:
         type: string
       nodeDescription:
