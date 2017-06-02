@@ -25,8 +25,12 @@ paths:
           headers:
             x-jenkins:
               type: string
+        401:
+          $ref: "#/responses/unauthorized"
+        403:
+          $ref: "#/responses/forbidden"
       tags:
-        - jenkins
+        - remoteAccess
   /api/json:
     get:
       description: Get info
@@ -43,7 +47,7 @@ paths:
         403:
           $ref: "#/responses/forbidden"
       tags:
-        - jenkins
+        - remoteAccess
   /computer/api/json?depth=1:
     get:
       description: Get computer
@@ -60,7 +64,22 @@ paths:
         403:
           $ref: "#/responses/forbidden"
       tags:
-        - jenkins
+        - remoteAccess
+  /createItem/api/json:
+    post:
+      description: Post item creation
+      operationId: postCreateItem
+      produces:
+        - text/html
+      responses:
+        200:
+          description: Successfully post item creation
+        401:
+          $ref: "#/responses/unauthorized"
+        403:
+          $ref: "#/responses/forbidden"
+      tags:
+        - remoteAccess
   /crumbIssuer/api/json:
     get:
       description: Get crumb
@@ -72,8 +91,84 @@ paths:
           description: Successfully get crumb
           schema:
             $ref: "#/definitions/hudsonsecuritycsrfDefaultCrumbIssuer"
+        401:
+          $ref: "#/responses/unauthorized"
+        403:
+          $ref: "#/responses/forbidden"
       tags:
-        - jenkins
+        - remoteAccess
+  /job/{name}/api/json:
+    get:
+      description: Get job
+      operationId: getJob
+      produces:
+        - application/json
+      parameters:
+        - name: name
+          in: path
+          required: true
+          type: string
+      responses:
+        200:
+          description: Successfully get job
+          schema:
+            $ref: "#/definitions/hudsonmodelFreeStyleProject"
+        401:
+          $ref: "#/responses/unauthorized"
+        403:
+          $ref: "#/responses/forbidden"
+        404:
+          $ref: "#/responses/jobnotexist"
+      tags:
+        - remoteAccess
+  /job/{name}/config.xml:
+    get:
+      description: Get job configuration
+      operationId: getJobConfig
+      produces:
+        - text/xml
+      parameters:
+        - name: name
+          in: path
+          required: true
+          type: string
+      responses:
+        200:
+          description: Successfully get job config
+          schema:
+            type: string
+        401:
+          $ref: "#/responses/unauthorized"
+        403:
+          $ref: "#/responses/forbidden"
+        404:
+          $ref: "#/responses/jobnotexist"
+      tags:
+        - remoteAccess
+  /job/{name}/lastBuild/api/json:
+    get:
+      description: Get job last build
+      operationId: getJobLastBuild
+      produces:
+        - application/json
+      parameters:
+        - name: name
+          in: path
+          required: true
+          type: string
+      responses:
+        200:
+          description: Successfully get job last build
+          schema:
+            $ref: "#/definitions/hudsonmodelFreeStyleBuild"
+        401:
+          $ref: "#/responses/unauthorized"
+        403:
+          $ref: "#/responses/forbidden"
+        404:
+          $ref: "#/responses/jobnotexist"
+      tags:
+        - remoteAccess
   /queue/api/json:
     get:
       description: Get queue
@@ -85,13 +180,19 @@ paths:
           description: Successfully get queue
           schema:
             $ref: "#/definitions/hudsonmodelQueue"
+        401:
+          $ref: "#/responses/unauthorized"
+        403:
+          $ref: "#/responses/forbidden"
       tags:
-        - jenkins
+        - remoteAccess
 responses:
   unauthorized:
     description: Authentication failed - incorrect username and/or password
   forbidden:
     description: Jenkins requires authentication - please set username and password
+  jobnotexist:
+    description: Job {name} does not exist
 definitions:
   hudsonmodelFreeStyleBuild:
     type: object
@@ -256,6 +357,58 @@ definitions:
         type: string
       color:
         type: string
+      actions:
+        type: array
+        items:
+          $ref: '#/definitions/hudsonmodelFreeStyleProjectactions'
+      description:
+        type: string
+      displayName:
+        type: string
+      displayNameOrNull:
+        type: string
+      fullDisplayName:
+        type: string
+      fullName:
+        type: string
+      buildable:
+        type: boolean
+      builds:
+        type: array
+        items:
+          $ref: '#/definitions/hudsonmodelFreeStyleBuild'
+      firstBuild:
+        $ref: '#/definitions/hudsonmodelFreeStyleBuild'
+      healthReport:
+        type: array
+        items:
+          $ref: '#/definitions/hudsonmodelFreeStyleProjecthealthReport'
+      inQueue:
+        type: boolean
+      keepDependencies:
+        type: boolean
+      lastBuild:
+        $ref: '#/definitions/hudsonmodelFreeStyleBuild'
+      lastCompletedBuild:
+        $ref: '#/definitions/hudsonmodelFreeStyleBuild'
+      lastFailedBuild:
+        type: string
+      lastStableBuild:
+        $ref: '#/definitions/hudsonmodelFreeStyleBuild'
+      lastSuccessfulBuild:
+        $ref: '#/definitions/hudsonmodelFreeStyleBuild'
+      lastUnstableBuild:
+        type: string
+      lastUnsuccessfulBuild:
+        type: string
+      nextBuildNumber:
+        type: integer
+      queueItem:
+        type: string
+      concurrentBuild:
+        type: boolean
+      scm:
+        $ref: '#/definitions/hudsonscmNullSCM'
   hudsonmodelAllView:
     type: object
     properties:
@@ -309,6 +462,29 @@ definitions:
         type: array
         items:
           $ref: '#/definitions/hudsonmodelAllView'
+  hudsonmodelFreeStyleProjectactions:
+    type: object
+    properties:
+      _class:
+        type: string
+  hudsonmodelFreeStyleProjecthealthReport:
+    type: object
+    properties:
+      description:
+        type: string
+      iconClassName:
+        type: string
+      iconUrl:
+        type: string
+      score:
+        type: integer
+      _class:
+        type: string
+  hudsonscmNullSCM:
+    type: object
+    properties:
+      _class:
+        type: string
   hudsonmodelCauseUserIdCause:
     type: object
     properties:

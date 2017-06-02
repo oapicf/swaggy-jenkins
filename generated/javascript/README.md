@@ -53,7 +53,7 @@ Please follow the [installation](#installation) instruction and execute the foll
 ```javascript
 var SwaggyJenkins = require('swaggy_jenkins');
 
-var api = new SwaggyJenkins.JenkinsApi()
+var api = new SwaggyJenkins.RemoteAccessApi()
 
 var callback = function(error, data, response) {
   if (error) {
@@ -72,11 +72,15 @@ All URIs are relative to *http://localhost*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*SwaggyJenkins.JenkinsApi* | [**getComputer**](docs/JenkinsApi.md#getComputer) | **GET** /computer/api/json?depth&#x3D;1 | 
-*SwaggyJenkins.JenkinsApi* | [**getCrumb**](docs/JenkinsApi.md#getCrumb) | **GET** /crumbIssuer/api/json | 
-*SwaggyJenkins.JenkinsApi* | [**getInfo**](docs/JenkinsApi.md#getInfo) | **GET** /api/json | 
-*SwaggyJenkins.JenkinsApi* | [**getQueue**](docs/JenkinsApi.md#getQueue) | **GET** /queue/api/json | 
-*SwaggyJenkins.JenkinsApi* | [**headVersion**](docs/JenkinsApi.md#headVersion) | **HEAD** / | 
+*SwaggyJenkins.RemoteAccessApi* | [**getComputer**](docs/RemoteAccessApi.md#getComputer) | **GET** /computer/api/json?depth&#x3D;1 | 
+*SwaggyJenkins.RemoteAccessApi* | [**getCrumb**](docs/RemoteAccessApi.md#getCrumb) | **GET** /crumbIssuer/api/json | 
+*SwaggyJenkins.RemoteAccessApi* | [**getInfo**](docs/RemoteAccessApi.md#getInfo) | **GET** /api/json | 
+*SwaggyJenkins.RemoteAccessApi* | [**getJob**](docs/RemoteAccessApi.md#getJob) | **GET** /job/{name}/api/json | 
+*SwaggyJenkins.RemoteAccessApi* | [**getJobConfig**](docs/RemoteAccessApi.md#getJobConfig) | **GET** /job/{name}/config.xml | 
+*SwaggyJenkins.RemoteAccessApi* | [**getJobLastBuild**](docs/RemoteAccessApi.md#getJobLastBuild) | **GET** /job/{name}/lastBuild/api/json | 
+*SwaggyJenkins.RemoteAccessApi* | [**getQueue**](docs/RemoteAccessApi.md#getQueue) | **GET** /queue/api/json | 
+*SwaggyJenkins.RemoteAccessApi* | [**headVersion**](docs/RemoteAccessApi.md#headVersion) | **HEAD** / | 
+*SwaggyJenkins.RemoteAccessApi* | [**postCreateItem**](docs/RemoteAccessApi.md#postCreateItem) | **POST** /createItem/api/json | 
 
 
 ## Documentation for Models
@@ -87,6 +91,8 @@ Class | Method | HTTP request | Description
  - [SwaggyJenkins.HudsonmodelComputerSet](docs/HudsonmodelComputerSet.md)
  - [SwaggyJenkins.HudsonmodelFreeStyleBuild](docs/HudsonmodelFreeStyleBuild.md)
  - [SwaggyJenkins.HudsonmodelFreeStyleProject](docs/HudsonmodelFreeStyleProject.md)
+ - [SwaggyJenkins.HudsonmodelFreeStyleProjectactions](docs/HudsonmodelFreeStyleProjectactions.md)
+ - [SwaggyJenkins.HudsonmodelFreeStyleProjecthealthReport](docs/HudsonmodelFreeStyleProjecthealthReport.md)
  - [SwaggyJenkins.HudsonmodelHudson](docs/HudsonmodelHudson.md)
  - [SwaggyJenkins.HudsonmodelHudsonMasterComputer](docs/HudsonmodelHudsonMasterComputer.md)
  - [SwaggyJenkins.HudsonmodelHudsonMasterComputerMonitorData](docs/HudsonmodelHudsonMasterComputerMonitorData.md)
@@ -98,6 +104,7 @@ Class | Method | HTTP request | Description
  - [SwaggyJenkins.HudsonnodeMonitorsDiskSpaceMonitorDescriptorDiskSpace](docs/HudsonnodeMonitorsDiskSpaceMonitorDescriptorDiskSpace.md)
  - [SwaggyJenkins.HudsonnodeMonitorsResponseTimeMonitorData](docs/HudsonnodeMonitorsResponseTimeMonitorData.md)
  - [SwaggyJenkins.HudsonnodeMonitorsSwapSpaceMonitorMemoryUsage2](docs/HudsonnodeMonitorsSwapSpaceMonitorMemoryUsage2.md)
+ - [SwaggyJenkins.HudsonscmNullSCM](docs/HudsonscmNullSCM.md)
  - [SwaggyJenkins.HudsonsecuritycsrfDefaultCrumbIssuer](docs/HudsonsecuritycsrfDefaultCrumbIssuer.md)
  - [SwaggyJenkins.HudsonutilClockDifference](docs/HudsonutilClockDifference.md)
  - [SwaggyJenkins.JenkinsmodelUnlabeledLoadStatistics](docs/JenkinsmodelUnlabeledLoadStatistics.md)
