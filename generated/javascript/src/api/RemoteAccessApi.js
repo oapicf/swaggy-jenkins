@@ -382,17 +382,36 @@
 
     /**
      * Post item creation
+     * @param {String} name 
+     * @param {String} body 
+     * @param {Object} opts Optional parameters
+     * @param {String} opts.jenkinsCrumb 
+     * @param {String} opts.contentType 
      * @param {module:api/RemoteAccessApi~postCreateItemCallback} callback The callback function, accepting three arguments: error, data, response
      */
-    this.postCreateItem = function(callback) {
-      var postBody = null;
+    this.postCreateItem = function(name, body, opts, callback) {
+      opts = opts || {};
+      var postBody = body;
+
+      // verify the required parameter 'name' is set
+      if (name === undefined || name === null) {
+        throw new Error("Missing the required parameter 'name' when calling postCreateItem");
+      }
+
+      // verify the required parameter 'body' is set
+      if (body === undefined || body === null) {
+        throw new Error("Missing the required parameter 'body' when calling postCreateItem");
+      }
 
 
       var pathParams = {
       };
       var queryParams = {
+        'name': name
       };
       var headerParams = {
+        'Jenkins-Crumb': opts['jenkinsCrumb'],
+        'Content-Type': opts['contentType']
       };
       var formParams = {
       };

@@ -355,7 +355,7 @@ No authorization required
 
 <a name="postCreateItem"></a>
 # **postCreateItem**
-> postCreateItem()
+> postCreateItem(name, body, opts)
 
 
 
@@ -367,6 +367,15 @@ var SwaggyJenkins = require('swaggy_jenkins');
 
 var apiInstance = new SwaggyJenkins.RemoteAccessApi();
 
+var name = "name_example"; // String | 
+
+var body = "body_example"; // String | 
+
+var opts = { 
+  'jenkinsCrumb': "jenkinsCrumb_example", // String | 
+  'contentType': "contentType_example" // String | 
+};
+
 var callback = function(error, data, response) {
   if (error) {
     console.error(error);
@@ -374,11 +383,17 @@ var callback = function(error, data, response) {
     console.log('API called successfully.');
   }
 };
-apiInstance.postCreateItem(callback);
+apiInstance.postCreateItem(name, body, opts, callback);
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **name** | **String**|  | 
+ **body** | **String**|  | 
+ **jenkinsCrumb** | **String**|  | [optional] 
+ **contentType** | **String**|  | [optional] 
 
 ### Return type
 

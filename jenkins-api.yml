@@ -71,9 +71,29 @@ paths:
       operationId: postCreateItem
       produces:
         - text/html
+      parameters:
+        - name: name
+          in: query
+          required: true
+          type: string
+        - name: body
+          in: body
+          required: true
+          schema:
+            type: string
+        - name: Jenkins-Crumb
+          in: header
+          required: false
+          type: string
+        - name: Content-Type
+          in: header
+          required: false
+          type: string
       responses:
         200:
           description: Successfully post item creation
+        400:
+          $ref: "#/responses/errorinhtml"
         401:
           $ref: "#/responses/unauthorized"
         403:
@@ -193,6 +213,10 @@ responses:
     description: Jenkins requires authentication - please set username and password
   jobnotexist:
     description: Job {name} does not exist
+  errorinhtml:
+    description: An error has occurred (Bad Request)
+    schema:
+      type: string
 definitions:
   hudsonmodelFreeStyleBuild:
     type: object
