@@ -65,7 +65,7 @@ paths:
           $ref: "#/responses/forbidden"
       tags:
         - remoteAccess
-  /createItem/api/json:
+  /createItem:
     post:
       description: Post item creation
       operationId: postCreateItem
@@ -76,9 +76,17 @@ paths:
           in: query
           required: true
           type: string
+        - name: from
+          in: query
+          required: false
+          type: string
+        - name: mode
+          in: query
+          required: false
+          type: string
         - name: body
           in: body
-          required: true
+          required: false
           schema:
             type: string
         - name: Jenkins-Crumb
@@ -91,7 +99,7 @@ paths:
           type: string
       responses:
         200:
-          description: Successfully post item creation
+          description: Successfully post item
         400:
           $ref: "#/responses/errorinhtml"
         401:
@@ -141,9 +149,43 @@ paths:
           $ref: "#/responses/jobnotexist"
       tags:
         - remoteAccess
+  /job/{name}/build:
+    post:
+      description: Build a job
+      operationId: postJobBuild
+      parameters:
+        - name: name
+          in: path
+          required: true
+          type: string
+        - name: json
+          in: query
+          required: true
+          type: string
+        - name: token
+          in: query
+          required: false
+          type: string
+        - name: Jenkins-Crumb
+          in: header
+          required: false
+          type: string
+      responses:
+        200:
+          description: Successfully build a job (backward compatibility old job)
+        201:
+          description: Successfully build a job
+        401:
+          $ref: "#/responses/unauthorized"
+        403:
+          $ref: "#/responses/forbidden"
+        404:
+          $ref: "#/responses/jobnotexist"
+      tags:
+        - remoteAccess
   /job/{name}/config.xml:
     get:
-      description: Get job configuration
+      description: Fetch a job configuration config.xml
       operationId: getJobConfig
       produces:
         - text/xml
@@ -157,6 +199,110 @@ paths:
           description: Successfully get job config
           schema:
             type: string
+        401:
+          $ref: "#/responses/unauthorized"
+        403:
+          $ref: "#/responses/forbidden"
+        404:
+          $ref: "#/responses/jobnotexist"
+      tags:
+        - remoteAccess
+    post:
+      description: Update job config.xml
+      operationId: postJobConfig
+      produces:
+        - text/xml
+      parameters:
+        - name: name
+          in: path
+          required: true
+          type: string
+        - name: body
+          in: body
+          required: true
+          schema:
+            type: string
+        - name: Jenkins-Crumb
+          in: header
+          required: false
+          type: string
+      responses:
+        200:
+          description: Successfully update job config
+        400:
+          $ref: "#/responses/errorinhtml"
+        401:
+          $ref: "#/responses/unauthorized"
+        403:
+          $ref: "#/responses/forbidden"
+        404:
+          $ref: "#/responses/jobnotexist"
+      tags:
+        - remoteAccess
+  /job/{name}/doDelete:
+    post:
+      description: Delete job
+      operationId: postJobDelete
+      parameters:
+        - name: name
+          in: path
+          required: true
+          type: string
+        - name: Jenkins-Crumb
+          in: header
+          required: false
+          type: string
+      responses:
+        200:
+          description: Successfully update job config
+        401:
+          $ref: "#/responses/unauthorized"
+        403:
+          $ref: "#/responses/forbidden"
+        404:
+          $ref: "#/responses/jobnotexist"
+      tags:
+        - remoteAccess
+  /job/{name}/disable:
+    post:
+      description: Disable a job
+      operationId: postJobDisable
+      parameters:
+        - name: name
+          in: path
+          required: true
+          type: string
+        - name: Jenkins-Crumb
+          in: header
+          required: false
+          type: string
+      responses:
+        200:
+          description: Successfully disable a job
+        401:
+          $ref: "#/responses/unauthorized"
+        403:
+          $ref: "#/responses/forbidden"
+        404:
+          $ref: "#/responses/jobnotexist"
+      tags:
+        - remoteAccess
+  /job/{name}/enable:
+    post:
+      description: Enable a job
+      operationId: postJobEnable
+      parameters:
+        - name: name
+          in: path
+          required: true
+          type: string
+        - name: Jenkins-Crumb
+          in: header
+          required: false
+          type: string
+      responses:
+        200:
+          description: Successfully enable a job
         401:
           $ref: "#/responses/unauthorized"
         403:
@@ -189,6 +335,58 @@ paths:
           $ref: "#/responses/jobnotexist"
       tags:
         - remoteAccess
+  /job/{name}/lastBuild/stop:
+    post:
+      description: Stop a running/building job
+      operationId: postJobLastBuildStop
+      parameters:
+        - name: name
+          in: path
+          required: true
+          type: string
+        - name: Jenkins-Crumb
+          in: header
+          required: false
+          type: string
+      responses:
+        200:
+          description: Successfully stop a running/building job
+        401:
+          $ref: "#/responses/unauthorized"
+        403:
+          $ref: "#/responses/forbidden"
+        404:
+          $ref: "#/responses/jobnotexist"
+      tags:
+        - remoteAccess
+  /job/{name}/{number}/logText/progressiveText:
+    get:
+      description: Get a job's console progressive text
+      operationId: getJobProgressiveText
+      parameters:
+        - name: name
+          in: path
+          required: true
+          type: string
+        - name: number
+          in: path
+          required: true
+          type: string
+        - name: start
+          in: query
+          required: true
+          type: string
+      responses:
+        200:
+          description: Successfully stop a running/building job
+        401:
+          $ref: "#/responses/unauthorized"
+        403:
+          $ref: "#/responses/forbidden"
+        404:
+          $ref: "#/responses/jobnotexist"
+      tags:
+        - remoteAccess
   /queue/api/json:
     get:
       description: Get queue
@@ -198,6 +396,28 @@ paths:
       responses:
         200:
           description: Successfully get queue
+          schema:
+            $ref: "#/definitions/hudsonmodelQueue"
+        401:
+          $ref: "#/responses/unauthorized"
+        403:
+          $ref: "#/responses/forbidden"
+      tags:
+        - remoteAccess
+  /queue/item/{number}/api/json:
+    get:
+      description: Get queued item details
+      operationId: getQueueItem
+      produces:
+        - application/json
+      parameters:
+        - name: number
+          in: path
+          required: true
+          type: string
+      responses:
+        200:
+          description: Successfully get queue item
           schema:
             $ref: "#/definitions/hudsonmodelQueue"
         401:
@@ -227,6 +447,38 @@ definitions:
         type: integer
       url:
         type: string
+      actions:
+        type: array
+        items:
+          $ref: '#/definitions/hudsonmodelCauseAction'
+      building:
+        type: boolean
+      description:
+        type: string
+      displayName:
+        type: string
+      duration:
+        type: integer
+      estimatedDuration:
+        type: integer
+      executor:
+        type: string
+      fullDisplayName:
+        type: string
+      id:
+        type: string
+      keepLog:
+        type: boolean
+      queueId:
+        type: integer
+      result:
+        type: string
+      timestamp:
+        type: integer
+      builtOn:
+        type: string
+      changeSet:
+        $ref: '#/definitions/hudsonscmEmptyChangeLogSet'
   hudsonmodelHudsonMasterComputerexecutors:
     type: object
     properties:
@@ -529,6 +781,13 @@ definitions:
         type: array
         items:
           $ref: '#/definitions/hudsonmodelCauseUserIdCause'
+  hudsonscmEmptyChangeLogSet:
+    type: object
+    properties:
+      _class:
+        type: string
+      kind:
+        type: string
   hudsonmodelQueueBlockedItem:
     type: object
     properties:
@@ -567,3 +826,34 @@ definitions:
         type: array
         items:
           $ref: '#/definitions/hudsonmodelQueueBlockedItem'
+  hudsonmodelQueueLeftItem:
+    type: object
+    properties:
+      _class:
+        type: string
+      actions:
+        type: array
+        items:
+          $ref: '#/definitions/hudsonmodelCauseAction'
+      blocked:
+        type: boolean
+      buildable:
+        type: boolean
+      id:
+        type: integer
+      inQueueSince:
+        type: integer
+      params:
+        type: string
+      stuck:
+        type: boolean
+      task:
+        $ref: '#/definitions/hudsonmodelFreeStyleProject'
+      url:
+        type: string
+      why:
+        type: string
+      cancelled:
+        type: boolean
+      executable:
+        $ref: '#/definitions/hudsonmodelFreeStyleBuild'
