@@ -17,12 +17,12 @@
 (function(factory) {
   if (typeof define === 'function' && define.amd) {
     // AMD. Register as an anonymous module.
-    define(['ApiClient', 'model/HudsonmodelAllView', 'model/HudsonmodelCauseAction', 'model/HudsonmodelCauseUserIdCause', 'model/HudsonmodelComputerSet', 'model/HudsonmodelFreeStyleBuild', 'model/HudsonmodelFreeStyleProject', 'model/HudsonmodelFreeStyleProjectactions', 'model/HudsonmodelFreeStyleProjecthealthReport', 'model/HudsonmodelHudson', 'model/HudsonmodelHudsonMasterComputer', 'model/HudsonmodelHudsonMasterComputerMonitorData', 'model/HudsonmodelHudsonMasterComputerexecutors', 'model/HudsonmodelHudsonassignedLabels', 'model/HudsonmodelLabel1', 'model/HudsonmodelQueue', 'model/HudsonmodelQueueBlockedItem', 'model/HudsonnodeMonitorsDiskSpaceMonitorDescriptorDiskSpace', 'model/HudsonnodeMonitorsResponseTimeMonitorData', 'model/HudsonnodeMonitorsSwapSpaceMonitorMemoryUsage2', 'model/HudsonscmNullSCM', 'model/HudsonsecuritycsrfDefaultCrumbIssuer', 'model/HudsonutilClockDifference', 'model/JenkinsmodelUnlabeledLoadStatistics', 'api/RemoteAccessApi'], factory);
+    define(['ApiClient', 'model/HudsonmodelAllView', 'model/HudsonmodelCauseAction', 'model/HudsonmodelCauseUserIdCause', 'model/HudsonmodelComputerSet', 'model/HudsonmodelFreeStyleBuild', 'model/HudsonmodelFreeStyleProject', 'model/HudsonmodelFreeStyleProjectactions', 'model/HudsonmodelFreeStyleProjecthealthReport', 'model/HudsonmodelHudson', 'model/HudsonmodelHudsonMasterComputer', 'model/HudsonmodelHudsonMasterComputerMonitorData', 'model/HudsonmodelHudsonMasterComputerexecutors', 'model/HudsonmodelHudsonassignedLabels', 'model/HudsonmodelLabel1', 'model/HudsonmodelQueue', 'model/HudsonmodelQueueBlockedItem', 'model/HudsonmodelQueueLeftItem', 'model/HudsonnodeMonitorsDiskSpaceMonitorDescriptorDiskSpace', 'model/HudsonnodeMonitorsResponseTimeMonitorData', 'model/HudsonnodeMonitorsSwapSpaceMonitorMemoryUsage2', 'model/HudsonscmEmptyChangeLogSet', 'model/HudsonscmNullSCM', 'model/HudsonsecuritycsrfDefaultCrumbIssuer', 'model/HudsonutilClockDifference', 'model/JenkinsmodelUnlabeledLoadStatistics', 'api/RemoteAccessApi'], factory);
   } else if (typeof module === 'object' && module.exports) {
     // CommonJS-like environments that support module.exports, like Node.
-    module.exports = factory(require('./ApiClient'), require('./model/HudsonmodelAllView'), require('./model/HudsonmodelCauseAction'), require('./model/HudsonmodelCauseUserIdCause'), require('./model/HudsonmodelComputerSet'), require('./model/HudsonmodelFreeStyleBuild'), require('./model/HudsonmodelFreeStyleProject'), require('./model/HudsonmodelFreeStyleProjectactions'), require('./model/HudsonmodelFreeStyleProjecthealthReport'), require('./model/HudsonmodelHudson'), require('./model/HudsonmodelHudsonMasterComputer'), require('./model/HudsonmodelHudsonMasterComputerMonitorData'), require('./model/HudsonmodelHudsonMasterComputerexecutors'), require('./model/HudsonmodelHudsonassignedLabels'), require('./model/HudsonmodelLabel1'), require('./model/HudsonmodelQueue'), require('./model/HudsonmodelQueueBlockedItem'), require('./model/HudsonnodeMonitorsDiskSpaceMonitorDescriptorDiskSpace'), require('./model/HudsonnodeMonitorsResponseTimeMonitorData'), require('./model/HudsonnodeMonitorsSwapSpaceMonitorMemoryUsage2'), require('./model/HudsonscmNullSCM'), require('./model/HudsonsecuritycsrfDefaultCrumbIssuer'), require('./model/HudsonutilClockDifference'), require('./model/JenkinsmodelUnlabeledLoadStatistics'), require('./api/RemoteAccessApi'));
+    module.exports = factory(require('./ApiClient'), require('./model/HudsonmodelAllView'), require('./model/HudsonmodelCauseAction'), require('./model/HudsonmodelCauseUserIdCause'), require('./model/HudsonmodelComputerSet'), require('./model/HudsonmodelFreeStyleBuild'), require('./model/HudsonmodelFreeStyleProject'), require('./model/HudsonmodelFreeStyleProjectactions'), require('./model/HudsonmodelFreeStyleProjecthealthReport'), require('./model/HudsonmodelHudson'), require('./model/HudsonmodelHudsonMasterComputer'), require('./model/HudsonmodelHudsonMasterComputerMonitorData'), require('./model/HudsonmodelHudsonMasterComputerexecutors'), require('./model/HudsonmodelHudsonassignedLabels'), require('./model/HudsonmodelLabel1'), require('./model/HudsonmodelQueue'), require('./model/HudsonmodelQueueBlockedItem'), require('./model/HudsonmodelQueueLeftItem'), require('./model/HudsonnodeMonitorsDiskSpaceMonitorDescriptorDiskSpace'), require('./model/HudsonnodeMonitorsResponseTimeMonitorData'), require('./model/HudsonnodeMonitorsSwapSpaceMonitorMemoryUsage2'), require('./model/HudsonscmEmptyChangeLogSet'), require('./model/HudsonscmNullSCM'), require('./model/HudsonsecuritycsrfDefaultCrumbIssuer'), require('./model/HudsonutilClockDifference'), require('./model/JenkinsmodelUnlabeledLoadStatistics'), require('./api/RemoteAccessApi'));
   }
-}(function(ApiClient, HudsonmodelAllView, HudsonmodelCauseAction, HudsonmodelCauseUserIdCause, HudsonmodelComputerSet, HudsonmodelFreeStyleBuild, HudsonmodelFreeStyleProject, HudsonmodelFreeStyleProjectactions, HudsonmodelFreeStyleProjecthealthReport, HudsonmodelHudson, HudsonmodelHudsonMasterComputer, HudsonmodelHudsonMasterComputerMonitorData, HudsonmodelHudsonMasterComputerexecutors, HudsonmodelHudsonassignedLabels, HudsonmodelLabel1, HudsonmodelQueue, HudsonmodelQueueBlockedItem, HudsonnodeMonitorsDiskSpaceMonitorDescriptorDiskSpace, HudsonnodeMonitorsResponseTimeMonitorData, HudsonnodeMonitorsSwapSpaceMonitorMemoryUsage2, HudsonscmNullSCM, HudsonsecuritycsrfDefaultCrumbIssuer, HudsonutilClockDifference, JenkinsmodelUnlabeledLoadStatistics, RemoteAccessApi) {
+}(function(ApiClient, HudsonmodelAllView, HudsonmodelCauseAction, HudsonmodelCauseUserIdCause, HudsonmodelComputerSet, HudsonmodelFreeStyleBuild, HudsonmodelFreeStyleProject, HudsonmodelFreeStyleProjectactions, HudsonmodelFreeStyleProjecthealthReport, HudsonmodelHudson, HudsonmodelHudsonMasterComputer, HudsonmodelHudsonMasterComputerMonitorData, HudsonmodelHudsonMasterComputerexecutors, HudsonmodelHudsonassignedLabels, HudsonmodelLabel1, HudsonmodelQueue, HudsonmodelQueueBlockedItem, HudsonmodelQueueLeftItem, HudsonnodeMonitorsDiskSpaceMonitorDescriptorDiskSpace, HudsonnodeMonitorsResponseTimeMonitorData, HudsonnodeMonitorsSwapSpaceMonitorMemoryUsage2, HudsonscmEmptyChangeLogSet, HudsonscmNullSCM, HudsonsecuritycsrfDefaultCrumbIssuer, HudsonutilClockDifference, JenkinsmodelUnlabeledLoadStatistics, RemoteAccessApi) {
   'use strict';
 
   /**
@@ -143,6 +143,11 @@
      */
     HudsonmodelQueueBlockedItem: HudsonmodelQueueBlockedItem,
     /**
+     * The HudsonmodelQueueLeftItem model constructor.
+     * @property {module:model/HudsonmodelQueueLeftItem}
+     */
+    HudsonmodelQueueLeftItem: HudsonmodelQueueLeftItem,
+    /**
      * The HudsonnodeMonitorsDiskSpaceMonitorDescriptorDiskSpace model constructor.
      * @property {module:model/HudsonnodeMonitorsDiskSpaceMonitorDescriptorDiskSpace}
      */
@@ -157,6 +162,11 @@
      * @property {module:model/HudsonnodeMonitorsSwapSpaceMonitorMemoryUsage2}
      */
     HudsonnodeMonitorsSwapSpaceMonitorMemoryUsage2: HudsonnodeMonitorsSwapSpaceMonitorMemoryUsage2,
+    /**
+     * The HudsonscmEmptyChangeLogSet model constructor.
+     * @property {module:model/HudsonscmEmptyChangeLogSet}
+     */
+    HudsonscmEmptyChangeLogSet: HudsonscmEmptyChangeLogSet,
     /**
      * The HudsonscmNullSCM model constructor.
      * @property {module:model/HudsonscmNullSCM}

@@ -216,7 +216,7 @@
      */
 
     /**
-     * Get job configuration
+     * Fetch a job configuration config.xml
      * @param {String} name 
      * @param {module:api/RemoteAccessApi~getJobConfigCallback} callback The callback function, accepting three arguments: error, data, response
      * data is of type: {@link 'String'}
@@ -298,6 +298,64 @@
     }
 
     /**
+     * Callback function to receive the result of the getJobProgressiveText operation.
+     * @callback module:api/RemoteAccessApi~getJobProgressiveTextCallback
+     * @param {String} error Error message, if any.
+     * @param data This operation does not return a value.
+     * @param {String} response The complete HTTP response.
+     */
+
+    /**
+     * Get a job&#39;s console progressive text
+     * @param {String} name 
+     * @param {String} _number 
+     * @param {String} start 
+     * @param {module:api/RemoteAccessApi~getJobProgressiveTextCallback} callback The callback function, accepting three arguments: error, data, response
+     */
+    this.getJobProgressiveText = function(name, _number, start, callback) {
+      var postBody = null;
+
+      // verify the required parameter 'name' is set
+      if (name === undefined || name === null) {
+        throw new Error("Missing the required parameter 'name' when calling getJobProgressiveText");
+      }
+
+      // verify the required parameter '_number' is set
+      if (_number === undefined || _number === null) {
+        throw new Error("Missing the required parameter '_number' when calling getJobProgressiveText");
+      }
+
+      // verify the required parameter 'start' is set
+      if (start === undefined || start === null) {
+        throw new Error("Missing the required parameter 'start' when calling getJobProgressiveText");
+      }
+
+
+      var pathParams = {
+        'name': name,
+        'number': _number
+      };
+      var queryParams = {
+        'start': start
+      };
+      var headerParams = {
+      };
+      var formParams = {
+      };
+
+      var authNames = [];
+      var contentTypes = [];
+      var accepts = [];
+      var returnType = null;
+
+      return this.apiClient.callApi(
+        '/job/{name}/{number}/logText/progressiveText', 'GET',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, callback
+      );
+    }
+
+    /**
      * Callback function to receive the result of the getQueue operation.
      * @callback module:api/RemoteAccessApi~getQueueCallback
      * @param {String} error Error message, if any.
@@ -330,6 +388,51 @@
 
       return this.apiClient.callApi(
         '/queue/api/json', 'GET',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, callback
+      );
+    }
+
+    /**
+     * Callback function to receive the result of the getQueueItem operation.
+     * @callback module:api/RemoteAccessApi~getQueueItemCallback
+     * @param {String} error Error message, if any.
+     * @param {module:model/HudsonmodelQueue} data The data returned by the service call.
+     * @param {String} response The complete HTTP response.
+     */
+
+    /**
+     * Get queued item details
+     * @param {String} _number 
+     * @param {module:api/RemoteAccessApi~getQueueItemCallback} callback The callback function, accepting three arguments: error, data, response
+     * data is of type: {@link module:model/HudsonmodelQueue}
+     */
+    this.getQueueItem = function(_number, callback) {
+      var postBody = null;
+
+      // verify the required parameter '_number' is set
+      if (_number === undefined || _number === null) {
+        throw new Error("Missing the required parameter '_number' when calling getQueueItem");
+      }
+
+
+      var pathParams = {
+        'number': _number
+      };
+      var queryParams = {
+      };
+      var headerParams = {
+      };
+      var formParams = {
+      };
+
+      var authNames = [];
+      var contentTypes = [];
+      var accepts = ['application/json'];
+      var returnType = HudsonmodelQueue;
+
+      return this.apiClient.callApi(
+        '/queue/item/{number}/api/json', 'GET',
         pathParams, queryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType, callback
       );
@@ -383,31 +486,30 @@
     /**
      * Post item creation
      * @param {String} name 
-     * @param {String} body 
      * @param {Object} opts Optional parameters
+     * @param {String} opts.from 
+     * @param {String} opts.mode 
+     * @param {String} opts.body 
      * @param {String} opts.jenkinsCrumb 
      * @param {String} opts.contentType 
      * @param {module:api/RemoteAccessApi~postCreateItemCallback} callback The callback function, accepting three arguments: error, data, response
      */
-    this.postCreateItem = function(name, body, opts, callback) {
+    this.postCreateItem = function(name, opts, callback) {
       opts = opts || {};
-      var postBody = body;
+      var postBody = opts['body'];
 
       // verify the required parameter 'name' is set
       if (name === undefined || name === null) {
         throw new Error("Missing the required parameter 'name' when calling postCreateItem");
       }
 
-      // verify the required parameter 'body' is set
-      if (body === undefined || body === null) {
-        throw new Error("Missing the required parameter 'body' when calling postCreateItem");
-      }
-
 
       var pathParams = {
       };
       var queryParams = {
-        'name': name
+        'name': name,
+        'from': opts['from'],
+        'mode': opts['mode']
       };
       var headerParams = {
         'Jenkins-Crumb': opts['jenkinsCrumb'],
@@ -422,7 +524,310 @@
       var returnType = null;
 
       return this.apiClient.callApi(
-        '/createItem/api/json', 'POST',
+        '/createItem', 'POST',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, callback
+      );
+    }
+
+    /**
+     * Callback function to receive the result of the postJobBuild operation.
+     * @callback module:api/RemoteAccessApi~postJobBuildCallback
+     * @param {String} error Error message, if any.
+     * @param data This operation does not return a value.
+     * @param {String} response The complete HTTP response.
+     */
+
+    /**
+     * Build a job
+     * @param {String} name 
+     * @param {String} json 
+     * @param {Object} opts Optional parameters
+     * @param {String} opts.token 
+     * @param {String} opts.jenkinsCrumb 
+     * @param {module:api/RemoteAccessApi~postJobBuildCallback} callback The callback function, accepting three arguments: error, data, response
+     */
+    this.postJobBuild = function(name, json, opts, callback) {
+      opts = opts || {};
+      var postBody = null;
+
+      // verify the required parameter 'name' is set
+      if (name === undefined || name === null) {
+        throw new Error("Missing the required parameter 'name' when calling postJobBuild");
+      }
+
+      // verify the required parameter 'json' is set
+      if (json === undefined || json === null) {
+        throw new Error("Missing the required parameter 'json' when calling postJobBuild");
+      }
+
+
+      var pathParams = {
+        'name': name
+      };
+      var queryParams = {
+        'json': json,
+        'token': opts['token']
+      };
+      var headerParams = {
+        'Jenkins-Crumb': opts['jenkinsCrumb']
+      };
+      var formParams = {
+      };
+
+      var authNames = [];
+      var contentTypes = [];
+      var accepts = [];
+      var returnType = null;
+
+      return this.apiClient.callApi(
+        '/job/{name}/build', 'POST',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, callback
+      );
+    }
+
+    /**
+     * Callback function to receive the result of the postJobConfig operation.
+     * @callback module:api/RemoteAccessApi~postJobConfigCallback
+     * @param {String} error Error message, if any.
+     * @param data This operation does not return a value.
+     * @param {String} response The complete HTTP response.
+     */
+
+    /**
+     * Update job config.xml
+     * @param {String} name 
+     * @param {String} body 
+     * @param {Object} opts Optional parameters
+     * @param {String} opts.jenkinsCrumb 
+     * @param {module:api/RemoteAccessApi~postJobConfigCallback} callback The callback function, accepting three arguments: error, data, response
+     */
+    this.postJobConfig = function(name, body, opts, callback) {
+      opts = opts || {};
+      var postBody = body;
+
+      // verify the required parameter 'name' is set
+      if (name === undefined || name === null) {
+        throw new Error("Missing the required parameter 'name' when calling postJobConfig");
+      }
+
+      // verify the required parameter 'body' is set
+      if (body === undefined || body === null) {
+        throw new Error("Missing the required parameter 'body' when calling postJobConfig");
+      }
+
+
+      var pathParams = {
+        'name': name
+      };
+      var queryParams = {
+      };
+      var headerParams = {
+        'Jenkins-Crumb': opts['jenkinsCrumb']
+      };
+      var formParams = {
+      };
+
+      var authNames = [];
+      var contentTypes = [];
+      var accepts = ['text/xml'];
+      var returnType = null;
+
+      return this.apiClient.callApi(
+        '/job/{name}/config.xml', 'POST',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, callback
+      );
+    }
+
+    /**
+     * Callback function to receive the result of the postJobDelete operation.
+     * @callback module:api/RemoteAccessApi~postJobDeleteCallback
+     * @param {String} error Error message, if any.
+     * @param data This operation does not return a value.
+     * @param {String} response The complete HTTP response.
+     */
+
+    /**
+     * Delete job
+     * @param {String} name 
+     * @param {Object} opts Optional parameters
+     * @param {String} opts.jenkinsCrumb 
+     * @param {module:api/RemoteAccessApi~postJobDeleteCallback} callback The callback function, accepting three arguments: error, data, response
+     */
+    this.postJobDelete = function(name, opts, callback) {
+      opts = opts || {};
+      var postBody = null;
+
+      // verify the required parameter 'name' is set
+      if (name === undefined || name === null) {
+        throw new Error("Missing the required parameter 'name' when calling postJobDelete");
+      }
+
+
+      var pathParams = {
+        'name': name
+      };
+      var queryParams = {
+      };
+      var headerParams = {
+        'Jenkins-Crumb': opts['jenkinsCrumb']
+      };
+      var formParams = {
+      };
+
+      var authNames = [];
+      var contentTypes = [];
+      var accepts = [];
+      var returnType = null;
+
+      return this.apiClient.callApi(
+        '/job/{name}/doDelete', 'POST',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, callback
+      );
+    }
+
+    /**
+     * Callback function to receive the result of the postJobDisable operation.
+     * @callback module:api/RemoteAccessApi~postJobDisableCallback
+     * @param {String} error Error message, if any.
+     * @param data This operation does not return a value.
+     * @param {String} response The complete HTTP response.
+     */
+
+    /**
+     * Disable a job
+     * @param {String} name 
+     * @param {Object} opts Optional parameters
+     * @param {String} opts.jenkinsCrumb 
+     * @param {module:api/RemoteAccessApi~postJobDisableCallback} callback The callback function, accepting three arguments: error, data, response
+     */
+    this.postJobDisable = function(name, opts, callback) {
+      opts = opts || {};
+      var postBody = null;
+
+      // verify the required parameter 'name' is set
+      if (name === undefined || name === null) {
+        throw new Error("Missing the required parameter 'name' when calling postJobDisable");
+      }
+
+
+      var pathParams = {
+        'name': name
+      };
+      var queryParams = {
+      };
+      var headerParams = {
+        'Jenkins-Crumb': opts['jenkinsCrumb']
+      };
+      var formParams = {
+      };
+
+      var authNames = [];
+      var contentTypes = [];
+      var accepts = [];
+      var returnType = null;
+
+      return this.apiClient.callApi(
+        '/job/{name}/disable', 'POST',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, callback
+      );
+    }
+
+    /**
+     * Callback function to receive the result of the postJobEnable operation.
+     * @callback module:api/RemoteAccessApi~postJobEnableCallback
+     * @param {String} error Error message, if any.
+     * @param data This operation does not return a value.
+     * @param {String} response The complete HTTP response.
+     */
+
+    /**
+     * Enable a job
+     * @param {String} name 
+     * @param {Object} opts Optional parameters
+     * @param {String} opts.jenkinsCrumb 
+     * @param {module:api/RemoteAccessApi~postJobEnableCallback} callback The callback function, accepting three arguments: error, data, response
+     */
+    this.postJobEnable = function(name, opts, callback) {
+      opts = opts || {};
+      var postBody = null;
+
+      // verify the required parameter 'name' is set
+      if (name === undefined || name === null) {
+        throw new Error("Missing the required parameter 'name' when calling postJobEnable");
+      }
+
+
+      var pathParams = {
+        'name': name
+      };
+      var queryParams = {
+      };
+      var headerParams = {
+        'Jenkins-Crumb': opts['jenkinsCrumb']
+      };
+      var formParams = {
+      };
+
+      var authNames = [];
+      var contentTypes = [];
+      var accepts = [];
+      var returnType = null;
+
+      return this.apiClient.callApi(
+        '/job/{name}/enable', 'POST',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, callback
+      );
+    }
+
+    /**
+     * Callback function to receive the result of the postJobLastBuildStop operation.
+     * @callback module:api/RemoteAccessApi~postJobLastBuildStopCallback
+     * @param {String} error Error message, if any.
+     * @param data This operation does not return a value.
+     * @param {String} response The complete HTTP response.
+     */
+
+    /**
+     * Stop a running/building job
+     * @param {String} name 
+     * @param {Object} opts Optional parameters
+     * @param {String} opts.jenkinsCrumb 
+     * @param {module:api/RemoteAccessApi~postJobLastBuildStopCallback} callback The callback function, accepting three arguments: error, data, response
+     */
+    this.postJobLastBuildStop = function(name, opts, callback) {
+      opts = opts || {};
+      var postBody = null;
+
+      // verify the required parameter 'name' is set
+      if (name === undefined || name === null) {
+        throw new Error("Missing the required parameter 'name' when calling postJobLastBuildStop");
+      }
+
+
+      var pathParams = {
+        'name': name
+      };
+      var queryParams = {
+      };
+      var headerParams = {
+        'Jenkins-Crumb': opts['jenkinsCrumb']
+      };
+      var formParams = {
+      };
+
+      var authNames = [];
+      var contentTypes = [];
+      var accepts = [];
+      var returnType = null;
+
+      return this.apiClient.callApi(
+        '/job/{name}/lastBuild/stop', 'POST',
         pathParams, queryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType, callback
       );

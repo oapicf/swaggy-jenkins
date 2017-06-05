@@ -78,9 +78,17 @@ Class | Method | HTTP request | Description
 *SwaggyJenkins.RemoteAccessApi* | [**getJob**](docs/RemoteAccessApi.md#getJob) | **GET** /job/{name}/api/json | 
 *SwaggyJenkins.RemoteAccessApi* | [**getJobConfig**](docs/RemoteAccessApi.md#getJobConfig) | **GET** /job/{name}/config.xml | 
 *SwaggyJenkins.RemoteAccessApi* | [**getJobLastBuild**](docs/RemoteAccessApi.md#getJobLastBuild) | **GET** /job/{name}/lastBuild/api/json | 
+*SwaggyJenkins.RemoteAccessApi* | [**getJobProgressiveText**](docs/RemoteAccessApi.md#getJobProgressiveText) | **GET** /job/{name}/{number}/logText/progressiveText | 
 *SwaggyJenkins.RemoteAccessApi* | [**getQueue**](docs/RemoteAccessApi.md#getQueue) | **GET** /queue/api/json | 
+*SwaggyJenkins.RemoteAccessApi* | [**getQueueItem**](docs/RemoteAccessApi.md#getQueueItem) | **GET** /queue/item/{number}/api/json | 
 *SwaggyJenkins.RemoteAccessApi* | [**headVersion**](docs/RemoteAccessApi.md#headVersion) | **HEAD** / | 
-*SwaggyJenkins.RemoteAccessApi* | [**postCreateItem**](docs/RemoteAccessApi.md#postCreateItem) | **POST** /createItem/api/json | 
+*SwaggyJenkins.RemoteAccessApi* | [**postCreateItem**](docs/RemoteAccessApi.md#postCreateItem) | **POST** /createItem | 
+*SwaggyJenkins.RemoteAccessApi* | [**postJobBuild**](docs/RemoteAccessApi.md#postJobBuild) | **POST** /job/{name}/build | 
+*SwaggyJenkins.RemoteAccessApi* | [**postJobConfig**](docs/RemoteAccessApi.md#postJobConfig) | **POST** /job/{name}/config.xml | 
+*SwaggyJenkins.RemoteAccessApi* | [**postJobDelete**](docs/RemoteAccessApi.md#postJobDelete) | **POST** /job/{name}/doDelete | 
+*SwaggyJenkins.RemoteAccessApi* | [**postJobDisable**](docs/RemoteAccessApi.md#postJobDisable) | **POST** /job/{name}/disable | 
+*SwaggyJenkins.RemoteAccessApi* | [**postJobEnable**](docs/RemoteAccessApi.md#postJobEnable) | **POST** /job/{name}/enable | 
+*SwaggyJenkins.RemoteAccessApi* | [**postJobLastBuildStop**](docs/RemoteAccessApi.md#postJobLastBuildStop) | **POST** /job/{name}/lastBuild/stop | 
 
 
 ## Documentation for Models
@@ -101,9 +109,11 @@ Class | Method | HTTP request | Description
  - [SwaggyJenkins.HudsonmodelLabel1](docs/HudsonmodelLabel1.md)
  - [SwaggyJenkins.HudsonmodelQueue](docs/HudsonmodelQueue.md)
  - [SwaggyJenkins.HudsonmodelQueueBlockedItem](docs/HudsonmodelQueueBlockedItem.md)
+ - [SwaggyJenkins.HudsonmodelQueueLeftItem](docs/HudsonmodelQueueLeftItem.md)
  - [SwaggyJenkins.HudsonnodeMonitorsDiskSpaceMonitorDescriptorDiskSpace](docs/HudsonnodeMonitorsDiskSpaceMonitorDescriptorDiskSpace.md)
  - [SwaggyJenkins.HudsonnodeMonitorsResponseTimeMonitorData](docs/HudsonnodeMonitorsResponseTimeMonitorData.md)
  - [SwaggyJenkins.HudsonnodeMonitorsSwapSpaceMonitorMemoryUsage2](docs/HudsonnodeMonitorsSwapSpaceMonitorMemoryUsage2.md)
+ - [SwaggyJenkins.HudsonscmEmptyChangeLogSet](docs/HudsonscmEmptyChangeLogSet.md)
  - [SwaggyJenkins.HudsonscmNullSCM](docs/HudsonscmNullSCM.md)
  - [SwaggyJenkins.HudsonsecuritycsrfDefaultCrumbIssuer](docs/HudsonsecuritycsrfDefaultCrumbIssuer.md)
  - [SwaggyJenkins.HudsonutilClockDifference](docs/HudsonutilClockDifference.md)

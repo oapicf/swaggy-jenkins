@@ -17,18 +17,18 @@
 (function(root, factory) {
   if (typeof define === 'function' && define.amd) {
     // AMD. Register as an anonymous module.
-    define(['ApiClient'], factory);
+    define(['ApiClient', 'model/HudsonmodelCauseAction', 'model/HudsonscmEmptyChangeLogSet'], factory);
   } else if (typeof module === 'object' && module.exports) {
     // CommonJS-like environments that support module.exports, like Node.
-    module.exports = factory(require('../ApiClient'));
+    module.exports = factory(require('../ApiClient'), require('./HudsonmodelCauseAction'), require('./HudsonscmEmptyChangeLogSet'));
   } else {
     // Browser globals (root is window)
     if (!root.SwaggyJenkins) {
       root.SwaggyJenkins = {};
     }
-    root.SwaggyJenkins.HudsonmodelFreeStyleBuild = factory(root.SwaggyJenkins.ApiClient);
+    root.SwaggyJenkins.HudsonmodelFreeStyleBuild = factory(root.SwaggyJenkins.ApiClient, root.SwaggyJenkins.HudsonmodelCauseAction, root.SwaggyJenkins.HudsonscmEmptyChangeLogSet);
   }
-}(this, function(ApiClient) {
+}(this, function(ApiClient, HudsonmodelCauseAction, HudsonscmEmptyChangeLogSet) {
   'use strict';
 
 
@@ -47,6 +47,21 @@
    */
   var exports = function() {
     var _this = this;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -73,6 +88,51 @@
       if (data.hasOwnProperty('url')) {
         obj['url'] = ApiClient.convertToType(data['url'], 'String');
       }
+      if (data.hasOwnProperty('actions')) {
+        obj['actions'] = ApiClient.convertToType(data['actions'], [HudsonmodelCauseAction]);
+      }
+      if (data.hasOwnProperty('building')) {
+        obj['building'] = ApiClient.convertToType(data['building'], 'Boolean');
+      }
+      if (data.hasOwnProperty('description')) {
+        obj['description'] = ApiClient.convertToType(data['description'], 'String');
+      }
+      if (data.hasOwnProperty('displayName')) {
+        obj['displayName'] = ApiClient.convertToType(data['displayName'], 'String');
+      }
+      if (data.hasOwnProperty('duration')) {
+        obj['duration'] = ApiClient.convertToType(data['duration'], 'Number');
+      }
+      if (data.hasOwnProperty('estimatedDuration')) {
+        obj['estimatedDuration'] = ApiClient.convertToType(data['estimatedDuration'], 'Number');
+      }
+      if (data.hasOwnProperty('executor')) {
+        obj['executor'] = ApiClient.convertToType(data['executor'], 'String');
+      }
+      if (data.hasOwnProperty('fullDisplayName')) {
+        obj['fullDisplayName'] = ApiClient.convertToType(data['fullDisplayName'], 'String');
+      }
+      if (data.hasOwnProperty('id')) {
+        obj['id'] = ApiClient.convertToType(data['id'], 'String');
+      }
+      if (data.hasOwnProperty('keepLog')) {
+        obj['keepLog'] = ApiClient.convertToType(data['keepLog'], 'Boolean');
+      }
+      if (data.hasOwnProperty('queueId')) {
+        obj['queueId'] = ApiClient.convertToType(data['queueId'], 'Number');
+      }
+      if (data.hasOwnProperty('result')) {
+        obj['result'] = ApiClient.convertToType(data['result'], 'String');
+      }
+      if (data.hasOwnProperty('timestamp')) {
+        obj['timestamp'] = ApiClient.convertToType(data['timestamp'], 'Number');
+      }
+      if (data.hasOwnProperty('builtOn')) {
+        obj['builtOn'] = ApiClient.convertToType(data['builtOn'], 'String');
+      }
+      if (data.hasOwnProperty('changeSet')) {
+        obj['changeSet'] = HudsonscmEmptyChangeLogSet.constructFromObject(data['changeSet']);
+      }
     }
     return obj;
   }
@@ -89,6 +149,66 @@
    * @member {String} url
    */
   exports.prototype['url'] = undefined;
+  /**
+   * @member {Array.<module:model/HudsonmodelCauseAction>} actions
+   */
+  exports.prototype['actions'] = undefined;
+  /**
+   * @member {Boolean} building
+   */
+  exports.prototype['building'] = undefined;
+  /**
+   * @member {String} description
+   */
+  exports.prototype['description'] = undefined;
+  /**
+   * @member {String} displayName
+   */
+  exports.prototype['displayName'] = undefined;
+  /**
+   * @member {Number} duration
+   */
+  exports.prototype['duration'] = undefined;
+  /**
+   * @member {Number} estimatedDuration
+   */
+  exports.prototype['estimatedDuration'] = undefined;
+  /**
+   * @member {String} executor
+   */
+  exports.prototype['executor'] = undefined;
+  /**
+   * @member {String} fullDisplayName
+   */
+  exports.prototype['fullDisplayName'] = undefined;
+  /**
+   * @member {String} id
+   */
+  exports.prototype['id'] = undefined;
+  /**
+   * @member {Boolean} keepLog
+   */
+  exports.prototype['keepLog'] = undefined;
+  /**
+   * @member {Number} queueId
+   */
+  exports.prototype['queueId'] = undefined;
+  /**
+   * @member {String} result
+   */
+  exports.prototype['result'] = undefined;
+  /**
+   * @member {Number} timestamp
+   */
+  exports.prototype['timestamp'] = undefined;
+  /**
+   * @member {String} builtOn
+   */
+  exports.prototype['builtOn'] = undefined;
+  /**
+   * @member {module:model/HudsonscmEmptyChangeLogSet} changeSet
+   */
+  exports.prototype['changeSet'] = undefined;
 
 
 
