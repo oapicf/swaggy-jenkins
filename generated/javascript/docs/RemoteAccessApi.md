@@ -13,14 +13,18 @@ Method | HTTP request | Description
 [**getJobProgressiveText**](RemoteAccessApi.md#getJobProgressiveText) | **GET** /job/{name}/{number}/logText/progressiveText | 
 [**getQueue**](RemoteAccessApi.md#getQueue) | **GET** /queue/api/json | 
 [**getQueueItem**](RemoteAccessApi.md#getQueueItem) | **GET** /queue/item/{number}/api/json | 
+[**getView**](RemoteAccessApi.md#getView) | **GET** /view/{name}/api/json | 
+[**getViewConfig**](RemoteAccessApi.md#getViewConfig) | **GET** /view/{name}/config.xml | 
 [**headVersion**](RemoteAccessApi.md#headVersion) | **HEAD** / | 
 [**postCreateItem**](RemoteAccessApi.md#postCreateItem) | **POST** /createItem | 
+[**postCreateView**](RemoteAccessApi.md#postCreateView) | **POST** /createView | 
 [**postJobBuild**](RemoteAccessApi.md#postJobBuild) | **POST** /job/{name}/build | 
 [**postJobConfig**](RemoteAccessApi.md#postJobConfig) | **POST** /job/{name}/config.xml | 
 [**postJobDelete**](RemoteAccessApi.md#postJobDelete) | **POST** /job/{name}/doDelete | 
 [**postJobDisable**](RemoteAccessApi.md#postJobDisable) | **POST** /job/{name}/disable | 
 [**postJobEnable**](RemoteAccessApi.md#postJobEnable) | **POST** /job/{name}/enable | 
 [**postJobLastBuildStop**](RemoteAccessApi.md#postJobLastBuildStop) | **POST** /job/{name}/lastBuild/stop | 
+[**postViewConfig**](RemoteAccessApi.md#postViewConfig) | **POST** /view/{name}/config.xml | 
 
 
 <a name="getComputer"></a>
@@ -419,6 +423,98 @@ No authorization required
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
+<a name="getView"></a>
+# **getView**
+> HudsonmodelListView getView(name)
+
+
+
+Get view
+
+### Example
+```javascript
+var SwaggyJenkins = require('swaggy_jenkins');
+
+var apiInstance = new SwaggyJenkins.RemoteAccessApi();
+
+var name = "name_example"; // String | 
+
+
+var callback = function(error, data, response) {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully. Returned data: ' + data);
+  }
+};
+apiInstance.getView(name, callback);
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **name** | **String**|  | 
+
+### Return type
+
+[**HudsonmodelListView**](HudsonmodelListView.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+<a name="getViewConfig"></a>
+# **getViewConfig**
+> &#39;String&#39; getViewConfig(name)
+
+
+
+Fetch a view configuration config.xml
+
+### Example
+```javascript
+var SwaggyJenkins = require('swaggy_jenkins');
+
+var apiInstance = new SwaggyJenkins.RemoteAccessApi();
+
+var name = "name_example"; // String | 
+
+
+var callback = function(error, data, response) {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully. Returned data: ' + data);
+  }
+};
+apiInstance.getViewConfig(name, callback);
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **name** | **String**|  | 
+
+### Return type
+
+**&#39;String&#39;**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/xml
+
 <a name="headVersion"></a>
 # **headVersion**
 > headVersion()
@@ -500,6 +596,60 @@ Name | Type | Description  | Notes
  **name** | **String**|  | 
  **from** | **String**|  | [optional] 
  **mode** | **String**|  | [optional] 
+ **body** | **String**|  | [optional] 
+ **jenkinsCrumb** | **String**|  | [optional] 
+ **contentType** | **String**|  | [optional] 
+
+### Return type
+
+null (empty response body)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/html
+
+<a name="postCreateView"></a>
+# **postCreateView**
+> postCreateView(name, opts)
+
+
+
+Post view creation
+
+### Example
+```javascript
+var SwaggyJenkins = require('swaggy_jenkins');
+
+var apiInstance = new SwaggyJenkins.RemoteAccessApi();
+
+var name = "name_example"; // String | 
+
+var opts = { 
+  'body': "body_example", // String | 
+  'jenkinsCrumb': "jenkinsCrumb_example", // String | 
+  'contentType': "contentType_example" // String | 
+};
+
+var callback = function(error, data, response) {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully.');
+  }
+};
+apiInstance.postCreateView(name, opts, callback);
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **name** | **String**|  | 
  **body** | **String**|  | [optional] 
  **jenkinsCrumb** | **String**|  | [optional] 
  **contentType** | **String**|  | [optional] 
@@ -824,4 +974,57 @@ No authorization required
 
  - **Content-Type**: Not defined
  - **Accept**: Not defined
+
+<a name="postViewConfig"></a>
+# **postViewConfig**
+> postViewConfig(name, body, opts)
+
+
+
+Update view config.xml
+
+### Example
+```javascript
+var SwaggyJenkins = require('swaggy_jenkins');
+
+var apiInstance = new SwaggyJenkins.RemoteAccessApi();
+
+var name = "name_example"; // String | 
+
+var body = "body_example"; // String | 
+
+var opts = { 
+  'jenkinsCrumb': "jenkinsCrumb_example" // String | 
+};
+
+var callback = function(error, data, response) {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully.');
+  }
+};
+apiInstance.postViewConfig(name, body, opts, callback);
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **name** | **String**|  | 
+ **body** | **String**|  | 
+ **jenkinsCrumb** | **String**|  | [optional] 
+
+### Return type
+
+null (empty response body)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/xml
 

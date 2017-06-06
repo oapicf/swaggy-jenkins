@@ -81,14 +81,18 @@ Class | Method | HTTP request | Description
 *SwaggyJenkins.RemoteAccessApi* | [**getJobProgressiveText**](docs/RemoteAccessApi.md#getJobProgressiveText) | **GET** /job/{name}/{number}/logText/progressiveText | 
 *SwaggyJenkins.RemoteAccessApi* | [**getQueue**](docs/RemoteAccessApi.md#getQueue) | **GET** /queue/api/json | 
 *SwaggyJenkins.RemoteAccessApi* | [**getQueueItem**](docs/RemoteAccessApi.md#getQueueItem) | **GET** /queue/item/{number}/api/json | 
+*SwaggyJenkins.RemoteAccessApi* | [**getView**](docs/RemoteAccessApi.md#getView) | **GET** /view/{name}/api/json | 
+*SwaggyJenkins.RemoteAccessApi* | [**getViewConfig**](docs/RemoteAccessApi.md#getViewConfig) | **GET** /view/{name}/config.xml | 
 *SwaggyJenkins.RemoteAccessApi* | [**headVersion**](docs/RemoteAccessApi.md#headVersion) | **HEAD** / | 
 *SwaggyJenkins.RemoteAccessApi* | [**postCreateItem**](docs/RemoteAccessApi.md#postCreateItem) | **POST** /createItem | 
+*SwaggyJenkins.RemoteAccessApi* | [**postCreateView**](docs/RemoteAccessApi.md#postCreateView) | **POST** /createView | 
 *SwaggyJenkins.RemoteAccessApi* | [**postJobBuild**](docs/RemoteAccessApi.md#postJobBuild) | **POST** /job/{name}/build | 
 *SwaggyJenkins.RemoteAccessApi* | [**postJobConfig**](docs/RemoteAccessApi.md#postJobConfig) | **POST** /job/{name}/config.xml | 
 *SwaggyJenkins.RemoteAccessApi* | [**postJobDelete**](docs/RemoteAccessApi.md#postJobDelete) | **POST** /job/{name}/doDelete | 
 *SwaggyJenkins.RemoteAccessApi* | [**postJobDisable**](docs/RemoteAccessApi.md#postJobDisable) | **POST** /job/{name}/disable | 
 *SwaggyJenkins.RemoteAccessApi* | [**postJobEnable**](docs/RemoteAccessApi.md#postJobEnable) | **POST** /job/{name}/enable | 
 *SwaggyJenkins.RemoteAccessApi* | [**postJobLastBuildStop**](docs/RemoteAccessApi.md#postJobLastBuildStop) | **POST** /job/{name}/lastBuild/stop | 
+*SwaggyJenkins.RemoteAccessApi* | [**postViewConfig**](docs/RemoteAccessApi.md#postViewConfig) | **POST** /view/{name}/config.xml | 
 
 
 ## Documentation for Models
@@ -107,6 +111,7 @@ Class | Method | HTTP request | Description
  - [SwaggyJenkins.HudsonmodelHudsonMasterComputerexecutors](docs/HudsonmodelHudsonMasterComputerexecutors.md)
  - [SwaggyJenkins.HudsonmodelHudsonassignedLabels](docs/HudsonmodelHudsonassignedLabels.md)
  - [SwaggyJenkins.HudsonmodelLabel1](docs/HudsonmodelLabel1.md)
+ - [SwaggyJenkins.HudsonmodelListView](docs/HudsonmodelListView.md)
  - [SwaggyJenkins.HudsonmodelQueue](docs/HudsonmodelQueue.md)
  - [SwaggyJenkins.HudsonmodelQueueBlockedItem](docs/HudsonmodelQueueBlockedItem.md)
  - [SwaggyJenkins.HudsonmodelQueueLeftItem](docs/HudsonmodelQueueLeftItem.md)

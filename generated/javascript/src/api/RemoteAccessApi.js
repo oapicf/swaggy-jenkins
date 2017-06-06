@@ -17,18 +17,18 @@
 (function(root, factory) {
   if (typeof define === 'function' && define.amd) {
     // AMD. Register as an anonymous module.
-    define(['ApiClient', 'model/HudsonmodelComputerSet', 'model/HudsonmodelFreeStyleBuild', 'model/HudsonmodelFreeStyleProject', 'model/HudsonmodelHudson', 'model/HudsonmodelQueue', 'model/HudsonsecuritycsrfDefaultCrumbIssuer'], factory);
+    define(['ApiClient', 'model/HudsonmodelComputerSet', 'model/HudsonmodelFreeStyleBuild', 'model/HudsonmodelFreeStyleProject', 'model/HudsonmodelHudson', 'model/HudsonmodelListView', 'model/HudsonmodelQueue', 'model/HudsonsecuritycsrfDefaultCrumbIssuer'], factory);
   } else if (typeof module === 'object' && module.exports) {
     // CommonJS-like environments that support module.exports, like Node.
-    module.exports = factory(require('../ApiClient'), require('../model/HudsonmodelComputerSet'), require('../model/HudsonmodelFreeStyleBuild'), require('../model/HudsonmodelFreeStyleProject'), require('../model/HudsonmodelHudson'), require('../model/HudsonmodelQueue'), require('../model/HudsonsecuritycsrfDefaultCrumbIssuer'));
+    module.exports = factory(require('../ApiClient'), require('../model/HudsonmodelComputerSet'), require('../model/HudsonmodelFreeStyleBuild'), require('../model/HudsonmodelFreeStyleProject'), require('../model/HudsonmodelHudson'), require('../model/HudsonmodelListView'), require('../model/HudsonmodelQueue'), require('../model/HudsonsecuritycsrfDefaultCrumbIssuer'));
   } else {
     // Browser globals (root is window)
     if (!root.SwaggyJenkins) {
       root.SwaggyJenkins = {};
     }
-    root.SwaggyJenkins.RemoteAccessApi = factory(root.SwaggyJenkins.ApiClient, root.SwaggyJenkins.HudsonmodelComputerSet, root.SwaggyJenkins.HudsonmodelFreeStyleBuild, root.SwaggyJenkins.HudsonmodelFreeStyleProject, root.SwaggyJenkins.HudsonmodelHudson, root.SwaggyJenkins.HudsonmodelQueue, root.SwaggyJenkins.HudsonsecuritycsrfDefaultCrumbIssuer);
+    root.SwaggyJenkins.RemoteAccessApi = factory(root.SwaggyJenkins.ApiClient, root.SwaggyJenkins.HudsonmodelComputerSet, root.SwaggyJenkins.HudsonmodelFreeStyleBuild, root.SwaggyJenkins.HudsonmodelFreeStyleProject, root.SwaggyJenkins.HudsonmodelHudson, root.SwaggyJenkins.HudsonmodelListView, root.SwaggyJenkins.HudsonmodelQueue, root.SwaggyJenkins.HudsonsecuritycsrfDefaultCrumbIssuer);
   }
-}(this, function(ApiClient, HudsonmodelComputerSet, HudsonmodelFreeStyleBuild, HudsonmodelFreeStyleProject, HudsonmodelHudson, HudsonmodelQueue, HudsonsecuritycsrfDefaultCrumbIssuer) {
+}(this, function(ApiClient, HudsonmodelComputerSet, HudsonmodelFreeStyleBuild, HudsonmodelFreeStyleProject, HudsonmodelHudson, HudsonmodelListView, HudsonmodelQueue, HudsonsecuritycsrfDefaultCrumbIssuer) {
   'use strict';
 
   /**
@@ -439,6 +439,96 @@
     }
 
     /**
+     * Callback function to receive the result of the getView operation.
+     * @callback module:api/RemoteAccessApi~getViewCallback
+     * @param {String} error Error message, if any.
+     * @param {module:model/HudsonmodelListView} data The data returned by the service call.
+     * @param {String} response The complete HTTP response.
+     */
+
+    /**
+     * Get view
+     * @param {String} name 
+     * @param {module:api/RemoteAccessApi~getViewCallback} callback The callback function, accepting three arguments: error, data, response
+     * data is of type: {@link module:model/HudsonmodelListView}
+     */
+    this.getView = function(name, callback) {
+      var postBody = null;
+
+      // verify the required parameter 'name' is set
+      if (name === undefined || name === null) {
+        throw new Error("Missing the required parameter 'name' when calling getView");
+      }
+
+
+      var pathParams = {
+        'name': name
+      };
+      var queryParams = {
+      };
+      var headerParams = {
+      };
+      var formParams = {
+      };
+
+      var authNames = [];
+      var contentTypes = [];
+      var accepts = ['application/json'];
+      var returnType = HudsonmodelListView;
+
+      return this.apiClient.callApi(
+        '/view/{name}/api/json', 'GET',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, callback
+      );
+    }
+
+    /**
+     * Callback function to receive the result of the getViewConfig operation.
+     * @callback module:api/RemoteAccessApi~getViewConfigCallback
+     * @param {String} error Error message, if any.
+     * @param {'String'} data The data returned by the service call.
+     * @param {String} response The complete HTTP response.
+     */
+
+    /**
+     * Fetch a view configuration config.xml
+     * @param {String} name 
+     * @param {module:api/RemoteAccessApi~getViewConfigCallback} callback The callback function, accepting three arguments: error, data, response
+     * data is of type: {@link 'String'}
+     */
+    this.getViewConfig = function(name, callback) {
+      var postBody = null;
+
+      // verify the required parameter 'name' is set
+      if (name === undefined || name === null) {
+        throw new Error("Missing the required parameter 'name' when calling getViewConfig");
+      }
+
+
+      var pathParams = {
+        'name': name
+      };
+      var queryParams = {
+      };
+      var headerParams = {
+      };
+      var formParams = {
+      };
+
+      var authNames = [];
+      var contentTypes = [];
+      var accepts = ['text/xml'];
+      var returnType = 'String';
+
+      return this.apiClient.callApi(
+        '/view/{name}/config.xml', 'GET',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, callback
+      );
+    }
+
+    /**
      * Callback function to receive the result of the headVersion operation.
      * @callback module:api/RemoteAccessApi~headVersionCallback
      * @param {String} error Error message, if any.
@@ -525,6 +615,57 @@
 
       return this.apiClient.callApi(
         '/createItem', 'POST',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, callback
+      );
+    }
+
+    /**
+     * Callback function to receive the result of the postCreateView operation.
+     * @callback module:api/RemoteAccessApi~postCreateViewCallback
+     * @param {String} error Error message, if any.
+     * @param data This operation does not return a value.
+     * @param {String} response The complete HTTP response.
+     */
+
+    /**
+     * Post view creation
+     * @param {String} name 
+     * @param {Object} opts Optional parameters
+     * @param {String} opts.body 
+     * @param {String} opts.jenkinsCrumb 
+     * @param {String} opts.contentType 
+     * @param {module:api/RemoteAccessApi~postCreateViewCallback} callback The callback function, accepting three arguments: error, data, response
+     */
+    this.postCreateView = function(name, opts, callback) {
+      opts = opts || {};
+      var postBody = opts['body'];
+
+      // verify the required parameter 'name' is set
+      if (name === undefined || name === null) {
+        throw new Error("Missing the required parameter 'name' when calling postCreateView");
+      }
+
+
+      var pathParams = {
+      };
+      var queryParams = {
+        'name': name
+      };
+      var headerParams = {
+        'Jenkins-Crumb': opts['jenkinsCrumb'],
+        'Content-Type': opts['contentType']
+      };
+      var formParams = {
+      };
+
+      var authNames = [];
+      var contentTypes = [];
+      var accepts = ['text/html'];
+      var returnType = null;
+
+      return this.apiClient.callApi(
+        '/createView', 'POST',
         pathParams, queryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType, callback
       );
@@ -828,6 +969,60 @@
 
       return this.apiClient.callApi(
         '/job/{name}/lastBuild/stop', 'POST',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, callback
+      );
+    }
+
+    /**
+     * Callback function to receive the result of the postViewConfig operation.
+     * @callback module:api/RemoteAccessApi~postViewConfigCallback
+     * @param {String} error Error message, if any.
+     * @param data This operation does not return a value.
+     * @param {String} response The complete HTTP response.
+     */
+
+    /**
+     * Update view config.xml
+     * @param {String} name 
+     * @param {String} body 
+     * @param {Object} opts Optional parameters
+     * @param {String} opts.jenkinsCrumb 
+     * @param {module:api/RemoteAccessApi~postViewConfigCallback} callback The callback function, accepting three arguments: error, data, response
+     */
+    this.postViewConfig = function(name, body, opts, callback) {
+      opts = opts || {};
+      var postBody = body;
+
+      // verify the required parameter 'name' is set
+      if (name === undefined || name === null) {
+        throw new Error("Missing the required parameter 'name' when calling postViewConfig");
+      }
+
+      // verify the required parameter 'body' is set
+      if (body === undefined || body === null) {
+        throw new Error("Missing the required parameter 'body' when calling postViewConfig");
+      }
+
+
+      var pathParams = {
+        'name': name
+      };
+      var queryParams = {
+      };
+      var headerParams = {
+        'Jenkins-Crumb': opts['jenkinsCrumb']
+      };
+      var formParams = {
+      };
+
+      var authNames = [];
+      var contentTypes = [];
+      var accepts = ['text/xml'];
+      var returnType = null;
+
+      return this.apiClient.callApi(
+        '/view/{name}/config.xml', 'POST',
         pathParams, queryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType, callback
       );
