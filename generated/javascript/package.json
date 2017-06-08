@@ -1,7 +1,7 @@
 {
   "name": "swaggy_jenkins",
   "version": "0.0.1",
-  "description": "Jenkins_remote_access_API",
+  "description": "Jenkins_API_client_generated_from_Swagger__Open_API_specification",
   "license": "Unlicense",
   "main": "src/index.js",
   "scripts": {

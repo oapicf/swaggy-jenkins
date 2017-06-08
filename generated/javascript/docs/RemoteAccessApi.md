@@ -6,7 +6,7 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**getComputer**](RemoteAccessApi.md#getComputer) | **GET** /computer/api/json?depth&#x3D;1 | 
 [**getCrumb**](RemoteAccessApi.md#getCrumb) | **GET** /crumbIssuer/api/json | 
-[**getInfo**](RemoteAccessApi.md#getInfo) | **GET** /api/json | 
+[**getJenkins**](RemoteAccessApi.md#getJenkins) | **GET** /api/json | 
 [**getJob**](RemoteAccessApi.md#getJob) | **GET** /job/{name}/api/json | 
 [**getJobConfig**](RemoteAccessApi.md#getJobConfig) | **GET** /job/{name}/config.xml | 
 [**getJobLastBuild**](RemoteAccessApi.md#getJobLastBuild) | **GET** /job/{name}/lastBuild/api/json | 
@@ -15,7 +15,7 @@ Method | HTTP request | Description
 [**getQueueItem**](RemoteAccessApi.md#getQueueItem) | **GET** /queue/item/{number}/api/json | 
 [**getView**](RemoteAccessApi.md#getView) | **GET** /view/{name}/api/json | 
 [**getViewConfig**](RemoteAccessApi.md#getViewConfig) | **GET** /view/{name}/config.xml | 
-[**headVersion**](RemoteAccessApi.md#headVersion) | **HEAD** / | 
+[**headJenkins**](RemoteAccessApi.md#headJenkins) | **HEAD** /api/json | 
 [**postCreateItem**](RemoteAccessApi.md#postCreateItem) | **POST** /createItem | 
 [**postCreateView**](RemoteAccessApi.md#postCreateView) | **POST** /createView | 
 [**postJobBuild**](RemoteAccessApi.md#postJobBuild) | **POST** /job/{name}/build | 
@@ -33,7 +33,7 @@ Method | HTTP request | Description
 
 
 
-Get computer
+Retrieve computer details
 
 ### Example
 ```javascript
@@ -73,7 +73,7 @@ No authorization required
 
 
 
-Get crumb
+Retrieve CSRF protection token
 
 ### Example
 ```javascript
@@ -107,13 +107,13 @@ No authorization required
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-<a name="getInfo"></a>
-# **getInfo**
-> HudsonmodelHudson getInfo()
+<a name="getJenkins"></a>
+# **getJenkins**
+> HudsonmodelHudson getJenkins()
 
 
 
-Get info
+Retrieve Jenkins details
 
 ### Example
 ```javascript
@@ -128,7 +128,7 @@ var callback = function(error, data, response) {
     console.log('API called successfully. Returned data: ' + data);
   }
 };
-apiInstance.getInfo(callback);
+apiInstance.getJenkins(callback);
 ```
 
 ### Parameters
@@ -149,11 +149,11 @@ No authorization required
 
 <a name="getJob"></a>
 # **getJob**
-> HudsonmodelFreeStyleProject getJob(name)
+> HudsonmodelFreeStyleProject getJob(name, )
 
 
 
-Get job
+Retrieve job details
 
 ### Example
 ```javascript
@@ -161,7 +161,7 @@ var SwaggyJenkins = require('swaggy_jenkins');
 
 var apiInstance = new SwaggyJenkins.RemoteAccessApi();
 
-var name = "name_example"; // String | 
+var name = "name_example"; // String | Name of the job
 
 
 var callback = function(error, data, response) {
@@ -171,14 +171,14 @@ var callback = function(error, data, response) {
     console.log('API called successfully. Returned data: ' + data);
   }
 };
-apiInstance.getJob(name, callback);
+apiInstance.getJob(name, , callback);
 ```
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **name** | **String**|  | 
+ **name** | **String**| Name of the job | 
 
 ### Return type
 
@@ -195,11 +195,11 @@ No authorization required
 
 <a name="getJobConfig"></a>
 # **getJobConfig**
-> &#39;String&#39; getJobConfig(name)
+> &#39;String&#39; getJobConfig(name, )
 
 
 
-Fetch a job configuration config.xml
+Retrieve job configuration
 
 ### Example
 ```javascript
@@ -207,7 +207,7 @@ var SwaggyJenkins = require('swaggy_jenkins');
 
 var apiInstance = new SwaggyJenkins.RemoteAccessApi();
 
-var name = "name_example"; // String | 
+var name = "name_example"; // String | Name of the job
 
 
 var callback = function(error, data, response) {
@@ -217,14 +217,14 @@ var callback = function(error, data, response) {
     console.log('API called successfully. Returned data: ' + data);
   }
 };
-apiInstance.getJobConfig(name, callback);
+apiInstance.getJobConfig(name, , callback);
 ```
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **name** | **String**|  | 
+ **name** | **String**| Name of the job | 
 
 ### Return type
 
@@ -241,11 +241,11 @@ No authorization required
 
 <a name="getJobLastBuild"></a>
 # **getJobLastBuild**
-> HudsonmodelFreeStyleBuild getJobLastBuild(name)
+> HudsonmodelFreeStyleBuild getJobLastBuild(name, )
 
 
 
-Get job last build
+Retrieve job&#39;s last build details
 
 ### Example
 ```javascript
@@ -253,7 +253,7 @@ var SwaggyJenkins = require('swaggy_jenkins');
 
 var apiInstance = new SwaggyJenkins.RemoteAccessApi();
 
-var name = "name_example"; // String | 
+var name = "name_example"; // String | Name of the job
 
 
 var callback = function(error, data, response) {
@@ -263,14 +263,14 @@ var callback = function(error, data, response) {
     console.log('API called successfully. Returned data: ' + data);
   }
 };
-apiInstance.getJobLastBuild(name, callback);
+apiInstance.getJobLastBuild(name, , callback);
 ```
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **name** | **String**|  | 
+ **name** | **String**| Name of the job | 
 
 ### Return type
 
@@ -291,7 +291,7 @@ No authorization required
 
 
 
-Get a job&#39;s console progressive text
+Retrieve job&#39;s build progressive text output
 
 ### Example
 ```javascript
@@ -299,11 +299,11 @@ var SwaggyJenkins = require('swaggy_jenkins');
 
 var apiInstance = new SwaggyJenkins.RemoteAccessApi();
 
-var name = "name_example"; // String | 
+var name = "name_example"; // String | Name of the job
 
-var _number = "_number_example"; // String | 
+var _number = "_number_example"; // String | Build number
 
-var start = "start_example"; // String | 
+var start = "start_example"; // String | Starting point of progressive text output
 
 
 var callback = function(error, data, response) {
@@ -320,9 +320,9 @@ apiInstance.getJobProgressiveText(name, _number, start, callback);
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **name** | **String**|  | 
- **_number** | **String**|  | 
- **start** | **String**|  | 
+ **name** | **String**| Name of the job | 
+ **_number** | **String**| Build number | 
+ **start** | **String**| Starting point of progressive text output | 
 
 ### Return type
 
@@ -343,7 +343,7 @@ No authorization required
 
 
 
-Get queue
+Retrieve queue details
 
 ### Example
 ```javascript
@@ -383,7 +383,7 @@ No authorization required
 
 
 
-Get queued item details
+Retrieve queued item details
 
 ### Example
 ```javascript
@@ -391,7 +391,7 @@ var SwaggyJenkins = require('swaggy_jenkins');
 
 var apiInstance = new SwaggyJenkins.RemoteAccessApi();
 
-var _number = "_number_example"; // String | 
+var _number = "_number_example"; // String | Queue number
 
 
 var callback = function(error, data, response) {
@@ -408,7 +408,7 @@ apiInstance.getQueueItem(_number, callback);
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **_number** | **String**|  | 
+ **_number** | **String**| Queue number | 
 
 ### Return type
 
@@ -425,11 +425,11 @@ No authorization required
 
 <a name="getView"></a>
 # **getView**
-> HudsonmodelListView getView(name)
+> HudsonmodelListView getView(name, )
 
 
 
-Get view
+Retrieve view details
 
 ### Example
 ```javascript
@@ -437,7 +437,7 @@ var SwaggyJenkins = require('swaggy_jenkins');
 
 var apiInstance = new SwaggyJenkins.RemoteAccessApi();
 
-var name = "name_example"; // String | 
+var name = "name_example"; // String | Name of the view
 
 
 var callback = function(error, data, response) {
@@ -447,14 +447,14 @@ var callback = function(error, data, response) {
     console.log('API called successfully. Returned data: ' + data);
   }
 };
-apiInstance.getView(name, callback);
+apiInstance.getView(name, , callback);
 ```
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **name** | **String**|  | 
+ **name** | **String**| Name of the view | 
 
 ### Return type
 
@@ -471,11 +471,11 @@ No authorization required
 
 <a name="getViewConfig"></a>
 # **getViewConfig**
-> &#39;String&#39; getViewConfig(name)
+> &#39;String&#39; getViewConfig(name, )
 
 
 
-Fetch a view configuration config.xml
+Retrieve view configuration
 
 ### Example
 ```javascript
@@ -483,7 +483,7 @@ var SwaggyJenkins = require('swaggy_jenkins');
 
 var apiInstance = new SwaggyJenkins.RemoteAccessApi();
 
-var name = "name_example"; // String | 
+var name = "name_example"; // String | Name of the view
 
 
 var callback = function(error, data, response) {
@@ -493,14 +493,14 @@ var callback = function(error, data, response) {
     console.log('API called successfully. Returned data: ' + data);
   }
 };
-apiInstance.getViewConfig(name, callback);
+apiInstance.getViewConfig(name, , callback);
 ```
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **name** | **String**|  | 
+ **name** | **String**| Name of the view | 
 
 ### Return type
 
@@ -515,13 +515,13 @@ No authorization required
  - **Content-Type**: Not defined
  - **Accept**: text/xml
 
-<a name="headVersion"></a>
-# **headVersion**
-> headVersion()
+<a name="headJenkins"></a>
+# **headJenkins**
+> headJenkins()
 
 
 
-Retrieve version header
+Retrieve Jenkins headers
 
 ### Example
 ```javascript
@@ -536,7 +536,7 @@ var callback = function(error, data, response) {
     console.log('API called successfully.');
   }
 };
-apiInstance.headVersion(callback);
+apiInstance.headJenkins(callback);
 ```
 
 ### Parameters
@@ -561,7 +561,7 @@ No authorization required
 
 
 
-Post item creation
+Create a new job using job configuration, or copied from an existing job
 
 ### Example
 ```javascript
@@ -569,14 +569,14 @@ var SwaggyJenkins = require('swaggy_jenkins');
 
 var apiInstance = new SwaggyJenkins.RemoteAccessApi();
 
-var name = "name_example"; // String | 
+var name = "name_example"; // String | Name of the new job
 
 var opts = { 
-  'from': "from_example", // String | 
-  'mode': "mode_example", // String | 
-  'body': "body_example", // String | 
-  'jenkinsCrumb': "jenkinsCrumb_example", // String | 
-  'contentType': "contentType_example" // String | 
+  'from': "from_example", // String | Existing job to copy from
+  'mode': "mode_example", // String | Set to 'copy' for copying an existing job
+  'body': "body_example", // String | Job configuration in config.xml format
+  'jenkinsCrumb': "jenkinsCrumb_example" // String | CSRF protection token
+  'contentType': "contentType_example" // String | Content type header application/xml
 };
 
 var callback = function(error, data, response) {
@@ -593,12 +593,12 @@ apiInstance.postCreateItem(name, opts, callback);
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **name** | **String**|  | 
- **from** | **String**|  | [optional] 
- **mode** | **String**|  | [optional] 
- **body** | **String**|  | [optional] 
- **jenkinsCrumb** | **String**|  | [optional] 
- **contentType** | **String**|  | [optional] 
+ **name** | **String**| Name of the new job | 
+ **from** | **String**| Existing job to copy from | [optional] 
+ **mode** | **String**| Set to &#39;copy&#39; for copying an existing job | [optional] 
+ **body** | **String**| Job configuration in config.xml format | [optional] 
+ **jenkinsCrumb** | **String**| CSRF protection token | [optional] 
+ **contentType** | **String**| Content type header application/xml | [optional] 
 
 ### Return type
 
@@ -619,7 +619,7 @@ No authorization required
 
 
 
-Post view creation
+Create a new view using view configuration
 
 ### Example
 ```javascript
@@ -627,12 +627,12 @@ var SwaggyJenkins = require('swaggy_jenkins');
 
 var apiInstance = new SwaggyJenkins.RemoteAccessApi();
 
-var name = "name_example"; // String | 
+var name = "name_example"; // String | Name of the new view
 
 var opts = { 
-  'body': "body_example", // String | 
-  'jenkinsCrumb': "jenkinsCrumb_example", // String | 
-  'contentType': "contentType_example" // String | 
+  'body': "body_example", // String | View configuration in config.xml format
+  'jenkinsCrumb': "jenkinsCrumb_example" // String | CSRF protection token
+  'contentType': "contentType_example" // String | Content type header application/xml
 };
 
 var callback = function(error, data, response) {
@@ -649,10 +649,10 @@ apiInstance.postCreateView(name, opts, callback);
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **name** | **String**|  | 
- **body** | **String**|  | [optional] 
- **jenkinsCrumb** | **String**|  | [optional] 
- **contentType** | **String**|  | [optional] 
+ **name** | **String**| Name of the new view | 
+ **body** | **String**| View configuration in config.xml format | [optional] 
+ **jenkinsCrumb** | **String**| CSRF protection token | [optional] 
+ **contentType** | **String**| Content type header application/xml | [optional] 
 
 ### Return type
 
@@ -681,13 +681,13 @@ var SwaggyJenkins = require('swaggy_jenkins');
 
 var apiInstance = new SwaggyJenkins.RemoteAccessApi();
 
-var name = "name_example"; // String | 
+var name = "name_example"; // String | Name of the job
 
 var json = "json_example"; // String | 
 
 var opts = { 
   'token': "token_example", // String | 
-  'jenkinsCrumb': "jenkinsCrumb_example" // String | 
+  'jenkinsCrumb': "jenkinsCrumb_example" // String | CSRF protection token
 };
 
 var callback = function(error, data, response) {
@@ -704,10 +704,10 @@ apiInstance.postJobBuild(name, json, opts, callback);
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **name** | **String**|  | 
+ **name** | **String**| Name of the job | 
  **json** | **String**|  | 
  **token** | **String**|  | [optional] 
- **jenkinsCrumb** | **String**|  | [optional] 
+ **jenkinsCrumb** | **String**| CSRF protection token | [optional] 
 
 ### Return type
 
@@ -728,7 +728,7 @@ No authorization required
 
 
 
-Update job config.xml
+Update job configuration
 
 ### Example
 ```javascript
@@ -736,12 +736,12 @@ var SwaggyJenkins = require('swaggy_jenkins');
 
 var apiInstance = new SwaggyJenkins.RemoteAccessApi();
 
-var name = "name_example"; // String | 
+var name = "name_example"; // String | Name of the job
 
-var body = "body_example"; // String | 
+var body = "body_example"; // String | Job configuration in config.xml format
 
 var opts = { 
-  'jenkinsCrumb': "jenkinsCrumb_example" // String | 
+  'jenkinsCrumb': "jenkinsCrumb_example" // String | CSRF protection token
 };
 
 var callback = function(error, data, response) {
@@ -758,9 +758,9 @@ apiInstance.postJobConfig(name, body, opts, callback);
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **name** | **String**|  | 
- **body** | **String**|  | 
- **jenkinsCrumb** | **String**|  | [optional] 
+ **name** | **String**| Name of the job | 
+ **body** | **String**| Job configuration in config.xml format | 
+ **jenkinsCrumb** | **String**| CSRF protection token | [optional] 
 
 ### Return type
 
@@ -777,11 +777,11 @@ No authorization required
 
 <a name="postJobDelete"></a>
 # **postJobDelete**
-> postJobDelete(name, opts)
+> postJobDelete(name, , opts)
 
 
 
-Delete job
+Delete a job
 
 ### Example
 ```javascript
@@ -789,10 +789,10 @@ var SwaggyJenkins = require('swaggy_jenkins');
 
 var apiInstance = new SwaggyJenkins.RemoteAccessApi();
 
-var name = "name_example"; // String | 
+var name = "name_example"; // String | Name of the job
 
 var opts = { 
-  'jenkinsCrumb': "jenkinsCrumb_example" // String | 
+  'jenkinsCrumb': "jenkinsCrumb_example" // String | CSRF protection token
 };
 
 var callback = function(error, data, response) {
@@ -802,15 +802,15 @@ var callback = function(error, data, response) {
     console.log('API called successfully.');
   }
 };
-apiInstance.postJobDelete(name, opts, callback);
+apiInstance.postJobDelete(name, , opts, callback);
 ```
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **name** | **String**|  | 
- **jenkinsCrumb** | **String**|  | [optional] 
+ **name** | **String**| Name of the job | 
+ **jenkinsCrumb** | **String**| CSRF protection token | [optional] 
 
 ### Return type
 
@@ -827,7 +827,7 @@ No authorization required
 
 <a name="postJobDisable"></a>
 # **postJobDisable**
-> postJobDisable(name, opts)
+> postJobDisable(name, , opts)
 
 
 
@@ -839,10 +839,10 @@ var SwaggyJenkins = require('swaggy_jenkins');
 
 var apiInstance = new SwaggyJenkins.RemoteAccessApi();
 
-var name = "name_example"; // String | 
+var name = "name_example"; // String | Name of the job
 
 var opts = { 
-  'jenkinsCrumb': "jenkinsCrumb_example" // String | 
+  'jenkinsCrumb': "jenkinsCrumb_example" // String | CSRF protection token
 };
 
 var callback = function(error, data, response) {
@@ -852,15 +852,15 @@ var callback = function(error, data, response) {
     console.log('API called successfully.');
   }
 };
-apiInstance.postJobDisable(name, opts, callback);
+apiInstance.postJobDisable(name, , opts, callback);
 ```
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **name** | **String**|  | 
- **jenkinsCrumb** | **String**|  | [optional] 
+ **name** | **String**| Name of the job | 
+ **jenkinsCrumb** | **String**| CSRF protection token | [optional] 
 
 ### Return type
 
@@ -877,7 +877,7 @@ No authorization required
 
 <a name="postJobEnable"></a>
 # **postJobEnable**
-> postJobEnable(name, opts)
+> postJobEnable(name, , opts)
 
 
 
@@ -889,10 +889,10 @@ var SwaggyJenkins = require('swaggy_jenkins');
 
 var apiInstance = new SwaggyJenkins.RemoteAccessApi();
 
-var name = "name_example"; // String | 
+var name = "name_example"; // String | Name of the job
 
 var opts = { 
-  'jenkinsCrumb': "jenkinsCrumb_example" // String | 
+  'jenkinsCrumb': "jenkinsCrumb_example" // String | CSRF protection token
 };
 
 var callback = function(error, data, response) {
@@ -902,15 +902,15 @@ var callback = function(error, data, response) {
     console.log('API called successfully.');
   }
 };
-apiInstance.postJobEnable(name, opts, callback);
+apiInstance.postJobEnable(name, , opts, callback);
 ```
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **name** | **String**|  | 
- **jenkinsCrumb** | **String**|  | [optional] 
+ **name** | **String**| Name of the job | 
+ **jenkinsCrumb** | **String**| CSRF protection token | [optional] 
 
 ### Return type
 
@@ -927,11 +927,11 @@ No authorization required
 
 <a name="postJobLastBuildStop"></a>
 # **postJobLastBuildStop**
-> postJobLastBuildStop(name, opts)
+> postJobLastBuildStop(name, , opts)
 
 
 
-Stop a running/building job
+Stop a job
 
 ### Example
 ```javascript
@@ -939,10 +939,10 @@ var SwaggyJenkins = require('swaggy_jenkins');
 
 var apiInstance = new SwaggyJenkins.RemoteAccessApi();
 
-var name = "name_example"; // String | 
+var name = "name_example"; // String | Name of the job
 
 var opts = { 
-  'jenkinsCrumb': "jenkinsCrumb_example" // String | 
+  'jenkinsCrumb': "jenkinsCrumb_example" // String | CSRF protection token
 };
 
 var callback = function(error, data, response) {
@@ -952,15 +952,15 @@ var callback = function(error, data, response) {
     console.log('API called successfully.');
   }
 };
-apiInstance.postJobLastBuildStop(name, opts, callback);
+apiInstance.postJobLastBuildStop(name, , opts, callback);
 ```
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **name** | **String**|  | 
- **jenkinsCrumb** | **String**|  | [optional] 
+ **name** | **String**| Name of the job | 
+ **jenkinsCrumb** | **String**| CSRF protection token | [optional] 
 
 ### Return type
 
@@ -981,7 +981,7 @@ No authorization required
 
 
 
-Update view config.xml
+Update view configuration
 
 ### Example
 ```javascript
@@ -989,12 +989,12 @@ var SwaggyJenkins = require('swaggy_jenkins');
 
 var apiInstance = new SwaggyJenkins.RemoteAccessApi();
 
-var name = "name_example"; // String | 
+var name = "name_example"; // String | Name of the view
 
-var body = "body_example"; // String | 
+var body = "body_example"; // String | View configuration in config.xml format
 
 var opts = { 
-  'jenkinsCrumb': "jenkinsCrumb_example" // String | 
+  'jenkinsCrumb': "jenkinsCrumb_example" // String | CSRF protection token
 };
 
 var callback = function(error, data, response) {
@@ -1011,9 +1011,9 @@ apiInstance.postViewConfig(name, body, opts, callback);
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **name** | **String**|  | 
- **body** | **String**|  | 
- **jenkinsCrumb** | **String**|  | [optional] 
+ **name** | **String**| Name of the view | 
+ **body** | **String**| View configuration in config.xml format | 
+ **jenkinsCrumb** | **String**| CSRF protection token | [optional] 
 
 ### Return type
 
@@ -1026,5 +1026,5 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: text/xml
+ - **Accept**: Not defined
 
