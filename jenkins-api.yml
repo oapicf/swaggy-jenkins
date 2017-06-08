@@ -1,7 +1,7 @@
 swagger: '2.0'
 info:
   title: Swaggy Jenkins
-  description: Jenkins remote access API
+  description: Jenkins API client generated from Swagger / Open API specification
   version: "0.0.1"
   contact:
     name: Cliffano Subagio
@@ -15,15 +15,16 @@ securityDefinitions:
   jenkins_auth:
     type: basic
 paths:
-  /:
+  /api/json:
     head:
-      description: Retrieve version header
-      operationId: headVersion
+      description: Retrieve Jenkins headers
+      operationId: headJenkins
       responses:
         200:
-          description: Successfully retrieved version
+          description: Successfully retrieved Jenkins headers
           headers:
             x-jenkins:
+              description: Jenkins version number
               type: string
         401:
           $ref: "#/responses/unauthorized"
@@ -31,15 +32,14 @@ paths:
           $ref: "#/responses/forbidden"
       tags:
         - remoteAccess
-  /api/json:
     get:
-      description: Get info
-      operationId: getInfo
+      description: Retrieve Jenkins details
+      operationId: getJenkins
       produces:
         - application/json
       responses:
         200:
-          description: Successfully get info
+          description: Successfully retrieved Jenkins details
           schema:
             $ref: "#/definitions/hudsonmodelHudson"
         401:
@@ -50,13 +50,13 @@ paths:
         - remoteAccess
   /computer/api/json?depth=1:
     get:
-      description: Get computer
+      description: Retrieve computer details
       operationId: getComputer
       produces:
         - application/json
       responses:
         200:
-          description: Successfully get computer
+          description: Successfully retrieved computer details
           schema:
             $ref: "#/definitions/hudsonmodelComputerSet"
         401:
@@ -67,41 +67,43 @@ paths:
         - remoteAccess
   /createItem:
     post:
-      description: Post item creation
+      description: Create a new job using job configuration, or copied from an existing job
       operationId: postCreateItem
       produces:
         - text/html
       parameters:
         - name: name
+          description: Name of the new job
           in: query
           required: true
           type: string
         - name: from
+          description: Existing job to copy from
           in: query
           required: false
           type: string
         - name: mode
+          description: Set to 'copy' for copying an existing job
           in: query
           required: false
           type: string
         - name: body
+          description: Job configuration in config.xml format
           in: body
           required: false
           schema:
             type: string
-        - name: Jenkins-Crumb
-          in: header
-          required: false
-          type: string
+        - $ref: "#/parameters/crumb"
         - name: Content-Type
+          description: Content type header application/xml
           in: header
           required: false
           type: string
       responses:
         200:
-          description: Successfully post item
+          description: Successfully created a new job
         400:
-          $ref: "#/responses/errorinhtml"
+          $ref: "#/responses/errorInHtml"
         401:
           $ref: "#/responses/unauthorized"
         403:
@@ -110,33 +112,33 @@ paths:
         - remoteAccess
   /createView:
     post:
-      description: Post view creation
+      description: Create a new view using view configuration
       operationId: postCreateView
       produces:
         - text/html
       parameters:
         - name: name
+          description: Name of the new view
           in: query
           required: true
           type: string
         - name: body
+          description: View configuration in config.xml format
           in: body
           required: false
           schema:
             type: string
-        - name: Jenkins-Crumb
-          in: header
-          required: false
-          type: string
+        - $ref: "#/parameters/crumb"
         - name: Content-Type
+          description: Content type header application/xml
           in: header
           required: false
           type: string
       responses:
         200:
-          description: Successfully post create view
+          description: Successfully created the view
         400:
-          $ref: "#/responses/errorinhtml"
+          $ref: "#/responses/errorInHtml"
         401:
           $ref: "#/responses/unauthorized"
         403:
@@ -145,13 +147,13 @@ paths:
         - remoteAccess
   /crumbIssuer/api/json:
     get:
-      description: Get crumb
+      description: Retrieve CSRF protection token
       operationId: getCrumb
       produces:
         - application/json
       responses:
         200:
-          description: Successfully get crumb
+          description: Successfully retrieved CSRF protection token
           schema:
             $ref: "#/definitions/hudsonsecuritycsrfDefaultCrumbIssuer"
         401:
@@ -162,18 +164,15 @@ paths:
         - remoteAccess
   /job/{name}/api/json:
     get:
-      description: Get job
+      description: Retrieve job details
       operationId: getJob
       produces:
         - application/json
       parameters:
-        - name: name
-          in: path
-          required: true
-          type: string
+        - $ref: "#/parameters/jobName"
       responses:
         200:
-          description: Successfully get job
+          description: Successfully retrieved job details
           schema:
             $ref: "#/definitions/hudsonmodelFreeStyleProject"
         401:
@@ -181,7 +180,7 @@ paths:
         403:
           $ref: "#/responses/forbidden"
         404:
-          $ref: "#/responses/jobnotexist"
+          $ref: "#/responses/jobNotFound"
       tags:
         - remoteAccess
   /job/{name}/build:
@@ -189,10 +188,7 @@ paths:
       description: Build a job
       operationId: postJobBuild
       parameters:
-        - name: name
-          in: path
-          required: true
-          type: string
+        - $ref: "#/parameters/jobName"
         - name: json
           in: query
           required: true
@@ -201,37 +197,31 @@ paths:
           in: query
           required: false
           type: string
-        - name: Jenkins-Crumb
-          in: header
-          required: false
-          type: string
+        - $ref: "#/parameters/crumb"
       responses:
         200:
-          description: Successfully build a job (backward compatibility old job)
+          description: Successfully built the job (backward compatibility for older versions of Jenkins)
         201:
-          description: Successfully build a job
+          description: Successfully built the job
         401:
           $ref: "#/responses/unauthorized"
         403:
           $ref: "#/responses/forbidden"
         404:
-          $ref: "#/responses/jobnotexist"
+          $ref: "#/responses/jobNotFound"
       tags:
         - remoteAccess
   /job/{name}/config.xml:
     get:
-      description: Fetch a job configuration config.xml
+      description: Retrieve job configuration
       operationId: getJobConfig
       produces:
         - text/xml
       parameters:
-        - name: name
-          in: path
-          required: true
-          type: string
+        - $ref: "#/parameters/jobName"
       responses:
         200:
-          description: Successfully get job config
+          description: Successfully retrieved job configuration in config.xml format
           schema:
             type: string
         401:
@@ -239,63 +229,52 @@ paths:
         403:
           $ref: "#/responses/forbidden"
         404:
-          $ref: "#/responses/jobnotexist"
+          $ref: "#/responses/jobNotFound"
       tags:
         - remoteAccess
     post:
-      description: Update job config.xml
+      description: Update job configuration
       operationId: postJobConfig
       produces:
         - text/xml
       parameters:
-        - name: name
-          in: path
-          required: true
-          type: string
+        - $ref: "#/parameters/jobName"
         - name: body
+          description: Job configuration in config.xml format
           in: body
           required: true
           schema:
             type: string
-        - name: Jenkins-Crumb
-          in: header
-          required: false
-          type: string
+        - $ref: "#/parameters/crumb"
       responses:
         200:
-          description: Successfully update job config
+          description: Successfully retrieved job configuration in config.xml format
         400:
-          $ref: "#/responses/errorinhtml"
+          $ref: "#/responses/errorInHtml"
         401:
           $ref: "#/responses/unauthorized"
         403:
           $ref: "#/responses/forbidden"
         404:
-          $ref: "#/responses/jobnotexist"
+          $ref: "#/responses/jobNotFound"
       tags:
         - remoteAccess
   /job/{name}/doDelete:
     post:
-      description: Delete job
+      description: Delete a job
       operationId: postJobDelete
       parameters:
-        - name: name
-          in: path
-          required: true
-          type: string
-        - name: Jenkins-Crumb
-          in: header
-          required: false
-          type: string
+        - $ref: "#/parameters/jobName"
+        - $ref: "#/parameters/crumb"
       responses:
         200:
-          description: Successfully update job config
+          description: Successfully deleted the job
         401:
           $ref: "#/responses/unauthorized"
         403:
           $ref: "#/responses/forbidden"
         404:
-          $ref: "#/responses/jobnotexist"
+          $ref: "#/responses/jobNotFound"
       tags:
         - remoteAccess
   /job/{name}/disable:
@@ -303,23 +282,17 @@ paths:
       description: Disable a job
       operationId: postJobDisable
       parameters:
-        - name: name
-          in: path
-          required: true
-          type: string
-        - name: Jenkins-Crumb
-          in: header
-          required: false
-          type: string
+        - $ref: "#/parameters/jobName"
+        - $ref: "#/parameters/crumb"
       responses:
         200:
-          description: Successfully disable a job
+          description: Successfully disabled the job
         401:
           $ref: "#/responses/unauthorized"
         403:
           $ref: "#/responses/forbidden"
         404:
-          $ref: "#/responses/jobnotexist"
+          $ref: "#/responses/jobNotFound"
       tags:
         - remoteAccess
   /job/{name}/enable:
@@ -327,39 +300,30 @@ paths:
       description: Enable a job
       operationId: postJobEnable
       parameters:
-        - name: name
-          in: path
-          required: true
-          type: string
-        - name: Jenkins-Crumb
-          in: header
-          required: false
-          type: string
+        - $ref: "#/parameters/jobName"
+        - $ref: "#/parameters/crumb"
       responses:
         200:
-          description: Successfully enable a job
+          description: Successfully enabled the job
         401:
           $ref: "#/responses/unauthorized"
         403:
           $ref: "#/responses/forbidden"
         404:
-          $ref: "#/responses/jobnotexist"
+          $ref: "#/responses/jobNotFound"
       tags:
         - remoteAccess
   /job/{name}/lastBuild/api/json:
     get:
-      description: Get job last build
+      description: Retrieve job's last build details
       operationId: getJobLastBuild
       produces:
         - application/json
       parameters:
-        - name: name
-          in: path
-          required: true
-          type: string
+        - $ref: "#/parameters/jobName"
       responses:
         200:
-          description: Successfully get job last build
+          description: Successfully retrieved job's last build details
           schema:
             $ref: "#/definitions/hudsonmodelFreeStyleBuild"
         401:
@@ -367,70 +331,63 @@ paths:
         403:
           $ref: "#/responses/forbidden"
         404:
-          $ref: "#/responses/jobnotexist"
+          $ref: "#/responses/jobNotFound"
       tags:
         - remoteAccess
   /job/{name}/lastBuild/stop:
     post:
-      description: Stop a running/building job
+      description: Stop a job
       operationId: postJobLastBuildStop
       parameters:
-        - name: name
-          in: path
-          required: true
-          type: string
-        - name: Jenkins-Crumb
-          in: header
-          required: false
-          type: string
+        - $ref: "#/parameters/jobName"
+        - $ref: "#/parameters/crumb"
       responses:
         200:
-          description: Successfully stop a running/building job
+          description: Successfully stopped the job
         401:
           $ref: "#/responses/unauthorized"
         403:
           $ref: "#/responses/forbidden"
         404:
-          $ref: "#/responses/jobnotexist"
+          $ref: "#/responses/jobNotFound"
       tags:
         - remoteAccess
   /job/{name}/{number}/logText/progressiveText:
     get:
-      description: Get a job's console progressive text
+      description: Retrieve job's build progressive text output
       operationId: getJobProgressiveText
       parameters:
-        - name: name
-          in: path
-          required: true
-          type: string
+        - $ref: "#/parameters/jobName"
         - name: number
+          description: Build number
           in: path
           required: true
           type: string
         - name: start
+          description: Starting point of progressive text output
           in: query
           required: true
           type: string
       responses:
         200:
-          description: Successfully stop a running/building job
+          description: Successfully retrieved job's build progressive text output
         401:
           $ref: "#/responses/unauthorized"
         403:
           $ref: "#/responses/forbidden"
         404:
-          $ref: "#/responses/jobnotexist"
+          $ref: "#/responses/jobNotFound"
       tags:
         - remoteAccess
   /queue/api/json:
     get:
-      description: Get queue
+      description: Retrieve queue details
       operationId: getQueue
       produces:
         - application/json
       responses:
         200:
-          description: Successfully get queue
+          description: Successfully retrieved queue details
           schema:
             $ref: "#/definitions/hudsonmodelQueue"
         401:
@@ -441,18 +398,19 @@ paths:
         - remoteAccess
   /queue/item/{number}/api/json:
     get:
-      description: Get queued item details
+      description: Retrieve queued item details
       operationId: getQueueItem
       produces:
         - application/json
       parameters:
         - name: number
+          description: Queue number
           in: path
           required: true
           type: string
       responses:
         200:
-          description: Successfully get queue item
+          description: Successfully retrieved queued item details
           schema:
             $ref: "#/definitions/hudsonmodelQueue"
         401:
@@ -463,18 +421,15 @@ paths:
         - remoteAccess
   /view/{name}/api/json:
     get:
-      description: Get view
+      description: Retrieve view details
       operationId: getView
       produces:
         - application/json
       parameters:
-        - name: name
-          in: path
-          required: true
-          type: string
+        - $ref: "#/parameters/viewName"
       responses:
         200:
-          description: Successfully get job
+          description: Successfully retrieved view details
           schema:
             $ref: "#/definitions/hudsonmodelListView"
         401:
@@ -482,23 +437,20 @@ paths:
         403:
           $ref: "#/responses/forbidden"
         404:
-          $ref: "#/responses/viewnotexist"
+          $ref: "#/responses/viewNotFound"
       tags:
         - remoteAccess
   /view/{name}/config.xml:
     get:
-      description: Fetch a view configuration config.xml
+      description: Retrieve view configuration
       operationId: getViewConfig
       produces:
         - text/xml
       parameters:
-        - name: name
-          in: path
-          required: true
-          type: string
+        - $ref: "#/parameters/viewName"
       responses:
         200:
-          description: Successfully get view config
+          description: Successfully retrieved view configuration in config.xml format
           schema:
             type: string
         401:
@@ -506,55 +458,71 @@ paths:
         403:
           $ref: "#/responses/forbidden"
         404:
-          $ref: "#/responses/viewnotexist"
+          $ref: "#/responses/viewNotFound"
       tags:
         - remoteAccess
     post:
-      description: Update view config.xml
+      description: Update view configuration
       operationId: postViewConfig
-      produces:
-        - text/xml
       parameters:
-        - name: name
-          in: path
-          required: true
-          type: string
+        - $ref: "#/parameters/viewName"
         - name: body
+          description: View configuration in config.xml format
           in: body
           required: true
           schema:
             type: string
-        - name: Jenkins-Crumb
-          in: header
-          required: false
-          type: string
+        - $ref: "#/parameters/crumb"
       responses:
         200:
-          description: Successfully update view config
+          description: Successfully updated view configuration
         400:
-          $ref: "#/responses/errorinhtml"
+          $ref: "#/responses/errorInHtml"
         401:
           $ref: "#/responses/unauthorized"
         403:
           $ref: "#/responses/forbidden"
         404:
-          $ref: "#/responses/viewnotexist"
+          $ref: "#/responses/viewNotFound"
       tags:
         - remoteAccess
+parameters:
+  jobName:
+    name: name
+    description: Name of the job
+    in: path
+    required: true
+    type: string
+  viewName:
+    name: name
+    description: Name of the view
+    in: path
+    required: true
+    type: string
+  crumb:
+    name: Jenkins-Crumb
+    description: CSRF protection token
+    in: header
+    required: false
+    type: string
 responses:
   unauthorized:
     description: Authentication failed - incorrect username and/or password
   forbidden:
     description: Jenkins requires authentication - please set username and password
-  jobnotexist:
-    description: Job {name} does not exist
-  viewnotexist:
-    description: View {name} does not exist
-  errorinhtml:
-    description: An error has occurred (Bad Request)
+  jobNotFound:
+    description: Job cannot be found on Jenkins instance
+  viewNotFound:
+    description: View cannot be found on Jenkins instance
+  errorInHtml:
+    description: An error has occurred - error message is embedded inside the HTML response
     schema:
       type: string
 definitions:
+  ########################################
+  # Remote access API  definitions
+  # Generated using swaggy-jenkins-cli
+  ########################################
   hudsonmodelFreeStyleBuild:
     type: object
     properties:
