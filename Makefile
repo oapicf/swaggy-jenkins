@@ -10,7 +10,7 @@ javascript:
 build:
 	docker run \
       --workdir /opt/workspace \
-      -v $(pwd):/opt/workspace \
+      -v `pwd`:/opt/workspace \
       -t cliffano/swaggy-c \
       SWAGGER_CODEGEN_JAR /opt/swagger-codegen/modules/swagger-codegen-cli/target/swagger-codegen-cli.jar \
       make javascript
