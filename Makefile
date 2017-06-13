@@ -12,8 +12,8 @@ build:
       --workdir /opt/workspace \
       -v `pwd`:/opt/workspace \
       -t cliffano/swaggy-c \
-      SWAGGER_CODEGEN_JAR /opt/swagger-codegen/modules/swagger-codegen-cli/target/swagger-codegen-cli.jar \
-      make javascript
+      make javascript \
+			SWAGGER_CODEGEN_JAR=/opt/swagger-codegen/modules/swagger-codegen-cli/target/swagger-codegen-cli.jar
 
 tools:
 	docker pull cliffano/swaggy-c
