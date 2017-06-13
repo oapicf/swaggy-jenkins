@@ -16,6 +16,6 @@ build:
       make javascript
 
 tools:
-  docker pull cliffano/swaggy-c
+	docker pull cliffano/swaggy-c
 
 .PHONY: clean init javascript build tools
