@@ -1,0 +1,33 @@
+{
+  "name": "swaggy_jenkins",
+  "version": "0.0.2",
+  "description": "Jenkins API client generated from Swagger / Open API specification",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "./node_modules/mocha/bin/mocha --recursive"
+  },
+  "dependencies": {
+    "superagent": "3.5.2"
+  },
+  "devDependencies": {
+    "mocha": "~2.3.4",
+    "sinon": "1.17.3",
+    "expect.js": "~0.3.1"
+  },
+  "homepage": "http://github.com/cliffano/swaggy-jenkins",
+  "author": "Cliffano Subagio <blah@cliffano.com> (http://blog.cliffano.com)",
+  "contributors": [
+    "All contributors (https://github.com/cliffano/swaggy-jenkins/graphs/contributors)"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/cliffano/swaggy-jenkins.git"
+  },
+  "bugs": {
+    "url": "http://github.com/cliffano/swaggy-jenkins/issues"
+  },
+  "engines": {
+    "node": ">= 6.0.0"
+  },
+  "license": "MIT"
+}
