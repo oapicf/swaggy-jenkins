@@ -10,7 +10,15 @@ javascript:
 		--api-spec spec/jenkins-api.yml \
 		--conf-file {lang}/conf.json \
 		--out-dir {lang}/generated/ \
-		javascript-gen javascript-install
+		javascript-gen javascript-deps javascript-test javascript-install
+
+ruby:
+	swaggy-c \
+	  --jar $(SWAGGER_CODEGEN_CLI_JAR) \
+		--api-spec spec/jenkins-api.yml \
+		--conf-file {lang}/conf.json \
+		--out-dir {lang}/generated/ \
+		ruby-gen ruby-deps ruby-test ruby-build ruby-install
 
 build:
 	docker run \
@@ -23,4 +31,4 @@ build:
 tools:
 	docker pull cliffano/swaggy-c
 
-.PHONY: clean init javascript build tools
+.PHONY: clean init javascript ruby build tools
