@@ -1,0 +1,10 @@
+{
+  "gemName": "swaggy_jenkins",
+  "moduleName": "SwaggyJenkinsClient",
+  "gemVersion": "0.0.1",
+  "gemAuthor": "Cliffano Subagio",
+  "gemAuthorEmail": "blah@cliffano.com",
+  "gemHomepage": "https://github.com/cliffano/swaggy-jenkins/tree/master/ruby",
+  "gemLicense": "MIT",
+  "gemRequiredRubyVersion": ">= 2.0"
+}
