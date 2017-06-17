@@ -25,7 +25,7 @@ build:
 	  --workdir /opt/workspace \
 	  -v `pwd`:/opt/workspace \
 	  -t cliffano/swaggy-c \
-	  make javascript \
+	  make javascript ruby \
 	  SWAGGER_CODEGEN_CLI_JAR=/opt/swagger-codegen/repo/modules/swagger-codegen-cli/target/swagger-codegen-cli.jar
 
 tools:
