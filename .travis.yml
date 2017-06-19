@@ -1,7 +1,5 @@
 sudo: required
 services:
   - docker
-before_install:
-  - make tools
 script:
   - make ci

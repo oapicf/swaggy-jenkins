@@ -1,7 +1,7 @@
 # Swagger CodeGen supported languages
 LANGS = javascript ruby
 
-ci: build-docker
+ci: tools build-docker
 
 clean:
 	for LANG in $(LANGS) ; do \
@@ -21,7 +21,7 @@ define build
 endef
 
 java:
-	$(call build, java-clean java-gen java-deps)
+	$(call build, java-clean java-gen java-deps, java-build, java-install)
 
 javascript:
 	$(call build, javascript-clean javascript-gen javascript-deps javascript-test javascript-install)
