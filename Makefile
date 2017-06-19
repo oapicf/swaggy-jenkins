@@ -1,7 +1,7 @@
 # Swagger CodeGen supported languages
-LANGS = javascript ruby
+LANGS = java javascript python ruby
 
-ci: tools build-docker
+ci: tools lint build-docker
 
 clean:
 	for LANG in $(LANGS) ; do \
@@ -19,6 +19,9 @@ define build
 		--out-dir {lang}/generated/ \
 		$(1)
 endef
+
+lint:
+	swagger validate spec/*.yml
 
 java:
 	$(call build, java-clean java-gen java-deps, java-build, java-install)
@@ -41,6 +44,7 @@ build-docker:
 	  SWAGGER_CODEGEN_CLI_JAR=/opt/swagger-codegen/repo/modules/swagger-codegen-cli/target/swagger-codegen-cli.jar
 
 tools:
+	npm install -g swagger-cli
 	docker pull cliffano/swaggy-c
 
 .PHONY: ci clean init java javascript python ruby build build-docker tools
