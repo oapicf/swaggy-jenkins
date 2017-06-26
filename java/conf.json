@@ -1,0 +1,22 @@
+{
+  "artifactId": "swaggyjenkins",
+  "artifactVersion": "0.0.1",
+  "artifactUrl": "https://github.com/cliffano/swaggy-jenkins",
+  "artifactDescription": "Jenkins API client generated from Swagger / Open API specification",
+  "groupId": "com.cliffano",
+  "invokerPackage": "com.cliffano.swaggyjenkins",
+  "apiPackage": "com.cliffano.swaggyjenkins.api",
+  "modelPackage": "com.cliffano.swaggyjenkins.model",
+  "licenseName": "MIT",
+  "licenseUrl": "https://github.com/cliffano/swaggy-jenkins/blob/master/LICENSE",
+  "developerName": "Cliffano Subagio",
+  "developerEmail": "blah@cliffano.com",
+  "developerOrganization": "Studio Cliffano",
+  "developerOrganizationUrl": "http://cliffano.com",
+  "scmConnection": "scm:git:git@github.com:cliffano/swaggy-jenkins.git",
+  "scmDeveloperConnection": "scm:git:git@github.com:cliffano/swaggy-jenkins.git",
+  "scmUrl": "https://github.com/cliffano/swaggy-jenkins",
+  "distributionManagementRepositoryId": "sonatype-release",
+  "distributionManagementRepositoryName": "Sonatype Release",
+  "distributionManagementRepositoryUrl": "https://oss.sonatype.org/service/local/staging/deploy/maven2"
+}
