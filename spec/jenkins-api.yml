@@ -15,6 +15,9 @@ securityDefinitions:
   jenkins_auth:
     type: basic
 paths:
+  ########################################
+  # Remote Access API paths
+  ########################################
   /api/json:
     head:
       description: Retrieve Jenkins headers
@@ -486,6 +489,255 @@ paths:
           $ref: "#/responses/viewNotFound"
       tags:
         - remoteAccess
+  ########################################
+  # Blue Ocean API paths
+  ########################################
+  /blue/rest/classes/:
+    get:
+      description: Get classes details
+      operationId: search
+      produces:
+        - application/json
+      parameters:
+        - name: q
+          description: Query string containing an array of class names
+          in: query
+          required: true
+          type: string
+      responses:
+        200:
+          description: Successfully retrieved search result
+          schema:
+            type: string
+        401:
+          $ref: "#/responses/unauthorized"
+        403:
+          $ref: "#/responses/forbidden"
+      tags:
+        - blueOcean
+  /blue/rest/classes/{class}:
+    get:
+      description: Get a list of class names supported by a given class
+      operationId: getClasses
+      produces:
+        - application/json
+      parameters:
+        - $ref: "#/parameters/className"
+      responses:
+        200:
+          description: Successfully retrieved class names
+          schema:
+            type: string
+        401:
+          $ref: "#/responses/unauthorized"
+        403:
+          $ref: "#/responses/forbidden"
+      tags:
+        - blueOcean
+  /blue/rest/search/:
+    get:
+      description: Search for any resource details
+      operationId: search
+      produces:
+        - application/json
+      parameters:
+        - name: q
+          description: Query string
+          in: query
+          required: true
+          type: string
+      responses:
+        200:
+          description: Successfully retrieved search result
+          schema:
+            type: string
+        401:
+          $ref: "#/responses/unauthorized"
+        403:
+          $ref: "#/responses/forbidden"
+      tags:
+        - blueOcean
+  /blue/rest/organizations/{organisation}/pipelines/:
+    get:
+      description: Retrieve all pipelines details for an organisation
+      operationId: getPipelinesByOrg
+      produces:
+        - application/json
+      parameters:
+        - $ref: "#/parameters/orgName"
+      responses:
+        200:
+          description: Successfully retrieved pipelines details
+          schema:
+            $ref: "#/definitions/getPipelines"
+        401:
+          $ref: "#/responses/unauthorized"
+        403:
+          $ref: "#/responses/forbidden"
+      tags:
+        - blueOcean
+  /blue/rest/organizations/{organisation}/pipelines/{pipeline}:
+    get:
+      description: Retrieve pipeline details for an organisation
+      operationId: getPipelineByOrg
+      produces:
+        - application/json
+      parameters:
+        - $ref: "#/parameters/orgName"
+        - $ref: "#/parameters/pipelineName"
+      responses:
+        200:
+          description: Successfully retrieved pipeline details
+          schema:
+            $ref: "#/definitions/swaggyjenkinsPipeline"
+        401:
+          $ref: "#/responses/unauthorized"
+        403:
+          $ref: "#/responses/forbidden"
+        404:
+          $ref: "#/responses/pipelineNotFound"
+      tags:
+        - blueOcean
+  /blue/rest/organizations/{organisation}/pipelines/{pipeline}/branches:
+    get:
+      description: Retrieve all branches details for an organisation pipeline
+      operationId: getPipelineBranchesByOrg
+      produces:
+        - application/json
+      parameters:
+        - $ref: "#/parameters/orgName"
+        - $ref: "#/parameters/pipelineName"
+      responses:
+        200:
+          description: Successfully retrieved all branches details
+          schema:
+            $ref: "#/definitions/getMultibranchPipeline"
+        401:
+          $ref: "#/responses/unauthorized"
+        403:
+          $ref: "#/responses/forbidden"
+      tags:
+        - blueOcean
+  /blue/rest/organizations/{organisation}/pipelines/{pipeline}/branches/{branch}/:
+    get:
+      description: Retrieve branch details for an organisation pipeline
+      operationId: getPipelineBranchByOrg
+      produces:
+        - application/json
+      parameters:
+        - $ref: "#/parameters/orgName"
+        - $ref: "#/parameters/pipelineName"
+        - $ref: "#/parameters/branchName"
+      responses:
+        200:
+          description: Successfully retrieved branch details
+          schema:
+            $ref: "#/definitions/iojenkinsblueoceanrestimplpipelineBranchImpl"
+        401:
+          $ref: "#/responses/unauthorized"
+        403:
+          $ref: "#/responses/forbidden"
+      tags:
+        - blueOcean
+  /blue/rest/organizations/{organisation}/pipelines/{folder}/:
+    get:
+      description: Retrieve pipeline folder for an organisation
+      operationId: getPipelineFolderByOrg
+      produces:
+        - application/json
+      parameters:
+        - $ref: "#/parameters/orgName"
+        - $ref: "#/parameters/folderName"
+      responses:
+        200:
+          description: Successfully retrieved folder details
+          schema:
+            $ref: "#/definitions/iojenkinsblueoceanserviceembeddedrestPipelineFolderImpl"
+        401:
+          $ref: "#/responses/unauthorized"
+        403:
+          $ref: "#/responses/forbidden"
+      tags:
+        - blueOcean
+  /blue/rest/organizations/{organisation}/pipelines/{folder}/pipelines/{pipeline}:
+    get:
+      description: Retrieve pipeline details for an organisation folder
+      operationId: getPipelineFolderByOrg
+      produces:
+        - application/json
+      parameters:
+        - $ref: "#/parameters/orgName"
+        - $ref: "#/parameters/pipelineName"
+        - $ref: "#/parameters/folderName"
+      responses:
+        200:
+          description: Successfully retrieved pipeline details
+          schema:
+            $ref: "#/definitions/iojenkinsblueoceanserviceembeddedrestPipelineImpl"
+        401:
+          $ref: "#/responses/unauthorized"
+        403:
+          $ref: "#/responses/forbidden"
+      tags:
+        - blueOcean
+  /blue/rest/organizations/{organisation}/user/:
+    get:
+      description: Retrieve authenticated user details for an organisation
+      operationId: getAuthenticatedUser
+      produces:
+        - application/json
+      parameters:
+        - $ref: "#/parameters/orgName"
+      responses:
+        200:
+          description: Successfully retrieved authenticated user details
+          schema:
+            $ref: "#/definitions/swaggyjenkinsUser"
+        401:
+          $ref: "#/responses/unauthorized"
+        403:
+          $ref: "#/responses/forbidden"
+      tags:
+        - blueOcean
+  /blue/rest/organizations/{organisation}/users/:
+    get:
+      description: Retrieve users details for an organisation
+      operationId: getUsers
+      produces:
+        - application/json
+      parameters:
+        - $ref: "#/parameters/orgName"
+      responses:
+        200:
+          description: Successfully retrieved users details
+          schema:
+            $ref: "#/definitions/swaggyjenkinsUser"
+        401:
+          $ref: "#/responses/unauthorized"
+        403:
+          $ref: "#/responses/forbidden"
+      tags:
+        - blueOcean
+  /blue/rest/organizations/{organisation}/users/{user}:
+    get:
+      description: Retrieve user details for an organisation
+      operationId: getUser
+      produces:
+        - application/json
+      parameters:
+        - $ref: "#/parameters/orgName"
+        - $ref: "#/parameters/userName"
+      responses:
+        200:
+          description: Successfully retrieved users details
+          schema:
+            $ref: "#/definitions/swaggyjenkinsUser"
+        401:
+          $ref: "#/responses/unauthorized"
+        403:
+          $ref: "#/responses/forbidden"
+      tags:
+        - blueOcean
 parameters:
   jobName:
     name: name
@@ -505,6 +757,42 @@ parameters:
     in: header
     required: false
     type: string
+  orgName:
+    name: organisation
+    description: Name of the organisation
+    in: path
+    required: true
+    type: string
+  pipelineName:
+    name: pipeline
+    description: Name of the pipeline
+    in: path
+    required: true
+    type: string
+  branchName:
+    name: branch
+    description: Name of the branch
+    in: path
+    required: true
+    type: string
+  className:
+    name: class
+    description: Name of the class
+    in: path
+    required: true
+    type: string
+  folderName:
+    name: folder
+    description: Name of the folder
+    in: path
+    required: true
+    type: string
+  userName:
+    name: user
+    description: Name of the user
+    in: path
+    required: true
+    type: string
 responses:
   unauthorized:
     description: Authentication failed - incorrect username and/or password
@@ -514,13 +802,15 @@ responses:
     description: Job cannot be found on Jenkins instance
   viewNotFound:
     description: View cannot be found on Jenkins instance
+  pipelineNotFound:
+    description: Pipeline cannot be found on Jenkins instance
   errorInHtml:
     description: An error has occurred - error message is embedded inside the HTML response
     schema:
       type: string
 definitions:
   ########################################
-  # Remote access API  definitions
+  # Remote Access API  definitions
   # Generated using swaggy-jenkins-cli
   ########################################
   hudsonmodelFreeStyleBuild:
@@ -956,4 +1246,519 @@ definitions:
       name:
         type: string
       url:
+        type: string
+  ########################################
+  # Blue Ocean API  definitions
+  # Generated using swaggy-jenkins-cli
+  ########################################
+  iojenkinsblueoceanresthalLink:
+    type: object
+    properties:
+      _class:
+        type: string
+      href:
+        type: string
+  iojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1__links:
+    type: object
+    properties:
+      self:
+        $ref: '#/definitions/iojenkinsblueoceanresthalLink'
+      _class:
+        type: string
+  iojenkinsblueoceanserviceembeddedrestExtensionClassImpl__links:
+    type: object
+    properties:
+      self:
+        $ref: '#/definitions/iojenkinsblueoceanresthalLink'
+      _class:
+        type: string
+  iojenkinsblueoceanserviceembeddedrestExtensionClassImpl:
+    type: object
+    properties:
+      _class:
+        type: string
+      _links:
+        $ref: >-
+          #/definitions/iojenkinsblueoceanserviceembeddedrestExtensionClassImpl__links
+      classes:
+        type: array
+        items:
+          type: string
+  iojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1_map:
+    type: object
+    properties:
+      io.jenkins.blueocean.service.embedded.rest.PipelineImpl:
+        $ref: '#/definitions/iojenkinsblueoceanserviceembeddedrestExtensionClassImpl'
+      io.jenkins.blueocean.service.embedded.rest.MultiBranchPipelineImpl:
+        $ref: '#/definitions/iojenkinsblueoceanserviceembeddedrestExtensionClassImpl'
+      _class:
+        type: string
+  iojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1:
+    type: object
+    properties:
+      _class:
+        type: string
+      _links:
+        $ref: >-
+          #/definitions/iojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1__links
+      map:
+        $ref: >-
+          #/definitions/iojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1_map
+      __sourcePath:
+        type: string
+  getClassesByClass:
+    type: object
+    properties:
+      classes:
+        type: array
+        items:
+          type: string
+      __sourcePath:
+        type: string
+      _class:
+        type: string
+  getMultibranchPipeline:
+    type: object
+    properties:
+      displayName:
+        type: string
+      estimatedDurationInMillis:
+        type: integer
+      latestRun:
+        type: string
+      name:
+        type: string
+      organization:
+        type: string
+      weatherScore:
+        type: integer
+      branchNames:
+        type: array
+        items:
+          type: string
+      numberOfFailingBranches:
+        type: integer
+      numberOfFailingPullRequests:
+        type: integer
+      numberOfSuccessfulBranches:
+        type: integer
+      numberOfSuccessfulPullRequests:
+        type: integer
+      totalNumberOfBranches:
+        type: integer
+      totalNumberOfPullRequests:
+        type: integer
+      __sourcePath:
+        type: string
+      _class:
+        type: string
+  iojenkinsblueoceanserviceembeddedrestPipelineImpl:
+    type: object
+    properties:
+      _class:
+        type: string
+      displayName:
+        type: string
+      estimatedDurationInMillis:
+        type: integer
+      fullName:
+        type: string
+      latestRun:
+        type: string
+      name:
+        type: string
+      organization:
+        type: string
+      weatherScore:
+        type: integer
+      __sourcePath:
+        type: string
+  swaggyjenkinsPipeline_latestRunartifacts:
+    type: object
+    properties:
+      name:
+        type: string
+      size:
+        type: integer
+      url:
+        type: string
+      _class:
+        type: string
+  swaggyjenkinsPipeline_latestRun:
+    type: object
+    properties:
+      artifacts:
+        type: array
+        items:
+          $ref: '#/definitions/swaggyjenkinsPipeline_latestRunartifacts'
+      durationInMillis:
+        type: integer
+      estimatedDurationInMillis:
+        type: integer
+      enQueueTime:
+        type: string
+      endTime:
+        type: string
+      id:
+        type: string
+      organization:
+        type: string
+      pipeline:
+        type: string
+      result:
+        type: string
+      runSummary:
+        type: string
+      startTime:
+        type: string
+      state:
+        type: string
+      type:
+        type: string
+      commitId:
+        type: string
+      _class:
+        type: string
+  swaggyjenkinsPipeline:
+    type: object
+    properties:
+      _class:
+        type: string
+      organization:
+        type: string
+      name:
+        type: string
+      displayName:
+        type: string
+      fullName:
+        type: string
+      weatherScore:
+        type: integer
+      estimatedDurationInMillis:
+        type: integer
+      latestRun:
+        $ref: '#/definitions/swaggyjenkinsPipeline_latestRun'
+      __sourcePath:
+        type: string
+  hudsonmodelStringParameterValue:
+    type: object
+    properties:
+      _class:
+        type: string
+      name:
+        type: string
+      value:
+        type: string
+  hudsonmodelStringParameterDefinition:
+    type: object
+    properties:
+      _class:
+        type: string
+      defaultParameterValue:
+        $ref: '#/definitions/hudsonmodelStringParameterValue'
+      description:
+        type: string
+      name:
+        type: string
+      type:
+        type: string
+  iojenkinsblueoceanrestimplpipelineBranchImpl_permissions:
+    type: object
+    properties:
+      create:
+        type: boolean
+      read:
+        type: boolean
+      start:
+        type: boolean
+      stop:
+        type: boolean
+      _class:
+        type: string
+  iojenkinsblueoceanrestimplpipelineBranchImpl:
+    type: object
+    properties:
+      _class:
+        type: string
+      displayName:
+        type: string
+      estimatedDurationInMillis:
+        type: integer
+      fullDisplayName:
+        type: string
+      fullName:
+        type: string
+      name:
+        type: string
+      organization:
+        type: string
+      parameters:
+        type: array
+        items:
+          $ref: '#/definitions/hudsonmodelStringParameterDefinition'
+      permissions:
+        $ref: '#/definitions/iojenkinsblueoceanrestimplpipelineBranchImpl_permissions'
+      weatherScore:
+        type: integer
+      pullRequest:
+        type: string
+      __sourcePath:
+        type: string
+  getPipelineBranches_0_latestRun:
+    type: object
+    properties:
+      durationInMillis:
+        type: integer
+      estimatedDurationInMillis:
+        type: integer
+      enQueueTime:
+        type: string
+      endTime:
+        type: string
+      id:
+        type: string
+      organization:
+        type: string
+      pipeline:
+        type: string
+      result:
+        type: string
+      runSummary:
+        type: string
+      startTime:
+        type: string
+      state:
+        type: string
+      type:
+        type: string
+      commitId:
+        type: string
+      _class:
+        type: string
+  getPipelineBranches_0_pullRequest__links:
+    type: object
+    properties:
+      self:
+        type: string
+      _class:
+        type: string
+  getPipelineBranches_0_pullRequest:
+    type: object
+    properties:
+      _links:
+        $ref: '#/definitions/getPipelineBranches_0_pullRequest__links'
+      author:
+        type: string
+      id:
+        type: string
+      title:
+        type: string
+      url:
+        type: string
+      _class:
+        type: string
+  getPipelineBranches_0:
+    type: object
+    properties:
+      displayName:
+        type: string
+      estimatedDurationInMillis:
+        type: integer
+      name:
+        type: string
+      weatherScore:
+        type: integer
+      latestRun:
+        $ref: '#/definitions/getPipelineBranches_0_latestRun'
+      organization:
+        type: string
+      pullRequest:
+        $ref: '#/definitions/getPipelineBranches_0_pullRequest'
+      totalNumberOfPullRequests:
+        type: integer
+      _class:
+        type: string
+  getPipelineBranches_1_latestRunartifacts:
+    type: object
+    properties:
+      name:
+        type: string
+      size:
+        type: integer
+      url:
+        type: string
+      _class:
+        type: string
+  getPipelineBranches_1_latestRun:
+    type: object
+    properties:
+      artifacts:
+        type: array
+        items:
+          $ref: '#/definitions/getPipelineBranches_1_latestRunartifacts'
+      durationInMillis:
+        type: integer
+      estimatedDurationInMillis:
+        type: integer
+      enQueueTime:
+        type: string
+      endTime:
+        type: string
+      id:
+        type: string
+      organization:
+        type: string
+      pipeline:
+        type: string
+      result:
+        type: string
+      runSummary:
+        type: string
+      startTime:
+        type: string
+      state:
+        type: string
+      type:
+        type: string
+      commitId:
+        type: string
+      _class:
+        type: string
+  getPipelineBranches_1:
+    type: object
+    properties:
+      displayName:
+        type: string
+      estimatedDurationInMillis:
+        type: integer
+      name:
+        type: string
+      weatherScore:
+        type: integer
+      latestRun:
+        $ref: '#/definitions/getPipelineBranches_1_latestRun'
+      organization:
+        type: string
+      pullRequest:
+        type: string
+      totalNumberOfPullRequests:
+        type: integer
+      _class:
+        type: string
+  getPipelineBranches_2_latestRun:
+    type: object
+    properties:
+      durationInMillis:
+        type: integer
+      estimatedDurationInMillis:
+        type: integer
+      enQueueTime:
+        type: string
+      endTime:
+        type: string
+      id:
+        type: string
+      organization:
+        type: string
+      pipeline:
+        type: string
+      result:
+        type: string
+      runSummary:
+        type: string
+      startTime:
+        type: string
+      state:
+        type: string
+      type:
+        type: string
+      commitId:
+        type: string
+      _class:
+        type: string
+  getPipelineBranches_2:
+    type: object
+    properties:
+      displayName:
+        type: string
+      estimatedDurationInMillis:
+        type: integer
+      name:
+        type: string
+      weatherScore:
+        type: integer
+      latestRun:
+        $ref: '#/definitions/getPipelineBranches_2_latestRun'
+      organization:
+        type: string
+      pullRequest:
+        type: string
+      totalNumberOfPullRequests:
+        type: integer
+      _class:
+        type: string
+  getPipelineBranches:
+    type: object
+    properties:
+      '0':
+        $ref: '#/definitions/getPipelineBranches_0'
+      '1':
+        $ref: '#/definitions/getPipelineBranches_1'
+      '2':
+        $ref: '#/definitions/getPipelineBranches_2'
+      __sourcePath:
+        type: string
+      _class:
+        type: string
+  iojenkinsblueoceanserviceembeddedrestPipelineFolderImpl:
+    type: object
+    properties:
+      _class:
+        type: string
+      displayName:
+        type: string
+      fullName:
+        type: string
+      name:
+        type: string
+      organization:
+        type: string
+      numberOfFolders:
+        type: integer
+      numberOfPipelines:
+        type: integer
+      __sourcePath:
+        type: string
+  getPipelines:
+    type: object
+    properties:
+      '0':
+        $ref: '#/definitions/swaggyjenkinsPipeline'
+      __sourcePath:
+        type: string
+      _class:
+        type: string
+  swaggyjenkinsUser:
+    type: object
+    properties:
+      _class:
+        type: string
+      id:
+        type: string
+      fullName:
+        type: string
+      email:
+        type: string
+      __sourcePath:
+        type: string
+      name:
+        type: string
+  getUsers:
+    type: object
+    properties:
+      '0':
+        $ref: '#/definitions/swaggyjenkinsUser'
+      __sourcePath:
+        type: string
+      _class:
         type: string
