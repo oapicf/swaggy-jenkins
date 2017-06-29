@@ -40,7 +40,7 @@ build-docker:
 	  --workdir /opt/workspace \
 	  -v `pwd`:/opt/workspace \
 	  -t cliffano/swaggy-c \
-	  make java javascript python ruby \
+	  make $(LANGS) \
 	  SWAGGER_CODEGEN_CLI_JAR=/opt/swagger-codegen/repo/modules/swagger-codegen-cli/target/swagger-codegen-cli.jar
 
 tools:
