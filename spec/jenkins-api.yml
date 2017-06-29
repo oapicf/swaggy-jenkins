@@ -1,7 +1,7 @@
 swagger: '2.0'
 info:
   title: Swaggy Jenkins
-  description: Jenkins API client generated from Swagger / Open API specification
+  description: Jenkins API clients generated from Swagger / Open API specification
   version: "0.0.1"
   contact:
     name: Cliffano Subagio
@@ -555,6 +555,46 @@ paths:
           $ref: "#/responses/unauthorized"
         403:
           $ref: "#/responses/forbidden"
+      tags:
+        - blueOcean
+  /blue/rest/organizations/:
+    get:
+      description: Retrieve all organisations details
+      operationId: getOrganisations
+      produces:
+        - application/json
+      parameters:
+        - $ref: "#/parameters/orgName"
+      responses:
+        200:
+          description: Successfully retrieved pipelines details
+          schema:
+            $ref: "#/definitions/getOrganisations"
+        401:
+          $ref: "#/responses/unauthorized"
+        403:
+          $ref: "#/responses/forbidden"
+      tags:
+        - blueOcean
+  /blue/rest/organizations/{organisation}:
+    get:
+      description: Retrieve organisation details
+      operationId: getOrganisation
+      produces:
+        - application/json
+      parameters:
+        - $ref: "#/parameters/orgName"
+      responses:
+        200:
+          description: Successfully retrieved pipeline details
+          schema:
+            $ref: "#/definitions/swaggyjenkinsOrganisation"
+        401:
+          $ref: "#/responses/unauthorized"
+        403:
+          $ref: "#/responses/forbidden"
+        404:
+          $ref: "#/responses/pipelineNotFound"
       tags:
         - blueOcean
   /blue/rest/organizations/{organisation}/pipelines/:
@@ -1248,7 +1288,7 @@ definitions:
       url:
         type: string
   ########################################
-  # Blue Ocean API  definitions
+  # Blue Ocean API definitions
   # Generated using swaggy-jenkins-cli
   ########################################
   iojenkinsblueoceanresthalLink:
@@ -1372,6 +1412,24 @@ definitions:
       weatherScore:
         type: integer
       __sourcePath:
+        type: string
+  swaggyjenkinsOrganisation:
+    type: object
+    properties:
+      _class:
+        type: string
+      name:
+        type: string
+      __sourcePath:
+        type: string
+  getOrganisations:
+    type: object
+    properties:
+      '0':
+        $ref: '#/definitions/swaggyjenkinsOrganisation'
+      __sourcePath:
+        type: string
+      _class:
         type: string
   swaggyjenkinsPipeline_latestRunartifacts:
     type: object
