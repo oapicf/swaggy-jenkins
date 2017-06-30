@@ -18,7 +18,11 @@ import com.cliffano.swaggyjenkins.Pair;
 import java.util.Map;
 import java.util.List;
 
+<<<<<<< 1690c683609f02ab08c4865de97d272e4271f5d3
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2017-06-26T22:24:14.392+10:00")
+=======
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2017-06-26T22:26:55.163+10:00")
+>>>>>>> Initial java client generation.
 public class ApiKeyAuth implements Authentication {
   private final String location;
   private final String paramName;

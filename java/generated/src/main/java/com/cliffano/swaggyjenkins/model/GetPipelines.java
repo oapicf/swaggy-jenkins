@@ -22,7 +22,11 @@ import io.swagger.annotations.ApiModelProperty;
 /**
  * GetPipelines
  */
+<<<<<<< 1690c683609f02ab08c4865de97d272e4271f5d3
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2017-06-26T22:24:14.392+10:00")
+=======
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2017-06-26T22:26:55.163+10:00")
+>>>>>>> Initial java client generation.
 public class GetPipelines {
   @SerializedName("0")
   private SwaggyjenkinsPipeline _0 = null;
