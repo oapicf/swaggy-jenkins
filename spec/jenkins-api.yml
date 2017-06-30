@@ -563,8 +563,6 @@ paths:
       operationId: getOrganisations
       produces:
         - application/json
-      parameters:
-        - $ref: "#/parameters/orgName"
       responses:
         200:
           description: Successfully retrieved pipelines details
@@ -1423,14 +1421,9 @@ definitions:
       __sourcePath:
         type: string
   getOrganisations:
-    type: object
-    properties:
-      '0':
-        $ref: '#/definitions/swaggyjenkinsOrganisation'
-      __sourcePath:
-        type: string
-      _class:
-        type: string
+    type: array
+    items:
+      $ref: '#/definitions/swaggyjenkinsOrganisation'
   swaggyjenkinsPipeline_latestRunartifacts:
     type: object
     properties:
@@ -1562,7 +1555,7 @@ definitions:
         type: string
       __sourcePath:
         type: string
-  getPipelineBranches_0_latestRun:
+  getPipelineBranchesitem_latestRun:
     type: object
     properties:
       durationInMillis:
@@ -1593,18 +1586,18 @@ definitions:
         type: string
       _class:
         type: string
-  getPipelineBranches_0_pullRequest__links:
+  getPipelineBranchesitem_pullRequest__links:
     type: object
     properties:
       self:
         type: string
       _class:
         type: string
-  getPipelineBranches_0_pullRequest:
+  getPipelineBranchesitem_pullRequest:
     type: object
     properties:
       _links:
-        $ref: '#/definitions/getPipelineBranches_0_pullRequest__links'
+        $ref: '#/definitions/getPipelineBranchesitem_pullRequest__links'
       author:
         type: string
       id:
@@ -1615,7 +1608,7 @@ definitions:
         type: string
       _class:
         type: string
-  getPipelineBranches_0:
+  getPipelineBranchesitem:
     type: object
     properties:
       displayName:
@@ -1627,147 +1620,19 @@ definitions:
       weatherScore:
         type: integer
       latestRun:
-        $ref: '#/definitions/getPipelineBranches_0_latestRun'
+        $ref: '#/definitions/getPipelineBranchesitem_latestRun'
       organization:
         type: string
       pullRequest:
-        $ref: '#/definitions/getPipelineBranches_0_pullRequest'
-      totalNumberOfPullRequests:
-        type: integer
-      _class:
-        type: string
-  getPipelineBranches_1_latestRunartifacts:
-    type: object
-    properties:
-      name:
-        type: string
-      size:
-        type: integer
-      url:
-        type: string
-      _class:
-        type: string
-  getPipelineBranches_1_latestRun:
-    type: object
-    properties:
-      artifacts:
-        type: array
-        items:
-          $ref: '#/definitions/getPipelineBranches_1_latestRunartifacts'
-      durationInMillis:
-        type: integer
-      estimatedDurationInMillis:
-        type: integer
-      enQueueTime:
-        type: string
-      endTime:
-        type: string
-      id:
-        type: string
-      organization:
-        type: string
-      pipeline:
-        type: string
-      result:
-        type: string
-      runSummary:
-        type: string
-      startTime:
-        type: string
-      state:
-        type: string
-      type:
-        type: string
-      commitId:
-        type: string
-      _class:
-        type: string
-  getPipelineBranches_1:
-    type: object
-    properties:
-      displayName:
-        type: string
-      estimatedDurationInMillis:
-        type: integer
-      name:
-        type: string
-      weatherScore:
-        type: integer
-      latestRun:
-        $ref: '#/definitions/getPipelineBranches_1_latestRun'
-      organization:
-        type: string
-      pullRequest:
-        type: string
-      totalNumberOfPullRequests:
-        type: integer
-      _class:
-        type: string
-  getPipelineBranches_2_latestRun:
-    type: object
-    properties:
-      durationInMillis:
-        type: integer
-      estimatedDurationInMillis:
-        type: integer
-      enQueueTime:
-        type: string
-      endTime:
-        type: string
-      id:
-        type: string
-      organization:
-        type: string
-      pipeline:
-        type: string
-      result:
-        type: string
-      runSummary:
-        type: string
-      startTime:
-        type: string
-      state:
-        type: string
-      type:
-        type: string
-      commitId:
-        type: string
-      _class:
-        type: string
-  getPipelineBranches_2:
-    type: object
-    properties:
-      displayName:
-        type: string
-      estimatedDurationInMillis:
-        type: integer
-      name:
-        type: string
-      weatherScore:
-        type: integer
-      latestRun:
-        $ref: '#/definitions/getPipelineBranches_2_latestRun'
-      organization:
-        type: string
-      pullRequest:
-        type: string
+        $ref: '#/definitions/getPipelineBranchesitem_pullRequest'
       totalNumberOfPullRequests:
         type: integer
       _class:
         type: string
   getPipelineBranches:
-    type: object
-    properties:
-      '0':
-        $ref: '#/definitions/getPipelineBranches_0'
-      '1':
-        $ref: '#/definitions/getPipelineBranches_1'
-      '2':
-        $ref: '#/definitions/getPipelineBranches_2'
-      __sourcePath:
-        type: string
-      _class:
-        type: string
+    type: array
+    items:
+      $ref: '#/definitions/getPipelineBranchesitem'
   iojenkinsblueoceanserviceembeddedrestPipelineFolderImpl:
     type: object
     properties:
@@ -1788,14 +1653,9 @@ definitions:
       __sourcePath:
         type: string
   getPipelines:
-    type: object
-    properties:
-      '0':
-        $ref: '#/definitions/swaggyjenkinsPipeline'
-      __sourcePath:
-        type: string
-      _class:
-        type: string
+    type: array
+    items:
+      $ref: '#/definitions/swaggyjenkinsPipeline'
   swaggyjenkinsUser:
     type: object
     properties:
@@ -1812,11 +1672,6 @@ definitions:
       name:
         type: string
   getUsers:
-    type: object
-    properties:
-      '0':
-        $ref: '#/definitions/swaggyjenkinsUser'
-      __sourcePath:
-        type: string
-      _class:
-        type: string
+    type: array
+    items:
+      $ref: '#/definitions/swaggyjenkinsUser'
