@@ -6,7 +6,7 @@
 Swaggy Jenkins
 --------------
 
-Swaggy Jenkins is a set of Jenkins API clients generated from Swagger / Open API specification.
+Swaggy Jenkins is a set of Jenkins API clients in multiple languages generated from Swagger / Open API specification.
 
 Published packages
 ------------------
