@@ -1342,8 +1342,6 @@ definitions:
       map:
         $ref: >-
           #/definitions/iojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1_map
-      __sourcePath:
-        type: string
   getClassesByClass:
     type: object
     properties:
@@ -1351,8 +1349,6 @@ definitions:
         type: array
         items:
           type: string
-      __sourcePath:
-        type: string
       _class:
         type: string
   getMultibranchPipeline:
@@ -1386,8 +1382,6 @@ definitions:
         type: integer
       totalNumberOfPullRequests:
         type: integer
-      __sourcePath:
-        type: string
       _class:
         type: string
   iojenkinsblueoceanserviceembeddedrestPipelineImpl:
@@ -1409,16 +1403,12 @@ definitions:
         type: string
       weatherScore:
         type: integer
-      __sourcePath:
-        type: string
   swaggyjenkinsOrganisation:
     type: object
     properties:
       _class:
         type: string
       name:
-        type: string
-      __sourcePath:
         type: string
   getOrganisations:
     type: array
@@ -1489,8 +1479,6 @@ definitions:
         type: integer
       latestRun:
         $ref: '#/definitions/swaggyjenkinsPipeline_latestRun'
-      __sourcePath:
-        type: string
   hudsonmodelStringParameterValue:
     type: object
     properties:
@@ -1552,8 +1540,6 @@ definitions:
       weatherScore:
         type: integer
       pullRequest:
-        type: string
-      __sourcePath:
         type: string
   getPipelineBranchesitem_latestRun:
     type: object
@@ -1650,8 +1636,6 @@ definitions:
         type: integer
       numberOfPipelines:
         type: integer
-      __sourcePath:
-        type: string
   getPipelines:
     type: array
     items:
@@ -1666,8 +1650,6 @@ definitions:
       fullName:
         type: string
       email:
-        type: string
-      __sourcePath:
         type: string
       name:
         type: string
