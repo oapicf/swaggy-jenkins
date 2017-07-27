@@ -1,5 +1,5 @@
 # Swagger CodeGen supported languages
-LANGS = android aspnet5 async-scala csharp dart flash python-flask go java jaxrs jaxrs-cxf jaxrs-resteasy inflector javascript javascript-closure-angular jmeter objc perl php python qt5cpp ruby scala scalatra silex-PHP sinatra slim spring dynamic-html html swagger swagger-yaml swift tizen typescript-angular typescript-node akka-scala CsharpDotNet2 clojure haskell
+LANGS = android apex aspnet5 aspnetcore bash clojure cwiki cpprest csharp CsharpDotNet2 dart elixir erlang-server flash go go-server groovy haskell dynamic-html html html2 inflector java java-play-framework jaxrs jaxrs-cxf jaxrs-cxf-cdi jaxrs-resteasy jaxrs-resteasy-eap javascript javascript-closure-angular jmeter kotlin lumen nancyfx nodejs-server objc perl php silex-PHP python python-flask qt5cpp ruby scala akka-scala async-scala scalatra sinatra slim spring swagger swagger-yaml swift swift3 tizen typescript-angular typescript-angular2 typescript-fetch typescript-jquery typescript-node undertow
 
 ci: tools lint build-docker
 
@@ -14,14 +14,14 @@ init:
 define build
 	swaggy-c \
     $(if $(SWAGGER_CODEGEN_CLI_JAR), --jar $(SWAGGER_CODEGEN_CLI_JAR)) \
-		--api-spec spec/jenkins-api.yml \
+		--api-spec _spec/jenkins-api.yml \
 		--conf-file {lang}/conf.json \
 		--out-dir {lang}/generated/ \
 		$(1)
 endef
 
 lint:
-	swagger validate spec/*.yml
+	swagger validate _spec/*.yml
 
 build-docker:
 	docker run \
@@ -39,125 +39,129 @@ all: $(LANGS)
 
 android:
 	$(call build, android-clean android-gen)
-
+apex:
+	$(call build, apex-clean apex-gen)
 aspnet5:
 	$(call build, aspnet5-clean aspnet5-gen)
-
-async-scala:
-	$(call build, async-scala-clean async-scala-gen)
-
-csharp:
-	$(call build, csharp-clean csharp-gen)
-
-dart:
-	$(call build, dart-clean dart-gen)
-
-flash:
-	$(call build, flash-clean flash-gen)
-
-python-flask:
-	$(call build, python-flask-clean python-flask-gen)
-
-go:
-	$(call build, go-clean go-gen)
-
-java:
-	$(call build, java-clean java-gen java-deps, java-build, java-install)
-
-jaxrs:
-	$(call build, jaxrs-clean jaxrs-gen)
-
-jaxrs-cxf:
-	$(call build, jaxrs-cxf-clean jaxrs-cxf-gen)
-
-jaxrs-resteasy:
-	$(call build, jaxrs-resteasy-clean jaxrs-resteasy-gen)
-
-inflector:
-	$(call build, inflector-clean inflector-gen)
-
-javascript:
-	$(call build, javascript-clean javascript-gen javascript-deps javascript-test javascript-install)
-
-javascript-closure-angular:
-	$(call build, javascript-closure-angular-clean javascript-closure-angular-gen)
-
-jmeter:
-	$(call build, jmeter-clean jmeter-gen)
-
-nodejs-server:
-	$(call build, nodejs-server-clean nodejs-server-gen)
-
-objc:
-	$(call build, objc-clean objc-gen)
-
-perl:
-	$(call build, perl-clean perl-gen)
-
-php:
-	$(call build, php-clean php-gen)
-
-python:
-	$(call build, python-clean python-gen python-deps python-test python-build python-install)
-
-qt5cpp:
-	$(call build, qt5cpp-clean qt5cpp-gen)
-
-ruby:
-	$(call build, ruby-clean ruby-gen ruby-deps ruby-test ruby-build ruby-install)
-
-scala:
-	$(call build, scala-clean scala-gen)
-
-scalatra:
-	$(call build, scalatra-clean scalatra-gen)
-
-silex-PHP:
-	$(call build, silex-PHP-clean silex-PHP-gen)
-
-sinatra:
-	$(call build, sinatra-clean sinatra-gen)
-
-slim:
-	$(call build, slim-clean slim-gen)
-
-spring:
-	$(call build, spring-clean spring-gen)
-
-dynamic-html:
-	$(call build, dynamic-html-clean dynamic-html-gen)
-
-html:
-	$(call build, html-clean html-gen)
-
-swagger:
-	$(call build, swagger-clean swagger-gen)
-
-swagger-yaml:
-	$(call build, swagger-yaml-clean swagger-yaml-gen)
-
-swift:
-	$(call build, swift-clean swift-gen)
-
-tizen:
-	$(call build, tizen-clean tizen-gen)
-
-typescript-angular:
-	$(call build, typescript-angular-clean typescript-angular-gen)
-
-typescript-node:
-	$(call build, typescript-node-clean typescript-node-gen)
-
-akka-scala:
-	$(call build, akka-scala-clean akka-scala-gen)
-
-CsharpDotNet2:
-	$(call build, CsharpDotNet2-clean CsharpDotNet2-gen)
-
+aspnetcore:
+	$(call build, aspnetcore-clean aspnetcore-gen)
+bash:
+	$(call build, bash-clean bash-gen)
 clojure:
 	$(call build, clojure-clean clojure-gen)
-
+cwiki:
+	$(call build, cwiki-clean cwiki-gen)
+cpprest:
+	$(call build, cpprest-clean cpprest-gen)
+csharp:
+	$(call build, csharp-clean csharp-gen)
+CsharpDotNet2:
+	$(call build, CsharpDotNet2-clean CsharpDotNet2-gen)
+dart:
+	$(call build, dart-clean dart-gen)
+elixir:
+	$(call build, elixir-clean elixir-gen)
+erlang-server:
+	$(call build, erlang-server-clean erlang-server-gen)
+flash:
+	$(call build, flash-clean flash-gen)
+go:
+	$(call build, go-clean go-gen)
+go-server:
+	$(call build, go-server-clean go-server-gen)
+groovy:
+	$(call build, groovy-clean groovy-gen)
 haskell:
 	$(call build, haskell-clean haskell-gen)
+dynamic-html:
+	$(call build, dynamic-html-clean dynamic-html-gen)
+html:
+	$(call build, html-clean html-gen)
+html2:
+	$(call build, html2-clean html2-gen)
+inflector:
+	$(call build, inflector-clean inflector-gen)
+java:
+	$(call build, java-clean java-gen java-deps java-test java-build java-install)
+java-play-framework:
+	$(call build, java-play-framework-clean java-play-framework-gen)
+jaxrs:
+	$(call build, jaxrs-clean jaxrs-gen)
+jaxrs-cxf:
+	$(call build, jaxrs-cxf-clean jaxrs-cxf-gen)
+jaxrs-cxf-cdi:
+	$(call build, jaxrs-cxf-cdi-clean jaxrs-cxf-cdi-gen)
+jaxrs-resteasy:
+	$(call build, jaxrs-resteasy-clean jaxrs-resteasy-gen)
+jaxrs-resteasy-eap:
+	$(call build, jaxrs-resteasy-eap-clean jaxrs-resteasy-eap-gen)
+javascript:
+	$(call build, javascript-clean javascript-gen javascript-deps javascript-test javascript-install)
+javascript-closure-angular:
+	$(call build, javascript-closure-angular-clean javascript-closure-angular-gen)
+jmeter:
+	$(call build, jmeter-clean jmeter-gen)
+kotlin:
+	$(call build, kotlin-clean kotlin-gen)
+lumen:
+	$(call build, lumen-clean lumen-gen)
+nancyfx:
+	$(call build, nancyfx-clean nancyfx-gen)
+nodejs-server:
+	$(call build, nodejs-server-clean nodejs-server-gen)
+objc:
+	$(call build, objc-clean objc-gen)
+perl:
+	$(call build, perl-clean perl-gen)
+php:
+	$(call build, php-clean php-gen)
+silex-PHP:
+	$(call build, silex-PHP-clean silex-PHP-gen)
+python:
+	$(call build, python-clean python-gen python-deps python-test python-build python-install)
+python-flask:
+	$(call build, python-flask-clean python-flask-gen)
+qt5cpp:
+	$(call build, qt5cpp-clean qt5cpp-gen)
+ruby:
+	$(call build, ruby-clean ruby-gen ruby-deps ruby-test ruby-build ruby-install)
+scala:
+	$(call build, scala-clean scala-gen)
+akka-scala:
+	$(call build, akka-scala-clean akka-scala-gen)
+async-scala:
+	$(call build, async-scala-clean async-scala-gen)
+scalatra:
+	$(call build, scalatra-clean scalatra-gen)
+sinatra:
+	$(call build, sinatra-clean sinatra-gen)
+slim:
+	$(call build, slim-clean slim-gen)
+spring:
+	$(call build, spring-clean spring-gen)
+swagger:
+	$(call build, swagger-clean swagger-gen)
+swagger-yaml:
+	$(call build, swagger-yaml-clean swagger-yaml-gen)
+swift:
+	$(call build, swift-clean swift-gen)
+swift3:
+	$(call build, swift3-clean swift3-gen)
+tizen:
+	$(call build, tizen-clean tizen-gen)
+typescript-angular:
+	$(call build, typescript-angular-clean typescript-angular-gen)
+typescript-angular2:
+	$(call build, typescript-angular2-clean typescript-angular2-gen)
+typescript-fetch:
+	$(call build, typescript-fetch-clean typescript-fetch-gen)
+typescript-jquery:
+	$(call build, typescript-jquery-clean typescript-jquery-gen)
+typescript-node:
+	$(call build, typescript-node-clean typescript-node-gen)
+undertow:
+	$(call build, undertow-clean undertow-gen)
+ze-ph:
+	$(call build, ze-ph-clean ze-ph-gen)
 
-.PHONY: ci clean init lint build build-docker tools android aspnet5 async-scala csharp dart flash python-flask go java jaxrs jaxrs-cxf jaxrs-resteasy inflector javascript javascript-closure-angular jmeter objc perl php python qt5cpp ruby scala scalatra silex-PHP sinatra slim spring dynamic-html html swagger swagger-yaml swift tizen typescript-angular typescript-node akka-scala CsharpDotNet2 clojure haskell
+.PHONY: ci clean init lint build build-docker tools $(LANGS)
