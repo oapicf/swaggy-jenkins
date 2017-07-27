@@ -1,0 +1,48 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+GET     /api                        controllers.ApiDocController.api
+
+
+#Functions for BlueOcean API
+GET     //blue/rest/organizations/:organisation/user/                     controllers.BlueOceanApiController.getAuthenticatedUser(organisation: String)
+GET     //blue/rest/classes/:class                     controllers.BlueOceanApiController.getClasses(propertyClass: String)
+GET     //blue/rest/organizations/:organisation                     controllers.BlueOceanApiController.getOrganisation(organisation: String)
+GET     //blue/rest/organizations/                     controllers.BlueOceanApiController.getOrganisations()
+GET     //blue/rest/organizations/:organisation/pipelines/:pipeline/branches/:branch/                     controllers.BlueOceanApiController.getPipelineBranchByOrg(organisation: String, pipeline: String, branch: String)
+GET     //blue/rest/organizations/:organisation/pipelines/:pipeline/branches                     controllers.BlueOceanApiController.getPipelineBranchesByOrg(organisation: String, pipeline: String)
+GET     //blue/rest/organizations/:organisation/pipelines/:pipeline                     controllers.BlueOceanApiController.getPipelineByOrg(organisation: String, pipeline: String)
+GET     //blue/rest/organizations/:organisation/pipelines/:folder/                     controllers.BlueOceanApiController.getPipelineFolderByOrg(organisation: String, folder: String)
+GET     //blue/rest/organizations/:organisation/pipelines/:folder/pipelines/:pipeline                     controllers.BlueOceanApiController.getPipelineFolderByOrg_0(organisation: String, pipeline: String, folder: String)
+GET     //blue/rest/organizations/:organisation/pipelines/                     controllers.BlueOceanApiController.getPipelinesByOrg(organisation: String)
+GET     //blue/rest/organizations/:organisation/users/:user                     controllers.BlueOceanApiController.getUser(organisation: String, user: String)
+GET     //blue/rest/organizations/:organisation/users/                     controllers.BlueOceanApiController.getUsers(organisation: String)
+GET     //blue/rest/classes/                     controllers.BlueOceanApiController.search()
+GET     //blue/rest/search/                     controllers.BlueOceanApiController.search_0()
+
+#Functions for RemoteAccess API
+GET     //computer/api/json?depth=1                     controllers.RemoteAccessApiController.getComputer()
+GET     //crumbIssuer/api/json                     controllers.RemoteAccessApiController.getCrumb()
+GET     //api/json                     controllers.RemoteAccessApiController.getJenkins()
+GET     //job/:name/api/json                     controllers.RemoteAccessApiController.getJob(name: String)
+GET     //job/:name/config.xml                     controllers.RemoteAccessApiController.getJobConfig(name: String)
+GET     //job/:name/lastBuild/api/json                     controllers.RemoteAccessApiController.getJobLastBuild(name: String)
+GET     //job/:name/:number/logText/progressiveText                     controllers.RemoteAccessApiController.getJobProgressiveText(name: String, number: String)
+GET     //queue/api/json                     controllers.RemoteAccessApiController.getQueue()
+GET     //queue/item/:number/api/json                     controllers.RemoteAccessApiController.getQueueItem(number: String)
+GET     //view/:name/api/json                     controllers.RemoteAccessApiController.getView(name: String)
+GET     //view/:name/config.xml                     controllers.RemoteAccessApiController.getViewConfig(name: String)
+HEAD     //api/json                     controllers.RemoteAccessApiController.headJenkins()
+POST     //createItem                     controllers.RemoteAccessApiController.postCreateItem()
+POST     //createView                     controllers.RemoteAccessApiController.postCreateView()
+POST     //job/:name/build                     controllers.RemoteAccessApiController.postJobBuild(name: String)
+POST     //job/:name/config.xml                     controllers.RemoteAccessApiController.postJobConfig(name: String)
+POST     //job/:name/doDelete                     controllers.RemoteAccessApiController.postJobDelete(name: String)
+POST     //job/:name/disable                     controllers.RemoteAccessApiController.postJobDisable(name: String)
+POST     //job/:name/enable                     controllers.RemoteAccessApiController.postJobEnable(name: String)
+POST     //job/:name/lastBuild/stop                     controllers.RemoteAccessApiController.postJobLastBuildStop(name: String)
+POST     //view/:name/config.xml                     controllers.RemoteAccessApiController.postViewConfig(name: String)
+
+# Map static resources from the /public folder to the /assets URL path
+GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)

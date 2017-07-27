@@ -1,0 +1,3296 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Swaggy Jenkins</title>
+    <style type="text/css">
+      body {
+	font-family: Trebuchet MS, sans-serif;
+	font-size: 15px;
+	color: #444;
+	margin-right: 24px;
+}
+
+h1	{
+	font-size: 25px;
+}
+h2	{
+	font-size: 20px;
+}
+h3	{
+	font-size: 16px;
+	font-weight: bold;
+}
+hr	{
+	height: 1px;
+	border: 0;
+	color: #ddd;
+	background-color: #ddd;
+}
+
+.app-desc {
+  clear: both;
+  margin-left: 20px;
+}
+.param-name {
+  width: 100%;
+}
+.license-info {
+  margin-left: 20px;
+}
+
+.license-url {
+  margin-left: 20px;
+}
+
+.model {
+  margin: 0 0 0px 20px;
+}
+
+.method {
+  margin-left: 20px;
+}
+
+.method-notes	{
+	margin: 10px 0 20px 0;
+	font-size: 90%;
+	color: #555;
+}
+
+pre {
+  padding: 10px;
+  margin-bottom: 2px;
+}
+
+.http-method {
+ text-transform: uppercase;
+}
+
+pre.get {
+  background-color: #0f6ab4;
+}
+
+pre.post {
+  background-color: #10a54a;
+}
+
+pre.put {
+  background-color: #c5862b;
+}
+
+pre.delete {
+  background-color: #a41e22;
+}
+
+.huge	{
+	color: #fff;
+}
+
+pre.example {
+  background-color: #f3f3f3;
+  padding: 10px;
+  border: 1px solid #ddd;
+}
+
+code {
+  white-space: pre;
+}
+
+.nickname {
+  font-weight: bold;
+}
+
+.method-path {
+  font-size: 1.5em;
+  background-color: #0f6ab4;
+}
+
+.up {
+  float:right;
+}
+
+.parameter {
+  width: 500px;
+}
+
+.param {
+  width: 500px;
+  padding: 10px 0 0 20px;
+  font-weight: bold;
+}
+
+.param-desc {
+  width: 700px;
+  padding: 0 0 0 20px;
+  color: #777;
+}
+
+.param-type {
+  font-style: italic;
+}
+
+.param-enum-header {
+width: 700px;
+padding: 0 0 0 60px;
+color: #777;
+font-weight: bold;
+}
+
+.param-enum {
+width: 700px;
+padding: 0 0 0 80px;
+color: #777;
+font-style: italic;
+}
+
+.field-label {
+  padding: 0;
+  margin: 0;
+  clear: both;
+}
+
+.field-items	{
+	padding: 0 0 15px 0;
+	margin-bottom: 15px;
+}
+
+.return-type {
+  clear: both;
+  padding-bottom: 10px;
+}
+
+.param-header {
+  font-weight: bold;
+}
+
+.method-tags {
+  text-align: right;
+}
+
+.method-tag {
+  background: none repeat scroll 0% 0% #24A600;
+  border-radius: 3px;
+  padding: 2px 10px;
+  margin: 2px;
+  color: #FFF;
+  display: inline-block;
+  text-decoration: none;
+}
+
+    </style>
+  </head>
+  <body>
+  <h1>Swaggy Jenkins</h1>
+    <div class="app-desc">Jenkins API clients generated from Swagger / Open API specification</div>
+    <div class="app-desc">More information: <a href="http://github.com/cliffano/swaggy-jenkins">http://github.com/cliffano/swaggy-jenkins</a></div>
+    <div class="app-desc">Contact Info: <a href="blah@cliffano.com">blah@cliffano.com</a></div>
+    <div class="app-desc">Version: 0.1.0</div>
+    <div class="app-desc">BasePath:/</div>
+    <div class="license-info">All rights reserved</div>
+    <div class="license-url">http://apache.org/licenses/LICENSE-2.0.html</div>
+  <h2>Access</h2>
+    <ol>
+      <li>HTTP Basic Authentication</li>
+    </ol>
+
+  <h2><a name="__Methods">Methods</a></h2>
+  [ Jump to <a href="#__Models">Models</a> ]
+
+  <h3>Table of Contents </h3>
+  <div class="method-summary"></div>
+  <h4><a href="#BlueOcean">BlueOcean</a></h4>
+  <ul>
+  <li><a href="#getAuthenticatedUser"><code><span class="http-method">get</span> /blue/rest/organizations/{organisation}/user/</code></a></li>
+  <li><a href="#getClasses"><code><span class="http-method">get</span> /blue/rest/classes/{class}</code></a></li>
+  <li><a href="#getOrganisation"><code><span class="http-method">get</span> /blue/rest/organizations/{organisation}</code></a></li>
+  <li><a href="#getOrganisations"><code><span class="http-method">get</span> /blue/rest/organizations/</code></a></li>
+  <li><a href="#getPipelineBranchByOrg"><code><span class="http-method">get</span> /blue/rest/organizations/{organisation}/pipelines/{pipeline}/branches/{branch}/</code></a></li>
+  <li><a href="#getPipelineBranchesByOrg"><code><span class="http-method">get</span> /blue/rest/organizations/{organisation}/pipelines/{pipeline}/branches</code></a></li>
+  <li><a href="#getPipelineByOrg"><code><span class="http-method">get</span> /blue/rest/organizations/{organisation}/pipelines/{pipeline}</code></a></li>
+  <li><a href="#getPipelineFolderByOrg"><code><span class="http-method">get</span> /blue/rest/organizations/{organisation}/pipelines/{folder}/</code></a></li>
+  <li><a href="#getPipelineFolderByOrg_1"><code><span class="http-method">get</span> /blue/rest/organizations/{organisation}/pipelines/{folder}/pipelines/{pipeline}</code></a></li>
+  <li><a href="#getPipelinesByOrg"><code><span class="http-method">get</span> /blue/rest/organizations/{organisation}/pipelines/</code></a></li>
+  <li><a href="#getUser"><code><span class="http-method">get</span> /blue/rest/organizations/{organisation}/users/{user}</code></a></li>
+  <li><a href="#getUsers"><code><span class="http-method">get</span> /blue/rest/organizations/{organisation}/users/</code></a></li>
+  <li><a href="#search"><code><span class="http-method">get</span> /blue/rest/classes/</code></a></li>
+  <li><a href="#search_2"><code><span class="http-method">get</span> /blue/rest/search/</code></a></li>
+  </ul>
+  <h4><a href="#RemoteAccess">RemoteAccess</a></h4>
+  <ul>
+  <li><a href="#getComputer"><code><span class="http-method">get</span> /computer/api/json?depth=1</code></a></li>
+  <li><a href="#getCrumb"><code><span class="http-method">get</span> /crumbIssuer/api/json</code></a></li>
+  <li><a href="#getJenkins"><code><span class="http-method">get</span> /api/json</code></a></li>
+  <li><a href="#getJob"><code><span class="http-method">get</span> /job/{name}/api/json</code></a></li>
+  <li><a href="#getJobConfig"><code><span class="http-method">get</span> /job/{name}/config.xml</code></a></li>
+  <li><a href="#getJobLastBuild"><code><span class="http-method">get</span> /job/{name}/lastBuild/api/json</code></a></li>
+  <li><a href="#getJobProgressiveText"><code><span class="http-method">get</span> /job/{name}/{number}/logText/progressiveText</code></a></li>
+  <li><a href="#getQueue"><code><span class="http-method">get</span> /queue/api/json</code></a></li>
+  <li><a href="#getQueueItem"><code><span class="http-method">get</span> /queue/item/{number}/api/json</code></a></li>
+  <li><a href="#getView"><code><span class="http-method">get</span> /view/{name}/api/json</code></a></li>
+  <li><a href="#getViewConfig"><code><span class="http-method">get</span> /view/{name}/config.xml</code></a></li>
+  <li><a href="#headJenkins"><code><span class="http-method">head</span> /api/json</code></a></li>
+  <li><a href="#postCreateItem"><code><span class="http-method">post</span> /createItem</code></a></li>
+  <li><a href="#postCreateView"><code><span class="http-method">post</span> /createView</code></a></li>
+  <li><a href="#postJobBuild"><code><span class="http-method">post</span> /job/{name}/build</code></a></li>
+  <li><a href="#postJobConfig"><code><span class="http-method">post</span> /job/{name}/config.xml</code></a></li>
+  <li><a href="#postJobDelete"><code><span class="http-method">post</span> /job/{name}/doDelete</code></a></li>
+  <li><a href="#postJobDisable"><code><span class="http-method">post</span> /job/{name}/disable</code></a></li>
+  <li><a href="#postJobEnable"><code><span class="http-method">post</span> /job/{name}/enable</code></a></li>
+  <li><a href="#postJobLastBuildStop"><code><span class="http-method">post</span> /job/{name}/lastBuild/stop</code></a></li>
+  <li><a href="#postViewConfig"><code><span class="http-method">post</span> /view/{name}/config.xml</code></a></li>
+  </ul>
+
+  <h1><a name="BlueOcean">BlueOcean</a></h1>
+  <div class="method"><a name="getAuthenticatedUser"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /blue/rest/organizations/{organisation}/user/</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">getAuthenticatedUser</span>)</div>
+    <div class="method-notes">Retrieve authenticated user details for an organisation</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">organisation (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Name of the organisation </div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#swaggyjenkinsUser">swaggyjenkinsUser</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "name" : "aeiou",
+  "fullName" : "aeiou",
+  "_class" : "aeiou",
+  "id" : "aeiou",
+  "email" : "aeiou"
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Successfully retrieved authenticated user details
+        <a href="#swaggyjenkinsUser">swaggyjenkinsUser</a>
+    <h4 class="field-label">401</h4>
+    Authentication failed - incorrect username and/or password
+        <a href="#"></a>
+    <h4 class="field-label">403</h4>
+    Jenkins requires authentication - please set username and password
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="getClasses"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /blue/rest/classes/{class}</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">getClasses</span>)</div>
+    <div class="method-notes">Get a list of class names supported by a given class</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">class (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Name of the class </div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      
+      String
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>"aeiou"</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Successfully retrieved class names
+        <a href="#String">String</a>
+    <h4 class="field-label">401</h4>
+    Authentication failed - incorrect username and/or password
+        <a href="#"></a>
+    <h4 class="field-label">403</h4>
+    Jenkins requires authentication - please set username and password
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="getOrganisation"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /blue/rest/organizations/{organisation}</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">getOrganisation</span>)</div>
+    <div class="method-notes">Retrieve organisation details</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">organisation (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Name of the organisation </div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#swaggyjenkinsOrganisation">swaggyjenkinsOrganisation</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "name" : "aeiou",
+  "_class" : "aeiou"
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Successfully retrieved pipeline details
+        <a href="#swaggyjenkinsOrganisation">swaggyjenkinsOrganisation</a>
+    <h4 class="field-label">401</h4>
+    Authentication failed - incorrect username and/or password
+        <a href="#"></a>
+    <h4 class="field-label">403</h4>
+    Jenkins requires authentication - please set username and password
+        <a href="#"></a>
+    <h4 class="field-label">404</h4>
+    Pipeline cannot be found on Jenkins instance
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="getOrganisations"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /blue/rest/organizations/</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">getOrganisations</span>)</div>
+    <div class="method-notes">Retrieve all organisations details</div>
+
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#getOrganisations">getOrganisations</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>""</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Successfully retrieved pipelines details
+        <a href="#getOrganisations">getOrganisations</a>
+    <h4 class="field-label">401</h4>
+    Authentication failed - incorrect username and/or password
+        <a href="#"></a>
+    <h4 class="field-label">403</h4>
+    Jenkins requires authentication - please set username and password
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="getPipelineBranchByOrg"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /blue/rest/organizations/{organisation}/pipelines/{pipeline}/branches/{branch}/</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">getPipelineBranchByOrg</span>)</div>
+    <div class="method-notes">Retrieve branch details for an organisation pipeline</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">organisation (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Name of the organisation </div><div class="param">pipeline (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Name of the pipeline </div><div class="param">branch (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Name of the branch </div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#iojenkinsblueoceanrestimplpipelineBranchImpl">iojenkinsblueoceanrestimplpipelineBranchImpl</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "weatherScore" : 6,
+  "displayName" : "aeiou",
+  "permissions" : {
+    "read" : true,
+    "stop" : true,
+    "start" : true,
+    "create" : true,
+    "_class" : "aeiou"
+  },
+  "organization" : "aeiou",
+  "estimatedDurationInMillis" : 0,
+  "name" : "aeiou",
+  "fullDisplayName" : "aeiou",
+  "fullName" : "aeiou",
+  "_class" : "aeiou",
+  "parameters" : [ {
+    "name" : "aeiou",
+    "description" : "aeiou",
+    "_class" : "aeiou",
+    "type" : "aeiou",
+    "defaultParameterValue" : {
+      "name" : "aeiou",
+      "_class" : "aeiou",
+      "value" : "aeiou"
+    }
+  } ],
+  "pullRequest" : "aeiou"
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Successfully retrieved branch details
+        <a href="#iojenkinsblueoceanrestimplpipelineBranchImpl">iojenkinsblueoceanrestimplpipelineBranchImpl</a>
+    <h4 class="field-label">401</h4>
+    Authentication failed - incorrect username and/or password
+        <a href="#"></a>
+    <h4 class="field-label">403</h4>
+    Jenkins requires authentication - please set username and password
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="getPipelineBranchesByOrg"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /blue/rest/organizations/{organisation}/pipelines/{pipeline}/branches</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">getPipelineBranchesByOrg</span>)</div>
+    <div class="method-notes">Retrieve all branches details for an organisation pipeline</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">organisation (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Name of the organisation </div><div class="param">pipeline (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Name of the pipeline </div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#getMultibranchPipeline">getMultibranchPipeline</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "weatherScore" : 6,
+  "latestRun" : "aeiou",
+  "displayName" : "aeiou",
+  "totalNumberOfPullRequests" : 9,
+  "numberOfFailingPullRequests" : 5,
+  "branchNames" : [ "aeiou" ],
+  "organization" : "aeiou",
+  "totalNumberOfBranches" : 7,
+  "estimatedDurationInMillis" : 0,
+  "name" : "aeiou",
+  "numberOfSuccessfulPullRequests" : 2,
+  "numberOfSuccessfulBranches" : 5,
+  "numberOfFailingBranches" : 1,
+  "_class" : "aeiou"
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Successfully retrieved all branches details
+        <a href="#getMultibranchPipeline">getMultibranchPipeline</a>
+    <h4 class="field-label">401</h4>
+    Authentication failed - incorrect username and/or password
+        <a href="#"></a>
+    <h4 class="field-label">403</h4>
+    Jenkins requires authentication - please set username and password
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="getPipelineByOrg"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /blue/rest/organizations/{organisation}/pipelines/{pipeline}</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">getPipelineByOrg</span>)</div>
+    <div class="method-notes">Retrieve pipeline details for an organisation</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">organisation (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Name of the organisation </div><div class="param">pipeline (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Name of the pipeline </div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#swaggyjenkinsPipeline">swaggyjenkinsPipeline</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "weatherScore" : 0,
+  "latestRun" : {
+    "runSummary" : "aeiou",
+    "durationInMillis" : 5,
+    "commitId" : "aeiou",
+    "type" : "aeiou",
+    "pipeline" : "aeiou",
+    "result" : "aeiou",
+    "organization" : "aeiou",
+    "estimatedDurationInMillis" : 5,
+    "enQueueTime" : "aeiou",
+    "startTime" : "aeiou",
+    "endTime" : "aeiou",
+    "id" : "aeiou",
+    "state" : "aeiou",
+    "_class" : "aeiou",
+    "artifacts" : [ {
+      "size" : 1,
+      "name" : "aeiou",
+      "_class" : "aeiou",
+      "url" : "aeiou"
+    } ]
+  },
+  "displayName" : "aeiou",
+  "organization" : "aeiou",
+  "name" : "aeiou",
+  "estimatedDurationInMillis" : 6,
+  "fullName" : "aeiou",
+  "_class" : "aeiou"
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Successfully retrieved pipeline details
+        <a href="#swaggyjenkinsPipeline">swaggyjenkinsPipeline</a>
+    <h4 class="field-label">401</h4>
+    Authentication failed - incorrect username and/or password
+        <a href="#"></a>
+    <h4 class="field-label">403</h4>
+    Jenkins requires authentication - please set username and password
+        <a href="#"></a>
+    <h4 class="field-label">404</h4>
+    Pipeline cannot be found on Jenkins instance
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="getPipelineFolderByOrg"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /blue/rest/organizations/{organisation}/pipelines/{folder}/</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">getPipelineFolderByOrg</span>)</div>
+    <div class="method-notes">Retrieve pipeline folder for an organisation</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">organisation (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Name of the organisation </div><div class="param">folder (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Name of the folder </div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#iojenkinsblueoceanserviceembeddedrestPipelineFolderImpl">iojenkinsblueoceanserviceembeddedrestPipelineFolderImpl</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "numberOfPipelines" : 6,
+  "displayName" : "aeiou",
+  "numberOfFolders" : 0,
+  "organization" : "aeiou",
+  "name" : "aeiou",
+  "fullName" : "aeiou",
+  "_class" : "aeiou"
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Successfully retrieved folder details
+        <a href="#iojenkinsblueoceanserviceembeddedrestPipelineFolderImpl">iojenkinsblueoceanserviceembeddedrestPipelineFolderImpl</a>
+    <h4 class="field-label">401</h4>
+    Authentication failed - incorrect username and/or password
+        <a href="#"></a>
+    <h4 class="field-label">403</h4>
+    Jenkins requires authentication - please set username and password
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="getPipelineFolderByOrg_1"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /blue/rest/organizations/{organisation}/pipelines/{folder}/pipelines/{pipeline}</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">getPipelineFolderByOrg_1</span>)</div>
+    <div class="method-notes">Retrieve pipeline details for an organisation folder</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">organisation (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Name of the organisation </div><div class="param">pipeline (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Name of the pipeline </div><div class="param">folder (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Name of the folder </div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#iojenkinsblueoceanserviceembeddedrestPipelineImpl">iojenkinsblueoceanserviceembeddedrestPipelineImpl</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "weatherScore" : 6,
+  "latestRun" : "aeiou",
+  "displayName" : "aeiou",
+  "organization" : "aeiou",
+  "estimatedDurationInMillis" : 0,
+  "name" : "aeiou",
+  "fullName" : "aeiou",
+  "_class" : "aeiou"
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Successfully retrieved pipeline details
+        <a href="#iojenkinsblueoceanserviceembeddedrestPipelineImpl">iojenkinsblueoceanserviceembeddedrestPipelineImpl</a>
+    <h4 class="field-label">401</h4>
+    Authentication failed - incorrect username and/or password
+        <a href="#"></a>
+    <h4 class="field-label">403</h4>
+    Jenkins requires authentication - please set username and password
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="getPipelinesByOrg"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /blue/rest/organizations/{organisation}/pipelines/</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">getPipelinesByOrg</span>)</div>
+    <div class="method-notes">Retrieve all pipelines details for an organisation</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">organisation (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Name of the organisation </div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#getPipelines">getPipelines</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>""</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Successfully retrieved pipelines details
+        <a href="#getPipelines">getPipelines</a>
+    <h4 class="field-label">401</h4>
+    Authentication failed - incorrect username and/or password
+        <a href="#"></a>
+    <h4 class="field-label">403</h4>
+    Jenkins requires authentication - please set username and password
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="getUser"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /blue/rest/organizations/{organisation}/users/{user}</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">getUser</span>)</div>
+    <div class="method-notes">Retrieve user details for an organisation</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">organisation (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Name of the organisation </div><div class="param">user (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Name of the user </div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#swaggyjenkinsUser">swaggyjenkinsUser</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "name" : "aeiou",
+  "fullName" : "aeiou",
+  "_class" : "aeiou",
+  "id" : "aeiou",
+  "email" : "aeiou"
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Successfully retrieved users details
+        <a href="#swaggyjenkinsUser">swaggyjenkinsUser</a>
+    <h4 class="field-label">401</h4>
+    Authentication failed - incorrect username and/or password
+        <a href="#"></a>
+    <h4 class="field-label">403</h4>
+    Jenkins requires authentication - please set username and password
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="getUsers"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /blue/rest/organizations/{organisation}/users/</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">getUsers</span>)</div>
+    <div class="method-notes">Retrieve users details for an organisation</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">organisation (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Name of the organisation </div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#swaggyjenkinsUser">swaggyjenkinsUser</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "name" : "aeiou",
+  "fullName" : "aeiou",
+  "_class" : "aeiou",
+  "id" : "aeiou",
+  "email" : "aeiou"
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Successfully retrieved users details
+        <a href="#swaggyjenkinsUser">swaggyjenkinsUser</a>
+    <h4 class="field-label">401</h4>
+    Authentication failed - incorrect username and/or password
+        <a href="#"></a>
+    <h4 class="field-label">403</h4>
+    Jenkins requires authentication - please set username and password
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="search"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /blue/rest/classes/</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">search</span>)</div>
+    <div class="method-notes">Get classes details</div>
+
+
+
+
+
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">q (required)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Query string containing an array of class names </div>
+    </div>  <!-- field-items -->
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      
+      String
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>"aeiou"</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Successfully retrieved search result
+        <a href="#String">String</a>
+    <h4 class="field-label">401</h4>
+    Authentication failed - incorrect username and/or password
+        <a href="#"></a>
+    <h4 class="field-label">403</h4>
+    Jenkins requires authentication - please set username and password
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="search_2"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /blue/rest/search/</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">search_2</span>)</div>
+    <div class="method-notes">Search for any resource details</div>
+
+
+
+
+
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">q (required)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Query string </div>
+    </div>  <!-- field-items -->
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      
+      String
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>"aeiou"</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Successfully retrieved search result
+        <a href="#String">String</a>
+    <h4 class="field-label">401</h4>
+    Authentication failed - incorrect username and/or password
+        <a href="#"></a>
+    <h4 class="field-label">403</h4>
+    Jenkins requires authentication - please set username and password
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <h1><a name="RemoteAccess">RemoteAccess</a></h1>
+  <div class="method"><a name="getComputer"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /computer/api/json?depth=1</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">getComputer</span>)</div>
+    <div class="method-notes">Retrieve computer details</div>
+
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#hudsonmodelComputerSet">hudsonmodelComputerSet</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "busyExecutors" : 0,
+  "totalExecutors" : 4,
+  "computer" : [ {
+    "idle" : true,
+    "displayName" : "aeiou",
+    "jnlpAgent" : true,
+    "launchSupported" : true,
+    "icon" : "aeiou",
+    "iconClassName" : "aeiou",
+    "offlineCause" : "aeiou",
+    "temporarilyOffline" : true,
+    "numExecutors" : 1,
+    "offline" : true,
+    "executors" : [ {
+      "currentExecutable" : {
+        "queueId" : 5,
+        "displayName" : "aeiou",
+        "keepLog" : true,
+        "description" : "aeiou",
+        "fullDisplayName" : "aeiou",
+        "estimatedDuration" : 5,
+        "url" : "aeiou",
+        "building" : true,
+        "changeSet" : {
+          "kind" : "aeiou",
+          "_class" : "aeiou"
+        },
+        "duration" : 1,
+        "result" : "aeiou",
+        "number" : 6,
+        "executor" : "aeiou",
+        "builtOn" : "aeiou",
+        "_class" : "aeiou",
+        "id" : "aeiou",
+        "actions" : [ {
+          "causes" : [ {
+            "_class" : "aeiou",
+            "shortDescription" : "aeiou",
+            "userName" : "aeiou",
+            "userId" : "aeiou"
+          } ],
+          "_class" : "aeiou"
+        } ],
+        "timestamp" : 2
+      },
+      "number" : 7,
+      "idle" : true,
+      "likelyStuck" : true,
+      "progress" : 9,
+      "_class" : "aeiou"
+    } ],
+    "monitorData" : {
+      "hudson.node_monitors.SwapSpaceMonitor" : {
+        "totalSwapSpace" : 7,
+        "availableSwapSpace" : 2,
+        "_class" : "aeiou",
+        "availablePhysicalMemory" : 3,
+        "totalPhysicalMemory" : 4
+      },
+      "hudson.node_monitors.TemporarySpaceMonitor" : {
+        "path" : "aeiou",
+        "size" : 1,
+        "_class" : "aeiou",
+        "timestamp" : 1
+      },
+      "hudson.node_monitors.DiskSpaceMonitor" : "",
+      "hudson.node_monitors.ArchitectureMonitor" : "aeiou",
+      "_class" : "aeiou",
+      "hudson.node_monitors.ResponseTimeMonitor" : {
+        "average" : 6,
+        "_class" : "aeiou",
+        "timestamp" : 1
+      },
+      "hudson.node_monitors.ClockMonitor" : {
+        "diff" : 7,
+        "_class" : "aeiou"
+      }
+    },
+    "_class" : "aeiou",
+    "loadStatistics" : {
+      "_class" : "aeiou"
+    },
+    "manualLaunchAllowed" : true,
+    "offlineCauseReason" : "aeiou"
+  } ],
+  "displayName" : "aeiou",
+  "_class" : "aeiou"
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Successfully retrieved computer details
+        <a href="#hudsonmodelComputerSet">hudsonmodelComputerSet</a>
+    <h4 class="field-label">401</h4>
+    Authentication failed - incorrect username and/or password
+        <a href="#"></a>
+    <h4 class="field-label">403</h4>
+    Jenkins requires authentication - please set username and password
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="getCrumb"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /crumbIssuer/api/json</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">getCrumb</span>)</div>
+    <div class="method-notes">Retrieve CSRF protection token</div>
+
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#hudsonsecuritycsrfDefaultCrumbIssuer">hudsonsecuritycsrfDefaultCrumbIssuer</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "crumb" : "aeiou",
+  "_class" : "aeiou",
+  "crumbRequestField" : "aeiou"
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Successfully retrieved CSRF protection token
+        <a href="#hudsonsecuritycsrfDefaultCrumbIssuer">hudsonsecuritycsrfDefaultCrumbIssuer</a>
+    <h4 class="field-label">401</h4>
+    Authentication failed - incorrect username and/or password
+        <a href="#"></a>
+    <h4 class="field-label">403</h4>
+    Jenkins requires authentication - please set username and password
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="getJenkins"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /api/json</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">getJenkins</span>)</div>
+    <div class="method-notes">Retrieve Jenkins details</div>
+
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#hudsonmodelHudson">hudsonmodelHudson</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "nodeName" : "aeiou",
+  "assignedLabels" : [ {
+    "_class" : "aeiou"
+  } ],
+  "jobs" : [ {
+    "color" : "aeiou",
+    "displayName" : "aeiou",
+    "lastSuccessfulBuild" : "",
+    "description" : "aeiou",
+    "fullDisplayName" : "aeiou",
+    "lastUnstableBuild" : "aeiou",
+    "queueItem" : "aeiou",
+    "buildable" : true,
+    "firstBuild" : "",
+    "lastFailedBuild" : "aeiou",
+    "lastBuild" : "",
+    "nextBuildNumber" : 9,
+    "builds" : [ {
+      "queueId" : 5,
+      "displayName" : "aeiou",
+      "keepLog" : true,
+      "description" : "aeiou",
+      "fullDisplayName" : "aeiou",
+      "estimatedDuration" : 5,
+      "url" : "aeiou",
+      "building" : true,
+      "changeSet" : {
+        "kind" : "aeiou",
+        "_class" : "aeiou"
+      },
+      "duration" : 1,
+      "result" : "aeiou",
+      "number" : 6,
+      "executor" : "aeiou",
+      "builtOn" : "aeiou",
+      "_class" : "aeiou",
+      "id" : "aeiou",
+      "actions" : [ {
+        "causes" : [ {
+          "_class" : "aeiou",
+          "shortDescription" : "aeiou",
+          "userName" : "aeiou",
+          "userId" : "aeiou"
+        } ],
+        "_class" : "aeiou"
+      } ],
+      "timestamp" : 2
+    } ],
+    "scm" : {
+      "_class" : "aeiou"
+    },
+    "keepDependencies" : true,
+    "displayNameOrNull" : "aeiou",
+    "inQueue" : true,
+    "lastCompletedBuild" : "",
+    "fullName" : "aeiou",
+    "healthReport" : [ {
+      "score" : 7,
+      "description" : "aeiou",
+      "iconClassName" : "aeiou",
+      "iconUrl" : "aeiou",
+      "_class" : "aeiou"
+    } ],
+    "lastStableBuild" : "",
+    "lastUnsuccessfulBuild" : "aeiou",
+    "url" : "aeiou",
+    "concurrentBuild" : true,
+    "name" : "aeiou",
+    "_class" : "aeiou",
+    "actions" : [ {
+      "_class" : "aeiou"
+    } ]
+  } ],
+  "slaveAgentPort" : 3,
+  "description" : "aeiou",
+  "useCrumbs" : true,
+  "nodeDescription" : "aeiou",
+  "primaryView" : {
+    "name" : "aeiou",
+    "_class" : "aeiou",
+    "url" : "aeiou"
+  },
+  "unlabeledLoad" : {
+    "_class" : "aeiou"
+  },
+  "mode" : "aeiou",
+  "numExecutors" : 0,
+  "quietingDown" : true,
+  "useSecurity" : true,
+  "_class" : "aeiou",
+  "views" : [ "" ]
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Successfully retrieved Jenkins details
+        <a href="#hudsonmodelHudson">hudsonmodelHudson</a>
+    <h4 class="field-label">401</h4>
+    Authentication failed - incorrect username and/or password
+        <a href="#"></a>
+    <h4 class="field-label">403</h4>
+    Jenkins requires authentication - please set username and password
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="getJob"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /job/{name}/api/json</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">getJob</span>)</div>
+    <div class="method-notes">Retrieve job details</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">name (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Name of the job </div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#hudsonmodelFreeStyleProject">hudsonmodelFreeStyleProject</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "color" : "aeiou",
+  "displayName" : "aeiou",
+  "lastSuccessfulBuild" : "",
+  "description" : "aeiou",
+  "fullDisplayName" : "aeiou",
+  "lastUnstableBuild" : "aeiou",
+  "queueItem" : "aeiou",
+  "buildable" : true,
+  "firstBuild" : "",
+  "lastFailedBuild" : "aeiou",
+  "lastBuild" : "",
+  "nextBuildNumber" : 7,
+  "builds" : [ {
+    "queueId" : 5,
+    "displayName" : "aeiou",
+    "keepLog" : true,
+    "description" : "aeiou",
+    "fullDisplayName" : "aeiou",
+    "estimatedDuration" : 1,
+    "url" : "aeiou",
+    "building" : true,
+    "changeSet" : {
+      "kind" : "aeiou",
+      "_class" : "aeiou"
+    },
+    "duration" : 6,
+    "result" : "aeiou",
+    "number" : 0,
+    "executor" : "aeiou",
+    "builtOn" : "aeiou",
+    "_class" : "aeiou",
+    "id" : "aeiou",
+    "actions" : [ {
+      "causes" : [ {
+        "_class" : "aeiou",
+        "shortDescription" : "aeiou",
+        "userName" : "aeiou",
+        "userId" : "aeiou"
+      } ],
+      "_class" : "aeiou"
+    } ],
+    "timestamp" : 5
+  } ],
+  "scm" : {
+    "_class" : "aeiou"
+  },
+  "keepDependencies" : true,
+  "displayNameOrNull" : "aeiou",
+  "inQueue" : true,
+  "lastCompletedBuild" : "",
+  "fullName" : "aeiou",
+  "healthReport" : [ {
+    "score" : 2,
+    "description" : "aeiou",
+    "iconClassName" : "aeiou",
+    "iconUrl" : "aeiou",
+    "_class" : "aeiou"
+  } ],
+  "lastStableBuild" : "",
+  "lastUnsuccessfulBuild" : "aeiou",
+  "url" : "aeiou",
+  "concurrentBuild" : true,
+  "name" : "aeiou",
+  "_class" : "aeiou",
+  "actions" : [ {
+    "_class" : "aeiou"
+  } ]
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Successfully retrieved job details
+        <a href="#hudsonmodelFreeStyleProject">hudsonmodelFreeStyleProject</a>
+    <h4 class="field-label">401</h4>
+    Authentication failed - incorrect username and/or password
+        <a href="#"></a>
+    <h4 class="field-label">403</h4>
+    Jenkins requires authentication - please set username and password
+        <a href="#"></a>
+    <h4 class="field-label">404</h4>
+    Job cannot be found on Jenkins instance
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="getJobConfig"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /job/{name}/config.xml</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">getJobConfig</span>)</div>
+    <div class="method-notes">Retrieve job configuration</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">name (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Name of the job </div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      
+      String
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: </div>
+    <pre class="example"><code></code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    <ul>
+      <li><code>text/xml</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Successfully retrieved job configuration in config.xml format
+        <a href="#String">String</a>
+    <h4 class="field-label">401</h4>
+    Authentication failed - incorrect username and/or password
+        <a href="#"></a>
+    <h4 class="field-label">403</h4>
+    Jenkins requires authentication - please set username and password
+        <a href="#"></a>
+    <h4 class="field-label">404</h4>
+    Job cannot be found on Jenkins instance
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="getJobLastBuild"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /job/{name}/lastBuild/api/json</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">getJobLastBuild</span>)</div>
+    <div class="method-notes">Retrieve job's last build details</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">name (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Name of the job </div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#hudsonmodelFreeStyleBuild">hudsonmodelFreeStyleBuild</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "queueId" : 5,
+  "displayName" : "aeiou",
+  "keepLog" : true,
+  "description" : "aeiou",
+  "fullDisplayName" : "aeiou",
+  "estimatedDuration" : 1,
+  "url" : "aeiou",
+  "building" : true,
+  "changeSet" : {
+    "kind" : "aeiou",
+    "_class" : "aeiou"
+  },
+  "duration" : 6,
+  "result" : "aeiou",
+  "number" : 0,
+  "executor" : "aeiou",
+  "builtOn" : "aeiou",
+  "_class" : "aeiou",
+  "id" : "aeiou",
+  "actions" : [ {
+    "causes" : [ {
+      "_class" : "aeiou",
+      "shortDescription" : "aeiou",
+      "userName" : "aeiou",
+      "userId" : "aeiou"
+    } ],
+    "_class" : "aeiou"
+  } ],
+  "timestamp" : 5
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Successfully retrieved job's last build details
+        <a href="#hudsonmodelFreeStyleBuild">hudsonmodelFreeStyleBuild</a>
+    <h4 class="field-label">401</h4>
+    Authentication failed - incorrect username and/or password
+        <a href="#"></a>
+    <h4 class="field-label">403</h4>
+    Jenkins requires authentication - please set username and password
+        <a href="#"></a>
+    <h4 class="field-label">404</h4>
+    Job cannot be found on Jenkins instance
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="getJobProgressiveText"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /job/{name}/{number}/logText/progressiveText</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">getJobProgressiveText</span>)</div>
+    <div class="method-notes">Retrieve job's build progressive text output</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">name (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Name of the job </div><div class="param">number (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Build number </div>
+    </div>  <!-- field-items -->
+
+
+
+
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">start (required)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Starting point of progressive text output </div>
+    </div>  <!-- field-items -->
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Successfully retrieved job's build progressive text output
+        <a href="#"></a>
+    <h4 class="field-label">401</h4>
+    Authentication failed - incorrect username and/or password
+        <a href="#"></a>
+    <h4 class="field-label">403</h4>
+    Jenkins requires authentication - please set username and password
+        <a href="#"></a>
+    <h4 class="field-label">404</h4>
+    Job cannot be found on Jenkins instance
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="getQueue"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /queue/api/json</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">getQueue</span>)</div>
+    <div class="method-notes">Retrieve queue details</div>
+
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#hudsonmodelQueue">hudsonmodelQueue</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "_class" : "aeiou",
+  "items" : [ {
+    "task" : {
+      "color" : "aeiou",
+      "displayName" : "aeiou",
+      "lastSuccessfulBuild" : "",
+      "description" : "aeiou",
+      "fullDisplayName" : "aeiou",
+      "lastUnstableBuild" : "aeiou",
+      "queueItem" : "aeiou",
+      "buildable" : true,
+      "firstBuild" : "",
+      "lastFailedBuild" : "aeiou",
+      "lastBuild" : "",
+      "nextBuildNumber" : 3,
+      "builds" : [ {
+        "queueId" : 2,
+        "displayName" : "aeiou",
+        "keepLog" : true,
+        "description" : "aeiou",
+        "fullDisplayName" : "aeiou",
+        "estimatedDuration" : 5,
+        "url" : "aeiou",
+        "building" : true,
+        "changeSet" : {
+          "kind" : "aeiou",
+          "_class" : "aeiou"
+        },
+        "duration" : 5,
+        "result" : "aeiou",
+        "number" : 1,
+        "executor" : "aeiou",
+        "builtOn" : "aeiou",
+        "_class" : "aeiou",
+        "id" : "aeiou",
+        "actions" : [ "" ],
+        "timestamp" : 7
+      } ],
+      "scm" : {
+        "_class" : "aeiou"
+      },
+      "keepDependencies" : true,
+      "displayNameOrNull" : "aeiou",
+      "inQueue" : true,
+      "lastCompletedBuild" : "",
+      "fullName" : "aeiou",
+      "healthReport" : [ {
+        "score" : 9,
+        "description" : "aeiou",
+        "iconClassName" : "aeiou",
+        "iconUrl" : "aeiou",
+        "_class" : "aeiou"
+      } ],
+      "lastStableBuild" : "",
+      "lastUnsuccessfulBuild" : "aeiou",
+      "url" : "aeiou",
+      "concurrentBuild" : true,
+      "name" : "aeiou",
+      "_class" : "aeiou",
+      "actions" : [ {
+        "_class" : "aeiou"
+      } ]
+    },
+    "blocked" : true,
+    "stuck" : true,
+    "buildableStartMilliseconds" : 2,
+    "why" : "aeiou",
+    "_class" : "aeiou",
+    "id" : 0,
+    "buildable" : true,
+    "params" : "aeiou",
+    "actions" : [ {
+      "causes" : [ {
+        "_class" : "aeiou",
+        "shortDescription" : "aeiou",
+        "userName" : "aeiou",
+        "userId" : "aeiou"
+      } ],
+      "_class" : "aeiou"
+    } ],
+    "url" : "aeiou",
+    "inQueueSince" : 6
+  } ]
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Successfully retrieved queue details
+        <a href="#hudsonmodelQueue">hudsonmodelQueue</a>
+    <h4 class="field-label">401</h4>
+    Authentication failed - incorrect username and/or password
+        <a href="#"></a>
+    <h4 class="field-label">403</h4>
+    Jenkins requires authentication - please set username and password
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="getQueueItem"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /queue/item/{number}/api/json</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">getQueueItem</span>)</div>
+    <div class="method-notes">Retrieve queued item details</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">number (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Queue number </div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#hudsonmodelQueue">hudsonmodelQueue</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "_class" : "aeiou",
+  "items" : [ {
+    "task" : {
+      "color" : "aeiou",
+      "displayName" : "aeiou",
+      "lastSuccessfulBuild" : "",
+      "description" : "aeiou",
+      "fullDisplayName" : "aeiou",
+      "lastUnstableBuild" : "aeiou",
+      "queueItem" : "aeiou",
+      "buildable" : true,
+      "firstBuild" : "",
+      "lastFailedBuild" : "aeiou",
+      "lastBuild" : "",
+      "nextBuildNumber" : 3,
+      "builds" : [ {
+        "queueId" : 2,
+        "displayName" : "aeiou",
+        "keepLog" : true,
+        "description" : "aeiou",
+        "fullDisplayName" : "aeiou",
+        "estimatedDuration" : 5,
+        "url" : "aeiou",
+        "building" : true,
+        "changeSet" : {
+          "kind" : "aeiou",
+          "_class" : "aeiou"
+        },
+        "duration" : 5,
+        "result" : "aeiou",
+        "number" : 1,
+        "executor" : "aeiou",
+        "builtOn" : "aeiou",
+        "_class" : "aeiou",
+        "id" : "aeiou",
+        "actions" : [ "" ],
+        "timestamp" : 7
+      } ],
+      "scm" : {
+        "_class" : "aeiou"
+      },
+      "keepDependencies" : true,
+      "displayNameOrNull" : "aeiou",
+      "inQueue" : true,
+      "lastCompletedBuild" : "",
+      "fullName" : "aeiou",
+      "healthReport" : [ {
+        "score" : 9,
+        "description" : "aeiou",
+        "iconClassName" : "aeiou",
+        "iconUrl" : "aeiou",
+        "_class" : "aeiou"
+      } ],
+      "lastStableBuild" : "",
+      "lastUnsuccessfulBuild" : "aeiou",
+      "url" : "aeiou",
+      "concurrentBuild" : true,
+      "name" : "aeiou",
+      "_class" : "aeiou",
+      "actions" : [ {
+        "_class" : "aeiou"
+      } ]
+    },
+    "blocked" : true,
+    "stuck" : true,
+    "buildableStartMilliseconds" : 2,
+    "why" : "aeiou",
+    "_class" : "aeiou",
+    "id" : 0,
+    "buildable" : true,
+    "params" : "aeiou",
+    "actions" : [ {
+      "causes" : [ {
+        "_class" : "aeiou",
+        "shortDescription" : "aeiou",
+        "userName" : "aeiou",
+        "userId" : "aeiou"
+      } ],
+      "_class" : "aeiou"
+    } ],
+    "url" : "aeiou",
+    "inQueueSince" : 6
+  } ]
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Successfully retrieved queued item details
+        <a href="#hudsonmodelQueue">hudsonmodelQueue</a>
+    <h4 class="field-label">401</h4>
+    Authentication failed - incorrect username and/or password
+        <a href="#"></a>
+    <h4 class="field-label">403</h4>
+    Jenkins requires authentication - please set username and password
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="getView"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /view/{name}/api/json</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">getView</span>)</div>
+    <div class="method-notes">Retrieve view details</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">name (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Name of the view </div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#hudsonmodelListView">hudsonmodelListView</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "jobs" : [ {
+    "color" : "aeiou",
+    "displayName" : "aeiou",
+    "lastSuccessfulBuild" : "",
+    "description" : "aeiou",
+    "fullDisplayName" : "aeiou",
+    "lastUnstableBuild" : "aeiou",
+    "queueItem" : "aeiou",
+    "buildable" : true,
+    "firstBuild" : "",
+    "lastFailedBuild" : "aeiou",
+    "lastBuild" : "",
+    "nextBuildNumber" : 7,
+    "builds" : [ {
+      "queueId" : 5,
+      "displayName" : "aeiou",
+      "keepLog" : true,
+      "description" : "aeiou",
+      "fullDisplayName" : "aeiou",
+      "estimatedDuration" : 1,
+      "url" : "aeiou",
+      "building" : true,
+      "changeSet" : {
+        "kind" : "aeiou",
+        "_class" : "aeiou"
+      },
+      "duration" : 6,
+      "result" : "aeiou",
+      "number" : 0,
+      "executor" : "aeiou",
+      "builtOn" : "aeiou",
+      "_class" : "aeiou",
+      "id" : "aeiou",
+      "actions" : [ {
+        "causes" : [ {
+          "_class" : "aeiou",
+          "shortDescription" : "aeiou",
+          "userName" : "aeiou",
+          "userId" : "aeiou"
+        } ],
+        "_class" : "aeiou"
+      } ],
+      "timestamp" : 5
+    } ],
+    "scm" : {
+      "_class" : "aeiou"
+    },
+    "keepDependencies" : true,
+    "displayNameOrNull" : "aeiou",
+    "inQueue" : true,
+    "lastCompletedBuild" : "",
+    "fullName" : "aeiou",
+    "healthReport" : [ {
+      "score" : 2,
+      "description" : "aeiou",
+      "iconClassName" : "aeiou",
+      "iconUrl" : "aeiou",
+      "_class" : "aeiou"
+    } ],
+    "lastStableBuild" : "",
+    "lastUnsuccessfulBuild" : "aeiou",
+    "url" : "aeiou",
+    "concurrentBuild" : true,
+    "name" : "aeiou",
+    "_class" : "aeiou",
+    "actions" : [ {
+      "_class" : "aeiou"
+    } ]
+  } ],
+  "name" : "aeiou",
+  "description" : "aeiou",
+  "_class" : "aeiou",
+  "url" : "aeiou"
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Successfully retrieved view details
+        <a href="#hudsonmodelListView">hudsonmodelListView</a>
+    <h4 class="field-label">401</h4>
+    Authentication failed - incorrect username and/or password
+        <a href="#"></a>
+    <h4 class="field-label">403</h4>
+    Jenkins requires authentication - please set username and password
+        <a href="#"></a>
+    <h4 class="field-label">404</h4>
+    View cannot be found on Jenkins instance
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="getViewConfig"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /view/{name}/config.xml</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">getViewConfig</span>)</div>
+    <div class="method-notes">Retrieve view configuration</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">name (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Name of the view </div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      
+      String
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: </div>
+    <pre class="example"><code></code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    <ul>
+      <li><code>text/xml</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Successfully retrieved view configuration in config.xml format
+        <a href="#String">String</a>
+    <h4 class="field-label">401</h4>
+    Authentication failed - incorrect username and/or password
+        <a href="#"></a>
+    <h4 class="field-label">403</h4>
+    Jenkins requires authentication - please set username and password
+        <a href="#"></a>
+    <h4 class="field-label">404</h4>
+    View cannot be found on Jenkins instance
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="headJenkins"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="head"><code class="huge"><span class="http-method">head</span> /api/json</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">headJenkins</span>)</div>
+    <div class="method-notes">Retrieve Jenkins headers</div>
+
+
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Successfully retrieved Jenkins headers
+        <a href="#"></a>
+    <h4 class="field-label">401</h4>
+    Authentication failed - incorrect username and/or password
+        <a href="#"></a>
+    <h4 class="field-label">403</h4>
+    Jenkins requires authentication - please set username and password
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="postCreateItem"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /createItem</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">postCreateItem</span>)</div>
+    <div class="method-notes">Create a new job using job configuration, or copied from an existing job</div>
+
+
+
+    <h3 class="field-label">Request body</h3>
+    <div class="field-items">
+      <div class="param">body <a href="#string">string</a> (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash; Job configuration in config.xml format </div>
+
+    </div>  <!-- field-items -->
+
+    <h3 class="field-label">Request headers</h3>
+    <div class="field-items">
+      
+    </div>  <!-- field-items -->
+
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">name (required)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Name of the new job </div><div class="param">from (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Existing job to copy from </div><div class="param">mode (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Set to 'copy' for copying an existing job </div>
+    </div>  <!-- field-items -->
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    <ul>
+      <li><code>text/html</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Successfully created a new job
+        <a href="#"></a>
+    <h4 class="field-label">400</h4>
+    An error has occurred - error message is embedded inside the HTML response
+        <a href="#String">String</a>
+    <h4 class="field-label">401</h4>
+    Authentication failed - incorrect username and/or password
+        <a href="#"></a>
+    <h4 class="field-label">403</h4>
+    Jenkins requires authentication - please set username and password
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="postCreateView"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /createView</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">postCreateView</span>)</div>
+    <div class="method-notes">Create a new view using view configuration</div>
+
+
+
+    <h3 class="field-label">Request body</h3>
+    <div class="field-items">
+      <div class="param">body <a href="#string">string</a> (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash; View configuration in config.xml format </div>
+
+    </div>  <!-- field-items -->
+
+    <h3 class="field-label">Request headers</h3>
+    <div class="field-items">
+      
+    </div>  <!-- field-items -->
+
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">name (required)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Name of the new view </div>
+    </div>  <!-- field-items -->
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    <ul>
+      <li><code>text/html</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Successfully created the view
+        <a href="#"></a>
+    <h4 class="field-label">400</h4>
+    An error has occurred - error message is embedded inside the HTML response
+        <a href="#String">String</a>
+    <h4 class="field-label">401</h4>
+    Authentication failed - incorrect username and/or password
+        <a href="#"></a>
+    <h4 class="field-label">403</h4>
+    Jenkins requires authentication - please set username and password
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="postJobBuild"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /job/{name}/build</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">postJobBuild</span>)</div>
+    <div class="method-notes">Build a job</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">name (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Name of the job </div>
+    </div>  <!-- field-items -->
+
+
+
+    <h3 class="field-label">Request headers</h3>
+    <div class="field-items">
+      
+    </div>  <!-- field-items -->
+
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">json (required)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash;  </div><div class="param">token (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash;  </div>
+    </div>  <!-- field-items -->
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Successfully built the job (backward compatibility for older versions of Jenkins)
+        <a href="#"></a>
+    <h4 class="field-label">201</h4>
+    Successfully built the job
+        <a href="#"></a>
+    <h4 class="field-label">401</h4>
+    Authentication failed - incorrect username and/or password
+        <a href="#"></a>
+    <h4 class="field-label">403</h4>
+    Jenkins requires authentication - please set username and password
+        <a href="#"></a>
+    <h4 class="field-label">404</h4>
+    Job cannot be found on Jenkins instance
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="postJobConfig"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /job/{name}/config.xml</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">postJobConfig</span>)</div>
+    <div class="method-notes">Update job configuration</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">name (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Name of the job </div>
+    </div>  <!-- field-items -->
+
+
+    <h3 class="field-label">Request body</h3>
+    <div class="field-items">
+      <div class="param">body <a href="#string">string</a> (required)</div>
+
+      <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash; Job configuration in config.xml format </div>
+
+    </div>  <!-- field-items -->
+
+    <h3 class="field-label">Request headers</h3>
+    <div class="field-items">
+      
+    </div>  <!-- field-items -->
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    <ul>
+      <li><code>text/xml</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Successfully retrieved job configuration in config.xml format
+        <a href="#"></a>
+    <h4 class="field-label">400</h4>
+    An error has occurred - error message is embedded inside the HTML response
+        <a href="#String">String</a>
+    <h4 class="field-label">401</h4>
+    Authentication failed - incorrect username and/or password
+        <a href="#"></a>
+    <h4 class="field-label">403</h4>
+    Jenkins requires authentication - please set username and password
+        <a href="#"></a>
+    <h4 class="field-label">404</h4>
+    Job cannot be found on Jenkins instance
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="postJobDelete"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /job/{name}/doDelete</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">postJobDelete</span>)</div>
+    <div class="method-notes">Delete a job</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">name (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Name of the job </div>
+    </div>  <!-- field-items -->
+
+
+
+    <h3 class="field-label">Request headers</h3>
+    <div class="field-items">
+      
+    </div>  <!-- field-items -->
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Successfully deleted the job
+        <a href="#"></a>
+    <h4 class="field-label">401</h4>
+    Authentication failed - incorrect username and/or password
+        <a href="#"></a>
+    <h4 class="field-label">403</h4>
+    Jenkins requires authentication - please set username and password
+        <a href="#"></a>
+    <h4 class="field-label">404</h4>
+    Job cannot be found on Jenkins instance
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="postJobDisable"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /job/{name}/disable</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">postJobDisable</span>)</div>
+    <div class="method-notes">Disable a job</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">name (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Name of the job </div>
+    </div>  <!-- field-items -->
+
+
+
+    <h3 class="field-label">Request headers</h3>
+    <div class="field-items">
+      
+    </div>  <!-- field-items -->
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Successfully disabled the job
+        <a href="#"></a>
+    <h4 class="field-label">401</h4>
+    Authentication failed - incorrect username and/or password
+        <a href="#"></a>
+    <h4 class="field-label">403</h4>
+    Jenkins requires authentication - please set username and password
+        <a href="#"></a>
+    <h4 class="field-label">404</h4>
+    Job cannot be found on Jenkins instance
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="postJobEnable"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /job/{name}/enable</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">postJobEnable</span>)</div>
+    <div class="method-notes">Enable a job</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">name (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Name of the job </div>
+    </div>  <!-- field-items -->
+
+
+
+    <h3 class="field-label">Request headers</h3>
+    <div class="field-items">
+      
+    </div>  <!-- field-items -->
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Successfully enabled the job
+        <a href="#"></a>
+    <h4 class="field-label">401</h4>
+    Authentication failed - incorrect username and/or password
+        <a href="#"></a>
+    <h4 class="field-label">403</h4>
+    Jenkins requires authentication - please set username and password
+        <a href="#"></a>
+    <h4 class="field-label">404</h4>
+    Job cannot be found on Jenkins instance
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="postJobLastBuildStop"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /job/{name}/lastBuild/stop</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">postJobLastBuildStop</span>)</div>
+    <div class="method-notes">Stop a job</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">name (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Name of the job </div>
+    </div>  <!-- field-items -->
+
+
+
+    <h3 class="field-label">Request headers</h3>
+    <div class="field-items">
+      
+    </div>  <!-- field-items -->
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Successfully stopped the job
+        <a href="#"></a>
+    <h4 class="field-label">401</h4>
+    Authentication failed - incorrect username and/or password
+        <a href="#"></a>
+    <h4 class="field-label">403</h4>
+    Jenkins requires authentication - please set username and password
+        <a href="#"></a>
+    <h4 class="field-label">404</h4>
+    Job cannot be found on Jenkins instance
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="postViewConfig"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /view/{name}/config.xml</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">postViewConfig</span>)</div>
+    <div class="method-notes">Update view configuration</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">name (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Name of the view </div>
+    </div>  <!-- field-items -->
+
+
+    <h3 class="field-label">Request body</h3>
+    <div class="field-items">
+      <div class="param">body <a href="#string">string</a> (required)</div>
+
+      <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash; View configuration in config.xml format </div>
+
+    </div>  <!-- field-items -->
+
+    <h3 class="field-label">Request headers</h3>
+    <div class="field-items">
+      
+    </div>  <!-- field-items -->
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Successfully updated view configuration
+        <a href="#"></a>
+    <h4 class="field-label">400</h4>
+    An error has occurred - error message is embedded inside the HTML response
+        <a href="#String">String</a>
+    <h4 class="field-label">401</h4>
+    Authentication failed - incorrect username and/or password
+        <a href="#"></a>
+    <h4 class="field-label">403</h4>
+    Jenkins requires authentication - please set username and password
+        <a href="#"></a>
+    <h4 class="field-label">404</h4>
+    View cannot be found on Jenkins instance
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+
+  <h2><a name="__Models">Models</a></h2>
+  [ Jump to <a href="#__Methods">Methods</a> ]
+
+  <h3>Table of Contents</h3>
+  <ol>
+    <li><a href="#getClassesByClass"><code>getClassesByClass</code> - </a></li>
+    <li><a href="#getMultibranchPipeline"><code>getMultibranchPipeline</code> - </a></li>
+    <li><a href="#getOrganisations"><code>getOrganisations</code> - </a></li>
+    <li><a href="#getPipelineBranches"><code>getPipelineBranches</code> - </a></li>
+    <li><a href="#getPipelineBranchesitem"><code>getPipelineBranchesitem</code> - </a></li>
+    <li><a href="#getPipelineBranchesitem_latestRun"><code>getPipelineBranchesitem_latestRun</code> - </a></li>
+    <li><a href="#getPipelineBranchesitem_pullRequest"><code>getPipelineBranchesitem_pullRequest</code> - </a></li>
+    <li><a href="#getPipelineBranchesitem_pullRequest__links"><code>getPipelineBranchesitem_pullRequest__links</code> - </a></li>
+    <li><a href="#getPipelines"><code>getPipelines</code> - </a></li>
+    <li><a href="#getUsers"><code>getUsers</code> - </a></li>
+    <li><a href="#hudsonmodelAllView"><code>hudsonmodelAllView</code> - </a></li>
+    <li><a href="#hudsonmodelCauseAction"><code>hudsonmodelCauseAction</code> - </a></li>
+    <li><a href="#hudsonmodelCauseUserIdCause"><code>hudsonmodelCauseUserIdCause</code> - </a></li>
+    <li><a href="#hudsonmodelComputerSet"><code>hudsonmodelComputerSet</code> - </a></li>
+    <li><a href="#hudsonmodelFreeStyleBuild"><code>hudsonmodelFreeStyleBuild</code> - </a></li>
+    <li><a href="#hudsonmodelFreeStyleProject"><code>hudsonmodelFreeStyleProject</code> - </a></li>
+    <li><a href="#hudsonmodelFreeStyleProjectactions"><code>hudsonmodelFreeStyleProjectactions</code> - </a></li>
+    <li><a href="#hudsonmodelFreeStyleProjecthealthReport"><code>hudsonmodelFreeStyleProjecthealthReport</code> - </a></li>
+    <li><a href="#hudsonmodelHudson"><code>hudsonmodelHudson</code> - </a></li>
+    <li><a href="#hudsonmodelHudsonMasterComputer"><code>hudsonmodelHudsonMasterComputer</code> - </a></li>
+    <li><a href="#hudsonmodelHudsonMasterComputer_monitorData"><code>hudsonmodelHudsonMasterComputer_monitorData</code> - </a></li>
+    <li><a href="#hudsonmodelHudsonMasterComputerexecutors"><code>hudsonmodelHudsonMasterComputerexecutors</code> - </a></li>
+    <li><a href="#hudsonmodelHudsonassignedLabels"><code>hudsonmodelHudsonassignedLabels</code> - </a></li>
+    <li><a href="#hudsonmodelLabel1"><code>hudsonmodelLabel1</code> - </a></li>
+    <li><a href="#hudsonmodelListView"><code>hudsonmodelListView</code> - </a></li>
+    <li><a href="#hudsonmodelQueue"><code>hudsonmodelQueue</code> - </a></li>
+    <li><a href="#hudsonmodelQueueBlockedItem"><code>hudsonmodelQueueBlockedItem</code> - </a></li>
+    <li><a href="#hudsonmodelQueueLeftItem"><code>hudsonmodelQueueLeftItem</code> - </a></li>
+    <li><a href="#hudsonmodelStringParameterDefinition"><code>hudsonmodelStringParameterDefinition</code> - </a></li>
+    <li><a href="#hudsonmodelStringParameterValue"><code>hudsonmodelStringParameterValue</code> - </a></li>
+    <li><a href="#hudsonnode_monitorsDiskSpaceMonitorDescriptorDiskSpace"><code>hudsonnode_monitorsDiskSpaceMonitorDescriptorDiskSpace</code> - </a></li>
+    <li><a href="#hudsonnode_monitorsResponseTimeMonitorData"><code>hudsonnode_monitorsResponseTimeMonitorData</code> - </a></li>
+    <li><a href="#hudsonnode_monitorsSwapSpaceMonitorMemoryUsage2"><code>hudsonnode_monitorsSwapSpaceMonitorMemoryUsage2</code> - </a></li>
+    <li><a href="#hudsonscmEmptyChangeLogSet"><code>hudsonscmEmptyChangeLogSet</code> - </a></li>
+    <li><a href="#hudsonscmNullSCM"><code>hudsonscmNullSCM</code> - </a></li>
+    <li><a href="#hudsonsecuritycsrfDefaultCrumbIssuer"><code>hudsonsecuritycsrfDefaultCrumbIssuer</code> - </a></li>
+    <li><a href="#hudsonutilClockDifference"><code>hudsonutilClockDifference</code> - </a></li>
+    <li><a href="#iojenkinsblueoceanresthalLink"><code>iojenkinsblueoceanresthalLink</code> - </a></li>
+    <li><a href="#iojenkinsblueoceanrestimplpipelineBranchImpl"><code>iojenkinsblueoceanrestimplpipelineBranchImpl</code> - </a></li>
+    <li><a href="#iojenkinsblueoceanrestimplpipelineBranchImpl_permissions"><code>iojenkinsblueoceanrestimplpipelineBranchImpl_permissions</code> - </a></li>
+    <li><a href="#iojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1"><code>iojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1</code> - </a></li>
+    <li><a href="#iojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1__links"><code>iojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1__links</code> - </a></li>
+    <li><a href="#iojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1_map"><code>iojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1_map</code> - </a></li>
+    <li><a href="#iojenkinsblueoceanserviceembeddedrestExtensionClassImpl"><code>iojenkinsblueoceanserviceembeddedrestExtensionClassImpl</code> - </a></li>
+    <li><a href="#iojenkinsblueoceanserviceembeddedrestExtensionClassImpl__links"><code>iojenkinsblueoceanserviceembeddedrestExtensionClassImpl__links</code> - </a></li>
+    <li><a href="#iojenkinsblueoceanserviceembeddedrestPipelineFolderImpl"><code>iojenkinsblueoceanserviceembeddedrestPipelineFolderImpl</code> - </a></li>
+    <li><a href="#iojenkinsblueoceanserviceembeddedrestPipelineImpl"><code>iojenkinsblueoceanserviceembeddedrestPipelineImpl</code> - </a></li>
+    <li><a href="#jenkinsmodelUnlabeledLoadStatistics"><code>jenkinsmodelUnlabeledLoadStatistics</code> - </a></li>
+    <li><a href="#swaggyjenkinsOrganisation"><code>swaggyjenkinsOrganisation</code> - </a></li>
+    <li><a href="#swaggyjenkinsPipeline"><code>swaggyjenkinsPipeline</code> - </a></li>
+    <li><a href="#swaggyjenkinsPipeline_latestRun"><code>swaggyjenkinsPipeline_latestRun</code> - </a></li>
+    <li><a href="#swaggyjenkinsPipeline_latestRunartifacts"><code>swaggyjenkinsPipeline_latestRunartifacts</code> - </a></li>
+    <li><a href="#swaggyjenkinsUser"><code>swaggyjenkinsUser</code> - </a></li>
+  </ol>
+
+  <div class="model">
+    <h3><a name="getClassesByClass"><code>getClassesByClass</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">classes (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">array[String]</a></span>  </div>
+<div class="param">_class (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="getMultibranchPipeline"><code>getMultibranchPipeline</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">displayName (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">estimatedDurationInMillis (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">latestRun (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">name (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">organization (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">weatherScore (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">branchNames (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">array[String]</a></span>  </div>
+<div class="param">numberOfFailingBranches (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">numberOfFailingPullRequests (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">numberOfSuccessfulBranches (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">numberOfSuccessfulPullRequests (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">totalNumberOfBranches (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">totalNumberOfPullRequests (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">_class (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="getOrganisations"><code>getOrganisations</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+          </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="getPipelineBranches"><code>getPipelineBranches</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+          </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="getPipelineBranchesitem"><code>getPipelineBranchesitem</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">displayName (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">estimatedDurationInMillis (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">name (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">weatherScore (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">latestRun (optional)</div><div class="param-desc"><span class="param-type"><a href="#getPipelineBranchesitem_latestRun">getPipelineBranchesitem_latestRun</a></span>  </div>
+<div class="param">organization (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">pullRequest (optional)</div><div class="param-desc"><span class="param-type"><a href="#getPipelineBranchesitem_pullRequest">getPipelineBranchesitem_pullRequest</a></span>  </div>
+<div class="param">totalNumberOfPullRequests (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">_class (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="getPipelineBranchesitem_latestRun"><code>getPipelineBranchesitem_latestRun</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">durationInMillis (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">estimatedDurationInMillis (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">enQueueTime (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">endTime (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">id (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">organization (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">pipeline (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">result (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">runSummary (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">startTime (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">state (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">type (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">commitId (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">_class (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="getPipelineBranchesitem_pullRequest"><code>getPipelineBranchesitem_pullRequest</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">_links (optional)</div><div class="param-desc"><span class="param-type"><a href="#getPipelineBranchesitem_pullRequest__links">getPipelineBranchesitem_pullRequest__links</a></span>  </div>
+<div class="param">author (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">id (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">title (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">url (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">_class (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="getPipelineBranchesitem_pullRequest__links"><code>getPipelineBranchesitem_pullRequest__links</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">self (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">_class (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="getPipelines"><code>getPipelines</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+          </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="getUsers"><code>getUsers</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+          </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="hudsonmodelAllView"><code>hudsonmodelAllView</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">_class (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">name (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">url (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="hudsonmodelCauseAction"><code>hudsonmodelCauseAction</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">_class (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">causes (optional)</div><div class="param-desc"><span class="param-type"><a href="#hudsonmodelCauseUserIdCause">array[hudsonmodelCauseUserIdCause]</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="hudsonmodelCauseUserIdCause"><code>hudsonmodelCauseUserIdCause</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">_class (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">shortDescription (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">userId (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">userName (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="hudsonmodelComputerSet"><code>hudsonmodelComputerSet</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">_class (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">busyExecutors (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">computer (optional)</div><div class="param-desc"><span class="param-type"><a href="#hudsonmodelHudsonMasterComputer">array[hudsonmodelHudsonMasterComputer]</a></span>  </div>
+<div class="param">displayName (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">totalExecutors (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="hudsonmodelFreeStyleBuild"><code>hudsonmodelFreeStyleBuild</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">_class (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">number (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">url (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">actions (optional)</div><div class="param-desc"><span class="param-type"><a href="#hudsonmodelCauseAction">array[hudsonmodelCauseAction]</a></span>  </div>
+<div class="param">building (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  </div>
+<div class="param">description (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">displayName (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">duration (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">estimatedDuration (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">executor (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">fullDisplayName (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">id (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">keepLog (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  </div>
+<div class="param">queueId (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">result (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">timestamp (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">builtOn (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">changeSet (optional)</div><div class="param-desc"><span class="param-type"><a href="#hudsonscmEmptyChangeLogSet">hudsonscmEmptyChangeLogSet</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="hudsonmodelFreeStyleProject"><code>hudsonmodelFreeStyleProject</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">_class (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">name (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">url (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">color (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">actions (optional)</div><div class="param-desc"><span class="param-type"><a href="#hudsonmodelFreeStyleProjectactions">array[hudsonmodelFreeStyleProjectactions]</a></span>  </div>
+<div class="param">description (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">displayName (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">displayNameOrNull (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">fullDisplayName (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">fullName (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">buildable (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  </div>
+<div class="param">builds (optional)</div><div class="param-desc"><span class="param-type"><a href="#hudsonmodelFreeStyleBuild">array[hudsonmodelFreeStyleBuild]</a></span>  </div>
+<div class="param">firstBuild (optional)</div><div class="param-desc"><span class="param-type"><a href="#hudsonmodelFreeStyleBuild">hudsonmodelFreeStyleBuild</a></span>  </div>
+<div class="param">healthReport (optional)</div><div class="param-desc"><span class="param-type"><a href="#hudsonmodelFreeStyleProjecthealthReport">array[hudsonmodelFreeStyleProjecthealthReport]</a></span>  </div>
+<div class="param">inQueue (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  </div>
+<div class="param">keepDependencies (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  </div>
+<div class="param">lastBuild (optional)</div><div class="param-desc"><span class="param-type"><a href="#hudsonmodelFreeStyleBuild">hudsonmodelFreeStyleBuild</a></span>  </div>
+<div class="param">lastCompletedBuild (optional)</div><div class="param-desc"><span class="param-type"><a href="#hudsonmodelFreeStyleBuild">hudsonmodelFreeStyleBuild</a></span>  </div>
+<div class="param">lastFailedBuild (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">lastStableBuild (optional)</div><div class="param-desc"><span class="param-type"><a href="#hudsonmodelFreeStyleBuild">hudsonmodelFreeStyleBuild</a></span>  </div>
+<div class="param">lastSuccessfulBuild (optional)</div><div class="param-desc"><span class="param-type"><a href="#hudsonmodelFreeStyleBuild">hudsonmodelFreeStyleBuild</a></span>  </div>
+<div class="param">lastUnstableBuild (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">lastUnsuccessfulBuild (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">nextBuildNumber (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">queueItem (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">concurrentBuild (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  </div>
+<div class="param">scm (optional)</div><div class="param-desc"><span class="param-type"><a href="#hudsonscmNullSCM">hudsonscmNullSCM</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="hudsonmodelFreeStyleProjectactions"><code>hudsonmodelFreeStyleProjectactions</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">_class (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="hudsonmodelFreeStyleProjecthealthReport"><code>hudsonmodelFreeStyleProjecthealthReport</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">description (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">iconClassName (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">iconUrl (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">score (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">_class (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="hudsonmodelHudson"><code>hudsonmodelHudson</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">_class (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">assignedLabels (optional)</div><div class="param-desc"><span class="param-type"><a href="#hudsonmodelHudsonassignedLabels">array[hudsonmodelHudsonassignedLabels]</a></span>  </div>
+<div class="param">mode (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">nodeDescription (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">nodeName (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">numExecutors (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">description (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">jobs (optional)</div><div class="param-desc"><span class="param-type"><a href="#hudsonmodelFreeStyleProject">array[hudsonmodelFreeStyleProject]</a></span>  </div>
+<div class="param">primaryView (optional)</div><div class="param-desc"><span class="param-type"><a href="#hudsonmodelAllView">hudsonmodelAllView</a></span>  </div>
+<div class="param">quietingDown (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  </div>
+<div class="param">slaveAgentPort (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">unlabeledLoad (optional)</div><div class="param-desc"><span class="param-type"><a href="#jenkinsmodelUnlabeledLoadStatistics">jenkinsmodelUnlabeledLoadStatistics</a></span>  </div>
+<div class="param">useCrumbs (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  </div>
+<div class="param">useSecurity (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  </div>
+<div class="param">views (optional)</div><div class="param-desc"><span class="param-type"><a href="#hudsonmodelAllView">array[hudsonmodelAllView]</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="hudsonmodelHudsonMasterComputer"><code>hudsonmodelHudsonMasterComputer</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">_class (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">displayName (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">executors (optional)</div><div class="param-desc"><span class="param-type"><a href="#hudsonmodelHudsonMasterComputerexecutors">array[hudsonmodelHudsonMasterComputerexecutors]</a></span>  </div>
+<div class="param">icon (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">iconClassName (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">idle (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  </div>
+<div class="param">jnlpAgent (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  </div>
+<div class="param">launchSupported (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  </div>
+<div class="param">loadStatistics (optional)</div><div class="param-desc"><span class="param-type"><a href="#hudsonmodelLabel1">hudsonmodelLabel1</a></span>  </div>
+<div class="param">manualLaunchAllowed (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  </div>
+<div class="param">monitorData (optional)</div><div class="param-desc"><span class="param-type"><a href="#hudsonmodelHudsonMasterComputer_monitorData">hudsonmodelHudsonMasterComputer_monitorData</a></span>  </div>
+<div class="param">numExecutors (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">offline (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  </div>
+<div class="param">offlineCause (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">offlineCauseReason (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">temporarilyOffline (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="hudsonmodelHudsonMasterComputer_monitorData"><code>hudsonmodelHudsonMasterComputer_monitorData</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">hudson.node_monitors.SwapSpaceMonitor (optional)</div><div class="param-desc"><span class="param-type"><a href="#hudsonnode_monitorsSwapSpaceMonitorMemoryUsage2">hudsonnode_monitorsSwapSpaceMonitorMemoryUsage2</a></span>  </div>
+<div class="param">hudson.node_monitors.TemporarySpaceMonitor (optional)</div><div class="param-desc"><span class="param-type"><a href="#hudsonnode_monitorsDiskSpaceMonitorDescriptorDiskSpace">hudsonnode_monitorsDiskSpaceMonitorDescriptorDiskSpace</a></span>  </div>
+<div class="param">hudson.node_monitors.DiskSpaceMonitor (optional)</div><div class="param-desc"><span class="param-type"><a href="#hudsonnode_monitorsDiskSpaceMonitorDescriptorDiskSpace">hudsonnode_monitorsDiskSpaceMonitorDescriptorDiskSpace</a></span>  </div>
+<div class="param">hudson.node_monitors.ArchitectureMonitor (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">hudson.node_monitors.ResponseTimeMonitor (optional)</div><div class="param-desc"><span class="param-type"><a href="#hudsonnode_monitorsResponseTimeMonitorData">hudsonnode_monitorsResponseTimeMonitorData</a></span>  </div>
+<div class="param">hudson.node_monitors.ClockMonitor (optional)</div><div class="param-desc"><span class="param-type"><a href="#hudsonutilClockDifference">hudsonutilClockDifference</a></span>  </div>
+<div class="param">_class (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="hudsonmodelHudsonMasterComputerexecutors"><code>hudsonmodelHudsonMasterComputerexecutors</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">currentExecutable (optional)</div><div class="param-desc"><span class="param-type"><a href="#hudsonmodelFreeStyleBuild">hudsonmodelFreeStyleBuild</a></span>  </div>
+<div class="param">idle (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  </div>
+<div class="param">likelyStuck (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  </div>
+<div class="param">number (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">progress (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">_class (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="hudsonmodelHudsonassignedLabels"><code>hudsonmodelHudsonassignedLabels</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">_class (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="hudsonmodelLabel1"><code>hudsonmodelLabel1</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">_class (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="hudsonmodelListView"><code>hudsonmodelListView</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">_class (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">description (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">jobs (optional)</div><div class="param-desc"><span class="param-type"><a href="#hudsonmodelFreeStyleProject">array[hudsonmodelFreeStyleProject]</a></span>  </div>
+<div class="param">name (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">url (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="hudsonmodelQueue"><code>hudsonmodelQueue</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">_class (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">items (optional)</div><div class="param-desc"><span class="param-type"><a href="#hudsonmodelQueueBlockedItem">array[hudsonmodelQueueBlockedItem]</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="hudsonmodelQueueBlockedItem"><code>hudsonmodelQueueBlockedItem</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">_class (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">actions (optional)</div><div class="param-desc"><span class="param-type"><a href="#hudsonmodelCauseAction">array[hudsonmodelCauseAction]</a></span>  </div>
+<div class="param">blocked (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  </div>
+<div class="param">buildable (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  </div>
+<div class="param">id (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">inQueueSince (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">params (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">stuck (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  </div>
+<div class="param">task (optional)</div><div class="param-desc"><span class="param-type"><a href="#hudsonmodelFreeStyleProject">hudsonmodelFreeStyleProject</a></span>  </div>
+<div class="param">url (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">why (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">buildableStartMilliseconds (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="hudsonmodelQueueLeftItem"><code>hudsonmodelQueueLeftItem</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">_class (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">actions (optional)</div><div class="param-desc"><span class="param-type"><a href="#hudsonmodelCauseAction">array[hudsonmodelCauseAction]</a></span>  </div>
+<div class="param">blocked (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  </div>
+<div class="param">buildable (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  </div>
+<div class="param">id (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">inQueueSince (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">params (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">stuck (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  </div>
+<div class="param">task (optional)</div><div class="param-desc"><span class="param-type"><a href="#hudsonmodelFreeStyleProject">hudsonmodelFreeStyleProject</a></span>  </div>
+<div class="param">url (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">why (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">cancelled (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  </div>
+<div class="param">executable (optional)</div><div class="param-desc"><span class="param-type"><a href="#hudsonmodelFreeStyleBuild">hudsonmodelFreeStyleBuild</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="hudsonmodelStringParameterDefinition"><code>hudsonmodelStringParameterDefinition</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">_class (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">defaultParameterValue (optional)</div><div class="param-desc"><span class="param-type"><a href="#hudsonmodelStringParameterValue">hudsonmodelStringParameterValue</a></span>  </div>
+<div class="param">description (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">name (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">type (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="hudsonmodelStringParameterValue"><code>hudsonmodelStringParameterValue</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">_class (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">name (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">value (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="hudsonnode_monitorsDiskSpaceMonitorDescriptorDiskSpace"><code>hudsonnode_monitorsDiskSpaceMonitorDescriptorDiskSpace</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">_class (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">timestamp (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">path (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">size (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="hudsonnode_monitorsResponseTimeMonitorData"><code>hudsonnode_monitorsResponseTimeMonitorData</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">_class (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">timestamp (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">average (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="hudsonnode_monitorsSwapSpaceMonitorMemoryUsage2"><code>hudsonnode_monitorsSwapSpaceMonitorMemoryUsage2</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">_class (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">availablePhysicalMemory (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">availableSwapSpace (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">totalPhysicalMemory (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">totalSwapSpace (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="hudsonscmEmptyChangeLogSet"><code>hudsonscmEmptyChangeLogSet</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">_class (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">kind (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="hudsonscmNullSCM"><code>hudsonscmNullSCM</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">_class (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="hudsonsecuritycsrfDefaultCrumbIssuer"><code>hudsonsecuritycsrfDefaultCrumbIssuer</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">_class (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">crumb (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">crumbRequestField (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="hudsonutilClockDifference"><code>hudsonutilClockDifference</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">_class (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">diff (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="iojenkinsblueoceanresthalLink"><code>iojenkinsblueoceanresthalLink</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">_class (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">href (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="iojenkinsblueoceanrestimplpipelineBranchImpl"><code>iojenkinsblueoceanrestimplpipelineBranchImpl</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">_class (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">displayName (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">estimatedDurationInMillis (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">fullDisplayName (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">fullName (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">name (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">organization (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">parameters (optional)</div><div class="param-desc"><span class="param-type"><a href="#hudsonmodelStringParameterDefinition">array[hudsonmodelStringParameterDefinition]</a></span>  </div>
+<div class="param">permissions (optional)</div><div class="param-desc"><span class="param-type"><a href="#iojenkinsblueoceanrestimplpipelineBranchImpl_permissions">iojenkinsblueoceanrestimplpipelineBranchImpl_permissions</a></span>  </div>
+<div class="param">weatherScore (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">pullRequest (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="iojenkinsblueoceanrestimplpipelineBranchImpl_permissions"><code>iojenkinsblueoceanrestimplpipelineBranchImpl_permissions</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">create (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  </div>
+<div class="param">read (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  </div>
+<div class="param">start (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  </div>
+<div class="param">stop (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  </div>
+<div class="param">_class (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="iojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1"><code>iojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">_class (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">_links (optional)</div><div class="param-desc"><span class="param-type"><a href="#iojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1__links">iojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1__links</a></span>  </div>
+<div class="param">map (optional)</div><div class="param-desc"><span class="param-type"><a href="#iojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1_map">iojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1_map</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="iojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1__links"><code>iojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1__links</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">self (optional)</div><div class="param-desc"><span class="param-type"><a href="#iojenkinsblueoceanresthalLink">iojenkinsblueoceanresthalLink</a></span>  </div>
+<div class="param">_class (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="iojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1_map"><code>iojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1_map</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">io.jenkins.blueocean.service.embedded.rest.PipelineImpl (optional)</div><div class="param-desc"><span class="param-type"><a href="#iojenkinsblueoceanserviceembeddedrestExtensionClassImpl">iojenkinsblueoceanserviceembeddedrestExtensionClassImpl</a></span>  </div>
+<div class="param">io.jenkins.blueocean.service.embedded.rest.MultiBranchPipelineImpl (optional)</div><div class="param-desc"><span class="param-type"><a href="#iojenkinsblueoceanserviceembeddedrestExtensionClassImpl">iojenkinsblueoceanserviceembeddedrestExtensionClassImpl</a></span>  </div>
+<div class="param">_class (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="iojenkinsblueoceanserviceembeddedrestExtensionClassImpl"><code>iojenkinsblueoceanserviceembeddedrestExtensionClassImpl</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">_class (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">_links (optional)</div><div class="param-desc"><span class="param-type"><a href="#iojenkinsblueoceanserviceembeddedrestExtensionClassImpl__links">iojenkinsblueoceanserviceembeddedrestExtensionClassImpl__links</a></span>  </div>
+<div class="param">classes (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">array[String]</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="iojenkinsblueoceanserviceembeddedrestExtensionClassImpl__links"><code>iojenkinsblueoceanserviceembeddedrestExtensionClassImpl__links</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">self (optional)</div><div class="param-desc"><span class="param-type"><a href="#iojenkinsblueoceanresthalLink">iojenkinsblueoceanresthalLink</a></span>  </div>
+<div class="param">_class (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="iojenkinsblueoceanserviceembeddedrestPipelineFolderImpl"><code>iojenkinsblueoceanserviceembeddedrestPipelineFolderImpl</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">_class (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">displayName (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">fullName (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">name (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">organization (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">numberOfFolders (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">numberOfPipelines (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="iojenkinsblueoceanserviceembeddedrestPipelineImpl"><code>iojenkinsblueoceanserviceembeddedrestPipelineImpl</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">_class (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">displayName (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">estimatedDurationInMillis (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">fullName (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">latestRun (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">name (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">organization (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">weatherScore (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="jenkinsmodelUnlabeledLoadStatistics"><code>jenkinsmodelUnlabeledLoadStatistics</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">_class (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="swaggyjenkinsOrganisation"><code>swaggyjenkinsOrganisation</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">_class (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">name (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="swaggyjenkinsPipeline"><code>swaggyjenkinsPipeline</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">_class (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">organization (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">name (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">displayName (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">fullName (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">weatherScore (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">estimatedDurationInMillis (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">latestRun (optional)</div><div class="param-desc"><span class="param-type"><a href="#swaggyjenkinsPipeline_latestRun">swaggyjenkinsPipeline_latestRun</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="swaggyjenkinsPipeline_latestRun"><code>swaggyjenkinsPipeline_latestRun</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">artifacts (optional)</div><div class="param-desc"><span class="param-type"><a href="#swaggyjenkinsPipeline_latestRunartifacts">array[swaggyjenkinsPipeline_latestRunartifacts]</a></span>  </div>
+<div class="param">durationInMillis (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">estimatedDurationInMillis (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">enQueueTime (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">endTime (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">id (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">organization (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">pipeline (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">result (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">runSummary (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">startTime (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">state (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">type (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">commitId (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">_class (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="swaggyjenkinsPipeline_latestRunartifacts"><code>swaggyjenkinsPipeline_latestRunartifacts</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">name (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">size (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">url (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">_class (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="swaggyjenkinsUser"><code>swaggyjenkinsUser</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">_class (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">id (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">fullName (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">email (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">name (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  </body>
+</html>

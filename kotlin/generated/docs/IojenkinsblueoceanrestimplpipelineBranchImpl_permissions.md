@@ -1,0 +1,14 @@
+
+# IojenkinsblueoceanrestimplpipelineBranchImpl_permissions
+
+## Properties
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**create** | **kotlin.Boolean** |  |  [optional]
+**read** | **kotlin.Boolean** |  |  [optional]
+**start** | **kotlin.Boolean** |  |  [optional]
+**stop** | **kotlin.Boolean** |  |  [optional]
+**_class** | **kotlin.String** |  |  [optional]
+
+
+

@@ -16,7 +16,6 @@ Name | Type | Description | Notes
 **number_of_successful_pull_requests** | **int** |  | [optional] 
 **total_number_of_branches** | **int** |  | [optional] 
 **total_number_of_pull_requests** | **int** |  | [optional] 
-**source_path** | **str** |  | [optional] 
 **_class** | **str** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

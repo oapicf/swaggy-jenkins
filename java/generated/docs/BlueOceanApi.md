@@ -6,6 +6,8 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**getAuthenticatedUser**](BlueOceanApi.md#getAuthenticatedUser) | **GET** /blue/rest/organizations/{organisation}/user/ | 
 [**getClasses**](BlueOceanApi.md#getClasses) | **GET** /blue/rest/classes/{class} | 
+[**getOrganisation**](BlueOceanApi.md#getOrganisation) | **GET** /blue/rest/organizations/{organisation} | 
+[**getOrganisations**](BlueOceanApi.md#getOrganisations) | **GET** /blue/rest/organizations/ | 
 [**getPipelineBranchByOrg**](BlueOceanApi.md#getPipelineBranchByOrg) | **GET** /blue/rest/organizations/{organisation}/pipelines/{pipeline}/branches/{branch}/ | 
 [**getPipelineBranchesByOrg**](BlueOceanApi.md#getPipelineBranchesByOrg) | **GET** /blue/rest/organizations/{organisation}/pipelines/{pipeline}/branches | 
 [**getPipelineByOrg**](BlueOceanApi.md#getPipelineByOrg) | **GET** /blue/rest/organizations/{organisation}/pipelines/{pipeline} | 
@@ -98,6 +100,92 @@ Name | Type | Description  | Notes
 ### Return type
 
 **String**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+<a name="getOrganisation"></a>
+# **getOrganisation**
+> SwaggyjenkinsOrganisation getOrganisation(organisation)
+
+
+
+Retrieve organisation details
+
+### Example
+```java
+// Import classes:
+//import com.cliffano.swaggyjenkins.ApiException;
+//import com.cliffano.swaggyjenkins.api.BlueOceanApi;
+
+
+BlueOceanApi apiInstance = new BlueOceanApi();
+String organisation = "organisation_example"; // String | Name of the organisation
+try {
+    SwaggyjenkinsOrganisation result = apiInstance.getOrganisation(organisation);
+    System.out.println(result);
+} catch (ApiException e) {
+    System.err.println("Exception when calling BlueOceanApi#getOrganisation");
+    e.printStackTrace();
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **organisation** | **String**| Name of the organisation |
+
+### Return type
+
+[**SwaggyjenkinsOrganisation**](SwaggyjenkinsOrganisation.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+<a name="getOrganisations"></a>
+# **getOrganisations**
+> GetOrganisations getOrganisations()
+
+
+
+Retrieve all organisations details
+
+### Example
+```java
+// Import classes:
+//import com.cliffano.swaggyjenkins.ApiException;
+//import com.cliffano.swaggyjenkins.api.BlueOceanApi;
+
+
+BlueOceanApi apiInstance = new BlueOceanApi();
+try {
+    GetOrganisations result = apiInstance.getOrganisations();
+    System.out.println(result);
+} catch (ApiException e) {
+    System.err.println("Exception when calling BlueOceanApi#getOrganisations");
+    e.printStackTrace();
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**GetOrganisations**](GetOrganisations.md)
 
 ### Authorization
 

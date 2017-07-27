@@ -10,7 +10,6 @@ Name | Type | Description | Notes
 **organization** | **str** |  | [optional] 
 **number_of_folders** | **int** |  | [optional] 
 **number_of_pipelines** | **int** |  | [optional] 
-**source_path** | **str** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -6,6 +6,8 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**get_authenticated_user**](BlueOceanApi.md#get_authenticated_user) | **GET** /blue/rest/organizations/{organisation}/user/ | 
 [**get_classes**](BlueOceanApi.md#get_classes) | **GET** /blue/rest/classes/{class} | 
+[**get_organisation**](BlueOceanApi.md#get_organisation) | **GET** /blue/rest/organizations/{organisation} | 
+[**get_organisations**](BlueOceanApi.md#get_organisations) | **GET** /blue/rest/organizations/ | 
 [**get_pipeline_branch_by_org**](BlueOceanApi.md#get_pipeline_branch_by_org) | **GET** /blue/rest/organizations/{organisation}/pipelines/{pipeline}/branches/{branch}/ | 
 [**get_pipeline_branches_by_org**](BlueOceanApi.md#get_pipeline_branches_by_org) | **GET** /blue/rest/organizations/{organisation}/pipelines/{pipeline}/branches | 
 [**get_pipeline_by_org**](BlueOceanApi.md#get_pipeline_by_org) | **GET** /blue/rest/organizations/{organisation}/pipelines/{pipeline} | 
@@ -100,6 +102,96 @@ Name | Type | Description  | Notes
 ### Return type
 
 **str**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_organisation**
+> SwaggyjenkinsOrganisation get_organisation(organisation)
+
+
+
+Retrieve organisation details
+
+### Example 
+```python
+from __future__ import print_function
+import time
+import swagger_client
+from swagger_client.rest import ApiException
+from pprint import pprint
+
+# create an instance of the API class
+api_instance = swagger_client.BlueOceanApi()
+organisation = 'organisation_example' # str | Name of the organisation
+
+try: 
+    api_response = api_instance.get_organisation(organisation)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling BlueOceanApi->get_organisation: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **organisation** | **str**| Name of the organisation | 
+
+### Return type
+
+[**SwaggyjenkinsOrganisation**](SwaggyjenkinsOrganisation.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_organisations**
+> GetOrganisations get_organisations()
+
+
+
+Retrieve all organisations details
+
+### Example 
+```python
+from __future__ import print_function
+import time
+import swagger_client
+from swagger_client.rest import ApiException
+from pprint import pprint
+
+# create an instance of the API class
+api_instance = swagger_client.BlueOceanApi()
+
+try: 
+    api_response = api_instance.get_organisations()
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling BlueOceanApi->get_organisations: %s\n" % e)
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**GetOrganisations**](GetOrganisations.md)
 
 ### Authorization
 

@@ -92,6 +92,8 @@ Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
 *BlueOceanApi* | [**getAuthenticatedUser**](docs/BlueOceanApi.md#getAuthenticatedUser) | **GET** /blue/rest/organizations/{organisation}/user/ | 
 *BlueOceanApi* | [**getClasses**](docs/BlueOceanApi.md#getClasses) | **GET** /blue/rest/classes/{class} | 
+*BlueOceanApi* | [**getOrganisation**](docs/BlueOceanApi.md#getOrganisation) | **GET** /blue/rest/organizations/{organisation} | 
+*BlueOceanApi* | [**getOrganisations**](docs/BlueOceanApi.md#getOrganisations) | **GET** /blue/rest/organizations/ | 
 *BlueOceanApi* | [**getPipelineBranchByOrg**](docs/BlueOceanApi.md#getPipelineBranchByOrg) | **GET** /blue/rest/organizations/{organisation}/pipelines/{pipeline}/branches/{branch}/ | 
 *BlueOceanApi* | [**getPipelineBranchesByOrg**](docs/BlueOceanApi.md#getPipelineBranchesByOrg) | **GET** /blue/rest/organizations/{organisation}/pipelines/{pipeline}/branches | 
 *BlueOceanApi* | [**getPipelineByOrg**](docs/BlueOceanApi.md#getPipelineByOrg) | **GET** /blue/rest/organizations/{organisation}/pipelines/{pipeline} | 
@@ -129,16 +131,12 @@ Class | Method | HTTP request | Description
 
  - [GetClassesByClass](docs/GetClassesByClass.md)
  - [GetMultibranchPipeline](docs/GetMultibranchPipeline.md)
+ - [GetOrganisations](docs/GetOrganisations.md)
  - [GetPipelineBranches](docs/GetPipelineBranches.md)
- - [GetPipelineBranches0](docs/GetPipelineBranches0.md)
- - [GetPipelineBranches0LatestRun](docs/GetPipelineBranches0LatestRun.md)
- - [GetPipelineBranches0PullRequest](docs/GetPipelineBranches0PullRequest.md)
- - [GetPipelineBranches0PullRequestLinks](docs/GetPipelineBranches0PullRequestLinks.md)
- - [GetPipelineBranches1](docs/GetPipelineBranches1.md)
- - [GetPipelineBranches1LatestRun](docs/GetPipelineBranches1LatestRun.md)
- - [GetPipelineBranches1LatestRunartifacts](docs/GetPipelineBranches1LatestRunartifacts.md)
- - [GetPipelineBranches2](docs/GetPipelineBranches2.md)
- - [GetPipelineBranches2LatestRun](docs/GetPipelineBranches2LatestRun.md)
+ - [GetPipelineBranchesitem](docs/GetPipelineBranchesitem.md)
+ - [GetPipelineBranchesitemLatestRun](docs/GetPipelineBranchesitemLatestRun.md)
+ - [GetPipelineBranchesitemPullRequest](docs/GetPipelineBranchesitemPullRequest.md)
+ - [GetPipelineBranchesitemPullRequestLinks](docs/GetPipelineBranchesitemPullRequestLinks.md)
  - [GetPipelines](docs/GetPipelines.md)
  - [GetUsers](docs/GetUsers.md)
  - [HudsonmodelAllView](docs/HudsonmodelAllView.md)
@@ -179,6 +177,7 @@ Class | Method | HTTP request | Description
  - [IojenkinsblueoceanserviceembeddedrestPipelineFolderImpl](docs/IojenkinsblueoceanserviceembeddedrestPipelineFolderImpl.md)
  - [IojenkinsblueoceanserviceembeddedrestPipelineImpl](docs/IojenkinsblueoceanserviceembeddedrestPipelineImpl.md)
  - [JenkinsmodelUnlabeledLoadStatistics](docs/JenkinsmodelUnlabeledLoadStatistics.md)
+ - [SwaggyjenkinsOrganisation](docs/SwaggyjenkinsOrganisation.md)
  - [SwaggyjenkinsPipeline](docs/SwaggyjenkinsPipeline.md)
  - [SwaggyjenkinsPipelineLatestRun](docs/SwaggyjenkinsPipelineLatestRun.md)
  - [SwaggyjenkinsPipelineLatestRunartifacts](docs/SwaggyjenkinsPipelineLatestRunartifacts.md)

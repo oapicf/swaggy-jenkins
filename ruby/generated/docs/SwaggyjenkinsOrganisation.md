@@ -1,0 +1,9 @@
+# SwaggyJenkinsClient::SwaggyjenkinsOrganisation
+
+## Properties
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**_class** | **String** |  | [optional] 
+**name** | **String** |  | [optional] 
+
+

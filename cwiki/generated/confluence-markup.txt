@@ -1,0 +1,3139 @@
+h1. Swaggy Jenkins Jenkins API clients generated from Swagger / Open API specification
+
+*Version:* 0.1.0
+
+----
+
+{toc:printable=true|style=square|minLevel=2|maxLevel=3|type=list|outline=false|include=.*}
+
+h2. Endpoints
+
+    h3. getAuthenticatedUser
+    {status:colour=Yellow|title=get|subtle=false}
+    {code}
+    get /blue/rest/organizations/{organisation}/user/
+    {code}
+    *Summary:* 
+    *Description:* Retrieve authenticated user details for an organisation
+
+
+    h4. Parameters
+        h5. Path Parameters
+        ||Name||Description||Required||Default||Pattern||
+        |organisation |Name of the organisation |(/) | |  |
+
+
+
+
+
+
+
+
+    h4. Responses
+        *Status Code:* 200
+        *Message:*     Successfully retrieved authenticated user details
+        {code:title=Response Type}
+swaggyjenkinsUser
+        {code}
+        See [#models]
+
+
+
+        {code:title=Response Schema |collapse=true}
+{
+  "description" : "Successfully retrieved authenticated user details",
+  "schema" : {
+    "$ref" : "#/definitions/swaggyjenkinsUser"
+  }
+}
+        {code}
+        *Status Code:* 401
+        *Message:*     Authentication failed - incorrect username and/or password
+        {code:title=Response Type}
+
+        {code}
+        See [#models]
+
+
+
+        {code:title=Response Schema |collapse=true}
+{
+  "description" : "Authentication failed - incorrect username and/or password"
+}
+        {code}
+        *Status Code:* 403
+        *Message:*     Jenkins requires authentication - please set username and password
+        {code:title=Response Type}
+
+        {code}
+        See [#models]
+
+
+
+        {code:title=Response Schema |collapse=true}
+{
+  "description" : "Jenkins requires authentication - please set username and password"
+}
+        {code}
+    ----
+
+    h3. getClasses
+    {status:colour=Yellow|title=get|subtle=false}
+    {code}
+    get /blue/rest/classes/{class}
+    {code}
+    *Summary:* 
+    *Description:* Get a list of class names supported by a given class
+
+
+    h4. Parameters
+        h5. Path Parameters
+        ||Name||Description||Required||Default||Pattern||
+        |class |Name of the class |(/) | |  |
+
+
+
+
+
+
+
+
+    h4. Responses
+        *Status Code:* 200
+        *Message:*     Successfully retrieved class names
+        {code:title=Response Type}
+String
+        {code}
+        See [#models]
+
+
+
+        {code:title=Response Schema |collapse=true}
+{
+  "description" : "Successfully retrieved class names",
+  "schema" : {
+    "type" : "string"
+  }
+}
+        {code}
+        *Status Code:* 401
+        *Message:*     Authentication failed - incorrect username and/or password
+        {code:title=Response Type}
+
+        {code}
+        See [#models]
+
+
+
+        {code:title=Response Schema |collapse=true}
+{
+  "description" : "Authentication failed - incorrect username and/or password"
+}
+        {code}
+        *Status Code:* 403
+        *Message:*     Jenkins requires authentication - please set username and password
+        {code:title=Response Type}
+
+        {code}
+        See [#models]
+
+
+
+        {code:title=Response Schema |collapse=true}
+{
+  "description" : "Jenkins requires authentication - please set username and password"
+}
+        {code}
+    ----
+
+    h3. getOrganisation
+    {status:colour=Yellow|title=get|subtle=false}
+    {code}
+    get /blue/rest/organizations/{organisation}
+    {code}
+    *Summary:* 
+    *Description:* Retrieve organisation details
+
+
+    h4. Parameters
+        h5. Path Parameters
+        ||Name||Description||Required||Default||Pattern||
+        |organisation |Name of the organisation |(/) | |  |
+
+
+
+
+
+
+
+
+    h4. Responses
+        *Status Code:* 200
+        *Message:*     Successfully retrieved pipeline details
+        {code:title=Response Type}
+swaggyjenkinsOrganisation
+        {code}
+        See [#models]
+
+
+
+        {code:title=Response Schema |collapse=true}
+{
+  "description" : "Successfully retrieved pipeline details",
+  "schema" : {
+    "$ref" : "#/definitions/swaggyjenkinsOrganisation"
+  }
+}
+        {code}
+        *Status Code:* 401
+        *Message:*     Authentication failed - incorrect username and/or password
+        {code:title=Response Type}
+
+        {code}
+        See [#models]
+
+
+
+        {code:title=Response Schema |collapse=true}
+{
+  "description" : "Authentication failed - incorrect username and/or password"
+}
+        {code}
+        *Status Code:* 403
+        *Message:*     Jenkins requires authentication - please set username and password
+        {code:title=Response Type}
+
+        {code}
+        See [#models]
+
+
+
+        {code:title=Response Schema |collapse=true}
+{
+  "description" : "Jenkins requires authentication - please set username and password"
+}
+        {code}
+        *Status Code:* 404
+        *Message:*     Pipeline cannot be found on Jenkins instance
+        {code:title=Response Type}
+
+        {code}
+        See [#models]
+
+
+
+        {code:title=Response Schema |collapse=true}
+{
+  "description" : "Pipeline cannot be found on Jenkins instance"
+}
+        {code}
+    ----
+
+    h3. getOrganisations
+    {status:colour=Yellow|title=get|subtle=false}
+    {code}
+    get /blue/rest/organizations/
+    {code}
+    *Summary:* 
+    *Description:* Retrieve all organisations details
+
+
+    h4. Parameters
+
+
+
+
+
+
+
+    h4. Responses
+        *Status Code:* 200
+        *Message:*     Successfully retrieved pipelines details
+        {code:title=Response Type}
+getOrganisations
+        {code}
+        See [#models]
+
+
+
+        {code:title=Response Schema |collapse=true}
+{
+  "description" : "Successfully retrieved pipelines details",
+  "schema" : {
+    "$ref" : "#/definitions/getOrganisations"
+  }
+}
+        {code}
+        *Status Code:* 401
+        *Message:*     Authentication failed - incorrect username and/or password
+        {code:title=Response Type}
+
+        {code}
+        See [#models]
+
+
+
+        {code:title=Response Schema |collapse=true}
+{
+  "description" : "Authentication failed - incorrect username and/or password"
+}
+        {code}
+        *Status Code:* 403
+        *Message:*     Jenkins requires authentication - please set username and password
+        {code:title=Response Type}
+
+        {code}
+        See [#models]
+
+
+
+        {code:title=Response Schema |collapse=true}
+{
+  "description" : "Jenkins requires authentication - please set username and password"
+}
+        {code}
+    ----
+
+    h3. getPipelineBranchByOrg
+    {status:colour=Yellow|title=get|subtle=false}
+    {code}
+    get /blue/rest/organizations/{organisation}/pipelines/{pipeline}/branches/{branch}/
+    {code}
+    *Summary:* 
+    *Description:* Retrieve branch details for an organisation pipeline
+
+
+    h4. Parameters
+        h5. Path Parameters
+        ||Name||Description||Required||Default||Pattern||
+        |organisation |Name of the organisation |(/) | |  |
+
+|pipeline |Name of the pipeline |(/) | |  |
+
+|branch |Name of the branch |(/) | |  |
+
+
+
+
+
+
+
+
+    h4. Responses
+        *Status Code:* 200
+        *Message:*     Successfully retrieved branch details
+        {code:title=Response Type}
+iojenkinsblueoceanrestimplpipelineBranchImpl
+        {code}
+        See [#models]
+
+
+
+        {code:title=Response Schema |collapse=true}
+{
+  "description" : "Successfully retrieved branch details",
+  "schema" : {
+    "$ref" : "#/definitions/iojenkinsblueoceanrestimplpipelineBranchImpl"
+  }
+}
+        {code}
+        *Status Code:* 401
+        *Message:*     Authentication failed - incorrect username and/or password
+        {code:title=Response Type}
+
+        {code}
+        See [#models]
+
+
+
+        {code:title=Response Schema |collapse=true}
+{
+  "description" : "Authentication failed - incorrect username and/or password"
+}
+        {code}
+        *Status Code:* 403
+        *Message:*     Jenkins requires authentication - please set username and password
+        {code:title=Response Type}
+
+        {code}
+        See [#models]
+
+
+
+        {code:title=Response Schema |collapse=true}
+{
+  "description" : "Jenkins requires authentication - please set username and password"
+}
+        {code}
+    ----
+
+    h3. getPipelineBranchesByOrg
+    {status:colour=Yellow|title=get|subtle=false}
+    {code}
+    get /blue/rest/organizations/{organisation}/pipelines/{pipeline}/branches
+    {code}
+    *Summary:* 
+    *Description:* Retrieve all branches details for an organisation pipeline
+
+
+    h4. Parameters
+        h5. Path Parameters
+        ||Name||Description||Required||Default||Pattern||
+        |organisation |Name of the organisation |(/) | |  |
+
+|pipeline |Name of the pipeline |(/) | |  |
+
+
+
+
+
+
+
+
+    h4. Responses
+        *Status Code:* 200
+        *Message:*     Successfully retrieved all branches details
+        {code:title=Response Type}
+getMultibranchPipeline
+        {code}
+        See [#models]
+
+
+
+        {code:title=Response Schema |collapse=true}
+{
+  "description" : "Successfully retrieved all branches details",
+  "schema" : {
+    "$ref" : "#/definitions/getMultibranchPipeline"
+  }
+}
+        {code}
+        *Status Code:* 401
+        *Message:*     Authentication failed - incorrect username and/or password
+        {code:title=Response Type}
+
+        {code}
+        See [#models]
+
+
+
+        {code:title=Response Schema |collapse=true}
+{
+  "description" : "Authentication failed - incorrect username and/or password"
+}
+        {code}
+        *Status Code:* 403
+        *Message:*     Jenkins requires authentication - please set username and password
+        {code:title=Response Type}
+
+        {code}
+        See [#models]
+
+
+
+        {code:title=Response Schema |collapse=true}
+{
+  "description" : "Jenkins requires authentication - please set username and password"
+}
+        {code}
+    ----
+
+    h3. getPipelineByOrg
+    {status:colour=Yellow|title=get|subtle=false}
+    {code}
+    get /blue/rest/organizations/{organisation}/pipelines/{pipeline}
+    {code}
+    *Summary:* 
+    *Description:* Retrieve pipeline details for an organisation
+
+
+    h4. Parameters
+        h5. Path Parameters
+        ||Name||Description||Required||Default||Pattern||
+        |organisation |Name of the organisation |(/) | |  |
+
+|pipeline |Name of the pipeline |(/) | |  |
+
+
+
+
+
+
+
+
+    h4. Responses
+        *Status Code:* 200
+        *Message:*     Successfully retrieved pipeline details
+        {code:title=Response Type}
+swaggyjenkinsPipeline
+        {code}
+        See [#models]
+
+
+
+        {code:title=Response Schema |collapse=true}
+{
+  "description" : "Successfully retrieved pipeline details",
+  "schema" : {
+    "$ref" : "#/definitions/swaggyjenkinsPipeline"
+  }
+}
+        {code}
+        *Status Code:* 401
+        *Message:*     Authentication failed - incorrect username and/or password
+        {code:title=Response Type}
+
+        {code}
+        See [#models]
+
+
+
+        {code:title=Response Schema |collapse=true}
+{
+  "description" : "Authentication failed - incorrect username and/or password"
+}
+        {code}
+        *Status Code:* 403
+        *Message:*     Jenkins requires authentication - please set username and password
+        {code:title=Response Type}
+
+        {code}
+        See [#models]
+
+
+
+        {code:title=Response Schema |collapse=true}
+{
+  "description" : "Jenkins requires authentication - please set username and password"
+}
+        {code}
+        *Status Code:* 404
+        *Message:*     Pipeline cannot be found on Jenkins instance
+        {code:title=Response Type}
+
+        {code}
+        See [#models]
+
+
+
+        {code:title=Response Schema |collapse=true}
+{
+  "description" : "Pipeline cannot be found on Jenkins instance"
+}
+        {code}
+    ----
+
+    h3. getPipelineFolderByOrg
+    {status:colour=Yellow|title=get|subtle=false}
+    {code}
+    get /blue/rest/organizations/{organisation}/pipelines/{folder}/
+    {code}
+    *Summary:* 
+    *Description:* Retrieve pipeline folder for an organisation
+
+
+    h4. Parameters
+        h5. Path Parameters
+        ||Name||Description||Required||Default||Pattern||
+        |organisation |Name of the organisation |(/) | |  |
+
+|folder |Name of the folder |(/) | |  |
+
+
+
+
+
+
+
+
+    h4. Responses
+        *Status Code:* 200
+        *Message:*     Successfully retrieved folder details
+        {code:title=Response Type}
+iojenkinsblueoceanserviceembeddedrestPipelineFolderImpl
+        {code}
+        See [#models]
+
+
+
+        {code:title=Response Schema |collapse=true}
+{
+  "description" : "Successfully retrieved folder details",
+  "schema" : {
+    "$ref" : "#/definitions/iojenkinsblueoceanserviceembeddedrestPipelineFolderImpl"
+  }
+}
+        {code}
+        *Status Code:* 401
+        *Message:*     Authentication failed - incorrect username and/or password
+        {code:title=Response Type}
+
+        {code}
+        See [#models]
+
+
+
+        {code:title=Response Schema |collapse=true}
+{
+  "description" : "Authentication failed - incorrect username and/or password"
+}
+        {code}
+        *Status Code:* 403
+        *Message:*     Jenkins requires authentication - please set username and password
+        {code:title=Response Type}
+
+        {code}
+        See [#models]
+
+
+
+        {code:title=Response Schema |collapse=true}
+{
+  "description" : "Jenkins requires authentication - please set username and password"
+}
+        {code}
+    ----
+
+    h3. getPipelineFolderByOrg_1
+    {status:colour=Yellow|title=get|subtle=false}
+    {code}
+    get /blue/rest/organizations/{organisation}/pipelines/{folder}/pipelines/{pipeline}
+    {code}
+    *Summary:* 
+    *Description:* Retrieve pipeline details for an organisation folder
+
+
+    h4. Parameters
+        h5. Path Parameters
+        ||Name||Description||Required||Default||Pattern||
+        |organisation |Name of the organisation |(/) | |  |
+
+|pipeline |Name of the pipeline |(/) | |  |
+
+|folder |Name of the folder |(/) | |  |
+
+
+
+
+
+
+
+
+    h4. Responses
+        *Status Code:* 200
+        *Message:*     Successfully retrieved pipeline details
+        {code:title=Response Type}
+iojenkinsblueoceanserviceembeddedrestPipelineImpl
+        {code}
+        See [#models]
+
+
+
+        {code:title=Response Schema |collapse=true}
+{
+  "description" : "Successfully retrieved pipeline details",
+  "schema" : {
+    "$ref" : "#/definitions/iojenkinsblueoceanserviceembeddedrestPipelineImpl"
+  }
+}
+        {code}
+        *Status Code:* 401
+        *Message:*     Authentication failed - incorrect username and/or password
+        {code:title=Response Type}
+
+        {code}
+        See [#models]
+
+
+
+        {code:title=Response Schema |collapse=true}
+{
+  "description" : "Authentication failed - incorrect username and/or password"
+}
+        {code}
+        *Status Code:* 403
+        *Message:*     Jenkins requires authentication - please set username and password
+        {code:title=Response Type}
+
+        {code}
+        See [#models]
+
+
+
+        {code:title=Response Schema |collapse=true}
+{
+  "description" : "Jenkins requires authentication - please set username and password"
+}
+        {code}
+    ----
+
+    h3. getPipelinesByOrg
+    {status:colour=Yellow|title=get|subtle=false}
+    {code}
+    get /blue/rest/organizations/{organisation}/pipelines/
+    {code}
+    *Summary:* 
+    *Description:* Retrieve all pipelines details for an organisation
+
+
+    h4. Parameters
+        h5. Path Parameters
+        ||Name||Description||Required||Default||Pattern||
+        |organisation |Name of the organisation |(/) | |  |
+
+
+
+
+
+
+
+
+    h4. Responses
+        *Status Code:* 200
+        *Message:*     Successfully retrieved pipelines details
+        {code:title=Response Type}
+getPipelines
+        {code}
+        See [#models]
+
+
+
+        {code:title=Response Schema |collapse=true}
+{
+  "description" : "Successfully retrieved pipelines details",
+  "schema" : {
+    "$ref" : "#/definitions/getPipelines"
+  }
+}
+        {code}
+        *Status Code:* 401
+        *Message:*     Authentication failed - incorrect username and/or password
+        {code:title=Response Type}
+
+        {code}
+        See [#models]
+
+
+
+        {code:title=Response Schema |collapse=true}
+{
+  "description" : "Authentication failed - incorrect username and/or password"
+}
+        {code}
+        *Status Code:* 403
+        *Message:*     Jenkins requires authentication - please set username and password
+        {code:title=Response Type}
+
+        {code}
+        See [#models]
+
+
+
+        {code:title=Response Schema |collapse=true}
+{
+  "description" : "Jenkins requires authentication - please set username and password"
+}
+        {code}
+    ----
+
+    h3. getUser
+    {status:colour=Yellow|title=get|subtle=false}
+    {code}
+    get /blue/rest/organizations/{organisation}/users/{user}
+    {code}
+    *Summary:* 
+    *Description:* Retrieve user details for an organisation
+
+
+    h4. Parameters
+        h5. Path Parameters
+        ||Name||Description||Required||Default||Pattern||
+        |organisation |Name of the organisation |(/) | |  |
+
+|user |Name of the user |(/) | |  |
+
+
+
+
+
+
+
+
+    h4. Responses
+        *Status Code:* 200
+        *Message:*     Successfully retrieved users details
+        {code:title=Response Type}
+swaggyjenkinsUser
+        {code}
+        See [#models]
+
+
+
+        {code:title=Response Schema |collapse=true}
+{
+  "description" : "Successfully retrieved users details",
+  "schema" : {
+    "$ref" : "#/definitions/swaggyjenkinsUser"
+  }
+}
+        {code}
+        *Status Code:* 401
+        *Message:*     Authentication failed - incorrect username and/or password
+        {code:title=Response Type}
+
+        {code}
+        See [#models]
+
+
+
+        {code:title=Response Schema |collapse=true}
+{
+  "description" : "Authentication failed - incorrect username and/or password"
+}
+        {code}
+        *Status Code:* 403
+        *Message:*     Jenkins requires authentication - please set username and password
+        {code:title=Response Type}
+
+        {code}
+        See [#models]
+
+
+
+        {code:title=Response Schema |collapse=true}
+{
+  "description" : "Jenkins requires authentication - please set username and password"
+}
+        {code}
+    ----
+
+    h3. getUsers
+    {status:colour=Yellow|title=get|subtle=false}
+    {code}
+    get /blue/rest/organizations/{organisation}/users/
+    {code}
+    *Summary:* 
+    *Description:* Retrieve users details for an organisation
+
+
+    h4. Parameters
+        h5. Path Parameters
+        ||Name||Description||Required||Default||Pattern||
+        |organisation |Name of the organisation |(/) | |  |
+
+
+
+
+
+
+
+
+    h4. Responses
+        *Status Code:* 200
+        *Message:*     Successfully retrieved users details
+        {code:title=Response Type}
+swaggyjenkinsUser
+        {code}
+        See [#models]
+
+
+
+        {code:title=Response Schema |collapse=true}
+{
+  "description" : "Successfully retrieved users details",
+  "schema" : {
+    "$ref" : "#/definitions/swaggyjenkinsUser"
+  }
+}
+        {code}
+        *Status Code:* 401
+        *Message:*     Authentication failed - incorrect username and/or password
+        {code:title=Response Type}
+
+        {code}
+        See [#models]
+
+
+
+        {code:title=Response Schema |collapse=true}
+{
+  "description" : "Authentication failed - incorrect username and/or password"
+}
+        {code}
+        *Status Code:* 403
+        *Message:*     Jenkins requires authentication - please set username and password
+        {code:title=Response Type}
+
+        {code}
+        See [#models]
+
+
+
+        {code:title=Response Schema |collapse=true}
+{
+  "description" : "Jenkins requires authentication - please set username and password"
+}
+        {code}
+    ----
+
+    h3. search
+    {status:colour=Yellow|title=get|subtle=false}
+    {code}
+    get /blue/rest/classes/
+    {code}
+    *Summary:* 
+    *Description:* Get classes details
+
+
+    h4. Parameters
+
+
+
+        h5. Query Parameters
+        ||Name||Description||Required||Default||Pattern||
+        |q |Query string containing an array of class names |(/) | |  |
+
+
+
+
+
+    h4. Responses
+        *Status Code:* 200
+        *Message:*     Successfully retrieved search result
+        {code:title=Response Type}
+String
+        {code}
+        See [#models]
+
+
+
+        {code:title=Response Schema |collapse=true}
+{
+  "description" : "Successfully retrieved search result",
+  "schema" : {
+    "type" : "string"
+  }
+}
+        {code}
+        *Status Code:* 401
+        *Message:*     Authentication failed - incorrect username and/or password
+        {code:title=Response Type}
+
+        {code}
+        See [#models]
+
+
+
+        {code:title=Response Schema |collapse=true}
+{
+  "description" : "Authentication failed - incorrect username and/or password"
+}
+        {code}
+        *Status Code:* 403
+        *Message:*     Jenkins requires authentication - please set username and password
+        {code:title=Response Type}
+
+        {code}
+        See [#models]
+
+
+
+        {code:title=Response Schema |collapse=true}
+{
+  "description" : "Jenkins requires authentication - please set username and password"
+}
+        {code}
+    ----
+
+    h3. search_2
+    {status:colour=Yellow|title=get|subtle=false}
+    {code}
+    get /blue/rest/search/
+    {code}
+    *Summary:* 
+    *Description:* Search for any resource details
+
+
+    h4. Parameters
+
+
+
+        h5. Query Parameters
+        ||Name||Description||Required||Default||Pattern||
+        |q |Query string |(/) | |  |
+
+
+
+
+
+    h4. Responses
+        *Status Code:* 200
+        *Message:*     Successfully retrieved search result
+        {code:title=Response Type}
+String
+        {code}
+        See [#models]
+
+
+
+        {code:title=Response Schema |collapse=true}
+{
+  "description" : "Successfully retrieved search result",
+  "schema" : {
+    "type" : "string"
+  }
+}
+        {code}
+        *Status Code:* 401
+        *Message:*     Authentication failed - incorrect username and/or password
+        {code:title=Response Type}
+
+        {code}
+        See [#models]
+
+
+
+        {code:title=Response Schema |collapse=true}
+{
+  "description" : "Authentication failed - incorrect username and/or password"
+}
+        {code}
+        *Status Code:* 403
+        *Message:*     Jenkins requires authentication - please set username and password
+        {code:title=Response Type}
+
+        {code}
+        See [#models]
+
+
+
+        {code:title=Response Schema |collapse=true}
+{
+  "description" : "Jenkins requires authentication - please set username and password"
+}
+        {code}
+    ----
+
+    h3. getComputer
+    {status:colour=Yellow|title=get|subtle=false}
+    {code}
+    get /computer/api/json?depth&#x3D;1
+    {code}
+    *Summary:* 
+    *Description:* Retrieve computer details
+
+
+    h4. Parameters
+
+
+
+
+
+
+
+    h4. Responses
+        *Status Code:* 200
+        *Message:*     Successfully retrieved computer details
+        {code:title=Response Type}
+hudsonmodelComputerSet
+        {code}
+        See [#models]
+
+
+
+        {code:title=Response Schema |collapse=true}
+{
+  "description" : "Successfully retrieved computer details",
+  "schema" : {
+    "$ref" : "#/definitions/hudsonmodelComputerSet"
+  }
+}
+        {code}
+        *Status Code:* 401
+        *Message:*     Authentication failed - incorrect username and/or password
+        {code:title=Response Type}
+
+        {code}
+        See [#models]
+
+
+
+        {code:title=Response Schema |collapse=true}
+{
+  "description" : "Authentication failed - incorrect username and/or password"
+}
+        {code}
+        *Status Code:* 403
+        *Message:*     Jenkins requires authentication - please set username and password
+        {code:title=Response Type}
+
+        {code}
+        See [#models]
+
+
+
+        {code:title=Response Schema |collapse=true}
+{
+  "description" : "Jenkins requires authentication - please set username and password"
+}
+        {code}
+    ----
+
+    h3. getCrumb
+    {status:colour=Yellow|title=get|subtle=false}
+    {code}
+    get /crumbIssuer/api/json
+    {code}
+    *Summary:* 
+    *Description:* Retrieve CSRF protection token
+
+
+    h4. Parameters
+
+
+
+
+
+
+
+    h4. Responses
+        *Status Code:* 200
+        *Message:*     Successfully retrieved CSRF protection token
+        {code:title=Response Type}
+hudsonsecuritycsrfDefaultCrumbIssuer
+        {code}
+        See [#models]
+
+
+
+        {code:title=Response Schema |collapse=true}
+{
+  "description" : "Successfully retrieved CSRF protection token",
+  "schema" : {
+    "$ref" : "#/definitions/hudsonsecuritycsrfDefaultCrumbIssuer"
+  }
+}
+        {code}
+        *Status Code:* 401
+        *Message:*     Authentication failed - incorrect username and/or password
+        {code:title=Response Type}
+
+        {code}
+        See [#models]
+
+
+
+        {code:title=Response Schema |collapse=true}
+{
+  "description" : "Authentication failed - incorrect username and/or password"
+}
+        {code}
+        *Status Code:* 403
+        *Message:*     Jenkins requires authentication - please set username and password
+        {code:title=Response Type}
+
+        {code}
+        See [#models]
+
+
+
+        {code:title=Response Schema |collapse=true}
+{
+  "description" : "Jenkins requires authentication - please set username and password"
+}
+        {code}
+    ----
+
+    h3. getJenkins
+    {status:colour=Yellow|title=get|subtle=false}
+    {code}
+    get /api/json
+    {code}
+    *Summary:* 
+    *Description:* Retrieve Jenkins details
+
+
+    h4. Parameters
+
+
+
+
+
+
+
+    h4. Responses
+        *Status Code:* 200
+        *Message:*     Successfully retrieved Jenkins details
+        {code:title=Response Type}
+hudsonmodelHudson
+        {code}
+        See [#models]
+
+
+
+        {code:title=Response Schema |collapse=true}
+{
+  "description" : "Successfully retrieved Jenkins details",
+  "schema" : {
+    "$ref" : "#/definitions/hudsonmodelHudson"
+  }
+}
+        {code}
+        *Status Code:* 401
+        *Message:*     Authentication failed - incorrect username and/or password
+        {code:title=Response Type}
+
+        {code}
+        See [#models]
+
+
+
+        {code:title=Response Schema |collapse=true}
+{
+  "description" : "Authentication failed - incorrect username and/or password"
+}
+        {code}
+        *Status Code:* 403
+        *Message:*     Jenkins requires authentication - please set username and password
+        {code:title=Response Type}
+
+        {code}
+        See [#models]
+
+
+
+        {code:title=Response Schema |collapse=true}
+{
+  "description" : "Jenkins requires authentication - please set username and password"
+}
+        {code}
+    ----
+
+    h3. getJob
+    {status:colour=Yellow|title=get|subtle=false}
+    {code}
+    get /job/{name}/api/json
+    {code}
+    *Summary:* 
+    *Description:* Retrieve job details
+
+
+    h4. Parameters
+        h5. Path Parameters
+        ||Name||Description||Required||Default||Pattern||
+        |name |Name of the job |(/) | |  |
+
+
+
+
+
+
+
+
+    h4. Responses
+        *Status Code:* 200
+        *Message:*     Successfully retrieved job details
+        {code:title=Response Type}
+hudsonmodelFreeStyleProject
+        {code}
+        See [#models]
+
+
+
+        {code:title=Response Schema |collapse=true}
+{
+  "description" : "Successfully retrieved job details",
+  "schema" : {
+    "$ref" : "#/definitions/hudsonmodelFreeStyleProject"
+  }
+}
+        {code}
+        *Status Code:* 401
+        *Message:*     Authentication failed - incorrect username and/or password
+        {code:title=Response Type}
+
+        {code}
+        See [#models]
+
+
+
+        {code:title=Response Schema |collapse=true}
+{
+  "description" : "Authentication failed - incorrect username and/or password"
+}
+        {code}
+        *Status Code:* 403
+        *Message:*     Jenkins requires authentication - please set username and password
+        {code:title=Response Type}
+
+        {code}
+        See [#models]
+
+
+
+        {code:title=Response Schema |collapse=true}
+{
+  "description" : "Jenkins requires authentication - please set username and password"
+}
+        {code}
+        *Status Code:* 404
+        *Message:*     Job cannot be found on Jenkins instance
+        {code:title=Response Type}
+
+        {code}
+        See [#models]
+
+
+
+        {code:title=Response Schema |collapse=true}
+{
+  "description" : "Job cannot be found on Jenkins instance"
+}
+        {code}
+    ----
+
+    h3. getJobConfig
+    {status:colour=Yellow|title=get|subtle=false}
+    {code}
+    get /job/{name}/config.xml
+    {code}
+    *Summary:* 
+    *Description:* Retrieve job configuration
+
+
+    h4. Parameters
+        h5. Path Parameters
+        ||Name||Description||Required||Default||Pattern||
+        |name |Name of the job |(/) | |  |
+
+
+
+
+
+
+
+
+    h4. Responses
+        *Status Code:* 200
+        *Message:*     Successfully retrieved job configuration in config.xml format
+        {code:title=Response Type}
+String
+        {code}
+        See [#models]
+
+
+
+        {code:title=Response Schema |collapse=true}
+{
+  "description" : "Successfully retrieved job configuration in config.xml format",
+  "schema" : {
+    "type" : "string"
+  }
+}
+        {code}
+        *Status Code:* 401
+        *Message:*     Authentication failed - incorrect username and/or password
+        {code:title=Response Type}
+
+        {code}
+        See [#models]
+
+
+
+        {code:title=Response Schema |collapse=true}
+{
+  "description" : "Authentication failed - incorrect username and/or password"
+}
+        {code}
+        *Status Code:* 403
+        *Message:*     Jenkins requires authentication - please set username and password
+        {code:title=Response Type}
+
+        {code}
+        See [#models]
+
+
+
+        {code:title=Response Schema |collapse=true}
+{
+  "description" : "Jenkins requires authentication - please set username and password"
+}
+        {code}
+        *Status Code:* 404
+        *Message:*     Job cannot be found on Jenkins instance
+        {code:title=Response Type}
+
+        {code}
+        See [#models]
+
+
+
+        {code:title=Response Schema |collapse=true}
+{
+  "description" : "Job cannot be found on Jenkins instance"
+}
+        {code}
+    ----
+
+    h3. getJobLastBuild
+    {status:colour=Yellow|title=get|subtle=false}
+    {code}
+    get /job/{name}/lastBuild/api/json
+    {code}
+    *Summary:* 
+    *Description:* Retrieve job&#39;s last build details
+
+
+    h4. Parameters
+        h5. Path Parameters
+        ||Name||Description||Required||Default||Pattern||
+        |name |Name of the job |(/) | |  |
+
+
+
+
+
+
+
+
+    h4. Responses
+        *Status Code:* 200
+        *Message:*     Successfully retrieved job&#39;s last build details
+        {code:title=Response Type}
+hudsonmodelFreeStyleBuild
+        {code}
+        See [#models]
+
+
+
+        {code:title=Response Schema |collapse=true}
+{
+  "description" : "Successfully retrieved job's last build details",
+  "schema" : {
+    "$ref" : "#/definitions/hudsonmodelFreeStyleBuild"
+  }
+}
+        {code}
+        *Status Code:* 401
+        *Message:*     Authentication failed - incorrect username and/or password
+        {code:title=Response Type}
+
+        {code}
+        See [#models]
+
+
+
+        {code:title=Response Schema |collapse=true}
+{
+  "description" : "Authentication failed - incorrect username and/or password"
+}
+        {code}
+        *Status Code:* 403
+        *Message:*     Jenkins requires authentication - please set username and password
+        {code:title=Response Type}
+
+        {code}
+        See [#models]
+
+
+
+        {code:title=Response Schema |collapse=true}
+{
+  "description" : "Jenkins requires authentication - please set username and password"
+}
+        {code}
+        *Status Code:* 404
+        *Message:*     Job cannot be found on Jenkins instance
+        {code:title=Response Type}
+
+        {code}
+        See [#models]
+
+
+
+        {code:title=Response Schema |collapse=true}
+{
+  "description" : "Job cannot be found on Jenkins instance"
+}
+        {code}
+    ----
+
+    h3. getJobProgressiveText
+    {status:colour=Yellow|title=get|subtle=false}
+    {code}
+    get /job/{name}/{number}/logText/progressiveText
+    {code}
+    *Summary:* 
+    *Description:* Retrieve job&#39;s build progressive text output
+
+
+    h4. Parameters
+        h5. Path Parameters
+        ||Name||Description||Required||Default||Pattern||
+        |name |Name of the job |(/) | |  |
+
+|number |Build number |(/) | |  |
+
+
+
+
+        h5. Query Parameters
+        ||Name||Description||Required||Default||Pattern||
+        |start |Starting point of progressive text output |(/) | |  |
+
+
+
+
+
+    h4. Responses
+        *Status Code:* 200
+        *Message:*     Successfully retrieved job&#39;s build progressive text output
+        {code:title=Response Type}
+
+        {code}
+        See [#models]
+
+
+
+        {code:title=Response Schema |collapse=true}
+{
+  "description" : "Successfully retrieved job's build progressive text output"
+}
+        {code}
+        *Status Code:* 401
+        *Message:*     Authentication failed - incorrect username and/or password
+        {code:title=Response Type}
+
+        {code}
+        See [#models]
+
+
+
+        {code:title=Response Schema |collapse=true}
+{
+  "description" : "Authentication failed - incorrect username and/or password"
+}
+        {code}
+        *Status Code:* 403
+        *Message:*     Jenkins requires authentication - please set username and password
+        {code:title=Response Type}
+
+        {code}
+        See [#models]
+
+
+
+        {code:title=Response Schema |collapse=true}
+{
+  "description" : "Jenkins requires authentication - please set username and password"
+}
+        {code}
+        *Status Code:* 404
+        *Message:*     Job cannot be found on Jenkins instance
+        {code:title=Response Type}
+
+        {code}
+        See [#models]
+
+
+
+        {code:title=Response Schema |collapse=true}
+{
+  "description" : "Job cannot be found on Jenkins instance"
+}
+        {code}
+    ----
+
+    h3. getQueue
+    {status:colour=Yellow|title=get|subtle=false}
+    {code}
+    get /queue/api/json
+    {code}
+    *Summary:* 
+    *Description:* Retrieve queue details
+
+
+    h4. Parameters
+
+
+
+
+
+
+
+    h4. Responses
+        *Status Code:* 200
+        *Message:*     Successfully retrieved queue details
+        {code:title=Response Type}
+hudsonmodelQueue
+        {code}
+        See [#models]
+
+
+
+        {code:title=Response Schema |collapse=true}
+{
+  "description" : "Successfully retrieved queue details",
+  "schema" : {
+    "$ref" : "#/definitions/hudsonmodelQueue"
+  }
+}
+        {code}
+        *Status Code:* 401
+        *Message:*     Authentication failed - incorrect username and/or password
+        {code:title=Response Type}
+
+        {code}
+        See [#models]
+
+
+
+        {code:title=Response Schema |collapse=true}
+{
+  "description" : "Authentication failed - incorrect username and/or password"
+}
+        {code}
+        *Status Code:* 403
+        *Message:*     Jenkins requires authentication - please set username and password
+        {code:title=Response Type}
+
+        {code}
+        See [#models]
+
+
+
+        {code:title=Response Schema |collapse=true}
+{
+  "description" : "Jenkins requires authentication - please set username and password"
+}
+        {code}
+    ----
+
+    h3. getQueueItem
+    {status:colour=Yellow|title=get|subtle=false}
+    {code}
+    get /queue/item/{number}/api/json
+    {code}
+    *Summary:* 
+    *Description:* Retrieve queued item details
+
+
+    h4. Parameters
+        h5. Path Parameters
+        ||Name||Description||Required||Default||Pattern||
+        |number |Queue number |(/) | |  |
+
+
+
+
+
+
+
+
+    h4. Responses
+        *Status Code:* 200
+        *Message:*     Successfully retrieved queued item details
+        {code:title=Response Type}
+hudsonmodelQueue
+        {code}
+        See [#models]
+
+
+
+        {code:title=Response Schema |collapse=true}
+{
+  "description" : "Successfully retrieved queued item details",
+  "schema" : {
+    "$ref" : "#/definitions/hudsonmodelQueue"
+  }
+}
+        {code}
+        *Status Code:* 401
+        *Message:*     Authentication failed - incorrect username and/or password
+        {code:title=Response Type}
+
+        {code}
+        See [#models]
+
+
+
+        {code:title=Response Schema |collapse=true}
+{
+  "description" : "Authentication failed - incorrect username and/or password"
+}
+        {code}
+        *Status Code:* 403
+        *Message:*     Jenkins requires authentication - please set username and password
+        {code:title=Response Type}
+
+        {code}
+        See [#models]
+
+
+
+        {code:title=Response Schema |collapse=true}
+{
+  "description" : "Jenkins requires authentication - please set username and password"
+}
+        {code}
+    ----
+
+    h3. getView
+    {status:colour=Yellow|title=get|subtle=false}
+    {code}
+    get /view/{name}/api/json
+    {code}
+    *Summary:* 
+    *Description:* Retrieve view details
+
+
+    h4. Parameters
+        h5. Path Parameters
+        ||Name||Description||Required||Default||Pattern||
+        |name |Name of the view |(/) | |  |
+
+
+
+
+
+
+
+
+    h4. Responses
+        *Status Code:* 200
+        *Message:*     Successfully retrieved view details
+        {code:title=Response Type}
+hudsonmodelListView
+        {code}
+        See [#models]
+
+
+
+        {code:title=Response Schema |collapse=true}
+{
+  "description" : "Successfully retrieved view details",
+  "schema" : {
+    "$ref" : "#/definitions/hudsonmodelListView"
+  }
+}
+        {code}
+        *Status Code:* 401
+        *Message:*     Authentication failed - incorrect username and/or password
+        {code:title=Response Type}
+
+        {code}
+        See [#models]
+
+
+
+        {code:title=Response Schema |collapse=true}
+{
+  "description" : "Authentication failed - incorrect username and/or password"
+}
+        {code}
+        *Status Code:* 403
+        *Message:*     Jenkins requires authentication - please set username and password
+        {code:title=Response Type}
+
+        {code}
+        See [#models]
+
+
+
+        {code:title=Response Schema |collapse=true}
+{
+  "description" : "Jenkins requires authentication - please set username and password"
+}
+        {code}
+        *Status Code:* 404
+        *Message:*     View cannot be found on Jenkins instance
+        {code:title=Response Type}
+
+        {code}
+        See [#models]
+
+
+
+        {code:title=Response Schema |collapse=true}
+{
+  "description" : "View cannot be found on Jenkins instance"
+}
+        {code}
+    ----
+
+    h3. getViewConfig
+    {status:colour=Yellow|title=get|subtle=false}
+    {code}
+    get /view/{name}/config.xml
+    {code}
+    *Summary:* 
+    *Description:* Retrieve view configuration
+
+
+    h4. Parameters
+        h5. Path Parameters
+        ||Name||Description||Required||Default||Pattern||
+        |name |Name of the view |(/) | |  |
+
+
+
+
+
+
+
+
+    h4. Responses
+        *Status Code:* 200
+        *Message:*     Successfully retrieved view configuration in config.xml format
+        {code:title=Response Type}
+String
+        {code}
+        See [#models]
+
+
+
+        {code:title=Response Schema |collapse=true}
+{
+  "description" : "Successfully retrieved view configuration in config.xml format",
+  "schema" : {
+    "type" : "string"
+  }
+}
+        {code}
+        *Status Code:* 401
+        *Message:*     Authentication failed - incorrect username and/or password
+        {code:title=Response Type}
+
+        {code}
+        See [#models]
+
+
+
+        {code:title=Response Schema |collapse=true}
+{
+  "description" : "Authentication failed - incorrect username and/or password"
+}
+        {code}
+        *Status Code:* 403
+        *Message:*     Jenkins requires authentication - please set username and password
+        {code:title=Response Type}
+
+        {code}
+        See [#models]
+
+
+
+        {code:title=Response Schema |collapse=true}
+{
+  "description" : "Jenkins requires authentication - please set username and password"
+}
+        {code}
+        *Status Code:* 404
+        *Message:*     View cannot be found on Jenkins instance
+        {code:title=Response Type}
+
+        {code}
+        See [#models]
+
+
+
+        {code:title=Response Schema |collapse=true}
+{
+  "description" : "View cannot be found on Jenkins instance"
+}
+        {code}
+    ----
+
+    h3. headJenkins
+    {status:colour=Yellow|title=head|subtle=false}
+    {code}
+    head /api/json
+    {code}
+    *Summary:* 
+    *Description:* Retrieve Jenkins headers
+
+
+    h4. Parameters
+
+
+
+
+
+
+
+    h4. Responses
+        *Status Code:* 200
+        *Message:*     Successfully retrieved Jenkins headers
+        {code:title=Response Type}
+
+        {code}
+        See [#models]
+
+
+
+        {code:title=Response Schema |collapse=true}
+{
+  "description" : "Successfully retrieved Jenkins headers",
+  "headers" : {
+    "x-jenkins" : {
+      "type" : "string",
+      "description" : "Jenkins version number"
+    }
+  }
+}
+        {code}
+        *Status Code:* 401
+        *Message:*     Authentication failed - incorrect username and/or password
+        {code:title=Response Type}
+
+        {code}
+        See [#models]
+
+
+
+        {code:title=Response Schema |collapse=true}
+{
+  "description" : "Authentication failed - incorrect username and/or password"
+}
+        {code}
+        *Status Code:* 403
+        *Message:*     Jenkins requires authentication - please set username and password
+        {code:title=Response Type}
+
+        {code}
+        See [#models]
+
+
+
+        {code:title=Response Schema |collapse=true}
+{
+  "description" : "Jenkins requires authentication - please set username and password"
+}
+        {code}
+    ----
+
+    h3. postCreateItem
+    {status:colour=Yellow|title=post|subtle=false}
+    {code}
+    post /createItem
+    {code}
+    *Summary:* 
+    *Description:* Create a new job using job configuration, or copied from an existing job
+
+
+    h4. Parameters
+
+        h5. Body Parameter
+        ||Name||Description||Required||Default||Pattern||
+        |body |Job configuration in config.xml format |(x) | |  |
+
+
+        h5. Header Parameters
+        ||Name||Description||Required||Default||Pattern||
+        
+        h5. Query Parameters
+        ||Name||Description||Required||Default||Pattern||
+        |name |Name of the new job |(/) | |  |
+
+|from |Existing job to copy from |(x) | |  |
+
+|mode |Set to &#39;copy&#39; for copying an existing job |(x) | |  |
+
+
+
+
+
+    h4. Responses
+        *Status Code:* 200
+        *Message:*     Successfully created a new job
+        {code:title=Response Type}
+
+        {code}
+        See [#models]
+
+
+
+        {code:title=Response Schema |collapse=true}
+{
+  "description" : "Successfully created a new job"
+}
+        {code}
+        *Status Code:* 400
+        *Message:*     An error has occurred - error message is embedded inside the HTML response
+        {code:title=Response Type}
+String
+        {code}
+        See [#models]
+
+
+
+        {code:title=Response Schema |collapse=true}
+{
+  "description" : "An error has occurred - error message is embedded inside the HTML response",
+  "schema" : {
+    "type" : "string"
+  }
+}
+        {code}
+        *Status Code:* 401
+        *Message:*     Authentication failed - incorrect username and/or password
+        {code:title=Response Type}
+
+        {code}
+        See [#models]
+
+
+
+        {code:title=Response Schema |collapse=true}
+{
+  "description" : "Authentication failed - incorrect username and/or password"
+}
+        {code}
+        *Status Code:* 403
+        *Message:*     Jenkins requires authentication - please set username and password
+        {code:title=Response Type}
+
+        {code}
+        See [#models]
+
+
+
+        {code:title=Response Schema |collapse=true}
+{
+  "description" : "Jenkins requires authentication - please set username and password"
+}
+        {code}
+    ----
+
+    h3. postCreateView
+    {status:colour=Yellow|title=post|subtle=false}
+    {code}
+    post /createView
+    {code}
+    *Summary:* 
+    *Description:* Create a new view using view configuration
+
+
+    h4. Parameters
+
+        h5. Body Parameter
+        ||Name||Description||Required||Default||Pattern||
+        |body |View configuration in config.xml format |(x) | |  |
+
+
+        h5. Header Parameters
+        ||Name||Description||Required||Default||Pattern||
+        
+        h5. Query Parameters
+        ||Name||Description||Required||Default||Pattern||
+        |name |Name of the new view |(/) | |  |
+
+
+
+
+
+    h4. Responses
+        *Status Code:* 200
+        *Message:*     Successfully created the view
+        {code:title=Response Type}
+
+        {code}
+        See [#models]
+
+
+
+        {code:title=Response Schema |collapse=true}
+{
+  "description" : "Successfully created the view"
+}
+        {code}
+        *Status Code:* 400
+        *Message:*     An error has occurred - error message is embedded inside the HTML response
+        {code:title=Response Type}
+String
+        {code}
+        See [#models]
+
+
+
+        {code:title=Response Schema |collapse=true}
+{
+  "description" : "An error has occurred - error message is embedded inside the HTML response",
+  "schema" : {
+    "type" : "string"
+  }
+}
+        {code}
+        *Status Code:* 401
+        *Message:*     Authentication failed - incorrect username and/or password
+        {code:title=Response Type}
+
+        {code}
+        See [#models]
+
+
+
+        {code:title=Response Schema |collapse=true}
+{
+  "description" : "Authentication failed - incorrect username and/or password"
+}
+        {code}
+        *Status Code:* 403
+        *Message:*     Jenkins requires authentication - please set username and password
+        {code:title=Response Type}
+
+        {code}
+        See [#models]
+
+
+
+        {code:title=Response Schema |collapse=true}
+{
+  "description" : "Jenkins requires authentication - please set username and password"
+}
+        {code}
+    ----
+
+    h3. postJobBuild
+    {status:colour=Yellow|title=post|subtle=false}
+    {code}
+    post /job/{name}/build
+    {code}
+    *Summary:* 
+    *Description:* Build a job
+
+
+    h4. Parameters
+        h5. Path Parameters
+        ||Name||Description||Required||Default||Pattern||
+        |name |Name of the job |(/) | |  |
+
+
+
+        h5. Header Parameters
+        ||Name||Description||Required||Default||Pattern||
+        
+        h5. Query Parameters
+        ||Name||Description||Required||Default||Pattern||
+        |json | |(/) | |  |
+
+|token | |(x) | |  |
+
+
+
+
+
+    h4. Responses
+        *Status Code:* 200
+        *Message:*     Successfully built the job (backward compatibility for older versions of Jenkins)
+        {code:title=Response Type}
+
+        {code}
+        See [#models]
+
+
+
+        {code:title=Response Schema |collapse=true}
+{
+  "description" : "Successfully built the job (backward compatibility for older versions of Jenkins)"
+}
+        {code}
+        *Status Code:* 201
+        *Message:*     Successfully built the job
+        {code:title=Response Type}
+
+        {code}
+        See [#models]
+
+
+
+        {code:title=Response Schema |collapse=true}
+{
+  "description" : "Successfully built the job"
+}
+        {code}
+        *Status Code:* 401
+        *Message:*     Authentication failed - incorrect username and/or password
+        {code:title=Response Type}
+
+        {code}
+        See [#models]
+
+
+
+        {code:title=Response Schema |collapse=true}
+{
+  "description" : "Authentication failed - incorrect username and/or password"
+}
+        {code}
+        *Status Code:* 403
+        *Message:*     Jenkins requires authentication - please set username and password
+        {code:title=Response Type}
+
+        {code}
+        See [#models]
+
+
+
+        {code:title=Response Schema |collapse=true}
+{
+  "description" : "Jenkins requires authentication - please set username and password"
+}
+        {code}
+        *Status Code:* 404
+        *Message:*     Job cannot be found on Jenkins instance
+        {code:title=Response Type}
+
+        {code}
+        See [#models]
+
+
+
+        {code:title=Response Schema |collapse=true}
+{
+  "description" : "Job cannot be found on Jenkins instance"
+}
+        {code}
+    ----
+
+    h3. postJobConfig
+    {status:colour=Yellow|title=post|subtle=false}
+    {code}
+    post /job/{name}/config.xml
+    {code}
+    *Summary:* 
+    *Description:* Update job configuration
+
+
+    h4. Parameters
+        h5. Path Parameters
+        ||Name||Description||Required||Default||Pattern||
+        |name |Name of the job |(/) | |  |
+
+
+        h5. Body Parameter
+        ||Name||Description||Required||Default||Pattern||
+        |body |Job configuration in config.xml format |(/) | |  |
+
+
+        h5. Header Parameters
+        ||Name||Description||Required||Default||Pattern||
+        
+
+
+
+
+    h4. Responses
+        *Status Code:* 200
+        *Message:*     Successfully retrieved job configuration in config.xml format
+        {code:title=Response Type}
+
+        {code}
+        See [#models]
+
+
+
+        {code:title=Response Schema |collapse=true}
+{
+  "description" : "Successfully retrieved job configuration in config.xml format"
+}
+        {code}
+        *Status Code:* 400
+        *Message:*     An error has occurred - error message is embedded inside the HTML response
+        {code:title=Response Type}
+String
+        {code}
+        See [#models]
+
+
+
+        {code:title=Response Schema |collapse=true}
+{
+  "description" : "An error has occurred - error message is embedded inside the HTML response",
+  "schema" : {
+    "type" : "string"
+  }
+}
+        {code}
+        *Status Code:* 401
+        *Message:*     Authentication failed - incorrect username and/or password
+        {code:title=Response Type}
+
+        {code}
+        See [#models]
+
+
+
+        {code:title=Response Schema |collapse=true}
+{
+  "description" : "Authentication failed - incorrect username and/or password"
+}
+        {code}
+        *Status Code:* 403
+        *Message:*     Jenkins requires authentication - please set username and password
+        {code:title=Response Type}
+
+        {code}
+        See [#models]
+
+
+
+        {code:title=Response Schema |collapse=true}
+{
+  "description" : "Jenkins requires authentication - please set username and password"
+}
+        {code}
+        *Status Code:* 404
+        *Message:*     Job cannot be found on Jenkins instance
+        {code:title=Response Type}
+
+        {code}
+        See [#models]
+
+
+
+        {code:title=Response Schema |collapse=true}
+{
+  "description" : "Job cannot be found on Jenkins instance"
+}
+        {code}
+    ----
+
+    h3. postJobDelete
+    {status:colour=Yellow|title=post|subtle=false}
+    {code}
+    post /job/{name}/doDelete
+    {code}
+    *Summary:* 
+    *Description:* Delete a job
+
+
+    h4. Parameters
+        h5. Path Parameters
+        ||Name||Description||Required||Default||Pattern||
+        |name |Name of the job |(/) | |  |
+
+
+
+        h5. Header Parameters
+        ||Name||Description||Required||Default||Pattern||
+        
+
+
+
+
+    h4. Responses
+        *Status Code:* 200
+        *Message:*     Successfully deleted the job
+        {code:title=Response Type}
+
+        {code}
+        See [#models]
+
+
+
+        {code:title=Response Schema |collapse=true}
+{
+  "description" : "Successfully deleted the job"
+}
+        {code}
+        *Status Code:* 401
+        *Message:*     Authentication failed - incorrect username and/or password
+        {code:title=Response Type}
+
+        {code}
+        See [#models]
+
+
+
+        {code:title=Response Schema |collapse=true}
+{
+  "description" : "Authentication failed - incorrect username and/or password"
+}
+        {code}
+        *Status Code:* 403
+        *Message:*     Jenkins requires authentication - please set username and password
+        {code:title=Response Type}
+
+        {code}
+        See [#models]
+
+
+
+        {code:title=Response Schema |collapse=true}
+{
+  "description" : "Jenkins requires authentication - please set username and password"
+}
+        {code}
+        *Status Code:* 404
+        *Message:*     Job cannot be found on Jenkins instance
+        {code:title=Response Type}
+
+        {code}
+        See [#models]
+
+
+
+        {code:title=Response Schema |collapse=true}
+{
+  "description" : "Job cannot be found on Jenkins instance"
+}
+        {code}
+    ----
+
+    h3. postJobDisable
+    {status:colour=Yellow|title=post|subtle=false}
+    {code}
+    post /job/{name}/disable
+    {code}
+    *Summary:* 
+    *Description:* Disable a job
+
+
+    h4. Parameters
+        h5. Path Parameters
+        ||Name||Description||Required||Default||Pattern||
+        |name |Name of the job |(/) | |  |
+
+
+
+        h5. Header Parameters
+        ||Name||Description||Required||Default||Pattern||
+        
+
+
+
+
+    h4. Responses
+        *Status Code:* 200
+        *Message:*     Successfully disabled the job
+        {code:title=Response Type}
+
+        {code}
+        See [#models]
+
+
+
+        {code:title=Response Schema |collapse=true}
+{
+  "description" : "Successfully disabled the job"
+}
+        {code}
+        *Status Code:* 401
+        *Message:*     Authentication failed - incorrect username and/or password
+        {code:title=Response Type}
+
+        {code}
+        See [#models]
+
+
+
+        {code:title=Response Schema |collapse=true}
+{
+  "description" : "Authentication failed - incorrect username and/or password"
+}
+        {code}
+        *Status Code:* 403
+        *Message:*     Jenkins requires authentication - please set username and password
+        {code:title=Response Type}
+
+        {code}
+        See [#models]
+
+
+
+        {code:title=Response Schema |collapse=true}
+{
+  "description" : "Jenkins requires authentication - please set username and password"
+}
+        {code}
+        *Status Code:* 404
+        *Message:*     Job cannot be found on Jenkins instance
+        {code:title=Response Type}
+
+        {code}
+        See [#models]
+
+
+
+        {code:title=Response Schema |collapse=true}
+{
+  "description" : "Job cannot be found on Jenkins instance"
+}
+        {code}
+    ----
+
+    h3. postJobEnable
+    {status:colour=Yellow|title=post|subtle=false}
+    {code}
+    post /job/{name}/enable
+    {code}
+    *Summary:* 
+    *Description:* Enable a job
+
+
+    h4. Parameters
+        h5. Path Parameters
+        ||Name||Description||Required||Default||Pattern||
+        |name |Name of the job |(/) | |  |
+
+
+
+        h5. Header Parameters
+        ||Name||Description||Required||Default||Pattern||
+        
+
+
+
+
+    h4. Responses
+        *Status Code:* 200
+        *Message:*     Successfully enabled the job
+        {code:title=Response Type}
+
+        {code}
+        See [#models]
+
+
+
+        {code:title=Response Schema |collapse=true}
+{
+  "description" : "Successfully enabled the job"
+}
+        {code}
+        *Status Code:* 401
+        *Message:*     Authentication failed - incorrect username and/or password
+        {code:title=Response Type}
+
+        {code}
+        See [#models]
+
+
+
+        {code:title=Response Schema |collapse=true}
+{
+  "description" : "Authentication failed - incorrect username and/or password"
+}
+        {code}
+        *Status Code:* 403
+        *Message:*     Jenkins requires authentication - please set username and password
+        {code:title=Response Type}
+
+        {code}
+        See [#models]
+
+
+
+        {code:title=Response Schema |collapse=true}
+{
+  "description" : "Jenkins requires authentication - please set username and password"
+}
+        {code}
+        *Status Code:* 404
+        *Message:*     Job cannot be found on Jenkins instance
+        {code:title=Response Type}
+
+        {code}
+        See [#models]
+
+
+
+        {code:title=Response Schema |collapse=true}
+{
+  "description" : "Job cannot be found on Jenkins instance"
+}
+        {code}
+    ----
+
+    h3. postJobLastBuildStop
+    {status:colour=Yellow|title=post|subtle=false}
+    {code}
+    post /job/{name}/lastBuild/stop
+    {code}
+    *Summary:* 
+    *Description:* Stop a job
+
+
+    h4. Parameters
+        h5. Path Parameters
+        ||Name||Description||Required||Default||Pattern||
+        |name |Name of the job |(/) | |  |
+
+
+
+        h5. Header Parameters
+        ||Name||Description||Required||Default||Pattern||
+        
+
+
+
+
+    h4. Responses
+        *Status Code:* 200
+        *Message:*     Successfully stopped the job
+        {code:title=Response Type}
+
+        {code}
+        See [#models]
+
+
+
+        {code:title=Response Schema |collapse=true}
+{
+  "description" : "Successfully stopped the job"
+}
+        {code}
+        *Status Code:* 401
+        *Message:*     Authentication failed - incorrect username and/or password
+        {code:title=Response Type}
+
+        {code}
+        See [#models]
+
+
+
+        {code:title=Response Schema |collapse=true}
+{
+  "description" : "Authentication failed - incorrect username and/or password"
+}
+        {code}
+        *Status Code:* 403
+        *Message:*     Jenkins requires authentication - please set username and password
+        {code:title=Response Type}
+
+        {code}
+        See [#models]
+
+
+
+        {code:title=Response Schema |collapse=true}
+{
+  "description" : "Jenkins requires authentication - please set username and password"
+}
+        {code}
+        *Status Code:* 404
+        *Message:*     Job cannot be found on Jenkins instance
+        {code:title=Response Type}
+
+        {code}
+        See [#models]
+
+
+
+        {code:title=Response Schema |collapse=true}
+{
+  "description" : "Job cannot be found on Jenkins instance"
+}
+        {code}
+    ----
+
+    h3. postViewConfig
+    {status:colour=Yellow|title=post|subtle=false}
+    {code}
+    post /view/{name}/config.xml
+    {code}
+    *Summary:* 
+    *Description:* Update view configuration
+
+
+    h4. Parameters
+        h5. Path Parameters
+        ||Name||Description||Required||Default||Pattern||
+        |name |Name of the view |(/) | |  |
+
+
+        h5. Body Parameter
+        ||Name||Description||Required||Default||Pattern||
+        |body |View configuration in config.xml format |(/) | |  |
+
+
+        h5. Header Parameters
+        ||Name||Description||Required||Default||Pattern||
+        
+
+
+
+
+    h4. Responses
+        *Status Code:* 200
+        *Message:*     Successfully updated view configuration
+        {code:title=Response Type}
+
+        {code}
+        See [#models]
+
+
+
+        {code:title=Response Schema |collapse=true}
+{
+  "description" : "Successfully updated view configuration"
+}
+        {code}
+        *Status Code:* 400
+        *Message:*     An error has occurred - error message is embedded inside the HTML response
+        {code:title=Response Type}
+String
+        {code}
+        See [#models]
+
+
+
+        {code:title=Response Schema |collapse=true}
+{
+  "description" : "An error has occurred - error message is embedded inside the HTML response",
+  "schema" : {
+    "type" : "string"
+  }
+}
+        {code}
+        *Status Code:* 401
+        *Message:*     Authentication failed - incorrect username and/or password
+        {code:title=Response Type}
+
+        {code}
+        See [#models]
+
+
+
+        {code:title=Response Schema |collapse=true}
+{
+  "description" : "Authentication failed - incorrect username and/or password"
+}
+        {code}
+        *Status Code:* 403
+        *Message:*     Jenkins requires authentication - please set username and password
+        {code:title=Response Type}
+
+        {code}
+        See [#models]
+
+
+
+        {code:title=Response Schema |collapse=true}
+{
+  "description" : "Jenkins requires authentication - please set username and password"
+}
+        {code}
+        *Status Code:* 404
+        *Message:*     View cannot be found on Jenkins instance
+        {code:title=Response Type}
+
+        {code}
+        See [#models]
+
+
+
+        {code:title=Response Schema |collapse=true}
+{
+  "description" : "View cannot be found on Jenkins instance"
+}
+        {code}
+    ----
+
+h2. Models
+
+        h3. GetClassesByClass
+        ||Field Name||Required||Type||Description||
+         |classes | |array[String] | |
+ |_class | |String | |
+        h3. GetMultibranchPipeline
+        ||Field Name||Required||Type||Description||
+         |displayName | |String | |
+ |estimatedDurationInMillis | |Integer | |
+ |latestRun | |String | |
+ |name | |String | |
+ |organization | |String | |
+ |weatherScore | |Integer | |
+ |branchNames | |array[String] | |
+ |numberOfFailingBranches | |Integer | |
+ |numberOfFailingPullRequests | |Integer | |
+ |numberOfSuccessfulBranches | |Integer | |
+ |numberOfSuccessfulPullRequests | |Integer | |
+ |totalNumberOfBranches | |Integer | |
+ |totalNumberOfPullRequests | |Integer | |
+ |_class | |String | |
+        h3. GetOrganisations
+        ||Field Name||Required||Type||Description||
+                h3. GetPipelineBranches
+        ||Field Name||Required||Type||Description||
+                h3. GetPipelineBranchesitem
+        ||Field Name||Required||Type||Description||
+         |displayName | |String | |
+ |estimatedDurationInMillis | |Integer | |
+ |name | |String | |
+ |weatherScore | |Integer | |
+ |latestRun | |getPipelineBranchesitem_latestRun | |
+ |organization | |String | |
+ |pullRequest | |getPipelineBranchesitem_pullRequest | |
+ |totalNumberOfPullRequests | |Integer | |
+ |_class | |String | |
+        h3. GetPipelineBranchesitem_latestRun
+        ||Field Name||Required||Type||Description||
+         |durationInMillis | |Integer | |
+ |estimatedDurationInMillis | |Integer | |
+ |enQueueTime | |String | |
+ |endTime | |String | |
+ |id | |String | |
+ |organization | |String | |
+ |pipeline | |String | |
+ |result | |String | |
+ |runSummary | |String | |
+ |startTime | |String | |
+ |state | |String | |
+ |type | |String | |
+ |commitId | |String | |
+ |_class | |String | |
+        h3. GetPipelineBranchesitem_pullRequest
+        ||Field Name||Required||Type||Description||
+         |_links | |getPipelineBranchesitem_pullRequest__links | |
+ |author | |String | |
+ |id | |String | |
+ |title | |String | |
+ |url | |String | |
+ |_class | |String | |
+        h3. GetPipelineBranchesitem_pullRequest__links
+        ||Field Name||Required||Type||Description||
+         |self | |String | |
+ |_class | |String | |
+        h3. GetPipelines
+        ||Field Name||Required||Type||Description||
+                h3. GetUsers
+        ||Field Name||Required||Type||Description||
+                h3. HudsonmodelAllView
+        ||Field Name||Required||Type||Description||
+         |_class | |String | |
+ |name | |String | |
+ |url | |String | |
+        h3. HudsonmodelCauseAction
+        ||Field Name||Required||Type||Description||
+         |_class | |String | |
+ |causes | |array[hudsonmodelCauseUserIdCause] | |
+        h3. HudsonmodelCauseUserIdCause
+        ||Field Name||Required||Type||Description||
+         |_class | |String | |
+ |shortDescription | |String | |
+ |userId | |String | |
+ |userName | |String | |
+        h3. HudsonmodelComputerSet
+        ||Field Name||Required||Type||Description||
+         |_class | |String | |
+ |busyExecutors | |Integer | |
+ |computer | |array[hudsonmodelHudsonMasterComputer] | |
+ |displayName | |String | |
+ |totalExecutors | |Integer | |
+        h3. HudsonmodelFreeStyleBuild
+        ||Field Name||Required||Type||Description||
+         |_class | |String | |
+ |number | |Integer | |
+ |url | |String | |
+ |actions | |array[hudsonmodelCauseAction] | |
+ |building | |Boolean | |
+ |description | |String | |
+ |displayName | |String | |
+ |duration | |Integer | |
+ |estimatedDuration | |Integer | |
+ |executor | |String | |
+ |fullDisplayName | |String | |
+ |id | |String | |
+ |keepLog | |Boolean | |
+ |queueId | |Integer | |
+ |result | |String | |
+ |timestamp | |Integer | |
+ |builtOn | |String | |
+ |changeSet | |hudsonscmEmptyChangeLogSet | |
+        h3. HudsonmodelFreeStyleProject
+        ||Field Name||Required||Type||Description||
+         |_class | |String | |
+ |name | |String | |
+ |url | |String | |
+ |color | |String | |
+ |actions | |array[hudsonmodelFreeStyleProjectactions] | |
+ |description | |String | |
+ |displayName | |String | |
+ |displayNameOrNull | |String | |
+ |fullDisplayName | |String | |
+ |fullName | |String | |
+ |buildable | |Boolean | |
+ |builds | |array[hudsonmodelFreeStyleBuild] | |
+ |firstBuild | |hudsonmodelFreeStyleBuild | |
+ |healthReport | |array[hudsonmodelFreeStyleProjecthealthReport] | |
+ |inQueue | |Boolean | |
+ |keepDependencies | |Boolean | |
+ |lastBuild | |hudsonmodelFreeStyleBuild | |
+ |lastCompletedBuild | |hudsonmodelFreeStyleBuild | |
+ |lastFailedBuild | |String | |
+ |lastStableBuild | |hudsonmodelFreeStyleBuild | |
+ |lastSuccessfulBuild | |hudsonmodelFreeStyleBuild | |
+ |lastUnstableBuild | |String | |
+ |lastUnsuccessfulBuild | |String | |
+ |nextBuildNumber | |Integer | |
+ |queueItem | |String | |
+ |concurrentBuild | |Boolean | |
+ |scm | |hudsonscmNullSCM | |
+        h3. HudsonmodelFreeStyleProjectactions
+        ||Field Name||Required||Type||Description||
+         |_class | |String | |
+        h3. HudsonmodelFreeStyleProjecthealthReport
+        ||Field Name||Required||Type||Description||
+         |description | |String | |
+ |iconClassName | |String | |
+ |iconUrl | |String | |
+ |score | |Integer | |
+ |_class | |String | |
+        h3. HudsonmodelHudson
+        ||Field Name||Required||Type||Description||
+         |_class | |String | |
+ |assignedLabels | |array[hudsonmodelHudsonassignedLabels] | |
+ |mode | |String | |
+ |nodeDescription | |String | |
+ |nodeName | |String | |
+ |numExecutors | |Integer | |
+ |description | |String | |
+ |jobs | |array[hudsonmodelFreeStyleProject] | |
+ |primaryView | |hudsonmodelAllView | |
+ |quietingDown | |Boolean | |
+ |slaveAgentPort | |Integer | |
+ |unlabeledLoad | |jenkinsmodelUnlabeledLoadStatistics | |
+ |useCrumbs | |Boolean | |
+ |useSecurity | |Boolean | |
+ |views | |array[hudsonmodelAllView] | |
+        h3. HudsonmodelHudsonMasterComputer
+        ||Field Name||Required||Type||Description||
+         |_class | |String | |
+ |displayName | |String | |
+ |executors | |array[hudsonmodelHudsonMasterComputerexecutors] | |
+ |icon | |String | |
+ |iconClassName | |String | |
+ |idle | |Boolean | |
+ |jnlpAgent | |Boolean | |
+ |launchSupported | |Boolean | |
+ |loadStatistics | |hudsonmodelLabel1 | |
+ |manualLaunchAllowed | |Boolean | |
+ |monitorData | |hudsonmodelHudsonMasterComputer_monitorData | |
+ |numExecutors | |Integer | |
+ |offline | |Boolean | |
+ |offlineCause | |String | |
+ |offlineCauseReason | |String | |
+ |temporarilyOffline | |Boolean | |
+        h3. HudsonmodelHudsonMasterComputer_monitorData
+        ||Field Name||Required||Type||Description||
+         |hudson.node_monitors.SwapSpaceMonitor | |hudsonnode_monitorsSwapSpaceMonitorMemoryUsage2 | |
+ |hudson.node_monitors.TemporarySpaceMonitor | |hudsonnode_monitorsDiskSpaceMonitorDescriptorDiskSpace | |
+ |hudson.node_monitors.DiskSpaceMonitor | |hudsonnode_monitorsDiskSpaceMonitorDescriptorDiskSpace | |
+ |hudson.node_monitors.ArchitectureMonitor | |String | |
+ |hudson.node_monitors.ResponseTimeMonitor | |hudsonnode_monitorsResponseTimeMonitorData | |
+ |hudson.node_monitors.ClockMonitor | |hudsonutilClockDifference | |
+ |_class | |String | |
+        h3. HudsonmodelHudsonMasterComputerexecutors
+        ||Field Name||Required||Type||Description||
+         |currentExecutable | |hudsonmodelFreeStyleBuild | |
+ |idle | |Boolean | |
+ |likelyStuck | |Boolean | |
+ |number | |Integer | |
+ |progress | |Integer | |
+ |_class | |String | |
+        h3. HudsonmodelHudsonassignedLabels
+        ||Field Name||Required||Type||Description||
+         |_class | |String | |
+        h3. HudsonmodelLabel1
+        ||Field Name||Required||Type||Description||
+         |_class | |String | |
+        h3. HudsonmodelListView
+        ||Field Name||Required||Type||Description||
+         |_class | |String | |
+ |description | |String | |
+ |jobs | |array[hudsonmodelFreeStyleProject] | |
+ |name | |String | |
+ |url | |String | |
+        h3. HudsonmodelQueue
+        ||Field Name||Required||Type||Description||
+         |_class | |String | |
+ |items | |array[hudsonmodelQueueBlockedItem] | |
+        h3. HudsonmodelQueueBlockedItem
+        ||Field Name||Required||Type||Description||
+         |_class | |String | |
+ |actions | |array[hudsonmodelCauseAction] | |
+ |blocked | |Boolean | |
+ |buildable | |Boolean | |
+ |id | |Integer | |
+ |inQueueSince | |Integer | |
+ |params | |String | |
+ |stuck | |Boolean | |
+ |task | |hudsonmodelFreeStyleProject | |
+ |url | |String | |
+ |why | |String | |
+ |buildableStartMilliseconds | |Integer | |
+        h3. HudsonmodelQueueLeftItem
+        ||Field Name||Required||Type||Description||
+         |_class | |String | |
+ |actions | |array[hudsonmodelCauseAction] | |
+ |blocked | |Boolean | |
+ |buildable | |Boolean | |
+ |id | |Integer | |
+ |inQueueSince | |Integer | |
+ |params | |String | |
+ |stuck | |Boolean | |
+ |task | |hudsonmodelFreeStyleProject | |
+ |url | |String | |
+ |why | |String | |
+ |cancelled | |Boolean | |
+ |executable | |hudsonmodelFreeStyleBuild | |
+        h3. HudsonmodelStringParameterDefinition
+        ||Field Name||Required||Type||Description||
+         |_class | |String | |
+ |defaultParameterValue | |hudsonmodelStringParameterValue | |
+ |description | |String | |
+ |name | |String | |
+ |type | |String | |
+        h3. HudsonmodelStringParameterValue
+        ||Field Name||Required||Type||Description||
+         |_class | |String | |
+ |name | |String | |
+ |value | |String | |
+        h3. Hudsonnode_monitorsDiskSpaceMonitorDescriptorDiskSpace
+        ||Field Name||Required||Type||Description||
+         |_class | |String | |
+ |timestamp | |Integer | |
+ |path | |String | |
+ |size | |Integer | |
+        h3. Hudsonnode_monitorsResponseTimeMonitorData
+        ||Field Name||Required||Type||Description||
+         |_class | |String | |
+ |timestamp | |Integer | |
+ |average | |Integer | |
+        h3. Hudsonnode_monitorsSwapSpaceMonitorMemoryUsage2
+        ||Field Name||Required||Type||Description||
+         |_class | |String | |
+ |availablePhysicalMemory | |Integer | |
+ |availableSwapSpace | |Integer | |
+ |totalPhysicalMemory | |Integer | |
+ |totalSwapSpace | |Integer | |
+        h3. HudsonscmEmptyChangeLogSet
+        ||Field Name||Required||Type||Description||
+         |_class | |String | |
+ |kind | |String | |
+        h3. HudsonscmNullSCM
+        ||Field Name||Required||Type||Description||
+         |_class | |String | |
+        h3. HudsonsecuritycsrfDefaultCrumbIssuer
+        ||Field Name||Required||Type||Description||
+         |_class | |String | |
+ |crumb | |String | |
+ |crumbRequestField | |String | |
+        h3. HudsonutilClockDifference
+        ||Field Name||Required||Type||Description||
+         |_class | |String | |
+ |diff | |Integer | |
+        h3. IojenkinsblueoceanresthalLink
+        ||Field Name||Required||Type||Description||
+         |_class | |String | |
+ |href | |String | |
+        h3. IojenkinsblueoceanrestimplpipelineBranchImpl
+        ||Field Name||Required||Type||Description||
+         |_class | |String | |
+ |displayName | |String | |
+ |estimatedDurationInMillis | |Integer | |
+ |fullDisplayName | |String | |
+ |fullName | |String | |
+ |name | |String | |
+ |organization | |String | |
+ |parameters | |array[hudsonmodelStringParameterDefinition] | |
+ |permissions | |iojenkinsblueoceanrestimplpipelineBranchImpl_permissions | |
+ |weatherScore | |Integer | |
+ |pullRequest | |String | |
+        h3. IojenkinsblueoceanrestimplpipelineBranchImpl_permissions
+        ||Field Name||Required||Type||Description||
+         |create | |Boolean | |
+ |read | |Boolean | |
+ |start | |Boolean | |
+ |stop | |Boolean | |
+ |_class | |String | |
+        h3. IojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1
+        ||Field Name||Required||Type||Description||
+         |_class | |String | |
+ |_links | |iojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1__links | |
+ |map | |iojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1_map | |
+        h3. IojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1__links
+        ||Field Name||Required||Type||Description||
+         |self | |iojenkinsblueoceanresthalLink | |
+ |_class | |String | |
+        h3. IojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1_map
+        ||Field Name||Required||Type||Description||
+         |io.jenkins.blueocean.service.embedded.rest.PipelineImpl | |iojenkinsblueoceanserviceembeddedrestExtensionClassImpl | |
+ |io.jenkins.blueocean.service.embedded.rest.MultiBranchPipelineImpl | |iojenkinsblueoceanserviceembeddedrestExtensionClassImpl | |
+ |_class | |String | |
+        h3. IojenkinsblueoceanserviceembeddedrestExtensionClassImpl
+        ||Field Name||Required||Type||Description||
+         |_class | |String | |
+ |_links | |iojenkinsblueoceanserviceembeddedrestExtensionClassImpl__links | |
+ |classes | |array[String] | |
+        h3. IojenkinsblueoceanserviceembeddedrestExtensionClassImpl__links
+        ||Field Name||Required||Type||Description||
+         |self | |iojenkinsblueoceanresthalLink | |
+ |_class | |String | |
+        h3. IojenkinsblueoceanserviceembeddedrestPipelineFolderImpl
+        ||Field Name||Required||Type||Description||
+         |_class | |String | |
+ |displayName | |String | |
+ |fullName | |String | |
+ |name | |String | |
+ |organization | |String | |
+ |numberOfFolders | |Integer | |
+ |numberOfPipelines | |Integer | |
+        h3. IojenkinsblueoceanserviceembeddedrestPipelineImpl
+        ||Field Name||Required||Type||Description||
+         |_class | |String | |
+ |displayName | |String | |
+ |estimatedDurationInMillis | |Integer | |
+ |fullName | |String | |
+ |latestRun | |String | |
+ |name | |String | |
+ |organization | |String | |
+ |weatherScore | |Integer | |
+        h3. JenkinsmodelUnlabeledLoadStatistics
+        ||Field Name||Required||Type||Description||
+         |_class | |String | |
+        h3. SwaggyjenkinsOrganisation
+        ||Field Name||Required||Type||Description||
+         |_class | |String | |
+ |name | |String | |
+        h3. SwaggyjenkinsPipeline
+        ||Field Name||Required||Type||Description||
+         |_class | |String | |
+ |organization | |String | |
+ |name | |String | |
+ |displayName | |String | |
+ |fullName | |String | |
+ |weatherScore | |Integer | |
+ |estimatedDurationInMillis | |Integer | |
+ |latestRun | |swaggyjenkinsPipeline_latestRun | |
+        h3. SwaggyjenkinsPipeline_latestRun
+        ||Field Name||Required||Type||Description||
+         |artifacts | |array[swaggyjenkinsPipeline_latestRunartifacts] | |
+ |durationInMillis | |Integer | |
+ |estimatedDurationInMillis | |Integer | |
+ |enQueueTime | |String | |
+ |endTime | |String | |
+ |id | |String | |
+ |organization | |String | |
+ |pipeline | |String | |
+ |result | |String | |
+ |runSummary | |String | |
+ |startTime | |String | |
+ |state | |String | |
+ |type | |String | |
+ |commitId | |String | |
+ |_class | |String | |
+        h3. SwaggyjenkinsPipeline_latestRunartifacts
+        ||Field Name||Required||Type||Description||
+         |name | |String | |
+ |size | |Integer | |
+ |url | |String | |
+ |_class | |String | |
+        h3. SwaggyjenkinsUser
+        ||Field Name||Required||Type||Description||
+         |_class | |String | |
+ |id | |String | |
+ |fullName | |String | |
+ |email | |String | |
+ |name | |String | |

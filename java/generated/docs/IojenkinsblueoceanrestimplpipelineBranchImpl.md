@@ -15,7 +15,6 @@ Name | Type | Description | Notes
 **permissions** | [**IojenkinsblueoceanrestimplpipelineBranchImplPermissions**](IojenkinsblueoceanrestimplpipelineBranchImplPermissions.md) |  |  [optional]
 **weatherScore** | **Integer** |  |  [optional]
 **pullRequest** | **String** |  |  [optional]
-**sourcePath** | **String** |  |  [optional]
 
 
 

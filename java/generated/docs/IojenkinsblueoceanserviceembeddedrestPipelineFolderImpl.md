@@ -11,7 +11,6 @@ Name | Type | Description | Notes
 **organization** | **String** |  |  [optional]
 **numberOfFolders** | **Integer** |  |  [optional]
 **numberOfPipelines** | **Integer** |  |  [optional]
-**sourcePath** | **String** |  |  [optional]
 
 
 

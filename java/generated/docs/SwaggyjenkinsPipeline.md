@@ -12,7 +12,6 @@ Name | Type | Description | Notes
 **weatherScore** | **Integer** |  |  [optional]
 **estimatedDurationInMillis** | **Integer** |  |  [optional]
 **latestRun** | [**SwaggyjenkinsPipelineLatestRun**](SwaggyjenkinsPipelineLatestRun.md) |  |  [optional]
-**sourcePath** | **String** |  |  [optional]
 
 
 

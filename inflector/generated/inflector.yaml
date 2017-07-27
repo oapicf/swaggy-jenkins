@@ -1,0 +1,64 @@
+controllerPackage: io.swagger.handler
+modelPackage:  io.swagger.model
+swaggerUrl: ./src/main/swagger/swagger.yaml
+modelMappings:
+  # to enable explicit mappings, use this syntax:
+  DefinitionFromSwaggerSpecification: fully.qualified.path.to.Model
+  GetClassesByClass : io.swagger.model.GetClassesByClass
+GetMultibranchPipeline : io.swagger.model.GetMultibranchPipeline
+GetOrganisations : io.swagger.model.GetOrganisations
+GetPipelineBranches : io.swagger.model.GetPipelineBranches
+GetPipelineBranchesitem : io.swagger.model.GetPipelineBranchesitem
+GetPipelineBranchesitemLatestRun : io.swagger.model.GetPipelineBranchesitemLatestRun
+GetPipelineBranchesitemPullRequest : io.swagger.model.GetPipelineBranchesitemPullRequest
+GetPipelineBranchesitemPullRequestLinks : io.swagger.model.GetPipelineBranchesitemPullRequestLinks
+GetPipelines : io.swagger.model.GetPipelines
+GetUsers : io.swagger.model.GetUsers
+HudsonmodelAllView : io.swagger.model.HudsonmodelAllView
+HudsonmodelCauseAction : io.swagger.model.HudsonmodelCauseAction
+HudsonmodelCauseUserIdCause : io.swagger.model.HudsonmodelCauseUserIdCause
+HudsonmodelComputerSet : io.swagger.model.HudsonmodelComputerSet
+HudsonmodelFreeStyleBuild : io.swagger.model.HudsonmodelFreeStyleBuild
+HudsonmodelFreeStyleProject : io.swagger.model.HudsonmodelFreeStyleProject
+HudsonmodelFreeStyleProjectactions : io.swagger.model.HudsonmodelFreeStyleProjectactions
+HudsonmodelFreeStyleProjecthealthReport : io.swagger.model.HudsonmodelFreeStyleProjecthealthReport
+HudsonmodelHudson : io.swagger.model.HudsonmodelHudson
+HudsonmodelHudsonMasterComputer : io.swagger.model.HudsonmodelHudsonMasterComputer
+HudsonmodelHudsonMasterComputerMonitorData : io.swagger.model.HudsonmodelHudsonMasterComputerMonitorData
+HudsonmodelHudsonMasterComputerexecutors : io.swagger.model.HudsonmodelHudsonMasterComputerexecutors
+HudsonmodelHudsonassignedLabels : io.swagger.model.HudsonmodelHudsonassignedLabels
+HudsonmodelLabel1 : io.swagger.model.HudsonmodelLabel1
+HudsonmodelListView : io.swagger.model.HudsonmodelListView
+HudsonmodelQueue : io.swagger.model.HudsonmodelQueue
+HudsonmodelQueueBlockedItem : io.swagger.model.HudsonmodelQueueBlockedItem
+HudsonmodelQueueLeftItem : io.swagger.model.HudsonmodelQueueLeftItem
+HudsonmodelStringParameterDefinition : io.swagger.model.HudsonmodelStringParameterDefinition
+HudsonmodelStringParameterValue : io.swagger.model.HudsonmodelStringParameterValue
+HudsonnodeMonitorsDiskSpaceMonitorDescriptorDiskSpace : io.swagger.model.HudsonnodeMonitorsDiskSpaceMonitorDescriptorDiskSpace
+HudsonnodeMonitorsResponseTimeMonitorData : io.swagger.model.HudsonnodeMonitorsResponseTimeMonitorData
+HudsonnodeMonitorsSwapSpaceMonitorMemoryUsage2 : io.swagger.model.HudsonnodeMonitorsSwapSpaceMonitorMemoryUsage2
+HudsonscmEmptyChangeLogSet : io.swagger.model.HudsonscmEmptyChangeLogSet
+HudsonscmNullSCM : io.swagger.model.HudsonscmNullSCM
+HudsonsecuritycsrfDefaultCrumbIssuer : io.swagger.model.HudsonsecuritycsrfDefaultCrumbIssuer
+HudsonutilClockDifference : io.swagger.model.HudsonutilClockDifference
+IojenkinsblueoceanresthalLink : io.swagger.model.IojenkinsblueoceanresthalLink
+IojenkinsblueoceanrestimplpipelineBranchImpl : io.swagger.model.IojenkinsblueoceanrestimplpipelineBranchImpl
+IojenkinsblueoceanrestimplpipelineBranchImplPermissions : io.swagger.model.IojenkinsblueoceanrestimplpipelineBranchImplPermissions
+IojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1 : io.swagger.model.IojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1
+IojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1Links : io.swagger.model.IojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1Links
+IojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1Map : io.swagger.model.IojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1Map
+IojenkinsblueoceanserviceembeddedrestExtensionClassImpl : io.swagger.model.IojenkinsblueoceanserviceembeddedrestExtensionClassImpl
+IojenkinsblueoceanserviceembeddedrestExtensionClassImplLinks : io.swagger.model.IojenkinsblueoceanserviceembeddedrestExtensionClassImplLinks
+IojenkinsblueoceanserviceembeddedrestPipelineFolderImpl : io.swagger.model.IojenkinsblueoceanserviceembeddedrestPipelineFolderImpl
+IojenkinsblueoceanserviceembeddedrestPipelineImpl : io.swagger.model.IojenkinsblueoceanserviceembeddedrestPipelineImpl
+JenkinsmodelUnlabeledLoadStatistics : io.swagger.model.JenkinsmodelUnlabeledLoadStatistics
+SwaggyjenkinsOrganisation : io.swagger.model.SwaggyjenkinsOrganisation
+SwaggyjenkinsPipeline : io.swagger.model.SwaggyjenkinsPipeline
+SwaggyjenkinsPipelineLatestRun : io.swagger.model.SwaggyjenkinsPipelineLatestRun
+SwaggyjenkinsPipelineLatestRunartifacts : io.swagger.model.SwaggyjenkinsPipelineLatestRunartifacts
+SwaggyjenkinsUser : io.swagger.model.SwaggyjenkinsUser
+
+entityProcessors:
+  - json
+  - xml
+  - yaml

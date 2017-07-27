@@ -8,7 +8,6 @@ Name | Type | Description | Notes
 **id** | **String** |  |  [optional]
 **fullName** | **String** |  |  [optional]
 **email** | **String** |  |  [optional]
-**sourcePath** | **String** |  |  [optional]
 **name** | **String** |  |  [optional]
 
 

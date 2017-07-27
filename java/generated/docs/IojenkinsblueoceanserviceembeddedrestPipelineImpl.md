@@ -12,7 +12,6 @@ Name | Type | Description | Notes
 **name** | **String** |  |  [optional]
 **organization** | **String** |  |  [optional]
 **weatherScore** | **Integer** |  |  [optional]
-**sourcePath** | **String** |  |  [optional]
 
 
 

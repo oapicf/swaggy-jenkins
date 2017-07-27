@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<package>
+    <metadata>
+        <id>IO.Swagger</id>
+        <title>IO.Swagger</title>
+        <version>0.1.0</version>
+        <authors>swagger-codegen</authors>
+        <owners>swagger-codegen</owners>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <description>NancyFx IO.Swagger API</description>
+    </metadata>
+</package>

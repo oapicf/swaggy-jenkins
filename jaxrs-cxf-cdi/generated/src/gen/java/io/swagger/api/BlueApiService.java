@@ -1,0 +1,42 @@
+package io.swagger.api;
+
+import io.swagger.api.*;
+import io.swagger.model.*;
+
+import org.apache.cxf.jaxrs.ext.multipart.Attachment;
+import org.apache.cxf.jaxrs.ext.multipart.Multipart;
+
+import io.swagger.model.GetMultibranchPipeline;
+import io.swagger.model.GetOrganisations;
+import io.swagger.model.GetPipelines;
+import io.swagger.model.IojenkinsblueoceanrestimplpipelineBranchImpl;
+import io.swagger.model.IojenkinsblueoceanserviceembeddedrestPipelineFolderImpl;
+import io.swagger.model.IojenkinsblueoceanserviceembeddedrestPipelineImpl;
+import io.swagger.model.SwaggyjenkinsOrganisation;
+import io.swagger.model.SwaggyjenkinsPipeline;
+import io.swagger.model.SwaggyjenkinsUser;
+
+import java.util.List;
+
+import java.io.InputStream;
+
+import javax.ws.rs.core.Response;
+import javax.ws.rs.core.SecurityContext;
+
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaJAXRSCXFCDIServerCodegen", date = "2017-07-25T10:45:05.448+10:00")
+public interface BlueApiService {
+      public Response getAuthenticatedUser(String organisation, SecurityContext securityContext);
+      public Response getClasses(String propertyClass, SecurityContext securityContext);
+      public Response getOrganisation(String organisation, SecurityContext securityContext);
+      public Response getOrganisations(SecurityContext securityContext);
+      public Response getPipelineBranchByOrg(String organisation, String pipeline, String branch, SecurityContext securityContext);
+      public Response getPipelineBranchesByOrg(String organisation, String pipeline, SecurityContext securityContext);
+      public Response getPipelineByOrg(String organisation, String pipeline, SecurityContext securityContext);
+      public Response getPipelineFolderByOrg(String organisation, String folder, SecurityContext securityContext);
+      public Response getPipelineFolderByOrg_1(String organisation, String pipeline, String folder, SecurityContext securityContext);
+      public Response getPipelinesByOrg(String organisation, SecurityContext securityContext);
+      public Response getUser(String organisation, String user, SecurityContext securityContext);
+      public Response getUsers(String organisation, SecurityContext securityContext);
+      public Response search(String q, SecurityContext securityContext);
+      public Response search_2(String q, SecurityContext securityContext);
+}

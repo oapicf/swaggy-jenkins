@@ -17,7 +17,6 @@ Name | Type | Description | Notes
 **numberOfSuccessfulPullRequests** | **Integer** |  |  [optional]
 **totalNumberOfBranches** | **Integer** |  |  [optional]
 **totalNumberOfPullRequests** | **Integer** |  |  [optional]
-**sourcePath** | **String** |  |  [optional]
 **propertyClass** | **String** |  |  [optional]
 
 
