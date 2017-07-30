@@ -1,4 +1,4 @@
-# swagger_client.RemoteAccessApi
+# swaggyjenkins.RemoteAccessApi
 
 All URIs are relative to *http://localhost*
 
@@ -38,12 +38,12 @@ Retrieve computer details
 ```python
 from __future__ import print_function
 import time
-import swagger_client
-from swagger_client.rest import ApiException
+import swaggyjenkins
+from swaggyjenkins.rest import ApiException
 from pprint import pprint
 
 # create an instance of the API class
-api_instance = swagger_client.RemoteAccessApi()
+api_instance = swaggyjenkins.RemoteAccessApi()
 
 try: 
     api_response = api_instance.get_computer()
@@ -81,12 +81,12 @@ Retrieve CSRF protection token
 ```python
 from __future__ import print_function
 import time
-import swagger_client
-from swagger_client.rest import ApiException
+import swaggyjenkins
+from swaggyjenkins.rest import ApiException
 from pprint import pprint
 
 # create an instance of the API class
-api_instance = swagger_client.RemoteAccessApi()
+api_instance = swaggyjenkins.RemoteAccessApi()
 
 try: 
     api_response = api_instance.get_crumb()
@@ -124,12 +124,12 @@ Retrieve Jenkins details
 ```python
 from __future__ import print_function
 import time
-import swagger_client
-from swagger_client.rest import ApiException
+import swaggyjenkins
+from swaggyjenkins.rest import ApiException
 from pprint import pprint
 
 # create an instance of the API class
-api_instance = swagger_client.RemoteAccessApi()
+api_instance = swaggyjenkins.RemoteAccessApi()
 
 try: 
     api_response = api_instance.get_jenkins()
@@ -167,12 +167,12 @@ Retrieve job details
 ```python
 from __future__ import print_function
 import time
-import swagger_client
-from swagger_client.rest import ApiException
+import swaggyjenkins
+from swaggyjenkins.rest import ApiException
 from pprint import pprint
 
 # create an instance of the API class
-api_instance = swagger_client.RemoteAccessApi()
+api_instance = swaggyjenkins.RemoteAccessApi()
 name = 'name_example' # str | Name of the job
 
 try: 
@@ -214,12 +214,12 @@ Retrieve job configuration
 ```python
 from __future__ import print_function
 import time
-import swagger_client
-from swagger_client.rest import ApiException
+import swaggyjenkins
+from swaggyjenkins.rest import ApiException
 from pprint import pprint
 
 # create an instance of the API class
-api_instance = swagger_client.RemoteAccessApi()
+api_instance = swaggyjenkins.RemoteAccessApi()
 name = 'name_example' # str | Name of the job
 
 try: 
@@ -261,12 +261,12 @@ Retrieve job's last build details
 ```python
 from __future__ import print_function
 import time
-import swagger_client
-from swagger_client.rest import ApiException
+import swaggyjenkins
+from swaggyjenkins.rest import ApiException
 from pprint import pprint
 
 # create an instance of the API class
-api_instance = swagger_client.RemoteAccessApi()
+api_instance = swaggyjenkins.RemoteAccessApi()
 name = 'name_example' # str | Name of the job
 
 try: 
@@ -308,12 +308,12 @@ Retrieve job's build progressive text output
 ```python
 from __future__ import print_function
 import time
-import swagger_client
-from swagger_client.rest import ApiException
+import swaggyjenkins
+from swaggyjenkins.rest import ApiException
 from pprint import pprint
 
 # create an instance of the API class
-api_instance = swagger_client.RemoteAccessApi()
+api_instance = swaggyjenkins.RemoteAccessApi()
 name = 'name_example' # str | Name of the job
 number = 'number_example' # str | Build number
 start = 'start_example' # str | Starting point of progressive text output
@@ -358,12 +358,12 @@ Retrieve queue details
 ```python
 from __future__ import print_function
 import time
-import swagger_client
-from swagger_client.rest import ApiException
+import swaggyjenkins
+from swaggyjenkins.rest import ApiException
 from pprint import pprint
 
 # create an instance of the API class
-api_instance = swagger_client.RemoteAccessApi()
+api_instance = swaggyjenkins.RemoteAccessApi()
 
 try: 
     api_response = api_instance.get_queue()
@@ -401,12 +401,12 @@ Retrieve queued item details
 ```python
 from __future__ import print_function
 import time
-import swagger_client
-from swagger_client.rest import ApiException
+import swaggyjenkins
+from swaggyjenkins.rest import ApiException
 from pprint import pprint
 
 # create an instance of the API class
-api_instance = swagger_client.RemoteAccessApi()
+api_instance = swaggyjenkins.RemoteAccessApi()
 number = 'number_example' # str | Queue number
 
 try: 
@@ -448,12 +448,12 @@ Retrieve view details
 ```python
 from __future__ import print_function
 import time
-import swagger_client
-from swagger_client.rest import ApiException
+import swaggyjenkins
+from swaggyjenkins.rest import ApiException
 from pprint import pprint
 
 # create an instance of the API class
-api_instance = swagger_client.RemoteAccessApi()
+api_instance = swaggyjenkins.RemoteAccessApi()
 name = 'name_example' # str | Name of the view
 
 try: 
@@ -495,12 +495,12 @@ Retrieve view configuration
 ```python
 from __future__ import print_function
 import time
-import swagger_client
-from swagger_client.rest import ApiException
+import swaggyjenkins
+from swaggyjenkins.rest import ApiException
 from pprint import pprint
 
 # create an instance of the API class
-api_instance = swagger_client.RemoteAccessApi()
+api_instance = swaggyjenkins.RemoteAccessApi()
 name = 'name_example' # str | Name of the view
 
 try: 
@@ -542,12 +542,12 @@ Retrieve Jenkins headers
 ```python
 from __future__ import print_function
 import time
-import swagger_client
-from swagger_client.rest import ApiException
+import swaggyjenkins
+from swaggyjenkins.rest import ApiException
 from pprint import pprint
 
 # create an instance of the API class
-api_instance = swagger_client.RemoteAccessApi()
+api_instance = swaggyjenkins.RemoteAccessApi()
 
 try: 
     api_instance.head_jenkins()
@@ -584,12 +584,12 @@ Create a new job using job configuration, or copied from an existing job
 ```python
 from __future__ import print_function
 import time
-import swagger_client
-from swagger_client.rest import ApiException
+import swaggyjenkins
+from swaggyjenkins.rest import ApiException
 from pprint import pprint
 
 # create an instance of the API class
-api_instance = swagger_client.RemoteAccessApi()
+api_instance = swaggyjenkins.RemoteAccessApi()
 name = 'name_example' # str | Name of the new job
 _from = '_from_example' # str | Existing job to copy from (optional)
 mode = 'mode_example' # str | Set to 'copy' for copying an existing job (optional)
@@ -640,12 +640,12 @@ Create a new view using view configuration
 ```python
 from __future__ import print_function
 import time
-import swagger_client
-from swagger_client.rest import ApiException
+import swaggyjenkins
+from swaggyjenkins.rest import ApiException
 from pprint import pprint
 
 # create an instance of the API class
-api_instance = swagger_client.RemoteAccessApi()
+api_instance = swaggyjenkins.RemoteAccessApi()
 name = 'name_example' # str | Name of the new view
 body = 'body_example' # str | View configuration in config.xml format (optional)
 jenkins_crumb = 'jenkins_crumb_example' # str | CSRF protection token (optional)
@@ -692,12 +692,12 @@ Build a job
 ```python
 from __future__ import print_function
 import time
-import swagger_client
-from swagger_client.rest import ApiException
+import swaggyjenkins
+from swaggyjenkins.rest import ApiException
 from pprint import pprint
 
 # create an instance of the API class
-api_instance = swagger_client.RemoteAccessApi()
+api_instance = swaggyjenkins.RemoteAccessApi()
 name = 'name_example' # str | Name of the job
 json = 'json_example' # str | 
 token = 'token_example' # str |  (optional)
@@ -744,12 +744,12 @@ Update job configuration
 ```python
 from __future__ import print_function
 import time
-import swagger_client
-from swagger_client.rest import ApiException
+import swaggyjenkins
+from swaggyjenkins.rest import ApiException
 from pprint import pprint
 
 # create an instance of the API class
-api_instance = swagger_client.RemoteAccessApi()
+api_instance = swaggyjenkins.RemoteAccessApi()
 name = 'name_example' # str | Name of the job
 body = 'body_example' # str | Job configuration in config.xml format
 jenkins_crumb = 'jenkins_crumb_example' # str | CSRF protection token (optional)
@@ -794,12 +794,12 @@ Delete a job
 ```python
 from __future__ import print_function
 import time
-import swagger_client
-from swagger_client.rest import ApiException
+import swaggyjenkins
+from swaggyjenkins.rest import ApiException
 from pprint import pprint
 
 # create an instance of the API class
-api_instance = swagger_client.RemoteAccessApi()
+api_instance = swaggyjenkins.RemoteAccessApi()
 name = 'name_example' # str | Name of the job
 jenkins_crumb = 'jenkins_crumb_example' # str | CSRF protection token (optional)
 
@@ -842,12 +842,12 @@ Disable a job
 ```python
 from __future__ import print_function
 import time
-import swagger_client
-from swagger_client.rest import ApiException
+import swaggyjenkins
+from swaggyjenkins.rest import ApiException
 from pprint import pprint
 
 # create an instance of the API class
-api_instance = swagger_client.RemoteAccessApi()
+api_instance = swaggyjenkins.RemoteAccessApi()
 name = 'name_example' # str | Name of the job
 jenkins_crumb = 'jenkins_crumb_example' # str | CSRF protection token (optional)
 
@@ -890,12 +890,12 @@ Enable a job
 ```python
 from __future__ import print_function
 import time
-import swagger_client
-from swagger_client.rest import ApiException
+import swaggyjenkins
+from swaggyjenkins.rest import ApiException
 from pprint import pprint
 
 # create an instance of the API class
-api_instance = swagger_client.RemoteAccessApi()
+api_instance = swaggyjenkins.RemoteAccessApi()
 name = 'name_example' # str | Name of the job
 jenkins_crumb = 'jenkins_crumb_example' # str | CSRF protection token (optional)
 
@@ -938,12 +938,12 @@ Stop a job
 ```python
 from __future__ import print_function
 import time
-import swagger_client
-from swagger_client.rest import ApiException
+import swaggyjenkins
+from swaggyjenkins.rest import ApiException
 from pprint import pprint
 
 # create an instance of the API class
-api_instance = swagger_client.RemoteAccessApi()
+api_instance = swaggyjenkins.RemoteAccessApi()
 name = 'name_example' # str | Name of the job
 jenkins_crumb = 'jenkins_crumb_example' # str | CSRF protection token (optional)
 
@@ -986,12 +986,12 @@ Update view configuration
 ```python
 from __future__ import print_function
 import time
-import swagger_client
-from swagger_client.rest import ApiException
+import swaggyjenkins
+from swaggyjenkins.rest import ApiException
 from pprint import pprint
 
 # create an instance of the API class
-api_instance = swagger_client.RemoteAccessApi()
+api_instance = swaggyjenkins.RemoteAccessApi()
 name = 'name_example' # str | Name of the view
 body = 'body_example' # str | View configuration in config.xml format
 jenkins_crumb = 'jenkins_crumb_example' # str | CSRF protection token (optional)

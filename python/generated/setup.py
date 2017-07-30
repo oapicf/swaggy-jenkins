@@ -14,8 +14,8 @@
 import sys
 from setuptools import setup, find_packages
 
-NAME = "swagger_client"
-VERSION = "1.0.0"
+NAME = "swaggyjenkins"
+VERSION = "0.0.2"
 # To install the library, run the following
 #
 # python setup.py install
@@ -30,7 +30,7 @@ setup(
     version=VERSION,
     description="Swaggy Jenkins",
     author_email="blah@cliffano.com",
-    url="",
+    url="https://github.com/cliffano/swaggy-jenkins/tree/master/python",
     keywords=["Swagger", "Swaggy Jenkins"],
     install_requires=REQUIRES,
     packages=find_packages(),

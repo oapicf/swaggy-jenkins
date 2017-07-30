@@ -1,4 +1,4 @@
-# swagger_client.BlueOceanApi
+# swaggyjenkins.BlueOceanApi
 
 All URIs are relative to *http://localhost*
 
@@ -31,12 +31,12 @@ Retrieve authenticated user details for an organisation
 ```python
 from __future__ import print_function
 import time
-import swagger_client
-from swagger_client.rest import ApiException
+import swaggyjenkins
+from swaggyjenkins.rest import ApiException
 from pprint import pprint
 
 # create an instance of the API class
-api_instance = swagger_client.BlueOceanApi()
+api_instance = swaggyjenkins.BlueOceanApi()
 organisation = 'organisation_example' # str | Name of the organisation
 
 try: 
@@ -78,12 +78,12 @@ Get a list of class names supported by a given class
 ```python
 from __future__ import print_function
 import time
-import swagger_client
-from swagger_client.rest import ApiException
+import swaggyjenkins
+from swaggyjenkins.rest import ApiException
 from pprint import pprint
 
 # create an instance of the API class
-api_instance = swagger_client.BlueOceanApi()
+api_instance = swaggyjenkins.BlueOceanApi()
 _class = '_class_example' # str | Name of the class
 
 try: 
@@ -125,12 +125,12 @@ Retrieve organisation details
 ```python
 from __future__ import print_function
 import time
-import swagger_client
-from swagger_client.rest import ApiException
+import swaggyjenkins
+from swaggyjenkins.rest import ApiException
 from pprint import pprint
 
 # create an instance of the API class
-api_instance = swagger_client.BlueOceanApi()
+api_instance = swaggyjenkins.BlueOceanApi()
 organisation = 'organisation_example' # str | Name of the organisation
 
 try: 
@@ -172,12 +172,12 @@ Retrieve all organisations details
 ```python
 from __future__ import print_function
 import time
-import swagger_client
-from swagger_client.rest import ApiException
+import swaggyjenkins
+from swaggyjenkins.rest import ApiException
 from pprint import pprint
 
 # create an instance of the API class
-api_instance = swagger_client.BlueOceanApi()
+api_instance = swaggyjenkins.BlueOceanApi()
 
 try: 
     api_response = api_instance.get_organisations()
@@ -215,12 +215,12 @@ Retrieve branch details for an organisation pipeline
 ```python
 from __future__ import print_function
 import time
-import swagger_client
-from swagger_client.rest import ApiException
+import swaggyjenkins
+from swaggyjenkins.rest import ApiException
 from pprint import pprint
 
 # create an instance of the API class
-api_instance = swagger_client.BlueOceanApi()
+api_instance = swaggyjenkins.BlueOceanApi()
 organisation = 'organisation_example' # str | Name of the organisation
 pipeline = 'pipeline_example' # str | Name of the pipeline
 branch = 'branch_example' # str | Name of the branch
@@ -266,12 +266,12 @@ Retrieve all branches details for an organisation pipeline
 ```python
 from __future__ import print_function
 import time
-import swagger_client
-from swagger_client.rest import ApiException
+import swaggyjenkins
+from swaggyjenkins.rest import ApiException
 from pprint import pprint
 
 # create an instance of the API class
-api_instance = swagger_client.BlueOceanApi()
+api_instance = swaggyjenkins.BlueOceanApi()
 organisation = 'organisation_example' # str | Name of the organisation
 pipeline = 'pipeline_example' # str | Name of the pipeline
 
@@ -315,12 +315,12 @@ Retrieve pipeline details for an organisation
 ```python
 from __future__ import print_function
 import time
-import swagger_client
-from swagger_client.rest import ApiException
+import swaggyjenkins
+from swaggyjenkins.rest import ApiException
 from pprint import pprint
 
 # create an instance of the API class
-api_instance = swagger_client.BlueOceanApi()
+api_instance = swaggyjenkins.BlueOceanApi()
 organisation = 'organisation_example' # str | Name of the organisation
 pipeline = 'pipeline_example' # str | Name of the pipeline
 
@@ -364,12 +364,12 @@ Retrieve pipeline folder for an organisation
 ```python
 from __future__ import print_function
 import time
-import swagger_client
-from swagger_client.rest import ApiException
+import swaggyjenkins
+from swaggyjenkins.rest import ApiException
 from pprint import pprint
 
 # create an instance of the API class
-api_instance = swagger_client.BlueOceanApi()
+api_instance = swaggyjenkins.BlueOceanApi()
 organisation = 'organisation_example' # str | Name of the organisation
 folder = 'folder_example' # str | Name of the folder
 
@@ -413,12 +413,12 @@ Retrieve pipeline details for an organisation folder
 ```python
 from __future__ import print_function
 import time
-import swagger_client
-from swagger_client.rest import ApiException
+import swaggyjenkins
+from swaggyjenkins.rest import ApiException
 from pprint import pprint
 
 # create an instance of the API class
-api_instance = swagger_client.BlueOceanApi()
+api_instance = swaggyjenkins.BlueOceanApi()
 organisation = 'organisation_example' # str | Name of the organisation
 pipeline = 'pipeline_example' # str | Name of the pipeline
 folder = 'folder_example' # str | Name of the folder
@@ -464,12 +464,12 @@ Retrieve all pipelines details for an organisation
 ```python
 from __future__ import print_function
 import time
-import swagger_client
-from swagger_client.rest import ApiException
+import swaggyjenkins
+from swaggyjenkins.rest import ApiException
 from pprint import pprint
 
 # create an instance of the API class
-api_instance = swagger_client.BlueOceanApi()
+api_instance = swaggyjenkins.BlueOceanApi()
 organisation = 'organisation_example' # str | Name of the organisation
 
 try: 
@@ -511,12 +511,12 @@ Retrieve user details for an organisation
 ```python
 from __future__ import print_function
 import time
-import swagger_client
-from swagger_client.rest import ApiException
+import swaggyjenkins
+from swaggyjenkins.rest import ApiException
 from pprint import pprint
 
 # create an instance of the API class
-api_instance = swagger_client.BlueOceanApi()
+api_instance = swaggyjenkins.BlueOceanApi()
 organisation = 'organisation_example' # str | Name of the organisation
 user = 'user_example' # str | Name of the user
 
@@ -560,12 +560,12 @@ Retrieve users details for an organisation
 ```python
 from __future__ import print_function
 import time
-import swagger_client
-from swagger_client.rest import ApiException
+import swaggyjenkins
+from swaggyjenkins.rest import ApiException
 from pprint import pprint
 
 # create an instance of the API class
-api_instance = swagger_client.BlueOceanApi()
+api_instance = swaggyjenkins.BlueOceanApi()
 organisation = 'organisation_example' # str | Name of the organisation
 
 try: 
@@ -607,12 +607,12 @@ Get classes details
 ```python
 from __future__ import print_function
 import time
-import swagger_client
-from swagger_client.rest import ApiException
+import swaggyjenkins
+from swaggyjenkins.rest import ApiException
 from pprint import pprint
 
 # create an instance of the API class
-api_instance = swagger_client.BlueOceanApi()
+api_instance = swaggyjenkins.BlueOceanApi()
 q = 'q_example' # str | Query string containing an array of class names
 
 try: 
@@ -654,12 +654,12 @@ Search for any resource details
 ```python
 from __future__ import print_function
 import time
-import swagger_client
-from swagger_client.rest import ApiException
+import swaggyjenkins
+from swaggyjenkins.rest import ApiException
 from pprint import pprint
 
 # create an instance of the API class
-api_instance = swagger_client.BlueOceanApi()
+api_instance = swaggyjenkins.BlueOceanApi()
 q = 'q_example' # str | Query string
 
 try: 
