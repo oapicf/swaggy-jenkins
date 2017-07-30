@@ -1,5 +1,5 @@
 # Swagger CodeGen supported languages
-LANGS = android apex aspnet5 aspnetcore bash clojure cwiki cpprest csharp CsharpDotNet2 dart elixir erlang-server flash go go-server groovy haskell dynamic-html html html2 inflector java java-play-framework jaxrs jaxrs-cxf jaxrs-cxf-cdi jaxrs-resteasy jaxrs-resteasy-eap javascript javascript-closure-angular jmeter kotlin lumen nancyfx nodejs-server objc perl php silex-PHP python python-flask qt5cpp ruby scala akka-scala async-scala scalatra sinatra slim spring swagger swagger-yaml swift swift3 tizen typescript-angular typescript-angular2 typescript-fetch typescript-jquery typescript-node undertow
+LANGS = android apex aspnetcore bash clojure cwiki cpprest csharp CsharpDotNet2 dart elixir erlang-server flash go go-server groovy haskell dynamic-html html html2 inflector java java-play-framework jaxrs jaxrs-cxf jaxrs-cxf-cdi jaxrs-resteasy jaxrs-resteasy-eap javascript javascript-closure-angular jmeter kotlin lumen nancyfx nodejs-server objc perl php silex-PHP python python-flask qt5cpp ruby scala akka-scala async-scala scalatra sinatra slim spring swagger swagger-yaml swift swift3 tizen typescript-angular typescript-angular2 typescript-fetch typescript-jquery typescript-node undertow
 
 ci: tools lint build-docker
 
@@ -28,6 +28,7 @@ build-docker:
 	  --workdir /opt/workspace \
 	  -v `pwd`:/opt/workspace \
 	  -t cliffano/swaggy-c \
+		--rm \
 	  make $(LANGS) \
 	  SWAGGER_CODEGEN_CLI_JAR=/opt/swagger-codegen/repo/modules/swagger-codegen-cli/target/swagger-codegen-cli.jar
 
@@ -41,8 +42,6 @@ android:
 	$(call build, android-clean android-gen)
 apex:
 	$(call build, apex-clean apex-gen)
-aspnet5:
-	$(call build, aspnet5-clean aspnet5-gen)
 aspnetcore:
 	$(call build, aspnetcore-clean aspnetcore-gen)
 bash:
