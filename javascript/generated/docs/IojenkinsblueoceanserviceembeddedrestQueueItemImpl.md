@@ -1,0 +1,12 @@
+# SwaggyJenkins.IojenkinsblueoceanserviceembeddedrestQueueItemImpl
+
+## Properties
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**_class** | **String** |  | [optional] 
+**expectedBuildNumber** | **Number** |  | [optional] 
+**id** | **String** |  | [optional] 
+**pipeline** | **String** |  | [optional] 
+**queuedTime** | **Number** |  | [optional] 
+
+
