@@ -17,18 +17,18 @@
 (function(root, factory) {
   if (typeof define === 'function' && define.amd) {
     // AMD. Register as an anonymous module.
-    define(['ApiClient'], factory);
+    define(['ApiClient', 'model/IojenkinsblueoceanserviceembeddedrestPipelineImplLinks'], factory);
   } else if (typeof module === 'object' && module.exports) {
     // CommonJS-like environments that support module.exports, like Node.
-    module.exports = factory(require('../ApiClient'));
+    module.exports = factory(require('../ApiClient'), require('./IojenkinsblueoceanserviceembeddedrestPipelineImplLinks'));
   } else {
     // Browser globals (root is window)
     if (!root.SwaggyJenkins) {
       root.SwaggyJenkins = {};
     }
-    root.SwaggyJenkins.IojenkinsblueoceanserviceembeddedrestPipelineImpl = factory(root.SwaggyJenkins.ApiClient);
+    root.SwaggyJenkins.IojenkinsblueoceanserviceembeddedrestPipelineImpl = factory(root.SwaggyJenkins.ApiClient, root.SwaggyJenkins.IojenkinsblueoceanserviceembeddedrestPipelineImplLinks);
   }
-}(this, function(ApiClient) {
+}(this, function(ApiClient, IojenkinsblueoceanserviceembeddedrestPipelineImplLinks) {
   'use strict';
 
 
@@ -47,6 +47,7 @@
    */
   var exports = function() {
     var _this = this;
+
 
 
 
@@ -93,6 +94,9 @@
       if (data.hasOwnProperty('weatherScore')) {
         obj['weatherScore'] = ApiClient.convertToType(data['weatherScore'], 'Number');
       }
+      if (data.hasOwnProperty('_links')) {
+        obj['_links'] = IojenkinsblueoceanserviceembeddedrestPipelineImplLinks.constructFromObject(data['_links']);
+      }
     }
     return obj;
   }
@@ -129,6 +133,10 @@
    * @member {Number} weatherScore
    */
   exports.prototype['weatherScore'] = undefined;
+  /**
+   * @member {module:model/IojenkinsblueoceanserviceembeddedrestPipelineImplLinks} _links
+   */
+  exports.prototype['_links'] = undefined;
 
 
 

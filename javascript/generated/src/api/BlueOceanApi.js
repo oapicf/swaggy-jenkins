@@ -17,18 +17,18 @@
 (function(root, factory) {
   if (typeof define === 'function' && define.amd) {
     // AMD. Register as an anonymous module.
-    define(['ApiClient', 'model/GetMultibranchPipeline', 'model/GetOrganisations', 'model/GetPipelines', 'model/IojenkinsblueoceanrestimplpipelineBranchImpl', 'model/IojenkinsblueoceanserviceembeddedrestPipelineFolderImpl', 'model/IojenkinsblueoceanserviceembeddedrestPipelineImpl', 'model/SwaggyjenkinsOrganisation', 'model/SwaggyjenkinsPipeline', 'model/SwaggyjenkinsUser'], factory);
+    define(['ApiClient', 'model/Body', 'model/GetMultibranchPipeline', 'model/GetOrganisations', 'model/GetPipelineActivities', 'model/GetPipelineQueue', 'model/GetPipelineRunNodeSteps', 'model/GetPipelineRunNodes', 'model/GetPipelineRuns', 'model/GetPipelines', 'model/GetScmOrganisations', 'model/GetUserFavorites', 'model/IojenkinsblueoceanblueoceanGithubPipelineGithubScm', 'model/IojenkinsblueoceanrestimplpipelineBranchImpl', 'model/IojenkinsblueoceanrestimplpipelinePipelineStepImpl', 'model/IojenkinsblueoceanserviceembeddedrestFavoriteImpl', 'model/IojenkinsblueoceanserviceembeddedrestPipelineFolderImpl', 'model/IojenkinsblueoceanserviceembeddedrestPipelineImpl', 'model/IojenkinsblueoceanserviceembeddedrestQueueItemImpl', 'model/SwaggyjenkinsOrganisation', 'model/SwaggyjenkinsPipeline', 'model/SwaggyjenkinsPipelineRun', 'model/SwaggyjenkinsPipelineRunNode', 'model/SwaggyjenkinsUser'], factory);
   } else if (typeof module === 'object' && module.exports) {
     // CommonJS-like environments that support module.exports, like Node.
-    module.exports = factory(require('../ApiClient'), require('../model/GetMultibranchPipeline'), require('../model/GetOrganisations'), require('../model/GetPipelines'), require('../model/IojenkinsblueoceanrestimplpipelineBranchImpl'), require('../model/IojenkinsblueoceanserviceembeddedrestPipelineFolderImpl'), require('../model/IojenkinsblueoceanserviceembeddedrestPipelineImpl'), require('../model/SwaggyjenkinsOrganisation'), require('../model/SwaggyjenkinsPipeline'), require('../model/SwaggyjenkinsUser'));
+    module.exports = factory(require('../ApiClient'), require('../model/Body'), require('../model/GetMultibranchPipeline'), require('../model/GetOrganisations'), require('../model/GetPipelineActivities'), require('../model/GetPipelineQueue'), require('../model/GetPipelineRunNodeSteps'), require('../model/GetPipelineRunNodes'), require('../model/GetPipelineRuns'), require('../model/GetPipelines'), require('../model/GetScmOrganisations'), require('../model/GetUserFavorites'), require('../model/IojenkinsblueoceanblueoceanGithubPipelineGithubScm'), require('../model/IojenkinsblueoceanrestimplpipelineBranchImpl'), require('../model/IojenkinsblueoceanrestimplpipelinePipelineStepImpl'), require('../model/IojenkinsblueoceanserviceembeddedrestFavoriteImpl'), require('../model/IojenkinsblueoceanserviceembeddedrestPipelineFolderImpl'), require('../model/IojenkinsblueoceanserviceembeddedrestPipelineImpl'), require('../model/IojenkinsblueoceanserviceembeddedrestQueueItemImpl'), require('../model/SwaggyjenkinsOrganisation'), require('../model/SwaggyjenkinsPipeline'), require('../model/SwaggyjenkinsPipelineRun'), require('../model/SwaggyjenkinsPipelineRunNode'), require('../model/SwaggyjenkinsUser'));
   } else {
     // Browser globals (root is window)
     if (!root.SwaggyJenkins) {
       root.SwaggyJenkins = {};
     }
-    root.SwaggyJenkins.BlueOceanApi = factory(root.SwaggyJenkins.ApiClient, root.SwaggyJenkins.GetMultibranchPipeline, root.SwaggyJenkins.GetOrganisations, root.SwaggyJenkins.GetPipelines, root.SwaggyJenkins.IojenkinsblueoceanrestimplpipelineBranchImpl, root.SwaggyJenkins.IojenkinsblueoceanserviceembeddedrestPipelineFolderImpl, root.SwaggyJenkins.IojenkinsblueoceanserviceembeddedrestPipelineImpl, root.SwaggyJenkins.SwaggyjenkinsOrganisation, root.SwaggyJenkins.SwaggyjenkinsPipeline, root.SwaggyJenkins.SwaggyjenkinsUser);
+    root.SwaggyJenkins.BlueOceanApi = factory(root.SwaggyJenkins.ApiClient, root.SwaggyJenkins.Body, root.SwaggyJenkins.GetMultibranchPipeline, root.SwaggyJenkins.GetOrganisations, root.SwaggyJenkins.GetPipelineActivities, root.SwaggyJenkins.GetPipelineQueue, root.SwaggyJenkins.GetPipelineRunNodeSteps, root.SwaggyJenkins.GetPipelineRunNodes, root.SwaggyJenkins.GetPipelineRuns, root.SwaggyJenkins.GetPipelines, root.SwaggyJenkins.GetScmOrganisations, root.SwaggyJenkins.GetUserFavorites, root.SwaggyJenkins.IojenkinsblueoceanblueoceanGithubPipelineGithubScm, root.SwaggyJenkins.IojenkinsblueoceanrestimplpipelineBranchImpl, root.SwaggyJenkins.IojenkinsblueoceanrestimplpipelinePipelineStepImpl, root.SwaggyJenkins.IojenkinsblueoceanserviceembeddedrestFavoriteImpl, root.SwaggyJenkins.IojenkinsblueoceanserviceembeddedrestPipelineFolderImpl, root.SwaggyJenkins.IojenkinsblueoceanserviceembeddedrestPipelineImpl, root.SwaggyJenkins.IojenkinsblueoceanserviceembeddedrestQueueItemImpl, root.SwaggyJenkins.SwaggyjenkinsOrganisation, root.SwaggyJenkins.SwaggyjenkinsPipeline, root.SwaggyJenkins.SwaggyjenkinsPipelineRun, root.SwaggyJenkins.SwaggyjenkinsPipelineRunNode, root.SwaggyJenkins.SwaggyjenkinsUser);
   }
-}(this, function(ApiClient, GetMultibranchPipeline, GetOrganisations, GetPipelines, IojenkinsblueoceanrestimplpipelineBranchImpl, IojenkinsblueoceanserviceembeddedrestPipelineFolderImpl, IojenkinsblueoceanserviceembeddedrestPipelineImpl, SwaggyjenkinsOrganisation, SwaggyjenkinsPipeline, SwaggyjenkinsUser) {
+}(this, function(ApiClient, Body, GetMultibranchPipeline, GetOrganisations, GetPipelineActivities, GetPipelineQueue, GetPipelineRunNodeSteps, GetPipelineRunNodes, GetPipelineRuns, GetPipelines, GetScmOrganisations, GetUserFavorites, IojenkinsblueoceanblueoceanGithubPipelineGithubScm, IojenkinsblueoceanrestimplpipelineBranchImpl, IojenkinsblueoceanrestimplpipelinePipelineStepImpl, IojenkinsblueoceanserviceembeddedrestFavoriteImpl, IojenkinsblueoceanserviceembeddedrestPipelineFolderImpl, IojenkinsblueoceanserviceembeddedrestPipelineImpl, IojenkinsblueoceanserviceembeddedrestQueueItemImpl, SwaggyjenkinsOrganisation, SwaggyjenkinsPipeline, SwaggyjenkinsPipelineRun, SwaggyjenkinsPipelineRunNode, SwaggyjenkinsUser) {
   'use strict';
 
   /**
@@ -47,6 +47,64 @@
   var exports = function(apiClient) {
     this.apiClient = apiClient || ApiClient.instance;
 
+
+    /**
+     * Callback function to receive the result of the deletePipelineQueueItemByOrg operation.
+     * @callback module:api/BlueOceanApi~deletePipelineQueueItemByOrgCallback
+     * @param {String} error Error message, if any.
+     * @param data This operation does not return a value.
+     * @param {String} response The complete HTTP response.
+     */
+
+    /**
+     * Delete queue item from an organisation pipeline queue
+     * @param {String} organisation Name of the organisation
+     * @param {String} pipeline Name of the pipeline
+     * @param {String} queue Name of the queue item
+     * @param {module:api/BlueOceanApi~deletePipelineQueueItemByOrgCallback} callback The callback function, accepting three arguments: error, data, response
+     */
+    this.deletePipelineQueueItemByOrg = function(organisation, pipeline, queue, callback) {
+      var postBody = null;
+
+      // verify the required parameter 'organisation' is set
+      if (organisation === undefined || organisation === null) {
+        throw new Error("Missing the required parameter 'organisation' when calling deletePipelineQueueItemByOrg");
+      }
+
+      // verify the required parameter 'pipeline' is set
+      if (pipeline === undefined || pipeline === null) {
+        throw new Error("Missing the required parameter 'pipeline' when calling deletePipelineQueueItemByOrg");
+      }
+
+      // verify the required parameter 'queue' is set
+      if (queue === undefined || queue === null) {
+        throw new Error("Missing the required parameter 'queue' when calling deletePipelineQueueItemByOrg");
+      }
+
+
+      var pathParams = {
+        'organisation': organisation,
+        'pipeline': pipeline,
+        'queue': queue
+      };
+      var queryParams = {
+      };
+      var headerParams = {
+      };
+      var formParams = {
+      };
+
+      var authNames = [];
+      var contentTypes = [];
+      var accepts = ['application/json'];
+      var returnType = null;
+
+      return this.apiClient.callApi(
+        '/blue/rest/organizations/{organisation}/pipelines/{pipeline}/queue/{queue}', 'DELETE',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, callback
+      );
+    }
 
     /**
      * Callback function to receive the result of the getAuthenticatedUser operation.
@@ -222,6 +280,58 @@
     }
 
     /**
+     * Callback function to receive the result of the getPipelineActivitiesByOrg operation.
+     * @callback module:api/BlueOceanApi~getPipelineActivitiesByOrgCallback
+     * @param {String} error Error message, if any.
+     * @param {module:model/GetPipelineActivities} data The data returned by the service call.
+     * @param {String} response The complete HTTP response.
+     */
+
+    /**
+     * Retrieve all activities details for an organisation pipeline
+     * @param {String} organisation Name of the organisation
+     * @param {String} pipeline Name of the pipeline
+     * @param {module:api/BlueOceanApi~getPipelineActivitiesByOrgCallback} callback The callback function, accepting three arguments: error, data, response
+     * data is of type: {@link module:model/GetPipelineActivities}
+     */
+    this.getPipelineActivitiesByOrg = function(organisation, pipeline, callback) {
+      var postBody = null;
+
+      // verify the required parameter 'organisation' is set
+      if (organisation === undefined || organisation === null) {
+        throw new Error("Missing the required parameter 'organisation' when calling getPipelineActivitiesByOrg");
+      }
+
+      // verify the required parameter 'pipeline' is set
+      if (pipeline === undefined || pipeline === null) {
+        throw new Error("Missing the required parameter 'pipeline' when calling getPipelineActivitiesByOrg");
+      }
+
+
+      var pathParams = {
+        'organisation': organisation,
+        'pipeline': pipeline
+      };
+      var queryParams = {
+      };
+      var headerParams = {
+      };
+      var formParams = {
+      };
+
+      var authNames = [];
+      var contentTypes = [];
+      var accepts = ['application/json'];
+      var returnType = GetPipelineActivities;
+
+      return this.apiClient.callApi(
+        '/blue/rest/organizations/{organisation}/pipelines/{pipeline}/activities', 'GET',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, callback
+      );
+    }
+
+    /**
      * Callback function to receive the result of the getPipelineBranchByOrg operation.
      * @callback module:api/BlueOceanApi~getPipelineBranchByOrgCallback
      * @param {String} error Error message, if any.
@@ -275,6 +385,72 @@
 
       return this.apiClient.callApi(
         '/blue/rest/organizations/{organisation}/pipelines/{pipeline}/branches/{branch}/', 'GET',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, callback
+      );
+    }
+
+    /**
+     * Callback function to receive the result of the getPipelineBranchRunByOrg operation.
+     * @callback module:api/BlueOceanApi~getPipelineBranchRunByOrgCallback
+     * @param {String} error Error message, if any.
+     * @param {module:model/SwaggyjenkinsPipelineRun} data The data returned by the service call.
+     * @param {String} response The complete HTTP response.
+     */
+
+    /**
+     * Retrieve branch run details for an organisation pipeline
+     * @param {String} organisation Name of the organisation
+     * @param {String} pipeline Name of the pipeline
+     * @param {String} branch Name of the branch
+     * @param {String} run Name of the run
+     * @param {module:api/BlueOceanApi~getPipelineBranchRunByOrgCallback} callback The callback function, accepting three arguments: error, data, response
+     * data is of type: {@link module:model/SwaggyjenkinsPipelineRun}
+     */
+    this.getPipelineBranchRunByOrg = function(organisation, pipeline, branch, run, callback) {
+      var postBody = null;
+
+      // verify the required parameter 'organisation' is set
+      if (organisation === undefined || organisation === null) {
+        throw new Error("Missing the required parameter 'organisation' when calling getPipelineBranchRunByOrg");
+      }
+
+      // verify the required parameter 'pipeline' is set
+      if (pipeline === undefined || pipeline === null) {
+        throw new Error("Missing the required parameter 'pipeline' when calling getPipelineBranchRunByOrg");
+      }
+
+      // verify the required parameter 'branch' is set
+      if (branch === undefined || branch === null) {
+        throw new Error("Missing the required parameter 'branch' when calling getPipelineBranchRunByOrg");
+      }
+
+      // verify the required parameter 'run' is set
+      if (run === undefined || run === null) {
+        throw new Error("Missing the required parameter 'run' when calling getPipelineBranchRunByOrg");
+      }
+
+
+      var pathParams = {
+        'organisation': organisation,
+        'pipeline': pipeline,
+        'branch': branch,
+        'run': run
+      };
+      var queryParams = {
+      };
+      var headerParams = {
+      };
+      var formParams = {
+      };
+
+      var authNames = [];
+      var contentTypes = [];
+      var accepts = ['application/json'];
+      var returnType = SwaggyjenkinsPipelineRun;
+
+      return this.apiClient.callApi(
+        '/blue/rest/organizations/{organisation}/pipelines/{pipeline}/branches/{branch}/runs/{run}', 'GET',
         pathParams, queryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType, callback
       );
@@ -496,6 +672,571 @@
     }
 
     /**
+     * Callback function to receive the result of the getPipelineQueueByOrg operation.
+     * @callback module:api/BlueOceanApi~getPipelineQueueByOrgCallback
+     * @param {String} error Error message, if any.
+     * @param {module:model/GetPipelineQueue} data The data returned by the service call.
+     * @param {String} response The complete HTTP response.
+     */
+
+    /**
+     * Retrieve queue details for an organisation pipeline
+     * @param {String} organisation Name of the organisation
+     * @param {String} pipeline Name of the pipeline
+     * @param {module:api/BlueOceanApi~getPipelineQueueByOrgCallback} callback The callback function, accepting three arguments: error, data, response
+     * data is of type: {@link module:model/GetPipelineQueue}
+     */
+    this.getPipelineQueueByOrg = function(organisation, pipeline, callback) {
+      var postBody = null;
+
+      // verify the required parameter 'organisation' is set
+      if (organisation === undefined || organisation === null) {
+        throw new Error("Missing the required parameter 'organisation' when calling getPipelineQueueByOrg");
+      }
+
+      // verify the required parameter 'pipeline' is set
+      if (pipeline === undefined || pipeline === null) {
+        throw new Error("Missing the required parameter 'pipeline' when calling getPipelineQueueByOrg");
+      }
+
+
+      var pathParams = {
+        'organisation': organisation,
+        'pipeline': pipeline
+      };
+      var queryParams = {
+      };
+      var headerParams = {
+      };
+      var formParams = {
+      };
+
+      var authNames = [];
+      var contentTypes = [];
+      var accepts = ['application/json'];
+      var returnType = GetPipelineQueue;
+
+      return this.apiClient.callApi(
+        '/blue/rest/organizations/{organisation}/pipelines/{pipeline}/queue', 'GET',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, callback
+      );
+    }
+
+    /**
+     * Callback function to receive the result of the getPipelineRunByOrg operation.
+     * @callback module:api/BlueOceanApi~getPipelineRunByOrgCallback
+     * @param {String} error Error message, if any.
+     * @param {module:model/SwaggyjenkinsPipelineRun} data The data returned by the service call.
+     * @param {String} response The complete HTTP response.
+     */
+
+    /**
+     * Retrieve run details for an organisation pipeline
+     * @param {String} organisation Name of the organisation
+     * @param {String} pipeline Name of the pipeline
+     * @param {String} run Name of the run
+     * @param {module:api/BlueOceanApi~getPipelineRunByOrgCallback} callback The callback function, accepting three arguments: error, data, response
+     * data is of type: {@link module:model/SwaggyjenkinsPipelineRun}
+     */
+    this.getPipelineRunByOrg = function(organisation, pipeline, run, callback) {
+      var postBody = null;
+
+      // verify the required parameter 'organisation' is set
+      if (organisation === undefined || organisation === null) {
+        throw new Error("Missing the required parameter 'organisation' when calling getPipelineRunByOrg");
+      }
+
+      // verify the required parameter 'pipeline' is set
+      if (pipeline === undefined || pipeline === null) {
+        throw new Error("Missing the required parameter 'pipeline' when calling getPipelineRunByOrg");
+      }
+
+      // verify the required parameter 'run' is set
+      if (run === undefined || run === null) {
+        throw new Error("Missing the required parameter 'run' when calling getPipelineRunByOrg");
+      }
+
+
+      var pathParams = {
+        'organisation': organisation,
+        'pipeline': pipeline,
+        'run': run
+      };
+      var queryParams = {
+      };
+      var headerParams = {
+      };
+      var formParams = {
+      };
+
+      var authNames = [];
+      var contentTypes = [];
+      var accepts = ['application/json'];
+      var returnType = SwaggyjenkinsPipelineRun;
+
+      return this.apiClient.callApi(
+        '/blue/rest/organizations/{organisation}/pipelines/{pipeline}/runs/{run}', 'GET',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, callback
+      );
+    }
+
+    /**
+     * Callback function to receive the result of the getPipelineRunLogByOrg operation.
+     * @callback module:api/BlueOceanApi~getPipelineRunLogByOrgCallback
+     * @param {String} error Error message, if any.
+     * @param {'String'} data The data returned by the service call.
+     * @param {String} response The complete HTTP response.
+     */
+
+    /**
+     * Get log for a pipeline run
+     * @param {String} organisation Name of the organisation
+     * @param {String} pipeline Name of the pipeline
+     * @param {String} run Name of the run
+     * @param {Object} opts Optional parameters
+     * @param {Number} opts.start Start position of the log
+     * @param {Boolean} opts.download Set to true in order to download the file, otherwise it&#39;s passed as a response body
+     * @param {module:api/BlueOceanApi~getPipelineRunLogByOrgCallback} callback The callback function, accepting three arguments: error, data, response
+     * data is of type: {@link 'String'}
+     */
+    this.getPipelineRunLogByOrg = function(organisation, pipeline, run, opts, callback) {
+      opts = opts || {};
+      var postBody = null;
+
+      // verify the required parameter 'organisation' is set
+      if (organisation === undefined || organisation === null) {
+        throw new Error("Missing the required parameter 'organisation' when calling getPipelineRunLogByOrg");
+      }
+
+      // verify the required parameter 'pipeline' is set
+      if (pipeline === undefined || pipeline === null) {
+        throw new Error("Missing the required parameter 'pipeline' when calling getPipelineRunLogByOrg");
+      }
+
+      // verify the required parameter 'run' is set
+      if (run === undefined || run === null) {
+        throw new Error("Missing the required parameter 'run' when calling getPipelineRunLogByOrg");
+      }
+
+
+      var pathParams = {
+        'organisation': organisation,
+        'pipeline': pipeline,
+        'run': run
+      };
+      var queryParams = {
+        'start': opts['start'],
+        'download': opts['download']
+      };
+      var headerParams = {
+      };
+      var formParams = {
+      };
+
+      var authNames = [];
+      var contentTypes = [];
+      var accepts = ['application/json'];
+      var returnType = 'String';
+
+      return this.apiClient.callApi(
+        '/blue/rest/organizations/{organisation}/pipelines/{pipeline}/runs/{run}/log', 'GET',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, callback
+      );
+    }
+
+    /**
+     * Callback function to receive the result of the getPipelineRunNodeByOrg operation.
+     * @callback module:api/BlueOceanApi~getPipelineRunNodeByOrgCallback
+     * @param {String} error Error message, if any.
+     * @param {module:model/SwaggyjenkinsPipelineRunNode} data The data returned by the service call.
+     * @param {String} response The complete HTTP response.
+     */
+
+    /**
+     * Retrieve run node details for an organisation pipeline
+     * @param {String} organisation Name of the organisation
+     * @param {String} pipeline Name of the pipeline
+     * @param {String} run Name of the run
+     * @param {String} node Name of the node
+     * @param {module:api/BlueOceanApi~getPipelineRunNodeByOrgCallback} callback The callback function, accepting three arguments: error, data, response
+     * data is of type: {@link module:model/SwaggyjenkinsPipelineRunNode}
+     */
+    this.getPipelineRunNodeByOrg = function(organisation, pipeline, run, node, callback) {
+      var postBody = null;
+
+      // verify the required parameter 'organisation' is set
+      if (organisation === undefined || organisation === null) {
+        throw new Error("Missing the required parameter 'organisation' when calling getPipelineRunNodeByOrg");
+      }
+
+      // verify the required parameter 'pipeline' is set
+      if (pipeline === undefined || pipeline === null) {
+        throw new Error("Missing the required parameter 'pipeline' when calling getPipelineRunNodeByOrg");
+      }
+
+      // verify the required parameter 'run' is set
+      if (run === undefined || run === null) {
+        throw new Error("Missing the required parameter 'run' when calling getPipelineRunNodeByOrg");
+      }
+
+      // verify the required parameter 'node' is set
+      if (node === undefined || node === null) {
+        throw new Error("Missing the required parameter 'node' when calling getPipelineRunNodeByOrg");
+      }
+
+
+      var pathParams = {
+        'organisation': organisation,
+        'pipeline': pipeline,
+        'run': run,
+        'node': node
+      };
+      var queryParams = {
+      };
+      var headerParams = {
+      };
+      var formParams = {
+      };
+
+      var authNames = [];
+      var contentTypes = [];
+      var accepts = ['application/json'];
+      var returnType = SwaggyjenkinsPipelineRunNode;
+
+      return this.apiClient.callApi(
+        '/blue/rest/organizations/{organisation}/pipelines/{pipeline}/runs/{run}/nodes/{node}', 'GET',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, callback
+      );
+    }
+
+    /**
+     * Callback function to receive the result of the getPipelineRunNodeStepByOrg operation.
+     * @callback module:api/BlueOceanApi~getPipelineRunNodeStepByOrgCallback
+     * @param {String} error Error message, if any.
+     * @param {module:model/IojenkinsblueoceanrestimplpipelinePipelineStepImpl} data The data returned by the service call.
+     * @param {String} response The complete HTTP response.
+     */
+
+    /**
+     * Retrieve run node details for an organisation pipeline
+     * @param {String} organisation Name of the organisation
+     * @param {String} pipeline Name of the pipeline
+     * @param {String} run Name of the run
+     * @param {String} node Name of the node
+     * @param {String} step Name of the step
+     * @param {module:api/BlueOceanApi~getPipelineRunNodeStepByOrgCallback} callback The callback function, accepting three arguments: error, data, response
+     * data is of type: {@link module:model/IojenkinsblueoceanrestimplpipelinePipelineStepImpl}
+     */
+    this.getPipelineRunNodeStepByOrg = function(organisation, pipeline, run, node, step, callback) {
+      var postBody = null;
+
+      // verify the required parameter 'organisation' is set
+      if (organisation === undefined || organisation === null) {
+        throw new Error("Missing the required parameter 'organisation' when calling getPipelineRunNodeStepByOrg");
+      }
+
+      // verify the required parameter 'pipeline' is set
+      if (pipeline === undefined || pipeline === null) {
+        throw new Error("Missing the required parameter 'pipeline' when calling getPipelineRunNodeStepByOrg");
+      }
+
+      // verify the required parameter 'run' is set
+      if (run === undefined || run === null) {
+        throw new Error("Missing the required parameter 'run' when calling getPipelineRunNodeStepByOrg");
+      }
+
+      // verify the required parameter 'node' is set
+      if (node === undefined || node === null) {
+        throw new Error("Missing the required parameter 'node' when calling getPipelineRunNodeStepByOrg");
+      }
+
+      // verify the required parameter 'step' is set
+      if (step === undefined || step === null) {
+        throw new Error("Missing the required parameter 'step' when calling getPipelineRunNodeStepByOrg");
+      }
+
+
+      var pathParams = {
+        'organisation': organisation,
+        'pipeline': pipeline,
+        'run': run,
+        'node': node,
+        'step': step
+      };
+      var queryParams = {
+      };
+      var headerParams = {
+      };
+      var formParams = {
+      };
+
+      var authNames = [];
+      var contentTypes = [];
+      var accepts = ['application/json'];
+      var returnType = IojenkinsblueoceanrestimplpipelinePipelineStepImpl;
+
+      return this.apiClient.callApi(
+        '/blue/rest/organizations/{organisation}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps/{step}', 'GET',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, callback
+      );
+    }
+
+    /**
+     * Callback function to receive the result of the getPipelineRunNodeStepLogByOrg operation.
+     * @callback module:api/BlueOceanApi~getPipelineRunNodeStepLogByOrgCallback
+     * @param {String} error Error message, if any.
+     * @param {'String'} data The data returned by the service call.
+     * @param {String} response The complete HTTP response.
+     */
+
+    /**
+     * Get log for a pipeline run node step
+     * @param {String} organisation Name of the organisation
+     * @param {String} pipeline Name of the pipeline
+     * @param {String} run Name of the run
+     * @param {String} node Name of the node
+     * @param {String} step Name of the step
+     * @param {module:api/BlueOceanApi~getPipelineRunNodeStepLogByOrgCallback} callback The callback function, accepting three arguments: error, data, response
+     * data is of type: {@link 'String'}
+     */
+    this.getPipelineRunNodeStepLogByOrg = function(organisation, pipeline, run, node, step, callback) {
+      var postBody = null;
+
+      // verify the required parameter 'organisation' is set
+      if (organisation === undefined || organisation === null) {
+        throw new Error("Missing the required parameter 'organisation' when calling getPipelineRunNodeStepLogByOrg");
+      }
+
+      // verify the required parameter 'pipeline' is set
+      if (pipeline === undefined || pipeline === null) {
+        throw new Error("Missing the required parameter 'pipeline' when calling getPipelineRunNodeStepLogByOrg");
+      }
+
+      // verify the required parameter 'run' is set
+      if (run === undefined || run === null) {
+        throw new Error("Missing the required parameter 'run' when calling getPipelineRunNodeStepLogByOrg");
+      }
+
+      // verify the required parameter 'node' is set
+      if (node === undefined || node === null) {
+        throw new Error("Missing the required parameter 'node' when calling getPipelineRunNodeStepLogByOrg");
+      }
+
+      // verify the required parameter 'step' is set
+      if (step === undefined || step === null) {
+        throw new Error("Missing the required parameter 'step' when calling getPipelineRunNodeStepLogByOrg");
+      }
+
+
+      var pathParams = {
+        'organisation': organisation,
+        'pipeline': pipeline,
+        'run': run,
+        'node': node,
+        'step': step
+      };
+      var queryParams = {
+      };
+      var headerParams = {
+      };
+      var formParams = {
+      };
+
+      var authNames = [];
+      var contentTypes = [];
+      var accepts = ['application/json'];
+      var returnType = 'String';
+
+      return this.apiClient.callApi(
+        '/blue/rest/organizations/{organisation}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps/{step}/log', 'GET',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, callback
+      );
+    }
+
+    /**
+     * Callback function to receive the result of the getPipelineRunNodeStepsByOrg operation.
+     * @callback module:api/BlueOceanApi~getPipelineRunNodeStepsByOrgCallback
+     * @param {String} error Error message, if any.
+     * @param {module:model/GetPipelineRunNodeSteps} data The data returned by the service call.
+     * @param {String} response The complete HTTP response.
+     */
+
+    /**
+     * Retrieve run node steps details for an organisation pipeline
+     * @param {String} organisation Name of the organisation
+     * @param {String} pipeline Name of the pipeline
+     * @param {String} run Name of the run
+     * @param {String} node Name of the node
+     * @param {module:api/BlueOceanApi~getPipelineRunNodeStepsByOrgCallback} callback The callback function, accepting three arguments: error, data, response
+     * data is of type: {@link module:model/GetPipelineRunNodeSteps}
+     */
+    this.getPipelineRunNodeStepsByOrg = function(organisation, pipeline, run, node, callback) {
+      var postBody = null;
+
+      // verify the required parameter 'organisation' is set
+      if (organisation === undefined || organisation === null) {
+        throw new Error("Missing the required parameter 'organisation' when calling getPipelineRunNodeStepsByOrg");
+      }
+
+      // verify the required parameter 'pipeline' is set
+      if (pipeline === undefined || pipeline === null) {
+        throw new Error("Missing the required parameter 'pipeline' when calling getPipelineRunNodeStepsByOrg");
+      }
+
+      // verify the required parameter 'run' is set
+      if (run === undefined || run === null) {
+        throw new Error("Missing the required parameter 'run' when calling getPipelineRunNodeStepsByOrg");
+      }
+
+      // verify the required parameter 'node' is set
+      if (node === undefined || node === null) {
+        throw new Error("Missing the required parameter 'node' when calling getPipelineRunNodeStepsByOrg");
+      }
+
+
+      var pathParams = {
+        'organisation': organisation,
+        'pipeline': pipeline,
+        'run': run,
+        'node': node
+      };
+      var queryParams = {
+      };
+      var headerParams = {
+      };
+      var formParams = {
+      };
+
+      var authNames = [];
+      var contentTypes = [];
+      var accepts = ['application/json'];
+      var returnType = GetPipelineRunNodeSteps;
+
+      return this.apiClient.callApi(
+        '/blue/rest/organizations/{organisation}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps', 'GET',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, callback
+      );
+    }
+
+    /**
+     * Callback function to receive the result of the getPipelineRunNodesByOrg operation.
+     * @callback module:api/BlueOceanApi~getPipelineRunNodesByOrgCallback
+     * @param {String} error Error message, if any.
+     * @param {module:model/GetPipelineRunNodes} data The data returned by the service call.
+     * @param {String} response The complete HTTP response.
+     */
+
+    /**
+     * Retrieve run nodes details for an organisation pipeline
+     * @param {String} organisation Name of the organisation
+     * @param {String} pipeline Name of the pipeline
+     * @param {String} run Name of the run
+     * @param {module:api/BlueOceanApi~getPipelineRunNodesByOrgCallback} callback The callback function, accepting three arguments: error, data, response
+     * data is of type: {@link module:model/GetPipelineRunNodes}
+     */
+    this.getPipelineRunNodesByOrg = function(organisation, pipeline, run, callback) {
+      var postBody = null;
+
+      // verify the required parameter 'organisation' is set
+      if (organisation === undefined || organisation === null) {
+        throw new Error("Missing the required parameter 'organisation' when calling getPipelineRunNodesByOrg");
+      }
+
+      // verify the required parameter 'pipeline' is set
+      if (pipeline === undefined || pipeline === null) {
+        throw new Error("Missing the required parameter 'pipeline' when calling getPipelineRunNodesByOrg");
+      }
+
+      // verify the required parameter 'run' is set
+      if (run === undefined || run === null) {
+        throw new Error("Missing the required parameter 'run' when calling getPipelineRunNodesByOrg");
+      }
+
+
+      var pathParams = {
+        'organisation': organisation,
+        'pipeline': pipeline,
+        'run': run
+      };
+      var queryParams = {
+      };
+      var headerParams = {
+      };
+      var formParams = {
+      };
+
+      var authNames = [];
+      var contentTypes = [];
+      var accepts = ['application/json'];
+      var returnType = GetPipelineRunNodes;
+
+      return this.apiClient.callApi(
+        '/blue/rest/organizations/{organisation}/pipelines/{pipeline}/runs/{run}/nodes', 'GET',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, callback
+      );
+    }
+
+    /**
+     * Callback function to receive the result of the getPipelineRunsByOrg operation.
+     * @callback module:api/BlueOceanApi~getPipelineRunsByOrgCallback
+     * @param {String} error Error message, if any.
+     * @param {module:model/GetPipelineRuns} data The data returned by the service call.
+     * @param {String} response The complete HTTP response.
+     */
+
+    /**
+     * Retrieve all runs details for an organisation pipeline
+     * @param {String} organisation Name of the organisation
+     * @param {String} pipeline Name of the pipeline
+     * @param {module:api/BlueOceanApi~getPipelineRunsByOrgCallback} callback The callback function, accepting three arguments: error, data, response
+     * data is of type: {@link module:model/GetPipelineRuns}
+     */
+    this.getPipelineRunsByOrg = function(organisation, pipeline, callback) {
+      var postBody = null;
+
+      // verify the required parameter 'organisation' is set
+      if (organisation === undefined || organisation === null) {
+        throw new Error("Missing the required parameter 'organisation' when calling getPipelineRunsByOrg");
+      }
+
+      // verify the required parameter 'pipeline' is set
+      if (pipeline === undefined || pipeline === null) {
+        throw new Error("Missing the required parameter 'pipeline' when calling getPipelineRunsByOrg");
+      }
+
+
+      var pathParams = {
+        'organisation': organisation,
+        'pipeline': pipeline
+      };
+      var queryParams = {
+      };
+      var headerParams = {
+      };
+      var formParams = {
+      };
+
+      var authNames = [];
+      var contentTypes = [];
+      var accepts = ['application/json'];
+      var returnType = GetPipelineRuns;
+
+      return this.apiClient.callApi(
+        '/blue/rest/organizations/{organisation}/pipelines/{pipeline}/runs', 'GET',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, callback
+      );
+    }
+
+    /**
      * Callback function to receive the result of the getPipelinesByOrg operation.
      * @callback module:api/BlueOceanApi~getPipelinesByOrgCallback
      * @param {String} error Error message, if any.
@@ -535,6 +1276,251 @@
 
       return this.apiClient.callApi(
         '/blue/rest/organizations/{organisation}/pipelines/', 'GET',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, callback
+      );
+    }
+
+    /**
+     * Callback function to receive the result of the getSCM operation.
+     * @callback module:api/BlueOceanApi~getSCMCallback
+     * @param {String} error Error message, if any.
+     * @param {module:model/IojenkinsblueoceanblueoceanGithubPipelineGithubScm} data The data returned by the service call.
+     * @param {String} response The complete HTTP response.
+     */
+
+    /**
+     * Retrieve SCM details for an organisation
+     * @param {String} organisation Name of the organisation
+     * @param {String} step Name of SCM
+     * @param {module:api/BlueOceanApi~getSCMCallback} callback The callback function, accepting three arguments: error, data, response
+     * data is of type: {@link module:model/IojenkinsblueoceanblueoceanGithubPipelineGithubScm}
+     */
+    this.getSCM = function(organisation, step, callback) {
+      var postBody = null;
+
+      // verify the required parameter 'organisation' is set
+      if (organisation === undefined || organisation === null) {
+        throw new Error("Missing the required parameter 'organisation' when calling getSCM");
+      }
+
+      // verify the required parameter 'step' is set
+      if (step === undefined || step === null) {
+        throw new Error("Missing the required parameter 'step' when calling getSCM");
+      }
+
+
+      var pathParams = {
+        'organisation': organisation,
+        'step': step
+      };
+      var queryParams = {
+      };
+      var headerParams = {
+      };
+      var formParams = {
+      };
+
+      var authNames = [];
+      var contentTypes = [];
+      var accepts = ['application/json'];
+      var returnType = IojenkinsblueoceanblueoceanGithubPipelineGithubScm;
+
+      return this.apiClient.callApi(
+        '/blue/rest/organizations/{organisation}/scm/{scm}', 'GET',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, callback
+      );
+    }
+
+    /**
+     * Callback function to receive the result of the getSCMOrganisationRepositories operation.
+     * @callback module:api/BlueOceanApi~getSCMOrganisationRepositoriesCallback
+     * @param {String} error Error message, if any.
+     * @param {module:model/GetScmOrganisations} data The data returned by the service call.
+     * @param {String} response The complete HTTP response.
+     */
+
+    /**
+     * Retrieve SCM organisation repositories details for an organisation
+     * @param {String} organisation Name of the organisation
+     * @param {String} step Name of SCM
+     * @param {String} scmOrganisation Name of the SCM organisation
+     * @param {Object} opts Optional parameters
+     * @param {String} opts.credentialId Credential ID
+     * @param {Number} opts.pageSize Number of items in a page
+     * @param {Number} opts.pageNumber Page number
+     * @param {module:api/BlueOceanApi~getSCMOrganisationRepositoriesCallback} callback The callback function, accepting three arguments: error, data, response
+     * data is of type: {@link module:model/GetScmOrganisations}
+     */
+    this.getSCMOrganisationRepositories = function(organisation, step, scmOrganisation, opts, callback) {
+      opts = opts || {};
+      var postBody = null;
+
+      // verify the required parameter 'organisation' is set
+      if (organisation === undefined || organisation === null) {
+        throw new Error("Missing the required parameter 'organisation' when calling getSCMOrganisationRepositories");
+      }
+
+      // verify the required parameter 'step' is set
+      if (step === undefined || step === null) {
+        throw new Error("Missing the required parameter 'step' when calling getSCMOrganisationRepositories");
+      }
+
+      // verify the required parameter 'scmOrganisation' is set
+      if (scmOrganisation === undefined || scmOrganisation === null) {
+        throw new Error("Missing the required parameter 'scmOrganisation' when calling getSCMOrganisationRepositories");
+      }
+
+
+      var pathParams = {
+        'organisation': organisation,
+        'step': step,
+        'scmOrganisation': scmOrganisation
+      };
+      var queryParams = {
+        'credentialId': opts['credentialId'],
+        'pageSize': opts['pageSize'],
+        'pageNumber': opts['pageNumber']
+      };
+      var headerParams = {
+      };
+      var formParams = {
+      };
+
+      var authNames = [];
+      var contentTypes = [];
+      var accepts = ['application/json'];
+      var returnType = GetScmOrganisations;
+
+      return this.apiClient.callApi(
+        '/blue/rest/organizations/{organisation}/scm/{scm}/organizations/{scmOrganisation}/repositories', 'GET',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, callback
+      );
+    }
+
+    /**
+     * Callback function to receive the result of the getSCMOrganisationRepository operation.
+     * @callback module:api/BlueOceanApi~getSCMOrganisationRepositoryCallback
+     * @param {String} error Error message, if any.
+     * @param {module:model/GetScmOrganisations} data The data returned by the service call.
+     * @param {String} response The complete HTTP response.
+     */
+
+    /**
+     * Retrieve SCM organisation repository details for an organisation
+     * @param {String} organisation Name of the organisation
+     * @param {String} step Name of SCM
+     * @param {String} scmOrganisation Name of the SCM organisation
+     * @param {String} repository Name of the SCM repository
+     * @param {Object} opts Optional parameters
+     * @param {String} opts.credentialId Credential ID
+     * @param {module:api/BlueOceanApi~getSCMOrganisationRepositoryCallback} callback The callback function, accepting three arguments: error, data, response
+     * data is of type: {@link module:model/GetScmOrganisations}
+     */
+    this.getSCMOrganisationRepository = function(organisation, step, scmOrganisation, repository, opts, callback) {
+      opts = opts || {};
+      var postBody = null;
+
+      // verify the required parameter 'organisation' is set
+      if (organisation === undefined || organisation === null) {
+        throw new Error("Missing the required parameter 'organisation' when calling getSCMOrganisationRepository");
+      }
+
+      // verify the required parameter 'step' is set
+      if (step === undefined || step === null) {
+        throw new Error("Missing the required parameter 'step' when calling getSCMOrganisationRepository");
+      }
+
+      // verify the required parameter 'scmOrganisation' is set
+      if (scmOrganisation === undefined || scmOrganisation === null) {
+        throw new Error("Missing the required parameter 'scmOrganisation' when calling getSCMOrganisationRepository");
+      }
+
+      // verify the required parameter 'repository' is set
+      if (repository === undefined || repository === null) {
+        throw new Error("Missing the required parameter 'repository' when calling getSCMOrganisationRepository");
+      }
+
+
+      var pathParams = {
+        'organisation': organisation,
+        'step': step,
+        'scmOrganisation': scmOrganisation,
+        'repository': repository
+      };
+      var queryParams = {
+        'credentialId': opts['credentialId']
+      };
+      var headerParams = {
+      };
+      var formParams = {
+      };
+
+      var authNames = [];
+      var contentTypes = [];
+      var accepts = ['application/json'];
+      var returnType = GetScmOrganisations;
+
+      return this.apiClient.callApi(
+        '/blue/rest/organizations/{organisation}/scm/{scm}/organizations/{scmOrganisation}/repositories/{repository}', 'GET',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, callback
+      );
+    }
+
+    /**
+     * Callback function to receive the result of the getSCMOrganisations operation.
+     * @callback module:api/BlueOceanApi~getSCMOrganisationsCallback
+     * @param {String} error Error message, if any.
+     * @param {module:model/GetScmOrganisations} data The data returned by the service call.
+     * @param {String} response The complete HTTP response.
+     */
+
+    /**
+     * Retrieve SCM organisations details for an organisation
+     * @param {String} organisation Name of the organisation
+     * @param {String} step Name of SCM
+     * @param {Object} opts Optional parameters
+     * @param {String} opts.credentialId Credential ID
+     * @param {module:api/BlueOceanApi~getSCMOrganisationsCallback} callback The callback function, accepting three arguments: error, data, response
+     * data is of type: {@link module:model/GetScmOrganisations}
+     */
+    this.getSCMOrganisations = function(organisation, step, opts, callback) {
+      opts = opts || {};
+      var postBody = null;
+
+      // verify the required parameter 'organisation' is set
+      if (organisation === undefined || organisation === null) {
+        throw new Error("Missing the required parameter 'organisation' when calling getSCMOrganisations");
+      }
+
+      // verify the required parameter 'step' is set
+      if (step === undefined || step === null) {
+        throw new Error("Missing the required parameter 'step' when calling getSCMOrganisations");
+      }
+
+
+      var pathParams = {
+        'organisation': organisation,
+        'step': step
+      };
+      var queryParams = {
+        'credentialId': opts['credentialId']
+      };
+      var headerParams = {
+      };
+      var formParams = {
+      };
+
+      var authNames = [];
+      var contentTypes = [];
+      var accepts = ['application/json'];
+      var returnType = GetScmOrganisations;
+
+      return this.apiClient.callApi(
+        '/blue/rest/organizations/{organisation}/scm/{scm}/organizations', 'GET',
         pathParams, queryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType, callback
       );
@@ -593,6 +1579,51 @@
     }
 
     /**
+     * Callback function to receive the result of the getUserFavorites operation.
+     * @callback module:api/BlueOceanApi~getUserFavoritesCallback
+     * @param {String} error Error message, if any.
+     * @param {module:model/GetUserFavorites} data The data returned by the service call.
+     * @param {String} response The complete HTTP response.
+     */
+
+    /**
+     * Retrieve user favorites details for an organisation
+     * @param {String} user Name of the user
+     * @param {module:api/BlueOceanApi~getUserFavoritesCallback} callback The callback function, accepting three arguments: error, data, response
+     * data is of type: {@link module:model/GetUserFavorites}
+     */
+    this.getUserFavorites = function(user, callback) {
+      var postBody = null;
+
+      // verify the required parameter 'user' is set
+      if (user === undefined || user === null) {
+        throw new Error("Missing the required parameter 'user' when calling getUserFavorites");
+      }
+
+
+      var pathParams = {
+        'user': user
+      };
+      var queryParams = {
+      };
+      var headerParams = {
+      };
+      var formParams = {
+      };
+
+      var authNames = [];
+      var contentTypes = [];
+      var accepts = ['application/json'];
+      var returnType = GetUserFavorites;
+
+      return this.apiClient.callApi(
+        '/blue/rest/users/{user}/favorites', 'GET',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, callback
+      );
+    }
+
+    /**
      * Callback function to receive the result of the getUsers operation.
      * @callback module:api/BlueOceanApi~getUsersCallback
      * @param {String} error Error message, if any.
@@ -638,6 +1669,240 @@
     }
 
     /**
+     * Callback function to receive the result of the postPipelineRunByOrg operation.
+     * @callback module:api/BlueOceanApi~postPipelineRunByOrgCallback
+     * @param {String} error Error message, if any.
+     * @param {module:model/IojenkinsblueoceanserviceembeddedrestQueueItemImpl} data The data returned by the service call.
+     * @param {String} response The complete HTTP response.
+     */
+
+    /**
+     * Replay an organisation pipeline run
+     * @param {String} organisation Name of the organisation
+     * @param {String} pipeline Name of the pipeline
+     * @param {String} run Name of the run
+     * @param {module:api/BlueOceanApi~postPipelineRunByOrgCallback} callback The callback function, accepting three arguments: error, data, response
+     * data is of type: {@link module:model/IojenkinsblueoceanserviceembeddedrestQueueItemImpl}
+     */
+    this.postPipelineRunByOrg = function(organisation, pipeline, run, callback) {
+      var postBody = null;
+
+      // verify the required parameter 'organisation' is set
+      if (organisation === undefined || organisation === null) {
+        throw new Error("Missing the required parameter 'organisation' when calling postPipelineRunByOrg");
+      }
+
+      // verify the required parameter 'pipeline' is set
+      if (pipeline === undefined || pipeline === null) {
+        throw new Error("Missing the required parameter 'pipeline' when calling postPipelineRunByOrg");
+      }
+
+      // verify the required parameter 'run' is set
+      if (run === undefined || run === null) {
+        throw new Error("Missing the required parameter 'run' when calling postPipelineRunByOrg");
+      }
+
+
+      var pathParams = {
+        'organisation': organisation,
+        'pipeline': pipeline,
+        'run': run
+      };
+      var queryParams = {
+      };
+      var headerParams = {
+      };
+      var formParams = {
+      };
+
+      var authNames = [];
+      var contentTypes = [];
+      var accepts = ['application/json'];
+      var returnType = IojenkinsblueoceanserviceembeddedrestQueueItemImpl;
+
+      return this.apiClient.callApi(
+        '/blue/rest/organizations/{organisation}/pipelines/{pipeline}/runs/{run}/replay', 'POST',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, callback
+      );
+    }
+
+    /**
+     * Callback function to receive the result of the postPipelineRunsByOrg operation.
+     * @callback module:api/BlueOceanApi~postPipelineRunsByOrgCallback
+     * @param {String} error Error message, if any.
+     * @param {module:model/IojenkinsblueoceanserviceembeddedrestQueueItemImpl} data The data returned by the service call.
+     * @param {String} response The complete HTTP response.
+     */
+
+    /**
+     * Start a build for an organisation pipeline
+     * @param {String} organisation Name of the organisation
+     * @param {String} pipeline Name of the pipeline
+     * @param {module:api/BlueOceanApi~postPipelineRunsByOrgCallback} callback The callback function, accepting three arguments: error, data, response
+     * data is of type: {@link module:model/IojenkinsblueoceanserviceembeddedrestQueueItemImpl}
+     */
+    this.postPipelineRunsByOrg = function(organisation, pipeline, callback) {
+      var postBody = null;
+
+      // verify the required parameter 'organisation' is set
+      if (organisation === undefined || organisation === null) {
+        throw new Error("Missing the required parameter 'organisation' when calling postPipelineRunsByOrg");
+      }
+
+      // verify the required parameter 'pipeline' is set
+      if (pipeline === undefined || pipeline === null) {
+        throw new Error("Missing the required parameter 'pipeline' when calling postPipelineRunsByOrg");
+      }
+
+
+      var pathParams = {
+        'organisation': organisation,
+        'pipeline': pipeline
+      };
+      var queryParams = {
+      };
+      var headerParams = {
+      };
+      var formParams = {
+      };
+
+      var authNames = [];
+      var contentTypes = [];
+      var accepts = ['application/json'];
+      var returnType = IojenkinsblueoceanserviceembeddedrestQueueItemImpl;
+
+      return this.apiClient.callApi(
+        '/blue/rest/organizations/{organisation}/pipelines/{pipeline}/runs', 'POST',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, callback
+      );
+    }
+
+    /**
+     * Callback function to receive the result of the putPipelineFavoriteByOrg operation.
+     * @callback module:api/BlueOceanApi~putPipelineFavoriteByOrgCallback
+     * @param {String} error Error message, if any.
+     * @param {module:model/IojenkinsblueoceanserviceembeddedrestFavoriteImpl} data The data returned by the service call.
+     * @param {String} response The complete HTTP response.
+     */
+
+    /**
+     * Favorite/unfavorite a pipeline
+     * @param {String} organisation Name of the organisation
+     * @param {String} pipeline Name of the pipeline
+     * @param {module:model/Body} body Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite
+     * @param {module:api/BlueOceanApi~putPipelineFavoriteByOrgCallback} callback The callback function, accepting three arguments: error, data, response
+     * data is of type: {@link module:model/IojenkinsblueoceanserviceembeddedrestFavoriteImpl}
+     */
+    this.putPipelineFavoriteByOrg = function(organisation, pipeline, body, callback) {
+      var postBody = body;
+
+      // verify the required parameter 'organisation' is set
+      if (organisation === undefined || organisation === null) {
+        throw new Error("Missing the required parameter 'organisation' when calling putPipelineFavoriteByOrg");
+      }
+
+      // verify the required parameter 'pipeline' is set
+      if (pipeline === undefined || pipeline === null) {
+        throw new Error("Missing the required parameter 'pipeline' when calling putPipelineFavoriteByOrg");
+      }
+
+      // verify the required parameter 'body' is set
+      if (body === undefined || body === null) {
+        throw new Error("Missing the required parameter 'body' when calling putPipelineFavoriteByOrg");
+      }
+
+
+      var pathParams = {
+        'organisation': organisation,
+        'pipeline': pipeline
+      };
+      var queryParams = {
+      };
+      var headerParams = {
+      };
+      var formParams = {
+      };
+
+      var authNames = [];
+      var contentTypes = [];
+      var accepts = ['application/json'];
+      var returnType = IojenkinsblueoceanserviceembeddedrestFavoriteImpl;
+
+      return this.apiClient.callApi(
+        '/blue/rest/organizations/{organisation}/pipelines/{pipeline}/favorite', 'PUT',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, callback
+      );
+    }
+
+    /**
+     * Callback function to receive the result of the putPipelineRunByOrg operation.
+     * @callback module:api/BlueOceanApi~putPipelineRunByOrgCallback
+     * @param {String} error Error message, if any.
+     * @param {module:model/SwaggyjenkinsPipelineRun} data The data returned by the service call.
+     * @param {String} response The complete HTTP response.
+     */
+
+    /**
+     * Stop a build of an organisation pipeline
+     * @param {String} organisation Name of the organisation
+     * @param {String} pipeline Name of the pipeline
+     * @param {String} run Name of the run
+     * @param {Object} opts Optional parameters
+     * @param {String} opts.blocking Set to true to make blocking stop, default: false
+     * @param {Number} opts.timeOutInSecs Timeout in seconds, default: 10 seconds
+     * @param {module:api/BlueOceanApi~putPipelineRunByOrgCallback} callback The callback function, accepting three arguments: error, data, response
+     * data is of type: {@link module:model/SwaggyjenkinsPipelineRun}
+     */
+    this.putPipelineRunByOrg = function(organisation, pipeline, run, opts, callback) {
+      opts = opts || {};
+      var postBody = null;
+
+      // verify the required parameter 'organisation' is set
+      if (organisation === undefined || organisation === null) {
+        throw new Error("Missing the required parameter 'organisation' when calling putPipelineRunByOrg");
+      }
+
+      // verify the required parameter 'pipeline' is set
+      if (pipeline === undefined || pipeline === null) {
+        throw new Error("Missing the required parameter 'pipeline' when calling putPipelineRunByOrg");
+      }
+
+      // verify the required parameter 'run' is set
+      if (run === undefined || run === null) {
+        throw new Error("Missing the required parameter 'run' when calling putPipelineRunByOrg");
+      }
+
+
+      var pathParams = {
+        'organisation': organisation,
+        'pipeline': pipeline,
+        'run': run
+      };
+      var queryParams = {
+        'blocking': opts['blocking'],
+        'timeOutInSecs': opts['timeOutInSecs']
+      };
+      var headerParams = {
+      };
+      var formParams = {
+      };
+
+      var authNames = [];
+      var contentTypes = [];
+      var accepts = ['application/json'];
+      var returnType = SwaggyjenkinsPipelineRun;
+
+      return this.apiClient.callApi(
+        '/blue/rest/organizations/{organisation}/pipelines/{pipeline}/runs/{run}/stop', 'PUT',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, callback
+      );
+    }
+
+    /**
      * Callback function to receive the result of the search operation.
      * @callback module:api/BlueOceanApi~searchCallback
      * @param {String} error Error message, if any.
@@ -646,8 +1911,8 @@
      */
 
     /**
-     * Get classes details
-     * @param {String} q Query string containing an array of class names
+     * Search for any resource details
+     * @param {String} q Query string
      * @param {module:api/BlueOceanApi~searchCallback} callback The callback function, accepting three arguments: error, data, response
      * data is of type: {@link 'String'}
      */
@@ -676,32 +1941,32 @@
       var returnType = 'String';
 
       return this.apiClient.callApi(
-        '/blue/rest/classes/', 'GET',
+        '/blue/rest/search/', 'GET',
         pathParams, queryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType, callback
       );
     }
 
     /**
-     * Callback function to receive the result of the search_0 operation.
-     * @callback module:api/BlueOceanApi~search_0Callback
+     * Callback function to receive the result of the searchClasses operation.
+     * @callback module:api/BlueOceanApi~searchClassesCallback
      * @param {String} error Error message, if any.
      * @param {'String'} data The data returned by the service call.
      * @param {String} response The complete HTTP response.
      */
 
     /**
-     * Search for any resource details
-     * @param {String} q Query string
-     * @param {module:api/BlueOceanApi~search_0Callback} callback The callback function, accepting three arguments: error, data, response
+     * Get classes details
+     * @param {String} q Query string containing an array of class names
+     * @param {module:api/BlueOceanApi~searchClassesCallback} callback The callback function, accepting three arguments: error, data, response
      * data is of type: {@link 'String'}
      */
-    this.search_0 = function(q, callback) {
+    this.searchClasses = function(q, callback) {
       var postBody = null;
 
       // verify the required parameter 'q' is set
       if (q === undefined || q === null) {
-        throw new Error("Missing the required parameter 'q' when calling search_0");
+        throw new Error("Missing the required parameter 'q' when calling searchClasses");
       }
 
 
@@ -721,7 +1986,7 @@
       var returnType = 'String';
 
       return this.apiClient.callApi(
-        '/blue/rest/search/', 'GET',
+        '/blue/rest/classes/', 'GET',
         pathParams, queryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType, callback
       );

@@ -11,5 +11,6 @@ Name | Type | Description | Notes
 **name** | **String** |  | [optional] 
 **organization** | **String** |  | [optional] 
 **weatherScore** | **Number** |  | [optional] 
+**links** | [**IojenkinsblueoceanserviceembeddedrestPipelineImplLinks**](IojenkinsblueoceanserviceembeddedrestPipelineImplLinks.md) |  | [optional] 
 
 

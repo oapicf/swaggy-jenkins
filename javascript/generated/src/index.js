@@ -17,12 +17,12 @@
 (function(factory) {
   if (typeof define === 'function' && define.amd) {
     // AMD. Register as an anonymous module.
-    define(['ApiClient', 'model/GetClassesByClass', 'model/GetMultibranchPipeline', 'model/GetOrganisations', 'model/GetPipelineBranches', 'model/GetPipelineBranchesitem', 'model/GetPipelineBranchesitemLatestRun', 'model/GetPipelineBranchesitemPullRequest', 'model/GetPipelineBranchesitemPullRequestLinks', 'model/GetPipelines', 'model/GetUsers', 'model/HudsonmodelAllView', 'model/HudsonmodelCauseAction', 'model/HudsonmodelCauseUserIdCause', 'model/HudsonmodelComputerSet', 'model/HudsonmodelFreeStyleBuild', 'model/HudsonmodelFreeStyleProject', 'model/HudsonmodelFreeStyleProjectactions', 'model/HudsonmodelFreeStyleProjecthealthReport', 'model/HudsonmodelHudson', 'model/HudsonmodelHudsonMasterComputer', 'model/HudsonmodelHudsonMasterComputerMonitorData', 'model/HudsonmodelHudsonMasterComputerexecutors', 'model/HudsonmodelHudsonassignedLabels', 'model/HudsonmodelLabel1', 'model/HudsonmodelListView', 'model/HudsonmodelQueue', 'model/HudsonmodelQueueBlockedItem', 'model/HudsonmodelQueueLeftItem', 'model/HudsonmodelStringParameterDefinition', 'model/HudsonmodelStringParameterValue', 'model/HudsonnodeMonitorsDiskSpaceMonitorDescriptorDiskSpace', 'model/HudsonnodeMonitorsResponseTimeMonitorData', 'model/HudsonnodeMonitorsSwapSpaceMonitorMemoryUsage2', 'model/HudsonscmEmptyChangeLogSet', 'model/HudsonscmNullSCM', 'model/HudsonsecuritycsrfDefaultCrumbIssuer', 'model/HudsonutilClockDifference', 'model/IojenkinsblueoceanresthalLink', 'model/IojenkinsblueoceanrestimplpipelineBranchImpl', 'model/IojenkinsblueoceanrestimplpipelineBranchImplPermissions', 'model/IojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1', 'model/IojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1Links', 'model/IojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1Map', 'model/IojenkinsblueoceanserviceembeddedrestExtensionClassImpl', 'model/IojenkinsblueoceanserviceembeddedrestExtensionClassImplLinks', 'model/IojenkinsblueoceanserviceembeddedrestPipelineFolderImpl', 'model/IojenkinsblueoceanserviceembeddedrestPipelineImpl', 'model/JenkinsmodelUnlabeledLoadStatistics', 'model/SwaggyjenkinsOrganisation', 'model/SwaggyjenkinsPipeline', 'model/SwaggyjenkinsPipelineLatestRun', 'model/SwaggyjenkinsPipelineLatestRunartifacts', 'model/SwaggyjenkinsUser', 'api/BlueOceanApi', 'api/RemoteAccessApi'], factory);
+    define(['ApiClient', 'model/Body', 'model/GetClassesByClass', 'model/GetMultibranchPipeline', 'model/GetOrganisations', 'model/GetPipelineActivities', 'model/GetPipelineBranches', 'model/GetPipelineBranchesitem', 'model/GetPipelineBranchesitemLatestRun', 'model/GetPipelineBranchesitemPullRequest', 'model/GetPipelineBranchesitemPullRequestLinks', 'model/GetPipelineQueue', 'model/GetPipelineRunNodeSteps', 'model/GetPipelineRunNodes', 'model/GetPipelineRunSteps', 'model/GetPipelineRuns', 'model/GetPipelines', 'model/GetScmOrganisations', 'model/GetUserFavorites', 'model/GetUsers', 'model/HudsonmodelAllView', 'model/HudsonmodelCauseAction', 'model/HudsonmodelCauseUserIdCause', 'model/HudsonmodelComputerSet', 'model/HudsonmodelFreeStyleBuild', 'model/HudsonmodelFreeStyleProject', 'model/HudsonmodelFreeStyleProjectactions', 'model/HudsonmodelFreeStyleProjecthealthReport', 'model/HudsonmodelHudson', 'model/HudsonmodelHudsonMasterComputer', 'model/HudsonmodelHudsonMasterComputerMonitorData', 'model/HudsonmodelHudsonMasterComputerexecutors', 'model/HudsonmodelHudsonassignedLabels', 'model/HudsonmodelLabel1', 'model/HudsonmodelListView', 'model/HudsonmodelQueue', 'model/HudsonmodelQueueBlockedItem', 'model/HudsonmodelQueueLeftItem', 'model/HudsonmodelStringParameterDefinition', 'model/HudsonmodelStringParameterValue', 'model/HudsonnodeMonitorsDiskSpaceMonitorDescriptorDiskSpace', 'model/HudsonnodeMonitorsResponseTimeMonitorData', 'model/HudsonnodeMonitorsSwapSpaceMonitorMemoryUsage2', 'model/HudsonscmEmptyChangeLogSet', 'model/HudsonscmNullSCM', 'model/HudsonsecuritycsrfDefaultCrumbIssuer', 'model/HudsonutilClockDifference', 'model/IojenkinsblueoceanblueoceanGithubPipelineGithubContent', 'model/IojenkinsblueoceanblueoceanGithubPipelineGithubFile', 'model/IojenkinsblueoceanblueoceanGithubPipelineGithubOrganization', 'model/IojenkinsblueoceanblueoceanGithubPipelineGithubOrganizationLinks', 'model/IojenkinsblueoceanblueoceanGithubPipelineGithubRepositories', 'model/IojenkinsblueoceanblueoceanGithubPipelineGithubRepositoriesLinks', 'model/IojenkinsblueoceanblueoceanGithubPipelineGithubRepository', 'model/IojenkinsblueoceanblueoceanGithubPipelineGithubRepositoryLinks', 'model/IojenkinsblueoceanblueoceanGithubPipelineGithubRepositoryPermissions', 'model/IojenkinsblueoceanblueoceanGithubPipelineGithubRespositoryContainer', 'model/IojenkinsblueoceanblueoceanGithubPipelineGithubRespositoryContainerLinks', 'model/IojenkinsblueoceanblueoceanGithubPipelineGithubScm', 'model/IojenkinsblueoceanblueoceanGithubPipelineGithubScmLinks', 'model/IojenkinsblueoceanresthalLink', 'model/IojenkinsblueoceanrestimplpipelineBranchImpl', 'model/IojenkinsblueoceanrestimplpipelineBranchImplPermissions', 'model/IojenkinsblueoceanrestimplpipelineInputStepImpl', 'model/IojenkinsblueoceanrestimplpipelineInputStepImplLinks', 'model/IojenkinsblueoceanrestimplpipelinePipelineStepImpl', 'model/IojenkinsblueoceanrestimplpipelinePipelineStepImplLinks', 'model/IojenkinsblueoceanrestmodelGenericResource', 'model/IojenkinsblueoceanserviceembeddedrestBranchImpl', 'model/IojenkinsblueoceanserviceembeddedrestBranchImplLinks', 'model/IojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1', 'model/IojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1Links', 'model/IojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1Map', 'model/IojenkinsblueoceanserviceembeddedrestExtensionClassImpl', 'model/IojenkinsblueoceanserviceembeddedrestExtensionClassImplLinks', 'model/IojenkinsblueoceanserviceembeddedrestFavoriteImpl', 'model/IojenkinsblueoceanserviceembeddedrestFavoriteImplLinks', 'model/IojenkinsblueoceanserviceembeddedrestPipelineFolderImpl', 'model/IojenkinsblueoceanserviceembeddedrestPipelineImpl', 'model/IojenkinsblueoceanserviceembeddedrestPipelineImplLinks', 'model/IojenkinsblueoceanserviceembeddedrestPipelineRunImpl', 'model/IojenkinsblueoceanserviceembeddedrestPipelineRunImplLinks', 'model/IojenkinsblueoceanserviceembeddedrestQueueItemImpl', 'model/JenkinsmodelUnlabeledLoadStatistics', 'model/SwaggyjenkinsOrganisation', 'model/SwaggyjenkinsPipeline', 'model/SwaggyjenkinsPipelineActivity', 'model/SwaggyjenkinsPipelineActivityartifacts', 'model/SwaggyjenkinsPipelineLatestRun', 'model/SwaggyjenkinsPipelineLatestRunartifacts', 'model/SwaggyjenkinsPipelineRun', 'model/SwaggyjenkinsPipelineRunNode', 'model/SwaggyjenkinsPipelineRunNodeedges', 'model/SwaggyjenkinsPipelineRunartifacts', 'model/SwaggyjenkinsUser', 'api/BlueOceanApi', 'api/RemoteAccessApi'], factory);
   } else if (typeof module === 'object' && module.exports) {
     // CommonJS-like environments that support module.exports, like Node.
-    module.exports = factory(require('./ApiClient'), require('./model/GetClassesByClass'), require('./model/GetMultibranchPipeline'), require('./model/GetOrganisations'), require('./model/GetPipelineBranches'), require('./model/GetPipelineBranchesitem'), require('./model/GetPipelineBranchesitemLatestRun'), require('./model/GetPipelineBranchesitemPullRequest'), require('./model/GetPipelineBranchesitemPullRequestLinks'), require('./model/GetPipelines'), require('./model/GetUsers'), require('./model/HudsonmodelAllView'), require('./model/HudsonmodelCauseAction'), require('./model/HudsonmodelCauseUserIdCause'), require('./model/HudsonmodelComputerSet'), require('./model/HudsonmodelFreeStyleBuild'), require('./model/HudsonmodelFreeStyleProject'), require('./model/HudsonmodelFreeStyleProjectactions'), require('./model/HudsonmodelFreeStyleProjecthealthReport'), require('./model/HudsonmodelHudson'), require('./model/HudsonmodelHudsonMasterComputer'), require('./model/HudsonmodelHudsonMasterComputerMonitorData'), require('./model/HudsonmodelHudsonMasterComputerexecutors'), require('./model/HudsonmodelHudsonassignedLabels'), require('./model/HudsonmodelLabel1'), require('./model/HudsonmodelListView'), require('./model/HudsonmodelQueue'), require('./model/HudsonmodelQueueBlockedItem'), require('./model/HudsonmodelQueueLeftItem'), require('./model/HudsonmodelStringParameterDefinition'), require('./model/HudsonmodelStringParameterValue'), require('./model/HudsonnodeMonitorsDiskSpaceMonitorDescriptorDiskSpace'), require('./model/HudsonnodeMonitorsResponseTimeMonitorData'), require('./model/HudsonnodeMonitorsSwapSpaceMonitorMemoryUsage2'), require('./model/HudsonscmEmptyChangeLogSet'), require('./model/HudsonscmNullSCM'), require('./model/HudsonsecuritycsrfDefaultCrumbIssuer'), require('./model/HudsonutilClockDifference'), require('./model/IojenkinsblueoceanresthalLink'), require('./model/IojenkinsblueoceanrestimplpipelineBranchImpl'), require('./model/IojenkinsblueoceanrestimplpipelineBranchImplPermissions'), require('./model/IojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1'), require('./model/IojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1Links'), require('./model/IojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1Map'), require('./model/IojenkinsblueoceanserviceembeddedrestExtensionClassImpl'), require('./model/IojenkinsblueoceanserviceembeddedrestExtensionClassImplLinks'), require('./model/IojenkinsblueoceanserviceembeddedrestPipelineFolderImpl'), require('./model/IojenkinsblueoceanserviceembeddedrestPipelineImpl'), require('./model/JenkinsmodelUnlabeledLoadStatistics'), require('./model/SwaggyjenkinsOrganisation'), require('./model/SwaggyjenkinsPipeline'), require('./model/SwaggyjenkinsPipelineLatestRun'), require('./model/SwaggyjenkinsPipelineLatestRunartifacts'), require('./model/SwaggyjenkinsUser'), require('./api/BlueOceanApi'), require('./api/RemoteAccessApi'));
+    module.exports = factory(require('./ApiClient'), require('./model/Body'), require('./model/GetClassesByClass'), require('./model/GetMultibranchPipeline'), require('./model/GetOrganisations'), require('./model/GetPipelineActivities'), require('./model/GetPipelineBranches'), require('./model/GetPipelineBranchesitem'), require('./model/GetPipelineBranchesitemLatestRun'), require('./model/GetPipelineBranchesitemPullRequest'), require('./model/GetPipelineBranchesitemPullRequestLinks'), require('./model/GetPipelineQueue'), require('./model/GetPipelineRunNodeSteps'), require('./model/GetPipelineRunNodes'), require('./model/GetPipelineRunSteps'), require('./model/GetPipelineRuns'), require('./model/GetPipelines'), require('./model/GetScmOrganisations'), require('./model/GetUserFavorites'), require('./model/GetUsers'), require('./model/HudsonmodelAllView'), require('./model/HudsonmodelCauseAction'), require('./model/HudsonmodelCauseUserIdCause'), require('./model/HudsonmodelComputerSet'), require('./model/HudsonmodelFreeStyleBuild'), require('./model/HudsonmodelFreeStyleProject'), require('./model/HudsonmodelFreeStyleProjectactions'), require('./model/HudsonmodelFreeStyleProjecthealthReport'), require('./model/HudsonmodelHudson'), require('./model/HudsonmodelHudsonMasterComputer'), require('./model/HudsonmodelHudsonMasterComputerMonitorData'), require('./model/HudsonmodelHudsonMasterComputerexecutors'), require('./model/HudsonmodelHudsonassignedLabels'), require('./model/HudsonmodelLabel1'), require('./model/HudsonmodelListView'), require('./model/HudsonmodelQueue'), require('./model/HudsonmodelQueueBlockedItem'), require('./model/HudsonmodelQueueLeftItem'), require('./model/HudsonmodelStringParameterDefinition'), require('./model/HudsonmodelStringParameterValue'), require('./model/HudsonnodeMonitorsDiskSpaceMonitorDescriptorDiskSpace'), require('./model/HudsonnodeMonitorsResponseTimeMonitorData'), require('./model/HudsonnodeMonitorsSwapSpaceMonitorMemoryUsage2'), require('./model/HudsonscmEmptyChangeLogSet'), require('./model/HudsonscmNullSCM'), require('./model/HudsonsecuritycsrfDefaultCrumbIssuer'), require('./model/HudsonutilClockDifference'), require('./model/IojenkinsblueoceanblueoceanGithubPipelineGithubContent'), require('./model/IojenkinsblueoceanblueoceanGithubPipelineGithubFile'), require('./model/IojenkinsblueoceanblueoceanGithubPipelineGithubOrganization'), require('./model/IojenkinsblueoceanblueoceanGithubPipelineGithubOrganizationLinks'), require('./model/IojenkinsblueoceanblueoceanGithubPipelineGithubRepositories'), require('./model/IojenkinsblueoceanblueoceanGithubPipelineGithubRepositoriesLinks'), require('./model/IojenkinsblueoceanblueoceanGithubPipelineGithubRepository'), require('./model/IojenkinsblueoceanblueoceanGithubPipelineGithubRepositoryLinks'), require('./model/IojenkinsblueoceanblueoceanGithubPipelineGithubRepositoryPermissions'), require('./model/IojenkinsblueoceanblueoceanGithubPipelineGithubRespositoryContainer'), require('./model/IojenkinsblueoceanblueoceanGithubPipelineGithubRespositoryContainerLinks'), require('./model/IojenkinsblueoceanblueoceanGithubPipelineGithubScm'), require('./model/IojenkinsblueoceanblueoceanGithubPipelineGithubScmLinks'), require('./model/IojenkinsblueoceanresthalLink'), require('./model/IojenkinsblueoceanrestimplpipelineBranchImpl'), require('./model/IojenkinsblueoceanrestimplpipelineBranchImplPermissions'), require('./model/IojenkinsblueoceanrestimplpipelineInputStepImpl'), require('./model/IojenkinsblueoceanrestimplpipelineInputStepImplLinks'), require('./model/IojenkinsblueoceanrestimplpipelinePipelineStepImpl'), require('./model/IojenkinsblueoceanrestimplpipelinePipelineStepImplLinks'), require('./model/IojenkinsblueoceanrestmodelGenericResource'), require('./model/IojenkinsblueoceanserviceembeddedrestBranchImpl'), require('./model/IojenkinsblueoceanserviceembeddedrestBranchImplLinks'), require('./model/IojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1'), require('./model/IojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1Links'), require('./model/IojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1Map'), require('./model/IojenkinsblueoceanserviceembeddedrestExtensionClassImpl'), require('./model/IojenkinsblueoceanserviceembeddedrestExtensionClassImplLinks'), require('./model/IojenkinsblueoceanserviceembeddedrestFavoriteImpl'), require('./model/IojenkinsblueoceanserviceembeddedrestFavoriteImplLinks'), require('./model/IojenkinsblueoceanserviceembeddedrestPipelineFolderImpl'), require('./model/IojenkinsblueoceanserviceembeddedrestPipelineImpl'), require('./model/IojenkinsblueoceanserviceembeddedrestPipelineImplLinks'), require('./model/IojenkinsblueoceanserviceembeddedrestPipelineRunImpl'), require('./model/IojenkinsblueoceanserviceembeddedrestPipelineRunImplLinks'), require('./model/IojenkinsblueoceanserviceembeddedrestQueueItemImpl'), require('./model/JenkinsmodelUnlabeledLoadStatistics'), require('./model/SwaggyjenkinsOrganisation'), require('./model/SwaggyjenkinsPipeline'), require('./model/SwaggyjenkinsPipelineActivity'), require('./model/SwaggyjenkinsPipelineActivityartifacts'), require('./model/SwaggyjenkinsPipelineLatestRun'), require('./model/SwaggyjenkinsPipelineLatestRunartifacts'), require('./model/SwaggyjenkinsPipelineRun'), require('./model/SwaggyjenkinsPipelineRunNode'), require('./model/SwaggyjenkinsPipelineRunNodeedges'), require('./model/SwaggyjenkinsPipelineRunartifacts'), require('./model/SwaggyjenkinsUser'), require('./api/BlueOceanApi'), require('./api/RemoteAccessApi'));
   }
-}(function(ApiClient, GetClassesByClass, GetMultibranchPipeline, GetOrganisations, GetPipelineBranches, GetPipelineBranchesitem, GetPipelineBranchesitemLatestRun, GetPipelineBranchesitemPullRequest, GetPipelineBranchesitemPullRequestLinks, GetPipelines, GetUsers, HudsonmodelAllView, HudsonmodelCauseAction, HudsonmodelCauseUserIdCause, HudsonmodelComputerSet, HudsonmodelFreeStyleBuild, HudsonmodelFreeStyleProject, HudsonmodelFreeStyleProjectactions, HudsonmodelFreeStyleProjecthealthReport, HudsonmodelHudson, HudsonmodelHudsonMasterComputer, HudsonmodelHudsonMasterComputerMonitorData, HudsonmodelHudsonMasterComputerexecutors, HudsonmodelHudsonassignedLabels, HudsonmodelLabel1, HudsonmodelListView, HudsonmodelQueue, HudsonmodelQueueBlockedItem, HudsonmodelQueueLeftItem, HudsonmodelStringParameterDefinition, HudsonmodelStringParameterValue, HudsonnodeMonitorsDiskSpaceMonitorDescriptorDiskSpace, HudsonnodeMonitorsResponseTimeMonitorData, HudsonnodeMonitorsSwapSpaceMonitorMemoryUsage2, HudsonscmEmptyChangeLogSet, HudsonscmNullSCM, HudsonsecuritycsrfDefaultCrumbIssuer, HudsonutilClockDifference, IojenkinsblueoceanresthalLink, IojenkinsblueoceanrestimplpipelineBranchImpl, IojenkinsblueoceanrestimplpipelineBranchImplPermissions, IojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1, IojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1Links, IojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1Map, IojenkinsblueoceanserviceembeddedrestExtensionClassImpl, IojenkinsblueoceanserviceembeddedrestExtensionClassImplLinks, IojenkinsblueoceanserviceembeddedrestPipelineFolderImpl, IojenkinsblueoceanserviceembeddedrestPipelineImpl, JenkinsmodelUnlabeledLoadStatistics, SwaggyjenkinsOrganisation, SwaggyjenkinsPipeline, SwaggyjenkinsPipelineLatestRun, SwaggyjenkinsPipelineLatestRunartifacts, SwaggyjenkinsUser, BlueOceanApi, RemoteAccessApi) {
+}(function(ApiClient, Body, GetClassesByClass, GetMultibranchPipeline, GetOrganisations, GetPipelineActivities, GetPipelineBranches, GetPipelineBranchesitem, GetPipelineBranchesitemLatestRun, GetPipelineBranchesitemPullRequest, GetPipelineBranchesitemPullRequestLinks, GetPipelineQueue, GetPipelineRunNodeSteps, GetPipelineRunNodes, GetPipelineRunSteps, GetPipelineRuns, GetPipelines, GetScmOrganisations, GetUserFavorites, GetUsers, HudsonmodelAllView, HudsonmodelCauseAction, HudsonmodelCauseUserIdCause, HudsonmodelComputerSet, HudsonmodelFreeStyleBuild, HudsonmodelFreeStyleProject, HudsonmodelFreeStyleProjectactions, HudsonmodelFreeStyleProjecthealthReport, HudsonmodelHudson, HudsonmodelHudsonMasterComputer, HudsonmodelHudsonMasterComputerMonitorData, HudsonmodelHudsonMasterComputerexecutors, HudsonmodelHudsonassignedLabels, HudsonmodelLabel1, HudsonmodelListView, HudsonmodelQueue, HudsonmodelQueueBlockedItem, HudsonmodelQueueLeftItem, HudsonmodelStringParameterDefinition, HudsonmodelStringParameterValue, HudsonnodeMonitorsDiskSpaceMonitorDescriptorDiskSpace, HudsonnodeMonitorsResponseTimeMonitorData, HudsonnodeMonitorsSwapSpaceMonitorMemoryUsage2, HudsonscmEmptyChangeLogSet, HudsonscmNullSCM, HudsonsecuritycsrfDefaultCrumbIssuer, HudsonutilClockDifference, IojenkinsblueoceanblueoceanGithubPipelineGithubContent, IojenkinsblueoceanblueoceanGithubPipelineGithubFile, IojenkinsblueoceanblueoceanGithubPipelineGithubOrganization, IojenkinsblueoceanblueoceanGithubPipelineGithubOrganizationLinks, IojenkinsblueoceanblueoceanGithubPipelineGithubRepositories, IojenkinsblueoceanblueoceanGithubPipelineGithubRepositoriesLinks, IojenkinsblueoceanblueoceanGithubPipelineGithubRepository, IojenkinsblueoceanblueoceanGithubPipelineGithubRepositoryLinks, IojenkinsblueoceanblueoceanGithubPipelineGithubRepositoryPermissions, IojenkinsblueoceanblueoceanGithubPipelineGithubRespositoryContainer, IojenkinsblueoceanblueoceanGithubPipelineGithubRespositoryContainerLinks, IojenkinsblueoceanblueoceanGithubPipelineGithubScm, IojenkinsblueoceanblueoceanGithubPipelineGithubScmLinks, IojenkinsblueoceanresthalLink, IojenkinsblueoceanrestimplpipelineBranchImpl, IojenkinsblueoceanrestimplpipelineBranchImplPermissions, IojenkinsblueoceanrestimplpipelineInputStepImpl, IojenkinsblueoceanrestimplpipelineInputStepImplLinks, IojenkinsblueoceanrestimplpipelinePipelineStepImpl, IojenkinsblueoceanrestimplpipelinePipelineStepImplLinks, IojenkinsblueoceanrestmodelGenericResource, IojenkinsblueoceanserviceembeddedrestBranchImpl, IojenkinsblueoceanserviceembeddedrestBranchImplLinks, IojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1, IojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1Links, IojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1Map, IojenkinsblueoceanserviceembeddedrestExtensionClassImpl, IojenkinsblueoceanserviceembeddedrestExtensionClassImplLinks, IojenkinsblueoceanserviceembeddedrestFavoriteImpl, IojenkinsblueoceanserviceembeddedrestFavoriteImplLinks, IojenkinsblueoceanserviceembeddedrestPipelineFolderImpl, IojenkinsblueoceanserviceembeddedrestPipelineImpl, IojenkinsblueoceanserviceembeddedrestPipelineImplLinks, IojenkinsblueoceanserviceembeddedrestPipelineRunImpl, IojenkinsblueoceanserviceembeddedrestPipelineRunImplLinks, IojenkinsblueoceanserviceembeddedrestQueueItemImpl, JenkinsmodelUnlabeledLoadStatistics, SwaggyjenkinsOrganisation, SwaggyjenkinsPipeline, SwaggyjenkinsPipelineActivity, SwaggyjenkinsPipelineActivityartifacts, SwaggyjenkinsPipelineLatestRun, SwaggyjenkinsPipelineLatestRunartifacts, SwaggyjenkinsPipelineRun, SwaggyjenkinsPipelineRunNode, SwaggyjenkinsPipelineRunNodeedges, SwaggyjenkinsPipelineRunartifacts, SwaggyjenkinsUser, BlueOceanApi, RemoteAccessApi) {
   'use strict';
 
   /**
@@ -63,6 +63,11 @@
      */
     ApiClient: ApiClient,
     /**
+     * The Body model constructor.
+     * @property {module:model/Body}
+     */
+    Body: Body,
+    /**
      * The GetClassesByClass model constructor.
      * @property {module:model/GetClassesByClass}
      */
@@ -77,6 +82,11 @@
      * @property {module:model/GetOrganisations}
      */
     GetOrganisations: GetOrganisations,
+    /**
+     * The GetPipelineActivities model constructor.
+     * @property {module:model/GetPipelineActivities}
+     */
+    GetPipelineActivities: GetPipelineActivities,
     /**
      * The GetPipelineBranches model constructor.
      * @property {module:model/GetPipelineBranches}
@@ -103,10 +113,45 @@
      */
     GetPipelineBranchesitemPullRequestLinks: GetPipelineBranchesitemPullRequestLinks,
     /**
+     * The GetPipelineQueue model constructor.
+     * @property {module:model/GetPipelineQueue}
+     */
+    GetPipelineQueue: GetPipelineQueue,
+    /**
+     * The GetPipelineRunNodeSteps model constructor.
+     * @property {module:model/GetPipelineRunNodeSteps}
+     */
+    GetPipelineRunNodeSteps: GetPipelineRunNodeSteps,
+    /**
+     * The GetPipelineRunNodes model constructor.
+     * @property {module:model/GetPipelineRunNodes}
+     */
+    GetPipelineRunNodes: GetPipelineRunNodes,
+    /**
+     * The GetPipelineRunSteps model constructor.
+     * @property {module:model/GetPipelineRunSteps}
+     */
+    GetPipelineRunSteps: GetPipelineRunSteps,
+    /**
+     * The GetPipelineRuns model constructor.
+     * @property {module:model/GetPipelineRuns}
+     */
+    GetPipelineRuns: GetPipelineRuns,
+    /**
      * The GetPipelines model constructor.
      * @property {module:model/GetPipelines}
      */
     GetPipelines: GetPipelines,
+    /**
+     * The GetScmOrganisations model constructor.
+     * @property {module:model/GetScmOrganisations}
+     */
+    GetScmOrganisations: GetScmOrganisations,
+    /**
+     * The GetUserFavorites model constructor.
+     * @property {module:model/GetUserFavorites}
+     */
+    GetUserFavorites: GetUserFavorites,
     /**
      * The GetUsers model constructor.
      * @property {module:model/GetUsers}
@@ -248,6 +293,71 @@
      */
     HudsonutilClockDifference: HudsonutilClockDifference,
     /**
+     * The IojenkinsblueoceanblueoceanGithubPipelineGithubContent model constructor.
+     * @property {module:model/IojenkinsblueoceanblueoceanGithubPipelineGithubContent}
+     */
+    IojenkinsblueoceanblueoceanGithubPipelineGithubContent: IojenkinsblueoceanblueoceanGithubPipelineGithubContent,
+    /**
+     * The IojenkinsblueoceanblueoceanGithubPipelineGithubFile model constructor.
+     * @property {module:model/IojenkinsblueoceanblueoceanGithubPipelineGithubFile}
+     */
+    IojenkinsblueoceanblueoceanGithubPipelineGithubFile: IojenkinsblueoceanblueoceanGithubPipelineGithubFile,
+    /**
+     * The IojenkinsblueoceanblueoceanGithubPipelineGithubOrganization model constructor.
+     * @property {module:model/IojenkinsblueoceanblueoceanGithubPipelineGithubOrganization}
+     */
+    IojenkinsblueoceanblueoceanGithubPipelineGithubOrganization: IojenkinsblueoceanblueoceanGithubPipelineGithubOrganization,
+    /**
+     * The IojenkinsblueoceanblueoceanGithubPipelineGithubOrganizationLinks model constructor.
+     * @property {module:model/IojenkinsblueoceanblueoceanGithubPipelineGithubOrganizationLinks}
+     */
+    IojenkinsblueoceanblueoceanGithubPipelineGithubOrganizationLinks: IojenkinsblueoceanblueoceanGithubPipelineGithubOrganizationLinks,
+    /**
+     * The IojenkinsblueoceanblueoceanGithubPipelineGithubRepositories model constructor.
+     * @property {module:model/IojenkinsblueoceanblueoceanGithubPipelineGithubRepositories}
+     */
+    IojenkinsblueoceanblueoceanGithubPipelineGithubRepositories: IojenkinsblueoceanblueoceanGithubPipelineGithubRepositories,
+    /**
+     * The IojenkinsblueoceanblueoceanGithubPipelineGithubRepositoriesLinks model constructor.
+     * @property {module:model/IojenkinsblueoceanblueoceanGithubPipelineGithubRepositoriesLinks}
+     */
+    IojenkinsblueoceanblueoceanGithubPipelineGithubRepositoriesLinks: IojenkinsblueoceanblueoceanGithubPipelineGithubRepositoriesLinks,
+    /**
+     * The IojenkinsblueoceanblueoceanGithubPipelineGithubRepository model constructor.
+     * @property {module:model/IojenkinsblueoceanblueoceanGithubPipelineGithubRepository}
+     */
+    IojenkinsblueoceanblueoceanGithubPipelineGithubRepository: IojenkinsblueoceanblueoceanGithubPipelineGithubRepository,
+    /**
+     * The IojenkinsblueoceanblueoceanGithubPipelineGithubRepositoryLinks model constructor.
+     * @property {module:model/IojenkinsblueoceanblueoceanGithubPipelineGithubRepositoryLinks}
+     */
+    IojenkinsblueoceanblueoceanGithubPipelineGithubRepositoryLinks: IojenkinsblueoceanblueoceanGithubPipelineGithubRepositoryLinks,
+    /**
+     * The IojenkinsblueoceanblueoceanGithubPipelineGithubRepositoryPermissions model constructor.
+     * @property {module:model/IojenkinsblueoceanblueoceanGithubPipelineGithubRepositoryPermissions}
+     */
+    IojenkinsblueoceanblueoceanGithubPipelineGithubRepositoryPermissions: IojenkinsblueoceanblueoceanGithubPipelineGithubRepositoryPermissions,
+    /**
+     * The IojenkinsblueoceanblueoceanGithubPipelineGithubRespositoryContainer model constructor.
+     * @property {module:model/IojenkinsblueoceanblueoceanGithubPipelineGithubRespositoryContainer}
+     */
+    IojenkinsblueoceanblueoceanGithubPipelineGithubRespositoryContainer: IojenkinsblueoceanblueoceanGithubPipelineGithubRespositoryContainer,
+    /**
+     * The IojenkinsblueoceanblueoceanGithubPipelineGithubRespositoryContainerLinks model constructor.
+     * @property {module:model/IojenkinsblueoceanblueoceanGithubPipelineGithubRespositoryContainerLinks}
+     */
+    IojenkinsblueoceanblueoceanGithubPipelineGithubRespositoryContainerLinks: IojenkinsblueoceanblueoceanGithubPipelineGithubRespositoryContainerLinks,
+    /**
+     * The IojenkinsblueoceanblueoceanGithubPipelineGithubScm model constructor.
+     * @property {module:model/IojenkinsblueoceanblueoceanGithubPipelineGithubScm}
+     */
+    IojenkinsblueoceanblueoceanGithubPipelineGithubScm: IojenkinsblueoceanblueoceanGithubPipelineGithubScm,
+    /**
+     * The IojenkinsblueoceanblueoceanGithubPipelineGithubScmLinks model constructor.
+     * @property {module:model/IojenkinsblueoceanblueoceanGithubPipelineGithubScmLinks}
+     */
+    IojenkinsblueoceanblueoceanGithubPipelineGithubScmLinks: IojenkinsblueoceanblueoceanGithubPipelineGithubScmLinks,
+    /**
      * The IojenkinsblueoceanresthalLink model constructor.
      * @property {module:model/IojenkinsblueoceanresthalLink}
      */
@@ -262,6 +372,41 @@
      * @property {module:model/IojenkinsblueoceanrestimplpipelineBranchImplPermissions}
      */
     IojenkinsblueoceanrestimplpipelineBranchImplPermissions: IojenkinsblueoceanrestimplpipelineBranchImplPermissions,
+    /**
+     * The IojenkinsblueoceanrestimplpipelineInputStepImpl model constructor.
+     * @property {module:model/IojenkinsblueoceanrestimplpipelineInputStepImpl}
+     */
+    IojenkinsblueoceanrestimplpipelineInputStepImpl: IojenkinsblueoceanrestimplpipelineInputStepImpl,
+    /**
+     * The IojenkinsblueoceanrestimplpipelineInputStepImplLinks model constructor.
+     * @property {module:model/IojenkinsblueoceanrestimplpipelineInputStepImplLinks}
+     */
+    IojenkinsblueoceanrestimplpipelineInputStepImplLinks: IojenkinsblueoceanrestimplpipelineInputStepImplLinks,
+    /**
+     * The IojenkinsblueoceanrestimplpipelinePipelineStepImpl model constructor.
+     * @property {module:model/IojenkinsblueoceanrestimplpipelinePipelineStepImpl}
+     */
+    IojenkinsblueoceanrestimplpipelinePipelineStepImpl: IojenkinsblueoceanrestimplpipelinePipelineStepImpl,
+    /**
+     * The IojenkinsblueoceanrestimplpipelinePipelineStepImplLinks model constructor.
+     * @property {module:model/IojenkinsblueoceanrestimplpipelinePipelineStepImplLinks}
+     */
+    IojenkinsblueoceanrestimplpipelinePipelineStepImplLinks: IojenkinsblueoceanrestimplpipelinePipelineStepImplLinks,
+    /**
+     * The IojenkinsblueoceanrestmodelGenericResource model constructor.
+     * @property {module:model/IojenkinsblueoceanrestmodelGenericResource}
+     */
+    IojenkinsblueoceanrestmodelGenericResource: IojenkinsblueoceanrestmodelGenericResource,
+    /**
+     * The IojenkinsblueoceanserviceembeddedrestBranchImpl model constructor.
+     * @property {module:model/IojenkinsblueoceanserviceembeddedrestBranchImpl}
+     */
+    IojenkinsblueoceanserviceembeddedrestBranchImpl: IojenkinsblueoceanserviceembeddedrestBranchImpl,
+    /**
+     * The IojenkinsblueoceanserviceembeddedrestBranchImplLinks model constructor.
+     * @property {module:model/IojenkinsblueoceanserviceembeddedrestBranchImplLinks}
+     */
+    IojenkinsblueoceanserviceembeddedrestBranchImplLinks: IojenkinsblueoceanserviceembeddedrestBranchImplLinks,
     /**
      * The IojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1 model constructor.
      * @property {module:model/IojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1}
@@ -288,6 +433,16 @@
      */
     IojenkinsblueoceanserviceembeddedrestExtensionClassImplLinks: IojenkinsblueoceanserviceembeddedrestExtensionClassImplLinks,
     /**
+     * The IojenkinsblueoceanserviceembeddedrestFavoriteImpl model constructor.
+     * @property {module:model/IojenkinsblueoceanserviceembeddedrestFavoriteImpl}
+     */
+    IojenkinsblueoceanserviceembeddedrestFavoriteImpl: IojenkinsblueoceanserviceembeddedrestFavoriteImpl,
+    /**
+     * The IojenkinsblueoceanserviceembeddedrestFavoriteImplLinks model constructor.
+     * @property {module:model/IojenkinsblueoceanserviceembeddedrestFavoriteImplLinks}
+     */
+    IojenkinsblueoceanserviceembeddedrestFavoriteImplLinks: IojenkinsblueoceanserviceembeddedrestFavoriteImplLinks,
+    /**
      * The IojenkinsblueoceanserviceembeddedrestPipelineFolderImpl model constructor.
      * @property {module:model/IojenkinsblueoceanserviceembeddedrestPipelineFolderImpl}
      */
@@ -297,6 +452,26 @@
      * @property {module:model/IojenkinsblueoceanserviceembeddedrestPipelineImpl}
      */
     IojenkinsblueoceanserviceembeddedrestPipelineImpl: IojenkinsblueoceanserviceembeddedrestPipelineImpl,
+    /**
+     * The IojenkinsblueoceanserviceembeddedrestPipelineImplLinks model constructor.
+     * @property {module:model/IojenkinsblueoceanserviceembeddedrestPipelineImplLinks}
+     */
+    IojenkinsblueoceanserviceembeddedrestPipelineImplLinks: IojenkinsblueoceanserviceembeddedrestPipelineImplLinks,
+    /**
+     * The IojenkinsblueoceanserviceembeddedrestPipelineRunImpl model constructor.
+     * @property {module:model/IojenkinsblueoceanserviceembeddedrestPipelineRunImpl}
+     */
+    IojenkinsblueoceanserviceembeddedrestPipelineRunImpl: IojenkinsblueoceanserviceembeddedrestPipelineRunImpl,
+    /**
+     * The IojenkinsblueoceanserviceembeddedrestPipelineRunImplLinks model constructor.
+     * @property {module:model/IojenkinsblueoceanserviceembeddedrestPipelineRunImplLinks}
+     */
+    IojenkinsblueoceanserviceembeddedrestPipelineRunImplLinks: IojenkinsblueoceanserviceembeddedrestPipelineRunImplLinks,
+    /**
+     * The IojenkinsblueoceanserviceembeddedrestQueueItemImpl model constructor.
+     * @property {module:model/IojenkinsblueoceanserviceembeddedrestQueueItemImpl}
+     */
+    IojenkinsblueoceanserviceembeddedrestQueueItemImpl: IojenkinsblueoceanserviceembeddedrestQueueItemImpl,
     /**
      * The JenkinsmodelUnlabeledLoadStatistics model constructor.
      * @property {module:model/JenkinsmodelUnlabeledLoadStatistics}
@@ -313,6 +488,16 @@
      */
     SwaggyjenkinsPipeline: SwaggyjenkinsPipeline,
     /**
+     * The SwaggyjenkinsPipelineActivity model constructor.
+     * @property {module:model/SwaggyjenkinsPipelineActivity}
+     */
+    SwaggyjenkinsPipelineActivity: SwaggyjenkinsPipelineActivity,
+    /**
+     * The SwaggyjenkinsPipelineActivityartifacts model constructor.
+     * @property {module:model/SwaggyjenkinsPipelineActivityartifacts}
+     */
+    SwaggyjenkinsPipelineActivityartifacts: SwaggyjenkinsPipelineActivityartifacts,
+    /**
      * The SwaggyjenkinsPipelineLatestRun model constructor.
      * @property {module:model/SwaggyjenkinsPipelineLatestRun}
      */
@@ -322,6 +507,26 @@
      * @property {module:model/SwaggyjenkinsPipelineLatestRunartifacts}
      */
     SwaggyjenkinsPipelineLatestRunartifacts: SwaggyjenkinsPipelineLatestRunartifacts,
+    /**
+     * The SwaggyjenkinsPipelineRun model constructor.
+     * @property {module:model/SwaggyjenkinsPipelineRun}
+     */
+    SwaggyjenkinsPipelineRun: SwaggyjenkinsPipelineRun,
+    /**
+     * The SwaggyjenkinsPipelineRunNode model constructor.
+     * @property {module:model/SwaggyjenkinsPipelineRunNode}
+     */
+    SwaggyjenkinsPipelineRunNode: SwaggyjenkinsPipelineRunNode,
+    /**
+     * The SwaggyjenkinsPipelineRunNodeedges model constructor.
+     * @property {module:model/SwaggyjenkinsPipelineRunNodeedges}
+     */
+    SwaggyjenkinsPipelineRunNodeedges: SwaggyjenkinsPipelineRunNodeedges,
+    /**
+     * The SwaggyjenkinsPipelineRunartifacts model constructor.
+     * @property {module:model/SwaggyjenkinsPipelineRunartifacts}
+     */
+    SwaggyjenkinsPipelineRunartifacts: SwaggyjenkinsPipelineRunartifacts,
     /**
      * The SwaggyjenkinsUser model constructor.
      * @property {module:model/SwaggyjenkinsUser}
