@@ -495,7 +495,7 @@ paths:
   /blue/rest/classes/:
     get:
       description: Get classes details
-      operationId: search
+      operationId: searchClasses
       produces:
         - application/json
       parameters:
@@ -636,6 +636,26 @@ paths:
           $ref: "#/responses/pipelineNotFound"
       tags:
         - blueOcean
+  /blue/rest/organizations/{organisation}/pipelines/{pipeline}/activities:
+    get:
+      description: Retrieve all activities details for an organisation pipeline
+      operationId: getPipelineActivitiesByOrg
+      produces:
+        - application/json
+      parameters:
+        - $ref: "#/parameters/orgName"
+        - $ref: "#/parameters/pipelineName"
+      responses:
+        200:
+          description: Successfully retrieved all activities details
+          schema:
+            $ref: "#/definitions/getPipelineActivities"
+        401:
+          $ref: "#/responses/unauthorized"
+        403:
+          $ref: "#/responses/forbidden"
+      tags:
+        - blueOcean
   /blue/rest/organizations/{organisation}/pipelines/{pipeline}/branches:
     get:
       description: Retrieve all branches details for an organisation pipeline
@@ -677,6 +697,28 @@ paths:
           $ref: "#/responses/forbidden"
       tags:
         - blueOcean
+  /blue/rest/organizations/{organisation}/pipelines/{pipeline}/branches/{branch}/runs/{run}:
+    get:
+      description: Retrieve branch run details for an organisation pipeline
+      operationId: getPipelineBranchRunByOrg
+      produces:
+        - application/json
+      parameters:
+        - $ref: "#/parameters/orgName"
+        - $ref: "#/parameters/pipelineName"
+        - $ref: "#/parameters/branchName"
+        - $ref: "#/parameters/runName"
+      responses:
+        200:
+          description: Successfully retrieved run details
+          schema:
+            $ref: "#/definitions/swaggyjenkinsPipelineRun"
+        401:
+          $ref: "#/responses/unauthorized"
+        403:
+          $ref: "#/responses/forbidden"
+      tags:
+        - blueOcean
   /blue/rest/organizations/{organisation}/pipelines/{folder}/:
     get:
       description: Retrieve pipeline folder for an organisation
@@ -712,6 +754,437 @@ paths:
           description: Successfully retrieved pipeline details
           schema:
             $ref: "#/definitions/iojenkinsblueoceanserviceembeddedrestPipelineImpl"
+        401:
+          $ref: "#/responses/unauthorized"
+        403:
+          $ref: "#/responses/forbidden"
+      tags:
+        - blueOcean
+  /blue/rest/organizations/{organisation}/pipelines/{pipeline}/favorite:
+    put:
+      description: Favorite/unfavorite a pipeline
+      operationId: putPipelineFavoriteByOrg
+      produces:
+        - application/json
+      parameters:
+        - $ref: "#/parameters/orgName"
+        - $ref: "#/parameters/pipelineName"
+        - name: body
+          description: 'Set JSON string body to {"favorite": true} to favorite, set value to false to unfavorite'
+          in: body
+          required: true
+          schema:
+            required:
+              - favorite
+            properties:
+              favorite:
+                type: boolean
+      responses:
+        200:
+          description: Successfully favorited/unfavorited a pipeline
+          schema:
+            $ref: "#/definitions/iojenkinsblueoceanserviceembeddedrestFavoriteImpl"
+        401:
+          $ref: "#/responses/unauthorized"
+        403:
+          $ref: "#/responses/forbidden"
+      tags:
+        - blueOcean
+  /blue/rest/organizations/{organisation}/pipelines/{pipeline}/queue:
+    get:
+      description: Retrieve queue details for an organisation pipeline
+      operationId: getPipelineQueueByOrg
+      produces:
+        - application/json
+      parameters:
+        - $ref: "#/parameters/orgName"
+        - $ref: "#/parameters/pipelineName"
+      responses:
+        200:
+          description: Successfully retrieved queue details
+          schema:
+            $ref: "#/definitions/getPipelineQueue"
+        401:
+          $ref: "#/responses/unauthorized"
+        403:
+          $ref: "#/responses/forbidden"
+      tags:
+        - blueOcean
+  /blue/rest/organizations/{organisation}/pipelines/{pipeline}/queue/{queue}:
+    delete:
+      description: Delete queue item from an organisation pipeline queue
+      operationId: deletePipelineQueueItemByOrg
+      produces:
+        - application/json
+      parameters:
+        - $ref: "#/parameters/orgName"
+        - $ref: "#/parameters/pipelineName"
+        - $ref: "#/parameters/queueItemName"
+      responses:
+        200:
+          description: Successfully deleted queue item
+        401:
+          $ref: "#/responses/unauthorized"
+        403:
+          $ref: "#/responses/forbidden"
+      tags:
+        - blueOcean
+  /blue/rest/organizations/{organisation}/pipelines/{pipeline}/runs:
+    get:
+      description: Retrieve all runs details for an organisation pipeline
+      operationId: getPipelineRunsByOrg
+      produces:
+        - application/json
+      parameters:
+        - $ref: "#/parameters/orgName"
+        - $ref: "#/parameters/pipelineName"
+      responses:
+        200:
+          description: Successfully retrieved runs details
+          schema:
+            $ref: "#/definitions/getPipelineRuns"
+        401:
+          $ref: "#/responses/unauthorized"
+        403:
+          $ref: "#/responses/forbidden"
+      tags:
+        - blueOcean
+    post:
+      description: Start a build for an organisation pipeline
+      operationId: postPipelineRunsByOrg
+      produces:
+        - application/json
+      parameters:
+        - $ref: "#/parameters/orgName"
+        - $ref: "#/parameters/pipelineName"
+      responses:
+        200:
+          description: Successfully started a build
+          schema:
+            $ref: "#/definitions/iojenkinsblueoceanserviceembeddedrestQueueItemImpl"
+        401:
+          $ref: "#/responses/unauthorized"
+        403:
+          $ref: "#/responses/forbidden"
+      tags:
+        - blueOcean
+  /blue/rest/organizations/{organisation}/pipelines/{pipeline}/runs/{run}:
+    get:
+      description: Retrieve run details for an organisation pipeline
+      operationId: getPipelineRunByOrg
+      produces:
+        - application/json
+      parameters:
+        - $ref: "#/parameters/orgName"
+        - $ref: "#/parameters/pipelineName"
+        - $ref: "#/parameters/runName"
+      responses:
+        200:
+          description: Successfully retrieved run details
+          schema:
+            $ref: "#/definitions/swaggyjenkinsPipelineRun"
+        401:
+          $ref: "#/responses/unauthorized"
+        403:
+          $ref: "#/responses/forbidden"
+      tags:
+        - blueOcean
+  /blue/rest/organizations/{organisation}/pipelines/{pipeline}/runs/{run}/nodes:
+    get:
+      description: Retrieve run nodes details for an organisation pipeline
+      operationId: getPipelineRunNodesByOrg
+      produces:
+        - application/json
+      parameters:
+        - $ref: "#/parameters/orgName"
+        - $ref: "#/parameters/pipelineName"
+        - $ref: "#/parameters/runName"
+      responses:
+        200:
+          description: Successfully retrieved run nodes details
+          schema:
+            $ref: "#/definitions/getPipelineRunNodes"
+        401:
+          $ref: "#/responses/unauthorized"
+        403:
+          $ref: "#/responses/forbidden"
+      tags:
+        - blueOcean
+  /blue/rest/organizations/{organisation}/pipelines/{pipeline}/runs/{run}/nodes/{node}:
+    get:
+      description: Retrieve run node details for an organisation pipeline
+      operationId: getPipelineRunNodeByOrg
+      produces:
+        - application/json
+      parameters:
+        - $ref: "#/parameters/orgName"
+        - $ref: "#/parameters/pipelineName"
+        - $ref: "#/parameters/runName"
+        - $ref: "#/parameters/nodeName"
+      responses:
+        200:
+          description: Successfully retrieved run node details
+          schema:
+            $ref: "#/definitions/swaggyjenkinsPipelineRunNode"
+        401:
+          $ref: "#/responses/unauthorized"
+        403:
+          $ref: "#/responses/forbidden"
+      tags:
+        - blueOcean
+  /blue/rest/organizations/{organisation}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps:
+    get:
+      description: Retrieve run node steps details for an organisation pipeline
+      operationId: getPipelineRunNodeStepsByOrg
+      produces:
+        - application/json
+      parameters:
+        - $ref: "#/parameters/orgName"
+        - $ref: "#/parameters/pipelineName"
+        - $ref: "#/parameters/runName"
+        - $ref: "#/parameters/nodeName"
+      responses:
+        200:
+          description: Successfully retrieved run node steps details
+          schema:
+            $ref: "#/definitions/getPipelineRunNodeSteps"
+        401:
+          $ref: "#/responses/unauthorized"
+        403:
+          $ref: "#/responses/forbidden"
+      tags:
+        - blueOcean
+  /blue/rest/organizations/{organisation}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps/{step}:
+    get:
+      description: Retrieve run node details for an organisation pipeline
+      operationId: getPipelineRunNodeStepByOrg
+      produces:
+        - application/json
+      parameters:
+        - $ref: "#/parameters/orgName"
+        - $ref: "#/parameters/pipelineName"
+        - $ref: "#/parameters/runName"
+        - $ref: "#/parameters/nodeName"
+        - $ref: "#/parameters/stepName"
+      responses:
+        200:
+          description: Successfully retrieved run node step details
+          schema:
+            $ref: "#/definitions/iojenkinsblueoceanrestimplpipelinePipelineStepImpl"
+        401:
+          $ref: "#/responses/unauthorized"
+        403:
+          $ref: "#/responses/forbidden"
+      tags:
+        - blueOcean
+  /blue/rest/organizations/{organisation}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps/{step}/log:
+    get:
+      description: Get log for a pipeline run node step
+      operationId: getPipelineRunNodeStepLogByOrg
+      produces:
+        - application/json
+      parameters:
+        - $ref: "#/parameters/orgName"
+        - $ref: "#/parameters/pipelineName"
+        - $ref: "#/parameters/runName"
+        - $ref: "#/parameters/nodeName"
+        - $ref: "#/parameters/stepName"
+      responses:
+        200:
+          description: Successfully retrieved pipeline run node step log
+          schema:
+            type: string
+        401:
+          $ref: "#/responses/unauthorized"
+        403:
+          $ref: "#/responses/forbidden"
+      tags:
+        - blueOcean
+  /blue/rest/organizations/{organisation}/pipelines/{pipeline}/runs/{run}/log:
+    get:
+      description: Get log for a pipeline run
+      operationId: getPipelineRunLogByOrg
+      produces:
+        - application/json
+      parameters:
+        - $ref: "#/parameters/orgName"
+        - $ref: "#/parameters/pipelineName"
+        - $ref: "#/parameters/runName"
+        - name: start
+          description: Start position of the log
+          in: query
+          required: false
+          type: integer
+        - name: download
+          description: Set to true in order to download the file, otherwise it's passed as a response body
+          in: query
+          required: false
+          type: boolean
+      responses:
+        200:
+          description: Successfully retrieved pipeline run log
+          schema:
+            type: string
+        401:
+          $ref: "#/responses/unauthorized"
+        403:
+          $ref: "#/responses/forbidden"
+      tags:
+        - blueOcean
+  /blue/rest/organizations/{organisation}/pipelines/{pipeline}/runs/{run}/replay:
+    post:
+      description: Replay an organisation pipeline run
+      operationId: postPipelineRunByOrg
+      produces:
+        - application/json
+      parameters:
+        - $ref: "#/parameters/orgName"
+        - $ref: "#/parameters/pipelineName"
+        - $ref: "#/parameters/runName"
+      responses:
+        200:
+          description: Successfully replayed a pipeline run
+          schema:
+            $ref: "#/definitions/iojenkinsblueoceanserviceembeddedrestQueueItemImpl"
+        401:
+          $ref: "#/responses/unauthorized"
+        403:
+          $ref: "#/responses/forbidden"
+      tags:
+        - blueOcean
+  /blue/rest/organizations/{organisation}/pipelines/{pipeline}/runs/{run}/stop:
+    put:
+      description: Stop a build of an organisation pipeline
+      operationId: putPipelineRunByOrg
+      produces:
+        - application/json
+      parameters:
+        - $ref: "#/parameters/orgName"
+        - $ref: "#/parameters/pipelineName"
+        - $ref: "#/parameters/runName"
+        - name: blocking
+          description: 'Set to true to make blocking stop, default: false'
+          in: query
+          required: false
+          type: string
+        - name: timeOutInSecs
+          description: 'Timeout in seconds, default: 10 seconds'
+          in: query
+          required: false
+          type: integer
+      responses:
+        200:
+          description: Successfully stopped a build
+          schema:
+            $ref: "#/definitions/swaggyjenkinsPipelineRun"
+        401:
+          $ref: "#/responses/unauthorized"
+        403:
+          $ref: "#/responses/forbidden"
+      tags:
+        - blueOcean
+  /blue/rest/organizations/{organisation}/scm/{scm}:
+    get:
+      description: Retrieve SCM details for an organisation
+      operationId: getSCM
+      produces:
+        - application/json
+      parameters:
+        - $ref: "#/parameters/orgName"
+        - $ref: "#/parameters/scmName"
+      responses:
+        200:
+          description: Successfully retrieved SCM details
+          schema:
+            $ref: "#/definitions/iojenkinsblueoceanblueocean_github_pipelineGithubScm"
+        401:
+          $ref: "#/responses/unauthorized"
+        403:
+          $ref: "#/responses/forbidden"
+      tags:
+        - blueOcean
+  /blue/rest/organizations/{organisation}/scm/{scm}/organizations:
+    get:
+      description: Retrieve SCM organisations details for an organisation
+      operationId: getSCMOrganisations
+      produces:
+        - application/json
+      parameters:
+        - $ref: "#/parameters/orgName"
+        - $ref: "#/parameters/scmName"
+        - name: credentialId
+          description: Credential ID
+          in: query
+          required: false
+          type: string
+      responses:
+        200:
+          description: Successfully retrieved SCM organisations details
+          schema:
+            $ref: "#/definitions/getScmOrganisations"
+        401:
+          $ref: "#/responses/unauthorized"
+        403:
+          $ref: "#/responses/forbidden"
+      tags:
+        - blueOcean
+  /blue/rest/organizations/{organisation}/scm/{scm}/organizations/{scmOrganisation}/repositories:
+    get:
+      description: Retrieve SCM organisation repositories details for an organisation
+      operationId: getSCMOrganisationRepositories
+      produces:
+        - application/json
+      parameters:
+        - $ref: "#/parameters/orgName"
+        - $ref: "#/parameters/scmName"
+        - $ref: "#/parameters/scmOrgName"
+        - name: credentialId
+          description: Credential ID
+          in: query
+          required: false
+          type: string
+        - name: pageSize
+          description: Number of items in a page
+          in: query
+          required: false
+          type: integer
+        - name: pageNumber
+          description: Page number
+          in: query
+          required: false
+          type: integer
+      responses:
+        200:
+          description: Successfully retrieved SCM organisation repositories details
+          schema:
+            $ref: "#/definitions/getScmOrganisations"
+        401:
+          $ref: "#/responses/unauthorized"
+        403:
+          $ref: "#/responses/forbidden"
+      tags:
+        - blueOcean
+  /blue/rest/organizations/{organisation}/scm/{scm}/organizations/{scmOrganisation}/repositories/{repository}:
+    get:
+      description: Retrieve SCM organisation repository details for an organisation
+      operationId: getSCMOrganisationRepository
+      produces:
+        - application/json
+      parameters:
+        - $ref: "#/parameters/orgName"
+        - $ref: "#/parameters/scmName"
+        - $ref: "#/parameters/scmOrgName"
+        - $ref: "#/parameters/repositoryName"
+        - name: credentialId
+          description: Credential ID
+          in: query
+          required: false
+          type: string
+      responses:
+        200:
+          description: Successfully retrieved SCM organisations details
+          schema:
+            $ref: "#/definitions/getScmOrganisations"
         401:
           $ref: "#/responses/unauthorized"
         403:
@@ -776,6 +1249,25 @@ paths:
           $ref: "#/responses/forbidden"
       tags:
         - blueOcean
+  /blue/rest/users/{user}/favorites:
+    get:
+      description: Retrieve user favorites details for an organisation
+      operationId: getUserFavorites
+      produces:
+        - application/json
+      parameters:
+        - $ref: "#/parameters/userName"
+      responses:
+        200:
+          description: Successfully retrieved users favorites details
+          schema:
+            $ref: "#/definitions/getUserFavorites"
+        401:
+          $ref: "#/responses/unauthorized"
+        403:
+          $ref: "#/responses/forbidden"
+      tags:
+        - blueOcean
 parameters:
   jobName:
     name: name
@@ -810,6 +1302,48 @@ parameters:
   branchName:
     name: branch
     description: Name of the branch
+    in: path
+    required: true
+    type: string
+  queueItemName:
+    name: queue
+    description: Name of the queue item
+    in: path
+    required: true
+    type: string
+  runName:
+    name: run
+    description: Name of the run
+    in: path
+    required: true
+    type: string
+  nodeName:
+    name: node
+    description: Name of the node
+    in: path
+    required: true
+    type: string
+  stepName:
+    name: step
+    description: Name of the step
+    in: path
+    required: true
+    type: string
+  scmName:
+    name: step
+    description: Name of SCM
+    in: path
+    required: true
+    type: string
+  scmOrgName:
+    name: scmOrganisation
+    description: Name of the SCM organisation
+    in: path
+    required: true
+    type: string
+  repositoryName:
+    name: repository
+    description: Name of the SCM repository
     in: path
     required: true
     type: string
@@ -1403,6 +1937,8 @@ definitions:
         type: string
       weatherScore:
         type: integer
+      _links:
+        $ref: '#/definitions/iojenkinsblueoceanserviceembeddedrestPipelineImpl__links'
   swaggyjenkinsOrganisation:
     type: object
     properties:
@@ -1479,6 +2015,56 @@ definitions:
         type: integer
       latestRun:
         $ref: '#/definitions/swaggyjenkinsPipeline_latestRun'
+  swaggyjenkinsPipelineActivityartifacts:
+    type: object
+    properties:
+      name:
+        type: string
+      size:
+        type: integer
+      url:
+        type: string
+      _class:
+        type: string
+  swaggyjenkinsPipelineActivity:
+    type: object
+    properties:
+      _class:
+        type: string
+      artifacts:
+        type: array
+        items:
+          $ref: '#/definitions/swaggyjenkinsPipelineActivityartifacts'
+      durationInMillis:
+        type: integer
+      estimatedDurationInMillis:
+        type: integer
+      enQueueTime:
+        type: string
+      endTime:
+        type: string
+      id:
+        type: string
+      organization:
+        type: string
+      pipeline:
+        type: string
+      result:
+        type: string
+      runSummary:
+        type: string
+      startTime:
+        type: string
+      state:
+        type: string
+      type:
+        type: string
+      commitId:
+        type: string
+  getPipelineActivities:
+    type: array
+    items:
+      $ref: '#/definitions/swaggyjenkinsPipelineActivity'
   hudsonmodelStringParameterValue:
     type: object
     properties:
@@ -1619,6 +2205,35 @@ definitions:
     type: array
     items:
       $ref: '#/definitions/getPipelineBranchesitem'
+  iojenkinsblueoceanserviceembeddedrestFavoriteImpl__links:
+    type: object
+    properties:
+      self:
+        $ref: '#/definitions/iojenkinsblueoceanresthalLink'
+      _class:
+        type: string
+  iojenkinsblueoceanserviceembeddedrestPipelineImpl__links:
+    type: object
+    properties:
+      runs:
+        $ref: '#/definitions/iojenkinsblueoceanresthalLink'
+      self:
+        $ref: '#/definitions/iojenkinsblueoceanresthalLink'
+      queue:
+        $ref: '#/definitions/iojenkinsblueoceanresthalLink'
+      actions:
+        $ref: '#/definitions/iojenkinsblueoceanresthalLink'
+      _class:
+        type: string
+  iojenkinsblueoceanserviceembeddedrestFavoriteImpl:
+    type: object
+    properties:
+      _class:
+        type: string
+      _links:
+        $ref: '#/definitions/iojenkinsblueoceanserviceembeddedrestFavoriteImpl__links'
+      item:
+        $ref: '#/definitions/iojenkinsblueoceanserviceembeddedrestPipelineImpl'
   iojenkinsblueoceanserviceembeddedrestPipelineFolderImpl:
     type: object
     properties:
@@ -1636,10 +2251,344 @@ definitions:
         type: integer
       numberOfPipelines:
         type: integer
+  iojenkinsblueoceanserviceembeddedrestQueueItemImpl:
+    type: object
+    properties:
+      _class:
+        type: string
+      expectedBuildNumber:
+        type: integer
+      id:
+        type: string
+      pipeline:
+        type: string
+      queuedTime:
+        type: integer
+  getPipelineQueue:
+    type: array
+    items:
+      $ref: '#/definitions/iojenkinsblueoceanserviceembeddedrestQueueItemImpl'
+  swaggyjenkinsPipelineRunartifacts:
+    type: object
+    properties:
+      name:
+        type: string
+      size:
+        type: integer
+      url:
+        type: string
+      _class:
+        type: string
+  swaggyjenkinsPipelineRun:
+    type: object
+    properties:
+      _class:
+        type: string
+      artifacts:
+        type: array
+        items:
+          $ref: '#/definitions/swaggyjenkinsPipelineRunartifacts'
+      durationInMillis:
+        type: integer
+      estimatedDurationInMillis:
+        type: integer
+      enQueueTime:
+        type: string
+      endTime:
+        type: string
+      id:
+        type: string
+      organization:
+        type: string
+      pipeline:
+        type: string
+      result:
+        type: string
+      runSummary:
+        type: string
+      startTime:
+        type: string
+      state:
+        type: string
+      type:
+        type: string
+      commitId:
+        type: string
+  iojenkinsblueoceanrestimplpipelinePipelineStepImpl__links:
+    type: object
+    properties:
+      self:
+        $ref: '#/definitions/iojenkinsblueoceanresthalLink'
+      actions:
+        $ref: '#/definitions/iojenkinsblueoceanresthalLink'
+      _class:
+        type: string
+  iojenkinsblueoceanrestimplpipelineInputStepImpl__links:
+    type: object
+    properties:
+      self:
+        $ref: '#/definitions/iojenkinsblueoceanresthalLink'
+      _class:
+        type: string
+  iojenkinsblueoceanrestimplpipelineInputStepImpl:
+    type: object
+    properties:
+      _class:
+        type: string
+      _links:
+        $ref: '#/definitions/iojenkinsblueoceanrestimplpipelineInputStepImpl__links'
+      id:
+        type: string
+      message:
+        type: string
+      ok:
+        type: string
+      parameters:
+        type: array
+        items:
+          $ref: '#/definitions/hudsonmodelStringParameterDefinition'
+      submitter:
+        type: string
+  iojenkinsblueoceanrestimplpipelinePipelineStepImpl:
+    type: object
+    properties:
+      _class:
+        type: string
+      _links:
+        $ref: '#/definitions/iojenkinsblueoceanrestimplpipelinePipelineStepImpl__links'
+      displayName:
+        type: string
+      durationInMillis:
+        type: integer
+      id:
+        type: string
+      input:
+        $ref: '#/definitions/iojenkinsblueoceanrestimplpipelineInputStepImpl'
+      result:
+        type: string
+      startTime:
+        type: string
+      state:
+        type: string
+  getPipelineRunNodeSteps:
+    type: array
+    items:
+      $ref: '#/definitions/iojenkinsblueoceanrestimplpipelinePipelineStepImpl'
+  swaggyjenkinsPipelineRunNodeedges:
+    type: object
+    properties:
+      id:
+        type: string
+      _class:
+        type: string
+  swaggyjenkinsPipelineRunNode:
+    type: object
+    properties:
+      _class:
+        type: string
+      displayName:
+        type: string
+      durationInMillis:
+        type: integer
+      edges:
+        type: array
+        items:
+          $ref: '#/definitions/swaggyjenkinsPipelineRunNodeedges'
+      id:
+        type: string
+      result:
+        type: string
+      startTime:
+        type: string
+      state:
+        type: string
+  getPipelineRunNodes:
+    type: array
+    items:
+      $ref: '#/definitions/swaggyjenkinsPipelineRunNode'
+  iojenkinsblueoceanrestmodelGenericResource:
+    type: object
+    properties:
+      _class:
+        type: string
+      displayName:
+        type: string
+      durationInMillis:
+        type: integer
+      id:
+        type: string
+      result:
+        type: string
+      startTime:
+        type: string
+  getPipelineRunSteps:
+    type: array
+    items:
+      $ref: '#/definitions/iojenkinsblueoceanrestmodelGenericResource'
+  getPipelineRuns:
+    type: array
+    items:
+      $ref: '#/definitions/swaggyjenkinsPipelineRun'
   getPipelines:
     type: array
     items:
       $ref: '#/definitions/swaggyjenkinsPipeline'
+  iojenkinsblueoceanblueocean_github_pipelineGithubScm__links:
+    type: object
+    properties:
+      self:
+        $ref: '#/definitions/iojenkinsblueoceanresthalLink'
+      _class:
+        type: string
+  iojenkinsblueoceanblueocean_github_pipelineGithubScm:
+    type: object
+    properties:
+      _class:
+        type: string
+      _links:
+        $ref: >-
+          #/definitions/iojenkinsblueoceanblueocean_github_pipelineGithubScm__links
+      credentialId:
+        type: string
+      id:
+        type: string
+      uri:
+        type: string
+  iojenkinsblueoceanblueocean_github_pipelineGithubContent:
+    type: object
+    properties:
+      name:
+        type: string
+      sha:
+        type: string
+      _class:
+        type: string
+      repo:
+        type: string
+      size:
+        type: integer
+      owner:
+        type: string
+      path:
+        type: string
+      base64Data:
+        type: string
+  iojenkinsblueoceanblueocean_github_pipelineGithubFile:
+    type: object
+    properties:
+      content:
+        $ref: '#/definitions/iojenkinsblueoceanblueocean_github_pipelineGithubContent'
+      _class:
+        type: string
+  iojenkinsblueoceanblueocean_github_pipelineGithubRespositoryContainer__links:
+    type: object
+    properties:
+      self:
+        $ref: '#/definitions/iojenkinsblueoceanresthalLink'
+      _class:
+        type: string
+  iojenkinsblueoceanblueocean_github_pipelineGithubRepositories__links:
+    type: object
+    properties:
+      self:
+        $ref: '#/definitions/iojenkinsblueoceanresthalLink'
+      _class:
+        type: string
+  iojenkinsblueoceanblueocean_github_pipelineGithubRepository__links:
+    type: object
+    properties:
+      self:
+        $ref: '#/definitions/iojenkinsblueoceanresthalLink'
+      _class:
+        type: string
+  iojenkinsblueoceanblueocean_github_pipelineGithubRepository_permissions:
+    type: object
+    properties:
+      admin:
+        type: boolean
+      push:
+        type: boolean
+      pull:
+        type: boolean
+      _class:
+        type: string
+  iojenkinsblueoceanblueocean_github_pipelineGithubRepository:
+    type: object
+    properties:
+      _class:
+        type: string
+      _links:
+        $ref: >-
+          #/definitions/iojenkinsblueoceanblueocean_github_pipelineGithubRepository__links
+      defaultBranch:
+        type: string
+      description:
+        type: string
+      name:
+        type: string
+      permissions:
+        $ref: >-
+          #/definitions/iojenkinsblueoceanblueocean_github_pipelineGithubRepository_permissions
+      private:
+        type: boolean
+      fullName:
+        type: string
+  iojenkinsblueoceanblueocean_github_pipelineGithubRepositories:
+    type: object
+    properties:
+      _class:
+        type: string
+      _links:
+        $ref: >-
+          #/definitions/iojenkinsblueoceanblueocean_github_pipelineGithubRepositories__links
+      items:
+        type: array
+        items:
+          $ref: >-
+            #/definitions/iojenkinsblueoceanblueocean_github_pipelineGithubRepository
+      lastPage:
+        type: integer
+      nextPage:
+        type: integer
+      pageSize:
+        type: integer
+  iojenkinsblueoceanblueocean_github_pipelineGithubRespositoryContainer:
+    type: object
+    properties:
+      _class:
+        type: string
+      _links:
+        $ref: >-
+          #/definitions/iojenkinsblueoceanblueocean_github_pipelineGithubRespositoryContainer__links
+      repositories:
+        $ref: >-
+          #/definitions/iojenkinsblueoceanblueocean_github_pipelineGithubRepositories
+  iojenkinsblueoceanblueocean_github_pipelineGithubOrganization__links:
+    type: object
+    properties:
+      repositories:
+        $ref: '#/definitions/iojenkinsblueoceanresthalLink'
+      self:
+        $ref: '#/definitions/iojenkinsblueoceanresthalLink'
+      _class:
+        type: string
+  iojenkinsblueoceanblueocean_github_pipelineGithubOrganization:
+    type: object
+    properties:
+      _class:
+        type: string
+      _links:
+        $ref: >-
+          #/definitions/iojenkinsblueoceanblueocean_github_pipelineGithubOrganization__links
+      jenkinsOrganizationPipeline:
+        type: boolean
+      name:
+        type: string
+  getScmOrganisations:
+    type: array
+    items:
+      $ref: >-
+        #/definitions/iojenkinsblueoceanblueocean_github_pipelineGithubOrganization
   swaggyjenkinsUser:
     type: object
     properties:
@@ -1653,6 +2602,95 @@ definitions:
         type: string
       name:
         type: string
+  iojenkinsblueoceanserviceembeddedrestBranchImpl__links:
+    type: object
+    properties:
+      self:
+        $ref: '#/definitions/iojenkinsblueoceanresthalLink'
+      actions:
+        $ref: '#/definitions/iojenkinsblueoceanresthalLink'
+      runs:
+        $ref: '#/definitions/iojenkinsblueoceanresthalLink'
+      queue:
+        $ref: '#/definitions/iojenkinsblueoceanresthalLink'
+      _class:
+        type: string
+  iojenkinsblueoceanserviceembeddedrestPipelineRunImpl__links:
+    type: object
+    properties:
+      nodes:
+        $ref: '#/definitions/iojenkinsblueoceanresthalLink'
+      log:
+        $ref: '#/definitions/iojenkinsblueoceanresthalLink'
+      self:
+        $ref: '#/definitions/iojenkinsblueoceanresthalLink'
+      actions:
+        $ref: '#/definitions/iojenkinsblueoceanresthalLink'
+      steps:
+        $ref: '#/definitions/iojenkinsblueoceanresthalLink'
+      _class:
+        type: string
+  iojenkinsblueoceanserviceembeddedrestPipelineRunImpl:
+    type: object
+    properties:
+      _class:
+        type: string
+      _links:
+        $ref: >-
+          #/definitions/iojenkinsblueoceanserviceembeddedrestPipelineRunImpl__links
+      durationInMillis:
+        type: integer
+      enQueueTime:
+        type: string
+      endTime:
+        type: string
+      estimatedDurationInMillis:
+        type: integer
+      id:
+        type: string
+      organization:
+        type: string
+      pipeline:
+        type: string
+      result:
+        type: string
+      runSummary:
+        type: string
+      startTime:
+        type: string
+      state:
+        type: string
+      type:
+        type: string
+      commitId:
+        type: string
+  iojenkinsblueoceanserviceembeddedrestBranchImpl:
+    type: object
+    properties:
+      _class:
+        type: string
+      _links:
+        $ref: '#/definitions/iojenkinsblueoceanserviceembeddedrestBranchImpl__links'
+      displayName:
+        type: string
+      estimatedDurationInMillis:
+        type: integer
+      fullName:
+        type: string
+      latestRun:
+        $ref: '#/definitions/iojenkinsblueoceanserviceembeddedrestPipelineRunImpl'
+      name:
+        type: string
+      organization:
+        type: string
+      weatherScore:
+        type: integer
+      pullRequest:
+        type: string
+  getUserFavorites:
+    type: array
+    items:
+      $ref: '#/definitions/iojenkinsblueoceanserviceembeddedrestFavoriteImpl'
   getUsers:
     type: array
     items:
