@@ -1,0 +1,77 @@
+[main] ERROR io.swagger.codegen.config.CodegenConfigurator - Unable to deserialize config file: typescript-angular/conf.json
+java.io.FileNotFoundException: typescript-angular/conf.json (No such file or directory)
+	at java.io.FileInputStream.open0(Native Method)
+	at java.io.FileInputStream.open(FileInputStream.java:195)
+	at java.io.FileInputStream.<init>(FileInputStream.java:138)
+	at com.fasterxml.jackson.core.JsonFactory.createParser(JsonFactory.java:756)
+	at com.fasterxml.jackson.databind.ObjectMapper.readValue(ObjectMapper.java:2740)
+	at io.swagger.codegen.config.CodegenConfigurator.fromFile(CodegenConfigurator.java:507)
+	at io.swagger.codegen.cmd.Generate.run(Generate.java:135)
+	at io.swagger.codegen.SwaggerCodegen.main(SwaggerCodegen.java:43)
+[main] INFO io.swagger.parser.Swagger20Parser - reading from _spec/jenkins-api.yml
+[main] WARN io.swagger.codegen.ignore.CodegenIgnoreProcessor - Output directory does not exist, or is inaccessible. No file (.swager-codegen-ignore) will be evaluated.
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/typescript-angular/generated/model/GetClassesByClass.ts
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/typescript-angular/generated/model/GetMultibranchPipeline.ts
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/typescript-angular/generated/model/GetOrganisations.ts
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/typescript-angular/generated/model/GetPipelineBranches.ts
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/typescript-angular/generated/model/GetPipelineBranchesitem.ts
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/typescript-angular/generated/model/GetPipelineBranchesitemLatestRun.ts
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/typescript-angular/generated/model/GetPipelineBranchesitemPullRequest.ts
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/typescript-angular/generated/model/GetPipelineBranchesitemPullRequestLinks.ts
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/typescript-angular/generated/model/GetPipelines.ts
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/typescript-angular/generated/model/GetUsers.ts
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/typescript-angular/generated/model/HudsonmodelAllView.ts
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/typescript-angular/generated/model/HudsonmodelCauseAction.ts
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/typescript-angular/generated/model/HudsonmodelCauseUserIdCause.ts
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/typescript-angular/generated/model/HudsonmodelComputerSet.ts
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/typescript-angular/generated/model/HudsonmodelFreeStyleBuild.ts
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/typescript-angular/generated/model/HudsonmodelFreeStyleProject.ts
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/typescript-angular/generated/model/HudsonmodelFreeStyleProjectactions.ts
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/typescript-angular/generated/model/HudsonmodelFreeStyleProjecthealthReport.ts
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/typescript-angular/generated/model/HudsonmodelHudson.ts
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/typescript-angular/generated/model/HudsonmodelHudsonMasterComputer.ts
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/typescript-angular/generated/model/HudsonmodelHudsonMasterComputerMonitorData.ts
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/typescript-angular/generated/model/HudsonmodelHudsonMasterComputerexecutors.ts
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/typescript-angular/generated/model/HudsonmodelHudsonassignedLabels.ts
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/typescript-angular/generated/model/HudsonmodelLabel1.ts
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/typescript-angular/generated/model/HudsonmodelListView.ts
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/typescript-angular/generated/model/HudsonmodelQueue.ts
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/typescript-angular/generated/model/HudsonmodelQueueBlockedItem.ts
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/typescript-angular/generated/model/HudsonmodelQueueLeftItem.ts
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/typescript-angular/generated/model/HudsonmodelStringParameterDefinition.ts
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/typescript-angular/generated/model/HudsonmodelStringParameterValue.ts
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/typescript-angular/generated/model/HudsonnodeMonitorsDiskSpaceMonitorDescriptorDiskSpace.ts
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/typescript-angular/generated/model/HudsonnodeMonitorsResponseTimeMonitorData.ts
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/typescript-angular/generated/model/HudsonnodeMonitorsSwapSpaceMonitorMemoryUsage2.ts
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/typescript-angular/generated/model/HudsonscmEmptyChangeLogSet.ts
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/typescript-angular/generated/model/HudsonscmNullSCM.ts
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/typescript-angular/generated/model/HudsonsecuritycsrfDefaultCrumbIssuer.ts
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/typescript-angular/generated/model/HudsonutilClockDifference.ts
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/typescript-angular/generated/model/IojenkinsblueoceanresthalLink.ts
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/typescript-angular/generated/model/IojenkinsblueoceanrestimplpipelineBranchImpl.ts
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/typescript-angular/generated/model/IojenkinsblueoceanrestimplpipelineBranchImplPermissions.ts
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/typescript-angular/generated/model/IojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1.ts
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/typescript-angular/generated/model/IojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1Links.ts
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/typescript-angular/generated/model/IojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1Map.ts
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/typescript-angular/generated/model/IojenkinsblueoceanserviceembeddedrestExtensionClassImpl.ts
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/typescript-angular/generated/model/IojenkinsblueoceanserviceembeddedrestExtensionClassImplLinks.ts
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/typescript-angular/generated/model/IojenkinsblueoceanserviceembeddedrestPipelineFolderImpl.ts
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/typescript-angular/generated/model/IojenkinsblueoceanserviceembeddedrestPipelineImpl.ts
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/typescript-angular/generated/model/JenkinsmodelUnlabeledLoadStatistics.ts
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/typescript-angular/generated/model/SwaggyjenkinsOrganisation.ts
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/typescript-angular/generated/model/SwaggyjenkinsPipeline.ts
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/typescript-angular/generated/model/SwaggyjenkinsPipelineLatestRun.ts
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/typescript-angular/generated/model/SwaggyjenkinsPipelineLatestRunartifacts.ts
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/typescript-angular/generated/model/SwaggyjenkinsUser.ts
+[main] WARN io.swagger.codegen.DefaultCodegen - generated unique operationId `search_0`
+[main] WARN io.swagger.codegen.DefaultCodegen - generated unique operationId `getPipelineFolderByOrg_0`
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/typescript-angular/generated/api/BlueOceanApi.ts
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/typescript-angular/generated/api/RemoteAccessApi.ts
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/typescript-angular/generated/model/models.ts
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/typescript-angular/generated/api/api.ts
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/typescript-angular/generated/index.ts
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/typescript-angular/generated/api.module.ts
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/typescript-angular/generated/git_push.sh
+[main] INFO io.swagger.codegen.DefaultGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/typescript-angular/generated/.gitignore
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/typescript-angular/generated/.swagger-codegen-ignore
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/typescript-angular/generated/.swagger-codegen/VERSION

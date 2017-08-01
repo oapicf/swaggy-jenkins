@@ -1,0 +1,885 @@
+
+> swaggy_jenkins@0.0.2 test /Users/cliffano/dev/workspace/swaggy-jenkins/javascript/generated
+> ./node_modules/mocha/bin/mocha --recursive
+
+
+
+  BlueOceanApi
+    deletePipelineQueueItemByOrg
+      ✓ should call deletePipelineQueueItemByOrg successfully
+    getAuthenticatedUser
+      ✓ should call getAuthenticatedUser successfully
+    getClasses
+      ✓ should call getClasses successfully
+    getOrganisation
+      ✓ should call getOrganisation successfully
+    getOrganisations
+      ✓ should call getOrganisations successfully
+    getPipelineActivitiesByOrg
+      ✓ should call getPipelineActivitiesByOrg successfully
+    getPipelineBranchByOrg
+      ✓ should call getPipelineBranchByOrg successfully
+    getPipelineBranchRunByOrg
+      ✓ should call getPipelineBranchRunByOrg successfully
+    getPipelineBranchesByOrg
+      ✓ should call getPipelineBranchesByOrg successfully
+    getPipelineByOrg
+      ✓ should call getPipelineByOrg successfully
+    getPipelineFolderByOrg
+      ✓ should call getPipelineFolderByOrg successfully
+    getPipelineFolderByOrg_0
+      ✓ should call getPipelineFolderByOrg_0 successfully
+    getPipelineQueueByOrg
+      ✓ should call getPipelineQueueByOrg successfully
+    getPipelineRunByOrg
+      ✓ should call getPipelineRunByOrg successfully
+    getPipelineRunLogByOrg
+      ✓ should call getPipelineRunLogByOrg successfully
+    getPipelineRunNodeByOrg
+      ✓ should call getPipelineRunNodeByOrg successfully
+    getPipelineRunNodeStepByOrg
+      ✓ should call getPipelineRunNodeStepByOrg successfully
+    getPipelineRunNodeStepLogByOrg
+      ✓ should call getPipelineRunNodeStepLogByOrg successfully
+    getPipelineRunNodeStepsByOrg
+      ✓ should call getPipelineRunNodeStepsByOrg successfully
+    getPipelineRunNodesByOrg
+      ✓ should call getPipelineRunNodesByOrg successfully
+    getPipelineRunsByOrg
+      ✓ should call getPipelineRunsByOrg successfully
+    getPipelinesByOrg
+      ✓ should call getPipelinesByOrg successfully
+    getSCM
+      ✓ should call getSCM successfully
+    getSCMOrganisationRepositories
+      ✓ should call getSCMOrganisationRepositories successfully
+    getSCMOrganisationRepository
+      ✓ should call getSCMOrganisationRepository successfully
+    getSCMOrganisations
+      ✓ should call getSCMOrganisations successfully
+    getUser
+      ✓ should call getUser successfully
+    getUserFavorites
+      ✓ should call getUserFavorites successfully
+    getUsers
+      ✓ should call getUsers successfully
+    postPipelineRunByOrg
+      ✓ should call postPipelineRunByOrg successfully
+    postPipelineRunsByOrg
+      ✓ should call postPipelineRunsByOrg successfully
+    putPipelineFavoriteByOrg
+      ✓ should call putPipelineFavoriteByOrg successfully
+    putPipelineRunByOrg
+      ✓ should call putPipelineRunByOrg successfully
+    search
+      ✓ should call search successfully
+    searchClasses
+      ✓ should call searchClasses successfully
+
+  RemoteAccessApi
+    getComputer
+      ✓ should call getComputer successfully
+    getCrumb
+      ✓ should call getCrumb successfully
+    getJenkins
+      ✓ should call getJenkins successfully
+    getJob
+      ✓ should call getJob successfully
+    getJobConfig
+      ✓ should call getJobConfig successfully
+    getJobLastBuild
+      ✓ should call getJobLastBuild successfully
+    getJobProgressiveText
+      ✓ should call getJobProgressiveText successfully
+    getQueue
+      ✓ should call getQueue successfully
+    getQueueItem
+      ✓ should call getQueueItem successfully
+    getView
+      ✓ should call getView successfully
+    getViewConfig
+      ✓ should call getViewConfig successfully
+    headJenkins
+      ✓ should call headJenkins successfully
+    postCreateItem
+      ✓ should call postCreateItem successfully
+    postCreateView
+      ✓ should call postCreateView successfully
+    postJobBuild
+      ✓ should call postJobBuild successfully
+    postJobConfig
+      ✓ should call postJobConfig successfully
+    postJobDelete
+      ✓ should call postJobDelete successfully
+    postJobDisable
+      ✓ should call postJobDisable successfully
+    postJobEnable
+      ✓ should call postJobEnable successfully
+    postJobLastBuildStop
+      ✓ should call postJobLastBuildStop successfully
+    postViewConfig
+      ✓ should call postViewConfig successfully
+
+  Body
+    ✓ should create an instance of Body
+    ✓ should have the property favorite (base name: "favorite")
+
+  GetClassesByClass
+    ✓ should create an instance of GetClassesByClass
+    ✓ should have the property classes (base name: "classes")
+    ✓ should have the property _class (base name: "_class")
+
+  GetMultibranchPipeline
+    ✓ should create an instance of GetMultibranchPipeline
+    ✓ should have the property displayName (base name: "displayName")
+    ✓ should have the property estimatedDurationInMillis (base name: "estimatedDurationInMillis")
+    ✓ should have the property latestRun (base name: "latestRun")
+    ✓ should have the property name (base name: "name")
+    ✓ should have the property organization (base name: "organization")
+    ✓ should have the property weatherScore (base name: "weatherScore")
+    ✓ should have the property branchNames (base name: "branchNames")
+    ✓ should have the property numberOfFailingBranches (base name: "numberOfFailingBranches")
+    ✓ should have the property numberOfFailingPullRequests (base name: "numberOfFailingPullRequests")
+    ✓ should have the property numberOfSuccessfulBranches (base name: "numberOfSuccessfulBranches")
+    ✓ should have the property numberOfSuccessfulPullRequests (base name: "numberOfSuccessfulPullRequests")
+    ✓ should have the property totalNumberOfBranches (base name: "totalNumberOfBranches")
+    ✓ should have the property totalNumberOfPullRequests (base name: "totalNumberOfPullRequests")
+    ✓ should have the property _class (base name: "_class")
+
+  GetOrganisations
+    ✓ should create an instance of GetOrganisations
+
+  GetPipelineActivities
+    ✓ should create an instance of GetPipelineActivities
+
+  GetPipelineBranches
+    ✓ should create an instance of GetPipelineBranches
+
+  GetPipelineBranchesitem
+    ✓ should create an instance of GetPipelineBranchesitem
+    ✓ should have the property displayName (base name: "displayName")
+    ✓ should have the property estimatedDurationInMillis (base name: "estimatedDurationInMillis")
+    ✓ should have the property name (base name: "name")
+    ✓ should have the property weatherScore (base name: "weatherScore")
+    ✓ should have the property latestRun (base name: "latestRun")
+    ✓ should have the property organization (base name: "organization")
+    ✓ should have the property pullRequest (base name: "pullRequest")
+    ✓ should have the property totalNumberOfPullRequests (base name: "totalNumberOfPullRequests")
+    ✓ should have the property _class (base name: "_class")
+
+  GetPipelineBranchesitemLatestRun
+    ✓ should create an instance of GetPipelineBranchesitemLatestRun
+    ✓ should have the property durationInMillis (base name: "durationInMillis")
+    ✓ should have the property estimatedDurationInMillis (base name: "estimatedDurationInMillis")
+    ✓ should have the property enQueueTime (base name: "enQueueTime")
+    ✓ should have the property endTime (base name: "endTime")
+    ✓ should have the property id (base name: "id")
+    ✓ should have the property organization (base name: "organization")
+    ✓ should have the property pipeline (base name: "pipeline")
+    ✓ should have the property result (base name: "result")
+    ✓ should have the property runSummary (base name: "runSummary")
+    ✓ should have the property startTime (base name: "startTime")
+    ✓ should have the property state (base name: "state")
+    ✓ should have the property type (base name: "type")
+    ✓ should have the property commitId (base name: "commitId")
+    ✓ should have the property _class (base name: "_class")
+
+  GetPipelineBranchesitemPullRequest
+    ✓ should create an instance of GetPipelineBranchesitemPullRequest
+    ✓ should have the property links (base name: "_links")
+    ✓ should have the property author (base name: "author")
+    ✓ should have the property id (base name: "id")
+    ✓ should have the property title (base name: "title")
+    ✓ should have the property url (base name: "url")
+    ✓ should have the property _class (base name: "_class")
+
+  GetPipelineBranchesitemPullRequestLinks
+    ✓ should create an instance of GetPipelineBranchesitemPullRequestLinks
+    ✓ should have the property self (base name: "self")
+    ✓ should have the property _class (base name: "_class")
+
+  GetPipelineQueue
+    ✓ should create an instance of GetPipelineQueue
+
+  GetPipelineRunNodeSteps
+    ✓ should create an instance of GetPipelineRunNodeSteps
+
+  GetPipelineRunNodes
+    ✓ should create an instance of GetPipelineRunNodes
+
+  GetPipelineRunSteps
+    ✓ should create an instance of GetPipelineRunSteps
+
+  GetPipelineRuns
+    ✓ should create an instance of GetPipelineRuns
+
+  GetPipelines
+    ✓ should create an instance of GetPipelines
+
+  GetScmOrganisations
+    ✓ should create an instance of GetScmOrganisations
+
+  GetUserFavorites
+    ✓ should create an instance of GetUserFavorites
+
+  GetUsers
+    ✓ should create an instance of GetUsers
+
+  HudsonmodelAllView
+    ✓ should create an instance of HudsonmodelAllView
+    ✓ should have the property _class (base name: "_class")
+    ✓ should have the property name (base name: "name")
+    ✓ should have the property url (base name: "url")
+
+  HudsonmodelCauseAction
+    ✓ should create an instance of HudsonmodelCauseAction
+    ✓ should have the property _class (base name: "_class")
+    ✓ should have the property causes (base name: "causes")
+
+  HudsonmodelCauseUserIdCause
+    ✓ should create an instance of HudsonmodelCauseUserIdCause
+    ✓ should have the property _class (base name: "_class")
+    ✓ should have the property shortDescription (base name: "shortDescription")
+    ✓ should have the property userId (base name: "userId")
+    ✓ should have the property userName (base name: "userName")
+
+  HudsonmodelComputerSet
+    ✓ should create an instance of HudsonmodelComputerSet
+    ✓ should have the property _class (base name: "_class")
+    ✓ should have the property busyExecutors (base name: "busyExecutors")
+    ✓ should have the property computer (base name: "computer")
+    ✓ should have the property displayName (base name: "displayName")
+    ✓ should have the property totalExecutors (base name: "totalExecutors")
+
+  HudsonmodelFreeStyleBuild
+    ✓ should create an instance of HudsonmodelFreeStyleBuild
+    ✓ should have the property _class (base name: "_class")
+    ✓ should have the property _number (base name: "number")
+    ✓ should have the property url (base name: "url")
+    ✓ should have the property actions (base name: "actions")
+    ✓ should have the property building (base name: "building")
+    ✓ should have the property description (base name: "description")
+    ✓ should have the property displayName (base name: "displayName")
+    ✓ should have the property duration (base name: "duration")
+    ✓ should have the property estimatedDuration (base name: "estimatedDuration")
+    ✓ should have the property executor (base name: "executor")
+    ✓ should have the property fullDisplayName (base name: "fullDisplayName")
+    ✓ should have the property id (base name: "id")
+    ✓ should have the property keepLog (base name: "keepLog")
+    ✓ should have the property queueId (base name: "queueId")
+    ✓ should have the property result (base name: "result")
+    ✓ should have the property timestamp (base name: "timestamp")
+    ✓ should have the property builtOn (base name: "builtOn")
+    ✓ should have the property changeSet (base name: "changeSet")
+
+  HudsonmodelFreeStyleProject
+    ✓ should create an instance of HudsonmodelFreeStyleProject
+    ✓ should have the property _class (base name: "_class")
+    ✓ should have the property name (base name: "name")
+    ✓ should have the property url (base name: "url")
+    ✓ should have the property color (base name: "color")
+    ✓ should have the property actions (base name: "actions")
+    ✓ should have the property description (base name: "description")
+    ✓ should have the property displayName (base name: "displayName")
+    ✓ should have the property displayNameOrNull (base name: "displayNameOrNull")
+    ✓ should have the property fullDisplayName (base name: "fullDisplayName")
+    ✓ should have the property fullName (base name: "fullName")
+    ✓ should have the property buildable (base name: "buildable")
+    ✓ should have the property builds (base name: "builds")
+    ✓ should have the property firstBuild (base name: "firstBuild")
+    ✓ should have the property healthReport (base name: "healthReport")
+    ✓ should have the property inQueue (base name: "inQueue")
+    ✓ should have the property keepDependencies (base name: "keepDependencies")
+    ✓ should have the property lastBuild (base name: "lastBuild")
+    ✓ should have the property lastCompletedBuild (base name: "lastCompletedBuild")
+    ✓ should have the property lastFailedBuild (base name: "lastFailedBuild")
+    ✓ should have the property lastStableBuild (base name: "lastStableBuild")
+    ✓ should have the property lastSuccessfulBuild (base name: "lastSuccessfulBuild")
+    ✓ should have the property lastUnstableBuild (base name: "lastUnstableBuild")
+    ✓ should have the property lastUnsuccessfulBuild (base name: "lastUnsuccessfulBuild")
+    ✓ should have the property nextBuildNumber (base name: "nextBuildNumber")
+    ✓ should have the property queueItem (base name: "queueItem")
+    ✓ should have the property concurrentBuild (base name: "concurrentBuild")
+    ✓ should have the property scm (base name: "scm")
+
+  HudsonmodelFreeStyleProjectactions
+    ✓ should create an instance of HudsonmodelFreeStyleProjectactions
+    ✓ should have the property _class (base name: "_class")
+
+  HudsonmodelFreeStyleProjecthealthReport
+    ✓ should create an instance of HudsonmodelFreeStyleProjecthealthReport
+    ✓ should have the property description (base name: "description")
+    ✓ should have the property iconClassName (base name: "iconClassName")
+    ✓ should have the property iconUrl (base name: "iconUrl")
+    ✓ should have the property score (base name: "score")
+    ✓ should have the property _class (base name: "_class")
+
+  HudsonmodelHudson
+    ✓ should create an instance of HudsonmodelHudson
+    ✓ should have the property _class (base name: "_class")
+    ✓ should have the property assignedLabels (base name: "assignedLabels")
+    ✓ should have the property mode (base name: "mode")
+    ✓ should have the property nodeDescription (base name: "nodeDescription")
+    ✓ should have the property nodeName (base name: "nodeName")
+    ✓ should have the property numExecutors (base name: "numExecutors")
+    ✓ should have the property description (base name: "description")
+    ✓ should have the property jobs (base name: "jobs")
+    ✓ should have the property primaryView (base name: "primaryView")
+    ✓ should have the property quietingDown (base name: "quietingDown")
+    ✓ should have the property slaveAgentPort (base name: "slaveAgentPort")
+    ✓ should have the property unlabeledLoad (base name: "unlabeledLoad")
+    ✓ should have the property useCrumbs (base name: "useCrumbs")
+    ✓ should have the property useSecurity (base name: "useSecurity")
+    ✓ should have the property views (base name: "views")
+
+  HudsonmodelHudsonMasterComputer
+    ✓ should create an instance of HudsonmodelHudsonMasterComputer
+    ✓ should have the property _class (base name: "_class")
+    ✓ should have the property displayName (base name: "displayName")
+    ✓ should have the property executors (base name: "executors")
+    ✓ should have the property icon (base name: "icon")
+    ✓ should have the property iconClassName (base name: "iconClassName")
+    ✓ should have the property idle (base name: "idle")
+    ✓ should have the property jnlpAgent (base name: "jnlpAgent")
+    ✓ should have the property launchSupported (base name: "launchSupported")
+    ✓ should have the property loadStatistics (base name: "loadStatistics")
+    ✓ should have the property manualLaunchAllowed (base name: "manualLaunchAllowed")
+    ✓ should have the property monitorData (base name: "monitorData")
+    ✓ should have the property numExecutors (base name: "numExecutors")
+    ✓ should have the property offline (base name: "offline")
+    ✓ should have the property offlineCause (base name: "offlineCause")
+    ✓ should have the property offlineCauseReason (base name: "offlineCauseReason")
+    ✓ should have the property temporarilyOffline (base name: "temporarilyOffline")
+
+  HudsonmodelHudsonMasterComputerMonitorData
+    ✓ should create an instance of HudsonmodelHudsonMasterComputerMonitorData
+    ✓ should have the property hudsonNodeMonitorsSwapSpaceMonitor (base name: "hudson.node_monitors.SwapSpaceMonitor")
+    ✓ should have the property hudsonNodeMonitorsTemporarySpaceMonitor (base name: "hudson.node_monitors.TemporarySpaceMonitor")
+    ✓ should have the property hudsonNodeMonitorsDiskSpaceMonitor (base name: "hudson.node_monitors.DiskSpaceMonitor")
+    ✓ should have the property hudsonNodeMonitorsArchitectureMonitor (base name: "hudson.node_monitors.ArchitectureMonitor")
+    ✓ should have the property hudsonNodeMonitorsResponseTimeMonitor (base name: "hudson.node_monitors.ResponseTimeMonitor")
+    ✓ should have the property hudsonNodeMonitorsClockMonitor (base name: "hudson.node_monitors.ClockMonitor")
+    ✓ should have the property _class (base name: "_class")
+
+  HudsonmodelHudsonMasterComputerexecutors
+    ✓ should create an instance of HudsonmodelHudsonMasterComputerexecutors
+    ✓ should have the property currentExecutable (base name: "currentExecutable")
+    ✓ should have the property idle (base name: "idle")
+    ✓ should have the property likelyStuck (base name: "likelyStuck")
+    ✓ should have the property _number (base name: "number")
+    ✓ should have the property progress (base name: "progress")
+    ✓ should have the property _class (base name: "_class")
+
+  HudsonmodelHudsonassignedLabels
+    ✓ should create an instance of HudsonmodelHudsonassignedLabels
+    ✓ should have the property _class (base name: "_class")
+
+  HudsonmodelLabel1
+    ✓ should create an instance of HudsonmodelLabel1
+    ✓ should have the property _class (base name: "_class")
+
+  HudsonmodelListView
+    ✓ should create an instance of HudsonmodelListView
+    ✓ should have the property _class (base name: "_class")
+    ✓ should have the property description (base name: "description")
+    ✓ should have the property jobs (base name: "jobs")
+    ✓ should have the property name (base name: "name")
+    ✓ should have the property url (base name: "url")
+
+  HudsonmodelQueue
+    ✓ should create an instance of HudsonmodelQueue
+    ✓ should have the property _class (base name: "_class")
+    ✓ should have the property items (base name: "items")
+
+  HudsonmodelQueueBlockedItem
+    ✓ should create an instance of HudsonmodelQueueBlockedItem
+    ✓ should have the property _class (base name: "_class")
+    ✓ should have the property actions (base name: "actions")
+    ✓ should have the property blocked (base name: "blocked")
+    ✓ should have the property buildable (base name: "buildable")
+    ✓ should have the property id (base name: "id")
+    ✓ should have the property inQueueSince (base name: "inQueueSince")
+    ✓ should have the property params (base name: "params")
+    ✓ should have the property stuck (base name: "stuck")
+    ✓ should have the property task (base name: "task")
+    ✓ should have the property url (base name: "url")
+    ✓ should have the property why (base name: "why")
+    ✓ should have the property buildableStartMilliseconds (base name: "buildableStartMilliseconds")
+
+  HudsonmodelQueueLeftItem
+    ✓ should create an instance of HudsonmodelQueueLeftItem
+    ✓ should have the property _class (base name: "_class")
+    ✓ should have the property actions (base name: "actions")
+    ✓ should have the property blocked (base name: "blocked")
+    ✓ should have the property buildable (base name: "buildable")
+    ✓ should have the property id (base name: "id")
+    ✓ should have the property inQueueSince (base name: "inQueueSince")
+    ✓ should have the property params (base name: "params")
+    ✓ should have the property stuck (base name: "stuck")
+    ✓ should have the property task (base name: "task")
+    ✓ should have the property url (base name: "url")
+    ✓ should have the property why (base name: "why")
+    ✓ should have the property cancelled (base name: "cancelled")
+    ✓ should have the property executable (base name: "executable")
+
+  HudsonmodelStringParameterDefinition
+    ✓ should create an instance of HudsonmodelStringParameterDefinition
+    ✓ should have the property _class (base name: "_class")
+    ✓ should have the property defaultParameterValue (base name: "defaultParameterValue")
+    ✓ should have the property description (base name: "description")
+    ✓ should have the property name (base name: "name")
+    ✓ should have the property type (base name: "type")
+
+  HudsonmodelStringParameterValue
+    ✓ should create an instance of HudsonmodelStringParameterValue
+    ✓ should have the property _class (base name: "_class")
+    ✓ should have the property name (base name: "name")
+    ✓ should have the property value (base name: "value")
+
+  HudsonnodeMonitorsDiskSpaceMonitorDescriptorDiskSpace
+    ✓ should create an instance of HudsonnodeMonitorsDiskSpaceMonitorDescriptorDiskSpace
+    ✓ should have the property _class (base name: "_class")
+    ✓ should have the property timestamp (base name: "timestamp")
+    ✓ should have the property path (base name: "path")
+    ✓ should have the property size (base name: "size")
+
+  HudsonnodeMonitorsResponseTimeMonitorData
+    ✓ should create an instance of HudsonnodeMonitorsResponseTimeMonitorData
+    ✓ should have the property _class (base name: "_class")
+    ✓ should have the property timestamp (base name: "timestamp")
+    ✓ should have the property average (base name: "average")
+
+  HudsonnodeMonitorsSwapSpaceMonitorMemoryUsage2
+    ✓ should create an instance of HudsonnodeMonitorsSwapSpaceMonitorMemoryUsage2
+    ✓ should have the property _class (base name: "_class")
+    ✓ should have the property availablePhysicalMemory (base name: "availablePhysicalMemory")
+    ✓ should have the property availableSwapSpace (base name: "availableSwapSpace")
+    ✓ should have the property totalPhysicalMemory (base name: "totalPhysicalMemory")
+    ✓ should have the property totalSwapSpace (base name: "totalSwapSpace")
+
+  HudsonscmEmptyChangeLogSet
+    ✓ should create an instance of HudsonscmEmptyChangeLogSet
+    ✓ should have the property _class (base name: "_class")
+    ✓ should have the property kind (base name: "kind")
+
+  HudsonscmNullSCM
+    ✓ should create an instance of HudsonscmNullSCM
+    ✓ should have the property _class (base name: "_class")
+
+  HudsonsecuritycsrfDefaultCrumbIssuer
+    ✓ should create an instance of HudsonsecuritycsrfDefaultCrumbIssuer
+    ✓ should have the property _class (base name: "_class")
+    ✓ should have the property crumb (base name: "crumb")
+    ✓ should have the property crumbRequestField (base name: "crumbRequestField")
+
+  HudsonutilClockDifference
+    ✓ should create an instance of HudsonutilClockDifference
+    ✓ should have the property _class (base name: "_class")
+    ✓ should have the property diff (base name: "diff")
+
+  IojenkinsblueoceanblueoceanGithubPipelineGithubContent
+    ✓ should create an instance of IojenkinsblueoceanblueoceanGithubPipelineGithubContent
+    ✓ should have the property name (base name: "name")
+    ✓ should have the property sha (base name: "sha")
+    ✓ should have the property _class (base name: "_class")
+    ✓ should have the property repo (base name: "repo")
+    ✓ should have the property size (base name: "size")
+    ✓ should have the property owner (base name: "owner")
+    ✓ should have the property path (base name: "path")
+    ✓ should have the property base64Data (base name: "base64Data")
+
+  IojenkinsblueoceanblueoceanGithubPipelineGithubFile
+    ✓ should create an instance of IojenkinsblueoceanblueoceanGithubPipelineGithubFile
+    ✓ should have the property content (base name: "content")
+    ✓ should have the property _class (base name: "_class")
+
+  IojenkinsblueoceanblueoceanGithubPipelineGithubOrganization
+    ✓ should create an instance of IojenkinsblueoceanblueoceanGithubPipelineGithubOrganization
+    ✓ should have the property _class (base name: "_class")
+    ✓ should have the property links (base name: "_links")
+    ✓ should have the property jenkinsOrganizationPipeline (base name: "jenkinsOrganizationPipeline")
+    ✓ should have the property name (base name: "name")
+
+  IojenkinsblueoceanblueoceanGithubPipelineGithubOrganizationLinks
+    ✓ should create an instance of IojenkinsblueoceanblueoceanGithubPipelineGithubOrganizationLinks
+    ✓ should have the property repositories (base name: "repositories")
+    ✓ should have the property self (base name: "self")
+    ✓ should have the property _class (base name: "_class")
+
+  IojenkinsblueoceanblueoceanGithubPipelineGithubRepositories
+    ✓ should create an instance of IojenkinsblueoceanblueoceanGithubPipelineGithubRepositories
+    ✓ should have the property _class (base name: "_class")
+    ✓ should have the property links (base name: "_links")
+    ✓ should have the property items (base name: "items")
+    ✓ should have the property lastPage (base name: "lastPage")
+    ✓ should have the property nextPage (base name: "nextPage")
+    ✓ should have the property pageSize (base name: "pageSize")
+
+  IojenkinsblueoceanblueoceanGithubPipelineGithubRepositoriesLinks
+    ✓ should create an instance of IojenkinsblueoceanblueoceanGithubPipelineGithubRepositoriesLinks
+    ✓ should have the property self (base name: "self")
+    ✓ should have the property _class (base name: "_class")
+
+  IojenkinsblueoceanblueoceanGithubPipelineGithubRepository
+    ✓ should create an instance of IojenkinsblueoceanblueoceanGithubPipelineGithubRepository
+    ✓ should have the property _class (base name: "_class")
+    ✓ should have the property links (base name: "_links")
+    ✓ should have the property defaultBranch (base name: "defaultBranch")
+    ✓ should have the property description (base name: "description")
+    ✓ should have the property name (base name: "name")
+    ✓ should have the property permissions (base name: "permissions")
+    ✓ should have the property _private (base name: "private")
+    ✓ should have the property fullName (base name: "fullName")
+
+  IojenkinsblueoceanblueoceanGithubPipelineGithubRepositoryLinks
+    ✓ should create an instance of IojenkinsblueoceanblueoceanGithubPipelineGithubRepositoryLinks
+    ✓ should have the property self (base name: "self")
+    ✓ should have the property _class (base name: "_class")
+
+  IojenkinsblueoceanblueoceanGithubPipelineGithubRepositoryPermissions
+    ✓ should create an instance of IojenkinsblueoceanblueoceanGithubPipelineGithubRepositoryPermissions
+    ✓ should have the property admin (base name: "admin")
+    ✓ should have the property push (base name: "push")
+    ✓ should have the property pull (base name: "pull")
+    ✓ should have the property _class (base name: "_class")
+
+  IojenkinsblueoceanblueoceanGithubPipelineGithubRespositoryContainer
+    ✓ should create an instance of IojenkinsblueoceanblueoceanGithubPipelineGithubRespositoryContainer
+    ✓ should have the property _class (base name: "_class")
+    ✓ should have the property links (base name: "_links")
+    ✓ should have the property repositories (base name: "repositories")
+
+  IojenkinsblueoceanblueoceanGithubPipelineGithubRespositoryContainerLinks
+    ✓ should create an instance of IojenkinsblueoceanblueoceanGithubPipelineGithubRespositoryContainerLinks
+    ✓ should have the property self (base name: "self")
+    ✓ should have the property _class (base name: "_class")
+
+  IojenkinsblueoceanblueoceanGithubPipelineGithubScm
+    ✓ should create an instance of IojenkinsblueoceanblueoceanGithubPipelineGithubScm
+    ✓ should have the property _class (base name: "_class")
+    ✓ should have the property links (base name: "_links")
+    ✓ should have the property credentialId (base name: "credentialId")
+    ✓ should have the property id (base name: "id")
+    ✓ should have the property uri (base name: "uri")
+
+  IojenkinsblueoceanblueoceanGithubPipelineGithubScmLinks
+    ✓ should create an instance of IojenkinsblueoceanblueoceanGithubPipelineGithubScmLinks
+    ✓ should have the property self (base name: "self")
+    ✓ should have the property _class (base name: "_class")
+
+  IojenkinsblueoceanresthalLink
+    ✓ should create an instance of IojenkinsblueoceanresthalLink
+    ✓ should have the property _class (base name: "_class")
+    ✓ should have the property href (base name: "href")
+
+  IojenkinsblueoceanrestimplpipelineBranchImpl
+    ✓ should create an instance of IojenkinsblueoceanrestimplpipelineBranchImpl
+    ✓ should have the property _class (base name: "_class")
+    ✓ should have the property displayName (base name: "displayName")
+    ✓ should have the property estimatedDurationInMillis (base name: "estimatedDurationInMillis")
+    ✓ should have the property fullDisplayName (base name: "fullDisplayName")
+    ✓ should have the property fullName (base name: "fullName")
+    ✓ should have the property name (base name: "name")
+    ✓ should have the property organization (base name: "organization")
+    ✓ should have the property parameters (base name: "parameters")
+    ✓ should have the property permissions (base name: "permissions")
+    ✓ should have the property weatherScore (base name: "weatherScore")
+    ✓ should have the property pullRequest (base name: "pullRequest")
+
+  IojenkinsblueoceanrestimplpipelineBranchImplPermissions
+    ✓ should create an instance of IojenkinsblueoceanrestimplpipelineBranchImplPermissions
+    ✓ should have the property create (base name: "create")
+    ✓ should have the property read (base name: "read")
+    ✓ should have the property start (base name: "start")
+    ✓ should have the property stop (base name: "stop")
+    ✓ should have the property _class (base name: "_class")
+
+  IojenkinsblueoceanrestimplpipelineInputStepImpl
+    ✓ should create an instance of IojenkinsblueoceanrestimplpipelineInputStepImpl
+    ✓ should have the property _class (base name: "_class")
+    ✓ should have the property links (base name: "_links")
+    ✓ should have the property id (base name: "id")
+    ✓ should have the property message (base name: "message")
+    ✓ should have the property ok (base name: "ok")
+    ✓ should have the property parameters (base name: "parameters")
+    ✓ should have the property submitter (base name: "submitter")
+
+  IojenkinsblueoceanrestimplpipelineInputStepImplLinks
+    ✓ should create an instance of IojenkinsblueoceanrestimplpipelineInputStepImplLinks
+    ✓ should have the property self (base name: "self")
+    ✓ should have the property _class (base name: "_class")
+
+  IojenkinsblueoceanrestimplpipelinePipelineStepImpl
+    ✓ should create an instance of IojenkinsblueoceanrestimplpipelinePipelineStepImpl
+    ✓ should have the property _class (base name: "_class")
+    ✓ should have the property links (base name: "_links")
+    ✓ should have the property displayName (base name: "displayName")
+    ✓ should have the property durationInMillis (base name: "durationInMillis")
+    ✓ should have the property id (base name: "id")
+    ✓ should have the property input (base name: "input")
+    ✓ should have the property result (base name: "result")
+    ✓ should have the property startTime (base name: "startTime")
+    ✓ should have the property state (base name: "state")
+
+  IojenkinsblueoceanrestimplpipelinePipelineStepImplLinks
+    ✓ should create an instance of IojenkinsblueoceanrestimplpipelinePipelineStepImplLinks
+    ✓ should have the property self (base name: "self")
+    ✓ should have the property actions (base name: "actions")
+    ✓ should have the property _class (base name: "_class")
+
+  IojenkinsblueoceanrestmodelGenericResource
+    ✓ should create an instance of IojenkinsblueoceanrestmodelGenericResource
+    ✓ should have the property _class (base name: "_class")
+    ✓ should have the property displayName (base name: "displayName")
+    ✓ should have the property durationInMillis (base name: "durationInMillis")
+    ✓ should have the property id (base name: "id")
+    ✓ should have the property result (base name: "result")
+    ✓ should have the property startTime (base name: "startTime")
+
+  IojenkinsblueoceanserviceembeddedrestBranchImpl
+    ✓ should create an instance of IojenkinsblueoceanserviceembeddedrestBranchImpl
+    ✓ should have the property _class (base name: "_class")
+    ✓ should have the property links (base name: "_links")
+    ✓ should have the property displayName (base name: "displayName")
+    ✓ should have the property estimatedDurationInMillis (base name: "estimatedDurationInMillis")
+    ✓ should have the property fullName (base name: "fullName")
+    ✓ should have the property latestRun (base name: "latestRun")
+    ✓ should have the property name (base name: "name")
+    ✓ should have the property organization (base name: "organization")
+    ✓ should have the property weatherScore (base name: "weatherScore")
+    ✓ should have the property pullRequest (base name: "pullRequest")
+
+  IojenkinsblueoceanserviceembeddedrestBranchImplLinks
+    ✓ should create an instance of IojenkinsblueoceanserviceembeddedrestBranchImplLinks
+    ✓ should have the property self (base name: "self")
+    ✓ should have the property actions (base name: "actions")
+    ✓ should have the property runs (base name: "runs")
+    ✓ should have the property queue (base name: "queue")
+    ✓ should have the property _class (base name: "_class")
+
+  IojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1
+    ✓ should create an instance of IojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1
+    ✓ should have the property _class (base name: "_class")
+    ✓ should have the property links (base name: "_links")
+    ✓ should have the property map (base name: "map")
+
+  IojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1Links
+    ✓ should create an instance of IojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1Links
+    ✓ should have the property self (base name: "self")
+    ✓ should have the property _class (base name: "_class")
+
+  IojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1Map
+    ✓ should create an instance of IojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1Map
+    ✓ should have the property ioJenkinsBlueoceanServiceEmbeddedRestPipelineImpl (base name: "io.jenkins.blueocean.service.embedded.rest.PipelineImpl")
+    ✓ should have the property ioJenkinsBlueoceanServiceEmbeddedRestMultiBranchPipelineImpl (base name: "io.jenkins.blueocean.service.embedded.rest.MultiBranchPipelineImpl")
+    ✓ should have the property _class (base name: "_class")
+
+  IojenkinsblueoceanserviceembeddedrestExtensionClassImpl
+    ✓ should create an instance of IojenkinsblueoceanserviceembeddedrestExtensionClassImpl
+    ✓ should have the property _class (base name: "_class")
+    ✓ should have the property links (base name: "_links")
+    ✓ should have the property classes (base name: "classes")
+
+  IojenkinsblueoceanserviceembeddedrestExtensionClassImplLinks
+    ✓ should create an instance of IojenkinsblueoceanserviceembeddedrestExtensionClassImplLinks
+    ✓ should have the property self (base name: "self")
+    ✓ should have the property _class (base name: "_class")
+
+  IojenkinsblueoceanserviceembeddedrestFavoriteImpl
+    ✓ should create an instance of IojenkinsblueoceanserviceembeddedrestFavoriteImpl
+    ✓ should have the property _class (base name: "_class")
+    ✓ should have the property links (base name: "_links")
+    ✓ should have the property item (base name: "item")
+
+  IojenkinsblueoceanserviceembeddedrestFavoriteImplLinks
+    ✓ should create an instance of IojenkinsblueoceanserviceembeddedrestFavoriteImplLinks
+    ✓ should have the property self (base name: "self")
+    ✓ should have the property _class (base name: "_class")
+
+  IojenkinsblueoceanserviceembeddedrestPipelineFolderImpl
+    ✓ should create an instance of IojenkinsblueoceanserviceembeddedrestPipelineFolderImpl
+    ✓ should have the property _class (base name: "_class")
+    ✓ should have the property displayName (base name: "displayName")
+    ✓ should have the property fullName (base name: "fullName")
+    ✓ should have the property name (base name: "name")
+    ✓ should have the property organization (base name: "organization")
+    ✓ should have the property numberOfFolders (base name: "numberOfFolders")
+    ✓ should have the property numberOfPipelines (base name: "numberOfPipelines")
+
+  IojenkinsblueoceanserviceembeddedrestPipelineImpl
+    ✓ should create an instance of IojenkinsblueoceanserviceembeddedrestPipelineImpl
+    ✓ should have the property _class (base name: "_class")
+    ✓ should have the property displayName (base name: "displayName")
+    ✓ should have the property estimatedDurationInMillis (base name: "estimatedDurationInMillis")
+    ✓ should have the property fullName (base name: "fullName")
+    ✓ should have the property latestRun (base name: "latestRun")
+    ✓ should have the property name (base name: "name")
+    ✓ should have the property organization (base name: "organization")
+    ✓ should have the property weatherScore (base name: "weatherScore")
+    ✓ should have the property links (base name: "_links")
+
+  IojenkinsblueoceanserviceembeddedrestPipelineImplLinks
+    ✓ should create an instance of IojenkinsblueoceanserviceembeddedrestPipelineImplLinks
+    ✓ should have the property runs (base name: "runs")
+    ✓ should have the property self (base name: "self")
+    ✓ should have the property queue (base name: "queue")
+    ✓ should have the property actions (base name: "actions")
+    ✓ should have the property _class (base name: "_class")
+
+  IojenkinsblueoceanserviceembeddedrestPipelineRunImpl
+    ✓ should create an instance of IojenkinsblueoceanserviceembeddedrestPipelineRunImpl
+    ✓ should have the property _class (base name: "_class")
+    ✓ should have the property links (base name: "_links")
+    ✓ should have the property durationInMillis (base name: "durationInMillis")
+    ✓ should have the property enQueueTime (base name: "enQueueTime")
+    ✓ should have the property endTime (base name: "endTime")
+    ✓ should have the property estimatedDurationInMillis (base name: "estimatedDurationInMillis")
+    ✓ should have the property id (base name: "id")
+    ✓ should have the property organization (base name: "organization")
+    ✓ should have the property pipeline (base name: "pipeline")
+    ✓ should have the property result (base name: "result")
+    ✓ should have the property runSummary (base name: "runSummary")
+    ✓ should have the property startTime (base name: "startTime")
+    ✓ should have the property state (base name: "state")
+    ✓ should have the property type (base name: "type")
+    ✓ should have the property commitId (base name: "commitId")
+
+  IojenkinsblueoceanserviceembeddedrestPipelineRunImplLinks
+    ✓ should create an instance of IojenkinsblueoceanserviceembeddedrestPipelineRunImplLinks
+    ✓ should have the property nodes (base name: "nodes")
+    ✓ should have the property log (base name: "log")
+    ✓ should have the property self (base name: "self")
+    ✓ should have the property actions (base name: "actions")
+    ✓ should have the property steps (base name: "steps")
+    ✓ should have the property _class (base name: "_class")
+
+  IojenkinsblueoceanserviceembeddedrestQueueItemImpl
+    ✓ should create an instance of IojenkinsblueoceanserviceembeddedrestQueueItemImpl
+    ✓ should have the property _class (base name: "_class")
+    ✓ should have the property expectedBuildNumber (base name: "expectedBuildNumber")
+    ✓ should have the property id (base name: "id")
+    ✓ should have the property pipeline (base name: "pipeline")
+    ✓ should have the property queuedTime (base name: "queuedTime")
+
+  JenkinsmodelUnlabeledLoadStatistics
+    ✓ should create an instance of JenkinsmodelUnlabeledLoadStatistics
+    ✓ should have the property _class (base name: "_class")
+
+  SwaggyjenkinsOrganisation
+    ✓ should create an instance of SwaggyjenkinsOrganisation
+    ✓ should have the property _class (base name: "_class")
+    ✓ should have the property name (base name: "name")
+
+  SwaggyjenkinsPipeline
+    ✓ should create an instance of SwaggyjenkinsPipeline
+    ✓ should have the property _class (base name: "_class")
+    ✓ should have the property organization (base name: "organization")
+    ✓ should have the property name (base name: "name")
+    ✓ should have the property displayName (base name: "displayName")
+    ✓ should have the property fullName (base name: "fullName")
+    ✓ should have the property weatherScore (base name: "weatherScore")
+    ✓ should have the property estimatedDurationInMillis (base name: "estimatedDurationInMillis")
+    ✓ should have the property latestRun (base name: "latestRun")
+
+  SwaggyjenkinsPipelineActivity
+    ✓ should create an instance of SwaggyjenkinsPipelineActivity
+    ✓ should have the property _class (base name: "_class")
+    ✓ should have the property artifacts (base name: "artifacts")
+    ✓ should have the property durationInMillis (base name: "durationInMillis")
+    ✓ should have the property estimatedDurationInMillis (base name: "estimatedDurationInMillis")
+    ✓ should have the property enQueueTime (base name: "enQueueTime")
+    ✓ should have the property endTime (base name: "endTime")
+    ✓ should have the property id (base name: "id")
+    ✓ should have the property organization (base name: "organization")
+    ✓ should have the property pipeline (base name: "pipeline")
+    ✓ should have the property result (base name: "result")
+    ✓ should have the property runSummary (base name: "runSummary")
+    ✓ should have the property startTime (base name: "startTime")
+    ✓ should have the property state (base name: "state")
+    ✓ should have the property type (base name: "type")
+    ✓ should have the property commitId (base name: "commitId")
+
+  SwaggyjenkinsPipelineActivityartifacts
+    ✓ should create an instance of SwaggyjenkinsPipelineActivityartifacts
+    ✓ should have the property name (base name: "name")
+    ✓ should have the property size (base name: "size")
+    ✓ should have the property url (base name: "url")
+    ✓ should have the property _class (base name: "_class")
+
+  SwaggyjenkinsPipelineLatestRun
+    ✓ should create an instance of SwaggyjenkinsPipelineLatestRun
+    ✓ should have the property artifacts (base name: "artifacts")
+    ✓ should have the property durationInMillis (base name: "durationInMillis")
+    ✓ should have the property estimatedDurationInMillis (base name: "estimatedDurationInMillis")
+    ✓ should have the property enQueueTime (base name: "enQueueTime")
+    ✓ should have the property endTime (base name: "endTime")
+    ✓ should have the property id (base name: "id")
+    ✓ should have the property organization (base name: "organization")
+    ✓ should have the property pipeline (base name: "pipeline")
+    ✓ should have the property result (base name: "result")
+    ✓ should have the property runSummary (base name: "runSummary")
+    ✓ should have the property startTime (base name: "startTime")
+    ✓ should have the property state (base name: "state")
+    ✓ should have the property type (base name: "type")
+    ✓ should have the property commitId (base name: "commitId")
+    ✓ should have the property _class (base name: "_class")
+
+  SwaggyjenkinsPipelineLatestRunartifacts
+    ✓ should create an instance of SwaggyjenkinsPipelineLatestRunartifacts
+    ✓ should have the property name (base name: "name")
+    ✓ should have the property size (base name: "size")
+    ✓ should have the property url (base name: "url")
+    ✓ should have the property _class (base name: "_class")
+
+  SwaggyjenkinsPipelineRun
+    ✓ should create an instance of SwaggyjenkinsPipelineRun
+    ✓ should have the property _class (base name: "_class")
+    ✓ should have the property artifacts (base name: "artifacts")
+    ✓ should have the property durationInMillis (base name: "durationInMillis")
+    ✓ should have the property estimatedDurationInMillis (base name: "estimatedDurationInMillis")
+    ✓ should have the property enQueueTime (base name: "enQueueTime")
+    ✓ should have the property endTime (base name: "endTime")
+    ✓ should have the property id (base name: "id")
+    ✓ should have the property organization (base name: "organization")
+    ✓ should have the property pipeline (base name: "pipeline")
+    ✓ should have the property result (base name: "result")
+    ✓ should have the property runSummary (base name: "runSummary")
+    ✓ should have the property startTime (base name: "startTime")
+    ✓ should have the property state (base name: "state")
+    ✓ should have the property type (base name: "type")
+    ✓ should have the property commitId (base name: "commitId")
+
+  SwaggyjenkinsPipelineRunNode
+    ✓ should create an instance of SwaggyjenkinsPipelineRunNode
+    ✓ should have the property _class (base name: "_class")
+    ✓ should have the property displayName (base name: "displayName")
+    ✓ should have the property durationInMillis (base name: "durationInMillis")
+    ✓ should have the property edges (base name: "edges")
+    ✓ should have the property id (base name: "id")
+    ✓ should have the property result (base name: "result")
+    ✓ should have the property startTime (base name: "startTime")
+    ✓ should have the property state (base name: "state")
+
+  SwaggyjenkinsPipelineRunNodeedges
+    ✓ should create an instance of SwaggyjenkinsPipelineRunNodeedges
+    ✓ should have the property id (base name: "id")
+    ✓ should have the property _class (base name: "_class")
+
+  SwaggyjenkinsPipelineRunartifacts
+    ✓ should create an instance of SwaggyjenkinsPipelineRunartifacts
+    ✓ should have the property name (base name: "name")
+    ✓ should have the property size (base name: "size")
+    ✓ should have the property url (base name: "url")
+    ✓ should have the property _class (base name: "_class")
+
+  SwaggyjenkinsUser
+    ✓ should create an instance of SwaggyjenkinsUser
+    ✓ should have the property _class (base name: "_class")
+    ✓ should have the property id (base name: "id")
+    ✓ should have the property fullName (base name: "fullName")
+    ✓ should have the property email (base name: "email")
+    ✓ should have the property name (base name: "name")
+
+
+  628 passing (895ms)
+

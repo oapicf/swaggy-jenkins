@@ -1,0 +1,71 @@
+[main] ERROR io.swagger.codegen.config.CodegenConfigurator - Unable to deserialize config file: javascript-closure-angular/conf.json
+java.io.FileNotFoundException: javascript-closure-angular/conf.json (No such file or directory)
+	at java.io.FileInputStream.open0(Native Method)
+	at java.io.FileInputStream.open(FileInputStream.java:195)
+	at java.io.FileInputStream.<init>(FileInputStream.java:138)
+	at com.fasterxml.jackson.core.JsonFactory.createParser(JsonFactory.java:756)
+	at com.fasterxml.jackson.databind.ObjectMapper.readValue(ObjectMapper.java:2740)
+	at io.swagger.codegen.config.CodegenConfigurator.fromFile(CodegenConfigurator.java:507)
+	at io.swagger.codegen.cmd.Generate.run(Generate.java:135)
+	at io.swagger.codegen.SwaggerCodegen.main(SwaggerCodegen.java:43)
+[main] INFO io.swagger.parser.Swagger20Parser - reading from _spec/jenkins-api.yml
+[main] WARN io.swagger.codegen.ignore.CodegenIgnoreProcessor - Output directory does not exist, or is inaccessible. No file (.swager-codegen-ignore) will be evaluated.
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/javascript-closure-angular/generated/API/Client/GetClassesByClass.js
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/javascript-closure-angular/generated/API/Client/GetMultibranchPipeline.js
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/javascript-closure-angular/generated/API/Client/GetOrganisations.js
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/javascript-closure-angular/generated/API/Client/GetPipelineBranches.js
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/javascript-closure-angular/generated/API/Client/GetPipelineBranchesitem.js
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/javascript-closure-angular/generated/API/Client/GetPipelineBranchesitemLatestRun.js
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/javascript-closure-angular/generated/API/Client/GetPipelineBranchesitemPullRequest.js
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/javascript-closure-angular/generated/API/Client/GetPipelineBranchesitemPullRequestLinks.js
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/javascript-closure-angular/generated/API/Client/GetPipelines.js
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/javascript-closure-angular/generated/API/Client/GetUsers.js
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/javascript-closure-angular/generated/API/Client/HudsonmodelAllView.js
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/javascript-closure-angular/generated/API/Client/HudsonmodelCauseAction.js
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/javascript-closure-angular/generated/API/Client/HudsonmodelCauseUserIdCause.js
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/javascript-closure-angular/generated/API/Client/HudsonmodelComputerSet.js
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/javascript-closure-angular/generated/API/Client/HudsonmodelFreeStyleBuild.js
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/javascript-closure-angular/generated/API/Client/HudsonmodelFreeStyleProject.js
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/javascript-closure-angular/generated/API/Client/HudsonmodelFreeStyleProjectactions.js
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/javascript-closure-angular/generated/API/Client/HudsonmodelFreeStyleProjecthealthReport.js
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/javascript-closure-angular/generated/API/Client/HudsonmodelHudson.js
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/javascript-closure-angular/generated/API/Client/HudsonmodelHudsonMasterComputer.js
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/javascript-closure-angular/generated/API/Client/HudsonmodelHudsonMasterComputerMonitorData.js
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/javascript-closure-angular/generated/API/Client/HudsonmodelHudsonMasterComputerexecutors.js
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/javascript-closure-angular/generated/API/Client/HudsonmodelHudsonassignedLabels.js
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/javascript-closure-angular/generated/API/Client/HudsonmodelLabel1.js
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/javascript-closure-angular/generated/API/Client/HudsonmodelListView.js
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/javascript-closure-angular/generated/API/Client/HudsonmodelQueue.js
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/javascript-closure-angular/generated/API/Client/HudsonmodelQueueBlockedItem.js
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/javascript-closure-angular/generated/API/Client/HudsonmodelQueueLeftItem.js
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/javascript-closure-angular/generated/API/Client/HudsonmodelStringParameterDefinition.js
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/javascript-closure-angular/generated/API/Client/HudsonmodelStringParameterValue.js
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/javascript-closure-angular/generated/API/Client/HudsonnodeMonitorsDiskSpaceMonitorDescriptorDiskSpace.js
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/javascript-closure-angular/generated/API/Client/HudsonnodeMonitorsResponseTimeMonitorData.js
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/javascript-closure-angular/generated/API/Client/HudsonnodeMonitorsSwapSpaceMonitorMemoryUsage2.js
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/javascript-closure-angular/generated/API/Client/HudsonscmEmptyChangeLogSet.js
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/javascript-closure-angular/generated/API/Client/HudsonscmNullSCM.js
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/javascript-closure-angular/generated/API/Client/HudsonsecuritycsrfDefaultCrumbIssuer.js
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/javascript-closure-angular/generated/API/Client/HudsonutilClockDifference.js
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/javascript-closure-angular/generated/API/Client/IojenkinsblueoceanresthalLink.js
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/javascript-closure-angular/generated/API/Client/IojenkinsblueoceanrestimplpipelineBranchImpl.js
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/javascript-closure-angular/generated/API/Client/IojenkinsblueoceanrestimplpipelineBranchImplPermissions.js
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/javascript-closure-angular/generated/API/Client/IojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1.js
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/javascript-closure-angular/generated/API/Client/IojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1Links.js
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/javascript-closure-angular/generated/API/Client/IojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1Map.js
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/javascript-closure-angular/generated/API/Client/IojenkinsblueoceanserviceembeddedrestExtensionClassImpl.js
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/javascript-closure-angular/generated/API/Client/IojenkinsblueoceanserviceembeddedrestExtensionClassImplLinks.js
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/javascript-closure-angular/generated/API/Client/IojenkinsblueoceanserviceembeddedrestPipelineFolderImpl.js
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/javascript-closure-angular/generated/API/Client/IojenkinsblueoceanserviceembeddedrestPipelineImpl.js
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/javascript-closure-angular/generated/API/Client/JenkinsmodelUnlabeledLoadStatistics.js
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/javascript-closure-angular/generated/API/Client/SwaggyjenkinsOrganisation.js
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/javascript-closure-angular/generated/API/Client/SwaggyjenkinsPipeline.js
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/javascript-closure-angular/generated/API/Client/SwaggyjenkinsPipelineLatestRun.js
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/javascript-closure-angular/generated/API/Client/SwaggyjenkinsPipelineLatestRunartifacts.js
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/javascript-closure-angular/generated/API/Client/SwaggyjenkinsUser.js
+[main] WARN io.swagger.codegen.DefaultCodegen - generated unique operationId `search_0`
+[main] WARN io.swagger.codegen.DefaultCodegen - generated unique operationId `getPipelineFolderByOrg_0`
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/javascript-closure-angular/generated/API/Client/BlueOceanApi.js
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/javascript-closure-angular/generated/API/Client/RemoteAccessApi.js
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/javascript-closure-angular/generated/.swagger-codegen-ignore
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/javascript-closure-angular/generated/.swagger-codegen/VERSION

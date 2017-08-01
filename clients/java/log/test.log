@@ -1,0 +1,57 @@
+[INFO] Scanning for projects...
+[WARNING] The project com.cliffano:swaggyjenkins:jar:0.0.1 uses prerequisites which is only intended for maven-plugin projects but not for non maven-plugin projects. For such purposes you should use the maven-enforcer-plugin. See https://maven.apache.org/enforcer/enforcer-rules/requireMavenVersion.html
+[INFO] 
+[INFO] ------------------------------------------------------------------------
+[INFO] Building swaggyjenkins 0.0.1
+[INFO] ------------------------------------------------------------------------
+[INFO] 
+[INFO] --- build-helper-maven-plugin:1.10:add-source (add_sources) @ swaggyjenkins ---
+[INFO] Source directory: /Users/cliffano/dev/workspace/swaggy-jenkins/java/generated/src/main/java added.
+[INFO] 
+[INFO] --- maven-resources-plugin:2.6:resources (default-resources) @ swaggyjenkins ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] skip non existing resourceDirectory /Users/cliffano/dev/workspace/swaggy-jenkins/java/generated/src/main/resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.1:compile (default-compile) @ swaggyjenkins ---
+[INFO] Changes detected - recompiling the module!
+[INFO] Compiling 71 source files to /Users/cliffano/dev/workspace/swaggy-jenkins/java/generated/target/classes
+[INFO] 
+[INFO] --- build-helper-maven-plugin:1.10:add-test-source (add_test_sources) @ swaggyjenkins ---
+[INFO] Test Source directory: /Users/cliffano/dev/workspace/swaggy-jenkins/java/generated/src/test/java added.
+[INFO] 
+[INFO] --- maven-resources-plugin:2.6:testResources (default-testResources) @ swaggyjenkins ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] skip non existing resourceDirectory /Users/cliffano/dev/workspace/swaggy-jenkins/java/generated/src/test/resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.1:testCompile (default-testCompile) @ swaggyjenkins ---
+[INFO] Changes detected - recompiling the module!
+[INFO] Compiling 2 source files to /Users/cliffano/dev/workspace/swaggy-jenkins/java/generated/target/test-classes
+[INFO] 
+[INFO] --- maven-surefire-plugin:2.12:test (default-test) @ swaggyjenkins ---
+[INFO] Surefire report directory: /Users/cliffano/dev/workspace/swaggy-jenkins/java/generated/target/surefire-reports
+
+-------------------------------------------------------
+ T E S T S
+-------------------------------------------------------
+
+-------------------------------------------------------
+ T E S T S
+-------------------------------------------------------
+Concurrency config is parallel='methods', perCoreThreadCount=true, threadCount=2, useUnlimitedThreads=false
+Running com.cliffano.swaggyjenkins.api.BlueOceanApiTest
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 1, Time elapsed: 0 sec
+Concurrency config is parallel='methods', perCoreThreadCount=true, threadCount=2, useUnlimitedThreads=false
+Running com.cliffano.swaggyjenkins.api.RemoteAccessApiTest
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 1, Time elapsed: 0 sec
+
+Results :
+
+Tests run: 2, Failures: 0, Errors: 0, Skipped: 2
+
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time: 6.990 s
+[INFO] Finished at: 2017-07-25T10:44:31+10:00
+[INFO] Final Memory: 20M/257M
+[INFO] ------------------------------------------------------------------------

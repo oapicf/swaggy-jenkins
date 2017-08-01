@@ -1,0 +1,152 @@
+running sdist
+running egg_info
+writing requirements to swagger_client.egg-info/requires.txt
+writing swagger_client.egg-info/PKG-INFO
+writing top-level names to swagger_client.egg-info/top_level.txt
+writing dependency_links to swagger_client.egg-info/dependency_links.txt
+reading manifest file 'swagger_client.egg-info/SOURCES.txt'
+writing manifest file 'swagger_client.egg-info/SOURCES.txt'
+warning: sdist: standard file not found: should have one of README, README.rst, README.txt
+
+running check
+warning: check: missing required meta-data: url
+
+warning: check: missing meta-data: either (author and author_email) or (maintainer and maintainer_email) must be supplied
+
+creating swagger_client-1.0.0
+creating swagger_client-1.0.0/swagger_client
+creating swagger_client-1.0.0/swagger_client.egg-info
+creating swagger_client-1.0.0/swagger_client/apis
+creating swagger_client-1.0.0/swagger_client/models
+creating swagger_client-1.0.0/test
+copying files to swagger_client-1.0.0...
+copying setup.py -> swagger_client-1.0.0
+copying swagger_client/__init__.py -> swagger_client-1.0.0/swagger_client
+copying swagger_client/api_client.py -> swagger_client-1.0.0/swagger_client
+copying swagger_client/configuration.py -> swagger_client-1.0.0/swagger_client
+copying swagger_client/rest.py -> swagger_client-1.0.0/swagger_client
+copying swagger_client.egg-info/PKG-INFO -> swagger_client-1.0.0/swagger_client.egg-info
+copying swagger_client.egg-info/SOURCES.txt -> swagger_client-1.0.0/swagger_client.egg-info
+copying swagger_client.egg-info/dependency_links.txt -> swagger_client-1.0.0/swagger_client.egg-info
+copying swagger_client.egg-info/requires.txt -> swagger_client-1.0.0/swagger_client.egg-info
+copying swagger_client.egg-info/top_level.txt -> swagger_client-1.0.0/swagger_client.egg-info
+copying swagger_client/apis/__init__.py -> swagger_client-1.0.0/swagger_client/apis
+copying swagger_client/apis/blue_ocean_api.py -> swagger_client-1.0.0/swagger_client/apis
+copying swagger_client/apis/remote_access_api.py -> swagger_client-1.0.0/swagger_client/apis
+copying swagger_client/models/__init__.py -> swagger_client-1.0.0/swagger_client/models
+copying swagger_client/models/get_classes_by_class.py -> swagger_client-1.0.0/swagger_client/models
+copying swagger_client/models/get_multibranch_pipeline.py -> swagger_client-1.0.0/swagger_client/models
+copying swagger_client/models/get_organisations.py -> swagger_client-1.0.0/swagger_client/models
+copying swagger_client/models/get_pipeline_branches.py -> swagger_client-1.0.0/swagger_client/models
+copying swagger_client/models/get_pipeline_branchesitem.py -> swagger_client-1.0.0/swagger_client/models
+copying swagger_client/models/get_pipeline_branchesitem_latest_run.py -> swagger_client-1.0.0/swagger_client/models
+copying swagger_client/models/get_pipeline_branchesitem_pull_request.py -> swagger_client-1.0.0/swagger_client/models
+copying swagger_client/models/get_pipeline_branchesitem_pull_request__links.py -> swagger_client-1.0.0/swagger_client/models
+copying swagger_client/models/get_pipelines.py -> swagger_client-1.0.0/swagger_client/models
+copying swagger_client/models/get_users.py -> swagger_client-1.0.0/swagger_client/models
+copying swagger_client/models/hudsonmodel_all_view.py -> swagger_client-1.0.0/swagger_client/models
+copying swagger_client/models/hudsonmodel_cause_action.py -> swagger_client-1.0.0/swagger_client/models
+copying swagger_client/models/hudsonmodel_cause_user_id_cause.py -> swagger_client-1.0.0/swagger_client/models
+copying swagger_client/models/hudsonmodel_computer_set.py -> swagger_client-1.0.0/swagger_client/models
+copying swagger_client/models/hudsonmodel_free_style_build.py -> swagger_client-1.0.0/swagger_client/models
+copying swagger_client/models/hudsonmodel_free_style_project.py -> swagger_client-1.0.0/swagger_client/models
+copying swagger_client/models/hudsonmodel_free_style_projectactions.py -> swagger_client-1.0.0/swagger_client/models
+copying swagger_client/models/hudsonmodel_free_style_projecthealth_report.py -> swagger_client-1.0.0/swagger_client/models
+copying swagger_client/models/hudsonmodel_hudson.py -> swagger_client-1.0.0/swagger_client/models
+copying swagger_client/models/hudsonmodel_hudson_master_computer.py -> swagger_client-1.0.0/swagger_client/models
+copying swagger_client/models/hudsonmodel_hudson_master_computer_monitor_data.py -> swagger_client-1.0.0/swagger_client/models
+copying swagger_client/models/hudsonmodel_hudson_master_computerexecutors.py -> swagger_client-1.0.0/swagger_client/models
+copying swagger_client/models/hudsonmodel_hudsonassigned_labels.py -> swagger_client-1.0.0/swagger_client/models
+copying swagger_client/models/hudsonmodel_label1.py -> swagger_client-1.0.0/swagger_client/models
+copying swagger_client/models/hudsonmodel_list_view.py -> swagger_client-1.0.0/swagger_client/models
+copying swagger_client/models/hudsonmodel_queue.py -> swagger_client-1.0.0/swagger_client/models
+copying swagger_client/models/hudsonmodel_queue_blocked_item.py -> swagger_client-1.0.0/swagger_client/models
+copying swagger_client/models/hudsonmodel_queue_left_item.py -> swagger_client-1.0.0/swagger_client/models
+copying swagger_client/models/hudsonmodel_string_parameter_definition.py -> swagger_client-1.0.0/swagger_client/models
+copying swagger_client/models/hudsonmodel_string_parameter_value.py -> swagger_client-1.0.0/swagger_client/models
+copying swagger_client/models/hudsonnode_monitors_disk_space_monitor_descriptor_disk_space.py -> swagger_client-1.0.0/swagger_client/models
+copying swagger_client/models/hudsonnode_monitors_response_time_monitor_data.py -> swagger_client-1.0.0/swagger_client/models
+copying swagger_client/models/hudsonnode_monitors_swap_space_monitor_memory_usage2.py -> swagger_client-1.0.0/swagger_client/models
+copying swagger_client/models/hudsonscm_empty_change_log_set.py -> swagger_client-1.0.0/swagger_client/models
+copying swagger_client/models/hudsonscm_null_scm.py -> swagger_client-1.0.0/swagger_client/models
+copying swagger_client/models/hudsonsecuritycsrf_default_crumb_issuer.py -> swagger_client-1.0.0/swagger_client/models
+copying swagger_client/models/hudsonutil_clock_difference.py -> swagger_client-1.0.0/swagger_client/models
+copying swagger_client/models/iojenkinsblueoceanresthal_link.py -> swagger_client-1.0.0/swagger_client/models
+copying swagger_client/models/iojenkinsblueoceanrestimplpipeline_branch_impl.py -> swagger_client-1.0.0/swagger_client/models
+copying swagger_client/models/iojenkinsblueoceanrestimplpipeline_branch_impl_permissions.py -> swagger_client-1.0.0/swagger_client/models
+copying swagger_client/models/iojenkinsblueoceanserviceembeddedrest_extension_class_container_impl1.py -> swagger_client-1.0.0/swagger_client/models
+copying swagger_client/models/iojenkinsblueoceanserviceembeddedrest_extension_class_container_impl1__links.py -> swagger_client-1.0.0/swagger_client/models
+copying swagger_client/models/iojenkinsblueoceanserviceembeddedrest_extension_class_container_impl1_map.py -> swagger_client-1.0.0/swagger_client/models
+copying swagger_client/models/iojenkinsblueoceanserviceembeddedrest_extension_class_impl.py -> swagger_client-1.0.0/swagger_client/models
+copying swagger_client/models/iojenkinsblueoceanserviceembeddedrest_extension_class_impl__links.py -> swagger_client-1.0.0/swagger_client/models
+copying swagger_client/models/iojenkinsblueoceanserviceembeddedrest_pipeline_folder_impl.py -> swagger_client-1.0.0/swagger_client/models
+copying swagger_client/models/iojenkinsblueoceanserviceembeddedrest_pipeline_impl.py -> swagger_client-1.0.0/swagger_client/models
+copying swagger_client/models/jenkinsmodel_unlabeled_load_statistics.py -> swagger_client-1.0.0/swagger_client/models
+copying swagger_client/models/swaggyjenkins_organisation.py -> swagger_client-1.0.0/swagger_client/models
+copying swagger_client/models/swaggyjenkins_pipeline.py -> swagger_client-1.0.0/swagger_client/models
+copying swagger_client/models/swaggyjenkins_pipeline_latest_run.py -> swagger_client-1.0.0/swagger_client/models
+copying swagger_client/models/swaggyjenkins_pipeline_latest_runartifacts.py -> swagger_client-1.0.0/swagger_client/models
+copying swagger_client/models/swaggyjenkins_user.py -> swagger_client-1.0.0/swagger_client/models
+copying test/__init__.py -> swagger_client-1.0.0/test
+copying test/test_blue_ocean_api.py -> swagger_client-1.0.0/test
+copying test/test_get_classes_by_class.py -> swagger_client-1.0.0/test
+copying test/test_get_multibranch_pipeline.py -> swagger_client-1.0.0/test
+copying test/test_get_organisations.py -> swagger_client-1.0.0/test
+copying test/test_get_pipeline_branches.py -> swagger_client-1.0.0/test
+copying test/test_get_pipeline_branchesitem.py -> swagger_client-1.0.0/test
+copying test/test_get_pipeline_branchesitem_latest_run.py -> swagger_client-1.0.0/test
+copying test/test_get_pipeline_branchesitem_pull_request.py -> swagger_client-1.0.0/test
+copying test/test_get_pipeline_branchesitem_pull_request__links.py -> swagger_client-1.0.0/test
+copying test/test_get_pipelines.py -> swagger_client-1.0.0/test
+copying test/test_get_users.py -> swagger_client-1.0.0/test
+copying test/test_hudsonmodel_all_view.py -> swagger_client-1.0.0/test
+copying test/test_hudsonmodel_cause_action.py -> swagger_client-1.0.0/test
+copying test/test_hudsonmodel_cause_user_id_cause.py -> swagger_client-1.0.0/test
+copying test/test_hudsonmodel_computer_set.py -> swagger_client-1.0.0/test
+copying test/test_hudsonmodel_free_style_build.py -> swagger_client-1.0.0/test
+copying test/test_hudsonmodel_free_style_project.py -> swagger_client-1.0.0/test
+copying test/test_hudsonmodel_free_style_projectactions.py -> swagger_client-1.0.0/test
+copying test/test_hudsonmodel_free_style_projecthealth_report.py -> swagger_client-1.0.0/test
+copying test/test_hudsonmodel_hudson.py -> swagger_client-1.0.0/test
+copying test/test_hudsonmodel_hudson_master_computer.py -> swagger_client-1.0.0/test
+copying test/test_hudsonmodel_hudson_master_computer_monitor_data.py -> swagger_client-1.0.0/test
+copying test/test_hudsonmodel_hudson_master_computerexecutors.py -> swagger_client-1.0.0/test
+copying test/test_hudsonmodel_hudsonassigned_labels.py -> swagger_client-1.0.0/test
+copying test/test_hudsonmodel_label1.py -> swagger_client-1.0.0/test
+copying test/test_hudsonmodel_list_view.py -> swagger_client-1.0.0/test
+copying test/test_hudsonmodel_queue.py -> swagger_client-1.0.0/test
+copying test/test_hudsonmodel_queue_blocked_item.py -> swagger_client-1.0.0/test
+copying test/test_hudsonmodel_queue_left_item.py -> swagger_client-1.0.0/test
+copying test/test_hudsonmodel_string_parameter_definition.py -> swagger_client-1.0.0/test
+copying test/test_hudsonmodel_string_parameter_value.py -> swagger_client-1.0.0/test
+copying test/test_hudsonnode_monitors_disk_space_monitor_descriptor_disk_space.py -> swagger_client-1.0.0/test
+copying test/test_hudsonnode_monitors_response_time_monitor_data.py -> swagger_client-1.0.0/test
+copying test/test_hudsonnode_monitors_swap_space_monitor_memory_usage2.py -> swagger_client-1.0.0/test
+copying test/test_hudsonscm_empty_change_log_set.py -> swagger_client-1.0.0/test
+copying test/test_hudsonscm_null_scm.py -> swagger_client-1.0.0/test
+copying test/test_hudsonsecuritycsrf_default_crumb_issuer.py -> swagger_client-1.0.0/test
+copying test/test_hudsonutil_clock_difference.py -> swagger_client-1.0.0/test
+copying test/test_iojenkinsblueoceanresthal_link.py -> swagger_client-1.0.0/test
+copying test/test_iojenkinsblueoceanrestimplpipeline_branch_impl.py -> swagger_client-1.0.0/test
+copying test/test_iojenkinsblueoceanrestimplpipeline_branch_impl_permissions.py -> swagger_client-1.0.0/test
+copying test/test_iojenkinsblueoceanserviceembeddedrest_extension_class_container_impl1.py -> swagger_client-1.0.0/test
+copying test/test_iojenkinsblueoceanserviceembeddedrest_extension_class_container_impl1__links.py -> swagger_client-1.0.0/test
+copying test/test_iojenkinsblueoceanserviceembeddedrest_extension_class_container_impl1_map.py -> swagger_client-1.0.0/test
+copying test/test_iojenkinsblueoceanserviceembeddedrest_extension_class_impl.py -> swagger_client-1.0.0/test
+copying test/test_iojenkinsblueoceanserviceembeddedrest_extension_class_impl__links.py -> swagger_client-1.0.0/test
+copying test/test_iojenkinsblueoceanserviceembeddedrest_pipeline_folder_impl.py -> swagger_client-1.0.0/test
+copying test/test_iojenkinsblueoceanserviceembeddedrest_pipeline_impl.py -> swagger_client-1.0.0/test
+copying test/test_jenkinsmodel_unlabeled_load_statistics.py -> swagger_client-1.0.0/test
+copying test/test_remote_access_api.py -> swagger_client-1.0.0/test
+copying test/test_swaggyjenkins_organisation.py -> swagger_client-1.0.0/test
+copying test/test_swaggyjenkins_pipeline.py -> swagger_client-1.0.0/test
+copying test/test_swaggyjenkins_pipeline_latest_run.py -> swagger_client-1.0.0/test
+copying test/test_swaggyjenkins_pipeline_latest_runartifacts.py -> swagger_client-1.0.0/test
+copying test/test_swaggyjenkins_user.py -> swagger_client-1.0.0/test
+Writing swagger_client-1.0.0/setup.cfg
+Creating tar archive
+removing 'swagger_client-1.0.0' (and everything under it)
+running upload
+Submitting dist/swagger_client-1.0.0.tar.gz to https://pypi.python.org/pypi
+Upload failed (410): Gone (This API has been deprecated and removed from legacy PyPI in favor of using the APIs available in the new PyPI.org implementation of PyPI (located at https://pypi.org/). For more information about migrating your use of this API to PyPI.org, please see https://packaging.python.org/guides/migrating-to-pypi-org/#uploading. For more information about the sunsetting of this API, please see https://mail.python.org/pipermail/distutils-sig/2017-June/030766.html)
+error: Upload failed (410): Gone (This API has been deprecated and removed from legacy PyPI in favor of using the APIs available in the new PyPI.org implementation of PyPI (located at https://pypi.org/). For more information about migrating your use of this API to PyPI.org, please see https://packaging.python.org/guides/migrating-to-pypi-org/#uploading. For more information about the sunsetting of this API, please see https://mail.python.org/pipermail/distutils-sig/2017-June/030766.html)

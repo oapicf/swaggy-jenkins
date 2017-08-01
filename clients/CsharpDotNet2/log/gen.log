@@ -1,0 +1,132 @@
+[main] ERROR io.swagger.codegen.config.CodegenConfigurator - Unable to deserialize config file: CsharpDotNet2/conf.json
+java.io.FileNotFoundException: CsharpDotNet2/conf.json (No such file or directory)
+	at java.io.FileInputStream.open0(Native Method)
+	at java.io.FileInputStream.open(FileInputStream.java:195)
+	at java.io.FileInputStream.<init>(FileInputStream.java:138)
+	at com.fasterxml.jackson.core.JsonFactory.createParser(JsonFactory.java:756)
+	at com.fasterxml.jackson.databind.ObjectMapper.readValue(ObjectMapper.java:2740)
+	at io.swagger.codegen.config.CodegenConfigurator.fromFile(CodegenConfigurator.java:507)
+	at io.swagger.codegen.cmd.Generate.run(Generate.java:135)
+	at io.swagger.codegen.SwaggerCodegen.main(SwaggerCodegen.java:43)
+[main] INFO io.swagger.parser.Swagger20Parser - reading from _spec/jenkins-api.yml
+[main] WARN io.swagger.codegen.ignore.CodegenIgnoreProcessor - Output directory does not exist, or is inaccessible. No file (.swager-codegen-ignore) will be evaluated.
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/CsharpDotNet2/generated/src/main/CsharpDotNet2/IO/Swagger/Model/GetClassesByClass.cs
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/CsharpDotNet2/generated/docs/GetClassesByClass.md
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/CsharpDotNet2/generated/src/main/CsharpDotNet2/IO/Swagger/Model/GetMultibranchPipeline.cs
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/CsharpDotNet2/generated/docs/GetMultibranchPipeline.md
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/CsharpDotNet2/generated/src/main/CsharpDotNet2/IO/Swagger/Model/GetOrganisations.cs
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/CsharpDotNet2/generated/docs/GetOrganisations.md
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/CsharpDotNet2/generated/src/main/CsharpDotNet2/IO/Swagger/Model/GetPipelineBranches.cs
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/CsharpDotNet2/generated/docs/GetPipelineBranches.md
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/CsharpDotNet2/generated/src/main/CsharpDotNet2/IO/Swagger/Model/GetPipelineBranchesitem.cs
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/CsharpDotNet2/generated/docs/GetPipelineBranchesitem.md
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/CsharpDotNet2/generated/src/main/CsharpDotNet2/IO/Swagger/Model/GetPipelineBranchesitemLatestRun.cs
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/CsharpDotNet2/generated/docs/GetPipelineBranchesitem_latestRun.md
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/CsharpDotNet2/generated/src/main/CsharpDotNet2/IO/Swagger/Model/GetPipelineBranchesitemPullRequest.cs
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/CsharpDotNet2/generated/docs/GetPipelineBranchesitem_pullRequest.md
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/CsharpDotNet2/generated/src/main/CsharpDotNet2/IO/Swagger/Model/GetPipelineBranchesitemPullRequestLinks.cs
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/CsharpDotNet2/generated/docs/GetPipelineBranchesitem_pullRequest__links.md
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/CsharpDotNet2/generated/src/main/CsharpDotNet2/IO/Swagger/Model/GetPipelines.cs
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/CsharpDotNet2/generated/docs/GetPipelines.md
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/CsharpDotNet2/generated/src/main/CsharpDotNet2/IO/Swagger/Model/GetUsers.cs
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/CsharpDotNet2/generated/docs/GetUsers.md
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/CsharpDotNet2/generated/src/main/CsharpDotNet2/IO/Swagger/Model/HudsonmodelAllView.cs
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/CsharpDotNet2/generated/docs/HudsonmodelAllView.md
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/CsharpDotNet2/generated/src/main/CsharpDotNet2/IO/Swagger/Model/HudsonmodelCauseAction.cs
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/CsharpDotNet2/generated/docs/HudsonmodelCauseAction.md
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/CsharpDotNet2/generated/src/main/CsharpDotNet2/IO/Swagger/Model/HudsonmodelCauseUserIdCause.cs
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/CsharpDotNet2/generated/docs/HudsonmodelCauseUserIdCause.md
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/CsharpDotNet2/generated/src/main/CsharpDotNet2/IO/Swagger/Model/HudsonmodelComputerSet.cs
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/CsharpDotNet2/generated/docs/HudsonmodelComputerSet.md
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/CsharpDotNet2/generated/src/main/CsharpDotNet2/IO/Swagger/Model/HudsonmodelFreeStyleBuild.cs
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/CsharpDotNet2/generated/docs/HudsonmodelFreeStyleBuild.md
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/CsharpDotNet2/generated/src/main/CsharpDotNet2/IO/Swagger/Model/HudsonmodelFreeStyleProject.cs
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/CsharpDotNet2/generated/docs/HudsonmodelFreeStyleProject.md
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/CsharpDotNet2/generated/src/main/CsharpDotNet2/IO/Swagger/Model/HudsonmodelFreeStyleProjectactions.cs
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/CsharpDotNet2/generated/docs/HudsonmodelFreeStyleProjectactions.md
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/CsharpDotNet2/generated/src/main/CsharpDotNet2/IO/Swagger/Model/HudsonmodelFreeStyleProjecthealthReport.cs
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/CsharpDotNet2/generated/docs/HudsonmodelFreeStyleProjecthealthReport.md
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/CsharpDotNet2/generated/src/main/CsharpDotNet2/IO/Swagger/Model/HudsonmodelHudson.cs
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/CsharpDotNet2/generated/docs/HudsonmodelHudson.md
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/CsharpDotNet2/generated/src/main/CsharpDotNet2/IO/Swagger/Model/HudsonmodelHudsonMasterComputer.cs
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/CsharpDotNet2/generated/docs/HudsonmodelHudsonMasterComputer.md
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/CsharpDotNet2/generated/src/main/CsharpDotNet2/IO/Swagger/Model/HudsonmodelHudsonMasterComputerMonitorData.cs
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/CsharpDotNet2/generated/docs/HudsonmodelHudsonMasterComputer_monitorData.md
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/CsharpDotNet2/generated/src/main/CsharpDotNet2/IO/Swagger/Model/HudsonmodelHudsonMasterComputerexecutors.cs
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/CsharpDotNet2/generated/docs/HudsonmodelHudsonMasterComputerexecutors.md
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/CsharpDotNet2/generated/src/main/CsharpDotNet2/IO/Swagger/Model/HudsonmodelHudsonassignedLabels.cs
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/CsharpDotNet2/generated/docs/HudsonmodelHudsonassignedLabels.md
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/CsharpDotNet2/generated/src/main/CsharpDotNet2/IO/Swagger/Model/HudsonmodelLabel1.cs
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/CsharpDotNet2/generated/docs/HudsonmodelLabel1.md
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/CsharpDotNet2/generated/src/main/CsharpDotNet2/IO/Swagger/Model/HudsonmodelListView.cs
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/CsharpDotNet2/generated/docs/HudsonmodelListView.md
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/CsharpDotNet2/generated/src/main/CsharpDotNet2/IO/Swagger/Model/HudsonmodelQueue.cs
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/CsharpDotNet2/generated/docs/HudsonmodelQueue.md
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/CsharpDotNet2/generated/src/main/CsharpDotNet2/IO/Swagger/Model/HudsonmodelQueueBlockedItem.cs
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/CsharpDotNet2/generated/docs/HudsonmodelQueueBlockedItem.md
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/CsharpDotNet2/generated/src/main/CsharpDotNet2/IO/Swagger/Model/HudsonmodelQueueLeftItem.cs
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/CsharpDotNet2/generated/docs/HudsonmodelQueueLeftItem.md
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/CsharpDotNet2/generated/src/main/CsharpDotNet2/IO/Swagger/Model/HudsonmodelStringParameterDefinition.cs
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/CsharpDotNet2/generated/docs/HudsonmodelStringParameterDefinition.md
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/CsharpDotNet2/generated/src/main/CsharpDotNet2/IO/Swagger/Model/HudsonmodelStringParameterValue.cs
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/CsharpDotNet2/generated/docs/HudsonmodelStringParameterValue.md
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/CsharpDotNet2/generated/src/main/CsharpDotNet2/IO/Swagger/Model/HudsonnodeMonitorsDiskSpaceMonitorDescriptorDiskSpace.cs
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/CsharpDotNet2/generated/docs/Hudsonnode_monitorsDiskSpaceMonitorDescriptorDiskSpace.md
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/CsharpDotNet2/generated/src/main/CsharpDotNet2/IO/Swagger/Model/HudsonnodeMonitorsResponseTimeMonitorData.cs
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/CsharpDotNet2/generated/docs/Hudsonnode_monitorsResponseTimeMonitorData.md
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/CsharpDotNet2/generated/src/main/CsharpDotNet2/IO/Swagger/Model/HudsonnodeMonitorsSwapSpaceMonitorMemoryUsage2.cs
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/CsharpDotNet2/generated/docs/Hudsonnode_monitorsSwapSpaceMonitorMemoryUsage2.md
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/CsharpDotNet2/generated/src/main/CsharpDotNet2/IO/Swagger/Model/HudsonscmEmptyChangeLogSet.cs
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/CsharpDotNet2/generated/docs/HudsonscmEmptyChangeLogSet.md
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/CsharpDotNet2/generated/src/main/CsharpDotNet2/IO/Swagger/Model/HudsonscmNullSCM.cs
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/CsharpDotNet2/generated/docs/HudsonscmNullSCM.md
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/CsharpDotNet2/generated/src/main/CsharpDotNet2/IO/Swagger/Model/HudsonsecuritycsrfDefaultCrumbIssuer.cs
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/CsharpDotNet2/generated/docs/HudsonsecuritycsrfDefaultCrumbIssuer.md
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/CsharpDotNet2/generated/src/main/CsharpDotNet2/IO/Swagger/Model/HudsonutilClockDifference.cs
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/CsharpDotNet2/generated/docs/HudsonutilClockDifference.md
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/CsharpDotNet2/generated/src/main/CsharpDotNet2/IO/Swagger/Model/IojenkinsblueoceanresthalLink.cs
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/CsharpDotNet2/generated/docs/IojenkinsblueoceanresthalLink.md
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/CsharpDotNet2/generated/src/main/CsharpDotNet2/IO/Swagger/Model/IojenkinsblueoceanrestimplpipelineBranchImpl.cs
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/CsharpDotNet2/generated/docs/IojenkinsblueoceanrestimplpipelineBranchImpl.md
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/CsharpDotNet2/generated/src/main/CsharpDotNet2/IO/Swagger/Model/IojenkinsblueoceanrestimplpipelineBranchImplPermissions.cs
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/CsharpDotNet2/generated/docs/IojenkinsblueoceanrestimplpipelineBranchImpl_permissions.md
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/CsharpDotNet2/generated/src/main/CsharpDotNet2/IO/Swagger/Model/IojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1.cs
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/CsharpDotNet2/generated/docs/IojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1.md
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/CsharpDotNet2/generated/src/main/CsharpDotNet2/IO/Swagger/Model/IojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1Links.cs
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/CsharpDotNet2/generated/docs/IojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1__links.md
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/CsharpDotNet2/generated/src/main/CsharpDotNet2/IO/Swagger/Model/IojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1Map.cs
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/CsharpDotNet2/generated/docs/IojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1_map.md
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/CsharpDotNet2/generated/src/main/CsharpDotNet2/IO/Swagger/Model/IojenkinsblueoceanserviceembeddedrestExtensionClassImpl.cs
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/CsharpDotNet2/generated/docs/IojenkinsblueoceanserviceembeddedrestExtensionClassImpl.md
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/CsharpDotNet2/generated/src/main/CsharpDotNet2/IO/Swagger/Model/IojenkinsblueoceanserviceembeddedrestExtensionClassImplLinks.cs
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/CsharpDotNet2/generated/docs/IojenkinsblueoceanserviceembeddedrestExtensionClassImpl__links.md
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/CsharpDotNet2/generated/src/main/CsharpDotNet2/IO/Swagger/Model/IojenkinsblueoceanserviceembeddedrestPipelineFolderImpl.cs
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/CsharpDotNet2/generated/docs/IojenkinsblueoceanserviceembeddedrestPipelineFolderImpl.md
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/CsharpDotNet2/generated/src/main/CsharpDotNet2/IO/Swagger/Model/IojenkinsblueoceanserviceembeddedrestPipelineImpl.cs
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/CsharpDotNet2/generated/docs/IojenkinsblueoceanserviceembeddedrestPipelineImpl.md
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/CsharpDotNet2/generated/src/main/CsharpDotNet2/IO/Swagger/Model/JenkinsmodelUnlabeledLoadStatistics.cs
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/CsharpDotNet2/generated/docs/JenkinsmodelUnlabeledLoadStatistics.md
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/CsharpDotNet2/generated/src/main/CsharpDotNet2/IO/Swagger/Model/SwaggyjenkinsOrganisation.cs
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/CsharpDotNet2/generated/docs/SwaggyjenkinsOrganisation.md
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/CsharpDotNet2/generated/src/main/CsharpDotNet2/IO/Swagger/Model/SwaggyjenkinsPipeline.cs
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/CsharpDotNet2/generated/docs/SwaggyjenkinsPipeline.md
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/CsharpDotNet2/generated/src/main/CsharpDotNet2/IO/Swagger/Model/SwaggyjenkinsPipelineLatestRun.cs
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/CsharpDotNet2/generated/docs/SwaggyjenkinsPipeline_latestRun.md
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/CsharpDotNet2/generated/src/main/CsharpDotNet2/IO/Swagger/Model/SwaggyjenkinsPipelineLatestRunartifacts.cs
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/CsharpDotNet2/generated/docs/SwaggyjenkinsPipeline_latestRunartifacts.md
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/CsharpDotNet2/generated/src/main/CsharpDotNet2/IO/Swagger/Model/SwaggyjenkinsUser.cs
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/CsharpDotNet2/generated/docs/SwaggyjenkinsUser.md
+[main] WARN io.swagger.codegen.DefaultCodegen - generated unique operationId `Search_0`
+[main] WARN io.swagger.codegen.DefaultCodegen - generated unique operationId `GetPipelineFolderByOrg_0`
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/CsharpDotNet2/generated/src/main/CsharpDotNet2/IO/Swagger/Api/BlueOceanApi.cs
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/CsharpDotNet2/generated/docs/BlueOceanApi.md
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/CsharpDotNet2/generated/src/main/CsharpDotNet2/IO/Swagger/Api/RemoteAccessApi.cs
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/CsharpDotNet2/generated/docs/RemoteAccessApi.md
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/CsharpDotNet2/generated/src/main/CsharpDotNet2/IO/Swagger/Client/Configuration.cs
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/CsharpDotNet2/generated/src/main/CsharpDotNet2/IO/Swagger/Client/ApiClient.cs
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/CsharpDotNet2/generated/src/main/CsharpDotNet2/IO/Swagger/Client/ApiException.cs
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/CsharpDotNet2/generated/vendor/packages.config
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/CsharpDotNet2/generated/compile-mono.sh
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/CsharpDotNet2/generated/README.md
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/CsharpDotNet2/generated/.swagger-codegen-ignore
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/CsharpDotNet2/generated/.swagger-codegen/VERSION

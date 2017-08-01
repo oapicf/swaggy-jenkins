@@ -1,0 +1,80 @@
+[main] ERROR io.swagger.codegen.config.CodegenConfigurator - Unable to deserialize config file: swift3/conf.json
+java.io.FileNotFoundException: swift3/conf.json (No such file or directory)
+	at java.io.FileInputStream.open0(Native Method)
+	at java.io.FileInputStream.open(FileInputStream.java:195)
+	at java.io.FileInputStream.<init>(FileInputStream.java:138)
+	at com.fasterxml.jackson.core.JsonFactory.createParser(JsonFactory.java:756)
+	at com.fasterxml.jackson.databind.ObjectMapper.readValue(ObjectMapper.java:2740)
+	at io.swagger.codegen.config.CodegenConfigurator.fromFile(CodegenConfigurator.java:507)
+	at io.swagger.codegen.cmd.Generate.run(Generate.java:135)
+	at io.swagger.codegen.SwaggerCodegen.main(SwaggerCodegen.java:43)
+[main] INFO io.swagger.parser.Swagger20Parser - reading from _spec/jenkins-api.yml
+[main] WARN io.swagger.codegen.ignore.CodegenIgnoreProcessor - Output directory does not exist, or is inaccessible. No file (.swager-codegen-ignore) will be evaluated.
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/swift3/generated/SwaggerClient/Classes/Swaggers/Models/GetClassesByClass.swift
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/swift3/generated/SwaggerClient/Classes/Swaggers/Models/GetMultibranchPipeline.swift
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/swift3/generated/SwaggerClient/Classes/Swaggers/Models/GetOrganisations.swift
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/swift3/generated/SwaggerClient/Classes/Swaggers/Models/GetPipelineBranches.swift
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/swift3/generated/SwaggerClient/Classes/Swaggers/Models/GetPipelineBranchesitem.swift
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/swift3/generated/SwaggerClient/Classes/Swaggers/Models/GetPipelineBranchesitemLatestRun.swift
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/swift3/generated/SwaggerClient/Classes/Swaggers/Models/GetPipelineBranchesitemPullRequest.swift
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/swift3/generated/SwaggerClient/Classes/Swaggers/Models/GetPipelineBranchesitemPullRequestLinks.swift
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/swift3/generated/SwaggerClient/Classes/Swaggers/Models/GetPipelines.swift
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/swift3/generated/SwaggerClient/Classes/Swaggers/Models/GetUsers.swift
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/swift3/generated/SwaggerClient/Classes/Swaggers/Models/HudsonmodelAllView.swift
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/swift3/generated/SwaggerClient/Classes/Swaggers/Models/HudsonmodelCauseAction.swift
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/swift3/generated/SwaggerClient/Classes/Swaggers/Models/HudsonmodelCauseUserIdCause.swift
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/swift3/generated/SwaggerClient/Classes/Swaggers/Models/HudsonmodelComputerSet.swift
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/swift3/generated/SwaggerClient/Classes/Swaggers/Models/HudsonmodelFreeStyleBuild.swift
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/swift3/generated/SwaggerClient/Classes/Swaggers/Models/HudsonmodelFreeStyleProject.swift
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/swift3/generated/SwaggerClient/Classes/Swaggers/Models/HudsonmodelFreeStyleProjectactions.swift
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/swift3/generated/SwaggerClient/Classes/Swaggers/Models/HudsonmodelFreeStyleProjecthealthReport.swift
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/swift3/generated/SwaggerClient/Classes/Swaggers/Models/HudsonmodelHudson.swift
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/swift3/generated/SwaggerClient/Classes/Swaggers/Models/HudsonmodelHudsonMasterComputer.swift
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/swift3/generated/SwaggerClient/Classes/Swaggers/Models/HudsonmodelHudsonMasterComputerMonitorData.swift
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/swift3/generated/SwaggerClient/Classes/Swaggers/Models/HudsonmodelHudsonMasterComputerexecutors.swift
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/swift3/generated/SwaggerClient/Classes/Swaggers/Models/HudsonmodelHudsonassignedLabels.swift
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/swift3/generated/SwaggerClient/Classes/Swaggers/Models/HudsonmodelLabel1.swift
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/swift3/generated/SwaggerClient/Classes/Swaggers/Models/HudsonmodelListView.swift
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/swift3/generated/SwaggerClient/Classes/Swaggers/Models/HudsonmodelQueue.swift
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/swift3/generated/SwaggerClient/Classes/Swaggers/Models/HudsonmodelQueueBlockedItem.swift
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/swift3/generated/SwaggerClient/Classes/Swaggers/Models/HudsonmodelQueueLeftItem.swift
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/swift3/generated/SwaggerClient/Classes/Swaggers/Models/HudsonmodelStringParameterDefinition.swift
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/swift3/generated/SwaggerClient/Classes/Swaggers/Models/HudsonmodelStringParameterValue.swift
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/swift3/generated/SwaggerClient/Classes/Swaggers/Models/HudsonnodeMonitorsDiskSpaceMonitorDescriptorDiskSpace.swift
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/swift3/generated/SwaggerClient/Classes/Swaggers/Models/HudsonnodeMonitorsResponseTimeMonitorData.swift
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/swift3/generated/SwaggerClient/Classes/Swaggers/Models/HudsonnodeMonitorsSwapSpaceMonitorMemoryUsage2.swift
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/swift3/generated/SwaggerClient/Classes/Swaggers/Models/HudsonscmEmptyChangeLogSet.swift
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/swift3/generated/SwaggerClient/Classes/Swaggers/Models/HudsonscmNullSCM.swift
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/swift3/generated/SwaggerClient/Classes/Swaggers/Models/HudsonsecuritycsrfDefaultCrumbIssuer.swift
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/swift3/generated/SwaggerClient/Classes/Swaggers/Models/HudsonutilClockDifference.swift
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/swift3/generated/SwaggerClient/Classes/Swaggers/Models/IojenkinsblueoceanresthalLink.swift
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/swift3/generated/SwaggerClient/Classes/Swaggers/Models/IojenkinsblueoceanrestimplpipelineBranchImpl.swift
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/swift3/generated/SwaggerClient/Classes/Swaggers/Models/IojenkinsblueoceanrestimplpipelineBranchImplPermissions.swift
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/swift3/generated/SwaggerClient/Classes/Swaggers/Models/IojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1.swift
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/swift3/generated/SwaggerClient/Classes/Swaggers/Models/IojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1Links.swift
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/swift3/generated/SwaggerClient/Classes/Swaggers/Models/IojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1Map.swift
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/swift3/generated/SwaggerClient/Classes/Swaggers/Models/IojenkinsblueoceanserviceembeddedrestExtensionClassImpl.swift
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/swift3/generated/SwaggerClient/Classes/Swaggers/Models/IojenkinsblueoceanserviceembeddedrestExtensionClassImplLinks.swift
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/swift3/generated/SwaggerClient/Classes/Swaggers/Models/IojenkinsblueoceanserviceembeddedrestPipelineFolderImpl.swift
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/swift3/generated/SwaggerClient/Classes/Swaggers/Models/IojenkinsblueoceanserviceembeddedrestPipelineImpl.swift
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/swift3/generated/SwaggerClient/Classes/Swaggers/Models/JenkinsmodelUnlabeledLoadStatistics.swift
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/swift3/generated/SwaggerClient/Classes/Swaggers/Models/SwaggyjenkinsOrganisation.swift
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/swift3/generated/SwaggerClient/Classes/Swaggers/Models/SwaggyjenkinsPipeline.swift
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/swift3/generated/SwaggerClient/Classes/Swaggers/Models/SwaggyjenkinsPipelineLatestRun.swift
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/swift3/generated/SwaggerClient/Classes/Swaggers/Models/SwaggyjenkinsPipelineLatestRunartifacts.swift
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/swift3/generated/SwaggerClient/Classes/Swaggers/Models/SwaggyjenkinsUser.swift
+[main] WARN io.swagger.codegen.DefaultCodegen - generated unique operationId `search_0`
+[main] WARN io.swagger.codegen.DefaultCodegen - generated unique operationId `getPipelineFolderByOrg_0`
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/swift3/generated/SwaggerClient/Classes/Swaggers/APIs/BlueOceanAPI.swift
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/swift3/generated/SwaggerClient/Classes/Swaggers/APIs/RemoteAccessAPI.swift
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/swift3/generated/SwaggerClient.podspec
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/swift3/generated/Cartfile
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/swift3/generated/SwaggerClient/Classes/Swaggers/APIHelper.swift
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/swift3/generated/SwaggerClient/Classes/Swaggers/AlamofireImplementations.swift
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/swift3/generated/SwaggerClient/Classes/Swaggers/Extensions.swift
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/swift3/generated/SwaggerClient/Classes/Swaggers/Models.swift
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/swift3/generated/SwaggerClient/Classes/Swaggers/APIs.swift
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/swift3/generated/git_push.sh
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/swift3/generated/.gitignore
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/swift3/generated/.swagger-codegen-ignore
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/swift3/generated/.swagger-codegen/VERSION

@@ -15,8 +15,8 @@ define build
 	swaggy-c \
     $(if $(SWAGGER_CODEGEN_CLI_JAR), --jar $(SWAGGER_CODEGEN_CLI_JAR)) \
 		--api-spec _spec/jenkins-api.yml \
-		--conf-file {lang}/conf.json \
-		--out-dir {lang}/generated/ \
+		--conf-file clients/{lang}/conf.json \
+		--out-dir clients/{lang}/generated/ \
 		$(1)
 endef
 

@@ -1,0 +1,89 @@
+[main] ERROR io.swagger.codegen.config.CodegenConfigurator - Unable to deserialize config file: java-play-framework/conf.json
+java.io.FileNotFoundException: java-play-framework/conf.json (No such file or directory)
+	at java.io.FileInputStream.open0(Native Method)
+	at java.io.FileInputStream.open(FileInputStream.java:195)
+	at java.io.FileInputStream.<init>(FileInputStream.java:138)
+	at com.fasterxml.jackson.core.JsonFactory.createParser(JsonFactory.java:756)
+	at com.fasterxml.jackson.databind.ObjectMapper.readValue(ObjectMapper.java:2740)
+	at io.swagger.codegen.config.CodegenConfigurator.fromFile(CodegenConfigurator.java:507)
+	at io.swagger.codegen.cmd.Generate.run(Generate.java:135)
+	at io.swagger.codegen.SwaggerCodegen.main(SwaggerCodegen.java:43)
+[main] INFO io.swagger.parser.Swagger20Parser - reading from _spec/jenkins-api.yml
+[main] WARN io.swagger.codegen.ignore.CodegenIgnoreProcessor - Output directory does not exist, or is inaccessible. No file (.swager-codegen-ignore) will be evaluated.
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/java-play-framework/generated/app/apimodels/GetClassesByClass.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/java-play-framework/generated/app/apimodels/GetMultibranchPipeline.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/java-play-framework/generated/app/apimodels/GetOrganisations.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/java-play-framework/generated/app/apimodels/GetPipelineBranches.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/java-play-framework/generated/app/apimodels/GetPipelineBranchesitem.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/java-play-framework/generated/app/apimodels/GetPipelineBranchesitemLatestRun.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/java-play-framework/generated/app/apimodels/GetPipelineBranchesitemPullRequest.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/java-play-framework/generated/app/apimodels/GetPipelineBranchesitemPullRequestLinks.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/java-play-framework/generated/app/apimodels/GetPipelines.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/java-play-framework/generated/app/apimodels/GetUsers.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/java-play-framework/generated/app/apimodels/HudsonmodelAllView.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/java-play-framework/generated/app/apimodels/HudsonmodelCauseAction.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/java-play-framework/generated/app/apimodels/HudsonmodelCauseUserIdCause.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/java-play-framework/generated/app/apimodels/HudsonmodelComputerSet.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/java-play-framework/generated/app/apimodels/HudsonmodelFreeStyleBuild.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/java-play-framework/generated/app/apimodels/HudsonmodelFreeStyleProject.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/java-play-framework/generated/app/apimodels/HudsonmodelFreeStyleProjectactions.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/java-play-framework/generated/app/apimodels/HudsonmodelFreeStyleProjecthealthReport.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/java-play-framework/generated/app/apimodels/HudsonmodelHudson.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/java-play-framework/generated/app/apimodels/HudsonmodelHudsonMasterComputer.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/java-play-framework/generated/app/apimodels/HudsonmodelHudsonMasterComputerMonitorData.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/java-play-framework/generated/app/apimodels/HudsonmodelHudsonMasterComputerexecutors.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/java-play-framework/generated/app/apimodels/HudsonmodelHudsonassignedLabels.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/java-play-framework/generated/app/apimodels/HudsonmodelLabel1.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/java-play-framework/generated/app/apimodels/HudsonmodelListView.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/java-play-framework/generated/app/apimodels/HudsonmodelQueue.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/java-play-framework/generated/app/apimodels/HudsonmodelQueueBlockedItem.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/java-play-framework/generated/app/apimodels/HudsonmodelQueueLeftItem.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/java-play-framework/generated/app/apimodels/HudsonmodelStringParameterDefinition.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/java-play-framework/generated/app/apimodels/HudsonmodelStringParameterValue.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/java-play-framework/generated/app/apimodels/HudsonnodeMonitorsDiskSpaceMonitorDescriptorDiskSpace.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/java-play-framework/generated/app/apimodels/HudsonnodeMonitorsResponseTimeMonitorData.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/java-play-framework/generated/app/apimodels/HudsonnodeMonitorsSwapSpaceMonitorMemoryUsage2.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/java-play-framework/generated/app/apimodels/HudsonscmEmptyChangeLogSet.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/java-play-framework/generated/app/apimodels/HudsonscmNullSCM.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/java-play-framework/generated/app/apimodels/HudsonsecuritycsrfDefaultCrumbIssuer.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/java-play-framework/generated/app/apimodels/HudsonutilClockDifference.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/java-play-framework/generated/app/apimodels/IojenkinsblueoceanresthalLink.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/java-play-framework/generated/app/apimodels/IojenkinsblueoceanrestimplpipelineBranchImpl.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/java-play-framework/generated/app/apimodels/IojenkinsblueoceanrestimplpipelineBranchImplPermissions.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/java-play-framework/generated/app/apimodels/IojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/java-play-framework/generated/app/apimodels/IojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1Links.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/java-play-framework/generated/app/apimodels/IojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1Map.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/java-play-framework/generated/app/apimodels/IojenkinsblueoceanserviceembeddedrestExtensionClassImpl.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/java-play-framework/generated/app/apimodels/IojenkinsblueoceanserviceembeddedrestExtensionClassImplLinks.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/java-play-framework/generated/app/apimodels/IojenkinsblueoceanserviceembeddedrestPipelineFolderImpl.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/java-play-framework/generated/app/apimodels/IojenkinsblueoceanserviceembeddedrestPipelineImpl.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/java-play-framework/generated/app/apimodels/JenkinsmodelUnlabeledLoadStatistics.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/java-play-framework/generated/app/apimodels/SwaggyjenkinsOrganisation.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/java-play-framework/generated/app/apimodels/SwaggyjenkinsPipeline.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/java-play-framework/generated/app/apimodels/SwaggyjenkinsPipelineLatestRun.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/java-play-framework/generated/app/apimodels/SwaggyjenkinsPipelineLatestRunartifacts.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/java-play-framework/generated/app/apimodels/SwaggyjenkinsUser.java
+[main] WARN io.swagger.codegen.DefaultCodegen - generated unique operationId `search_0`
+[main] WARN io.swagger.codegen.DefaultCodegen - generated unique operationId `getPipelineFolderByOrg_0`
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/java-play-framework/generated/app/controllers/BlueOceanApiController.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/java-play-framework/generated/app/controllers/BlueOceanApiControllerImpInterface.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/java-play-framework/generated/app/controllers/BlueOceanApiControllerImp.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/java-play-framework/generated/app/controllers/RemoteAccessApiController.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/java-play-framework/generated/app/controllers/RemoteAccessApiControllerImpInterface.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/java-play-framework/generated/app/controllers/RemoteAccessApiControllerImp.java
+swaggerio.swagger.models.Swagger@5a0309da
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/java-play-framework/generated/README
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/java-play-framework/generated/LICENSE
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/java-play-framework/generated/build.sbt
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/java-play-framework/generated/project/build.properties
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/java-play-framework/generated/project/plugins.sbt
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/java-play-framework/generated/conf/logback.xml
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/java-play-framework/generated/conf/application.conf
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/java-play-framework/generated/conf/routes
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/java-play-framework/generated/app/swagger/SwaggerUtils.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/java-play-framework/generated/app/swagger/ErrorHandler.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/java-play-framework/generated/app/swagger/ApiCall.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/java-play-framework/generated/public/swagger.json
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/java-play-framework/generated/app/controllers/ApiDocController.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/java-play-framework/generated/.swagger-codegen-ignore
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/java-play-framework/generated/.swagger-codegen/VERSION

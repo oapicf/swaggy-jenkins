@@ -1,0 +1,137 @@
+[main] ERROR io.swagger.codegen.config.CodegenConfigurator - Unable to deserialize config file: kotlin/conf.json
+java.io.FileNotFoundException: kotlin/conf.json (No such file or directory)
+	at java.io.FileInputStream.open0(Native Method)
+	at java.io.FileInputStream.open(FileInputStream.java:195)
+	at java.io.FileInputStream.<init>(FileInputStream.java:138)
+	at com.fasterxml.jackson.core.JsonFactory.createParser(JsonFactory.java:756)
+	at com.fasterxml.jackson.databind.ObjectMapper.readValue(ObjectMapper.java:2740)
+	at io.swagger.codegen.config.CodegenConfigurator.fromFile(CodegenConfigurator.java:507)
+	at io.swagger.codegen.cmd.Generate.run(Generate.java:135)
+	at io.swagger.codegen.SwaggerCodegen.main(SwaggerCodegen.java:43)
+[main] INFO io.swagger.parser.Swagger20Parser - reading from _spec/jenkins-api.yml
+[main] WARN io.swagger.codegen.ignore.CodegenIgnoreProcessor - Output directory does not exist, or is inaccessible. No file (.swager-codegen-ignore) will be evaluated.
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/kotlin/generated/src/main/kotlin/io/swagger/client/models/GetClassesByClass.kt
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/kotlin/generated/docs/GetClassesByClass.md
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/kotlin/generated/src/main/kotlin/io/swagger/client/models/GetMultibranchPipeline.kt
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/kotlin/generated/docs/GetMultibranchPipeline.md
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/kotlin/generated/src/main/kotlin/io/swagger/client/models/GetOrganisations.kt
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/kotlin/generated/docs/GetOrganisations.md
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/kotlin/generated/src/main/kotlin/io/swagger/client/models/GetPipelineBranches.kt
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/kotlin/generated/docs/GetPipelineBranches.md
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/kotlin/generated/src/main/kotlin/io/swagger/client/models/GetPipelineBranchesitem.kt
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/kotlin/generated/docs/GetPipelineBranchesitem.md
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/kotlin/generated/src/main/kotlin/io/swagger/client/models/GetPipelineBranchesitem_latestRun.kt
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/kotlin/generated/docs/GetPipelineBranchesitem_latestRun.md
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/kotlin/generated/src/main/kotlin/io/swagger/client/models/GetPipelineBranchesitem_pullRequest.kt
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/kotlin/generated/docs/GetPipelineBranchesitem_pullRequest.md
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/kotlin/generated/src/main/kotlin/io/swagger/client/models/GetPipelineBranchesitem_pullRequest__links.kt
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/kotlin/generated/docs/GetPipelineBranchesitem_pullRequest__links.md
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/kotlin/generated/src/main/kotlin/io/swagger/client/models/GetPipelines.kt
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/kotlin/generated/docs/GetPipelines.md
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/kotlin/generated/src/main/kotlin/io/swagger/client/models/GetUsers.kt
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/kotlin/generated/docs/GetUsers.md
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/kotlin/generated/src/main/kotlin/io/swagger/client/models/HudsonmodelAllView.kt
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/kotlin/generated/docs/HudsonmodelAllView.md
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/kotlin/generated/src/main/kotlin/io/swagger/client/models/HudsonmodelCauseAction.kt
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/kotlin/generated/docs/HudsonmodelCauseAction.md
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/kotlin/generated/src/main/kotlin/io/swagger/client/models/HudsonmodelCauseUserIdCause.kt
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/kotlin/generated/docs/HudsonmodelCauseUserIdCause.md
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/kotlin/generated/src/main/kotlin/io/swagger/client/models/HudsonmodelComputerSet.kt
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/kotlin/generated/docs/HudsonmodelComputerSet.md
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/kotlin/generated/src/main/kotlin/io/swagger/client/models/HudsonmodelFreeStyleBuild.kt
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/kotlin/generated/docs/HudsonmodelFreeStyleBuild.md
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/kotlin/generated/src/main/kotlin/io/swagger/client/models/HudsonmodelFreeStyleProject.kt
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/kotlin/generated/docs/HudsonmodelFreeStyleProject.md
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/kotlin/generated/src/main/kotlin/io/swagger/client/models/HudsonmodelFreeStyleProjectactions.kt
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/kotlin/generated/docs/HudsonmodelFreeStyleProjectactions.md
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/kotlin/generated/src/main/kotlin/io/swagger/client/models/HudsonmodelFreeStyleProjecthealthReport.kt
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/kotlin/generated/docs/HudsonmodelFreeStyleProjecthealthReport.md
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/kotlin/generated/src/main/kotlin/io/swagger/client/models/HudsonmodelHudson.kt
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/kotlin/generated/docs/HudsonmodelHudson.md
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/kotlin/generated/src/main/kotlin/io/swagger/client/models/HudsonmodelHudsonMasterComputer.kt
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/kotlin/generated/docs/HudsonmodelHudsonMasterComputer.md
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/kotlin/generated/src/main/kotlin/io/swagger/client/models/HudsonmodelHudsonMasterComputer_monitorData.kt
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/kotlin/generated/docs/HudsonmodelHudsonMasterComputer_monitorData.md
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/kotlin/generated/src/main/kotlin/io/swagger/client/models/HudsonmodelHudsonMasterComputerexecutors.kt
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/kotlin/generated/docs/HudsonmodelHudsonMasterComputerexecutors.md
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/kotlin/generated/src/main/kotlin/io/swagger/client/models/HudsonmodelHudsonassignedLabels.kt
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/kotlin/generated/docs/HudsonmodelHudsonassignedLabels.md
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/kotlin/generated/src/main/kotlin/io/swagger/client/models/HudsonmodelLabel1.kt
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/kotlin/generated/docs/HudsonmodelLabel1.md
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/kotlin/generated/src/main/kotlin/io/swagger/client/models/HudsonmodelListView.kt
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/kotlin/generated/docs/HudsonmodelListView.md
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/kotlin/generated/src/main/kotlin/io/swagger/client/models/HudsonmodelQueue.kt
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/kotlin/generated/docs/HudsonmodelQueue.md
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/kotlin/generated/src/main/kotlin/io/swagger/client/models/HudsonmodelQueueBlockedItem.kt
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/kotlin/generated/docs/HudsonmodelQueueBlockedItem.md
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/kotlin/generated/src/main/kotlin/io/swagger/client/models/HudsonmodelQueueLeftItem.kt
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/kotlin/generated/docs/HudsonmodelQueueLeftItem.md
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/kotlin/generated/src/main/kotlin/io/swagger/client/models/HudsonmodelStringParameterDefinition.kt
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/kotlin/generated/docs/HudsonmodelStringParameterDefinition.md
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/kotlin/generated/src/main/kotlin/io/swagger/client/models/HudsonmodelStringParameterValue.kt
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/kotlin/generated/docs/HudsonmodelStringParameterValue.md
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/kotlin/generated/src/main/kotlin/io/swagger/client/models/Hudsonnode_monitorsDiskSpaceMonitorDescriptorDiskSpace.kt
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/kotlin/generated/docs/Hudsonnode_monitorsDiskSpaceMonitorDescriptorDiskSpace.md
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/kotlin/generated/src/main/kotlin/io/swagger/client/models/Hudsonnode_monitorsResponseTimeMonitorData.kt
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/kotlin/generated/docs/Hudsonnode_monitorsResponseTimeMonitorData.md
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/kotlin/generated/src/main/kotlin/io/swagger/client/models/Hudsonnode_monitorsSwapSpaceMonitorMemoryUsage2.kt
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/kotlin/generated/docs/Hudsonnode_monitorsSwapSpaceMonitorMemoryUsage2.md
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/kotlin/generated/src/main/kotlin/io/swagger/client/models/HudsonscmEmptyChangeLogSet.kt
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/kotlin/generated/docs/HudsonscmEmptyChangeLogSet.md
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/kotlin/generated/src/main/kotlin/io/swagger/client/models/HudsonscmNullSCM.kt
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/kotlin/generated/docs/HudsonscmNullSCM.md
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/kotlin/generated/src/main/kotlin/io/swagger/client/models/HudsonsecuritycsrfDefaultCrumbIssuer.kt
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/kotlin/generated/docs/HudsonsecuritycsrfDefaultCrumbIssuer.md
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/kotlin/generated/src/main/kotlin/io/swagger/client/models/HudsonutilClockDifference.kt
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/kotlin/generated/docs/HudsonutilClockDifference.md
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/kotlin/generated/src/main/kotlin/io/swagger/client/models/IojenkinsblueoceanresthalLink.kt
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/kotlin/generated/docs/IojenkinsblueoceanresthalLink.md
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/kotlin/generated/src/main/kotlin/io/swagger/client/models/IojenkinsblueoceanrestimplpipelineBranchImpl.kt
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/kotlin/generated/docs/IojenkinsblueoceanrestimplpipelineBranchImpl.md
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/kotlin/generated/src/main/kotlin/io/swagger/client/models/IojenkinsblueoceanrestimplpipelineBranchImpl_permissions.kt
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/kotlin/generated/docs/IojenkinsblueoceanrestimplpipelineBranchImpl_permissions.md
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/kotlin/generated/src/main/kotlin/io/swagger/client/models/IojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1.kt
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/kotlin/generated/docs/IojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1.md
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/kotlin/generated/src/main/kotlin/io/swagger/client/models/IojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1__links.kt
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/kotlin/generated/docs/IojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1__links.md
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/kotlin/generated/src/main/kotlin/io/swagger/client/models/IojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1_map.kt
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/kotlin/generated/docs/IojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1_map.md
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/kotlin/generated/src/main/kotlin/io/swagger/client/models/IojenkinsblueoceanserviceembeddedrestExtensionClassImpl.kt
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/kotlin/generated/docs/IojenkinsblueoceanserviceembeddedrestExtensionClassImpl.md
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/kotlin/generated/src/main/kotlin/io/swagger/client/models/IojenkinsblueoceanserviceembeddedrestExtensionClassImpl__links.kt
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/kotlin/generated/docs/IojenkinsblueoceanserviceembeddedrestExtensionClassImpl__links.md
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/kotlin/generated/src/main/kotlin/io/swagger/client/models/IojenkinsblueoceanserviceembeddedrestPipelineFolderImpl.kt
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/kotlin/generated/docs/IojenkinsblueoceanserviceembeddedrestPipelineFolderImpl.md
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/kotlin/generated/src/main/kotlin/io/swagger/client/models/IojenkinsblueoceanserviceembeddedrestPipelineImpl.kt
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/kotlin/generated/docs/IojenkinsblueoceanserviceembeddedrestPipelineImpl.md
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/kotlin/generated/src/main/kotlin/io/swagger/client/models/JenkinsmodelUnlabeledLoadStatistics.kt
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/kotlin/generated/docs/JenkinsmodelUnlabeledLoadStatistics.md
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/kotlin/generated/src/main/kotlin/io/swagger/client/models/SwaggyjenkinsOrganisation.kt
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/kotlin/generated/docs/SwaggyjenkinsOrganisation.md
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/kotlin/generated/src/main/kotlin/io/swagger/client/models/SwaggyjenkinsPipeline.kt
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/kotlin/generated/docs/SwaggyjenkinsPipeline.md
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/kotlin/generated/src/main/kotlin/io/swagger/client/models/SwaggyjenkinsPipeline_latestRun.kt
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/kotlin/generated/docs/SwaggyjenkinsPipeline_latestRun.md
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/kotlin/generated/src/main/kotlin/io/swagger/client/models/SwaggyjenkinsPipeline_latestRunartifacts.kt
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/kotlin/generated/docs/SwaggyjenkinsPipeline_latestRunartifacts.md
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/kotlin/generated/src/main/kotlin/io/swagger/client/models/SwaggyjenkinsUser.kt
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/kotlin/generated/docs/SwaggyjenkinsUser.md
+[main] WARN io.swagger.codegen.DefaultCodegen - generated unique operationId `search_0`
+[main] WARN io.swagger.codegen.DefaultCodegen - generated unique operationId `getPipelineFolderByOrg_0`
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/kotlin/generated/src/main/kotlin/io/swagger/client/apis/BlueOceanApi.kt
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/kotlin/generated/docs/BlueOceanApi.md
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/kotlin/generated/src/main/kotlin/io/swagger/client/apis/RemoteAccessApi.kt
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/kotlin/generated/docs/RemoteAccessApi.md
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/kotlin/generated/README.md
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/kotlin/generated/build.gradle
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/kotlin/generated/settings.gradle
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/kotlin/generated/src/main/kotlin/io/swagger/client/infrastructure/ApiClient.kt
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/kotlin/generated/src/main/kotlin/io/swagger/client/infrastructure/ApiInfrastructureResponse.kt
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/kotlin/generated/src/main/kotlin/io/swagger/client/infrastructure/ApplicationDelegates.kt
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/kotlin/generated/src/main/kotlin/io/swagger/client/infrastructure/RequestConfig.kt
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/kotlin/generated/src/main/kotlin/io/swagger/client/infrastructure/RequestMethod.kt
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/kotlin/generated/src/main/kotlin/io/swagger/client/infrastructure/ResponseExtensions.kt
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/kotlin/generated/src/main/kotlin/io/swagger/client/infrastructure/Serializer.kt
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/kotlin/generated/src/main/kotlin/io/swagger/client/infrastructure/Errors.kt
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/kotlin/generated/.swagger-codegen-ignore
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/kotlin/generated/.swagger-codegen/VERSION

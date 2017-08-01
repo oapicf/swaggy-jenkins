@@ -1,0 +1,73 @@
+[main] ERROR io.swagger.codegen.config.CodegenConfigurator - Unable to deserialize config file: groovy/conf.json
+java.io.FileNotFoundException: groovy/conf.json (No such file or directory)
+	at java.io.FileInputStream.open0(Native Method)
+	at java.io.FileInputStream.open(FileInputStream.java:195)
+	at java.io.FileInputStream.<init>(FileInputStream.java:138)
+	at com.fasterxml.jackson.core.JsonFactory.createParser(JsonFactory.java:756)
+	at com.fasterxml.jackson.databind.ObjectMapper.readValue(ObjectMapper.java:2740)
+	at io.swagger.codegen.config.CodegenConfigurator.fromFile(CodegenConfigurator.java:507)
+	at io.swagger.codegen.cmd.Generate.run(Generate.java:135)
+	at io.swagger.codegen.SwaggerCodegen.main(SwaggerCodegen.java:43)
+[main] INFO io.swagger.parser.Swagger20Parser - reading from _spec/jenkins-api.yml
+[main] WARN io.swagger.codegen.ignore.CodegenIgnoreProcessor - Output directory does not exist, or is inaccessible. No file (.swager-codegen-ignore) will be evaluated.
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/groovy/generated/src/main/groovy/io/swagger/model/GetClassesByClass.groovy
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/groovy/generated/src/main/groovy/io/swagger/model/GetMultibranchPipeline.groovy
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/groovy/generated/src/main/groovy/io/swagger/model/GetOrganisations.groovy
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/groovy/generated/src/main/groovy/io/swagger/model/GetPipelineBranches.groovy
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/groovy/generated/src/main/groovy/io/swagger/model/GetPipelineBranchesitem.groovy
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/groovy/generated/src/main/groovy/io/swagger/model/GetPipelineBranchesitemLatestRun.groovy
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/groovy/generated/src/main/groovy/io/swagger/model/GetPipelineBranchesitemPullRequest.groovy
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/groovy/generated/src/main/groovy/io/swagger/model/GetPipelineBranchesitemPullRequestLinks.groovy
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/groovy/generated/src/main/groovy/io/swagger/model/GetPipelines.groovy
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/groovy/generated/src/main/groovy/io/swagger/model/GetUsers.groovy
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/groovy/generated/src/main/groovy/io/swagger/model/HudsonmodelAllView.groovy
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/groovy/generated/src/main/groovy/io/swagger/model/HudsonmodelCauseAction.groovy
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/groovy/generated/src/main/groovy/io/swagger/model/HudsonmodelCauseUserIdCause.groovy
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/groovy/generated/src/main/groovy/io/swagger/model/HudsonmodelComputerSet.groovy
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/groovy/generated/src/main/groovy/io/swagger/model/HudsonmodelFreeStyleBuild.groovy
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/groovy/generated/src/main/groovy/io/swagger/model/HudsonmodelFreeStyleProject.groovy
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/groovy/generated/src/main/groovy/io/swagger/model/HudsonmodelFreeStyleProjectactions.groovy
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/groovy/generated/src/main/groovy/io/swagger/model/HudsonmodelFreeStyleProjecthealthReport.groovy
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/groovy/generated/src/main/groovy/io/swagger/model/HudsonmodelHudson.groovy
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/groovy/generated/src/main/groovy/io/swagger/model/HudsonmodelHudsonMasterComputer.groovy
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/groovy/generated/src/main/groovy/io/swagger/model/HudsonmodelHudsonMasterComputerMonitorData.groovy
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/groovy/generated/src/main/groovy/io/swagger/model/HudsonmodelHudsonMasterComputerexecutors.groovy
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/groovy/generated/src/main/groovy/io/swagger/model/HudsonmodelHudsonassignedLabels.groovy
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/groovy/generated/src/main/groovy/io/swagger/model/HudsonmodelLabel1.groovy
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/groovy/generated/src/main/groovy/io/swagger/model/HudsonmodelListView.groovy
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/groovy/generated/src/main/groovy/io/swagger/model/HudsonmodelQueue.groovy
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/groovy/generated/src/main/groovy/io/swagger/model/HudsonmodelQueueBlockedItem.groovy
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/groovy/generated/src/main/groovy/io/swagger/model/HudsonmodelQueueLeftItem.groovy
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/groovy/generated/src/main/groovy/io/swagger/model/HudsonmodelStringParameterDefinition.groovy
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/groovy/generated/src/main/groovy/io/swagger/model/HudsonmodelStringParameterValue.groovy
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/groovy/generated/src/main/groovy/io/swagger/model/HudsonnodeMonitorsDiskSpaceMonitorDescriptorDiskSpace.groovy
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/groovy/generated/src/main/groovy/io/swagger/model/HudsonnodeMonitorsResponseTimeMonitorData.groovy
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/groovy/generated/src/main/groovy/io/swagger/model/HudsonnodeMonitorsSwapSpaceMonitorMemoryUsage2.groovy
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/groovy/generated/src/main/groovy/io/swagger/model/HudsonscmEmptyChangeLogSet.groovy
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/groovy/generated/src/main/groovy/io/swagger/model/HudsonscmNullSCM.groovy
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/groovy/generated/src/main/groovy/io/swagger/model/HudsonsecuritycsrfDefaultCrumbIssuer.groovy
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/groovy/generated/src/main/groovy/io/swagger/model/HudsonutilClockDifference.groovy
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/groovy/generated/src/main/groovy/io/swagger/model/IojenkinsblueoceanresthalLink.groovy
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/groovy/generated/src/main/groovy/io/swagger/model/IojenkinsblueoceanrestimplpipelineBranchImpl.groovy
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/groovy/generated/src/main/groovy/io/swagger/model/IojenkinsblueoceanrestimplpipelineBranchImplPermissions.groovy
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/groovy/generated/src/main/groovy/io/swagger/model/IojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1.groovy
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/groovy/generated/src/main/groovy/io/swagger/model/IojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1Links.groovy
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/groovy/generated/src/main/groovy/io/swagger/model/IojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1Map.groovy
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/groovy/generated/src/main/groovy/io/swagger/model/IojenkinsblueoceanserviceembeddedrestExtensionClassImpl.groovy
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/groovy/generated/src/main/groovy/io/swagger/model/IojenkinsblueoceanserviceembeddedrestExtensionClassImplLinks.groovy
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/groovy/generated/src/main/groovy/io/swagger/model/IojenkinsblueoceanserviceembeddedrestPipelineFolderImpl.groovy
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/groovy/generated/src/main/groovy/io/swagger/model/IojenkinsblueoceanserviceembeddedrestPipelineImpl.groovy
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/groovy/generated/src/main/groovy/io/swagger/model/JenkinsmodelUnlabeledLoadStatistics.groovy
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/groovy/generated/src/main/groovy/io/swagger/model/SwaggyjenkinsOrganisation.groovy
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/groovy/generated/src/main/groovy/io/swagger/model/SwaggyjenkinsPipeline.groovy
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/groovy/generated/src/main/groovy/io/swagger/model/SwaggyjenkinsPipelineLatestRun.groovy
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/groovy/generated/src/main/groovy/io/swagger/model/SwaggyjenkinsPipelineLatestRunartifacts.groovy
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/groovy/generated/src/main/groovy/io/swagger/model/SwaggyjenkinsUser.groovy
+[main] WARN io.swagger.codegen.DefaultCodegen - generated unique operationId `search_0`
+[main] WARN io.swagger.codegen.DefaultCodegen - generated unique operationId `getPipelineFolderByOrg_0`
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/groovy/generated/src/main/groovy/io/swagger/api/BlueOceanApi.groovy
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/groovy/generated/src/main/groovy/io/swagger/api/RemoteAccessApi.groovy
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/groovy/generated/build.gradle
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/groovy/generated/src/main/groovy/io/swagger/api/ApiUtils.groovy
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/groovy/generated/.swagger-codegen-ignore
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/groovy/generated/.swagger-codegen/VERSION

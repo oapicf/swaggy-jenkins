@@ -1,0 +1,82 @@
+[main] ERROR io.swagger.codegen.config.CodegenConfigurator - Unable to deserialize config file: inflector/conf.json
+java.io.FileNotFoundException: inflector/conf.json (No such file or directory)
+	at java.io.FileInputStream.open0(Native Method)
+	at java.io.FileInputStream.open(FileInputStream.java:195)
+	at java.io.FileInputStream.<init>(FileInputStream.java:138)
+	at com.fasterxml.jackson.core.JsonFactory.createParser(JsonFactory.java:756)
+	at com.fasterxml.jackson.databind.ObjectMapper.readValue(ObjectMapper.java:2740)
+	at io.swagger.codegen.config.CodegenConfigurator.fromFile(CodegenConfigurator.java:507)
+	at io.swagger.codegen.cmd.Generate.run(Generate.java:135)
+	at io.swagger.codegen.SwaggerCodegen.main(SwaggerCodegen.java:43)
+[main] INFO io.swagger.parser.Swagger20Parser - reading from _spec/jenkins-api.yml
+[main] WARN io.swagger.codegen.ignore.CodegenIgnoreProcessor - Output directory does not exist, or is inaccessible. No file (.swager-codegen-ignore) will be evaluated.
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/inflector/generated/src/gen/java/io/swagger/model/GetClassesByClass.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/inflector/generated/src/gen/java/io/swagger/model/GetMultibranchPipeline.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/inflector/generated/src/gen/java/io/swagger/model/GetOrganisations.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/inflector/generated/src/gen/java/io/swagger/model/GetPipelineBranches.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/inflector/generated/src/gen/java/io/swagger/model/GetPipelineBranchesitem.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/inflector/generated/src/gen/java/io/swagger/model/GetPipelineBranchesitemLatestRun.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/inflector/generated/src/gen/java/io/swagger/model/GetPipelineBranchesitemPullRequest.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/inflector/generated/src/gen/java/io/swagger/model/GetPipelineBranchesitemPullRequestLinks.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/inflector/generated/src/gen/java/io/swagger/model/GetPipelines.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/inflector/generated/src/gen/java/io/swagger/model/GetUsers.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/inflector/generated/src/gen/java/io/swagger/model/HudsonmodelAllView.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/inflector/generated/src/gen/java/io/swagger/model/HudsonmodelCauseAction.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/inflector/generated/src/gen/java/io/swagger/model/HudsonmodelCauseUserIdCause.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/inflector/generated/src/gen/java/io/swagger/model/HudsonmodelComputerSet.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/inflector/generated/src/gen/java/io/swagger/model/HudsonmodelFreeStyleBuild.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/inflector/generated/src/gen/java/io/swagger/model/HudsonmodelFreeStyleProject.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/inflector/generated/src/gen/java/io/swagger/model/HudsonmodelFreeStyleProjectactions.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/inflector/generated/src/gen/java/io/swagger/model/HudsonmodelFreeStyleProjecthealthReport.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/inflector/generated/src/gen/java/io/swagger/model/HudsonmodelHudson.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/inflector/generated/src/gen/java/io/swagger/model/HudsonmodelHudsonMasterComputer.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/inflector/generated/src/gen/java/io/swagger/model/HudsonmodelHudsonMasterComputerMonitorData.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/inflector/generated/src/gen/java/io/swagger/model/HudsonmodelHudsonMasterComputerexecutors.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/inflector/generated/src/gen/java/io/swagger/model/HudsonmodelHudsonassignedLabels.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/inflector/generated/src/gen/java/io/swagger/model/HudsonmodelLabel1.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/inflector/generated/src/gen/java/io/swagger/model/HudsonmodelListView.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/inflector/generated/src/gen/java/io/swagger/model/HudsonmodelQueue.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/inflector/generated/src/gen/java/io/swagger/model/HudsonmodelQueueBlockedItem.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/inflector/generated/src/gen/java/io/swagger/model/HudsonmodelQueueLeftItem.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/inflector/generated/src/gen/java/io/swagger/model/HudsonmodelStringParameterDefinition.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/inflector/generated/src/gen/java/io/swagger/model/HudsonmodelStringParameterValue.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/inflector/generated/src/gen/java/io/swagger/model/HudsonnodeMonitorsDiskSpaceMonitorDescriptorDiskSpace.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/inflector/generated/src/gen/java/io/swagger/model/HudsonnodeMonitorsResponseTimeMonitorData.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/inflector/generated/src/gen/java/io/swagger/model/HudsonnodeMonitorsSwapSpaceMonitorMemoryUsage2.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/inflector/generated/src/gen/java/io/swagger/model/HudsonscmEmptyChangeLogSet.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/inflector/generated/src/gen/java/io/swagger/model/HudsonscmNullSCM.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/inflector/generated/src/gen/java/io/swagger/model/HudsonsecuritycsrfDefaultCrumbIssuer.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/inflector/generated/src/gen/java/io/swagger/model/HudsonutilClockDifference.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/inflector/generated/src/gen/java/io/swagger/model/IojenkinsblueoceanresthalLink.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/inflector/generated/src/gen/java/io/swagger/model/IojenkinsblueoceanrestimplpipelineBranchImpl.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/inflector/generated/src/gen/java/io/swagger/model/IojenkinsblueoceanrestimplpipelineBranchImplPermissions.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/inflector/generated/src/gen/java/io/swagger/model/IojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/inflector/generated/src/gen/java/io/swagger/model/IojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1Links.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/inflector/generated/src/gen/java/io/swagger/model/IojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1Map.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/inflector/generated/src/gen/java/io/swagger/model/IojenkinsblueoceanserviceembeddedrestExtensionClassImpl.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/inflector/generated/src/gen/java/io/swagger/model/IojenkinsblueoceanserviceembeddedrestExtensionClassImplLinks.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/inflector/generated/src/gen/java/io/swagger/model/IojenkinsblueoceanserviceembeddedrestPipelineFolderImpl.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/inflector/generated/src/gen/java/io/swagger/model/IojenkinsblueoceanserviceembeddedrestPipelineImpl.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/inflector/generated/src/gen/java/io/swagger/model/JenkinsmodelUnlabeledLoadStatistics.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/inflector/generated/src/gen/java/io/swagger/model/SwaggyjenkinsOrganisation.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/inflector/generated/src/gen/java/io/swagger/model/SwaggyjenkinsPipeline.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/inflector/generated/src/gen/java/io/swagger/model/SwaggyjenkinsPipelineLatestRun.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/inflector/generated/src/gen/java/io/swagger/model/SwaggyjenkinsPipelineLatestRunartifacts.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/inflector/generated/src/gen/java/io/swagger/model/SwaggyjenkinsUser.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/inflector/generated/src/main/java/io/swagger/handler/ApiController.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/inflector/generated/src/main/java/io/swagger/handler/BlueController.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/inflector/generated/src/main/java/io/swagger/handler/ComputerController.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/inflector/generated/src/main/java/io/swagger/handler/CreateItemController.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/inflector/generated/src/main/java/io/swagger/handler/CreateViewController.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/inflector/generated/src/main/java/io/swagger/handler/CrumbIssuerController.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/inflector/generated/src/main/java/io/swagger/handler/JobController.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/inflector/generated/src/main/java/io/swagger/handler/QueueController.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/inflector/generated/src/main/java/io/swagger/handler/ViewController.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/inflector/generated/pom.xml
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/inflector/generated/README.md
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/inflector/generated/src/main/webapp/WEB-INF/web.xml
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/inflector/generated/inflector.yaml
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/inflector/generated/src/main/swagger/swagger.yaml
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/inflector/generated/src/gen/java/io/swagger/handler/StringUtil.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/inflector/generated/.swagger-codegen-ignore
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/inflector/generated/.swagger-codegen/VERSION

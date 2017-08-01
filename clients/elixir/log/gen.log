@@ -1,0 +1,75 @@
+[main] ERROR io.swagger.codegen.config.CodegenConfigurator - Unable to deserialize config file: elixir/conf.json
+java.io.FileNotFoundException: elixir/conf.json (No such file or directory)
+	at java.io.FileInputStream.open0(Native Method)
+	at java.io.FileInputStream.open(FileInputStream.java:195)
+	at java.io.FileInputStream.<init>(FileInputStream.java:138)
+	at com.fasterxml.jackson.core.JsonFactory.createParser(JsonFactory.java:756)
+	at com.fasterxml.jackson.databind.ObjectMapper.readValue(ObjectMapper.java:2740)
+	at io.swagger.codegen.config.CodegenConfigurator.fromFile(CodegenConfigurator.java:507)
+	at io.swagger.codegen.cmd.Generate.run(Generate.java:135)
+	at io.swagger.codegen.SwaggerCodegen.main(SwaggerCodegen.java:43)
+[main] INFO io.swagger.parser.Swagger20Parser - reading from _spec/jenkins-api.yml
+[main] WARN io.swagger.codegen.ignore.CodegenIgnoreProcessor - Output directory does not exist, or is inaccessible. No file (.swager-codegen-ignore) will be evaluated.
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/elixir/generated/lib/swaggy_jenkins/model/getClassesByClass.ex
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/elixir/generated/lib/swaggy_jenkins/model/getMultibranchPipeline.ex
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/elixir/generated/lib/swaggy_jenkins/model/getOrganisations.ex
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/elixir/generated/lib/swaggy_jenkins/model/getPipelineBranches.ex
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/elixir/generated/lib/swaggy_jenkins/model/getPipelineBranchesitem.ex
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/elixir/generated/lib/swaggy_jenkins/model/getPipelineBranchesitem_latestRun.ex
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/elixir/generated/lib/swaggy_jenkins/model/getPipelineBranchesitem_pullRequest.ex
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/elixir/generated/lib/swaggy_jenkins/model/getPipelineBranchesitem_pullRequest__links.ex
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/elixir/generated/lib/swaggy_jenkins/model/getPipelines.ex
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/elixir/generated/lib/swaggy_jenkins/model/getUsers.ex
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/elixir/generated/lib/swaggy_jenkins/model/hudsonmodelAllView.ex
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/elixir/generated/lib/swaggy_jenkins/model/hudsonmodelCauseAction.ex
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/elixir/generated/lib/swaggy_jenkins/model/hudsonmodelCauseUserIdCause.ex
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/elixir/generated/lib/swaggy_jenkins/model/hudsonmodelComputerSet.ex
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/elixir/generated/lib/swaggy_jenkins/model/hudsonmodelFreeStyleBuild.ex
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/elixir/generated/lib/swaggy_jenkins/model/hudsonmodelFreeStyleProject.ex
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/elixir/generated/lib/swaggy_jenkins/model/hudsonmodelFreeStyleProjectactions.ex
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/elixir/generated/lib/swaggy_jenkins/model/hudsonmodelFreeStyleProjecthealthReport.ex
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/elixir/generated/lib/swaggy_jenkins/model/hudsonmodelHudson.ex
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/elixir/generated/lib/swaggy_jenkins/model/hudsonmodelHudsonMasterComputer.ex
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/elixir/generated/lib/swaggy_jenkins/model/hudsonmodelHudsonMasterComputer_monitorData.ex
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/elixir/generated/lib/swaggy_jenkins/model/hudsonmodelHudsonMasterComputerexecutors.ex
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/elixir/generated/lib/swaggy_jenkins/model/hudsonmodelHudsonassignedLabels.ex
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/elixir/generated/lib/swaggy_jenkins/model/hudsonmodelLabel1.ex
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/elixir/generated/lib/swaggy_jenkins/model/hudsonmodelListView.ex
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/elixir/generated/lib/swaggy_jenkins/model/hudsonmodelQueue.ex
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/elixir/generated/lib/swaggy_jenkins/model/hudsonmodelQueueBlockedItem.ex
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/elixir/generated/lib/swaggy_jenkins/model/hudsonmodelQueueLeftItem.ex
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/elixir/generated/lib/swaggy_jenkins/model/hudsonmodelStringParameterDefinition.ex
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/elixir/generated/lib/swaggy_jenkins/model/hudsonmodelStringParameterValue.ex
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/elixir/generated/lib/swaggy_jenkins/model/hudsonnode_monitorsDiskSpaceMonitorDescriptorDiskSpace.ex
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/elixir/generated/lib/swaggy_jenkins/model/hudsonnode_monitorsResponseTimeMonitorData.ex
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/elixir/generated/lib/swaggy_jenkins/model/hudsonnode_monitorsSwapSpaceMonitorMemoryUsage2.ex
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/elixir/generated/lib/swaggy_jenkins/model/hudsonscmEmptyChangeLogSet.ex
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/elixir/generated/lib/swaggy_jenkins/model/hudsonscmNullSCM.ex
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/elixir/generated/lib/swaggy_jenkins/model/hudsonsecuritycsrfDefaultCrumbIssuer.ex
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/elixir/generated/lib/swaggy_jenkins/model/hudsonutilClockDifference.ex
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/elixir/generated/lib/swaggy_jenkins/model/iojenkinsblueoceanresthalLink.ex
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/elixir/generated/lib/swaggy_jenkins/model/iojenkinsblueoceanrestimplpipelineBranchImpl.ex
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/elixir/generated/lib/swaggy_jenkins/model/iojenkinsblueoceanrestimplpipelineBranchImpl_permissions.ex
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/elixir/generated/lib/swaggy_jenkins/model/iojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1.ex
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/elixir/generated/lib/swaggy_jenkins/model/iojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1__links.ex
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/elixir/generated/lib/swaggy_jenkins/model/iojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1_map.ex
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/elixir/generated/lib/swaggy_jenkins/model/iojenkinsblueoceanserviceembeddedrestExtensionClassImpl.ex
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/elixir/generated/lib/swaggy_jenkins/model/iojenkinsblueoceanserviceembeddedrestExtensionClassImpl__links.ex
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/elixir/generated/lib/swaggy_jenkins/model/iojenkinsblueoceanserviceembeddedrestPipelineFolderImpl.ex
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/elixir/generated/lib/swaggy_jenkins/model/iojenkinsblueoceanserviceembeddedrestPipelineImpl.ex
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/elixir/generated/lib/swaggy_jenkins/model/jenkinsmodelUnlabeledLoadStatistics.ex
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/elixir/generated/lib/swaggy_jenkins/model/swaggyjenkinsOrganisation.ex
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/elixir/generated/lib/swaggy_jenkins/model/swaggyjenkinsPipeline.ex
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/elixir/generated/lib/swaggy_jenkins/model/swaggyjenkinsPipeline_latestRun.ex
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/elixir/generated/lib/swaggy_jenkins/model/swaggyjenkinsPipeline_latestRunartifacts.ex
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/elixir/generated/lib/swaggy_jenkins/model/swaggyjenkinsUser.ex
+[main] WARN io.swagger.codegen.DefaultCodegen - generated unique operationId `search_0`
+[main] WARN io.swagger.codegen.DefaultCodegen - generated unique operationId `getPipelineFolderByOrg_0`
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/elixir/generated/lib/swaggy_jenkins/api/blueOcean.ex
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/elixir/generated/lib/swaggy_jenkins/api/remoteAccess.ex
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/elixir/generated/README.md
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/elixir/generated/config/config.exs
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/elixir/generated/mix.exs
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/elixir/generated/test/test_helper.exs
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/elixir/generated/.swagger-codegen-ignore
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/elixir/generated/.swagger-codegen/VERSION

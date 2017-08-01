@@ -1,0 +1,132 @@
+[main] ERROR io.swagger.codegen.config.CodegenConfigurator - Unable to deserialize config file: qt5cpp/conf.json
+java.io.FileNotFoundException: qt5cpp/conf.json (No such file or directory)
+	at java.io.FileInputStream.open0(Native Method)
+	at java.io.FileInputStream.open(FileInputStream.java:195)
+	at java.io.FileInputStream.<init>(FileInputStream.java:138)
+	at com.fasterxml.jackson.core.JsonFactory.createParser(JsonFactory.java:756)
+	at com.fasterxml.jackson.databind.ObjectMapper.readValue(ObjectMapper.java:2740)
+	at io.swagger.codegen.config.CodegenConfigurator.fromFile(CodegenConfigurator.java:507)
+	at io.swagger.codegen.cmd.Generate.run(Generate.java:135)
+	at io.swagger.codegen.SwaggerCodegen.main(SwaggerCodegen.java:43)
+[main] INFO io.swagger.parser.Swagger20Parser - reading from _spec/jenkins-api.yml
+[main] WARN io.swagger.codegen.ignore.CodegenIgnoreProcessor - Output directory does not exist, or is inaccessible. No file (.swager-codegen-ignore) will be evaluated.
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/qt5cpp/generated/client/SWGGetClassesByClass.h
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/qt5cpp/generated/client/SWGGetClassesByClass.cpp
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/qt5cpp/generated/client/SWGGetMultibranchPipeline.h
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/qt5cpp/generated/client/SWGGetMultibranchPipeline.cpp
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/qt5cpp/generated/client/SWGGetOrganisations.h
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/qt5cpp/generated/client/SWGGetOrganisations.cpp
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/qt5cpp/generated/client/SWGGetPipelineBranches.h
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/qt5cpp/generated/client/SWGGetPipelineBranches.cpp
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/qt5cpp/generated/client/SWGGetPipelineBranchesitem.h
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/qt5cpp/generated/client/SWGGetPipelineBranchesitem.cpp
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/qt5cpp/generated/client/SWGGetPipelineBranchesitem_latestRun.h
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/qt5cpp/generated/client/SWGGetPipelineBranchesitem_latestRun.cpp
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/qt5cpp/generated/client/SWGGetPipelineBranchesitem_pullRequest.h
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/qt5cpp/generated/client/SWGGetPipelineBranchesitem_pullRequest.cpp
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/qt5cpp/generated/client/SWGGetPipelineBranchesitem_pullRequest__links.h
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/qt5cpp/generated/client/SWGGetPipelineBranchesitem_pullRequest__links.cpp
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/qt5cpp/generated/client/SWGGetPipelines.h
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/qt5cpp/generated/client/SWGGetPipelines.cpp
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/qt5cpp/generated/client/SWGGetUsers.h
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/qt5cpp/generated/client/SWGGetUsers.cpp
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/qt5cpp/generated/client/SWGHudsonmodelAllView.h
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/qt5cpp/generated/client/SWGHudsonmodelAllView.cpp
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/qt5cpp/generated/client/SWGHudsonmodelCauseAction.h
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/qt5cpp/generated/client/SWGHudsonmodelCauseAction.cpp
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/qt5cpp/generated/client/SWGHudsonmodelCauseUserIdCause.h
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/qt5cpp/generated/client/SWGHudsonmodelCauseUserIdCause.cpp
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/qt5cpp/generated/client/SWGHudsonmodelComputerSet.h
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/qt5cpp/generated/client/SWGHudsonmodelComputerSet.cpp
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/qt5cpp/generated/client/SWGHudsonmodelFreeStyleBuild.h
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/qt5cpp/generated/client/SWGHudsonmodelFreeStyleBuild.cpp
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/qt5cpp/generated/client/SWGHudsonmodelFreeStyleProject.h
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/qt5cpp/generated/client/SWGHudsonmodelFreeStyleProject.cpp
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/qt5cpp/generated/client/SWGHudsonmodelFreeStyleProjectactions.h
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/qt5cpp/generated/client/SWGHudsonmodelFreeStyleProjectactions.cpp
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/qt5cpp/generated/client/SWGHudsonmodelFreeStyleProjecthealthReport.h
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/qt5cpp/generated/client/SWGHudsonmodelFreeStyleProjecthealthReport.cpp
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/qt5cpp/generated/client/SWGHudsonmodelHudson.h
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/qt5cpp/generated/client/SWGHudsonmodelHudson.cpp
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/qt5cpp/generated/client/SWGHudsonmodelHudsonMasterComputer.h
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/qt5cpp/generated/client/SWGHudsonmodelHudsonMasterComputer.cpp
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/qt5cpp/generated/client/SWGHudsonmodelHudsonMasterComputer_monitorData.h
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/qt5cpp/generated/client/SWGHudsonmodelHudsonMasterComputer_monitorData.cpp
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/qt5cpp/generated/client/SWGHudsonmodelHudsonMasterComputerexecutors.h
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/qt5cpp/generated/client/SWGHudsonmodelHudsonMasterComputerexecutors.cpp
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/qt5cpp/generated/client/SWGHudsonmodelHudsonassignedLabels.h
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/qt5cpp/generated/client/SWGHudsonmodelHudsonassignedLabels.cpp
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/qt5cpp/generated/client/SWGHudsonmodelLabel1.h
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/qt5cpp/generated/client/SWGHudsonmodelLabel1.cpp
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/qt5cpp/generated/client/SWGHudsonmodelListView.h
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/qt5cpp/generated/client/SWGHudsonmodelListView.cpp
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/qt5cpp/generated/client/SWGHudsonmodelQueue.h
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/qt5cpp/generated/client/SWGHudsonmodelQueue.cpp
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/qt5cpp/generated/client/SWGHudsonmodelQueueBlockedItem.h
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/qt5cpp/generated/client/SWGHudsonmodelQueueBlockedItem.cpp
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/qt5cpp/generated/client/SWGHudsonmodelQueueLeftItem.h
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/qt5cpp/generated/client/SWGHudsonmodelQueueLeftItem.cpp
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/qt5cpp/generated/client/SWGHudsonmodelStringParameterDefinition.h
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/qt5cpp/generated/client/SWGHudsonmodelStringParameterDefinition.cpp
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/qt5cpp/generated/client/SWGHudsonmodelStringParameterValue.h
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/qt5cpp/generated/client/SWGHudsonmodelStringParameterValue.cpp
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/qt5cpp/generated/client/SWGHudsonnode_monitorsDiskSpaceMonitorDescriptorDiskSpace.h
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/qt5cpp/generated/client/SWGHudsonnode_monitorsDiskSpaceMonitorDescriptorDiskSpace.cpp
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/qt5cpp/generated/client/SWGHudsonnode_monitorsResponseTimeMonitorData.h
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/qt5cpp/generated/client/SWGHudsonnode_monitorsResponseTimeMonitorData.cpp
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/qt5cpp/generated/client/SWGHudsonnode_monitorsSwapSpaceMonitorMemoryUsage2.h
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/qt5cpp/generated/client/SWGHudsonnode_monitorsSwapSpaceMonitorMemoryUsage2.cpp
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/qt5cpp/generated/client/SWGHudsonscmEmptyChangeLogSet.h
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/qt5cpp/generated/client/SWGHudsonscmEmptyChangeLogSet.cpp
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/qt5cpp/generated/client/SWGHudsonscmNullSCM.h
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/qt5cpp/generated/client/SWGHudsonscmNullSCM.cpp
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/qt5cpp/generated/client/SWGHudsonsecuritycsrfDefaultCrumbIssuer.h
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/qt5cpp/generated/client/SWGHudsonsecuritycsrfDefaultCrumbIssuer.cpp
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/qt5cpp/generated/client/SWGHudsonutilClockDifference.h
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/qt5cpp/generated/client/SWGHudsonutilClockDifference.cpp
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/qt5cpp/generated/client/SWGIojenkinsblueoceanresthalLink.h
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/qt5cpp/generated/client/SWGIojenkinsblueoceanresthalLink.cpp
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/qt5cpp/generated/client/SWGIojenkinsblueoceanrestimplpipelineBranchImpl.h
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/qt5cpp/generated/client/SWGIojenkinsblueoceanrestimplpipelineBranchImpl.cpp
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/qt5cpp/generated/client/SWGIojenkinsblueoceanrestimplpipelineBranchImpl_permissions.h
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/qt5cpp/generated/client/SWGIojenkinsblueoceanrestimplpipelineBranchImpl_permissions.cpp
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/qt5cpp/generated/client/SWGIojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1.h
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/qt5cpp/generated/client/SWGIojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1.cpp
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/qt5cpp/generated/client/SWGIojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1__links.h
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/qt5cpp/generated/client/SWGIojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1__links.cpp
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/qt5cpp/generated/client/SWGIojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1_map.h
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/qt5cpp/generated/client/SWGIojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1_map.cpp
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/qt5cpp/generated/client/SWGIojenkinsblueoceanserviceembeddedrestExtensionClassImpl.h
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/qt5cpp/generated/client/SWGIojenkinsblueoceanserviceembeddedrestExtensionClassImpl.cpp
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/qt5cpp/generated/client/SWGIojenkinsblueoceanserviceembeddedrestExtensionClassImpl__links.h
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/qt5cpp/generated/client/SWGIojenkinsblueoceanserviceembeddedrestExtensionClassImpl__links.cpp
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/qt5cpp/generated/client/SWGIojenkinsblueoceanserviceembeddedrestPipelineFolderImpl.h
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/qt5cpp/generated/client/SWGIojenkinsblueoceanserviceembeddedrestPipelineFolderImpl.cpp
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/qt5cpp/generated/client/SWGIojenkinsblueoceanserviceembeddedrestPipelineImpl.h
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/qt5cpp/generated/client/SWGIojenkinsblueoceanserviceembeddedrestPipelineImpl.cpp
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/qt5cpp/generated/client/SWGJenkinsmodelUnlabeledLoadStatistics.h
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/qt5cpp/generated/client/SWGJenkinsmodelUnlabeledLoadStatistics.cpp
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/qt5cpp/generated/client/SWGSwaggyjenkinsOrganisation.h
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/qt5cpp/generated/client/SWGSwaggyjenkinsOrganisation.cpp
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/qt5cpp/generated/client/SWGSwaggyjenkinsPipeline.h
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/qt5cpp/generated/client/SWGSwaggyjenkinsPipeline.cpp
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/qt5cpp/generated/client/SWGSwaggyjenkinsPipeline_latestRun.h
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/qt5cpp/generated/client/SWGSwaggyjenkinsPipeline_latestRun.cpp
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/qt5cpp/generated/client/SWGSwaggyjenkinsPipeline_latestRunartifacts.h
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/qt5cpp/generated/client/SWGSwaggyjenkinsPipeline_latestRunartifacts.cpp
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/qt5cpp/generated/client/SWGSwaggyjenkinsUser.h
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/qt5cpp/generated/client/SWGSwaggyjenkinsUser.cpp
+[main] WARN io.swagger.codegen.DefaultCodegen - generated unique operationId `search_0`
+[main] WARN io.swagger.codegen.DefaultCodegen - generated unique operationId `getPipelineFolderByOrg_0`
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/qt5cpp/generated/client/SWGBlueOceanApi.cpp
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/qt5cpp/generated/client/SWGBlueOceanApi.h
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/qt5cpp/generated/client/SWGRemoteAccessApi.cpp
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/qt5cpp/generated/client/SWGRemoteAccessApi.h
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/qt5cpp/generated/client/SWGHelpers.h
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/qt5cpp/generated/client/SWGHelpers.cpp
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/qt5cpp/generated/client/SWGHttpRequest.h
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/qt5cpp/generated/client/SWGHttpRequest.cpp
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/qt5cpp/generated/client/SWGModelFactory.h
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/qt5cpp/generated/client/SWGObject.h
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/qt5cpp/generated/.swagger-codegen-ignore
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/qt5cpp/generated/.swagger-codegen/VERSION

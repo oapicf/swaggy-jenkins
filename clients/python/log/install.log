@@ -1,0 +1,12 @@
+Processing /Users/cliffano/dev/workspace/swaggy-jenkins/python/generated
+Requirement already satisfied: urllib3>=1.15 in /usr/local/lib/python2.7/site-packages (from swaggyjenkins==0.0.2)
+Requirement already satisfied: six>=1.10 in /usr/local/lib/python2.7/site-packages (from swaggyjenkins==0.0.2)
+Requirement already satisfied: certifi in /usr/local/lib/python2.7/site-packages (from swaggyjenkins==0.0.2)
+Requirement already satisfied: python-dateutil in /usr/local/lib/python2.7/site-packages (from swaggyjenkins==0.0.2)
+Installing collected packages: swaggyjenkins
+  Found existing installation: swaggyjenkins 0.0.1
+    Uninstalling swaggyjenkins-0.0.1:
+      Successfully uninstalled swaggyjenkins-0.0.1
+  Running setup.py install for swaggyjenkins: started
+    Running setup.py install for swaggyjenkins: finished with status 'done'
+Successfully installed swaggyjenkins-0.0.2

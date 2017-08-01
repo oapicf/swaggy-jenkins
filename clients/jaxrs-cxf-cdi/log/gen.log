@@ -1,0 +1,97 @@
+[main] ERROR io.swagger.codegen.config.CodegenConfigurator - Unable to deserialize config file: jaxrs-cxf-cdi/conf.json
+java.io.FileNotFoundException: jaxrs-cxf-cdi/conf.json (No such file or directory)
+	at java.io.FileInputStream.open0(Native Method)
+	at java.io.FileInputStream.open(FileInputStream.java:195)
+	at java.io.FileInputStream.<init>(FileInputStream.java:138)
+	at com.fasterxml.jackson.core.JsonFactory.createParser(JsonFactory.java:756)
+	at com.fasterxml.jackson.databind.ObjectMapper.readValue(ObjectMapper.java:2740)
+	at io.swagger.codegen.config.CodegenConfigurator.fromFile(CodegenConfigurator.java:507)
+	at io.swagger.codegen.cmd.Generate.run(Generate.java:135)
+	at io.swagger.codegen.SwaggerCodegen.main(SwaggerCodegen.java:43)
+[main] INFO io.swagger.parser.Swagger20Parser - reading from _spec/jenkins-api.yml
+[main] WARN io.swagger.codegen.ignore.CodegenIgnoreProcessor - Output directory does not exist, or is inaccessible. No file (.swager-codegen-ignore) will be evaluated.
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/jaxrs-cxf-cdi/generated/src/gen/java/io/swagger/model/GetClassesByClass.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/jaxrs-cxf-cdi/generated/src/gen/java/io/swagger/model/GetMultibranchPipeline.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/jaxrs-cxf-cdi/generated/src/gen/java/io/swagger/model/GetOrganisations.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/jaxrs-cxf-cdi/generated/src/gen/java/io/swagger/model/GetPipelineBranches.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/jaxrs-cxf-cdi/generated/src/gen/java/io/swagger/model/GetPipelineBranchesitem.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/jaxrs-cxf-cdi/generated/src/gen/java/io/swagger/model/GetPipelineBranchesitemLatestRun.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/jaxrs-cxf-cdi/generated/src/gen/java/io/swagger/model/GetPipelineBranchesitemPullRequest.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/jaxrs-cxf-cdi/generated/src/gen/java/io/swagger/model/GetPipelineBranchesitemPullRequestLinks.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/jaxrs-cxf-cdi/generated/src/gen/java/io/swagger/model/GetPipelines.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/jaxrs-cxf-cdi/generated/src/gen/java/io/swagger/model/GetUsers.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/jaxrs-cxf-cdi/generated/src/gen/java/io/swagger/model/HudsonmodelAllView.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/jaxrs-cxf-cdi/generated/src/gen/java/io/swagger/model/HudsonmodelCauseAction.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/jaxrs-cxf-cdi/generated/src/gen/java/io/swagger/model/HudsonmodelCauseUserIdCause.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/jaxrs-cxf-cdi/generated/src/gen/java/io/swagger/model/HudsonmodelComputerSet.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/jaxrs-cxf-cdi/generated/src/gen/java/io/swagger/model/HudsonmodelFreeStyleBuild.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/jaxrs-cxf-cdi/generated/src/gen/java/io/swagger/model/HudsonmodelFreeStyleProject.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/jaxrs-cxf-cdi/generated/src/gen/java/io/swagger/model/HudsonmodelFreeStyleProjectactions.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/jaxrs-cxf-cdi/generated/src/gen/java/io/swagger/model/HudsonmodelFreeStyleProjecthealthReport.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/jaxrs-cxf-cdi/generated/src/gen/java/io/swagger/model/HudsonmodelHudson.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/jaxrs-cxf-cdi/generated/src/gen/java/io/swagger/model/HudsonmodelHudsonMasterComputer.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/jaxrs-cxf-cdi/generated/src/gen/java/io/swagger/model/HudsonmodelHudsonMasterComputerMonitorData.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/jaxrs-cxf-cdi/generated/src/gen/java/io/swagger/model/HudsonmodelHudsonMasterComputerexecutors.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/jaxrs-cxf-cdi/generated/src/gen/java/io/swagger/model/HudsonmodelHudsonassignedLabels.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/jaxrs-cxf-cdi/generated/src/gen/java/io/swagger/model/HudsonmodelLabel1.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/jaxrs-cxf-cdi/generated/src/gen/java/io/swagger/model/HudsonmodelListView.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/jaxrs-cxf-cdi/generated/src/gen/java/io/swagger/model/HudsonmodelQueue.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/jaxrs-cxf-cdi/generated/src/gen/java/io/swagger/model/HudsonmodelQueueBlockedItem.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/jaxrs-cxf-cdi/generated/src/gen/java/io/swagger/model/HudsonmodelQueueLeftItem.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/jaxrs-cxf-cdi/generated/src/gen/java/io/swagger/model/HudsonmodelStringParameterDefinition.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/jaxrs-cxf-cdi/generated/src/gen/java/io/swagger/model/HudsonmodelStringParameterValue.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/jaxrs-cxf-cdi/generated/src/gen/java/io/swagger/model/HudsonnodeMonitorsDiskSpaceMonitorDescriptorDiskSpace.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/jaxrs-cxf-cdi/generated/src/gen/java/io/swagger/model/HudsonnodeMonitorsResponseTimeMonitorData.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/jaxrs-cxf-cdi/generated/src/gen/java/io/swagger/model/HudsonnodeMonitorsSwapSpaceMonitorMemoryUsage2.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/jaxrs-cxf-cdi/generated/src/gen/java/io/swagger/model/HudsonscmEmptyChangeLogSet.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/jaxrs-cxf-cdi/generated/src/gen/java/io/swagger/model/HudsonscmNullSCM.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/jaxrs-cxf-cdi/generated/src/gen/java/io/swagger/model/HudsonsecuritycsrfDefaultCrumbIssuer.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/jaxrs-cxf-cdi/generated/src/gen/java/io/swagger/model/HudsonutilClockDifference.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/jaxrs-cxf-cdi/generated/src/gen/java/io/swagger/model/IojenkinsblueoceanresthalLink.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/jaxrs-cxf-cdi/generated/src/gen/java/io/swagger/model/IojenkinsblueoceanrestimplpipelineBranchImpl.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/jaxrs-cxf-cdi/generated/src/gen/java/io/swagger/model/IojenkinsblueoceanrestimplpipelineBranchImplPermissions.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/jaxrs-cxf-cdi/generated/src/gen/java/io/swagger/model/IojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/jaxrs-cxf-cdi/generated/src/gen/java/io/swagger/model/IojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1Links.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/jaxrs-cxf-cdi/generated/src/gen/java/io/swagger/model/IojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1Map.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/jaxrs-cxf-cdi/generated/src/gen/java/io/swagger/model/IojenkinsblueoceanserviceembeddedrestExtensionClassImpl.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/jaxrs-cxf-cdi/generated/src/gen/java/io/swagger/model/IojenkinsblueoceanserviceembeddedrestExtensionClassImplLinks.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/jaxrs-cxf-cdi/generated/src/gen/java/io/swagger/model/IojenkinsblueoceanserviceembeddedrestPipelineFolderImpl.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/jaxrs-cxf-cdi/generated/src/gen/java/io/swagger/model/IojenkinsblueoceanserviceembeddedrestPipelineImpl.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/jaxrs-cxf-cdi/generated/src/gen/java/io/swagger/model/JenkinsmodelUnlabeledLoadStatistics.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/jaxrs-cxf-cdi/generated/src/gen/java/io/swagger/model/SwaggyjenkinsOrganisation.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/jaxrs-cxf-cdi/generated/src/gen/java/io/swagger/model/SwaggyjenkinsPipeline.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/jaxrs-cxf-cdi/generated/src/gen/java/io/swagger/model/SwaggyjenkinsPipelineLatestRun.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/jaxrs-cxf-cdi/generated/src/gen/java/io/swagger/model/SwaggyjenkinsPipelineLatestRunartifacts.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/jaxrs-cxf-cdi/generated/src/gen/java/io/swagger/model/SwaggyjenkinsUser.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/jaxrs-cxf-cdi/generated/src/main/java/io/swagger/api/impl/ApiApiServiceImpl.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/jaxrs-cxf-cdi/generated/src/gen/java/io/swagger/api/ApiApi.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/jaxrs-cxf-cdi/generated/src/gen/java/io/swagger/api/ApiApiService.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/jaxrs-cxf-cdi/generated/src/main/java/io/swagger/api/impl/BlueApiServiceImpl.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/jaxrs-cxf-cdi/generated/src/gen/java/io/swagger/api/BlueApi.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/jaxrs-cxf-cdi/generated/src/gen/java/io/swagger/api/BlueApiService.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/jaxrs-cxf-cdi/generated/src/main/java/io/swagger/api/impl/ComputerApiServiceImpl.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/jaxrs-cxf-cdi/generated/src/gen/java/io/swagger/api/ComputerApi.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/jaxrs-cxf-cdi/generated/src/gen/java/io/swagger/api/ComputerApiService.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/jaxrs-cxf-cdi/generated/src/main/java/io/swagger/api/impl/CreateItemApiServiceImpl.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/jaxrs-cxf-cdi/generated/src/gen/java/io/swagger/api/CreateItemApi.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/jaxrs-cxf-cdi/generated/src/gen/java/io/swagger/api/CreateItemApiService.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/jaxrs-cxf-cdi/generated/src/main/java/io/swagger/api/impl/CreateViewApiServiceImpl.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/jaxrs-cxf-cdi/generated/src/gen/java/io/swagger/api/CreateViewApi.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/jaxrs-cxf-cdi/generated/src/gen/java/io/swagger/api/CreateViewApiService.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/jaxrs-cxf-cdi/generated/src/main/java/io/swagger/api/impl/CrumbIssuerApiServiceImpl.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/jaxrs-cxf-cdi/generated/src/gen/java/io/swagger/api/CrumbIssuerApi.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/jaxrs-cxf-cdi/generated/src/gen/java/io/swagger/api/CrumbIssuerApiService.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/jaxrs-cxf-cdi/generated/src/main/java/io/swagger/api/impl/JobApiServiceImpl.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/jaxrs-cxf-cdi/generated/src/gen/java/io/swagger/api/JobApi.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/jaxrs-cxf-cdi/generated/src/gen/java/io/swagger/api/JobApiService.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/jaxrs-cxf-cdi/generated/src/main/java/io/swagger/api/impl/QueueApiServiceImpl.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/jaxrs-cxf-cdi/generated/src/gen/java/io/swagger/api/QueueApi.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/jaxrs-cxf-cdi/generated/src/gen/java/io/swagger/api/QueueApiService.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/jaxrs-cxf-cdi/generated/src/main/java/io/swagger/api/impl/ViewApiServiceImpl.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/jaxrs-cxf-cdi/generated/src/gen/java/io/swagger/api/ViewApi.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/jaxrs-cxf-cdi/generated/src/gen/java/io/swagger/api/ViewApiService.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/jaxrs-cxf-cdi/generated/pom.xml
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/jaxrs-cxf-cdi/generated/src/main/java/io/swagger/api/RestApplication.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/jaxrs-cxf-cdi/generated/src/main/webapp/WEB-INF/beans.xml
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/jaxrs-cxf-cdi/generated/.swagger-codegen-ignore
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/jaxrs-cxf-cdi/generated/.swagger-codegen/VERSION

@@ -1,0 +1,75 @@
+[main] ERROR io.swagger.codegen.config.CodegenConfigurator - Unable to deserialize config file: ze-ph/conf.json
+java.io.FileNotFoundException: ze-ph/conf.json (No such file or directory)
+	at java.io.FileInputStream.open0(Native Method)
+	at java.io.FileInputStream.open(FileInputStream.java:195)
+	at java.io.FileInputStream.<init>(FileInputStream.java:138)
+	at com.fasterxml.jackson.core.JsonFactory.createParser(JsonFactory.java:756)
+	at com.fasterxml.jackson.databind.ObjectMapper.readValue(ObjectMapper.java:2740)
+	at io.swagger.codegen.config.CodegenConfigurator.fromFile(CodegenConfigurator.java:507)
+	at io.swagger.codegen.cmd.Generate.run(Generate.java:135)
+	at io.swagger.codegen.SwaggerCodegen.main(SwaggerCodegen.java:43)
+[main] INFO io.swagger.parser.Swagger20Parser - reading from spec/jenkins-api.yml
+[main] WARN io.swagger.codegen.ignore.CodegenIgnoreProcessor - Output directory does not exist, or is inaccessible. No file (.swager-codegen-ignore) will be evaluated.
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/ze-ph/generated/src/App/DTO/GetClassesByClass.php
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/ze-ph/generated/src/App/DTO/GetMultibranchPipeline.php
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/ze-ph/generated/src/App/DTO/GetOrganisations.php
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/ze-ph/generated/src/App/DTO/GetPipelineBranches.php
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/ze-ph/generated/src/App/DTO/GetPipelineBranchesitem.php
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/ze-ph/generated/src/App/DTO/GetPipelineBranchesitemLatestRun.php
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/ze-ph/generated/src/App/DTO/GetPipelineBranchesitemPullRequest.php
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/ze-ph/generated/src/App/DTO/GetPipelineBranchesitemPullRequestLinks.php
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/ze-ph/generated/src/App/DTO/GetPipelines.php
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/ze-ph/generated/src/App/DTO/GetUsers.php
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/ze-ph/generated/src/App/DTO/HudsonmodelAllView.php
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/ze-ph/generated/src/App/DTO/HudsonmodelCauseAction.php
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/ze-ph/generated/src/App/DTO/HudsonmodelCauseUserIdCause.php
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/ze-ph/generated/src/App/DTO/HudsonmodelComputerSet.php
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/ze-ph/generated/src/App/DTO/HudsonmodelFreeStyleBuild.php
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/ze-ph/generated/src/App/DTO/HudsonmodelFreeStyleProject.php
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/ze-ph/generated/src/App/DTO/HudsonmodelFreeStyleProjectactions.php
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/ze-ph/generated/src/App/DTO/HudsonmodelFreeStyleProjecthealthReport.php
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/ze-ph/generated/src/App/DTO/HudsonmodelHudson.php
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/ze-ph/generated/src/App/DTO/HudsonmodelHudsonMasterComputer.php
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/ze-ph/generated/src/App/DTO/HudsonmodelHudsonMasterComputerMonitorData.php
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/ze-ph/generated/src/App/DTO/HudsonmodelHudsonMasterComputerexecutors.php
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/ze-ph/generated/src/App/DTO/HudsonmodelHudsonassignedLabels.php
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/ze-ph/generated/src/App/DTO/HudsonmodelLabel1.php
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/ze-ph/generated/src/App/DTO/HudsonmodelListView.php
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/ze-ph/generated/src/App/DTO/HudsonmodelQueue.php
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/ze-ph/generated/src/App/DTO/HudsonmodelQueueBlockedItem.php
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/ze-ph/generated/src/App/DTO/HudsonmodelQueueLeftItem.php
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/ze-ph/generated/src/App/DTO/HudsonmodelStringParameterDefinition.php
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/ze-ph/generated/src/App/DTO/HudsonmodelStringParameterValue.php
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/ze-ph/generated/src/App/DTO/HudsonnodeMonitorsDiskSpaceMonitorDescriptorDiskSpace.php
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/ze-ph/generated/src/App/DTO/HudsonnodeMonitorsResponseTimeMonitorData.php
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/ze-ph/generated/src/App/DTO/HudsonnodeMonitorsSwapSpaceMonitorMemoryUsage2.php
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/ze-ph/generated/src/App/DTO/HudsonscmEmptyChangeLogSet.php
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/ze-ph/generated/src/App/DTO/HudsonscmNullSCM.php
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/ze-ph/generated/src/App/DTO/HudsonsecuritycsrfDefaultCrumbIssuer.php
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/ze-ph/generated/src/App/DTO/HudsonutilClockDifference.php
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/ze-ph/generated/src/App/DTO/IojenkinsblueoceanresthalLink.php
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/ze-ph/generated/src/App/DTO/IojenkinsblueoceanrestimplpipelineBranchImpl.php
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/ze-ph/generated/src/App/DTO/IojenkinsblueoceanrestimplpipelineBranchImplPermissions.php
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/ze-ph/generated/src/App/DTO/IojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1.php
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/ze-ph/generated/src/App/DTO/IojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1Links.php
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/ze-ph/generated/src/App/DTO/IojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1Map.php
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/ze-ph/generated/src/App/DTO/IojenkinsblueoceanserviceembeddedrestExtensionClassImpl.php
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/ze-ph/generated/src/App/DTO/IojenkinsblueoceanserviceembeddedrestExtensionClassImplLinks.php
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/ze-ph/generated/src/App/DTO/IojenkinsblueoceanserviceembeddedrestPipelineFolderImpl.php
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/ze-ph/generated/src/App/DTO/IojenkinsblueoceanserviceembeddedrestPipelineImpl.php
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/ze-ph/generated/src/App/DTO/JenkinsmodelUnlabeledLoadStatistics.php
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/ze-ph/generated/src/App/DTO/SwaggyjenkinsOrganisation.php
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/ze-ph/generated/src/App/DTO/SwaggyjenkinsPipeline.php
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/ze-ph/generated/src/App/DTO/SwaggyjenkinsPipelineLatestRun.php
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/ze-ph/generated/src/App/DTO/SwaggyjenkinsPipelineLatestRunartifacts.php
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/ze-ph/generated/src/App/DTO/SwaggyjenkinsUser.php
+Exception in thread "main" java.lang.RuntimeException: Could not generate api file for '/api/json'
+	at io.swagger.codegen.DefaultGenerator.generateApis(DefaultGenerator.java:495)
+	at io.swagger.codegen.DefaultGenerator.generate(DefaultGenerator.java:700)
+	at io.swagger.codegen.cmd.Generate.run(Generate.java:241)
+	at io.swagger.codegen.SwaggerCodegen.main(SwaggerCodegen.java:43)
+Caused by: java.lang.RuntimeException: Unknown HTTP Method HEAD not allowed
+	at io.swagger.codegen.languages.ZendExpressivePathHandlerServerCodegen.postProcessOperations(ZendExpressivePathHandlerServerCodegen.java:150)
+	at io.swagger.codegen.DefaultGenerator.processOperations(DefaultGenerator.java:919)
+	at io.swagger.codegen.DefaultGenerator.generateApis(DefaultGenerator.java:412)
+	... 3 more

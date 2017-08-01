@@ -1,0 +1,134 @@
+[main] ERROR io.swagger.codegen.config.CodegenConfigurator - Unable to deserialize config file: tizen/conf.json
+java.io.FileNotFoundException: tizen/conf.json (No such file or directory)
+	at java.io.FileInputStream.open0(Native Method)
+	at java.io.FileInputStream.open(FileInputStream.java:195)
+	at java.io.FileInputStream.<init>(FileInputStream.java:138)
+	at com.fasterxml.jackson.core.JsonFactory.createParser(JsonFactory.java:756)
+	at com.fasterxml.jackson.databind.ObjectMapper.readValue(ObjectMapper.java:2740)
+	at io.swagger.codegen.config.CodegenConfigurator.fromFile(CodegenConfigurator.java:507)
+	at io.swagger.codegen.cmd.Generate.run(Generate.java:135)
+	at io.swagger.codegen.SwaggerCodegen.main(SwaggerCodegen.java:43)
+[main] INFO io.swagger.parser.Swagger20Parser - reading from _spec/jenkins-api.yml
+[main] WARN io.swagger.codegen.ignore.CodegenIgnoreProcessor - Output directory does not exist, or is inaccessible. No file (.swager-codegen-ignore) will be evaluated.
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/tizen/generated/client/SamiGetClassesByClass.h
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/tizen/generated/client/SamiGetClassesByClass.cpp
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/tizen/generated/client/SamiGetMultibranchPipeline.h
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/tizen/generated/client/SamiGetMultibranchPipeline.cpp
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/tizen/generated/client/SamiGetOrganisations.h
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/tizen/generated/client/SamiGetOrganisations.cpp
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/tizen/generated/client/SamiGetPipelineBranches.h
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/tizen/generated/client/SamiGetPipelineBranches.cpp
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/tizen/generated/client/SamiGetPipelineBranchesitem.h
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/tizen/generated/client/SamiGetPipelineBranchesitem.cpp
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/tizen/generated/client/SamiGetPipelineBranchesitem_latestRun.h
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/tizen/generated/client/SamiGetPipelineBranchesitem_latestRun.cpp
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/tizen/generated/client/SamiGetPipelineBranchesitem_pullRequest.h
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/tizen/generated/client/SamiGetPipelineBranchesitem_pullRequest.cpp
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/tizen/generated/client/SamiGetPipelineBranchesitem_pullRequest__links.h
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/tizen/generated/client/SamiGetPipelineBranchesitem_pullRequest__links.cpp
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/tizen/generated/client/SamiGetPipelines.h
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/tizen/generated/client/SamiGetPipelines.cpp
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/tizen/generated/client/SamiGetUsers.h
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/tizen/generated/client/SamiGetUsers.cpp
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/tizen/generated/client/SamiHudsonmodelAllView.h
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/tizen/generated/client/SamiHudsonmodelAllView.cpp
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/tizen/generated/client/SamiHudsonmodelCauseAction.h
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/tizen/generated/client/SamiHudsonmodelCauseAction.cpp
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/tizen/generated/client/SamiHudsonmodelCauseUserIdCause.h
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/tizen/generated/client/SamiHudsonmodelCauseUserIdCause.cpp
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/tizen/generated/client/SamiHudsonmodelComputerSet.h
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/tizen/generated/client/SamiHudsonmodelComputerSet.cpp
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/tizen/generated/client/SamiHudsonmodelFreeStyleBuild.h
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/tizen/generated/client/SamiHudsonmodelFreeStyleBuild.cpp
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/tizen/generated/client/SamiHudsonmodelFreeStyleProject.h
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/tizen/generated/client/SamiHudsonmodelFreeStyleProject.cpp
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/tizen/generated/client/SamiHudsonmodelFreeStyleProjectactions.h
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/tizen/generated/client/SamiHudsonmodelFreeStyleProjectactions.cpp
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/tizen/generated/client/SamiHudsonmodelFreeStyleProjecthealthReport.h
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/tizen/generated/client/SamiHudsonmodelFreeStyleProjecthealthReport.cpp
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/tizen/generated/client/SamiHudsonmodelHudson.h
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/tizen/generated/client/SamiHudsonmodelHudson.cpp
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/tizen/generated/client/SamiHudsonmodelHudsonMasterComputer.h
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/tizen/generated/client/SamiHudsonmodelHudsonMasterComputer.cpp
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/tizen/generated/client/SamiHudsonmodelHudsonMasterComputer_monitorData.h
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/tizen/generated/client/SamiHudsonmodelHudsonMasterComputer_monitorData.cpp
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/tizen/generated/client/SamiHudsonmodelHudsonMasterComputerexecutors.h
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/tizen/generated/client/SamiHudsonmodelHudsonMasterComputerexecutors.cpp
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/tizen/generated/client/SamiHudsonmodelHudsonassignedLabels.h
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/tizen/generated/client/SamiHudsonmodelHudsonassignedLabels.cpp
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/tizen/generated/client/SamiHudsonmodelLabel1.h
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/tizen/generated/client/SamiHudsonmodelLabel1.cpp
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/tizen/generated/client/SamiHudsonmodelListView.h
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/tizen/generated/client/SamiHudsonmodelListView.cpp
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/tizen/generated/client/SamiHudsonmodelQueue.h
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/tizen/generated/client/SamiHudsonmodelQueue.cpp
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/tizen/generated/client/SamiHudsonmodelQueueBlockedItem.h
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/tizen/generated/client/SamiHudsonmodelQueueBlockedItem.cpp
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/tizen/generated/client/SamiHudsonmodelQueueLeftItem.h
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/tizen/generated/client/SamiHudsonmodelQueueLeftItem.cpp
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/tizen/generated/client/SamiHudsonmodelStringParameterDefinition.h
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/tizen/generated/client/SamiHudsonmodelStringParameterDefinition.cpp
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/tizen/generated/client/SamiHudsonmodelStringParameterValue.h
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/tizen/generated/client/SamiHudsonmodelStringParameterValue.cpp
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/tizen/generated/client/SamiHudsonnode_monitorsDiskSpaceMonitorDescriptorDiskSpace.h
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/tizen/generated/client/SamiHudsonnode_monitorsDiskSpaceMonitorDescriptorDiskSpace.cpp
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/tizen/generated/client/SamiHudsonnode_monitorsResponseTimeMonitorData.h
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/tizen/generated/client/SamiHudsonnode_monitorsResponseTimeMonitorData.cpp
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/tizen/generated/client/SamiHudsonnode_monitorsSwapSpaceMonitorMemoryUsage2.h
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/tizen/generated/client/SamiHudsonnode_monitorsSwapSpaceMonitorMemoryUsage2.cpp
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/tizen/generated/client/SamiHudsonscmEmptyChangeLogSet.h
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/tizen/generated/client/SamiHudsonscmEmptyChangeLogSet.cpp
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/tizen/generated/client/SamiHudsonscmNullSCM.h
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/tizen/generated/client/SamiHudsonscmNullSCM.cpp
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/tizen/generated/client/SamiHudsonsecuritycsrfDefaultCrumbIssuer.h
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/tizen/generated/client/SamiHudsonsecuritycsrfDefaultCrumbIssuer.cpp
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/tizen/generated/client/SamiHudsonutilClockDifference.h
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/tizen/generated/client/SamiHudsonutilClockDifference.cpp
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/tizen/generated/client/SamiIojenkinsblueoceanresthalLink.h
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/tizen/generated/client/SamiIojenkinsblueoceanresthalLink.cpp
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/tizen/generated/client/SamiIojenkinsblueoceanrestimplpipelineBranchImpl.h
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/tizen/generated/client/SamiIojenkinsblueoceanrestimplpipelineBranchImpl.cpp
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/tizen/generated/client/SamiIojenkinsblueoceanrestimplpipelineBranchImpl_permissions.h
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/tizen/generated/client/SamiIojenkinsblueoceanrestimplpipelineBranchImpl_permissions.cpp
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/tizen/generated/client/SamiIojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1.h
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/tizen/generated/client/SamiIojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1.cpp
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/tizen/generated/client/SamiIojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1__links.h
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/tizen/generated/client/SamiIojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1__links.cpp
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/tizen/generated/client/SamiIojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1_map.h
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/tizen/generated/client/SamiIojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1_map.cpp
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/tizen/generated/client/SamiIojenkinsblueoceanserviceembeddedrestExtensionClassImpl.h
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/tizen/generated/client/SamiIojenkinsblueoceanserviceembeddedrestExtensionClassImpl.cpp
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/tizen/generated/client/SamiIojenkinsblueoceanserviceembeddedrestExtensionClassImpl__links.h
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/tizen/generated/client/SamiIojenkinsblueoceanserviceembeddedrestExtensionClassImpl__links.cpp
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/tizen/generated/client/SamiIojenkinsblueoceanserviceembeddedrestPipelineFolderImpl.h
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/tizen/generated/client/SamiIojenkinsblueoceanserviceembeddedrestPipelineFolderImpl.cpp
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/tizen/generated/client/SamiIojenkinsblueoceanserviceembeddedrestPipelineImpl.h
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/tizen/generated/client/SamiIojenkinsblueoceanserviceembeddedrestPipelineImpl.cpp
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/tizen/generated/client/SamiJenkinsmodelUnlabeledLoadStatistics.h
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/tizen/generated/client/SamiJenkinsmodelUnlabeledLoadStatistics.cpp
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/tizen/generated/client/SamiSwaggyjenkinsOrganisation.h
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/tizen/generated/client/SamiSwaggyjenkinsOrganisation.cpp
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/tizen/generated/client/SamiSwaggyjenkinsPipeline.h
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/tizen/generated/client/SamiSwaggyjenkinsPipeline.cpp
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/tizen/generated/client/SamiSwaggyjenkinsPipeline_latestRun.h
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/tizen/generated/client/SamiSwaggyjenkinsPipeline_latestRun.cpp
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/tizen/generated/client/SamiSwaggyjenkinsPipeline_latestRunartifacts.h
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/tizen/generated/client/SamiSwaggyjenkinsPipeline_latestRunartifacts.cpp
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/tizen/generated/client/SamiSwaggyjenkinsUser.h
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/tizen/generated/client/SamiSwaggyjenkinsUser.cpp
+[main] WARN io.swagger.codegen.DefaultCodegen - generated unique operationId `search_0`
+[main] WARN io.swagger.codegen.DefaultCodegen - generated unique operationId `getPipelineFolderByOrg_0`
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/tizen/generated/client/SamiBlueOceanApi.cpp
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/tizen/generated/client/SamiBlueOceanApi.h
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/tizen/generated/client/SamiRemoteAccessApi.cpp
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/tizen/generated/client/SamiRemoteAccessApi.h
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/tizen/generated/client/SamiModelFactory.h
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/tizen/generated/client/SamiHelpers.h
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/tizen/generated/client/SamiHelpers.cpp
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/tizen/generated/client/SamiApiClient.h
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/tizen/generated/client/SamiApiClient.cpp
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/tizen/generated/client/SamiObject.h
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/tizen/generated/client/SamiError.h
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/tizen/generated/client/SamiError.cpp
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/tizen/generated/.swagger-codegen-ignore
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /Users/cliffano/dev/workspace/swaggy-jenkins/tizen/generated/.swagger-codegen/VERSION
