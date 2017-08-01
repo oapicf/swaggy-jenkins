@@ -1,4 +1,2 @@
-*/log/*
-npm-debug.log
-node_modules
-test/
+clients/*/log/*
+clients/javascript/generated/node_modules
