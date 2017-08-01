@@ -14,14 +14,14 @@ init:
 define build
 	swaggy-c \
     $(if $(SWAGGER_CODEGEN_CLI_JAR), --jar $(SWAGGER_CODEGEN_CLI_JAR)) \
-		--api-spec _spec/jenkins-api.yml \
+		--api-spec spec/jenkins-api.yml \
 		--conf-file clients/{lang}/conf.json \
 		--out-dir clients/{lang}/generated/ \
 		$(1)
 endef
 
 lint:
-	swagger validate _spec/*.yml
+	swagger validate spec/*.yml
 
 build-docker:
 	docker run \
