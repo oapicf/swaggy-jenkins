@@ -14,6 +14,7 @@ Published packages
 | Language | Package | Status |
 |-|-|-|
 | JavaScript | [swaggy_jenkins]((http://www.npmjs.com/package/swaggy_jenkins)) | [![Published Version](https://img.shields.io/npm/v/swaggy_jenkins.svg)](http://www.npmjs.com/package/swaggy_jenkins) |
+| Python | [swaggyjenkins]((https://pypi.python.org/pypi/swaggyjenkins)) | [![Published Version](https://img.shields.io/pypi/v/swaggyjenkins.svg)](https://pypi.python.org/pypi/swaggyjenkins) |
 
 Usage
 -----
