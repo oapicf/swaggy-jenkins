@@ -559,7 +559,7 @@ paths:
         - blueOcean
   /blue/rest/organizations/:
     get:
-      description: Retrieve all organisations details
+      description: Retrieve all organizations details
       operationId: getOrganisations
       produces:
         - application/json
@@ -574,9 +574,9 @@ paths:
           $ref: "#/responses/forbidden"
       tags:
         - blueOcean
-  /blue/rest/organizations/{organisation}:
+  /blue/rest/organizations/{organization}:
     get:
-      description: Retrieve organisation details
+      description: Retrieve organization details
       operationId: getOrganisation
       produces:
         - application/json
@@ -595,9 +595,9 @@ paths:
           $ref: "#/responses/pipelineNotFound"
       tags:
         - blueOcean
-  /blue/rest/organizations/{organisation}/pipelines/:
+  /blue/rest/organizations/{organization}/pipelines/:
     get:
-      description: Retrieve all pipelines details for an organisation
+      description: Retrieve all pipelines details for an organization
       operationId: getPipelinesByOrg
       produces:
         - application/json
@@ -614,9 +614,9 @@ paths:
           $ref: "#/responses/forbidden"
       tags:
         - blueOcean
-  /blue/rest/organizations/{organisation}/pipelines/{pipeline}:
+  /blue/rest/organizations/{organization}/pipelines/{pipeline}:
     get:
-      description: Retrieve pipeline details for an organisation
+      description: Retrieve pipeline details for an organization
       operationId: getPipelineByOrg
       produces:
         - application/json
@@ -636,9 +636,9 @@ paths:
           $ref: "#/responses/pipelineNotFound"
       tags:
         - blueOcean
-  /blue/rest/organizations/{organisation}/pipelines/{pipeline}/activities:
+  /blue/rest/organizations/{organization}/pipelines/{pipeline}/activities:
     get:
-      description: Retrieve all activities details for an organisation pipeline
+      description: Retrieve all activities details for an organization pipeline
       operationId: getPipelineActivitiesByOrg
       produces:
         - application/json
@@ -656,9 +656,9 @@ paths:
           $ref: "#/responses/forbidden"
       tags:
         - blueOcean
-  /blue/rest/organizations/{organisation}/pipelines/{pipeline}/branches:
+  /blue/rest/organizations/{organization}/pipelines/{pipeline}/branches:
     get:
-      description: Retrieve all branches details for an organisation pipeline
+      description: Retrieve all branches details for an organization pipeline
       operationId: getPipelineBranchesByOrg
       produces:
         - application/json
@@ -676,9 +676,9 @@ paths:
           $ref: "#/responses/forbidden"
       tags:
         - blueOcean
-  /blue/rest/organizations/{organisation}/pipelines/{pipeline}/branches/{branch}/:
+  /blue/rest/organizations/{organization}/pipelines/{pipeline}/branches/{branch}/:
     get:
-      description: Retrieve branch details for an organisation pipeline
+      description: Retrieve branch details for an organization pipeline
       operationId: getPipelineBranchByOrg
       produces:
         - application/json
@@ -697,9 +697,9 @@ paths:
           $ref: "#/responses/forbidden"
       tags:
         - blueOcean
-  /blue/rest/organizations/{organisation}/pipelines/{pipeline}/branches/{branch}/runs/{run}:
+  /blue/rest/organizations/{organization}/pipelines/{pipeline}/branches/{branch}/runs/{run}:
     get:
-      description: Retrieve branch run details for an organisation pipeline
+      description: Retrieve branch run details for an organization pipeline
       operationId: getPipelineBranchRunByOrg
       produces:
         - application/json
@@ -719,9 +719,9 @@ paths:
           $ref: "#/responses/forbidden"
       tags:
         - blueOcean
-  /blue/rest/organizations/{organisation}/pipelines/{folder}/:
+  /blue/rest/organizations/{organization}/pipelines/{folder}/:
     get:
-      description: Retrieve pipeline folder for an organisation
+      description: Retrieve pipeline folder for an organization
       operationId: getPipelineFolderByOrg
       produces:
         - application/json
@@ -739,9 +739,9 @@ paths:
           $ref: "#/responses/forbidden"
       tags:
         - blueOcean
-  /blue/rest/organizations/{organisation}/pipelines/{folder}/pipelines/{pipeline}:
+  /blue/rest/organizations/{organization}/pipelines/{folder}/pipelines/{pipeline}:
     get:
-      description: Retrieve pipeline details for an organisation folder
+      description: Retrieve pipeline details for an organization folder
       operationId: getPipelineFolderByOrg
       produces:
         - application/json
@@ -760,7 +760,7 @@ paths:
           $ref: "#/responses/forbidden"
       tags:
         - blueOcean
-  /blue/rest/organizations/{organisation}/pipelines/{pipeline}/favorite:
+  /blue/rest/organizations/{organization}/pipelines/{pipeline}/favorite:
     put:
       description: Favorite/unfavorite a pipeline
       operationId: putPipelineFavoriteByOrg
@@ -790,9 +790,9 @@ paths:
           $ref: "#/responses/forbidden"
       tags:
         - blueOcean
-  /blue/rest/organizations/{organisation}/pipelines/{pipeline}/queue:
+  /blue/rest/organizations/{organization}/pipelines/{pipeline}/queue:
     get:
-      description: Retrieve queue details for an organisation pipeline
+      description: Retrieve queue details for an organization pipeline
       operationId: getPipelineQueueByOrg
       produces:
         - application/json
@@ -810,9 +810,9 @@ paths:
           $ref: "#/responses/forbidden"
       tags:
         - blueOcean
-  /blue/rest/organizations/{organisation}/pipelines/{pipeline}/queue/{queue}:
+  /blue/rest/organizations/{organization}/pipelines/{pipeline}/queue/{queue}:
     delete:
-      description: Delete queue item from an organisation pipeline queue
+      description: Delete queue item from an organization pipeline queue
       operationId: deletePipelineQueueItemByOrg
       produces:
         - application/json
@@ -829,9 +829,9 @@ paths:
           $ref: "#/responses/forbidden"
       tags:
         - blueOcean
-  /blue/rest/organizations/{organisation}/pipelines/{pipeline}/runs:
+  /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs:
     get:
-      description: Retrieve all runs details for an organisation pipeline
+      description: Retrieve all runs details for an organization pipeline
       operationId: getPipelineRunsByOrg
       produces:
         - application/json
@@ -850,7 +850,7 @@ paths:
       tags:
         - blueOcean
     post:
-      description: Start a build for an organisation pipeline
+      description: Start a build for an organization pipeline
       operationId: postPipelineRunsByOrg
       produces:
         - application/json
@@ -868,9 +868,9 @@ paths:
           $ref: "#/responses/forbidden"
       tags:
         - blueOcean
-  /blue/rest/organizations/{organisation}/pipelines/{pipeline}/runs/{run}:
+  /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}:
     get:
-      description: Retrieve run details for an organisation pipeline
+      description: Retrieve run details for an organization pipeline
       operationId: getPipelineRunByOrg
       produces:
         - application/json
@@ -889,9 +889,9 @@ paths:
           $ref: "#/responses/forbidden"
       tags:
         - blueOcean
-  /blue/rest/organizations/{organisation}/pipelines/{pipeline}/runs/{run}/nodes:
+  /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes:
     get:
-      description: Retrieve run nodes details for an organisation pipeline
+      description: Retrieve run nodes details for an organization pipeline
       operationId: getPipelineRunNodesByOrg
       produces:
         - application/json
@@ -910,9 +910,9 @@ paths:
           $ref: "#/responses/forbidden"
       tags:
         - blueOcean
-  /blue/rest/organizations/{organisation}/pipelines/{pipeline}/runs/{run}/nodes/{node}:
+  /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}:
     get:
-      description: Retrieve run node details for an organisation pipeline
+      description: Retrieve run node details for an organization pipeline
       operationId: getPipelineRunNodeByOrg
       produces:
         - application/json
@@ -932,9 +932,9 @@ paths:
           $ref: "#/responses/forbidden"
       tags:
         - blueOcean
-  /blue/rest/organizations/{organisation}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps:
+  /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps:
     get:
-      description: Retrieve run node steps details for an organisation pipeline
+      description: Retrieve run node steps details for an organization pipeline
       operationId: getPipelineRunNodeStepsByOrg
       produces:
         - application/json
@@ -954,9 +954,9 @@ paths:
           $ref: "#/responses/forbidden"
       tags:
         - blueOcean
-  /blue/rest/organizations/{organisation}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps/{step}:
+  /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps/{step}:
     get:
-      description: Retrieve run node details for an organisation pipeline
+      description: Retrieve run node details for an organization pipeline
       operationId: getPipelineRunNodeStepByOrg
       produces:
         - application/json
@@ -977,7 +977,7 @@ paths:
           $ref: "#/responses/forbidden"
       tags:
         - blueOcean
-  /blue/rest/organizations/{organisation}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps/{step}/log:
+  /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps/{step}/log:
     get:
       description: Get log for a pipeline run node step
       operationId: getPipelineRunNodeStepLogByOrg
@@ -1000,7 +1000,7 @@ paths:
           $ref: "#/responses/forbidden"
       tags:
         - blueOcean
-  /blue/rest/organizations/{organisation}/pipelines/{pipeline}/runs/{run}/log:
+  /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/log:
     get:
       description: Get log for a pipeline run
       operationId: getPipelineRunLogByOrg
@@ -1031,9 +1031,9 @@ paths:
           $ref: "#/responses/forbidden"
       tags:
         - blueOcean
-  /blue/rest/organizations/{organisation}/pipelines/{pipeline}/runs/{run}/replay:
+  /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/replay:
     post:
-      description: Replay an organisation pipeline run
+      description: Replay an organization pipeline run
       operationId: postPipelineRunByOrg
       produces:
         - application/json
@@ -1052,9 +1052,9 @@ paths:
           $ref: "#/responses/forbidden"
       tags:
         - blueOcean
-  /blue/rest/organizations/{organisation}/pipelines/{pipeline}/runs/{run}/stop:
+  /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/stop:
     put:
-      description: Stop a build of an organisation pipeline
+      description: Stop a build of an organization pipeline
       operationId: putPipelineRunByOrg
       produces:
         - application/json
@@ -1083,9 +1083,9 @@ paths:
           $ref: "#/responses/forbidden"
       tags:
         - blueOcean
-  /blue/rest/organizations/{organisation}/scm/{scm}:
+  /blue/rest/organizations/{organization}/scm/{scm}:
     get:
-      description: Retrieve SCM details for an organisation
+      description: Retrieve SCM details for an organization
       operationId: getSCM
       produces:
         - application/json
@@ -1103,9 +1103,9 @@ paths:
           $ref: "#/responses/forbidden"
       tags:
         - blueOcean
-  /blue/rest/organizations/{organisation}/scm/{scm}/organizations:
+  /blue/rest/organizations/{organization}/scm/{scm}/organizations:
     get:
-      description: Retrieve SCM organisations details for an organisation
+      description: Retrieve SCM organizations details for an organization
       operationId: getSCMOrganisations
       produces:
         - application/json
@@ -1119,7 +1119,7 @@ paths:
           type: string
       responses:
         200:
-          description: Successfully retrieved SCM organisations details
+          description: Successfully retrieved SCM organizations details
           schema:
             $ref: "#/definitions/getScmOrganisations"
         401:
@@ -1128,9 +1128,9 @@ paths:
           $ref: "#/responses/forbidden"
       tags:
         - blueOcean
-  /blue/rest/organizations/{organisation}/scm/{scm}/organizations/{scmOrganisation}/repositories:
+  /blue/rest/organizations/{organization}/scm/{scm}/organizations/{scmOrganisation}/repositories:
     get:
-      description: Retrieve SCM organisation repositories details for an organisation
+      description: Retrieve SCM organization repositories details for an organization
       operationId: getSCMOrganisationRepositories
       produces:
         - application/json
@@ -1155,7 +1155,7 @@ paths:
           type: integer
       responses:
         200:
-          description: Successfully retrieved SCM organisation repositories details
+          description: Successfully retrieved SCM organization repositories details
           schema:
             $ref: "#/definitions/getScmOrganisations"
         401:
@@ -1164,9 +1164,9 @@ paths:
           $ref: "#/responses/forbidden"
       tags:
         - blueOcean
-  /blue/rest/organizations/{organisation}/scm/{scm}/organizations/{scmOrganisation}/repositories/{repository}:
+  /blue/rest/organizations/{organization}/scm/{scm}/organizations/{scmOrganisation}/repositories/{repository}:
     get:
-      description: Retrieve SCM organisation repository details for an organisation
+      description: Retrieve SCM organization repository details for an organization
       operationId: getSCMOrganisationRepository
       produces:
         - application/json
@@ -1182,7 +1182,7 @@ paths:
           type: string
       responses:
         200:
-          description: Successfully retrieved SCM organisations details
+          description: Successfully retrieved SCM organizations details
           schema:
             $ref: "#/definitions/getScmOrganisations"
         401:
@@ -1191,9 +1191,9 @@ paths:
           $ref: "#/responses/forbidden"
       tags:
         - blueOcean
-  /blue/rest/organizations/{organisation}/user/:
+  /blue/rest/organizations/{organization}/user/:
     get:
-      description: Retrieve authenticated user details for an organisation
+      description: Retrieve authenticated user details for an organization
       operationId: getAuthenticatedUser
       produces:
         - application/json
@@ -1210,9 +1210,9 @@ paths:
           $ref: "#/responses/forbidden"
       tags:
         - blueOcean
-  /blue/rest/organizations/{organisation}/users/:
+  /blue/rest/organizations/{organization}/users/:
     get:
-      description: Retrieve users details for an organisation
+      description: Retrieve users details for an organization
       operationId: getUsers
       produces:
         - application/json
@@ -1229,9 +1229,9 @@ paths:
           $ref: "#/responses/forbidden"
       tags:
         - blueOcean
-  /blue/rest/organizations/{organisation}/users/{user}:
+  /blue/rest/organizations/{organization}/users/{user}:
     get:
-      description: Retrieve user details for an organisation
+      description: Retrieve user details for an organization
       operationId: getUser
       produces:
         - application/json
@@ -1251,7 +1251,7 @@ paths:
         - blueOcean
   /blue/rest/users/{user}/favorites:
     get:
-      description: Retrieve user favorites details for an organisation
+      description: Retrieve user favorites details for an organization
       operationId: getUserFavorites
       produces:
         - application/json
@@ -1288,8 +1288,8 @@ parameters:
     required: false
     type: string
   orgName:
-    name: organisation
-    description: Name of the organisation
+    name: organization
+    description: Name of the organization
     in: path
     required: true
     type: string
@@ -1337,7 +1337,7 @@ parameters:
     type: string
   scmOrgName:
     name: scmOrganisation
-    description: Name of the SCM organisation
+    description: Name of the SCM organization
     in: path
     required: true
     type: string
