@@ -17,6 +17,7 @@ define build
 		--api-spec spec/jenkins-api.yml \
 		--conf-file clients/{lang}/conf.json \
 		--out-dir clients/{lang}/generated/ \
+		--log-dir clients/{lang}/log/ \
 		$(1)
 endef
 
