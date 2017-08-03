@@ -46,7 +46,7 @@ paths:
         200:
           description: Successfully retrieved Jenkins details
           schema:
-            $ref: "#/definitions/hudsonmodelHudson"
+            $ref: "#/definitions/Hudson"
         401:
           $ref: "#/responses/unauthorized"
         403:
@@ -71,7 +71,7 @@ paths:
         200:
           description: Successfully retrieved computer details
           schema:
-            $ref: "#/definitions/hudsonmodelComputerSet"
+            $ref: "#/definitions/ComputerSet"
         401:
           $ref: "#/responses/unauthorized"
         403:
@@ -174,7 +174,7 @@ paths:
         200:
           description: Successfully retrieved CSRF protection token
           schema:
-            $ref: "#/definitions/hudsonsecuritycsrfDefaultCrumbIssuer"
+            $ref: "#/definitions/DefaultCrumbIssuer"
         401:
           $ref: "#/responses/unauthorized"
         403:
@@ -195,7 +195,7 @@ paths:
         200:
           description: Successfully retrieved job details
           schema:
-            $ref: "#/definitions/hudsonmodelFreeStyleProject"
+            $ref: "#/definitions/FreeStyleProject"
         401:
           $ref: "#/responses/unauthorized"
         403:
@@ -360,7 +360,7 @@ paths:
         200:
           description: Successfully retrieved job's last build details
           schema:
-            $ref: "#/definitions/hudsonmodelFreeStyleBuild"
+            $ref: "#/definitions/FreeStyleBuild"
         401:
           $ref: "#/responses/unauthorized"
         403:
@@ -430,7 +430,7 @@ paths:
         200:
           description: Successfully retrieved queue details
           schema:
-            $ref: "#/definitions/hudsonmodelQueue"
+            $ref: "#/definitions/Queue"
         401:
           $ref: "#/responses/unauthorized"
         403:
@@ -455,7 +455,7 @@ paths:
         200:
           description: Successfully retrieved queued item details
           schema:
-            $ref: "#/definitions/hudsonmodelQueue"
+            $ref: "#/definitions/Queue"
         401:
           $ref: "#/responses/unauthorized"
         403:
@@ -476,7 +476,7 @@ paths:
         200:
           description: Successfully retrieved view details
           schema:
-            $ref: "#/definitions/hudsonmodelListView"
+            $ref: "#/definitions/ListView"
         401:
           $ref: "#/responses/unauthorized"
         403:
@@ -621,7 +621,7 @@ paths:
         200:
           description: Successfully retrieved pipelines details
           schema:
-            $ref: "#/definitions/getOrganisations"
+            $ref: "#/definitions/Organisations"
         401:
           $ref: "#/responses/unauthorized"
         403:
@@ -642,7 +642,7 @@ paths:
         200:
           description: Successfully retrieved pipeline details
           schema:
-            $ref: "#/definitions/swaggyjenkinsOrganisation"
+            $ref: "#/definitions/Organisation"
         401:
           $ref: "#/responses/unauthorized"
         403:
@@ -665,7 +665,7 @@ paths:
         200:
           description: Successfully retrieved pipelines details
           schema:
-            $ref: "#/definitions/getPipelines"
+            $ref: "#/definitions/Pipelines"
         401:
           $ref: "#/responses/unauthorized"
         403:
@@ -687,7 +687,7 @@ paths:
         200:
           description: Successfully retrieved pipeline details
           schema:
-            $ref: "#/definitions/swaggyjenkinsPipeline"
+            $ref: "#/definitions/Pipeline"
         401:
           $ref: "#/responses/unauthorized"
         403:
@@ -711,7 +711,7 @@ paths:
         200:
           description: Successfully retrieved all activities details
           schema:
-            $ref: "#/definitions/getPipelineActivities"
+            $ref: "#/definitions/PipelineActivities"
         401:
           $ref: "#/responses/unauthorized"
         403:
@@ -733,7 +733,7 @@ paths:
         200:
           description: Successfully retrieved all branches details
           schema:
-            $ref: "#/definitions/getMultibranchPipeline"
+            $ref: "#/definitions/MultibranchPipeline"
         401:
           $ref: "#/responses/unauthorized"
         403:
@@ -756,7 +756,7 @@ paths:
         200:
           description: Successfully retrieved branch details
           schema:
-            $ref: "#/definitions/iojenkinsblueoceanrestimplpipelineBranchImpl"
+            $ref: "#/definitions/BranchImpl"
         401:
           $ref: "#/responses/unauthorized"
         403:
@@ -780,7 +780,7 @@ paths:
         200:
           description: Successfully retrieved run details
           schema:
-            $ref: "#/definitions/swaggyjenkinsPipelineRun"
+            $ref: "#/definitions/PipelineRun"
         401:
           $ref: "#/responses/unauthorized"
         403:
@@ -802,7 +802,7 @@ paths:
         200:
           description: Successfully retrieved folder details
           schema:
-            $ref: "#/definitions/iojenkinsblueoceanserviceembeddedrestPipelineFolderImpl"
+            $ref: "#/definitions/PipelineFolderImpl"
         401:
           $ref: "#/responses/unauthorized"
         403:
@@ -825,7 +825,7 @@ paths:
         200:
           description: Successfully retrieved pipeline details
           schema:
-            $ref: "#/definitions/iojenkinsblueoceanserviceembeddedrestPipelineImpl"
+            $ref: "#/definitions/PipelineImpl"
         401:
           $ref: "#/responses/unauthorized"
         403:
@@ -857,7 +857,7 @@ paths:
         200:
           description: Successfully favorited/unfavorited a pipeline
           schema:
-            $ref: "#/definitions/iojenkinsblueoceanserviceembeddedrestFavoriteImpl"
+            $ref: "#/definitions/FavoriteImpl"
         401:
           $ref: "#/responses/unauthorized"
         403:
@@ -879,7 +879,7 @@ paths:
         200:
           description: Successfully retrieved queue details
           schema:
-            $ref: "#/definitions/getPipelineQueue"
+            $ref: "#/definitions/PipelineQueue"
         401:
           $ref: "#/responses/unauthorized"
         403:
@@ -922,7 +922,7 @@ paths:
         200:
           description: Successfully retrieved runs details
           schema:
-            $ref: "#/definitions/getPipelineRuns"
+            $ref: "#/definitions/PipelineRuns"
         401:
           $ref: "#/responses/unauthorized"
         403:
@@ -943,7 +943,7 @@ paths:
         200:
           description: Successfully started a build
           schema:
-            $ref: "#/definitions/iojenkinsblueoceanserviceembeddedrestQueueItemImpl"
+            $ref: "#/definitions/QueueItemImpl"
         401:
           $ref: "#/responses/unauthorized"
         403:
@@ -966,7 +966,7 @@ paths:
         200:
           description: Successfully retrieved run details
           schema:
-            $ref: "#/definitions/swaggyjenkinsPipelineRun"
+            $ref: "#/definitions/PipelineRun"
         401:
           $ref: "#/responses/unauthorized"
         403:
@@ -989,7 +989,7 @@ paths:
         200:
           description: Successfully retrieved run nodes details
           schema:
-            $ref: "#/definitions/getPipelineRunNodes"
+            $ref: "#/definitions/PipelineRunNodes"
         401:
           $ref: "#/responses/unauthorized"
         403:
@@ -1013,7 +1013,7 @@ paths:
         200:
           description: Successfully retrieved run node details
           schema:
-            $ref: "#/definitions/swaggyjenkinsPipelineRunNode"
+            $ref: "#/definitions/PipelineRunNode"
         401:
           $ref: "#/responses/unauthorized"
         403:
@@ -1037,7 +1037,7 @@ paths:
         200:
           description: Successfully retrieved run node steps details
           schema:
-            $ref: "#/definitions/getPipelineRunNodeSteps"
+            $ref: "#/definitions/PipelineRunNodeSteps"
         401:
           $ref: "#/responses/unauthorized"
         403:
@@ -1062,7 +1062,7 @@ paths:
         200:
           description: Successfully retrieved run node step details
           schema:
-            $ref: "#/definitions/iojenkinsblueoceanrestimplpipelinePipelineStepImpl"
+            $ref: "#/definitions/PipelineStepImpl"
         401:
           $ref: "#/responses/unauthorized"
         403:
@@ -1143,7 +1143,7 @@ paths:
         200:
           description: Successfully replayed a pipeline run
           schema:
-            $ref: "#/definitions/iojenkinsblueoceanserviceembeddedrestQueueItemImpl"
+            $ref: "#/definitions/QueueItemImpl"
         401:
           $ref: "#/responses/unauthorized"
         403:
@@ -1176,7 +1176,7 @@ paths:
         200:
           description: Successfully stopped a build
           schema:
-            $ref: "#/definitions/swaggyjenkinsPipelineRun"
+            $ref: "#/definitions/PipelineRun"
         401:
           $ref: "#/responses/unauthorized"
         403:
@@ -1198,7 +1198,7 @@ paths:
         200:
           description: Successfully retrieved SCM details
           schema:
-            $ref: "#/definitions/iojenkinsblueoceanblueocean_github_pipelineGithubScm"
+            $ref: "#/definitions/GithubScm"
         401:
           $ref: "#/responses/unauthorized"
         403:
@@ -1225,7 +1225,7 @@ paths:
         200:
           description: Successfully retrieved SCM organizations details
           schema:
-            $ref: "#/definitions/getScmOrganisations"
+            $ref: "#/definitions/ScmOrganisations"
         401:
           $ref: "#/responses/unauthorized"
         403:
@@ -1263,7 +1263,7 @@ paths:
         200:
           description: Successfully retrieved SCM organization repositories details
           schema:
-            $ref: "#/definitions/getScmOrganisations"
+            $ref: "#/definitions/ScmOrganisations"
         401:
           $ref: "#/responses/unauthorized"
         403:
@@ -1292,7 +1292,7 @@ paths:
         200:
           description: Successfully retrieved SCM organizations details
           schema:
-            $ref: "#/definitions/getScmOrganisations"
+            $ref: "#/definitions/ScmOrganisations"
         401:
           $ref: "#/responses/unauthorized"
         403:
@@ -1313,7 +1313,7 @@ paths:
         200:
           description: Successfully retrieved authenticated user details
           schema:
-            $ref: "#/definitions/swaggyjenkinsUser"
+            $ref: "#/definitions/User"
         401:
           $ref: "#/responses/unauthorized"
         403:
@@ -1334,7 +1334,7 @@ paths:
         200:
           description: Successfully retrieved users details
           schema:
-            $ref: "#/definitions/swaggyjenkinsUser"
+            $ref: "#/definitions/User"
         401:
           $ref: "#/responses/unauthorized"
         403:
@@ -1356,7 +1356,7 @@ paths:
         200:
           description: Successfully retrieved users details
           schema:
-            $ref: "#/definitions/swaggyjenkinsUser"
+            $ref: "#/definitions/User"
         401:
           $ref: "#/responses/unauthorized"
         403:
@@ -1377,7 +1377,7 @@ paths:
         200:
           description: Successfully retrieved users favorites details
           schema:
-            $ref: "#/definitions/getUserFavorites"
+            $ref: "#/definitions/UserFavorites"
         401:
           $ref: "#/responses/unauthorized"
         403:
@@ -1503,7 +1503,7 @@ definitions:
   # Remote Access API  definitions
   # Generated using swaggy-jenkins-cli
   ########################################
-  hudsonmodelFreeStyleBuild:
+  FreeStyleBuild:
     type: object
     properties:
       _class:
@@ -1515,7 +1515,7 @@ definitions:
       actions:
         type: array
         items:
-          $ref: '#/definitions/hudsonmodelCauseAction'
+          $ref: '#/definitions/CauseAction'
       building:
         type: boolean
       description:
@@ -1543,12 +1543,12 @@ definitions:
       builtOn:
         type: string
       changeSet:
-        $ref: '#/definitions/hudsonscmEmptyChangeLogSet'
-  hudsonmodelHudsonMasterComputerexecutors:
+        $ref: '#/definitions/EmptyChangeLogSet'
+  HudsonMasterComputerexecutors:
     type: object
     properties:
       currentExecutable:
-        $ref: '#/definitions/hudsonmodelFreeStyleBuild'
+        $ref: '#/definitions/FreeStyleBuild'
       idle:
         type: boolean
       likelyStuck:
@@ -1559,12 +1559,12 @@ definitions:
         type: integer
       _class:
         type: string
-  hudsonmodelLabel1:
+  Label1:
     type: object
     properties:
       _class:
         type: string
-  hudsonnode_monitorsSwapSpaceMonitorMemoryUsage2:
+  SwapSpaceMonitorMemoryUsage2:
     type: object
     properties:
       _class:
@@ -1577,7 +1577,7 @@ definitions:
         type: integer
       totalSwapSpace:
         type: integer
-  hudsonnode_monitorsDiskSpaceMonitorDescriptorDiskSpace:
+  DiskSpaceMonitorDescriptorDiskSpace:
     type: object
     properties:
       _class:
@@ -1588,7 +1588,7 @@ definitions:
         type: string
       size:
         type: integer
-  hudsonnode_monitorsResponseTimeMonitorData:
+  ResponseTimeMonitorData:
     type: object
     properties:
       _class:
@@ -1597,31 +1597,31 @@ definitions:
         type: integer
       average:
         type: integer
-  hudsonutilClockDifference:
+  ClockDifference:
     type: object
     properties:
       _class:
         type: string
       diff:
         type: integer
-  hudsonmodelHudsonMasterComputer_monitorData:
+  HudsonMasterComputermonitorData:
     type: object
     properties:
       hudson.node_monitors.SwapSpaceMonitor:
-        $ref: '#/definitions/hudsonnode_monitorsSwapSpaceMonitorMemoryUsage2'
+        $ref: '#/definitions/SwapSpaceMonitorMemoryUsage2'
       hudson.node_monitors.TemporarySpaceMonitor:
-        $ref: '#/definitions/hudsonnode_monitorsDiskSpaceMonitorDescriptorDiskSpace'
+        $ref: '#/definitions/DiskSpaceMonitorDescriptorDiskSpace'
       hudson.node_monitors.DiskSpaceMonitor:
-        $ref: '#/definitions/hudsonnode_monitorsDiskSpaceMonitorDescriptorDiskSpace'
+        $ref: '#/definitions/DiskSpaceMonitorDescriptorDiskSpace'
       hudson.node_monitors.ArchitectureMonitor:
         type: string
       hudson.node_monitors.ResponseTimeMonitor:
-        $ref: '#/definitions/hudsonnode_monitorsResponseTimeMonitorData'
+        $ref: '#/definitions/ResponseTimeMonitorData'
       hudson.node_monitors.ClockMonitor:
-        $ref: '#/definitions/hudsonutilClockDifference'
+        $ref: '#/definitions/ClockDifference'
       _class:
         type: string
-  hudsonmodelHudsonMasterComputer:
+  HudsonMasterComputer:
     type: object
     properties:
       _class:
@@ -1631,7 +1631,7 @@ definitions:
       executors:
         type: array
         items:
-          $ref: '#/definitions/hudsonmodelHudsonMasterComputerexecutors'
+          $ref: '#/definitions/HudsonMasterComputerexecutors'
       icon:
         type: string
       iconClassName:
@@ -1643,11 +1643,11 @@ definitions:
       launchSupported:
         type: boolean
       loadStatistics:
-        $ref: '#/definitions/hudsonmodelLabel1'
+        $ref: '#/definitions/Label1'
       manualLaunchAllowed:
         type: boolean
       monitorData:
-        $ref: '#/definitions/hudsonmodelHudsonMasterComputer_monitorData'
+        $ref: '#/definitions/HudsonMasterComputermonitorData'
       numExecutors:
         type: integer
       offline:
@@ -1658,7 +1658,7 @@ definitions:
         type: string
       temporarilyOffline:
         type: boolean
-  hudsonmodelComputerSet:
+  ComputerSet:
     type: object
     properties:
       _class:
@@ -1668,12 +1668,12 @@ definitions:
       computer:
         type: array
         items:
-          $ref: '#/definitions/hudsonmodelHudsonMasterComputer'
+          $ref: '#/definitions/HudsonMasterComputer'
       displayName:
         type: string
       totalExecutors:
         type: integer
-  hudsonsecuritycsrfDefaultCrumbIssuer:
+  DefaultCrumbIssuer:
     type: object
     properties:
       _class:
@@ -1682,12 +1682,12 @@ definitions:
         type: string
       crumbRequestField:
         type: string
-  hudsonmodelHudsonassignedLabels:
+  HudsonassignedLabels:
     type: object
     properties:
       _class:
         type: string
-  hudsonmodelFreeStyleProject:
+  FreeStyleProject:
     type: object
     properties:
       _class:
@@ -1701,7 +1701,7 @@ definitions:
       actions:
         type: array
         items:
-          $ref: '#/definitions/hudsonmodelFreeStyleProjectactions'
+          $ref: '#/definitions/FreeStyleProjectactions'
       description:
         type: string
       displayName:
@@ -1717,27 +1717,27 @@ definitions:
       builds:
         type: array
         items:
-          $ref: '#/definitions/hudsonmodelFreeStyleBuild'
+          $ref: '#/definitions/FreeStyleBuild'
       firstBuild:
-        $ref: '#/definitions/hudsonmodelFreeStyleBuild'
+        $ref: '#/definitions/FreeStyleBuild'
       healthReport:
         type: array
         items:
-          $ref: '#/definitions/hudsonmodelFreeStyleProjecthealthReport'
+          $ref: '#/definitions/FreeStyleProjecthealthReport'
       inQueue:
         type: boolean
       keepDependencies:
         type: boolean
       lastBuild:
-        $ref: '#/definitions/hudsonmodelFreeStyleBuild'
+        $ref: '#/definitions/FreeStyleBuild'
       lastCompletedBuild:
-        $ref: '#/definitions/hudsonmodelFreeStyleBuild'
+        $ref: '#/definitions/FreeStyleBuild'
       lastFailedBuild:
         type: string
       lastStableBuild:
-        $ref: '#/definitions/hudsonmodelFreeStyleBuild'
+        $ref: '#/definitions/FreeStyleBuild'
       lastSuccessfulBuild:
-        $ref: '#/definitions/hudsonmodelFreeStyleBuild'
+        $ref: '#/definitions/FreeStyleBuild'
       lastUnstableBuild:
         type: string
       lastUnsuccessfulBuild:
@@ -1749,8 +1749,8 @@ definitions:
       concurrentBuild:
         type: boolean
       scm:
-        $ref: '#/definitions/hudsonscmNullSCM'
-  hudsonmodelAllView:
+        $ref: '#/definitions/NullSCM'
+  AllView:
     type: object
     properties:
       _class:
@@ -1759,12 +1759,12 @@ definitions:
         type: string
       url:
         type: string
-  jenkinsmodelUnlabeledLoadStatistics:
+  UnlabeledLoadStatistics:
     type: object
     properties:
       _class:
         type: string
-  hudsonmodelHudson:
+  Hudson:
     type: object
     properties:
       _class:
@@ -1772,7 +1772,7 @@ definitions:
       assignedLabels:
         type: array
         items:
-          $ref: '#/definitions/hudsonmodelHudsonassignedLabels'
+          $ref: '#/definitions/HudsonassignedLabels'
       mode:
         type: string
       nodeDescription:
@@ -1786,15 +1786,15 @@ definitions:
       jobs:
         type: array
         items:
-          $ref: '#/definitions/hudsonmodelFreeStyleProject'
+          $ref: '#/definitions/FreeStyleProject'
       primaryView:
-        $ref: '#/definitions/hudsonmodelAllView'
+        $ref: '#/definitions/AllView'
       quietingDown:
         type: boolean
       slaveAgentPort:
         type: integer
       unlabeledLoad:
-        $ref: '#/definitions/jenkinsmodelUnlabeledLoadStatistics'
+        $ref: '#/definitions/UnlabeledLoadStatistics'
       useCrumbs:
         type: boolean
       useSecurity:
@@ -1802,13 +1802,13 @@ definitions:
       views:
         type: array
         items:
-          $ref: '#/definitions/hudsonmodelAllView'
-  hudsonmodelFreeStyleProjectactions:
+          $ref: '#/definitions/AllView'
+  FreeStyleProjectactions:
     type: object
     properties:
       _class:
         type: string
-  hudsonmodelFreeStyleProjecthealthReport:
+  FreeStyleProjecthealthReport:
     type: object
     properties:
       description:
@@ -1821,12 +1821,12 @@ definitions:
         type: integer
       _class:
         type: string
-  hudsonscmNullSCM:
+  NullSCM:
     type: object
     properties:
       _class:
         type: string
-  hudsonmodelCauseUserIdCause:
+  CauseUserIdCause:
     type: object
     properties:
       _class:
@@ -1837,7 +1837,7 @@ definitions:
         type: string
       userName:
         type: string
-  hudsonmodelCauseAction:
+  CauseAction:
     type: object
     properties:
       _class:
@@ -1845,15 +1845,15 @@ definitions:
       causes:
         type: array
         items:
-          $ref: '#/definitions/hudsonmodelCauseUserIdCause'
-  hudsonscmEmptyChangeLogSet:
+          $ref: '#/definitions/CauseUserIdCause'
+  EmptyChangeLogSet:
     type: object
     properties:
       _class:
         type: string
       kind:
         type: string
-  hudsonmodelQueueBlockedItem:
+  QueueBlockedItem:
     type: object
     properties:
       _class:
@@ -1861,7 +1861,7 @@ definitions:
       actions:
         type: array
         items:
-          $ref: '#/definitions/hudsonmodelCauseAction'
+          $ref: '#/definitions/CauseAction'
       blocked:
         type: boolean
       buildable:
@@ -1875,14 +1875,14 @@ definitions:
       stuck:
         type: boolean
       task:
-        $ref: '#/definitions/hudsonmodelFreeStyleProject'
+        $ref: '#/definitions/FreeStyleProject'
       url:
         type: string
       why:
         type: string
       buildableStartMilliseconds:
         type: integer
-  hudsonmodelQueue:
+  Queue:
     type: object
     properties:
       _class:
@@ -1890,8 +1890,8 @@ definitions:
       items:
         type: array
         items:
-          $ref: '#/definitions/hudsonmodelQueueBlockedItem'
-  hudsonmodelQueueLeftItem:
+          $ref: '#/definitions/QueueBlockedItem'
+  QueueLeftItem:
     type: object
     properties:
       _class:
@@ -1899,7 +1899,7 @@ definitions:
       actions:
         type: array
         items:
-          $ref: '#/definitions/hudsonmodelCauseAction'
+          $ref: '#/definitions/CauseAction'
       blocked:
         type: boolean
       buildable:
@@ -1913,7 +1913,7 @@ definitions:
       stuck:
         type: boolean
       task:
-        $ref: '#/definitions/hudsonmodelFreeStyleProject'
+        $ref: '#/definitions/FreeStyleProject'
       url:
         type: string
       why:
@@ -1921,8 +1921,8 @@ definitions:
       cancelled:
         type: boolean
       executable:
-        $ref: '#/definitions/hudsonmodelFreeStyleBuild'
-  hudsonmodelListView:
+        $ref: '#/definitions/FreeStyleBuild'
+  ListView:
     type: object
     properties:
       _class:
@@ -1932,7 +1932,7 @@ definitions:
       jobs:
         type: array
         items:
-          $ref: '#/definitions/hudsonmodelFreeStyleProject'
+          $ref: '#/definitions/FreeStyleProject'
       name:
         type: string
       url:
@@ -1941,60 +1941,57 @@ definitions:
   # Blue Ocean API definitions
   # Generated using swaggy-jenkins-cli
   ########################################
-  iojenkinsblueoceanresthalLink:
+  Link:
     type: object
     properties:
       _class:
         type: string
       href:
         type: string
-  iojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1__links:
+  ExtensionClassContainerImpl1links:
     type: object
     properties:
       self:
-        $ref: '#/definitions/iojenkinsblueoceanresthalLink'
+        $ref: '#/definitions/Link'
       _class:
         type: string
-  iojenkinsblueoceanserviceembeddedrestExtensionClassImpl__links:
+  ExtensionClassImpllinks:
     type: object
     properties:
       self:
-        $ref: '#/definitions/iojenkinsblueoceanresthalLink'
+        $ref: '#/definitions/Link'
       _class:
         type: string
-  iojenkinsblueoceanserviceembeddedrestExtensionClassImpl:
+  ExtensionClassImpl:
     type: object
     properties:
       _class:
         type: string
       _links:
-        $ref: >-
-          #/definitions/iojenkinsblueoceanserviceembeddedrestExtensionClassImpl__links
+        $ref: '#/definitions/ExtensionClassImpllinks'
       classes:
         type: array
         items:
           type: string
-  iojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1_map:
+  ExtensionClassContainerImpl1map:
     type: object
     properties:
       io.jenkins.blueocean.service.embedded.rest.PipelineImpl:
-        $ref: '#/definitions/iojenkinsblueoceanserviceembeddedrestExtensionClassImpl'
+        $ref: '#/definitions/ExtensionClassImpl'
       io.jenkins.blueocean.service.embedded.rest.MultiBranchPipelineImpl:
-        $ref: '#/definitions/iojenkinsblueoceanserviceembeddedrestExtensionClassImpl'
+        $ref: '#/definitions/ExtensionClassImpl'
       _class:
         type: string
-  iojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1:
+  ExtensionClassContainerImpl1:
     type: object
     properties:
       _class:
         type: string
       _links:
-        $ref: >-
-          #/definitions/iojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1__links
+        $ref: '#/definitions/ExtensionClassContainerImpl1links'
       map:
-        $ref: >-
-          #/definitions/iojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1_map
-  getClassesByClass:
+        $ref: '#/definitions/ExtensionClassContainerImpl1map'
+  ClassesByClass:
     type: object
     properties:
       classes:
@@ -2003,7 +2000,7 @@ definitions:
           type: string
       _class:
         type: string
-  getMultibranchPipeline:
+  MultibranchPipeline:
     type: object
     properties:
       displayName:
@@ -2036,7 +2033,7 @@ definitions:
         type: integer
       _class:
         type: string
-  iojenkinsblueoceanserviceembeddedrestPipelineImpl:
+  PipelineImpl:
     type: object
     properties:
       _class:
@@ -2056,19 +2053,19 @@ definitions:
       weatherScore:
         type: integer
       _links:
-        $ref: '#/definitions/iojenkinsblueoceanserviceembeddedrestPipelineImpl__links'
-  swaggyjenkinsOrganisation:
+        $ref: '#/definitions/PipelineImpllinks'
+  Organisation:
     type: object
     properties:
       _class:
         type: string
       name:
         type: string
-  getOrganisations:
+  Organisations:
     type: array
     items:
-      $ref: '#/definitions/swaggyjenkinsOrganisation'
-  swaggyjenkinsPipeline_latestRunartifacts:
+      $ref: '#/definitions/Organisation'
+  PipelinelatestRunartifacts:
     type: object
     properties:
       name:
@@ -2079,13 +2076,13 @@ definitions:
         type: string
       _class:
         type: string
-  swaggyjenkinsPipeline_latestRun:
+  PipelinelatestRun:
     type: object
     properties:
       artifacts:
         type: array
         items:
-          $ref: '#/definitions/swaggyjenkinsPipeline_latestRunartifacts'
+          $ref: '#/definitions/PipelinelatestRunartifacts'
       durationInMillis:
         type: integer
       estimatedDurationInMillis:
@@ -2114,7 +2111,7 @@ definitions:
         type: string
       _class:
         type: string
-  swaggyjenkinsPipeline:
+  Pipeline:
     type: object
     properties:
       _class:
@@ -2132,8 +2129,8 @@ definitions:
       estimatedDurationInMillis:
         type: integer
       latestRun:
-        $ref: '#/definitions/swaggyjenkinsPipeline_latestRun'
-  swaggyjenkinsPipelineActivityartifacts:
+        $ref: '#/definitions/PipelinelatestRun'
+  PipelineActivityartifacts:
     type: object
     properties:
       name:
@@ -2144,7 +2141,7 @@ definitions:
         type: string
       _class:
         type: string
-  swaggyjenkinsPipelineActivity:
+  PipelineActivity:
     type: object
     properties:
       _class:
@@ -2152,7 +2149,7 @@ definitions:
       artifacts:
         type: array
         items:
-          $ref: '#/definitions/swaggyjenkinsPipelineActivityartifacts'
+          $ref: '#/definitions/PipelineActivityartifacts'
       durationInMillis:
         type: integer
       estimatedDurationInMillis:
@@ -2179,11 +2176,11 @@ definitions:
         type: string
       commitId:
         type: string
-  getPipelineActivities:
+  PipelineActivities:
     type: array
     items:
-      $ref: '#/definitions/swaggyjenkinsPipelineActivity'
-  hudsonmodelStringParameterValue:
+      $ref: '#/definitions/PipelineActivity'
+  StringParameterValue:
     type: object
     properties:
       _class:
@@ -2192,20 +2189,20 @@ definitions:
         type: string
       value:
         type: string
-  hudsonmodelStringParameterDefinition:
+  StringParameterDefinition:
     type: object
     properties:
       _class:
         type: string
       defaultParameterValue:
-        $ref: '#/definitions/hudsonmodelStringParameterValue'
+        $ref: '#/definitions/StringParameterValue'
       description:
         type: string
       name:
         type: string
       type:
         type: string
-  iojenkinsblueoceanrestimplpipelineBranchImpl_permissions:
+  BranchImplpermissions:
     type: object
     properties:
       create:
@@ -2218,7 +2215,7 @@ definitions:
         type: boolean
       _class:
         type: string
-  iojenkinsblueoceanrestimplpipelineBranchImpl:
+  BranchImpl:
     type: object
     properties:
       _class:
@@ -2238,14 +2235,18 @@ definitions:
       parameters:
         type: array
         items:
-          $ref: '#/definitions/hudsonmodelStringParameterDefinition'
+          $ref: '#/definitions/StringParameterDefinition'
       permissions:
-        $ref: '#/definitions/iojenkinsblueoceanrestimplpipelineBranchImpl_permissions'
+        $ref: '#/definitions/BranchImplpermissions'
       weatherScore:
         type: integer
       pullRequest:
         type: string
-  getPipelineBranchesitem_latestRun:
+      _links:
+        $ref: '#/definitions/BranchImpllinks'
+      latestRun:
+        $ref: '#/definitions/PipelineRunImpl'
+  PipelineBranchesitemlatestRun:
     type: object
     properties:
       durationInMillis:
@@ -2276,18 +2277,18 @@ definitions:
         type: string
       _class:
         type: string
-  getPipelineBranchesitem_pullRequest__links:
+  PipelineBranchesitempullRequestlinks:
     type: object
     properties:
       self:
         type: string
       _class:
         type: string
-  getPipelineBranchesitem_pullRequest:
+  PipelineBranchesitempullRequest:
     type: object
     properties:
       _links:
-        $ref: '#/definitions/getPipelineBranchesitem_pullRequest__links'
+        $ref: '#/definitions/PipelineBranchesitempullRequestlinks'
       author:
         type: string
       id:
@@ -2298,7 +2299,7 @@ definitions:
         type: string
       _class:
         type: string
-  getPipelineBranchesitem:
+  PipelineBranchesitem:
     type: object
     properties:
       displayName:
@@ -2310,49 +2311,49 @@ definitions:
       weatherScore:
         type: integer
       latestRun:
-        $ref: '#/definitions/getPipelineBranchesitem_latestRun'
+        $ref: '#/definitions/PipelineBranchesitemlatestRun'
       organization:
         type: string
       pullRequest:
-        $ref: '#/definitions/getPipelineBranchesitem_pullRequest'
+        $ref: '#/definitions/PipelineBranchesitempullRequest'
       totalNumberOfPullRequests:
         type: integer
       _class:
         type: string
-  getPipelineBranches:
+  PipelineBranches:
     type: array
     items:
-      $ref: '#/definitions/getPipelineBranchesitem'
-  iojenkinsblueoceanserviceembeddedrestFavoriteImpl__links:
+      $ref: '#/definitions/PipelineBranchesitem'
+  FavoriteImpllinks:
     type: object
     properties:
       self:
-        $ref: '#/definitions/iojenkinsblueoceanresthalLink'
+        $ref: '#/definitions/Link'
       _class:
         type: string
-  iojenkinsblueoceanserviceembeddedrestPipelineImpl__links:
+  PipelineImpllinks:
     type: object
     properties:
       runs:
-        $ref: '#/definitions/iojenkinsblueoceanresthalLink'
+        $ref: '#/definitions/Link'
       self:
-        $ref: '#/definitions/iojenkinsblueoceanresthalLink'
+        $ref: '#/definitions/Link'
       queue:
-        $ref: '#/definitions/iojenkinsblueoceanresthalLink'
+        $ref: '#/definitions/Link'
       actions:
-        $ref: '#/definitions/iojenkinsblueoceanresthalLink'
+        $ref: '#/definitions/Link'
       _class:
         type: string
-  iojenkinsblueoceanserviceembeddedrestFavoriteImpl:
+  FavoriteImpl:
     type: object
     properties:
       _class:
         type: string
       _links:
-        $ref: '#/definitions/iojenkinsblueoceanserviceembeddedrestFavoriteImpl__links'
+        $ref: '#/definitions/FavoriteImpllinks'
       item:
-        $ref: '#/definitions/iojenkinsblueoceanserviceembeddedrestPipelineImpl'
-  iojenkinsblueoceanserviceembeddedrestPipelineFolderImpl:
+        $ref: '#/definitions/PipelineImpl'
+  PipelineFolderImpl:
     type: object
     properties:
       _class:
@@ -2369,7 +2370,7 @@ definitions:
         type: integer
       numberOfPipelines:
         type: integer
-  iojenkinsblueoceanserviceembeddedrestQueueItemImpl:
+  QueueItemImpl:
     type: object
     properties:
       _class:
@@ -2382,11 +2383,11 @@ definitions:
         type: string
       queuedTime:
         type: integer
-  getPipelineQueue:
+  PipelineQueue:
     type: array
     items:
-      $ref: '#/definitions/iojenkinsblueoceanserviceembeddedrestQueueItemImpl'
-  swaggyjenkinsPipelineRunartifacts:
+      $ref: '#/definitions/QueueItemImpl'
+  PipelineRunartifacts:
     type: object
     properties:
       name:
@@ -2397,7 +2398,7 @@ definitions:
         type: string
       _class:
         type: string
-  swaggyjenkinsPipelineRun:
+  PipelineRun:
     type: object
     properties:
       _class:
@@ -2405,7 +2406,7 @@ definitions:
       artifacts:
         type: array
         items:
-          $ref: '#/definitions/swaggyjenkinsPipelineRunartifacts'
+          $ref: '#/definitions/PipelineRunartifacts'
       durationInMillis:
         type: integer
       estimatedDurationInMillis:
@@ -2432,29 +2433,29 @@ definitions:
         type: string
       commitId:
         type: string
-  iojenkinsblueoceanrestimplpipelinePipelineStepImpl__links:
+  PipelineStepImpllinks:
     type: object
     properties:
       self:
-        $ref: '#/definitions/iojenkinsblueoceanresthalLink'
+        $ref: '#/definitions/Link'
       actions:
-        $ref: '#/definitions/iojenkinsblueoceanresthalLink'
+        $ref: '#/definitions/Link'
       _class:
         type: string
-  iojenkinsblueoceanrestimplpipelineInputStepImpl__links:
+  InputStepImpllinks:
     type: object
     properties:
       self:
-        $ref: '#/definitions/iojenkinsblueoceanresthalLink'
+        $ref: '#/definitions/Link'
       _class:
         type: string
-  iojenkinsblueoceanrestimplpipelineInputStepImpl:
+  InputStepImpl:
     type: object
     properties:
       _class:
         type: string
       _links:
-        $ref: '#/definitions/iojenkinsblueoceanrestimplpipelineInputStepImpl__links'
+        $ref: '#/definitions/InputStepImpllinks'
       id:
         type: string
       message:
@@ -2464,16 +2465,16 @@ definitions:
       parameters:
         type: array
         items:
-          $ref: '#/definitions/hudsonmodelStringParameterDefinition'
+          $ref: '#/definitions/StringParameterDefinition'
       submitter:
         type: string
-  iojenkinsblueoceanrestimplpipelinePipelineStepImpl:
+  PipelineStepImpl:
     type: object
     properties:
       _class:
         type: string
       _links:
-        $ref: '#/definitions/iojenkinsblueoceanrestimplpipelinePipelineStepImpl__links'
+        $ref: '#/definitions/PipelineStepImpllinks'
       displayName:
         type: string
       durationInMillis:
@@ -2481,25 +2482,25 @@ definitions:
       id:
         type: string
       input:
-        $ref: '#/definitions/iojenkinsblueoceanrestimplpipelineInputStepImpl'
+        $ref: '#/definitions/InputStepImpl'
       result:
         type: string
       startTime:
         type: string
       state:
         type: string
-  getPipelineRunNodeSteps:
+  PipelineRunNodeSteps:
     type: array
     items:
-      $ref: '#/definitions/iojenkinsblueoceanrestimplpipelinePipelineStepImpl'
-  swaggyjenkinsPipelineRunNodeedges:
+      $ref: '#/definitions/PipelineStepImpl'
+  PipelineRunNodeedges:
     type: object
     properties:
       id:
         type: string
       _class:
         type: string
-  swaggyjenkinsPipelineRunNode:
+  PipelineRunNode:
     type: object
     properties:
       _class:
@@ -2511,7 +2512,7 @@ definitions:
       edges:
         type: array
         items:
-          $ref: '#/definitions/swaggyjenkinsPipelineRunNodeedges'
+          $ref: '#/definitions/PipelineRunNodeedges'
       id:
         type: string
       result:
@@ -2520,11 +2521,11 @@ definitions:
         type: string
       state:
         type: string
-  getPipelineRunNodes:
+  PipelineRunNodes:
     type: array
     items:
-      $ref: '#/definitions/swaggyjenkinsPipelineRunNode'
-  iojenkinsblueoceanrestmodelGenericResource:
+      $ref: '#/definitions/PipelineRunNode'
+  GenericResource:
     type: object
     properties:
       _class:
@@ -2539,40 +2540,39 @@ definitions:
         type: string
       startTime:
         type: string
-  getPipelineRunSteps:
+  PipelineRunSteps:
     type: array
     items:
-      $ref: '#/definitions/iojenkinsblueoceanrestmodelGenericResource'
-  getPipelineRuns:
+      $ref: '#/definitions/GenericResource'
+  PipelineRuns:
     type: array
     items:
-      $ref: '#/definitions/swaggyjenkinsPipelineRun'
-  getPipelines:
+      $ref: '#/definitions/PipelineRun'
+  Pipelines:
     type: array
     items:
-      $ref: '#/definitions/swaggyjenkinsPipeline'
-  iojenkinsblueoceanblueocean_github_pipelineGithubScm__links:
+      $ref: '#/definitions/Pipeline'
+  GithubScmlinks:
     type: object
     properties:
       self:
-        $ref: '#/definitions/iojenkinsblueoceanresthalLink'
+        $ref: '#/definitions/Link'
       _class:
         type: string
-  iojenkinsblueoceanblueocean_github_pipelineGithubScm:
+  GithubScm:
     type: object
     properties:
       _class:
         type: string
       _links:
-        $ref: >-
-          #/definitions/iojenkinsblueoceanblueocean_github_pipelineGithubScm__links
+        $ref: '#/definitions/GithubScmlinks'
       credentialId:
         type: string
       id:
         type: string
       uri:
         type: string
-  iojenkinsblueoceanblueocean_github_pipelineGithubContent:
+  GithubContent:
     type: object
     properties:
       name:
@@ -2591,35 +2591,35 @@ definitions:
         type: string
       base64Data:
         type: string
-  iojenkinsblueoceanblueocean_github_pipelineGithubFile:
+  GithubFile:
     type: object
     properties:
       content:
-        $ref: '#/definitions/iojenkinsblueoceanblueocean_github_pipelineGithubContent'
+        $ref: '#/definitions/GithubContent'
       _class:
         type: string
-  iojenkinsblueoceanblueocean_github_pipelineGithubRespositoryContainer__links:
+  GithubRespositoryContainerlinks:
     type: object
     properties:
       self:
-        $ref: '#/definitions/iojenkinsblueoceanresthalLink'
+        $ref: '#/definitions/Link'
       _class:
         type: string
-  iojenkinsblueoceanblueocean_github_pipelineGithubRepositories__links:
+  GithubRepositorieslinks:
     type: object
     properties:
       self:
-        $ref: '#/definitions/iojenkinsblueoceanresthalLink'
+        $ref: '#/definitions/Link'
       _class:
         type: string
-  iojenkinsblueoceanblueocean_github_pipelineGithubRepository__links:
+  GithubRepositorylinks:
     type: object
     properties:
       self:
-        $ref: '#/definitions/iojenkinsblueoceanresthalLink'
+        $ref: '#/definitions/Link'
       _class:
         type: string
-  iojenkinsblueoceanblueocean_github_pipelineGithubRepository_permissions:
+  GithubRepositorypermissions:
     type: object
     properties:
       admin:
@@ -2630,14 +2630,13 @@ definitions:
         type: boolean
       _class:
         type: string
-  iojenkinsblueoceanblueocean_github_pipelineGithubRepository:
+  GithubRepository:
     type: object
     properties:
       _class:
         type: string
       _links:
-        $ref: >-
-          #/definitions/iojenkinsblueoceanblueocean_github_pipelineGithubRepository__links
+        $ref: '#/definitions/GithubRepositorylinks'
       defaultBranch:
         type: string
       description:
@@ -2645,69 +2644,62 @@ definitions:
       name:
         type: string
       permissions:
-        $ref: >-
-          #/definitions/iojenkinsblueoceanblueocean_github_pipelineGithubRepository_permissions
+        $ref: '#/definitions/GithubRepositorypermissions'
       private:
         type: boolean
       fullName:
         type: string
-  iojenkinsblueoceanblueocean_github_pipelineGithubRepositories:
+  GithubRepositories:
     type: object
     properties:
       _class:
         type: string
       _links:
-        $ref: >-
-          #/definitions/iojenkinsblueoceanblueocean_github_pipelineGithubRepositories__links
+        $ref: '#/definitions/GithubRepositorieslinks'
       items:
         type: array
         items:
-          $ref: >-
-            #/definitions/iojenkinsblueoceanblueocean_github_pipelineGithubRepository
+          $ref: '#/definitions/GithubRepository'
       lastPage:
         type: integer
       nextPage:
         type: integer
       pageSize:
         type: integer
-  iojenkinsblueoceanblueocean_github_pipelineGithubRespositoryContainer:
+  GithubRespositoryContainer:
     type: object
     properties:
       _class:
         type: string
       _links:
-        $ref: >-
-          #/definitions/iojenkinsblueoceanblueocean_github_pipelineGithubRespositoryContainer__links
+        $ref: '#/definitions/GithubRespositoryContainerlinks'
       repositories:
-        $ref: >-
-          #/definitions/iojenkinsblueoceanblueocean_github_pipelineGithubRepositories
-  iojenkinsblueoceanblueocean_github_pipelineGithubOrganization__links:
+        $ref: '#/definitions/GithubRepositories'
+  GithubOrganizationlinks:
     type: object
     properties:
       repositories:
-        $ref: '#/definitions/iojenkinsblueoceanresthalLink'
+        $ref: '#/definitions/Link'
       self:
-        $ref: '#/definitions/iojenkinsblueoceanresthalLink'
+        $ref: '#/definitions/Link'
       _class:
         type: string
-  iojenkinsblueoceanblueocean_github_pipelineGithubOrganization:
+  GithubOrganization:
     type: object
     properties:
       _class:
         type: string
       _links:
-        $ref: >-
-          #/definitions/iojenkinsblueoceanblueocean_github_pipelineGithubOrganization__links
+        $ref: '#/definitions/GithubOrganizationlinks'
       jenkinsOrganizationPipeline:
         type: boolean
       name:
         type: string
-  getScmOrganisations:
+  ScmOrganisations:
     type: array
     items:
-      $ref: >-
-        #/definitions/iojenkinsblueoceanblueocean_github_pipelineGithubOrganization
-  swaggyjenkinsUser:
+      $ref: '#/definitions/GithubOrganization'
+  User:
     type: object
     properties:
       _class:
@@ -2720,42 +2712,41 @@ definitions:
         type: string
       name:
         type: string
-  iojenkinsblueoceanserviceembeddedrestBranchImpl__links:
+  BranchImpllinks:
     type: object
     properties:
       self:
-        $ref: '#/definitions/iojenkinsblueoceanresthalLink'
+        $ref: '#/definitions/Link'
       actions:
-        $ref: '#/definitions/iojenkinsblueoceanresthalLink'
+        $ref: '#/definitions/Link'
       runs:
-        $ref: '#/definitions/iojenkinsblueoceanresthalLink'
+        $ref: '#/definitions/Link'
       queue:
-        $ref: '#/definitions/iojenkinsblueoceanresthalLink'
+        $ref: '#/definitions/Link'
       _class:
         type: string
-  iojenkinsblueoceanserviceembeddedrestPipelineRunImpl__links:
+  PipelineRunImpllinks:
     type: object
     properties:
       nodes:
-        $ref: '#/definitions/iojenkinsblueoceanresthalLink'
+        $ref: '#/definitions/Link'
       log:
-        $ref: '#/definitions/iojenkinsblueoceanresthalLink'
+        $ref: '#/definitions/Link'
       self:
-        $ref: '#/definitions/iojenkinsblueoceanresthalLink'
+        $ref: '#/definitions/Link'
       actions:
-        $ref: '#/definitions/iojenkinsblueoceanresthalLink'
+        $ref: '#/definitions/Link'
       steps:
-        $ref: '#/definitions/iojenkinsblueoceanresthalLink'
+        $ref: '#/definitions/Link'
       _class:
         type: string
-  iojenkinsblueoceanserviceembeddedrestPipelineRunImpl:
+  PipelineRunImpl:
     type: object
     properties:
       _class:
         type: string
       _links:
-        $ref: >-
-          #/definitions/iojenkinsblueoceanserviceembeddedrestPipelineRunImpl__links
+        $ref: '#/definitions/PipelineRunImpllinks'
       durationInMillis:
         type: integer
       enQueueTime:
@@ -2782,34 +2773,11 @@ definitions:
         type: string
       commitId:
         type: string
-  iojenkinsblueoceanserviceembeddedrestBranchImpl:
-    type: object
-    properties:
-      _class:
-        type: string
-      _links:
-        $ref: '#/definitions/iojenkinsblueoceanserviceembeddedrestBranchImpl__links'
-      displayName:
-        type: string
-      estimatedDurationInMillis:
-        type: integer
-      fullName:
-        type: string
-      latestRun:
-        $ref: '#/definitions/iojenkinsblueoceanserviceembeddedrestPipelineRunImpl'
-      name:
-        type: string
-      organization:
-        type: string
-      weatherScore:
-        type: integer
-      pullRequest:
-        type: string
-  getUserFavorites:
+  UserFavorites:
     type: array
     items:
-      $ref: '#/definitions/iojenkinsblueoceanserviceembeddedrestFavoriteImpl'
-  getUsers:
+      $ref: '#/definitions/FavoriteImpl'
+  Users:
     type: array
     items:
-      $ref: '#/definitions/swaggyjenkinsUser'
+      $ref: '#/definitions/User'
