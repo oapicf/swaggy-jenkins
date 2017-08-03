@@ -814,7 +814,7 @@ paths:
   /blue/rest/organizations/{organization}/pipelines/{folder}/pipelines/{pipeline}:
     get:
       description: Retrieve pipeline details for an organization folder
-      operationId: getPipelineFolderByOrg
+      operationId: getPipelineFolderPipelineByOrg
       produces:
         - application/json
       parameters:
