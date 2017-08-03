@@ -55,12 +55,18 @@ paths:
         - jenkins_auth: []
       tags:
         - remoteAccess
-  /computer/api/json?depth=1:
+  /computer/api/json:
     get:
       description: Retrieve computer details
       operationId: getComputer
       produces:
         - application/json
+      parameters:
+        - name: depth
+          description: Recursion depth in response model
+          in: query
+          required: true
+          type: integer
       responses:
         200:
           description: Successfully retrieved computer details
