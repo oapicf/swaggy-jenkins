@@ -21,10 +21,12 @@ namespace IO.Swagger..Modules
         /// <param name="service">Service handling requests</param>
         public RemoteAccessModule(RemoteAccessService service) : base("/")
         { 
-            Get["/computer/api/json/depth=1"] = parameters =>
+            Get["/computer/api/json"] = parameters =>
             {
+                var depth = Parameters.ValueOf<int?>(parameters, Context.Request, "depth", ParameterType.Query);
+                Preconditions.IsNotNull(depth, "Required parameter: 'depth' is missing at 'GetComputer'");
                 
-                return service.GetComputer(Context);
+                return service.GetComputer(Context, depth);
             };
 
             Get["/crumbIssuer/api/json"] = parameters =>
@@ -228,30 +230,31 @@ namespace IO.Swagger..Modules
         /// Retrieve computer details
         /// </summary>
         /// <param name="context">Context of request</param>
-        /// <returns>HudsonmodelComputerSet</returns>
-        HudsonmodelComputerSet GetComputer(NancyContext context);
+        /// <param name="depth">Recursion depth in response model</param>
+        /// <returns>ComputerSet</returns>
+        ComputerSet GetComputer(NancyContext context, int? depth);
 
         /// <summary>
         /// Retrieve CSRF protection token
         /// </summary>
         /// <param name="context">Context of request</param>
-        /// <returns>HudsonsecuritycsrfDefaultCrumbIssuer</returns>
-        HudsonsecuritycsrfDefaultCrumbIssuer GetCrumb(NancyContext context);
+        /// <returns>DefaultCrumbIssuer</returns>
+        DefaultCrumbIssuer GetCrumb(NancyContext context);
 
         /// <summary>
         /// Retrieve Jenkins details
         /// </summary>
         /// <param name="context">Context of request</param>
-        /// <returns>HudsonmodelHudson</returns>
-        HudsonmodelHudson GetJenkins(NancyContext context);
+        /// <returns>Hudson</returns>
+        Hudson GetJenkins(NancyContext context);
 
         /// <summary>
         /// Retrieve job details
         /// </summary>
         /// <param name="context">Context of request</param>
         /// <param name="name">Name of the job</param>
-        /// <returns>HudsonmodelFreeStyleProject</returns>
-        HudsonmodelFreeStyleProject GetJob(NancyContext context, string name);
+        /// <returns>FreeStyleProject</returns>
+        FreeStyleProject GetJob(NancyContext context, string name);
 
         /// <summary>
         /// Retrieve job configuration
@@ -266,8 +269,8 @@ namespace IO.Swagger..Modules
         /// </summary>
         /// <param name="context">Context of request</param>
         /// <param name="name">Name of the job</param>
-        /// <returns>HudsonmodelFreeStyleBuild</returns>
-        HudsonmodelFreeStyleBuild GetJobLastBuild(NancyContext context, string name);
+        /// <returns>FreeStyleBuild</returns>
+        FreeStyleBuild GetJobLastBuild(NancyContext context, string name);
 
         /// <summary>
         /// Retrieve job&#39;s build progressive text output
@@ -283,24 +286,24 @@ namespace IO.Swagger..Modules
         /// Retrieve queue details
         /// </summary>
         /// <param name="context">Context of request</param>
-        /// <returns>HudsonmodelQueue</returns>
-        HudsonmodelQueue GetQueue(NancyContext context);
+        /// <returns>Queue</returns>
+        Queue GetQueue(NancyContext context);
 
         /// <summary>
         /// Retrieve queued item details
         /// </summary>
         /// <param name="context">Context of request</param>
         /// <param name="number">Queue number</param>
-        /// <returns>HudsonmodelQueue</returns>
-        HudsonmodelQueue GetQueueItem(NancyContext context, string number);
+        /// <returns>Queue</returns>
+        Queue GetQueueItem(NancyContext context, string number);
 
         /// <summary>
         /// Retrieve view details
         /// </summary>
         /// <param name="context">Context of request</param>
         /// <param name="name">Name of the view</param>
-        /// <returns>HudsonmodelListView</returns>
-        HudsonmodelListView GetView(NancyContext context, string name);
+        /// <returns>ListView</returns>
+        ListView GetView(NancyContext context, string name);
 
         /// <summary>
         /// Retrieve view configuration
@@ -414,22 +417,22 @@ namespace IO.Swagger..Modules
     /// </summary>
     public abstract class AbstractRemoteAccessService: RemoteAccessService
     {
-        public virtual HudsonmodelComputerSet GetComputer(NancyContext context)
+        public virtual ComputerSet GetComputer(NancyContext context, int? depth)
         {
-            return GetComputer();
+            return GetComputer(depth);
         }
 
-        public virtual HudsonsecuritycsrfDefaultCrumbIssuer GetCrumb(NancyContext context)
+        public virtual DefaultCrumbIssuer GetCrumb(NancyContext context)
         {
             return GetCrumb();
         }
 
-        public virtual HudsonmodelHudson GetJenkins(NancyContext context)
+        public virtual Hudson GetJenkins(NancyContext context)
         {
             return GetJenkins();
         }
 
-        public virtual HudsonmodelFreeStyleProject GetJob(NancyContext context, string name)
+        public virtual FreeStyleProject GetJob(NancyContext context, string name)
         {
             return GetJob(name);
         }
@@ -439,7 +442,7 @@ namespace IO.Swagger..Modules
             return GetJobConfig(name);
         }
 
-        public virtual HudsonmodelFreeStyleBuild GetJobLastBuild(NancyContext context, string name)
+        public virtual FreeStyleBuild GetJobLastBuild(NancyContext context, string name)
         {
             return GetJobLastBuild(name);
         }
@@ -449,17 +452,17 @@ namespace IO.Swagger..Modules
             GetJobProgressiveText(name, number, start);
         }
 
-        public virtual HudsonmodelQueue GetQueue(NancyContext context)
+        public virtual Queue GetQueue(NancyContext context)
         {
             return GetQueue();
         }
 
-        public virtual HudsonmodelQueue GetQueueItem(NancyContext context, string number)
+        public virtual Queue GetQueueItem(NancyContext context, string number)
         {
             return GetQueueItem(number);
         }
 
-        public virtual HudsonmodelListView GetView(NancyContext context, string name)
+        public virtual ListView GetView(NancyContext context, string name)
         {
             return GetView(name);
         }
@@ -519,25 +522,25 @@ namespace IO.Swagger..Modules
             PostViewConfig(name, body, jenkinsCrumb);
         }
 
-        protected abstract HudsonmodelComputerSet GetComputer();
+        protected abstract ComputerSet GetComputer(int? depth);
 
-        protected abstract HudsonsecuritycsrfDefaultCrumbIssuer GetCrumb();
+        protected abstract DefaultCrumbIssuer GetCrumb();
 
-        protected abstract HudsonmodelHudson GetJenkins();
+        protected abstract Hudson GetJenkins();
 
-        protected abstract HudsonmodelFreeStyleProject GetJob(string name);
+        protected abstract FreeStyleProject GetJob(string name);
 
         protected abstract string GetJobConfig(string name);
 
-        protected abstract HudsonmodelFreeStyleBuild GetJobLastBuild(string name);
+        protected abstract FreeStyleBuild GetJobLastBuild(string name);
 
         protected abstract void GetJobProgressiveText(string name, string number, string start);
 
-        protected abstract HudsonmodelQueue GetQueue();
+        protected abstract Queue GetQueue();
 
-        protected abstract HudsonmodelQueue GetQueueItem(string number);
+        protected abstract Queue GetQueueItem(string number);
 
-        protected abstract HudsonmodelListView GetView(string name);
+        protected abstract ListView GetView(string name);
 
         protected abstract string GetViewConfig(string name);
 

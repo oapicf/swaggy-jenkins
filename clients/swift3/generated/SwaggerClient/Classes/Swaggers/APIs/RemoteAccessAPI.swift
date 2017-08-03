@@ -9,134 +9,375 @@ import Foundation
 import Alamofire
 
 
-
 open class RemoteAccessAPI: APIBase {
     /**
-
+     - parameter depth: (query) Recursion depth in response model 
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func getComputer(completion: @escaping ((_ data: HudsonmodelComputerSet?,_ error: Error?) -> Void)) {
-        getComputerWithRequestBuilder().execute { (response, error) -> Void in
-            completion(response?.body, error);
+    open class func getComputer(depth: Int32, completion: @escaping ((_ data: ComputerSet?, _ error: ErrorResponse?) -> Void)) {
+        getComputerWithRequestBuilder(depth: depth).execute { (response, error) -> Void in
+            completion(response?.body, error)
         }
     }
 
 
     /**
-     - GET /computer/api/json?depth=1
+     - GET /computer/api/json
      - Retrieve computer details
+     - BASIC:
+       - type: basic
+       - name: jenkins_auth
      - examples: [{contentType=application/json, example={
   "busyExecutors" : 0,
-  "totalExecutors" : 4,
+  "totalExecutors" : 1,
   "computer" : [ {
     "idle" : true,
-    "displayName" : "aeiou",
+    "displayName" : "displayName",
     "jnlpAgent" : true,
     "launchSupported" : true,
-    "icon" : "aeiou",
-    "iconClassName" : "aeiou",
-    "offlineCause" : "aeiou",
+    "icon" : "icon",
+    "iconClassName" : "iconClassName",
+    "offlineCause" : "offlineCause",
     "temporarilyOffline" : true,
     "numExecutors" : 1,
     "offline" : true,
     "executors" : [ {
       "currentExecutable" : {
         "queueId" : 5,
-        "displayName" : "aeiou",
+        "displayName" : "displayName",
         "keepLog" : true,
-        "description" : "aeiou",
-        "fullDisplayName" : "aeiou",
+        "description" : "description",
+        "fullDisplayName" : "fullDisplayName",
         "estimatedDuration" : 5,
-        "url" : "aeiou",
+        "url" : "url",
         "building" : true,
         "changeSet" : {
-          "kind" : "aeiou",
-          "_class" : "aeiou"
+          "kind" : "kind",
+          "_class" : "_class"
         },
         "duration" : 1,
-        "result" : "aeiou",
+        "result" : "result",
         "number" : 6,
-        "executor" : "aeiou",
-        "builtOn" : "aeiou",
-        "_class" : "aeiou",
-        "id" : "aeiou",
+        "executor" : "executor",
+        "builtOn" : "builtOn",
+        "_class" : "_class",
+        "id" : "id",
         "actions" : [ {
           "causes" : [ {
-            "_class" : "aeiou",
-            "shortDescription" : "aeiou",
-            "userName" : "aeiou",
-            "userId" : "aeiou"
+            "_class" : "_class",
+            "shortDescription" : "shortDescription",
+            "userName" : "userName",
+            "userId" : "userId"
+          }, {
+            "_class" : "_class",
+            "shortDescription" : "shortDescription",
+            "userName" : "userName",
+            "userId" : "userId"
           } ],
-          "_class" : "aeiou"
+          "_class" : "_class"
+        }, {
+          "causes" : [ {
+            "_class" : "_class",
+            "shortDescription" : "shortDescription",
+            "userName" : "userName",
+            "userId" : "userId"
+          }, {
+            "_class" : "_class",
+            "shortDescription" : "shortDescription",
+            "userName" : "userName",
+            "userId" : "userId"
+          } ],
+          "_class" : "_class"
         } ],
         "timestamp" : 2
       },
-      "number" : 7,
+      "number" : 6,
       "idle" : true,
       "likelyStuck" : true,
-      "progress" : 9,
-      "_class" : "aeiou"
+      "progress" : 1,
+      "_class" : "_class"
+    }, {
+      "currentExecutable" : {
+        "queueId" : 5,
+        "displayName" : "displayName",
+        "keepLog" : true,
+        "description" : "description",
+        "fullDisplayName" : "fullDisplayName",
+        "estimatedDuration" : 5,
+        "url" : "url",
+        "building" : true,
+        "changeSet" : {
+          "kind" : "kind",
+          "_class" : "_class"
+        },
+        "duration" : 1,
+        "result" : "result",
+        "number" : 6,
+        "executor" : "executor",
+        "builtOn" : "builtOn",
+        "_class" : "_class",
+        "id" : "id",
+        "actions" : [ {
+          "causes" : [ {
+            "_class" : "_class",
+            "shortDescription" : "shortDescription",
+            "userName" : "userName",
+            "userId" : "userId"
+          }, {
+            "_class" : "_class",
+            "shortDescription" : "shortDescription",
+            "userName" : "userName",
+            "userId" : "userId"
+          } ],
+          "_class" : "_class"
+        }, {
+          "causes" : [ {
+            "_class" : "_class",
+            "shortDescription" : "shortDescription",
+            "userName" : "userName",
+            "userId" : "userId"
+          }, {
+            "_class" : "_class",
+            "shortDescription" : "shortDescription",
+            "userName" : "userName",
+            "userId" : "userId"
+          } ],
+          "_class" : "_class"
+        } ],
+        "timestamp" : 2
+      },
+      "number" : 6,
+      "idle" : true,
+      "likelyStuck" : true,
+      "progress" : 1,
+      "_class" : "_class"
     } ],
     "monitorData" : {
       "hudson.node_monitors.SwapSpaceMonitor" : {
         "totalSwapSpace" : 7,
-        "availableSwapSpace" : 2,
-        "_class" : "aeiou",
-        "availablePhysicalMemory" : 3,
-        "totalPhysicalMemory" : 4
+        "availableSwapSpace" : 5,
+        "_class" : "_class",
+        "availablePhysicalMemory" : 5,
+        "totalPhysicalMemory" : 2
       },
       "hudson.node_monitors.TemporarySpaceMonitor" : {
-        "path" : "aeiou",
-        "size" : 1,
-        "_class" : "aeiou",
-        "timestamp" : 1
+        "path" : "path",
+        "size" : 3,
+        "_class" : "_class",
+        "timestamp" : 9
       },
-      "hudson.node_monitors.DiskSpaceMonitor" : "",
-      "hudson.node_monitors.ArchitectureMonitor" : "aeiou",
-      "_class" : "aeiou",
+      "hudson.node_monitors.DiskSpaceMonitor" : {
+        "path" : "path",
+        "size" : 3,
+        "_class" : "_class",
+        "timestamp" : 9
+      },
+      "hudson.node_monitors.ArchitectureMonitor" : "hudson.node_monitors.ArchitectureMonitor",
+      "_class" : "_class",
       "hudson.node_monitors.ResponseTimeMonitor" : {
-        "average" : 6,
-        "_class" : "aeiou",
-        "timestamp" : 1
+        "average" : 4,
+        "_class" : "_class",
+        "timestamp" : 2
       },
       "hudson.node_monitors.ClockMonitor" : {
         "diff" : 7,
-        "_class" : "aeiou"
+        "_class" : "_class"
       }
     },
-    "_class" : "aeiou",
+    "_class" : "_class",
     "loadStatistics" : {
-      "_class" : "aeiou"
+      "_class" : "_class"
     },
     "manualLaunchAllowed" : true,
-    "offlineCauseReason" : "aeiou"
+    "offlineCauseReason" : "offlineCauseReason"
+  }, {
+    "idle" : true,
+    "displayName" : "displayName",
+    "jnlpAgent" : true,
+    "launchSupported" : true,
+    "icon" : "icon",
+    "iconClassName" : "iconClassName",
+    "offlineCause" : "offlineCause",
+    "temporarilyOffline" : true,
+    "numExecutors" : 1,
+    "offline" : true,
+    "executors" : [ {
+      "currentExecutable" : {
+        "queueId" : 5,
+        "displayName" : "displayName",
+        "keepLog" : true,
+        "description" : "description",
+        "fullDisplayName" : "fullDisplayName",
+        "estimatedDuration" : 5,
+        "url" : "url",
+        "building" : true,
+        "changeSet" : {
+          "kind" : "kind",
+          "_class" : "_class"
+        },
+        "duration" : 1,
+        "result" : "result",
+        "number" : 6,
+        "executor" : "executor",
+        "builtOn" : "builtOn",
+        "_class" : "_class",
+        "id" : "id",
+        "actions" : [ {
+          "causes" : [ {
+            "_class" : "_class",
+            "shortDescription" : "shortDescription",
+            "userName" : "userName",
+            "userId" : "userId"
+          }, {
+            "_class" : "_class",
+            "shortDescription" : "shortDescription",
+            "userName" : "userName",
+            "userId" : "userId"
+          } ],
+          "_class" : "_class"
+        }, {
+          "causes" : [ {
+            "_class" : "_class",
+            "shortDescription" : "shortDescription",
+            "userName" : "userName",
+            "userId" : "userId"
+          }, {
+            "_class" : "_class",
+            "shortDescription" : "shortDescription",
+            "userName" : "userName",
+            "userId" : "userId"
+          } ],
+          "_class" : "_class"
+        } ],
+        "timestamp" : 2
+      },
+      "number" : 6,
+      "idle" : true,
+      "likelyStuck" : true,
+      "progress" : 1,
+      "_class" : "_class"
+    }, {
+      "currentExecutable" : {
+        "queueId" : 5,
+        "displayName" : "displayName",
+        "keepLog" : true,
+        "description" : "description",
+        "fullDisplayName" : "fullDisplayName",
+        "estimatedDuration" : 5,
+        "url" : "url",
+        "building" : true,
+        "changeSet" : {
+          "kind" : "kind",
+          "_class" : "_class"
+        },
+        "duration" : 1,
+        "result" : "result",
+        "number" : 6,
+        "executor" : "executor",
+        "builtOn" : "builtOn",
+        "_class" : "_class",
+        "id" : "id",
+        "actions" : [ {
+          "causes" : [ {
+            "_class" : "_class",
+            "shortDescription" : "shortDescription",
+            "userName" : "userName",
+            "userId" : "userId"
+          }, {
+            "_class" : "_class",
+            "shortDescription" : "shortDescription",
+            "userName" : "userName",
+            "userId" : "userId"
+          } ],
+          "_class" : "_class"
+        }, {
+          "causes" : [ {
+            "_class" : "_class",
+            "shortDescription" : "shortDescription",
+            "userName" : "userName",
+            "userId" : "userId"
+          }, {
+            "_class" : "_class",
+            "shortDescription" : "shortDescription",
+            "userName" : "userName",
+            "userId" : "userId"
+          } ],
+          "_class" : "_class"
+        } ],
+        "timestamp" : 2
+      },
+      "number" : 6,
+      "idle" : true,
+      "likelyStuck" : true,
+      "progress" : 1,
+      "_class" : "_class"
+    } ],
+    "monitorData" : {
+      "hudson.node_monitors.SwapSpaceMonitor" : {
+        "totalSwapSpace" : 7,
+        "availableSwapSpace" : 5,
+        "_class" : "_class",
+        "availablePhysicalMemory" : 5,
+        "totalPhysicalMemory" : 2
+      },
+      "hudson.node_monitors.TemporarySpaceMonitor" : {
+        "path" : "path",
+        "size" : 3,
+        "_class" : "_class",
+        "timestamp" : 9
+      },
+      "hudson.node_monitors.DiskSpaceMonitor" : {
+        "path" : "path",
+        "size" : 3,
+        "_class" : "_class",
+        "timestamp" : 9
+      },
+      "hudson.node_monitors.ArchitectureMonitor" : "hudson.node_monitors.ArchitectureMonitor",
+      "_class" : "_class",
+      "hudson.node_monitors.ResponseTimeMonitor" : {
+        "average" : 4,
+        "_class" : "_class",
+        "timestamp" : 2
+      },
+      "hudson.node_monitors.ClockMonitor" : {
+        "diff" : 7,
+        "_class" : "_class"
+      }
+    },
+    "_class" : "_class",
+    "loadStatistics" : {
+      "_class" : "_class"
+    },
+    "manualLaunchAllowed" : true,
+    "offlineCauseReason" : "offlineCauseReason"
   } ],
-  "displayName" : "aeiou",
-  "_class" : "aeiou"
+  "displayName" : "displayName",
+  "_class" : "_class"
 }}]
-
-     - returns: RequestBuilder<HudsonmodelComputerSet> 
+     - parameter depth: (query) Recursion depth in response model 
+     - returns: RequestBuilder<ComputerSet> 
      */
-    open class func getComputerWithRequestBuilder() -> RequestBuilder<HudsonmodelComputerSet> {
-        let path = "/computer/api/json?depth=1"
+    open class func getComputerWithRequestBuilder(depth: Int32) -> RequestBuilder<ComputerSet> {
+        let path = "/computer/api/json"
         let URLString = SwaggerClientAPI.basePath + path
         let parameters: [String:Any]? = nil
 
         let url = NSURLComponents(string: URLString)
+        url?.queryItems = APIHelper.mapValuesToQueryItems(values:[
+            "depth": depth.encodeToJSON()
+        ])
 
-
-        let requestBuilder: RequestBuilder<HudsonmodelComputerSet>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
+        let requestBuilder: RequestBuilder<ComputerSet>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
 
         return requestBuilder.init(method: "GET", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false)
     }
 
     /**
-
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func getCrumb(completion: @escaping ((_ data: HudsonsecuritycsrfDefaultCrumbIssuer?,_ error: Error?) -> Void)) {
+    open class func getCrumb(completion: @escaping ((_ data: DefaultCrumbIssuer?, _ error: ErrorResponse?) -> Void)) {
         getCrumbWithRequestBuilder().execute { (response, error) -> Void in
-            completion(response?.body, error);
+            completion(response?.body, error)
         }
     }
 
@@ -144,34 +385,34 @@ open class RemoteAccessAPI: APIBase {
     /**
      - GET /crumbIssuer/api/json
      - Retrieve CSRF protection token
+     - BASIC:
+       - type: basic
+       - name: jenkins_auth
      - examples: [{contentType=application/json, example={
-  "crumb" : "aeiou",
-  "_class" : "aeiou",
-  "crumbRequestField" : "aeiou"
+  "crumb" : "crumb",
+  "_class" : "_class",
+  "crumbRequestField" : "crumbRequestField"
 }}]
-
-     - returns: RequestBuilder<HudsonsecuritycsrfDefaultCrumbIssuer> 
+     - returns: RequestBuilder<DefaultCrumbIssuer> 
      */
-    open class func getCrumbWithRequestBuilder() -> RequestBuilder<HudsonsecuritycsrfDefaultCrumbIssuer> {
+    open class func getCrumbWithRequestBuilder() -> RequestBuilder<DefaultCrumbIssuer> {
         let path = "/crumbIssuer/api/json"
         let URLString = SwaggerClientAPI.basePath + path
         let parameters: [String:Any]? = nil
 
         let url = NSURLComponents(string: URLString)
 
-
-        let requestBuilder: RequestBuilder<HudsonsecuritycsrfDefaultCrumbIssuer>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
+        let requestBuilder: RequestBuilder<DefaultCrumbIssuer>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
 
         return requestBuilder.init(method: "GET", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false)
     }
 
     /**
-
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func getJenkins(completion: @escaping ((_ data: HudsonmodelHudson?,_ error: Error?) -> Void)) {
+    open class func getJenkins(completion: @escaping ((_ data: Hudson?, _ error: ErrorResponse?) -> Void)) {
         getJenkinsWithRequestBuilder().execute { (response, error) -> Void in
-            completion(response?.body, error);
+            completion(response?.body, error)
         }
     }
 
@@ -179,123 +420,829 @@ open class RemoteAccessAPI: APIBase {
     /**
      - GET /api/json
      - Retrieve Jenkins details
+     - BASIC:
+       - type: basic
+       - name: jenkins_auth
      - examples: [{contentType=application/json, example={
-  "nodeName" : "aeiou",
+  "nodeName" : "nodeName",
   "assignedLabels" : [ {
-    "_class" : "aeiou"
+    "_class" : "_class"
+  }, {
+    "_class" : "_class"
   } ],
   "jobs" : [ {
-    "color" : "aeiou",
-    "displayName" : "aeiou",
-    "lastSuccessfulBuild" : "",
-    "description" : "aeiou",
-    "fullDisplayName" : "aeiou",
-    "lastUnstableBuild" : "aeiou",
-    "queueItem" : "aeiou",
+    "color" : "color",
+    "displayName" : "displayName",
+    "lastSuccessfulBuild" : {
+      "queueId" : 5,
+      "displayName" : "displayName",
+      "keepLog" : true,
+      "description" : "description",
+      "fullDisplayName" : "fullDisplayName",
+      "estimatedDuration" : 5,
+      "url" : "url",
+      "building" : true,
+      "changeSet" : {
+        "kind" : "kind",
+        "_class" : "_class"
+      },
+      "duration" : 1,
+      "result" : "result",
+      "number" : 6,
+      "executor" : "executor",
+      "builtOn" : "builtOn",
+      "_class" : "_class",
+      "id" : "id",
+      "actions" : [ {
+        "causes" : [ {
+          "_class" : "_class",
+          "shortDescription" : "shortDescription",
+          "userName" : "userName",
+          "userId" : "userId"
+        }, {
+          "_class" : "_class",
+          "shortDescription" : "shortDescription",
+          "userName" : "userName",
+          "userId" : "userId"
+        } ],
+        "_class" : "_class"
+      }, {
+        "causes" : [ {
+          "_class" : "_class",
+          "shortDescription" : "shortDescription",
+          "userName" : "userName",
+          "userId" : "userId"
+        }, {
+          "_class" : "_class",
+          "shortDescription" : "shortDescription",
+          "userName" : "userName",
+          "userId" : "userId"
+        } ],
+        "_class" : "_class"
+      } ],
+      "timestamp" : 2
+    },
+    "description" : "description",
+    "fullDisplayName" : "fullDisplayName",
+    "lastUnstableBuild" : "lastUnstableBuild",
+    "queueItem" : "queueItem",
     "buildable" : true,
-    "firstBuild" : "",
-    "lastFailedBuild" : "aeiou",
-    "lastBuild" : "",
+    "firstBuild" : {
+      "queueId" : 5,
+      "displayName" : "displayName",
+      "keepLog" : true,
+      "description" : "description",
+      "fullDisplayName" : "fullDisplayName",
+      "estimatedDuration" : 5,
+      "url" : "url",
+      "building" : true,
+      "changeSet" : {
+        "kind" : "kind",
+        "_class" : "_class"
+      },
+      "duration" : 1,
+      "result" : "result",
+      "number" : 6,
+      "executor" : "executor",
+      "builtOn" : "builtOn",
+      "_class" : "_class",
+      "id" : "id",
+      "actions" : [ {
+        "causes" : [ {
+          "_class" : "_class",
+          "shortDescription" : "shortDescription",
+          "userName" : "userName",
+          "userId" : "userId"
+        }, {
+          "_class" : "_class",
+          "shortDescription" : "shortDescription",
+          "userName" : "userName",
+          "userId" : "userId"
+        } ],
+        "_class" : "_class"
+      }, {
+        "causes" : [ {
+          "_class" : "_class",
+          "shortDescription" : "shortDescription",
+          "userName" : "userName",
+          "userId" : "userId"
+        }, {
+          "_class" : "_class",
+          "shortDescription" : "shortDescription",
+          "userName" : "userName",
+          "userId" : "userId"
+        } ],
+        "_class" : "_class"
+      } ],
+      "timestamp" : 2
+    },
+    "lastFailedBuild" : "lastFailedBuild",
+    "lastBuild" : {
+      "queueId" : 5,
+      "displayName" : "displayName",
+      "keepLog" : true,
+      "description" : "description",
+      "fullDisplayName" : "fullDisplayName",
+      "estimatedDuration" : 5,
+      "url" : "url",
+      "building" : true,
+      "changeSet" : {
+        "kind" : "kind",
+        "_class" : "_class"
+      },
+      "duration" : 1,
+      "result" : "result",
+      "number" : 6,
+      "executor" : "executor",
+      "builtOn" : "builtOn",
+      "_class" : "_class",
+      "id" : "id",
+      "actions" : [ {
+        "causes" : [ {
+          "_class" : "_class",
+          "shortDescription" : "shortDescription",
+          "userName" : "userName",
+          "userId" : "userId"
+        }, {
+          "_class" : "_class",
+          "shortDescription" : "shortDescription",
+          "userName" : "userName",
+          "userId" : "userId"
+        } ],
+        "_class" : "_class"
+      }, {
+        "causes" : [ {
+          "_class" : "_class",
+          "shortDescription" : "shortDescription",
+          "userName" : "userName",
+          "userId" : "userId"
+        }, {
+          "_class" : "_class",
+          "shortDescription" : "shortDescription",
+          "userName" : "userName",
+          "userId" : "userId"
+        } ],
+        "_class" : "_class"
+      } ],
+      "timestamp" : 2
+    },
     "nextBuildNumber" : 9,
     "builds" : [ {
       "queueId" : 5,
-      "displayName" : "aeiou",
+      "displayName" : "displayName",
       "keepLog" : true,
-      "description" : "aeiou",
-      "fullDisplayName" : "aeiou",
+      "description" : "description",
+      "fullDisplayName" : "fullDisplayName",
       "estimatedDuration" : 5,
-      "url" : "aeiou",
+      "url" : "url",
       "building" : true,
       "changeSet" : {
-        "kind" : "aeiou",
-        "_class" : "aeiou"
+        "kind" : "kind",
+        "_class" : "_class"
       },
       "duration" : 1,
-      "result" : "aeiou",
+      "result" : "result",
       "number" : 6,
-      "executor" : "aeiou",
-      "builtOn" : "aeiou",
-      "_class" : "aeiou",
-      "id" : "aeiou",
+      "executor" : "executor",
+      "builtOn" : "builtOn",
+      "_class" : "_class",
+      "id" : "id",
       "actions" : [ {
         "causes" : [ {
-          "_class" : "aeiou",
-          "shortDescription" : "aeiou",
-          "userName" : "aeiou",
-          "userId" : "aeiou"
+          "_class" : "_class",
+          "shortDescription" : "shortDescription",
+          "userName" : "userName",
+          "userId" : "userId"
+        }, {
+          "_class" : "_class",
+          "shortDescription" : "shortDescription",
+          "userName" : "userName",
+          "userId" : "userId"
         } ],
-        "_class" : "aeiou"
+        "_class" : "_class"
+      }, {
+        "causes" : [ {
+          "_class" : "_class",
+          "shortDescription" : "shortDescription",
+          "userName" : "userName",
+          "userId" : "userId"
+        }, {
+          "_class" : "_class",
+          "shortDescription" : "shortDescription",
+          "userName" : "userName",
+          "userId" : "userId"
+        } ],
+        "_class" : "_class"
+      } ],
+      "timestamp" : 2
+    }, {
+      "queueId" : 5,
+      "displayName" : "displayName",
+      "keepLog" : true,
+      "description" : "description",
+      "fullDisplayName" : "fullDisplayName",
+      "estimatedDuration" : 5,
+      "url" : "url",
+      "building" : true,
+      "changeSet" : {
+        "kind" : "kind",
+        "_class" : "_class"
+      },
+      "duration" : 1,
+      "result" : "result",
+      "number" : 6,
+      "executor" : "executor",
+      "builtOn" : "builtOn",
+      "_class" : "_class",
+      "id" : "id",
+      "actions" : [ {
+        "causes" : [ {
+          "_class" : "_class",
+          "shortDescription" : "shortDescription",
+          "userName" : "userName",
+          "userId" : "userId"
+        }, {
+          "_class" : "_class",
+          "shortDescription" : "shortDescription",
+          "userName" : "userName",
+          "userId" : "userId"
+        } ],
+        "_class" : "_class"
+      }, {
+        "causes" : [ {
+          "_class" : "_class",
+          "shortDescription" : "shortDescription",
+          "userName" : "userName",
+          "userId" : "userId"
+        }, {
+          "_class" : "_class",
+          "shortDescription" : "shortDescription",
+          "userName" : "userName",
+          "userId" : "userId"
+        } ],
+        "_class" : "_class"
       } ],
       "timestamp" : 2
     } ],
     "scm" : {
-      "_class" : "aeiou"
+      "_class" : "_class"
     },
     "keepDependencies" : true,
-    "displayNameOrNull" : "aeiou",
+    "displayNameOrNull" : "displayNameOrNull",
     "inQueue" : true,
-    "lastCompletedBuild" : "",
-    "fullName" : "aeiou",
+    "lastCompletedBuild" : {
+      "queueId" : 5,
+      "displayName" : "displayName",
+      "keepLog" : true,
+      "description" : "description",
+      "fullDisplayName" : "fullDisplayName",
+      "estimatedDuration" : 5,
+      "url" : "url",
+      "building" : true,
+      "changeSet" : {
+        "kind" : "kind",
+        "_class" : "_class"
+      },
+      "duration" : 1,
+      "result" : "result",
+      "number" : 6,
+      "executor" : "executor",
+      "builtOn" : "builtOn",
+      "_class" : "_class",
+      "id" : "id",
+      "actions" : [ {
+        "causes" : [ {
+          "_class" : "_class",
+          "shortDescription" : "shortDescription",
+          "userName" : "userName",
+          "userId" : "userId"
+        }, {
+          "_class" : "_class",
+          "shortDescription" : "shortDescription",
+          "userName" : "userName",
+          "userId" : "userId"
+        } ],
+        "_class" : "_class"
+      }, {
+        "causes" : [ {
+          "_class" : "_class",
+          "shortDescription" : "shortDescription",
+          "userName" : "userName",
+          "userId" : "userId"
+        }, {
+          "_class" : "_class",
+          "shortDescription" : "shortDescription",
+          "userName" : "userName",
+          "userId" : "userId"
+        } ],
+        "_class" : "_class"
+      } ],
+      "timestamp" : 2
+    },
+    "fullName" : "fullName",
     "healthReport" : [ {
       "score" : 7,
-      "description" : "aeiou",
-      "iconClassName" : "aeiou",
-      "iconUrl" : "aeiou",
-      "_class" : "aeiou"
+      "description" : "description",
+      "iconClassName" : "iconClassName",
+      "iconUrl" : "iconUrl",
+      "_class" : "_class"
+    }, {
+      "score" : 7,
+      "description" : "description",
+      "iconClassName" : "iconClassName",
+      "iconUrl" : "iconUrl",
+      "_class" : "_class"
     } ],
-    "lastStableBuild" : "",
-    "lastUnsuccessfulBuild" : "aeiou",
-    "url" : "aeiou",
+    "lastStableBuild" : {
+      "queueId" : 5,
+      "displayName" : "displayName",
+      "keepLog" : true,
+      "description" : "description",
+      "fullDisplayName" : "fullDisplayName",
+      "estimatedDuration" : 5,
+      "url" : "url",
+      "building" : true,
+      "changeSet" : {
+        "kind" : "kind",
+        "_class" : "_class"
+      },
+      "duration" : 1,
+      "result" : "result",
+      "number" : 6,
+      "executor" : "executor",
+      "builtOn" : "builtOn",
+      "_class" : "_class",
+      "id" : "id",
+      "actions" : [ {
+        "causes" : [ {
+          "_class" : "_class",
+          "shortDescription" : "shortDescription",
+          "userName" : "userName",
+          "userId" : "userId"
+        }, {
+          "_class" : "_class",
+          "shortDescription" : "shortDescription",
+          "userName" : "userName",
+          "userId" : "userId"
+        } ],
+        "_class" : "_class"
+      }, {
+        "causes" : [ {
+          "_class" : "_class",
+          "shortDescription" : "shortDescription",
+          "userName" : "userName",
+          "userId" : "userId"
+        }, {
+          "_class" : "_class",
+          "shortDescription" : "shortDescription",
+          "userName" : "userName",
+          "userId" : "userId"
+        } ],
+        "_class" : "_class"
+      } ],
+      "timestamp" : 2
+    },
+    "lastUnsuccessfulBuild" : "lastUnsuccessfulBuild",
+    "url" : "url",
     "concurrentBuild" : true,
-    "name" : "aeiou",
-    "_class" : "aeiou",
+    "name" : "name",
+    "_class" : "_class",
     "actions" : [ {
-      "_class" : "aeiou"
+      "_class" : "_class"
+    }, {
+      "_class" : "_class"
+    } ]
+  }, {
+    "color" : "color",
+    "displayName" : "displayName",
+    "lastSuccessfulBuild" : {
+      "queueId" : 5,
+      "displayName" : "displayName",
+      "keepLog" : true,
+      "description" : "description",
+      "fullDisplayName" : "fullDisplayName",
+      "estimatedDuration" : 5,
+      "url" : "url",
+      "building" : true,
+      "changeSet" : {
+        "kind" : "kind",
+        "_class" : "_class"
+      },
+      "duration" : 1,
+      "result" : "result",
+      "number" : 6,
+      "executor" : "executor",
+      "builtOn" : "builtOn",
+      "_class" : "_class",
+      "id" : "id",
+      "actions" : [ {
+        "causes" : [ {
+          "_class" : "_class",
+          "shortDescription" : "shortDescription",
+          "userName" : "userName",
+          "userId" : "userId"
+        }, {
+          "_class" : "_class",
+          "shortDescription" : "shortDescription",
+          "userName" : "userName",
+          "userId" : "userId"
+        } ],
+        "_class" : "_class"
+      }, {
+        "causes" : [ {
+          "_class" : "_class",
+          "shortDescription" : "shortDescription",
+          "userName" : "userName",
+          "userId" : "userId"
+        }, {
+          "_class" : "_class",
+          "shortDescription" : "shortDescription",
+          "userName" : "userName",
+          "userId" : "userId"
+        } ],
+        "_class" : "_class"
+      } ],
+      "timestamp" : 2
+    },
+    "description" : "description",
+    "fullDisplayName" : "fullDisplayName",
+    "lastUnstableBuild" : "lastUnstableBuild",
+    "queueItem" : "queueItem",
+    "buildable" : true,
+    "firstBuild" : {
+      "queueId" : 5,
+      "displayName" : "displayName",
+      "keepLog" : true,
+      "description" : "description",
+      "fullDisplayName" : "fullDisplayName",
+      "estimatedDuration" : 5,
+      "url" : "url",
+      "building" : true,
+      "changeSet" : {
+        "kind" : "kind",
+        "_class" : "_class"
+      },
+      "duration" : 1,
+      "result" : "result",
+      "number" : 6,
+      "executor" : "executor",
+      "builtOn" : "builtOn",
+      "_class" : "_class",
+      "id" : "id",
+      "actions" : [ {
+        "causes" : [ {
+          "_class" : "_class",
+          "shortDescription" : "shortDescription",
+          "userName" : "userName",
+          "userId" : "userId"
+        }, {
+          "_class" : "_class",
+          "shortDescription" : "shortDescription",
+          "userName" : "userName",
+          "userId" : "userId"
+        } ],
+        "_class" : "_class"
+      }, {
+        "causes" : [ {
+          "_class" : "_class",
+          "shortDescription" : "shortDescription",
+          "userName" : "userName",
+          "userId" : "userId"
+        }, {
+          "_class" : "_class",
+          "shortDescription" : "shortDescription",
+          "userName" : "userName",
+          "userId" : "userId"
+        } ],
+        "_class" : "_class"
+      } ],
+      "timestamp" : 2
+    },
+    "lastFailedBuild" : "lastFailedBuild",
+    "lastBuild" : {
+      "queueId" : 5,
+      "displayName" : "displayName",
+      "keepLog" : true,
+      "description" : "description",
+      "fullDisplayName" : "fullDisplayName",
+      "estimatedDuration" : 5,
+      "url" : "url",
+      "building" : true,
+      "changeSet" : {
+        "kind" : "kind",
+        "_class" : "_class"
+      },
+      "duration" : 1,
+      "result" : "result",
+      "number" : 6,
+      "executor" : "executor",
+      "builtOn" : "builtOn",
+      "_class" : "_class",
+      "id" : "id",
+      "actions" : [ {
+        "causes" : [ {
+          "_class" : "_class",
+          "shortDescription" : "shortDescription",
+          "userName" : "userName",
+          "userId" : "userId"
+        }, {
+          "_class" : "_class",
+          "shortDescription" : "shortDescription",
+          "userName" : "userName",
+          "userId" : "userId"
+        } ],
+        "_class" : "_class"
+      }, {
+        "causes" : [ {
+          "_class" : "_class",
+          "shortDescription" : "shortDescription",
+          "userName" : "userName",
+          "userId" : "userId"
+        }, {
+          "_class" : "_class",
+          "shortDescription" : "shortDescription",
+          "userName" : "userName",
+          "userId" : "userId"
+        } ],
+        "_class" : "_class"
+      } ],
+      "timestamp" : 2
+    },
+    "nextBuildNumber" : 9,
+    "builds" : [ {
+      "queueId" : 5,
+      "displayName" : "displayName",
+      "keepLog" : true,
+      "description" : "description",
+      "fullDisplayName" : "fullDisplayName",
+      "estimatedDuration" : 5,
+      "url" : "url",
+      "building" : true,
+      "changeSet" : {
+        "kind" : "kind",
+        "_class" : "_class"
+      },
+      "duration" : 1,
+      "result" : "result",
+      "number" : 6,
+      "executor" : "executor",
+      "builtOn" : "builtOn",
+      "_class" : "_class",
+      "id" : "id",
+      "actions" : [ {
+        "causes" : [ {
+          "_class" : "_class",
+          "shortDescription" : "shortDescription",
+          "userName" : "userName",
+          "userId" : "userId"
+        }, {
+          "_class" : "_class",
+          "shortDescription" : "shortDescription",
+          "userName" : "userName",
+          "userId" : "userId"
+        } ],
+        "_class" : "_class"
+      }, {
+        "causes" : [ {
+          "_class" : "_class",
+          "shortDescription" : "shortDescription",
+          "userName" : "userName",
+          "userId" : "userId"
+        }, {
+          "_class" : "_class",
+          "shortDescription" : "shortDescription",
+          "userName" : "userName",
+          "userId" : "userId"
+        } ],
+        "_class" : "_class"
+      } ],
+      "timestamp" : 2
+    }, {
+      "queueId" : 5,
+      "displayName" : "displayName",
+      "keepLog" : true,
+      "description" : "description",
+      "fullDisplayName" : "fullDisplayName",
+      "estimatedDuration" : 5,
+      "url" : "url",
+      "building" : true,
+      "changeSet" : {
+        "kind" : "kind",
+        "_class" : "_class"
+      },
+      "duration" : 1,
+      "result" : "result",
+      "number" : 6,
+      "executor" : "executor",
+      "builtOn" : "builtOn",
+      "_class" : "_class",
+      "id" : "id",
+      "actions" : [ {
+        "causes" : [ {
+          "_class" : "_class",
+          "shortDescription" : "shortDescription",
+          "userName" : "userName",
+          "userId" : "userId"
+        }, {
+          "_class" : "_class",
+          "shortDescription" : "shortDescription",
+          "userName" : "userName",
+          "userId" : "userId"
+        } ],
+        "_class" : "_class"
+      }, {
+        "causes" : [ {
+          "_class" : "_class",
+          "shortDescription" : "shortDescription",
+          "userName" : "userName",
+          "userId" : "userId"
+        }, {
+          "_class" : "_class",
+          "shortDescription" : "shortDescription",
+          "userName" : "userName",
+          "userId" : "userId"
+        } ],
+        "_class" : "_class"
+      } ],
+      "timestamp" : 2
+    } ],
+    "scm" : {
+      "_class" : "_class"
+    },
+    "keepDependencies" : true,
+    "displayNameOrNull" : "displayNameOrNull",
+    "inQueue" : true,
+    "lastCompletedBuild" : {
+      "queueId" : 5,
+      "displayName" : "displayName",
+      "keepLog" : true,
+      "description" : "description",
+      "fullDisplayName" : "fullDisplayName",
+      "estimatedDuration" : 5,
+      "url" : "url",
+      "building" : true,
+      "changeSet" : {
+        "kind" : "kind",
+        "_class" : "_class"
+      },
+      "duration" : 1,
+      "result" : "result",
+      "number" : 6,
+      "executor" : "executor",
+      "builtOn" : "builtOn",
+      "_class" : "_class",
+      "id" : "id",
+      "actions" : [ {
+        "causes" : [ {
+          "_class" : "_class",
+          "shortDescription" : "shortDescription",
+          "userName" : "userName",
+          "userId" : "userId"
+        }, {
+          "_class" : "_class",
+          "shortDescription" : "shortDescription",
+          "userName" : "userName",
+          "userId" : "userId"
+        } ],
+        "_class" : "_class"
+      }, {
+        "causes" : [ {
+          "_class" : "_class",
+          "shortDescription" : "shortDescription",
+          "userName" : "userName",
+          "userId" : "userId"
+        }, {
+          "_class" : "_class",
+          "shortDescription" : "shortDescription",
+          "userName" : "userName",
+          "userId" : "userId"
+        } ],
+        "_class" : "_class"
+      } ],
+      "timestamp" : 2
+    },
+    "fullName" : "fullName",
+    "healthReport" : [ {
+      "score" : 7,
+      "description" : "description",
+      "iconClassName" : "iconClassName",
+      "iconUrl" : "iconUrl",
+      "_class" : "_class"
+    }, {
+      "score" : 7,
+      "description" : "description",
+      "iconClassName" : "iconClassName",
+      "iconUrl" : "iconUrl",
+      "_class" : "_class"
+    } ],
+    "lastStableBuild" : {
+      "queueId" : 5,
+      "displayName" : "displayName",
+      "keepLog" : true,
+      "description" : "description",
+      "fullDisplayName" : "fullDisplayName",
+      "estimatedDuration" : 5,
+      "url" : "url",
+      "building" : true,
+      "changeSet" : {
+        "kind" : "kind",
+        "_class" : "_class"
+      },
+      "duration" : 1,
+      "result" : "result",
+      "number" : 6,
+      "executor" : "executor",
+      "builtOn" : "builtOn",
+      "_class" : "_class",
+      "id" : "id",
+      "actions" : [ {
+        "causes" : [ {
+          "_class" : "_class",
+          "shortDescription" : "shortDescription",
+          "userName" : "userName",
+          "userId" : "userId"
+        }, {
+          "_class" : "_class",
+          "shortDescription" : "shortDescription",
+          "userName" : "userName",
+          "userId" : "userId"
+        } ],
+        "_class" : "_class"
+      }, {
+        "causes" : [ {
+          "_class" : "_class",
+          "shortDescription" : "shortDescription",
+          "userName" : "userName",
+          "userId" : "userId"
+        }, {
+          "_class" : "_class",
+          "shortDescription" : "shortDescription",
+          "userName" : "userName",
+          "userId" : "userId"
+        } ],
+        "_class" : "_class"
+      } ],
+      "timestamp" : 2
+    },
+    "lastUnsuccessfulBuild" : "lastUnsuccessfulBuild",
+    "url" : "url",
+    "concurrentBuild" : true,
+    "name" : "name",
+    "_class" : "_class",
+    "actions" : [ {
+      "_class" : "_class"
+    }, {
+      "_class" : "_class"
     } ]
   } ],
   "slaveAgentPort" : 3,
-  "description" : "aeiou",
+  "description" : "description",
   "useCrumbs" : true,
-  "nodeDescription" : "aeiou",
+  "nodeDescription" : "nodeDescription",
   "primaryView" : {
-    "name" : "aeiou",
-    "_class" : "aeiou",
-    "url" : "aeiou"
+    "name" : "name",
+    "_class" : "_class",
+    "url" : "url"
   },
   "unlabeledLoad" : {
-    "_class" : "aeiou"
+    "_class" : "_class"
   },
-  "mode" : "aeiou",
+  "mode" : "mode",
   "numExecutors" : 0,
   "quietingDown" : true,
   "useSecurity" : true,
-  "_class" : "aeiou",
-  "views" : [ "" ]
+  "_class" : "_class",
+  "views" : [ {
+    "name" : "name",
+    "_class" : "_class",
+    "url" : "url"
+  }, {
+    "name" : "name",
+    "_class" : "_class",
+    "url" : "url"
+  } ]
 }}]
-
-     - returns: RequestBuilder<HudsonmodelHudson> 
+     - returns: RequestBuilder<Hudson> 
      */
-    open class func getJenkinsWithRequestBuilder() -> RequestBuilder<HudsonmodelHudson> {
+    open class func getJenkinsWithRequestBuilder() -> RequestBuilder<Hudson> {
         let path = "/api/json"
         let URLString = SwaggerClientAPI.basePath + path
         let parameters: [String:Any]? = nil
 
         let url = NSURLComponents(string: URLString)
 
-
-        let requestBuilder: RequestBuilder<HudsonmodelHudson>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
+        let requestBuilder: RequestBuilder<Hudson>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
 
         return requestBuilder.init(method: "GET", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false)
     }
 
     /**
-
      - parameter name: (path) Name of the job 
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func getJob(name: String, completion: @escaping ((_ data: HudsonmodelFreeStyleProject?,_ error: Error?) -> Void)) {
+    open class func getJob(name: String, completion: @escaping ((_ data: FreeStyleProject?, _ error: ErrorResponse?) -> Void)) {
         getJobWithRequestBuilder(name: name).execute { (response, error) -> Void in
-            completion(response?.body, error);
+            completion(response?.body, error)
         }
     }
 
@@ -303,81 +1250,396 @@ open class RemoteAccessAPI: APIBase {
     /**
      - GET /job/{name}/api/json
      - Retrieve job details
+     - BASIC:
+       - type: basic
+       - name: jenkins_auth
      - examples: [{contentType=application/json, example={
-  "color" : "aeiou",
-  "displayName" : "aeiou",
-  "lastSuccessfulBuild" : "",
-  "description" : "aeiou",
-  "fullDisplayName" : "aeiou",
-  "lastUnstableBuild" : "aeiou",
-  "queueItem" : "aeiou",
-  "buildable" : true,
-  "firstBuild" : "",
-  "lastFailedBuild" : "aeiou",
-  "lastBuild" : "",
-  "nextBuildNumber" : 7,
-  "builds" : [ {
+  "color" : "color",
+  "displayName" : "displayName",
+  "lastSuccessfulBuild" : {
     "queueId" : 5,
-    "displayName" : "aeiou",
+    "displayName" : "displayName",
     "keepLog" : true,
-    "description" : "aeiou",
-    "fullDisplayName" : "aeiou",
-    "estimatedDuration" : 1,
-    "url" : "aeiou",
+    "description" : "description",
+    "fullDisplayName" : "fullDisplayName",
+    "estimatedDuration" : 5,
+    "url" : "url",
     "building" : true,
     "changeSet" : {
-      "kind" : "aeiou",
-      "_class" : "aeiou"
+      "kind" : "kind",
+      "_class" : "_class"
     },
-    "duration" : 6,
-    "result" : "aeiou",
-    "number" : 0,
-    "executor" : "aeiou",
-    "builtOn" : "aeiou",
-    "_class" : "aeiou",
-    "id" : "aeiou",
+    "duration" : 1,
+    "result" : "result",
+    "number" : 6,
+    "executor" : "executor",
+    "builtOn" : "builtOn",
+    "_class" : "_class",
+    "id" : "id",
     "actions" : [ {
       "causes" : [ {
-        "_class" : "aeiou",
-        "shortDescription" : "aeiou",
-        "userName" : "aeiou",
-        "userId" : "aeiou"
+        "_class" : "_class",
+        "shortDescription" : "shortDescription",
+        "userName" : "userName",
+        "userId" : "userId"
+      }, {
+        "_class" : "_class",
+        "shortDescription" : "shortDescription",
+        "userName" : "userName",
+        "userId" : "userId"
       } ],
-      "_class" : "aeiou"
+      "_class" : "_class"
+    }, {
+      "causes" : [ {
+        "_class" : "_class",
+        "shortDescription" : "shortDescription",
+        "userName" : "userName",
+        "userId" : "userId"
+      }, {
+        "_class" : "_class",
+        "shortDescription" : "shortDescription",
+        "userName" : "userName",
+        "userId" : "userId"
+      } ],
+      "_class" : "_class"
     } ],
-    "timestamp" : 5
+    "timestamp" : 2
+  },
+  "description" : "description",
+  "fullDisplayName" : "fullDisplayName",
+  "lastUnstableBuild" : "lastUnstableBuild",
+  "queueItem" : "queueItem",
+  "buildable" : true,
+  "firstBuild" : {
+    "queueId" : 5,
+    "displayName" : "displayName",
+    "keepLog" : true,
+    "description" : "description",
+    "fullDisplayName" : "fullDisplayName",
+    "estimatedDuration" : 5,
+    "url" : "url",
+    "building" : true,
+    "changeSet" : {
+      "kind" : "kind",
+      "_class" : "_class"
+    },
+    "duration" : 1,
+    "result" : "result",
+    "number" : 6,
+    "executor" : "executor",
+    "builtOn" : "builtOn",
+    "_class" : "_class",
+    "id" : "id",
+    "actions" : [ {
+      "causes" : [ {
+        "_class" : "_class",
+        "shortDescription" : "shortDescription",
+        "userName" : "userName",
+        "userId" : "userId"
+      }, {
+        "_class" : "_class",
+        "shortDescription" : "shortDescription",
+        "userName" : "userName",
+        "userId" : "userId"
+      } ],
+      "_class" : "_class"
+    }, {
+      "causes" : [ {
+        "_class" : "_class",
+        "shortDescription" : "shortDescription",
+        "userName" : "userName",
+        "userId" : "userId"
+      }, {
+        "_class" : "_class",
+        "shortDescription" : "shortDescription",
+        "userName" : "userName",
+        "userId" : "userId"
+      } ],
+      "_class" : "_class"
+    } ],
+    "timestamp" : 2
+  },
+  "lastFailedBuild" : "lastFailedBuild",
+  "lastBuild" : {
+    "queueId" : 5,
+    "displayName" : "displayName",
+    "keepLog" : true,
+    "description" : "description",
+    "fullDisplayName" : "fullDisplayName",
+    "estimatedDuration" : 5,
+    "url" : "url",
+    "building" : true,
+    "changeSet" : {
+      "kind" : "kind",
+      "_class" : "_class"
+    },
+    "duration" : 1,
+    "result" : "result",
+    "number" : 6,
+    "executor" : "executor",
+    "builtOn" : "builtOn",
+    "_class" : "_class",
+    "id" : "id",
+    "actions" : [ {
+      "causes" : [ {
+        "_class" : "_class",
+        "shortDescription" : "shortDescription",
+        "userName" : "userName",
+        "userId" : "userId"
+      }, {
+        "_class" : "_class",
+        "shortDescription" : "shortDescription",
+        "userName" : "userName",
+        "userId" : "userId"
+      } ],
+      "_class" : "_class"
+    }, {
+      "causes" : [ {
+        "_class" : "_class",
+        "shortDescription" : "shortDescription",
+        "userName" : "userName",
+        "userId" : "userId"
+      }, {
+        "_class" : "_class",
+        "shortDescription" : "shortDescription",
+        "userName" : "userName",
+        "userId" : "userId"
+      } ],
+      "_class" : "_class"
+    } ],
+    "timestamp" : 2
+  },
+  "nextBuildNumber" : 9,
+  "builds" : [ {
+    "queueId" : 5,
+    "displayName" : "displayName",
+    "keepLog" : true,
+    "description" : "description",
+    "fullDisplayName" : "fullDisplayName",
+    "estimatedDuration" : 5,
+    "url" : "url",
+    "building" : true,
+    "changeSet" : {
+      "kind" : "kind",
+      "_class" : "_class"
+    },
+    "duration" : 1,
+    "result" : "result",
+    "number" : 6,
+    "executor" : "executor",
+    "builtOn" : "builtOn",
+    "_class" : "_class",
+    "id" : "id",
+    "actions" : [ {
+      "causes" : [ {
+        "_class" : "_class",
+        "shortDescription" : "shortDescription",
+        "userName" : "userName",
+        "userId" : "userId"
+      }, {
+        "_class" : "_class",
+        "shortDescription" : "shortDescription",
+        "userName" : "userName",
+        "userId" : "userId"
+      } ],
+      "_class" : "_class"
+    }, {
+      "causes" : [ {
+        "_class" : "_class",
+        "shortDescription" : "shortDescription",
+        "userName" : "userName",
+        "userId" : "userId"
+      }, {
+        "_class" : "_class",
+        "shortDescription" : "shortDescription",
+        "userName" : "userName",
+        "userId" : "userId"
+      } ],
+      "_class" : "_class"
+    } ],
+    "timestamp" : 2
+  }, {
+    "queueId" : 5,
+    "displayName" : "displayName",
+    "keepLog" : true,
+    "description" : "description",
+    "fullDisplayName" : "fullDisplayName",
+    "estimatedDuration" : 5,
+    "url" : "url",
+    "building" : true,
+    "changeSet" : {
+      "kind" : "kind",
+      "_class" : "_class"
+    },
+    "duration" : 1,
+    "result" : "result",
+    "number" : 6,
+    "executor" : "executor",
+    "builtOn" : "builtOn",
+    "_class" : "_class",
+    "id" : "id",
+    "actions" : [ {
+      "causes" : [ {
+        "_class" : "_class",
+        "shortDescription" : "shortDescription",
+        "userName" : "userName",
+        "userId" : "userId"
+      }, {
+        "_class" : "_class",
+        "shortDescription" : "shortDescription",
+        "userName" : "userName",
+        "userId" : "userId"
+      } ],
+      "_class" : "_class"
+    }, {
+      "causes" : [ {
+        "_class" : "_class",
+        "shortDescription" : "shortDescription",
+        "userName" : "userName",
+        "userId" : "userId"
+      }, {
+        "_class" : "_class",
+        "shortDescription" : "shortDescription",
+        "userName" : "userName",
+        "userId" : "userId"
+      } ],
+      "_class" : "_class"
+    } ],
+    "timestamp" : 2
   } ],
   "scm" : {
-    "_class" : "aeiou"
+    "_class" : "_class"
   },
   "keepDependencies" : true,
-  "displayNameOrNull" : "aeiou",
+  "displayNameOrNull" : "displayNameOrNull",
   "inQueue" : true,
-  "lastCompletedBuild" : "",
-  "fullName" : "aeiou",
+  "lastCompletedBuild" : {
+    "queueId" : 5,
+    "displayName" : "displayName",
+    "keepLog" : true,
+    "description" : "description",
+    "fullDisplayName" : "fullDisplayName",
+    "estimatedDuration" : 5,
+    "url" : "url",
+    "building" : true,
+    "changeSet" : {
+      "kind" : "kind",
+      "_class" : "_class"
+    },
+    "duration" : 1,
+    "result" : "result",
+    "number" : 6,
+    "executor" : "executor",
+    "builtOn" : "builtOn",
+    "_class" : "_class",
+    "id" : "id",
+    "actions" : [ {
+      "causes" : [ {
+        "_class" : "_class",
+        "shortDescription" : "shortDescription",
+        "userName" : "userName",
+        "userId" : "userId"
+      }, {
+        "_class" : "_class",
+        "shortDescription" : "shortDescription",
+        "userName" : "userName",
+        "userId" : "userId"
+      } ],
+      "_class" : "_class"
+    }, {
+      "causes" : [ {
+        "_class" : "_class",
+        "shortDescription" : "shortDescription",
+        "userName" : "userName",
+        "userId" : "userId"
+      }, {
+        "_class" : "_class",
+        "shortDescription" : "shortDescription",
+        "userName" : "userName",
+        "userId" : "userId"
+      } ],
+      "_class" : "_class"
+    } ],
+    "timestamp" : 2
+  },
+  "fullName" : "fullName",
   "healthReport" : [ {
-    "score" : 2,
-    "description" : "aeiou",
-    "iconClassName" : "aeiou",
-    "iconUrl" : "aeiou",
-    "_class" : "aeiou"
+    "score" : 7,
+    "description" : "description",
+    "iconClassName" : "iconClassName",
+    "iconUrl" : "iconUrl",
+    "_class" : "_class"
+  }, {
+    "score" : 7,
+    "description" : "description",
+    "iconClassName" : "iconClassName",
+    "iconUrl" : "iconUrl",
+    "_class" : "_class"
   } ],
-  "lastStableBuild" : "",
-  "lastUnsuccessfulBuild" : "aeiou",
-  "url" : "aeiou",
+  "lastStableBuild" : {
+    "queueId" : 5,
+    "displayName" : "displayName",
+    "keepLog" : true,
+    "description" : "description",
+    "fullDisplayName" : "fullDisplayName",
+    "estimatedDuration" : 5,
+    "url" : "url",
+    "building" : true,
+    "changeSet" : {
+      "kind" : "kind",
+      "_class" : "_class"
+    },
+    "duration" : 1,
+    "result" : "result",
+    "number" : 6,
+    "executor" : "executor",
+    "builtOn" : "builtOn",
+    "_class" : "_class",
+    "id" : "id",
+    "actions" : [ {
+      "causes" : [ {
+        "_class" : "_class",
+        "shortDescription" : "shortDescription",
+        "userName" : "userName",
+        "userId" : "userId"
+      }, {
+        "_class" : "_class",
+        "shortDescription" : "shortDescription",
+        "userName" : "userName",
+        "userId" : "userId"
+      } ],
+      "_class" : "_class"
+    }, {
+      "causes" : [ {
+        "_class" : "_class",
+        "shortDescription" : "shortDescription",
+        "userName" : "userName",
+        "userId" : "userId"
+      }, {
+        "_class" : "_class",
+        "shortDescription" : "shortDescription",
+        "userName" : "userName",
+        "userId" : "userId"
+      } ],
+      "_class" : "_class"
+    } ],
+    "timestamp" : 2
+  },
+  "lastUnsuccessfulBuild" : "lastUnsuccessfulBuild",
+  "url" : "url",
   "concurrentBuild" : true,
-  "name" : "aeiou",
-  "_class" : "aeiou",
+  "name" : "name",
+  "_class" : "_class",
   "actions" : [ {
-    "_class" : "aeiou"
+    "_class" : "_class"
+  }, {
+    "_class" : "_class"
   } ]
 }}]
-     
      - parameter name: (path) Name of the job 
-
-     - returns: RequestBuilder<HudsonmodelFreeStyleProject> 
+     - returns: RequestBuilder<FreeStyleProject> 
      */
-    open class func getJobWithRequestBuilder(name: String) -> RequestBuilder<HudsonmodelFreeStyleProject> {
+    open class func getJobWithRequestBuilder(name: String) -> RequestBuilder<FreeStyleProject> {
         var path = "/job/{name}/api/json"
         path = path.replacingOccurrences(of: "{name}", with: "\(name)", options: .literal, range: nil)
         let URLString = SwaggerClientAPI.basePath + path
@@ -385,20 +1647,18 @@ open class RemoteAccessAPI: APIBase {
 
         let url = NSURLComponents(string: URLString)
 
-
-        let requestBuilder: RequestBuilder<HudsonmodelFreeStyleProject>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
+        let requestBuilder: RequestBuilder<FreeStyleProject>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
 
         return requestBuilder.init(method: "GET", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false)
     }
 
     /**
-
      - parameter name: (path) Name of the job 
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func getJobConfig(name: String, completion: @escaping ((_ data: String?,_ error: Error?) -> Void)) {
+    open class func getJobConfig(name: String, completion: @escaping ((_ data: String?, _ error: ErrorResponse?) -> Void)) {
         getJobConfigWithRequestBuilder(name: name).execute { (response, error) -> Void in
-            completion(response?.body, error);
+            completion(response?.body, error)
         }
     }
 
@@ -406,10 +1666,11 @@ open class RemoteAccessAPI: APIBase {
     /**
      - GET /job/{name}/config.xml
      - Retrieve job configuration
+     - BASIC:
+       - type: basic
+       - name: jenkins_auth
      - examples: [{output=none}]
-     
      - parameter name: (path) Name of the job 
-
      - returns: RequestBuilder<String> 
      */
     open class func getJobConfigWithRequestBuilder(name: String) -> RequestBuilder<String> {
@@ -420,20 +1681,18 @@ open class RemoteAccessAPI: APIBase {
 
         let url = NSURLComponents(string: URLString)
 
-
         let requestBuilder: RequestBuilder<String>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
 
         return requestBuilder.init(method: "GET", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false)
     }
 
     /**
-
      - parameter name: (path) Name of the job 
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func getJobLastBuild(name: String, completion: @escaping ((_ data: HudsonmodelFreeStyleBuild?,_ error: Error?) -> Void)) {
+    open class func getJobLastBuild(name: String, completion: @escaping ((_ data: FreeStyleBuild?, _ error: ErrorResponse?) -> Void)) {
         getJobLastBuildWithRequestBuilder(name: name).execute { (response, error) -> Void in
-            completion(response?.body, error);
+            completion(response?.body, error)
         }
     }
 
@@ -441,43 +1700,62 @@ open class RemoteAccessAPI: APIBase {
     /**
      - GET /job/{name}/lastBuild/api/json
      - Retrieve job's last build details
+     - BASIC:
+       - type: basic
+       - name: jenkins_auth
      - examples: [{contentType=application/json, example={
   "queueId" : 5,
-  "displayName" : "aeiou",
+  "displayName" : "displayName",
   "keepLog" : true,
-  "description" : "aeiou",
-  "fullDisplayName" : "aeiou",
-  "estimatedDuration" : 1,
-  "url" : "aeiou",
+  "description" : "description",
+  "fullDisplayName" : "fullDisplayName",
+  "estimatedDuration" : 5,
+  "url" : "url",
   "building" : true,
   "changeSet" : {
-    "kind" : "aeiou",
-    "_class" : "aeiou"
+    "kind" : "kind",
+    "_class" : "_class"
   },
-  "duration" : 6,
-  "result" : "aeiou",
-  "number" : 0,
-  "executor" : "aeiou",
-  "builtOn" : "aeiou",
-  "_class" : "aeiou",
-  "id" : "aeiou",
+  "duration" : 1,
+  "result" : "result",
+  "number" : 6,
+  "executor" : "executor",
+  "builtOn" : "builtOn",
+  "_class" : "_class",
+  "id" : "id",
   "actions" : [ {
     "causes" : [ {
-      "_class" : "aeiou",
-      "shortDescription" : "aeiou",
-      "userName" : "aeiou",
-      "userId" : "aeiou"
+      "_class" : "_class",
+      "shortDescription" : "shortDescription",
+      "userName" : "userName",
+      "userId" : "userId"
+    }, {
+      "_class" : "_class",
+      "shortDescription" : "shortDescription",
+      "userName" : "userName",
+      "userId" : "userId"
     } ],
-    "_class" : "aeiou"
+    "_class" : "_class"
+  }, {
+    "causes" : [ {
+      "_class" : "_class",
+      "shortDescription" : "shortDescription",
+      "userName" : "userName",
+      "userId" : "userId"
+    }, {
+      "_class" : "_class",
+      "shortDescription" : "shortDescription",
+      "userName" : "userName",
+      "userId" : "userId"
+    } ],
+    "_class" : "_class"
   } ],
-  "timestamp" : 5
+  "timestamp" : 2
 }}]
-     
      - parameter name: (path) Name of the job 
-
-     - returns: RequestBuilder<HudsonmodelFreeStyleBuild> 
+     - returns: RequestBuilder<FreeStyleBuild> 
      */
-    open class func getJobLastBuildWithRequestBuilder(name: String) -> RequestBuilder<HudsonmodelFreeStyleBuild> {
+    open class func getJobLastBuildWithRequestBuilder(name: String) -> RequestBuilder<FreeStyleBuild> {
         var path = "/job/{name}/lastBuild/api/json"
         path = path.replacingOccurrences(of: "{name}", with: "\(name)", options: .literal, range: nil)
         let URLString = SwaggerClientAPI.basePath + path
@@ -485,22 +1763,20 @@ open class RemoteAccessAPI: APIBase {
 
         let url = NSURLComponents(string: URLString)
 
-
-        let requestBuilder: RequestBuilder<HudsonmodelFreeStyleBuild>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
+        let requestBuilder: RequestBuilder<FreeStyleBuild>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
 
         return requestBuilder.init(method: "GET", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false)
     }
 
     /**
-
      - parameter name: (path) Name of the job 
      - parameter number: (path) Build number 
      - parameter start: (query) Starting point of progressive text output 
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func getJobProgressiveText(name: String, number: String, start: String, completion: @escaping ((_ error: Error?) -> Void)) {
+    open class func getJobProgressiveText(name: String, number: String, start: String, completion: @escaping ((_ error: ErrorResponse?) -> Void)) {
         getJobProgressiveTextWithRequestBuilder(name: name, number: number, start: start).execute { (response, error) -> Void in
-            completion(error);
+            completion(error)
         }
     }
 
@@ -508,11 +1784,12 @@ open class RemoteAccessAPI: APIBase {
     /**
      - GET /job/{name}/{number}/logText/progressiveText
      - Retrieve job's build progressive text output
-     
+     - BASIC:
+       - type: basic
+       - name: jenkins_auth
      - parameter name: (path) Name of the job 
      - parameter number: (path) Build number 
      - parameter start: (query) Starting point of progressive text output 
-
      - returns: RequestBuilder<Void> 
      */
     open class func getJobProgressiveTextWithRequestBuilder(name: String, number: String, start: String) -> RequestBuilder<Void> {
@@ -526,7 +1803,6 @@ open class RemoteAccessAPI: APIBase {
         url?.queryItems = APIHelper.mapValuesToQueryItems(values:[
             "start": start
         ])
-        
 
         let requestBuilder: RequestBuilder<Void>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
 
@@ -534,12 +1810,11 @@ open class RemoteAccessAPI: APIBase {
     }
 
     /**
-
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func getQueue(completion: @escaping ((_ data: HudsonmodelQueue?,_ error: Error?) -> Void)) {
+    open class func getQueue(completion: @escaping ((_ data: Queue?, _ error: ErrorResponse?) -> Void)) {
         getQueueWithRequestBuilder().execute { (response, error) -> Void in
-            completion(response?.body, error);
+            completion(response?.body, error)
         }
     }
 
@@ -547,115 +1822,876 @@ open class RemoteAccessAPI: APIBase {
     /**
      - GET /queue/api/json
      - Retrieve queue details
+     - BASIC:
+       - type: basic
+       - name: jenkins_auth
      - examples: [{contentType=application/json, example={
-  "_class" : "aeiou",
+  "_class" : "_class",
   "items" : [ {
     "task" : {
-      "color" : "aeiou",
-      "displayName" : "aeiou",
-      "lastSuccessfulBuild" : "",
-      "description" : "aeiou",
-      "fullDisplayName" : "aeiou",
-      "lastUnstableBuild" : "aeiou",
-      "queueItem" : "aeiou",
-      "buildable" : true,
-      "firstBuild" : "",
-      "lastFailedBuild" : "aeiou",
-      "lastBuild" : "",
-      "nextBuildNumber" : 3,
-      "builds" : [ {
-        "queueId" : 2,
-        "displayName" : "aeiou",
+      "color" : "color",
+      "displayName" : "displayName",
+      "lastSuccessfulBuild" : {
+        "queueId" : 5,
+        "displayName" : "displayName",
         "keepLog" : true,
-        "description" : "aeiou",
-        "fullDisplayName" : "aeiou",
+        "description" : "description",
+        "fullDisplayName" : "fullDisplayName",
         "estimatedDuration" : 5,
-        "url" : "aeiou",
+        "url" : "url",
         "building" : true,
         "changeSet" : {
-          "kind" : "aeiou",
-          "_class" : "aeiou"
+          "kind" : "kind",
+          "_class" : "_class"
         },
-        "duration" : 5,
-        "result" : "aeiou",
-        "number" : 1,
-        "executor" : "aeiou",
-        "builtOn" : "aeiou",
-        "_class" : "aeiou",
-        "id" : "aeiou",
-        "actions" : [ "" ],
-        "timestamp" : 7
+        "duration" : 1,
+        "result" : "result",
+        "number" : 6,
+        "executor" : "executor",
+        "builtOn" : "builtOn",
+        "_class" : "_class",
+        "id" : "id",
+        "actions" : [ {
+          "causes" : [ {
+            "_class" : "_class",
+            "shortDescription" : "shortDescription",
+            "userName" : "userName",
+            "userId" : "userId"
+          }, {
+            "_class" : "_class",
+            "shortDescription" : "shortDescription",
+            "userName" : "userName",
+            "userId" : "userId"
+          } ],
+          "_class" : "_class"
+        }, {
+          "causes" : [ {
+            "_class" : "_class",
+            "shortDescription" : "shortDescription",
+            "userName" : "userName",
+            "userId" : "userId"
+          }, {
+            "_class" : "_class",
+            "shortDescription" : "shortDescription",
+            "userName" : "userName",
+            "userId" : "userId"
+          } ],
+          "_class" : "_class"
+        } ],
+        "timestamp" : 2
+      },
+      "description" : "description",
+      "fullDisplayName" : "fullDisplayName",
+      "lastUnstableBuild" : "lastUnstableBuild",
+      "queueItem" : "queueItem",
+      "buildable" : true,
+      "firstBuild" : {
+        "queueId" : 5,
+        "displayName" : "displayName",
+        "keepLog" : true,
+        "description" : "description",
+        "fullDisplayName" : "fullDisplayName",
+        "estimatedDuration" : 5,
+        "url" : "url",
+        "building" : true,
+        "changeSet" : {
+          "kind" : "kind",
+          "_class" : "_class"
+        },
+        "duration" : 1,
+        "result" : "result",
+        "number" : 6,
+        "executor" : "executor",
+        "builtOn" : "builtOn",
+        "_class" : "_class",
+        "id" : "id",
+        "actions" : [ {
+          "causes" : [ {
+            "_class" : "_class",
+            "shortDescription" : "shortDescription",
+            "userName" : "userName",
+            "userId" : "userId"
+          }, {
+            "_class" : "_class",
+            "shortDescription" : "shortDescription",
+            "userName" : "userName",
+            "userId" : "userId"
+          } ],
+          "_class" : "_class"
+        }, {
+          "causes" : [ {
+            "_class" : "_class",
+            "shortDescription" : "shortDescription",
+            "userName" : "userName",
+            "userId" : "userId"
+          }, {
+            "_class" : "_class",
+            "shortDescription" : "shortDescription",
+            "userName" : "userName",
+            "userId" : "userId"
+          } ],
+          "_class" : "_class"
+        } ],
+        "timestamp" : 2
+      },
+      "lastFailedBuild" : "lastFailedBuild",
+      "lastBuild" : {
+        "queueId" : 5,
+        "displayName" : "displayName",
+        "keepLog" : true,
+        "description" : "description",
+        "fullDisplayName" : "fullDisplayName",
+        "estimatedDuration" : 5,
+        "url" : "url",
+        "building" : true,
+        "changeSet" : {
+          "kind" : "kind",
+          "_class" : "_class"
+        },
+        "duration" : 1,
+        "result" : "result",
+        "number" : 6,
+        "executor" : "executor",
+        "builtOn" : "builtOn",
+        "_class" : "_class",
+        "id" : "id",
+        "actions" : [ {
+          "causes" : [ {
+            "_class" : "_class",
+            "shortDescription" : "shortDescription",
+            "userName" : "userName",
+            "userId" : "userId"
+          }, {
+            "_class" : "_class",
+            "shortDescription" : "shortDescription",
+            "userName" : "userName",
+            "userId" : "userId"
+          } ],
+          "_class" : "_class"
+        }, {
+          "causes" : [ {
+            "_class" : "_class",
+            "shortDescription" : "shortDescription",
+            "userName" : "userName",
+            "userId" : "userId"
+          }, {
+            "_class" : "_class",
+            "shortDescription" : "shortDescription",
+            "userName" : "userName",
+            "userId" : "userId"
+          } ],
+          "_class" : "_class"
+        } ],
+        "timestamp" : 2
+      },
+      "nextBuildNumber" : 9,
+      "builds" : [ {
+        "queueId" : 5,
+        "displayName" : "displayName",
+        "keepLog" : true,
+        "description" : "description",
+        "fullDisplayName" : "fullDisplayName",
+        "estimatedDuration" : 5,
+        "url" : "url",
+        "building" : true,
+        "changeSet" : {
+          "kind" : "kind",
+          "_class" : "_class"
+        },
+        "duration" : 1,
+        "result" : "result",
+        "number" : 6,
+        "executor" : "executor",
+        "builtOn" : "builtOn",
+        "_class" : "_class",
+        "id" : "id",
+        "actions" : [ {
+          "causes" : [ {
+            "_class" : "_class",
+            "shortDescription" : "shortDescription",
+            "userName" : "userName",
+            "userId" : "userId"
+          }, {
+            "_class" : "_class",
+            "shortDescription" : "shortDescription",
+            "userName" : "userName",
+            "userId" : "userId"
+          } ],
+          "_class" : "_class"
+        }, {
+          "causes" : [ {
+            "_class" : "_class",
+            "shortDescription" : "shortDescription",
+            "userName" : "userName",
+            "userId" : "userId"
+          }, {
+            "_class" : "_class",
+            "shortDescription" : "shortDescription",
+            "userName" : "userName",
+            "userId" : "userId"
+          } ],
+          "_class" : "_class"
+        } ],
+        "timestamp" : 2
+      }, {
+        "queueId" : 5,
+        "displayName" : "displayName",
+        "keepLog" : true,
+        "description" : "description",
+        "fullDisplayName" : "fullDisplayName",
+        "estimatedDuration" : 5,
+        "url" : "url",
+        "building" : true,
+        "changeSet" : {
+          "kind" : "kind",
+          "_class" : "_class"
+        },
+        "duration" : 1,
+        "result" : "result",
+        "number" : 6,
+        "executor" : "executor",
+        "builtOn" : "builtOn",
+        "_class" : "_class",
+        "id" : "id",
+        "actions" : [ {
+          "causes" : [ {
+            "_class" : "_class",
+            "shortDescription" : "shortDescription",
+            "userName" : "userName",
+            "userId" : "userId"
+          }, {
+            "_class" : "_class",
+            "shortDescription" : "shortDescription",
+            "userName" : "userName",
+            "userId" : "userId"
+          } ],
+          "_class" : "_class"
+        }, {
+          "causes" : [ {
+            "_class" : "_class",
+            "shortDescription" : "shortDescription",
+            "userName" : "userName",
+            "userId" : "userId"
+          }, {
+            "_class" : "_class",
+            "shortDescription" : "shortDescription",
+            "userName" : "userName",
+            "userId" : "userId"
+          } ],
+          "_class" : "_class"
+        } ],
+        "timestamp" : 2
       } ],
       "scm" : {
-        "_class" : "aeiou"
+        "_class" : "_class"
       },
       "keepDependencies" : true,
-      "displayNameOrNull" : "aeiou",
+      "displayNameOrNull" : "displayNameOrNull",
       "inQueue" : true,
-      "lastCompletedBuild" : "",
-      "fullName" : "aeiou",
+      "lastCompletedBuild" : {
+        "queueId" : 5,
+        "displayName" : "displayName",
+        "keepLog" : true,
+        "description" : "description",
+        "fullDisplayName" : "fullDisplayName",
+        "estimatedDuration" : 5,
+        "url" : "url",
+        "building" : true,
+        "changeSet" : {
+          "kind" : "kind",
+          "_class" : "_class"
+        },
+        "duration" : 1,
+        "result" : "result",
+        "number" : 6,
+        "executor" : "executor",
+        "builtOn" : "builtOn",
+        "_class" : "_class",
+        "id" : "id",
+        "actions" : [ {
+          "causes" : [ {
+            "_class" : "_class",
+            "shortDescription" : "shortDescription",
+            "userName" : "userName",
+            "userId" : "userId"
+          }, {
+            "_class" : "_class",
+            "shortDescription" : "shortDescription",
+            "userName" : "userName",
+            "userId" : "userId"
+          } ],
+          "_class" : "_class"
+        }, {
+          "causes" : [ {
+            "_class" : "_class",
+            "shortDescription" : "shortDescription",
+            "userName" : "userName",
+            "userId" : "userId"
+          }, {
+            "_class" : "_class",
+            "shortDescription" : "shortDescription",
+            "userName" : "userName",
+            "userId" : "userId"
+          } ],
+          "_class" : "_class"
+        } ],
+        "timestamp" : 2
+      },
+      "fullName" : "fullName",
       "healthReport" : [ {
-        "score" : 9,
-        "description" : "aeiou",
-        "iconClassName" : "aeiou",
-        "iconUrl" : "aeiou",
-        "_class" : "aeiou"
+        "score" : 7,
+        "description" : "description",
+        "iconClassName" : "iconClassName",
+        "iconUrl" : "iconUrl",
+        "_class" : "_class"
+      }, {
+        "score" : 7,
+        "description" : "description",
+        "iconClassName" : "iconClassName",
+        "iconUrl" : "iconUrl",
+        "_class" : "_class"
       } ],
-      "lastStableBuild" : "",
-      "lastUnsuccessfulBuild" : "aeiou",
-      "url" : "aeiou",
+      "lastStableBuild" : {
+        "queueId" : 5,
+        "displayName" : "displayName",
+        "keepLog" : true,
+        "description" : "description",
+        "fullDisplayName" : "fullDisplayName",
+        "estimatedDuration" : 5,
+        "url" : "url",
+        "building" : true,
+        "changeSet" : {
+          "kind" : "kind",
+          "_class" : "_class"
+        },
+        "duration" : 1,
+        "result" : "result",
+        "number" : 6,
+        "executor" : "executor",
+        "builtOn" : "builtOn",
+        "_class" : "_class",
+        "id" : "id",
+        "actions" : [ {
+          "causes" : [ {
+            "_class" : "_class",
+            "shortDescription" : "shortDescription",
+            "userName" : "userName",
+            "userId" : "userId"
+          }, {
+            "_class" : "_class",
+            "shortDescription" : "shortDescription",
+            "userName" : "userName",
+            "userId" : "userId"
+          } ],
+          "_class" : "_class"
+        }, {
+          "causes" : [ {
+            "_class" : "_class",
+            "shortDescription" : "shortDescription",
+            "userName" : "userName",
+            "userId" : "userId"
+          }, {
+            "_class" : "_class",
+            "shortDescription" : "shortDescription",
+            "userName" : "userName",
+            "userId" : "userId"
+          } ],
+          "_class" : "_class"
+        } ],
+        "timestamp" : 2
+      },
+      "lastUnsuccessfulBuild" : "lastUnsuccessfulBuild",
+      "url" : "url",
       "concurrentBuild" : true,
-      "name" : "aeiou",
-      "_class" : "aeiou",
+      "name" : "name",
+      "_class" : "_class",
       "actions" : [ {
-        "_class" : "aeiou"
+        "_class" : "_class"
+      }, {
+        "_class" : "_class"
       } ]
     },
     "blocked" : true,
     "stuck" : true,
-    "buildableStartMilliseconds" : 2,
-    "why" : "aeiou",
-    "_class" : "aeiou",
+    "buildableStartMilliseconds" : 1,
+    "why" : "why",
+    "_class" : "_class",
     "id" : 0,
     "buildable" : true,
-    "params" : "aeiou",
+    "params" : "params",
     "actions" : [ {
       "causes" : [ {
-        "_class" : "aeiou",
-        "shortDescription" : "aeiou",
-        "userName" : "aeiou",
-        "userId" : "aeiou"
+        "_class" : "_class",
+        "shortDescription" : "shortDescription",
+        "userName" : "userName",
+        "userId" : "userId"
+      }, {
+        "_class" : "_class",
+        "shortDescription" : "shortDescription",
+        "userName" : "userName",
+        "userId" : "userId"
       } ],
-      "_class" : "aeiou"
+      "_class" : "_class"
+    }, {
+      "causes" : [ {
+        "_class" : "_class",
+        "shortDescription" : "shortDescription",
+        "userName" : "userName",
+        "userId" : "userId"
+      }, {
+        "_class" : "_class",
+        "shortDescription" : "shortDescription",
+        "userName" : "userName",
+        "userId" : "userId"
+      } ],
+      "_class" : "_class"
     } ],
-    "url" : "aeiou",
+    "url" : "url",
+    "inQueueSince" : 6
+  }, {
+    "task" : {
+      "color" : "color",
+      "displayName" : "displayName",
+      "lastSuccessfulBuild" : {
+        "queueId" : 5,
+        "displayName" : "displayName",
+        "keepLog" : true,
+        "description" : "description",
+        "fullDisplayName" : "fullDisplayName",
+        "estimatedDuration" : 5,
+        "url" : "url",
+        "building" : true,
+        "changeSet" : {
+          "kind" : "kind",
+          "_class" : "_class"
+        },
+        "duration" : 1,
+        "result" : "result",
+        "number" : 6,
+        "executor" : "executor",
+        "builtOn" : "builtOn",
+        "_class" : "_class",
+        "id" : "id",
+        "actions" : [ {
+          "causes" : [ {
+            "_class" : "_class",
+            "shortDescription" : "shortDescription",
+            "userName" : "userName",
+            "userId" : "userId"
+          }, {
+            "_class" : "_class",
+            "shortDescription" : "shortDescription",
+            "userName" : "userName",
+            "userId" : "userId"
+          } ],
+          "_class" : "_class"
+        }, {
+          "causes" : [ {
+            "_class" : "_class",
+            "shortDescription" : "shortDescription",
+            "userName" : "userName",
+            "userId" : "userId"
+          }, {
+            "_class" : "_class",
+            "shortDescription" : "shortDescription",
+            "userName" : "userName",
+            "userId" : "userId"
+          } ],
+          "_class" : "_class"
+        } ],
+        "timestamp" : 2
+      },
+      "description" : "description",
+      "fullDisplayName" : "fullDisplayName",
+      "lastUnstableBuild" : "lastUnstableBuild",
+      "queueItem" : "queueItem",
+      "buildable" : true,
+      "firstBuild" : {
+        "queueId" : 5,
+        "displayName" : "displayName",
+        "keepLog" : true,
+        "description" : "description",
+        "fullDisplayName" : "fullDisplayName",
+        "estimatedDuration" : 5,
+        "url" : "url",
+        "building" : true,
+        "changeSet" : {
+          "kind" : "kind",
+          "_class" : "_class"
+        },
+        "duration" : 1,
+        "result" : "result",
+        "number" : 6,
+        "executor" : "executor",
+        "builtOn" : "builtOn",
+        "_class" : "_class",
+        "id" : "id",
+        "actions" : [ {
+          "causes" : [ {
+            "_class" : "_class",
+            "shortDescription" : "shortDescription",
+            "userName" : "userName",
+            "userId" : "userId"
+          }, {
+            "_class" : "_class",
+            "shortDescription" : "shortDescription",
+            "userName" : "userName",
+            "userId" : "userId"
+          } ],
+          "_class" : "_class"
+        }, {
+          "causes" : [ {
+            "_class" : "_class",
+            "shortDescription" : "shortDescription",
+            "userName" : "userName",
+            "userId" : "userId"
+          }, {
+            "_class" : "_class",
+            "shortDescription" : "shortDescription",
+            "userName" : "userName",
+            "userId" : "userId"
+          } ],
+          "_class" : "_class"
+        } ],
+        "timestamp" : 2
+      },
+      "lastFailedBuild" : "lastFailedBuild",
+      "lastBuild" : {
+        "queueId" : 5,
+        "displayName" : "displayName",
+        "keepLog" : true,
+        "description" : "description",
+        "fullDisplayName" : "fullDisplayName",
+        "estimatedDuration" : 5,
+        "url" : "url",
+        "building" : true,
+        "changeSet" : {
+          "kind" : "kind",
+          "_class" : "_class"
+        },
+        "duration" : 1,
+        "result" : "result",
+        "number" : 6,
+        "executor" : "executor",
+        "builtOn" : "builtOn",
+        "_class" : "_class",
+        "id" : "id",
+        "actions" : [ {
+          "causes" : [ {
+            "_class" : "_class",
+            "shortDescription" : "shortDescription",
+            "userName" : "userName",
+            "userId" : "userId"
+          }, {
+            "_class" : "_class",
+            "shortDescription" : "shortDescription",
+            "userName" : "userName",
+            "userId" : "userId"
+          } ],
+          "_class" : "_class"
+        }, {
+          "causes" : [ {
+            "_class" : "_class",
+            "shortDescription" : "shortDescription",
+            "userName" : "userName",
+            "userId" : "userId"
+          }, {
+            "_class" : "_class",
+            "shortDescription" : "shortDescription",
+            "userName" : "userName",
+            "userId" : "userId"
+          } ],
+          "_class" : "_class"
+        } ],
+        "timestamp" : 2
+      },
+      "nextBuildNumber" : 9,
+      "builds" : [ {
+        "queueId" : 5,
+        "displayName" : "displayName",
+        "keepLog" : true,
+        "description" : "description",
+        "fullDisplayName" : "fullDisplayName",
+        "estimatedDuration" : 5,
+        "url" : "url",
+        "building" : true,
+        "changeSet" : {
+          "kind" : "kind",
+          "_class" : "_class"
+        },
+        "duration" : 1,
+        "result" : "result",
+        "number" : 6,
+        "executor" : "executor",
+        "builtOn" : "builtOn",
+        "_class" : "_class",
+        "id" : "id",
+        "actions" : [ {
+          "causes" : [ {
+            "_class" : "_class",
+            "shortDescription" : "shortDescription",
+            "userName" : "userName",
+            "userId" : "userId"
+          }, {
+            "_class" : "_class",
+            "shortDescription" : "shortDescription",
+            "userName" : "userName",
+            "userId" : "userId"
+          } ],
+          "_class" : "_class"
+        }, {
+          "causes" : [ {
+            "_class" : "_class",
+            "shortDescription" : "shortDescription",
+            "userName" : "userName",
+            "userId" : "userId"
+          }, {
+            "_class" : "_class",
+            "shortDescription" : "shortDescription",
+            "userName" : "userName",
+            "userId" : "userId"
+          } ],
+          "_class" : "_class"
+        } ],
+        "timestamp" : 2
+      }, {
+        "queueId" : 5,
+        "displayName" : "displayName",
+        "keepLog" : true,
+        "description" : "description",
+        "fullDisplayName" : "fullDisplayName",
+        "estimatedDuration" : 5,
+        "url" : "url",
+        "building" : true,
+        "changeSet" : {
+          "kind" : "kind",
+          "_class" : "_class"
+        },
+        "duration" : 1,
+        "result" : "result",
+        "number" : 6,
+        "executor" : "executor",
+        "builtOn" : "builtOn",
+        "_class" : "_class",
+        "id" : "id",
+        "actions" : [ {
+          "causes" : [ {
+            "_class" : "_class",
+            "shortDescription" : "shortDescription",
+            "userName" : "userName",
+            "userId" : "userId"
+          }, {
+            "_class" : "_class",
+            "shortDescription" : "shortDescription",
+            "userName" : "userName",
+            "userId" : "userId"
+          } ],
+          "_class" : "_class"
+        }, {
+          "causes" : [ {
+            "_class" : "_class",
+            "shortDescription" : "shortDescription",
+            "userName" : "userName",
+            "userId" : "userId"
+          }, {
+            "_class" : "_class",
+            "shortDescription" : "shortDescription",
+            "userName" : "userName",
+            "userId" : "userId"
+          } ],
+          "_class" : "_class"
+        } ],
+        "timestamp" : 2
+      } ],
+      "scm" : {
+        "_class" : "_class"
+      },
+      "keepDependencies" : true,
+      "displayNameOrNull" : "displayNameOrNull",
+      "inQueue" : true,
+      "lastCompletedBuild" : {
+        "queueId" : 5,
+        "displayName" : "displayName",
+        "keepLog" : true,
+        "description" : "description",
+        "fullDisplayName" : "fullDisplayName",
+        "estimatedDuration" : 5,
+        "url" : "url",
+        "building" : true,
+        "changeSet" : {
+          "kind" : "kind",
+          "_class" : "_class"
+        },
+        "duration" : 1,
+        "result" : "result",
+        "number" : 6,
+        "executor" : "executor",
+        "builtOn" : "builtOn",
+        "_class" : "_class",
+        "id" : "id",
+        "actions" : [ {
+          "causes" : [ {
+            "_class" : "_class",
+            "shortDescription" : "shortDescription",
+            "userName" : "userName",
+            "userId" : "userId"
+          }, {
+            "_class" : "_class",
+            "shortDescription" : "shortDescription",
+            "userName" : "userName",
+            "userId" : "userId"
+          } ],
+          "_class" : "_class"
+        }, {
+          "causes" : [ {
+            "_class" : "_class",
+            "shortDescription" : "shortDescription",
+            "userName" : "userName",
+            "userId" : "userId"
+          }, {
+            "_class" : "_class",
+            "shortDescription" : "shortDescription",
+            "userName" : "userName",
+            "userId" : "userId"
+          } ],
+          "_class" : "_class"
+        } ],
+        "timestamp" : 2
+      },
+      "fullName" : "fullName",
+      "healthReport" : [ {
+        "score" : 7,
+        "description" : "description",
+        "iconClassName" : "iconClassName",
+        "iconUrl" : "iconUrl",
+        "_class" : "_class"
+      }, {
+        "score" : 7,
+        "description" : "description",
+        "iconClassName" : "iconClassName",
+        "iconUrl" : "iconUrl",
+        "_class" : "_class"
+      } ],
+      "lastStableBuild" : {
+        "queueId" : 5,
+        "displayName" : "displayName",
+        "keepLog" : true,
+        "description" : "description",
+        "fullDisplayName" : "fullDisplayName",
+        "estimatedDuration" : 5,
+        "url" : "url",
+        "building" : true,
+        "changeSet" : {
+          "kind" : "kind",
+          "_class" : "_class"
+        },
+        "duration" : 1,
+        "result" : "result",
+        "number" : 6,
+        "executor" : "executor",
+        "builtOn" : "builtOn",
+        "_class" : "_class",
+        "id" : "id",
+        "actions" : [ {
+          "causes" : [ {
+            "_class" : "_class",
+            "shortDescription" : "shortDescription",
+            "userName" : "userName",
+            "userId" : "userId"
+          }, {
+            "_class" : "_class",
+            "shortDescription" : "shortDescription",
+            "userName" : "userName",
+            "userId" : "userId"
+          } ],
+          "_class" : "_class"
+        }, {
+          "causes" : [ {
+            "_class" : "_class",
+            "shortDescription" : "shortDescription",
+            "userName" : "userName",
+            "userId" : "userId"
+          }, {
+            "_class" : "_class",
+            "shortDescription" : "shortDescription",
+            "userName" : "userName",
+            "userId" : "userId"
+          } ],
+          "_class" : "_class"
+        } ],
+        "timestamp" : 2
+      },
+      "lastUnsuccessfulBuild" : "lastUnsuccessfulBuild",
+      "url" : "url",
+      "concurrentBuild" : true,
+      "name" : "name",
+      "_class" : "_class",
+      "actions" : [ {
+        "_class" : "_class"
+      }, {
+        "_class" : "_class"
+      } ]
+    },
+    "blocked" : true,
+    "stuck" : true,
+    "buildableStartMilliseconds" : 1,
+    "why" : "why",
+    "_class" : "_class",
+    "id" : 0,
+    "buildable" : true,
+    "params" : "params",
+    "actions" : [ {
+      "causes" : [ {
+        "_class" : "_class",
+        "shortDescription" : "shortDescription",
+        "userName" : "userName",
+        "userId" : "userId"
+      }, {
+        "_class" : "_class",
+        "shortDescription" : "shortDescription",
+        "userName" : "userName",
+        "userId" : "userId"
+      } ],
+      "_class" : "_class"
+    }, {
+      "causes" : [ {
+        "_class" : "_class",
+        "shortDescription" : "shortDescription",
+        "userName" : "userName",
+        "userId" : "userId"
+      }, {
+        "_class" : "_class",
+        "shortDescription" : "shortDescription",
+        "userName" : "userName",
+        "userId" : "userId"
+      } ],
+      "_class" : "_class"
+    } ],
+    "url" : "url",
     "inQueueSince" : 6
   } ]
 }}]
-
-     - returns: RequestBuilder<HudsonmodelQueue> 
+     - returns: RequestBuilder<Queue> 
      */
-    open class func getQueueWithRequestBuilder() -> RequestBuilder<HudsonmodelQueue> {
+    open class func getQueueWithRequestBuilder() -> RequestBuilder<Queue> {
         let path = "/queue/api/json"
         let URLString = SwaggerClientAPI.basePath + path
         let parameters: [String:Any]? = nil
 
         let url = NSURLComponents(string: URLString)
 
-
-        let requestBuilder: RequestBuilder<HudsonmodelQueue>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
+        let requestBuilder: RequestBuilder<Queue>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
 
         return requestBuilder.init(method: "GET", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false)
     }
 
     /**
-
      - parameter number: (path) Queue number 
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func getQueueItem(number: String, completion: @escaping ((_ data: HudsonmodelQueue?,_ error: Error?) -> Void)) {
+    open class func getQueueItem(number: String, completion: @escaping ((_ data: Queue?, _ error: ErrorResponse?) -> Void)) {
         getQueueItemWithRequestBuilder(number: number).execute { (response, error) -> Void in
-            completion(response?.body, error);
+            completion(response?.body, error)
         }
     }
 
@@ -663,97 +2699,859 @@ open class RemoteAccessAPI: APIBase {
     /**
      - GET /queue/item/{number}/api/json
      - Retrieve queued item details
+     - BASIC:
+       - type: basic
+       - name: jenkins_auth
      - examples: [{contentType=application/json, example={
-  "_class" : "aeiou",
+  "_class" : "_class",
   "items" : [ {
     "task" : {
-      "color" : "aeiou",
-      "displayName" : "aeiou",
-      "lastSuccessfulBuild" : "",
-      "description" : "aeiou",
-      "fullDisplayName" : "aeiou",
-      "lastUnstableBuild" : "aeiou",
-      "queueItem" : "aeiou",
-      "buildable" : true,
-      "firstBuild" : "",
-      "lastFailedBuild" : "aeiou",
-      "lastBuild" : "",
-      "nextBuildNumber" : 3,
-      "builds" : [ {
-        "queueId" : 2,
-        "displayName" : "aeiou",
+      "color" : "color",
+      "displayName" : "displayName",
+      "lastSuccessfulBuild" : {
+        "queueId" : 5,
+        "displayName" : "displayName",
         "keepLog" : true,
-        "description" : "aeiou",
-        "fullDisplayName" : "aeiou",
+        "description" : "description",
+        "fullDisplayName" : "fullDisplayName",
         "estimatedDuration" : 5,
-        "url" : "aeiou",
+        "url" : "url",
         "building" : true,
         "changeSet" : {
-          "kind" : "aeiou",
-          "_class" : "aeiou"
+          "kind" : "kind",
+          "_class" : "_class"
         },
-        "duration" : 5,
-        "result" : "aeiou",
-        "number" : 1,
-        "executor" : "aeiou",
-        "builtOn" : "aeiou",
-        "_class" : "aeiou",
-        "id" : "aeiou",
-        "actions" : [ "" ],
-        "timestamp" : 7
+        "duration" : 1,
+        "result" : "result",
+        "number" : 6,
+        "executor" : "executor",
+        "builtOn" : "builtOn",
+        "_class" : "_class",
+        "id" : "id",
+        "actions" : [ {
+          "causes" : [ {
+            "_class" : "_class",
+            "shortDescription" : "shortDescription",
+            "userName" : "userName",
+            "userId" : "userId"
+          }, {
+            "_class" : "_class",
+            "shortDescription" : "shortDescription",
+            "userName" : "userName",
+            "userId" : "userId"
+          } ],
+          "_class" : "_class"
+        }, {
+          "causes" : [ {
+            "_class" : "_class",
+            "shortDescription" : "shortDescription",
+            "userName" : "userName",
+            "userId" : "userId"
+          }, {
+            "_class" : "_class",
+            "shortDescription" : "shortDescription",
+            "userName" : "userName",
+            "userId" : "userId"
+          } ],
+          "_class" : "_class"
+        } ],
+        "timestamp" : 2
+      },
+      "description" : "description",
+      "fullDisplayName" : "fullDisplayName",
+      "lastUnstableBuild" : "lastUnstableBuild",
+      "queueItem" : "queueItem",
+      "buildable" : true,
+      "firstBuild" : {
+        "queueId" : 5,
+        "displayName" : "displayName",
+        "keepLog" : true,
+        "description" : "description",
+        "fullDisplayName" : "fullDisplayName",
+        "estimatedDuration" : 5,
+        "url" : "url",
+        "building" : true,
+        "changeSet" : {
+          "kind" : "kind",
+          "_class" : "_class"
+        },
+        "duration" : 1,
+        "result" : "result",
+        "number" : 6,
+        "executor" : "executor",
+        "builtOn" : "builtOn",
+        "_class" : "_class",
+        "id" : "id",
+        "actions" : [ {
+          "causes" : [ {
+            "_class" : "_class",
+            "shortDescription" : "shortDescription",
+            "userName" : "userName",
+            "userId" : "userId"
+          }, {
+            "_class" : "_class",
+            "shortDescription" : "shortDescription",
+            "userName" : "userName",
+            "userId" : "userId"
+          } ],
+          "_class" : "_class"
+        }, {
+          "causes" : [ {
+            "_class" : "_class",
+            "shortDescription" : "shortDescription",
+            "userName" : "userName",
+            "userId" : "userId"
+          }, {
+            "_class" : "_class",
+            "shortDescription" : "shortDescription",
+            "userName" : "userName",
+            "userId" : "userId"
+          } ],
+          "_class" : "_class"
+        } ],
+        "timestamp" : 2
+      },
+      "lastFailedBuild" : "lastFailedBuild",
+      "lastBuild" : {
+        "queueId" : 5,
+        "displayName" : "displayName",
+        "keepLog" : true,
+        "description" : "description",
+        "fullDisplayName" : "fullDisplayName",
+        "estimatedDuration" : 5,
+        "url" : "url",
+        "building" : true,
+        "changeSet" : {
+          "kind" : "kind",
+          "_class" : "_class"
+        },
+        "duration" : 1,
+        "result" : "result",
+        "number" : 6,
+        "executor" : "executor",
+        "builtOn" : "builtOn",
+        "_class" : "_class",
+        "id" : "id",
+        "actions" : [ {
+          "causes" : [ {
+            "_class" : "_class",
+            "shortDescription" : "shortDescription",
+            "userName" : "userName",
+            "userId" : "userId"
+          }, {
+            "_class" : "_class",
+            "shortDescription" : "shortDescription",
+            "userName" : "userName",
+            "userId" : "userId"
+          } ],
+          "_class" : "_class"
+        }, {
+          "causes" : [ {
+            "_class" : "_class",
+            "shortDescription" : "shortDescription",
+            "userName" : "userName",
+            "userId" : "userId"
+          }, {
+            "_class" : "_class",
+            "shortDescription" : "shortDescription",
+            "userName" : "userName",
+            "userId" : "userId"
+          } ],
+          "_class" : "_class"
+        } ],
+        "timestamp" : 2
+      },
+      "nextBuildNumber" : 9,
+      "builds" : [ {
+        "queueId" : 5,
+        "displayName" : "displayName",
+        "keepLog" : true,
+        "description" : "description",
+        "fullDisplayName" : "fullDisplayName",
+        "estimatedDuration" : 5,
+        "url" : "url",
+        "building" : true,
+        "changeSet" : {
+          "kind" : "kind",
+          "_class" : "_class"
+        },
+        "duration" : 1,
+        "result" : "result",
+        "number" : 6,
+        "executor" : "executor",
+        "builtOn" : "builtOn",
+        "_class" : "_class",
+        "id" : "id",
+        "actions" : [ {
+          "causes" : [ {
+            "_class" : "_class",
+            "shortDescription" : "shortDescription",
+            "userName" : "userName",
+            "userId" : "userId"
+          }, {
+            "_class" : "_class",
+            "shortDescription" : "shortDescription",
+            "userName" : "userName",
+            "userId" : "userId"
+          } ],
+          "_class" : "_class"
+        }, {
+          "causes" : [ {
+            "_class" : "_class",
+            "shortDescription" : "shortDescription",
+            "userName" : "userName",
+            "userId" : "userId"
+          }, {
+            "_class" : "_class",
+            "shortDescription" : "shortDescription",
+            "userName" : "userName",
+            "userId" : "userId"
+          } ],
+          "_class" : "_class"
+        } ],
+        "timestamp" : 2
+      }, {
+        "queueId" : 5,
+        "displayName" : "displayName",
+        "keepLog" : true,
+        "description" : "description",
+        "fullDisplayName" : "fullDisplayName",
+        "estimatedDuration" : 5,
+        "url" : "url",
+        "building" : true,
+        "changeSet" : {
+          "kind" : "kind",
+          "_class" : "_class"
+        },
+        "duration" : 1,
+        "result" : "result",
+        "number" : 6,
+        "executor" : "executor",
+        "builtOn" : "builtOn",
+        "_class" : "_class",
+        "id" : "id",
+        "actions" : [ {
+          "causes" : [ {
+            "_class" : "_class",
+            "shortDescription" : "shortDescription",
+            "userName" : "userName",
+            "userId" : "userId"
+          }, {
+            "_class" : "_class",
+            "shortDescription" : "shortDescription",
+            "userName" : "userName",
+            "userId" : "userId"
+          } ],
+          "_class" : "_class"
+        }, {
+          "causes" : [ {
+            "_class" : "_class",
+            "shortDescription" : "shortDescription",
+            "userName" : "userName",
+            "userId" : "userId"
+          }, {
+            "_class" : "_class",
+            "shortDescription" : "shortDescription",
+            "userName" : "userName",
+            "userId" : "userId"
+          } ],
+          "_class" : "_class"
+        } ],
+        "timestamp" : 2
       } ],
       "scm" : {
-        "_class" : "aeiou"
+        "_class" : "_class"
       },
       "keepDependencies" : true,
-      "displayNameOrNull" : "aeiou",
+      "displayNameOrNull" : "displayNameOrNull",
       "inQueue" : true,
-      "lastCompletedBuild" : "",
-      "fullName" : "aeiou",
+      "lastCompletedBuild" : {
+        "queueId" : 5,
+        "displayName" : "displayName",
+        "keepLog" : true,
+        "description" : "description",
+        "fullDisplayName" : "fullDisplayName",
+        "estimatedDuration" : 5,
+        "url" : "url",
+        "building" : true,
+        "changeSet" : {
+          "kind" : "kind",
+          "_class" : "_class"
+        },
+        "duration" : 1,
+        "result" : "result",
+        "number" : 6,
+        "executor" : "executor",
+        "builtOn" : "builtOn",
+        "_class" : "_class",
+        "id" : "id",
+        "actions" : [ {
+          "causes" : [ {
+            "_class" : "_class",
+            "shortDescription" : "shortDescription",
+            "userName" : "userName",
+            "userId" : "userId"
+          }, {
+            "_class" : "_class",
+            "shortDescription" : "shortDescription",
+            "userName" : "userName",
+            "userId" : "userId"
+          } ],
+          "_class" : "_class"
+        }, {
+          "causes" : [ {
+            "_class" : "_class",
+            "shortDescription" : "shortDescription",
+            "userName" : "userName",
+            "userId" : "userId"
+          }, {
+            "_class" : "_class",
+            "shortDescription" : "shortDescription",
+            "userName" : "userName",
+            "userId" : "userId"
+          } ],
+          "_class" : "_class"
+        } ],
+        "timestamp" : 2
+      },
+      "fullName" : "fullName",
       "healthReport" : [ {
-        "score" : 9,
-        "description" : "aeiou",
-        "iconClassName" : "aeiou",
-        "iconUrl" : "aeiou",
-        "_class" : "aeiou"
+        "score" : 7,
+        "description" : "description",
+        "iconClassName" : "iconClassName",
+        "iconUrl" : "iconUrl",
+        "_class" : "_class"
+      }, {
+        "score" : 7,
+        "description" : "description",
+        "iconClassName" : "iconClassName",
+        "iconUrl" : "iconUrl",
+        "_class" : "_class"
       } ],
-      "lastStableBuild" : "",
-      "lastUnsuccessfulBuild" : "aeiou",
-      "url" : "aeiou",
+      "lastStableBuild" : {
+        "queueId" : 5,
+        "displayName" : "displayName",
+        "keepLog" : true,
+        "description" : "description",
+        "fullDisplayName" : "fullDisplayName",
+        "estimatedDuration" : 5,
+        "url" : "url",
+        "building" : true,
+        "changeSet" : {
+          "kind" : "kind",
+          "_class" : "_class"
+        },
+        "duration" : 1,
+        "result" : "result",
+        "number" : 6,
+        "executor" : "executor",
+        "builtOn" : "builtOn",
+        "_class" : "_class",
+        "id" : "id",
+        "actions" : [ {
+          "causes" : [ {
+            "_class" : "_class",
+            "shortDescription" : "shortDescription",
+            "userName" : "userName",
+            "userId" : "userId"
+          }, {
+            "_class" : "_class",
+            "shortDescription" : "shortDescription",
+            "userName" : "userName",
+            "userId" : "userId"
+          } ],
+          "_class" : "_class"
+        }, {
+          "causes" : [ {
+            "_class" : "_class",
+            "shortDescription" : "shortDescription",
+            "userName" : "userName",
+            "userId" : "userId"
+          }, {
+            "_class" : "_class",
+            "shortDescription" : "shortDescription",
+            "userName" : "userName",
+            "userId" : "userId"
+          } ],
+          "_class" : "_class"
+        } ],
+        "timestamp" : 2
+      },
+      "lastUnsuccessfulBuild" : "lastUnsuccessfulBuild",
+      "url" : "url",
       "concurrentBuild" : true,
-      "name" : "aeiou",
-      "_class" : "aeiou",
+      "name" : "name",
+      "_class" : "_class",
       "actions" : [ {
-        "_class" : "aeiou"
+        "_class" : "_class"
+      }, {
+        "_class" : "_class"
       } ]
     },
     "blocked" : true,
     "stuck" : true,
-    "buildableStartMilliseconds" : 2,
-    "why" : "aeiou",
-    "_class" : "aeiou",
+    "buildableStartMilliseconds" : 1,
+    "why" : "why",
+    "_class" : "_class",
     "id" : 0,
     "buildable" : true,
-    "params" : "aeiou",
+    "params" : "params",
     "actions" : [ {
       "causes" : [ {
-        "_class" : "aeiou",
-        "shortDescription" : "aeiou",
-        "userName" : "aeiou",
-        "userId" : "aeiou"
+        "_class" : "_class",
+        "shortDescription" : "shortDescription",
+        "userName" : "userName",
+        "userId" : "userId"
+      }, {
+        "_class" : "_class",
+        "shortDescription" : "shortDescription",
+        "userName" : "userName",
+        "userId" : "userId"
       } ],
-      "_class" : "aeiou"
+      "_class" : "_class"
+    }, {
+      "causes" : [ {
+        "_class" : "_class",
+        "shortDescription" : "shortDescription",
+        "userName" : "userName",
+        "userId" : "userId"
+      }, {
+        "_class" : "_class",
+        "shortDescription" : "shortDescription",
+        "userName" : "userName",
+        "userId" : "userId"
+      } ],
+      "_class" : "_class"
     } ],
-    "url" : "aeiou",
+    "url" : "url",
+    "inQueueSince" : 6
+  }, {
+    "task" : {
+      "color" : "color",
+      "displayName" : "displayName",
+      "lastSuccessfulBuild" : {
+        "queueId" : 5,
+        "displayName" : "displayName",
+        "keepLog" : true,
+        "description" : "description",
+        "fullDisplayName" : "fullDisplayName",
+        "estimatedDuration" : 5,
+        "url" : "url",
+        "building" : true,
+        "changeSet" : {
+          "kind" : "kind",
+          "_class" : "_class"
+        },
+        "duration" : 1,
+        "result" : "result",
+        "number" : 6,
+        "executor" : "executor",
+        "builtOn" : "builtOn",
+        "_class" : "_class",
+        "id" : "id",
+        "actions" : [ {
+          "causes" : [ {
+            "_class" : "_class",
+            "shortDescription" : "shortDescription",
+            "userName" : "userName",
+            "userId" : "userId"
+          }, {
+            "_class" : "_class",
+            "shortDescription" : "shortDescription",
+            "userName" : "userName",
+            "userId" : "userId"
+          } ],
+          "_class" : "_class"
+        }, {
+          "causes" : [ {
+            "_class" : "_class",
+            "shortDescription" : "shortDescription",
+            "userName" : "userName",
+            "userId" : "userId"
+          }, {
+            "_class" : "_class",
+            "shortDescription" : "shortDescription",
+            "userName" : "userName",
+            "userId" : "userId"
+          } ],
+          "_class" : "_class"
+        } ],
+        "timestamp" : 2
+      },
+      "description" : "description",
+      "fullDisplayName" : "fullDisplayName",
+      "lastUnstableBuild" : "lastUnstableBuild",
+      "queueItem" : "queueItem",
+      "buildable" : true,
+      "firstBuild" : {
+        "queueId" : 5,
+        "displayName" : "displayName",
+        "keepLog" : true,
+        "description" : "description",
+        "fullDisplayName" : "fullDisplayName",
+        "estimatedDuration" : 5,
+        "url" : "url",
+        "building" : true,
+        "changeSet" : {
+          "kind" : "kind",
+          "_class" : "_class"
+        },
+        "duration" : 1,
+        "result" : "result",
+        "number" : 6,
+        "executor" : "executor",
+        "builtOn" : "builtOn",
+        "_class" : "_class",
+        "id" : "id",
+        "actions" : [ {
+          "causes" : [ {
+            "_class" : "_class",
+            "shortDescription" : "shortDescription",
+            "userName" : "userName",
+            "userId" : "userId"
+          }, {
+            "_class" : "_class",
+            "shortDescription" : "shortDescription",
+            "userName" : "userName",
+            "userId" : "userId"
+          } ],
+          "_class" : "_class"
+        }, {
+          "causes" : [ {
+            "_class" : "_class",
+            "shortDescription" : "shortDescription",
+            "userName" : "userName",
+            "userId" : "userId"
+          }, {
+            "_class" : "_class",
+            "shortDescription" : "shortDescription",
+            "userName" : "userName",
+            "userId" : "userId"
+          } ],
+          "_class" : "_class"
+        } ],
+        "timestamp" : 2
+      },
+      "lastFailedBuild" : "lastFailedBuild",
+      "lastBuild" : {
+        "queueId" : 5,
+        "displayName" : "displayName",
+        "keepLog" : true,
+        "description" : "description",
+        "fullDisplayName" : "fullDisplayName",
+        "estimatedDuration" : 5,
+        "url" : "url",
+        "building" : true,
+        "changeSet" : {
+          "kind" : "kind",
+          "_class" : "_class"
+        },
+        "duration" : 1,
+        "result" : "result",
+        "number" : 6,
+        "executor" : "executor",
+        "builtOn" : "builtOn",
+        "_class" : "_class",
+        "id" : "id",
+        "actions" : [ {
+          "causes" : [ {
+            "_class" : "_class",
+            "shortDescription" : "shortDescription",
+            "userName" : "userName",
+            "userId" : "userId"
+          }, {
+            "_class" : "_class",
+            "shortDescription" : "shortDescription",
+            "userName" : "userName",
+            "userId" : "userId"
+          } ],
+          "_class" : "_class"
+        }, {
+          "causes" : [ {
+            "_class" : "_class",
+            "shortDescription" : "shortDescription",
+            "userName" : "userName",
+            "userId" : "userId"
+          }, {
+            "_class" : "_class",
+            "shortDescription" : "shortDescription",
+            "userName" : "userName",
+            "userId" : "userId"
+          } ],
+          "_class" : "_class"
+        } ],
+        "timestamp" : 2
+      },
+      "nextBuildNumber" : 9,
+      "builds" : [ {
+        "queueId" : 5,
+        "displayName" : "displayName",
+        "keepLog" : true,
+        "description" : "description",
+        "fullDisplayName" : "fullDisplayName",
+        "estimatedDuration" : 5,
+        "url" : "url",
+        "building" : true,
+        "changeSet" : {
+          "kind" : "kind",
+          "_class" : "_class"
+        },
+        "duration" : 1,
+        "result" : "result",
+        "number" : 6,
+        "executor" : "executor",
+        "builtOn" : "builtOn",
+        "_class" : "_class",
+        "id" : "id",
+        "actions" : [ {
+          "causes" : [ {
+            "_class" : "_class",
+            "shortDescription" : "shortDescription",
+            "userName" : "userName",
+            "userId" : "userId"
+          }, {
+            "_class" : "_class",
+            "shortDescription" : "shortDescription",
+            "userName" : "userName",
+            "userId" : "userId"
+          } ],
+          "_class" : "_class"
+        }, {
+          "causes" : [ {
+            "_class" : "_class",
+            "shortDescription" : "shortDescription",
+            "userName" : "userName",
+            "userId" : "userId"
+          }, {
+            "_class" : "_class",
+            "shortDescription" : "shortDescription",
+            "userName" : "userName",
+            "userId" : "userId"
+          } ],
+          "_class" : "_class"
+        } ],
+        "timestamp" : 2
+      }, {
+        "queueId" : 5,
+        "displayName" : "displayName",
+        "keepLog" : true,
+        "description" : "description",
+        "fullDisplayName" : "fullDisplayName",
+        "estimatedDuration" : 5,
+        "url" : "url",
+        "building" : true,
+        "changeSet" : {
+          "kind" : "kind",
+          "_class" : "_class"
+        },
+        "duration" : 1,
+        "result" : "result",
+        "number" : 6,
+        "executor" : "executor",
+        "builtOn" : "builtOn",
+        "_class" : "_class",
+        "id" : "id",
+        "actions" : [ {
+          "causes" : [ {
+            "_class" : "_class",
+            "shortDescription" : "shortDescription",
+            "userName" : "userName",
+            "userId" : "userId"
+          }, {
+            "_class" : "_class",
+            "shortDescription" : "shortDescription",
+            "userName" : "userName",
+            "userId" : "userId"
+          } ],
+          "_class" : "_class"
+        }, {
+          "causes" : [ {
+            "_class" : "_class",
+            "shortDescription" : "shortDescription",
+            "userName" : "userName",
+            "userId" : "userId"
+          }, {
+            "_class" : "_class",
+            "shortDescription" : "shortDescription",
+            "userName" : "userName",
+            "userId" : "userId"
+          } ],
+          "_class" : "_class"
+        } ],
+        "timestamp" : 2
+      } ],
+      "scm" : {
+        "_class" : "_class"
+      },
+      "keepDependencies" : true,
+      "displayNameOrNull" : "displayNameOrNull",
+      "inQueue" : true,
+      "lastCompletedBuild" : {
+        "queueId" : 5,
+        "displayName" : "displayName",
+        "keepLog" : true,
+        "description" : "description",
+        "fullDisplayName" : "fullDisplayName",
+        "estimatedDuration" : 5,
+        "url" : "url",
+        "building" : true,
+        "changeSet" : {
+          "kind" : "kind",
+          "_class" : "_class"
+        },
+        "duration" : 1,
+        "result" : "result",
+        "number" : 6,
+        "executor" : "executor",
+        "builtOn" : "builtOn",
+        "_class" : "_class",
+        "id" : "id",
+        "actions" : [ {
+          "causes" : [ {
+            "_class" : "_class",
+            "shortDescription" : "shortDescription",
+            "userName" : "userName",
+            "userId" : "userId"
+          }, {
+            "_class" : "_class",
+            "shortDescription" : "shortDescription",
+            "userName" : "userName",
+            "userId" : "userId"
+          } ],
+          "_class" : "_class"
+        }, {
+          "causes" : [ {
+            "_class" : "_class",
+            "shortDescription" : "shortDescription",
+            "userName" : "userName",
+            "userId" : "userId"
+          }, {
+            "_class" : "_class",
+            "shortDescription" : "shortDescription",
+            "userName" : "userName",
+            "userId" : "userId"
+          } ],
+          "_class" : "_class"
+        } ],
+        "timestamp" : 2
+      },
+      "fullName" : "fullName",
+      "healthReport" : [ {
+        "score" : 7,
+        "description" : "description",
+        "iconClassName" : "iconClassName",
+        "iconUrl" : "iconUrl",
+        "_class" : "_class"
+      }, {
+        "score" : 7,
+        "description" : "description",
+        "iconClassName" : "iconClassName",
+        "iconUrl" : "iconUrl",
+        "_class" : "_class"
+      } ],
+      "lastStableBuild" : {
+        "queueId" : 5,
+        "displayName" : "displayName",
+        "keepLog" : true,
+        "description" : "description",
+        "fullDisplayName" : "fullDisplayName",
+        "estimatedDuration" : 5,
+        "url" : "url",
+        "building" : true,
+        "changeSet" : {
+          "kind" : "kind",
+          "_class" : "_class"
+        },
+        "duration" : 1,
+        "result" : "result",
+        "number" : 6,
+        "executor" : "executor",
+        "builtOn" : "builtOn",
+        "_class" : "_class",
+        "id" : "id",
+        "actions" : [ {
+          "causes" : [ {
+            "_class" : "_class",
+            "shortDescription" : "shortDescription",
+            "userName" : "userName",
+            "userId" : "userId"
+          }, {
+            "_class" : "_class",
+            "shortDescription" : "shortDescription",
+            "userName" : "userName",
+            "userId" : "userId"
+          } ],
+          "_class" : "_class"
+        }, {
+          "causes" : [ {
+            "_class" : "_class",
+            "shortDescription" : "shortDescription",
+            "userName" : "userName",
+            "userId" : "userId"
+          }, {
+            "_class" : "_class",
+            "shortDescription" : "shortDescription",
+            "userName" : "userName",
+            "userId" : "userId"
+          } ],
+          "_class" : "_class"
+        } ],
+        "timestamp" : 2
+      },
+      "lastUnsuccessfulBuild" : "lastUnsuccessfulBuild",
+      "url" : "url",
+      "concurrentBuild" : true,
+      "name" : "name",
+      "_class" : "_class",
+      "actions" : [ {
+        "_class" : "_class"
+      }, {
+        "_class" : "_class"
+      } ]
+    },
+    "blocked" : true,
+    "stuck" : true,
+    "buildableStartMilliseconds" : 1,
+    "why" : "why",
+    "_class" : "_class",
+    "id" : 0,
+    "buildable" : true,
+    "params" : "params",
+    "actions" : [ {
+      "causes" : [ {
+        "_class" : "_class",
+        "shortDescription" : "shortDescription",
+        "userName" : "userName",
+        "userId" : "userId"
+      }, {
+        "_class" : "_class",
+        "shortDescription" : "shortDescription",
+        "userName" : "userName",
+        "userId" : "userId"
+      } ],
+      "_class" : "_class"
+    }, {
+      "causes" : [ {
+        "_class" : "_class",
+        "shortDescription" : "shortDescription",
+        "userName" : "userName",
+        "userId" : "userId"
+      }, {
+        "_class" : "_class",
+        "shortDescription" : "shortDescription",
+        "userName" : "userName",
+        "userId" : "userId"
+      } ],
+      "_class" : "_class"
+    } ],
+    "url" : "url",
     "inQueueSince" : 6
   } ]
 }}]
-     
      - parameter number: (path) Queue number 
-
-     - returns: RequestBuilder<HudsonmodelQueue> 
+     - returns: RequestBuilder<Queue> 
      */
-    open class func getQueueItemWithRequestBuilder(number: String) -> RequestBuilder<HudsonmodelQueue> {
+    open class func getQueueItemWithRequestBuilder(number: String) -> RequestBuilder<Queue> {
         var path = "/queue/item/{number}/api/json"
         path = path.replacingOccurrences(of: "{number}", with: "\(number)", options: .literal, range: nil)
         let URLString = SwaggerClientAPI.basePath + path
@@ -761,20 +3559,18 @@ open class RemoteAccessAPI: APIBase {
 
         let url = NSURLComponents(string: URLString)
 
-
-        let requestBuilder: RequestBuilder<HudsonmodelQueue>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
+        let requestBuilder: RequestBuilder<Queue>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
 
         return requestBuilder.init(method: "GET", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false)
     }
 
     /**
-
      - parameter name: (path) Name of the view 
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func getView(name: String, completion: @escaping ((_ data: HudsonmodelListView?,_ error: Error?) -> Void)) {
+    open class func getView(name: String, completion: @escaping ((_ data: ListView?, _ error: ErrorResponse?) -> Void)) {
         getViewWithRequestBuilder(name: name).execute { (response, error) -> Void in
-            completion(response?.body, error);
+            completion(response?.body, error)
         }
     }
 
@@ -782,87 +3578,784 @@ open class RemoteAccessAPI: APIBase {
     /**
      - GET /view/{name}/api/json
      - Retrieve view details
+     - BASIC:
+       - type: basic
+       - name: jenkins_auth
      - examples: [{contentType=application/json, example={
   "jobs" : [ {
-    "color" : "aeiou",
-    "displayName" : "aeiou",
-    "lastSuccessfulBuild" : "",
-    "description" : "aeiou",
-    "fullDisplayName" : "aeiou",
-    "lastUnstableBuild" : "aeiou",
-    "queueItem" : "aeiou",
-    "buildable" : true,
-    "firstBuild" : "",
-    "lastFailedBuild" : "aeiou",
-    "lastBuild" : "",
-    "nextBuildNumber" : 7,
-    "builds" : [ {
+    "color" : "color",
+    "displayName" : "displayName",
+    "lastSuccessfulBuild" : {
       "queueId" : 5,
-      "displayName" : "aeiou",
+      "displayName" : "displayName",
       "keepLog" : true,
-      "description" : "aeiou",
-      "fullDisplayName" : "aeiou",
-      "estimatedDuration" : 1,
-      "url" : "aeiou",
+      "description" : "description",
+      "fullDisplayName" : "fullDisplayName",
+      "estimatedDuration" : 5,
+      "url" : "url",
       "building" : true,
       "changeSet" : {
-        "kind" : "aeiou",
-        "_class" : "aeiou"
+        "kind" : "kind",
+        "_class" : "_class"
       },
-      "duration" : 6,
-      "result" : "aeiou",
-      "number" : 0,
-      "executor" : "aeiou",
-      "builtOn" : "aeiou",
-      "_class" : "aeiou",
-      "id" : "aeiou",
+      "duration" : 1,
+      "result" : "result",
+      "number" : 6,
+      "executor" : "executor",
+      "builtOn" : "builtOn",
+      "_class" : "_class",
+      "id" : "id",
       "actions" : [ {
         "causes" : [ {
-          "_class" : "aeiou",
-          "shortDescription" : "aeiou",
-          "userName" : "aeiou",
-          "userId" : "aeiou"
+          "_class" : "_class",
+          "shortDescription" : "shortDescription",
+          "userName" : "userName",
+          "userId" : "userId"
+        }, {
+          "_class" : "_class",
+          "shortDescription" : "shortDescription",
+          "userName" : "userName",
+          "userId" : "userId"
         } ],
-        "_class" : "aeiou"
+        "_class" : "_class"
+      }, {
+        "causes" : [ {
+          "_class" : "_class",
+          "shortDescription" : "shortDescription",
+          "userName" : "userName",
+          "userId" : "userId"
+        }, {
+          "_class" : "_class",
+          "shortDescription" : "shortDescription",
+          "userName" : "userName",
+          "userId" : "userId"
+        } ],
+        "_class" : "_class"
       } ],
-      "timestamp" : 5
+      "timestamp" : 2
+    },
+    "description" : "description",
+    "fullDisplayName" : "fullDisplayName",
+    "lastUnstableBuild" : "lastUnstableBuild",
+    "queueItem" : "queueItem",
+    "buildable" : true,
+    "firstBuild" : {
+      "queueId" : 5,
+      "displayName" : "displayName",
+      "keepLog" : true,
+      "description" : "description",
+      "fullDisplayName" : "fullDisplayName",
+      "estimatedDuration" : 5,
+      "url" : "url",
+      "building" : true,
+      "changeSet" : {
+        "kind" : "kind",
+        "_class" : "_class"
+      },
+      "duration" : 1,
+      "result" : "result",
+      "number" : 6,
+      "executor" : "executor",
+      "builtOn" : "builtOn",
+      "_class" : "_class",
+      "id" : "id",
+      "actions" : [ {
+        "causes" : [ {
+          "_class" : "_class",
+          "shortDescription" : "shortDescription",
+          "userName" : "userName",
+          "userId" : "userId"
+        }, {
+          "_class" : "_class",
+          "shortDescription" : "shortDescription",
+          "userName" : "userName",
+          "userId" : "userId"
+        } ],
+        "_class" : "_class"
+      }, {
+        "causes" : [ {
+          "_class" : "_class",
+          "shortDescription" : "shortDescription",
+          "userName" : "userName",
+          "userId" : "userId"
+        }, {
+          "_class" : "_class",
+          "shortDescription" : "shortDescription",
+          "userName" : "userName",
+          "userId" : "userId"
+        } ],
+        "_class" : "_class"
+      } ],
+      "timestamp" : 2
+    },
+    "lastFailedBuild" : "lastFailedBuild",
+    "lastBuild" : {
+      "queueId" : 5,
+      "displayName" : "displayName",
+      "keepLog" : true,
+      "description" : "description",
+      "fullDisplayName" : "fullDisplayName",
+      "estimatedDuration" : 5,
+      "url" : "url",
+      "building" : true,
+      "changeSet" : {
+        "kind" : "kind",
+        "_class" : "_class"
+      },
+      "duration" : 1,
+      "result" : "result",
+      "number" : 6,
+      "executor" : "executor",
+      "builtOn" : "builtOn",
+      "_class" : "_class",
+      "id" : "id",
+      "actions" : [ {
+        "causes" : [ {
+          "_class" : "_class",
+          "shortDescription" : "shortDescription",
+          "userName" : "userName",
+          "userId" : "userId"
+        }, {
+          "_class" : "_class",
+          "shortDescription" : "shortDescription",
+          "userName" : "userName",
+          "userId" : "userId"
+        } ],
+        "_class" : "_class"
+      }, {
+        "causes" : [ {
+          "_class" : "_class",
+          "shortDescription" : "shortDescription",
+          "userName" : "userName",
+          "userId" : "userId"
+        }, {
+          "_class" : "_class",
+          "shortDescription" : "shortDescription",
+          "userName" : "userName",
+          "userId" : "userId"
+        } ],
+        "_class" : "_class"
+      } ],
+      "timestamp" : 2
+    },
+    "nextBuildNumber" : 9,
+    "builds" : [ {
+      "queueId" : 5,
+      "displayName" : "displayName",
+      "keepLog" : true,
+      "description" : "description",
+      "fullDisplayName" : "fullDisplayName",
+      "estimatedDuration" : 5,
+      "url" : "url",
+      "building" : true,
+      "changeSet" : {
+        "kind" : "kind",
+        "_class" : "_class"
+      },
+      "duration" : 1,
+      "result" : "result",
+      "number" : 6,
+      "executor" : "executor",
+      "builtOn" : "builtOn",
+      "_class" : "_class",
+      "id" : "id",
+      "actions" : [ {
+        "causes" : [ {
+          "_class" : "_class",
+          "shortDescription" : "shortDescription",
+          "userName" : "userName",
+          "userId" : "userId"
+        }, {
+          "_class" : "_class",
+          "shortDescription" : "shortDescription",
+          "userName" : "userName",
+          "userId" : "userId"
+        } ],
+        "_class" : "_class"
+      }, {
+        "causes" : [ {
+          "_class" : "_class",
+          "shortDescription" : "shortDescription",
+          "userName" : "userName",
+          "userId" : "userId"
+        }, {
+          "_class" : "_class",
+          "shortDescription" : "shortDescription",
+          "userName" : "userName",
+          "userId" : "userId"
+        } ],
+        "_class" : "_class"
+      } ],
+      "timestamp" : 2
+    }, {
+      "queueId" : 5,
+      "displayName" : "displayName",
+      "keepLog" : true,
+      "description" : "description",
+      "fullDisplayName" : "fullDisplayName",
+      "estimatedDuration" : 5,
+      "url" : "url",
+      "building" : true,
+      "changeSet" : {
+        "kind" : "kind",
+        "_class" : "_class"
+      },
+      "duration" : 1,
+      "result" : "result",
+      "number" : 6,
+      "executor" : "executor",
+      "builtOn" : "builtOn",
+      "_class" : "_class",
+      "id" : "id",
+      "actions" : [ {
+        "causes" : [ {
+          "_class" : "_class",
+          "shortDescription" : "shortDescription",
+          "userName" : "userName",
+          "userId" : "userId"
+        }, {
+          "_class" : "_class",
+          "shortDescription" : "shortDescription",
+          "userName" : "userName",
+          "userId" : "userId"
+        } ],
+        "_class" : "_class"
+      }, {
+        "causes" : [ {
+          "_class" : "_class",
+          "shortDescription" : "shortDescription",
+          "userName" : "userName",
+          "userId" : "userId"
+        }, {
+          "_class" : "_class",
+          "shortDescription" : "shortDescription",
+          "userName" : "userName",
+          "userId" : "userId"
+        } ],
+        "_class" : "_class"
+      } ],
+      "timestamp" : 2
     } ],
     "scm" : {
-      "_class" : "aeiou"
+      "_class" : "_class"
     },
     "keepDependencies" : true,
-    "displayNameOrNull" : "aeiou",
+    "displayNameOrNull" : "displayNameOrNull",
     "inQueue" : true,
-    "lastCompletedBuild" : "",
-    "fullName" : "aeiou",
+    "lastCompletedBuild" : {
+      "queueId" : 5,
+      "displayName" : "displayName",
+      "keepLog" : true,
+      "description" : "description",
+      "fullDisplayName" : "fullDisplayName",
+      "estimatedDuration" : 5,
+      "url" : "url",
+      "building" : true,
+      "changeSet" : {
+        "kind" : "kind",
+        "_class" : "_class"
+      },
+      "duration" : 1,
+      "result" : "result",
+      "number" : 6,
+      "executor" : "executor",
+      "builtOn" : "builtOn",
+      "_class" : "_class",
+      "id" : "id",
+      "actions" : [ {
+        "causes" : [ {
+          "_class" : "_class",
+          "shortDescription" : "shortDescription",
+          "userName" : "userName",
+          "userId" : "userId"
+        }, {
+          "_class" : "_class",
+          "shortDescription" : "shortDescription",
+          "userName" : "userName",
+          "userId" : "userId"
+        } ],
+        "_class" : "_class"
+      }, {
+        "causes" : [ {
+          "_class" : "_class",
+          "shortDescription" : "shortDescription",
+          "userName" : "userName",
+          "userId" : "userId"
+        }, {
+          "_class" : "_class",
+          "shortDescription" : "shortDescription",
+          "userName" : "userName",
+          "userId" : "userId"
+        } ],
+        "_class" : "_class"
+      } ],
+      "timestamp" : 2
+    },
+    "fullName" : "fullName",
     "healthReport" : [ {
-      "score" : 2,
-      "description" : "aeiou",
-      "iconClassName" : "aeiou",
-      "iconUrl" : "aeiou",
-      "_class" : "aeiou"
+      "score" : 7,
+      "description" : "description",
+      "iconClassName" : "iconClassName",
+      "iconUrl" : "iconUrl",
+      "_class" : "_class"
+    }, {
+      "score" : 7,
+      "description" : "description",
+      "iconClassName" : "iconClassName",
+      "iconUrl" : "iconUrl",
+      "_class" : "_class"
     } ],
-    "lastStableBuild" : "",
-    "lastUnsuccessfulBuild" : "aeiou",
-    "url" : "aeiou",
+    "lastStableBuild" : {
+      "queueId" : 5,
+      "displayName" : "displayName",
+      "keepLog" : true,
+      "description" : "description",
+      "fullDisplayName" : "fullDisplayName",
+      "estimatedDuration" : 5,
+      "url" : "url",
+      "building" : true,
+      "changeSet" : {
+        "kind" : "kind",
+        "_class" : "_class"
+      },
+      "duration" : 1,
+      "result" : "result",
+      "number" : 6,
+      "executor" : "executor",
+      "builtOn" : "builtOn",
+      "_class" : "_class",
+      "id" : "id",
+      "actions" : [ {
+        "causes" : [ {
+          "_class" : "_class",
+          "shortDescription" : "shortDescription",
+          "userName" : "userName",
+          "userId" : "userId"
+        }, {
+          "_class" : "_class",
+          "shortDescription" : "shortDescription",
+          "userName" : "userName",
+          "userId" : "userId"
+        } ],
+        "_class" : "_class"
+      }, {
+        "causes" : [ {
+          "_class" : "_class",
+          "shortDescription" : "shortDescription",
+          "userName" : "userName",
+          "userId" : "userId"
+        }, {
+          "_class" : "_class",
+          "shortDescription" : "shortDescription",
+          "userName" : "userName",
+          "userId" : "userId"
+        } ],
+        "_class" : "_class"
+      } ],
+      "timestamp" : 2
+    },
+    "lastUnsuccessfulBuild" : "lastUnsuccessfulBuild",
+    "url" : "url",
     "concurrentBuild" : true,
-    "name" : "aeiou",
-    "_class" : "aeiou",
+    "name" : "name",
+    "_class" : "_class",
     "actions" : [ {
-      "_class" : "aeiou"
+      "_class" : "_class"
+    }, {
+      "_class" : "_class"
+    } ]
+  }, {
+    "color" : "color",
+    "displayName" : "displayName",
+    "lastSuccessfulBuild" : {
+      "queueId" : 5,
+      "displayName" : "displayName",
+      "keepLog" : true,
+      "description" : "description",
+      "fullDisplayName" : "fullDisplayName",
+      "estimatedDuration" : 5,
+      "url" : "url",
+      "building" : true,
+      "changeSet" : {
+        "kind" : "kind",
+        "_class" : "_class"
+      },
+      "duration" : 1,
+      "result" : "result",
+      "number" : 6,
+      "executor" : "executor",
+      "builtOn" : "builtOn",
+      "_class" : "_class",
+      "id" : "id",
+      "actions" : [ {
+        "causes" : [ {
+          "_class" : "_class",
+          "shortDescription" : "shortDescription",
+          "userName" : "userName",
+          "userId" : "userId"
+        }, {
+          "_class" : "_class",
+          "shortDescription" : "shortDescription",
+          "userName" : "userName",
+          "userId" : "userId"
+        } ],
+        "_class" : "_class"
+      }, {
+        "causes" : [ {
+          "_class" : "_class",
+          "shortDescription" : "shortDescription",
+          "userName" : "userName",
+          "userId" : "userId"
+        }, {
+          "_class" : "_class",
+          "shortDescription" : "shortDescription",
+          "userName" : "userName",
+          "userId" : "userId"
+        } ],
+        "_class" : "_class"
+      } ],
+      "timestamp" : 2
+    },
+    "description" : "description",
+    "fullDisplayName" : "fullDisplayName",
+    "lastUnstableBuild" : "lastUnstableBuild",
+    "queueItem" : "queueItem",
+    "buildable" : true,
+    "firstBuild" : {
+      "queueId" : 5,
+      "displayName" : "displayName",
+      "keepLog" : true,
+      "description" : "description",
+      "fullDisplayName" : "fullDisplayName",
+      "estimatedDuration" : 5,
+      "url" : "url",
+      "building" : true,
+      "changeSet" : {
+        "kind" : "kind",
+        "_class" : "_class"
+      },
+      "duration" : 1,
+      "result" : "result",
+      "number" : 6,
+      "executor" : "executor",
+      "builtOn" : "builtOn",
+      "_class" : "_class",
+      "id" : "id",
+      "actions" : [ {
+        "causes" : [ {
+          "_class" : "_class",
+          "shortDescription" : "shortDescription",
+          "userName" : "userName",
+          "userId" : "userId"
+        }, {
+          "_class" : "_class",
+          "shortDescription" : "shortDescription",
+          "userName" : "userName",
+          "userId" : "userId"
+        } ],
+        "_class" : "_class"
+      }, {
+        "causes" : [ {
+          "_class" : "_class",
+          "shortDescription" : "shortDescription",
+          "userName" : "userName",
+          "userId" : "userId"
+        }, {
+          "_class" : "_class",
+          "shortDescription" : "shortDescription",
+          "userName" : "userName",
+          "userId" : "userId"
+        } ],
+        "_class" : "_class"
+      } ],
+      "timestamp" : 2
+    },
+    "lastFailedBuild" : "lastFailedBuild",
+    "lastBuild" : {
+      "queueId" : 5,
+      "displayName" : "displayName",
+      "keepLog" : true,
+      "description" : "description",
+      "fullDisplayName" : "fullDisplayName",
+      "estimatedDuration" : 5,
+      "url" : "url",
+      "building" : true,
+      "changeSet" : {
+        "kind" : "kind",
+        "_class" : "_class"
+      },
+      "duration" : 1,
+      "result" : "result",
+      "number" : 6,
+      "executor" : "executor",
+      "builtOn" : "builtOn",
+      "_class" : "_class",
+      "id" : "id",
+      "actions" : [ {
+        "causes" : [ {
+          "_class" : "_class",
+          "shortDescription" : "shortDescription",
+          "userName" : "userName",
+          "userId" : "userId"
+        }, {
+          "_class" : "_class",
+          "shortDescription" : "shortDescription",
+          "userName" : "userName",
+          "userId" : "userId"
+        } ],
+        "_class" : "_class"
+      }, {
+        "causes" : [ {
+          "_class" : "_class",
+          "shortDescription" : "shortDescription",
+          "userName" : "userName",
+          "userId" : "userId"
+        }, {
+          "_class" : "_class",
+          "shortDescription" : "shortDescription",
+          "userName" : "userName",
+          "userId" : "userId"
+        } ],
+        "_class" : "_class"
+      } ],
+      "timestamp" : 2
+    },
+    "nextBuildNumber" : 9,
+    "builds" : [ {
+      "queueId" : 5,
+      "displayName" : "displayName",
+      "keepLog" : true,
+      "description" : "description",
+      "fullDisplayName" : "fullDisplayName",
+      "estimatedDuration" : 5,
+      "url" : "url",
+      "building" : true,
+      "changeSet" : {
+        "kind" : "kind",
+        "_class" : "_class"
+      },
+      "duration" : 1,
+      "result" : "result",
+      "number" : 6,
+      "executor" : "executor",
+      "builtOn" : "builtOn",
+      "_class" : "_class",
+      "id" : "id",
+      "actions" : [ {
+        "causes" : [ {
+          "_class" : "_class",
+          "shortDescription" : "shortDescription",
+          "userName" : "userName",
+          "userId" : "userId"
+        }, {
+          "_class" : "_class",
+          "shortDescription" : "shortDescription",
+          "userName" : "userName",
+          "userId" : "userId"
+        } ],
+        "_class" : "_class"
+      }, {
+        "causes" : [ {
+          "_class" : "_class",
+          "shortDescription" : "shortDescription",
+          "userName" : "userName",
+          "userId" : "userId"
+        }, {
+          "_class" : "_class",
+          "shortDescription" : "shortDescription",
+          "userName" : "userName",
+          "userId" : "userId"
+        } ],
+        "_class" : "_class"
+      } ],
+      "timestamp" : 2
+    }, {
+      "queueId" : 5,
+      "displayName" : "displayName",
+      "keepLog" : true,
+      "description" : "description",
+      "fullDisplayName" : "fullDisplayName",
+      "estimatedDuration" : 5,
+      "url" : "url",
+      "building" : true,
+      "changeSet" : {
+        "kind" : "kind",
+        "_class" : "_class"
+      },
+      "duration" : 1,
+      "result" : "result",
+      "number" : 6,
+      "executor" : "executor",
+      "builtOn" : "builtOn",
+      "_class" : "_class",
+      "id" : "id",
+      "actions" : [ {
+        "causes" : [ {
+          "_class" : "_class",
+          "shortDescription" : "shortDescription",
+          "userName" : "userName",
+          "userId" : "userId"
+        }, {
+          "_class" : "_class",
+          "shortDescription" : "shortDescription",
+          "userName" : "userName",
+          "userId" : "userId"
+        } ],
+        "_class" : "_class"
+      }, {
+        "causes" : [ {
+          "_class" : "_class",
+          "shortDescription" : "shortDescription",
+          "userName" : "userName",
+          "userId" : "userId"
+        }, {
+          "_class" : "_class",
+          "shortDescription" : "shortDescription",
+          "userName" : "userName",
+          "userId" : "userId"
+        } ],
+        "_class" : "_class"
+      } ],
+      "timestamp" : 2
+    } ],
+    "scm" : {
+      "_class" : "_class"
+    },
+    "keepDependencies" : true,
+    "displayNameOrNull" : "displayNameOrNull",
+    "inQueue" : true,
+    "lastCompletedBuild" : {
+      "queueId" : 5,
+      "displayName" : "displayName",
+      "keepLog" : true,
+      "description" : "description",
+      "fullDisplayName" : "fullDisplayName",
+      "estimatedDuration" : 5,
+      "url" : "url",
+      "building" : true,
+      "changeSet" : {
+        "kind" : "kind",
+        "_class" : "_class"
+      },
+      "duration" : 1,
+      "result" : "result",
+      "number" : 6,
+      "executor" : "executor",
+      "builtOn" : "builtOn",
+      "_class" : "_class",
+      "id" : "id",
+      "actions" : [ {
+        "causes" : [ {
+          "_class" : "_class",
+          "shortDescription" : "shortDescription",
+          "userName" : "userName",
+          "userId" : "userId"
+        }, {
+          "_class" : "_class",
+          "shortDescription" : "shortDescription",
+          "userName" : "userName",
+          "userId" : "userId"
+        } ],
+        "_class" : "_class"
+      }, {
+        "causes" : [ {
+          "_class" : "_class",
+          "shortDescription" : "shortDescription",
+          "userName" : "userName",
+          "userId" : "userId"
+        }, {
+          "_class" : "_class",
+          "shortDescription" : "shortDescription",
+          "userName" : "userName",
+          "userId" : "userId"
+        } ],
+        "_class" : "_class"
+      } ],
+      "timestamp" : 2
+    },
+    "fullName" : "fullName",
+    "healthReport" : [ {
+      "score" : 7,
+      "description" : "description",
+      "iconClassName" : "iconClassName",
+      "iconUrl" : "iconUrl",
+      "_class" : "_class"
+    }, {
+      "score" : 7,
+      "description" : "description",
+      "iconClassName" : "iconClassName",
+      "iconUrl" : "iconUrl",
+      "_class" : "_class"
+    } ],
+    "lastStableBuild" : {
+      "queueId" : 5,
+      "displayName" : "displayName",
+      "keepLog" : true,
+      "description" : "description",
+      "fullDisplayName" : "fullDisplayName",
+      "estimatedDuration" : 5,
+      "url" : "url",
+      "building" : true,
+      "changeSet" : {
+        "kind" : "kind",
+        "_class" : "_class"
+      },
+      "duration" : 1,
+      "result" : "result",
+      "number" : 6,
+      "executor" : "executor",
+      "builtOn" : "builtOn",
+      "_class" : "_class",
+      "id" : "id",
+      "actions" : [ {
+        "causes" : [ {
+          "_class" : "_class",
+          "shortDescription" : "shortDescription",
+          "userName" : "userName",
+          "userId" : "userId"
+        }, {
+          "_class" : "_class",
+          "shortDescription" : "shortDescription",
+          "userName" : "userName",
+          "userId" : "userId"
+        } ],
+        "_class" : "_class"
+      }, {
+        "causes" : [ {
+          "_class" : "_class",
+          "shortDescription" : "shortDescription",
+          "userName" : "userName",
+          "userId" : "userId"
+        }, {
+          "_class" : "_class",
+          "shortDescription" : "shortDescription",
+          "userName" : "userName",
+          "userId" : "userId"
+        } ],
+        "_class" : "_class"
+      } ],
+      "timestamp" : 2
+    },
+    "lastUnsuccessfulBuild" : "lastUnsuccessfulBuild",
+    "url" : "url",
+    "concurrentBuild" : true,
+    "name" : "name",
+    "_class" : "_class",
+    "actions" : [ {
+      "_class" : "_class"
+    }, {
+      "_class" : "_class"
     } ]
   } ],
-  "name" : "aeiou",
-  "description" : "aeiou",
-  "_class" : "aeiou",
-  "url" : "aeiou"
+  "name" : "name",
+  "description" : "description",
+  "_class" : "_class",
+  "url" : "url"
 }}]
-     
      - parameter name: (path) Name of the view 
-
-     - returns: RequestBuilder<HudsonmodelListView> 
+     - returns: RequestBuilder<ListView> 
      */
-    open class func getViewWithRequestBuilder(name: String) -> RequestBuilder<HudsonmodelListView> {
+    open class func getViewWithRequestBuilder(name: String) -> RequestBuilder<ListView> {
         var path = "/view/{name}/api/json"
         path = path.replacingOccurrences(of: "{name}", with: "\(name)", options: .literal, range: nil)
         let URLString = SwaggerClientAPI.basePath + path
@@ -870,20 +4363,18 @@ open class RemoteAccessAPI: APIBase {
 
         let url = NSURLComponents(string: URLString)
 
-
-        let requestBuilder: RequestBuilder<HudsonmodelListView>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
+        let requestBuilder: RequestBuilder<ListView>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
 
         return requestBuilder.init(method: "GET", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false)
     }
 
     /**
-
      - parameter name: (path) Name of the view 
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func getViewConfig(name: String, completion: @escaping ((_ data: String?,_ error: Error?) -> Void)) {
+    open class func getViewConfig(name: String, completion: @escaping ((_ data: String?, _ error: ErrorResponse?) -> Void)) {
         getViewConfigWithRequestBuilder(name: name).execute { (response, error) -> Void in
-            completion(response?.body, error);
+            completion(response?.body, error)
         }
     }
 
@@ -891,10 +4382,11 @@ open class RemoteAccessAPI: APIBase {
     /**
      - GET /view/{name}/config.xml
      - Retrieve view configuration
+     - BASIC:
+       - type: basic
+       - name: jenkins_auth
      - examples: [{output=none}]
-     
      - parameter name: (path) Name of the view 
-
      - returns: RequestBuilder<String> 
      */
     open class func getViewConfigWithRequestBuilder(name: String) -> RequestBuilder<String> {
@@ -905,19 +4397,17 @@ open class RemoteAccessAPI: APIBase {
 
         let url = NSURLComponents(string: URLString)
 
-
         let requestBuilder: RequestBuilder<String>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
 
         return requestBuilder.init(method: "GET", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false)
     }
 
     /**
-
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func headJenkins(completion: @escaping ((_ error: Error?) -> Void)) {
+    open class func headJenkins(completion: @escaping ((_ error: ErrorResponse?) -> Void)) {
         headJenkinsWithRequestBuilder().execute { (response, error) -> Void in
-            completion(error);
+            completion(error)
         }
     }
 
@@ -925,8 +4415,10 @@ open class RemoteAccessAPI: APIBase {
     /**
      - HEAD /api/json
      - Retrieve Jenkins headers
+     - BASIC:
+       - type: basic
+       - name: jenkins_auth
      - responseHeaders: [x-jenkins(String)]
-
      - returns: RequestBuilder<Void> 
      */
     open class func headJenkinsWithRequestBuilder() -> RequestBuilder<Void> {
@@ -936,14 +4428,12 @@ open class RemoteAccessAPI: APIBase {
 
         let url = NSURLComponents(string: URLString)
 
-
         let requestBuilder: RequestBuilder<Void>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
 
         return requestBuilder.init(method: "HEAD", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false)
     }
 
     /**
-
      - parameter name: (query) Name of the new job 
      - parameter from: (query) Existing job to copy from (optional)
      - parameter mode: (query) Set to &#39;copy&#39; for copying an existing job (optional)
@@ -952,9 +4442,9 @@ open class RemoteAccessAPI: APIBase {
      - parameter contentType: (header) Content type header application/xml (optional)
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func postCreateItem(name: String, from: String? = nil, mode: String? = nil, body: String? = nil, jenkinsCrumb: String? = nil, contentType: String? = nil, completion: @escaping ((_ error: Error?) -> Void)) {
+    open class func postCreateItem(name: String, from: String? = nil, mode: String? = nil, body: String? = nil, jenkinsCrumb: String? = nil, contentType: String? = nil, completion: @escaping ((_ error: ErrorResponse?) -> Void)) {
         postCreateItemWithRequestBuilder(name: name, from: from, mode: mode, body: body, jenkinsCrumb: jenkinsCrumb, contentType: contentType).execute { (response, error) -> Void in
-            completion(error);
+            completion(error)
         }
     }
 
@@ -962,14 +4452,15 @@ open class RemoteAccessAPI: APIBase {
     /**
      - POST /createItem
      - Create a new job using job configuration, or copied from an existing job
-     
+     - BASIC:
+       - type: basic
+       - name: jenkins_auth
      - parameter name: (query) Name of the new job 
      - parameter from: (query) Existing job to copy from (optional)
      - parameter mode: (query) Set to &#39;copy&#39; for copying an existing job (optional)
      - parameter body: (body) Job configuration in config.xml format (optional)
      - parameter jenkinsCrumb: (header) CSRF protection token (optional)
      - parameter contentType: (header) Content type header application/xml (optional)
-
      - returns: RequestBuilder<Void> 
      */
     open class func postCreateItemWithRequestBuilder(name: String, from: String? = nil, mode: String? = nil, body: String? = nil, jenkinsCrumb: String? = nil, contentType: String? = nil) -> RequestBuilder<Void> {
@@ -983,7 +4474,6 @@ open class RemoteAccessAPI: APIBase {
             "from": from, 
             "mode": mode
         ])
-        
         let nillableHeaders: [String: Any?] = [
             "Jenkins-Crumb": jenkinsCrumb,
             "Content-Type": contentType
@@ -996,16 +4486,15 @@ open class RemoteAccessAPI: APIBase {
     }
 
     /**
-
      - parameter name: (query) Name of the new view 
      - parameter body: (body) View configuration in config.xml format (optional)
      - parameter jenkinsCrumb: (header) CSRF protection token (optional)
      - parameter contentType: (header) Content type header application/xml (optional)
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func postCreateView(name: String, body: String? = nil, jenkinsCrumb: String? = nil, contentType: String? = nil, completion: @escaping ((_ error: Error?) -> Void)) {
+    open class func postCreateView(name: String, body: String? = nil, jenkinsCrumb: String? = nil, contentType: String? = nil, completion: @escaping ((_ error: ErrorResponse?) -> Void)) {
         postCreateViewWithRequestBuilder(name: name, body: body, jenkinsCrumb: jenkinsCrumb, contentType: contentType).execute { (response, error) -> Void in
-            completion(error);
+            completion(error)
         }
     }
 
@@ -1013,12 +4502,13 @@ open class RemoteAccessAPI: APIBase {
     /**
      - POST /createView
      - Create a new view using view configuration
-     
+     - BASIC:
+       - type: basic
+       - name: jenkins_auth
      - parameter name: (query) Name of the new view 
      - parameter body: (body) View configuration in config.xml format (optional)
      - parameter jenkinsCrumb: (header) CSRF protection token (optional)
      - parameter contentType: (header) Content type header application/xml (optional)
-
      - returns: RequestBuilder<Void> 
      */
     open class func postCreateViewWithRequestBuilder(name: String, body: String? = nil, jenkinsCrumb: String? = nil, contentType: String? = nil) -> RequestBuilder<Void> {
@@ -1030,7 +4520,6 @@ open class RemoteAccessAPI: APIBase {
         url?.queryItems = APIHelper.mapValuesToQueryItems(values:[
             "name": name
         ])
-        
         let nillableHeaders: [String: Any?] = [
             "Jenkins-Crumb": jenkinsCrumb,
             "Content-Type": contentType
@@ -1043,16 +4532,15 @@ open class RemoteAccessAPI: APIBase {
     }
 
     /**
-
      - parameter name: (path) Name of the job 
      - parameter json: (query)  
      - parameter token: (query)  (optional)
      - parameter jenkinsCrumb: (header) CSRF protection token (optional)
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func postJobBuild(name: String, json: String, token: String? = nil, jenkinsCrumb: String? = nil, completion: @escaping ((_ error: Error?) -> Void)) {
+    open class func postJobBuild(name: String, json: String, token: String? = nil, jenkinsCrumb: String? = nil, completion: @escaping ((_ error: ErrorResponse?) -> Void)) {
         postJobBuildWithRequestBuilder(name: name, json: json, token: token, jenkinsCrumb: jenkinsCrumb).execute { (response, error) -> Void in
-            completion(error);
+            completion(error)
         }
     }
 
@@ -1060,12 +4548,13 @@ open class RemoteAccessAPI: APIBase {
     /**
      - POST /job/{name}/build
      - Build a job
-     
+     - BASIC:
+       - type: basic
+       - name: jenkins_auth
      - parameter name: (path) Name of the job 
      - parameter json: (query)  
      - parameter token: (query)  (optional)
      - parameter jenkinsCrumb: (header) CSRF protection token (optional)
-
      - returns: RequestBuilder<Void> 
      */
     open class func postJobBuildWithRequestBuilder(name: String, json: String, token: String? = nil, jenkinsCrumb: String? = nil) -> RequestBuilder<Void> {
@@ -1079,7 +4568,6 @@ open class RemoteAccessAPI: APIBase {
             "json": json, 
             "token": token
         ])
-        
         let nillableHeaders: [String: Any?] = [
             "Jenkins-Crumb": jenkinsCrumb
         ]
@@ -1091,15 +4579,14 @@ open class RemoteAccessAPI: APIBase {
     }
 
     /**
-
      - parameter name: (path) Name of the job 
      - parameter body: (body) Job configuration in config.xml format 
      - parameter jenkinsCrumb: (header) CSRF protection token (optional)
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func postJobConfig(name: String, body: String, jenkinsCrumb: String? = nil, completion: @escaping ((_ error: Error?) -> Void)) {
+    open class func postJobConfig(name: String, body: String, jenkinsCrumb: String? = nil, completion: @escaping ((_ error: ErrorResponse?) -> Void)) {
         postJobConfigWithRequestBuilder(name: name, body: body, jenkinsCrumb: jenkinsCrumb).execute { (response, error) -> Void in
-            completion(error);
+            completion(error)
         }
     }
 
@@ -1107,11 +4594,12 @@ open class RemoteAccessAPI: APIBase {
     /**
      - POST /job/{name}/config.xml
      - Update job configuration
-     
+     - BASIC:
+       - type: basic
+       - name: jenkins_auth
      - parameter name: (path) Name of the job 
      - parameter body: (body) Job configuration in config.xml format 
      - parameter jenkinsCrumb: (header) CSRF protection token (optional)
-
      - returns: RequestBuilder<Void> 
      */
     open class func postJobConfigWithRequestBuilder(name: String, body: String, jenkinsCrumb: String? = nil) -> RequestBuilder<Void> {
@@ -1121,7 +4609,6 @@ open class RemoteAccessAPI: APIBase {
         let parameters = body.encodeToJSON() as? [String:AnyObject]
 
         let url = NSURLComponents(string: URLString)
-
         let nillableHeaders: [String: Any?] = [
             "Jenkins-Crumb": jenkinsCrumb
         ]
@@ -1133,14 +4620,13 @@ open class RemoteAccessAPI: APIBase {
     }
 
     /**
-
      - parameter name: (path) Name of the job 
      - parameter jenkinsCrumb: (header) CSRF protection token (optional)
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func postJobDelete(name: String, jenkinsCrumb: String? = nil, completion: @escaping ((_ error: Error?) -> Void)) {
+    open class func postJobDelete(name: String, jenkinsCrumb: String? = nil, completion: @escaping ((_ error: ErrorResponse?) -> Void)) {
         postJobDeleteWithRequestBuilder(name: name, jenkinsCrumb: jenkinsCrumb).execute { (response, error) -> Void in
-            completion(error);
+            completion(error)
         }
     }
 
@@ -1148,10 +4634,11 @@ open class RemoteAccessAPI: APIBase {
     /**
      - POST /job/{name}/doDelete
      - Delete a job
-     
+     - BASIC:
+       - type: basic
+       - name: jenkins_auth
      - parameter name: (path) Name of the job 
      - parameter jenkinsCrumb: (header) CSRF protection token (optional)
-
      - returns: RequestBuilder<Void> 
      */
     open class func postJobDeleteWithRequestBuilder(name: String, jenkinsCrumb: String? = nil) -> RequestBuilder<Void> {
@@ -1161,7 +4648,6 @@ open class RemoteAccessAPI: APIBase {
         let parameters: [String:Any]? = nil
 
         let url = NSURLComponents(string: URLString)
-
         let nillableHeaders: [String: Any?] = [
             "Jenkins-Crumb": jenkinsCrumb
         ]
@@ -1173,14 +4659,13 @@ open class RemoteAccessAPI: APIBase {
     }
 
     /**
-
      - parameter name: (path) Name of the job 
      - parameter jenkinsCrumb: (header) CSRF protection token (optional)
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func postJobDisable(name: String, jenkinsCrumb: String? = nil, completion: @escaping ((_ error: Error?) -> Void)) {
+    open class func postJobDisable(name: String, jenkinsCrumb: String? = nil, completion: @escaping ((_ error: ErrorResponse?) -> Void)) {
         postJobDisableWithRequestBuilder(name: name, jenkinsCrumb: jenkinsCrumb).execute { (response, error) -> Void in
-            completion(error);
+            completion(error)
         }
     }
 
@@ -1188,10 +4673,11 @@ open class RemoteAccessAPI: APIBase {
     /**
      - POST /job/{name}/disable
      - Disable a job
-     
+     - BASIC:
+       - type: basic
+       - name: jenkins_auth
      - parameter name: (path) Name of the job 
      - parameter jenkinsCrumb: (header) CSRF protection token (optional)
-
      - returns: RequestBuilder<Void> 
      */
     open class func postJobDisableWithRequestBuilder(name: String, jenkinsCrumb: String? = nil) -> RequestBuilder<Void> {
@@ -1201,7 +4687,6 @@ open class RemoteAccessAPI: APIBase {
         let parameters: [String:Any]? = nil
 
         let url = NSURLComponents(string: URLString)
-
         let nillableHeaders: [String: Any?] = [
             "Jenkins-Crumb": jenkinsCrumb
         ]
@@ -1213,14 +4698,13 @@ open class RemoteAccessAPI: APIBase {
     }
 
     /**
-
      - parameter name: (path) Name of the job 
      - parameter jenkinsCrumb: (header) CSRF protection token (optional)
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func postJobEnable(name: String, jenkinsCrumb: String? = nil, completion: @escaping ((_ error: Error?) -> Void)) {
+    open class func postJobEnable(name: String, jenkinsCrumb: String? = nil, completion: @escaping ((_ error: ErrorResponse?) -> Void)) {
         postJobEnableWithRequestBuilder(name: name, jenkinsCrumb: jenkinsCrumb).execute { (response, error) -> Void in
-            completion(error);
+            completion(error)
         }
     }
 
@@ -1228,10 +4712,11 @@ open class RemoteAccessAPI: APIBase {
     /**
      - POST /job/{name}/enable
      - Enable a job
-     
+     - BASIC:
+       - type: basic
+       - name: jenkins_auth
      - parameter name: (path) Name of the job 
      - parameter jenkinsCrumb: (header) CSRF protection token (optional)
-
      - returns: RequestBuilder<Void> 
      */
     open class func postJobEnableWithRequestBuilder(name: String, jenkinsCrumb: String? = nil) -> RequestBuilder<Void> {
@@ -1241,7 +4726,6 @@ open class RemoteAccessAPI: APIBase {
         let parameters: [String:Any]? = nil
 
         let url = NSURLComponents(string: URLString)
-
         let nillableHeaders: [String: Any?] = [
             "Jenkins-Crumb": jenkinsCrumb
         ]
@@ -1253,14 +4737,13 @@ open class RemoteAccessAPI: APIBase {
     }
 
     /**
-
      - parameter name: (path) Name of the job 
      - parameter jenkinsCrumb: (header) CSRF protection token (optional)
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func postJobLastBuildStop(name: String, jenkinsCrumb: String? = nil, completion: @escaping ((_ error: Error?) -> Void)) {
+    open class func postJobLastBuildStop(name: String, jenkinsCrumb: String? = nil, completion: @escaping ((_ error: ErrorResponse?) -> Void)) {
         postJobLastBuildStopWithRequestBuilder(name: name, jenkinsCrumb: jenkinsCrumb).execute { (response, error) -> Void in
-            completion(error);
+            completion(error)
         }
     }
 
@@ -1268,10 +4751,11 @@ open class RemoteAccessAPI: APIBase {
     /**
      - POST /job/{name}/lastBuild/stop
      - Stop a job
-     
+     - BASIC:
+       - type: basic
+       - name: jenkins_auth
      - parameter name: (path) Name of the job 
      - parameter jenkinsCrumb: (header) CSRF protection token (optional)
-
      - returns: RequestBuilder<Void> 
      */
     open class func postJobLastBuildStopWithRequestBuilder(name: String, jenkinsCrumb: String? = nil) -> RequestBuilder<Void> {
@@ -1281,7 +4765,6 @@ open class RemoteAccessAPI: APIBase {
         let parameters: [String:Any]? = nil
 
         let url = NSURLComponents(string: URLString)
-
         let nillableHeaders: [String: Any?] = [
             "Jenkins-Crumb": jenkinsCrumb
         ]
@@ -1293,15 +4776,14 @@ open class RemoteAccessAPI: APIBase {
     }
 
     /**
-
      - parameter name: (path) Name of the view 
      - parameter body: (body) View configuration in config.xml format 
      - parameter jenkinsCrumb: (header) CSRF protection token (optional)
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func postViewConfig(name: String, body: String, jenkinsCrumb: String? = nil, completion: @escaping ((_ error: Error?) -> Void)) {
+    open class func postViewConfig(name: String, body: String, jenkinsCrumb: String? = nil, completion: @escaping ((_ error: ErrorResponse?) -> Void)) {
         postViewConfigWithRequestBuilder(name: name, body: body, jenkinsCrumb: jenkinsCrumb).execute { (response, error) -> Void in
-            completion(error);
+            completion(error)
         }
     }
 
@@ -1309,11 +4791,12 @@ open class RemoteAccessAPI: APIBase {
     /**
      - POST /view/{name}/config.xml
      - Update view configuration
-     
+     - BASIC:
+       - type: basic
+       - name: jenkins_auth
      - parameter name: (path) Name of the view 
      - parameter body: (body) View configuration in config.xml format 
      - parameter jenkinsCrumb: (header) CSRF protection token (optional)
-
      - returns: RequestBuilder<Void> 
      */
     open class func postViewConfigWithRequestBuilder(name: String, body: String, jenkinsCrumb: String? = nil) -> RequestBuilder<Void> {
@@ -1323,7 +4806,6 @@ open class RemoteAccessAPI: APIBase {
         let parameters = body.encodeToJSON() as? [String:AnyObject]
 
         let url = NSURLComponents(string: URLString)
-
         let nillableHeaders: [String: Any?] = [
             "Jenkins-Crumb": jenkinsCrumb
         ]

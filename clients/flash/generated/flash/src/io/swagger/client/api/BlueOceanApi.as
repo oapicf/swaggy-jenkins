@@ -6,15 +6,29 @@ import io.swagger.exception.ApiError;
 import io.swagger.common.ApiUserCredentials;
 import io.swagger.event.Response;
 import io.swagger.common.SwaggerApi;
-import io.swagger.client.model.GetMultibranchPipeline;
-import io.swagger.client.model.GetOrganisations;
-import io.swagger.client.model.GetPipelines;
-import io.swagger.client.model.IojenkinsblueoceanrestimplpipelineBranchImpl;
-import io.swagger.client.model.IojenkinsblueoceanserviceembeddedrestPipelineFolderImpl;
-import io.swagger.client.model.IojenkinsblueoceanserviceembeddedrestPipelineImpl;
-import io.swagger.client.model.SwaggyjenkinsOrganisation;
-import io.swagger.client.model.SwaggyjenkinsPipeline;
-import io.swagger.client.model.SwaggyjenkinsUser;
+import io.swagger.client.model.Body;
+import io.swagger.client.model.BranchImpl;
+import io.swagger.client.model.FavoriteImpl;
+import io.swagger.client.model.GithubScm;
+import io.swagger.client.model.MultibranchPipeline;
+import io.swagger.client.model.Organisation;
+import io.swagger.client.model.Organisations;
+import io.swagger.client.model.Pipeline;
+import io.swagger.client.model.PipelineActivities;
+import io.swagger.client.model.PipelineFolderImpl;
+import io.swagger.client.model.PipelineImpl;
+import io.swagger.client.model.PipelineQueue;
+import io.swagger.client.model.PipelineRun;
+import io.swagger.client.model.PipelineRunNode;
+import io.swagger.client.model.PipelineRunNodeSteps;
+import io.swagger.client.model.PipelineRunNodes;
+import io.swagger.client.model.PipelineRuns;
+import io.swagger.client.model.PipelineStepImpl;
+import io.swagger.client.model.Pipelines;
+import io.swagger.client.model.QueueItemImpl;
+import io.swagger.client.model.ScmOrganisations;
+import io.swagger.client.model.User;
+import io.swagger.client.model.UserFavorites;
 
 import mx.rpc.AsyncToken;
 import mx.utils.UIDUtil;
@@ -31,28 +45,87 @@ public class BlueOceanApi extends SwaggerApi {
         super(apiCredentials, eventDispatcher);
     }
 
+        public static const event_delete_pipeline_queue_item: String = "delete_pipeline_queue_item";
         public static const event_get_authenticated_user: String = "get_authenticated_user";
         public static const event_get_classes: String = "get_classes";
         public static const event_get_organisation: String = "get_organisation";
         public static const event_get_organisations: String = "get_organisations";
-        public static const event_get_pipeline_branch_by_org: String = "get_pipeline_branch_by_org";
-        public static const event_get_pipeline_branches_by_org: String = "get_pipeline_branches_by_org";
-        public static const event_get_pipeline_by_org: String = "get_pipeline_by_org";
-        public static const event_get_pipeline_folder_by_org: String = "get_pipeline_folder_by_org";
-        public static const event_get_pipeline_folder_by_org_1: String = "get_pipeline_folder_by_org_1";
-        public static const event_get_pipelines_by_org: String = "get_pipelines_by_org";
+        public static const event_get_pipeline: String = "get_pipeline";
+        public static const event_get_pipeline_activities: String = "get_pipeline_activities";
+        public static const event_get_pipeline_branch: String = "get_pipeline_branch";
+        public static const event_get_pipeline_branch_run: String = "get_pipeline_branch_run";
+        public static const event_get_pipeline_branches: String = "get_pipeline_branches";
+        public static const event_get_pipeline_folder: String = "get_pipeline_folder";
+        public static const event_get_pipeline_folder_pipeline: String = "get_pipeline_folder_pipeline";
+        public static const event_get_pipeline_queue: String = "get_pipeline_queue";
+        public static const event_get_pipeline_run: String = "get_pipeline_run";
+        public static const event_get_pipeline_run_log: String = "get_pipeline_run_log";
+        public static const event_get_pipeline_run_node: String = "get_pipeline_run_node";
+        public static const event_get_pipeline_run_node_step: String = "get_pipeline_run_node_step";
+        public static const event_get_pipeline_run_node_step_log: String = "get_pipeline_run_node_step_log";
+        public static const event_get_pipeline_run_node_steps: String = "get_pipeline_run_node_steps";
+        public static const event_get_pipeline_run_nodes: String = "get_pipeline_run_nodes";
+        public static const event_get_pipeline_runs: String = "get_pipeline_runs";
+        public static const event_get_pipelines: String = "get_pipelines";
+        public static const event_get_scm: String = "get_scm";
+        public static const event_get_scm_organisation_repositories: String = "get_scm_organisation_repositories";
+        public static const event_get_scm_organisation_repository: String = "get_scm_organisation_repository";
+        public static const event_get_scm_organisations: String = "get_scm_organisations";
         public static const event_get_user: String = "get_user";
+        public static const event_get_user_favorites: String = "get_user_favorites";
         public static const event_get_users: String = "get_users";
+        public static const event_post_pipeline_run: String = "post_pipeline_run";
+        public static const event_post_pipeline_runs: String = "post_pipeline_runs";
+        public static const event_put_pipeline_favorite: String = "put_pipeline_favorite";
+        public static const event_put_pipeline_run: String = "put_pipeline_run";
         public static const event_search: String = "search";
-        public static const event_search_2: String = "search_2";
+        public static const event_search_classes: String = "search_classes";
 
 
     /*
-     * Returns SwaggyjenkinsUser 
+     * Returns void 
      */
-    public function get_authenticated_user (organisation: String): String {
+    public function delete_pipeline_queue_item (organization: String, pipeline: String, queue: String): String {
         // create path and map variables
-        var path: String = "/blue/rest/organizations/{organisation}/user/".replace(/{format}/g,"xml").replace("{" + "organisation" + "}", getApiInvoker().escapeString(organisation));
+        var path: String = "/blue/rest/organizations/{organization}/pipelines/{pipeline}/queue/{queue}".replace(/{format}/g,"xml").replace("{" + "organization" + "}", getApiInvoker().escapeString(organization)).replace("{" + "pipeline" + "}", getApiInvoker().escapeString(pipeline)).replace("{" + "queue" + "}", getApiInvoker().escapeString(queue));
+
+        // query params
+        var queryParams: Dictionary = new Dictionary();
+        var headerParams: Dictionary = new Dictionary();
+
+        // verify required params are set
+        if(        // verify required params are set
+        if(        // verify required params are set
+        if() {
+            throw new ApiError(400, "missing required params");
+        }
+) {
+            throw new ApiError(400, "missing required params");
+        }
+) {
+            throw new ApiError(400, "missing required params");
+        }
+
+        
+        
+        var token:AsyncToken = getApiInvoker().invokeAPI(path, "DELETE", queryParams, null, headerParams);
+
+        var requestId: String = getUniqueId();
+
+        token.requestId = requestId;
+        token.completionEventType = "delete_pipeline_queue_item";
+
+        token.returnType = null ;
+        return requestId;
+
+    }
+
+    /*
+     * Returns User 
+     */
+    public function get_authenticated_user (organization: String): String {
+        // create path and map variables
+        var path: String = "/blue/rest/organizations/{organization}/user/".replace(/{format}/g,"xml").replace("{" + "organization" + "}", getApiInvoker().escapeString(organization));
 
         // query params
         var queryParams: Dictionary = new Dictionary();
@@ -72,7 +145,7 @@ public class BlueOceanApi extends SwaggerApi {
         token.requestId = requestId;
         token.completionEventType = "get_authenticated_user";
 
-        token.returnType = SwaggyjenkinsUser;
+        token.returnType = User;
         return requestId;
 
     }
@@ -108,11 +181,11 @@ public class BlueOceanApi extends SwaggerApi {
     }
 
     /*
-     * Returns SwaggyjenkinsOrganisation 
+     * Returns Organisation 
      */
-    public function get_organisation (organisation: String): String {
+    public function get_organisation (organization: String): String {
         // create path and map variables
-        var path: String = "/blue/rest/organizations/{organisation}".replace(/{format}/g,"xml").replace("{" + "organisation" + "}", getApiInvoker().escapeString(organisation));
+        var path: String = "/blue/rest/organizations/{organization}".replace(/{format}/g,"xml").replace("{" + "organization" + "}", getApiInvoker().escapeString(organization));
 
         // query params
         var queryParams: Dictionary = new Dictionary();
@@ -132,13 +205,13 @@ public class BlueOceanApi extends SwaggerApi {
         token.requestId = requestId;
         token.completionEventType = "get_organisation";
 
-        token.returnType = SwaggyjenkinsOrganisation;
+        token.returnType = Organisation;
         return requestId;
 
     }
 
     /*
-     * Returns GetOrganisations 
+     * Returns Organisations 
      */
     public function get_organisations (): String {
         // create path and map variables
@@ -158,17 +231,85 @@ public class BlueOceanApi extends SwaggerApi {
         token.requestId = requestId;
         token.completionEventType = "get_organisations";
 
-        token.returnType = GetOrganisations;
+        token.returnType = Organisations;
         return requestId;
 
     }
 
     /*
-     * Returns IojenkinsblueoceanrestimplpipelineBranchImpl 
+     * Returns Pipeline 
      */
-    public function get_pipeline_branch_by_org (organisation: String, pipeline: String, branch: String): String {
+    public function get_pipeline (organization: String, pipeline: String): String {
         // create path and map variables
-        var path: String = "/blue/rest/organizations/{organisation}/pipelines/{pipeline}/branches/{branch}/".replace(/{format}/g,"xml").replace("{" + "organisation" + "}", getApiInvoker().escapeString(organisation)).replace("{" + "pipeline" + "}", getApiInvoker().escapeString(pipeline)).replace("{" + "branch" + "}", getApiInvoker().escapeString(branch));
+        var path: String = "/blue/rest/organizations/{organization}/pipelines/{pipeline}".replace(/{format}/g,"xml").replace("{" + "organization" + "}", getApiInvoker().escapeString(organization)).replace("{" + "pipeline" + "}", getApiInvoker().escapeString(pipeline));
+
+        // query params
+        var queryParams: Dictionary = new Dictionary();
+        var headerParams: Dictionary = new Dictionary();
+
+        // verify required params are set
+        if(        // verify required params are set
+        if() {
+            throw new ApiError(400, "missing required params");
+        }
+) {
+            throw new ApiError(400, "missing required params");
+        }
+
+        
+        
+        var token:AsyncToken = getApiInvoker().invokeAPI(path, "GET", queryParams, null, headerParams);
+
+        var requestId: String = getUniqueId();
+
+        token.requestId = requestId;
+        token.completionEventType = "get_pipeline";
+
+        token.returnType = Pipeline;
+        return requestId;
+
+    }
+
+    /*
+     * Returns PipelineActivities 
+     */
+    public function get_pipeline_activities (organization: String, pipeline: String): String {
+        // create path and map variables
+        var path: String = "/blue/rest/organizations/{organization}/pipelines/{pipeline}/activities".replace(/{format}/g,"xml").replace("{" + "organization" + "}", getApiInvoker().escapeString(organization)).replace("{" + "pipeline" + "}", getApiInvoker().escapeString(pipeline));
+
+        // query params
+        var queryParams: Dictionary = new Dictionary();
+        var headerParams: Dictionary = new Dictionary();
+
+        // verify required params are set
+        if(        // verify required params are set
+        if() {
+            throw new ApiError(400, "missing required params");
+        }
+) {
+            throw new ApiError(400, "missing required params");
+        }
+
+        
+        
+        var token:AsyncToken = getApiInvoker().invokeAPI(path, "GET", queryParams, null, headerParams);
+
+        var requestId: String = getUniqueId();
+
+        token.requestId = requestId;
+        token.completionEventType = "get_pipeline_activities";
+
+        token.returnType = PipelineActivities;
+        return requestId;
+
+    }
+
+    /*
+     * Returns BranchImpl 
+     */
+    public function get_pipeline_branch (organization: String, pipeline: String, branch: String): String {
+        // create path and map variables
+        var path: String = "/blue/rest/organizations/{organization}/pipelines/{pipeline}/branches/{branch}/".replace(/{format}/g,"xml").replace("{" + "organization" + "}", getApiInvoker().escapeString(organization)).replace("{" + "pipeline" + "}", getApiInvoker().escapeString(pipeline)).replace("{" + "branch" + "}", getApiInvoker().escapeString(branch));
 
         // query params
         var queryParams: Dictionary = new Dictionary();
@@ -194,19 +335,61 @@ public class BlueOceanApi extends SwaggerApi {
         var requestId: String = getUniqueId();
 
         token.requestId = requestId;
-        token.completionEventType = "get_pipeline_branch_by_org";
+        token.completionEventType = "get_pipeline_branch";
 
-        token.returnType = IojenkinsblueoceanrestimplpipelineBranchImpl;
+        token.returnType = BranchImpl;
         return requestId;
 
     }
 
     /*
-     * Returns GetMultibranchPipeline 
+     * Returns PipelineRun 
      */
-    public function get_pipeline_branches_by_org (organisation: String, pipeline: String): String {
+    public function get_pipeline_branch_run (organization: String, pipeline: String, branch: String, run: String): String {
         // create path and map variables
-        var path: String = "/blue/rest/organizations/{organisation}/pipelines/{pipeline}/branches".replace(/{format}/g,"xml").replace("{" + "organisation" + "}", getApiInvoker().escapeString(organisation)).replace("{" + "pipeline" + "}", getApiInvoker().escapeString(pipeline));
+        var path: String = "/blue/rest/organizations/{organization}/pipelines/{pipeline}/branches/{branch}/runs/{run}".replace(/{format}/g,"xml").replace("{" + "organization" + "}", getApiInvoker().escapeString(organization)).replace("{" + "pipeline" + "}", getApiInvoker().escapeString(pipeline)).replace("{" + "branch" + "}", getApiInvoker().escapeString(branch)).replace("{" + "run" + "}", getApiInvoker().escapeString(run));
+
+        // query params
+        var queryParams: Dictionary = new Dictionary();
+        var headerParams: Dictionary = new Dictionary();
+
+        // verify required params are set
+        if(        // verify required params are set
+        if(        // verify required params are set
+        if(        // verify required params are set
+        if() {
+            throw new ApiError(400, "missing required params");
+        }
+) {
+            throw new ApiError(400, "missing required params");
+        }
+) {
+            throw new ApiError(400, "missing required params");
+        }
+) {
+            throw new ApiError(400, "missing required params");
+        }
+
+        
+        
+        var token:AsyncToken = getApiInvoker().invokeAPI(path, "GET", queryParams, null, headerParams);
+
+        var requestId: String = getUniqueId();
+
+        token.requestId = requestId;
+        token.completionEventType = "get_pipeline_branch_run";
+
+        token.returnType = PipelineRun;
+        return requestId;
+
+    }
+
+    /*
+     * Returns MultibranchPipeline 
+     */
+    public function get_pipeline_branches (organization: String, pipeline: String): String {
+        // create path and map variables
+        var path: String = "/blue/rest/organizations/{organization}/pipelines/{pipeline}/branches".replace(/{format}/g,"xml").replace("{" + "organization" + "}", getApiInvoker().escapeString(organization)).replace("{" + "pipeline" + "}", getApiInvoker().escapeString(pipeline));
 
         // query params
         var queryParams: Dictionary = new Dictionary();
@@ -228,19 +411,19 @@ public class BlueOceanApi extends SwaggerApi {
         var requestId: String = getUniqueId();
 
         token.requestId = requestId;
-        token.completionEventType = "get_pipeline_branches_by_org";
+        token.completionEventType = "get_pipeline_branches";
 
-        token.returnType = GetMultibranchPipeline;
+        token.returnType = MultibranchPipeline;
         return requestId;
 
     }
 
     /*
-     * Returns SwaggyjenkinsPipeline 
+     * Returns PipelineFolderImpl 
      */
-    public function get_pipeline_by_org (organisation: String, pipeline: String): String {
+    public function get_pipeline_folder (organization: String, folder: String): String {
         // create path and map variables
-        var path: String = "/blue/rest/organizations/{organisation}/pipelines/{pipeline}".replace(/{format}/g,"xml").replace("{" + "organisation" + "}", getApiInvoker().escapeString(organisation)).replace("{" + "pipeline" + "}", getApiInvoker().escapeString(pipeline));
+        var path: String = "/blue/rest/organizations/{organization}/pipelines/{folder}/".replace(/{format}/g,"xml").replace("{" + "organization" + "}", getApiInvoker().escapeString(organization)).replace("{" + "folder" + "}", getApiInvoker().escapeString(folder));
 
         // query params
         var queryParams: Dictionary = new Dictionary();
@@ -262,53 +445,19 @@ public class BlueOceanApi extends SwaggerApi {
         var requestId: String = getUniqueId();
 
         token.requestId = requestId;
-        token.completionEventType = "get_pipeline_by_org";
+        token.completionEventType = "get_pipeline_folder";
 
-        token.returnType = SwaggyjenkinsPipeline;
+        token.returnType = PipelineFolderImpl;
         return requestId;
 
     }
 
     /*
-     * Returns IojenkinsblueoceanserviceembeddedrestPipelineFolderImpl 
+     * Returns PipelineImpl 
      */
-    public function get_pipeline_folder_by_org (organisation: String, folder: String): String {
+    public function get_pipeline_folder_pipeline (organization: String, pipeline: String, folder: String): String {
         // create path and map variables
-        var path: String = "/blue/rest/organizations/{organisation}/pipelines/{folder}/".replace(/{format}/g,"xml").replace("{" + "organisation" + "}", getApiInvoker().escapeString(organisation)).replace("{" + "folder" + "}", getApiInvoker().escapeString(folder));
-
-        // query params
-        var queryParams: Dictionary = new Dictionary();
-        var headerParams: Dictionary = new Dictionary();
-
-        // verify required params are set
-        if(        // verify required params are set
-        if() {
-            throw new ApiError(400, "missing required params");
-        }
-) {
-            throw new ApiError(400, "missing required params");
-        }
-
-        
-        
-        var token:AsyncToken = getApiInvoker().invokeAPI(path, "GET", queryParams, null, headerParams);
-
-        var requestId: String = getUniqueId();
-
-        token.requestId = requestId;
-        token.completionEventType = "get_pipeline_folder_by_org";
-
-        token.returnType = IojenkinsblueoceanserviceembeddedrestPipelineFolderImpl;
-        return requestId;
-
-    }
-
-    /*
-     * Returns IojenkinsblueoceanserviceembeddedrestPipelineImpl 
-     */
-    public function get_pipeline_folder_by_org_1 (organisation: String, pipeline: String, folder: String): String {
-        // create path and map variables
-        var path: String = "/blue/rest/organizations/{organisation}/pipelines/{folder}/pipelines/{pipeline}".replace(/{format}/g,"xml").replace("{" + "organisation" + "}", getApiInvoker().escapeString(organisation)).replace("{" + "pipeline" + "}", getApiInvoker().escapeString(pipeline)).replace("{" + "folder" + "}", getApiInvoker().escapeString(folder));
+        var path: String = "/blue/rest/organizations/{organization}/pipelines/{folder}/pipelines/{pipeline}".replace(/{format}/g,"xml").replace("{" + "organization" + "}", getApiInvoker().escapeString(organization)).replace("{" + "pipeline" + "}", getApiInvoker().escapeString(pipeline)).replace("{" + "folder" + "}", getApiInvoker().escapeString(folder));
 
         // query params
         var queryParams: Dictionary = new Dictionary();
@@ -334,19 +483,389 @@ public class BlueOceanApi extends SwaggerApi {
         var requestId: String = getUniqueId();
 
         token.requestId = requestId;
-        token.completionEventType = "get_pipeline_folder_by_org_1";
+        token.completionEventType = "get_pipeline_folder_pipeline";
 
-        token.returnType = IojenkinsblueoceanserviceembeddedrestPipelineImpl;
+        token.returnType = PipelineImpl;
         return requestId;
 
     }
 
     /*
-     * Returns GetPipelines 
+     * Returns PipelineQueue 
      */
-    public function get_pipelines_by_org (organisation: String): String {
+    public function get_pipeline_queue (organization: String, pipeline: String): String {
         // create path and map variables
-        var path: String = "/blue/rest/organizations/{organisation}/pipelines/".replace(/{format}/g,"xml").replace("{" + "organisation" + "}", getApiInvoker().escapeString(organisation));
+        var path: String = "/blue/rest/organizations/{organization}/pipelines/{pipeline}/queue".replace(/{format}/g,"xml").replace("{" + "organization" + "}", getApiInvoker().escapeString(organization)).replace("{" + "pipeline" + "}", getApiInvoker().escapeString(pipeline));
+
+        // query params
+        var queryParams: Dictionary = new Dictionary();
+        var headerParams: Dictionary = new Dictionary();
+
+        // verify required params are set
+        if(        // verify required params are set
+        if() {
+            throw new ApiError(400, "missing required params");
+        }
+) {
+            throw new ApiError(400, "missing required params");
+        }
+
+        
+        
+        var token:AsyncToken = getApiInvoker().invokeAPI(path, "GET", queryParams, null, headerParams);
+
+        var requestId: String = getUniqueId();
+
+        token.requestId = requestId;
+        token.completionEventType = "get_pipeline_queue";
+
+        token.returnType = PipelineQueue;
+        return requestId;
+
+    }
+
+    /*
+     * Returns PipelineRun 
+     */
+    public function get_pipeline_run (organization: String, pipeline: String, run: String): String {
+        // create path and map variables
+        var path: String = "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}".replace(/{format}/g,"xml").replace("{" + "organization" + "}", getApiInvoker().escapeString(organization)).replace("{" + "pipeline" + "}", getApiInvoker().escapeString(pipeline)).replace("{" + "run" + "}", getApiInvoker().escapeString(run));
+
+        // query params
+        var queryParams: Dictionary = new Dictionary();
+        var headerParams: Dictionary = new Dictionary();
+
+        // verify required params are set
+        if(        // verify required params are set
+        if(        // verify required params are set
+        if() {
+            throw new ApiError(400, "missing required params");
+        }
+) {
+            throw new ApiError(400, "missing required params");
+        }
+) {
+            throw new ApiError(400, "missing required params");
+        }
+
+        
+        
+        var token:AsyncToken = getApiInvoker().invokeAPI(path, "GET", queryParams, null, headerParams);
+
+        var requestId: String = getUniqueId();
+
+        token.requestId = requestId;
+        token.completionEventType = "get_pipeline_run";
+
+        token.returnType = PipelineRun;
+        return requestId;
+
+    }
+
+    /*
+     * Returns String 
+     */
+    public function get_pipeline_run_log (organization: String, pipeline: String, run: String, start: Number, download: Boolean): String {
+        // create path and map variables
+        var path: String = "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/log".replace(/{format}/g,"xml").replace("{" + "organization" + "}", getApiInvoker().escapeString(organization)).replace("{" + "pipeline" + "}", getApiInvoker().escapeString(pipeline)).replace("{" + "run" + "}", getApiInvoker().escapeString(run));
+
+        // query params
+        var queryParams: Dictionary = new Dictionary();
+        var headerParams: Dictionary = new Dictionary();
+
+        // verify required params are set
+        if(        // verify required params are set
+        if(        // verify required params are set
+        if(        // verify required params are set
+        if(        // verify required params are set
+        if() {
+            throw new ApiError(400, "missing required params");
+        }
+) {
+            throw new ApiError(400, "missing required params");
+        }
+) {
+            throw new ApiError(400, "missing required params");
+        }
+) {
+            throw new ApiError(400, "missing required params");
+        }
+) {
+            throw new ApiError(400, "missing required params");
+        }
+
+        if("null" != String(start))
+            queryParams["start"] = toPathValue(start);
+if("null" != String(download))
+            queryParams["download"] = toPathValue(download);
+
+        
+        var token:AsyncToken = getApiInvoker().invokeAPI(path, "GET", queryParams, null, headerParams);
+
+        var requestId: String = getUniqueId();
+
+        token.requestId = requestId;
+        token.completionEventType = "get_pipeline_run_log";
+
+        token.returnType = String;
+        return requestId;
+
+    }
+
+    /*
+     * Returns PipelineRunNode 
+     */
+    public function get_pipeline_run_node (organization: String, pipeline: String, run: String, node: String): String {
+        // create path and map variables
+        var path: String = "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}".replace(/{format}/g,"xml").replace("{" + "organization" + "}", getApiInvoker().escapeString(organization)).replace("{" + "pipeline" + "}", getApiInvoker().escapeString(pipeline)).replace("{" + "run" + "}", getApiInvoker().escapeString(run)).replace("{" + "node" + "}", getApiInvoker().escapeString(node));
+
+        // query params
+        var queryParams: Dictionary = new Dictionary();
+        var headerParams: Dictionary = new Dictionary();
+
+        // verify required params are set
+        if(        // verify required params are set
+        if(        // verify required params are set
+        if(        // verify required params are set
+        if() {
+            throw new ApiError(400, "missing required params");
+        }
+) {
+            throw new ApiError(400, "missing required params");
+        }
+) {
+            throw new ApiError(400, "missing required params");
+        }
+) {
+            throw new ApiError(400, "missing required params");
+        }
+
+        
+        
+        var token:AsyncToken = getApiInvoker().invokeAPI(path, "GET", queryParams, null, headerParams);
+
+        var requestId: String = getUniqueId();
+
+        token.requestId = requestId;
+        token.completionEventType = "get_pipeline_run_node";
+
+        token.returnType = PipelineRunNode;
+        return requestId;
+
+    }
+
+    /*
+     * Returns PipelineStepImpl 
+     */
+    public function get_pipeline_run_node_step (organization: String, pipeline: String, run: String, node: String, step: String): String {
+        // create path and map variables
+        var path: String = "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps/{step}".replace(/{format}/g,"xml").replace("{" + "organization" + "}", getApiInvoker().escapeString(organization)).replace("{" + "pipeline" + "}", getApiInvoker().escapeString(pipeline)).replace("{" + "run" + "}", getApiInvoker().escapeString(run)).replace("{" + "node" + "}", getApiInvoker().escapeString(node)).replace("{" + "step" + "}", getApiInvoker().escapeString(step));
+
+        // query params
+        var queryParams: Dictionary = new Dictionary();
+        var headerParams: Dictionary = new Dictionary();
+
+        // verify required params are set
+        if(        // verify required params are set
+        if(        // verify required params are set
+        if(        // verify required params are set
+        if(        // verify required params are set
+        if() {
+            throw new ApiError(400, "missing required params");
+        }
+) {
+            throw new ApiError(400, "missing required params");
+        }
+) {
+            throw new ApiError(400, "missing required params");
+        }
+) {
+            throw new ApiError(400, "missing required params");
+        }
+) {
+            throw new ApiError(400, "missing required params");
+        }
+
+        
+        
+        var token:AsyncToken = getApiInvoker().invokeAPI(path, "GET", queryParams, null, headerParams);
+
+        var requestId: String = getUniqueId();
+
+        token.requestId = requestId;
+        token.completionEventType = "get_pipeline_run_node_step";
+
+        token.returnType = PipelineStepImpl;
+        return requestId;
+
+    }
+
+    /*
+     * Returns String 
+     */
+    public function get_pipeline_run_node_step_log (organization: String, pipeline: String, run: String, node: String, step: String): String {
+        // create path and map variables
+        var path: String = "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps/{step}/log".replace(/{format}/g,"xml").replace("{" + "organization" + "}", getApiInvoker().escapeString(organization)).replace("{" + "pipeline" + "}", getApiInvoker().escapeString(pipeline)).replace("{" + "run" + "}", getApiInvoker().escapeString(run)).replace("{" + "node" + "}", getApiInvoker().escapeString(node)).replace("{" + "step" + "}", getApiInvoker().escapeString(step));
+
+        // query params
+        var queryParams: Dictionary = new Dictionary();
+        var headerParams: Dictionary = new Dictionary();
+
+        // verify required params are set
+        if(        // verify required params are set
+        if(        // verify required params are set
+        if(        // verify required params are set
+        if(        // verify required params are set
+        if() {
+            throw new ApiError(400, "missing required params");
+        }
+) {
+            throw new ApiError(400, "missing required params");
+        }
+) {
+            throw new ApiError(400, "missing required params");
+        }
+) {
+            throw new ApiError(400, "missing required params");
+        }
+) {
+            throw new ApiError(400, "missing required params");
+        }
+
+        
+        
+        var token:AsyncToken = getApiInvoker().invokeAPI(path, "GET", queryParams, null, headerParams);
+
+        var requestId: String = getUniqueId();
+
+        token.requestId = requestId;
+        token.completionEventType = "get_pipeline_run_node_step_log";
+
+        token.returnType = String;
+        return requestId;
+
+    }
+
+    /*
+     * Returns PipelineRunNodeSteps 
+     */
+    public function get_pipeline_run_node_steps (organization: String, pipeline: String, run: String, node: String): String {
+        // create path and map variables
+        var path: String = "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps".replace(/{format}/g,"xml").replace("{" + "organization" + "}", getApiInvoker().escapeString(organization)).replace("{" + "pipeline" + "}", getApiInvoker().escapeString(pipeline)).replace("{" + "run" + "}", getApiInvoker().escapeString(run)).replace("{" + "node" + "}", getApiInvoker().escapeString(node));
+
+        // query params
+        var queryParams: Dictionary = new Dictionary();
+        var headerParams: Dictionary = new Dictionary();
+
+        // verify required params are set
+        if(        // verify required params are set
+        if(        // verify required params are set
+        if(        // verify required params are set
+        if() {
+            throw new ApiError(400, "missing required params");
+        }
+) {
+            throw new ApiError(400, "missing required params");
+        }
+) {
+            throw new ApiError(400, "missing required params");
+        }
+) {
+            throw new ApiError(400, "missing required params");
+        }
+
+        
+        
+        var token:AsyncToken = getApiInvoker().invokeAPI(path, "GET", queryParams, null, headerParams);
+
+        var requestId: String = getUniqueId();
+
+        token.requestId = requestId;
+        token.completionEventType = "get_pipeline_run_node_steps";
+
+        token.returnType = PipelineRunNodeSteps;
+        return requestId;
+
+    }
+
+    /*
+     * Returns PipelineRunNodes 
+     */
+    public function get_pipeline_run_nodes (organization: String, pipeline: String, run: String): String {
+        // create path and map variables
+        var path: String = "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes".replace(/{format}/g,"xml").replace("{" + "organization" + "}", getApiInvoker().escapeString(organization)).replace("{" + "pipeline" + "}", getApiInvoker().escapeString(pipeline)).replace("{" + "run" + "}", getApiInvoker().escapeString(run));
+
+        // query params
+        var queryParams: Dictionary = new Dictionary();
+        var headerParams: Dictionary = new Dictionary();
+
+        // verify required params are set
+        if(        // verify required params are set
+        if(        // verify required params are set
+        if() {
+            throw new ApiError(400, "missing required params");
+        }
+) {
+            throw new ApiError(400, "missing required params");
+        }
+) {
+            throw new ApiError(400, "missing required params");
+        }
+
+        
+        
+        var token:AsyncToken = getApiInvoker().invokeAPI(path, "GET", queryParams, null, headerParams);
+
+        var requestId: String = getUniqueId();
+
+        token.requestId = requestId;
+        token.completionEventType = "get_pipeline_run_nodes";
+
+        token.returnType = PipelineRunNodes;
+        return requestId;
+
+    }
+
+    /*
+     * Returns PipelineRuns 
+     */
+    public function get_pipeline_runs (organization: String, pipeline: String): String {
+        // create path and map variables
+        var path: String = "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs".replace(/{format}/g,"xml").replace("{" + "organization" + "}", getApiInvoker().escapeString(organization)).replace("{" + "pipeline" + "}", getApiInvoker().escapeString(pipeline));
+
+        // query params
+        var queryParams: Dictionary = new Dictionary();
+        var headerParams: Dictionary = new Dictionary();
+
+        // verify required params are set
+        if(        // verify required params are set
+        if() {
+            throw new ApiError(400, "missing required params");
+        }
+) {
+            throw new ApiError(400, "missing required params");
+        }
+
+        
+        
+        var token:AsyncToken = getApiInvoker().invokeAPI(path, "GET", queryParams, null, headerParams);
+
+        var requestId: String = getUniqueId();
+
+        token.requestId = requestId;
+        token.completionEventType = "get_pipeline_runs";
+
+        token.returnType = PipelineRuns;
+        return requestId;
+
+    }
+
+    /*
+     * Returns Pipelines 
+     */
+    public function get_pipelines (organization: String): String {
+        // create path and map variables
+        var path: String = "/blue/rest/organizations/{organization}/pipelines/".replace(/{format}/g,"xml").replace("{" + "organization" + "}", getApiInvoker().escapeString(organization));
 
         // query params
         var queryParams: Dictionary = new Dictionary();
@@ -364,19 +883,197 @@ public class BlueOceanApi extends SwaggerApi {
         var requestId: String = getUniqueId();
 
         token.requestId = requestId;
-        token.completionEventType = "get_pipelines_by_org";
+        token.completionEventType = "get_pipelines";
 
-        token.returnType = GetPipelines;
+        token.returnType = Pipelines;
         return requestId;
 
     }
 
     /*
-     * Returns SwaggyjenkinsUser 
+     * Returns GithubScm 
      */
-    public function get_user (organisation: String, user: String): String {
+    public function get_scm (organization: String, scm: String): String {
         // create path and map variables
-        var path: String = "/blue/rest/organizations/{organisation}/users/{user}".replace(/{format}/g,"xml").replace("{" + "organisation" + "}", getApiInvoker().escapeString(organisation)).replace("{" + "user" + "}", getApiInvoker().escapeString(user));
+        var path: String = "/blue/rest/organizations/{organization}/scm/{scm}".replace(/{format}/g,"xml").replace("{" + "organization" + "}", getApiInvoker().escapeString(organization)).replace("{" + "scm" + "}", getApiInvoker().escapeString(scm));
+
+        // query params
+        var queryParams: Dictionary = new Dictionary();
+        var headerParams: Dictionary = new Dictionary();
+
+        // verify required params are set
+        if(        // verify required params are set
+        if() {
+            throw new ApiError(400, "missing required params");
+        }
+) {
+            throw new ApiError(400, "missing required params");
+        }
+
+        
+        
+        var token:AsyncToken = getApiInvoker().invokeAPI(path, "GET", queryParams, null, headerParams);
+
+        var requestId: String = getUniqueId();
+
+        token.requestId = requestId;
+        token.completionEventType = "get_scm";
+
+        token.returnType = GithubScm;
+        return requestId;
+
+    }
+
+    /*
+     * Returns ScmOrganisations 
+     */
+    public function get_scm_organisation_repositories (organization: String, scm: String, scmOrganisation: String, credentialId: String, pageSize: Number, pageNumber: Number): String {
+        // create path and map variables
+        var path: String = "/blue/rest/organizations/{organization}/scm/{scm}/organizations/{scmOrganisation}/repositories".replace(/{format}/g,"xml").replace("{" + "organization" + "}", getApiInvoker().escapeString(organization)).replace("{" + "scm" + "}", getApiInvoker().escapeString(scm)).replace("{" + "scmOrganisation" + "}", getApiInvoker().escapeString(scmOrganisation));
+
+        // query params
+        var queryParams: Dictionary = new Dictionary();
+        var headerParams: Dictionary = new Dictionary();
+
+        // verify required params are set
+        if(        // verify required params are set
+        if(        // verify required params are set
+        if(        // verify required params are set
+        if(        // verify required params are set
+        if(        // verify required params are set
+        if() {
+            throw new ApiError(400, "missing required params");
+        }
+) {
+            throw new ApiError(400, "missing required params");
+        }
+) {
+            throw new ApiError(400, "missing required params");
+        }
+) {
+            throw new ApiError(400, "missing required params");
+        }
+) {
+            throw new ApiError(400, "missing required params");
+        }
+) {
+            throw new ApiError(400, "missing required params");
+        }
+
+        if("null" != String(credentialId))
+            queryParams["credentialId"] = toPathValue(credentialId);
+if("null" != String(pageSize))
+            queryParams["pageSize"] = toPathValue(pageSize);
+if("null" != String(pageNumber))
+            queryParams["pageNumber"] = toPathValue(pageNumber);
+
+        
+        var token:AsyncToken = getApiInvoker().invokeAPI(path, "GET", queryParams, null, headerParams);
+
+        var requestId: String = getUniqueId();
+
+        token.requestId = requestId;
+        token.completionEventType = "get_scm_organisation_repositories";
+
+        token.returnType = ScmOrganisations;
+        return requestId;
+
+    }
+
+    /*
+     * Returns ScmOrganisations 
+     */
+    public function get_scm_organisation_repository (organization: String, scm: String, scmOrganisation: String, repository: String, credentialId: String): String {
+        // create path and map variables
+        var path: String = "/blue/rest/organizations/{organization}/scm/{scm}/organizations/{scmOrganisation}/repositories/{repository}".replace(/{format}/g,"xml").replace("{" + "organization" + "}", getApiInvoker().escapeString(organization)).replace("{" + "scm" + "}", getApiInvoker().escapeString(scm)).replace("{" + "scmOrganisation" + "}", getApiInvoker().escapeString(scmOrganisation)).replace("{" + "repository" + "}", getApiInvoker().escapeString(repository));
+
+        // query params
+        var queryParams: Dictionary = new Dictionary();
+        var headerParams: Dictionary = new Dictionary();
+
+        // verify required params are set
+        if(        // verify required params are set
+        if(        // verify required params are set
+        if(        // verify required params are set
+        if(        // verify required params are set
+        if() {
+            throw new ApiError(400, "missing required params");
+        }
+) {
+            throw new ApiError(400, "missing required params");
+        }
+) {
+            throw new ApiError(400, "missing required params");
+        }
+) {
+            throw new ApiError(400, "missing required params");
+        }
+) {
+            throw new ApiError(400, "missing required params");
+        }
+
+        if("null" != String(credentialId))
+            queryParams["credentialId"] = toPathValue(credentialId);
+
+        
+        var token:AsyncToken = getApiInvoker().invokeAPI(path, "GET", queryParams, null, headerParams);
+
+        var requestId: String = getUniqueId();
+
+        token.requestId = requestId;
+        token.completionEventType = "get_scm_organisation_repository";
+
+        token.returnType = ScmOrganisations;
+        return requestId;
+
+    }
+
+    /*
+     * Returns ScmOrganisations 
+     */
+    public function get_scm_organisations (organization: String, scm: String, credentialId: String): String {
+        // create path and map variables
+        var path: String = "/blue/rest/organizations/{organization}/scm/{scm}/organizations".replace(/{format}/g,"xml").replace("{" + "organization" + "}", getApiInvoker().escapeString(organization)).replace("{" + "scm" + "}", getApiInvoker().escapeString(scm));
+
+        // query params
+        var queryParams: Dictionary = new Dictionary();
+        var headerParams: Dictionary = new Dictionary();
+
+        // verify required params are set
+        if(        // verify required params are set
+        if(        // verify required params are set
+        if() {
+            throw new ApiError(400, "missing required params");
+        }
+) {
+            throw new ApiError(400, "missing required params");
+        }
+) {
+            throw new ApiError(400, "missing required params");
+        }
+
+        if("null" != String(credentialId))
+            queryParams["credentialId"] = toPathValue(credentialId);
+
+        
+        var token:AsyncToken = getApiInvoker().invokeAPI(path, "GET", queryParams, null, headerParams);
+
+        var requestId: String = getUniqueId();
+
+        token.requestId = requestId;
+        token.completionEventType = "get_scm_organisations";
+
+        token.returnType = ScmOrganisations;
+        return requestId;
+
+    }
+
+    /*
+     * Returns User 
+     */
+    public function get_user (organization: String, user: String): String {
+        // create path and map variables
+        var path: String = "/blue/rest/organizations/{organization}/users/{user}".replace(/{format}/g,"xml").replace("{" + "organization" + "}", getApiInvoker().escapeString(organization)).replace("{" + "user" + "}", getApiInvoker().escapeString(user));
 
         // query params
         var queryParams: Dictionary = new Dictionary();
@@ -400,17 +1097,47 @@ public class BlueOceanApi extends SwaggerApi {
         token.requestId = requestId;
         token.completionEventType = "get_user";
 
-        token.returnType = SwaggyjenkinsUser;
+        token.returnType = User;
         return requestId;
 
     }
 
     /*
-     * Returns SwaggyjenkinsUser 
+     * Returns UserFavorites 
      */
-    public function get_users (organisation: String): String {
+    public function get_user_favorites (user: String): String {
         // create path and map variables
-        var path: String = "/blue/rest/organizations/{organisation}/users/".replace(/{format}/g,"xml").replace("{" + "organisation" + "}", getApiInvoker().escapeString(organisation));
+        var path: String = "/blue/rest/users/{user}/favorites".replace(/{format}/g,"xml").replace("{" + "user" + "}", getApiInvoker().escapeString(user));
+
+        // query params
+        var queryParams: Dictionary = new Dictionary();
+        var headerParams: Dictionary = new Dictionary();
+
+        // verify required params are set
+        if() {
+            throw new ApiError(400, "missing required params");
+        }
+
+        
+        
+        var token:AsyncToken = getApiInvoker().invokeAPI(path, "GET", queryParams, null, headerParams);
+
+        var requestId: String = getUniqueId();
+
+        token.requestId = requestId;
+        token.completionEventType = "get_user_favorites";
+
+        token.returnType = UserFavorites;
+        return requestId;
+
+    }
+
+    /*
+     * Returns User 
+     */
+    public function get_users (organization: String): String {
+        // create path and map variables
+        var path: String = "/blue/rest/organizations/{organization}/users/".replace(/{format}/g,"xml").replace("{" + "organization" + "}", getApiInvoker().escapeString(organization));
 
         // query params
         var queryParams: Dictionary = new Dictionary();
@@ -430,7 +1157,167 @@ public class BlueOceanApi extends SwaggerApi {
         token.requestId = requestId;
         token.completionEventType = "get_users";
 
-        token.returnType = SwaggyjenkinsUser;
+        token.returnType = User;
+        return requestId;
+
+    }
+
+    /*
+     * Returns QueueItemImpl 
+     */
+    public function post_pipeline_run (organization: String, pipeline: String, run: String): String {
+        // create path and map variables
+        var path: String = "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/replay".replace(/{format}/g,"xml").replace("{" + "organization" + "}", getApiInvoker().escapeString(organization)).replace("{" + "pipeline" + "}", getApiInvoker().escapeString(pipeline)).replace("{" + "run" + "}", getApiInvoker().escapeString(run));
+
+        // query params
+        var queryParams: Dictionary = new Dictionary();
+        var headerParams: Dictionary = new Dictionary();
+
+        // verify required params are set
+        if(        // verify required params are set
+        if(        // verify required params are set
+        if() {
+            throw new ApiError(400, "missing required params");
+        }
+) {
+            throw new ApiError(400, "missing required params");
+        }
+) {
+            throw new ApiError(400, "missing required params");
+        }
+
+        
+        
+        var token:AsyncToken = getApiInvoker().invokeAPI(path, "POST", queryParams, null, headerParams);
+
+        var requestId: String = getUniqueId();
+
+        token.requestId = requestId;
+        token.completionEventType = "post_pipeline_run";
+
+        token.returnType = QueueItemImpl;
+        return requestId;
+
+    }
+
+    /*
+     * Returns QueueItemImpl 
+     */
+    public function post_pipeline_runs (organization: String, pipeline: String): String {
+        // create path and map variables
+        var path: String = "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs".replace(/{format}/g,"xml").replace("{" + "organization" + "}", getApiInvoker().escapeString(organization)).replace("{" + "pipeline" + "}", getApiInvoker().escapeString(pipeline));
+
+        // query params
+        var queryParams: Dictionary = new Dictionary();
+        var headerParams: Dictionary = new Dictionary();
+
+        // verify required params are set
+        if(        // verify required params are set
+        if() {
+            throw new ApiError(400, "missing required params");
+        }
+) {
+            throw new ApiError(400, "missing required params");
+        }
+
+        
+        
+        var token:AsyncToken = getApiInvoker().invokeAPI(path, "POST", queryParams, null, headerParams);
+
+        var requestId: String = getUniqueId();
+
+        token.requestId = requestId;
+        token.completionEventType = "post_pipeline_runs";
+
+        token.returnType = QueueItemImpl;
+        return requestId;
+
+    }
+
+    /*
+     * Returns FavoriteImpl 
+     */
+    public function put_pipeline_favorite (organization: String, pipeline: String, body: Body): String {
+        // create path and map variables
+        var path: String = "/blue/rest/organizations/{organization}/pipelines/{pipeline}/favorite".replace(/{format}/g,"xml").replace("{" + "organization" + "}", getApiInvoker().escapeString(organization)).replace("{" + "pipeline" + "}", getApiInvoker().escapeString(pipeline));
+
+        // query params
+        var queryParams: Dictionary = new Dictionary();
+        var headerParams: Dictionary = new Dictionary();
+
+        // verify required params are set
+        if(        // verify required params are set
+        if(        // verify required params are set
+        if() {
+            throw new ApiError(400, "missing required params");
+        }
+) {
+            throw new ApiError(400, "missing required params");
+        }
+) {
+            throw new ApiError(400, "missing required params");
+        }
+
+        
+        
+        var token:AsyncToken = getApiInvoker().invokeAPI(path, "PUT", queryParams, body, headerParams);
+
+        var requestId: String = getUniqueId();
+
+        token.requestId = requestId;
+        token.completionEventType = "put_pipeline_favorite";
+
+        token.returnType = FavoriteImpl;
+        return requestId;
+
+    }
+
+    /*
+     * Returns PipelineRun 
+     */
+    public function put_pipeline_run (organization: String, pipeline: String, run: String, blocking: String, timeOutInSecs: Number): String {
+        // create path and map variables
+        var path: String = "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/stop".replace(/{format}/g,"xml").replace("{" + "organization" + "}", getApiInvoker().escapeString(organization)).replace("{" + "pipeline" + "}", getApiInvoker().escapeString(pipeline)).replace("{" + "run" + "}", getApiInvoker().escapeString(run));
+
+        // query params
+        var queryParams: Dictionary = new Dictionary();
+        var headerParams: Dictionary = new Dictionary();
+
+        // verify required params are set
+        if(        // verify required params are set
+        if(        // verify required params are set
+        if(        // verify required params are set
+        if(        // verify required params are set
+        if() {
+            throw new ApiError(400, "missing required params");
+        }
+) {
+            throw new ApiError(400, "missing required params");
+        }
+) {
+            throw new ApiError(400, "missing required params");
+        }
+) {
+            throw new ApiError(400, "missing required params");
+        }
+) {
+            throw new ApiError(400, "missing required params");
+        }
+
+        if("null" != String(blocking))
+            queryParams["blocking"] = toPathValue(blocking);
+if("null" != String(timeOutInSecs))
+            queryParams["timeOutInSecs"] = toPathValue(timeOutInSecs);
+
+        
+        var token:AsyncToken = getApiInvoker().invokeAPI(path, "PUT", queryParams, null, headerParams);
+
+        var requestId: String = getUniqueId();
+
+        token.requestId = requestId;
+        token.completionEventType = "put_pipeline_run";
+
+        token.returnType = PipelineRun;
         return requestId;
 
     }
@@ -440,7 +1327,7 @@ public class BlueOceanApi extends SwaggerApi {
      */
     public function search (q: String): String {
         // create path and map variables
-        var path: String = "/blue/rest/classes/".replace(/{format}/g,"xml");
+        var path: String = "/blue/rest/search/".replace(/{format}/g,"xml");
 
         // query params
         var queryParams: Dictionary = new Dictionary();
@@ -470,9 +1357,9 @@ public class BlueOceanApi extends SwaggerApi {
     /*
      * Returns String 
      */
-    public function search_2 (q: String): String {
+    public function search_classes (q: String): String {
         // create path and map variables
-        var path: String = "/blue/rest/search/".replace(/{format}/g,"xml");
+        var path: String = "/blue/rest/classes/".replace(/{format}/g,"xml");
 
         // query params
         var queryParams: Dictionary = new Dictionary();
@@ -492,7 +1379,7 @@ public class BlueOceanApi extends SwaggerApi {
         var requestId: String = getUniqueId();
 
         token.requestId = requestId;
-        token.completionEventType = "search_2";
+        token.completionEventType = "search_classes";
 
         token.returnType = String;
         return requestId;

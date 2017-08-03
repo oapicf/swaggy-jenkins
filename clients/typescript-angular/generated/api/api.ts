@@ -1,5 +1,5 @@
-export * from './BlueOceanApi';
-import { BlueOceanApi } from './BlueOceanApi';
-export * from './RemoteAccessApi';
-import { RemoteAccessApi } from './RemoteAccessApi';
-export const APIS = [BlueOceanApi, RemoteAccessApi];
+export * from './blueOcean.service';
+import { BlueOceanService } from './blueOcean.service';
+export * from './remoteAccess.service';
+import { RemoteAccessService } from './remoteAccess.service';
+export const APIS = [BlueOceanService, RemoteAccessService];

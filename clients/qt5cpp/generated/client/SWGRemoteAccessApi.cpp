@@ -29,10 +29,18 @@ SWGRemoteAccessApi::SWGRemoteAccessApi(QString host, QString basePath) {
 }
 
 void
-SWGRemoteAccessApi::getComputer() {
+SWGRemoteAccessApi::getComputer(qint32 depth) {
     QString fullPath;
-    fullPath.append(this->host).append(this->basePath).append("/computer/api/json?depth=1");
+    fullPath.append(this->host).append(this->basePath).append("/computer/api/json");
 
+
+    if (fullPath.indexOf("?") > 0) 
+      fullPath.append("&");
+    else 
+      fullPath.append("?");
+    fullPath.append(QUrl::toPercentEncoding("depth"))
+        .append("=")
+        .append(QUrl::toPercentEncoding(stringValue(depth)));
 
 
     HttpRequestWorker *worker = new HttpRequestWorker();
@@ -41,6 +49,10 @@ SWGRemoteAccessApi::getComputer() {
 
 
 
+
+    foreach(QString key, this->defaultHeaders.keys()) {
+        input.headers.insert(key, this->defaultHeaders.value(key));
+    }
 
     connect(worker,
             &HttpRequestWorker::on_execution_finished,
@@ -65,7 +77,7 @@ SWGRemoteAccessApi::getComputerCallback(HttpRequestWorker * worker) {
 
 
     QString json(worker->response);
-    SWGHudsonmodelComputerSet* output = static_cast<SWGHudsonmodelComputerSet*>(create(json, QString("SWGHudsonmodelComputerSet")));
+    ComputerSet* output = static_cast<ComputerSet*>(create(json, QString("ComputerSet")));
     worker->deleteLater();
 
     emit getComputerSignal(output);
@@ -85,6 +97,10 @@ SWGRemoteAccessApi::getCrumb() {
 
 
 
+
+    foreach(QString key, this->defaultHeaders.keys()) {
+        input.headers.insert(key, this->defaultHeaders.value(key));
+    }
 
     connect(worker,
             &HttpRequestWorker::on_execution_finished,
@@ -109,7 +125,7 @@ SWGRemoteAccessApi::getCrumbCallback(HttpRequestWorker * worker) {
 
 
     QString json(worker->response);
-    SWGHudsonsecuritycsrfDefaultCrumbIssuer* output = static_cast<SWGHudsonsecuritycsrfDefaultCrumbIssuer*>(create(json, QString("SWGHudsonsecuritycsrfDefaultCrumbIssuer")));
+    DefaultCrumbIssuer* output = static_cast<DefaultCrumbIssuer*>(create(json, QString("DefaultCrumbIssuer")));
     worker->deleteLater();
 
     emit getCrumbSignal(output);
@@ -129,6 +145,10 @@ SWGRemoteAccessApi::getJenkins() {
 
 
 
+
+    foreach(QString key, this->defaultHeaders.keys()) {
+        input.headers.insert(key, this->defaultHeaders.value(key));
+    }
 
     connect(worker,
             &HttpRequestWorker::on_execution_finished,
@@ -153,7 +173,7 @@ SWGRemoteAccessApi::getJenkinsCallback(HttpRequestWorker * worker) {
 
 
     QString json(worker->response);
-    SWGHudsonmodelHudson* output = static_cast<SWGHudsonmodelHudson*>(create(json, QString("SWGHudsonmodelHudson")));
+    Hudson* output = static_cast<Hudson*>(create(json, QString("Hudson")));
     worker->deleteLater();
 
     emit getJenkinsSignal(output);
@@ -175,6 +195,10 @@ SWGRemoteAccessApi::getJob(QString* name) {
 
 
 
+
+    foreach(QString key, this->defaultHeaders.keys()) {
+        input.headers.insert(key, this->defaultHeaders.value(key));
+    }
 
     connect(worker,
             &HttpRequestWorker::on_execution_finished,
@@ -199,7 +223,7 @@ SWGRemoteAccessApi::getJobCallback(HttpRequestWorker * worker) {
 
 
     QString json(worker->response);
-    SWGHudsonmodelFreeStyleProject* output = static_cast<SWGHudsonmodelFreeStyleProject*>(create(json, QString("SWGHudsonmodelFreeStyleProject")));
+    FreeStyleProject* output = static_cast<FreeStyleProject*>(create(json, QString("FreeStyleProject")));
     worker->deleteLater();
 
     emit getJobSignal(output);
@@ -221,6 +245,10 @@ SWGRemoteAccessApi::getJobConfig(QString* name) {
 
 
 
+
+    foreach(QString key, this->defaultHeaders.keys()) {
+        input.headers.insert(key, this->defaultHeaders.value(key));
+    }
 
     connect(worker,
             &HttpRequestWorker::on_execution_finished,
@@ -268,6 +296,10 @@ SWGRemoteAccessApi::getJobLastBuild(QString* name) {
 
 
 
+    foreach(QString key, this->defaultHeaders.keys()) {
+        input.headers.insert(key, this->defaultHeaders.value(key));
+    }
+
     connect(worker,
             &HttpRequestWorker::on_execution_finished,
             this,
@@ -291,7 +323,7 @@ SWGRemoteAccessApi::getJobLastBuildCallback(HttpRequestWorker * worker) {
 
 
     QString json(worker->response);
-    SWGHudsonmodelFreeStyleBuild* output = static_cast<SWGHudsonmodelFreeStyleBuild*>(create(json, QString("SWGHudsonmodelFreeStyleBuild")));
+    FreeStyleBuild* output = static_cast<FreeStyleBuild*>(create(json, QString("FreeStyleBuild")));
     worker->deleteLater();
 
     emit getJobLastBuildSignal(output);
@@ -323,6 +355,10 @@ SWGRemoteAccessApi::getJobProgressiveText(QString* name, QString* number, QStrin
 
 
 
+
+    foreach(QString key, this->defaultHeaders.keys()) {
+        input.headers.insert(key, this->defaultHeaders.value(key));
+    }
 
     connect(worker,
             &HttpRequestWorker::on_execution_finished,
@@ -365,6 +401,10 @@ SWGRemoteAccessApi::getQueue() {
 
 
 
+    foreach(QString key, this->defaultHeaders.keys()) {
+        input.headers.insert(key, this->defaultHeaders.value(key));
+    }
+
     connect(worker,
             &HttpRequestWorker::on_execution_finished,
             this,
@@ -388,7 +428,7 @@ SWGRemoteAccessApi::getQueueCallback(HttpRequestWorker * worker) {
 
 
     QString json(worker->response);
-    SWGHudsonmodelQueue* output = static_cast<SWGHudsonmodelQueue*>(create(json, QString("SWGHudsonmodelQueue")));
+    Queue* output = static_cast<Queue*>(create(json, QString("Queue")));
     worker->deleteLater();
 
     emit getQueueSignal(output);
@@ -410,6 +450,10 @@ SWGRemoteAccessApi::getQueueItem(QString* number) {
 
 
 
+
+    foreach(QString key, this->defaultHeaders.keys()) {
+        input.headers.insert(key, this->defaultHeaders.value(key));
+    }
 
     connect(worker,
             &HttpRequestWorker::on_execution_finished,
@@ -434,7 +478,7 @@ SWGRemoteAccessApi::getQueueItemCallback(HttpRequestWorker * worker) {
 
 
     QString json(worker->response);
-    SWGHudsonmodelQueue* output = static_cast<SWGHudsonmodelQueue*>(create(json, QString("SWGHudsonmodelQueue")));
+    Queue* output = static_cast<Queue*>(create(json, QString("Queue")));
     worker->deleteLater();
 
     emit getQueueItemSignal(output);
@@ -456,6 +500,10 @@ SWGRemoteAccessApi::getView(QString* name) {
 
 
 
+
+    foreach(QString key, this->defaultHeaders.keys()) {
+        input.headers.insert(key, this->defaultHeaders.value(key));
+    }
 
     connect(worker,
             &HttpRequestWorker::on_execution_finished,
@@ -480,7 +528,7 @@ SWGRemoteAccessApi::getViewCallback(HttpRequestWorker * worker) {
 
 
     QString json(worker->response);
-    SWGHudsonmodelListView* output = static_cast<SWGHudsonmodelListView*>(create(json, QString("SWGHudsonmodelListView")));
+    ListView* output = static_cast<ListView*>(create(json, QString("ListView")));
     worker->deleteLater();
 
     emit getViewSignal(output);
@@ -502,6 +550,10 @@ SWGRemoteAccessApi::getViewConfig(QString* name) {
 
 
 
+
+    foreach(QString key, this->defaultHeaders.keys()) {
+        input.headers.insert(key, this->defaultHeaders.value(key));
+    }
 
     connect(worker,
             &HttpRequestWorker::on_execution_finished,
@@ -546,6 +598,10 @@ SWGRemoteAccessApi::headJenkins() {
 
 
 
+
+    foreach(QString key, this->defaultHeaders.keys()) {
+        input.headers.insert(key, this->defaultHeaders.value(key));
+    }
 
     connect(worker,
             &HttpRequestWorker::on_execution_finished,
@@ -613,8 +669,16 @@ SWGRemoteAccessApi::postCreateItem(QString* name, QString* from, QString* mode, 
     input.request_body.append(output);
     
 
-    // TODO: add header support
-    // TODO: add header support
+    if (jenkins_crumb != nullptr) {
+        input.headers.insert("Jenkins-Crumb", "jenkins_crumb");
+    }
+    if (content_type != nullptr) {
+        input.headers.insert("Content-Type", "content_type");
+    }
+
+    foreach(QString key, this->defaultHeaders.keys()) {
+        input.headers.insert(key, this->defaultHeaders.value(key));
+    }
 
     connect(worker,
             &HttpRequestWorker::on_execution_finished,
@@ -666,8 +730,16 @@ SWGRemoteAccessApi::postCreateView(QString* name, QString* body, QString* jenkin
     input.request_body.append(output);
     
 
-    // TODO: add header support
-    // TODO: add header support
+    if (jenkins_crumb != nullptr) {
+        input.headers.insert("Jenkins-Crumb", "jenkins_crumb");
+    }
+    if (content_type != nullptr) {
+        input.headers.insert("Content-Type", "content_type");
+    }
+
+    foreach(QString key, this->defaultHeaders.keys()) {
+        input.headers.insert(key, this->defaultHeaders.value(key));
+    }
 
     connect(worker,
             &HttpRequestWorker::on_execution_finished,
@@ -727,7 +799,13 @@ SWGRemoteAccessApi::postJobBuild(QString* name, QString* json, QString* token, Q
 
 
 
-    // TODO: add header support
+    if (jenkins_crumb != nullptr) {
+        input.headers.insert("Jenkins-Crumb", "jenkins_crumb");
+    }
+
+    foreach(QString key, this->defaultHeaders.keys()) {
+        input.headers.insert(key, this->defaultHeaders.value(key));
+    }
 
     connect(worker,
             &HttpRequestWorker::on_execution_finished,
@@ -773,7 +851,13 @@ SWGRemoteAccessApi::postJobConfig(QString* name, QString* body, QString* jenkins
     input.request_body.append(output);
     
 
-    // TODO: add header support
+    if (jenkins_crumb != nullptr) {
+        input.headers.insert("Jenkins-Crumb", "jenkins_crumb");
+    }
+
+    foreach(QString key, this->defaultHeaders.keys()) {
+        input.headers.insert(key, this->defaultHeaders.value(key));
+    }
 
     connect(worker,
             &HttpRequestWorker::on_execution_finished,
@@ -817,7 +901,13 @@ SWGRemoteAccessApi::postJobDelete(QString* name, QString* jenkins_crumb) {
 
 
 
-    // TODO: add header support
+    if (jenkins_crumb != nullptr) {
+        input.headers.insert("Jenkins-Crumb", "jenkins_crumb");
+    }
+
+    foreach(QString key, this->defaultHeaders.keys()) {
+        input.headers.insert(key, this->defaultHeaders.value(key));
+    }
 
     connect(worker,
             &HttpRequestWorker::on_execution_finished,
@@ -861,7 +951,13 @@ SWGRemoteAccessApi::postJobDisable(QString* name, QString* jenkins_crumb) {
 
 
 
-    // TODO: add header support
+    if (jenkins_crumb != nullptr) {
+        input.headers.insert("Jenkins-Crumb", "jenkins_crumb");
+    }
+
+    foreach(QString key, this->defaultHeaders.keys()) {
+        input.headers.insert(key, this->defaultHeaders.value(key));
+    }
 
     connect(worker,
             &HttpRequestWorker::on_execution_finished,
@@ -905,7 +1001,13 @@ SWGRemoteAccessApi::postJobEnable(QString* name, QString* jenkins_crumb) {
 
 
 
-    // TODO: add header support
+    if (jenkins_crumb != nullptr) {
+        input.headers.insert("Jenkins-Crumb", "jenkins_crumb");
+    }
+
+    foreach(QString key, this->defaultHeaders.keys()) {
+        input.headers.insert(key, this->defaultHeaders.value(key));
+    }
 
     connect(worker,
             &HttpRequestWorker::on_execution_finished,
@@ -949,7 +1051,13 @@ SWGRemoteAccessApi::postJobLastBuildStop(QString* name, QString* jenkins_crumb) 
 
 
 
-    // TODO: add header support
+    if (jenkins_crumb != nullptr) {
+        input.headers.insert("Jenkins-Crumb", "jenkins_crumb");
+    }
+
+    foreach(QString key, this->defaultHeaders.keys()) {
+        input.headers.insert(key, this->defaultHeaders.value(key));
+    }
 
     connect(worker,
             &HttpRequestWorker::on_execution_finished,
@@ -995,7 +1103,13 @@ SWGRemoteAccessApi::postViewConfig(QString* name, QString* body, QString* jenkin
     input.request_body.append(output);
     
 
-    // TODO: add header support
+    if (jenkins_crumb != nullptr) {
+        input.headers.insert("Jenkins-Crumb", "jenkins_crumb");
+    }
+
+    foreach(QString key, this->defaultHeaders.keys()) {
+        input.headers.insert(key, this->defaultHeaders.value(key));
+    }
 
     connect(worker,
             &HttpRequestWorker::on_execution_finished,

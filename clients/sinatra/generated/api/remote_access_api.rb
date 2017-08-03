@@ -1,14 +1,23 @@
 require 'json'
 
 
-MyApp.add_route('GET', '//computer/api/json?depth=1', {
+MyApp.add_route('GET', '//computer/api/json', {
   "resourcePath" => "/RemoteAccess",
   "summary" => "",
   "nickname" => "get_computer", 
-  "responseClass" => "hudsonmodelComputerSet", 
-  "endpoint" => "/computer/api/json?depth=1", 
+  "responseClass" => "ComputerSet", 
+  "endpoint" => "/computer/api/json", 
   "notes" => "Retrieve computer details",
   "parameters" => [
+    {
+      "name" => "depth",
+      "description" => "Recursion depth in response model",
+      "dataType" => "int",
+      "paramType" => "query",
+      
+      "allowableValues" => "",
+      
+    },
     ]}) do
   cross_origin
   # the guts live here
@@ -21,7 +30,7 @@ MyApp.add_route('GET', '//crumbIssuer/api/json', {
   "resourcePath" => "/RemoteAccess",
   "summary" => "",
   "nickname" => "get_crumb", 
-  "responseClass" => "hudsonsecuritycsrfDefaultCrumbIssuer", 
+  "responseClass" => "DefaultCrumbIssuer", 
   "endpoint" => "/crumbIssuer/api/json", 
   "notes" => "Retrieve CSRF protection token",
   "parameters" => [
@@ -37,7 +46,7 @@ MyApp.add_route('GET', '//api/json', {
   "resourcePath" => "/RemoteAccess",
   "summary" => "",
   "nickname" => "get_jenkins", 
-  "responseClass" => "hudsonmodelHudson", 
+  "responseClass" => "Hudson", 
   "endpoint" => "/api/json", 
   "notes" => "Retrieve Jenkins details",
   "parameters" => [
@@ -53,7 +62,7 @@ MyApp.add_route('GET', '//job/{name}/api/json', {
   "resourcePath" => "/RemoteAccess",
   "summary" => "",
   "nickname" => "get_job", 
-  "responseClass" => "hudsonmodelFreeStyleProject", 
+  "responseClass" => "FreeStyleProject", 
   "endpoint" => "/job/{name}/api/json", 
   "notes" => "Retrieve job details",
   "parameters" => [
@@ -97,7 +106,7 @@ MyApp.add_route('GET', '//job/{name}/lastBuild/api/json', {
   "resourcePath" => "/RemoteAccess",
   "summary" => "",
   "nickname" => "get_job_last_build", 
-  "responseClass" => "hudsonmodelFreeStyleBuild", 
+  "responseClass" => "FreeStyleBuild", 
   "endpoint" => "/job/{name}/lastBuild/api/json", 
   "notes" => "Retrieve job's last build details",
   "parameters" => [
@@ -156,7 +165,7 @@ MyApp.add_route('GET', '//queue/api/json', {
   "resourcePath" => "/RemoteAccess",
   "summary" => "",
   "nickname" => "get_queue", 
-  "responseClass" => "hudsonmodelQueue", 
+  "responseClass" => "Queue", 
   "endpoint" => "/queue/api/json", 
   "notes" => "Retrieve queue details",
   "parameters" => [
@@ -172,7 +181,7 @@ MyApp.add_route('GET', '//queue/item/{number}/api/json', {
   "resourcePath" => "/RemoteAccess",
   "summary" => "",
   "nickname" => "get_queue_item", 
-  "responseClass" => "hudsonmodelQueue", 
+  "responseClass" => "Queue", 
   "endpoint" => "/queue/item/{number}/api/json", 
   "notes" => "Retrieve queued item details",
   "parameters" => [
@@ -194,7 +203,7 @@ MyApp.add_route('GET', '//view/{name}/api/json', {
   "resourcePath" => "/RemoteAccess",
   "summary" => "",
   "nickname" => "get_view", 
-  "responseClass" => "hudsonmodelListView", 
+  "responseClass" => "ListView", 
   "endpoint" => "/view/{name}/api/json", 
   "notes" => "Retrieve view details",
   "parameters" => [

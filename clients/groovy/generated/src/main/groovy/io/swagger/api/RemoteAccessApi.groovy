@@ -5,13 +5,13 @@ import static groovyx.net.http.ContentType.*
 import static groovyx.net.http.Method.*
 import io.swagger.api.ApiUtils
 
-import io.swagger.model.HudsonmodelComputerSet
-import io.swagger.model.HudsonmodelFreeStyleBuild
-import io.swagger.model.HudsonmodelFreeStyleProject
-import io.swagger.model.HudsonmodelHudson
-import io.swagger.model.HudsonmodelListView
-import io.swagger.model.HudsonmodelQueue
-import io.swagger.model.HudsonsecuritycsrfDefaultCrumbIssuer
+import io.swagger.model.ComputerSet
+import io.swagger.model.DefaultCrumbIssuer
+import io.swagger.model.FreeStyleBuild
+import io.swagger.model.FreeStyleProject
+import io.swagger.model.Hudson
+import io.swagger.model.ListView
+import io.swagger.model.Queue
 
 import java.util.*;
 
@@ -20,22 +20,28 @@ class RemoteAccessApi {
     String basePath = "http://localhost"
     String versionPath = "/api/v1"
 
-    def getComputer ( Closure onSuccess, Closure onFailure)  {
+    def getComputer ( Integer depth, Closure onSuccess, Closure onFailure)  {
         // create path and map path parameters (TODO)
-        String resourcePath = "/computer/api/json?depth=1"
+        String resourcePath = "/computer/api/json"
 
         // query params
         def queryParams = [:]
         def headerParams = [:]
     
+        // verify required params are set
+        if (depth == null) {
+            throw new RuntimeException("missing required params depth")
+        }
 
-        
+        if (!"null".equals(String.valueOf(depth)))
+            queryParams.put("depth", String.valueOf(depth))
+
 
         // Also still TODO: form params, body param
 
         invokeApi(onSuccess, onFailure, basePath, versionPath, resourcePath, queryParams, headerParams,
                     "GET", "",
-                    HudsonmodelComputerSet.class )
+                    ComputerSet.class )
                     
     }
     def getCrumb ( Closure onSuccess, Closure onFailure)  {
@@ -53,7 +59,7 @@ class RemoteAccessApi {
 
         invokeApi(onSuccess, onFailure, basePath, versionPath, resourcePath, queryParams, headerParams,
                     "GET", "",
-                    HudsonsecuritycsrfDefaultCrumbIssuer.class )
+                    DefaultCrumbIssuer.class )
                     
     }
     def getJenkins ( Closure onSuccess, Closure onFailure)  {
@@ -71,7 +77,7 @@ class RemoteAccessApi {
 
         invokeApi(onSuccess, onFailure, basePath, versionPath, resourcePath, queryParams, headerParams,
                     "GET", "",
-                    HudsonmodelHudson.class )
+                    Hudson.class )
                     
     }
     def getJob ( String name, Closure onSuccess, Closure onFailure)  {
@@ -93,7 +99,7 @@ class RemoteAccessApi {
 
         invokeApi(onSuccess, onFailure, basePath, versionPath, resourcePath, queryParams, headerParams,
                     "GET", "",
-                    HudsonmodelFreeStyleProject.class )
+                    FreeStyleProject.class )
                     
     }
     def getJobConfig ( String name, Closure onSuccess, Closure onFailure)  {
@@ -137,7 +143,7 @@ class RemoteAccessApi {
 
         invokeApi(onSuccess, onFailure, basePath, versionPath, resourcePath, queryParams, headerParams,
                     "GET", "",
-                    HudsonmodelFreeStyleBuild.class )
+                    FreeStyleBuild.class )
                     
     }
     def getJobProgressiveText ( String name, String number, String start, Closure onSuccess, Closure onFailure)  {
@@ -187,7 +193,7 @@ class RemoteAccessApi {
 
         invokeApi(onSuccess, onFailure, basePath, versionPath, resourcePath, queryParams, headerParams,
                     "GET", "",
-                    HudsonmodelQueue.class )
+                    Queue.class )
                     
     }
     def getQueueItem ( String number, Closure onSuccess, Closure onFailure)  {
@@ -209,7 +215,7 @@ class RemoteAccessApi {
 
         invokeApi(onSuccess, onFailure, basePath, versionPath, resourcePath, queryParams, headerParams,
                     "GET", "",
-                    HudsonmodelQueue.class )
+                    Queue.class )
                     
     }
     def getView ( String name, Closure onSuccess, Closure onFailure)  {
@@ -231,7 +237,7 @@ class RemoteAccessApi {
 
         invokeApi(onSuccess, onFailure, basePath, versionPath, resourcePath, queryParams, headerParams,
                     "GET", "",
-                    HudsonmodelListView.class )
+                    ListView.class )
                     
     }
     def getViewConfig ( String name, Closure onSuccess, Closure onFailure)  {

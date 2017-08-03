@@ -10,7 +10,7 @@
 # !
 # ! Based on: https://github.com/Valodim/zsh-curl-completion/blob/master/_curl
 # !
-# ! Generated on: 2017-07-25T10:43:38.343+10:00
+# ! Generated on: 2017-08-03T23:30:07.663Z
 # !
 # !
 # ! Installation:
@@ -297,20 +297,41 @@ case $state in
   ops)
     # Operations
     _values "Operations" \
+            "deletePipelineQueueItem[]" \
             "getAuthenticatedUser[]" \
             "getClasses[]" \
             "getOrganisation[]" \
             "getOrganisations[]" \
-            "getPipelineBranchByOrg[]" \
-            "getPipelineBranchesByOrg[]" \
-            "getPipelineByOrg[]" \
-            "getPipelineFolderByOrg[]" \
-            "getPipelineFolderByOrg_0[]" \
-            "getPipelinesByOrg[]" \
+            "getPipeline[]" \
+            "getPipelineActivities[]" \
+            "getPipelineBranch[]" \
+            "getPipelineBranchRun[]" \
+            "getPipelineBranches[]" \
+            "getPipelineFolder[]" \
+            "getPipelineFolderPipeline[]" \
+            "getPipelineQueue[]" \
+            "getPipelineRun[]" \
+            "getPipelineRunLog[]" \
+            "getPipelineRunNode[]" \
+            "getPipelineRunNodeStep[]" \
+            "getPipelineRunNodeStepLog[]" \
+            "getPipelineRunNodeSteps[]" \
+            "getPipelineRunNodes[]" \
+            "getPipelineRuns[]" \
+            "getPipelines[]" \
+            "getSCM[]" \
+            "getSCMOrganisationRepositories[]" \
+            "getSCMOrganisationRepository[]" \
+            "getSCMOrganisations[]" \
             "getUser[]" \
+            "getUserFavorites[]" \
             "getUsers[]" \
+            "postPipelineRun[]" \
+            "postPipelineRuns[]" \
+            "putPipelineFavorite[]" \
+            "putPipelineRun[]" \
             "search[]" \
-            "search_0[]"             "getComputer[]" \
+            "searchClasses[]"             "getComputer[]" \
             "getCrumb[]" \
             "getJenkins[]" \
             "getJob[]" \
@@ -337,10 +358,19 @@ case $state in
     ;;
   args)
     case $line[1] in
+      deletePipelineQueueItem)
+        local -a _op_arguments
+        _op_arguments=(
+          "organization=:[PATH] Name of the organization"
+"pipeline=:[PATH] Name of the pipeline"
+"queue=:[PATH] Name of the queue item"
+                    )
+        _describe -t actions 'operations' _op_arguments -S '' && ret=0
+        ;;
       getAuthenticatedUser)
         local -a _op_arguments
         _op_arguments=(
-          "organisation=:[PATH] Name of the organisation"
+          "organization=:[PATH] Name of the organization"
                     )
         _describe -t actions 'operations' _op_arguments -S '' && ret=0
         ;;
@@ -354,7 +384,7 @@ case $state in
       getOrganisation)
         local -a _op_arguments
         _op_arguments=(
-          "organisation=:[PATH] Name of the organisation"
+          "organization=:[PATH] Name of the organization"
                     )
         _describe -t actions 'operations' _op_arguments -S '' && ret=0
         ;;
@@ -364,88 +394,278 @@ case $state in
                               )
         _describe -t actions 'operations' _op_arguments -S '' && ret=0
         ;;
-      getPipelineBranchByOrg)
+      getPipeline)
         local -a _op_arguments
         _op_arguments=(
-          "organisation=:[PATH] Name of the organisation"
+          "organization=:[PATH] Name of the organization"
+"pipeline=:[PATH] Name of the pipeline"
+                    )
+        _describe -t actions 'operations' _op_arguments -S '' && ret=0
+        ;;
+      getPipelineActivities)
+        local -a _op_arguments
+        _op_arguments=(
+          "organization=:[PATH] Name of the organization"
+"pipeline=:[PATH] Name of the pipeline"
+                    )
+        _describe -t actions 'operations' _op_arguments -S '' && ret=0
+        ;;
+      getPipelineBranch)
+        local -a _op_arguments
+        _op_arguments=(
+          "organization=:[PATH] Name of the organization"
 "pipeline=:[PATH] Name of the pipeline"
 "branch=:[PATH] Name of the branch"
                     )
         _describe -t actions 'operations' _op_arguments -S '' && ret=0
         ;;
-      getPipelineBranchesByOrg)
+      getPipelineBranchRun)
         local -a _op_arguments
         _op_arguments=(
-          "organisation=:[PATH] Name of the organisation"
+          "organization=:[PATH] Name of the organization"
+"pipeline=:[PATH] Name of the pipeline"
+"branch=:[PATH] Name of the branch"
+"run=:[PATH] Name of the run"
+                    )
+        _describe -t actions 'operations' _op_arguments -S '' && ret=0
+        ;;
+      getPipelineBranches)
+        local -a _op_arguments
+        _op_arguments=(
+          "organization=:[PATH] Name of the organization"
 "pipeline=:[PATH] Name of the pipeline"
                     )
         _describe -t actions 'operations' _op_arguments -S '' && ret=0
         ;;
-      getPipelineByOrg)
+      getPipelineFolder)
         local -a _op_arguments
         _op_arguments=(
-          "organisation=:[PATH] Name of the organisation"
-"pipeline=:[PATH] Name of the pipeline"
-                    )
-        _describe -t actions 'operations' _op_arguments -S '' && ret=0
-        ;;
-      getPipelineFolderByOrg)
-        local -a _op_arguments
-        _op_arguments=(
-          "organisation=:[PATH] Name of the organisation"
+          "organization=:[PATH] Name of the organization"
 "folder=:[PATH] Name of the folder"
                     )
         _describe -t actions 'operations' _op_arguments -S '' && ret=0
         ;;
-      getPipelineFolderByOrg_0)
+      getPipelineFolderPipeline)
         local -a _op_arguments
         _op_arguments=(
-          "organisation=:[PATH] Name of the organisation"
+          "organization=:[PATH] Name of the organization"
 "pipeline=:[PATH] Name of the pipeline"
 "folder=:[PATH] Name of the folder"
                     )
         _describe -t actions 'operations' _op_arguments -S '' && ret=0
         ;;
-      getPipelinesByOrg)
+      getPipelineQueue)
         local -a _op_arguments
         _op_arguments=(
-          "organisation=:[PATH] Name of the organisation"
+          "organization=:[PATH] Name of the organization"
+"pipeline=:[PATH] Name of the pipeline"
                     )
+        _describe -t actions 'operations' _op_arguments -S '' && ret=0
+        ;;
+      getPipelineRun)
+        local -a _op_arguments
+        _op_arguments=(
+          "organization=:[PATH] Name of the organization"
+"pipeline=:[PATH] Name of the pipeline"
+"run=:[PATH] Name of the run"
+                    )
+        _describe -t actions 'operations' _op_arguments -S '' && ret=0
+        ;;
+      getPipelineRunLog)
+        local -a _op_arguments
+        _op_arguments=(
+          "organization=:[PATH] Name of the organization"
+"pipeline=:[PATH] Name of the pipeline"
+"run=:[PATH] Name of the run"
+          "start=:[QUERY] Start position of the log"
+"download=true:[QUERY] Set to true in order to download the file, otherwise it&#39;s passed as a response body"
+          "download=false:[QUERY] Set to true in order to download the file, otherwise it&#39;s passed as a response body"
+          )
+        _describe -t actions 'operations' _op_arguments -S '' && ret=0
+        ;;
+      getPipelineRunNode)
+        local -a _op_arguments
+        _op_arguments=(
+          "organization=:[PATH] Name of the organization"
+"pipeline=:[PATH] Name of the pipeline"
+"run=:[PATH] Name of the run"
+"node=:[PATH] Name of the node"
+                    )
+        _describe -t actions 'operations' _op_arguments -S '' && ret=0
+        ;;
+      getPipelineRunNodeStep)
+        local -a _op_arguments
+        _op_arguments=(
+          "organization=:[PATH] Name of the organization"
+"pipeline=:[PATH] Name of the pipeline"
+"run=:[PATH] Name of the run"
+"node=:[PATH] Name of the node"
+"step=:[PATH] Name of the step"
+                    )
+        _describe -t actions 'operations' _op_arguments -S '' && ret=0
+        ;;
+      getPipelineRunNodeStepLog)
+        local -a _op_arguments
+        _op_arguments=(
+          "organization=:[PATH] Name of the organization"
+"pipeline=:[PATH] Name of the pipeline"
+"run=:[PATH] Name of the run"
+"node=:[PATH] Name of the node"
+"step=:[PATH] Name of the step"
+                    )
+        _describe -t actions 'operations' _op_arguments -S '' && ret=0
+        ;;
+      getPipelineRunNodeSteps)
+        local -a _op_arguments
+        _op_arguments=(
+          "organization=:[PATH] Name of the organization"
+"pipeline=:[PATH] Name of the pipeline"
+"run=:[PATH] Name of the run"
+"node=:[PATH] Name of the node"
+                    )
+        _describe -t actions 'operations' _op_arguments -S '' && ret=0
+        ;;
+      getPipelineRunNodes)
+        local -a _op_arguments
+        _op_arguments=(
+          "organization=:[PATH] Name of the organization"
+"pipeline=:[PATH] Name of the pipeline"
+"run=:[PATH] Name of the run"
+                    )
+        _describe -t actions 'operations' _op_arguments -S '' && ret=0
+        ;;
+      getPipelineRuns)
+        local -a _op_arguments
+        _op_arguments=(
+          "organization=:[PATH] Name of the organization"
+"pipeline=:[PATH] Name of the pipeline"
+                    )
+        _describe -t actions 'operations' _op_arguments -S '' && ret=0
+        ;;
+      getPipelines)
+        local -a _op_arguments
+        _op_arguments=(
+          "organization=:[PATH] Name of the organization"
+                    )
+        _describe -t actions 'operations' _op_arguments -S '' && ret=0
+        ;;
+      getSCM)
+        local -a _op_arguments
+        _op_arguments=(
+          "organization=:[PATH] Name of the organization"
+"scm=:[PATH] Name of SCM"
+                    )
+        _describe -t actions 'operations' _op_arguments -S '' && ret=0
+        ;;
+      getSCMOrganisationRepositories)
+        local -a _op_arguments
+        _op_arguments=(
+          "organization=:[PATH] Name of the organization"
+"scm=:[PATH] Name of SCM"
+"scmOrganisation=:[PATH] Name of the SCM organization"
+          "credentialId=:[QUERY] Credential ID"
+"pageSize=:[QUERY] Number of items in a page"
+"pageNumber=:[QUERY] Page number"
+          )
+        _describe -t actions 'operations' _op_arguments -S '' && ret=0
+        ;;
+      getSCMOrganisationRepository)
+        local -a _op_arguments
+        _op_arguments=(
+          "organization=:[PATH] Name of the organization"
+"scm=:[PATH] Name of SCM"
+"scmOrganisation=:[PATH] Name of the SCM organization"
+"repository=:[PATH] Name of the SCM repository"
+          "credentialId=:[QUERY] Credential ID"
+          )
+        _describe -t actions 'operations' _op_arguments -S '' && ret=0
+        ;;
+      getSCMOrganisations)
+        local -a _op_arguments
+        _op_arguments=(
+          "organization=:[PATH] Name of the organization"
+"scm=:[PATH] Name of SCM"
+          "credentialId=:[QUERY] Credential ID"
+          )
         _describe -t actions 'operations' _op_arguments -S '' && ret=0
         ;;
       getUser)
         local -a _op_arguments
         _op_arguments=(
-          "organisation=:[PATH] Name of the organisation"
+          "organization=:[PATH] Name of the organization"
 "user=:[PATH] Name of the user"
+                    )
+        _describe -t actions 'operations' _op_arguments -S '' && ret=0
+        ;;
+      getUserFavorites)
+        local -a _op_arguments
+        _op_arguments=(
+          "user=:[PATH] Name of the user"
                     )
         _describe -t actions 'operations' _op_arguments -S '' && ret=0
         ;;
       getUsers)
         local -a _op_arguments
         _op_arguments=(
-          "organisation=:[PATH] Name of the organisation"
+          "organization=:[PATH] Name of the organization"
                     )
         _describe -t actions 'operations' _op_arguments -S '' && ret=0
         ;;
-      search)
+      postPipelineRun)
         local -a _op_arguments
         _op_arguments=(
-                    "q=:[QUERY] Query string containing an array of class names"
+          "organization=:[PATH] Name of the organization"
+"pipeline=:[PATH] Name of the pipeline"
+"run=:[PATH] Name of the run"
+                    )
+        _describe -t actions 'operations' _op_arguments -S '' && ret=0
+        ;;
+      postPipelineRuns)
+        local -a _op_arguments
+        _op_arguments=(
+          "organization=:[PATH] Name of the organization"
+"pipeline=:[PATH] Name of the pipeline"
+                    )
+        _describe -t actions 'operations' _op_arguments -S '' && ret=0
+        ;;
+      putPipelineFavorite)
+        local -a _op_arguments
+        _op_arguments=(
+          "organization=:[PATH] Name of the organization"
+"pipeline=:[PATH] Name of the pipeline"
+                    )
+        _describe -t actions 'operations' _op_arguments -S '' && ret=0
+        ;;
+      putPipelineRun)
+        local -a _op_arguments
+        _op_arguments=(
+          "organization=:[PATH] Name of the organization"
+"pipeline=:[PATH] Name of the pipeline"
+"run=:[PATH] Name of the run"
+          "blocking=:[QUERY] Set to true to make blocking stop, default: false"
+"timeOutInSecs=:[QUERY] Timeout in seconds, default: 10 seconds"
           )
         _describe -t actions 'operations' _op_arguments -S '' && ret=0
         ;;
-      search_0)
+      search)
         local -a _op_arguments
         _op_arguments=(
                     "q=:[QUERY] Query string"
           )
         _describe -t actions 'operations' _op_arguments -S '' && ret=0
         ;;
+      searchClasses)
+        local -a _op_arguments
+        _op_arguments=(
+                    "q=:[QUERY] Query string containing an array of class names"
+          )
+        _describe -t actions 'operations' _op_arguments -S '' && ret=0
+        ;;
       getComputer)
         local -a _op_arguments
         _op_arguments=(
-                              )
+                    "depth=:[QUERY] Recursion depth in response model"
+          )
         _describe -t actions 'operations' _op_arguments -S '' && ret=0
         ;;
       getCrumb)

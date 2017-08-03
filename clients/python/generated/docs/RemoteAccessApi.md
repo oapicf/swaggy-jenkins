@@ -4,7 +4,7 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**get_computer**](RemoteAccessApi.md#get_computer) | **GET** /computer/api/json?depth&#x3D;1 | 
+[**get_computer**](RemoteAccessApi.md#get_computer) | **GET** /computer/api/json | 
 [**get_crumb**](RemoteAccessApi.md#get_crumb) | **GET** /crumbIssuer/api/json | 
 [**get_jenkins**](RemoteAccessApi.md#get_jenkins) | **GET** /api/json | 
 [**get_job**](RemoteAccessApi.md#get_job) | **GET** /job/{name}/api/json | 
@@ -28,7 +28,7 @@ Method | HTTP request | Description
 
 
 # **get_computer**
-> HudsonmodelComputerSet get_computer()
+> ComputerSet get_computer(depth)
 
 
 
@@ -42,26 +42,35 @@ import swaggyjenkins
 from swaggyjenkins.rest import ApiException
 from pprint import pprint
 
+# Configure HTTP basic authorization: jenkins_auth
+configuration = swaggyjenkins.Configuration()
+configuration.username = 'YOUR_USERNAME'
+configuration.password = 'YOUR_PASSWORD'
+
 # create an instance of the API class
-api_instance = swaggyjenkins.RemoteAccessApi()
+api_instance = swaggyjenkins.RemoteAccessApi(swaggyjenkins.ApiClient(configuration))
+depth = 56 # int | Recursion depth in response model
 
 try: 
-    api_response = api_instance.get_computer()
+    api_response = api_instance.get_computer(depth)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling RemoteAccessApi->get_computer: %s\n" % e)
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **depth** | **int**| Recursion depth in response model | 
 
 ### Return type
 
-[**HudsonmodelComputerSet**](HudsonmodelComputerSet.md)
+[**ComputerSet**](ComputerSet.md)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -71,7 +80,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_crumb**
-> HudsonsecuritycsrfDefaultCrumbIssuer get_crumb()
+> DefaultCrumbIssuer get_crumb()
 
 
 
@@ -85,8 +94,13 @@ import swaggyjenkins
 from swaggyjenkins.rest import ApiException
 from pprint import pprint
 
+# Configure HTTP basic authorization: jenkins_auth
+configuration = swaggyjenkins.Configuration()
+configuration.username = 'YOUR_USERNAME'
+configuration.password = 'YOUR_PASSWORD'
+
 # create an instance of the API class
-api_instance = swaggyjenkins.RemoteAccessApi()
+api_instance = swaggyjenkins.RemoteAccessApi(swaggyjenkins.ApiClient(configuration))
 
 try: 
     api_response = api_instance.get_crumb()
@@ -100,11 +114,11 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**HudsonsecuritycsrfDefaultCrumbIssuer**](HudsonsecuritycsrfDefaultCrumbIssuer.md)
+[**DefaultCrumbIssuer**](DefaultCrumbIssuer.md)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -114,7 +128,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_jenkins**
-> HudsonmodelHudson get_jenkins()
+> Hudson get_jenkins()
 
 
 
@@ -128,8 +142,13 @@ import swaggyjenkins
 from swaggyjenkins.rest import ApiException
 from pprint import pprint
 
+# Configure HTTP basic authorization: jenkins_auth
+configuration = swaggyjenkins.Configuration()
+configuration.username = 'YOUR_USERNAME'
+configuration.password = 'YOUR_PASSWORD'
+
 # create an instance of the API class
-api_instance = swaggyjenkins.RemoteAccessApi()
+api_instance = swaggyjenkins.RemoteAccessApi(swaggyjenkins.ApiClient(configuration))
 
 try: 
     api_response = api_instance.get_jenkins()
@@ -143,11 +162,11 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**HudsonmodelHudson**](HudsonmodelHudson.md)
+[**Hudson**](Hudson.md)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -157,7 +176,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_job**
-> HudsonmodelFreeStyleProject get_job(name)
+> FreeStyleProject get_job(name)
 
 
 
@@ -171,8 +190,13 @@ import swaggyjenkins
 from swaggyjenkins.rest import ApiException
 from pprint import pprint
 
+# Configure HTTP basic authorization: jenkins_auth
+configuration = swaggyjenkins.Configuration()
+configuration.username = 'YOUR_USERNAME'
+configuration.password = 'YOUR_PASSWORD'
+
 # create an instance of the API class
-api_instance = swaggyjenkins.RemoteAccessApi()
+api_instance = swaggyjenkins.RemoteAccessApi(swaggyjenkins.ApiClient(configuration))
 name = 'name_example' # str | Name of the job
 
 try: 
@@ -190,11 +214,11 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**HudsonmodelFreeStyleProject**](HudsonmodelFreeStyleProject.md)
+[**FreeStyleProject**](FreeStyleProject.md)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -218,8 +242,13 @@ import swaggyjenkins
 from swaggyjenkins.rest import ApiException
 from pprint import pprint
 
+# Configure HTTP basic authorization: jenkins_auth
+configuration = swaggyjenkins.Configuration()
+configuration.username = 'YOUR_USERNAME'
+configuration.password = 'YOUR_PASSWORD'
+
 # create an instance of the API class
-api_instance = swaggyjenkins.RemoteAccessApi()
+api_instance = swaggyjenkins.RemoteAccessApi(swaggyjenkins.ApiClient(configuration))
 name = 'name_example' # str | Name of the job
 
 try: 
@@ -241,7 +270,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -251,7 +280,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_job_last_build**
-> HudsonmodelFreeStyleBuild get_job_last_build(name)
+> FreeStyleBuild get_job_last_build(name)
 
 
 
@@ -265,8 +294,13 @@ import swaggyjenkins
 from swaggyjenkins.rest import ApiException
 from pprint import pprint
 
+# Configure HTTP basic authorization: jenkins_auth
+configuration = swaggyjenkins.Configuration()
+configuration.username = 'YOUR_USERNAME'
+configuration.password = 'YOUR_PASSWORD'
+
 # create an instance of the API class
-api_instance = swaggyjenkins.RemoteAccessApi()
+api_instance = swaggyjenkins.RemoteAccessApi(swaggyjenkins.ApiClient(configuration))
 name = 'name_example' # str | Name of the job
 
 try: 
@@ -284,11 +318,11 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**HudsonmodelFreeStyleBuild**](HudsonmodelFreeStyleBuild.md)
+[**FreeStyleBuild**](FreeStyleBuild.md)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -312,8 +346,13 @@ import swaggyjenkins
 from swaggyjenkins.rest import ApiException
 from pprint import pprint
 
+# Configure HTTP basic authorization: jenkins_auth
+configuration = swaggyjenkins.Configuration()
+configuration.username = 'YOUR_USERNAME'
+configuration.password = 'YOUR_PASSWORD'
+
 # create an instance of the API class
-api_instance = swaggyjenkins.RemoteAccessApi()
+api_instance = swaggyjenkins.RemoteAccessApi(swaggyjenkins.ApiClient(configuration))
 name = 'name_example' # str | Name of the job
 number = 'number_example' # str | Build number
 start = 'start_example' # str | Starting point of progressive text output
@@ -338,7 +377,7 @@ void (empty response body)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -348,7 +387,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_queue**
-> HudsonmodelQueue get_queue()
+> Queue get_queue()
 
 
 
@@ -362,8 +401,13 @@ import swaggyjenkins
 from swaggyjenkins.rest import ApiException
 from pprint import pprint
 
+# Configure HTTP basic authorization: jenkins_auth
+configuration = swaggyjenkins.Configuration()
+configuration.username = 'YOUR_USERNAME'
+configuration.password = 'YOUR_PASSWORD'
+
 # create an instance of the API class
-api_instance = swaggyjenkins.RemoteAccessApi()
+api_instance = swaggyjenkins.RemoteAccessApi(swaggyjenkins.ApiClient(configuration))
 
 try: 
     api_response = api_instance.get_queue()
@@ -377,11 +421,11 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**HudsonmodelQueue**](HudsonmodelQueue.md)
+[**Queue**](Queue.md)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -391,7 +435,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_queue_item**
-> HudsonmodelQueue get_queue_item(number)
+> Queue get_queue_item(number)
 
 
 
@@ -405,8 +449,13 @@ import swaggyjenkins
 from swaggyjenkins.rest import ApiException
 from pprint import pprint
 
+# Configure HTTP basic authorization: jenkins_auth
+configuration = swaggyjenkins.Configuration()
+configuration.username = 'YOUR_USERNAME'
+configuration.password = 'YOUR_PASSWORD'
+
 # create an instance of the API class
-api_instance = swaggyjenkins.RemoteAccessApi()
+api_instance = swaggyjenkins.RemoteAccessApi(swaggyjenkins.ApiClient(configuration))
 number = 'number_example' # str | Queue number
 
 try: 
@@ -424,11 +473,11 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**HudsonmodelQueue**](HudsonmodelQueue.md)
+[**Queue**](Queue.md)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -438,7 +487,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_view**
-> HudsonmodelListView get_view(name)
+> ListView get_view(name)
 
 
 
@@ -452,8 +501,13 @@ import swaggyjenkins
 from swaggyjenkins.rest import ApiException
 from pprint import pprint
 
+# Configure HTTP basic authorization: jenkins_auth
+configuration = swaggyjenkins.Configuration()
+configuration.username = 'YOUR_USERNAME'
+configuration.password = 'YOUR_PASSWORD'
+
 # create an instance of the API class
-api_instance = swaggyjenkins.RemoteAccessApi()
+api_instance = swaggyjenkins.RemoteAccessApi(swaggyjenkins.ApiClient(configuration))
 name = 'name_example' # str | Name of the view
 
 try: 
@@ -471,11 +525,11 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**HudsonmodelListView**](HudsonmodelListView.md)
+[**ListView**](ListView.md)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -499,8 +553,13 @@ import swaggyjenkins
 from swaggyjenkins.rest import ApiException
 from pprint import pprint
 
+# Configure HTTP basic authorization: jenkins_auth
+configuration = swaggyjenkins.Configuration()
+configuration.username = 'YOUR_USERNAME'
+configuration.password = 'YOUR_PASSWORD'
+
 # create an instance of the API class
-api_instance = swaggyjenkins.RemoteAccessApi()
+api_instance = swaggyjenkins.RemoteAccessApi(swaggyjenkins.ApiClient(configuration))
 name = 'name_example' # str | Name of the view
 
 try: 
@@ -522,7 +581,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -546,8 +605,13 @@ import swaggyjenkins
 from swaggyjenkins.rest import ApiException
 from pprint import pprint
 
+# Configure HTTP basic authorization: jenkins_auth
+configuration = swaggyjenkins.Configuration()
+configuration.username = 'YOUR_USERNAME'
+configuration.password = 'YOUR_PASSWORD'
+
 # create an instance of the API class
-api_instance = swaggyjenkins.RemoteAccessApi()
+api_instance = swaggyjenkins.RemoteAccessApi(swaggyjenkins.ApiClient(configuration))
 
 try: 
     api_instance.head_jenkins()
@@ -564,7 +628,7 @@ void (empty response body)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -588,8 +652,13 @@ import swaggyjenkins
 from swaggyjenkins.rest import ApiException
 from pprint import pprint
 
+# Configure HTTP basic authorization: jenkins_auth
+configuration = swaggyjenkins.Configuration()
+configuration.username = 'YOUR_USERNAME'
+configuration.password = 'YOUR_PASSWORD'
+
 # create an instance of the API class
-api_instance = swaggyjenkins.RemoteAccessApi()
+api_instance = swaggyjenkins.RemoteAccessApi(swaggyjenkins.ApiClient(configuration))
 name = 'name_example' # str | Name of the new job
 _from = '_from_example' # str | Existing job to copy from (optional)
 mode = 'mode_example' # str | Set to 'copy' for copying an existing job (optional)
@@ -620,7 +689,7 @@ void (empty response body)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -644,8 +713,13 @@ import swaggyjenkins
 from swaggyjenkins.rest import ApiException
 from pprint import pprint
 
+# Configure HTTP basic authorization: jenkins_auth
+configuration = swaggyjenkins.Configuration()
+configuration.username = 'YOUR_USERNAME'
+configuration.password = 'YOUR_PASSWORD'
+
 # create an instance of the API class
-api_instance = swaggyjenkins.RemoteAccessApi()
+api_instance = swaggyjenkins.RemoteAccessApi(swaggyjenkins.ApiClient(configuration))
 name = 'name_example' # str | Name of the new view
 body = 'body_example' # str | View configuration in config.xml format (optional)
 jenkins_crumb = 'jenkins_crumb_example' # str | CSRF protection token (optional)
@@ -672,7 +746,7 @@ void (empty response body)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -696,8 +770,13 @@ import swaggyjenkins
 from swaggyjenkins.rest import ApiException
 from pprint import pprint
 
+# Configure HTTP basic authorization: jenkins_auth
+configuration = swaggyjenkins.Configuration()
+configuration.username = 'YOUR_USERNAME'
+configuration.password = 'YOUR_PASSWORD'
+
 # create an instance of the API class
-api_instance = swaggyjenkins.RemoteAccessApi()
+api_instance = swaggyjenkins.RemoteAccessApi(swaggyjenkins.ApiClient(configuration))
 name = 'name_example' # str | Name of the job
 json = 'json_example' # str | 
 token = 'token_example' # str |  (optional)
@@ -724,7 +803,7 @@ void (empty response body)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -748,8 +827,13 @@ import swaggyjenkins
 from swaggyjenkins.rest import ApiException
 from pprint import pprint
 
+# Configure HTTP basic authorization: jenkins_auth
+configuration = swaggyjenkins.Configuration()
+configuration.username = 'YOUR_USERNAME'
+configuration.password = 'YOUR_PASSWORD'
+
 # create an instance of the API class
-api_instance = swaggyjenkins.RemoteAccessApi()
+api_instance = swaggyjenkins.RemoteAccessApi(swaggyjenkins.ApiClient(configuration))
 name = 'name_example' # str | Name of the job
 body = 'body_example' # str | Job configuration in config.xml format
 jenkins_crumb = 'jenkins_crumb_example' # str | CSRF protection token (optional)
@@ -774,7 +858,7 @@ void (empty response body)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -798,8 +882,13 @@ import swaggyjenkins
 from swaggyjenkins.rest import ApiException
 from pprint import pprint
 
+# Configure HTTP basic authorization: jenkins_auth
+configuration = swaggyjenkins.Configuration()
+configuration.username = 'YOUR_USERNAME'
+configuration.password = 'YOUR_PASSWORD'
+
 # create an instance of the API class
-api_instance = swaggyjenkins.RemoteAccessApi()
+api_instance = swaggyjenkins.RemoteAccessApi(swaggyjenkins.ApiClient(configuration))
 name = 'name_example' # str | Name of the job
 jenkins_crumb = 'jenkins_crumb_example' # str | CSRF protection token (optional)
 
@@ -822,7 +911,7 @@ void (empty response body)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -846,8 +935,13 @@ import swaggyjenkins
 from swaggyjenkins.rest import ApiException
 from pprint import pprint
 
+# Configure HTTP basic authorization: jenkins_auth
+configuration = swaggyjenkins.Configuration()
+configuration.username = 'YOUR_USERNAME'
+configuration.password = 'YOUR_PASSWORD'
+
 # create an instance of the API class
-api_instance = swaggyjenkins.RemoteAccessApi()
+api_instance = swaggyjenkins.RemoteAccessApi(swaggyjenkins.ApiClient(configuration))
 name = 'name_example' # str | Name of the job
 jenkins_crumb = 'jenkins_crumb_example' # str | CSRF protection token (optional)
 
@@ -870,7 +964,7 @@ void (empty response body)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -894,8 +988,13 @@ import swaggyjenkins
 from swaggyjenkins.rest import ApiException
 from pprint import pprint
 
+# Configure HTTP basic authorization: jenkins_auth
+configuration = swaggyjenkins.Configuration()
+configuration.username = 'YOUR_USERNAME'
+configuration.password = 'YOUR_PASSWORD'
+
 # create an instance of the API class
-api_instance = swaggyjenkins.RemoteAccessApi()
+api_instance = swaggyjenkins.RemoteAccessApi(swaggyjenkins.ApiClient(configuration))
 name = 'name_example' # str | Name of the job
 jenkins_crumb = 'jenkins_crumb_example' # str | CSRF protection token (optional)
 
@@ -918,7 +1017,7 @@ void (empty response body)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -942,8 +1041,13 @@ import swaggyjenkins
 from swaggyjenkins.rest import ApiException
 from pprint import pprint
 
+# Configure HTTP basic authorization: jenkins_auth
+configuration = swaggyjenkins.Configuration()
+configuration.username = 'YOUR_USERNAME'
+configuration.password = 'YOUR_PASSWORD'
+
 # create an instance of the API class
-api_instance = swaggyjenkins.RemoteAccessApi()
+api_instance = swaggyjenkins.RemoteAccessApi(swaggyjenkins.ApiClient(configuration))
 name = 'name_example' # str | Name of the job
 jenkins_crumb = 'jenkins_crumb_example' # str | CSRF protection token (optional)
 
@@ -966,7 +1070,7 @@ void (empty response body)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -990,8 +1094,13 @@ import swaggyjenkins
 from swaggyjenkins.rest import ApiException
 from pprint import pprint
 
+# Configure HTTP basic authorization: jenkins_auth
+configuration = swaggyjenkins.Configuration()
+configuration.username = 'YOUR_USERNAME'
+configuration.password = 'YOUR_PASSWORD'
+
 # create an instance of the API class
-api_instance = swaggyjenkins.RemoteAccessApi()
+api_instance = swaggyjenkins.RemoteAccessApi(swaggyjenkins.ApiClient(configuration))
 name = 'name_example' # str | Name of the view
 body = 'body_example' # str | View configuration in config.xml format
 jenkins_crumb = 'jenkins_crumb_example' # str | CSRF protection token (optional)
@@ -1016,7 +1125,7 @@ void (empty response body)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 

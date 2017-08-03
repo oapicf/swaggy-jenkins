@@ -1,6 +1,6 @@
 package io.swagger.api;
 
-import io.swagger.model.HudsonmodelComputerSet;
+import io.swagger.model.ComputerSet;
 import io.swagger.api.ComputerApiService;
 
 import javax.ws.rs.*;
@@ -24,7 +24,7 @@ import javax.validation.constraints.*;
 @Api(description = "the computer API")
 
 
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaJAXRSCXFCDIServerCodegen", date = "2017-07-25T10:45:05.448+10:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaJAXRSCXFCDIServerCodegen", date = "2017-08-03T23:34:47.267Z")
 
 public class ComputerApi  {
 
@@ -34,15 +34,17 @@ public class ComputerApi  {
 
 
     @GET
-    @Path("/api/json?depth=1")
+    @Path("/api/json")
     
     @Produces({ "application/json" })
-    @ApiOperation(value = "", notes = "Retrieve computer details", response = HudsonmodelComputerSet.class, tags={ "remoteAccess" })
+    @ApiOperation(value = "", notes = "Retrieve computer details", response = ComputerSet.class, authorizations = {
+        @Authorization(value = "jenkins_auth")
+    }, tags={ "remoteAccess" })
     @ApiResponses(value = { 
-        @ApiResponse(code = 200, message = "Successfully retrieved computer details", response = HudsonmodelComputerSet.class),
-        @ApiResponse(code = 401, message = "Authentication failed - incorrect username and/or password", response = HudsonmodelComputerSet.class),
-        @ApiResponse(code = 403, message = "Jenkins requires authentication - please set username and password", response = HudsonmodelComputerSet.class) })
-    public Response getComputer() {
-        return delegate.getComputer(securityContext);
+        @ApiResponse(code = 200, message = "Successfully retrieved computer details", response = ComputerSet.class),
+        @ApiResponse(code = 401, message = "Authentication failed - incorrect username and/or password", response = ComputerSet.class),
+        @ApiResponse(code = 403, message = "Jenkins requires authentication - please set username and password", response = ComputerSet.class) })
+    public Response getComputer( @NotNull @ApiParam(value = "Recursion depth in response model",required=true)  @QueryParam("depth") Integer depth) {
+        return delegate.getComputer(depth, securityContext);
     }
 }

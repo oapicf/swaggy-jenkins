@@ -1,12 +1,12 @@
 package controllers;
 
-import apimodels.HudsonmodelComputerSet;
-import apimodels.HudsonmodelFreeStyleBuild;
-import apimodels.HudsonmodelFreeStyleProject;
-import apimodels.HudsonmodelHudson;
-import apimodels.HudsonmodelListView;
-import apimodels.HudsonmodelQueue;
-import apimodels.HudsonsecuritycsrfDefaultCrumbIssuer;
+import apimodels.ComputerSet;
+import apimodels.DefaultCrumbIssuer;
+import apimodels.FreeStyleBuild;
+import apimodels.FreeStyleProject;
+import apimodels.Hudson;
+import apimodels.ListView;
+import apimodels.Queue;
 
 import play.mvc.Http;
 import java.util.List;
@@ -14,43 +14,75 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.io.FileInputStream;
 import javax.validation.constraints.*;
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaPlayFrameworkCodegen", date = "2017-07-25T10:44:57.391+10:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaPlayFrameworkCodegen", date = "2017-08-03T23:33:33.060Z")
 
 public class RemoteAccessApiControllerImp implements RemoteAccessApiControllerImpInterface {
-    @Override
-    public HudsonmodelComputerSet getComputer() throws Exception {
-        //Do your magic!!!
-        return new HudsonmodelComputerSet();
+
+    private final ObjectMapper mapper;
+
+    @Inject
+    private RemoteAccessApiControllerImp() {
+        mapper = new ObjectMapper();
     }
 
     @Override
-    public HudsonsecuritycsrfDefaultCrumbIssuer getCrumb() throws Exception {
+    public ComputerSet getComputer( @NotNull Integer depth) throws Exception {
         //Do your magic!!!
-        return new HudsonsecuritycsrfDefaultCrumbIssuer();
+        String accept = request().getHeader("Accept");
+        if (accept != null && accept.contains("application/json")) {
+            return mapper.readValue("", ComputerSet.class);
+        }
+        return new ComputerSet();
     }
 
     @Override
-    public HudsonmodelHudson getJenkins() throws Exception {
+    public DefaultCrumbIssuer getCrumb() throws Exception {
         //Do your magic!!!
-        return new HudsonmodelHudson();
+        String accept = request().getHeader("Accept");
+        if (accept != null && accept.contains("application/json")) {
+            return mapper.readValue("", DefaultCrumbIssuer.class);
+        }
+        return new DefaultCrumbIssuer();
     }
 
     @Override
-    public HudsonmodelFreeStyleProject getJob(String name) throws Exception {
+    public Hudson getJenkins() throws Exception {
         //Do your magic!!!
-        return new HudsonmodelFreeStyleProject();
+        String accept = request().getHeader("Accept");
+        if (accept != null && accept.contains("application/json")) {
+            return mapper.readValue("", Hudson.class);
+        }
+        return new Hudson();
+    }
+
+    @Override
+    public FreeStyleProject getJob(String name) throws Exception {
+        //Do your magic!!!
+        String accept = request().getHeader("Accept");
+        if (accept != null && accept.contains("application/json")) {
+            return mapper.readValue("", FreeStyleProject.class);
+        }
+        return new FreeStyleProject();
     }
 
     @Override
     public String getJobConfig(String name) throws Exception {
         //Do your magic!!!
+        String accept = request().getHeader("Accept");
+        if (accept != null && accept.contains("")) {
+            return mapper.readValue("", String.class);
+        }
         return new String();
     }
 
     @Override
-    public HudsonmodelFreeStyleBuild getJobLastBuild(String name) throws Exception {
+    public FreeStyleBuild getJobLastBuild(String name) throws Exception {
         //Do your magic!!!
-        return new HudsonmodelFreeStyleBuild();
+        String accept = request().getHeader("Accept");
+        if (accept != null && accept.contains("application/json")) {
+            return mapper.readValue("", FreeStyleBuild.class);
+        }
+        return new FreeStyleBuild();
     }
 
     @Override
@@ -60,26 +92,42 @@ public class RemoteAccessApiControllerImp implements RemoteAccessApiControllerIm
     }
 
     @Override
-    public HudsonmodelQueue getQueue() throws Exception {
+    public Queue getQueue() throws Exception {
         //Do your magic!!!
-        return new HudsonmodelQueue();
+        String accept = request().getHeader("Accept");
+        if (accept != null && accept.contains("application/json")) {
+            return mapper.readValue("", Queue.class);
+        }
+        return new Queue();
     }
 
     @Override
-    public HudsonmodelQueue getQueueItem(String number) throws Exception {
+    public Queue getQueueItem(String number) throws Exception {
         //Do your magic!!!
-        return new HudsonmodelQueue();
+        String accept = request().getHeader("Accept");
+        if (accept != null && accept.contains("application/json")) {
+            return mapper.readValue("", Queue.class);
+        }
+        return new Queue();
     }
 
     @Override
-    public HudsonmodelListView getView(String name) throws Exception {
+    public ListView getView(String name) throws Exception {
         //Do your magic!!!
-        return new HudsonmodelListView();
+        String accept = request().getHeader("Accept");
+        if (accept != null && accept.contains("application/json")) {
+            return mapper.readValue("", ListView.class);
+        }
+        return new ListView();
     }
 
     @Override
     public String getViewConfig(String name) throws Exception {
         //Do your magic!!!
+        String accept = request().getHeader("Accept");
+        if (accept != null && accept.contains("")) {
+            return mapper.readValue("", String.class);
+        }
         return new String();
     }
 

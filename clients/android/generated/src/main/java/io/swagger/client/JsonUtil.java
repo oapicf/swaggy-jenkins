@@ -57,216 +57,376 @@ public class JsonUtil {
   public static Type getListTypeForDeserialization(Class cls) {
     String className = cls.getSimpleName();
     
-    if ("GetClassesByClass".equalsIgnoreCase(className)) {
-      return new TypeToken<List<GetClassesByClass>>(){}.getType();
+    if ("AllView".equalsIgnoreCase(className)) {
+      return new TypeToken<List<AllView>>(){}.getType();
     }
     
-    if ("GetMultibranchPipeline".equalsIgnoreCase(className)) {
-      return new TypeToken<List<GetMultibranchPipeline>>(){}.getType();
+    if ("Body".equalsIgnoreCase(className)) {
+      return new TypeToken<List<Body>>(){}.getType();
     }
     
-    if ("GetOrganisations".equalsIgnoreCase(className)) {
-      return new TypeToken<List<GetOrganisations>>(){}.getType();
+    if ("BranchImpl".equalsIgnoreCase(className)) {
+      return new TypeToken<List<BranchImpl>>(){}.getType();
     }
     
-    if ("GetPipelineBranches".equalsIgnoreCase(className)) {
-      return new TypeToken<List<GetPipelineBranches>>(){}.getType();
+    if ("BranchImpllinks".equalsIgnoreCase(className)) {
+      return new TypeToken<List<BranchImpllinks>>(){}.getType();
     }
     
-    if ("GetPipelineBranchesitem".equalsIgnoreCase(className)) {
-      return new TypeToken<List<GetPipelineBranchesitem>>(){}.getType();
+    if ("BranchImplpermissions".equalsIgnoreCase(className)) {
+      return new TypeToken<List<BranchImplpermissions>>(){}.getType();
     }
     
-    if ("GetPipelineBranchesitemLatestRun".equalsIgnoreCase(className)) {
-      return new TypeToken<List<GetPipelineBranchesitemLatestRun>>(){}.getType();
+    if ("CauseAction".equalsIgnoreCase(className)) {
+      return new TypeToken<List<CauseAction>>(){}.getType();
     }
     
-    if ("GetPipelineBranchesitemPullRequest".equalsIgnoreCase(className)) {
-      return new TypeToken<List<GetPipelineBranchesitemPullRequest>>(){}.getType();
+    if ("CauseUserIdCause".equalsIgnoreCase(className)) {
+      return new TypeToken<List<CauseUserIdCause>>(){}.getType();
     }
     
-    if ("GetPipelineBranchesitemPullRequestLinks".equalsIgnoreCase(className)) {
-      return new TypeToken<List<GetPipelineBranchesitemPullRequestLinks>>(){}.getType();
+    if ("ClassesByClass".equalsIgnoreCase(className)) {
+      return new TypeToken<List<ClassesByClass>>(){}.getType();
     }
     
-    if ("GetPipelines".equalsIgnoreCase(className)) {
-      return new TypeToken<List<GetPipelines>>(){}.getType();
+    if ("ClockDifference".equalsIgnoreCase(className)) {
+      return new TypeToken<List<ClockDifference>>(){}.getType();
     }
     
-    if ("GetUsers".equalsIgnoreCase(className)) {
-      return new TypeToken<List<GetUsers>>(){}.getType();
+    if ("ComputerSet".equalsIgnoreCase(className)) {
+      return new TypeToken<List<ComputerSet>>(){}.getType();
     }
     
-    if ("HudsonmodelAllView".equalsIgnoreCase(className)) {
-      return new TypeToken<List<HudsonmodelAllView>>(){}.getType();
+    if ("DefaultCrumbIssuer".equalsIgnoreCase(className)) {
+      return new TypeToken<List<DefaultCrumbIssuer>>(){}.getType();
     }
     
-    if ("HudsonmodelCauseAction".equalsIgnoreCase(className)) {
-      return new TypeToken<List<HudsonmodelCauseAction>>(){}.getType();
+    if ("DiskSpaceMonitorDescriptorDiskSpace".equalsIgnoreCase(className)) {
+      return new TypeToken<List<DiskSpaceMonitorDescriptorDiskSpace>>(){}.getType();
     }
     
-    if ("HudsonmodelCauseUserIdCause".equalsIgnoreCase(className)) {
-      return new TypeToken<List<HudsonmodelCauseUserIdCause>>(){}.getType();
+    if ("EmptyChangeLogSet".equalsIgnoreCase(className)) {
+      return new TypeToken<List<EmptyChangeLogSet>>(){}.getType();
     }
     
-    if ("HudsonmodelComputerSet".equalsIgnoreCase(className)) {
-      return new TypeToken<List<HudsonmodelComputerSet>>(){}.getType();
+    if ("ExtensionClassContainerImpl1".equalsIgnoreCase(className)) {
+      return new TypeToken<List<ExtensionClassContainerImpl1>>(){}.getType();
     }
     
-    if ("HudsonmodelFreeStyleBuild".equalsIgnoreCase(className)) {
-      return new TypeToken<List<HudsonmodelFreeStyleBuild>>(){}.getType();
+    if ("ExtensionClassContainerImpl1links".equalsIgnoreCase(className)) {
+      return new TypeToken<List<ExtensionClassContainerImpl1links>>(){}.getType();
     }
     
-    if ("HudsonmodelFreeStyleProject".equalsIgnoreCase(className)) {
-      return new TypeToken<List<HudsonmodelFreeStyleProject>>(){}.getType();
+    if ("ExtensionClassContainerImpl1map".equalsIgnoreCase(className)) {
+      return new TypeToken<List<ExtensionClassContainerImpl1map>>(){}.getType();
     }
     
-    if ("HudsonmodelFreeStyleProjectactions".equalsIgnoreCase(className)) {
-      return new TypeToken<List<HudsonmodelFreeStyleProjectactions>>(){}.getType();
+    if ("ExtensionClassImpl".equalsIgnoreCase(className)) {
+      return new TypeToken<List<ExtensionClassImpl>>(){}.getType();
     }
     
-    if ("HudsonmodelFreeStyleProjecthealthReport".equalsIgnoreCase(className)) {
-      return new TypeToken<List<HudsonmodelFreeStyleProjecthealthReport>>(){}.getType();
+    if ("ExtensionClassImpllinks".equalsIgnoreCase(className)) {
+      return new TypeToken<List<ExtensionClassImpllinks>>(){}.getType();
     }
     
-    if ("HudsonmodelHudson".equalsIgnoreCase(className)) {
-      return new TypeToken<List<HudsonmodelHudson>>(){}.getType();
+    if ("FavoriteImpl".equalsIgnoreCase(className)) {
+      return new TypeToken<List<FavoriteImpl>>(){}.getType();
     }
     
-    if ("HudsonmodelHudsonMasterComputer".equalsIgnoreCase(className)) {
-      return new TypeToken<List<HudsonmodelHudsonMasterComputer>>(){}.getType();
+    if ("FavoriteImpllinks".equalsIgnoreCase(className)) {
+      return new TypeToken<List<FavoriteImpllinks>>(){}.getType();
     }
     
-    if ("HudsonmodelHudsonMasterComputerMonitorData".equalsIgnoreCase(className)) {
-      return new TypeToken<List<HudsonmodelHudsonMasterComputerMonitorData>>(){}.getType();
+    if ("FreeStyleBuild".equalsIgnoreCase(className)) {
+      return new TypeToken<List<FreeStyleBuild>>(){}.getType();
     }
     
-    if ("HudsonmodelHudsonMasterComputerexecutors".equalsIgnoreCase(className)) {
-      return new TypeToken<List<HudsonmodelHudsonMasterComputerexecutors>>(){}.getType();
+    if ("FreeStyleProject".equalsIgnoreCase(className)) {
+      return new TypeToken<List<FreeStyleProject>>(){}.getType();
     }
     
-    if ("HudsonmodelHudsonassignedLabels".equalsIgnoreCase(className)) {
-      return new TypeToken<List<HudsonmodelHudsonassignedLabels>>(){}.getType();
+    if ("FreeStyleProjectactions".equalsIgnoreCase(className)) {
+      return new TypeToken<List<FreeStyleProjectactions>>(){}.getType();
     }
     
-    if ("HudsonmodelLabel1".equalsIgnoreCase(className)) {
-      return new TypeToken<List<HudsonmodelLabel1>>(){}.getType();
+    if ("FreeStyleProjecthealthReport".equalsIgnoreCase(className)) {
+      return new TypeToken<List<FreeStyleProjecthealthReport>>(){}.getType();
     }
     
-    if ("HudsonmodelListView".equalsIgnoreCase(className)) {
-      return new TypeToken<List<HudsonmodelListView>>(){}.getType();
+    if ("GenericResource".equalsIgnoreCase(className)) {
+      return new TypeToken<List<GenericResource>>(){}.getType();
     }
     
-    if ("HudsonmodelQueue".equalsIgnoreCase(className)) {
-      return new TypeToken<List<HudsonmodelQueue>>(){}.getType();
+    if ("GithubContent".equalsIgnoreCase(className)) {
+      return new TypeToken<List<GithubContent>>(){}.getType();
     }
     
-    if ("HudsonmodelQueueBlockedItem".equalsIgnoreCase(className)) {
-      return new TypeToken<List<HudsonmodelQueueBlockedItem>>(){}.getType();
+    if ("GithubFile".equalsIgnoreCase(className)) {
+      return new TypeToken<List<GithubFile>>(){}.getType();
     }
     
-    if ("HudsonmodelQueueLeftItem".equalsIgnoreCase(className)) {
-      return new TypeToken<List<HudsonmodelQueueLeftItem>>(){}.getType();
+    if ("GithubOrganization".equalsIgnoreCase(className)) {
+      return new TypeToken<List<GithubOrganization>>(){}.getType();
     }
     
-    if ("HudsonmodelStringParameterDefinition".equalsIgnoreCase(className)) {
-      return new TypeToken<List<HudsonmodelStringParameterDefinition>>(){}.getType();
+    if ("GithubOrganizationlinks".equalsIgnoreCase(className)) {
+      return new TypeToken<List<GithubOrganizationlinks>>(){}.getType();
     }
     
-    if ("HudsonmodelStringParameterValue".equalsIgnoreCase(className)) {
-      return new TypeToken<List<HudsonmodelStringParameterValue>>(){}.getType();
+    if ("GithubRepositories".equalsIgnoreCase(className)) {
+      return new TypeToken<List<GithubRepositories>>(){}.getType();
     }
     
-    if ("HudsonnodeMonitorsDiskSpaceMonitorDescriptorDiskSpace".equalsIgnoreCase(className)) {
-      return new TypeToken<List<HudsonnodeMonitorsDiskSpaceMonitorDescriptorDiskSpace>>(){}.getType();
+    if ("GithubRepositorieslinks".equalsIgnoreCase(className)) {
+      return new TypeToken<List<GithubRepositorieslinks>>(){}.getType();
     }
     
-    if ("HudsonnodeMonitorsResponseTimeMonitorData".equalsIgnoreCase(className)) {
-      return new TypeToken<List<HudsonnodeMonitorsResponseTimeMonitorData>>(){}.getType();
+    if ("GithubRepository".equalsIgnoreCase(className)) {
+      return new TypeToken<List<GithubRepository>>(){}.getType();
     }
     
-    if ("HudsonnodeMonitorsSwapSpaceMonitorMemoryUsage2".equalsIgnoreCase(className)) {
-      return new TypeToken<List<HudsonnodeMonitorsSwapSpaceMonitorMemoryUsage2>>(){}.getType();
+    if ("GithubRepositorylinks".equalsIgnoreCase(className)) {
+      return new TypeToken<List<GithubRepositorylinks>>(){}.getType();
     }
     
-    if ("HudsonscmEmptyChangeLogSet".equalsIgnoreCase(className)) {
-      return new TypeToken<List<HudsonscmEmptyChangeLogSet>>(){}.getType();
+    if ("GithubRepositorypermissions".equalsIgnoreCase(className)) {
+      return new TypeToken<List<GithubRepositorypermissions>>(){}.getType();
     }
     
-    if ("HudsonscmNullSCM".equalsIgnoreCase(className)) {
-      return new TypeToken<List<HudsonscmNullSCM>>(){}.getType();
+    if ("GithubRespositoryContainer".equalsIgnoreCase(className)) {
+      return new TypeToken<List<GithubRespositoryContainer>>(){}.getType();
     }
     
-    if ("HudsonsecuritycsrfDefaultCrumbIssuer".equalsIgnoreCase(className)) {
-      return new TypeToken<List<HudsonsecuritycsrfDefaultCrumbIssuer>>(){}.getType();
+    if ("GithubRespositoryContainerlinks".equalsIgnoreCase(className)) {
+      return new TypeToken<List<GithubRespositoryContainerlinks>>(){}.getType();
     }
     
-    if ("HudsonutilClockDifference".equalsIgnoreCase(className)) {
-      return new TypeToken<List<HudsonutilClockDifference>>(){}.getType();
+    if ("GithubScm".equalsIgnoreCase(className)) {
+      return new TypeToken<List<GithubScm>>(){}.getType();
     }
     
-    if ("IojenkinsblueoceanresthalLink".equalsIgnoreCase(className)) {
-      return new TypeToken<List<IojenkinsblueoceanresthalLink>>(){}.getType();
+    if ("GithubScmlinks".equalsIgnoreCase(className)) {
+      return new TypeToken<List<GithubScmlinks>>(){}.getType();
     }
     
-    if ("IojenkinsblueoceanrestimplpipelineBranchImpl".equalsIgnoreCase(className)) {
-      return new TypeToken<List<IojenkinsblueoceanrestimplpipelineBranchImpl>>(){}.getType();
+    if ("Hudson".equalsIgnoreCase(className)) {
+      return new TypeToken<List<Hudson>>(){}.getType();
     }
     
-    if ("IojenkinsblueoceanrestimplpipelineBranchImplPermissions".equalsIgnoreCase(className)) {
-      return new TypeToken<List<IojenkinsblueoceanrestimplpipelineBranchImplPermissions>>(){}.getType();
+    if ("HudsonMasterComputer".equalsIgnoreCase(className)) {
+      return new TypeToken<List<HudsonMasterComputer>>(){}.getType();
     }
     
-    if ("IojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1".equalsIgnoreCase(className)) {
-      return new TypeToken<List<IojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1>>(){}.getType();
+    if ("HudsonMasterComputerexecutors".equalsIgnoreCase(className)) {
+      return new TypeToken<List<HudsonMasterComputerexecutors>>(){}.getType();
     }
     
-    if ("IojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1Links".equalsIgnoreCase(className)) {
-      return new TypeToken<List<IojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1Links>>(){}.getType();
+    if ("HudsonMasterComputermonitorData".equalsIgnoreCase(className)) {
+      return new TypeToken<List<HudsonMasterComputermonitorData>>(){}.getType();
     }
     
-    if ("IojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1Map".equalsIgnoreCase(className)) {
-      return new TypeToken<List<IojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1Map>>(){}.getType();
+    if ("HudsonassignedLabels".equalsIgnoreCase(className)) {
+      return new TypeToken<List<HudsonassignedLabels>>(){}.getType();
     }
     
-    if ("IojenkinsblueoceanserviceembeddedrestExtensionClassImpl".equalsIgnoreCase(className)) {
-      return new TypeToken<List<IojenkinsblueoceanserviceembeddedrestExtensionClassImpl>>(){}.getType();
+    if ("InputStepImpl".equalsIgnoreCase(className)) {
+      return new TypeToken<List<InputStepImpl>>(){}.getType();
     }
     
-    if ("IojenkinsblueoceanserviceembeddedrestExtensionClassImplLinks".equalsIgnoreCase(className)) {
-      return new TypeToken<List<IojenkinsblueoceanserviceembeddedrestExtensionClassImplLinks>>(){}.getType();
+    if ("InputStepImpllinks".equalsIgnoreCase(className)) {
+      return new TypeToken<List<InputStepImpllinks>>(){}.getType();
     }
     
-    if ("IojenkinsblueoceanserviceembeddedrestPipelineFolderImpl".equalsIgnoreCase(className)) {
-      return new TypeToken<List<IojenkinsblueoceanserviceembeddedrestPipelineFolderImpl>>(){}.getType();
+    if ("Label1".equalsIgnoreCase(className)) {
+      return new TypeToken<List<Label1>>(){}.getType();
     }
     
-    if ("IojenkinsblueoceanserviceembeddedrestPipelineImpl".equalsIgnoreCase(className)) {
-      return new TypeToken<List<IojenkinsblueoceanserviceembeddedrestPipelineImpl>>(){}.getType();
+    if ("Link".equalsIgnoreCase(className)) {
+      return new TypeToken<List<Link>>(){}.getType();
     }
     
-    if ("JenkinsmodelUnlabeledLoadStatistics".equalsIgnoreCase(className)) {
-      return new TypeToken<List<JenkinsmodelUnlabeledLoadStatistics>>(){}.getType();
+    if ("ListView".equalsIgnoreCase(className)) {
+      return new TypeToken<List<ListView>>(){}.getType();
     }
     
-    if ("SwaggyjenkinsOrganisation".equalsIgnoreCase(className)) {
-      return new TypeToken<List<SwaggyjenkinsOrganisation>>(){}.getType();
+    if ("MultibranchPipeline".equalsIgnoreCase(className)) {
+      return new TypeToken<List<MultibranchPipeline>>(){}.getType();
     }
     
-    if ("SwaggyjenkinsPipeline".equalsIgnoreCase(className)) {
-      return new TypeToken<List<SwaggyjenkinsPipeline>>(){}.getType();
+    if ("NullSCM".equalsIgnoreCase(className)) {
+      return new TypeToken<List<NullSCM>>(){}.getType();
     }
     
-    if ("SwaggyjenkinsPipelineLatestRun".equalsIgnoreCase(className)) {
-      return new TypeToken<List<SwaggyjenkinsPipelineLatestRun>>(){}.getType();
+    if ("Organisation".equalsIgnoreCase(className)) {
+      return new TypeToken<List<Organisation>>(){}.getType();
     }
     
-    if ("SwaggyjenkinsPipelineLatestRunartifacts".equalsIgnoreCase(className)) {
-      return new TypeToken<List<SwaggyjenkinsPipelineLatestRunartifacts>>(){}.getType();
+    if ("Organisations".equalsIgnoreCase(className)) {
+      return new TypeToken<List<Organisations>>(){}.getType();
     }
     
-    if ("SwaggyjenkinsUser".equalsIgnoreCase(className)) {
-      return new TypeToken<List<SwaggyjenkinsUser>>(){}.getType();
+    if ("Pipeline".equalsIgnoreCase(className)) {
+      return new TypeToken<List<Pipeline>>(){}.getType();
+    }
+    
+    if ("PipelineActivities".equalsIgnoreCase(className)) {
+      return new TypeToken<List<PipelineActivities>>(){}.getType();
+    }
+    
+    if ("PipelineActivity".equalsIgnoreCase(className)) {
+      return new TypeToken<List<PipelineActivity>>(){}.getType();
+    }
+    
+    if ("PipelineActivityartifacts".equalsIgnoreCase(className)) {
+      return new TypeToken<List<PipelineActivityartifacts>>(){}.getType();
+    }
+    
+    if ("PipelineBranches".equalsIgnoreCase(className)) {
+      return new TypeToken<List<PipelineBranches>>(){}.getType();
+    }
+    
+    if ("PipelineBranchesitem".equalsIgnoreCase(className)) {
+      return new TypeToken<List<PipelineBranchesitem>>(){}.getType();
+    }
+    
+    if ("PipelineBranchesitemlatestRun".equalsIgnoreCase(className)) {
+      return new TypeToken<List<PipelineBranchesitemlatestRun>>(){}.getType();
+    }
+    
+    if ("PipelineBranchesitempullRequest".equalsIgnoreCase(className)) {
+      return new TypeToken<List<PipelineBranchesitempullRequest>>(){}.getType();
+    }
+    
+    if ("PipelineBranchesitempullRequestlinks".equalsIgnoreCase(className)) {
+      return new TypeToken<List<PipelineBranchesitempullRequestlinks>>(){}.getType();
+    }
+    
+    if ("PipelineFolderImpl".equalsIgnoreCase(className)) {
+      return new TypeToken<List<PipelineFolderImpl>>(){}.getType();
+    }
+    
+    if ("PipelineImpl".equalsIgnoreCase(className)) {
+      return new TypeToken<List<PipelineImpl>>(){}.getType();
+    }
+    
+    if ("PipelineImpllinks".equalsIgnoreCase(className)) {
+      return new TypeToken<List<PipelineImpllinks>>(){}.getType();
+    }
+    
+    if ("PipelineQueue".equalsIgnoreCase(className)) {
+      return new TypeToken<List<PipelineQueue>>(){}.getType();
+    }
+    
+    if ("PipelineRun".equalsIgnoreCase(className)) {
+      return new TypeToken<List<PipelineRun>>(){}.getType();
+    }
+    
+    if ("PipelineRunImpl".equalsIgnoreCase(className)) {
+      return new TypeToken<List<PipelineRunImpl>>(){}.getType();
+    }
+    
+    if ("PipelineRunImpllinks".equalsIgnoreCase(className)) {
+      return new TypeToken<List<PipelineRunImpllinks>>(){}.getType();
+    }
+    
+    if ("PipelineRunNode".equalsIgnoreCase(className)) {
+      return new TypeToken<List<PipelineRunNode>>(){}.getType();
+    }
+    
+    if ("PipelineRunNodeSteps".equalsIgnoreCase(className)) {
+      return new TypeToken<List<PipelineRunNodeSteps>>(){}.getType();
+    }
+    
+    if ("PipelineRunNodeedges".equalsIgnoreCase(className)) {
+      return new TypeToken<List<PipelineRunNodeedges>>(){}.getType();
+    }
+    
+    if ("PipelineRunNodes".equalsIgnoreCase(className)) {
+      return new TypeToken<List<PipelineRunNodes>>(){}.getType();
+    }
+    
+    if ("PipelineRunSteps".equalsIgnoreCase(className)) {
+      return new TypeToken<List<PipelineRunSteps>>(){}.getType();
+    }
+    
+    if ("PipelineRunartifacts".equalsIgnoreCase(className)) {
+      return new TypeToken<List<PipelineRunartifacts>>(){}.getType();
+    }
+    
+    if ("PipelineRuns".equalsIgnoreCase(className)) {
+      return new TypeToken<List<PipelineRuns>>(){}.getType();
+    }
+    
+    if ("PipelineStepImpl".equalsIgnoreCase(className)) {
+      return new TypeToken<List<PipelineStepImpl>>(){}.getType();
+    }
+    
+    if ("PipelineStepImpllinks".equalsIgnoreCase(className)) {
+      return new TypeToken<List<PipelineStepImpllinks>>(){}.getType();
+    }
+    
+    if ("PipelinelatestRun".equalsIgnoreCase(className)) {
+      return new TypeToken<List<PipelinelatestRun>>(){}.getType();
+    }
+    
+    if ("PipelinelatestRunartifacts".equalsIgnoreCase(className)) {
+      return new TypeToken<List<PipelinelatestRunartifacts>>(){}.getType();
+    }
+    
+    if ("Pipelines".equalsIgnoreCase(className)) {
+      return new TypeToken<List<Pipelines>>(){}.getType();
+    }
+    
+    if ("Queue".equalsIgnoreCase(className)) {
+      return new TypeToken<List<Queue>>(){}.getType();
+    }
+    
+    if ("QueueBlockedItem".equalsIgnoreCase(className)) {
+      return new TypeToken<List<QueueBlockedItem>>(){}.getType();
+    }
+    
+    if ("QueueItemImpl".equalsIgnoreCase(className)) {
+      return new TypeToken<List<QueueItemImpl>>(){}.getType();
+    }
+    
+    if ("QueueLeftItem".equalsIgnoreCase(className)) {
+      return new TypeToken<List<QueueLeftItem>>(){}.getType();
+    }
+    
+    if ("ResponseTimeMonitorData".equalsIgnoreCase(className)) {
+      return new TypeToken<List<ResponseTimeMonitorData>>(){}.getType();
+    }
+    
+    if ("ScmOrganisations".equalsIgnoreCase(className)) {
+      return new TypeToken<List<ScmOrganisations>>(){}.getType();
+    }
+    
+    if ("StringParameterDefinition".equalsIgnoreCase(className)) {
+      return new TypeToken<List<StringParameterDefinition>>(){}.getType();
+    }
+    
+    if ("StringParameterValue".equalsIgnoreCase(className)) {
+      return new TypeToken<List<StringParameterValue>>(){}.getType();
+    }
+    
+    if ("SwapSpaceMonitorMemoryUsage2".equalsIgnoreCase(className)) {
+      return new TypeToken<List<SwapSpaceMonitorMemoryUsage2>>(){}.getType();
+    }
+    
+    if ("UnlabeledLoadStatistics".equalsIgnoreCase(className)) {
+      return new TypeToken<List<UnlabeledLoadStatistics>>(){}.getType();
+    }
+    
+    if ("User".equalsIgnoreCase(className)) {
+      return new TypeToken<List<User>>(){}.getType();
+    }
+    
+    if ("UserFavorites".equalsIgnoreCase(className)) {
+      return new TypeToken<List<UserFavorites>>(){}.getType();
+    }
+    
+    if ("Users".equalsIgnoreCase(className)) {
+      return new TypeToken<List<Users>>(){}.getType();
     }
     
     return new TypeToken<List<Object>>(){}.getType();
@@ -275,216 +435,376 @@ public class JsonUtil {
   public static Type getTypeForDeserialization(Class cls) {
     String className = cls.getSimpleName();
     
-    if ("GetClassesByClass".equalsIgnoreCase(className)) {
-      return new TypeToken<GetClassesByClass>(){}.getType();
+    if ("AllView".equalsIgnoreCase(className)) {
+      return new TypeToken<AllView>(){}.getType();
     }
     
-    if ("GetMultibranchPipeline".equalsIgnoreCase(className)) {
-      return new TypeToken<GetMultibranchPipeline>(){}.getType();
+    if ("Body".equalsIgnoreCase(className)) {
+      return new TypeToken<Body>(){}.getType();
     }
     
-    if ("GetOrganisations".equalsIgnoreCase(className)) {
-      return new TypeToken<GetOrganisations>(){}.getType();
+    if ("BranchImpl".equalsIgnoreCase(className)) {
+      return new TypeToken<BranchImpl>(){}.getType();
     }
     
-    if ("GetPipelineBranches".equalsIgnoreCase(className)) {
-      return new TypeToken<GetPipelineBranches>(){}.getType();
+    if ("BranchImpllinks".equalsIgnoreCase(className)) {
+      return new TypeToken<BranchImpllinks>(){}.getType();
     }
     
-    if ("GetPipelineBranchesitem".equalsIgnoreCase(className)) {
-      return new TypeToken<GetPipelineBranchesitem>(){}.getType();
+    if ("BranchImplpermissions".equalsIgnoreCase(className)) {
+      return new TypeToken<BranchImplpermissions>(){}.getType();
     }
     
-    if ("GetPipelineBranchesitemLatestRun".equalsIgnoreCase(className)) {
-      return new TypeToken<GetPipelineBranchesitemLatestRun>(){}.getType();
+    if ("CauseAction".equalsIgnoreCase(className)) {
+      return new TypeToken<CauseAction>(){}.getType();
     }
     
-    if ("GetPipelineBranchesitemPullRequest".equalsIgnoreCase(className)) {
-      return new TypeToken<GetPipelineBranchesitemPullRequest>(){}.getType();
+    if ("CauseUserIdCause".equalsIgnoreCase(className)) {
+      return new TypeToken<CauseUserIdCause>(){}.getType();
     }
     
-    if ("GetPipelineBranchesitemPullRequestLinks".equalsIgnoreCase(className)) {
-      return new TypeToken<GetPipelineBranchesitemPullRequestLinks>(){}.getType();
+    if ("ClassesByClass".equalsIgnoreCase(className)) {
+      return new TypeToken<ClassesByClass>(){}.getType();
     }
     
-    if ("GetPipelines".equalsIgnoreCase(className)) {
-      return new TypeToken<GetPipelines>(){}.getType();
+    if ("ClockDifference".equalsIgnoreCase(className)) {
+      return new TypeToken<ClockDifference>(){}.getType();
     }
     
-    if ("GetUsers".equalsIgnoreCase(className)) {
-      return new TypeToken<GetUsers>(){}.getType();
+    if ("ComputerSet".equalsIgnoreCase(className)) {
+      return new TypeToken<ComputerSet>(){}.getType();
     }
     
-    if ("HudsonmodelAllView".equalsIgnoreCase(className)) {
-      return new TypeToken<HudsonmodelAllView>(){}.getType();
+    if ("DefaultCrumbIssuer".equalsIgnoreCase(className)) {
+      return new TypeToken<DefaultCrumbIssuer>(){}.getType();
     }
     
-    if ("HudsonmodelCauseAction".equalsIgnoreCase(className)) {
-      return new TypeToken<HudsonmodelCauseAction>(){}.getType();
+    if ("DiskSpaceMonitorDescriptorDiskSpace".equalsIgnoreCase(className)) {
+      return new TypeToken<DiskSpaceMonitorDescriptorDiskSpace>(){}.getType();
     }
     
-    if ("HudsonmodelCauseUserIdCause".equalsIgnoreCase(className)) {
-      return new TypeToken<HudsonmodelCauseUserIdCause>(){}.getType();
+    if ("EmptyChangeLogSet".equalsIgnoreCase(className)) {
+      return new TypeToken<EmptyChangeLogSet>(){}.getType();
     }
     
-    if ("HudsonmodelComputerSet".equalsIgnoreCase(className)) {
-      return new TypeToken<HudsonmodelComputerSet>(){}.getType();
+    if ("ExtensionClassContainerImpl1".equalsIgnoreCase(className)) {
+      return new TypeToken<ExtensionClassContainerImpl1>(){}.getType();
     }
     
-    if ("HudsonmodelFreeStyleBuild".equalsIgnoreCase(className)) {
-      return new TypeToken<HudsonmodelFreeStyleBuild>(){}.getType();
+    if ("ExtensionClassContainerImpl1links".equalsIgnoreCase(className)) {
+      return new TypeToken<ExtensionClassContainerImpl1links>(){}.getType();
     }
     
-    if ("HudsonmodelFreeStyleProject".equalsIgnoreCase(className)) {
-      return new TypeToken<HudsonmodelFreeStyleProject>(){}.getType();
+    if ("ExtensionClassContainerImpl1map".equalsIgnoreCase(className)) {
+      return new TypeToken<ExtensionClassContainerImpl1map>(){}.getType();
     }
     
-    if ("HudsonmodelFreeStyleProjectactions".equalsIgnoreCase(className)) {
-      return new TypeToken<HudsonmodelFreeStyleProjectactions>(){}.getType();
+    if ("ExtensionClassImpl".equalsIgnoreCase(className)) {
+      return new TypeToken<ExtensionClassImpl>(){}.getType();
     }
     
-    if ("HudsonmodelFreeStyleProjecthealthReport".equalsIgnoreCase(className)) {
-      return new TypeToken<HudsonmodelFreeStyleProjecthealthReport>(){}.getType();
+    if ("ExtensionClassImpllinks".equalsIgnoreCase(className)) {
+      return new TypeToken<ExtensionClassImpllinks>(){}.getType();
     }
     
-    if ("HudsonmodelHudson".equalsIgnoreCase(className)) {
-      return new TypeToken<HudsonmodelHudson>(){}.getType();
+    if ("FavoriteImpl".equalsIgnoreCase(className)) {
+      return new TypeToken<FavoriteImpl>(){}.getType();
     }
     
-    if ("HudsonmodelHudsonMasterComputer".equalsIgnoreCase(className)) {
-      return new TypeToken<HudsonmodelHudsonMasterComputer>(){}.getType();
+    if ("FavoriteImpllinks".equalsIgnoreCase(className)) {
+      return new TypeToken<FavoriteImpllinks>(){}.getType();
     }
     
-    if ("HudsonmodelHudsonMasterComputerMonitorData".equalsIgnoreCase(className)) {
-      return new TypeToken<HudsonmodelHudsonMasterComputerMonitorData>(){}.getType();
+    if ("FreeStyleBuild".equalsIgnoreCase(className)) {
+      return new TypeToken<FreeStyleBuild>(){}.getType();
     }
     
-    if ("HudsonmodelHudsonMasterComputerexecutors".equalsIgnoreCase(className)) {
-      return new TypeToken<HudsonmodelHudsonMasterComputerexecutors>(){}.getType();
+    if ("FreeStyleProject".equalsIgnoreCase(className)) {
+      return new TypeToken<FreeStyleProject>(){}.getType();
     }
     
-    if ("HudsonmodelHudsonassignedLabels".equalsIgnoreCase(className)) {
-      return new TypeToken<HudsonmodelHudsonassignedLabels>(){}.getType();
+    if ("FreeStyleProjectactions".equalsIgnoreCase(className)) {
+      return new TypeToken<FreeStyleProjectactions>(){}.getType();
     }
     
-    if ("HudsonmodelLabel1".equalsIgnoreCase(className)) {
-      return new TypeToken<HudsonmodelLabel1>(){}.getType();
+    if ("FreeStyleProjecthealthReport".equalsIgnoreCase(className)) {
+      return new TypeToken<FreeStyleProjecthealthReport>(){}.getType();
     }
     
-    if ("HudsonmodelListView".equalsIgnoreCase(className)) {
-      return new TypeToken<HudsonmodelListView>(){}.getType();
+    if ("GenericResource".equalsIgnoreCase(className)) {
+      return new TypeToken<GenericResource>(){}.getType();
     }
     
-    if ("HudsonmodelQueue".equalsIgnoreCase(className)) {
-      return new TypeToken<HudsonmodelQueue>(){}.getType();
+    if ("GithubContent".equalsIgnoreCase(className)) {
+      return new TypeToken<GithubContent>(){}.getType();
     }
     
-    if ("HudsonmodelQueueBlockedItem".equalsIgnoreCase(className)) {
-      return new TypeToken<HudsonmodelQueueBlockedItem>(){}.getType();
+    if ("GithubFile".equalsIgnoreCase(className)) {
+      return new TypeToken<GithubFile>(){}.getType();
     }
     
-    if ("HudsonmodelQueueLeftItem".equalsIgnoreCase(className)) {
-      return new TypeToken<HudsonmodelQueueLeftItem>(){}.getType();
+    if ("GithubOrganization".equalsIgnoreCase(className)) {
+      return new TypeToken<GithubOrganization>(){}.getType();
     }
     
-    if ("HudsonmodelStringParameterDefinition".equalsIgnoreCase(className)) {
-      return new TypeToken<HudsonmodelStringParameterDefinition>(){}.getType();
+    if ("GithubOrganizationlinks".equalsIgnoreCase(className)) {
+      return new TypeToken<GithubOrganizationlinks>(){}.getType();
     }
     
-    if ("HudsonmodelStringParameterValue".equalsIgnoreCase(className)) {
-      return new TypeToken<HudsonmodelStringParameterValue>(){}.getType();
+    if ("GithubRepositories".equalsIgnoreCase(className)) {
+      return new TypeToken<GithubRepositories>(){}.getType();
     }
     
-    if ("HudsonnodeMonitorsDiskSpaceMonitorDescriptorDiskSpace".equalsIgnoreCase(className)) {
-      return new TypeToken<HudsonnodeMonitorsDiskSpaceMonitorDescriptorDiskSpace>(){}.getType();
+    if ("GithubRepositorieslinks".equalsIgnoreCase(className)) {
+      return new TypeToken<GithubRepositorieslinks>(){}.getType();
     }
     
-    if ("HudsonnodeMonitorsResponseTimeMonitorData".equalsIgnoreCase(className)) {
-      return new TypeToken<HudsonnodeMonitorsResponseTimeMonitorData>(){}.getType();
+    if ("GithubRepository".equalsIgnoreCase(className)) {
+      return new TypeToken<GithubRepository>(){}.getType();
     }
     
-    if ("HudsonnodeMonitorsSwapSpaceMonitorMemoryUsage2".equalsIgnoreCase(className)) {
-      return new TypeToken<HudsonnodeMonitorsSwapSpaceMonitorMemoryUsage2>(){}.getType();
+    if ("GithubRepositorylinks".equalsIgnoreCase(className)) {
+      return new TypeToken<GithubRepositorylinks>(){}.getType();
     }
     
-    if ("HudsonscmEmptyChangeLogSet".equalsIgnoreCase(className)) {
-      return new TypeToken<HudsonscmEmptyChangeLogSet>(){}.getType();
+    if ("GithubRepositorypermissions".equalsIgnoreCase(className)) {
+      return new TypeToken<GithubRepositorypermissions>(){}.getType();
     }
     
-    if ("HudsonscmNullSCM".equalsIgnoreCase(className)) {
-      return new TypeToken<HudsonscmNullSCM>(){}.getType();
+    if ("GithubRespositoryContainer".equalsIgnoreCase(className)) {
+      return new TypeToken<GithubRespositoryContainer>(){}.getType();
     }
     
-    if ("HudsonsecuritycsrfDefaultCrumbIssuer".equalsIgnoreCase(className)) {
-      return new TypeToken<HudsonsecuritycsrfDefaultCrumbIssuer>(){}.getType();
+    if ("GithubRespositoryContainerlinks".equalsIgnoreCase(className)) {
+      return new TypeToken<GithubRespositoryContainerlinks>(){}.getType();
     }
     
-    if ("HudsonutilClockDifference".equalsIgnoreCase(className)) {
-      return new TypeToken<HudsonutilClockDifference>(){}.getType();
+    if ("GithubScm".equalsIgnoreCase(className)) {
+      return new TypeToken<GithubScm>(){}.getType();
     }
     
-    if ("IojenkinsblueoceanresthalLink".equalsIgnoreCase(className)) {
-      return new TypeToken<IojenkinsblueoceanresthalLink>(){}.getType();
+    if ("GithubScmlinks".equalsIgnoreCase(className)) {
+      return new TypeToken<GithubScmlinks>(){}.getType();
     }
     
-    if ("IojenkinsblueoceanrestimplpipelineBranchImpl".equalsIgnoreCase(className)) {
-      return new TypeToken<IojenkinsblueoceanrestimplpipelineBranchImpl>(){}.getType();
+    if ("Hudson".equalsIgnoreCase(className)) {
+      return new TypeToken<Hudson>(){}.getType();
     }
     
-    if ("IojenkinsblueoceanrestimplpipelineBranchImplPermissions".equalsIgnoreCase(className)) {
-      return new TypeToken<IojenkinsblueoceanrestimplpipelineBranchImplPermissions>(){}.getType();
+    if ("HudsonMasterComputer".equalsIgnoreCase(className)) {
+      return new TypeToken<HudsonMasterComputer>(){}.getType();
     }
     
-    if ("IojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1".equalsIgnoreCase(className)) {
-      return new TypeToken<IojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1>(){}.getType();
+    if ("HudsonMasterComputerexecutors".equalsIgnoreCase(className)) {
+      return new TypeToken<HudsonMasterComputerexecutors>(){}.getType();
     }
     
-    if ("IojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1Links".equalsIgnoreCase(className)) {
-      return new TypeToken<IojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1Links>(){}.getType();
+    if ("HudsonMasterComputermonitorData".equalsIgnoreCase(className)) {
+      return new TypeToken<HudsonMasterComputermonitorData>(){}.getType();
     }
     
-    if ("IojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1Map".equalsIgnoreCase(className)) {
-      return new TypeToken<IojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1Map>(){}.getType();
+    if ("HudsonassignedLabels".equalsIgnoreCase(className)) {
+      return new TypeToken<HudsonassignedLabels>(){}.getType();
     }
     
-    if ("IojenkinsblueoceanserviceembeddedrestExtensionClassImpl".equalsIgnoreCase(className)) {
-      return new TypeToken<IojenkinsblueoceanserviceembeddedrestExtensionClassImpl>(){}.getType();
+    if ("InputStepImpl".equalsIgnoreCase(className)) {
+      return new TypeToken<InputStepImpl>(){}.getType();
     }
     
-    if ("IojenkinsblueoceanserviceembeddedrestExtensionClassImplLinks".equalsIgnoreCase(className)) {
-      return new TypeToken<IojenkinsblueoceanserviceembeddedrestExtensionClassImplLinks>(){}.getType();
+    if ("InputStepImpllinks".equalsIgnoreCase(className)) {
+      return new TypeToken<InputStepImpllinks>(){}.getType();
     }
     
-    if ("IojenkinsblueoceanserviceembeddedrestPipelineFolderImpl".equalsIgnoreCase(className)) {
-      return new TypeToken<IojenkinsblueoceanserviceembeddedrestPipelineFolderImpl>(){}.getType();
+    if ("Label1".equalsIgnoreCase(className)) {
+      return new TypeToken<Label1>(){}.getType();
     }
     
-    if ("IojenkinsblueoceanserviceembeddedrestPipelineImpl".equalsIgnoreCase(className)) {
-      return new TypeToken<IojenkinsblueoceanserviceembeddedrestPipelineImpl>(){}.getType();
+    if ("Link".equalsIgnoreCase(className)) {
+      return new TypeToken<Link>(){}.getType();
     }
     
-    if ("JenkinsmodelUnlabeledLoadStatistics".equalsIgnoreCase(className)) {
-      return new TypeToken<JenkinsmodelUnlabeledLoadStatistics>(){}.getType();
+    if ("ListView".equalsIgnoreCase(className)) {
+      return new TypeToken<ListView>(){}.getType();
     }
     
-    if ("SwaggyjenkinsOrganisation".equalsIgnoreCase(className)) {
-      return new TypeToken<SwaggyjenkinsOrganisation>(){}.getType();
+    if ("MultibranchPipeline".equalsIgnoreCase(className)) {
+      return new TypeToken<MultibranchPipeline>(){}.getType();
     }
     
-    if ("SwaggyjenkinsPipeline".equalsIgnoreCase(className)) {
-      return new TypeToken<SwaggyjenkinsPipeline>(){}.getType();
+    if ("NullSCM".equalsIgnoreCase(className)) {
+      return new TypeToken<NullSCM>(){}.getType();
     }
     
-    if ("SwaggyjenkinsPipelineLatestRun".equalsIgnoreCase(className)) {
-      return new TypeToken<SwaggyjenkinsPipelineLatestRun>(){}.getType();
+    if ("Organisation".equalsIgnoreCase(className)) {
+      return new TypeToken<Organisation>(){}.getType();
     }
     
-    if ("SwaggyjenkinsPipelineLatestRunartifacts".equalsIgnoreCase(className)) {
-      return new TypeToken<SwaggyjenkinsPipelineLatestRunartifacts>(){}.getType();
+    if ("Organisations".equalsIgnoreCase(className)) {
+      return new TypeToken<Organisations>(){}.getType();
     }
     
-    if ("SwaggyjenkinsUser".equalsIgnoreCase(className)) {
-      return new TypeToken<SwaggyjenkinsUser>(){}.getType();
+    if ("Pipeline".equalsIgnoreCase(className)) {
+      return new TypeToken<Pipeline>(){}.getType();
+    }
+    
+    if ("PipelineActivities".equalsIgnoreCase(className)) {
+      return new TypeToken<PipelineActivities>(){}.getType();
+    }
+    
+    if ("PipelineActivity".equalsIgnoreCase(className)) {
+      return new TypeToken<PipelineActivity>(){}.getType();
+    }
+    
+    if ("PipelineActivityartifacts".equalsIgnoreCase(className)) {
+      return new TypeToken<PipelineActivityartifacts>(){}.getType();
+    }
+    
+    if ("PipelineBranches".equalsIgnoreCase(className)) {
+      return new TypeToken<PipelineBranches>(){}.getType();
+    }
+    
+    if ("PipelineBranchesitem".equalsIgnoreCase(className)) {
+      return new TypeToken<PipelineBranchesitem>(){}.getType();
+    }
+    
+    if ("PipelineBranchesitemlatestRun".equalsIgnoreCase(className)) {
+      return new TypeToken<PipelineBranchesitemlatestRun>(){}.getType();
+    }
+    
+    if ("PipelineBranchesitempullRequest".equalsIgnoreCase(className)) {
+      return new TypeToken<PipelineBranchesitempullRequest>(){}.getType();
+    }
+    
+    if ("PipelineBranchesitempullRequestlinks".equalsIgnoreCase(className)) {
+      return new TypeToken<PipelineBranchesitempullRequestlinks>(){}.getType();
+    }
+    
+    if ("PipelineFolderImpl".equalsIgnoreCase(className)) {
+      return new TypeToken<PipelineFolderImpl>(){}.getType();
+    }
+    
+    if ("PipelineImpl".equalsIgnoreCase(className)) {
+      return new TypeToken<PipelineImpl>(){}.getType();
+    }
+    
+    if ("PipelineImpllinks".equalsIgnoreCase(className)) {
+      return new TypeToken<PipelineImpllinks>(){}.getType();
+    }
+    
+    if ("PipelineQueue".equalsIgnoreCase(className)) {
+      return new TypeToken<PipelineQueue>(){}.getType();
+    }
+    
+    if ("PipelineRun".equalsIgnoreCase(className)) {
+      return new TypeToken<PipelineRun>(){}.getType();
+    }
+    
+    if ("PipelineRunImpl".equalsIgnoreCase(className)) {
+      return new TypeToken<PipelineRunImpl>(){}.getType();
+    }
+    
+    if ("PipelineRunImpllinks".equalsIgnoreCase(className)) {
+      return new TypeToken<PipelineRunImpllinks>(){}.getType();
+    }
+    
+    if ("PipelineRunNode".equalsIgnoreCase(className)) {
+      return new TypeToken<PipelineRunNode>(){}.getType();
+    }
+    
+    if ("PipelineRunNodeSteps".equalsIgnoreCase(className)) {
+      return new TypeToken<PipelineRunNodeSteps>(){}.getType();
+    }
+    
+    if ("PipelineRunNodeedges".equalsIgnoreCase(className)) {
+      return new TypeToken<PipelineRunNodeedges>(){}.getType();
+    }
+    
+    if ("PipelineRunNodes".equalsIgnoreCase(className)) {
+      return new TypeToken<PipelineRunNodes>(){}.getType();
+    }
+    
+    if ("PipelineRunSteps".equalsIgnoreCase(className)) {
+      return new TypeToken<PipelineRunSteps>(){}.getType();
+    }
+    
+    if ("PipelineRunartifacts".equalsIgnoreCase(className)) {
+      return new TypeToken<PipelineRunartifacts>(){}.getType();
+    }
+    
+    if ("PipelineRuns".equalsIgnoreCase(className)) {
+      return new TypeToken<PipelineRuns>(){}.getType();
+    }
+    
+    if ("PipelineStepImpl".equalsIgnoreCase(className)) {
+      return new TypeToken<PipelineStepImpl>(){}.getType();
+    }
+    
+    if ("PipelineStepImpllinks".equalsIgnoreCase(className)) {
+      return new TypeToken<PipelineStepImpllinks>(){}.getType();
+    }
+    
+    if ("PipelinelatestRun".equalsIgnoreCase(className)) {
+      return new TypeToken<PipelinelatestRun>(){}.getType();
+    }
+    
+    if ("PipelinelatestRunartifacts".equalsIgnoreCase(className)) {
+      return new TypeToken<PipelinelatestRunartifacts>(){}.getType();
+    }
+    
+    if ("Pipelines".equalsIgnoreCase(className)) {
+      return new TypeToken<Pipelines>(){}.getType();
+    }
+    
+    if ("Queue".equalsIgnoreCase(className)) {
+      return new TypeToken<Queue>(){}.getType();
+    }
+    
+    if ("QueueBlockedItem".equalsIgnoreCase(className)) {
+      return new TypeToken<QueueBlockedItem>(){}.getType();
+    }
+    
+    if ("QueueItemImpl".equalsIgnoreCase(className)) {
+      return new TypeToken<QueueItemImpl>(){}.getType();
+    }
+    
+    if ("QueueLeftItem".equalsIgnoreCase(className)) {
+      return new TypeToken<QueueLeftItem>(){}.getType();
+    }
+    
+    if ("ResponseTimeMonitorData".equalsIgnoreCase(className)) {
+      return new TypeToken<ResponseTimeMonitorData>(){}.getType();
+    }
+    
+    if ("ScmOrganisations".equalsIgnoreCase(className)) {
+      return new TypeToken<ScmOrganisations>(){}.getType();
+    }
+    
+    if ("StringParameterDefinition".equalsIgnoreCase(className)) {
+      return new TypeToken<StringParameterDefinition>(){}.getType();
+    }
+    
+    if ("StringParameterValue".equalsIgnoreCase(className)) {
+      return new TypeToken<StringParameterValue>(){}.getType();
+    }
+    
+    if ("SwapSpaceMonitorMemoryUsage2".equalsIgnoreCase(className)) {
+      return new TypeToken<SwapSpaceMonitorMemoryUsage2>(){}.getType();
+    }
+    
+    if ("UnlabeledLoadStatistics".equalsIgnoreCase(className)) {
+      return new TypeToken<UnlabeledLoadStatistics>(){}.getType();
+    }
+    
+    if ("User".equalsIgnoreCase(className)) {
+      return new TypeToken<User>(){}.getType();
+    }
+    
+    if ("UserFavorites".equalsIgnoreCase(className)) {
+      return new TypeToken<UserFavorites>(){}.getType();
+    }
+    
+    if ("Users".equalsIgnoreCase(className)) {
+      return new TypeToken<Users>(){}.getType();
     }
     
     return new TypeToken<Object>(){}.getType();

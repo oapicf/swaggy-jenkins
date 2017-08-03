@@ -55,8 +55,13 @@ group_paths() ->
 
 get_operations() ->
     #{ 
+        'DeletePipelineQueueItem' => #{
+            path => "//blue/rest/organizations/:organization/pipelines/:pipeline/queue/:queue",
+            method => <<"DELETE">>,
+            handler => 'swagger_blue_ocean_handler'
+        },
         'GetAuthenticatedUser' => #{
-            path => "//blue/rest/organizations/:organisation/user/",
+            path => "//blue/rest/organizations/:organization/user/",
             method => <<"GET">>,
             handler => 'swagger_blue_ocean_handler'
         },
@@ -66,7 +71,7 @@ get_operations() ->
             handler => 'swagger_blue_ocean_handler'
         },
         'GetOrganisation' => #{
-            path => "//blue/rest/organizations/:organisation",
+            path => "//blue/rest/organizations/:organization",
             method => <<"GET">>,
             handler => 'swagger_blue_ocean_handler'
         },
@@ -75,58 +80,158 @@ get_operations() ->
             method => <<"GET">>,
             handler => 'swagger_blue_ocean_handler'
         },
-        'GetPipelineBranchByOrg' => #{
-            path => "//blue/rest/organizations/:organisation/pipelines/:pipeline/branches/:branch/",
+        'GetPipeline' => #{
+            path => "//blue/rest/organizations/:organization/pipelines/:pipeline",
             method => <<"GET">>,
             handler => 'swagger_blue_ocean_handler'
         },
-        'GetPipelineBranchesByOrg' => #{
-            path => "//blue/rest/organizations/:organisation/pipelines/:pipeline/branches",
+        'GetPipelineActivities' => #{
+            path => "//blue/rest/organizations/:organization/pipelines/:pipeline/activities",
             method => <<"GET">>,
             handler => 'swagger_blue_ocean_handler'
         },
-        'GetPipelineByOrg' => #{
-            path => "//blue/rest/organizations/:organisation/pipelines/:pipeline",
+        'GetPipelineBranch' => #{
+            path => "//blue/rest/organizations/:organization/pipelines/:pipeline/branches/:branch/",
             method => <<"GET">>,
             handler => 'swagger_blue_ocean_handler'
         },
-        'GetPipelineFolderByOrg' => #{
-            path => "//blue/rest/organizations/:organisation/pipelines/:folder/",
+        'GetPipelineBranchRun' => #{
+            path => "//blue/rest/organizations/:organization/pipelines/:pipeline/branches/:branch/runs/:run",
             method => <<"GET">>,
             handler => 'swagger_blue_ocean_handler'
         },
-        'GetPipelineFolderByOrg_0' => #{
-            path => "//blue/rest/organizations/:organisation/pipelines/:folder/pipelines/:pipeline",
+        'GetPipelineBranches' => #{
+            path => "//blue/rest/organizations/:organization/pipelines/:pipeline/branches",
             method => <<"GET">>,
             handler => 'swagger_blue_ocean_handler'
         },
-        'GetPipelinesByOrg' => #{
-            path => "//blue/rest/organizations/:organisation/pipelines/",
+        'GetPipelineFolder' => #{
+            path => "//blue/rest/organizations/:organization/pipelines/:folder/",
+            method => <<"GET">>,
+            handler => 'swagger_blue_ocean_handler'
+        },
+        'GetPipelineFolderPipeline' => #{
+            path => "//blue/rest/organizations/:organization/pipelines/:folder/pipelines/:pipeline",
+            method => <<"GET">>,
+            handler => 'swagger_blue_ocean_handler'
+        },
+        'GetPipelineQueue' => #{
+            path => "//blue/rest/organizations/:organization/pipelines/:pipeline/queue",
+            method => <<"GET">>,
+            handler => 'swagger_blue_ocean_handler'
+        },
+        'GetPipelineRun' => #{
+            path => "//blue/rest/organizations/:organization/pipelines/:pipeline/runs/:run",
+            method => <<"GET">>,
+            handler => 'swagger_blue_ocean_handler'
+        },
+        'GetPipelineRunLog' => #{
+            path => "//blue/rest/organizations/:organization/pipelines/:pipeline/runs/:run/log",
+            method => <<"GET">>,
+            handler => 'swagger_blue_ocean_handler'
+        },
+        'GetPipelineRunNode' => #{
+            path => "//blue/rest/organizations/:organization/pipelines/:pipeline/runs/:run/nodes/:node",
+            method => <<"GET">>,
+            handler => 'swagger_blue_ocean_handler'
+        },
+        'GetPipelineRunNodeStep' => #{
+            path => "//blue/rest/organizations/:organization/pipelines/:pipeline/runs/:run/nodes/:node/steps/:step",
+            method => <<"GET">>,
+            handler => 'swagger_blue_ocean_handler'
+        },
+        'GetPipelineRunNodeStepLog' => #{
+            path => "//blue/rest/organizations/:organization/pipelines/:pipeline/runs/:run/nodes/:node/steps/:step/log",
+            method => <<"GET">>,
+            handler => 'swagger_blue_ocean_handler'
+        },
+        'GetPipelineRunNodeSteps' => #{
+            path => "//blue/rest/organizations/:organization/pipelines/:pipeline/runs/:run/nodes/:node/steps",
+            method => <<"GET">>,
+            handler => 'swagger_blue_ocean_handler'
+        },
+        'GetPipelineRunNodes' => #{
+            path => "//blue/rest/organizations/:organization/pipelines/:pipeline/runs/:run/nodes",
+            method => <<"GET">>,
+            handler => 'swagger_blue_ocean_handler'
+        },
+        'GetPipelineRuns' => #{
+            path => "//blue/rest/organizations/:organization/pipelines/:pipeline/runs",
+            method => <<"GET">>,
+            handler => 'swagger_blue_ocean_handler'
+        },
+        'GetPipelines' => #{
+            path => "//blue/rest/organizations/:organization/pipelines/",
+            method => <<"GET">>,
+            handler => 'swagger_blue_ocean_handler'
+        },
+        'GetSCM' => #{
+            path => "//blue/rest/organizations/:organization/scm/:scm",
+            method => <<"GET">>,
+            handler => 'swagger_blue_ocean_handler'
+        },
+        'GetSCMOrganisationRepositories' => #{
+            path => "//blue/rest/organizations/:organization/scm/:scm/organizations/:scmOrganisation/repositories",
+            method => <<"GET">>,
+            handler => 'swagger_blue_ocean_handler'
+        },
+        'GetSCMOrganisationRepository' => #{
+            path => "//blue/rest/organizations/:organization/scm/:scm/organizations/:scmOrganisation/repositories/:repository",
+            method => <<"GET">>,
+            handler => 'swagger_blue_ocean_handler'
+        },
+        'GetSCMOrganisations' => #{
+            path => "//blue/rest/organizations/:organization/scm/:scm/organizations",
             method => <<"GET">>,
             handler => 'swagger_blue_ocean_handler'
         },
         'GetUser' => #{
-            path => "//blue/rest/organizations/:organisation/users/:user",
+            path => "//blue/rest/organizations/:organization/users/:user",
+            method => <<"GET">>,
+            handler => 'swagger_blue_ocean_handler'
+        },
+        'GetUserFavorites' => #{
+            path => "//blue/rest/users/:user/favorites",
             method => <<"GET">>,
             handler => 'swagger_blue_ocean_handler'
         },
         'GetUsers' => #{
-            path => "//blue/rest/organizations/:organisation/users/",
+            path => "//blue/rest/organizations/:organization/users/",
             method => <<"GET">>,
+            handler => 'swagger_blue_ocean_handler'
+        },
+        'PostPipelineRun' => #{
+            path => "//blue/rest/organizations/:organization/pipelines/:pipeline/runs/:run/replay",
+            method => <<"POST">>,
+            handler => 'swagger_blue_ocean_handler'
+        },
+        'PostPipelineRuns' => #{
+            path => "//blue/rest/organizations/:organization/pipelines/:pipeline/runs",
+            method => <<"POST">>,
+            handler => 'swagger_blue_ocean_handler'
+        },
+        'PutPipelineFavorite' => #{
+            path => "//blue/rest/organizations/:organization/pipelines/:pipeline/favorite",
+            method => <<"PUT">>,
+            handler => 'swagger_blue_ocean_handler'
+        },
+        'PutPipelineRun' => #{
+            path => "//blue/rest/organizations/:organization/pipelines/:pipeline/runs/:run/stop",
+            method => <<"PUT">>,
             handler => 'swagger_blue_ocean_handler'
         },
         'Search' => #{
-            path => "//blue/rest/classes/",
-            method => <<"GET">>,
-            handler => 'swagger_blue_ocean_handler'
-        },
-        'Search_0' => #{
             path => "//blue/rest/search/",
             method => <<"GET">>,
             handler => 'swagger_blue_ocean_handler'
         },
+        'SearchClasses' => #{
+            path => "//blue/rest/classes/",
+            method => <<"GET">>,
+            handler => 'swagger_blue_ocean_handler'
+        },
         'GetComputer' => #{
-            path => "//computer/api/json?depth=1",
+            path => "//computer/api/json",
             method => <<"GET">>,
             handler => 'swagger_remote_access_handler'
         },

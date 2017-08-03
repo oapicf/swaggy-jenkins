@@ -9,7 +9,7 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**getComputer**](RemoteAccessApi.md#getComputer) | **GET** /computer/api/json?depth&#x3D;1 | 
+[**getComputer**](RemoteAccessApi.md#getComputer) | **GET** /computer/api/json | 
 [**getCrumb**](RemoteAccessApi.md#getCrumb) | **GET** /crumbIssuer/api/json | 
 [**getJenkins**](RemoteAccessApi.md#getJenkins) | **GET** /api/json | 
 [**getJob**](RemoteAccessApi.md#getJob) | **GET** /job/{name}/api/json | 
@@ -33,7 +33,7 @@ Method | HTTP request | Description
 
 
 # **getComputer**
-> HudsonmodelComputerSet getComputer()
+> ComputerSet getComputer(depth)
 
 
 
@@ -42,11 +42,15 @@ Retrieve computer details
 ### Example 
 ```dart
 import 'package:swagger/api.dart';
+// TODO Configure HTTP basic authorization: jenkins_auth
+//swagger.api.Configuration.username = 'YOUR_USERNAME';
+//swagger.api.Configuration.password = 'YOUR_PASSWORD';
 
 var api_instance = new RemoteAccessApi();
+var depth = 56; // int | Recursion depth in response model
 
 try { 
-    var result = api_instance.getComputer();
+    var result = api_instance.getComputer(depth);
     print(result);
 } catch (e) {
     print("Exception when calling RemoteAccessApi->getComputer: $e\n");
@@ -54,15 +58,18 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **depth** | **int**| Recursion depth in response model | 
 
 ### Return type
 
-[**HudsonmodelComputerSet**](HudsonmodelComputerSet.md)
+[**ComputerSet**](ComputerSet.md)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -72,7 +79,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **getCrumb**
-> HudsonsecuritycsrfDefaultCrumbIssuer getCrumb()
+> DefaultCrumbIssuer getCrumb()
 
 
 
@@ -81,6 +88,9 @@ Retrieve CSRF protection token
 ### Example 
 ```dart
 import 'package:swagger/api.dart';
+// TODO Configure HTTP basic authorization: jenkins_auth
+//swagger.api.Configuration.username = 'YOUR_USERNAME';
+//swagger.api.Configuration.password = 'YOUR_PASSWORD';
 
 var api_instance = new RemoteAccessApi();
 
@@ -97,11 +107,11 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**HudsonsecuritycsrfDefaultCrumbIssuer**](HudsonsecuritycsrfDefaultCrumbIssuer.md)
+[**DefaultCrumbIssuer**](DefaultCrumbIssuer.md)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -111,7 +121,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **getJenkins**
-> HudsonmodelHudson getJenkins()
+> Hudson getJenkins()
 
 
 
@@ -120,6 +130,9 @@ Retrieve Jenkins details
 ### Example 
 ```dart
 import 'package:swagger/api.dart';
+// TODO Configure HTTP basic authorization: jenkins_auth
+//swagger.api.Configuration.username = 'YOUR_USERNAME';
+//swagger.api.Configuration.password = 'YOUR_PASSWORD';
 
 var api_instance = new RemoteAccessApi();
 
@@ -136,11 +149,11 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**HudsonmodelHudson**](HudsonmodelHudson.md)
+[**Hudson**](Hudson.md)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -150,7 +163,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **getJob**
-> HudsonmodelFreeStyleProject getJob(name)
+> FreeStyleProject getJob(name)
 
 
 
@@ -159,6 +172,9 @@ Retrieve job details
 ### Example 
 ```dart
 import 'package:swagger/api.dart';
+// TODO Configure HTTP basic authorization: jenkins_auth
+//swagger.api.Configuration.username = 'YOUR_USERNAME';
+//swagger.api.Configuration.password = 'YOUR_PASSWORD';
 
 var api_instance = new RemoteAccessApi();
 var name = name_example; // String | Name of the job
@@ -179,11 +195,11 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**HudsonmodelFreeStyleProject**](HudsonmodelFreeStyleProject.md)
+[**FreeStyleProject**](FreeStyleProject.md)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -202,6 +218,9 @@ Retrieve job configuration
 ### Example 
 ```dart
 import 'package:swagger/api.dart';
+// TODO Configure HTTP basic authorization: jenkins_auth
+//swagger.api.Configuration.username = 'YOUR_USERNAME';
+//swagger.api.Configuration.password = 'YOUR_PASSWORD';
 
 var api_instance = new RemoteAccessApi();
 var name = name_example; // String | Name of the job
@@ -226,7 +245,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -236,7 +255,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **getJobLastBuild**
-> HudsonmodelFreeStyleBuild getJobLastBuild(name)
+> FreeStyleBuild getJobLastBuild(name)
 
 
 
@@ -245,6 +264,9 @@ Retrieve job's last build details
 ### Example 
 ```dart
 import 'package:swagger/api.dart';
+// TODO Configure HTTP basic authorization: jenkins_auth
+//swagger.api.Configuration.username = 'YOUR_USERNAME';
+//swagger.api.Configuration.password = 'YOUR_PASSWORD';
 
 var api_instance = new RemoteAccessApi();
 var name = name_example; // String | Name of the job
@@ -265,11 +287,11 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**HudsonmodelFreeStyleBuild**](HudsonmodelFreeStyleBuild.md)
+[**FreeStyleBuild**](FreeStyleBuild.md)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -288,6 +310,9 @@ Retrieve job's build progressive text output
 ### Example 
 ```dart
 import 'package:swagger/api.dart';
+// TODO Configure HTTP basic authorization: jenkins_auth
+//swagger.api.Configuration.username = 'YOUR_USERNAME';
+//swagger.api.Configuration.password = 'YOUR_PASSWORD';
 
 var api_instance = new RemoteAccessApi();
 var name = name_example; // String | Name of the job
@@ -315,7 +340,7 @@ void (empty response body)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -325,7 +350,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **getQueue**
-> HudsonmodelQueue getQueue()
+> Queue getQueue()
 
 
 
@@ -334,6 +359,9 @@ Retrieve queue details
 ### Example 
 ```dart
 import 'package:swagger/api.dart';
+// TODO Configure HTTP basic authorization: jenkins_auth
+//swagger.api.Configuration.username = 'YOUR_USERNAME';
+//swagger.api.Configuration.password = 'YOUR_PASSWORD';
 
 var api_instance = new RemoteAccessApi();
 
@@ -350,11 +378,11 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**HudsonmodelQueue**](HudsonmodelQueue.md)
+[**Queue**](Queue.md)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -364,7 +392,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **getQueueItem**
-> HudsonmodelQueue getQueueItem(number)
+> Queue getQueueItem(number)
 
 
 
@@ -373,6 +401,9 @@ Retrieve queued item details
 ### Example 
 ```dart
 import 'package:swagger/api.dart';
+// TODO Configure HTTP basic authorization: jenkins_auth
+//swagger.api.Configuration.username = 'YOUR_USERNAME';
+//swagger.api.Configuration.password = 'YOUR_PASSWORD';
 
 var api_instance = new RemoteAccessApi();
 var number = number_example; // String | Queue number
@@ -393,11 +424,11 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**HudsonmodelQueue**](HudsonmodelQueue.md)
+[**Queue**](Queue.md)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -407,7 +438,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **getView**
-> HudsonmodelListView getView(name)
+> ListView getView(name)
 
 
 
@@ -416,6 +447,9 @@ Retrieve view details
 ### Example 
 ```dart
 import 'package:swagger/api.dart';
+// TODO Configure HTTP basic authorization: jenkins_auth
+//swagger.api.Configuration.username = 'YOUR_USERNAME';
+//swagger.api.Configuration.password = 'YOUR_PASSWORD';
 
 var api_instance = new RemoteAccessApi();
 var name = name_example; // String | Name of the view
@@ -436,11 +470,11 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**HudsonmodelListView**](HudsonmodelListView.md)
+[**ListView**](ListView.md)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -459,6 +493,9 @@ Retrieve view configuration
 ### Example 
 ```dart
 import 'package:swagger/api.dart';
+// TODO Configure HTTP basic authorization: jenkins_auth
+//swagger.api.Configuration.username = 'YOUR_USERNAME';
+//swagger.api.Configuration.password = 'YOUR_PASSWORD';
 
 var api_instance = new RemoteAccessApi();
 var name = name_example; // String | Name of the view
@@ -483,7 +520,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -502,6 +539,9 @@ Retrieve Jenkins headers
 ### Example 
 ```dart
 import 'package:swagger/api.dart';
+// TODO Configure HTTP basic authorization: jenkins_auth
+//swagger.api.Configuration.username = 'YOUR_USERNAME';
+//swagger.api.Configuration.password = 'YOUR_PASSWORD';
 
 var api_instance = new RemoteAccessApi();
 
@@ -521,7 +561,7 @@ void (empty response body)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -540,6 +580,9 @@ Create a new job using job configuration, or copied from an existing job
 ### Example 
 ```dart
 import 'package:swagger/api.dart';
+// TODO Configure HTTP basic authorization: jenkins_auth
+//swagger.api.Configuration.username = 'YOUR_USERNAME';
+//swagger.api.Configuration.password = 'YOUR_PASSWORD';
 
 var api_instance = new RemoteAccessApi();
 var name = name_example; // String | Name of the new job
@@ -573,7 +616,7 @@ void (empty response body)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -592,6 +635,9 @@ Create a new view using view configuration
 ### Example 
 ```dart
 import 'package:swagger/api.dart';
+// TODO Configure HTTP basic authorization: jenkins_auth
+//swagger.api.Configuration.username = 'YOUR_USERNAME';
+//swagger.api.Configuration.password = 'YOUR_PASSWORD';
 
 var api_instance = new RemoteAccessApi();
 var name = name_example; // String | Name of the new view
@@ -621,7 +667,7 @@ void (empty response body)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -640,6 +686,9 @@ Build a job
 ### Example 
 ```dart
 import 'package:swagger/api.dart';
+// TODO Configure HTTP basic authorization: jenkins_auth
+//swagger.api.Configuration.username = 'YOUR_USERNAME';
+//swagger.api.Configuration.password = 'YOUR_PASSWORD';
 
 var api_instance = new RemoteAccessApi();
 var name = name_example; // String | Name of the job
@@ -669,7 +718,7 @@ void (empty response body)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -688,6 +737,9 @@ Update job configuration
 ### Example 
 ```dart
 import 'package:swagger/api.dart';
+// TODO Configure HTTP basic authorization: jenkins_auth
+//swagger.api.Configuration.username = 'YOUR_USERNAME';
+//swagger.api.Configuration.password = 'YOUR_PASSWORD';
 
 var api_instance = new RemoteAccessApi();
 var name = name_example; // String | Name of the job
@@ -715,7 +767,7 @@ void (empty response body)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -734,6 +786,9 @@ Delete a job
 ### Example 
 ```dart
 import 'package:swagger/api.dart';
+// TODO Configure HTTP basic authorization: jenkins_auth
+//swagger.api.Configuration.username = 'YOUR_USERNAME';
+//swagger.api.Configuration.password = 'YOUR_PASSWORD';
 
 var api_instance = new RemoteAccessApi();
 var name = name_example; // String | Name of the job
@@ -759,7 +814,7 @@ void (empty response body)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -778,6 +833,9 @@ Disable a job
 ### Example 
 ```dart
 import 'package:swagger/api.dart';
+// TODO Configure HTTP basic authorization: jenkins_auth
+//swagger.api.Configuration.username = 'YOUR_USERNAME';
+//swagger.api.Configuration.password = 'YOUR_PASSWORD';
 
 var api_instance = new RemoteAccessApi();
 var name = name_example; // String | Name of the job
@@ -803,7 +861,7 @@ void (empty response body)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -822,6 +880,9 @@ Enable a job
 ### Example 
 ```dart
 import 'package:swagger/api.dart';
+// TODO Configure HTTP basic authorization: jenkins_auth
+//swagger.api.Configuration.username = 'YOUR_USERNAME';
+//swagger.api.Configuration.password = 'YOUR_PASSWORD';
 
 var api_instance = new RemoteAccessApi();
 var name = name_example; // String | Name of the job
@@ -847,7 +908,7 @@ void (empty response body)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -866,6 +927,9 @@ Stop a job
 ### Example 
 ```dart
 import 'package:swagger/api.dart';
+// TODO Configure HTTP basic authorization: jenkins_auth
+//swagger.api.Configuration.username = 'YOUR_USERNAME';
+//swagger.api.Configuration.password = 'YOUR_PASSWORD';
 
 var api_instance = new RemoteAccessApi();
 var name = name_example; // String | Name of the job
@@ -891,7 +955,7 @@ void (empty response body)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -910,6 +974,9 @@ Update view configuration
 ### Example 
 ```dart
 import 'package:swagger/api.dart';
+// TODO Configure HTTP basic authorization: jenkins_auth
+//swagger.api.Configuration.username = 'YOUR_USERNAME';
+//swagger.api.Configuration.password = 'YOUR_PASSWORD';
 
 var api_instance = new RemoteAccessApi();
 var name = name_example; // String | Name of the view
@@ -937,7 +1004,7 @@ void (empty response body)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 

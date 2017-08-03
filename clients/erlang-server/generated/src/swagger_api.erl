@@ -13,9 +13,16 @@
 -spec request_params(OperationID :: operation_id()) -> [Param :: request_param()].
 
 
+request_params('DeletePipelineQueueItem') ->
+    [
+        'organization',
+        'pipeline',
+        'queue'
+    ];
+
 request_params('GetAuthenticatedUser') ->
     [
-        'organisation'
+        'organization'
     ];
 
 request_params('GetClasses') ->
@@ -25,59 +32,208 @@ request_params('GetClasses') ->
 
 request_params('GetOrganisation') ->
     [
-        'organisation'
+        'organization'
     ];
 
 request_params('GetOrganisations') ->
     [
     ];
 
-request_params('GetPipelineBranchByOrg') ->
+request_params('GetPipeline') ->
     [
-        'organisation',
+        'organization',
+        'pipeline'
+    ];
+
+request_params('GetPipelineActivities') ->
+    [
+        'organization',
+        'pipeline'
+    ];
+
+request_params('GetPipelineBranch') ->
+    [
+        'organization',
         'pipeline',
         'branch'
     ];
 
-request_params('GetPipelineBranchesByOrg') ->
+request_params('GetPipelineBranchRun') ->
     [
-        'organisation',
+        'organization',
+        'pipeline',
+        'branch',
+        'run'
+    ];
+
+request_params('GetPipelineBranches') ->
+    [
+        'organization',
         'pipeline'
     ];
 
-request_params('GetPipelineByOrg') ->
+request_params('GetPipelineFolder') ->
     [
-        'organisation',
-        'pipeline'
-    ];
-
-request_params('GetPipelineFolderByOrg') ->
-    [
-        'organisation',
+        'organization',
         'folder'
     ];
 
-request_params('GetPipelineFolderByOrg_0') ->
+request_params('GetPipelineFolderPipeline') ->
     [
-        'organisation',
+        'organization',
         'pipeline',
         'folder'
     ];
 
-request_params('GetPipelinesByOrg') ->
+request_params('GetPipelineQueue') ->
     [
-        'organisation'
+        'organization',
+        'pipeline'
+    ];
+
+request_params('GetPipelineRun') ->
+    [
+        'organization',
+        'pipeline',
+        'run'
+    ];
+
+request_params('GetPipelineRunLog') ->
+    [
+        'organization',
+        'pipeline',
+        'run',
+        'start',
+        'download'
+    ];
+
+request_params('GetPipelineRunNode') ->
+    [
+        'organization',
+        'pipeline',
+        'run',
+        'node'
+    ];
+
+request_params('GetPipelineRunNodeStep') ->
+    [
+        'organization',
+        'pipeline',
+        'run',
+        'node',
+        'step'
+    ];
+
+request_params('GetPipelineRunNodeStepLog') ->
+    [
+        'organization',
+        'pipeline',
+        'run',
+        'node',
+        'step'
+    ];
+
+request_params('GetPipelineRunNodeSteps') ->
+    [
+        'organization',
+        'pipeline',
+        'run',
+        'node'
+    ];
+
+request_params('GetPipelineRunNodes') ->
+    [
+        'organization',
+        'pipeline',
+        'run'
+    ];
+
+request_params('GetPipelineRuns') ->
+    [
+        'organization',
+        'pipeline'
+    ];
+
+request_params('GetPipelines') ->
+    [
+        'organization'
+    ];
+
+request_params('GetSCM') ->
+    [
+        'organization',
+        'scm'
+    ];
+
+request_params('GetSCMOrganisationRepositories') ->
+    [
+        'organization',
+        'scm',
+        'scmOrganisation',
+        'credentialId',
+        'pageSize',
+        'pageNumber'
+    ];
+
+request_params('GetSCMOrganisationRepository') ->
+    [
+        'organization',
+        'scm',
+        'scmOrganisation',
+        'repository',
+        'credentialId'
+    ];
+
+request_params('GetSCMOrganisations') ->
+    [
+        'organization',
+        'scm',
+        'credentialId'
     ];
 
 request_params('GetUser') ->
     [
-        'organisation',
+        'organization',
+        'user'
+    ];
+
+request_params('GetUserFavorites') ->
+    [
         'user'
     ];
 
 request_params('GetUsers') ->
     [
-        'organisation'
+        'organization'
+    ];
+
+request_params('PostPipelineRun') ->
+    [
+        'organization',
+        'pipeline',
+        'run'
+    ];
+
+request_params('PostPipelineRuns') ->
+    [
+        'organization',
+        'pipeline'
+    ];
+
+request_params('PutPipelineFavorite') ->
+    [
+        'organization',
+        'pipeline',
+        'Body'
+    ];
+
+request_params('PutPipelineRun') ->
+    [
+        'organization',
+        'pipeline',
+        'run',
+        'blocking',
+        'timeOutInSecs'
     ];
 
 request_params('Search') ->
@@ -85,7 +241,7 @@ request_params('Search') ->
         'q'
     ];
 
-request_params('Search_0') ->
+request_params('SearchClasses') ->
     [
         'q'
     ];
@@ -93,6 +249,7 @@ request_params('Search_0') ->
 
 request_params('GetComputer') ->
     [
+        'depth'
     ];
 
 request_params('GetCrumb') ->
@@ -242,7 +399,34 @@ request_params(_) ->
 
 
 
-request_param_info('GetAuthenticatedUser', 'organisation') ->
+request_param_info('DeletePipelineQueueItem', 'organization') ->
+    #{
+        source =>  binding ,
+        rules => [
+            {type, 'binary'},
+            required
+        ]
+    };
+
+request_param_info('DeletePipelineQueueItem', 'pipeline') ->
+    #{
+        source =>  binding ,
+        rules => [
+            {type, 'binary'},
+            required
+        ]
+    };
+
+request_param_info('DeletePipelineQueueItem', 'queue') ->
+    #{
+        source =>  binding ,
+        rules => [
+            {type, 'binary'},
+            required
+        ]
+    };
+
+request_param_info('GetAuthenticatedUser', 'organization') ->
     #{
         source =>  binding ,
         rules => [
@@ -260,7 +444,7 @@ request_param_info('GetClasses', 'class') ->
         ]
     };
 
-request_param_info('GetOrganisation', 'organisation') ->
+request_param_info('GetOrganisation', 'organization') ->
     #{
         source =>  binding ,
         rules => [
@@ -269,7 +453,7 @@ request_param_info('GetOrganisation', 'organisation') ->
         ]
     };
 
-request_param_info('GetPipelineBranchByOrg', 'organisation') ->
+request_param_info('GetPipeline', 'organization') ->
     #{
         source =>  binding ,
         rules => [
@@ -278,7 +462,7 @@ request_param_info('GetPipelineBranchByOrg', 'organisation') ->
         ]
     };
 
-request_param_info('GetPipelineBranchByOrg', 'pipeline') ->
+request_param_info('GetPipeline', 'pipeline') ->
     #{
         source =>  binding ,
         rules => [
@@ -287,7 +471,7 @@ request_param_info('GetPipelineBranchByOrg', 'pipeline') ->
         ]
     };
 
-request_param_info('GetPipelineBranchByOrg', 'branch') ->
+request_param_info('GetPipelineActivities', 'organization') ->
     #{
         source =>  binding ,
         rules => [
@@ -296,7 +480,7 @@ request_param_info('GetPipelineBranchByOrg', 'branch') ->
         ]
     };
 
-request_param_info('GetPipelineBranchesByOrg', 'organisation') ->
+request_param_info('GetPipelineActivities', 'pipeline') ->
     #{
         source =>  binding ,
         rules => [
@@ -305,7 +489,7 @@ request_param_info('GetPipelineBranchesByOrg', 'organisation') ->
         ]
     };
 
-request_param_info('GetPipelineBranchesByOrg', 'pipeline') ->
+request_param_info('GetPipelineBranch', 'organization') ->
     #{
         source =>  binding ,
         rules => [
@@ -314,7 +498,7 @@ request_param_info('GetPipelineBranchesByOrg', 'pipeline') ->
         ]
     };
 
-request_param_info('GetPipelineByOrg', 'organisation') ->
+request_param_info('GetPipelineBranch', 'pipeline') ->
     #{
         source =>  binding ,
         rules => [
@@ -323,7 +507,7 @@ request_param_info('GetPipelineByOrg', 'organisation') ->
         ]
     };
 
-request_param_info('GetPipelineByOrg', 'pipeline') ->
+request_param_info('GetPipelineBranch', 'branch') ->
     #{
         source =>  binding ,
         rules => [
@@ -332,7 +516,7 @@ request_param_info('GetPipelineByOrg', 'pipeline') ->
         ]
     };
 
-request_param_info('GetPipelineFolderByOrg', 'organisation') ->
+request_param_info('GetPipelineBranchRun', 'organization') ->
     #{
         source =>  binding ,
         rules => [
@@ -341,7 +525,7 @@ request_param_info('GetPipelineFolderByOrg', 'organisation') ->
         ]
     };
 
-request_param_info('GetPipelineFolderByOrg', 'folder') ->
+request_param_info('GetPipelineBranchRun', 'pipeline') ->
     #{
         source =>  binding ,
         rules => [
@@ -350,7 +534,7 @@ request_param_info('GetPipelineFolderByOrg', 'folder') ->
         ]
     };
 
-request_param_info('GetPipelineFolderByOrg_0', 'organisation') ->
+request_param_info('GetPipelineBranchRun', 'branch') ->
     #{
         source =>  binding ,
         rules => [
@@ -359,7 +543,7 @@ request_param_info('GetPipelineFolderByOrg_0', 'organisation') ->
         ]
     };
 
-request_param_info('GetPipelineFolderByOrg_0', 'pipeline') ->
+request_param_info('GetPipelineBranchRun', 'run') ->
     #{
         source =>  binding ,
         rules => [
@@ -368,7 +552,7 @@ request_param_info('GetPipelineFolderByOrg_0', 'pipeline') ->
         ]
     };
 
-request_param_info('GetPipelineFolderByOrg_0', 'folder') ->
+request_param_info('GetPipelineBranches', 'organization') ->
     #{
         source =>  binding ,
         rules => [
@@ -377,7 +561,7 @@ request_param_info('GetPipelineFolderByOrg_0', 'folder') ->
         ]
     };
 
-request_param_info('GetPipelinesByOrg', 'organisation') ->
+request_param_info('GetPipelineBranches', 'pipeline') ->
     #{
         source =>  binding ,
         rules => [
@@ -386,7 +570,502 @@ request_param_info('GetPipelinesByOrg', 'organisation') ->
         ]
     };
 
-request_param_info('GetUser', 'organisation') ->
+request_param_info('GetPipelineFolder', 'organization') ->
+    #{
+        source =>  binding ,
+        rules => [
+            {type, 'binary'},
+            required
+        ]
+    };
+
+request_param_info('GetPipelineFolder', 'folder') ->
+    #{
+        source =>  binding ,
+        rules => [
+            {type, 'binary'},
+            required
+        ]
+    };
+
+request_param_info('GetPipelineFolderPipeline', 'organization') ->
+    #{
+        source =>  binding ,
+        rules => [
+            {type, 'binary'},
+            required
+        ]
+    };
+
+request_param_info('GetPipelineFolderPipeline', 'pipeline') ->
+    #{
+        source =>  binding ,
+        rules => [
+            {type, 'binary'},
+            required
+        ]
+    };
+
+request_param_info('GetPipelineFolderPipeline', 'folder') ->
+    #{
+        source =>  binding ,
+        rules => [
+            {type, 'binary'},
+            required
+        ]
+    };
+
+request_param_info('GetPipelineQueue', 'organization') ->
+    #{
+        source =>  binding ,
+        rules => [
+            {type, 'binary'},
+            required
+        ]
+    };
+
+request_param_info('GetPipelineQueue', 'pipeline') ->
+    #{
+        source =>  binding ,
+        rules => [
+            {type, 'binary'},
+            required
+        ]
+    };
+
+request_param_info('GetPipelineRun', 'organization') ->
+    #{
+        source =>  binding ,
+        rules => [
+            {type, 'binary'},
+            required
+        ]
+    };
+
+request_param_info('GetPipelineRun', 'pipeline') ->
+    #{
+        source =>  binding ,
+        rules => [
+            {type, 'binary'},
+            required
+        ]
+    };
+
+request_param_info('GetPipelineRun', 'run') ->
+    #{
+        source =>  binding ,
+        rules => [
+            {type, 'binary'},
+            required
+        ]
+    };
+
+request_param_info('GetPipelineRunLog', 'organization') ->
+    #{
+        source =>  binding ,
+        rules => [
+            {type, 'binary'},
+            required
+        ]
+    };
+
+request_param_info('GetPipelineRunLog', 'pipeline') ->
+    #{
+        source =>  binding ,
+        rules => [
+            {type, 'binary'},
+            required
+        ]
+    };
+
+request_param_info('GetPipelineRunLog', 'run') ->
+    #{
+        source =>  binding ,
+        rules => [
+            {type, 'binary'},
+            required
+        ]
+    };
+
+request_param_info('GetPipelineRunLog', 'start') ->
+    #{
+        source => qs_val  ,
+        rules => [
+            {type, 'integer'},
+            not_required
+        ]
+    };
+
+request_param_info('GetPipelineRunLog', 'download') ->
+    #{
+        source => qs_val  ,
+        rules => [
+            {type, 'boolean'},
+            not_required
+        ]
+    };
+
+request_param_info('GetPipelineRunNode', 'organization') ->
+    #{
+        source =>  binding ,
+        rules => [
+            {type, 'binary'},
+            required
+        ]
+    };
+
+request_param_info('GetPipelineRunNode', 'pipeline') ->
+    #{
+        source =>  binding ,
+        rules => [
+            {type, 'binary'},
+            required
+        ]
+    };
+
+request_param_info('GetPipelineRunNode', 'run') ->
+    #{
+        source =>  binding ,
+        rules => [
+            {type, 'binary'},
+            required
+        ]
+    };
+
+request_param_info('GetPipelineRunNode', 'node') ->
+    #{
+        source =>  binding ,
+        rules => [
+            {type, 'binary'},
+            required
+        ]
+    };
+
+request_param_info('GetPipelineRunNodeStep', 'organization') ->
+    #{
+        source =>  binding ,
+        rules => [
+            {type, 'binary'},
+            required
+        ]
+    };
+
+request_param_info('GetPipelineRunNodeStep', 'pipeline') ->
+    #{
+        source =>  binding ,
+        rules => [
+            {type, 'binary'},
+            required
+        ]
+    };
+
+request_param_info('GetPipelineRunNodeStep', 'run') ->
+    #{
+        source =>  binding ,
+        rules => [
+            {type, 'binary'},
+            required
+        ]
+    };
+
+request_param_info('GetPipelineRunNodeStep', 'node') ->
+    #{
+        source =>  binding ,
+        rules => [
+            {type, 'binary'},
+            required
+        ]
+    };
+
+request_param_info('GetPipelineRunNodeStep', 'step') ->
+    #{
+        source =>  binding ,
+        rules => [
+            {type, 'binary'},
+            required
+        ]
+    };
+
+request_param_info('GetPipelineRunNodeStepLog', 'organization') ->
+    #{
+        source =>  binding ,
+        rules => [
+            {type, 'binary'},
+            required
+        ]
+    };
+
+request_param_info('GetPipelineRunNodeStepLog', 'pipeline') ->
+    #{
+        source =>  binding ,
+        rules => [
+            {type, 'binary'},
+            required
+        ]
+    };
+
+request_param_info('GetPipelineRunNodeStepLog', 'run') ->
+    #{
+        source =>  binding ,
+        rules => [
+            {type, 'binary'},
+            required
+        ]
+    };
+
+request_param_info('GetPipelineRunNodeStepLog', 'node') ->
+    #{
+        source =>  binding ,
+        rules => [
+            {type, 'binary'},
+            required
+        ]
+    };
+
+request_param_info('GetPipelineRunNodeStepLog', 'step') ->
+    #{
+        source =>  binding ,
+        rules => [
+            {type, 'binary'},
+            required
+        ]
+    };
+
+request_param_info('GetPipelineRunNodeSteps', 'organization') ->
+    #{
+        source =>  binding ,
+        rules => [
+            {type, 'binary'},
+            required
+        ]
+    };
+
+request_param_info('GetPipelineRunNodeSteps', 'pipeline') ->
+    #{
+        source =>  binding ,
+        rules => [
+            {type, 'binary'},
+            required
+        ]
+    };
+
+request_param_info('GetPipelineRunNodeSteps', 'run') ->
+    #{
+        source =>  binding ,
+        rules => [
+            {type, 'binary'},
+            required
+        ]
+    };
+
+request_param_info('GetPipelineRunNodeSteps', 'node') ->
+    #{
+        source =>  binding ,
+        rules => [
+            {type, 'binary'},
+            required
+        ]
+    };
+
+request_param_info('GetPipelineRunNodes', 'organization') ->
+    #{
+        source =>  binding ,
+        rules => [
+            {type, 'binary'},
+            required
+        ]
+    };
+
+request_param_info('GetPipelineRunNodes', 'pipeline') ->
+    #{
+        source =>  binding ,
+        rules => [
+            {type, 'binary'},
+            required
+        ]
+    };
+
+request_param_info('GetPipelineRunNodes', 'run') ->
+    #{
+        source =>  binding ,
+        rules => [
+            {type, 'binary'},
+            required
+        ]
+    };
+
+request_param_info('GetPipelineRuns', 'organization') ->
+    #{
+        source =>  binding ,
+        rules => [
+            {type, 'binary'},
+            required
+        ]
+    };
+
+request_param_info('GetPipelineRuns', 'pipeline') ->
+    #{
+        source =>  binding ,
+        rules => [
+            {type, 'binary'},
+            required
+        ]
+    };
+
+request_param_info('GetPipelines', 'organization') ->
+    #{
+        source =>  binding ,
+        rules => [
+            {type, 'binary'},
+            required
+        ]
+    };
+
+request_param_info('GetSCM', 'organization') ->
+    #{
+        source =>  binding ,
+        rules => [
+            {type, 'binary'},
+            required
+        ]
+    };
+
+request_param_info('GetSCM', 'scm') ->
+    #{
+        source =>  binding ,
+        rules => [
+            {type, 'binary'},
+            required
+        ]
+    };
+
+request_param_info('GetSCMOrganisationRepositories', 'organization') ->
+    #{
+        source =>  binding ,
+        rules => [
+            {type, 'binary'},
+            required
+        ]
+    };
+
+request_param_info('GetSCMOrganisationRepositories', 'scm') ->
+    #{
+        source =>  binding ,
+        rules => [
+            {type, 'binary'},
+            required
+        ]
+    };
+
+request_param_info('GetSCMOrganisationRepositories', 'scmOrganisation') ->
+    #{
+        source =>  binding ,
+        rules => [
+            {type, 'binary'},
+            required
+        ]
+    };
+
+request_param_info('GetSCMOrganisationRepositories', 'credentialId') ->
+    #{
+        source => qs_val  ,
+        rules => [
+            {type, 'binary'},
+            not_required
+        ]
+    };
+
+request_param_info('GetSCMOrganisationRepositories', 'pageSize') ->
+    #{
+        source => qs_val  ,
+        rules => [
+            {type, 'integer'},
+            not_required
+        ]
+    };
+
+request_param_info('GetSCMOrganisationRepositories', 'pageNumber') ->
+    #{
+        source => qs_val  ,
+        rules => [
+            {type, 'integer'},
+            not_required
+        ]
+    };
+
+request_param_info('GetSCMOrganisationRepository', 'organization') ->
+    #{
+        source =>  binding ,
+        rules => [
+            {type, 'binary'},
+            required
+        ]
+    };
+
+request_param_info('GetSCMOrganisationRepository', 'scm') ->
+    #{
+        source =>  binding ,
+        rules => [
+            {type, 'binary'},
+            required
+        ]
+    };
+
+request_param_info('GetSCMOrganisationRepository', 'scmOrganisation') ->
+    #{
+        source =>  binding ,
+        rules => [
+            {type, 'binary'},
+            required
+        ]
+    };
+
+request_param_info('GetSCMOrganisationRepository', 'repository') ->
+    #{
+        source =>  binding ,
+        rules => [
+            {type, 'binary'},
+            required
+        ]
+    };
+
+request_param_info('GetSCMOrganisationRepository', 'credentialId') ->
+    #{
+        source => qs_val  ,
+        rules => [
+            {type, 'binary'},
+            not_required
+        ]
+    };
+
+request_param_info('GetSCMOrganisations', 'organization') ->
+    #{
+        source =>  binding ,
+        rules => [
+            {type, 'binary'},
+            required
+        ]
+    };
+
+request_param_info('GetSCMOrganisations', 'scm') ->
+    #{
+        source =>  binding ,
+        rules => [
+            {type, 'binary'},
+            required
+        ]
+    };
+
+request_param_info('GetSCMOrganisations', 'credentialId') ->
+    #{
+        source => qs_val  ,
+        rules => [
+            {type, 'binary'},
+            not_required
+        ]
+    };
+
+request_param_info('GetUser', 'organization') ->
     #{
         source =>  binding ,
         rules => [
@@ -404,12 +1083,138 @@ request_param_info('GetUser', 'user') ->
         ]
     };
 
-request_param_info('GetUsers', 'organisation') ->
+request_param_info('GetUserFavorites', 'user') ->
     #{
         source =>  binding ,
         rules => [
             {type, 'binary'},
             required
+        ]
+    };
+
+request_param_info('GetUsers', 'organization') ->
+    #{
+        source =>  binding ,
+        rules => [
+            {type, 'binary'},
+            required
+        ]
+    };
+
+request_param_info('PostPipelineRun', 'organization') ->
+    #{
+        source =>  binding ,
+        rules => [
+            {type, 'binary'},
+            required
+        ]
+    };
+
+request_param_info('PostPipelineRun', 'pipeline') ->
+    #{
+        source =>  binding ,
+        rules => [
+            {type, 'binary'},
+            required
+        ]
+    };
+
+request_param_info('PostPipelineRun', 'run') ->
+    #{
+        source =>  binding ,
+        rules => [
+            {type, 'binary'},
+            required
+        ]
+    };
+
+request_param_info('PostPipelineRuns', 'organization') ->
+    #{
+        source =>  binding ,
+        rules => [
+            {type, 'binary'},
+            required
+        ]
+    };
+
+request_param_info('PostPipelineRuns', 'pipeline') ->
+    #{
+        source =>  binding ,
+        rules => [
+            {type, 'binary'},
+            required
+        ]
+    };
+
+request_param_info('PutPipelineFavorite', 'organization') ->
+    #{
+        source =>  binding ,
+        rules => [
+            {type, 'binary'},
+            required
+        ]
+    };
+
+request_param_info('PutPipelineFavorite', 'pipeline') ->
+    #{
+        source =>  binding ,
+        rules => [
+            {type, 'binary'},
+            required
+        ]
+    };
+
+request_param_info('PutPipelineFavorite', 'Body') ->
+    #{
+        source =>   body,
+        rules => [
+            schema,
+            required
+        ]
+    };
+
+request_param_info('PutPipelineRun', 'organization') ->
+    #{
+        source =>  binding ,
+        rules => [
+            {type, 'binary'},
+            required
+        ]
+    };
+
+request_param_info('PutPipelineRun', 'pipeline') ->
+    #{
+        source =>  binding ,
+        rules => [
+            {type, 'binary'},
+            required
+        ]
+    };
+
+request_param_info('PutPipelineRun', 'run') ->
+    #{
+        source =>  binding ,
+        rules => [
+            {type, 'binary'},
+            required
+        ]
+    };
+
+request_param_info('PutPipelineRun', 'blocking') ->
+    #{
+        source => qs_val  ,
+        rules => [
+            {type, 'binary'},
+            not_required
+        ]
+    };
+
+request_param_info('PutPipelineRun', 'timeOutInSecs') ->
+    #{
+        source => qs_val  ,
+        rules => [
+            {type, 'integer'},
+            not_required
         ]
     };
 
@@ -422,7 +1227,7 @@ request_param_info('Search', 'q') ->
         ]
     };
 
-request_param_info('Search_0', 'q') ->
+request_param_info('SearchClasses', 'q') ->
     #{
         source => qs_val  ,
         rules => [
@@ -431,6 +1236,15 @@ request_param_info('Search_0', 'q') ->
         ]
     };
 
+
+request_param_info('GetComputer', 'depth') ->
+    #{
+        source => qs_val  ,
+        rules => [
+            {type, 'integer'},
+            required
+        ]
+    };
 
 request_param_info('GetJob', 'name') ->
     #{
@@ -812,8 +1626,15 @@ populate_request_param(OperationID, Name, Req0, ValidatorState) ->
 ) -> ok | no_return().
 
 
+validate_response('DeletePipelineQueueItem', 200, Body, ValidatorState) ->
+    validate_response_body('', '', Body, ValidatorState);
+validate_response('DeletePipelineQueueItem', 401, Body, ValidatorState) ->
+    validate_response_body('', '', Body, ValidatorState);
+validate_response('DeletePipelineQueueItem', 403, Body, ValidatorState) ->
+    validate_response_body('', '', Body, ValidatorState);
+
 validate_response('GetAuthenticatedUser', 200, Body, ValidatorState) ->
-    validate_response_body('swaggyjenkinsUser', 'swaggyjenkinsUser', Body, ValidatorState);
+    validate_response_body('User', 'User', Body, ValidatorState);
 validate_response('GetAuthenticatedUser', 401, Body, ValidatorState) ->
     validate_response_body('', '', Body, ValidatorState);
 validate_response('GetAuthenticatedUser', 403, Body, ValidatorState) ->
@@ -827,7 +1648,7 @@ validate_response('GetClasses', 403, Body, ValidatorState) ->
     validate_response_body('', '', Body, ValidatorState);
 
 validate_response('GetOrganisation', 200, Body, ValidatorState) ->
-    validate_response_body('swaggyjenkinsOrganisation', 'swaggyjenkinsOrganisation', Body, ValidatorState);
+    validate_response_body('Organisation', 'Organisation', Body, ValidatorState);
 validate_response('GetOrganisation', 401, Body, ValidatorState) ->
     validate_response_body('', '', Body, ValidatorState);
 validate_response('GetOrganisation', 403, Body, ValidatorState) ->
@@ -836,68 +1657,208 @@ validate_response('GetOrganisation', 404, Body, ValidatorState) ->
     validate_response_body('', '', Body, ValidatorState);
 
 validate_response('GetOrganisations', 200, Body, ValidatorState) ->
-    validate_response_body('getOrganisations', 'getOrganisations', Body, ValidatorState);
+    validate_response_body('Organisations', 'Organisations', Body, ValidatorState);
 validate_response('GetOrganisations', 401, Body, ValidatorState) ->
     validate_response_body('', '', Body, ValidatorState);
 validate_response('GetOrganisations', 403, Body, ValidatorState) ->
     validate_response_body('', '', Body, ValidatorState);
 
-validate_response('GetPipelineBranchByOrg', 200, Body, ValidatorState) ->
-    validate_response_body('iojenkinsblueoceanrestimplpipelineBranchImpl', 'iojenkinsblueoceanrestimplpipelineBranchImpl', Body, ValidatorState);
-validate_response('GetPipelineBranchByOrg', 401, Body, ValidatorState) ->
+validate_response('GetPipeline', 200, Body, ValidatorState) ->
+    validate_response_body('Pipeline', 'Pipeline', Body, ValidatorState);
+validate_response('GetPipeline', 401, Body, ValidatorState) ->
     validate_response_body('', '', Body, ValidatorState);
-validate_response('GetPipelineBranchByOrg', 403, Body, ValidatorState) ->
+validate_response('GetPipeline', 403, Body, ValidatorState) ->
     validate_response_body('', '', Body, ValidatorState);
-
-validate_response('GetPipelineBranchesByOrg', 200, Body, ValidatorState) ->
-    validate_response_body('getMultibranchPipeline', 'getMultibranchPipeline', Body, ValidatorState);
-validate_response('GetPipelineBranchesByOrg', 401, Body, ValidatorState) ->
-    validate_response_body('', '', Body, ValidatorState);
-validate_response('GetPipelineBranchesByOrg', 403, Body, ValidatorState) ->
+validate_response('GetPipeline', 404, Body, ValidatorState) ->
     validate_response_body('', '', Body, ValidatorState);
 
-validate_response('GetPipelineByOrg', 200, Body, ValidatorState) ->
-    validate_response_body('swaggyjenkinsPipeline', 'swaggyjenkinsPipeline', Body, ValidatorState);
-validate_response('GetPipelineByOrg', 401, Body, ValidatorState) ->
+validate_response('GetPipelineActivities', 200, Body, ValidatorState) ->
+    validate_response_body('PipelineActivities', 'PipelineActivities', Body, ValidatorState);
+validate_response('GetPipelineActivities', 401, Body, ValidatorState) ->
     validate_response_body('', '', Body, ValidatorState);
-validate_response('GetPipelineByOrg', 403, Body, ValidatorState) ->
-    validate_response_body('', '', Body, ValidatorState);
-validate_response('GetPipelineByOrg', 404, Body, ValidatorState) ->
+validate_response('GetPipelineActivities', 403, Body, ValidatorState) ->
     validate_response_body('', '', Body, ValidatorState);
 
-validate_response('GetPipelineFolderByOrg', 200, Body, ValidatorState) ->
-    validate_response_body('iojenkinsblueoceanserviceembeddedrestPipelineFolderImpl', 'iojenkinsblueoceanserviceembeddedrestPipelineFolderImpl', Body, ValidatorState);
-validate_response('GetPipelineFolderByOrg', 401, Body, ValidatorState) ->
+validate_response('GetPipelineBranch', 200, Body, ValidatorState) ->
+    validate_response_body('BranchImpl', 'BranchImpl', Body, ValidatorState);
+validate_response('GetPipelineBranch', 401, Body, ValidatorState) ->
     validate_response_body('', '', Body, ValidatorState);
-validate_response('GetPipelineFolderByOrg', 403, Body, ValidatorState) ->
-    validate_response_body('', '', Body, ValidatorState);
-
-validate_response('GetPipelineFolderByOrg_0', 200, Body, ValidatorState) ->
-    validate_response_body('iojenkinsblueoceanserviceembeddedrestPipelineImpl', 'iojenkinsblueoceanserviceembeddedrestPipelineImpl', Body, ValidatorState);
-validate_response('GetPipelineFolderByOrg_0', 401, Body, ValidatorState) ->
-    validate_response_body('', '', Body, ValidatorState);
-validate_response('GetPipelineFolderByOrg_0', 403, Body, ValidatorState) ->
+validate_response('GetPipelineBranch', 403, Body, ValidatorState) ->
     validate_response_body('', '', Body, ValidatorState);
 
-validate_response('GetPipelinesByOrg', 200, Body, ValidatorState) ->
-    validate_response_body('getPipelines', 'getPipelines', Body, ValidatorState);
-validate_response('GetPipelinesByOrg', 401, Body, ValidatorState) ->
+validate_response('GetPipelineBranchRun', 200, Body, ValidatorState) ->
+    validate_response_body('PipelineRun', 'PipelineRun', Body, ValidatorState);
+validate_response('GetPipelineBranchRun', 401, Body, ValidatorState) ->
     validate_response_body('', '', Body, ValidatorState);
-validate_response('GetPipelinesByOrg', 403, Body, ValidatorState) ->
+validate_response('GetPipelineBranchRun', 403, Body, ValidatorState) ->
+    validate_response_body('', '', Body, ValidatorState);
+
+validate_response('GetPipelineBranches', 200, Body, ValidatorState) ->
+    validate_response_body('MultibranchPipeline', 'MultibranchPipeline', Body, ValidatorState);
+validate_response('GetPipelineBranches', 401, Body, ValidatorState) ->
+    validate_response_body('', '', Body, ValidatorState);
+validate_response('GetPipelineBranches', 403, Body, ValidatorState) ->
+    validate_response_body('', '', Body, ValidatorState);
+
+validate_response('GetPipelineFolder', 200, Body, ValidatorState) ->
+    validate_response_body('PipelineFolderImpl', 'PipelineFolderImpl', Body, ValidatorState);
+validate_response('GetPipelineFolder', 401, Body, ValidatorState) ->
+    validate_response_body('', '', Body, ValidatorState);
+validate_response('GetPipelineFolder', 403, Body, ValidatorState) ->
+    validate_response_body('', '', Body, ValidatorState);
+
+validate_response('GetPipelineFolderPipeline', 200, Body, ValidatorState) ->
+    validate_response_body('PipelineImpl', 'PipelineImpl', Body, ValidatorState);
+validate_response('GetPipelineFolderPipeline', 401, Body, ValidatorState) ->
+    validate_response_body('', '', Body, ValidatorState);
+validate_response('GetPipelineFolderPipeline', 403, Body, ValidatorState) ->
+    validate_response_body('', '', Body, ValidatorState);
+
+validate_response('GetPipelineQueue', 200, Body, ValidatorState) ->
+    validate_response_body('PipelineQueue', 'PipelineQueue', Body, ValidatorState);
+validate_response('GetPipelineQueue', 401, Body, ValidatorState) ->
+    validate_response_body('', '', Body, ValidatorState);
+validate_response('GetPipelineQueue', 403, Body, ValidatorState) ->
+    validate_response_body('', '', Body, ValidatorState);
+
+validate_response('GetPipelineRun', 200, Body, ValidatorState) ->
+    validate_response_body('PipelineRun', 'PipelineRun', Body, ValidatorState);
+validate_response('GetPipelineRun', 401, Body, ValidatorState) ->
+    validate_response_body('', '', Body, ValidatorState);
+validate_response('GetPipelineRun', 403, Body, ValidatorState) ->
+    validate_response_body('', '', Body, ValidatorState);
+
+validate_response('GetPipelineRunLog', 200, Body, ValidatorState) ->
+    validate_response_body('binary', 'string', Body, ValidatorState);
+validate_response('GetPipelineRunLog', 401, Body, ValidatorState) ->
+    validate_response_body('', '', Body, ValidatorState);
+validate_response('GetPipelineRunLog', 403, Body, ValidatorState) ->
+    validate_response_body('', '', Body, ValidatorState);
+
+validate_response('GetPipelineRunNode', 200, Body, ValidatorState) ->
+    validate_response_body('PipelineRunNode', 'PipelineRunNode', Body, ValidatorState);
+validate_response('GetPipelineRunNode', 401, Body, ValidatorState) ->
+    validate_response_body('', '', Body, ValidatorState);
+validate_response('GetPipelineRunNode', 403, Body, ValidatorState) ->
+    validate_response_body('', '', Body, ValidatorState);
+
+validate_response('GetPipelineRunNodeStep', 200, Body, ValidatorState) ->
+    validate_response_body('PipelineStepImpl', 'PipelineStepImpl', Body, ValidatorState);
+validate_response('GetPipelineRunNodeStep', 401, Body, ValidatorState) ->
+    validate_response_body('', '', Body, ValidatorState);
+validate_response('GetPipelineRunNodeStep', 403, Body, ValidatorState) ->
+    validate_response_body('', '', Body, ValidatorState);
+
+validate_response('GetPipelineRunNodeStepLog', 200, Body, ValidatorState) ->
+    validate_response_body('binary', 'string', Body, ValidatorState);
+validate_response('GetPipelineRunNodeStepLog', 401, Body, ValidatorState) ->
+    validate_response_body('', '', Body, ValidatorState);
+validate_response('GetPipelineRunNodeStepLog', 403, Body, ValidatorState) ->
+    validate_response_body('', '', Body, ValidatorState);
+
+validate_response('GetPipelineRunNodeSteps', 200, Body, ValidatorState) ->
+    validate_response_body('PipelineRunNodeSteps', 'PipelineRunNodeSteps', Body, ValidatorState);
+validate_response('GetPipelineRunNodeSteps', 401, Body, ValidatorState) ->
+    validate_response_body('', '', Body, ValidatorState);
+validate_response('GetPipelineRunNodeSteps', 403, Body, ValidatorState) ->
+    validate_response_body('', '', Body, ValidatorState);
+
+validate_response('GetPipelineRunNodes', 200, Body, ValidatorState) ->
+    validate_response_body('PipelineRunNodes', 'PipelineRunNodes', Body, ValidatorState);
+validate_response('GetPipelineRunNodes', 401, Body, ValidatorState) ->
+    validate_response_body('', '', Body, ValidatorState);
+validate_response('GetPipelineRunNodes', 403, Body, ValidatorState) ->
+    validate_response_body('', '', Body, ValidatorState);
+
+validate_response('GetPipelineRuns', 200, Body, ValidatorState) ->
+    validate_response_body('PipelineRuns', 'PipelineRuns', Body, ValidatorState);
+validate_response('GetPipelineRuns', 401, Body, ValidatorState) ->
+    validate_response_body('', '', Body, ValidatorState);
+validate_response('GetPipelineRuns', 403, Body, ValidatorState) ->
+    validate_response_body('', '', Body, ValidatorState);
+
+validate_response('GetPipelines', 200, Body, ValidatorState) ->
+    validate_response_body('Pipelines', 'Pipelines', Body, ValidatorState);
+validate_response('GetPipelines', 401, Body, ValidatorState) ->
+    validate_response_body('', '', Body, ValidatorState);
+validate_response('GetPipelines', 403, Body, ValidatorState) ->
+    validate_response_body('', '', Body, ValidatorState);
+
+validate_response('GetSCM', 200, Body, ValidatorState) ->
+    validate_response_body('GithubScm', 'GithubScm', Body, ValidatorState);
+validate_response('GetSCM', 401, Body, ValidatorState) ->
+    validate_response_body('', '', Body, ValidatorState);
+validate_response('GetSCM', 403, Body, ValidatorState) ->
+    validate_response_body('', '', Body, ValidatorState);
+
+validate_response('GetSCMOrganisationRepositories', 200, Body, ValidatorState) ->
+    validate_response_body('ScmOrganisations', 'ScmOrganisations', Body, ValidatorState);
+validate_response('GetSCMOrganisationRepositories', 401, Body, ValidatorState) ->
+    validate_response_body('', '', Body, ValidatorState);
+validate_response('GetSCMOrganisationRepositories', 403, Body, ValidatorState) ->
+    validate_response_body('', '', Body, ValidatorState);
+
+validate_response('GetSCMOrganisationRepository', 200, Body, ValidatorState) ->
+    validate_response_body('ScmOrganisations', 'ScmOrganisations', Body, ValidatorState);
+validate_response('GetSCMOrganisationRepository', 401, Body, ValidatorState) ->
+    validate_response_body('', '', Body, ValidatorState);
+validate_response('GetSCMOrganisationRepository', 403, Body, ValidatorState) ->
+    validate_response_body('', '', Body, ValidatorState);
+
+validate_response('GetSCMOrganisations', 200, Body, ValidatorState) ->
+    validate_response_body('ScmOrganisations', 'ScmOrganisations', Body, ValidatorState);
+validate_response('GetSCMOrganisations', 401, Body, ValidatorState) ->
+    validate_response_body('', '', Body, ValidatorState);
+validate_response('GetSCMOrganisations', 403, Body, ValidatorState) ->
     validate_response_body('', '', Body, ValidatorState);
 
 validate_response('GetUser', 200, Body, ValidatorState) ->
-    validate_response_body('swaggyjenkinsUser', 'swaggyjenkinsUser', Body, ValidatorState);
+    validate_response_body('User', 'User', Body, ValidatorState);
 validate_response('GetUser', 401, Body, ValidatorState) ->
     validate_response_body('', '', Body, ValidatorState);
 validate_response('GetUser', 403, Body, ValidatorState) ->
     validate_response_body('', '', Body, ValidatorState);
 
+validate_response('GetUserFavorites', 200, Body, ValidatorState) ->
+    validate_response_body('UserFavorites', 'UserFavorites', Body, ValidatorState);
+validate_response('GetUserFavorites', 401, Body, ValidatorState) ->
+    validate_response_body('', '', Body, ValidatorState);
+validate_response('GetUserFavorites', 403, Body, ValidatorState) ->
+    validate_response_body('', '', Body, ValidatorState);
+
 validate_response('GetUsers', 200, Body, ValidatorState) ->
-    validate_response_body('swaggyjenkinsUser', 'swaggyjenkinsUser', Body, ValidatorState);
+    validate_response_body('User', 'User', Body, ValidatorState);
 validate_response('GetUsers', 401, Body, ValidatorState) ->
     validate_response_body('', '', Body, ValidatorState);
 validate_response('GetUsers', 403, Body, ValidatorState) ->
+    validate_response_body('', '', Body, ValidatorState);
+
+validate_response('PostPipelineRun', 200, Body, ValidatorState) ->
+    validate_response_body('QueueItemImpl', 'QueueItemImpl', Body, ValidatorState);
+validate_response('PostPipelineRun', 401, Body, ValidatorState) ->
+    validate_response_body('', '', Body, ValidatorState);
+validate_response('PostPipelineRun', 403, Body, ValidatorState) ->
+    validate_response_body('', '', Body, ValidatorState);
+
+validate_response('PostPipelineRuns', 200, Body, ValidatorState) ->
+    validate_response_body('QueueItemImpl', 'QueueItemImpl', Body, ValidatorState);
+validate_response('PostPipelineRuns', 401, Body, ValidatorState) ->
+    validate_response_body('', '', Body, ValidatorState);
+validate_response('PostPipelineRuns', 403, Body, ValidatorState) ->
+    validate_response_body('', '', Body, ValidatorState);
+
+validate_response('PutPipelineFavorite', 200, Body, ValidatorState) ->
+    validate_response_body('FavoriteImpl', 'FavoriteImpl', Body, ValidatorState);
+validate_response('PutPipelineFavorite', 401, Body, ValidatorState) ->
+    validate_response_body('', '', Body, ValidatorState);
+validate_response('PutPipelineFavorite', 403, Body, ValidatorState) ->
+    validate_response_body('', '', Body, ValidatorState);
+
+validate_response('PutPipelineRun', 200, Body, ValidatorState) ->
+    validate_response_body('PipelineRun', 'PipelineRun', Body, ValidatorState);
+validate_response('PutPipelineRun', 401, Body, ValidatorState) ->
+    validate_response_body('', '', Body, ValidatorState);
+validate_response('PutPipelineRun', 403, Body, ValidatorState) ->
     validate_response_body('', '', Body, ValidatorState);
 
 validate_response('Search', 200, Body, ValidatorState) ->
@@ -907,37 +1868,37 @@ validate_response('Search', 401, Body, ValidatorState) ->
 validate_response('Search', 403, Body, ValidatorState) ->
     validate_response_body('', '', Body, ValidatorState);
 
-validate_response('Search_0', 200, Body, ValidatorState) ->
+validate_response('SearchClasses', 200, Body, ValidatorState) ->
     validate_response_body('binary', 'string', Body, ValidatorState);
-validate_response('Search_0', 401, Body, ValidatorState) ->
+validate_response('SearchClasses', 401, Body, ValidatorState) ->
     validate_response_body('', '', Body, ValidatorState);
-validate_response('Search_0', 403, Body, ValidatorState) ->
+validate_response('SearchClasses', 403, Body, ValidatorState) ->
     validate_response_body('', '', Body, ValidatorState);
 
 
 validate_response('GetComputer', 200, Body, ValidatorState) ->
-    validate_response_body('hudsonmodelComputerSet', 'hudsonmodelComputerSet', Body, ValidatorState);
+    validate_response_body('ComputerSet', 'ComputerSet', Body, ValidatorState);
 validate_response('GetComputer', 401, Body, ValidatorState) ->
     validate_response_body('', '', Body, ValidatorState);
 validate_response('GetComputer', 403, Body, ValidatorState) ->
     validate_response_body('', '', Body, ValidatorState);
 
 validate_response('GetCrumb', 200, Body, ValidatorState) ->
-    validate_response_body('hudsonsecuritycsrfDefaultCrumbIssuer', 'hudsonsecuritycsrfDefaultCrumbIssuer', Body, ValidatorState);
+    validate_response_body('DefaultCrumbIssuer', 'DefaultCrumbIssuer', Body, ValidatorState);
 validate_response('GetCrumb', 401, Body, ValidatorState) ->
     validate_response_body('', '', Body, ValidatorState);
 validate_response('GetCrumb', 403, Body, ValidatorState) ->
     validate_response_body('', '', Body, ValidatorState);
 
 validate_response('GetJenkins', 200, Body, ValidatorState) ->
-    validate_response_body('hudsonmodelHudson', 'hudsonmodelHudson', Body, ValidatorState);
+    validate_response_body('Hudson', 'Hudson', Body, ValidatorState);
 validate_response('GetJenkins', 401, Body, ValidatorState) ->
     validate_response_body('', '', Body, ValidatorState);
 validate_response('GetJenkins', 403, Body, ValidatorState) ->
     validate_response_body('', '', Body, ValidatorState);
 
 validate_response('GetJob', 200, Body, ValidatorState) ->
-    validate_response_body('hudsonmodelFreeStyleProject', 'hudsonmodelFreeStyleProject', Body, ValidatorState);
+    validate_response_body('FreeStyleProject', 'FreeStyleProject', Body, ValidatorState);
 validate_response('GetJob', 401, Body, ValidatorState) ->
     validate_response_body('', '', Body, ValidatorState);
 validate_response('GetJob', 403, Body, ValidatorState) ->
@@ -955,7 +1916,7 @@ validate_response('GetJobConfig', 404, Body, ValidatorState) ->
     validate_response_body('', '', Body, ValidatorState);
 
 validate_response('GetJobLastBuild', 200, Body, ValidatorState) ->
-    validate_response_body('hudsonmodelFreeStyleBuild', 'hudsonmodelFreeStyleBuild', Body, ValidatorState);
+    validate_response_body('FreeStyleBuild', 'FreeStyleBuild', Body, ValidatorState);
 validate_response('GetJobLastBuild', 401, Body, ValidatorState) ->
     validate_response_body('', '', Body, ValidatorState);
 validate_response('GetJobLastBuild', 403, Body, ValidatorState) ->
@@ -973,21 +1934,21 @@ validate_response('GetJobProgressiveText', 404, Body, ValidatorState) ->
     validate_response_body('', '', Body, ValidatorState);
 
 validate_response('GetQueue', 200, Body, ValidatorState) ->
-    validate_response_body('hudsonmodelQueue', 'hudsonmodelQueue', Body, ValidatorState);
+    validate_response_body('Queue', 'Queue', Body, ValidatorState);
 validate_response('GetQueue', 401, Body, ValidatorState) ->
     validate_response_body('', '', Body, ValidatorState);
 validate_response('GetQueue', 403, Body, ValidatorState) ->
     validate_response_body('', '', Body, ValidatorState);
 
 validate_response('GetQueueItem', 200, Body, ValidatorState) ->
-    validate_response_body('hudsonmodelQueue', 'hudsonmodelQueue', Body, ValidatorState);
+    validate_response_body('Queue', 'Queue', Body, ValidatorState);
 validate_response('GetQueueItem', 401, Body, ValidatorState) ->
     validate_response_body('', '', Body, ValidatorState);
 validate_response('GetQueueItem', 403, Body, ValidatorState) ->
     validate_response_body('', '', Body, ValidatorState);
 
 validate_response('GetView', 200, Body, ValidatorState) ->
-    validate_response_body('hudsonmodelListView', 'hudsonmodelListView', Body, ValidatorState);
+    validate_response_body('ListView', 'ListView', Body, ValidatorState);
 validate_response('GetView', 401, Body, ValidatorState) ->
     validate_response_body('', '', Body, ValidatorState);
 validate_response('GetView', 403, Body, ValidatorState) ->

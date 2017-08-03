@@ -12,15 +12,16 @@
 
 package io.swagger.client.api
 
-import io.swagger.client.model.HudsonmodelComputerSet
-import io.swagger.client.model.HudsonmodelFreeStyleBuild
-import io.swagger.client.model.HudsonmodelFreeStyleProject
-import io.swagger.client.model.HudsonmodelHudson
-import io.swagger.client.model.HudsonmodelListView
-import io.swagger.client.model.HudsonmodelQueue
-import io.swagger.client.model.HudsonsecuritycsrfDefaultCrumbIssuer
-import io.swagger.client.ApiInvoker
-import io.swagger.client.ApiException
+import java.text.SimpleDateFormat
+
+import io.swagger.client.model.ComputerSet
+import io.swagger.client.model.DefaultCrumbIssuer
+import io.swagger.client.model.FreeStyleBuild
+import io.swagger.client.model.FreeStyleProject
+import io.swagger.client.model.Hudson
+import io.swagger.client.model.ListView
+import io.swagger.client.model.Queue
+import io.swagger.client.{ApiInvoker, ApiException}
 
 import com.sun.jersey.multipart.FormDataMultiPart
 import com.sun.jersey.multipart.file.FileDataBodyPart
@@ -32,167 +33,137 @@ import java.util.Date
 
 import scala.collection.mutable.HashMap
 
+import com.wordnik.swagger.client._
+import scala.concurrent.Future
+import collection.mutable
+
+import java.net.URI
+
+import com.wordnik.swagger.client.ClientResponseReaders.Json4sFormatsReader._
+import com.wordnik.swagger.client.RequestWriters.Json4sFormatsWriter._
+
+import scala.concurrent.ExecutionContext.Implicits.global
+import scala.concurrent._
+import scala.concurrent.duration._
+import scala.util.{Failure, Success, Try}
+
 class RemoteAccessApi(val defBasePath: String = "http://localhost",
                         defApiInvoker: ApiInvoker = ApiInvoker) {
+
+  implicit val formats = new org.json4s.DefaultFormats {
+    override def dateFormatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS+0000")
+  }
+  implicit val stringReader = ClientResponseReaders.StringReader
+  implicit val unitReader = ClientResponseReaders.UnitReader
+  implicit val jvalueReader = ClientResponseReaders.JValueReader
+  implicit val jsonReader = JsonFormatsReader
+  implicit val stringWriter = RequestWriters.StringWriter
+  implicit val jsonWriter = JsonFormatsWriter
+
   var basePath = defBasePath
   var apiInvoker = defApiInvoker
 
-  def addHeader(key: String, value: String) = apiInvoker.defaultHeaders += key -> value 
+  def addHeader(key: String, value: String) = apiInvoker.defaultHeaders += key -> value
+
+  val config = SwaggerConfig.forUrl(new URI(defBasePath))
+  val client = new RestClient(config)
+  val helper = new RemoteAccessApiAsyncHelper(client, config)
 
   /**
    * 
    * Retrieve computer details
-   * @return HudsonmodelComputerSet
+   * @param depth Recursion depth in response model 
+   * @return ComputerSet
    */
-  def getComputer(): Option[HudsonmodelComputerSet] = {
-    // create path and map variables
-    val path = "/computer/api/json?depth=1".replaceAll("\\{format\\}", "json")
-
-    val contentTypes = List("application/json")
-    val contentType = contentTypes(0)
-
-    val queryParams = new HashMap[String, String]
-    val headerParams = new HashMap[String, String]
-    val formParams = new HashMap[String, String]
-
-    
-
-    var postBody: AnyRef = null
-
-    if (contentType.startsWith("multipart/form-data")) {
-      val mp = new FormDataMultiPart
-      postBody = mp
-    } else {
-    }
-
-    try {
-      apiInvoker.invokeApi(basePath, path, "GET", queryParams.toMap, formParams.toMap, postBody, headerParams.toMap, contentType) match {
-        case s: String =>
-           Some(apiInvoker.deserialize(s, "", classOf[HudsonmodelComputerSet]).asInstanceOf[HudsonmodelComputerSet])
-        case _ => None
-      }
-    } catch {
-      case ex: ApiException if ex.code == 404 => None
-      case ex: ApiException => throw ex
+  def getComputer(depth: Integer): Option[ComputerSet] = {
+    val await = Try(Await.result(getComputerAsync(depth), Duration.Inf))
+    await match {
+      case Success(i) => Some(await.get)
+      case Failure(t) => None
     }
   }
+
+  /**
+   *  asynchronously
+   * Retrieve computer details
+   * @param depth Recursion depth in response model 
+   * @return Future(ComputerSet)
+  */
+  def getComputerAsync(depth: Integer): Future[ComputerSet] = {
+      helper.getComputer(depth)
+  }
+
 
   /**
    * 
    * Retrieve CSRF protection token
-   * @return HudsonsecuritycsrfDefaultCrumbIssuer
+   * @return DefaultCrumbIssuer
    */
-  def getCrumb(): Option[HudsonsecuritycsrfDefaultCrumbIssuer] = {
-    // create path and map variables
-    val path = "/crumbIssuer/api/json".replaceAll("\\{format\\}", "json")
-
-    val contentTypes = List("application/json")
-    val contentType = contentTypes(0)
-
-    val queryParams = new HashMap[String, String]
-    val headerParams = new HashMap[String, String]
-    val formParams = new HashMap[String, String]
-
-    
-
-    var postBody: AnyRef = null
-
-    if (contentType.startsWith("multipart/form-data")) {
-      val mp = new FormDataMultiPart
-      postBody = mp
-    } else {
-    }
-
-    try {
-      apiInvoker.invokeApi(basePath, path, "GET", queryParams.toMap, formParams.toMap, postBody, headerParams.toMap, contentType) match {
-        case s: String =>
-           Some(apiInvoker.deserialize(s, "", classOf[HudsonsecuritycsrfDefaultCrumbIssuer]).asInstanceOf[HudsonsecuritycsrfDefaultCrumbIssuer])
-        case _ => None
-      }
-    } catch {
-      case ex: ApiException if ex.code == 404 => None
-      case ex: ApiException => throw ex
+  def getCrumb(): Option[DefaultCrumbIssuer] = {
+    val await = Try(Await.result(getCrumbAsync(), Duration.Inf))
+    await match {
+      case Success(i) => Some(await.get)
+      case Failure(t) => None
     }
   }
 
   /**
+   *  asynchronously
+   * Retrieve CSRF protection token
+   * @return Future(DefaultCrumbIssuer)
+  */
+  def getCrumbAsync(): Future[DefaultCrumbIssuer] = {
+      helper.getCrumb()
+  }
+
+
+  /**
    * 
    * Retrieve Jenkins details
-   * @return HudsonmodelHudson
+   * @return Hudson
    */
-  def getJenkins(): Option[HudsonmodelHudson] = {
-    // create path and map variables
-    val path = "/api/json".replaceAll("\\{format\\}", "json")
-
-    val contentTypes = List("application/json")
-    val contentType = contentTypes(0)
-
-    val queryParams = new HashMap[String, String]
-    val headerParams = new HashMap[String, String]
-    val formParams = new HashMap[String, String]
-
-    
-
-    var postBody: AnyRef = null
-
-    if (contentType.startsWith("multipart/form-data")) {
-      val mp = new FormDataMultiPart
-      postBody = mp
-    } else {
-    }
-
-    try {
-      apiInvoker.invokeApi(basePath, path, "GET", queryParams.toMap, formParams.toMap, postBody, headerParams.toMap, contentType) match {
-        case s: String =>
-           Some(apiInvoker.deserialize(s, "", classOf[HudsonmodelHudson]).asInstanceOf[HudsonmodelHudson])
-        case _ => None
-      }
-    } catch {
-      case ex: ApiException if ex.code == 404 => None
-      case ex: ApiException => throw ex
+  def getJenkins(): Option[Hudson] = {
+    val await = Try(Await.result(getJenkinsAsync(), Duration.Inf))
+    await match {
+      case Success(i) => Some(await.get)
+      case Failure(t) => None
     }
   }
+
+  /**
+   *  asynchronously
+   * Retrieve Jenkins details
+   * @return Future(Hudson)
+  */
+  def getJenkinsAsync(): Future[Hudson] = {
+      helper.getJenkins()
+  }
+
 
   /**
    * 
    * Retrieve job details
    * @param name Name of the job 
-   * @return HudsonmodelFreeStyleProject
+   * @return FreeStyleProject
    */
-  def getJob(name: String): Option[HudsonmodelFreeStyleProject] = {
-    // create path and map variables
-    val path = "/job/{name}/api/json".replaceAll("\\{format\\}", "json").replaceAll("\\{" + "name" + "\\}",apiInvoker.escape(name))
-
-    val contentTypes = List("application/json")
-    val contentType = contentTypes(0)
-
-    val queryParams = new HashMap[String, String]
-    val headerParams = new HashMap[String, String]
-    val formParams = new HashMap[String, String]
-
-    if (name == null) throw new Exception("Missing required parameter 'name' when calling RemoteAccessApi->getJob")
-
-    
-
-    var postBody: AnyRef = null
-
-    if (contentType.startsWith("multipart/form-data")) {
-      val mp = new FormDataMultiPart
-      postBody = mp
-    } else {
-    }
-
-    try {
-      apiInvoker.invokeApi(basePath, path, "GET", queryParams.toMap, formParams.toMap, postBody, headerParams.toMap, contentType) match {
-        case s: String =>
-           Some(apiInvoker.deserialize(s, "", classOf[HudsonmodelFreeStyleProject]).asInstanceOf[HudsonmodelFreeStyleProject])
-        case _ => None
-      }
-    } catch {
-      case ex: ApiException if ex.code == 404 => None
-      case ex: ApiException => throw ex
+  def getJob(name: String): Option[FreeStyleProject] = {
+    val await = Try(Await.result(getJobAsync(name), Duration.Inf))
+    await match {
+      case Success(i) => Some(await.get)
+      case Failure(t) => None
     }
   }
+
+  /**
+   *  asynchronously
+   * Retrieve job details
+   * @param name Name of the job 
+   * @return Future(FreeStyleProject)
+  */
+  def getJobAsync(name: String): Future[FreeStyleProject] = {
+      helper.getJob(name)
+  }
+
 
   /**
    * 
@@ -201,80 +172,48 @@ class RemoteAccessApi(val defBasePath: String = "http://localhost",
    * @return String
    */
   def getJobConfig(name: String): Option[String] = {
-    // create path and map variables
-    val path = "/job/{name}/config.xml".replaceAll("\\{format\\}", "json").replaceAll("\\{" + "name" + "\\}",apiInvoker.escape(name))
-
-    val contentTypes = List("application/json")
-    val contentType = contentTypes(0)
-
-    val queryParams = new HashMap[String, String]
-    val headerParams = new HashMap[String, String]
-    val formParams = new HashMap[String, String]
-
-    if (name == null) throw new Exception("Missing required parameter 'name' when calling RemoteAccessApi->getJobConfig")
-
-    
-
-    var postBody: AnyRef = null
-
-    if (contentType.startsWith("multipart/form-data")) {
-      val mp = new FormDataMultiPart
-      postBody = mp
-    } else {
-    }
-
-    try {
-      apiInvoker.invokeApi(basePath, path, "GET", queryParams.toMap, formParams.toMap, postBody, headerParams.toMap, contentType) match {
-        case s: String =>
-           Some(apiInvoker.deserialize(s, "", classOf[String]).asInstanceOf[String])
-        case _ => None
-      }
-    } catch {
-      case ex: ApiException if ex.code == 404 => None
-      case ex: ApiException => throw ex
+    val await = Try(Await.result(getJobConfigAsync(name), Duration.Inf))
+    await match {
+      case Success(i) => Some(await.get)
+      case Failure(t) => None
     }
   }
+
+  /**
+   *  asynchronously
+   * Retrieve job configuration
+   * @param name Name of the job 
+   * @return Future(String)
+  */
+  def getJobConfigAsync(name: String): Future[String] = {
+      helper.getJobConfig(name)
+  }
+
 
   /**
    * 
    * Retrieve job&#39;s last build details
    * @param name Name of the job 
-   * @return HudsonmodelFreeStyleBuild
+   * @return FreeStyleBuild
    */
-  def getJobLastBuild(name: String): Option[HudsonmodelFreeStyleBuild] = {
-    // create path and map variables
-    val path = "/job/{name}/lastBuild/api/json".replaceAll("\\{format\\}", "json").replaceAll("\\{" + "name" + "\\}",apiInvoker.escape(name))
-
-    val contentTypes = List("application/json")
-    val contentType = contentTypes(0)
-
-    val queryParams = new HashMap[String, String]
-    val headerParams = new HashMap[String, String]
-    val formParams = new HashMap[String, String]
-
-    if (name == null) throw new Exception("Missing required parameter 'name' when calling RemoteAccessApi->getJobLastBuild")
-
-    
-
-    var postBody: AnyRef = null
-
-    if (contentType.startsWith("multipart/form-data")) {
-      val mp = new FormDataMultiPart
-      postBody = mp
-    } else {
-    }
-
-    try {
-      apiInvoker.invokeApi(basePath, path, "GET", queryParams.toMap, formParams.toMap, postBody, headerParams.toMap, contentType) match {
-        case s: String =>
-           Some(apiInvoker.deserialize(s, "", classOf[HudsonmodelFreeStyleBuild]).asInstanceOf[HudsonmodelFreeStyleBuild])
-        case _ => None
-      }
-    } catch {
-      case ex: ApiException if ex.code == 404 => None
-      case ex: ApiException => throw ex
+  def getJobLastBuild(name: String): Option[FreeStyleBuild] = {
+    val await = Try(Await.result(getJobLastBuildAsync(name), Duration.Inf))
+    await match {
+      case Success(i) => Some(await.get)
+      case Failure(t) => None
     }
   }
+
+  /**
+   *  asynchronously
+   * Retrieve job&#39;s last build details
+   * @param name Name of the job 
+   * @return Future(FreeStyleBuild)
+  */
+  def getJobLastBuildAsync(name: String): Future[FreeStyleBuild] = {
+      helper.getJobLastBuild(name)
+  }
+
 
   /**
    * 
@@ -285,163 +224,98 @@ class RemoteAccessApi(val defBasePath: String = "http://localhost",
    * @return void
    */
   def getJobProgressiveText(name: String, number: String, start: String) = {
-    // create path and map variables
-    val path = "/job/{name}/{number}/logText/progressiveText".replaceAll("\\{format\\}", "json").replaceAll("\\{" + "name" + "\\}",apiInvoker.escape(name)).replaceAll("\\{" + "number" + "\\}",apiInvoker.escape(number))
-
-    val contentTypes = List("application/json")
-    val contentType = contentTypes(0)
-
-    val queryParams = new HashMap[String, String]
-    val headerParams = new HashMap[String, String]
-    val formParams = new HashMap[String, String]
-
-    if (name == null) throw new Exception("Missing required parameter 'name' when calling RemoteAccessApi->getJobProgressiveText")
-
-    if (number == null) throw new Exception("Missing required parameter 'number' when calling RemoteAccessApi->getJobProgressiveText")
-
-    if (start == null) throw new Exception("Missing required parameter 'start' when calling RemoteAccessApi->getJobProgressiveText")
-
-    queryParams += "start" -> start.toString
-    
-
-    var postBody: AnyRef = null
-
-    if (contentType.startsWith("multipart/form-data")) {
-      val mp = new FormDataMultiPart
-      postBody = mp
-    } else {
-    }
-
-    try {
-      apiInvoker.invokeApi(basePath, path, "GET", queryParams.toMap, formParams.toMap, postBody, headerParams.toMap, contentType) match {
-        case s: String =>
-                  case _ => None
-      }
-    } catch {
-      case ex: ApiException if ex.code == 404 => None
-      case ex: ApiException => throw ex
+    val await = Try(Await.result(getJobProgressiveTextAsync(name, number, start), Duration.Inf))
+    await match {
+      case Success(i) => Some(await.get)
+      case Failure(t) => None
     }
   }
 
   /**
+   *  asynchronously
+   * Retrieve job&#39;s build progressive text output
+   * @param name Name of the job 
+   * @param number Build number 
+   * @param start Starting point of progressive text output 
+   * @return Future(void)
+  */
+  def getJobProgressiveTextAsync(name: String, number: String, start: String) = {
+      helper.getJobProgressiveText(name, number, start)
+  }
+
+
+  /**
    * 
    * Retrieve queue details
-   * @return HudsonmodelQueue
+   * @return Queue
    */
-  def getQueue(): Option[HudsonmodelQueue] = {
-    // create path and map variables
-    val path = "/queue/api/json".replaceAll("\\{format\\}", "json")
-
-    val contentTypes = List("application/json")
-    val contentType = contentTypes(0)
-
-    val queryParams = new HashMap[String, String]
-    val headerParams = new HashMap[String, String]
-    val formParams = new HashMap[String, String]
-
-    
-
-    var postBody: AnyRef = null
-
-    if (contentType.startsWith("multipart/form-data")) {
-      val mp = new FormDataMultiPart
-      postBody = mp
-    } else {
-    }
-
-    try {
-      apiInvoker.invokeApi(basePath, path, "GET", queryParams.toMap, formParams.toMap, postBody, headerParams.toMap, contentType) match {
-        case s: String =>
-           Some(apiInvoker.deserialize(s, "", classOf[HudsonmodelQueue]).asInstanceOf[HudsonmodelQueue])
-        case _ => None
-      }
-    } catch {
-      case ex: ApiException if ex.code == 404 => None
-      case ex: ApiException => throw ex
+  def getQueue(): Option[Queue] = {
+    val await = Try(Await.result(getQueueAsync(), Duration.Inf))
+    await match {
+      case Success(i) => Some(await.get)
+      case Failure(t) => None
     }
   }
+
+  /**
+   *  asynchronously
+   * Retrieve queue details
+   * @return Future(Queue)
+  */
+  def getQueueAsync(): Future[Queue] = {
+      helper.getQueue()
+  }
+
 
   /**
    * 
    * Retrieve queued item details
    * @param number Queue number 
-   * @return HudsonmodelQueue
+   * @return Queue
    */
-  def getQueueItem(number: String): Option[HudsonmodelQueue] = {
-    // create path and map variables
-    val path = "/queue/item/{number}/api/json".replaceAll("\\{format\\}", "json").replaceAll("\\{" + "number" + "\\}",apiInvoker.escape(number))
-
-    val contentTypes = List("application/json")
-    val contentType = contentTypes(0)
-
-    val queryParams = new HashMap[String, String]
-    val headerParams = new HashMap[String, String]
-    val formParams = new HashMap[String, String]
-
-    if (number == null) throw new Exception("Missing required parameter 'number' when calling RemoteAccessApi->getQueueItem")
-
-    
-
-    var postBody: AnyRef = null
-
-    if (contentType.startsWith("multipart/form-data")) {
-      val mp = new FormDataMultiPart
-      postBody = mp
-    } else {
-    }
-
-    try {
-      apiInvoker.invokeApi(basePath, path, "GET", queryParams.toMap, formParams.toMap, postBody, headerParams.toMap, contentType) match {
-        case s: String =>
-           Some(apiInvoker.deserialize(s, "", classOf[HudsonmodelQueue]).asInstanceOf[HudsonmodelQueue])
-        case _ => None
-      }
-    } catch {
-      case ex: ApiException if ex.code == 404 => None
-      case ex: ApiException => throw ex
+  def getQueueItem(number: String): Option[Queue] = {
+    val await = Try(Await.result(getQueueItemAsync(number), Duration.Inf))
+    await match {
+      case Success(i) => Some(await.get)
+      case Failure(t) => None
     }
   }
+
+  /**
+   *  asynchronously
+   * Retrieve queued item details
+   * @param number Queue number 
+   * @return Future(Queue)
+  */
+  def getQueueItemAsync(number: String): Future[Queue] = {
+      helper.getQueueItem(number)
+  }
+
 
   /**
    * 
    * Retrieve view details
    * @param name Name of the view 
-   * @return HudsonmodelListView
+   * @return ListView
    */
-  def getView(name: String): Option[HudsonmodelListView] = {
-    // create path and map variables
-    val path = "/view/{name}/api/json".replaceAll("\\{format\\}", "json").replaceAll("\\{" + "name" + "\\}",apiInvoker.escape(name))
-
-    val contentTypes = List("application/json")
-    val contentType = contentTypes(0)
-
-    val queryParams = new HashMap[String, String]
-    val headerParams = new HashMap[String, String]
-    val formParams = new HashMap[String, String]
-
-    if (name == null) throw new Exception("Missing required parameter 'name' when calling RemoteAccessApi->getView")
-
-    
-
-    var postBody: AnyRef = null
-
-    if (contentType.startsWith("multipart/form-data")) {
-      val mp = new FormDataMultiPart
-      postBody = mp
-    } else {
-    }
-
-    try {
-      apiInvoker.invokeApi(basePath, path, "GET", queryParams.toMap, formParams.toMap, postBody, headerParams.toMap, contentType) match {
-        case s: String =>
-           Some(apiInvoker.deserialize(s, "", classOf[HudsonmodelListView]).asInstanceOf[HudsonmodelListView])
-        case _ => None
-      }
-    } catch {
-      case ex: ApiException if ex.code == 404 => None
-      case ex: ApiException => throw ex
+  def getView(name: String): Option[ListView] = {
+    val await = Try(Await.result(getViewAsync(name), Duration.Inf))
+    await match {
+      case Success(i) => Some(await.get)
+      case Failure(t) => None
     }
   }
+
+  /**
+   *  asynchronously
+   * Retrieve view details
+   * @param name Name of the view 
+   * @return Future(ListView)
+  */
+  def getViewAsync(name: String): Future[ListView] = {
+      helper.getView(name)
+  }
+
 
   /**
    * 
@@ -450,39 +324,23 @@ class RemoteAccessApi(val defBasePath: String = "http://localhost",
    * @return String
    */
   def getViewConfig(name: String): Option[String] = {
-    // create path and map variables
-    val path = "/view/{name}/config.xml".replaceAll("\\{format\\}", "json").replaceAll("\\{" + "name" + "\\}",apiInvoker.escape(name))
-
-    val contentTypes = List("application/json")
-    val contentType = contentTypes(0)
-
-    val queryParams = new HashMap[String, String]
-    val headerParams = new HashMap[String, String]
-    val formParams = new HashMap[String, String]
-
-    if (name == null) throw new Exception("Missing required parameter 'name' when calling RemoteAccessApi->getViewConfig")
-
-    
-
-    var postBody: AnyRef = null
-
-    if (contentType.startsWith("multipart/form-data")) {
-      val mp = new FormDataMultiPart
-      postBody = mp
-    } else {
-    }
-
-    try {
-      apiInvoker.invokeApi(basePath, path, "GET", queryParams.toMap, formParams.toMap, postBody, headerParams.toMap, contentType) match {
-        case s: String =>
-           Some(apiInvoker.deserialize(s, "", classOf[String]).asInstanceOf[String])
-        case _ => None
-      }
-    } catch {
-      case ex: ApiException if ex.code == 404 => None
-      case ex: ApiException => throw ex
+    val await = Try(Await.result(getViewConfigAsync(name), Duration.Inf))
+    await match {
+      case Success(i) => Some(await.get)
+      case Failure(t) => None
     }
   }
+
+  /**
+   *  asynchronously
+   * Retrieve view configuration
+   * @param name Name of the view 
+   * @return Future(String)
+  */
+  def getViewConfigAsync(name: String): Future[String] = {
+      helper.getViewConfig(name)
+  }
+
 
   /**
    * 
@@ -490,36 +348,22 @@ class RemoteAccessApi(val defBasePath: String = "http://localhost",
    * @return void
    */
   def headJenkins() = {
-    // create path and map variables
-    val path = "/api/json".replaceAll("\\{format\\}", "json")
-
-    val contentTypes = List("application/json")
-    val contentType = contentTypes(0)
-
-    val queryParams = new HashMap[String, String]
-    val headerParams = new HashMap[String, String]
-    val formParams = new HashMap[String, String]
-
-    
-
-    var postBody: AnyRef = null
-
-    if (contentType.startsWith("multipart/form-data")) {
-      val mp = new FormDataMultiPart
-      postBody = mp
-    } else {
-    }
-
-    try {
-      apiInvoker.invokeApi(basePath, path, "HEAD", queryParams.toMap, formParams.toMap, postBody, headerParams.toMap, contentType) match {
-        case s: String =>
-                  case _ => None
-      }
-    } catch {
-      case ex: ApiException if ex.code == 404 => None
-      case ex: ApiException => throw ex
+    val await = Try(Await.result(headJenkinsAsync(), Duration.Inf))
+    await match {
+      case Success(i) => Some(await.get)
+      case Failure(t) => None
     }
   }
+
+  /**
+   *  asynchronously
+   * Retrieve Jenkins headers
+   * @return Future(void)
+  */
+  def headJenkinsAsync() = {
+      helper.headJenkins()
+  }
+
 
   /**
    * 
@@ -533,43 +377,28 @@ class RemoteAccessApi(val defBasePath: String = "http://localhost",
    * @return void
    */
   def postCreateItem(name: String, from: Option[String] = None, mode: Option[String] = None, body: Option[String] = None, jenkinsCrumb: Option[String] = None, _contentType: Option[String] = None) = {
-    // create path and map variables
-    val path = "/createItem".replaceAll("\\{format\\}", "json")
-
-    val contentTypes = List("application/json")
-    val contentType = contentTypes(0)
-
-    val queryParams = new HashMap[String, String]
-    val headerParams = new HashMap[String, String]
-    val formParams = new HashMap[String, String]
-
-    if (name == null) throw new Exception("Missing required parameter 'name' when calling RemoteAccessApi->postCreateItem")
-
-    queryParams += "name" -> name.toString
-    from.map(paramVal => queryParams += "from" -> paramVal.toString)
-    mode.map(paramVal => queryParams += "mode" -> paramVal.toString)
-    
-    jenkinsCrumb.map(paramVal => headerParams += "Jenkins-Crumb" -> paramVal)
-    _contentType.map(paramVal => headerParams += "Content-Type" -> paramVal)
-
-    var postBody: AnyRef = body.map(paramVal => paramVal)
-
-    if (contentType.startsWith("multipart/form-data")) {
-      val mp = new FormDataMultiPart
-      postBody = mp
-    } else {
-    }
-
-    try {
-      apiInvoker.invokeApi(basePath, path, "POST", queryParams.toMap, formParams.toMap, postBody, headerParams.toMap, contentType) match {
-        case s: String =>
-                  case _ => None
-      }
-    } catch {
-      case ex: ApiException if ex.code == 404 => None
-      case ex: ApiException => throw ex
+    val await = Try(Await.result(postCreateItemAsync(name, from, mode, body, jenkinsCrumb, _contentType), Duration.Inf))
+    await match {
+      case Success(i) => Some(await.get)
+      case Failure(t) => None
     }
   }
+
+  /**
+   *  asynchronously
+   * Create a new job using job configuration, or copied from an existing job
+   * @param name Name of the new job 
+   * @param from Existing job to copy from (optional)
+   * @param mode Set to &#39;copy&#39; for copying an existing job (optional)
+   * @param body Job configuration in config.xml format (optional)
+   * @param jenkinsCrumb CSRF protection token (optional)
+   * @param _contentType Content type header application/xml (optional)
+   * @return Future(void)
+  */
+  def postCreateItemAsync(name: String, from: Option[String] = None, mode: Option[String] = None, body: Option[String] = None, jenkinsCrumb: Option[String] = None, _contentType: Option[String] = None) = {
+      helper.postCreateItem(name, from, mode, body, jenkinsCrumb, _contentType)
+  }
+
 
   /**
    * 
@@ -581,41 +410,26 @@ class RemoteAccessApi(val defBasePath: String = "http://localhost",
    * @return void
    */
   def postCreateView(name: String, body: Option[String] = None, jenkinsCrumb: Option[String] = None, _contentType: Option[String] = None) = {
-    // create path and map variables
-    val path = "/createView".replaceAll("\\{format\\}", "json")
-
-    val contentTypes = List("application/json")
-    val contentType = contentTypes(0)
-
-    val queryParams = new HashMap[String, String]
-    val headerParams = new HashMap[String, String]
-    val formParams = new HashMap[String, String]
-
-    if (name == null) throw new Exception("Missing required parameter 'name' when calling RemoteAccessApi->postCreateView")
-
-    queryParams += "name" -> name.toString
-    
-    jenkinsCrumb.map(paramVal => headerParams += "Jenkins-Crumb" -> paramVal)
-    _contentType.map(paramVal => headerParams += "Content-Type" -> paramVal)
-
-    var postBody: AnyRef = body.map(paramVal => paramVal)
-
-    if (contentType.startsWith("multipart/form-data")) {
-      val mp = new FormDataMultiPart
-      postBody = mp
-    } else {
-    }
-
-    try {
-      apiInvoker.invokeApi(basePath, path, "POST", queryParams.toMap, formParams.toMap, postBody, headerParams.toMap, contentType) match {
-        case s: String =>
-                  case _ => None
-      }
-    } catch {
-      case ex: ApiException if ex.code == 404 => None
-      case ex: ApiException => throw ex
+    val await = Try(Await.result(postCreateViewAsync(name, body, jenkinsCrumb, _contentType), Duration.Inf))
+    await match {
+      case Success(i) => Some(await.get)
+      case Failure(t) => None
     }
   }
+
+  /**
+   *  asynchronously
+   * Create a new view using view configuration
+   * @param name Name of the new view 
+   * @param body View configuration in config.xml format (optional)
+   * @param jenkinsCrumb CSRF protection token (optional)
+   * @param _contentType Content type header application/xml (optional)
+   * @return Future(void)
+  */
+  def postCreateViewAsync(name: String, body: Option[String] = None, jenkinsCrumb: Option[String] = None, _contentType: Option[String] = None) = {
+      helper.postCreateView(name, body, jenkinsCrumb, _contentType)
+  }
+
 
   /**
    * 
@@ -627,43 +441,26 @@ class RemoteAccessApi(val defBasePath: String = "http://localhost",
    * @return void
    */
   def postJobBuild(name: String, json: String, token: Option[String] = None, jenkinsCrumb: Option[String] = None) = {
-    // create path and map variables
-    val path = "/job/{name}/build".replaceAll("\\{format\\}", "json").replaceAll("\\{" + "name" + "\\}",apiInvoker.escape(name))
-
-    val contentTypes = List("application/json")
-    val contentType = contentTypes(0)
-
-    val queryParams = new HashMap[String, String]
-    val headerParams = new HashMap[String, String]
-    val formParams = new HashMap[String, String]
-
-    if (name == null) throw new Exception("Missing required parameter 'name' when calling RemoteAccessApi->postJobBuild")
-
-    if (json == null) throw new Exception("Missing required parameter 'json' when calling RemoteAccessApi->postJobBuild")
-
-    queryParams += "json" -> json.toString
-    token.map(paramVal => queryParams += "token" -> paramVal.toString)
-    
-    jenkinsCrumb.map(paramVal => headerParams += "Jenkins-Crumb" -> paramVal)
-
-    var postBody: AnyRef = null
-
-    if (contentType.startsWith("multipart/form-data")) {
-      val mp = new FormDataMultiPart
-      postBody = mp
-    } else {
-    }
-
-    try {
-      apiInvoker.invokeApi(basePath, path, "POST", queryParams.toMap, formParams.toMap, postBody, headerParams.toMap, contentType) match {
-        case s: String =>
-                  case _ => None
-      }
-    } catch {
-      case ex: ApiException if ex.code == 404 => None
-      case ex: ApiException => throw ex
+    val await = Try(Await.result(postJobBuildAsync(name, json, token, jenkinsCrumb), Duration.Inf))
+    await match {
+      case Success(i) => Some(await.get)
+      case Failure(t) => None
     }
   }
+
+  /**
+   *  asynchronously
+   * Build a job
+   * @param name Name of the job 
+   * @param json  
+   * @param token  (optional)
+   * @param jenkinsCrumb CSRF protection token (optional)
+   * @return Future(void)
+  */
+  def postJobBuildAsync(name: String, json: String, token: Option[String] = None, jenkinsCrumb: Option[String] = None) = {
+      helper.postJobBuild(name, json, token, jenkinsCrumb)
+  }
+
 
   /**
    * 
@@ -674,41 +471,25 @@ class RemoteAccessApi(val defBasePath: String = "http://localhost",
    * @return void
    */
   def postJobConfig(name: String, body: String, jenkinsCrumb: Option[String] = None) = {
-    // create path and map variables
-    val path = "/job/{name}/config.xml".replaceAll("\\{format\\}", "json").replaceAll("\\{" + "name" + "\\}",apiInvoker.escape(name))
-
-    val contentTypes = List("application/json")
-    val contentType = contentTypes(0)
-
-    val queryParams = new HashMap[String, String]
-    val headerParams = new HashMap[String, String]
-    val formParams = new HashMap[String, String]
-
-    if (name == null) throw new Exception("Missing required parameter 'name' when calling RemoteAccessApi->postJobConfig")
-
-    if (body == null) throw new Exception("Missing required parameter 'body' when calling RemoteAccessApi->postJobConfig")
-
-    
-    jenkinsCrumb.map(paramVal => headerParams += "Jenkins-Crumb" -> paramVal)
-
-    var postBody: AnyRef = body
-
-    if (contentType.startsWith("multipart/form-data")) {
-      val mp = new FormDataMultiPart
-      postBody = mp
-    } else {
-    }
-
-    try {
-      apiInvoker.invokeApi(basePath, path, "POST", queryParams.toMap, formParams.toMap, postBody, headerParams.toMap, contentType) match {
-        case s: String =>
-                  case _ => None
-      }
-    } catch {
-      case ex: ApiException if ex.code == 404 => None
-      case ex: ApiException => throw ex
+    val await = Try(Await.result(postJobConfigAsync(name, body, jenkinsCrumb), Duration.Inf))
+    await match {
+      case Success(i) => Some(await.get)
+      case Failure(t) => None
     }
   }
+
+  /**
+   *  asynchronously
+   * Update job configuration
+   * @param name Name of the job 
+   * @param body Job configuration in config.xml format 
+   * @param jenkinsCrumb CSRF protection token (optional)
+   * @return Future(void)
+  */
+  def postJobConfigAsync(name: String, body: String, jenkinsCrumb: Option[String] = None) = {
+      helper.postJobConfig(name, body, jenkinsCrumb)
+  }
+
 
   /**
    * 
@@ -718,39 +499,24 @@ class RemoteAccessApi(val defBasePath: String = "http://localhost",
    * @return void
    */
   def postJobDelete(name: String, jenkinsCrumb: Option[String] = None) = {
-    // create path and map variables
-    val path = "/job/{name}/doDelete".replaceAll("\\{format\\}", "json").replaceAll("\\{" + "name" + "\\}",apiInvoker.escape(name))
-
-    val contentTypes = List("application/json")
-    val contentType = contentTypes(0)
-
-    val queryParams = new HashMap[String, String]
-    val headerParams = new HashMap[String, String]
-    val formParams = new HashMap[String, String]
-
-    if (name == null) throw new Exception("Missing required parameter 'name' when calling RemoteAccessApi->postJobDelete")
-
-    
-    jenkinsCrumb.map(paramVal => headerParams += "Jenkins-Crumb" -> paramVal)
-
-    var postBody: AnyRef = null
-
-    if (contentType.startsWith("multipart/form-data")) {
-      val mp = new FormDataMultiPart
-      postBody = mp
-    } else {
-    }
-
-    try {
-      apiInvoker.invokeApi(basePath, path, "POST", queryParams.toMap, formParams.toMap, postBody, headerParams.toMap, contentType) match {
-        case s: String =>
-                  case _ => None
-      }
-    } catch {
-      case ex: ApiException if ex.code == 404 => None
-      case ex: ApiException => throw ex
+    val await = Try(Await.result(postJobDeleteAsync(name, jenkinsCrumb), Duration.Inf))
+    await match {
+      case Success(i) => Some(await.get)
+      case Failure(t) => None
     }
   }
+
+  /**
+   *  asynchronously
+   * Delete a job
+   * @param name Name of the job 
+   * @param jenkinsCrumb CSRF protection token (optional)
+   * @return Future(void)
+  */
+  def postJobDeleteAsync(name: String, jenkinsCrumb: Option[String] = None) = {
+      helper.postJobDelete(name, jenkinsCrumb)
+  }
+
 
   /**
    * 
@@ -760,39 +526,24 @@ class RemoteAccessApi(val defBasePath: String = "http://localhost",
    * @return void
    */
   def postJobDisable(name: String, jenkinsCrumb: Option[String] = None) = {
-    // create path and map variables
-    val path = "/job/{name}/disable".replaceAll("\\{format\\}", "json").replaceAll("\\{" + "name" + "\\}",apiInvoker.escape(name))
-
-    val contentTypes = List("application/json")
-    val contentType = contentTypes(0)
-
-    val queryParams = new HashMap[String, String]
-    val headerParams = new HashMap[String, String]
-    val formParams = new HashMap[String, String]
-
-    if (name == null) throw new Exception("Missing required parameter 'name' when calling RemoteAccessApi->postJobDisable")
-
-    
-    jenkinsCrumb.map(paramVal => headerParams += "Jenkins-Crumb" -> paramVal)
-
-    var postBody: AnyRef = null
-
-    if (contentType.startsWith("multipart/form-data")) {
-      val mp = new FormDataMultiPart
-      postBody = mp
-    } else {
-    }
-
-    try {
-      apiInvoker.invokeApi(basePath, path, "POST", queryParams.toMap, formParams.toMap, postBody, headerParams.toMap, contentType) match {
-        case s: String =>
-                  case _ => None
-      }
-    } catch {
-      case ex: ApiException if ex.code == 404 => None
-      case ex: ApiException => throw ex
+    val await = Try(Await.result(postJobDisableAsync(name, jenkinsCrumb), Duration.Inf))
+    await match {
+      case Success(i) => Some(await.get)
+      case Failure(t) => None
     }
   }
+
+  /**
+   *  asynchronously
+   * Disable a job
+   * @param name Name of the job 
+   * @param jenkinsCrumb CSRF protection token (optional)
+   * @return Future(void)
+  */
+  def postJobDisableAsync(name: String, jenkinsCrumb: Option[String] = None) = {
+      helper.postJobDisable(name, jenkinsCrumb)
+  }
+
 
   /**
    * 
@@ -802,39 +553,24 @@ class RemoteAccessApi(val defBasePath: String = "http://localhost",
    * @return void
    */
   def postJobEnable(name: String, jenkinsCrumb: Option[String] = None) = {
-    // create path and map variables
-    val path = "/job/{name}/enable".replaceAll("\\{format\\}", "json").replaceAll("\\{" + "name" + "\\}",apiInvoker.escape(name))
-
-    val contentTypes = List("application/json")
-    val contentType = contentTypes(0)
-
-    val queryParams = new HashMap[String, String]
-    val headerParams = new HashMap[String, String]
-    val formParams = new HashMap[String, String]
-
-    if (name == null) throw new Exception("Missing required parameter 'name' when calling RemoteAccessApi->postJobEnable")
-
-    
-    jenkinsCrumb.map(paramVal => headerParams += "Jenkins-Crumb" -> paramVal)
-
-    var postBody: AnyRef = null
-
-    if (contentType.startsWith("multipart/form-data")) {
-      val mp = new FormDataMultiPart
-      postBody = mp
-    } else {
-    }
-
-    try {
-      apiInvoker.invokeApi(basePath, path, "POST", queryParams.toMap, formParams.toMap, postBody, headerParams.toMap, contentType) match {
-        case s: String =>
-                  case _ => None
-      }
-    } catch {
-      case ex: ApiException if ex.code == 404 => None
-      case ex: ApiException => throw ex
+    val await = Try(Await.result(postJobEnableAsync(name, jenkinsCrumb), Duration.Inf))
+    await match {
+      case Success(i) => Some(await.get)
+      case Failure(t) => None
     }
   }
+
+  /**
+   *  asynchronously
+   * Enable a job
+   * @param name Name of the job 
+   * @param jenkinsCrumb CSRF protection token (optional)
+   * @return Future(void)
+  */
+  def postJobEnableAsync(name: String, jenkinsCrumb: Option[String] = None) = {
+      helper.postJobEnable(name, jenkinsCrumb)
+  }
+
 
   /**
    * 
@@ -844,39 +580,24 @@ class RemoteAccessApi(val defBasePath: String = "http://localhost",
    * @return void
    */
   def postJobLastBuildStop(name: String, jenkinsCrumb: Option[String] = None) = {
-    // create path and map variables
-    val path = "/job/{name}/lastBuild/stop".replaceAll("\\{format\\}", "json").replaceAll("\\{" + "name" + "\\}",apiInvoker.escape(name))
-
-    val contentTypes = List("application/json")
-    val contentType = contentTypes(0)
-
-    val queryParams = new HashMap[String, String]
-    val headerParams = new HashMap[String, String]
-    val formParams = new HashMap[String, String]
-
-    if (name == null) throw new Exception("Missing required parameter 'name' when calling RemoteAccessApi->postJobLastBuildStop")
-
-    
-    jenkinsCrumb.map(paramVal => headerParams += "Jenkins-Crumb" -> paramVal)
-
-    var postBody: AnyRef = null
-
-    if (contentType.startsWith("multipart/form-data")) {
-      val mp = new FormDataMultiPart
-      postBody = mp
-    } else {
-    }
-
-    try {
-      apiInvoker.invokeApi(basePath, path, "POST", queryParams.toMap, formParams.toMap, postBody, headerParams.toMap, contentType) match {
-        case s: String =>
-                  case _ => None
-      }
-    } catch {
-      case ex: ApiException if ex.code == 404 => None
-      case ex: ApiException => throw ex
+    val await = Try(Await.result(postJobLastBuildStopAsync(name, jenkinsCrumb), Duration.Inf))
+    await match {
+      case Success(i) => Some(await.get)
+      case Failure(t) => None
     }
   }
+
+  /**
+   *  asynchronously
+   * Stop a job
+   * @param name Name of the job 
+   * @param jenkinsCrumb CSRF protection token (optional)
+   * @return Future(void)
+  */
+  def postJobLastBuildStopAsync(name: String, jenkinsCrumb: Option[String] = None) = {
+      helper.postJobLastBuildStop(name, jenkinsCrumb)
+  }
+
 
   /**
    * 
@@ -887,40 +608,492 @@ class RemoteAccessApi(val defBasePath: String = "http://localhost",
    * @return void
    */
   def postViewConfig(name: String, body: String, jenkinsCrumb: Option[String] = None) = {
+    val await = Try(Await.result(postViewConfigAsync(name, body, jenkinsCrumb), Duration.Inf))
+    await match {
+      case Success(i) => Some(await.get)
+      case Failure(t) => None
+    }
+  }
+
+  /**
+   *  asynchronously
+   * Update view configuration
+   * @param name Name of the view 
+   * @param body View configuration in config.xml format 
+   * @param jenkinsCrumb CSRF protection token (optional)
+   * @return Future(void)
+  */
+  def postViewConfigAsync(name: String, body: String, jenkinsCrumb: Option[String] = None) = {
+      helper.postViewConfig(name, body, jenkinsCrumb)
+  }
+
+
+}
+
+class RemoteAccessApiAsyncHelper(client: TransportClient, config: SwaggerConfig) extends ApiClient(client, config) {
+
+  def getComputer(depth: Integer)(implicit reader: ClientResponseReader[ComputerSet]): Future[ComputerSet] = {
     // create path and map variables
-    val path = "/view/{name}/config.xml".replaceAll("\\{format\\}", "json").replaceAll("\\{" + "name" + "\\}",apiInvoker.escape(name))
+    val path = (addFmt("/computer/api/json"))
 
-    val contentTypes = List("application/json")
-    val contentType = contentTypes(0)
+    // query params
+    val queryParams = new mutable.HashMap[String, String]
+    val headerParams = new mutable.HashMap[String, String]
 
-    val queryParams = new HashMap[String, String]
-    val headerParams = new HashMap[String, String]
-    val formParams = new HashMap[String, String]
+    queryParams += "depth" -> depth.toString
+
+    val resFuture = client.submit("GET", path, queryParams.toMap, headerParams.toMap, "")
+    resFuture flatMap { resp =>
+      process(reader.read(resp))
+    }
+  }
+
+  def getCrumb()(implicit reader: ClientResponseReader[DefaultCrumbIssuer]): Future[DefaultCrumbIssuer] = {
+    // create path and map variables
+    val path = (addFmt("/crumbIssuer/api/json"))
+
+    // query params
+    val queryParams = new mutable.HashMap[String, String]
+    val headerParams = new mutable.HashMap[String, String]
+
+
+    val resFuture = client.submit("GET", path, queryParams.toMap, headerParams.toMap, "")
+    resFuture flatMap { resp =>
+      process(reader.read(resp))
+    }
+  }
+
+  def getJenkins()(implicit reader: ClientResponseReader[Hudson]): Future[Hudson] = {
+    // create path and map variables
+    val path = (addFmt("/api/json"))
+
+    // query params
+    val queryParams = new mutable.HashMap[String, String]
+    val headerParams = new mutable.HashMap[String, String]
+
+
+    val resFuture = client.submit("GET", path, queryParams.toMap, headerParams.toMap, "")
+    resFuture flatMap { resp =>
+      process(reader.read(resp))
+    }
+  }
+
+  def getJob(name: String)(implicit reader: ClientResponseReader[FreeStyleProject]): Future[FreeStyleProject] = {
+    // create path and map variables
+    val path = (addFmt("/job/{name}/api/json")
+      replaceAll ("\\{" + "name" + "\\}",name.toString))
+
+    // query params
+    val queryParams = new mutable.HashMap[String, String]
+    val headerParams = new mutable.HashMap[String, String]
+
+    if (name == null) throw new Exception("Missing required parameter 'name' when calling RemoteAccessApi->getJob")
+
+
+    val resFuture = client.submit("GET", path, queryParams.toMap, headerParams.toMap, "")
+    resFuture flatMap { resp =>
+      process(reader.read(resp))
+    }
+  }
+
+  def getJobConfig(name: String)(implicit reader: ClientResponseReader[String]): Future[String] = {
+    // create path and map variables
+    val path = (addFmt("/job/{name}/config.xml")
+      replaceAll ("\\{" + "name" + "\\}",name.toString))
+
+    // query params
+    val queryParams = new mutable.HashMap[String, String]
+    val headerParams = new mutable.HashMap[String, String]
+
+    if (name == null) throw new Exception("Missing required parameter 'name' when calling RemoteAccessApi->getJobConfig")
+
+
+    val resFuture = client.submit("GET", path, queryParams.toMap, headerParams.toMap, "")
+    resFuture flatMap { resp =>
+      process(reader.read(resp))
+    }
+  }
+
+  def getJobLastBuild(name: String)(implicit reader: ClientResponseReader[FreeStyleBuild]): Future[FreeStyleBuild] = {
+    // create path and map variables
+    val path = (addFmt("/job/{name}/lastBuild/api/json")
+      replaceAll ("\\{" + "name" + "\\}",name.toString))
+
+    // query params
+    val queryParams = new mutable.HashMap[String, String]
+    val headerParams = new mutable.HashMap[String, String]
+
+    if (name == null) throw new Exception("Missing required parameter 'name' when calling RemoteAccessApi->getJobLastBuild")
+
+
+    val resFuture = client.submit("GET", path, queryParams.toMap, headerParams.toMap, "")
+    resFuture flatMap { resp =>
+      process(reader.read(resp))
+    }
+  }
+
+  def getJobProgressiveText(name: String,
+    number: String,
+    start: String)(implicit reader: ClientResponseReader[Unit]): Future[Unit] = {
+    // create path and map variables
+    val path = (addFmt("/job/{name}/{number}/logText/progressiveText")
+      replaceAll ("\\{" + "name" + "\\}",name.toString)
+      replaceAll ("\\{" + "number" + "\\}",number.toString))
+
+    // query params
+    val queryParams = new mutable.HashMap[String, String]
+    val headerParams = new mutable.HashMap[String, String]
+
+    if (name == null) throw new Exception("Missing required parameter 'name' when calling RemoteAccessApi->getJobProgressiveText")
+
+    if (number == null) throw new Exception("Missing required parameter 'number' when calling RemoteAccessApi->getJobProgressiveText")
+
+    if (start == null) throw new Exception("Missing required parameter 'start' when calling RemoteAccessApi->getJobProgressiveText")
+
+    queryParams += "start" -> start.toString
+
+    val resFuture = client.submit("GET", path, queryParams.toMap, headerParams.toMap, "")
+    resFuture flatMap { resp =>
+      process(reader.read(resp))
+    }
+  }
+
+  def getQueue()(implicit reader: ClientResponseReader[Queue]): Future[Queue] = {
+    // create path and map variables
+    val path = (addFmt("/queue/api/json"))
+
+    // query params
+    val queryParams = new mutable.HashMap[String, String]
+    val headerParams = new mutable.HashMap[String, String]
+
+
+    val resFuture = client.submit("GET", path, queryParams.toMap, headerParams.toMap, "")
+    resFuture flatMap { resp =>
+      process(reader.read(resp))
+    }
+  }
+
+  def getQueueItem(number: String)(implicit reader: ClientResponseReader[Queue]): Future[Queue] = {
+    // create path and map variables
+    val path = (addFmt("/queue/item/{number}/api/json")
+      replaceAll ("\\{" + "number" + "\\}",number.toString))
+
+    // query params
+    val queryParams = new mutable.HashMap[String, String]
+    val headerParams = new mutable.HashMap[String, String]
+
+    if (number == null) throw new Exception("Missing required parameter 'number' when calling RemoteAccessApi->getQueueItem")
+
+
+    val resFuture = client.submit("GET", path, queryParams.toMap, headerParams.toMap, "")
+    resFuture flatMap { resp =>
+      process(reader.read(resp))
+    }
+  }
+
+  def getView(name: String)(implicit reader: ClientResponseReader[ListView]): Future[ListView] = {
+    // create path and map variables
+    val path = (addFmt("/view/{name}/api/json")
+      replaceAll ("\\{" + "name" + "\\}",name.toString))
+
+    // query params
+    val queryParams = new mutable.HashMap[String, String]
+    val headerParams = new mutable.HashMap[String, String]
+
+    if (name == null) throw new Exception("Missing required parameter 'name' when calling RemoteAccessApi->getView")
+
+
+    val resFuture = client.submit("GET", path, queryParams.toMap, headerParams.toMap, "")
+    resFuture flatMap { resp =>
+      process(reader.read(resp))
+    }
+  }
+
+  def getViewConfig(name: String)(implicit reader: ClientResponseReader[String]): Future[String] = {
+    // create path and map variables
+    val path = (addFmt("/view/{name}/config.xml")
+      replaceAll ("\\{" + "name" + "\\}",name.toString))
+
+    // query params
+    val queryParams = new mutable.HashMap[String, String]
+    val headerParams = new mutable.HashMap[String, String]
+
+    if (name == null) throw new Exception("Missing required parameter 'name' when calling RemoteAccessApi->getViewConfig")
+
+
+    val resFuture = client.submit("GET", path, queryParams.toMap, headerParams.toMap, "")
+    resFuture flatMap { resp =>
+      process(reader.read(resp))
+    }
+  }
+
+  def headJenkins()(implicit reader: ClientResponseReader[Unit]): Future[Unit] = {
+    // create path and map variables
+    val path = (addFmt("/api/json"))
+
+    // query params
+    val queryParams = new mutable.HashMap[String, String]
+    val headerParams = new mutable.HashMap[String, String]
+
+
+    val resFuture = client.submit("HEAD", path, queryParams.toMap, headerParams.toMap, "")
+    resFuture flatMap { resp =>
+      process(reader.read(resp))
+    }
+  }
+
+  def postCreateItem(name: String,
+    from: Option[String] = None,
+    mode: Option[String] = None,
+    body: Option[String] = None,
+    jenkinsCrumb: Option[String] = None,
+    _contentType: Option[String] = None
+    )(implicit reader: ClientResponseReader[Unit], writer: RequestWriter[String]): Future[Unit] = {
+    // create path and map variables
+    val path = (addFmt("/createItem"))
+
+    // query params
+    val queryParams = new mutable.HashMap[String, String]
+    val headerParams = new mutable.HashMap[String, String]
+
+    if (name == null) throw new Exception("Missing required parameter 'name' when calling RemoteAccessApi->postCreateItem")
+
+    queryParams += "name" -> name.toString
+    from match {
+      case Some(param) => queryParams += "from" -> param.toString
+      case _ => queryParams
+    }
+    mode match {
+      case Some(param) => queryParams += "mode" -> param.toString
+      case _ => queryParams
+    }
+    jenkinsCrumb match {
+      case Some(param) => headerParams += "Jenkins-Crumb" -> param.toString
+      case _ => headerParams
+    }
+    _contentType match {
+      case Some(param) => headerParams += "Content-Type" -> param.toString
+      case _ => headerParams
+    }
+
+    val resFuture = client.submit("POST", path, queryParams.toMap, headerParams.toMap, writer.write(body))
+    resFuture flatMap { resp =>
+      process(reader.read(resp))
+    }
+  }
+
+  def postCreateView(name: String,
+    body: Option[String] = None,
+    jenkinsCrumb: Option[String] = None,
+    _contentType: Option[String] = None
+    )(implicit reader: ClientResponseReader[Unit], writer: RequestWriter[String]): Future[Unit] = {
+    // create path and map variables
+    val path = (addFmt("/createView"))
+
+    // query params
+    val queryParams = new mutable.HashMap[String, String]
+    val headerParams = new mutable.HashMap[String, String]
+
+    if (name == null) throw new Exception("Missing required parameter 'name' when calling RemoteAccessApi->postCreateView")
+
+    queryParams += "name" -> name.toString
+    jenkinsCrumb match {
+      case Some(param) => headerParams += "Jenkins-Crumb" -> param.toString
+      case _ => headerParams
+    }
+    _contentType match {
+      case Some(param) => headerParams += "Content-Type" -> param.toString
+      case _ => headerParams
+    }
+
+    val resFuture = client.submit("POST", path, queryParams.toMap, headerParams.toMap, writer.write(body))
+    resFuture flatMap { resp =>
+      process(reader.read(resp))
+    }
+  }
+
+  def postJobBuild(name: String,
+    json: String,
+    token: Option[String] = None,
+    jenkinsCrumb: Option[String] = None
+    )(implicit reader: ClientResponseReader[Unit]): Future[Unit] = {
+    // create path and map variables
+    val path = (addFmt("/job/{name}/build")
+      replaceAll ("\\{" + "name" + "\\}",name.toString))
+
+    // query params
+    val queryParams = new mutable.HashMap[String, String]
+    val headerParams = new mutable.HashMap[String, String]
+
+    if (name == null) throw new Exception("Missing required parameter 'name' when calling RemoteAccessApi->postJobBuild")
+
+    if (json == null) throw new Exception("Missing required parameter 'json' when calling RemoteAccessApi->postJobBuild")
+
+    queryParams += "json" -> json.toString
+    token match {
+      case Some(param) => queryParams += "token" -> param.toString
+      case _ => queryParams
+    }
+    jenkinsCrumb match {
+      case Some(param) => headerParams += "Jenkins-Crumb" -> param.toString
+      case _ => headerParams
+    }
+
+    val resFuture = client.submit("POST", path, queryParams.toMap, headerParams.toMap, "")
+    resFuture flatMap { resp =>
+      process(reader.read(resp))
+    }
+  }
+
+  def postJobConfig(name: String,
+    body: String,
+    jenkinsCrumb: Option[String] = None
+    )(implicit reader: ClientResponseReader[Unit], writer: RequestWriter[String]): Future[Unit] = {
+    // create path and map variables
+    val path = (addFmt("/job/{name}/config.xml")
+      replaceAll ("\\{" + "name" + "\\}",name.toString))
+
+    // query params
+    val queryParams = new mutable.HashMap[String, String]
+    val headerParams = new mutable.HashMap[String, String]
+
+    if (name == null) throw new Exception("Missing required parameter 'name' when calling RemoteAccessApi->postJobConfig")
+
+    if (body == null) throw new Exception("Missing required parameter 'body' when calling RemoteAccessApi->postJobConfig")
+
+    jenkinsCrumb match {
+      case Some(param) => headerParams += "Jenkins-Crumb" -> param.toString
+      case _ => headerParams
+    }
+
+    val resFuture = client.submit("POST", path, queryParams.toMap, headerParams.toMap, writer.write(body))
+    resFuture flatMap { resp =>
+      process(reader.read(resp))
+    }
+  }
+
+  def postJobDelete(name: String,
+    jenkinsCrumb: Option[String] = None
+    )(implicit reader: ClientResponseReader[Unit]): Future[Unit] = {
+    // create path and map variables
+    val path = (addFmt("/job/{name}/doDelete")
+      replaceAll ("\\{" + "name" + "\\}",name.toString))
+
+    // query params
+    val queryParams = new mutable.HashMap[String, String]
+    val headerParams = new mutable.HashMap[String, String]
+
+    if (name == null) throw new Exception("Missing required parameter 'name' when calling RemoteAccessApi->postJobDelete")
+
+    jenkinsCrumb match {
+      case Some(param) => headerParams += "Jenkins-Crumb" -> param.toString
+      case _ => headerParams
+    }
+
+    val resFuture = client.submit("POST", path, queryParams.toMap, headerParams.toMap, "")
+    resFuture flatMap { resp =>
+      process(reader.read(resp))
+    }
+  }
+
+  def postJobDisable(name: String,
+    jenkinsCrumb: Option[String] = None
+    )(implicit reader: ClientResponseReader[Unit]): Future[Unit] = {
+    // create path and map variables
+    val path = (addFmt("/job/{name}/disable")
+      replaceAll ("\\{" + "name" + "\\}",name.toString))
+
+    // query params
+    val queryParams = new mutable.HashMap[String, String]
+    val headerParams = new mutable.HashMap[String, String]
+
+    if (name == null) throw new Exception("Missing required parameter 'name' when calling RemoteAccessApi->postJobDisable")
+
+    jenkinsCrumb match {
+      case Some(param) => headerParams += "Jenkins-Crumb" -> param.toString
+      case _ => headerParams
+    }
+
+    val resFuture = client.submit("POST", path, queryParams.toMap, headerParams.toMap, "")
+    resFuture flatMap { resp =>
+      process(reader.read(resp))
+    }
+  }
+
+  def postJobEnable(name: String,
+    jenkinsCrumb: Option[String] = None
+    )(implicit reader: ClientResponseReader[Unit]): Future[Unit] = {
+    // create path and map variables
+    val path = (addFmt("/job/{name}/enable")
+      replaceAll ("\\{" + "name" + "\\}",name.toString))
+
+    // query params
+    val queryParams = new mutable.HashMap[String, String]
+    val headerParams = new mutable.HashMap[String, String]
+
+    if (name == null) throw new Exception("Missing required parameter 'name' when calling RemoteAccessApi->postJobEnable")
+
+    jenkinsCrumb match {
+      case Some(param) => headerParams += "Jenkins-Crumb" -> param.toString
+      case _ => headerParams
+    }
+
+    val resFuture = client.submit("POST", path, queryParams.toMap, headerParams.toMap, "")
+    resFuture flatMap { resp =>
+      process(reader.read(resp))
+    }
+  }
+
+  def postJobLastBuildStop(name: String,
+    jenkinsCrumb: Option[String] = None
+    )(implicit reader: ClientResponseReader[Unit]): Future[Unit] = {
+    // create path and map variables
+    val path = (addFmt("/job/{name}/lastBuild/stop")
+      replaceAll ("\\{" + "name" + "\\}",name.toString))
+
+    // query params
+    val queryParams = new mutable.HashMap[String, String]
+    val headerParams = new mutable.HashMap[String, String]
+
+    if (name == null) throw new Exception("Missing required parameter 'name' when calling RemoteAccessApi->postJobLastBuildStop")
+
+    jenkinsCrumb match {
+      case Some(param) => headerParams += "Jenkins-Crumb" -> param.toString
+      case _ => headerParams
+    }
+
+    val resFuture = client.submit("POST", path, queryParams.toMap, headerParams.toMap, "")
+    resFuture flatMap { resp =>
+      process(reader.read(resp))
+    }
+  }
+
+  def postViewConfig(name: String,
+    body: String,
+    jenkinsCrumb: Option[String] = None
+    )(implicit reader: ClientResponseReader[Unit], writer: RequestWriter[String]): Future[Unit] = {
+    // create path and map variables
+    val path = (addFmt("/view/{name}/config.xml")
+      replaceAll ("\\{" + "name" + "\\}",name.toString))
+
+    // query params
+    val queryParams = new mutable.HashMap[String, String]
+    val headerParams = new mutable.HashMap[String, String]
 
     if (name == null) throw new Exception("Missing required parameter 'name' when calling RemoteAccessApi->postViewConfig")
 
     if (body == null) throw new Exception("Missing required parameter 'body' when calling RemoteAccessApi->postViewConfig")
 
-    
-    jenkinsCrumb.map(paramVal => headerParams += "Jenkins-Crumb" -> paramVal)
-
-    var postBody: AnyRef = body
-
-    if (contentType.startsWith("multipart/form-data")) {
-      val mp = new FormDataMultiPart
-      postBody = mp
-    } else {
+    jenkinsCrumb match {
+      case Some(param) => headerParams += "Jenkins-Crumb" -> param.toString
+      case _ => headerParams
     }
 
-    try {
-      apiInvoker.invokeApi(basePath, path, "POST", queryParams.toMap, formParams.toMap, postBody, headerParams.toMap, contentType) match {
-        case s: String =>
-                  case _ => None
-      }
-    } catch {
-      case ex: ApiException if ex.code == 404 => None
-      case ex: ApiException => throw ex
+    val resFuture = client.submit("POST", path, queryParams.toMap, headerParams.toMap, writer.write(body))
+    resFuture flatMap { resp =>
+      process(reader.read(resp))
     }
   }
+
 
 }

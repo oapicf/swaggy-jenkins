@@ -7,15 +7,28 @@ import io.swagger.api.factories.BlueApiServiceFactory;
 import io.swagger.annotations.ApiParam;
 import io.swagger.jaxrs.*;
 
-import io.swagger.model.GetMultibranchPipeline;
-import io.swagger.model.GetOrganisations;
-import io.swagger.model.GetPipelines;
-import io.swagger.model.IojenkinsblueoceanrestimplpipelineBranchImpl;
-import io.swagger.model.IojenkinsblueoceanserviceembeddedrestPipelineFolderImpl;
-import io.swagger.model.IojenkinsblueoceanserviceembeddedrestPipelineImpl;
-import io.swagger.model.SwaggyjenkinsOrganisation;
-import io.swagger.model.SwaggyjenkinsPipeline;
-import io.swagger.model.SwaggyjenkinsUser;
+import io.swagger.model.BranchImpl;
+import io.swagger.model.FavoriteImpl;
+import io.swagger.model.GithubScm;
+import io.swagger.model.MultibranchPipeline;
+import io.swagger.model.Organisation;
+import io.swagger.model.Organisations;
+import io.swagger.model.Pipeline;
+import io.swagger.model.PipelineActivities;
+import io.swagger.model.PipelineFolderImpl;
+import io.swagger.model.PipelineImpl;
+import io.swagger.model.PipelineQueue;
+import io.swagger.model.PipelineRun;
+import io.swagger.model.PipelineRunNode;
+import io.swagger.model.PipelineRunNodeSteps;
+import io.swagger.model.PipelineRunNodes;
+import io.swagger.model.PipelineRuns;
+import io.swagger.model.PipelineStepImpl;
+import io.swagger.model.Pipelines;
+import io.swagger.model.QueueItemImpl;
+import io.swagger.model.ScmOrganisations;
+import io.swagger.model.User;
+import io.swagger.model.UserFavorites;
 
 import java.util.List;
 import io.swagger.api.NotFoundException;
@@ -25,6 +38,7 @@ import java.io.InputStream;
 import org.glassfish.jersey.media.multipart.FormDataContentDisposition;
 import org.glassfish.jersey.media.multipart.FormDataParam;
 
+import javax.servlet.ServletConfig;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
@@ -35,31 +49,76 @@ import javax.validation.constraints.*;
 
 
 @io.swagger.annotations.Api(description = "the blue API")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaJerseyServerCodegen", date = "2017-07-25T10:45:00.143+10:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaJerseyServerCodegen", date = "2017-08-03T23:34:37.174Z")
 public class BlueApi  {
-   private final BlueApiService delegate = BlueApiServiceFactory.getBlueApi();
+   private final BlueApiService delegate;
 
-    @GET
-    @Path("/rest/organizations/{organisation}/user/")
+   public BlueApi(@Context ServletConfig servletContext) {
+      BlueApiService delegate = null;
+
+      if (servletContext != null) {
+         String implClass = servletContext.getInitParameter("BlueApi.implementation");
+         if (implClass != null && !"".equals(implClass.trim())) {
+            try {
+               delegate = (BlueApiService) Class.forName(implClass).newInstance();
+            } catch (Exception e) {
+               throw new RuntimeException(e);
+            }
+         } 
+      }
+
+      if (delegate == null) {
+         delegate = BlueApiServiceFactory.getBlueApi();
+      }
+
+      this.delegate = delegate;
+   }
+
+    @DELETE
+    @Path("/rest/organizations/{organization}/pipelines/{pipeline}/queue/{queue}")
     
     @Produces({ "application/json" })
-    @io.swagger.annotations.ApiOperation(value = "", notes = "Retrieve authenticated user details for an organisation", response = SwaggyjenkinsUser.class, tags={ "blueOcean", })
+    @io.swagger.annotations.ApiOperation(value = "", notes = "Delete queue item from an organization pipeline queue", response = void.class, authorizations = {
+        @io.swagger.annotations.Authorization(value = "jenkins_auth")
+    }, tags={ "blueOcean", })
     @io.swagger.annotations.ApiResponses(value = { 
-        @io.swagger.annotations.ApiResponse(code = 200, message = "Successfully retrieved authenticated user details", response = SwaggyjenkinsUser.class),
+        @io.swagger.annotations.ApiResponse(code = 200, message = "Successfully deleted queue item", response = void.class),
         
-        @io.swagger.annotations.ApiResponse(code = 401, message = "Authentication failed - incorrect username and/or password", response = SwaggyjenkinsUser.class),
+        @io.swagger.annotations.ApiResponse(code = 401, message = "Authentication failed - incorrect username and/or password", response = void.class),
         
-        @io.swagger.annotations.ApiResponse(code = 403, message = "Jenkins requires authentication - please set username and password", response = SwaggyjenkinsUser.class) })
-    public Response getAuthenticatedUser(@ApiParam(value = "Name of the organisation",required=true) @PathParam("organisation") String organisation
+        @io.swagger.annotations.ApiResponse(code = 403, message = "Jenkins requires authentication - please set username and password", response = void.class) })
+    public Response deletePipelineQueueItem(@ApiParam(value = "Name of the organization",required=true) @PathParam("organization") String organization
+,@ApiParam(value = "Name of the pipeline",required=true) @PathParam("pipeline") String pipeline
+,@ApiParam(value = "Name of the queue item",required=true) @PathParam("queue") String queue
 ,@Context SecurityContext securityContext)
     throws NotFoundException {
-        return delegate.getAuthenticatedUser(organisation,securityContext);
+        return delegate.deletePipelineQueueItem(organization,pipeline,queue,securityContext);
+    }
+    @GET
+    @Path("/rest/organizations/{organization}/user/")
+    
+    @Produces({ "application/json" })
+    @io.swagger.annotations.ApiOperation(value = "", notes = "Retrieve authenticated user details for an organization", response = User.class, authorizations = {
+        @io.swagger.annotations.Authorization(value = "jenkins_auth")
+    }, tags={ "blueOcean", })
+    @io.swagger.annotations.ApiResponses(value = { 
+        @io.swagger.annotations.ApiResponse(code = 200, message = "Successfully retrieved authenticated user details", response = User.class),
+        
+        @io.swagger.annotations.ApiResponse(code = 401, message = "Authentication failed - incorrect username and/or password", response = User.class),
+        
+        @io.swagger.annotations.ApiResponse(code = 403, message = "Jenkins requires authentication - please set username and password", response = User.class) })
+    public Response getAuthenticatedUser(@ApiParam(value = "Name of the organization",required=true) @PathParam("organization") String organization
+,@Context SecurityContext securityContext)
+    throws NotFoundException {
+        return delegate.getAuthenticatedUser(organization,securityContext);
     }
     @GET
     @Path("/rest/classes/{class}")
     
     @Produces({ "application/json" })
-    @io.swagger.annotations.ApiOperation(value = "", notes = "Get a list of class names supported by a given class", response = String.class, tags={ "blueOcean", })
+    @io.swagger.annotations.ApiOperation(value = "", notes = "Get a list of class names supported by a given class", response = String.class, authorizations = {
+        @io.swagger.annotations.Authorization(value = "jenkins_auth")
+    }, tags={ "blueOcean", })
     @io.swagger.annotations.ApiResponses(value = { 
         @io.swagger.annotations.ApiResponse(code = 200, message = "Successfully retrieved class names", response = String.class),
         
@@ -72,206 +131,639 @@ public class BlueApi  {
         return delegate.getClasses(propertyClass,securityContext);
     }
     @GET
-    @Path("/rest/organizations/{organisation}")
+    @Path("/rest/organizations/{organization}")
     
     @Produces({ "application/json" })
-    @io.swagger.annotations.ApiOperation(value = "", notes = "Retrieve organisation details", response = SwaggyjenkinsOrganisation.class, tags={ "blueOcean", })
+    @io.swagger.annotations.ApiOperation(value = "", notes = "Retrieve organization details", response = Organisation.class, authorizations = {
+        @io.swagger.annotations.Authorization(value = "jenkins_auth")
+    }, tags={ "blueOcean", })
     @io.swagger.annotations.ApiResponses(value = { 
-        @io.swagger.annotations.ApiResponse(code = 200, message = "Successfully retrieved pipeline details", response = SwaggyjenkinsOrganisation.class),
+        @io.swagger.annotations.ApiResponse(code = 200, message = "Successfully retrieved pipeline details", response = Organisation.class),
         
-        @io.swagger.annotations.ApiResponse(code = 401, message = "Authentication failed - incorrect username and/or password", response = SwaggyjenkinsOrganisation.class),
+        @io.swagger.annotations.ApiResponse(code = 401, message = "Authentication failed - incorrect username and/or password", response = Organisation.class),
         
-        @io.swagger.annotations.ApiResponse(code = 403, message = "Jenkins requires authentication - please set username and password", response = SwaggyjenkinsOrganisation.class),
+        @io.swagger.annotations.ApiResponse(code = 403, message = "Jenkins requires authentication - please set username and password", response = Organisation.class),
         
-        @io.swagger.annotations.ApiResponse(code = 404, message = "Pipeline cannot be found on Jenkins instance", response = SwaggyjenkinsOrganisation.class) })
-    public Response getOrganisation(@ApiParam(value = "Name of the organisation",required=true) @PathParam("organisation") String organisation
+        @io.swagger.annotations.ApiResponse(code = 404, message = "Pipeline cannot be found on Jenkins instance", response = Organisation.class) })
+    public Response getOrganisation(@ApiParam(value = "Name of the organization",required=true) @PathParam("organization") String organization
 ,@Context SecurityContext securityContext)
     throws NotFoundException {
-        return delegate.getOrganisation(organisation,securityContext);
+        return delegate.getOrganisation(organization,securityContext);
     }
     @GET
     @Path("/rest/organizations/")
     
     @Produces({ "application/json" })
-    @io.swagger.annotations.ApiOperation(value = "", notes = "Retrieve all organisations details", response = GetOrganisations.class, tags={ "blueOcean", })
+    @io.swagger.annotations.ApiOperation(value = "", notes = "Retrieve all organizations details", response = Organisations.class, authorizations = {
+        @io.swagger.annotations.Authorization(value = "jenkins_auth")
+    }, tags={ "blueOcean", })
     @io.swagger.annotations.ApiResponses(value = { 
-        @io.swagger.annotations.ApiResponse(code = 200, message = "Successfully retrieved pipelines details", response = GetOrganisations.class),
+        @io.swagger.annotations.ApiResponse(code = 200, message = "Successfully retrieved pipelines details", response = Organisations.class),
         
-        @io.swagger.annotations.ApiResponse(code = 401, message = "Authentication failed - incorrect username and/or password", response = GetOrganisations.class),
+        @io.swagger.annotations.ApiResponse(code = 401, message = "Authentication failed - incorrect username and/or password", response = Organisations.class),
         
-        @io.swagger.annotations.ApiResponse(code = 403, message = "Jenkins requires authentication - please set username and password", response = GetOrganisations.class) })
+        @io.swagger.annotations.ApiResponse(code = 403, message = "Jenkins requires authentication - please set username and password", response = Organisations.class) })
     public Response getOrganisations(@Context SecurityContext securityContext)
     throws NotFoundException {
         return delegate.getOrganisations(securityContext);
     }
     @GET
-    @Path("/rest/organizations/{organisation}/pipelines/{pipeline}/branches/{branch}/")
+    @Path("/rest/organizations/{organization}/pipelines/{pipeline}")
     
     @Produces({ "application/json" })
-    @io.swagger.annotations.ApiOperation(value = "", notes = "Retrieve branch details for an organisation pipeline", response = IojenkinsblueoceanrestimplpipelineBranchImpl.class, tags={ "blueOcean", })
+    @io.swagger.annotations.ApiOperation(value = "", notes = "Retrieve pipeline details for an organization", response = Pipeline.class, authorizations = {
+        @io.swagger.annotations.Authorization(value = "jenkins_auth")
+    }, tags={ "blueOcean", })
     @io.swagger.annotations.ApiResponses(value = { 
-        @io.swagger.annotations.ApiResponse(code = 200, message = "Successfully retrieved branch details", response = IojenkinsblueoceanrestimplpipelineBranchImpl.class),
+        @io.swagger.annotations.ApiResponse(code = 200, message = "Successfully retrieved pipeline details", response = Pipeline.class),
         
-        @io.swagger.annotations.ApiResponse(code = 401, message = "Authentication failed - incorrect username and/or password", response = IojenkinsblueoceanrestimplpipelineBranchImpl.class),
+        @io.swagger.annotations.ApiResponse(code = 401, message = "Authentication failed - incorrect username and/or password", response = Pipeline.class),
         
-        @io.swagger.annotations.ApiResponse(code = 403, message = "Jenkins requires authentication - please set username and password", response = IojenkinsblueoceanrestimplpipelineBranchImpl.class) })
-    public Response getPipelineBranchByOrg(@ApiParam(value = "Name of the organisation",required=true) @PathParam("organisation") String organisation
+        @io.swagger.annotations.ApiResponse(code = 403, message = "Jenkins requires authentication - please set username and password", response = Pipeline.class),
+        
+        @io.swagger.annotations.ApiResponse(code = 404, message = "Pipeline cannot be found on Jenkins instance", response = Pipeline.class) })
+    public Response getPipeline(@ApiParam(value = "Name of the organization",required=true) @PathParam("organization") String organization
+,@ApiParam(value = "Name of the pipeline",required=true) @PathParam("pipeline") String pipeline
+,@Context SecurityContext securityContext)
+    throws NotFoundException {
+        return delegate.getPipeline(organization,pipeline,securityContext);
+    }
+    @GET
+    @Path("/rest/organizations/{organization}/pipelines/{pipeline}/activities")
+    
+    @Produces({ "application/json" })
+    @io.swagger.annotations.ApiOperation(value = "", notes = "Retrieve all activities details for an organization pipeline", response = PipelineActivities.class, authorizations = {
+        @io.swagger.annotations.Authorization(value = "jenkins_auth")
+    }, tags={ "blueOcean", })
+    @io.swagger.annotations.ApiResponses(value = { 
+        @io.swagger.annotations.ApiResponse(code = 200, message = "Successfully retrieved all activities details", response = PipelineActivities.class),
+        
+        @io.swagger.annotations.ApiResponse(code = 401, message = "Authentication failed - incorrect username and/or password", response = PipelineActivities.class),
+        
+        @io.swagger.annotations.ApiResponse(code = 403, message = "Jenkins requires authentication - please set username and password", response = PipelineActivities.class) })
+    public Response getPipelineActivities(@ApiParam(value = "Name of the organization",required=true) @PathParam("organization") String organization
+,@ApiParam(value = "Name of the pipeline",required=true) @PathParam("pipeline") String pipeline
+,@Context SecurityContext securityContext)
+    throws NotFoundException {
+        return delegate.getPipelineActivities(organization,pipeline,securityContext);
+    }
+    @GET
+    @Path("/rest/organizations/{organization}/pipelines/{pipeline}/branches/{branch}/")
+    
+    @Produces({ "application/json" })
+    @io.swagger.annotations.ApiOperation(value = "", notes = "Retrieve branch details for an organization pipeline", response = BranchImpl.class, authorizations = {
+        @io.swagger.annotations.Authorization(value = "jenkins_auth")
+    }, tags={ "blueOcean", })
+    @io.swagger.annotations.ApiResponses(value = { 
+        @io.swagger.annotations.ApiResponse(code = 200, message = "Successfully retrieved branch details", response = BranchImpl.class),
+        
+        @io.swagger.annotations.ApiResponse(code = 401, message = "Authentication failed - incorrect username and/or password", response = BranchImpl.class),
+        
+        @io.swagger.annotations.ApiResponse(code = 403, message = "Jenkins requires authentication - please set username and password", response = BranchImpl.class) })
+    public Response getPipelineBranch(@ApiParam(value = "Name of the organization",required=true) @PathParam("organization") String organization
 ,@ApiParam(value = "Name of the pipeline",required=true) @PathParam("pipeline") String pipeline
 ,@ApiParam(value = "Name of the branch",required=true) @PathParam("branch") String branch
 ,@Context SecurityContext securityContext)
     throws NotFoundException {
-        return delegate.getPipelineBranchByOrg(organisation,pipeline,branch,securityContext);
+        return delegate.getPipelineBranch(organization,pipeline,branch,securityContext);
     }
     @GET
-    @Path("/rest/organizations/{organisation}/pipelines/{pipeline}/branches")
+    @Path("/rest/organizations/{organization}/pipelines/{pipeline}/branches/{branch}/runs/{run}")
     
     @Produces({ "application/json" })
-    @io.swagger.annotations.ApiOperation(value = "", notes = "Retrieve all branches details for an organisation pipeline", response = GetMultibranchPipeline.class, tags={ "blueOcean", })
+    @io.swagger.annotations.ApiOperation(value = "", notes = "Retrieve branch run details for an organization pipeline", response = PipelineRun.class, authorizations = {
+        @io.swagger.annotations.Authorization(value = "jenkins_auth")
+    }, tags={ "blueOcean", })
     @io.swagger.annotations.ApiResponses(value = { 
-        @io.swagger.annotations.ApiResponse(code = 200, message = "Successfully retrieved all branches details", response = GetMultibranchPipeline.class),
+        @io.swagger.annotations.ApiResponse(code = 200, message = "Successfully retrieved run details", response = PipelineRun.class),
         
-        @io.swagger.annotations.ApiResponse(code = 401, message = "Authentication failed - incorrect username and/or password", response = GetMultibranchPipeline.class),
+        @io.swagger.annotations.ApiResponse(code = 401, message = "Authentication failed - incorrect username and/or password", response = PipelineRun.class),
         
-        @io.swagger.annotations.ApiResponse(code = 403, message = "Jenkins requires authentication - please set username and password", response = GetMultibranchPipeline.class) })
-    public Response getPipelineBranchesByOrg(@ApiParam(value = "Name of the organisation",required=true) @PathParam("organisation") String organisation
+        @io.swagger.annotations.ApiResponse(code = 403, message = "Jenkins requires authentication - please set username and password", response = PipelineRun.class) })
+    public Response getPipelineBranchRun(@ApiParam(value = "Name of the organization",required=true) @PathParam("organization") String organization
+,@ApiParam(value = "Name of the pipeline",required=true) @PathParam("pipeline") String pipeline
+,@ApiParam(value = "Name of the branch",required=true) @PathParam("branch") String branch
+,@ApiParam(value = "Name of the run",required=true) @PathParam("run") String run
+,@Context SecurityContext securityContext)
+    throws NotFoundException {
+        return delegate.getPipelineBranchRun(organization,pipeline,branch,run,securityContext);
+    }
+    @GET
+    @Path("/rest/organizations/{organization}/pipelines/{pipeline}/branches")
+    
+    @Produces({ "application/json" })
+    @io.swagger.annotations.ApiOperation(value = "", notes = "Retrieve all branches details for an organization pipeline", response = MultibranchPipeline.class, authorizations = {
+        @io.swagger.annotations.Authorization(value = "jenkins_auth")
+    }, tags={ "blueOcean", })
+    @io.swagger.annotations.ApiResponses(value = { 
+        @io.swagger.annotations.ApiResponse(code = 200, message = "Successfully retrieved all branches details", response = MultibranchPipeline.class),
+        
+        @io.swagger.annotations.ApiResponse(code = 401, message = "Authentication failed - incorrect username and/or password", response = MultibranchPipeline.class),
+        
+        @io.swagger.annotations.ApiResponse(code = 403, message = "Jenkins requires authentication - please set username and password", response = MultibranchPipeline.class) })
+    public Response getPipelineBranches(@ApiParam(value = "Name of the organization",required=true) @PathParam("organization") String organization
 ,@ApiParam(value = "Name of the pipeline",required=true) @PathParam("pipeline") String pipeline
 ,@Context SecurityContext securityContext)
     throws NotFoundException {
-        return delegate.getPipelineBranchesByOrg(organisation,pipeline,securityContext);
+        return delegate.getPipelineBranches(organization,pipeline,securityContext);
     }
     @GET
-    @Path("/rest/organizations/{organisation}/pipelines/{pipeline}")
+    @Path("/rest/organizations/{organization}/pipelines/{folder}/")
     
     @Produces({ "application/json" })
-    @io.swagger.annotations.ApiOperation(value = "", notes = "Retrieve pipeline details for an organisation", response = SwaggyjenkinsPipeline.class, tags={ "blueOcean", })
+    @io.swagger.annotations.ApiOperation(value = "", notes = "Retrieve pipeline folder for an organization", response = PipelineFolderImpl.class, authorizations = {
+        @io.swagger.annotations.Authorization(value = "jenkins_auth")
+    }, tags={ "blueOcean", })
     @io.swagger.annotations.ApiResponses(value = { 
-        @io.swagger.annotations.ApiResponse(code = 200, message = "Successfully retrieved pipeline details", response = SwaggyjenkinsPipeline.class),
+        @io.swagger.annotations.ApiResponse(code = 200, message = "Successfully retrieved folder details", response = PipelineFolderImpl.class),
         
-        @io.swagger.annotations.ApiResponse(code = 401, message = "Authentication failed - incorrect username and/or password", response = SwaggyjenkinsPipeline.class),
+        @io.swagger.annotations.ApiResponse(code = 401, message = "Authentication failed - incorrect username and/or password", response = PipelineFolderImpl.class),
         
-        @io.swagger.annotations.ApiResponse(code = 403, message = "Jenkins requires authentication - please set username and password", response = SwaggyjenkinsPipeline.class),
-        
-        @io.swagger.annotations.ApiResponse(code = 404, message = "Pipeline cannot be found on Jenkins instance", response = SwaggyjenkinsPipeline.class) })
-    public Response getPipelineByOrg(@ApiParam(value = "Name of the organisation",required=true) @PathParam("organisation") String organisation
-,@ApiParam(value = "Name of the pipeline",required=true) @PathParam("pipeline") String pipeline
-,@Context SecurityContext securityContext)
-    throws NotFoundException {
-        return delegate.getPipelineByOrg(organisation,pipeline,securityContext);
-    }
-    @GET
-    @Path("/rest/organizations/{organisation}/pipelines/{folder}/")
-    
-    @Produces({ "application/json" })
-    @io.swagger.annotations.ApiOperation(value = "", notes = "Retrieve pipeline folder for an organisation", response = IojenkinsblueoceanserviceembeddedrestPipelineFolderImpl.class, tags={ "blueOcean", })
-    @io.swagger.annotations.ApiResponses(value = { 
-        @io.swagger.annotations.ApiResponse(code = 200, message = "Successfully retrieved folder details", response = IojenkinsblueoceanserviceembeddedrestPipelineFolderImpl.class),
-        
-        @io.swagger.annotations.ApiResponse(code = 401, message = "Authentication failed - incorrect username and/or password", response = IojenkinsblueoceanserviceembeddedrestPipelineFolderImpl.class),
-        
-        @io.swagger.annotations.ApiResponse(code = 403, message = "Jenkins requires authentication - please set username and password", response = IojenkinsblueoceanserviceembeddedrestPipelineFolderImpl.class) })
-    public Response getPipelineFolderByOrg(@ApiParam(value = "Name of the organisation",required=true) @PathParam("organisation") String organisation
+        @io.swagger.annotations.ApiResponse(code = 403, message = "Jenkins requires authentication - please set username and password", response = PipelineFolderImpl.class) })
+    public Response getPipelineFolder(@ApiParam(value = "Name of the organization",required=true) @PathParam("organization") String organization
 ,@ApiParam(value = "Name of the folder",required=true) @PathParam("folder") String folder
 ,@Context SecurityContext securityContext)
     throws NotFoundException {
-        return delegate.getPipelineFolderByOrg(organisation,folder,securityContext);
+        return delegate.getPipelineFolder(organization,folder,securityContext);
     }
     @GET
-    @Path("/rest/organizations/{organisation}/pipelines/{folder}/pipelines/{pipeline}")
+    @Path("/rest/organizations/{organization}/pipelines/{folder}/pipelines/{pipeline}")
     
     @Produces({ "application/json" })
-    @io.swagger.annotations.ApiOperation(value = "", notes = "Retrieve pipeline details for an organisation folder", response = IojenkinsblueoceanserviceembeddedrestPipelineImpl.class, tags={ "blueOcean", })
+    @io.swagger.annotations.ApiOperation(value = "", notes = "Retrieve pipeline details for an organization folder", response = PipelineImpl.class, authorizations = {
+        @io.swagger.annotations.Authorization(value = "jenkins_auth")
+    }, tags={ "blueOcean", })
     @io.swagger.annotations.ApiResponses(value = { 
-        @io.swagger.annotations.ApiResponse(code = 200, message = "Successfully retrieved pipeline details", response = IojenkinsblueoceanserviceembeddedrestPipelineImpl.class),
+        @io.swagger.annotations.ApiResponse(code = 200, message = "Successfully retrieved pipeline details", response = PipelineImpl.class),
         
-        @io.swagger.annotations.ApiResponse(code = 401, message = "Authentication failed - incorrect username and/or password", response = IojenkinsblueoceanserviceembeddedrestPipelineImpl.class),
+        @io.swagger.annotations.ApiResponse(code = 401, message = "Authentication failed - incorrect username and/or password", response = PipelineImpl.class),
         
-        @io.swagger.annotations.ApiResponse(code = 403, message = "Jenkins requires authentication - please set username and password", response = IojenkinsblueoceanserviceembeddedrestPipelineImpl.class) })
-    public Response getPipelineFolderByOrg_1(@ApiParam(value = "Name of the organisation",required=true) @PathParam("organisation") String organisation
+        @io.swagger.annotations.ApiResponse(code = 403, message = "Jenkins requires authentication - please set username and password", response = PipelineImpl.class) })
+    public Response getPipelineFolderPipeline(@ApiParam(value = "Name of the organization",required=true) @PathParam("organization") String organization
 ,@ApiParam(value = "Name of the pipeline",required=true) @PathParam("pipeline") String pipeline
 ,@ApiParam(value = "Name of the folder",required=true) @PathParam("folder") String folder
 ,@Context SecurityContext securityContext)
     throws NotFoundException {
-        return delegate.getPipelineFolderByOrg_1(organisation,pipeline,folder,securityContext);
+        return delegate.getPipelineFolderPipeline(organization,pipeline,folder,securityContext);
     }
     @GET
-    @Path("/rest/organizations/{organisation}/pipelines/")
+    @Path("/rest/organizations/{organization}/pipelines/{pipeline}/queue")
     
     @Produces({ "application/json" })
-    @io.swagger.annotations.ApiOperation(value = "", notes = "Retrieve all pipelines details for an organisation", response = GetPipelines.class, tags={ "blueOcean", })
+    @io.swagger.annotations.ApiOperation(value = "", notes = "Retrieve queue details for an organization pipeline", response = PipelineQueue.class, authorizations = {
+        @io.swagger.annotations.Authorization(value = "jenkins_auth")
+    }, tags={ "blueOcean", })
     @io.swagger.annotations.ApiResponses(value = { 
-        @io.swagger.annotations.ApiResponse(code = 200, message = "Successfully retrieved pipelines details", response = GetPipelines.class),
+        @io.swagger.annotations.ApiResponse(code = 200, message = "Successfully retrieved queue details", response = PipelineQueue.class),
         
-        @io.swagger.annotations.ApiResponse(code = 401, message = "Authentication failed - incorrect username and/or password", response = GetPipelines.class),
+        @io.swagger.annotations.ApiResponse(code = 401, message = "Authentication failed - incorrect username and/or password", response = PipelineQueue.class),
         
-        @io.swagger.annotations.ApiResponse(code = 403, message = "Jenkins requires authentication - please set username and password", response = GetPipelines.class) })
-    public Response getPipelinesByOrg(@ApiParam(value = "Name of the organisation",required=true) @PathParam("organisation") String organisation
+        @io.swagger.annotations.ApiResponse(code = 403, message = "Jenkins requires authentication - please set username and password", response = PipelineQueue.class) })
+    public Response getPipelineQueue(@ApiParam(value = "Name of the organization",required=true) @PathParam("organization") String organization
+,@ApiParam(value = "Name of the pipeline",required=true) @PathParam("pipeline") String pipeline
 ,@Context SecurityContext securityContext)
     throws NotFoundException {
-        return delegate.getPipelinesByOrg(organisation,securityContext);
+        return delegate.getPipelineQueue(organization,pipeline,securityContext);
     }
     @GET
-    @Path("/rest/organizations/{organisation}/users/{user}")
+    @Path("/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}")
     
     @Produces({ "application/json" })
-    @io.swagger.annotations.ApiOperation(value = "", notes = "Retrieve user details for an organisation", response = SwaggyjenkinsUser.class, tags={ "blueOcean", })
+    @io.swagger.annotations.ApiOperation(value = "", notes = "Retrieve run details for an organization pipeline", response = PipelineRun.class, authorizations = {
+        @io.swagger.annotations.Authorization(value = "jenkins_auth")
+    }, tags={ "blueOcean", })
     @io.swagger.annotations.ApiResponses(value = { 
-        @io.swagger.annotations.ApiResponse(code = 200, message = "Successfully retrieved users details", response = SwaggyjenkinsUser.class),
+        @io.swagger.annotations.ApiResponse(code = 200, message = "Successfully retrieved run details", response = PipelineRun.class),
         
-        @io.swagger.annotations.ApiResponse(code = 401, message = "Authentication failed - incorrect username and/or password", response = SwaggyjenkinsUser.class),
+        @io.swagger.annotations.ApiResponse(code = 401, message = "Authentication failed - incorrect username and/or password", response = PipelineRun.class),
         
-        @io.swagger.annotations.ApiResponse(code = 403, message = "Jenkins requires authentication - please set username and password", response = SwaggyjenkinsUser.class) })
-    public Response getUser(@ApiParam(value = "Name of the organisation",required=true) @PathParam("organisation") String organisation
-,@ApiParam(value = "Name of the user",required=true) @PathParam("user") String user
+        @io.swagger.annotations.ApiResponse(code = 403, message = "Jenkins requires authentication - please set username and password", response = PipelineRun.class) })
+    public Response getPipelineRun(@ApiParam(value = "Name of the organization",required=true) @PathParam("organization") String organization
+,@ApiParam(value = "Name of the pipeline",required=true) @PathParam("pipeline") String pipeline
+,@ApiParam(value = "Name of the run",required=true) @PathParam("run") String run
 ,@Context SecurityContext securityContext)
     throws NotFoundException {
-        return delegate.getUser(organisation,user,securityContext);
+        return delegate.getPipelineRun(organization,pipeline,run,securityContext);
     }
     @GET
-    @Path("/rest/organizations/{organisation}/users/")
+    @Path("/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/log")
     
     @Produces({ "application/json" })
-    @io.swagger.annotations.ApiOperation(value = "", notes = "Retrieve users details for an organisation", response = SwaggyjenkinsUser.class, tags={ "blueOcean", })
+    @io.swagger.annotations.ApiOperation(value = "", notes = "Get log for a pipeline run", response = String.class, authorizations = {
+        @io.swagger.annotations.Authorization(value = "jenkins_auth")
+    }, tags={ "blueOcean", })
     @io.swagger.annotations.ApiResponses(value = { 
-        @io.swagger.annotations.ApiResponse(code = 200, message = "Successfully retrieved users details", response = SwaggyjenkinsUser.class),
-        
-        @io.swagger.annotations.ApiResponse(code = 401, message = "Authentication failed - incorrect username and/or password", response = SwaggyjenkinsUser.class),
-        
-        @io.swagger.annotations.ApiResponse(code = 403, message = "Jenkins requires authentication - please set username and password", response = SwaggyjenkinsUser.class) })
-    public Response getUsers(@ApiParam(value = "Name of the organisation",required=true) @PathParam("organisation") String organisation
-,@Context SecurityContext securityContext)
-    throws NotFoundException {
-        return delegate.getUsers(organisation,securityContext);
-    }
-    @GET
-    @Path("/rest/classes/")
-    
-    @Produces({ "application/json" })
-    @io.swagger.annotations.ApiOperation(value = "", notes = "Get classes details", response = String.class, tags={ "blueOcean", })
-    @io.swagger.annotations.ApiResponses(value = { 
-        @io.swagger.annotations.ApiResponse(code = 200, message = "Successfully retrieved search result", response = String.class),
+        @io.swagger.annotations.ApiResponse(code = 200, message = "Successfully retrieved pipeline run log", response = String.class),
         
         @io.swagger.annotations.ApiResponse(code = 401, message = "Authentication failed - incorrect username and/or password", response = String.class),
         
         @io.swagger.annotations.ApiResponse(code = 403, message = "Jenkins requires authentication - please set username and password", response = String.class) })
-    public Response search(@ApiParam(value = "Query string containing an array of class names",required=true) @QueryParam("q") String q
+    public Response getPipelineRunLog(@ApiParam(value = "Name of the organization",required=true) @PathParam("organization") String organization
+,@ApiParam(value = "Name of the pipeline",required=true) @PathParam("pipeline") String pipeline
+,@ApiParam(value = "Name of the run",required=true) @PathParam("run") String run
+,@ApiParam(value = "Start position of the log") @QueryParam("start") Integer start
+,@ApiParam(value = "Set to true in order to download the file, otherwise it's passed as a response body") @QueryParam("download") Boolean download
 ,@Context SecurityContext securityContext)
     throws NotFoundException {
-        return delegate.search(q,securityContext);
+        return delegate.getPipelineRunLog(organization,pipeline,run,start,download,securityContext);
+    }
+    @GET
+    @Path("/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}")
+    
+    @Produces({ "application/json" })
+    @io.swagger.annotations.ApiOperation(value = "", notes = "Retrieve run node details for an organization pipeline", response = PipelineRunNode.class, authorizations = {
+        @io.swagger.annotations.Authorization(value = "jenkins_auth")
+    }, tags={ "blueOcean", })
+    @io.swagger.annotations.ApiResponses(value = { 
+        @io.swagger.annotations.ApiResponse(code = 200, message = "Successfully retrieved run node details", response = PipelineRunNode.class),
+        
+        @io.swagger.annotations.ApiResponse(code = 401, message = "Authentication failed - incorrect username and/or password", response = PipelineRunNode.class),
+        
+        @io.swagger.annotations.ApiResponse(code = 403, message = "Jenkins requires authentication - please set username and password", response = PipelineRunNode.class) })
+    public Response getPipelineRunNode(@ApiParam(value = "Name of the organization",required=true) @PathParam("organization") String organization
+,@ApiParam(value = "Name of the pipeline",required=true) @PathParam("pipeline") String pipeline
+,@ApiParam(value = "Name of the run",required=true) @PathParam("run") String run
+,@ApiParam(value = "Name of the node",required=true) @PathParam("node") String node
+,@Context SecurityContext securityContext)
+    throws NotFoundException {
+        return delegate.getPipelineRunNode(organization,pipeline,run,node,securityContext);
+    }
+    @GET
+    @Path("/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps/{step}")
+    
+    @Produces({ "application/json" })
+    @io.swagger.annotations.ApiOperation(value = "", notes = "Retrieve run node details for an organization pipeline", response = PipelineStepImpl.class, authorizations = {
+        @io.swagger.annotations.Authorization(value = "jenkins_auth")
+    }, tags={ "blueOcean", })
+    @io.swagger.annotations.ApiResponses(value = { 
+        @io.swagger.annotations.ApiResponse(code = 200, message = "Successfully retrieved run node step details", response = PipelineStepImpl.class),
+        
+        @io.swagger.annotations.ApiResponse(code = 401, message = "Authentication failed - incorrect username and/or password", response = PipelineStepImpl.class),
+        
+        @io.swagger.annotations.ApiResponse(code = 403, message = "Jenkins requires authentication - please set username and password", response = PipelineStepImpl.class) })
+    public Response getPipelineRunNodeStep(@ApiParam(value = "Name of the organization",required=true) @PathParam("organization") String organization
+,@ApiParam(value = "Name of the pipeline",required=true) @PathParam("pipeline") String pipeline
+,@ApiParam(value = "Name of the run",required=true) @PathParam("run") String run
+,@ApiParam(value = "Name of the node",required=true) @PathParam("node") String node
+,@ApiParam(value = "Name of the step",required=true) @PathParam("step") String step
+,@Context SecurityContext securityContext)
+    throws NotFoundException {
+        return delegate.getPipelineRunNodeStep(organization,pipeline,run,node,step,securityContext);
+    }
+    @GET
+    @Path("/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps/{step}/log")
+    
+    @Produces({ "application/json" })
+    @io.swagger.annotations.ApiOperation(value = "", notes = "Get log for a pipeline run node step", response = String.class, authorizations = {
+        @io.swagger.annotations.Authorization(value = "jenkins_auth")
+    }, tags={ "blueOcean", })
+    @io.swagger.annotations.ApiResponses(value = { 
+        @io.swagger.annotations.ApiResponse(code = 200, message = "Successfully retrieved pipeline run node step log", response = String.class),
+        
+        @io.swagger.annotations.ApiResponse(code = 401, message = "Authentication failed - incorrect username and/or password", response = String.class),
+        
+        @io.swagger.annotations.ApiResponse(code = 403, message = "Jenkins requires authentication - please set username and password", response = String.class) })
+    public Response getPipelineRunNodeStepLog(@ApiParam(value = "Name of the organization",required=true) @PathParam("organization") String organization
+,@ApiParam(value = "Name of the pipeline",required=true) @PathParam("pipeline") String pipeline
+,@ApiParam(value = "Name of the run",required=true) @PathParam("run") String run
+,@ApiParam(value = "Name of the node",required=true) @PathParam("node") String node
+,@ApiParam(value = "Name of the step",required=true) @PathParam("step") String step
+,@Context SecurityContext securityContext)
+    throws NotFoundException {
+        return delegate.getPipelineRunNodeStepLog(organization,pipeline,run,node,step,securityContext);
+    }
+    @GET
+    @Path("/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps")
+    
+    @Produces({ "application/json" })
+    @io.swagger.annotations.ApiOperation(value = "", notes = "Retrieve run node steps details for an organization pipeline", response = PipelineRunNodeSteps.class, authorizations = {
+        @io.swagger.annotations.Authorization(value = "jenkins_auth")
+    }, tags={ "blueOcean", })
+    @io.swagger.annotations.ApiResponses(value = { 
+        @io.swagger.annotations.ApiResponse(code = 200, message = "Successfully retrieved run node steps details", response = PipelineRunNodeSteps.class),
+        
+        @io.swagger.annotations.ApiResponse(code = 401, message = "Authentication failed - incorrect username and/or password", response = PipelineRunNodeSteps.class),
+        
+        @io.swagger.annotations.ApiResponse(code = 403, message = "Jenkins requires authentication - please set username and password", response = PipelineRunNodeSteps.class) })
+    public Response getPipelineRunNodeSteps(@ApiParam(value = "Name of the organization",required=true) @PathParam("organization") String organization
+,@ApiParam(value = "Name of the pipeline",required=true) @PathParam("pipeline") String pipeline
+,@ApiParam(value = "Name of the run",required=true) @PathParam("run") String run
+,@ApiParam(value = "Name of the node",required=true) @PathParam("node") String node
+,@Context SecurityContext securityContext)
+    throws NotFoundException {
+        return delegate.getPipelineRunNodeSteps(organization,pipeline,run,node,securityContext);
+    }
+    @GET
+    @Path("/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes")
+    
+    @Produces({ "application/json" })
+    @io.swagger.annotations.ApiOperation(value = "", notes = "Retrieve run nodes details for an organization pipeline", response = PipelineRunNodes.class, authorizations = {
+        @io.swagger.annotations.Authorization(value = "jenkins_auth")
+    }, tags={ "blueOcean", })
+    @io.swagger.annotations.ApiResponses(value = { 
+        @io.swagger.annotations.ApiResponse(code = 200, message = "Successfully retrieved run nodes details", response = PipelineRunNodes.class),
+        
+        @io.swagger.annotations.ApiResponse(code = 401, message = "Authentication failed - incorrect username and/or password", response = PipelineRunNodes.class),
+        
+        @io.swagger.annotations.ApiResponse(code = 403, message = "Jenkins requires authentication - please set username and password", response = PipelineRunNodes.class) })
+    public Response getPipelineRunNodes(@ApiParam(value = "Name of the organization",required=true) @PathParam("organization") String organization
+,@ApiParam(value = "Name of the pipeline",required=true) @PathParam("pipeline") String pipeline
+,@ApiParam(value = "Name of the run",required=true) @PathParam("run") String run
+,@Context SecurityContext securityContext)
+    throws NotFoundException {
+        return delegate.getPipelineRunNodes(organization,pipeline,run,securityContext);
+    }
+    @GET
+    @Path("/rest/organizations/{organization}/pipelines/{pipeline}/runs")
+    
+    @Produces({ "application/json" })
+    @io.swagger.annotations.ApiOperation(value = "", notes = "Retrieve all runs details for an organization pipeline", response = PipelineRuns.class, authorizations = {
+        @io.swagger.annotations.Authorization(value = "jenkins_auth")
+    }, tags={ "blueOcean", })
+    @io.swagger.annotations.ApiResponses(value = { 
+        @io.swagger.annotations.ApiResponse(code = 200, message = "Successfully retrieved runs details", response = PipelineRuns.class),
+        
+        @io.swagger.annotations.ApiResponse(code = 401, message = "Authentication failed - incorrect username and/or password", response = PipelineRuns.class),
+        
+        @io.swagger.annotations.ApiResponse(code = 403, message = "Jenkins requires authentication - please set username and password", response = PipelineRuns.class) })
+    public Response getPipelineRuns(@ApiParam(value = "Name of the organization",required=true) @PathParam("organization") String organization
+,@ApiParam(value = "Name of the pipeline",required=true) @PathParam("pipeline") String pipeline
+,@Context SecurityContext securityContext)
+    throws NotFoundException {
+        return delegate.getPipelineRuns(organization,pipeline,securityContext);
+    }
+    @GET
+    @Path("/rest/organizations/{organization}/pipelines/")
+    
+    @Produces({ "application/json" })
+    @io.swagger.annotations.ApiOperation(value = "", notes = "Retrieve all pipelines details for an organization", response = Pipelines.class, authorizations = {
+        @io.swagger.annotations.Authorization(value = "jenkins_auth")
+    }, tags={ "blueOcean", })
+    @io.swagger.annotations.ApiResponses(value = { 
+        @io.swagger.annotations.ApiResponse(code = 200, message = "Successfully retrieved pipelines details", response = Pipelines.class),
+        
+        @io.swagger.annotations.ApiResponse(code = 401, message = "Authentication failed - incorrect username and/or password", response = Pipelines.class),
+        
+        @io.swagger.annotations.ApiResponse(code = 403, message = "Jenkins requires authentication - please set username and password", response = Pipelines.class) })
+    public Response getPipelines(@ApiParam(value = "Name of the organization",required=true) @PathParam("organization") String organization
+,@Context SecurityContext securityContext)
+    throws NotFoundException {
+        return delegate.getPipelines(organization,securityContext);
+    }
+    @GET
+    @Path("/rest/organizations/{organization}/scm/{scm}")
+    
+    @Produces({ "application/json" })
+    @io.swagger.annotations.ApiOperation(value = "", notes = "Retrieve SCM details for an organization", response = GithubScm.class, authorizations = {
+        @io.swagger.annotations.Authorization(value = "jenkins_auth")
+    }, tags={ "blueOcean", })
+    @io.swagger.annotations.ApiResponses(value = { 
+        @io.swagger.annotations.ApiResponse(code = 200, message = "Successfully retrieved SCM details", response = GithubScm.class),
+        
+        @io.swagger.annotations.ApiResponse(code = 401, message = "Authentication failed - incorrect username and/or password", response = GithubScm.class),
+        
+        @io.swagger.annotations.ApiResponse(code = 403, message = "Jenkins requires authentication - please set username and password", response = GithubScm.class) })
+    public Response getSCM(@ApiParam(value = "Name of the organization",required=true) @PathParam("organization") String organization
+,@ApiParam(value = "Name of SCM",required=true) @PathParam("scm") String scm
+,@Context SecurityContext securityContext)
+    throws NotFoundException {
+        return delegate.getSCM(organization,scm,securityContext);
+    }
+    @GET
+    @Path("/rest/organizations/{organization}/scm/{scm}/organizations/{scmOrganisation}/repositories")
+    
+    @Produces({ "application/json" })
+    @io.swagger.annotations.ApiOperation(value = "", notes = "Retrieve SCM organization repositories details for an organization", response = ScmOrganisations.class, authorizations = {
+        @io.swagger.annotations.Authorization(value = "jenkins_auth")
+    }, tags={ "blueOcean", })
+    @io.swagger.annotations.ApiResponses(value = { 
+        @io.swagger.annotations.ApiResponse(code = 200, message = "Successfully retrieved SCM organization repositories details", response = ScmOrganisations.class),
+        
+        @io.swagger.annotations.ApiResponse(code = 401, message = "Authentication failed - incorrect username and/or password", response = ScmOrganisations.class),
+        
+        @io.swagger.annotations.ApiResponse(code = 403, message = "Jenkins requires authentication - please set username and password", response = ScmOrganisations.class) })
+    public Response getSCMOrganisationRepositories(@ApiParam(value = "Name of the organization",required=true) @PathParam("organization") String organization
+,@ApiParam(value = "Name of SCM",required=true) @PathParam("scm") String scm
+,@ApiParam(value = "Name of the SCM organization",required=true) @PathParam("scmOrganisation") String scmOrganisation
+,@ApiParam(value = "Credential ID") @QueryParam("credentialId") String credentialId
+,@ApiParam(value = "Number of items in a page") @QueryParam("pageSize") Integer pageSize
+,@ApiParam(value = "Page number") @QueryParam("pageNumber") Integer pageNumber
+,@Context SecurityContext securityContext)
+    throws NotFoundException {
+        return delegate.getSCMOrganisationRepositories(organization,scm,scmOrganisation,credentialId,pageSize,pageNumber,securityContext);
+    }
+    @GET
+    @Path("/rest/organizations/{organization}/scm/{scm}/organizations/{scmOrganisation}/repositories/{repository}")
+    
+    @Produces({ "application/json" })
+    @io.swagger.annotations.ApiOperation(value = "", notes = "Retrieve SCM organization repository details for an organization", response = ScmOrganisations.class, authorizations = {
+        @io.swagger.annotations.Authorization(value = "jenkins_auth")
+    }, tags={ "blueOcean", })
+    @io.swagger.annotations.ApiResponses(value = { 
+        @io.swagger.annotations.ApiResponse(code = 200, message = "Successfully retrieved SCM organizations details", response = ScmOrganisations.class),
+        
+        @io.swagger.annotations.ApiResponse(code = 401, message = "Authentication failed - incorrect username and/or password", response = ScmOrganisations.class),
+        
+        @io.swagger.annotations.ApiResponse(code = 403, message = "Jenkins requires authentication - please set username and password", response = ScmOrganisations.class) })
+    public Response getSCMOrganisationRepository(@ApiParam(value = "Name of the organization",required=true) @PathParam("organization") String organization
+,@ApiParam(value = "Name of SCM",required=true) @PathParam("scm") String scm
+,@ApiParam(value = "Name of the SCM organization",required=true) @PathParam("scmOrganisation") String scmOrganisation
+,@ApiParam(value = "Name of the SCM repository",required=true) @PathParam("repository") String repository
+,@ApiParam(value = "Credential ID") @QueryParam("credentialId") String credentialId
+,@Context SecurityContext securityContext)
+    throws NotFoundException {
+        return delegate.getSCMOrganisationRepository(organization,scm,scmOrganisation,repository,credentialId,securityContext);
+    }
+    @GET
+    @Path("/rest/organizations/{organization}/scm/{scm}/organizations")
+    
+    @Produces({ "application/json" })
+    @io.swagger.annotations.ApiOperation(value = "", notes = "Retrieve SCM organizations details for an organization", response = ScmOrganisations.class, authorizations = {
+        @io.swagger.annotations.Authorization(value = "jenkins_auth")
+    }, tags={ "blueOcean", })
+    @io.swagger.annotations.ApiResponses(value = { 
+        @io.swagger.annotations.ApiResponse(code = 200, message = "Successfully retrieved SCM organizations details", response = ScmOrganisations.class),
+        
+        @io.swagger.annotations.ApiResponse(code = 401, message = "Authentication failed - incorrect username and/or password", response = ScmOrganisations.class),
+        
+        @io.swagger.annotations.ApiResponse(code = 403, message = "Jenkins requires authentication - please set username and password", response = ScmOrganisations.class) })
+    public Response getSCMOrganisations(@ApiParam(value = "Name of the organization",required=true) @PathParam("organization") String organization
+,@ApiParam(value = "Name of SCM",required=true) @PathParam("scm") String scm
+,@ApiParam(value = "Credential ID") @QueryParam("credentialId") String credentialId
+,@Context SecurityContext securityContext)
+    throws NotFoundException {
+        return delegate.getSCMOrganisations(organization,scm,credentialId,securityContext);
+    }
+    @GET
+    @Path("/rest/organizations/{organization}/users/{user}")
+    
+    @Produces({ "application/json" })
+    @io.swagger.annotations.ApiOperation(value = "", notes = "Retrieve user details for an organization", response = User.class, authorizations = {
+        @io.swagger.annotations.Authorization(value = "jenkins_auth")
+    }, tags={ "blueOcean", })
+    @io.swagger.annotations.ApiResponses(value = { 
+        @io.swagger.annotations.ApiResponse(code = 200, message = "Successfully retrieved users details", response = User.class),
+        
+        @io.swagger.annotations.ApiResponse(code = 401, message = "Authentication failed - incorrect username and/or password", response = User.class),
+        
+        @io.swagger.annotations.ApiResponse(code = 403, message = "Jenkins requires authentication - please set username and password", response = User.class) })
+    public Response getUser(@ApiParam(value = "Name of the organization",required=true) @PathParam("organization") String organization
+,@ApiParam(value = "Name of the user",required=true) @PathParam("user") String user
+,@Context SecurityContext securityContext)
+    throws NotFoundException {
+        return delegate.getUser(organization,user,securityContext);
+    }
+    @GET
+    @Path("/rest/users/{user}/favorites")
+    
+    @Produces({ "application/json" })
+    @io.swagger.annotations.ApiOperation(value = "", notes = "Retrieve user favorites details for an organization", response = UserFavorites.class, authorizations = {
+        @io.swagger.annotations.Authorization(value = "jenkins_auth")
+    }, tags={ "blueOcean", })
+    @io.swagger.annotations.ApiResponses(value = { 
+        @io.swagger.annotations.ApiResponse(code = 200, message = "Successfully retrieved users favorites details", response = UserFavorites.class),
+        
+        @io.swagger.annotations.ApiResponse(code = 401, message = "Authentication failed - incorrect username and/or password", response = UserFavorites.class),
+        
+        @io.swagger.annotations.ApiResponse(code = 403, message = "Jenkins requires authentication - please set username and password", response = UserFavorites.class) })
+    public Response getUserFavorites(@ApiParam(value = "Name of the user",required=true) @PathParam("user") String user
+,@Context SecurityContext securityContext)
+    throws NotFoundException {
+        return delegate.getUserFavorites(user,securityContext);
+    }
+    @GET
+    @Path("/rest/organizations/{organization}/users/")
+    
+    @Produces({ "application/json" })
+    @io.swagger.annotations.ApiOperation(value = "", notes = "Retrieve users details for an organization", response = User.class, authorizations = {
+        @io.swagger.annotations.Authorization(value = "jenkins_auth")
+    }, tags={ "blueOcean", })
+    @io.swagger.annotations.ApiResponses(value = { 
+        @io.swagger.annotations.ApiResponse(code = 200, message = "Successfully retrieved users details", response = User.class),
+        
+        @io.swagger.annotations.ApiResponse(code = 401, message = "Authentication failed - incorrect username and/or password", response = User.class),
+        
+        @io.swagger.annotations.ApiResponse(code = 403, message = "Jenkins requires authentication - please set username and password", response = User.class) })
+    public Response getUsers(@ApiParam(value = "Name of the organization",required=true) @PathParam("organization") String organization
+,@Context SecurityContext securityContext)
+    throws NotFoundException {
+        return delegate.getUsers(organization,securityContext);
+    }
+    @POST
+    @Path("/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/replay")
+    
+    @Produces({ "application/json" })
+    @io.swagger.annotations.ApiOperation(value = "", notes = "Replay an organization pipeline run", response = QueueItemImpl.class, authorizations = {
+        @io.swagger.annotations.Authorization(value = "jenkins_auth")
+    }, tags={ "blueOcean", })
+    @io.swagger.annotations.ApiResponses(value = { 
+        @io.swagger.annotations.ApiResponse(code = 200, message = "Successfully replayed a pipeline run", response = QueueItemImpl.class),
+        
+        @io.swagger.annotations.ApiResponse(code = 401, message = "Authentication failed - incorrect username and/or password", response = QueueItemImpl.class),
+        
+        @io.swagger.annotations.ApiResponse(code = 403, message = "Jenkins requires authentication - please set username and password", response = QueueItemImpl.class) })
+    public Response postPipelineRun(@ApiParam(value = "Name of the organization",required=true) @PathParam("organization") String organization
+,@ApiParam(value = "Name of the pipeline",required=true) @PathParam("pipeline") String pipeline
+,@ApiParam(value = "Name of the run",required=true) @PathParam("run") String run
+,@Context SecurityContext securityContext)
+    throws NotFoundException {
+        return delegate.postPipelineRun(organization,pipeline,run,securityContext);
+    }
+    @POST
+    @Path("/rest/organizations/{organization}/pipelines/{pipeline}/runs")
+    
+    @Produces({ "application/json" })
+    @io.swagger.annotations.ApiOperation(value = "", notes = "Start a build for an organization pipeline", response = QueueItemImpl.class, authorizations = {
+        @io.swagger.annotations.Authorization(value = "jenkins_auth")
+    }, tags={ "blueOcean", })
+    @io.swagger.annotations.ApiResponses(value = { 
+        @io.swagger.annotations.ApiResponse(code = 200, message = "Successfully started a build", response = QueueItemImpl.class),
+        
+        @io.swagger.annotations.ApiResponse(code = 401, message = "Authentication failed - incorrect username and/or password", response = QueueItemImpl.class),
+        
+        @io.swagger.annotations.ApiResponse(code = 403, message = "Jenkins requires authentication - please set username and password", response = QueueItemImpl.class) })
+    public Response postPipelineRuns(@ApiParam(value = "Name of the organization",required=true) @PathParam("organization") String organization
+,@ApiParam(value = "Name of the pipeline",required=true) @PathParam("pipeline") String pipeline
+,@Context SecurityContext securityContext)
+    throws NotFoundException {
+        return delegate.postPipelineRuns(organization,pipeline,securityContext);
+    }
+    @PUT
+    @Path("/rest/organizations/{organization}/pipelines/{pipeline}/favorite")
+    
+    @Produces({ "application/json" })
+    @io.swagger.annotations.ApiOperation(value = "", notes = "Favorite/unfavorite a pipeline", response = FavoriteImpl.class, authorizations = {
+        @io.swagger.annotations.Authorization(value = "jenkins_auth")
+    }, tags={ "blueOcean", })
+    @io.swagger.annotations.ApiResponses(value = { 
+        @io.swagger.annotations.ApiResponse(code = 200, message = "Successfully favorited/unfavorited a pipeline", response = FavoriteImpl.class),
+        
+        @io.swagger.annotations.ApiResponse(code = 401, message = "Authentication failed - incorrect username and/or password", response = FavoriteImpl.class),
+        
+        @io.swagger.annotations.ApiResponse(code = 403, message = "Jenkins requires authentication - please set username and password", response = FavoriteImpl.class) })
+    public Response putPipelineFavorite(@ApiParam(value = "Name of the organization",required=true) @PathParam("organization") String organization
+,@ApiParam(value = "Name of the pipeline",required=true) @PathParam("pipeline") String pipeline
+,@ApiParam(value = "Set JSON string body to {\"favorite\": true} to favorite, set value to false to unfavorite" ,required=true) String body
+,@Context SecurityContext securityContext)
+    throws NotFoundException {
+        return delegate.putPipelineFavorite(organization,pipeline,body,securityContext);
+    }
+    @PUT
+    @Path("/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/stop")
+    
+    @Produces({ "application/json" })
+    @io.swagger.annotations.ApiOperation(value = "", notes = "Stop a build of an organization pipeline", response = PipelineRun.class, authorizations = {
+        @io.swagger.annotations.Authorization(value = "jenkins_auth")
+    }, tags={ "blueOcean", })
+    @io.swagger.annotations.ApiResponses(value = { 
+        @io.swagger.annotations.ApiResponse(code = 200, message = "Successfully stopped a build", response = PipelineRun.class),
+        
+        @io.swagger.annotations.ApiResponse(code = 401, message = "Authentication failed - incorrect username and/or password", response = PipelineRun.class),
+        
+        @io.swagger.annotations.ApiResponse(code = 403, message = "Jenkins requires authentication - please set username and password", response = PipelineRun.class) })
+    public Response putPipelineRun(@ApiParam(value = "Name of the organization",required=true) @PathParam("organization") String organization
+,@ApiParam(value = "Name of the pipeline",required=true) @PathParam("pipeline") String pipeline
+,@ApiParam(value = "Name of the run",required=true) @PathParam("run") String run
+,@ApiParam(value = "Set to true to make blocking stop, default: false") @QueryParam("blocking") String blocking
+,@ApiParam(value = "Timeout in seconds, default: 10 seconds") @QueryParam("timeOutInSecs") Integer timeOutInSecs
+,@Context SecurityContext securityContext)
+    throws NotFoundException {
+        return delegate.putPipelineRun(organization,pipeline,run,blocking,timeOutInSecs,securityContext);
     }
     @GET
     @Path("/rest/search/")
     
     @Produces({ "application/json" })
-    @io.swagger.annotations.ApiOperation(value = "", notes = "Search for any resource details", response = String.class, tags={ "blueOcean", })
+    @io.swagger.annotations.ApiOperation(value = "", notes = "Search for any resource details", response = String.class, authorizations = {
+        @io.swagger.annotations.Authorization(value = "jenkins_auth")
+    }, tags={ "blueOcean", })
     @io.swagger.annotations.ApiResponses(value = { 
         @io.swagger.annotations.ApiResponse(code = 200, message = "Successfully retrieved search result", response = String.class),
         
         @io.swagger.annotations.ApiResponse(code = 401, message = "Authentication failed - incorrect username and/or password", response = String.class),
         
         @io.swagger.annotations.ApiResponse(code = 403, message = "Jenkins requires authentication - please set username and password", response = String.class) })
-    public Response search_2(@ApiParam(value = "Query string",required=true) @QueryParam("q") String q
+    public Response search(@ApiParam(value = "Query string",required=true) @QueryParam("q") String q
 ,@Context SecurityContext securityContext)
     throws NotFoundException {
-        return delegate.search_2(q,securityContext);
+        return delegate.search(q,securityContext);
+    }
+    @GET
+    @Path("/rest/classes/")
+    
+    @Produces({ "application/json" })
+    @io.swagger.annotations.ApiOperation(value = "", notes = "Get classes details", response = String.class, authorizations = {
+        @io.swagger.annotations.Authorization(value = "jenkins_auth")
+    }, tags={ "blueOcean", })
+    @io.swagger.annotations.ApiResponses(value = { 
+        @io.swagger.annotations.ApiResponse(code = 200, message = "Successfully retrieved search result", response = String.class),
+        
+        @io.swagger.annotations.ApiResponse(code = 401, message = "Authentication failed - incorrect username and/or password", response = String.class),
+        
+        @io.swagger.annotations.ApiResponse(code = 403, message = "Jenkins requires authentication - please set username and password", response = String.class) })
+    public Response searchClasses(@ApiParam(value = "Query string containing an array of class names",required=true) @QueryParam("q") String q
+,@Context SecurityContext securityContext)
+    throws NotFoundException {
+        return delegate.searchClasses(q,securityContext);
     }
 }

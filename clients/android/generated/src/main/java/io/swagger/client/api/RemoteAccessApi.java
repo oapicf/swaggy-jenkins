@@ -23,13 +23,13 @@ import java.util.*;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 
-import io.swagger.client.model.HudsonmodelComputerSet;
-import io.swagger.client.model.HudsonmodelFreeStyleBuild;
-import io.swagger.client.model.HudsonmodelFreeStyleProject;
-import io.swagger.client.model.HudsonmodelHudson;
-import io.swagger.client.model.HudsonmodelListView;
-import io.swagger.client.model.HudsonmodelQueue;
-import io.swagger.client.model.HudsonsecuritycsrfDefaultCrumbIssuer;
+import io.swagger.client.model.ComputerSet;
+import io.swagger.client.model.DefaultCrumbIssuer;
+import io.swagger.client.model.FreeStyleBuild;
+import io.swagger.client.model.FreeStyleProject;
+import io.swagger.client.model.Hudson;
+import io.swagger.client.model.ListView;
+import io.swagger.client.model.Queue;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.entity.mime.MultipartEntityBuilder;
@@ -64,13 +64,19 @@ public class RemoteAccessApi {
   /**
   * 
   * Retrieve computer details
-   * @return HudsonmodelComputerSet
+   * @param depth Recursion depth in response model
+   * @return ComputerSet
   */
-  public HudsonmodelComputerSet getComputer () throws TimeoutException, ExecutionException, InterruptedException, ApiException {
+  public ComputerSet getComputer (Integer depth) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
     Object postBody = null;
+    // verify the required parameter 'depth' is set
+    if (depth == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'depth' when calling getComputer",
+        new ApiException(400, "Missing the required parameter 'depth' when calling getComputer"));
+    }
 
     // create path and map variables
-    String path = "/computer/api/json?depth=1";
+    String path = "/computer/api/json";
 
     // query params
     List<Pair> queryParams = new ArrayList<Pair>();
@@ -78,6 +84,7 @@ public class RemoteAccessApi {
     Map<String, String> headerParams = new HashMap<String, String>();
     // form params
     Map<String, String> formParams = new HashMap<String, String>();
+    queryParams.addAll(ApiInvoker.parameterToPairs("", "depth", depth));
     String[] contentTypes = {
     };
     String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
@@ -91,12 +98,12 @@ public class RemoteAccessApi {
       // normal form params
     }
 
-    String[] authNames = new String[] {  };
+    String[] authNames = new String[] { "jenkins_auth" };
 
     try {
       String localVarResponse = apiInvoker.invokeAPI (basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames);
       if (localVarResponse != null) {
-         return (HudsonmodelComputerSet) ApiInvoker.deserialize(localVarResponse, "", HudsonmodelComputerSet.class);
+         return (ComputerSet) ApiInvoker.deserialize(localVarResponse, "", ComputerSet.class);
       } else {
          return null;
       }
@@ -120,14 +127,19 @@ public class RemoteAccessApi {
       /**
    * 
    * Retrieve computer details
-
+   * @param depth Recursion depth in response model
   */
-  public void getComputer (final Response.Listener<HudsonmodelComputerSet> responseListener, final Response.ErrorListener errorListener) {
+  public void getComputer (Integer depth, final Response.Listener<ComputerSet> responseListener, final Response.ErrorListener errorListener) {
     Object postBody = null;
 
+    // verify the required parameter 'depth' is set
+    if (depth == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'depth' when calling getComputer",
+        new ApiException(400, "Missing the required parameter 'depth' when calling getComputer"));
+    }
 
     // create path and map variables
-    String path = "/computer/api/json?depth=1".replaceAll("\\{format\\}","json");
+    String path = "/computer/api/json".replaceAll("\\{format\\}","json");
 
     // query params
     List<Pair> queryParams = new ArrayList<Pair>();
@@ -136,6 +148,7 @@ public class RemoteAccessApi {
     // form params
     Map<String, String> formParams = new HashMap<String, String>();
 
+    queryParams.addAll(ApiInvoker.parameterToPairs("", "depth", depth));
 
 
     String[] contentTypes = {
@@ -154,7 +167,7 @@ public class RemoteAccessApi {
       // normal form params
           }
 
-    String[] authNames = new String[] {  };
+    String[] authNames = new String[] { "jenkins_auth" };
 
     try {
       apiInvoker.invokeAPI(basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames,
@@ -162,7 +175,7 @@ public class RemoteAccessApi {
           @Override
           public void onResponse(String localVarResponse) {
             try {
-              responseListener.onResponse((HudsonmodelComputerSet) ApiInvoker.deserialize(localVarResponse,  "", HudsonmodelComputerSet.class));
+              responseListener.onResponse((ComputerSet) ApiInvoker.deserialize(localVarResponse,  "", ComputerSet.class));
             } catch (ApiException exception) {
                errorListener.onErrorResponse(new VolleyError(exception));
             }
@@ -180,9 +193,9 @@ public class RemoteAccessApi {
   /**
   * 
   * Retrieve CSRF protection token
-   * @return HudsonsecuritycsrfDefaultCrumbIssuer
+   * @return DefaultCrumbIssuer
   */
-  public HudsonsecuritycsrfDefaultCrumbIssuer getCrumb () throws TimeoutException, ExecutionException, InterruptedException, ApiException {
+  public DefaultCrumbIssuer getCrumb () throws TimeoutException, ExecutionException, InterruptedException, ApiException {
     Object postBody = null;
 
     // create path and map variables
@@ -207,12 +220,12 @@ public class RemoteAccessApi {
       // normal form params
     }
 
-    String[] authNames = new String[] {  };
+    String[] authNames = new String[] { "jenkins_auth" };
 
     try {
       String localVarResponse = apiInvoker.invokeAPI (basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames);
       if (localVarResponse != null) {
-         return (HudsonsecuritycsrfDefaultCrumbIssuer) ApiInvoker.deserialize(localVarResponse, "", HudsonsecuritycsrfDefaultCrumbIssuer.class);
+         return (DefaultCrumbIssuer) ApiInvoker.deserialize(localVarResponse, "", DefaultCrumbIssuer.class);
       } else {
          return null;
       }
@@ -238,7 +251,7 @@ public class RemoteAccessApi {
    * Retrieve CSRF protection token
 
   */
-  public void getCrumb (final Response.Listener<HudsonsecuritycsrfDefaultCrumbIssuer> responseListener, final Response.ErrorListener errorListener) {
+  public void getCrumb (final Response.Listener<DefaultCrumbIssuer> responseListener, final Response.ErrorListener errorListener) {
     Object postBody = null;
 
 
@@ -270,7 +283,7 @@ public class RemoteAccessApi {
       // normal form params
           }
 
-    String[] authNames = new String[] {  };
+    String[] authNames = new String[] { "jenkins_auth" };
 
     try {
       apiInvoker.invokeAPI(basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames,
@@ -278,7 +291,7 @@ public class RemoteAccessApi {
           @Override
           public void onResponse(String localVarResponse) {
             try {
-              responseListener.onResponse((HudsonsecuritycsrfDefaultCrumbIssuer) ApiInvoker.deserialize(localVarResponse,  "", HudsonsecuritycsrfDefaultCrumbIssuer.class));
+              responseListener.onResponse((DefaultCrumbIssuer) ApiInvoker.deserialize(localVarResponse,  "", DefaultCrumbIssuer.class));
             } catch (ApiException exception) {
                errorListener.onErrorResponse(new VolleyError(exception));
             }
@@ -296,9 +309,9 @@ public class RemoteAccessApi {
   /**
   * 
   * Retrieve Jenkins details
-   * @return HudsonmodelHudson
+   * @return Hudson
   */
-  public HudsonmodelHudson getJenkins () throws TimeoutException, ExecutionException, InterruptedException, ApiException {
+  public Hudson getJenkins () throws TimeoutException, ExecutionException, InterruptedException, ApiException {
     Object postBody = null;
 
     // create path and map variables
@@ -323,12 +336,12 @@ public class RemoteAccessApi {
       // normal form params
     }
 
-    String[] authNames = new String[] {  };
+    String[] authNames = new String[] { "jenkins_auth" };
 
     try {
       String localVarResponse = apiInvoker.invokeAPI (basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames);
       if (localVarResponse != null) {
-         return (HudsonmodelHudson) ApiInvoker.deserialize(localVarResponse, "", HudsonmodelHudson.class);
+         return (Hudson) ApiInvoker.deserialize(localVarResponse, "", Hudson.class);
       } else {
          return null;
       }
@@ -354,7 +367,7 @@ public class RemoteAccessApi {
    * Retrieve Jenkins details
 
   */
-  public void getJenkins (final Response.Listener<HudsonmodelHudson> responseListener, final Response.ErrorListener errorListener) {
+  public void getJenkins (final Response.Listener<Hudson> responseListener, final Response.ErrorListener errorListener) {
     Object postBody = null;
 
 
@@ -386,7 +399,7 @@ public class RemoteAccessApi {
       // normal form params
           }
 
-    String[] authNames = new String[] {  };
+    String[] authNames = new String[] { "jenkins_auth" };
 
     try {
       apiInvoker.invokeAPI(basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames,
@@ -394,7 +407,7 @@ public class RemoteAccessApi {
           @Override
           public void onResponse(String localVarResponse) {
             try {
-              responseListener.onResponse((HudsonmodelHudson) ApiInvoker.deserialize(localVarResponse,  "", HudsonmodelHudson.class));
+              responseListener.onResponse((Hudson) ApiInvoker.deserialize(localVarResponse,  "", Hudson.class));
             } catch (ApiException exception) {
                errorListener.onErrorResponse(new VolleyError(exception));
             }
@@ -413,9 +426,9 @@ public class RemoteAccessApi {
   * 
   * Retrieve job details
    * @param name Name of the job
-   * @return HudsonmodelFreeStyleProject
+   * @return FreeStyleProject
   */
-  public HudsonmodelFreeStyleProject getJob (String name) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
+  public FreeStyleProject getJob (String name) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
     Object postBody = null;
     // verify the required parameter 'name' is set
     if (name == null) {
@@ -445,12 +458,12 @@ public class RemoteAccessApi {
       // normal form params
     }
 
-    String[] authNames = new String[] {  };
+    String[] authNames = new String[] { "jenkins_auth" };
 
     try {
       String localVarResponse = apiInvoker.invokeAPI (basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames);
       if (localVarResponse != null) {
-         return (HudsonmodelFreeStyleProject) ApiInvoker.deserialize(localVarResponse, "", HudsonmodelFreeStyleProject.class);
+         return (FreeStyleProject) ApiInvoker.deserialize(localVarResponse, "", FreeStyleProject.class);
       } else {
          return null;
       }
@@ -476,7 +489,7 @@ public class RemoteAccessApi {
    * Retrieve job details
    * @param name Name of the job
   */
-  public void getJob (String name, final Response.Listener<HudsonmodelFreeStyleProject> responseListener, final Response.ErrorListener errorListener) {
+  public void getJob (String name, final Response.Listener<FreeStyleProject> responseListener, final Response.ErrorListener errorListener) {
     Object postBody = null;
 
     // verify the required parameter 'name' is set
@@ -513,7 +526,7 @@ public class RemoteAccessApi {
       // normal form params
           }
 
-    String[] authNames = new String[] {  };
+    String[] authNames = new String[] { "jenkins_auth" };
 
     try {
       apiInvoker.invokeAPI(basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames,
@@ -521,7 +534,7 @@ public class RemoteAccessApi {
           @Override
           public void onResponse(String localVarResponse) {
             try {
-              responseListener.onResponse((HudsonmodelFreeStyleProject) ApiInvoker.deserialize(localVarResponse,  "", HudsonmodelFreeStyleProject.class));
+              responseListener.onResponse((FreeStyleProject) ApiInvoker.deserialize(localVarResponse,  "", FreeStyleProject.class));
             } catch (ApiException exception) {
                errorListener.onErrorResponse(new VolleyError(exception));
             }
@@ -572,7 +585,7 @@ public class RemoteAccessApi {
       // normal form params
     }
 
-    String[] authNames = new String[] {  };
+    String[] authNames = new String[] { "jenkins_auth" };
 
     try {
       String localVarResponse = apiInvoker.invokeAPI (basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames);
@@ -640,7 +653,7 @@ public class RemoteAccessApi {
       // normal form params
           }
 
-    String[] authNames = new String[] {  };
+    String[] authNames = new String[] { "jenkins_auth" };
 
     try {
       apiInvoker.invokeAPI(basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames,
@@ -667,9 +680,9 @@ public class RemoteAccessApi {
   * 
   * Retrieve job&#39;s last build details
    * @param name Name of the job
-   * @return HudsonmodelFreeStyleBuild
+   * @return FreeStyleBuild
   */
-  public HudsonmodelFreeStyleBuild getJobLastBuild (String name) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
+  public FreeStyleBuild getJobLastBuild (String name) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
     Object postBody = null;
     // verify the required parameter 'name' is set
     if (name == null) {
@@ -699,12 +712,12 @@ public class RemoteAccessApi {
       // normal form params
     }
 
-    String[] authNames = new String[] {  };
+    String[] authNames = new String[] { "jenkins_auth" };
 
     try {
       String localVarResponse = apiInvoker.invokeAPI (basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames);
       if (localVarResponse != null) {
-         return (HudsonmodelFreeStyleBuild) ApiInvoker.deserialize(localVarResponse, "", HudsonmodelFreeStyleBuild.class);
+         return (FreeStyleBuild) ApiInvoker.deserialize(localVarResponse, "", FreeStyleBuild.class);
       } else {
          return null;
       }
@@ -730,7 +743,7 @@ public class RemoteAccessApi {
    * Retrieve job&#39;s last build details
    * @param name Name of the job
   */
-  public void getJobLastBuild (String name, final Response.Listener<HudsonmodelFreeStyleBuild> responseListener, final Response.ErrorListener errorListener) {
+  public void getJobLastBuild (String name, final Response.Listener<FreeStyleBuild> responseListener, final Response.ErrorListener errorListener) {
     Object postBody = null;
 
     // verify the required parameter 'name' is set
@@ -767,7 +780,7 @@ public class RemoteAccessApi {
       // normal form params
           }
 
-    String[] authNames = new String[] {  };
+    String[] authNames = new String[] { "jenkins_auth" };
 
     try {
       apiInvoker.invokeAPI(basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames,
@@ -775,7 +788,7 @@ public class RemoteAccessApi {
           @Override
           public void onResponse(String localVarResponse) {
             try {
-              responseListener.onResponse((HudsonmodelFreeStyleBuild) ApiInvoker.deserialize(localVarResponse,  "", HudsonmodelFreeStyleBuild.class));
+              responseListener.onResponse((FreeStyleBuild) ApiInvoker.deserialize(localVarResponse,  "", FreeStyleBuild.class));
             } catch (ApiException exception) {
                errorListener.onErrorResponse(new VolleyError(exception));
             }
@@ -839,7 +852,7 @@ public class RemoteAccessApi {
       // normal form params
     }
 
-    String[] authNames = new String[] {  };
+    String[] authNames = new String[] { "jenkins_auth" };
 
     try {
       String localVarResponse = apiInvoker.invokeAPI (basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames);
@@ -918,7 +931,7 @@ public class RemoteAccessApi {
       // normal form params
           }
 
-    String[] authNames = new String[] {  };
+    String[] authNames = new String[] { "jenkins_auth" };
 
     try {
       apiInvoker.invokeAPI(basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames,
@@ -940,9 +953,9 @@ public class RemoteAccessApi {
   /**
   * 
   * Retrieve queue details
-   * @return HudsonmodelQueue
+   * @return Queue
   */
-  public HudsonmodelQueue getQueue () throws TimeoutException, ExecutionException, InterruptedException, ApiException {
+  public Queue getQueue () throws TimeoutException, ExecutionException, InterruptedException, ApiException {
     Object postBody = null;
 
     // create path and map variables
@@ -967,12 +980,12 @@ public class RemoteAccessApi {
       // normal form params
     }
 
-    String[] authNames = new String[] {  };
+    String[] authNames = new String[] { "jenkins_auth" };
 
     try {
       String localVarResponse = apiInvoker.invokeAPI (basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames);
       if (localVarResponse != null) {
-         return (HudsonmodelQueue) ApiInvoker.deserialize(localVarResponse, "", HudsonmodelQueue.class);
+         return (Queue) ApiInvoker.deserialize(localVarResponse, "", Queue.class);
       } else {
          return null;
       }
@@ -998,7 +1011,7 @@ public class RemoteAccessApi {
    * Retrieve queue details
 
   */
-  public void getQueue (final Response.Listener<HudsonmodelQueue> responseListener, final Response.ErrorListener errorListener) {
+  public void getQueue (final Response.Listener<Queue> responseListener, final Response.ErrorListener errorListener) {
     Object postBody = null;
 
 
@@ -1030,7 +1043,7 @@ public class RemoteAccessApi {
       // normal form params
           }
 
-    String[] authNames = new String[] {  };
+    String[] authNames = new String[] { "jenkins_auth" };
 
     try {
       apiInvoker.invokeAPI(basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames,
@@ -1038,7 +1051,7 @@ public class RemoteAccessApi {
           @Override
           public void onResponse(String localVarResponse) {
             try {
-              responseListener.onResponse((HudsonmodelQueue) ApiInvoker.deserialize(localVarResponse,  "", HudsonmodelQueue.class));
+              responseListener.onResponse((Queue) ApiInvoker.deserialize(localVarResponse,  "", Queue.class));
             } catch (ApiException exception) {
                errorListener.onErrorResponse(new VolleyError(exception));
             }
@@ -1057,9 +1070,9 @@ public class RemoteAccessApi {
   * 
   * Retrieve queued item details
    * @param number Queue number
-   * @return HudsonmodelQueue
+   * @return Queue
   */
-  public HudsonmodelQueue getQueueItem (String number) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
+  public Queue getQueueItem (String number) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
     Object postBody = null;
     // verify the required parameter 'number' is set
     if (number == null) {
@@ -1089,12 +1102,12 @@ public class RemoteAccessApi {
       // normal form params
     }
 
-    String[] authNames = new String[] {  };
+    String[] authNames = new String[] { "jenkins_auth" };
 
     try {
       String localVarResponse = apiInvoker.invokeAPI (basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames);
       if (localVarResponse != null) {
-         return (HudsonmodelQueue) ApiInvoker.deserialize(localVarResponse, "", HudsonmodelQueue.class);
+         return (Queue) ApiInvoker.deserialize(localVarResponse, "", Queue.class);
       } else {
          return null;
       }
@@ -1120,7 +1133,7 @@ public class RemoteAccessApi {
    * Retrieve queued item details
    * @param number Queue number
   */
-  public void getQueueItem (String number, final Response.Listener<HudsonmodelQueue> responseListener, final Response.ErrorListener errorListener) {
+  public void getQueueItem (String number, final Response.Listener<Queue> responseListener, final Response.ErrorListener errorListener) {
     Object postBody = null;
 
     // verify the required parameter 'number' is set
@@ -1157,7 +1170,7 @@ public class RemoteAccessApi {
       // normal form params
           }
 
-    String[] authNames = new String[] {  };
+    String[] authNames = new String[] { "jenkins_auth" };
 
     try {
       apiInvoker.invokeAPI(basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames,
@@ -1165,7 +1178,7 @@ public class RemoteAccessApi {
           @Override
           public void onResponse(String localVarResponse) {
             try {
-              responseListener.onResponse((HudsonmodelQueue) ApiInvoker.deserialize(localVarResponse,  "", HudsonmodelQueue.class));
+              responseListener.onResponse((Queue) ApiInvoker.deserialize(localVarResponse,  "", Queue.class));
             } catch (ApiException exception) {
                errorListener.onErrorResponse(new VolleyError(exception));
             }
@@ -1184,9 +1197,9 @@ public class RemoteAccessApi {
   * 
   * Retrieve view details
    * @param name Name of the view
-   * @return HudsonmodelListView
+   * @return ListView
   */
-  public HudsonmodelListView getView (String name) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
+  public ListView getView (String name) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
     Object postBody = null;
     // verify the required parameter 'name' is set
     if (name == null) {
@@ -1216,12 +1229,12 @@ public class RemoteAccessApi {
       // normal form params
     }
 
-    String[] authNames = new String[] {  };
+    String[] authNames = new String[] { "jenkins_auth" };
 
     try {
       String localVarResponse = apiInvoker.invokeAPI (basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames);
       if (localVarResponse != null) {
-         return (HudsonmodelListView) ApiInvoker.deserialize(localVarResponse, "", HudsonmodelListView.class);
+         return (ListView) ApiInvoker.deserialize(localVarResponse, "", ListView.class);
       } else {
          return null;
       }
@@ -1247,7 +1260,7 @@ public class RemoteAccessApi {
    * Retrieve view details
    * @param name Name of the view
   */
-  public void getView (String name, final Response.Listener<HudsonmodelListView> responseListener, final Response.ErrorListener errorListener) {
+  public void getView (String name, final Response.Listener<ListView> responseListener, final Response.ErrorListener errorListener) {
     Object postBody = null;
 
     // verify the required parameter 'name' is set
@@ -1284,7 +1297,7 @@ public class RemoteAccessApi {
       // normal form params
           }
 
-    String[] authNames = new String[] {  };
+    String[] authNames = new String[] { "jenkins_auth" };
 
     try {
       apiInvoker.invokeAPI(basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames,
@@ -1292,7 +1305,7 @@ public class RemoteAccessApi {
           @Override
           public void onResponse(String localVarResponse) {
             try {
-              responseListener.onResponse((HudsonmodelListView) ApiInvoker.deserialize(localVarResponse,  "", HudsonmodelListView.class));
+              responseListener.onResponse((ListView) ApiInvoker.deserialize(localVarResponse,  "", ListView.class));
             } catch (ApiException exception) {
                errorListener.onErrorResponse(new VolleyError(exception));
             }
@@ -1343,7 +1356,7 @@ public class RemoteAccessApi {
       // normal form params
     }
 
-    String[] authNames = new String[] {  };
+    String[] authNames = new String[] { "jenkins_auth" };
 
     try {
       String localVarResponse = apiInvoker.invokeAPI (basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames);
@@ -1411,7 +1424,7 @@ public class RemoteAccessApi {
       // normal form params
           }
 
-    String[] authNames = new String[] {  };
+    String[] authNames = new String[] { "jenkins_auth" };
 
     try {
       apiInvoker.invokeAPI(basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames,
@@ -1464,7 +1477,7 @@ public class RemoteAccessApi {
       // normal form params
     }
 
-    String[] authNames = new String[] {  };
+    String[] authNames = new String[] { "jenkins_auth" };
 
     try {
       String localVarResponse = apiInvoker.invokeAPI (basePath, path, "HEAD", queryParams, postBody, headerParams, formParams, contentType, authNames);
@@ -1527,7 +1540,7 @@ public class RemoteAccessApi {
       // normal form params
           }
 
-    String[] authNames = new String[] {  };
+    String[] authNames = new String[] { "jenkins_auth" };
 
     try {
       apiInvoker.invokeAPI(basePath, path, "HEAD", queryParams, postBody, headerParams, formParams, contentType, authNames,
@@ -1592,7 +1605,7 @@ public class RemoteAccessApi {
       // normal form params
     }
 
-    String[] authNames = new String[] {  };
+    String[] authNames = new String[] { "jenkins_auth" };
 
     try {
       String localVarResponse = apiInvoker.invokeAPI (basePath, path, "POST", queryParams, postBody, headerParams, formParams, contentType, authNames);
@@ -1665,7 +1678,7 @@ public class RemoteAccessApi {
       // normal form params
           }
 
-    String[] authNames = new String[] {  };
+    String[] authNames = new String[] { "jenkins_auth" };
 
     try {
       apiInvoker.invokeAPI(basePath, path, "POST", queryParams, postBody, headerParams, formParams, contentType, authNames,
@@ -1726,7 +1739,7 @@ public class RemoteAccessApi {
       // normal form params
     }
 
-    String[] authNames = new String[] {  };
+    String[] authNames = new String[] { "jenkins_auth" };
 
     try {
       String localVarResponse = apiInvoker.invokeAPI (basePath, path, "POST", queryParams, postBody, headerParams, formParams, contentType, authNames);
@@ -1797,7 +1810,7 @@ public class RemoteAccessApi {
       // normal form params
           }
 
-    String[] authNames = new String[] {  };
+    String[] authNames = new String[] { "jenkins_auth" };
 
     try {
       apiInvoker.invokeAPI(basePath, path, "POST", queryParams, postBody, headerParams, formParams, contentType, authNames,
@@ -1863,7 +1876,7 @@ public class RemoteAccessApi {
       // normal form params
     }
 
-    String[] authNames = new String[] {  };
+    String[] authNames = new String[] { "jenkins_auth" };
 
     try {
       String localVarResponse = apiInvoker.invokeAPI (basePath, path, "POST", queryParams, postBody, headerParams, formParams, contentType, authNames);
@@ -1939,7 +1952,7 @@ public class RemoteAccessApi {
       // normal form params
           }
 
-    String[] authNames = new String[] {  };
+    String[] authNames = new String[] { "jenkins_auth" };
 
     try {
       apiInvoker.invokeAPI(basePath, path, "POST", queryParams, postBody, headerParams, formParams, contentType, authNames,
@@ -2002,7 +2015,7 @@ public class RemoteAccessApi {
       // normal form params
     }
 
-    String[] authNames = new String[] {  };
+    String[] authNames = new String[] { "jenkins_auth" };
 
     try {
       String localVarResponse = apiInvoker.invokeAPI (basePath, path, "POST", queryParams, postBody, headerParams, formParams, contentType, authNames);
@@ -2076,7 +2089,7 @@ public class RemoteAccessApi {
       // normal form params
           }
 
-    String[] authNames = new String[] {  };
+    String[] authNames = new String[] { "jenkins_auth" };
 
     try {
       apiInvoker.invokeAPI(basePath, path, "POST", queryParams, postBody, headerParams, formParams, contentType, authNames,
@@ -2133,7 +2146,7 @@ public class RemoteAccessApi {
       // normal form params
     }
 
-    String[] authNames = new String[] {  };
+    String[] authNames = new String[] { "jenkins_auth" };
 
     try {
       String localVarResponse = apiInvoker.invokeAPI (basePath, path, "POST", queryParams, postBody, headerParams, formParams, contentType, authNames);
@@ -2202,7 +2215,7 @@ public class RemoteAccessApi {
       // normal form params
           }
 
-    String[] authNames = new String[] {  };
+    String[] authNames = new String[] { "jenkins_auth" };
 
     try {
       apiInvoker.invokeAPI(basePath, path, "POST", queryParams, postBody, headerParams, formParams, contentType, authNames,
@@ -2259,7 +2272,7 @@ public class RemoteAccessApi {
       // normal form params
     }
 
-    String[] authNames = new String[] {  };
+    String[] authNames = new String[] { "jenkins_auth" };
 
     try {
       String localVarResponse = apiInvoker.invokeAPI (basePath, path, "POST", queryParams, postBody, headerParams, formParams, contentType, authNames);
@@ -2328,7 +2341,7 @@ public class RemoteAccessApi {
       // normal form params
           }
 
-    String[] authNames = new String[] {  };
+    String[] authNames = new String[] { "jenkins_auth" };
 
     try {
       apiInvoker.invokeAPI(basePath, path, "POST", queryParams, postBody, headerParams, formParams, contentType, authNames,
@@ -2385,7 +2398,7 @@ public class RemoteAccessApi {
       // normal form params
     }
 
-    String[] authNames = new String[] {  };
+    String[] authNames = new String[] { "jenkins_auth" };
 
     try {
       String localVarResponse = apiInvoker.invokeAPI (basePath, path, "POST", queryParams, postBody, headerParams, formParams, contentType, authNames);
@@ -2454,7 +2467,7 @@ public class RemoteAccessApi {
       // normal form params
           }
 
-    String[] authNames = new String[] {  };
+    String[] authNames = new String[] { "jenkins_auth" };
 
     try {
       apiInvoker.invokeAPI(basePath, path, "POST", queryParams, postBody, headerParams, formParams, contentType, authNames,
@@ -2511,7 +2524,7 @@ public class RemoteAccessApi {
       // normal form params
     }
 
-    String[] authNames = new String[] {  };
+    String[] authNames = new String[] { "jenkins_auth" };
 
     try {
       String localVarResponse = apiInvoker.invokeAPI (basePath, path, "POST", queryParams, postBody, headerParams, formParams, contentType, authNames);
@@ -2580,7 +2593,7 @@ public class RemoteAccessApi {
       // normal form params
           }
 
-    String[] authNames = new String[] {  };
+    String[] authNames = new String[] { "jenkins_auth" };
 
     try {
       apiInvoker.invokeAPI(basePath, path, "POST", queryParams, postBody, headerParams, formParams, contentType, authNames,
@@ -2643,7 +2656,7 @@ public class RemoteAccessApi {
       // normal form params
     }
 
-    String[] authNames = new String[] {  };
+    String[] authNames = new String[] { "jenkins_auth" };
 
     try {
       String localVarResponse = apiInvoker.invokeAPI (basePath, path, "POST", queryParams, postBody, headerParams, formParams, contentType, authNames);
@@ -2717,7 +2730,7 @@ public class RemoteAccessApi {
       // normal form params
           }
 
-    String[] authNames = new String[] {  };
+    String[] authNames = new String[] { "jenkins_auth" };
 
     try {
       apiInvoker.invokeAPI(basePath, path, "POST", queryParams, postBody, headerParams, formParams, contentType, authNames,

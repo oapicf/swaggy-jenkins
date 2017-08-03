@@ -35,41 +35,43 @@ class RemoteAccessApi(object):
             api_client = ApiClient()
         self.api_client = api_client
 
-    def get_computer(self, **kwargs):
+    def get_computer(self, depth, **kwargs):
         """
         Retrieve computer details
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async=True
-        >>> thread = api.get_computer(async=True)
+        >>> thread = api.get_computer(depth, async=True)
         >>> result = thread.get()
 
         :param async bool
-        :return: HudsonmodelComputerSet
+        :param int depth: Recursion depth in response model (required)
+        :return: ComputerSet
                  If the method is called asynchronously,
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
         if kwargs.get('async'):
-            return self.get_computer_with_http_info(**kwargs)
+            return self.get_computer_with_http_info(depth, **kwargs)
         else:
-            (data) = self.get_computer_with_http_info(**kwargs)
+            (data) = self.get_computer_with_http_info(depth, **kwargs)
             return data
 
-    def get_computer_with_http_info(self, **kwargs):
+    def get_computer_with_http_info(self, depth, **kwargs):
         """
         Retrieve computer details
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async=True
-        >>> thread = api.get_computer_with_http_info(async=True)
+        >>> thread = api.get_computer_with_http_info(depth, async=True)
         >>> result = thread.get()
 
         :param async bool
-        :return: HudsonmodelComputerSet
+        :param int depth: Recursion depth in response model (required)
+        :return: ComputerSet
                  If the method is called asynchronously,
                  returns the request thread.
         """
 
-        all_params = []
+        all_params = ['depth']
         all_params.append('async')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -84,12 +86,18 @@ class RemoteAccessApi(object):
                 )
             params[key] = val
         del params['kwargs']
+        # verify the required parameter 'depth' is set
+        if ('depth' not in params) or (params['depth'] is None):
+            raise ValueError("Missing the required parameter `depth` when calling `get_computer`")
+
 
         collection_formats = {}
 
         path_params = {}
 
         query_params = []
+        if 'depth' in params:
+            query_params.append(('depth', params['depth']))
 
         header_params = {}
 
@@ -104,14 +112,14 @@ class RemoteAccessApi(object):
         # Authentication setting
         auth_settings = ['jenkins_auth']
 
-        return self.api_client.call_api('/computer/api/json?depth=1', 'GET',
+        return self.api_client.call_api('/computer/api/json', 'GET',
                                         path_params,
                                         query_params,
                                         header_params,
                                         body=body_params,
                                         post_params=form_params,
                                         files=local_var_files,
-                                        response_type='HudsonmodelComputerSet',
+                                        response_type='ComputerSet',
                                         auth_settings=auth_settings,
                                         async=params.get('async'),
                                         _return_http_data_only=params.get('_return_http_data_only'),
@@ -128,7 +136,7 @@ class RemoteAccessApi(object):
         >>> result = thread.get()
 
         :param async bool
-        :return: HudsonsecuritycsrfDefaultCrumbIssuer
+        :return: DefaultCrumbIssuer
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -148,7 +156,7 @@ class RemoteAccessApi(object):
         >>> result = thread.get()
 
         :param async bool
-        :return: HudsonsecuritycsrfDefaultCrumbIssuer
+        :return: DefaultCrumbIssuer
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -195,7 +203,7 @@ class RemoteAccessApi(object):
                                         body=body_params,
                                         post_params=form_params,
                                         files=local_var_files,
-                                        response_type='HudsonsecuritycsrfDefaultCrumbIssuer',
+                                        response_type='DefaultCrumbIssuer',
                                         auth_settings=auth_settings,
                                         async=params.get('async'),
                                         _return_http_data_only=params.get('_return_http_data_only'),
@@ -212,7 +220,7 @@ class RemoteAccessApi(object):
         >>> result = thread.get()
 
         :param async bool
-        :return: HudsonmodelHudson
+        :return: Hudson
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -232,7 +240,7 @@ class RemoteAccessApi(object):
         >>> result = thread.get()
 
         :param async bool
-        :return: HudsonmodelHudson
+        :return: Hudson
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -279,7 +287,7 @@ class RemoteAccessApi(object):
                                         body=body_params,
                                         post_params=form_params,
                                         files=local_var_files,
-                                        response_type='HudsonmodelHudson',
+                                        response_type='Hudson',
                                         auth_settings=auth_settings,
                                         async=params.get('async'),
                                         _return_http_data_only=params.get('_return_http_data_only'),
@@ -297,7 +305,7 @@ class RemoteAccessApi(object):
 
         :param async bool
         :param str name: Name of the job (required)
-        :return: HudsonmodelFreeStyleProject
+        :return: FreeStyleProject
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -318,7 +326,7 @@ class RemoteAccessApi(object):
 
         :param async bool
         :param str name: Name of the job (required)
-        :return: HudsonmodelFreeStyleProject
+        :return: FreeStyleProject
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -371,7 +379,7 @@ class RemoteAccessApi(object):
                                         body=body_params,
                                         post_params=form_params,
                                         files=local_var_files,
-                                        response_type='HudsonmodelFreeStyleProject',
+                                        response_type='FreeStyleProject',
                                         auth_settings=auth_settings,
                                         async=params.get('async'),
                                         _return_http_data_only=params.get('_return_http_data_only'),
@@ -481,7 +489,7 @@ class RemoteAccessApi(object):
 
         :param async bool
         :param str name: Name of the job (required)
-        :return: HudsonmodelFreeStyleBuild
+        :return: FreeStyleBuild
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -502,7 +510,7 @@ class RemoteAccessApi(object):
 
         :param async bool
         :param str name: Name of the job (required)
-        :return: HudsonmodelFreeStyleBuild
+        :return: FreeStyleBuild
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -555,7 +563,7 @@ class RemoteAccessApi(object):
                                         body=body_params,
                                         post_params=form_params,
                                         files=local_var_files,
-                                        response_type='HudsonmodelFreeStyleBuild',
+                                        response_type='FreeStyleBuild',
                                         auth_settings=auth_settings,
                                         async=params.get('async'),
                                         _return_http_data_only=params.get('_return_http_data_only'),
@@ -674,7 +682,7 @@ class RemoteAccessApi(object):
         >>> result = thread.get()
 
         :param async bool
-        :return: HudsonmodelQueue
+        :return: Queue
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -694,7 +702,7 @@ class RemoteAccessApi(object):
         >>> result = thread.get()
 
         :param async bool
-        :return: HudsonmodelQueue
+        :return: Queue
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -741,7 +749,7 @@ class RemoteAccessApi(object):
                                         body=body_params,
                                         post_params=form_params,
                                         files=local_var_files,
-                                        response_type='HudsonmodelQueue',
+                                        response_type='Queue',
                                         auth_settings=auth_settings,
                                         async=params.get('async'),
                                         _return_http_data_only=params.get('_return_http_data_only'),
@@ -759,7 +767,7 @@ class RemoteAccessApi(object):
 
         :param async bool
         :param str number: Queue number (required)
-        :return: HudsonmodelQueue
+        :return: Queue
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -780,7 +788,7 @@ class RemoteAccessApi(object):
 
         :param async bool
         :param str number: Queue number (required)
-        :return: HudsonmodelQueue
+        :return: Queue
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -833,7 +841,7 @@ class RemoteAccessApi(object):
                                         body=body_params,
                                         post_params=form_params,
                                         files=local_var_files,
-                                        response_type='HudsonmodelQueue',
+                                        response_type='Queue',
                                         auth_settings=auth_settings,
                                         async=params.get('async'),
                                         _return_http_data_only=params.get('_return_http_data_only'),
@@ -851,7 +859,7 @@ class RemoteAccessApi(object):
 
         :param async bool
         :param str name: Name of the view (required)
-        :return: HudsonmodelListView
+        :return: ListView
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -872,7 +880,7 @@ class RemoteAccessApi(object):
 
         :param async bool
         :param str name: Name of the view (required)
-        :return: HudsonmodelListView
+        :return: ListView
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -925,7 +933,7 @@ class RemoteAccessApi(object):
                                         body=body_params,
                                         post_params=form_params,
                                         files=local_var_files,
-                                        response_type='HudsonmodelListView',
+                                        response_type='ListView',
                                         auth_settings=auth_settings,
                                         async=params.get('async'),
                                         _return_http_data_only=params.get('_return_http_data_only'),

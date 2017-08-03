@@ -4,7 +4,7 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**getComputer**](RemoteAccessApi.md#getComputer) | **GET** /computer/api/json?depth&#x3D;1 | 
+[**getComputer**](RemoteAccessApi.md#getComputer) | **GET** /computer/api/json | 
 [**getCrumb**](RemoteAccessApi.md#getCrumb) | **GET** /crumbIssuer/api/json | 
 [**getJenkins**](RemoteAccessApi.md#getJenkins) | **GET** /api/json | 
 [**getJob**](RemoteAccessApi.md#getJob) | **GET** /job/{name}/api/json | 
@@ -29,7 +29,7 @@ Method | HTTP request | Description
 
 <a name="getComputer"></a>
 # **getComputer**
-> HudsonmodelComputerSet getComputer()
+> ComputerSet getComputer(depth)
 
 
 
@@ -42,8 +42,9 @@ Retrieve computer details
 //import io.swagger.client.models.*
 
 val apiInstance = RemoteAccessApi()
+val depth : kotlin.Int = 56 // kotlin.Int | Recursion depth in response model
 try {
-    val result : HudsonmodelComputerSet = apiInstance.getComputer()
+    val result : ComputerSet = apiInstance.getComputer(depth)
     println(result)
 } catch (e: ClientException) {
     println("4xx response calling RemoteAccessApi#getComputer")
@@ -55,15 +56,18 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **depth** | **kotlin.Int**| Recursion depth in response model |
 
 ### Return type
 
-[**HudsonmodelComputerSet**](HudsonmodelComputerSet.md)
+[**ComputerSet**](ComputerSet.md)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -72,7 +76,7 @@ No authorization required
 
 <a name="getCrumb"></a>
 # **getCrumb**
-> HudsonsecuritycsrfDefaultCrumbIssuer getCrumb()
+> DefaultCrumbIssuer getCrumb()
 
 
 
@@ -86,7 +90,7 @@ Retrieve CSRF protection token
 
 val apiInstance = RemoteAccessApi()
 try {
-    val result : HudsonsecuritycsrfDefaultCrumbIssuer = apiInstance.getCrumb()
+    val result : DefaultCrumbIssuer = apiInstance.getCrumb()
     println(result)
 } catch (e: ClientException) {
     println("4xx response calling RemoteAccessApi#getCrumb")
@@ -102,11 +106,11 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**HudsonsecuritycsrfDefaultCrumbIssuer**](HudsonsecuritycsrfDefaultCrumbIssuer.md)
+[**DefaultCrumbIssuer**](DefaultCrumbIssuer.md)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -115,7 +119,7 @@ No authorization required
 
 <a name="getJenkins"></a>
 # **getJenkins**
-> HudsonmodelHudson getJenkins()
+> Hudson getJenkins()
 
 
 
@@ -129,7 +133,7 @@ Retrieve Jenkins details
 
 val apiInstance = RemoteAccessApi()
 try {
-    val result : HudsonmodelHudson = apiInstance.getJenkins()
+    val result : Hudson = apiInstance.getJenkins()
     println(result)
 } catch (e: ClientException) {
     println("4xx response calling RemoteAccessApi#getJenkins")
@@ -145,11 +149,11 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**HudsonmodelHudson**](HudsonmodelHudson.md)
+[**Hudson**](Hudson.md)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -158,7 +162,7 @@ No authorization required
 
 <a name="getJob"></a>
 # **getJob**
-> HudsonmodelFreeStyleProject getJob(name)
+> FreeStyleProject getJob(name)
 
 
 
@@ -173,7 +177,7 @@ Retrieve job details
 val apiInstance = RemoteAccessApi()
 val name : kotlin.String = name_example // kotlin.String | Name of the job
 try {
-    val result : HudsonmodelFreeStyleProject = apiInstance.getJob(name)
+    val result : FreeStyleProject = apiInstance.getJob(name)
     println(result)
 } catch (e: ClientException) {
     println("4xx response calling RemoteAccessApi#getJob")
@@ -192,11 +196,11 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**HudsonmodelFreeStyleProject**](HudsonmodelFreeStyleProject.md)
+[**FreeStyleProject**](FreeStyleProject.md)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -243,7 +247,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -252,7 +256,7 @@ No authorization required
 
 <a name="getJobLastBuild"></a>
 # **getJobLastBuild**
-> HudsonmodelFreeStyleBuild getJobLastBuild(name)
+> FreeStyleBuild getJobLastBuild(name)
 
 
 
@@ -267,7 +271,7 @@ Retrieve job&#39;s last build details
 val apiInstance = RemoteAccessApi()
 val name : kotlin.String = name_example // kotlin.String | Name of the job
 try {
-    val result : HudsonmodelFreeStyleBuild = apiInstance.getJobLastBuild(name)
+    val result : FreeStyleBuild = apiInstance.getJobLastBuild(name)
     println(result)
 } catch (e: ClientException) {
     println("4xx response calling RemoteAccessApi#getJobLastBuild")
@@ -286,11 +290,11 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**HudsonmodelFreeStyleBuild**](HudsonmodelFreeStyleBuild.md)
+[**FreeStyleBuild**](FreeStyleBuild.md)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -340,7 +344,7 @@ null (empty response body)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -349,7 +353,7 @@ No authorization required
 
 <a name="getQueue"></a>
 # **getQueue**
-> HudsonmodelQueue getQueue()
+> Queue getQueue()
 
 
 
@@ -363,7 +367,7 @@ Retrieve queue details
 
 val apiInstance = RemoteAccessApi()
 try {
-    val result : HudsonmodelQueue = apiInstance.getQueue()
+    val result : Queue = apiInstance.getQueue()
     println(result)
 } catch (e: ClientException) {
     println("4xx response calling RemoteAccessApi#getQueue")
@@ -379,11 +383,11 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**HudsonmodelQueue**](HudsonmodelQueue.md)
+[**Queue**](Queue.md)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -392,7 +396,7 @@ No authorization required
 
 <a name="getQueueItem"></a>
 # **getQueueItem**
-> HudsonmodelQueue getQueueItem(number)
+> Queue getQueueItem(number)
 
 
 
@@ -407,7 +411,7 @@ Retrieve queued item details
 val apiInstance = RemoteAccessApi()
 val number : kotlin.String = number_example // kotlin.String | Queue number
 try {
-    val result : HudsonmodelQueue = apiInstance.getQueueItem(number)
+    val result : Queue = apiInstance.getQueueItem(number)
     println(result)
 } catch (e: ClientException) {
     println("4xx response calling RemoteAccessApi#getQueueItem")
@@ -426,11 +430,11 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**HudsonmodelQueue**](HudsonmodelQueue.md)
+[**Queue**](Queue.md)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -439,7 +443,7 @@ No authorization required
 
 <a name="getView"></a>
 # **getView**
-> HudsonmodelListView getView(name)
+> ListView getView(name)
 
 
 
@@ -454,7 +458,7 @@ Retrieve view details
 val apiInstance = RemoteAccessApi()
 val name : kotlin.String = name_example // kotlin.String | Name of the view
 try {
-    val result : HudsonmodelListView = apiInstance.getView(name)
+    val result : ListView = apiInstance.getView(name)
     println(result)
 } catch (e: ClientException) {
     println("4xx response calling RemoteAccessApi#getView")
@@ -473,11 +477,11 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**HudsonmodelListView**](HudsonmodelListView.md)
+[**ListView**](ListView.md)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -524,7 +528,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -566,7 +570,7 @@ null (empty response body)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -622,7 +626,7 @@ null (empty response body)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -674,7 +678,7 @@ null (empty response body)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -726,7 +730,7 @@ null (empty response body)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -776,7 +780,7 @@ null (empty response body)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -824,7 +828,7 @@ null (empty response body)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -872,7 +876,7 @@ null (empty response body)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -920,7 +924,7 @@ null (empty response body)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -968,7 +972,7 @@ null (empty response body)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -1018,7 +1022,7 @@ null (empty response body)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 

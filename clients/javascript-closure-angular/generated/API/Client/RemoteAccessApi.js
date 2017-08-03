@@ -9,13 +9,13 @@
  */
 goog.provide('API.Client.RemoteAccessApi');
 
-goog.require('API.Client.hudsonmodelComputerSet');
-goog.require('API.Client.hudsonmodelFreeStyleBuild');
-goog.require('API.Client.hudsonmodelFreeStyleProject');
-goog.require('API.Client.hudsonmodelHudson');
-goog.require('API.Client.hudsonmodelListView');
-goog.require('API.Client.hudsonmodelQueue');
-goog.require('API.Client.hudsonsecuritycsrfDefaultCrumbIssuer');
+goog.require('API.Client.ComputerSet');
+goog.require('API.Client.DefaultCrumbIssuer');
+goog.require('API.Client.FreeStyleBuild');
+goog.require('API.Client.FreeStyleProject');
+goog.require('API.Client.Hudson');
+goog.require('API.Client.ListView');
+goog.require('API.Client.Queue');
 
 /**
  * @constructor
@@ -47,18 +47,27 @@ API.Client.RemoteAccessApi.$inject = ['$http', '$httpParamSerializer', '$injecto
 /**
  * 
  * Retrieve computer details
+ * @param {!number} depth Recursion depth in response model
  * @param {!angular.$http.Config=} opt_extraHttpRequestParams Extra HTTP parameters to send.
- * @return {!angular.$q.Promise<!API.Client.hudsonmodelComputerSet>}
+ * @return {!angular.$q.Promise<!API.Client.ComputerSet>}
  */
-API.Client.RemoteAccessApi.prototype.getComputer = function(opt_extraHttpRequestParams) {
+API.Client.RemoteAccessApi.prototype.getComputer = function(depth, opt_extraHttpRequestParams) {
   /** @const {string} */
-  var path = this.basePath_ + '/computer/api/json?depth=1';
+  var path = this.basePath_ + '/computer/api/json';
 
   /** @type {!Object} */
   var queryParameters = {};
 
   /** @type {!Object} */
   var headerParams = angular.extend({}, this.defaultHeaders_);
+  // verify required parameter 'depth' is set
+  if (!depth) {
+    throw new Error('Missing required parameter depth when calling getComputer');
+  }
+  if (depth !== undefined) {
+    queryParameters['depth'] = depth;
+  }
+
   /** @type {!Object} */
   var httpRequestParams = {
     method: 'GET',
@@ -79,7 +88,7 @@ API.Client.RemoteAccessApi.prototype.getComputer = function(opt_extraHttpRequest
  * 
  * Retrieve CSRF protection token
  * @param {!angular.$http.Config=} opt_extraHttpRequestParams Extra HTTP parameters to send.
- * @return {!angular.$q.Promise<!API.Client.hudsonsecuritycsrfDefaultCrumbIssuer>}
+ * @return {!angular.$q.Promise<!API.Client.DefaultCrumbIssuer>}
  */
 API.Client.RemoteAccessApi.prototype.getCrumb = function(opt_extraHttpRequestParams) {
   /** @const {string} */
@@ -110,7 +119,7 @@ API.Client.RemoteAccessApi.prototype.getCrumb = function(opt_extraHttpRequestPar
  * 
  * Retrieve Jenkins details
  * @param {!angular.$http.Config=} opt_extraHttpRequestParams Extra HTTP parameters to send.
- * @return {!angular.$q.Promise<!API.Client.hudsonmodelHudson>}
+ * @return {!angular.$q.Promise<!API.Client.Hudson>}
  */
 API.Client.RemoteAccessApi.prototype.getJenkins = function(opt_extraHttpRequestParams) {
   /** @const {string} */
@@ -142,7 +151,7 @@ API.Client.RemoteAccessApi.prototype.getJenkins = function(opt_extraHttpRequestP
  * Retrieve job details
  * @param {!string} name Name of the job
  * @param {!angular.$http.Config=} opt_extraHttpRequestParams Extra HTTP parameters to send.
- * @return {!angular.$q.Promise<!API.Client.hudsonmodelFreeStyleProject>}
+ * @return {!angular.$q.Promise<!API.Client.FreeStyleProject>}
  */
 API.Client.RemoteAccessApi.prototype.getJob = function(name, opt_extraHttpRequestParams) {
   /** @const {string} */
@@ -216,7 +225,7 @@ API.Client.RemoteAccessApi.prototype.getJobConfig = function(name, opt_extraHttp
  * Retrieve job&#39;s last build details
  * @param {!string} name Name of the job
  * @param {!angular.$http.Config=} opt_extraHttpRequestParams Extra HTTP parameters to send.
- * @return {!angular.$q.Promise<!API.Client.hudsonmodelFreeStyleBuild>}
+ * @return {!angular.$q.Promise<!API.Client.FreeStyleBuild>}
  */
 API.Client.RemoteAccessApi.prototype.getJobLastBuild = function(name, opt_extraHttpRequestParams) {
   /** @const {string} */
@@ -304,7 +313,7 @@ API.Client.RemoteAccessApi.prototype.getJobProgressiveText = function(name, numb
  * 
  * Retrieve queue details
  * @param {!angular.$http.Config=} opt_extraHttpRequestParams Extra HTTP parameters to send.
- * @return {!angular.$q.Promise<!API.Client.hudsonmodelQueue>}
+ * @return {!angular.$q.Promise<!API.Client.Queue>}
  */
 API.Client.RemoteAccessApi.prototype.getQueue = function(opt_extraHttpRequestParams) {
   /** @const {string} */
@@ -336,7 +345,7 @@ API.Client.RemoteAccessApi.prototype.getQueue = function(opt_extraHttpRequestPar
  * Retrieve queued item details
  * @param {!string} number Queue number
  * @param {!angular.$http.Config=} opt_extraHttpRequestParams Extra HTTP parameters to send.
- * @return {!angular.$q.Promise<!API.Client.hudsonmodelQueue>}
+ * @return {!angular.$q.Promise<!API.Client.Queue>}
  */
 API.Client.RemoteAccessApi.prototype.getQueueItem = function(number, opt_extraHttpRequestParams) {
   /** @const {string} */
@@ -373,7 +382,7 @@ API.Client.RemoteAccessApi.prototype.getQueueItem = function(number, opt_extraHt
  * Retrieve view details
  * @param {!string} name Name of the view
  * @param {!angular.$http.Config=} opt_extraHttpRequestParams Extra HTTP parameters to send.
- * @return {!angular.$q.Promise<!API.Client.hudsonmodelListView>}
+ * @return {!angular.$q.Promise<!API.Client.ListView>}
  */
 API.Client.RemoteAccessApi.prototype.getView = function(name, opt_extraHttpRequestParams) {
   /** @const {string} */

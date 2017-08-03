@@ -1,6 +1,6 @@
 package io.swagger.api;
 
-import io.swagger.model.HudsonmodelListView;
+import io.swagger.model.ListView;
 import io.swagger.api.ViewApiService;
 
 import javax.ws.rs.*;
@@ -24,7 +24,7 @@ import javax.validation.constraints.*;
 @Api(description = "the view API")
 
 
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaJAXRSCXFCDIServerCodegen", date = "2017-07-25T10:45:05.448+10:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaJAXRSCXFCDIServerCodegen", date = "2017-08-03T23:34:47.267Z")
 
 public class ViewApi  {
 
@@ -37,12 +37,14 @@ public class ViewApi  {
     @Path("/{name}/api/json")
     
     @Produces({ "application/json" })
-    @ApiOperation(value = "", notes = "Retrieve view details", response = HudsonmodelListView.class, tags={ "remoteAccess",  })
+    @ApiOperation(value = "", notes = "Retrieve view details", response = ListView.class, authorizations = {
+        @Authorization(value = "jenkins_auth")
+    }, tags={ "remoteAccess",  })
     @ApiResponses(value = { 
-        @ApiResponse(code = 200, message = "Successfully retrieved view details", response = HudsonmodelListView.class),
-        @ApiResponse(code = 401, message = "Authentication failed - incorrect username and/or password", response = HudsonmodelListView.class),
-        @ApiResponse(code = 403, message = "Jenkins requires authentication - please set username and password", response = HudsonmodelListView.class),
-        @ApiResponse(code = 404, message = "View cannot be found on Jenkins instance", response = HudsonmodelListView.class) })
+        @ApiResponse(code = 200, message = "Successfully retrieved view details", response = ListView.class),
+        @ApiResponse(code = 401, message = "Authentication failed - incorrect username and/or password", response = ListView.class),
+        @ApiResponse(code = 403, message = "Jenkins requires authentication - please set username and password", response = ListView.class),
+        @ApiResponse(code = 404, message = "View cannot be found on Jenkins instance", response = ListView.class) })
     public Response getView(@ApiParam(value = "Name of the view",required=true) @PathParam("name") String name) {
         return delegate.getView(name, securityContext);
     }
@@ -51,7 +53,9 @@ public class ViewApi  {
     @Path("/{name}/config.xml")
     
     @Produces({ "text/xml" })
-    @ApiOperation(value = "", notes = "Retrieve view configuration", response = String.class, tags={ "remoteAccess",  })
+    @ApiOperation(value = "", notes = "Retrieve view configuration", response = String.class, authorizations = {
+        @Authorization(value = "jenkins_auth")
+    }, tags={ "remoteAccess",  })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "Successfully retrieved view configuration in config.xml format", response = String.class),
         @ApiResponse(code = 401, message = "Authentication failed - incorrect username and/or password", response = String.class),
@@ -65,7 +69,9 @@ public class ViewApi  {
     @Path("/{name}/config.xml")
     
     
-    @ApiOperation(value = "", notes = "Update view configuration", response = void.class, tags={ "remoteAccess" })
+    @ApiOperation(value = "", notes = "Update view configuration", response = void.class, authorizations = {
+        @Authorization(value = "jenkins_auth")
+    }, tags={ "remoteAccess" })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "Successfully updated view configuration", response = void.class),
         @ApiResponse(code = 400, message = "An error has occurred - error message is embedded inside the HTML response", response = void.class),

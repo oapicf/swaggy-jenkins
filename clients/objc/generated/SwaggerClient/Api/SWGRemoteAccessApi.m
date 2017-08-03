@@ -1,13 +1,13 @@
 #import "SWGRemoteAccessApi.h"
 #import "SWGQueryParamCollection.h"
 #import "SWGApiClient.h"
-#import "SWGHudsonmodelComputerSet.h"
-#import "SWGHudsonmodelFreeStyleBuild.h"
-#import "SWGHudsonmodelFreeStyleProject.h"
-#import "SWGHudsonmodelHudson.h"
-#import "SWGHudsonmodelListView.h"
-#import "SWGHudsonmodelQueue.h"
-#import "SWGHudsonsecuritycsrfDefaultCrumbIssuer.h"
+#import "SWGComputerSet.h"
+#import "SWGDefaultCrumbIssuer.h"
+#import "SWGFreeStyleBuild.h"
+#import "SWGFreeStyleProject.h"
+#import "SWGHudson.h"
+#import "SWGListView.h"
+#import "SWGQueue.h"
 
 
 @interface SWGRemoteAccessApi ()
@@ -58,15 +58,31 @@ NSInteger kSWGRemoteAccessApiMissingParamErrorCode = 234513;
 ///
 /// 
 /// Retrieve computer details
-///  @returns SWGHudsonmodelComputerSet*
+///  @param depth Recursion depth in response model 
 ///
--(NSURLSessionTask*) getComputerWithCompletionHandler: 
-    (void (^)(SWGHudsonmodelComputerSet* output, NSError* error)) handler {
-    NSMutableString* resourcePath = [NSMutableString stringWithFormat:@"/computer/api/json?depth=1"];
+///  @returns SWGComputerSet*
+///
+-(NSURLSessionTask*) getComputerWithDepth: (NSNumber*) depth
+    completionHandler: (void (^)(SWGComputerSet* output, NSError* error)) handler {
+    // verify the required parameter 'depth' is set
+    if (depth == nil) {
+        NSParameterAssert(depth);
+        if(handler) {
+            NSDictionary * userInfo = @{NSLocalizedDescriptionKey : [NSString stringWithFormat:NSLocalizedString(@"Missing required parameter '%@'", nil),@"depth"] };
+            NSError* error = [NSError errorWithDomain:kSWGRemoteAccessApiErrorDomain code:kSWGRemoteAccessApiMissingParamErrorCode userInfo:userInfo];
+            handler(nil, error);
+        }
+        return nil;
+    }
+
+    NSMutableString* resourcePath = [NSMutableString stringWithFormat:@"/computer/api/json"];
 
     NSMutableDictionary *pathParams = [[NSMutableDictionary alloc] init];
 
     NSMutableDictionary* queryParams = [[NSMutableDictionary alloc] init];
+    if (depth != nil) {
+        queryParams[@"depth"] = depth;
+    }
     NSMutableDictionary* headerParams = [NSMutableDictionary dictionaryWithDictionary:self.apiClient.configuration.defaultHeaders];
     [headerParams addEntriesFromDictionary:self.defaultHeaders];
     // HTTP header `Accept`
@@ -82,7 +98,7 @@ NSInteger kSWGRemoteAccessApiMissingParamErrorCode = 234513;
     NSString *requestContentType = [self.apiClient.sanitizer selectHeaderContentType:@[]];
 
     // Authentication setting
-    NSArray *authSettings = @[];
+    NSArray *authSettings = @[@"jenkins_auth"];
 
     id bodyParam = nil;
     NSMutableDictionary *formParams = [[NSMutableDictionary alloc] init];
@@ -99,10 +115,10 @@ NSInteger kSWGRemoteAccessApiMissingParamErrorCode = 234513;
                               authSettings: authSettings
                         requestContentType: requestContentType
                        responseContentType: responseContentType
-                              responseType: @"SWGHudsonmodelComputerSet*"
+                              responseType: @"SWGComputerSet*"
                            completionBlock: ^(id data, NSError *error) {
                                 if(handler) {
-                                    handler((SWGHudsonmodelComputerSet*)data, error);
+                                    handler((SWGComputerSet*)data, error);
                                 }
                             }];
 }
@@ -110,10 +126,10 @@ NSInteger kSWGRemoteAccessApiMissingParamErrorCode = 234513;
 ///
 /// 
 /// Retrieve CSRF protection token
-///  @returns SWGHudsonsecuritycsrfDefaultCrumbIssuer*
+///  @returns SWGDefaultCrumbIssuer*
 ///
 -(NSURLSessionTask*) getCrumbWithCompletionHandler: 
-    (void (^)(SWGHudsonsecuritycsrfDefaultCrumbIssuer* output, NSError* error)) handler {
+    (void (^)(SWGDefaultCrumbIssuer* output, NSError* error)) handler {
     NSMutableString* resourcePath = [NSMutableString stringWithFormat:@"/crumbIssuer/api/json"];
 
     NSMutableDictionary *pathParams = [[NSMutableDictionary alloc] init];
@@ -134,7 +150,7 @@ NSInteger kSWGRemoteAccessApiMissingParamErrorCode = 234513;
     NSString *requestContentType = [self.apiClient.sanitizer selectHeaderContentType:@[]];
 
     // Authentication setting
-    NSArray *authSettings = @[];
+    NSArray *authSettings = @[@"jenkins_auth"];
 
     id bodyParam = nil;
     NSMutableDictionary *formParams = [[NSMutableDictionary alloc] init];
@@ -151,10 +167,10 @@ NSInteger kSWGRemoteAccessApiMissingParamErrorCode = 234513;
                               authSettings: authSettings
                         requestContentType: requestContentType
                        responseContentType: responseContentType
-                              responseType: @"SWGHudsonsecuritycsrfDefaultCrumbIssuer*"
+                              responseType: @"SWGDefaultCrumbIssuer*"
                            completionBlock: ^(id data, NSError *error) {
                                 if(handler) {
-                                    handler((SWGHudsonsecuritycsrfDefaultCrumbIssuer*)data, error);
+                                    handler((SWGDefaultCrumbIssuer*)data, error);
                                 }
                             }];
 }
@@ -162,10 +178,10 @@ NSInteger kSWGRemoteAccessApiMissingParamErrorCode = 234513;
 ///
 /// 
 /// Retrieve Jenkins details
-///  @returns SWGHudsonmodelHudson*
+///  @returns SWGHudson*
 ///
 -(NSURLSessionTask*) getJenkinsWithCompletionHandler: 
-    (void (^)(SWGHudsonmodelHudson* output, NSError* error)) handler {
+    (void (^)(SWGHudson* output, NSError* error)) handler {
     NSMutableString* resourcePath = [NSMutableString stringWithFormat:@"/api/json"];
 
     NSMutableDictionary *pathParams = [[NSMutableDictionary alloc] init];
@@ -186,7 +202,7 @@ NSInteger kSWGRemoteAccessApiMissingParamErrorCode = 234513;
     NSString *requestContentType = [self.apiClient.sanitizer selectHeaderContentType:@[]];
 
     // Authentication setting
-    NSArray *authSettings = @[];
+    NSArray *authSettings = @[@"jenkins_auth"];
 
     id bodyParam = nil;
     NSMutableDictionary *formParams = [[NSMutableDictionary alloc] init];
@@ -203,10 +219,10 @@ NSInteger kSWGRemoteAccessApiMissingParamErrorCode = 234513;
                               authSettings: authSettings
                         requestContentType: requestContentType
                        responseContentType: responseContentType
-                              responseType: @"SWGHudsonmodelHudson*"
+                              responseType: @"SWGHudson*"
                            completionBlock: ^(id data, NSError *error) {
                                 if(handler) {
-                                    handler((SWGHudsonmodelHudson*)data, error);
+                                    handler((SWGHudson*)data, error);
                                 }
                             }];
 }
@@ -216,10 +232,10 @@ NSInteger kSWGRemoteAccessApiMissingParamErrorCode = 234513;
 /// Retrieve job details
 ///  @param name Name of the job 
 ///
-///  @returns SWGHudsonmodelFreeStyleProject*
+///  @returns SWGFreeStyleProject*
 ///
 -(NSURLSessionTask*) getJobWithName: (NSString*) name
-    completionHandler: (void (^)(SWGHudsonmodelFreeStyleProject* output, NSError* error)) handler {
+    completionHandler: (void (^)(SWGFreeStyleProject* output, NSError* error)) handler {
     // verify the required parameter 'name' is set
     if (name == nil) {
         NSParameterAssert(name);
@@ -254,7 +270,7 @@ NSInteger kSWGRemoteAccessApiMissingParamErrorCode = 234513;
     NSString *requestContentType = [self.apiClient.sanitizer selectHeaderContentType:@[]];
 
     // Authentication setting
-    NSArray *authSettings = @[];
+    NSArray *authSettings = @[@"jenkins_auth"];
 
     id bodyParam = nil;
     NSMutableDictionary *formParams = [[NSMutableDictionary alloc] init];
@@ -271,10 +287,10 @@ NSInteger kSWGRemoteAccessApiMissingParamErrorCode = 234513;
                               authSettings: authSettings
                         requestContentType: requestContentType
                        responseContentType: responseContentType
-                              responseType: @"SWGHudsonmodelFreeStyleProject*"
+                              responseType: @"SWGFreeStyleProject*"
                            completionBlock: ^(id data, NSError *error) {
                                 if(handler) {
-                                    handler((SWGHudsonmodelFreeStyleProject*)data, error);
+                                    handler((SWGFreeStyleProject*)data, error);
                                 }
                             }];
 }
@@ -322,7 +338,7 @@ NSInteger kSWGRemoteAccessApiMissingParamErrorCode = 234513;
     NSString *requestContentType = [self.apiClient.sanitizer selectHeaderContentType:@[]];
 
     // Authentication setting
-    NSArray *authSettings = @[];
+    NSArray *authSettings = @[@"jenkins_auth"];
 
     id bodyParam = nil;
     NSMutableDictionary *formParams = [[NSMutableDictionary alloc] init];
@@ -352,10 +368,10 @@ NSInteger kSWGRemoteAccessApiMissingParamErrorCode = 234513;
 /// Retrieve job's last build details
 ///  @param name Name of the job 
 ///
-///  @returns SWGHudsonmodelFreeStyleBuild*
+///  @returns SWGFreeStyleBuild*
 ///
 -(NSURLSessionTask*) getJobLastBuildWithName: (NSString*) name
-    completionHandler: (void (^)(SWGHudsonmodelFreeStyleBuild* output, NSError* error)) handler {
+    completionHandler: (void (^)(SWGFreeStyleBuild* output, NSError* error)) handler {
     // verify the required parameter 'name' is set
     if (name == nil) {
         NSParameterAssert(name);
@@ -390,7 +406,7 @@ NSInteger kSWGRemoteAccessApiMissingParamErrorCode = 234513;
     NSString *requestContentType = [self.apiClient.sanitizer selectHeaderContentType:@[]];
 
     // Authentication setting
-    NSArray *authSettings = @[];
+    NSArray *authSettings = @[@"jenkins_auth"];
 
     id bodyParam = nil;
     NSMutableDictionary *formParams = [[NSMutableDictionary alloc] init];
@@ -407,10 +423,10 @@ NSInteger kSWGRemoteAccessApiMissingParamErrorCode = 234513;
                               authSettings: authSettings
                         requestContentType: requestContentType
                        responseContentType: responseContentType
-                              responseType: @"SWGHudsonmodelFreeStyleBuild*"
+                              responseType: @"SWGFreeStyleBuild*"
                            completionBlock: ^(id data, NSError *error) {
                                 if(handler) {
-                                    handler((SWGHudsonmodelFreeStyleBuild*)data, error);
+                                    handler((SWGFreeStyleBuild*)data, error);
                                 }
                             }];
 }
@@ -492,7 +508,7 @@ NSInteger kSWGRemoteAccessApiMissingParamErrorCode = 234513;
     NSString *requestContentType = [self.apiClient.sanitizer selectHeaderContentType:@[]];
 
     // Authentication setting
-    NSArray *authSettings = @[];
+    NSArray *authSettings = @[@"jenkins_auth"];
 
     id bodyParam = nil;
     NSMutableDictionary *formParams = [[NSMutableDictionary alloc] init];
@@ -520,10 +536,10 @@ NSInteger kSWGRemoteAccessApiMissingParamErrorCode = 234513;
 ///
 /// 
 /// Retrieve queue details
-///  @returns SWGHudsonmodelQueue*
+///  @returns SWGQueue*
 ///
 -(NSURLSessionTask*) getQueueWithCompletionHandler: 
-    (void (^)(SWGHudsonmodelQueue* output, NSError* error)) handler {
+    (void (^)(SWGQueue* output, NSError* error)) handler {
     NSMutableString* resourcePath = [NSMutableString stringWithFormat:@"/queue/api/json"];
 
     NSMutableDictionary *pathParams = [[NSMutableDictionary alloc] init];
@@ -544,7 +560,7 @@ NSInteger kSWGRemoteAccessApiMissingParamErrorCode = 234513;
     NSString *requestContentType = [self.apiClient.sanitizer selectHeaderContentType:@[]];
 
     // Authentication setting
-    NSArray *authSettings = @[];
+    NSArray *authSettings = @[@"jenkins_auth"];
 
     id bodyParam = nil;
     NSMutableDictionary *formParams = [[NSMutableDictionary alloc] init];
@@ -561,10 +577,10 @@ NSInteger kSWGRemoteAccessApiMissingParamErrorCode = 234513;
                               authSettings: authSettings
                         requestContentType: requestContentType
                        responseContentType: responseContentType
-                              responseType: @"SWGHudsonmodelQueue*"
+                              responseType: @"SWGQueue*"
                            completionBlock: ^(id data, NSError *error) {
                                 if(handler) {
-                                    handler((SWGHudsonmodelQueue*)data, error);
+                                    handler((SWGQueue*)data, error);
                                 }
                             }];
 }
@@ -574,10 +590,10 @@ NSInteger kSWGRemoteAccessApiMissingParamErrorCode = 234513;
 /// Retrieve queued item details
 ///  @param number Queue number 
 ///
-///  @returns SWGHudsonmodelQueue*
+///  @returns SWGQueue*
 ///
 -(NSURLSessionTask*) getQueueItemWithNumber: (NSString*) number
-    completionHandler: (void (^)(SWGHudsonmodelQueue* output, NSError* error)) handler {
+    completionHandler: (void (^)(SWGQueue* output, NSError* error)) handler {
     // verify the required parameter 'number' is set
     if (number == nil) {
         NSParameterAssert(number);
@@ -612,7 +628,7 @@ NSInteger kSWGRemoteAccessApiMissingParamErrorCode = 234513;
     NSString *requestContentType = [self.apiClient.sanitizer selectHeaderContentType:@[]];
 
     // Authentication setting
-    NSArray *authSettings = @[];
+    NSArray *authSettings = @[@"jenkins_auth"];
 
     id bodyParam = nil;
     NSMutableDictionary *formParams = [[NSMutableDictionary alloc] init];
@@ -629,10 +645,10 @@ NSInteger kSWGRemoteAccessApiMissingParamErrorCode = 234513;
                               authSettings: authSettings
                         requestContentType: requestContentType
                        responseContentType: responseContentType
-                              responseType: @"SWGHudsonmodelQueue*"
+                              responseType: @"SWGQueue*"
                            completionBlock: ^(id data, NSError *error) {
                                 if(handler) {
-                                    handler((SWGHudsonmodelQueue*)data, error);
+                                    handler((SWGQueue*)data, error);
                                 }
                             }];
 }
@@ -642,10 +658,10 @@ NSInteger kSWGRemoteAccessApiMissingParamErrorCode = 234513;
 /// Retrieve view details
 ///  @param name Name of the view 
 ///
-///  @returns SWGHudsonmodelListView*
+///  @returns SWGListView*
 ///
 -(NSURLSessionTask*) getViewWithName: (NSString*) name
-    completionHandler: (void (^)(SWGHudsonmodelListView* output, NSError* error)) handler {
+    completionHandler: (void (^)(SWGListView* output, NSError* error)) handler {
     // verify the required parameter 'name' is set
     if (name == nil) {
         NSParameterAssert(name);
@@ -680,7 +696,7 @@ NSInteger kSWGRemoteAccessApiMissingParamErrorCode = 234513;
     NSString *requestContentType = [self.apiClient.sanitizer selectHeaderContentType:@[]];
 
     // Authentication setting
-    NSArray *authSettings = @[];
+    NSArray *authSettings = @[@"jenkins_auth"];
 
     id bodyParam = nil;
     NSMutableDictionary *formParams = [[NSMutableDictionary alloc] init];
@@ -697,10 +713,10 @@ NSInteger kSWGRemoteAccessApiMissingParamErrorCode = 234513;
                               authSettings: authSettings
                         requestContentType: requestContentType
                        responseContentType: responseContentType
-                              responseType: @"SWGHudsonmodelListView*"
+                              responseType: @"SWGListView*"
                            completionBlock: ^(id data, NSError *error) {
                                 if(handler) {
-                                    handler((SWGHudsonmodelListView*)data, error);
+                                    handler((SWGListView*)data, error);
                                 }
                             }];
 }
@@ -748,7 +764,7 @@ NSInteger kSWGRemoteAccessApiMissingParamErrorCode = 234513;
     NSString *requestContentType = [self.apiClient.sanitizer selectHeaderContentType:@[]];
 
     // Authentication setting
-    NSArray *authSettings = @[];
+    NSArray *authSettings = @[@"jenkins_auth"];
 
     id bodyParam = nil;
     NSMutableDictionary *formParams = [[NSMutableDictionary alloc] init];
@@ -800,7 +816,7 @@ NSInteger kSWGRemoteAccessApiMissingParamErrorCode = 234513;
     NSString *requestContentType = [self.apiClient.sanitizer selectHeaderContentType:@[]];
 
     // Authentication setting
-    NSArray *authSettings = @[];
+    NSArray *authSettings = @[@"jenkins_auth"];
 
     id bodyParam = nil;
     NSMutableDictionary *formParams = [[NSMutableDictionary alloc] init];
@@ -895,7 +911,7 @@ NSInteger kSWGRemoteAccessApiMissingParamErrorCode = 234513;
     NSString *requestContentType = [self.apiClient.sanitizer selectHeaderContentType:@[]];
 
     // Authentication setting
-    NSArray *authSettings = @[];
+    NSArray *authSettings = @[@"jenkins_auth"];
 
     id bodyParam = nil;
     NSMutableDictionary *formParams = [[NSMutableDictionary alloc] init];
@@ -979,7 +995,7 @@ NSInteger kSWGRemoteAccessApiMissingParamErrorCode = 234513;
     NSString *requestContentType = [self.apiClient.sanitizer selectHeaderContentType:@[]];
 
     // Authentication setting
-    NSArray *authSettings = @[];
+    NSArray *authSettings = @[@"jenkins_auth"];
 
     id bodyParam = nil;
     NSMutableDictionary *formParams = [[NSMutableDictionary alloc] init];
@@ -1077,7 +1093,7 @@ NSInteger kSWGRemoteAccessApiMissingParamErrorCode = 234513;
     NSString *requestContentType = [self.apiClient.sanitizer selectHeaderContentType:@[]];
 
     // Authentication setting
-    NSArray *authSettings = @[];
+    NSArray *authSettings = @[@"jenkins_auth"];
 
     id bodyParam = nil;
     NSMutableDictionary *formParams = [[NSMutableDictionary alloc] init];
@@ -1165,7 +1181,7 @@ NSInteger kSWGRemoteAccessApiMissingParamErrorCode = 234513;
     NSString *requestContentType = [self.apiClient.sanitizer selectHeaderContentType:@[]];
 
     // Authentication setting
-    NSArray *authSettings = @[];
+    NSArray *authSettings = @[@"jenkins_auth"];
 
     id bodyParam = nil;
     NSMutableDictionary *formParams = [[NSMutableDictionary alloc] init];
@@ -1240,7 +1256,7 @@ NSInteger kSWGRemoteAccessApiMissingParamErrorCode = 234513;
     NSString *requestContentType = [self.apiClient.sanitizer selectHeaderContentType:@[]];
 
     // Authentication setting
-    NSArray *authSettings = @[];
+    NSArray *authSettings = @[@"jenkins_auth"];
 
     id bodyParam = nil;
     NSMutableDictionary *formParams = [[NSMutableDictionary alloc] init];
@@ -1314,7 +1330,7 @@ NSInteger kSWGRemoteAccessApiMissingParamErrorCode = 234513;
     NSString *requestContentType = [self.apiClient.sanitizer selectHeaderContentType:@[]];
 
     // Authentication setting
-    NSArray *authSettings = @[];
+    NSArray *authSettings = @[@"jenkins_auth"];
 
     id bodyParam = nil;
     NSMutableDictionary *formParams = [[NSMutableDictionary alloc] init];
@@ -1388,7 +1404,7 @@ NSInteger kSWGRemoteAccessApiMissingParamErrorCode = 234513;
     NSString *requestContentType = [self.apiClient.sanitizer selectHeaderContentType:@[]];
 
     // Authentication setting
-    NSArray *authSettings = @[];
+    NSArray *authSettings = @[@"jenkins_auth"];
 
     id bodyParam = nil;
     NSMutableDictionary *formParams = [[NSMutableDictionary alloc] init];
@@ -1462,7 +1478,7 @@ NSInteger kSWGRemoteAccessApiMissingParamErrorCode = 234513;
     NSString *requestContentType = [self.apiClient.sanitizer selectHeaderContentType:@[]];
 
     // Authentication setting
-    NSArray *authSettings = @[];
+    NSArray *authSettings = @[@"jenkins_auth"];
 
     id bodyParam = nil;
     NSMutableDictionary *formParams = [[NSMutableDictionary alloc] init];
@@ -1550,7 +1566,7 @@ NSInteger kSWGRemoteAccessApiMissingParamErrorCode = 234513;
     NSString *requestContentType = [self.apiClient.sanitizer selectHeaderContentType:@[]];
 
     // Authentication setting
-    NSArray *authSettings = @[];
+    NSArray *authSettings = @[@"jenkins_auth"];
 
     id bodyParam = nil;
     NSMutableDictionary *formParams = [[NSMutableDictionary alloc] init];

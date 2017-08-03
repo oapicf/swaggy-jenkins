@@ -26,12 +26,14 @@ paths:
         200:
           description: "Successfully retrieved Jenkins details"
           schema:
-            $ref: "#/definitions/hudsonmodelHudson"
+            $ref: "#/definitions/Hudson"
         401:
           description: "Authentication failed - incorrect username and/or password"
         403:
           description: "Jenkins requires authentication - please set username and\
             \ password"
+      security:
+      - jenkins_auth: []
       x-swagger-router-controller: "RemoteAccess"
     head:
       tags:
@@ -51,8 +53,10 @@ paths:
         403:
           description: "Jenkins requires authentication - please set username and\
             \ password"
+      security:
+      - jenkins_auth: []
       x-swagger-router-controller: "RemoteAccess"
-  /computer/api/json?depth=1:
+  /computer/api/json:
     get:
       tags:
       - "remoteAccess"
@@ -60,17 +64,24 @@ paths:
       operationId: "getComputer"
       produces:
       - "application/json"
-      parameters: []
+      parameters:
+      - name: "depth"
+        in: "query"
+        description: "Recursion depth in response model"
+        required: true
+        type: "integer"
       responses:
         200:
           description: "Successfully retrieved computer details"
           schema:
-            $ref: "#/definitions/hudsonmodelComputerSet"
+            $ref: "#/definitions/ComputerSet"
         401:
           description: "Authentication failed - incorrect username and/or password"
         403:
           description: "Jenkins requires authentication - please set username and\
             \ password"
+      security:
+      - jenkins_auth: []
       x-swagger-router-controller: "RemoteAccess"
   /createItem:
     post:
@@ -126,6 +137,8 @@ paths:
         403:
           description: "Jenkins requires authentication - please set username and\
             \ password"
+      security:
+      - jenkins_auth: []
       x-swagger-router-controller: "RemoteAccess"
   /createView:
     post:
@@ -170,6 +183,8 @@ paths:
         403:
           description: "Jenkins requires authentication - please set username and\
             \ password"
+      security:
+      - jenkins_auth: []
       x-swagger-router-controller: "RemoteAccess"
   /crumbIssuer/api/json:
     get:
@@ -184,12 +199,14 @@ paths:
         200:
           description: "Successfully retrieved CSRF protection token"
           schema:
-            $ref: "#/definitions/hudsonsecuritycsrfDefaultCrumbIssuer"
+            $ref: "#/definitions/DefaultCrumbIssuer"
         401:
           description: "Authentication failed - incorrect username and/or password"
         403:
           description: "Jenkins requires authentication - please set username and\
             \ password"
+      security:
+      - jenkins_auth: []
       x-swagger-router-controller: "RemoteAccess"
   /job/{name}/api/json:
     get:
@@ -209,7 +226,7 @@ paths:
         200:
           description: "Successfully retrieved job details"
           schema:
-            $ref: "#/definitions/hudsonmodelFreeStyleProject"
+            $ref: "#/definitions/FreeStyleProject"
         401:
           description: "Authentication failed - incorrect username and/or password"
         403:
@@ -217,6 +234,8 @@ paths:
             \ password"
         404:
           description: "Job cannot be found on Jenkins instance"
+      security:
+      - jenkins_auth: []
       x-swagger-router-controller: "RemoteAccess"
   /job/{name}/build:
     post:
@@ -256,6 +275,8 @@ paths:
             \ password"
         404:
           description: "Job cannot be found on Jenkins instance"
+      security:
+      - jenkins_auth: []
       x-swagger-router-controller: "RemoteAccess"
   /job/{name}/config.xml:
     get:
@@ -283,6 +304,8 @@ paths:
             \ password"
         404:
           description: "Job cannot be found on Jenkins instance"
+      security:
+      - jenkins_auth: []
       x-swagger-router-controller: "RemoteAccess"
     post:
       tags:
@@ -323,6 +346,8 @@ paths:
             \ password"
         404:
           description: "Job cannot be found on Jenkins instance"
+      security:
+      - jenkins_auth: []
       x-swagger-router-controller: "RemoteAccess"
   /job/{name}/doDelete:
     post:
@@ -351,6 +376,8 @@ paths:
             \ password"
         404:
           description: "Job cannot be found on Jenkins instance"
+      security:
+      - jenkins_auth: []
       x-swagger-router-controller: "RemoteAccess"
   /job/{name}/disable:
     post:
@@ -379,6 +406,8 @@ paths:
             \ password"
         404:
           description: "Job cannot be found on Jenkins instance"
+      security:
+      - jenkins_auth: []
       x-swagger-router-controller: "RemoteAccess"
   /job/{name}/enable:
     post:
@@ -407,6 +436,8 @@ paths:
             \ password"
         404:
           description: "Job cannot be found on Jenkins instance"
+      security:
+      - jenkins_auth: []
       x-swagger-router-controller: "RemoteAccess"
   /job/{name}/lastBuild/api/json:
     get:
@@ -426,7 +457,7 @@ paths:
         200:
           description: "Successfully retrieved job's last build details"
           schema:
-            $ref: "#/definitions/hudsonmodelFreeStyleBuild"
+            $ref: "#/definitions/FreeStyleBuild"
         401:
           description: "Authentication failed - incorrect username and/or password"
         403:
@@ -434,6 +465,8 @@ paths:
             \ password"
         404:
           description: "Job cannot be found on Jenkins instance"
+      security:
+      - jenkins_auth: []
       x-swagger-router-controller: "RemoteAccess"
   /job/{name}/lastBuild/stop:
     post:
@@ -462,6 +495,8 @@ paths:
             \ password"
         404:
           description: "Job cannot be found on Jenkins instance"
+      security:
+      - jenkins_auth: []
       x-swagger-router-controller: "RemoteAccess"
   /job/{name}/{number}/logText/progressiveText:
     get:
@@ -495,6 +530,8 @@ paths:
             \ password"
         404:
           description: "Job cannot be found on Jenkins instance"
+      security:
+      - jenkins_auth: []
       x-swagger-router-controller: "RemoteAccess"
   /queue/api/json:
     get:
@@ -509,12 +546,14 @@ paths:
         200:
           description: "Successfully retrieved queue details"
           schema:
-            $ref: "#/definitions/hudsonmodelQueue"
+            $ref: "#/definitions/Queue"
         401:
           description: "Authentication failed - incorrect username and/or password"
         403:
           description: "Jenkins requires authentication - please set username and\
             \ password"
+      security:
+      - jenkins_auth: []
       x-swagger-router-controller: "RemoteAccess"
   /queue/item/{number}/api/json:
     get:
@@ -534,12 +573,14 @@ paths:
         200:
           description: "Successfully retrieved queued item details"
           schema:
-            $ref: "#/definitions/hudsonmodelQueue"
+            $ref: "#/definitions/Queue"
         401:
           description: "Authentication failed - incorrect username and/or password"
         403:
           description: "Jenkins requires authentication - please set username and\
             \ password"
+      security:
+      - jenkins_auth: []
       x-swagger-router-controller: "RemoteAccess"
   /view/{name}/api/json:
     get:
@@ -559,7 +600,7 @@ paths:
         200:
           description: "Successfully retrieved view details"
           schema:
-            $ref: "#/definitions/hudsonmodelListView"
+            $ref: "#/definitions/ListView"
         401:
           description: "Authentication failed - incorrect username and/or password"
         403:
@@ -567,6 +608,8 @@ paths:
             \ password"
         404:
           description: "View cannot be found on Jenkins instance"
+      security:
+      - jenkins_auth: []
       x-swagger-router-controller: "RemoteAccess"
   /view/{name}/config.xml:
     get:
@@ -594,6 +637,8 @@ paths:
             \ password"
         404:
           description: "View cannot be found on Jenkins instance"
+      security:
+      - jenkins_auth: []
       x-swagger-router-controller: "RemoteAccess"
     post:
       tags:
@@ -632,13 +677,15 @@ paths:
             \ password"
         404:
           description: "View cannot be found on Jenkins instance"
+      security:
+      - jenkins_auth: []
       x-swagger-router-controller: "RemoteAccess"
   /blue/rest/classes/:
     get:
       tags:
       - "blueOcean"
       description: "Get classes details"
-      operationId: "search"
+      operationId: "searchClasses"
       produces:
       - "application/json"
       parameters:
@@ -657,6 +704,8 @@ paths:
         403:
           description: "Jenkins requires authentication - please set username and\
             \ password"
+      security:
+      - jenkins_auth: []
       x-swagger-router-controller: "BlueOcean"
   /blue/rest/classes/{class}:
     get:
@@ -682,6 +731,8 @@ paths:
         403:
           description: "Jenkins requires authentication - please set username and\
             \ password"
+      security:
+      - jenkins_auth: []
       x-swagger-router-controller: "BlueOcean"
   /blue/rest/search/:
     get:
@@ -707,12 +758,14 @@ paths:
         403:
           description: "Jenkins requires authentication - please set username and\
             \ password"
+      security:
+      - jenkins_auth: []
       x-swagger-router-controller: "BlueOcean"
   /blue/rest/organizations/:
     get:
       tags:
       - "blueOcean"
-      description: "Retrieve all organisations details"
+      description: "Retrieve all organizations details"
       operationId: "getOrganisations"
       produces:
       - "application/json"
@@ -721,32 +774,34 @@ paths:
         200:
           description: "Successfully retrieved pipelines details"
           schema:
-            $ref: "#/definitions/getOrganisations"
+            $ref: "#/definitions/Organisations"
         401:
           description: "Authentication failed - incorrect username and/or password"
         403:
           description: "Jenkins requires authentication - please set username and\
             \ password"
+      security:
+      - jenkins_auth: []
       x-swagger-router-controller: "BlueOcean"
-  /blue/rest/organizations/{organisation}:
+  /blue/rest/organizations/{organization}:
     get:
       tags:
       - "blueOcean"
-      description: "Retrieve organisation details"
+      description: "Retrieve organization details"
       operationId: "getOrganisation"
       produces:
       - "application/json"
       parameters:
-      - name: "organisation"
+      - name: "organization"
         in: "path"
-        description: "Name of the organisation"
+        description: "Name of the organization"
         required: true
         type: "string"
       responses:
         200:
           description: "Successfully retrieved pipeline details"
           schema:
-            $ref: "#/definitions/swaggyjenkinsOrganisation"
+            $ref: "#/definitions/Organisation"
         401:
           description: "Authentication failed - incorrect username and/or password"
         403:
@@ -754,44 +809,48 @@ paths:
             \ password"
         404:
           description: "Pipeline cannot be found on Jenkins instance"
+      security:
+      - jenkins_auth: []
       x-swagger-router-controller: "BlueOcean"
-  /blue/rest/organizations/{organisation}/pipelines/:
+  /blue/rest/organizations/{organization}/pipelines/:
     get:
       tags:
       - "blueOcean"
-      description: "Retrieve all pipelines details for an organisation"
-      operationId: "getPipelinesByOrg"
+      description: "Retrieve all pipelines details for an organization"
+      operationId: "getPipelines"
       produces:
       - "application/json"
       parameters:
-      - name: "organisation"
+      - name: "organization"
         in: "path"
-        description: "Name of the organisation"
+        description: "Name of the organization"
         required: true
         type: "string"
       responses:
         200:
           description: "Successfully retrieved pipelines details"
           schema:
-            $ref: "#/definitions/getPipelines"
+            $ref: "#/definitions/Pipelines"
         401:
           description: "Authentication failed - incorrect username and/or password"
         403:
           description: "Jenkins requires authentication - please set username and\
             \ password"
+      security:
+      - jenkins_auth: []
       x-swagger-router-controller: "BlueOcean"
-  /blue/rest/organizations/{organisation}/pipelines/{pipeline}:
+  /blue/rest/organizations/{organization}/pipelines/{pipeline}:
     get:
       tags:
       - "blueOcean"
-      description: "Retrieve pipeline details for an organisation"
-      operationId: "getPipelineByOrg"
+      description: "Retrieve pipeline details for an organization"
+      operationId: "getPipeline"
       produces:
       - "application/json"
       parameters:
-      - name: "organisation"
+      - name: "organization"
         in: "path"
-        description: "Name of the organisation"
+        description: "Name of the organization"
         required: true
         type: "string"
       - name: "pipeline"
@@ -803,7 +862,7 @@ paths:
         200:
           description: "Successfully retrieved pipeline details"
           schema:
-            $ref: "#/definitions/swaggyjenkinsPipeline"
+            $ref: "#/definitions/Pipeline"
         401:
           description: "Authentication failed - incorrect username and/or password"
         403:
@@ -811,19 +870,53 @@ paths:
             \ password"
         404:
           description: "Pipeline cannot be found on Jenkins instance"
+      security:
+      - jenkins_auth: []
       x-swagger-router-controller: "BlueOcean"
-  /blue/rest/organizations/{organisation}/pipelines/{pipeline}/branches:
+  /blue/rest/organizations/{organization}/pipelines/{pipeline}/activities:
     get:
       tags:
       - "blueOcean"
-      description: "Retrieve all branches details for an organisation pipeline"
-      operationId: "getPipelineBranchesByOrg"
+      description: "Retrieve all activities details for an organization pipeline"
+      operationId: "getPipelineActivities"
       produces:
       - "application/json"
       parameters:
-      - name: "organisation"
+      - name: "organization"
         in: "path"
-        description: "Name of the organisation"
+        description: "Name of the organization"
+        required: true
+        type: "string"
+      - name: "pipeline"
+        in: "path"
+        description: "Name of the pipeline"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Successfully retrieved all activities details"
+          schema:
+            $ref: "#/definitions/PipelineActivities"
+        401:
+          description: "Authentication failed - incorrect username and/or password"
+        403:
+          description: "Jenkins requires authentication - please set username and\
+            \ password"
+      security:
+      - jenkins_auth: []
+      x-swagger-router-controller: "BlueOcean"
+  /blue/rest/organizations/{organization}/pipelines/{pipeline}/branches:
+    get:
+      tags:
+      - "blueOcean"
+      description: "Retrieve all branches details for an organization pipeline"
+      operationId: "getPipelineBranches"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "organization"
+        in: "path"
+        description: "Name of the organization"
         required: true
         type: "string"
       - name: "pipeline"
@@ -835,25 +928,27 @@ paths:
         200:
           description: "Successfully retrieved all branches details"
           schema:
-            $ref: "#/definitions/getMultibranchPipeline"
+            $ref: "#/definitions/MultibranchPipeline"
         401:
           description: "Authentication failed - incorrect username and/or password"
         403:
           description: "Jenkins requires authentication - please set username and\
             \ password"
+      security:
+      - jenkins_auth: []
       x-swagger-router-controller: "BlueOcean"
-  /blue/rest/organizations/{organisation}/pipelines/{pipeline}/branches/{branch}/:
+  /blue/rest/organizations/{organization}/pipelines/{pipeline}/branches/{branch}/:
     get:
       tags:
       - "blueOcean"
-      description: "Retrieve branch details for an organisation pipeline"
-      operationId: "getPipelineBranchByOrg"
+      description: "Retrieve branch details for an organization pipeline"
+      operationId: "getPipelineBranch"
       produces:
       - "application/json"
       parameters:
-      - name: "organisation"
+      - name: "organization"
         in: "path"
-        description: "Name of the organisation"
+        description: "Name of the organization"
         required: true
         type: "string"
       - name: "pipeline"
@@ -870,25 +965,69 @@ paths:
         200:
           description: "Successfully retrieved branch details"
           schema:
-            $ref: "#/definitions/iojenkinsblueoceanrestimplpipelineBranchImpl"
+            $ref: "#/definitions/BranchImpl"
         401:
           description: "Authentication failed - incorrect username and/or password"
         403:
           description: "Jenkins requires authentication - please set username and\
             \ password"
+      security:
+      - jenkins_auth: []
       x-swagger-router-controller: "BlueOcean"
-  /blue/rest/organizations/{organisation}/pipelines/{folder}/:
+  /blue/rest/organizations/{organization}/pipelines/{pipeline}/branches/{branch}/runs/{run}:
     get:
       tags:
       - "blueOcean"
-      description: "Retrieve pipeline folder for an organisation"
-      operationId: "getPipelineFolderByOrg"
+      description: "Retrieve branch run details for an organization pipeline"
+      operationId: "getPipelineBranchRun"
       produces:
       - "application/json"
       parameters:
-      - name: "organisation"
+      - name: "organization"
         in: "path"
-        description: "Name of the organisation"
+        description: "Name of the organization"
+        required: true
+        type: "string"
+      - name: "pipeline"
+        in: "path"
+        description: "Name of the pipeline"
+        required: true
+        type: "string"
+      - name: "branch"
+        in: "path"
+        description: "Name of the branch"
+        required: true
+        type: "string"
+      - name: "run"
+        in: "path"
+        description: "Name of the run"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Successfully retrieved run details"
+          schema:
+            $ref: "#/definitions/PipelineRun"
+        401:
+          description: "Authentication failed - incorrect username and/or password"
+        403:
+          description: "Jenkins requires authentication - please set username and\
+            \ password"
+      security:
+      - jenkins_auth: []
+      x-swagger-router-controller: "BlueOcean"
+  /blue/rest/organizations/{organization}/pipelines/{folder}/:
+    get:
+      tags:
+      - "blueOcean"
+      description: "Retrieve pipeline folder for an organization"
+      operationId: "getPipelineFolder"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "organization"
+        in: "path"
+        description: "Name of the organization"
         required: true
         type: "string"
       - name: "folder"
@@ -900,25 +1039,27 @@ paths:
         200:
           description: "Successfully retrieved folder details"
           schema:
-            $ref: "#/definitions/iojenkinsblueoceanserviceembeddedrestPipelineFolderImpl"
+            $ref: "#/definitions/PipelineFolderImpl"
         401:
           description: "Authentication failed - incorrect username and/or password"
         403:
           description: "Jenkins requires authentication - please set username and\
             \ password"
+      security:
+      - jenkins_auth: []
       x-swagger-router-controller: "BlueOcean"
-  /blue/rest/organizations/{organisation}/pipelines/{folder}/pipelines/{pipeline}:
+  /blue/rest/organizations/{organization}/pipelines/{folder}/pipelines/{pipeline}:
     get:
       tags:
       - "blueOcean"
-      description: "Retrieve pipeline details for an organisation folder"
-      operationId: "getPipelineFolderByOrg"
+      description: "Retrieve pipeline details for an organization folder"
+      operationId: "getPipelineFolderPipeline"
       produces:
       - "application/json"
       parameters:
-      - name: "organisation"
+      - name: "organization"
         in: "path"
-        description: "Name of the organisation"
+        description: "Name of the organization"
         required: true
         type: "string"
       - name: "pipeline"
@@ -935,75 +1076,802 @@ paths:
         200:
           description: "Successfully retrieved pipeline details"
           schema:
-            $ref: "#/definitions/iojenkinsblueoceanserviceembeddedrestPipelineImpl"
+            $ref: "#/definitions/PipelineImpl"
         401:
           description: "Authentication failed - incorrect username and/or password"
         403:
           description: "Jenkins requires authentication - please set username and\
             \ password"
+      security:
+      - jenkins_auth: []
       x-swagger-router-controller: "BlueOcean"
-  /blue/rest/organizations/{organisation}/user/:
+  /blue/rest/organizations/{organization}/pipelines/{pipeline}/favorite:
+    put:
+      tags:
+      - "blueOcean"
+      description: "Favorite/unfavorite a pipeline"
+      operationId: "putPipelineFavorite"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "organization"
+        in: "path"
+        description: "Name of the organization"
+        required: true
+        type: "string"
+      - name: "pipeline"
+        in: "path"
+        description: "Name of the pipeline"
+        required: true
+        type: "string"
+      - in: "body"
+        name: "body"
+        description: "Set JSON string body to {\"favorite\": true} to favorite, set\
+          \ value to false to unfavorite"
+        required: true
+        schema:
+          $ref: "#/definitions/body"
+      responses:
+        200:
+          description: "Successfully favorited/unfavorited a pipeline"
+          schema:
+            $ref: "#/definitions/FavoriteImpl"
+        401:
+          description: "Authentication failed - incorrect username and/or password"
+        403:
+          description: "Jenkins requires authentication - please set username and\
+            \ password"
+      security:
+      - jenkins_auth: []
+      x-swagger-router-controller: "BlueOcean"
+  /blue/rest/organizations/{organization}/pipelines/{pipeline}/queue:
     get:
       tags:
       - "blueOcean"
-      description: "Retrieve authenticated user details for an organisation"
+      description: "Retrieve queue details for an organization pipeline"
+      operationId: "getPipelineQueue"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "organization"
+        in: "path"
+        description: "Name of the organization"
+        required: true
+        type: "string"
+      - name: "pipeline"
+        in: "path"
+        description: "Name of the pipeline"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Successfully retrieved queue details"
+          schema:
+            $ref: "#/definitions/PipelineQueue"
+        401:
+          description: "Authentication failed - incorrect username and/or password"
+        403:
+          description: "Jenkins requires authentication - please set username and\
+            \ password"
+      security:
+      - jenkins_auth: []
+      x-swagger-router-controller: "BlueOcean"
+  /blue/rest/organizations/{organization}/pipelines/{pipeline}/queue/{queue}:
+    delete:
+      tags:
+      - "blueOcean"
+      description: "Delete queue item from an organization pipeline queue"
+      operationId: "deletePipelineQueueItem"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "organization"
+        in: "path"
+        description: "Name of the organization"
+        required: true
+        type: "string"
+      - name: "pipeline"
+        in: "path"
+        description: "Name of the pipeline"
+        required: true
+        type: "string"
+      - name: "queue"
+        in: "path"
+        description: "Name of the queue item"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Successfully deleted queue item"
+        401:
+          description: "Authentication failed - incorrect username and/or password"
+        403:
+          description: "Jenkins requires authentication - please set username and\
+            \ password"
+      security:
+      - jenkins_auth: []
+      x-swagger-router-controller: "BlueOcean"
+  /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs:
+    get:
+      tags:
+      - "blueOcean"
+      description: "Retrieve all runs details for an organization pipeline"
+      operationId: "getPipelineRuns"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "organization"
+        in: "path"
+        description: "Name of the organization"
+        required: true
+        type: "string"
+      - name: "pipeline"
+        in: "path"
+        description: "Name of the pipeline"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Successfully retrieved runs details"
+          schema:
+            $ref: "#/definitions/PipelineRuns"
+        401:
+          description: "Authentication failed - incorrect username and/or password"
+        403:
+          description: "Jenkins requires authentication - please set username and\
+            \ password"
+      security:
+      - jenkins_auth: []
+      x-swagger-router-controller: "BlueOcean"
+    post:
+      tags:
+      - "blueOcean"
+      description: "Start a build for an organization pipeline"
+      operationId: "postPipelineRuns"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "organization"
+        in: "path"
+        description: "Name of the organization"
+        required: true
+        type: "string"
+      - name: "pipeline"
+        in: "path"
+        description: "Name of the pipeline"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Successfully started a build"
+          schema:
+            $ref: "#/definitions/QueueItemImpl"
+        401:
+          description: "Authentication failed - incorrect username and/or password"
+        403:
+          description: "Jenkins requires authentication - please set username and\
+            \ password"
+      security:
+      - jenkins_auth: []
+      x-swagger-router-controller: "BlueOcean"
+  /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}:
+    get:
+      tags:
+      - "blueOcean"
+      description: "Retrieve run details for an organization pipeline"
+      operationId: "getPipelineRun"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "organization"
+        in: "path"
+        description: "Name of the organization"
+        required: true
+        type: "string"
+      - name: "pipeline"
+        in: "path"
+        description: "Name of the pipeline"
+        required: true
+        type: "string"
+      - name: "run"
+        in: "path"
+        description: "Name of the run"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Successfully retrieved run details"
+          schema:
+            $ref: "#/definitions/PipelineRun"
+        401:
+          description: "Authentication failed - incorrect username and/or password"
+        403:
+          description: "Jenkins requires authentication - please set username and\
+            \ password"
+      security:
+      - jenkins_auth: []
+      x-swagger-router-controller: "BlueOcean"
+  /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes:
+    get:
+      tags:
+      - "blueOcean"
+      description: "Retrieve run nodes details for an organization pipeline"
+      operationId: "getPipelineRunNodes"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "organization"
+        in: "path"
+        description: "Name of the organization"
+        required: true
+        type: "string"
+      - name: "pipeline"
+        in: "path"
+        description: "Name of the pipeline"
+        required: true
+        type: "string"
+      - name: "run"
+        in: "path"
+        description: "Name of the run"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Successfully retrieved run nodes details"
+          schema:
+            $ref: "#/definitions/PipelineRunNodes"
+        401:
+          description: "Authentication failed - incorrect username and/or password"
+        403:
+          description: "Jenkins requires authentication - please set username and\
+            \ password"
+      security:
+      - jenkins_auth: []
+      x-swagger-router-controller: "BlueOcean"
+  /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}:
+    get:
+      tags:
+      - "blueOcean"
+      description: "Retrieve run node details for an organization pipeline"
+      operationId: "getPipelineRunNode"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "organization"
+        in: "path"
+        description: "Name of the organization"
+        required: true
+        type: "string"
+      - name: "pipeline"
+        in: "path"
+        description: "Name of the pipeline"
+        required: true
+        type: "string"
+      - name: "run"
+        in: "path"
+        description: "Name of the run"
+        required: true
+        type: "string"
+      - name: "node"
+        in: "path"
+        description: "Name of the node"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Successfully retrieved run node details"
+          schema:
+            $ref: "#/definitions/PipelineRunNode"
+        401:
+          description: "Authentication failed - incorrect username and/or password"
+        403:
+          description: "Jenkins requires authentication - please set username and\
+            \ password"
+      security:
+      - jenkins_auth: []
+      x-swagger-router-controller: "BlueOcean"
+  /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps:
+    get:
+      tags:
+      - "blueOcean"
+      description: "Retrieve run node steps details for an organization pipeline"
+      operationId: "getPipelineRunNodeSteps"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "organization"
+        in: "path"
+        description: "Name of the organization"
+        required: true
+        type: "string"
+      - name: "pipeline"
+        in: "path"
+        description: "Name of the pipeline"
+        required: true
+        type: "string"
+      - name: "run"
+        in: "path"
+        description: "Name of the run"
+        required: true
+        type: "string"
+      - name: "node"
+        in: "path"
+        description: "Name of the node"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Successfully retrieved run node steps details"
+          schema:
+            $ref: "#/definitions/PipelineRunNodeSteps"
+        401:
+          description: "Authentication failed - incorrect username and/or password"
+        403:
+          description: "Jenkins requires authentication - please set username and\
+            \ password"
+      security:
+      - jenkins_auth: []
+      x-swagger-router-controller: "BlueOcean"
+  /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps/{step}:
+    get:
+      tags:
+      - "blueOcean"
+      description: "Retrieve run node details for an organization pipeline"
+      operationId: "getPipelineRunNodeStep"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "organization"
+        in: "path"
+        description: "Name of the organization"
+        required: true
+        type: "string"
+      - name: "pipeline"
+        in: "path"
+        description: "Name of the pipeline"
+        required: true
+        type: "string"
+      - name: "run"
+        in: "path"
+        description: "Name of the run"
+        required: true
+        type: "string"
+      - name: "node"
+        in: "path"
+        description: "Name of the node"
+        required: true
+        type: "string"
+      - name: "step"
+        in: "path"
+        description: "Name of the step"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Successfully retrieved run node step details"
+          schema:
+            $ref: "#/definitions/PipelineStepImpl"
+        401:
+          description: "Authentication failed - incorrect username and/or password"
+        403:
+          description: "Jenkins requires authentication - please set username and\
+            \ password"
+      security:
+      - jenkins_auth: []
+      x-swagger-router-controller: "BlueOcean"
+  /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps/{step}/log:
+    get:
+      tags:
+      - "blueOcean"
+      description: "Get log for a pipeline run node step"
+      operationId: "getPipelineRunNodeStepLog"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "organization"
+        in: "path"
+        description: "Name of the organization"
+        required: true
+        type: "string"
+      - name: "pipeline"
+        in: "path"
+        description: "Name of the pipeline"
+        required: true
+        type: "string"
+      - name: "run"
+        in: "path"
+        description: "Name of the run"
+        required: true
+        type: "string"
+      - name: "node"
+        in: "path"
+        description: "Name of the node"
+        required: true
+        type: "string"
+      - name: "step"
+        in: "path"
+        description: "Name of the step"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Successfully retrieved pipeline run node step log"
+          schema:
+            type: "string"
+        401:
+          description: "Authentication failed - incorrect username and/or password"
+        403:
+          description: "Jenkins requires authentication - please set username and\
+            \ password"
+      security:
+      - jenkins_auth: []
+      x-swagger-router-controller: "BlueOcean"
+  /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/log:
+    get:
+      tags:
+      - "blueOcean"
+      description: "Get log for a pipeline run"
+      operationId: "getPipelineRunLog"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "organization"
+        in: "path"
+        description: "Name of the organization"
+        required: true
+        type: "string"
+      - name: "pipeline"
+        in: "path"
+        description: "Name of the pipeline"
+        required: true
+        type: "string"
+      - name: "run"
+        in: "path"
+        description: "Name of the run"
+        required: true
+        type: "string"
+      - name: "start"
+        in: "query"
+        description: "Start position of the log"
+        required: false
+        type: "integer"
+      - name: "download"
+        in: "query"
+        description: "Set to true in order to download the file, otherwise it's passed\
+          \ as a response body"
+        required: false
+        type: "boolean"
+      responses:
+        200:
+          description: "Successfully retrieved pipeline run log"
+          schema:
+            type: "string"
+        401:
+          description: "Authentication failed - incorrect username and/or password"
+        403:
+          description: "Jenkins requires authentication - please set username and\
+            \ password"
+      security:
+      - jenkins_auth: []
+      x-swagger-router-controller: "BlueOcean"
+  /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/replay:
+    post:
+      tags:
+      - "blueOcean"
+      description: "Replay an organization pipeline run"
+      operationId: "postPipelineRun"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "organization"
+        in: "path"
+        description: "Name of the organization"
+        required: true
+        type: "string"
+      - name: "pipeline"
+        in: "path"
+        description: "Name of the pipeline"
+        required: true
+        type: "string"
+      - name: "run"
+        in: "path"
+        description: "Name of the run"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Successfully replayed a pipeline run"
+          schema:
+            $ref: "#/definitions/QueueItemImpl"
+        401:
+          description: "Authentication failed - incorrect username and/or password"
+        403:
+          description: "Jenkins requires authentication - please set username and\
+            \ password"
+      security:
+      - jenkins_auth: []
+      x-swagger-router-controller: "BlueOcean"
+  /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/stop:
+    put:
+      tags:
+      - "blueOcean"
+      description: "Stop a build of an organization pipeline"
+      operationId: "putPipelineRun"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "organization"
+        in: "path"
+        description: "Name of the organization"
+        required: true
+        type: "string"
+      - name: "pipeline"
+        in: "path"
+        description: "Name of the pipeline"
+        required: true
+        type: "string"
+      - name: "run"
+        in: "path"
+        description: "Name of the run"
+        required: true
+        type: "string"
+      - name: "blocking"
+        in: "query"
+        description: "Set to true to make blocking stop, default: false"
+        required: false
+        type: "string"
+      - name: "timeOutInSecs"
+        in: "query"
+        description: "Timeout in seconds, default: 10 seconds"
+        required: false
+        type: "integer"
+      responses:
+        200:
+          description: "Successfully stopped a build"
+          schema:
+            $ref: "#/definitions/PipelineRun"
+        401:
+          description: "Authentication failed - incorrect username and/or password"
+        403:
+          description: "Jenkins requires authentication - please set username and\
+            \ password"
+      security:
+      - jenkins_auth: []
+      x-swagger-router-controller: "BlueOcean"
+  /blue/rest/organizations/{organization}/scm/{scm}:
+    get:
+      tags:
+      - "blueOcean"
+      description: "Retrieve SCM details for an organization"
+      operationId: "getSCM"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "organization"
+        in: "path"
+        description: "Name of the organization"
+        required: true
+        type: "string"
+      - name: "scm"
+        in: "path"
+        description: "Name of SCM"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Successfully retrieved SCM details"
+          schema:
+            $ref: "#/definitions/GithubScm"
+        401:
+          description: "Authentication failed - incorrect username and/or password"
+        403:
+          description: "Jenkins requires authentication - please set username and\
+            \ password"
+      security:
+      - jenkins_auth: []
+      x-swagger-router-controller: "BlueOcean"
+  /blue/rest/organizations/{organization}/scm/{scm}/organizations:
+    get:
+      tags:
+      - "blueOcean"
+      description: "Retrieve SCM organizations details for an organization"
+      operationId: "getSCMOrganisations"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "organization"
+        in: "path"
+        description: "Name of the organization"
+        required: true
+        type: "string"
+      - name: "scm"
+        in: "path"
+        description: "Name of SCM"
+        required: true
+        type: "string"
+      - name: "credentialId"
+        in: "query"
+        description: "Credential ID"
+        required: false
+        type: "string"
+      responses:
+        200:
+          description: "Successfully retrieved SCM organizations details"
+          schema:
+            $ref: "#/definitions/ScmOrganisations"
+        401:
+          description: "Authentication failed - incorrect username and/or password"
+        403:
+          description: "Jenkins requires authentication - please set username and\
+            \ password"
+      security:
+      - jenkins_auth: []
+      x-swagger-router-controller: "BlueOcean"
+  /blue/rest/organizations/{organization}/scm/{scm}/organizations/{scmOrganisation}/repositories:
+    get:
+      tags:
+      - "blueOcean"
+      description: "Retrieve SCM organization repositories details for an organization"
+      operationId: "getSCMOrganisationRepositories"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "organization"
+        in: "path"
+        description: "Name of the organization"
+        required: true
+        type: "string"
+      - name: "scm"
+        in: "path"
+        description: "Name of SCM"
+        required: true
+        type: "string"
+      - name: "scmOrganisation"
+        in: "path"
+        description: "Name of the SCM organization"
+        required: true
+        type: "string"
+      - name: "credentialId"
+        in: "query"
+        description: "Credential ID"
+        required: false
+        type: "string"
+      - name: "pageSize"
+        in: "query"
+        description: "Number of items in a page"
+        required: false
+        type: "integer"
+      - name: "pageNumber"
+        in: "query"
+        description: "Page number"
+        required: false
+        type: "integer"
+      responses:
+        200:
+          description: "Successfully retrieved SCM organization repositories details"
+          schema:
+            $ref: "#/definitions/ScmOrganisations"
+        401:
+          description: "Authentication failed - incorrect username and/or password"
+        403:
+          description: "Jenkins requires authentication - please set username and\
+            \ password"
+      security:
+      - jenkins_auth: []
+      x-swagger-router-controller: "BlueOcean"
+  /blue/rest/organizations/{organization}/scm/{scm}/organizations/{scmOrganisation}/repositories/{repository}:
+    get:
+      tags:
+      - "blueOcean"
+      description: "Retrieve SCM organization repository details for an organization"
+      operationId: "getSCMOrganisationRepository"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "organization"
+        in: "path"
+        description: "Name of the organization"
+        required: true
+        type: "string"
+      - name: "scm"
+        in: "path"
+        description: "Name of SCM"
+        required: true
+        type: "string"
+      - name: "scmOrganisation"
+        in: "path"
+        description: "Name of the SCM organization"
+        required: true
+        type: "string"
+      - name: "repository"
+        in: "path"
+        description: "Name of the SCM repository"
+        required: true
+        type: "string"
+      - name: "credentialId"
+        in: "query"
+        description: "Credential ID"
+        required: false
+        type: "string"
+      responses:
+        200:
+          description: "Successfully retrieved SCM organizations details"
+          schema:
+            $ref: "#/definitions/ScmOrganisations"
+        401:
+          description: "Authentication failed - incorrect username and/or password"
+        403:
+          description: "Jenkins requires authentication - please set username and\
+            \ password"
+      security:
+      - jenkins_auth: []
+      x-swagger-router-controller: "BlueOcean"
+  /blue/rest/organizations/{organization}/user/:
+    get:
+      tags:
+      - "blueOcean"
+      description: "Retrieve authenticated user details for an organization"
       operationId: "getAuthenticatedUser"
       produces:
       - "application/json"
       parameters:
-      - name: "organisation"
+      - name: "organization"
         in: "path"
-        description: "Name of the organisation"
+        description: "Name of the organization"
         required: true
         type: "string"
       responses:
         200:
           description: "Successfully retrieved authenticated user details"
           schema:
-            $ref: "#/definitions/swaggyjenkinsUser"
+            $ref: "#/definitions/User"
         401:
           description: "Authentication failed - incorrect username and/or password"
         403:
           description: "Jenkins requires authentication - please set username and\
             \ password"
+      security:
+      - jenkins_auth: []
       x-swagger-router-controller: "BlueOcean"
-  /blue/rest/organizations/{organisation}/users/:
+  /blue/rest/organizations/{organization}/users/:
     get:
       tags:
       - "blueOcean"
-      description: "Retrieve users details for an organisation"
+      description: "Retrieve users details for an organization"
       operationId: "getUsers"
       produces:
       - "application/json"
       parameters:
-      - name: "organisation"
+      - name: "organization"
         in: "path"
-        description: "Name of the organisation"
+        description: "Name of the organization"
         required: true
         type: "string"
       responses:
         200:
           description: "Successfully retrieved users details"
           schema:
-            $ref: "#/definitions/swaggyjenkinsUser"
+            $ref: "#/definitions/User"
         401:
           description: "Authentication failed - incorrect username and/or password"
         403:
           description: "Jenkins requires authentication - please set username and\
             \ password"
+      security:
+      - jenkins_auth: []
       x-swagger-router-controller: "BlueOcean"
-  /blue/rest/organizations/{organisation}/users/{user}:
+  /blue/rest/organizations/{organization}/users/{user}:
     get:
       tags:
       - "blueOcean"
-      description: "Retrieve user details for an organisation"
+      description: "Retrieve user details for an organization"
       operationId: "getUser"
       produces:
       - "application/json"
       parameters:
-      - name: "organisation"
+      - name: "organization"
         in: "path"
-        description: "Name of the organisation"
+        description: "Name of the organization"
         required: true
         type: "string"
       - name: "user"
@@ -1015,18 +1883,47 @@ paths:
         200:
           description: "Successfully retrieved users details"
           schema:
-            $ref: "#/definitions/swaggyjenkinsUser"
+            $ref: "#/definitions/User"
         401:
           description: "Authentication failed - incorrect username and/or password"
         403:
           description: "Jenkins requires authentication - please set username and\
             \ password"
+      security:
+      - jenkins_auth: []
+      x-swagger-router-controller: "BlueOcean"
+  /blue/rest/users/{user}/favorites:
+    get:
+      tags:
+      - "blueOcean"
+      description: "Retrieve user favorites details for an organization"
+      operationId: "getUserFavorites"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "user"
+        in: "path"
+        description: "Name of the user"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Successfully retrieved users favorites details"
+          schema:
+            $ref: "#/definitions/UserFavorites"
+        401:
+          description: "Authentication failed - incorrect username and/or password"
+        403:
+          description: "Jenkins requires authentication - please set username and\
+            \ password"
+      security:
+      - jenkins_auth: []
       x-swagger-router-controller: "BlueOcean"
 securityDefinitions:
   jenkins_auth:
     type: "basic"
 definitions:
-  hudsonmodelFreeStyleBuild:
+  FreeStyleBuild:
     type: "object"
     properties:
       _class:
@@ -1038,7 +1935,7 @@ definitions:
       actions:
         type: "array"
         items:
-          $ref: "#/definitions/hudsonmodelCauseAction"
+          $ref: "#/definitions/CauseAction"
       building:
         type: "boolean"
       description:
@@ -1066,12 +1963,53 @@ definitions:
       builtOn:
         type: "string"
       changeSet:
-        $ref: "#/definitions/hudsonscmEmptyChangeLogSet"
-  hudsonmodelHudsonMasterComputerexecutors:
+        $ref: "#/definitions/EmptyChangeLogSet"
+    example:
+      queueId: 5
+      displayName: "displayName"
+      keepLog: true
+      description: "description"
+      fullDisplayName: "fullDisplayName"
+      estimatedDuration: 5
+      url: "url"
+      building: true
+      changeSet:
+        kind: "kind"
+        _class: "_class"
+      duration: 1
+      result: "result"
+      number: 6
+      executor: "executor"
+      builtOn: "builtOn"
+      _class: "_class"
+      id: "id"
+      actions:
+      - causes:
+        - _class: "_class"
+          shortDescription: "shortDescription"
+          userName: "userName"
+          userId: "userId"
+        - _class: "_class"
+          shortDescription: "shortDescription"
+          userName: "userName"
+          userId: "userId"
+        _class: "_class"
+      - causes:
+        - _class: "_class"
+          shortDescription: "shortDescription"
+          userName: "userName"
+          userId: "userId"
+        - _class: "_class"
+          shortDescription: "shortDescription"
+          userName: "userName"
+          userId: "userId"
+        _class: "_class"
+      timestamp: 2
+  HudsonMasterComputerexecutors:
     type: "object"
     properties:
       currentExecutable:
-        $ref: "#/definitions/hudsonmodelFreeStyleBuild"
+        $ref: "#/definitions/FreeStyleBuild"
       idle:
         type: "boolean"
       likelyStuck:
@@ -1082,12 +2020,61 @@ definitions:
         type: "integer"
       _class:
         type: "string"
-  hudsonmodelLabel1:
+    example:
+      currentExecutable:
+        queueId: 5
+        displayName: "displayName"
+        keepLog: true
+        description: "description"
+        fullDisplayName: "fullDisplayName"
+        estimatedDuration: 5
+        url: "url"
+        building: true
+        changeSet:
+          kind: "kind"
+          _class: "_class"
+        duration: 1
+        result: "result"
+        number: 6
+        executor: "executor"
+        builtOn: "builtOn"
+        _class: "_class"
+        id: "id"
+        actions:
+        - causes:
+          - _class: "_class"
+            shortDescription: "shortDescription"
+            userName: "userName"
+            userId: "userId"
+          - _class: "_class"
+            shortDescription: "shortDescription"
+            userName: "userName"
+            userId: "userId"
+          _class: "_class"
+        - causes:
+          - _class: "_class"
+            shortDescription: "shortDescription"
+            userName: "userName"
+            userId: "userId"
+          - _class: "_class"
+            shortDescription: "shortDescription"
+            userName: "userName"
+            userId: "userId"
+          _class: "_class"
+        timestamp: 2
+      number: 6
+      idle: true
+      likelyStuck: true
+      progress: 1
+      _class: "_class"
+  Label1:
     type: "object"
     properties:
       _class:
         type: "string"
-  hudsonnode_monitorsSwapSpaceMonitorMemoryUsage2:
+    example:
+      _class: "_class"
+  SwapSpaceMonitorMemoryUsage2:
     type: "object"
     properties:
       _class:
@@ -1100,7 +2087,13 @@ definitions:
         type: "integer"
       totalSwapSpace:
         type: "integer"
-  hudsonnode_monitorsDiskSpaceMonitorDescriptorDiskSpace:
+    example:
+      totalSwapSpace: 7
+      availableSwapSpace: 5
+      _class: "_class"
+      availablePhysicalMemory: 5
+      totalPhysicalMemory: 2
+  DiskSpaceMonitorDescriptorDiskSpace:
     type: "object"
     properties:
       _class:
@@ -1111,7 +2104,12 @@ definitions:
         type: "string"
       size:
         type: "integer"
-  hudsonnode_monitorsResponseTimeMonitorData:
+    example:
+      path: "path"
+      size: 3
+      _class: "_class"
+      timestamp: 9
+  ResponseTimeMonitorData:
     type: "object"
     properties:
       _class:
@@ -1120,31 +2118,64 @@ definitions:
         type: "integer"
       average:
         type: "integer"
-  hudsonutilClockDifference:
+    example:
+      average: 4
+      _class: "_class"
+      timestamp: 2
+  ClockDifference:
     type: "object"
     properties:
       _class:
         type: "string"
       diff:
         type: "integer"
-  hudsonmodelHudsonMasterComputer_monitorData:
+    example:
+      diff: 7
+      _class: "_class"
+  HudsonMasterComputermonitorData:
     type: "object"
     properties:
       hudson.node_monitors.SwapSpaceMonitor:
-        $ref: "#/definitions/hudsonnode_monitorsSwapSpaceMonitorMemoryUsage2"
+        $ref: "#/definitions/SwapSpaceMonitorMemoryUsage2"
       hudson.node_monitors.TemporarySpaceMonitor:
-        $ref: "#/definitions/hudsonnode_monitorsDiskSpaceMonitorDescriptorDiskSpace"
+        $ref: "#/definitions/DiskSpaceMonitorDescriptorDiskSpace"
       hudson.node_monitors.DiskSpaceMonitor:
-        $ref: "#/definitions/hudsonnode_monitorsDiskSpaceMonitorDescriptorDiskSpace"
+        $ref: "#/definitions/DiskSpaceMonitorDescriptorDiskSpace"
       hudson.node_monitors.ArchitectureMonitor:
         type: "string"
       hudson.node_monitors.ResponseTimeMonitor:
-        $ref: "#/definitions/hudsonnode_monitorsResponseTimeMonitorData"
+        $ref: "#/definitions/ResponseTimeMonitorData"
       hudson.node_monitors.ClockMonitor:
-        $ref: "#/definitions/hudsonutilClockDifference"
+        $ref: "#/definitions/ClockDifference"
       _class:
         type: "string"
-  hudsonmodelHudsonMasterComputer:
+    example:
+      hudson.node_monitors.SwapSpaceMonitor:
+        totalSwapSpace: 7
+        availableSwapSpace: 5
+        _class: "_class"
+        availablePhysicalMemory: 5
+        totalPhysicalMemory: 2
+      hudson.node_monitors.TemporarySpaceMonitor:
+        path: "path"
+        size: 3
+        _class: "_class"
+        timestamp: 9
+      hudson.node_monitors.DiskSpaceMonitor:
+        path: "path"
+        size: 3
+        _class: "_class"
+        timestamp: 9
+      hudson.node_monitors.ArchitectureMonitor: "hudson.node_monitors.ArchitectureMonitor"
+      _class: "_class"
+      hudson.node_monitors.ResponseTimeMonitor:
+        average: 4
+        _class: "_class"
+        timestamp: 2
+      hudson.node_monitors.ClockMonitor:
+        diff: 7
+        _class: "_class"
+  HudsonMasterComputer:
     type: "object"
     properties:
       _class:
@@ -1154,7 +2185,7 @@ definitions:
       executors:
         type: "array"
         items:
-          $ref: "#/definitions/hudsonmodelHudsonMasterComputerexecutors"
+          $ref: "#/definitions/HudsonMasterComputerexecutors"
       icon:
         type: "string"
       iconClassName:
@@ -1166,11 +2197,11 @@ definitions:
       launchSupported:
         type: "boolean"
       loadStatistics:
-        $ref: "#/definitions/hudsonmodelLabel1"
+        $ref: "#/definitions/Label1"
       manualLaunchAllowed:
         type: "boolean"
       monitorData:
-        $ref: "#/definitions/hudsonmodelHudsonMasterComputer_monitorData"
+        $ref: "#/definitions/HudsonMasterComputermonitorData"
       numExecutors:
         type: "integer"
       offline:
@@ -1181,7 +2212,142 @@ definitions:
         type: "string"
       temporarilyOffline:
         type: "boolean"
-  hudsonmodelComputerSet:
+    example:
+      idle: true
+      displayName: "displayName"
+      jnlpAgent: true
+      launchSupported: true
+      icon: "icon"
+      iconClassName: "iconClassName"
+      offlineCause: "offlineCause"
+      temporarilyOffline: true
+      numExecutors: 1
+      offline: true
+      executors:
+      - currentExecutable:
+          queueId: 5
+          displayName: "displayName"
+          keepLog: true
+          description: "description"
+          fullDisplayName: "fullDisplayName"
+          estimatedDuration: 5
+          url: "url"
+          building: true
+          changeSet:
+            kind: "kind"
+            _class: "_class"
+          duration: 1
+          result: "result"
+          number: 6
+          executor: "executor"
+          builtOn: "builtOn"
+          _class: "_class"
+          id: "id"
+          actions:
+          - causes:
+            - _class: "_class"
+              shortDescription: "shortDescription"
+              userName: "userName"
+              userId: "userId"
+            - _class: "_class"
+              shortDescription: "shortDescription"
+              userName: "userName"
+              userId: "userId"
+            _class: "_class"
+          - causes:
+            - _class: "_class"
+              shortDescription: "shortDescription"
+              userName: "userName"
+              userId: "userId"
+            - _class: "_class"
+              shortDescription: "shortDescription"
+              userName: "userName"
+              userId: "userId"
+            _class: "_class"
+          timestamp: 2
+        number: 6
+        idle: true
+        likelyStuck: true
+        progress: 1
+        _class: "_class"
+      - currentExecutable:
+          queueId: 5
+          displayName: "displayName"
+          keepLog: true
+          description: "description"
+          fullDisplayName: "fullDisplayName"
+          estimatedDuration: 5
+          url: "url"
+          building: true
+          changeSet:
+            kind: "kind"
+            _class: "_class"
+          duration: 1
+          result: "result"
+          number: 6
+          executor: "executor"
+          builtOn: "builtOn"
+          _class: "_class"
+          id: "id"
+          actions:
+          - causes:
+            - _class: "_class"
+              shortDescription: "shortDescription"
+              userName: "userName"
+              userId: "userId"
+            - _class: "_class"
+              shortDescription: "shortDescription"
+              userName: "userName"
+              userId: "userId"
+            _class: "_class"
+          - causes:
+            - _class: "_class"
+              shortDescription: "shortDescription"
+              userName: "userName"
+              userId: "userId"
+            - _class: "_class"
+              shortDescription: "shortDescription"
+              userName: "userName"
+              userId: "userId"
+            _class: "_class"
+          timestamp: 2
+        number: 6
+        idle: true
+        likelyStuck: true
+        progress: 1
+        _class: "_class"
+      monitorData:
+        hudson.node_monitors.SwapSpaceMonitor:
+          totalSwapSpace: 7
+          availableSwapSpace: 5
+          _class: "_class"
+          availablePhysicalMemory: 5
+          totalPhysicalMemory: 2
+        hudson.node_monitors.TemporarySpaceMonitor:
+          path: "path"
+          size: 3
+          _class: "_class"
+          timestamp: 9
+        hudson.node_monitors.DiskSpaceMonitor:
+          path: "path"
+          size: 3
+          _class: "_class"
+          timestamp: 9
+        hudson.node_monitors.ArchitectureMonitor: "hudson.node_monitors.ArchitectureMonitor"
+        _class: "_class"
+        hudson.node_monitors.ResponseTimeMonitor:
+          average: 4
+          _class: "_class"
+          timestamp: 2
+        hudson.node_monitors.ClockMonitor:
+          diff: 7
+          _class: "_class"
+      _class: "_class"
+      loadStatistics:
+        _class: "_class"
+      manualLaunchAllowed: true
+      offlineCauseReason: "offlineCauseReason"
+  ComputerSet:
     type: "object"
     properties:
       _class:
@@ -1191,12 +2357,286 @@ definitions:
       computer:
         type: "array"
         items:
-          $ref: "#/definitions/hudsonmodelHudsonMasterComputer"
+          $ref: "#/definitions/HudsonMasterComputer"
       displayName:
         type: "string"
       totalExecutors:
         type: "integer"
-  hudsonsecuritycsrfDefaultCrumbIssuer:
+    example:
+      busyExecutors: 0
+      totalExecutors: 1
+      computer:
+      - idle: true
+        displayName: "displayName"
+        jnlpAgent: true
+        launchSupported: true
+        icon: "icon"
+        iconClassName: "iconClassName"
+        offlineCause: "offlineCause"
+        temporarilyOffline: true
+        numExecutors: 1
+        offline: true
+        executors:
+        - currentExecutable:
+            queueId: 5
+            displayName: "displayName"
+            keepLog: true
+            description: "description"
+            fullDisplayName: "fullDisplayName"
+            estimatedDuration: 5
+            url: "url"
+            building: true
+            changeSet:
+              kind: "kind"
+              _class: "_class"
+            duration: 1
+            result: "result"
+            number: 6
+            executor: "executor"
+            builtOn: "builtOn"
+            _class: "_class"
+            id: "id"
+            actions:
+            - causes:
+              - _class: "_class"
+                shortDescription: "shortDescription"
+                userName: "userName"
+                userId: "userId"
+              - _class: "_class"
+                shortDescription: "shortDescription"
+                userName: "userName"
+                userId: "userId"
+              _class: "_class"
+            - causes:
+              - _class: "_class"
+                shortDescription: "shortDescription"
+                userName: "userName"
+                userId: "userId"
+              - _class: "_class"
+                shortDescription: "shortDescription"
+                userName: "userName"
+                userId: "userId"
+              _class: "_class"
+            timestamp: 2
+          number: 6
+          idle: true
+          likelyStuck: true
+          progress: 1
+          _class: "_class"
+        - currentExecutable:
+            queueId: 5
+            displayName: "displayName"
+            keepLog: true
+            description: "description"
+            fullDisplayName: "fullDisplayName"
+            estimatedDuration: 5
+            url: "url"
+            building: true
+            changeSet:
+              kind: "kind"
+              _class: "_class"
+            duration: 1
+            result: "result"
+            number: 6
+            executor: "executor"
+            builtOn: "builtOn"
+            _class: "_class"
+            id: "id"
+            actions:
+            - causes:
+              - _class: "_class"
+                shortDescription: "shortDescription"
+                userName: "userName"
+                userId: "userId"
+              - _class: "_class"
+                shortDescription: "shortDescription"
+                userName: "userName"
+                userId: "userId"
+              _class: "_class"
+            - causes:
+              - _class: "_class"
+                shortDescription: "shortDescription"
+                userName: "userName"
+                userId: "userId"
+              - _class: "_class"
+                shortDescription: "shortDescription"
+                userName: "userName"
+                userId: "userId"
+              _class: "_class"
+            timestamp: 2
+          number: 6
+          idle: true
+          likelyStuck: true
+          progress: 1
+          _class: "_class"
+        monitorData:
+          hudson.node_monitors.SwapSpaceMonitor:
+            totalSwapSpace: 7
+            availableSwapSpace: 5
+            _class: "_class"
+            availablePhysicalMemory: 5
+            totalPhysicalMemory: 2
+          hudson.node_monitors.TemporarySpaceMonitor:
+            path: "path"
+            size: 3
+            _class: "_class"
+            timestamp: 9
+          hudson.node_monitors.DiskSpaceMonitor:
+            path: "path"
+            size: 3
+            _class: "_class"
+            timestamp: 9
+          hudson.node_monitors.ArchitectureMonitor: "hudson.node_monitors.ArchitectureMonitor"
+          _class: "_class"
+          hudson.node_monitors.ResponseTimeMonitor:
+            average: 4
+            _class: "_class"
+            timestamp: 2
+          hudson.node_monitors.ClockMonitor:
+            diff: 7
+            _class: "_class"
+        _class: "_class"
+        loadStatistics:
+          _class: "_class"
+        manualLaunchAllowed: true
+        offlineCauseReason: "offlineCauseReason"
+      - idle: true
+        displayName: "displayName"
+        jnlpAgent: true
+        launchSupported: true
+        icon: "icon"
+        iconClassName: "iconClassName"
+        offlineCause: "offlineCause"
+        temporarilyOffline: true
+        numExecutors: 1
+        offline: true
+        executors:
+        - currentExecutable:
+            queueId: 5
+            displayName: "displayName"
+            keepLog: true
+            description: "description"
+            fullDisplayName: "fullDisplayName"
+            estimatedDuration: 5
+            url: "url"
+            building: true
+            changeSet:
+              kind: "kind"
+              _class: "_class"
+            duration: 1
+            result: "result"
+            number: 6
+            executor: "executor"
+            builtOn: "builtOn"
+            _class: "_class"
+            id: "id"
+            actions:
+            - causes:
+              - _class: "_class"
+                shortDescription: "shortDescription"
+                userName: "userName"
+                userId: "userId"
+              - _class: "_class"
+                shortDescription: "shortDescription"
+                userName: "userName"
+                userId: "userId"
+              _class: "_class"
+            - causes:
+              - _class: "_class"
+                shortDescription: "shortDescription"
+                userName: "userName"
+                userId: "userId"
+              - _class: "_class"
+                shortDescription: "shortDescription"
+                userName: "userName"
+                userId: "userId"
+              _class: "_class"
+            timestamp: 2
+          number: 6
+          idle: true
+          likelyStuck: true
+          progress: 1
+          _class: "_class"
+        - currentExecutable:
+            queueId: 5
+            displayName: "displayName"
+            keepLog: true
+            description: "description"
+            fullDisplayName: "fullDisplayName"
+            estimatedDuration: 5
+            url: "url"
+            building: true
+            changeSet:
+              kind: "kind"
+              _class: "_class"
+            duration: 1
+            result: "result"
+            number: 6
+            executor: "executor"
+            builtOn: "builtOn"
+            _class: "_class"
+            id: "id"
+            actions:
+            - causes:
+              - _class: "_class"
+                shortDescription: "shortDescription"
+                userName: "userName"
+                userId: "userId"
+              - _class: "_class"
+                shortDescription: "shortDescription"
+                userName: "userName"
+                userId: "userId"
+              _class: "_class"
+            - causes:
+              - _class: "_class"
+                shortDescription: "shortDescription"
+                userName: "userName"
+                userId: "userId"
+              - _class: "_class"
+                shortDescription: "shortDescription"
+                userName: "userName"
+                userId: "userId"
+              _class: "_class"
+            timestamp: 2
+          number: 6
+          idle: true
+          likelyStuck: true
+          progress: 1
+          _class: "_class"
+        monitorData:
+          hudson.node_monitors.SwapSpaceMonitor:
+            totalSwapSpace: 7
+            availableSwapSpace: 5
+            _class: "_class"
+            availablePhysicalMemory: 5
+            totalPhysicalMemory: 2
+          hudson.node_monitors.TemporarySpaceMonitor:
+            path: "path"
+            size: 3
+            _class: "_class"
+            timestamp: 9
+          hudson.node_monitors.DiskSpaceMonitor:
+            path: "path"
+            size: 3
+            _class: "_class"
+            timestamp: 9
+          hudson.node_monitors.ArchitectureMonitor: "hudson.node_monitors.ArchitectureMonitor"
+          _class: "_class"
+          hudson.node_monitors.ResponseTimeMonitor:
+            average: 4
+            _class: "_class"
+            timestamp: 2
+          hudson.node_monitors.ClockMonitor:
+            diff: 7
+            _class: "_class"
+        _class: "_class"
+        loadStatistics:
+          _class: "_class"
+        manualLaunchAllowed: true
+        offlineCauseReason: "offlineCauseReason"
+      displayName: "displayName"
+      _class: "_class"
+  DefaultCrumbIssuer:
     type: "object"
     properties:
       _class:
@@ -1205,12 +2645,18 @@ definitions:
         type: "string"
       crumbRequestField:
         type: "string"
-  hudsonmodelHudsonassignedLabels:
+    example:
+      crumb: "crumb"
+      _class: "_class"
+      crumbRequestField: "crumbRequestField"
+  HudsonassignedLabels:
     type: "object"
     properties:
       _class:
         type: "string"
-  hudsonmodelFreeStyleProject:
+    example:
+      _class: "_class"
+  FreeStyleProject:
     type: "object"
     properties:
       _class:
@@ -1224,7 +2670,7 @@ definitions:
       actions:
         type: "array"
         items:
-          $ref: "#/definitions/hudsonmodelFreeStyleProjectactions"
+          $ref: "#/definitions/FreeStyleProjectactions"
       description:
         type: "string"
       displayName:
@@ -1240,27 +2686,27 @@ definitions:
       builds:
         type: "array"
         items:
-          $ref: "#/definitions/hudsonmodelFreeStyleBuild"
+          $ref: "#/definitions/FreeStyleBuild"
       firstBuild:
-        $ref: "#/definitions/hudsonmodelFreeStyleBuild"
+        $ref: "#/definitions/FreeStyleBuild"
       healthReport:
         type: "array"
         items:
-          $ref: "#/definitions/hudsonmodelFreeStyleProjecthealthReport"
+          $ref: "#/definitions/FreeStyleProjecthealthReport"
       inQueue:
         type: "boolean"
       keepDependencies:
         type: "boolean"
       lastBuild:
-        $ref: "#/definitions/hudsonmodelFreeStyleBuild"
+        $ref: "#/definitions/FreeStyleBuild"
       lastCompletedBuild:
-        $ref: "#/definitions/hudsonmodelFreeStyleBuild"
+        $ref: "#/definitions/FreeStyleBuild"
       lastFailedBuild:
         type: "string"
       lastStableBuild:
-        $ref: "#/definitions/hudsonmodelFreeStyleBuild"
+        $ref: "#/definitions/FreeStyleBuild"
       lastSuccessfulBuild:
-        $ref: "#/definitions/hudsonmodelFreeStyleBuild"
+        $ref: "#/definitions/FreeStyleBuild"
       lastUnstableBuild:
         type: "string"
       lastUnsuccessfulBuild:
@@ -1272,8 +2718,329 @@ definitions:
       concurrentBuild:
         type: "boolean"
       scm:
-        $ref: "#/definitions/hudsonscmNullSCM"
-  hudsonmodelAllView:
+        $ref: "#/definitions/NullSCM"
+    example:
+      color: "color"
+      displayName: "displayName"
+      lastSuccessfulBuild:
+        queueId: 5
+        displayName: "displayName"
+        keepLog: true
+        description: "description"
+        fullDisplayName: "fullDisplayName"
+        estimatedDuration: 5
+        url: "url"
+        building: true
+        changeSet:
+          kind: "kind"
+          _class: "_class"
+        duration: 1
+        result: "result"
+        number: 6
+        executor: "executor"
+        builtOn: "builtOn"
+        _class: "_class"
+        id: "id"
+        actions:
+        - causes:
+          - _class: "_class"
+            shortDescription: "shortDescription"
+            userName: "userName"
+            userId: "userId"
+          - _class: "_class"
+            shortDescription: "shortDescription"
+            userName: "userName"
+            userId: "userId"
+          _class: "_class"
+        - causes:
+          - _class: "_class"
+            shortDescription: "shortDescription"
+            userName: "userName"
+            userId: "userId"
+          - _class: "_class"
+            shortDescription: "shortDescription"
+            userName: "userName"
+            userId: "userId"
+          _class: "_class"
+        timestamp: 2
+      description: "description"
+      fullDisplayName: "fullDisplayName"
+      lastUnstableBuild: "lastUnstableBuild"
+      queueItem: "queueItem"
+      buildable: true
+      firstBuild:
+        queueId: 5
+        displayName: "displayName"
+        keepLog: true
+        description: "description"
+        fullDisplayName: "fullDisplayName"
+        estimatedDuration: 5
+        url: "url"
+        building: true
+        changeSet:
+          kind: "kind"
+          _class: "_class"
+        duration: 1
+        result: "result"
+        number: 6
+        executor: "executor"
+        builtOn: "builtOn"
+        _class: "_class"
+        id: "id"
+        actions:
+        - causes:
+          - _class: "_class"
+            shortDescription: "shortDescription"
+            userName: "userName"
+            userId: "userId"
+          - _class: "_class"
+            shortDescription: "shortDescription"
+            userName: "userName"
+            userId: "userId"
+          _class: "_class"
+        - causes:
+          - _class: "_class"
+            shortDescription: "shortDescription"
+            userName: "userName"
+            userId: "userId"
+          - _class: "_class"
+            shortDescription: "shortDescription"
+            userName: "userName"
+            userId: "userId"
+          _class: "_class"
+        timestamp: 2
+      lastFailedBuild: "lastFailedBuild"
+      lastBuild:
+        queueId: 5
+        displayName: "displayName"
+        keepLog: true
+        description: "description"
+        fullDisplayName: "fullDisplayName"
+        estimatedDuration: 5
+        url: "url"
+        building: true
+        changeSet:
+          kind: "kind"
+          _class: "_class"
+        duration: 1
+        result: "result"
+        number: 6
+        executor: "executor"
+        builtOn: "builtOn"
+        _class: "_class"
+        id: "id"
+        actions:
+        - causes:
+          - _class: "_class"
+            shortDescription: "shortDescription"
+            userName: "userName"
+            userId: "userId"
+          - _class: "_class"
+            shortDescription: "shortDescription"
+            userName: "userName"
+            userId: "userId"
+          _class: "_class"
+        - causes:
+          - _class: "_class"
+            shortDescription: "shortDescription"
+            userName: "userName"
+            userId: "userId"
+          - _class: "_class"
+            shortDescription: "shortDescription"
+            userName: "userName"
+            userId: "userId"
+          _class: "_class"
+        timestamp: 2
+      nextBuildNumber: 9
+      builds:
+      - queueId: 5
+        displayName: "displayName"
+        keepLog: true
+        description: "description"
+        fullDisplayName: "fullDisplayName"
+        estimatedDuration: 5
+        url: "url"
+        building: true
+        changeSet:
+          kind: "kind"
+          _class: "_class"
+        duration: 1
+        result: "result"
+        number: 6
+        executor: "executor"
+        builtOn: "builtOn"
+        _class: "_class"
+        id: "id"
+        actions:
+        - causes:
+          - _class: "_class"
+            shortDescription: "shortDescription"
+            userName: "userName"
+            userId: "userId"
+          - _class: "_class"
+            shortDescription: "shortDescription"
+            userName: "userName"
+            userId: "userId"
+          _class: "_class"
+        - causes:
+          - _class: "_class"
+            shortDescription: "shortDescription"
+            userName: "userName"
+            userId: "userId"
+          - _class: "_class"
+            shortDescription: "shortDescription"
+            userName: "userName"
+            userId: "userId"
+          _class: "_class"
+        timestamp: 2
+      - queueId: 5
+        displayName: "displayName"
+        keepLog: true
+        description: "description"
+        fullDisplayName: "fullDisplayName"
+        estimatedDuration: 5
+        url: "url"
+        building: true
+        changeSet:
+          kind: "kind"
+          _class: "_class"
+        duration: 1
+        result: "result"
+        number: 6
+        executor: "executor"
+        builtOn: "builtOn"
+        _class: "_class"
+        id: "id"
+        actions:
+        - causes:
+          - _class: "_class"
+            shortDescription: "shortDescription"
+            userName: "userName"
+            userId: "userId"
+          - _class: "_class"
+            shortDescription: "shortDescription"
+            userName: "userName"
+            userId: "userId"
+          _class: "_class"
+        - causes:
+          - _class: "_class"
+            shortDescription: "shortDescription"
+            userName: "userName"
+            userId: "userId"
+          - _class: "_class"
+            shortDescription: "shortDescription"
+            userName: "userName"
+            userId: "userId"
+          _class: "_class"
+        timestamp: 2
+      scm:
+        _class: "_class"
+      keepDependencies: true
+      displayNameOrNull: "displayNameOrNull"
+      inQueue: true
+      lastCompletedBuild:
+        queueId: 5
+        displayName: "displayName"
+        keepLog: true
+        description: "description"
+        fullDisplayName: "fullDisplayName"
+        estimatedDuration: 5
+        url: "url"
+        building: true
+        changeSet:
+          kind: "kind"
+          _class: "_class"
+        duration: 1
+        result: "result"
+        number: 6
+        executor: "executor"
+        builtOn: "builtOn"
+        _class: "_class"
+        id: "id"
+        actions:
+        - causes:
+          - _class: "_class"
+            shortDescription: "shortDescription"
+            userName: "userName"
+            userId: "userId"
+          - _class: "_class"
+            shortDescription: "shortDescription"
+            userName: "userName"
+            userId: "userId"
+          _class: "_class"
+        - causes:
+          - _class: "_class"
+            shortDescription: "shortDescription"
+            userName: "userName"
+            userId: "userId"
+          - _class: "_class"
+            shortDescription: "shortDescription"
+            userName: "userName"
+            userId: "userId"
+          _class: "_class"
+        timestamp: 2
+      fullName: "fullName"
+      healthReport:
+      - score: 7
+        description: "description"
+        iconClassName: "iconClassName"
+        iconUrl: "iconUrl"
+        _class: "_class"
+      - score: 7
+        description: "description"
+        iconClassName: "iconClassName"
+        iconUrl: "iconUrl"
+        _class: "_class"
+      lastStableBuild:
+        queueId: 5
+        displayName: "displayName"
+        keepLog: true
+        description: "description"
+        fullDisplayName: "fullDisplayName"
+        estimatedDuration: 5
+        url: "url"
+        building: true
+        changeSet:
+          kind: "kind"
+          _class: "_class"
+        duration: 1
+        result: "result"
+        number: 6
+        executor: "executor"
+        builtOn: "builtOn"
+        _class: "_class"
+        id: "id"
+        actions:
+        - causes:
+          - _class: "_class"
+            shortDescription: "shortDescription"
+            userName: "userName"
+            userId: "userId"
+          - _class: "_class"
+            shortDescription: "shortDescription"
+            userName: "userName"
+            userId: "userId"
+          _class: "_class"
+        - causes:
+          - _class: "_class"
+            shortDescription: "shortDescription"
+            userName: "userName"
+            userId: "userId"
+          - _class: "_class"
+            shortDescription: "shortDescription"
+            userName: "userName"
+            userId: "userId"
+          _class: "_class"
+        timestamp: 2
+      lastUnsuccessfulBuild: "lastUnsuccessfulBuild"
+      url: "url"
+      concurrentBuild: true
+      name: "name"
+      _class: "_class"
+      actions:
+      - _class: "_class"
+      - _class: "_class"
+  AllView:
     type: "object"
     properties:
       _class:
@@ -1282,12 +3049,18 @@ definitions:
         type: "string"
       url:
         type: "string"
-  jenkinsmodelUnlabeledLoadStatistics:
+    example:
+      name: "name"
+      _class: "_class"
+      url: "url"
+  UnlabeledLoadStatistics:
     type: "object"
     properties:
       _class:
         type: "string"
-  hudsonmodelHudson:
+    example:
+      _class: "_class"
+  Hudson:
     type: "object"
     properties:
       _class:
@@ -1295,7 +3068,7 @@ definitions:
       assignedLabels:
         type: "array"
         items:
-          $ref: "#/definitions/hudsonmodelHudsonassignedLabels"
+          $ref: "#/definitions/HudsonassignedLabels"
       mode:
         type: "string"
       nodeDescription:
@@ -1309,15 +3082,15 @@ definitions:
       jobs:
         type: "array"
         items:
-          $ref: "#/definitions/hudsonmodelFreeStyleProject"
+          $ref: "#/definitions/FreeStyleProject"
       primaryView:
-        $ref: "#/definitions/hudsonmodelAllView"
+        $ref: "#/definitions/AllView"
       quietingDown:
         type: "boolean"
       slaveAgentPort:
         type: "integer"
       unlabeledLoad:
-        $ref: "#/definitions/jenkinsmodelUnlabeledLoadStatistics"
+        $ref: "#/definitions/UnlabeledLoadStatistics"
       useCrumbs:
         type: "boolean"
       useSecurity:
@@ -1325,13 +3098,683 @@ definitions:
       views:
         type: "array"
         items:
-          $ref: "#/definitions/hudsonmodelAllView"
-  hudsonmodelFreeStyleProjectactions:
+          $ref: "#/definitions/AllView"
+    example:
+      nodeName: "nodeName"
+      assignedLabels:
+      - _class: "_class"
+      - _class: "_class"
+      jobs:
+      - color: "color"
+        displayName: "displayName"
+        lastSuccessfulBuild:
+          queueId: 5
+          displayName: "displayName"
+          keepLog: true
+          description: "description"
+          fullDisplayName: "fullDisplayName"
+          estimatedDuration: 5
+          url: "url"
+          building: true
+          changeSet:
+            kind: "kind"
+            _class: "_class"
+          duration: 1
+          result: "result"
+          number: 6
+          executor: "executor"
+          builtOn: "builtOn"
+          _class: "_class"
+          id: "id"
+          actions:
+          - causes:
+            - _class: "_class"
+              shortDescription: "shortDescription"
+              userName: "userName"
+              userId: "userId"
+            - _class: "_class"
+              shortDescription: "shortDescription"
+              userName: "userName"
+              userId: "userId"
+            _class: "_class"
+          - causes:
+            - _class: "_class"
+              shortDescription: "shortDescription"
+              userName: "userName"
+              userId: "userId"
+            - _class: "_class"
+              shortDescription: "shortDescription"
+              userName: "userName"
+              userId: "userId"
+            _class: "_class"
+          timestamp: 2
+        description: "description"
+        fullDisplayName: "fullDisplayName"
+        lastUnstableBuild: "lastUnstableBuild"
+        queueItem: "queueItem"
+        buildable: true
+        firstBuild:
+          queueId: 5
+          displayName: "displayName"
+          keepLog: true
+          description: "description"
+          fullDisplayName: "fullDisplayName"
+          estimatedDuration: 5
+          url: "url"
+          building: true
+          changeSet:
+            kind: "kind"
+            _class: "_class"
+          duration: 1
+          result: "result"
+          number: 6
+          executor: "executor"
+          builtOn: "builtOn"
+          _class: "_class"
+          id: "id"
+          actions:
+          - causes:
+            - _class: "_class"
+              shortDescription: "shortDescription"
+              userName: "userName"
+              userId: "userId"
+            - _class: "_class"
+              shortDescription: "shortDescription"
+              userName: "userName"
+              userId: "userId"
+            _class: "_class"
+          - causes:
+            - _class: "_class"
+              shortDescription: "shortDescription"
+              userName: "userName"
+              userId: "userId"
+            - _class: "_class"
+              shortDescription: "shortDescription"
+              userName: "userName"
+              userId: "userId"
+            _class: "_class"
+          timestamp: 2
+        lastFailedBuild: "lastFailedBuild"
+        lastBuild:
+          queueId: 5
+          displayName: "displayName"
+          keepLog: true
+          description: "description"
+          fullDisplayName: "fullDisplayName"
+          estimatedDuration: 5
+          url: "url"
+          building: true
+          changeSet:
+            kind: "kind"
+            _class: "_class"
+          duration: 1
+          result: "result"
+          number: 6
+          executor: "executor"
+          builtOn: "builtOn"
+          _class: "_class"
+          id: "id"
+          actions:
+          - causes:
+            - _class: "_class"
+              shortDescription: "shortDescription"
+              userName: "userName"
+              userId: "userId"
+            - _class: "_class"
+              shortDescription: "shortDescription"
+              userName: "userName"
+              userId: "userId"
+            _class: "_class"
+          - causes:
+            - _class: "_class"
+              shortDescription: "shortDescription"
+              userName: "userName"
+              userId: "userId"
+            - _class: "_class"
+              shortDescription: "shortDescription"
+              userName: "userName"
+              userId: "userId"
+            _class: "_class"
+          timestamp: 2
+        nextBuildNumber: 9
+        builds:
+        - queueId: 5
+          displayName: "displayName"
+          keepLog: true
+          description: "description"
+          fullDisplayName: "fullDisplayName"
+          estimatedDuration: 5
+          url: "url"
+          building: true
+          changeSet:
+            kind: "kind"
+            _class: "_class"
+          duration: 1
+          result: "result"
+          number: 6
+          executor: "executor"
+          builtOn: "builtOn"
+          _class: "_class"
+          id: "id"
+          actions:
+          - causes:
+            - _class: "_class"
+              shortDescription: "shortDescription"
+              userName: "userName"
+              userId: "userId"
+            - _class: "_class"
+              shortDescription: "shortDescription"
+              userName: "userName"
+              userId: "userId"
+            _class: "_class"
+          - causes:
+            - _class: "_class"
+              shortDescription: "shortDescription"
+              userName: "userName"
+              userId: "userId"
+            - _class: "_class"
+              shortDescription: "shortDescription"
+              userName: "userName"
+              userId: "userId"
+            _class: "_class"
+          timestamp: 2
+        - queueId: 5
+          displayName: "displayName"
+          keepLog: true
+          description: "description"
+          fullDisplayName: "fullDisplayName"
+          estimatedDuration: 5
+          url: "url"
+          building: true
+          changeSet:
+            kind: "kind"
+            _class: "_class"
+          duration: 1
+          result: "result"
+          number: 6
+          executor: "executor"
+          builtOn: "builtOn"
+          _class: "_class"
+          id: "id"
+          actions:
+          - causes:
+            - _class: "_class"
+              shortDescription: "shortDescription"
+              userName: "userName"
+              userId: "userId"
+            - _class: "_class"
+              shortDescription: "shortDescription"
+              userName: "userName"
+              userId: "userId"
+            _class: "_class"
+          - causes:
+            - _class: "_class"
+              shortDescription: "shortDescription"
+              userName: "userName"
+              userId: "userId"
+            - _class: "_class"
+              shortDescription: "shortDescription"
+              userName: "userName"
+              userId: "userId"
+            _class: "_class"
+          timestamp: 2
+        scm:
+          _class: "_class"
+        keepDependencies: true
+        displayNameOrNull: "displayNameOrNull"
+        inQueue: true
+        lastCompletedBuild:
+          queueId: 5
+          displayName: "displayName"
+          keepLog: true
+          description: "description"
+          fullDisplayName: "fullDisplayName"
+          estimatedDuration: 5
+          url: "url"
+          building: true
+          changeSet:
+            kind: "kind"
+            _class: "_class"
+          duration: 1
+          result: "result"
+          number: 6
+          executor: "executor"
+          builtOn: "builtOn"
+          _class: "_class"
+          id: "id"
+          actions:
+          - causes:
+            - _class: "_class"
+              shortDescription: "shortDescription"
+              userName: "userName"
+              userId: "userId"
+            - _class: "_class"
+              shortDescription: "shortDescription"
+              userName: "userName"
+              userId: "userId"
+            _class: "_class"
+          - causes:
+            - _class: "_class"
+              shortDescription: "shortDescription"
+              userName: "userName"
+              userId: "userId"
+            - _class: "_class"
+              shortDescription: "shortDescription"
+              userName: "userName"
+              userId: "userId"
+            _class: "_class"
+          timestamp: 2
+        fullName: "fullName"
+        healthReport:
+        - score: 7
+          description: "description"
+          iconClassName: "iconClassName"
+          iconUrl: "iconUrl"
+          _class: "_class"
+        - score: 7
+          description: "description"
+          iconClassName: "iconClassName"
+          iconUrl: "iconUrl"
+          _class: "_class"
+        lastStableBuild:
+          queueId: 5
+          displayName: "displayName"
+          keepLog: true
+          description: "description"
+          fullDisplayName: "fullDisplayName"
+          estimatedDuration: 5
+          url: "url"
+          building: true
+          changeSet:
+            kind: "kind"
+            _class: "_class"
+          duration: 1
+          result: "result"
+          number: 6
+          executor: "executor"
+          builtOn: "builtOn"
+          _class: "_class"
+          id: "id"
+          actions:
+          - causes:
+            - _class: "_class"
+              shortDescription: "shortDescription"
+              userName: "userName"
+              userId: "userId"
+            - _class: "_class"
+              shortDescription: "shortDescription"
+              userName: "userName"
+              userId: "userId"
+            _class: "_class"
+          - causes:
+            - _class: "_class"
+              shortDescription: "shortDescription"
+              userName: "userName"
+              userId: "userId"
+            - _class: "_class"
+              shortDescription: "shortDescription"
+              userName: "userName"
+              userId: "userId"
+            _class: "_class"
+          timestamp: 2
+        lastUnsuccessfulBuild: "lastUnsuccessfulBuild"
+        url: "url"
+        concurrentBuild: true
+        name: "name"
+        _class: "_class"
+        actions:
+        - _class: "_class"
+        - _class: "_class"
+      - color: "color"
+        displayName: "displayName"
+        lastSuccessfulBuild:
+          queueId: 5
+          displayName: "displayName"
+          keepLog: true
+          description: "description"
+          fullDisplayName: "fullDisplayName"
+          estimatedDuration: 5
+          url: "url"
+          building: true
+          changeSet:
+            kind: "kind"
+            _class: "_class"
+          duration: 1
+          result: "result"
+          number: 6
+          executor: "executor"
+          builtOn: "builtOn"
+          _class: "_class"
+          id: "id"
+          actions:
+          - causes:
+            - _class: "_class"
+              shortDescription: "shortDescription"
+              userName: "userName"
+              userId: "userId"
+            - _class: "_class"
+              shortDescription: "shortDescription"
+              userName: "userName"
+              userId: "userId"
+            _class: "_class"
+          - causes:
+            - _class: "_class"
+              shortDescription: "shortDescription"
+              userName: "userName"
+              userId: "userId"
+            - _class: "_class"
+              shortDescription: "shortDescription"
+              userName: "userName"
+              userId: "userId"
+            _class: "_class"
+          timestamp: 2
+        description: "description"
+        fullDisplayName: "fullDisplayName"
+        lastUnstableBuild: "lastUnstableBuild"
+        queueItem: "queueItem"
+        buildable: true
+        firstBuild:
+          queueId: 5
+          displayName: "displayName"
+          keepLog: true
+          description: "description"
+          fullDisplayName: "fullDisplayName"
+          estimatedDuration: 5
+          url: "url"
+          building: true
+          changeSet:
+            kind: "kind"
+            _class: "_class"
+          duration: 1
+          result: "result"
+          number: 6
+          executor: "executor"
+          builtOn: "builtOn"
+          _class: "_class"
+          id: "id"
+          actions:
+          - causes:
+            - _class: "_class"
+              shortDescription: "shortDescription"
+              userName: "userName"
+              userId: "userId"
+            - _class: "_class"
+              shortDescription: "shortDescription"
+              userName: "userName"
+              userId: "userId"
+            _class: "_class"
+          - causes:
+            - _class: "_class"
+              shortDescription: "shortDescription"
+              userName: "userName"
+              userId: "userId"
+            - _class: "_class"
+              shortDescription: "shortDescription"
+              userName: "userName"
+              userId: "userId"
+            _class: "_class"
+          timestamp: 2
+        lastFailedBuild: "lastFailedBuild"
+        lastBuild:
+          queueId: 5
+          displayName: "displayName"
+          keepLog: true
+          description: "description"
+          fullDisplayName: "fullDisplayName"
+          estimatedDuration: 5
+          url: "url"
+          building: true
+          changeSet:
+            kind: "kind"
+            _class: "_class"
+          duration: 1
+          result: "result"
+          number: 6
+          executor: "executor"
+          builtOn: "builtOn"
+          _class: "_class"
+          id: "id"
+          actions:
+          - causes:
+            - _class: "_class"
+              shortDescription: "shortDescription"
+              userName: "userName"
+              userId: "userId"
+            - _class: "_class"
+              shortDescription: "shortDescription"
+              userName: "userName"
+              userId: "userId"
+            _class: "_class"
+          - causes:
+            - _class: "_class"
+              shortDescription: "shortDescription"
+              userName: "userName"
+              userId: "userId"
+            - _class: "_class"
+              shortDescription: "shortDescription"
+              userName: "userName"
+              userId: "userId"
+            _class: "_class"
+          timestamp: 2
+        nextBuildNumber: 9
+        builds:
+        - queueId: 5
+          displayName: "displayName"
+          keepLog: true
+          description: "description"
+          fullDisplayName: "fullDisplayName"
+          estimatedDuration: 5
+          url: "url"
+          building: true
+          changeSet:
+            kind: "kind"
+            _class: "_class"
+          duration: 1
+          result: "result"
+          number: 6
+          executor: "executor"
+          builtOn: "builtOn"
+          _class: "_class"
+          id: "id"
+          actions:
+          - causes:
+            - _class: "_class"
+              shortDescription: "shortDescription"
+              userName: "userName"
+              userId: "userId"
+            - _class: "_class"
+              shortDescription: "shortDescription"
+              userName: "userName"
+              userId: "userId"
+            _class: "_class"
+          - causes:
+            - _class: "_class"
+              shortDescription: "shortDescription"
+              userName: "userName"
+              userId: "userId"
+            - _class: "_class"
+              shortDescription: "shortDescription"
+              userName: "userName"
+              userId: "userId"
+            _class: "_class"
+          timestamp: 2
+        - queueId: 5
+          displayName: "displayName"
+          keepLog: true
+          description: "description"
+          fullDisplayName: "fullDisplayName"
+          estimatedDuration: 5
+          url: "url"
+          building: true
+          changeSet:
+            kind: "kind"
+            _class: "_class"
+          duration: 1
+          result: "result"
+          number: 6
+          executor: "executor"
+          builtOn: "builtOn"
+          _class: "_class"
+          id: "id"
+          actions:
+          - causes:
+            - _class: "_class"
+              shortDescription: "shortDescription"
+              userName: "userName"
+              userId: "userId"
+            - _class: "_class"
+              shortDescription: "shortDescription"
+              userName: "userName"
+              userId: "userId"
+            _class: "_class"
+          - causes:
+            - _class: "_class"
+              shortDescription: "shortDescription"
+              userName: "userName"
+              userId: "userId"
+            - _class: "_class"
+              shortDescription: "shortDescription"
+              userName: "userName"
+              userId: "userId"
+            _class: "_class"
+          timestamp: 2
+        scm:
+          _class: "_class"
+        keepDependencies: true
+        displayNameOrNull: "displayNameOrNull"
+        inQueue: true
+        lastCompletedBuild:
+          queueId: 5
+          displayName: "displayName"
+          keepLog: true
+          description: "description"
+          fullDisplayName: "fullDisplayName"
+          estimatedDuration: 5
+          url: "url"
+          building: true
+          changeSet:
+            kind: "kind"
+            _class: "_class"
+          duration: 1
+          result: "result"
+          number: 6
+          executor: "executor"
+          builtOn: "builtOn"
+          _class: "_class"
+          id: "id"
+          actions:
+          - causes:
+            - _class: "_class"
+              shortDescription: "shortDescription"
+              userName: "userName"
+              userId: "userId"
+            - _class: "_class"
+              shortDescription: "shortDescription"
+              userName: "userName"
+              userId: "userId"
+            _class: "_class"
+          - causes:
+            - _class: "_class"
+              shortDescription: "shortDescription"
+              userName: "userName"
+              userId: "userId"
+            - _class: "_class"
+              shortDescription: "shortDescription"
+              userName: "userName"
+              userId: "userId"
+            _class: "_class"
+          timestamp: 2
+        fullName: "fullName"
+        healthReport:
+        - score: 7
+          description: "description"
+          iconClassName: "iconClassName"
+          iconUrl: "iconUrl"
+          _class: "_class"
+        - score: 7
+          description: "description"
+          iconClassName: "iconClassName"
+          iconUrl: "iconUrl"
+          _class: "_class"
+        lastStableBuild:
+          queueId: 5
+          displayName: "displayName"
+          keepLog: true
+          description: "description"
+          fullDisplayName: "fullDisplayName"
+          estimatedDuration: 5
+          url: "url"
+          building: true
+          changeSet:
+            kind: "kind"
+            _class: "_class"
+          duration: 1
+          result: "result"
+          number: 6
+          executor: "executor"
+          builtOn: "builtOn"
+          _class: "_class"
+          id: "id"
+          actions:
+          - causes:
+            - _class: "_class"
+              shortDescription: "shortDescription"
+              userName: "userName"
+              userId: "userId"
+            - _class: "_class"
+              shortDescription: "shortDescription"
+              userName: "userName"
+              userId: "userId"
+            _class: "_class"
+          - causes:
+            - _class: "_class"
+              shortDescription: "shortDescription"
+              userName: "userName"
+              userId: "userId"
+            - _class: "_class"
+              shortDescription: "shortDescription"
+              userName: "userName"
+              userId: "userId"
+            _class: "_class"
+          timestamp: 2
+        lastUnsuccessfulBuild: "lastUnsuccessfulBuild"
+        url: "url"
+        concurrentBuild: true
+        name: "name"
+        _class: "_class"
+        actions:
+        - _class: "_class"
+        - _class: "_class"
+      slaveAgentPort: 3
+      description: "description"
+      useCrumbs: true
+      nodeDescription: "nodeDescription"
+      primaryView:
+        name: "name"
+        _class: "_class"
+        url: "url"
+      unlabeledLoad:
+        _class: "_class"
+      mode: "mode"
+      numExecutors: 0
+      quietingDown: true
+      useSecurity: true
+      _class: "_class"
+      views:
+      - name: "name"
+        _class: "_class"
+        url: "url"
+      - name: "name"
+        _class: "_class"
+        url: "url"
+  FreeStyleProjectactions:
     type: "object"
     properties:
       _class:
         type: "string"
-  hudsonmodelFreeStyleProjecthealthReport:
+    example:
+      _class: "_class"
+  FreeStyleProjecthealthReport:
     type: "object"
     properties:
       description:
@@ -1344,12 +3787,20 @@ definitions:
         type: "integer"
       _class:
         type: "string"
-  hudsonscmNullSCM:
+    example:
+      score: 7
+      description: "description"
+      iconClassName: "iconClassName"
+      iconUrl: "iconUrl"
+      _class: "_class"
+  NullSCM:
     type: "object"
     properties:
       _class:
         type: "string"
-  hudsonmodelCauseUserIdCause:
+    example:
+      _class: "_class"
+  CauseUserIdCause:
     type: "object"
     properties:
       _class:
@@ -1360,7 +3811,12 @@ definitions:
         type: "string"
       userName:
         type: "string"
-  hudsonmodelCauseAction:
+    example:
+      _class: "_class"
+      shortDescription: "shortDescription"
+      userName: "userName"
+      userId: "userId"
+  CauseAction:
     type: "object"
     properties:
       _class:
@@ -1368,15 +3824,29 @@ definitions:
       causes:
         type: "array"
         items:
-          $ref: "#/definitions/hudsonmodelCauseUserIdCause"
-  hudsonscmEmptyChangeLogSet:
+          $ref: "#/definitions/CauseUserIdCause"
+    example:
+      causes:
+      - _class: "_class"
+        shortDescription: "shortDescription"
+        userName: "userName"
+        userId: "userId"
+      - _class: "_class"
+        shortDescription: "shortDescription"
+        userName: "userName"
+        userId: "userId"
+      _class: "_class"
+  EmptyChangeLogSet:
     type: "object"
     properties:
       _class:
         type: "string"
       kind:
         type: "string"
-  hudsonmodelQueueBlockedItem:
+    example:
+      kind: "kind"
+      _class: "_class"
+  QueueBlockedItem:
     type: "object"
     properties:
       _class:
@@ -1384,7 +3854,7 @@ definitions:
       actions:
         type: "array"
         items:
-          $ref: "#/definitions/hudsonmodelCauseAction"
+          $ref: "#/definitions/CauseAction"
       blocked:
         type: "boolean"
       buildable:
@@ -1398,14 +3868,367 @@ definitions:
       stuck:
         type: "boolean"
       task:
-        $ref: "#/definitions/hudsonmodelFreeStyleProject"
+        $ref: "#/definitions/FreeStyleProject"
       url:
         type: "string"
       why:
         type: "string"
       buildableStartMilliseconds:
         type: "integer"
-  hudsonmodelQueue:
+    example:
+      task:
+        color: "color"
+        displayName: "displayName"
+        lastSuccessfulBuild:
+          queueId: 5
+          displayName: "displayName"
+          keepLog: true
+          description: "description"
+          fullDisplayName: "fullDisplayName"
+          estimatedDuration: 5
+          url: "url"
+          building: true
+          changeSet:
+            kind: "kind"
+            _class: "_class"
+          duration: 1
+          result: "result"
+          number: 6
+          executor: "executor"
+          builtOn: "builtOn"
+          _class: "_class"
+          id: "id"
+          actions:
+          - causes:
+            - _class: "_class"
+              shortDescription: "shortDescription"
+              userName: "userName"
+              userId: "userId"
+            - _class: "_class"
+              shortDescription: "shortDescription"
+              userName: "userName"
+              userId: "userId"
+            _class: "_class"
+          - causes:
+            - _class: "_class"
+              shortDescription: "shortDescription"
+              userName: "userName"
+              userId: "userId"
+            - _class: "_class"
+              shortDescription: "shortDescription"
+              userName: "userName"
+              userId: "userId"
+            _class: "_class"
+          timestamp: 2
+        description: "description"
+        fullDisplayName: "fullDisplayName"
+        lastUnstableBuild: "lastUnstableBuild"
+        queueItem: "queueItem"
+        buildable: true
+        firstBuild:
+          queueId: 5
+          displayName: "displayName"
+          keepLog: true
+          description: "description"
+          fullDisplayName: "fullDisplayName"
+          estimatedDuration: 5
+          url: "url"
+          building: true
+          changeSet:
+            kind: "kind"
+            _class: "_class"
+          duration: 1
+          result: "result"
+          number: 6
+          executor: "executor"
+          builtOn: "builtOn"
+          _class: "_class"
+          id: "id"
+          actions:
+          - causes:
+            - _class: "_class"
+              shortDescription: "shortDescription"
+              userName: "userName"
+              userId: "userId"
+            - _class: "_class"
+              shortDescription: "shortDescription"
+              userName: "userName"
+              userId: "userId"
+            _class: "_class"
+          - causes:
+            - _class: "_class"
+              shortDescription: "shortDescription"
+              userName: "userName"
+              userId: "userId"
+            - _class: "_class"
+              shortDescription: "shortDescription"
+              userName: "userName"
+              userId: "userId"
+            _class: "_class"
+          timestamp: 2
+        lastFailedBuild: "lastFailedBuild"
+        lastBuild:
+          queueId: 5
+          displayName: "displayName"
+          keepLog: true
+          description: "description"
+          fullDisplayName: "fullDisplayName"
+          estimatedDuration: 5
+          url: "url"
+          building: true
+          changeSet:
+            kind: "kind"
+            _class: "_class"
+          duration: 1
+          result: "result"
+          number: 6
+          executor: "executor"
+          builtOn: "builtOn"
+          _class: "_class"
+          id: "id"
+          actions:
+          - causes:
+            - _class: "_class"
+              shortDescription: "shortDescription"
+              userName: "userName"
+              userId: "userId"
+            - _class: "_class"
+              shortDescription: "shortDescription"
+              userName: "userName"
+              userId: "userId"
+            _class: "_class"
+          - causes:
+            - _class: "_class"
+              shortDescription: "shortDescription"
+              userName: "userName"
+              userId: "userId"
+            - _class: "_class"
+              shortDescription: "shortDescription"
+              userName: "userName"
+              userId: "userId"
+            _class: "_class"
+          timestamp: 2
+        nextBuildNumber: 9
+        builds:
+        - queueId: 5
+          displayName: "displayName"
+          keepLog: true
+          description: "description"
+          fullDisplayName: "fullDisplayName"
+          estimatedDuration: 5
+          url: "url"
+          building: true
+          changeSet:
+            kind: "kind"
+            _class: "_class"
+          duration: 1
+          result: "result"
+          number: 6
+          executor: "executor"
+          builtOn: "builtOn"
+          _class: "_class"
+          id: "id"
+          actions:
+          - causes:
+            - _class: "_class"
+              shortDescription: "shortDescription"
+              userName: "userName"
+              userId: "userId"
+            - _class: "_class"
+              shortDescription: "shortDescription"
+              userName: "userName"
+              userId: "userId"
+            _class: "_class"
+          - causes:
+            - _class: "_class"
+              shortDescription: "shortDescription"
+              userName: "userName"
+              userId: "userId"
+            - _class: "_class"
+              shortDescription: "shortDescription"
+              userName: "userName"
+              userId: "userId"
+            _class: "_class"
+          timestamp: 2
+        - queueId: 5
+          displayName: "displayName"
+          keepLog: true
+          description: "description"
+          fullDisplayName: "fullDisplayName"
+          estimatedDuration: 5
+          url: "url"
+          building: true
+          changeSet:
+            kind: "kind"
+            _class: "_class"
+          duration: 1
+          result: "result"
+          number: 6
+          executor: "executor"
+          builtOn: "builtOn"
+          _class: "_class"
+          id: "id"
+          actions:
+          - causes:
+            - _class: "_class"
+              shortDescription: "shortDescription"
+              userName: "userName"
+              userId: "userId"
+            - _class: "_class"
+              shortDescription: "shortDescription"
+              userName: "userName"
+              userId: "userId"
+            _class: "_class"
+          - causes:
+            - _class: "_class"
+              shortDescription: "shortDescription"
+              userName: "userName"
+              userId: "userId"
+            - _class: "_class"
+              shortDescription: "shortDescription"
+              userName: "userName"
+              userId: "userId"
+            _class: "_class"
+          timestamp: 2
+        scm:
+          _class: "_class"
+        keepDependencies: true
+        displayNameOrNull: "displayNameOrNull"
+        inQueue: true
+        lastCompletedBuild:
+          queueId: 5
+          displayName: "displayName"
+          keepLog: true
+          description: "description"
+          fullDisplayName: "fullDisplayName"
+          estimatedDuration: 5
+          url: "url"
+          building: true
+          changeSet:
+            kind: "kind"
+            _class: "_class"
+          duration: 1
+          result: "result"
+          number: 6
+          executor: "executor"
+          builtOn: "builtOn"
+          _class: "_class"
+          id: "id"
+          actions:
+          - causes:
+            - _class: "_class"
+              shortDescription: "shortDescription"
+              userName: "userName"
+              userId: "userId"
+            - _class: "_class"
+              shortDescription: "shortDescription"
+              userName: "userName"
+              userId: "userId"
+            _class: "_class"
+          - causes:
+            - _class: "_class"
+              shortDescription: "shortDescription"
+              userName: "userName"
+              userId: "userId"
+            - _class: "_class"
+              shortDescription: "shortDescription"
+              userName: "userName"
+              userId: "userId"
+            _class: "_class"
+          timestamp: 2
+        fullName: "fullName"
+        healthReport:
+        - score: 7
+          description: "description"
+          iconClassName: "iconClassName"
+          iconUrl: "iconUrl"
+          _class: "_class"
+        - score: 7
+          description: "description"
+          iconClassName: "iconClassName"
+          iconUrl: "iconUrl"
+          _class: "_class"
+        lastStableBuild:
+          queueId: 5
+          displayName: "displayName"
+          keepLog: true
+          description: "description"
+          fullDisplayName: "fullDisplayName"
+          estimatedDuration: 5
+          url: "url"
+          building: true
+          changeSet:
+            kind: "kind"
+            _class: "_class"
+          duration: 1
+          result: "result"
+          number: 6
+          executor: "executor"
+          builtOn: "builtOn"
+          _class: "_class"
+          id: "id"
+          actions:
+          - causes:
+            - _class: "_class"
+              shortDescription: "shortDescription"
+              userName: "userName"
+              userId: "userId"
+            - _class: "_class"
+              shortDescription: "shortDescription"
+              userName: "userName"
+              userId: "userId"
+            _class: "_class"
+          - causes:
+            - _class: "_class"
+              shortDescription: "shortDescription"
+              userName: "userName"
+              userId: "userId"
+            - _class: "_class"
+              shortDescription: "shortDescription"
+              userName: "userName"
+              userId: "userId"
+            _class: "_class"
+          timestamp: 2
+        lastUnsuccessfulBuild: "lastUnsuccessfulBuild"
+        url: "url"
+        concurrentBuild: true
+        name: "name"
+        _class: "_class"
+        actions:
+        - _class: "_class"
+        - _class: "_class"
+      blocked: true
+      stuck: true
+      buildableStartMilliseconds: 1
+      why: "why"
+      _class: "_class"
+      id: 0
+      buildable: true
+      params: "params"
+      actions:
+      - causes:
+        - _class: "_class"
+          shortDescription: "shortDescription"
+          userName: "userName"
+          userId: "userId"
+        - _class: "_class"
+          shortDescription: "shortDescription"
+          userName: "userName"
+          userId: "userId"
+        _class: "_class"
+      - causes:
+        - _class: "_class"
+          shortDescription: "shortDescription"
+          userName: "userName"
+          userId: "userId"
+        - _class: "_class"
+          shortDescription: "shortDescription"
+          userName: "userName"
+          userId: "userId"
+        _class: "_class"
+      url: "url"
+      inQueueSince: 6
+  Queue:
     type: "object"
     properties:
       _class:
@@ -1413,8 +4236,715 @@ definitions:
       items:
         type: "array"
         items:
-          $ref: "#/definitions/hudsonmodelQueueBlockedItem"
-  hudsonmodelQueueLeftItem:
+          $ref: "#/definitions/QueueBlockedItem"
+    example:
+      _class: "_class"
+      items:
+      - task:
+          color: "color"
+          displayName: "displayName"
+          lastSuccessfulBuild:
+            queueId: 5
+            displayName: "displayName"
+            keepLog: true
+            description: "description"
+            fullDisplayName: "fullDisplayName"
+            estimatedDuration: 5
+            url: "url"
+            building: true
+            changeSet:
+              kind: "kind"
+              _class: "_class"
+            duration: 1
+            result: "result"
+            number: 6
+            executor: "executor"
+            builtOn: "builtOn"
+            _class: "_class"
+            id: "id"
+            actions:
+            - causes:
+              - _class: "_class"
+                shortDescription: "shortDescription"
+                userName: "userName"
+                userId: "userId"
+              - _class: "_class"
+                shortDescription: "shortDescription"
+                userName: "userName"
+                userId: "userId"
+              _class: "_class"
+            - causes:
+              - _class: "_class"
+                shortDescription: "shortDescription"
+                userName: "userName"
+                userId: "userId"
+              - _class: "_class"
+                shortDescription: "shortDescription"
+                userName: "userName"
+                userId: "userId"
+              _class: "_class"
+            timestamp: 2
+          description: "description"
+          fullDisplayName: "fullDisplayName"
+          lastUnstableBuild: "lastUnstableBuild"
+          queueItem: "queueItem"
+          buildable: true
+          firstBuild:
+            queueId: 5
+            displayName: "displayName"
+            keepLog: true
+            description: "description"
+            fullDisplayName: "fullDisplayName"
+            estimatedDuration: 5
+            url: "url"
+            building: true
+            changeSet:
+              kind: "kind"
+              _class: "_class"
+            duration: 1
+            result: "result"
+            number: 6
+            executor: "executor"
+            builtOn: "builtOn"
+            _class: "_class"
+            id: "id"
+            actions:
+            - causes:
+              - _class: "_class"
+                shortDescription: "shortDescription"
+                userName: "userName"
+                userId: "userId"
+              - _class: "_class"
+                shortDescription: "shortDescription"
+                userName: "userName"
+                userId: "userId"
+              _class: "_class"
+            - causes:
+              - _class: "_class"
+                shortDescription: "shortDescription"
+                userName: "userName"
+                userId: "userId"
+              - _class: "_class"
+                shortDescription: "shortDescription"
+                userName: "userName"
+                userId: "userId"
+              _class: "_class"
+            timestamp: 2
+          lastFailedBuild: "lastFailedBuild"
+          lastBuild:
+            queueId: 5
+            displayName: "displayName"
+            keepLog: true
+            description: "description"
+            fullDisplayName: "fullDisplayName"
+            estimatedDuration: 5
+            url: "url"
+            building: true
+            changeSet:
+              kind: "kind"
+              _class: "_class"
+            duration: 1
+            result: "result"
+            number: 6
+            executor: "executor"
+            builtOn: "builtOn"
+            _class: "_class"
+            id: "id"
+            actions:
+            - causes:
+              - _class: "_class"
+                shortDescription: "shortDescription"
+                userName: "userName"
+                userId: "userId"
+              - _class: "_class"
+                shortDescription: "shortDescription"
+                userName: "userName"
+                userId: "userId"
+              _class: "_class"
+            - causes:
+              - _class: "_class"
+                shortDescription: "shortDescription"
+                userName: "userName"
+                userId: "userId"
+              - _class: "_class"
+                shortDescription: "shortDescription"
+                userName: "userName"
+                userId: "userId"
+              _class: "_class"
+            timestamp: 2
+          nextBuildNumber: 9
+          builds:
+          - queueId: 5
+            displayName: "displayName"
+            keepLog: true
+            description: "description"
+            fullDisplayName: "fullDisplayName"
+            estimatedDuration: 5
+            url: "url"
+            building: true
+            changeSet:
+              kind: "kind"
+              _class: "_class"
+            duration: 1
+            result: "result"
+            number: 6
+            executor: "executor"
+            builtOn: "builtOn"
+            _class: "_class"
+            id: "id"
+            actions:
+            - causes:
+              - _class: "_class"
+                shortDescription: "shortDescription"
+                userName: "userName"
+                userId: "userId"
+              - _class: "_class"
+                shortDescription: "shortDescription"
+                userName: "userName"
+                userId: "userId"
+              _class: "_class"
+            - causes:
+              - _class: "_class"
+                shortDescription: "shortDescription"
+                userName: "userName"
+                userId: "userId"
+              - _class: "_class"
+                shortDescription: "shortDescription"
+                userName: "userName"
+                userId: "userId"
+              _class: "_class"
+            timestamp: 2
+          - queueId: 5
+            displayName: "displayName"
+            keepLog: true
+            description: "description"
+            fullDisplayName: "fullDisplayName"
+            estimatedDuration: 5
+            url: "url"
+            building: true
+            changeSet:
+              kind: "kind"
+              _class: "_class"
+            duration: 1
+            result: "result"
+            number: 6
+            executor: "executor"
+            builtOn: "builtOn"
+            _class: "_class"
+            id: "id"
+            actions:
+            - causes:
+              - _class: "_class"
+                shortDescription: "shortDescription"
+                userName: "userName"
+                userId: "userId"
+              - _class: "_class"
+                shortDescription: "shortDescription"
+                userName: "userName"
+                userId: "userId"
+              _class: "_class"
+            - causes:
+              - _class: "_class"
+                shortDescription: "shortDescription"
+                userName: "userName"
+                userId: "userId"
+              - _class: "_class"
+                shortDescription: "shortDescription"
+                userName: "userName"
+                userId: "userId"
+              _class: "_class"
+            timestamp: 2
+          scm:
+            _class: "_class"
+          keepDependencies: true
+          displayNameOrNull: "displayNameOrNull"
+          inQueue: true
+          lastCompletedBuild:
+            queueId: 5
+            displayName: "displayName"
+            keepLog: true
+            description: "description"
+            fullDisplayName: "fullDisplayName"
+            estimatedDuration: 5
+            url: "url"
+            building: true
+            changeSet:
+              kind: "kind"
+              _class: "_class"
+            duration: 1
+            result: "result"
+            number: 6
+            executor: "executor"
+            builtOn: "builtOn"
+            _class: "_class"
+            id: "id"
+            actions:
+            - causes:
+              - _class: "_class"
+                shortDescription: "shortDescription"
+                userName: "userName"
+                userId: "userId"
+              - _class: "_class"
+                shortDescription: "shortDescription"
+                userName: "userName"
+                userId: "userId"
+              _class: "_class"
+            - causes:
+              - _class: "_class"
+                shortDescription: "shortDescription"
+                userName: "userName"
+                userId: "userId"
+              - _class: "_class"
+                shortDescription: "shortDescription"
+                userName: "userName"
+                userId: "userId"
+              _class: "_class"
+            timestamp: 2
+          fullName: "fullName"
+          healthReport:
+          - score: 7
+            description: "description"
+            iconClassName: "iconClassName"
+            iconUrl: "iconUrl"
+            _class: "_class"
+          - score: 7
+            description: "description"
+            iconClassName: "iconClassName"
+            iconUrl: "iconUrl"
+            _class: "_class"
+          lastStableBuild:
+            queueId: 5
+            displayName: "displayName"
+            keepLog: true
+            description: "description"
+            fullDisplayName: "fullDisplayName"
+            estimatedDuration: 5
+            url: "url"
+            building: true
+            changeSet:
+              kind: "kind"
+              _class: "_class"
+            duration: 1
+            result: "result"
+            number: 6
+            executor: "executor"
+            builtOn: "builtOn"
+            _class: "_class"
+            id: "id"
+            actions:
+            - causes:
+              - _class: "_class"
+                shortDescription: "shortDescription"
+                userName: "userName"
+                userId: "userId"
+              - _class: "_class"
+                shortDescription: "shortDescription"
+                userName: "userName"
+                userId: "userId"
+              _class: "_class"
+            - causes:
+              - _class: "_class"
+                shortDescription: "shortDescription"
+                userName: "userName"
+                userId: "userId"
+              - _class: "_class"
+                shortDescription: "shortDescription"
+                userName: "userName"
+                userId: "userId"
+              _class: "_class"
+            timestamp: 2
+          lastUnsuccessfulBuild: "lastUnsuccessfulBuild"
+          url: "url"
+          concurrentBuild: true
+          name: "name"
+          _class: "_class"
+          actions:
+          - _class: "_class"
+          - _class: "_class"
+        blocked: true
+        stuck: true
+        buildableStartMilliseconds: 1
+        why: "why"
+        _class: "_class"
+        id: 0
+        buildable: true
+        params: "params"
+        actions:
+        - causes:
+          - _class: "_class"
+            shortDescription: "shortDescription"
+            userName: "userName"
+            userId: "userId"
+          - _class: "_class"
+            shortDescription: "shortDescription"
+            userName: "userName"
+            userId: "userId"
+          _class: "_class"
+        - causes:
+          - _class: "_class"
+            shortDescription: "shortDescription"
+            userName: "userName"
+            userId: "userId"
+          - _class: "_class"
+            shortDescription: "shortDescription"
+            userName: "userName"
+            userId: "userId"
+          _class: "_class"
+        url: "url"
+        inQueueSince: 6
+      - task:
+          color: "color"
+          displayName: "displayName"
+          lastSuccessfulBuild:
+            queueId: 5
+            displayName: "displayName"
+            keepLog: true
+            description: "description"
+            fullDisplayName: "fullDisplayName"
+            estimatedDuration: 5
+            url: "url"
+            building: true
+            changeSet:
+              kind: "kind"
+              _class: "_class"
+            duration: 1
+            result: "result"
+            number: 6
+            executor: "executor"
+            builtOn: "builtOn"
+            _class: "_class"
+            id: "id"
+            actions:
+            - causes:
+              - _class: "_class"
+                shortDescription: "shortDescription"
+                userName: "userName"
+                userId: "userId"
+              - _class: "_class"
+                shortDescription: "shortDescription"
+                userName: "userName"
+                userId: "userId"
+              _class: "_class"
+            - causes:
+              - _class: "_class"
+                shortDescription: "shortDescription"
+                userName: "userName"
+                userId: "userId"
+              - _class: "_class"
+                shortDescription: "shortDescription"
+                userName: "userName"
+                userId: "userId"
+              _class: "_class"
+            timestamp: 2
+          description: "description"
+          fullDisplayName: "fullDisplayName"
+          lastUnstableBuild: "lastUnstableBuild"
+          queueItem: "queueItem"
+          buildable: true
+          firstBuild:
+            queueId: 5
+            displayName: "displayName"
+            keepLog: true
+            description: "description"
+            fullDisplayName: "fullDisplayName"
+            estimatedDuration: 5
+            url: "url"
+            building: true
+            changeSet:
+              kind: "kind"
+              _class: "_class"
+            duration: 1
+            result: "result"
+            number: 6
+            executor: "executor"
+            builtOn: "builtOn"
+            _class: "_class"
+            id: "id"
+            actions:
+            - causes:
+              - _class: "_class"
+                shortDescription: "shortDescription"
+                userName: "userName"
+                userId: "userId"
+              - _class: "_class"
+                shortDescription: "shortDescription"
+                userName: "userName"
+                userId: "userId"
+              _class: "_class"
+            - causes:
+              - _class: "_class"
+                shortDescription: "shortDescription"
+                userName: "userName"
+                userId: "userId"
+              - _class: "_class"
+                shortDescription: "shortDescription"
+                userName: "userName"
+                userId: "userId"
+              _class: "_class"
+            timestamp: 2
+          lastFailedBuild: "lastFailedBuild"
+          lastBuild:
+            queueId: 5
+            displayName: "displayName"
+            keepLog: true
+            description: "description"
+            fullDisplayName: "fullDisplayName"
+            estimatedDuration: 5
+            url: "url"
+            building: true
+            changeSet:
+              kind: "kind"
+              _class: "_class"
+            duration: 1
+            result: "result"
+            number: 6
+            executor: "executor"
+            builtOn: "builtOn"
+            _class: "_class"
+            id: "id"
+            actions:
+            - causes:
+              - _class: "_class"
+                shortDescription: "shortDescription"
+                userName: "userName"
+                userId: "userId"
+              - _class: "_class"
+                shortDescription: "shortDescription"
+                userName: "userName"
+                userId: "userId"
+              _class: "_class"
+            - causes:
+              - _class: "_class"
+                shortDescription: "shortDescription"
+                userName: "userName"
+                userId: "userId"
+              - _class: "_class"
+                shortDescription: "shortDescription"
+                userName: "userName"
+                userId: "userId"
+              _class: "_class"
+            timestamp: 2
+          nextBuildNumber: 9
+          builds:
+          - queueId: 5
+            displayName: "displayName"
+            keepLog: true
+            description: "description"
+            fullDisplayName: "fullDisplayName"
+            estimatedDuration: 5
+            url: "url"
+            building: true
+            changeSet:
+              kind: "kind"
+              _class: "_class"
+            duration: 1
+            result: "result"
+            number: 6
+            executor: "executor"
+            builtOn: "builtOn"
+            _class: "_class"
+            id: "id"
+            actions:
+            - causes:
+              - _class: "_class"
+                shortDescription: "shortDescription"
+                userName: "userName"
+                userId: "userId"
+              - _class: "_class"
+                shortDescription: "shortDescription"
+                userName: "userName"
+                userId: "userId"
+              _class: "_class"
+            - causes:
+              - _class: "_class"
+                shortDescription: "shortDescription"
+                userName: "userName"
+                userId: "userId"
+              - _class: "_class"
+                shortDescription: "shortDescription"
+                userName: "userName"
+                userId: "userId"
+              _class: "_class"
+            timestamp: 2
+          - queueId: 5
+            displayName: "displayName"
+            keepLog: true
+            description: "description"
+            fullDisplayName: "fullDisplayName"
+            estimatedDuration: 5
+            url: "url"
+            building: true
+            changeSet:
+              kind: "kind"
+              _class: "_class"
+            duration: 1
+            result: "result"
+            number: 6
+            executor: "executor"
+            builtOn: "builtOn"
+            _class: "_class"
+            id: "id"
+            actions:
+            - causes:
+              - _class: "_class"
+                shortDescription: "shortDescription"
+                userName: "userName"
+                userId: "userId"
+              - _class: "_class"
+                shortDescription: "shortDescription"
+                userName: "userName"
+                userId: "userId"
+              _class: "_class"
+            - causes:
+              - _class: "_class"
+                shortDescription: "shortDescription"
+                userName: "userName"
+                userId: "userId"
+              - _class: "_class"
+                shortDescription: "shortDescription"
+                userName: "userName"
+                userId: "userId"
+              _class: "_class"
+            timestamp: 2
+          scm:
+            _class: "_class"
+          keepDependencies: true
+          displayNameOrNull: "displayNameOrNull"
+          inQueue: true
+          lastCompletedBuild:
+            queueId: 5
+            displayName: "displayName"
+            keepLog: true
+            description: "description"
+            fullDisplayName: "fullDisplayName"
+            estimatedDuration: 5
+            url: "url"
+            building: true
+            changeSet:
+              kind: "kind"
+              _class: "_class"
+            duration: 1
+            result: "result"
+            number: 6
+            executor: "executor"
+            builtOn: "builtOn"
+            _class: "_class"
+            id: "id"
+            actions:
+            - causes:
+              - _class: "_class"
+                shortDescription: "shortDescription"
+                userName: "userName"
+                userId: "userId"
+              - _class: "_class"
+                shortDescription: "shortDescription"
+                userName: "userName"
+                userId: "userId"
+              _class: "_class"
+            - causes:
+              - _class: "_class"
+                shortDescription: "shortDescription"
+                userName: "userName"
+                userId: "userId"
+              - _class: "_class"
+                shortDescription: "shortDescription"
+                userName: "userName"
+                userId: "userId"
+              _class: "_class"
+            timestamp: 2
+          fullName: "fullName"
+          healthReport:
+          - score: 7
+            description: "description"
+            iconClassName: "iconClassName"
+            iconUrl: "iconUrl"
+            _class: "_class"
+          - score: 7
+            description: "description"
+            iconClassName: "iconClassName"
+            iconUrl: "iconUrl"
+            _class: "_class"
+          lastStableBuild:
+            queueId: 5
+            displayName: "displayName"
+            keepLog: true
+            description: "description"
+            fullDisplayName: "fullDisplayName"
+            estimatedDuration: 5
+            url: "url"
+            building: true
+            changeSet:
+              kind: "kind"
+              _class: "_class"
+            duration: 1
+            result: "result"
+            number: 6
+            executor: "executor"
+            builtOn: "builtOn"
+            _class: "_class"
+            id: "id"
+            actions:
+            - causes:
+              - _class: "_class"
+                shortDescription: "shortDescription"
+                userName: "userName"
+                userId: "userId"
+              - _class: "_class"
+                shortDescription: "shortDescription"
+                userName: "userName"
+                userId: "userId"
+              _class: "_class"
+            - causes:
+              - _class: "_class"
+                shortDescription: "shortDescription"
+                userName: "userName"
+                userId: "userId"
+              - _class: "_class"
+                shortDescription: "shortDescription"
+                userName: "userName"
+                userId: "userId"
+              _class: "_class"
+            timestamp: 2
+          lastUnsuccessfulBuild: "lastUnsuccessfulBuild"
+          url: "url"
+          concurrentBuild: true
+          name: "name"
+          _class: "_class"
+          actions:
+          - _class: "_class"
+          - _class: "_class"
+        blocked: true
+        stuck: true
+        buildableStartMilliseconds: 1
+        why: "why"
+        _class: "_class"
+        id: 0
+        buildable: true
+        params: "params"
+        actions:
+        - causes:
+          - _class: "_class"
+            shortDescription: "shortDescription"
+            userName: "userName"
+            userId: "userId"
+          - _class: "_class"
+            shortDescription: "shortDescription"
+            userName: "userName"
+            userId: "userId"
+          _class: "_class"
+        - causes:
+          - _class: "_class"
+            shortDescription: "shortDescription"
+            userName: "userName"
+            userId: "userId"
+          - _class: "_class"
+            shortDescription: "shortDescription"
+            userName: "userName"
+            userId: "userId"
+          _class: "_class"
+        url: "url"
+        inQueueSince: 6
+  QueueLeftItem:
     type: "object"
     properties:
       _class:
@@ -1422,7 +4952,7 @@ definitions:
       actions:
         type: "array"
         items:
-          $ref: "#/definitions/hudsonmodelCauseAction"
+          $ref: "#/definitions/CauseAction"
       blocked:
         type: "boolean"
       buildable:
@@ -1436,7 +4966,7 @@ definitions:
       stuck:
         type: "boolean"
       task:
-        $ref: "#/definitions/hudsonmodelFreeStyleProject"
+        $ref: "#/definitions/FreeStyleProject"
       url:
         type: "string"
       why:
@@ -1444,8 +4974,8 @@ definitions:
       cancelled:
         type: "boolean"
       executable:
-        $ref: "#/definitions/hudsonmodelFreeStyleBuild"
-  hudsonmodelListView:
+        $ref: "#/definitions/FreeStyleBuild"
+  ListView:
     type: "object"
     properties:
       _class:
@@ -1455,62 +4985,711 @@ definitions:
       jobs:
         type: "array"
         items:
-          $ref: "#/definitions/hudsonmodelFreeStyleProject"
+          $ref: "#/definitions/FreeStyleProject"
       name:
         type: "string"
       url:
         type: "string"
-  iojenkinsblueoceanresthalLink:
+    example:
+      jobs:
+      - color: "color"
+        displayName: "displayName"
+        lastSuccessfulBuild:
+          queueId: 5
+          displayName: "displayName"
+          keepLog: true
+          description: "description"
+          fullDisplayName: "fullDisplayName"
+          estimatedDuration: 5
+          url: "url"
+          building: true
+          changeSet:
+            kind: "kind"
+            _class: "_class"
+          duration: 1
+          result: "result"
+          number: 6
+          executor: "executor"
+          builtOn: "builtOn"
+          _class: "_class"
+          id: "id"
+          actions:
+          - causes:
+            - _class: "_class"
+              shortDescription: "shortDescription"
+              userName: "userName"
+              userId: "userId"
+            - _class: "_class"
+              shortDescription: "shortDescription"
+              userName: "userName"
+              userId: "userId"
+            _class: "_class"
+          - causes:
+            - _class: "_class"
+              shortDescription: "shortDescription"
+              userName: "userName"
+              userId: "userId"
+            - _class: "_class"
+              shortDescription: "shortDescription"
+              userName: "userName"
+              userId: "userId"
+            _class: "_class"
+          timestamp: 2
+        description: "description"
+        fullDisplayName: "fullDisplayName"
+        lastUnstableBuild: "lastUnstableBuild"
+        queueItem: "queueItem"
+        buildable: true
+        firstBuild:
+          queueId: 5
+          displayName: "displayName"
+          keepLog: true
+          description: "description"
+          fullDisplayName: "fullDisplayName"
+          estimatedDuration: 5
+          url: "url"
+          building: true
+          changeSet:
+            kind: "kind"
+            _class: "_class"
+          duration: 1
+          result: "result"
+          number: 6
+          executor: "executor"
+          builtOn: "builtOn"
+          _class: "_class"
+          id: "id"
+          actions:
+          - causes:
+            - _class: "_class"
+              shortDescription: "shortDescription"
+              userName: "userName"
+              userId: "userId"
+            - _class: "_class"
+              shortDescription: "shortDescription"
+              userName: "userName"
+              userId: "userId"
+            _class: "_class"
+          - causes:
+            - _class: "_class"
+              shortDescription: "shortDescription"
+              userName: "userName"
+              userId: "userId"
+            - _class: "_class"
+              shortDescription: "shortDescription"
+              userName: "userName"
+              userId: "userId"
+            _class: "_class"
+          timestamp: 2
+        lastFailedBuild: "lastFailedBuild"
+        lastBuild:
+          queueId: 5
+          displayName: "displayName"
+          keepLog: true
+          description: "description"
+          fullDisplayName: "fullDisplayName"
+          estimatedDuration: 5
+          url: "url"
+          building: true
+          changeSet:
+            kind: "kind"
+            _class: "_class"
+          duration: 1
+          result: "result"
+          number: 6
+          executor: "executor"
+          builtOn: "builtOn"
+          _class: "_class"
+          id: "id"
+          actions:
+          - causes:
+            - _class: "_class"
+              shortDescription: "shortDescription"
+              userName: "userName"
+              userId: "userId"
+            - _class: "_class"
+              shortDescription: "shortDescription"
+              userName: "userName"
+              userId: "userId"
+            _class: "_class"
+          - causes:
+            - _class: "_class"
+              shortDescription: "shortDescription"
+              userName: "userName"
+              userId: "userId"
+            - _class: "_class"
+              shortDescription: "shortDescription"
+              userName: "userName"
+              userId: "userId"
+            _class: "_class"
+          timestamp: 2
+        nextBuildNumber: 9
+        builds:
+        - queueId: 5
+          displayName: "displayName"
+          keepLog: true
+          description: "description"
+          fullDisplayName: "fullDisplayName"
+          estimatedDuration: 5
+          url: "url"
+          building: true
+          changeSet:
+            kind: "kind"
+            _class: "_class"
+          duration: 1
+          result: "result"
+          number: 6
+          executor: "executor"
+          builtOn: "builtOn"
+          _class: "_class"
+          id: "id"
+          actions:
+          - causes:
+            - _class: "_class"
+              shortDescription: "shortDescription"
+              userName: "userName"
+              userId: "userId"
+            - _class: "_class"
+              shortDescription: "shortDescription"
+              userName: "userName"
+              userId: "userId"
+            _class: "_class"
+          - causes:
+            - _class: "_class"
+              shortDescription: "shortDescription"
+              userName: "userName"
+              userId: "userId"
+            - _class: "_class"
+              shortDescription: "shortDescription"
+              userName: "userName"
+              userId: "userId"
+            _class: "_class"
+          timestamp: 2
+        - queueId: 5
+          displayName: "displayName"
+          keepLog: true
+          description: "description"
+          fullDisplayName: "fullDisplayName"
+          estimatedDuration: 5
+          url: "url"
+          building: true
+          changeSet:
+            kind: "kind"
+            _class: "_class"
+          duration: 1
+          result: "result"
+          number: 6
+          executor: "executor"
+          builtOn: "builtOn"
+          _class: "_class"
+          id: "id"
+          actions:
+          - causes:
+            - _class: "_class"
+              shortDescription: "shortDescription"
+              userName: "userName"
+              userId: "userId"
+            - _class: "_class"
+              shortDescription: "shortDescription"
+              userName: "userName"
+              userId: "userId"
+            _class: "_class"
+          - causes:
+            - _class: "_class"
+              shortDescription: "shortDescription"
+              userName: "userName"
+              userId: "userId"
+            - _class: "_class"
+              shortDescription: "shortDescription"
+              userName: "userName"
+              userId: "userId"
+            _class: "_class"
+          timestamp: 2
+        scm:
+          _class: "_class"
+        keepDependencies: true
+        displayNameOrNull: "displayNameOrNull"
+        inQueue: true
+        lastCompletedBuild:
+          queueId: 5
+          displayName: "displayName"
+          keepLog: true
+          description: "description"
+          fullDisplayName: "fullDisplayName"
+          estimatedDuration: 5
+          url: "url"
+          building: true
+          changeSet:
+            kind: "kind"
+            _class: "_class"
+          duration: 1
+          result: "result"
+          number: 6
+          executor: "executor"
+          builtOn: "builtOn"
+          _class: "_class"
+          id: "id"
+          actions:
+          - causes:
+            - _class: "_class"
+              shortDescription: "shortDescription"
+              userName: "userName"
+              userId: "userId"
+            - _class: "_class"
+              shortDescription: "shortDescription"
+              userName: "userName"
+              userId: "userId"
+            _class: "_class"
+          - causes:
+            - _class: "_class"
+              shortDescription: "shortDescription"
+              userName: "userName"
+              userId: "userId"
+            - _class: "_class"
+              shortDescription: "shortDescription"
+              userName: "userName"
+              userId: "userId"
+            _class: "_class"
+          timestamp: 2
+        fullName: "fullName"
+        healthReport:
+        - score: 7
+          description: "description"
+          iconClassName: "iconClassName"
+          iconUrl: "iconUrl"
+          _class: "_class"
+        - score: 7
+          description: "description"
+          iconClassName: "iconClassName"
+          iconUrl: "iconUrl"
+          _class: "_class"
+        lastStableBuild:
+          queueId: 5
+          displayName: "displayName"
+          keepLog: true
+          description: "description"
+          fullDisplayName: "fullDisplayName"
+          estimatedDuration: 5
+          url: "url"
+          building: true
+          changeSet:
+            kind: "kind"
+            _class: "_class"
+          duration: 1
+          result: "result"
+          number: 6
+          executor: "executor"
+          builtOn: "builtOn"
+          _class: "_class"
+          id: "id"
+          actions:
+          - causes:
+            - _class: "_class"
+              shortDescription: "shortDescription"
+              userName: "userName"
+              userId: "userId"
+            - _class: "_class"
+              shortDescription: "shortDescription"
+              userName: "userName"
+              userId: "userId"
+            _class: "_class"
+          - causes:
+            - _class: "_class"
+              shortDescription: "shortDescription"
+              userName: "userName"
+              userId: "userId"
+            - _class: "_class"
+              shortDescription: "shortDescription"
+              userName: "userName"
+              userId: "userId"
+            _class: "_class"
+          timestamp: 2
+        lastUnsuccessfulBuild: "lastUnsuccessfulBuild"
+        url: "url"
+        concurrentBuild: true
+        name: "name"
+        _class: "_class"
+        actions:
+        - _class: "_class"
+        - _class: "_class"
+      - color: "color"
+        displayName: "displayName"
+        lastSuccessfulBuild:
+          queueId: 5
+          displayName: "displayName"
+          keepLog: true
+          description: "description"
+          fullDisplayName: "fullDisplayName"
+          estimatedDuration: 5
+          url: "url"
+          building: true
+          changeSet:
+            kind: "kind"
+            _class: "_class"
+          duration: 1
+          result: "result"
+          number: 6
+          executor: "executor"
+          builtOn: "builtOn"
+          _class: "_class"
+          id: "id"
+          actions:
+          - causes:
+            - _class: "_class"
+              shortDescription: "shortDescription"
+              userName: "userName"
+              userId: "userId"
+            - _class: "_class"
+              shortDescription: "shortDescription"
+              userName: "userName"
+              userId: "userId"
+            _class: "_class"
+          - causes:
+            - _class: "_class"
+              shortDescription: "shortDescription"
+              userName: "userName"
+              userId: "userId"
+            - _class: "_class"
+              shortDescription: "shortDescription"
+              userName: "userName"
+              userId: "userId"
+            _class: "_class"
+          timestamp: 2
+        description: "description"
+        fullDisplayName: "fullDisplayName"
+        lastUnstableBuild: "lastUnstableBuild"
+        queueItem: "queueItem"
+        buildable: true
+        firstBuild:
+          queueId: 5
+          displayName: "displayName"
+          keepLog: true
+          description: "description"
+          fullDisplayName: "fullDisplayName"
+          estimatedDuration: 5
+          url: "url"
+          building: true
+          changeSet:
+            kind: "kind"
+            _class: "_class"
+          duration: 1
+          result: "result"
+          number: 6
+          executor: "executor"
+          builtOn: "builtOn"
+          _class: "_class"
+          id: "id"
+          actions:
+          - causes:
+            - _class: "_class"
+              shortDescription: "shortDescription"
+              userName: "userName"
+              userId: "userId"
+            - _class: "_class"
+              shortDescription: "shortDescription"
+              userName: "userName"
+              userId: "userId"
+            _class: "_class"
+          - causes:
+            - _class: "_class"
+              shortDescription: "shortDescription"
+              userName: "userName"
+              userId: "userId"
+            - _class: "_class"
+              shortDescription: "shortDescription"
+              userName: "userName"
+              userId: "userId"
+            _class: "_class"
+          timestamp: 2
+        lastFailedBuild: "lastFailedBuild"
+        lastBuild:
+          queueId: 5
+          displayName: "displayName"
+          keepLog: true
+          description: "description"
+          fullDisplayName: "fullDisplayName"
+          estimatedDuration: 5
+          url: "url"
+          building: true
+          changeSet:
+            kind: "kind"
+            _class: "_class"
+          duration: 1
+          result: "result"
+          number: 6
+          executor: "executor"
+          builtOn: "builtOn"
+          _class: "_class"
+          id: "id"
+          actions:
+          - causes:
+            - _class: "_class"
+              shortDescription: "shortDescription"
+              userName: "userName"
+              userId: "userId"
+            - _class: "_class"
+              shortDescription: "shortDescription"
+              userName: "userName"
+              userId: "userId"
+            _class: "_class"
+          - causes:
+            - _class: "_class"
+              shortDescription: "shortDescription"
+              userName: "userName"
+              userId: "userId"
+            - _class: "_class"
+              shortDescription: "shortDescription"
+              userName: "userName"
+              userId: "userId"
+            _class: "_class"
+          timestamp: 2
+        nextBuildNumber: 9
+        builds:
+        - queueId: 5
+          displayName: "displayName"
+          keepLog: true
+          description: "description"
+          fullDisplayName: "fullDisplayName"
+          estimatedDuration: 5
+          url: "url"
+          building: true
+          changeSet:
+            kind: "kind"
+            _class: "_class"
+          duration: 1
+          result: "result"
+          number: 6
+          executor: "executor"
+          builtOn: "builtOn"
+          _class: "_class"
+          id: "id"
+          actions:
+          - causes:
+            - _class: "_class"
+              shortDescription: "shortDescription"
+              userName: "userName"
+              userId: "userId"
+            - _class: "_class"
+              shortDescription: "shortDescription"
+              userName: "userName"
+              userId: "userId"
+            _class: "_class"
+          - causes:
+            - _class: "_class"
+              shortDescription: "shortDescription"
+              userName: "userName"
+              userId: "userId"
+            - _class: "_class"
+              shortDescription: "shortDescription"
+              userName: "userName"
+              userId: "userId"
+            _class: "_class"
+          timestamp: 2
+        - queueId: 5
+          displayName: "displayName"
+          keepLog: true
+          description: "description"
+          fullDisplayName: "fullDisplayName"
+          estimatedDuration: 5
+          url: "url"
+          building: true
+          changeSet:
+            kind: "kind"
+            _class: "_class"
+          duration: 1
+          result: "result"
+          number: 6
+          executor: "executor"
+          builtOn: "builtOn"
+          _class: "_class"
+          id: "id"
+          actions:
+          - causes:
+            - _class: "_class"
+              shortDescription: "shortDescription"
+              userName: "userName"
+              userId: "userId"
+            - _class: "_class"
+              shortDescription: "shortDescription"
+              userName: "userName"
+              userId: "userId"
+            _class: "_class"
+          - causes:
+            - _class: "_class"
+              shortDescription: "shortDescription"
+              userName: "userName"
+              userId: "userId"
+            - _class: "_class"
+              shortDescription: "shortDescription"
+              userName: "userName"
+              userId: "userId"
+            _class: "_class"
+          timestamp: 2
+        scm:
+          _class: "_class"
+        keepDependencies: true
+        displayNameOrNull: "displayNameOrNull"
+        inQueue: true
+        lastCompletedBuild:
+          queueId: 5
+          displayName: "displayName"
+          keepLog: true
+          description: "description"
+          fullDisplayName: "fullDisplayName"
+          estimatedDuration: 5
+          url: "url"
+          building: true
+          changeSet:
+            kind: "kind"
+            _class: "_class"
+          duration: 1
+          result: "result"
+          number: 6
+          executor: "executor"
+          builtOn: "builtOn"
+          _class: "_class"
+          id: "id"
+          actions:
+          - causes:
+            - _class: "_class"
+              shortDescription: "shortDescription"
+              userName: "userName"
+              userId: "userId"
+            - _class: "_class"
+              shortDescription: "shortDescription"
+              userName: "userName"
+              userId: "userId"
+            _class: "_class"
+          - causes:
+            - _class: "_class"
+              shortDescription: "shortDescription"
+              userName: "userName"
+              userId: "userId"
+            - _class: "_class"
+              shortDescription: "shortDescription"
+              userName: "userName"
+              userId: "userId"
+            _class: "_class"
+          timestamp: 2
+        fullName: "fullName"
+        healthReport:
+        - score: 7
+          description: "description"
+          iconClassName: "iconClassName"
+          iconUrl: "iconUrl"
+          _class: "_class"
+        - score: 7
+          description: "description"
+          iconClassName: "iconClassName"
+          iconUrl: "iconUrl"
+          _class: "_class"
+        lastStableBuild:
+          queueId: 5
+          displayName: "displayName"
+          keepLog: true
+          description: "description"
+          fullDisplayName: "fullDisplayName"
+          estimatedDuration: 5
+          url: "url"
+          building: true
+          changeSet:
+            kind: "kind"
+            _class: "_class"
+          duration: 1
+          result: "result"
+          number: 6
+          executor: "executor"
+          builtOn: "builtOn"
+          _class: "_class"
+          id: "id"
+          actions:
+          - causes:
+            - _class: "_class"
+              shortDescription: "shortDescription"
+              userName: "userName"
+              userId: "userId"
+            - _class: "_class"
+              shortDescription: "shortDescription"
+              userName: "userName"
+              userId: "userId"
+            _class: "_class"
+          - causes:
+            - _class: "_class"
+              shortDescription: "shortDescription"
+              userName: "userName"
+              userId: "userId"
+            - _class: "_class"
+              shortDescription: "shortDescription"
+              userName: "userName"
+              userId: "userId"
+            _class: "_class"
+          timestamp: 2
+        lastUnsuccessfulBuild: "lastUnsuccessfulBuild"
+        url: "url"
+        concurrentBuild: true
+        name: "name"
+        _class: "_class"
+        actions:
+        - _class: "_class"
+        - _class: "_class"
+      name: "name"
+      description: "description"
+      _class: "_class"
+      url: "url"
+  Link:
     type: "object"
     properties:
       _class:
         type: "string"
       href:
         type: "string"
-  iojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1__links:
+    example:
+      _class: "_class"
+      href: "href"
+  ExtensionClassContainerImpl1links:
     type: "object"
     properties:
       self:
-        $ref: "#/definitions/iojenkinsblueoceanresthalLink"
+        $ref: "#/definitions/Link"
       _class:
         type: "string"
-  iojenkinsblueoceanserviceembeddedrestExtensionClassImpl__links:
+  ExtensionClassImpllinks:
     type: "object"
     properties:
       self:
-        $ref: "#/definitions/iojenkinsblueoceanresthalLink"
+        $ref: "#/definitions/Link"
       _class:
         type: "string"
-  iojenkinsblueoceanserviceembeddedrestExtensionClassImpl:
+  ExtensionClassImpl:
     type: "object"
     properties:
       _class:
         type: "string"
       _links:
-        $ref: "#/definitions/iojenkinsblueoceanserviceembeddedrestExtensionClassImpl__links"
+        $ref: "#/definitions/ExtensionClassImpllinks"
       classes:
         type: "array"
         items:
           type: "string"
-  iojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1_map:
+  ExtensionClassContainerImpl1map:
     type: "object"
     properties:
       io.jenkins.blueocean.service.embedded.rest.PipelineImpl:
-        $ref: "#/definitions/iojenkinsblueoceanserviceembeddedrestExtensionClassImpl"
+        $ref: "#/definitions/ExtensionClassImpl"
       io.jenkins.blueocean.service.embedded.rest.MultiBranchPipelineImpl:
-        $ref: "#/definitions/iojenkinsblueoceanserviceembeddedrestExtensionClassImpl"
+        $ref: "#/definitions/ExtensionClassImpl"
       _class:
         type: "string"
-  iojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1:
+  ExtensionClassContainerImpl1:
     type: "object"
     properties:
       _class:
         type: "string"
       _links:
-        $ref: "#/definitions/iojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1__links"
+        $ref: "#/definitions/ExtensionClassContainerImpl1links"
       map:
-        $ref: "#/definitions/iojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1_map"
-  getClassesByClass:
+        $ref: "#/definitions/ExtensionClassContainerImpl1map"
+  ClassesByClass:
     type: "object"
     properties:
       classes:
@@ -1519,7 +5698,7 @@ definitions:
           type: "string"
       _class:
         type: "string"
-  getMultibranchPipeline:
+  MultibranchPipeline:
     type: "object"
     properties:
       displayName:
@@ -1552,7 +5731,24 @@ definitions:
         type: "integer"
       _class:
         type: "string"
-  iojenkinsblueoceanserviceembeddedrestPipelineImpl:
+    example:
+      weatherScore: 6
+      latestRun: "latestRun"
+      displayName: "displayName"
+      totalNumberOfPullRequests: 9
+      numberOfFailingPullRequests: 5
+      branchNames:
+      - "branchNames"
+      - "branchNames"
+      organization: "organization"
+      totalNumberOfBranches: 7
+      estimatedDurationInMillis: 0
+      name: "name"
+      numberOfSuccessfulPullRequests: 2
+      numberOfSuccessfulBranches: 5
+      numberOfFailingBranches: 1
+      _class: "_class"
+  PipelineImpl:
     type: "object"
     properties:
       _class:
@@ -1571,18 +5767,46 @@ definitions:
         type: "string"
       weatherScore:
         type: "integer"
-  swaggyjenkinsOrganisation:
+      _links:
+        $ref: "#/definitions/PipelineImpllinks"
+    example:
+      weatherScore: 6
+      latestRun: "latestRun"
+      _links:
+        self:
+          _class: "_class"
+          href: "href"
+        _class: "_class"
+        runs:
+          _class: "_class"
+          href: "href"
+        actions:
+          _class: "_class"
+          href: "href"
+        queue:
+          _class: "_class"
+          href: "href"
+      displayName: "displayName"
+      organization: "organization"
+      estimatedDurationInMillis: 0
+      name: "name"
+      fullName: "fullName"
+      _class: "_class"
+  Organisation:
     type: "object"
     properties:
       _class:
         type: "string"
       name:
         type: "string"
-  getOrganisations:
+    example:
+      name: "name"
+      _class: "_class"
+  Organisations:
     type: "array"
     items:
-      $ref: "#/definitions/swaggyjenkinsOrganisation"
-  swaggyjenkinsPipeline_latestRunartifacts:
+      $ref: "#/definitions/Organisation"
+  PipelinelatestRunartifacts:
     type: "object"
     properties:
       name:
@@ -1593,13 +5817,18 @@ definitions:
         type: "string"
       _class:
         type: "string"
-  swaggyjenkinsPipeline_latestRun:
+    example:
+      size: 1
+      name: "name"
+      _class: "_class"
+      url: "url"
+  PipelinelatestRun:
     type: "object"
     properties:
       artifacts:
         type: "array"
         items:
-          $ref: "#/definitions/swaggyjenkinsPipeline_latestRunartifacts"
+          $ref: "#/definitions/PipelinelatestRunartifacts"
       durationInMillis:
         type: "integer"
       estimatedDurationInMillis:
@@ -1628,7 +5857,31 @@ definitions:
         type: "string"
       _class:
         type: "string"
-  swaggyjenkinsPipeline:
+    example:
+      runSummary: "runSummary"
+      durationInMillis: 5
+      commitId: "commitId"
+      type: "type"
+      pipeline: "pipeline"
+      result: "result"
+      organization: "organization"
+      estimatedDurationInMillis: 5
+      enQueueTime: "enQueueTime"
+      startTime: "startTime"
+      endTime: "endTime"
+      id: "id"
+      state: "state"
+      _class: "_class"
+      artifacts:
+      - size: 1
+        name: "name"
+        _class: "_class"
+        url: "url"
+      - size: 1
+        name: "name"
+        _class: "_class"
+        url: "url"
+  Pipeline:
     type: "object"
     properties:
       _class:
@@ -1646,8 +5899,90 @@ definitions:
       estimatedDurationInMillis:
         type: "integer"
       latestRun:
-        $ref: "#/definitions/swaggyjenkinsPipeline_latestRun"
-  hudsonmodelStringParameterValue:
+        $ref: "#/definitions/PipelinelatestRun"
+    example:
+      weatherScore: 0
+      latestRun:
+        runSummary: "runSummary"
+        durationInMillis: 5
+        commitId: "commitId"
+        type: "type"
+        pipeline: "pipeline"
+        result: "result"
+        organization: "organization"
+        estimatedDurationInMillis: 5
+        enQueueTime: "enQueueTime"
+        startTime: "startTime"
+        endTime: "endTime"
+        id: "id"
+        state: "state"
+        _class: "_class"
+        artifacts:
+        - size: 1
+          name: "name"
+          _class: "_class"
+          url: "url"
+        - size: 1
+          name: "name"
+          _class: "_class"
+          url: "url"
+      displayName: "displayName"
+      organization: "organization"
+      name: "name"
+      estimatedDurationInMillis: 6
+      fullName: "fullName"
+      _class: "_class"
+  PipelineActivityartifacts:
+    type: "object"
+    properties:
+      name:
+        type: "string"
+      size:
+        type: "integer"
+      url:
+        type: "string"
+      _class:
+        type: "string"
+  PipelineActivity:
+    type: "object"
+    properties:
+      _class:
+        type: "string"
+      artifacts:
+        type: "array"
+        items:
+          $ref: "#/definitions/PipelineActivityartifacts"
+      durationInMillis:
+        type: "integer"
+      estimatedDurationInMillis:
+        type: "integer"
+      enQueueTime:
+        type: "string"
+      endTime:
+        type: "string"
+      id:
+        type: "string"
+      organization:
+        type: "string"
+      pipeline:
+        type: "string"
+      result:
+        type: "string"
+      runSummary:
+        type: "string"
+      startTime:
+        type: "string"
+      state:
+        type: "string"
+      type:
+        type: "string"
+      commitId:
+        type: "string"
+  PipelineActivities:
+    type: "array"
+    items:
+      $ref: "#/definitions/PipelineActivity"
+  StringParameterValue:
     type: "object"
     properties:
       _class:
@@ -1656,20 +5991,33 @@ definitions:
         type: "string"
       value:
         type: "string"
-  hudsonmodelStringParameterDefinition:
+    example:
+      name: "name"
+      _class: "_class"
+      value: "value"
+  StringParameterDefinition:
     type: "object"
     properties:
       _class:
         type: "string"
       defaultParameterValue:
-        $ref: "#/definitions/hudsonmodelStringParameterValue"
+        $ref: "#/definitions/StringParameterValue"
       description:
         type: "string"
       name:
         type: "string"
       type:
         type: "string"
-  iojenkinsblueoceanrestimplpipelineBranchImpl_permissions:
+    example:
+      name: "name"
+      description: "description"
+      _class: "_class"
+      type: "type"
+      defaultParameterValue:
+        name: "name"
+        _class: "_class"
+        value: "value"
+  BranchImplpermissions:
     type: "object"
     properties:
       create:
@@ -1682,7 +6030,13 @@ definitions:
         type: "boolean"
       _class:
         type: "string"
-  iojenkinsblueoceanrestimplpipelineBranchImpl:
+    example:
+      read: true
+      stop: true
+      start: true
+      create: true
+      _class: "_class"
+  BranchImpl:
     type: "object"
     properties:
       _class:
@@ -1702,14 +6056,97 @@ definitions:
       parameters:
         type: "array"
         items:
-          $ref: "#/definitions/hudsonmodelStringParameterDefinition"
+          $ref: "#/definitions/StringParameterDefinition"
       permissions:
-        $ref: "#/definitions/iojenkinsblueoceanrestimplpipelineBranchImpl_permissions"
+        $ref: "#/definitions/BranchImplpermissions"
       weatherScore:
         type: "integer"
       pullRequest:
         type: "string"
-  getPipelineBranchesitem_latestRun:
+      _links:
+        $ref: "#/definitions/BranchImpllinks"
+      latestRun:
+        $ref: "#/definitions/PipelineRunImpl"
+    example:
+      weatherScore: 6
+      latestRun:
+        runSummary: "runSummary"
+        _links:
+          nodes:
+            _class: "_class"
+            href: "href"
+          log:
+            _class: "_class"
+            href: "href"
+          self:
+            _class: "_class"
+            href: "href"
+          _class: "_class"
+          actions:
+            _class: "_class"
+            href: "href"
+          steps:
+            _class: "_class"
+            href: "href"
+        durationInMillis: 1
+        commitId: "commitId"
+        type: "type"
+        pipeline: "pipeline"
+        result: "result"
+        organization: "organization"
+        enQueueTime: "enQueueTime"
+        estimatedDurationInMillis: 5
+        startTime: "startTime"
+        _class: "_class"
+        endTime: "endTime"
+        id: "id"
+        state: "state"
+      _links:
+        self:
+          _class: "_class"
+          href: "href"
+        _class: "_class"
+        actions:
+          _class: "_class"
+          href: "href"
+        runs:
+          _class: "_class"
+          href: "href"
+        queue:
+          _class: "_class"
+          href: "href"
+      displayName: "displayName"
+      fullDisplayName: "fullDisplayName"
+      fullName: "fullName"
+      pullRequest: "pullRequest"
+      permissions:
+        read: true
+        stop: true
+        start: true
+        create: true
+        _class: "_class"
+      organization: "organization"
+      estimatedDurationInMillis: 0
+      name: "name"
+      _class: "_class"
+      parameters:
+      - name: "name"
+        description: "description"
+        _class: "_class"
+        type: "type"
+        defaultParameterValue:
+          name: "name"
+          _class: "_class"
+          value: "value"
+      - name: "name"
+        description: "description"
+        _class: "_class"
+        type: "type"
+        defaultParameterValue:
+          name: "name"
+          _class: "_class"
+          value: "value"
+  PipelineBranchesitemlatestRun:
     type: "object"
     properties:
       durationInMillis:
@@ -1740,18 +6177,18 @@ definitions:
         type: "string"
       _class:
         type: "string"
-  getPipelineBranchesitem_pullRequest__links:
+  PipelineBranchesitempullRequestlinks:
     type: "object"
     properties:
       self:
         type: "string"
       _class:
         type: "string"
-  getPipelineBranchesitem_pullRequest:
+  PipelineBranchesitempullRequest:
     type: "object"
     properties:
       _links:
-        $ref: "#/definitions/getPipelineBranchesitem_pullRequest__links"
+        $ref: "#/definitions/PipelineBranchesitempullRequestlinks"
       author:
         type: "string"
       id:
@@ -1762,7 +6199,7 @@ definitions:
         type: "string"
       _class:
         type: "string"
-  getPipelineBranchesitem:
+  PipelineBranchesitem:
     type: "object"
     properties:
       displayName:
@@ -1774,20 +6211,98 @@ definitions:
       weatherScore:
         type: "integer"
       latestRun:
-        $ref: "#/definitions/getPipelineBranchesitem_latestRun"
+        $ref: "#/definitions/PipelineBranchesitemlatestRun"
       organization:
         type: "string"
       pullRequest:
-        $ref: "#/definitions/getPipelineBranchesitem_pullRequest"
+        $ref: "#/definitions/PipelineBranchesitempullRequest"
       totalNumberOfPullRequests:
         type: "integer"
       _class:
         type: "string"
-  getPipelineBranches:
+  PipelineBranches:
     type: "array"
     items:
-      $ref: "#/definitions/getPipelineBranchesitem"
-  iojenkinsblueoceanserviceembeddedrestPipelineFolderImpl:
+      $ref: "#/definitions/PipelineBranchesitem"
+  FavoriteImpllinks:
+    type: "object"
+    properties:
+      self:
+        $ref: "#/definitions/Link"
+      _class:
+        type: "string"
+    example:
+      self:
+        _class: "_class"
+        href: "href"
+      _class: "_class"
+  PipelineImpllinks:
+    type: "object"
+    properties:
+      runs:
+        $ref: "#/definitions/Link"
+      self:
+        $ref: "#/definitions/Link"
+      queue:
+        $ref: "#/definitions/Link"
+      actions:
+        $ref: "#/definitions/Link"
+      _class:
+        type: "string"
+    example:
+      self:
+        _class: "_class"
+        href: "href"
+      _class: "_class"
+      runs:
+        _class: "_class"
+        href: "href"
+      actions:
+        _class: "_class"
+        href: "href"
+      queue:
+        _class: "_class"
+        href: "href"
+  FavoriteImpl:
+    type: "object"
+    properties:
+      _class:
+        type: "string"
+      _links:
+        $ref: "#/definitions/FavoriteImpllinks"
+      item:
+        $ref: "#/definitions/PipelineImpl"
+    example:
+      item:
+        weatherScore: 6
+        latestRun: "latestRun"
+        _links:
+          self:
+            _class: "_class"
+            href: "href"
+          _class: "_class"
+          runs:
+            _class: "_class"
+            href: "href"
+          actions:
+            _class: "_class"
+            href: "href"
+          queue:
+            _class: "_class"
+            href: "href"
+        displayName: "displayName"
+        organization: "organization"
+        estimatedDurationInMillis: 0
+        name: "name"
+        fullName: "fullName"
+        _class: "_class"
+      _links:
+        self:
+          _class: "_class"
+          href: "href"
+        _class: "_class"
+      _class: "_class"
+  PipelineFolderImpl:
     type: "object"
     properties:
       _class:
@@ -1804,11 +6319,495 @@ definitions:
         type: "integer"
       numberOfPipelines:
         type: "integer"
-  getPipelines:
+    example:
+      numberOfPipelines: 6
+      displayName: "displayName"
+      numberOfFolders: 0
+      organization: "organization"
+      name: "name"
+      fullName: "fullName"
+      _class: "_class"
+  QueueItemImpl:
+    type: "object"
+    properties:
+      _class:
+        type: "string"
+      expectedBuildNumber:
+        type: "integer"
+      id:
+        type: "string"
+      pipeline:
+        type: "string"
+      queuedTime:
+        type: "integer"
+    example:
+      pipeline: "pipeline"
+      expectedBuildNumber: 0
+      queuedTime: 6
+      _class: "_class"
+      id: "id"
+  PipelineQueue:
     type: "array"
     items:
-      $ref: "#/definitions/swaggyjenkinsPipeline"
-  swaggyjenkinsUser:
+      $ref: "#/definitions/QueueItemImpl"
+  PipelineRunartifacts:
+    type: "object"
+    properties:
+      name:
+        type: "string"
+      size:
+        type: "integer"
+      url:
+        type: "string"
+      _class:
+        type: "string"
+    example:
+      size: 0
+      name: "name"
+      _class: "_class"
+      url: "url"
+  PipelineRun:
+    type: "object"
+    properties:
+      _class:
+        type: "string"
+      artifacts:
+        type: "array"
+        items:
+          $ref: "#/definitions/PipelineRunartifacts"
+      durationInMillis:
+        type: "integer"
+      estimatedDurationInMillis:
+        type: "integer"
+      enQueueTime:
+        type: "string"
+      endTime:
+        type: "string"
+      id:
+        type: "string"
+      organization:
+        type: "string"
+      pipeline:
+        type: "string"
+      result:
+        type: "string"
+      runSummary:
+        type: "string"
+      startTime:
+        type: "string"
+      state:
+        type: "string"
+      type:
+        type: "string"
+      commitId:
+        type: "string"
+    example:
+      runSummary: "runSummary"
+      durationInMillis: 6
+      commitId: "commitId"
+      type: "type"
+      pipeline: "pipeline"
+      result: "result"
+      organization: "organization"
+      estimatedDurationInMillis: 1
+      enQueueTime: "enQueueTime"
+      startTime: "startTime"
+      _class: "_class"
+      endTime: "endTime"
+      id: "id"
+      state: "state"
+      artifacts:
+      - size: 0
+        name: "name"
+        _class: "_class"
+        url: "url"
+      - size: 0
+        name: "name"
+        _class: "_class"
+        url: "url"
+  PipelineStepImpllinks:
+    type: "object"
+    properties:
+      self:
+        $ref: "#/definitions/Link"
+      actions:
+        $ref: "#/definitions/Link"
+      _class:
+        type: "string"
+    example:
+      self:
+        _class: "_class"
+        href: "href"
+      _class: "_class"
+      actions:
+        _class: "_class"
+        href: "href"
+  InputStepImpllinks:
+    type: "object"
+    properties:
+      self:
+        $ref: "#/definitions/Link"
+      _class:
+        type: "string"
+    example:
+      self:
+        _class: "_class"
+        href: "href"
+      _class: "_class"
+  InputStepImpl:
+    type: "object"
+    properties:
+      _class:
+        type: "string"
+      _links:
+        $ref: "#/definitions/InputStepImpllinks"
+      id:
+        type: "string"
+      message:
+        type: "string"
+      ok:
+        type: "string"
+      parameters:
+        type: "array"
+        items:
+          $ref: "#/definitions/StringParameterDefinition"
+      submitter:
+        type: "string"
+    example:
+      submitter: "submitter"
+      _links:
+        self:
+          _class: "_class"
+          href: "href"
+        _class: "_class"
+      _class: "_class"
+      id: "id"
+      message: "message"
+      ok: "ok"
+      parameters:
+      - name: "name"
+        description: "description"
+        _class: "_class"
+        type: "type"
+        defaultParameterValue:
+          name: "name"
+          _class: "_class"
+          value: "value"
+      - name: "name"
+        description: "description"
+        _class: "_class"
+        type: "type"
+        defaultParameterValue:
+          name: "name"
+          _class: "_class"
+          value: "value"
+  PipelineStepImpl:
+    type: "object"
+    properties:
+      _class:
+        type: "string"
+      _links:
+        $ref: "#/definitions/PipelineStepImpllinks"
+      displayName:
+        type: "string"
+      durationInMillis:
+        type: "integer"
+      id:
+        type: "string"
+      input:
+        $ref: "#/definitions/InputStepImpl"
+      result:
+        type: "string"
+      startTime:
+        type: "string"
+      state:
+        type: "string"
+    example:
+      result: "result"
+      input:
+        submitter: "submitter"
+        _links:
+          self:
+            _class: "_class"
+            href: "href"
+          _class: "_class"
+        _class: "_class"
+        id: "id"
+        message: "message"
+        ok: "ok"
+        parameters:
+        - name: "name"
+          description: "description"
+          _class: "_class"
+          type: "type"
+          defaultParameterValue:
+            name: "name"
+            _class: "_class"
+            value: "value"
+        - name: "name"
+          description: "description"
+          _class: "_class"
+          type: "type"
+          defaultParameterValue:
+            name: "name"
+            _class: "_class"
+            value: "value"
+      _links:
+        self:
+          _class: "_class"
+          href: "href"
+        _class: "_class"
+        actions:
+          _class: "_class"
+          href: "href"
+      durationInMillis: 0
+      displayName: "displayName"
+      startTime: "startTime"
+      _class: "_class"
+      id: "id"
+      state: "state"
+  PipelineRunNodeSteps:
+    type: "array"
+    items:
+      $ref: "#/definitions/PipelineStepImpl"
+  PipelineRunNodeedges:
+    type: "object"
+    properties:
+      id:
+        type: "string"
+      _class:
+        type: "string"
+    example:
+      id: "id"
+      _class: "_class"
+  PipelineRunNode:
+    type: "object"
+    properties:
+      _class:
+        type: "string"
+      displayName:
+        type: "string"
+      durationInMillis:
+        type: "integer"
+      edges:
+        type: "array"
+        items:
+          $ref: "#/definitions/PipelineRunNodeedges"
+      id:
+        type: "string"
+      result:
+        type: "string"
+      startTime:
+        type: "string"
+      state:
+        type: "string"
+    example:
+      result: "result"
+      durationInMillis: 0
+      displayName: "displayName"
+      edges:
+      - id: "id"
+        _class: "_class"
+      - id: "id"
+        _class: "_class"
+      startTime: "startTime"
+      _class: "_class"
+      id: "id"
+      state: "state"
+  PipelineRunNodes:
+    type: "array"
+    items:
+      $ref: "#/definitions/PipelineRunNode"
+  GenericResource:
+    type: "object"
+    properties:
+      _class:
+        type: "string"
+      displayName:
+        type: "string"
+      durationInMillis:
+        type: "integer"
+      id:
+        type: "string"
+      result:
+        type: "string"
+      startTime:
+        type: "string"
+  PipelineRunSteps:
+    type: "array"
+    items:
+      $ref: "#/definitions/GenericResource"
+  PipelineRuns:
+    type: "array"
+    items:
+      $ref: "#/definitions/PipelineRun"
+  Pipelines:
+    type: "array"
+    items:
+      $ref: "#/definitions/Pipeline"
+  GithubScmlinks:
+    type: "object"
+    properties:
+      self:
+        $ref: "#/definitions/Link"
+      _class:
+        type: "string"
+    example:
+      self:
+        _class: "_class"
+        href: "href"
+      _class: "_class"
+  GithubScm:
+    type: "object"
+    properties:
+      _class:
+        type: "string"
+      _links:
+        $ref: "#/definitions/GithubScmlinks"
+      credentialId:
+        type: "string"
+      id:
+        type: "string"
+      uri:
+        type: "string"
+    example:
+      _links:
+        self:
+          _class: "_class"
+          href: "href"
+        _class: "_class"
+      credentialId: "credentialId"
+      _class: "_class"
+      id: "id"
+      uri: "uri"
+  GithubContent:
+    type: "object"
+    properties:
+      name:
+        type: "string"
+      sha:
+        type: "string"
+      _class:
+        type: "string"
+      repo:
+        type: "string"
+      size:
+        type: "integer"
+      owner:
+        type: "string"
+      path:
+        type: "string"
+      base64Data:
+        type: "string"
+  GithubFile:
+    type: "object"
+    properties:
+      content:
+        $ref: "#/definitions/GithubContent"
+      _class:
+        type: "string"
+  GithubRespositoryContainerlinks:
+    type: "object"
+    properties:
+      self:
+        $ref: "#/definitions/Link"
+      _class:
+        type: "string"
+  GithubRepositorieslinks:
+    type: "object"
+    properties:
+      self:
+        $ref: "#/definitions/Link"
+      _class:
+        type: "string"
+  GithubRepositorylinks:
+    type: "object"
+    properties:
+      self:
+        $ref: "#/definitions/Link"
+      _class:
+        type: "string"
+  GithubRepositorypermissions:
+    type: "object"
+    properties:
+      admin:
+        type: "boolean"
+      push:
+        type: "boolean"
+      pull:
+        type: "boolean"
+      _class:
+        type: "string"
+  GithubRepository:
+    type: "object"
+    properties:
+      _class:
+        type: "string"
+      _links:
+        $ref: "#/definitions/GithubRepositorylinks"
+      defaultBranch:
+        type: "string"
+      description:
+        type: "string"
+      name:
+        type: "string"
+      permissions:
+        $ref: "#/definitions/GithubRepositorypermissions"
+      private:
+        type: "boolean"
+      fullName:
+        type: "string"
+  GithubRepositories:
+    type: "object"
+    properties:
+      _class:
+        type: "string"
+      _links:
+        $ref: "#/definitions/GithubRepositorieslinks"
+      items:
+        type: "array"
+        items:
+          $ref: "#/definitions/GithubRepository"
+      lastPage:
+        type: "integer"
+      nextPage:
+        type: "integer"
+      pageSize:
+        type: "integer"
+  GithubRespositoryContainer:
+    type: "object"
+    properties:
+      _class:
+        type: "string"
+      _links:
+        $ref: "#/definitions/GithubRespositoryContainerlinks"
+      repositories:
+        $ref: "#/definitions/GithubRepositories"
+  GithubOrganizationlinks:
+    type: "object"
+    properties:
+      repositories:
+        $ref: "#/definitions/Link"
+      self:
+        $ref: "#/definitions/Link"
+      _class:
+        type: "string"
+  GithubOrganization:
+    type: "object"
+    properties:
+      _class:
+        type: "string"
+      _links:
+        $ref: "#/definitions/GithubOrganizationlinks"
+      jenkinsOrganizationPipeline:
+        type: "boolean"
+      name:
+        type: "string"
+  ScmOrganisations:
+    type: "array"
+    items:
+      $ref: "#/definitions/GithubOrganization"
+  User:
     type: "object"
     properties:
       _class:
@@ -1821,10 +6820,150 @@ definitions:
         type: "string"
       name:
         type: "string"
-  getUsers:
+    example:
+      name: "name"
+      fullName: "fullName"
+      _class: "_class"
+      id: "id"
+      email: "email"
+  BranchImpllinks:
+    type: "object"
+    properties:
+      self:
+        $ref: "#/definitions/Link"
+      actions:
+        $ref: "#/definitions/Link"
+      runs:
+        $ref: "#/definitions/Link"
+      queue:
+        $ref: "#/definitions/Link"
+      _class:
+        type: "string"
+    example:
+      self:
+        _class: "_class"
+        href: "href"
+      _class: "_class"
+      actions:
+        _class: "_class"
+        href: "href"
+      runs:
+        _class: "_class"
+        href: "href"
+      queue:
+        _class: "_class"
+        href: "href"
+  PipelineRunImpllinks:
+    type: "object"
+    properties:
+      nodes:
+        $ref: "#/definitions/Link"
+      log:
+        $ref: "#/definitions/Link"
+      self:
+        $ref: "#/definitions/Link"
+      actions:
+        $ref: "#/definitions/Link"
+      steps:
+        $ref: "#/definitions/Link"
+      _class:
+        type: "string"
+    example:
+      nodes:
+        _class: "_class"
+        href: "href"
+      log:
+        _class: "_class"
+        href: "href"
+      self:
+        _class: "_class"
+        href: "href"
+      _class: "_class"
+      actions:
+        _class: "_class"
+        href: "href"
+      steps:
+        _class: "_class"
+        href: "href"
+  PipelineRunImpl:
+    type: "object"
+    properties:
+      _class:
+        type: "string"
+      _links:
+        $ref: "#/definitions/PipelineRunImpllinks"
+      durationInMillis:
+        type: "integer"
+      enQueueTime:
+        type: "string"
+      endTime:
+        type: "string"
+      estimatedDurationInMillis:
+        type: "integer"
+      id:
+        type: "string"
+      organization:
+        type: "string"
+      pipeline:
+        type: "string"
+      result:
+        type: "string"
+      runSummary:
+        type: "string"
+      startTime:
+        type: "string"
+      state:
+        type: "string"
+      type:
+        type: "string"
+      commitId:
+        type: "string"
+    example:
+      runSummary: "runSummary"
+      _links:
+        nodes:
+          _class: "_class"
+          href: "href"
+        log:
+          _class: "_class"
+          href: "href"
+        self:
+          _class: "_class"
+          href: "href"
+        _class: "_class"
+        actions:
+          _class: "_class"
+          href: "href"
+        steps:
+          _class: "_class"
+          href: "href"
+      durationInMillis: 1
+      commitId: "commitId"
+      type: "type"
+      pipeline: "pipeline"
+      result: "result"
+      organization: "organization"
+      enQueueTime: "enQueueTime"
+      estimatedDurationInMillis: 5
+      startTime: "startTime"
+      _class: "_class"
+      endTime: "endTime"
+      id: "id"
+      state: "state"
+  UserFavorites:
     type: "array"
     items:
-      $ref: "#/definitions/swaggyjenkinsUser"
+      $ref: "#/definitions/FavoriteImpl"
+  Users:
+    type: "array"
+    items:
+      $ref: "#/definitions/User"
+  body:
+    required:
+    - "favorite"
+    properties:
+      favorite:
+        type: "boolean"
 parameters:
   jobName:
     name: "name"
@@ -1845,9 +6984,9 @@ parameters:
     required: false
     type: "string"
   orgName:
-    name: "organisation"
+    name: "organization"
     in: "path"
-    description: "Name of the organisation"
+    description: "Name of the organization"
     required: true
     type: "string"
   pipelineName:
@@ -1860,6 +6999,48 @@ parameters:
     name: "branch"
     in: "path"
     description: "Name of the branch"
+    required: true
+    type: "string"
+  queueItemName:
+    name: "queue"
+    in: "path"
+    description: "Name of the queue item"
+    required: true
+    type: "string"
+  runName:
+    name: "run"
+    in: "path"
+    description: "Name of the run"
+    required: true
+    type: "string"
+  nodeName:
+    name: "node"
+    in: "path"
+    description: "Name of the node"
+    required: true
+    type: "string"
+  stepName:
+    name: "step"
+    in: "path"
+    description: "Name of the step"
+    required: true
+    type: "string"
+  scmName:
+    name: "scm"
+    in: "path"
+    description: "Name of SCM"
+    required: true
+    type: "string"
+  scmOrgName:
+    name: "scmOrganisation"
+    in: "path"
+    description: "Name of the SCM organization"
+    required: true
+    type: "string"
+  repositoryName:
+    name: "repository"
+    in: "path"
+    description: "Name of the SCM repository"
     required: true
     type: "string"
   className:

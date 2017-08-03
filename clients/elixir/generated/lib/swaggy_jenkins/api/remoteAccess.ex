@@ -13,10 +13,10 @@ defmodule SwaggyJenkins.Api.RemoteAccess do
 
   Retrieve computer details
   """
-  def get_computer() do
+  def get_computer(depth) do
     method = [method: :get]
-    url = [url: "/computer/api/json?depth&#x3D;1"]
-    query_params = []
+    url = [url: "/computer/api/json"]
+    query_params = [query: [{:"depth", depth}]]
     header_params = []
     body_params = []
     form_params = []

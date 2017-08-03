@@ -65,15 +65,29 @@ namespace IO.Swagger.Test
 
         
         /// <summary>
+        /// Test DeletePipelineQueueItem
+        /// </summary>
+        [Test]
+        public void DeletePipelineQueueItemTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string organization = null;
+            //string pipeline = null;
+            //string queue = null;
+            //instance.DeletePipelineQueueItem(organization, pipeline, queue);
+            
+        }
+        
+        /// <summary>
         /// Test GetAuthenticatedUser
         /// </summary>
         [Test]
         public void GetAuthenticatedUserTest()
         {
             // TODO uncomment below to test the method and replace null with proper value
-            //string organisation = null;
-            //var response = instance.GetAuthenticatedUser(organisation);
-            //Assert.IsInstanceOf<SwaggyjenkinsUser> (response, "response is SwaggyjenkinsUser");
+            //string organization = null;
+            //var response = instance.GetAuthenticatedUser(organization);
+            //Assert.IsInstanceOf<User> (response, "response is User");
         }
         
         /// <summary>
@@ -95,9 +109,9 @@ namespace IO.Swagger.Test
         public void GetOrganisationTest()
         {
             // TODO uncomment below to test the method and replace null with proper value
-            //string organisation = null;
-            //var response = instance.GetOrganisation(organisation);
-            //Assert.IsInstanceOf<SwaggyjenkinsOrganisation> (response, "response is SwaggyjenkinsOrganisation");
+            //string organization = null;
+            //var response = instance.GetOrganisation(organization);
+            //Assert.IsInstanceOf<Organisation> (response, "response is Organisation");
         }
         
         /// <summary>
@@ -108,86 +122,306 @@ namespace IO.Swagger.Test
         {
             // TODO uncomment below to test the method and replace null with proper value
             //var response = instance.GetOrganisations();
-            //Assert.IsInstanceOf<GetOrganisations> (response, "response is GetOrganisations");
+            //Assert.IsInstanceOf<Organisations> (response, "response is Organisations");
         }
         
         /// <summary>
-        /// Test GetPipelineBranchByOrg
+        /// Test GetPipeline
         /// </summary>
         [Test]
-        public void GetPipelineBranchByOrgTest()
+        public void GetPipelineTest()
         {
             // TODO uncomment below to test the method and replace null with proper value
-            //string organisation = null;
+            //string organization = null;
+            //string pipeline = null;
+            //var response = instance.GetPipeline(organization, pipeline);
+            //Assert.IsInstanceOf<Pipeline> (response, "response is Pipeline");
+        }
+        
+        /// <summary>
+        /// Test GetPipelineActivities
+        /// </summary>
+        [Test]
+        public void GetPipelineActivitiesTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string organization = null;
+            //string pipeline = null;
+            //var response = instance.GetPipelineActivities(organization, pipeline);
+            //Assert.IsInstanceOf<PipelineActivities> (response, "response is PipelineActivities");
+        }
+        
+        /// <summary>
+        /// Test GetPipelineBranch
+        /// </summary>
+        [Test]
+        public void GetPipelineBranchTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string organization = null;
             //string pipeline = null;
             //string branch = null;
-            //var response = instance.GetPipelineBranchByOrg(organisation, pipeline, branch);
-            //Assert.IsInstanceOf<IojenkinsblueoceanrestimplpipelineBranchImpl> (response, "response is IojenkinsblueoceanrestimplpipelineBranchImpl");
+            //var response = instance.GetPipelineBranch(organization, pipeline, branch);
+            //Assert.IsInstanceOf<BranchImpl> (response, "response is BranchImpl");
         }
         
         /// <summary>
-        /// Test GetPipelineBranchesByOrg
+        /// Test GetPipelineBranchRun
         /// </summary>
         [Test]
-        public void GetPipelineBranchesByOrgTest()
+        public void GetPipelineBranchRunTest()
         {
             // TODO uncomment below to test the method and replace null with proper value
-            //string organisation = null;
+            //string organization = null;
             //string pipeline = null;
-            //var response = instance.GetPipelineBranchesByOrg(organisation, pipeline);
-            //Assert.IsInstanceOf<GetMultibranchPipeline> (response, "response is GetMultibranchPipeline");
+            //string branch = null;
+            //string run = null;
+            //var response = instance.GetPipelineBranchRun(organization, pipeline, branch, run);
+            //Assert.IsInstanceOf<PipelineRun> (response, "response is PipelineRun");
         }
         
         /// <summary>
-        /// Test GetPipelineByOrg
+        /// Test GetPipelineBranches
         /// </summary>
         [Test]
-        public void GetPipelineByOrgTest()
+        public void GetPipelineBranchesTest()
         {
             // TODO uncomment below to test the method and replace null with proper value
-            //string organisation = null;
+            //string organization = null;
             //string pipeline = null;
-            //var response = instance.GetPipelineByOrg(organisation, pipeline);
-            //Assert.IsInstanceOf<SwaggyjenkinsPipeline> (response, "response is SwaggyjenkinsPipeline");
+            //var response = instance.GetPipelineBranches(organization, pipeline);
+            //Assert.IsInstanceOf<MultibranchPipeline> (response, "response is MultibranchPipeline");
         }
         
         /// <summary>
-        /// Test GetPipelineFolderByOrg
+        /// Test GetPipelineFolder
         /// </summary>
         [Test]
-        public void GetPipelineFolderByOrgTest()
+        public void GetPipelineFolderTest()
         {
             // TODO uncomment below to test the method and replace null with proper value
-            //string organisation = null;
+            //string organization = null;
             //string folder = null;
-            //var response = instance.GetPipelineFolderByOrg(organisation, folder);
-            //Assert.IsInstanceOf<IojenkinsblueoceanserviceembeddedrestPipelineFolderImpl> (response, "response is IojenkinsblueoceanserviceembeddedrestPipelineFolderImpl");
+            //var response = instance.GetPipelineFolder(organization, folder);
+            //Assert.IsInstanceOf<PipelineFolderImpl> (response, "response is PipelineFolderImpl");
         }
         
         /// <summary>
-        /// Test GetPipelineFolderByOrg_0
+        /// Test GetPipelineFolderPipeline
         /// </summary>
         [Test]
-        public void GetPipelineFolderByOrg_0Test()
+        public void GetPipelineFolderPipelineTest()
         {
             // TODO uncomment below to test the method and replace null with proper value
-            //string organisation = null;
+            //string organization = null;
             //string pipeline = null;
             //string folder = null;
-            //var response = instance.GetPipelineFolderByOrg_0(organisation, pipeline, folder);
-            //Assert.IsInstanceOf<IojenkinsblueoceanserviceembeddedrestPipelineImpl> (response, "response is IojenkinsblueoceanserviceembeddedrestPipelineImpl");
+            //var response = instance.GetPipelineFolderPipeline(organization, pipeline, folder);
+            //Assert.IsInstanceOf<PipelineImpl> (response, "response is PipelineImpl");
         }
         
         /// <summary>
-        /// Test GetPipelinesByOrg
+        /// Test GetPipelineQueue
         /// </summary>
         [Test]
-        public void GetPipelinesByOrgTest()
+        public void GetPipelineQueueTest()
         {
             // TODO uncomment below to test the method and replace null with proper value
-            //string organisation = null;
-            //var response = instance.GetPipelinesByOrg(organisation);
-            //Assert.IsInstanceOf<GetPipelines> (response, "response is GetPipelines");
+            //string organization = null;
+            //string pipeline = null;
+            //var response = instance.GetPipelineQueue(organization, pipeline);
+            //Assert.IsInstanceOf<PipelineQueue> (response, "response is PipelineQueue");
+        }
+        
+        /// <summary>
+        /// Test GetPipelineRun
+        /// </summary>
+        [Test]
+        public void GetPipelineRunTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string organization = null;
+            //string pipeline = null;
+            //string run = null;
+            //var response = instance.GetPipelineRun(organization, pipeline, run);
+            //Assert.IsInstanceOf<PipelineRun> (response, "response is PipelineRun");
+        }
+        
+        /// <summary>
+        /// Test GetPipelineRunLog
+        /// </summary>
+        [Test]
+        public void GetPipelineRunLogTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string organization = null;
+            //string pipeline = null;
+            //string run = null;
+            //int? start = null;
+            //bool? download = null;
+            //var response = instance.GetPipelineRunLog(organization, pipeline, run, start, download);
+            //Assert.IsInstanceOf<string> (response, "response is string");
+        }
+        
+        /// <summary>
+        /// Test GetPipelineRunNode
+        /// </summary>
+        [Test]
+        public void GetPipelineRunNodeTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string organization = null;
+            //string pipeline = null;
+            //string run = null;
+            //string node = null;
+            //var response = instance.GetPipelineRunNode(organization, pipeline, run, node);
+            //Assert.IsInstanceOf<PipelineRunNode> (response, "response is PipelineRunNode");
+        }
+        
+        /// <summary>
+        /// Test GetPipelineRunNodeStep
+        /// </summary>
+        [Test]
+        public void GetPipelineRunNodeStepTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string organization = null;
+            //string pipeline = null;
+            //string run = null;
+            //string node = null;
+            //string step = null;
+            //var response = instance.GetPipelineRunNodeStep(organization, pipeline, run, node, step);
+            //Assert.IsInstanceOf<PipelineStepImpl> (response, "response is PipelineStepImpl");
+        }
+        
+        /// <summary>
+        /// Test GetPipelineRunNodeStepLog
+        /// </summary>
+        [Test]
+        public void GetPipelineRunNodeStepLogTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string organization = null;
+            //string pipeline = null;
+            //string run = null;
+            //string node = null;
+            //string step = null;
+            //var response = instance.GetPipelineRunNodeStepLog(organization, pipeline, run, node, step);
+            //Assert.IsInstanceOf<string> (response, "response is string");
+        }
+        
+        /// <summary>
+        /// Test GetPipelineRunNodeSteps
+        /// </summary>
+        [Test]
+        public void GetPipelineRunNodeStepsTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string organization = null;
+            //string pipeline = null;
+            //string run = null;
+            //string node = null;
+            //var response = instance.GetPipelineRunNodeSteps(organization, pipeline, run, node);
+            //Assert.IsInstanceOf<PipelineRunNodeSteps> (response, "response is PipelineRunNodeSteps");
+        }
+        
+        /// <summary>
+        /// Test GetPipelineRunNodes
+        /// </summary>
+        [Test]
+        public void GetPipelineRunNodesTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string organization = null;
+            //string pipeline = null;
+            //string run = null;
+            //var response = instance.GetPipelineRunNodes(organization, pipeline, run);
+            //Assert.IsInstanceOf<PipelineRunNodes> (response, "response is PipelineRunNodes");
+        }
+        
+        /// <summary>
+        /// Test GetPipelineRuns
+        /// </summary>
+        [Test]
+        public void GetPipelineRunsTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string organization = null;
+            //string pipeline = null;
+            //var response = instance.GetPipelineRuns(organization, pipeline);
+            //Assert.IsInstanceOf<PipelineRuns> (response, "response is PipelineRuns");
+        }
+        
+        /// <summary>
+        /// Test GetPipelines
+        /// </summary>
+        [Test]
+        public void GetPipelinesTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string organization = null;
+            //var response = instance.GetPipelines(organization);
+            //Assert.IsInstanceOf<Pipelines> (response, "response is Pipelines");
+        }
+        
+        /// <summary>
+        /// Test GetSCM
+        /// </summary>
+        [Test]
+        public void GetSCMTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string organization = null;
+            //string scm = null;
+            //var response = instance.GetSCM(organization, scm);
+            //Assert.IsInstanceOf<GithubScm> (response, "response is GithubScm");
+        }
+        
+        /// <summary>
+        /// Test GetSCMOrganisationRepositories
+        /// </summary>
+        [Test]
+        public void GetSCMOrganisationRepositoriesTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string organization = null;
+            //string scm = null;
+            //string scmOrganisation = null;
+            //string credentialId = null;
+            //int? pageSize = null;
+            //int? pageNumber = null;
+            //var response = instance.GetSCMOrganisationRepositories(organization, scm, scmOrganisation, credentialId, pageSize, pageNumber);
+            //Assert.IsInstanceOf<ScmOrganisations> (response, "response is ScmOrganisations");
+        }
+        
+        /// <summary>
+        /// Test GetSCMOrganisationRepository
+        /// </summary>
+        [Test]
+        public void GetSCMOrganisationRepositoryTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string organization = null;
+            //string scm = null;
+            //string scmOrganisation = null;
+            //string repository = null;
+            //string credentialId = null;
+            //var response = instance.GetSCMOrganisationRepository(organization, scm, scmOrganisation, repository, credentialId);
+            //Assert.IsInstanceOf<ScmOrganisations> (response, "response is ScmOrganisations");
+        }
+        
+        /// <summary>
+        /// Test GetSCMOrganisations
+        /// </summary>
+        [Test]
+        public void GetSCMOrganisationsTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string organization = null;
+            //string scm = null;
+            //string credentialId = null;
+            //var response = instance.GetSCMOrganisations(organization, scm, credentialId);
+            //Assert.IsInstanceOf<ScmOrganisations> (response, "response is ScmOrganisations");
         }
         
         /// <summary>
@@ -197,10 +431,22 @@ namespace IO.Swagger.Test
         public void GetUserTest()
         {
             // TODO uncomment below to test the method and replace null with proper value
-            //string organisation = null;
+            //string organization = null;
             //string user = null;
-            //var response = instance.GetUser(organisation, user);
-            //Assert.IsInstanceOf<SwaggyjenkinsUser> (response, "response is SwaggyjenkinsUser");
+            //var response = instance.GetUser(organization, user);
+            //Assert.IsInstanceOf<User> (response, "response is User");
+        }
+        
+        /// <summary>
+        /// Test GetUserFavorites
+        /// </summary>
+        [Test]
+        public void GetUserFavoritesTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string user = null;
+            //var response = instance.GetUserFavorites(user);
+            //Assert.IsInstanceOf<UserFavorites> (response, "response is UserFavorites");
         }
         
         /// <summary>
@@ -210,9 +456,66 @@ namespace IO.Swagger.Test
         public void GetUsersTest()
         {
             // TODO uncomment below to test the method and replace null with proper value
-            //string organisation = null;
-            //var response = instance.GetUsers(organisation);
-            //Assert.IsInstanceOf<SwaggyjenkinsUser> (response, "response is SwaggyjenkinsUser");
+            //string organization = null;
+            //var response = instance.GetUsers(organization);
+            //Assert.IsInstanceOf<User> (response, "response is User");
+        }
+        
+        /// <summary>
+        /// Test PostPipelineRun
+        /// </summary>
+        [Test]
+        public void PostPipelineRunTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string organization = null;
+            //string pipeline = null;
+            //string run = null;
+            //var response = instance.PostPipelineRun(organization, pipeline, run);
+            //Assert.IsInstanceOf<QueueItemImpl> (response, "response is QueueItemImpl");
+        }
+        
+        /// <summary>
+        /// Test PostPipelineRuns
+        /// </summary>
+        [Test]
+        public void PostPipelineRunsTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string organization = null;
+            //string pipeline = null;
+            //var response = instance.PostPipelineRuns(organization, pipeline);
+            //Assert.IsInstanceOf<QueueItemImpl> (response, "response is QueueItemImpl");
+        }
+        
+        /// <summary>
+        /// Test PutPipelineFavorite
+        /// </summary>
+        [Test]
+        public void PutPipelineFavoriteTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string organization = null;
+            //string pipeline = null;
+            //Body body = null;
+            //var response = instance.PutPipelineFavorite(organization, pipeline, body);
+            //Assert.IsInstanceOf<FavoriteImpl> (response, "response is FavoriteImpl");
+        }
+        
+        /// <summary>
+        /// Test PutPipelineRun
+        /// </summary>
+        [Test]
+        public void PutPipelineRunTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string organization = null;
+            //string pipeline = null;
+            //string run = null;
+            //string blocking = null;
+            //int? timeOutInSecs = null;
+            //var response = instance.PutPipelineRun(organization, pipeline, run, blocking, timeOutInSecs);
+            //Assert.IsInstanceOf<PipelineRun> (response, "response is PipelineRun");
         }
         
         /// <summary>
@@ -228,14 +531,14 @@ namespace IO.Swagger.Test
         }
         
         /// <summary>
-        /// Test Search_0
+        /// Test SearchClasses
         /// </summary>
         [Test]
-        public void Search_0Test()
+        public void SearchClassesTest()
         {
             // TODO uncomment below to test the method and replace null with proper value
             //string q = null;
-            //var response = instance.Search_0(q);
+            //var response = instance.SearchClasses(q);
             //Assert.IsInstanceOf<string> (response, "response is string");
         }
         

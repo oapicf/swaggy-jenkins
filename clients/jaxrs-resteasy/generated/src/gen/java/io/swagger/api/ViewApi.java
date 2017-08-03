@@ -7,7 +7,7 @@ import io.swagger.api.factories.ViewApiServiceFactory;
 import io.swagger.annotations.ApiParam;
 import io.swagger.jaxrs.*;
 
-import io.swagger.model.HudsonmodelListView;
+import io.swagger.model.ListView;
 
 import java.util.List;
 import io.swagger.api.NotFoundException;
@@ -24,7 +24,7 @@ import javax.validation.constraints.*;
 
 
 @io.swagger.annotations.Api(description = "the view API")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaResteasyServerCodegen", date = "2017-07-25T10:45:08.057+10:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaResteasyServerCodegen", date = "2017-08-03T23:34:55.006Z")
 public class ViewApi  {
    private final ViewApiService delegate = ViewApiServiceFactory.getViewApi();
 
@@ -32,15 +32,17 @@ public class ViewApi  {
     @Path("/{name}/api/json")
     
     @Produces({ "application/json" })
-    @io.swagger.annotations.ApiOperation(value = "", notes = "Retrieve view details", response = HudsonmodelListView.class, tags={ "remoteAccess", })
+    @io.swagger.annotations.ApiOperation(value = "", notes = "Retrieve view details", response = ListView.class, authorizations = {
+        @io.swagger.annotations.Authorization(value = "jenkins_auth")
+    }, tags={ "remoteAccess", })
     @io.swagger.annotations.ApiResponses(value = { 
-        @io.swagger.annotations.ApiResponse(code = 200, message = "Successfully retrieved view details", response = HudsonmodelListView.class),
+        @io.swagger.annotations.ApiResponse(code = 200, message = "Successfully retrieved view details", response = ListView.class),
         
-        @io.swagger.annotations.ApiResponse(code = 401, message = "Authentication failed - incorrect username and/or password", response = HudsonmodelListView.class),
+        @io.swagger.annotations.ApiResponse(code = 401, message = "Authentication failed - incorrect username and/or password", response = ListView.class),
         
-        @io.swagger.annotations.ApiResponse(code = 403, message = "Jenkins requires authentication - please set username and password", response = HudsonmodelListView.class),
+        @io.swagger.annotations.ApiResponse(code = 403, message = "Jenkins requires authentication - please set username and password", response = ListView.class),
         
-        @io.swagger.annotations.ApiResponse(code = 404, message = "View cannot be found on Jenkins instance", response = HudsonmodelListView.class) })
+        @io.swagger.annotations.ApiResponse(code = 404, message = "View cannot be found on Jenkins instance", response = ListView.class) })
     public Response getView( @PathParam("name") String name,@Context SecurityContext securityContext)
     throws NotFoundException {
         return delegate.getView(name,securityContext);
@@ -49,7 +51,9 @@ public class ViewApi  {
     @Path("/{name}/config.xml")
     
     @Produces({ "text/xml" })
-    @io.swagger.annotations.ApiOperation(value = "", notes = "Retrieve view configuration", response = String.class, tags={ "remoteAccess", })
+    @io.swagger.annotations.ApiOperation(value = "", notes = "Retrieve view configuration", response = String.class, authorizations = {
+        @io.swagger.annotations.Authorization(value = "jenkins_auth")
+    }, tags={ "remoteAccess", })
     @io.swagger.annotations.ApiResponses(value = { 
         @io.swagger.annotations.ApiResponse(code = 200, message = "Successfully retrieved view configuration in config.xml format", response = String.class),
         
@@ -66,7 +70,9 @@ public class ViewApi  {
     @Path("/{name}/config.xml")
     
     
-    @io.swagger.annotations.ApiOperation(value = "", notes = "Update view configuration", response = Void.class, tags={ "remoteAccess", })
+    @io.swagger.annotations.ApiOperation(value = "", notes = "Update view configuration", response = Void.class, authorizations = {
+        @io.swagger.annotations.Authorization(value = "jenkins_auth")
+    }, tags={ "remoteAccess", })
     @io.swagger.annotations.ApiResponses(value = { 
         @io.swagger.annotations.ApiResponse(code = 200, message = "Successfully updated view configuration", response = Void.class),
         

@@ -10,12 +10,28 @@ $app = new Slim\App();
 
 
 /**
- * GET getAuthenticatedUser
+ * DELETE deletePipelineQueueItem
  * Summary: 
- * Notes: Retrieve authenticated user details for an organisation
+ * Notes: Delete queue item from an organization pipeline queue
  * Output-Formats: [application/json]
  */
-$app->GET('//blue/rest/organizations/{organisation}/user/', function($request, $response, $args) {
+$app->DELETE('//blue/rest/organizations/{organization}/pipelines/{pipeline}/queue/{queue}', function($request, $response, $args) {
+            
+            
+            
+            
+            $response->write('How about implementing deletePipelineQueueItem as a DELETE method ?');
+            return $response;
+            });
+
+
+/**
+ * GET getAuthenticatedUser
+ * Summary: 
+ * Notes: Retrieve authenticated user details for an organization
+ * Output-Formats: [application/json]
+ */
+$app->GET('//blue/rest/organizations/{organization}/user/', function($request, $response, $args) {
             
             
             
@@ -44,10 +60,10 @@ $app->GET('//blue/rest/classes/{class}', function($request, $response, $args) {
 /**
  * GET getOrganisation
  * Summary: 
- * Notes: Retrieve organisation details
+ * Notes: Retrieve organization details
  * Output-Formats: [application/json]
  */
-$app->GET('//blue/rest/organizations/{organisation}', function($request, $response, $args) {
+$app->GET('//blue/rest/organizations/{organization}', function($request, $response, $args) {
             
             
             
@@ -60,7 +76,7 @@ $app->GET('//blue/rest/organizations/{organisation}', function($request, $respon
 /**
  * GET getOrganisations
  * Summary: 
- * Notes: Retrieve all organisations details
+ * Notes: Retrieve all organizations details
  * Output-Formats: [application/json]
  */
 $app->GET('//blue/rest/organizations/', function($request, $response, $args) {
@@ -74,97 +90,341 @@ $app->GET('//blue/rest/organizations/', function($request, $response, $args) {
 
 
 /**
- * GET getPipelineBranchByOrg
+ * GET getPipeline
  * Summary: 
- * Notes: Retrieve branch details for an organisation pipeline
+ * Notes: Retrieve pipeline details for an organization
  * Output-Formats: [application/json]
  */
-$app->GET('//blue/rest/organizations/{organisation}/pipelines/{pipeline}/branches/{branch}/', function($request, $response, $args) {
+$app->GET('//blue/rest/organizations/{organization}/pipelines/{pipeline}', function($request, $response, $args) {
             
             
             
             
-            $response->write('How about implementing getPipelineBranchByOrg as a GET method ?');
+            $response->write('How about implementing getPipeline as a GET method ?');
             return $response;
             });
 
 
 /**
- * GET getPipelineBranchesByOrg
+ * GET getPipelineActivities
  * Summary: 
- * Notes: Retrieve all branches details for an organisation pipeline
+ * Notes: Retrieve all activities details for an organization pipeline
  * Output-Formats: [application/json]
  */
-$app->GET('//blue/rest/organizations/{organisation}/pipelines/{pipeline}/branches', function($request, $response, $args) {
+$app->GET('//blue/rest/organizations/{organization}/pipelines/{pipeline}/activities', function($request, $response, $args) {
             
             
             
             
-            $response->write('How about implementing getPipelineBranchesByOrg as a GET method ?');
+            $response->write('How about implementing getPipelineActivities as a GET method ?');
             return $response;
             });
 
 
 /**
- * GET getPipelineByOrg
+ * GET getPipelineBranch
  * Summary: 
- * Notes: Retrieve pipeline details for an organisation
+ * Notes: Retrieve branch details for an organization pipeline
  * Output-Formats: [application/json]
  */
-$app->GET('//blue/rest/organizations/{organisation}/pipelines/{pipeline}', function($request, $response, $args) {
+$app->GET('//blue/rest/organizations/{organization}/pipelines/{pipeline}/branches/{branch}/', function($request, $response, $args) {
             
             
             
             
-            $response->write('How about implementing getPipelineByOrg as a GET method ?');
+            $response->write('How about implementing getPipelineBranch as a GET method ?');
             return $response;
             });
 
 
 /**
- * GET getPipelineFolderByOrg
+ * GET getPipelineBranchRun
  * Summary: 
- * Notes: Retrieve pipeline folder for an organisation
+ * Notes: Retrieve branch run details for an organization pipeline
  * Output-Formats: [application/json]
  */
-$app->GET('//blue/rest/organizations/{organisation}/pipelines/{folder}/', function($request, $response, $args) {
+$app->GET('//blue/rest/organizations/{organization}/pipelines/{pipeline}/branches/{branch}/runs/{run}', function($request, $response, $args) {
             
             
             
             
-            $response->write('How about implementing getPipelineFolderByOrg as a GET method ?');
+            $response->write('How about implementing getPipelineBranchRun as a GET method ?');
             return $response;
             });
 
 
 /**
- * GET getPipelineFolderByOrg_1
+ * GET getPipelineBranches
  * Summary: 
- * Notes: Retrieve pipeline details for an organisation folder
+ * Notes: Retrieve all branches details for an organization pipeline
  * Output-Formats: [application/json]
  */
-$app->GET('//blue/rest/organizations/{organisation}/pipelines/{folder}/pipelines/{pipeline}', function($request, $response, $args) {
+$app->GET('//blue/rest/organizations/{organization}/pipelines/{pipeline}/branches', function($request, $response, $args) {
             
             
             
             
-            $response->write('How about implementing getPipelineFolderByOrg_1 as a GET method ?');
+            $response->write('How about implementing getPipelineBranches as a GET method ?');
             return $response;
             });
 
 
 /**
- * GET getPipelinesByOrg
+ * GET getPipelineFolder
  * Summary: 
- * Notes: Retrieve all pipelines details for an organisation
+ * Notes: Retrieve pipeline folder for an organization
  * Output-Formats: [application/json]
  */
-$app->GET('//blue/rest/organizations/{organisation}/pipelines/', function($request, $response, $args) {
+$app->GET('//blue/rest/organizations/{organization}/pipelines/{folder}/', function($request, $response, $args) {
             
             
             
             
-            $response->write('How about implementing getPipelinesByOrg as a GET method ?');
+            $response->write('How about implementing getPipelineFolder as a GET method ?');
+            return $response;
+            });
+
+
+/**
+ * GET getPipelineFolderPipeline
+ * Summary: 
+ * Notes: Retrieve pipeline details for an organization folder
+ * Output-Formats: [application/json]
+ */
+$app->GET('//blue/rest/organizations/{organization}/pipelines/{folder}/pipelines/{pipeline}', function($request, $response, $args) {
+            
+            
+            
+            
+            $response->write('How about implementing getPipelineFolderPipeline as a GET method ?');
+            return $response;
+            });
+
+
+/**
+ * GET getPipelineQueue
+ * Summary: 
+ * Notes: Retrieve queue details for an organization pipeline
+ * Output-Formats: [application/json]
+ */
+$app->GET('//blue/rest/organizations/{organization}/pipelines/{pipeline}/queue', function($request, $response, $args) {
+            
+            
+            
+            
+            $response->write('How about implementing getPipelineQueue as a GET method ?');
+            return $response;
+            });
+
+
+/**
+ * GET getPipelineRun
+ * Summary: 
+ * Notes: Retrieve run details for an organization pipeline
+ * Output-Formats: [application/json]
+ */
+$app->GET('//blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}', function($request, $response, $args) {
+            
+            
+            
+            
+            $response->write('How about implementing getPipelineRun as a GET method ?');
+            return $response;
+            });
+
+
+/**
+ * GET getPipelineRunLog
+ * Summary: 
+ * Notes: Get log for a pipeline run
+ * Output-Formats: [application/json]
+ */
+$app->GET('//blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/log', function($request, $response, $args) {
+            
+            $queryParams = $request->getQueryParams();
+            $start = $queryParams['start'];    $download = $queryParams['download'];    
+            
+            
+            $response->write('How about implementing getPipelineRunLog as a GET method ?');
+            return $response;
+            });
+
+
+/**
+ * GET getPipelineRunNode
+ * Summary: 
+ * Notes: Retrieve run node details for an organization pipeline
+ * Output-Formats: [application/json]
+ */
+$app->GET('//blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}', function($request, $response, $args) {
+            
+            
+            
+            
+            $response->write('How about implementing getPipelineRunNode as a GET method ?');
+            return $response;
+            });
+
+
+/**
+ * GET getPipelineRunNodeStep
+ * Summary: 
+ * Notes: Retrieve run node details for an organization pipeline
+ * Output-Formats: [application/json]
+ */
+$app->GET('//blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps/{step}', function($request, $response, $args) {
+            
+            
+            
+            
+            $response->write('How about implementing getPipelineRunNodeStep as a GET method ?');
+            return $response;
+            });
+
+
+/**
+ * GET getPipelineRunNodeStepLog
+ * Summary: 
+ * Notes: Get log for a pipeline run node step
+ * Output-Formats: [application/json]
+ */
+$app->GET('//blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps/{step}/log', function($request, $response, $args) {
+            
+            
+            
+            
+            $response->write('How about implementing getPipelineRunNodeStepLog as a GET method ?');
+            return $response;
+            });
+
+
+/**
+ * GET getPipelineRunNodeSteps
+ * Summary: 
+ * Notes: Retrieve run node steps details for an organization pipeline
+ * Output-Formats: [application/json]
+ */
+$app->GET('//blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps', function($request, $response, $args) {
+            
+            
+            
+            
+            $response->write('How about implementing getPipelineRunNodeSteps as a GET method ?');
+            return $response;
+            });
+
+
+/**
+ * GET getPipelineRunNodes
+ * Summary: 
+ * Notes: Retrieve run nodes details for an organization pipeline
+ * Output-Formats: [application/json]
+ */
+$app->GET('//blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes', function($request, $response, $args) {
+            
+            
+            
+            
+            $response->write('How about implementing getPipelineRunNodes as a GET method ?');
+            return $response;
+            });
+
+
+/**
+ * GET getPipelineRuns
+ * Summary: 
+ * Notes: Retrieve all runs details for an organization pipeline
+ * Output-Formats: [application/json]
+ */
+$app->GET('//blue/rest/organizations/{organization}/pipelines/{pipeline}/runs', function($request, $response, $args) {
+            
+            
+            
+            
+            $response->write('How about implementing getPipelineRuns as a GET method ?');
+            return $response;
+            });
+
+
+/**
+ * GET getPipelines
+ * Summary: 
+ * Notes: Retrieve all pipelines details for an organization
+ * Output-Formats: [application/json]
+ */
+$app->GET('//blue/rest/organizations/{organization}/pipelines/', function($request, $response, $args) {
+            
+            
+            
+            
+            $response->write('How about implementing getPipelines as a GET method ?');
+            return $response;
+            });
+
+
+/**
+ * GET getSCM
+ * Summary: 
+ * Notes: Retrieve SCM details for an organization
+ * Output-Formats: [application/json]
+ */
+$app->GET('//blue/rest/organizations/{organization}/scm/{scm}', function($request, $response, $args) {
+            
+            
+            
+            
+            $response->write('How about implementing getSCM as a GET method ?');
+            return $response;
+            });
+
+
+/**
+ * GET getSCMOrganisationRepositories
+ * Summary: 
+ * Notes: Retrieve SCM organization repositories details for an organization
+ * Output-Formats: [application/json]
+ */
+$app->GET('//blue/rest/organizations/{organization}/scm/{scm}/organizations/{scmOrganisation}/repositories', function($request, $response, $args) {
+            
+            $queryParams = $request->getQueryParams();
+            $credentialId = $queryParams['credentialId'];    $pageSize = $queryParams['pageSize'];    $pageNumber = $queryParams['pageNumber'];    
+            
+            
+            $response->write('How about implementing getSCMOrganisationRepositories as a GET method ?');
+            return $response;
+            });
+
+
+/**
+ * GET getSCMOrganisationRepository
+ * Summary: 
+ * Notes: Retrieve SCM organization repository details for an organization
+ * Output-Formats: [application/json]
+ */
+$app->GET('//blue/rest/organizations/{organization}/scm/{scm}/organizations/{scmOrganisation}/repositories/{repository}', function($request, $response, $args) {
+            
+            $queryParams = $request->getQueryParams();
+            $credentialId = $queryParams['credentialId'];    
+            
+            
+            $response->write('How about implementing getSCMOrganisationRepository as a GET method ?');
+            return $response;
+            });
+
+
+/**
+ * GET getSCMOrganisations
+ * Summary: 
+ * Notes: Retrieve SCM organizations details for an organization
+ * Output-Formats: [application/json]
+ */
+$app->GET('//blue/rest/organizations/{organization}/scm/{scm}/organizations', function($request, $response, $args) {
+            
+            $queryParams = $request->getQueryParams();
+            $credentialId = $queryParams['credentialId'];    
+            
+            
+            $response->write('How about implementing getSCMOrganisations as a GET method ?');
             return $response;
             });
 
@@ -172,10 +432,10 @@ $app->GET('//blue/rest/organizations/{organisation}/pipelines/', function($reque
 /**
  * GET getUser
  * Summary: 
- * Notes: Retrieve user details for an organisation
+ * Notes: Retrieve user details for an organization
  * Output-Formats: [application/json]
  */
-$app->GET('//blue/rest/organizations/{organisation}/users/{user}', function($request, $response, $args) {
+$app->GET('//blue/rest/organizations/{organization}/users/{user}', function($request, $response, $args) {
             
             
             
@@ -186,12 +446,28 @@ $app->GET('//blue/rest/organizations/{organisation}/users/{user}', function($req
 
 
 /**
- * GET getUsers
+ * GET getUserFavorites
  * Summary: 
- * Notes: Retrieve users details for an organisation
+ * Notes: Retrieve user favorites details for an organization
  * Output-Formats: [application/json]
  */
-$app->GET('//blue/rest/organizations/{organisation}/users/', function($request, $response, $args) {
+$app->GET('//blue/rest/users/{user}/favorites', function($request, $response, $args) {
+            
+            
+            
+            
+            $response->write('How about implementing getUserFavorites as a GET method ?');
+            return $response;
+            });
+
+
+/**
+ * GET getUsers
+ * Summary: 
+ * Notes: Retrieve users details for an organization
+ * Output-Formats: [application/json]
+ */
+$app->GET('//blue/rest/organizations/{organization}/users/', function($request, $response, $args) {
             
             
             
@@ -202,12 +478,77 @@ $app->GET('//blue/rest/organizations/{organisation}/users/', function($request, 
 
 
 /**
- * GET search
+ * POST postPipelineRun
  * Summary: 
- * Notes: Get classes details
+ * Notes: Replay an organization pipeline run
  * Output-Formats: [application/json]
  */
-$app->GET('//blue/rest/classes/', function($request, $response, $args) {
+$app->POST('//blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/replay', function($request, $response, $args) {
+            
+            
+            
+            
+            $response->write('How about implementing postPipelineRun as a POST method ?');
+            return $response;
+            });
+
+
+/**
+ * POST postPipelineRuns
+ * Summary: 
+ * Notes: Start a build for an organization pipeline
+ * Output-Formats: [application/json]
+ */
+$app->POST('//blue/rest/organizations/{organization}/pipelines/{pipeline}/runs', function($request, $response, $args) {
+            
+            
+            
+            
+            $response->write('How about implementing postPipelineRuns as a POST method ?');
+            return $response;
+            });
+
+
+/**
+ * PUT putPipelineFavorite
+ * Summary: 
+ * Notes: Favorite/unfavorite a pipeline
+ * Output-Formats: [application/json]
+ */
+$app->PUT('//blue/rest/organizations/{organization}/pipelines/{pipeline}/favorite', function($request, $response, $args) {
+            
+            
+            
+            $body = $request->getParsedBody();
+            $response->write('How about implementing putPipelineFavorite as a PUT method ?');
+            return $response;
+            });
+
+
+/**
+ * PUT putPipelineRun
+ * Summary: 
+ * Notes: Stop a build of an organization pipeline
+ * Output-Formats: [application/json]
+ */
+$app->PUT('//blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/stop', function($request, $response, $args) {
+            
+            $queryParams = $request->getQueryParams();
+            $blocking = $queryParams['blocking'];    $timeOutInSecs = $queryParams['timeOutInSecs'];    
+            
+            
+            $response->write('How about implementing putPipelineRun as a PUT method ?');
+            return $response;
+            });
+
+
+/**
+ * GET search
+ * Summary: 
+ * Notes: Search for any resource details
+ * Output-Formats: [application/json]
+ */
+$app->GET('//blue/rest/search/', function($request, $response, $args) {
             
             $queryParams = $request->getQueryParams();
             $q = $queryParams['q'];    
@@ -219,18 +560,18 @@ $app->GET('//blue/rest/classes/', function($request, $response, $args) {
 
 
 /**
- * GET search_2
+ * GET searchClasses
  * Summary: 
- * Notes: Search for any resource details
+ * Notes: Get classes details
  * Output-Formats: [application/json]
  */
-$app->GET('//blue/rest/search/', function($request, $response, $args) {
+$app->GET('//blue/rest/classes/', function($request, $response, $args) {
             
             $queryParams = $request->getQueryParams();
             $q = $queryParams['q'];    
             
             
-            $response->write('How about implementing search_2 as a GET method ?');
+            $response->write('How about implementing searchClasses as a GET method ?');
             return $response;
             });
 
@@ -241,9 +582,10 @@ $app->GET('//blue/rest/search/', function($request, $response, $args) {
  * Notes: Retrieve computer details
  * Output-Formats: [application/json]
  */
-$app->GET('//computer/api/json?depth=1', function($request, $response, $args) {
+$app->GET('//computer/api/json', function($request, $response, $args) {
             
-            
+            $queryParams = $request->getQueryParams();
+            $depth = $queryParams['depth'];    
             
             
             $response->write('How about implementing getComputer as a GET method ?');

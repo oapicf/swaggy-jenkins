@@ -1,12 +1,12 @@
 package controllers;
 
-import apimodels.HudsonmodelComputerSet;
-import apimodels.HudsonmodelFreeStyleBuild;
-import apimodels.HudsonmodelFreeStyleProject;
-import apimodels.HudsonmodelHudson;
-import apimodels.HudsonmodelListView;
-import apimodels.HudsonmodelQueue;
-import apimodels.HudsonsecuritycsrfDefaultCrumbIssuer;
+import apimodels.ComputerSet;
+import apimodels.DefaultCrumbIssuer;
+import apimodels.FreeStyleBuild;
+import apimodels.FreeStyleProject;
+import apimodels.Hudson;
+import apimodels.ListView;
+import apimodels.Queue;
 
 import play.mvc.Http;
 import java.util.List;
@@ -16,25 +16,25 @@ import java.util.HashMap;
 import javax.validation.constraints.*;
 
 public interface RemoteAccessApiControllerImpInterface {
-    HudsonmodelComputerSet getComputer() throws Exception;
+    ComputerSet getComputer( @NotNull Integer depth) throws Exception;
 
-    HudsonsecuritycsrfDefaultCrumbIssuer getCrumb() throws Exception;
+    DefaultCrumbIssuer getCrumb() throws Exception;
 
-    HudsonmodelHudson getJenkins() throws Exception;
+    Hudson getJenkins() throws Exception;
 
-    HudsonmodelFreeStyleProject getJob(String name) throws Exception;
+    FreeStyleProject getJob(String name) throws Exception;
 
     String getJobConfig(String name) throws Exception;
 
-    HudsonmodelFreeStyleBuild getJobLastBuild(String name) throws Exception;
+    FreeStyleBuild getJobLastBuild(String name) throws Exception;
 
     void getJobProgressiveText(String name, String number,  @NotNull String start) throws Exception;
 
-    HudsonmodelQueue getQueue() throws Exception;
+    Queue getQueue() throws Exception;
 
-    HudsonmodelQueue getQueueItem(String number) throws Exception;
+    Queue getQueueItem(String number) throws Exception;
 
-    HudsonmodelListView getView(String name) throws Exception;
+    ListView getView(String name) throws Exception;
 
     String getViewConfig(String name) throws Exception;
 

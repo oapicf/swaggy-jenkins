@@ -64,30 +64,51 @@ lookupEither key assocs =
 
 -- | Servant type-level API, generated from the Swagger spec for SwaggyJenkins.
 type SwaggyJenkinsAPI
-    =    "blue" :> "rest" :> "organizations" :> Capture "organisation" Text :> "user" :> Verb 'GET 200 '[JSON] SwaggyjenkinsUser -- 'getAuthenticatedUser' route
+    =    "blue" :> "rest" :> "organizations" :> Capture "organization" Text :> "pipelines" :> Capture "pipeline" Text :> "queue" :> Capture "queue" Text :> Verb 'DELETE 200 '[JSON] () -- 'deletePipelineQueueItem' route
+    :<|> "blue" :> "rest" :> "organizations" :> Capture "organization" Text :> "user" :> Verb 'GET 200 '[JSON] User -- 'getAuthenticatedUser' route
     :<|> "blue" :> "rest" :> "classes" :> Capture "class" Text :> Verb 'GET 200 '[JSON] Text -- 'getClasses' route
-    :<|> "blue" :> "rest" :> "organizations" :> Capture "organisation" Text :> Verb 'GET 200 '[JSON] SwaggyjenkinsOrganisation -- 'getOrganisation' route
-    :<|> "blue" :> "rest" :> "organizations" :> Verb 'GET 200 '[JSON] GetOrganisations -- 'getOrganisations' route
-    :<|> "blue" :> "rest" :> "organizations" :> Capture "organisation" Text :> "pipelines" :> Capture "pipeline" Text :> "branches" :> Capture "branch" Text :> Verb 'GET 200 '[JSON] IojenkinsblueoceanrestimplpipelineBranchImpl -- 'getPipelineBranchByOrg' route
-    :<|> "blue" :> "rest" :> "organizations" :> Capture "organisation" Text :> "pipelines" :> Capture "pipeline" Text :> "branches" :> Verb 'GET 200 '[JSON] GetMultibranchPipeline -- 'getPipelineBranchesByOrg' route
-    :<|> "blue" :> "rest" :> "organizations" :> Capture "organisation" Text :> "pipelines" :> Capture "pipeline" Text :> Verb 'GET 200 '[JSON] SwaggyjenkinsPipeline -- 'getPipelineByOrg' route
-    :<|> "blue" :> "rest" :> "organizations" :> Capture "organisation" Text :> "pipelines" :> Capture "folder" Text :> Verb 'GET 200 '[JSON] IojenkinsblueoceanserviceembeddedrestPipelineFolderImpl -- 'getPipelineFolderByOrg' route
-    :<|> "blue" :> "rest" :> "organizations" :> Capture "organisation" Text :> "pipelines" :> Capture "folder" Text :> "pipelines" :> Capture "pipeline" Text :> Verb 'GET 200 '[JSON] IojenkinsblueoceanserviceembeddedrestPipelineImpl -- 'getPipelineFolderByOrg_0' route
-    :<|> "blue" :> "rest" :> "organizations" :> Capture "organisation" Text :> "pipelines" :> Verb 'GET 200 '[JSON] GetPipelines -- 'getPipelinesByOrg' route
-    :<|> "blue" :> "rest" :> "organizations" :> Capture "organisation" Text :> "users" :> Capture "user" Text :> Verb 'GET 200 '[JSON] SwaggyjenkinsUser -- 'getUser' route
-    :<|> "blue" :> "rest" :> "organizations" :> Capture "organisation" Text :> "users" :> Verb 'GET 200 '[JSON] SwaggyjenkinsUser -- 'getUsers' route
-    :<|> "blue" :> "rest" :> "classes" :> QueryParam "q" Text :> Verb 'GET 200 '[JSON] Text -- 'search' route
-    :<|> "blue" :> "rest" :> "search" :> QueryParam "q" Text :> Verb 'GET 200 '[JSON] Text -- 'search_0' route
-    :<|> "computer" :> "api" :> "json?depth=1" :> Verb 'GET 200 '[JSON] HudsonmodelComputerSet -- 'getComputer' route
-    :<|> "crumbIssuer" :> "api" :> "json" :> Verb 'GET 200 '[JSON] HudsonsecuritycsrfDefaultCrumbIssuer -- 'getCrumb' route
-    :<|> "api" :> "json" :> Verb 'GET 200 '[JSON] HudsonmodelHudson -- 'getJenkins' route
-    :<|> "job" :> Capture "name" Text :> "api" :> "json" :> Verb 'GET 200 '[JSON] HudsonmodelFreeStyleProject -- 'getJob' route
+    :<|> "blue" :> "rest" :> "organizations" :> Capture "organization" Text :> Verb 'GET 200 '[JSON] Organisation -- 'getOrganisation' route
+    :<|> "blue" :> "rest" :> "organizations" :> Verb 'GET 200 '[JSON] Organisations -- 'getOrganisations' route
+    :<|> "blue" :> "rest" :> "organizations" :> Capture "organization" Text :> "pipelines" :> Capture "pipeline" Text :> Verb 'GET 200 '[JSON] Pipeline -- 'getPipeline' route
+    :<|> "blue" :> "rest" :> "organizations" :> Capture "organization" Text :> "pipelines" :> Capture "pipeline" Text :> "activities" :> Verb 'GET 200 '[JSON] PipelineActivities -- 'getPipelineActivities' route
+    :<|> "blue" :> "rest" :> "organizations" :> Capture "organization" Text :> "pipelines" :> Capture "pipeline" Text :> "branches" :> Capture "branch" Text :> Verb 'GET 200 '[JSON] BranchImpl -- 'getPipelineBranch' route
+    :<|> "blue" :> "rest" :> "organizations" :> Capture "organization" Text :> "pipelines" :> Capture "pipeline" Text :> "branches" :> Capture "branch" Text :> "runs" :> Capture "run" Text :> Verb 'GET 200 '[JSON] PipelineRun -- 'getPipelineBranchRun' route
+    :<|> "blue" :> "rest" :> "organizations" :> Capture "organization" Text :> "pipelines" :> Capture "pipeline" Text :> "branches" :> Verb 'GET 200 '[JSON] MultibranchPipeline -- 'getPipelineBranches' route
+    :<|> "blue" :> "rest" :> "organizations" :> Capture "organization" Text :> "pipelines" :> Capture "folder" Text :> Verb 'GET 200 '[JSON] PipelineFolderImpl -- 'getPipelineFolder' route
+    :<|> "blue" :> "rest" :> "organizations" :> Capture "organization" Text :> "pipelines" :> Capture "folder" Text :> "pipelines" :> Capture "pipeline" Text :> Verb 'GET 200 '[JSON] PipelineImpl -- 'getPipelineFolderPipeline' route
+    :<|> "blue" :> "rest" :> "organizations" :> Capture "organization" Text :> "pipelines" :> Capture "pipeline" Text :> "queue" :> Verb 'GET 200 '[JSON] PipelineQueue -- 'getPipelineQueue' route
+    :<|> "blue" :> "rest" :> "organizations" :> Capture "organization" Text :> "pipelines" :> Capture "pipeline" Text :> "runs" :> Capture "run" Text :> Verb 'GET 200 '[JSON] PipelineRun -- 'getPipelineRun' route
+    :<|> "blue" :> "rest" :> "organizations" :> Capture "organization" Text :> "pipelines" :> Capture "pipeline" Text :> "runs" :> Capture "run" Text :> "log" :> QueryParam "start" Int :> QueryParam "download" Bool :> Verb 'GET 200 '[JSON] Text -- 'getPipelineRunLog' route
+    :<|> "blue" :> "rest" :> "organizations" :> Capture "organization" Text :> "pipelines" :> Capture "pipeline" Text :> "runs" :> Capture "run" Text :> "nodes" :> Capture "node" Text :> Verb 'GET 200 '[JSON] PipelineRunNode -- 'getPipelineRunNode' route
+    :<|> "blue" :> "rest" :> "organizations" :> Capture "organization" Text :> "pipelines" :> Capture "pipeline" Text :> "runs" :> Capture "run" Text :> "nodes" :> Capture "node" Text :> "steps" :> Capture "step" Text :> Verb 'GET 200 '[JSON] PipelineStepImpl -- 'getPipelineRunNodeStep' route
+    :<|> "blue" :> "rest" :> "organizations" :> Capture "organization" Text :> "pipelines" :> Capture "pipeline" Text :> "runs" :> Capture "run" Text :> "nodes" :> Capture "node" Text :> "steps" :> Capture "step" Text :> "log" :> Verb 'GET 200 '[JSON] Text -- 'getPipelineRunNodeStepLog' route
+    :<|> "blue" :> "rest" :> "organizations" :> Capture "organization" Text :> "pipelines" :> Capture "pipeline" Text :> "runs" :> Capture "run" Text :> "nodes" :> Capture "node" Text :> "steps" :> Verb 'GET 200 '[JSON] PipelineRunNodeSteps -- 'getPipelineRunNodeSteps' route
+    :<|> "blue" :> "rest" :> "organizations" :> Capture "organization" Text :> "pipelines" :> Capture "pipeline" Text :> "runs" :> Capture "run" Text :> "nodes" :> Verb 'GET 200 '[JSON] PipelineRunNodes -- 'getPipelineRunNodes' route
+    :<|> "blue" :> "rest" :> "organizations" :> Capture "organization" Text :> "pipelines" :> Capture "pipeline" Text :> "runs" :> Verb 'GET 200 '[JSON] PipelineRuns -- 'getPipelineRuns' route
+    :<|> "blue" :> "rest" :> "organizations" :> Capture "organization" Text :> "pipelines" :> Verb 'GET 200 '[JSON] Pipelines -- 'getPipelines' route
+    :<|> "blue" :> "rest" :> "organizations" :> Capture "organization" Text :> "scm" :> Capture "scm" Text :> Verb 'GET 200 '[JSON] GithubScm -- 'getSCM' route
+    :<|> "blue" :> "rest" :> "organizations" :> Capture "organization" Text :> "scm" :> Capture "scm" Text :> "organizations" :> Capture "scmOrganisation" Text :> "repositories" :> QueryParam "credentialId" Text :> QueryParam "pageSize" Int :> QueryParam "pageNumber" Int :> Verb 'GET 200 '[JSON] ScmOrganisations -- 'getSCMOrganisationRepositories' route
+    :<|> "blue" :> "rest" :> "organizations" :> Capture "organization" Text :> "scm" :> Capture "scm" Text :> "organizations" :> Capture "scmOrganisation" Text :> "repositories" :> Capture "repository" Text :> QueryParam "credentialId" Text :> Verb 'GET 200 '[JSON] ScmOrganisations -- 'getSCMOrganisationRepository' route
+    :<|> "blue" :> "rest" :> "organizations" :> Capture "organization" Text :> "scm" :> Capture "scm" Text :> "organizations" :> QueryParam "credentialId" Text :> Verb 'GET 200 '[JSON] ScmOrganisations -- 'getSCMOrganisations' route
+    :<|> "blue" :> "rest" :> "organizations" :> Capture "organization" Text :> "users" :> Capture "user" Text :> Verb 'GET 200 '[JSON] User -- 'getUser' route
+    :<|> "blue" :> "rest" :> "users" :> Capture "user" Text :> "favorites" :> Verb 'GET 200 '[JSON] UserFavorites -- 'getUserFavorites' route
+    :<|> "blue" :> "rest" :> "organizations" :> Capture "organization" Text :> "users" :> Verb 'GET 200 '[JSON] User -- 'getUsers' route
+    :<|> "blue" :> "rest" :> "organizations" :> Capture "organization" Text :> "pipelines" :> Capture "pipeline" Text :> "runs" :> Capture "run" Text :> "replay" :> Verb 'POST 200 '[JSON] QueueItemImpl -- 'postPipelineRun' route
+    :<|> "blue" :> "rest" :> "organizations" :> Capture "organization" Text :> "pipelines" :> Capture "pipeline" Text :> "runs" :> Verb 'POST 200 '[JSON] QueueItemImpl -- 'postPipelineRuns' route
+    :<|> "blue" :> "rest" :> "organizations" :> Capture "organization" Text :> "pipelines" :> Capture "pipeline" Text :> "favorite" :> ReqBody '[JSON] Body :> Verb 'PUT 200 '[JSON] FavoriteImpl -- 'putPipelineFavorite' route
+    :<|> "blue" :> "rest" :> "organizations" :> Capture "organization" Text :> "pipelines" :> Capture "pipeline" Text :> "runs" :> Capture "run" Text :> "stop" :> QueryParam "blocking" Text :> QueryParam "timeOutInSecs" Int :> Verb 'PUT 200 '[JSON] PipelineRun -- 'putPipelineRun' route
+    :<|> "blue" :> "rest" :> "search" :> QueryParam "q" Text :> Verb 'GET 200 '[JSON] Text -- 'search' route
+    :<|> "blue" :> "rest" :> "classes" :> QueryParam "q" Text :> Verb 'GET 200 '[JSON] Text -- 'searchClasses' route
+    :<|> "computer" :> "api" :> "json" :> QueryParam "depth" Int :> Verb 'GET 200 '[JSON] ComputerSet -- 'getComputer' route
+    :<|> "crumbIssuer" :> "api" :> "json" :> Verb 'GET 200 '[JSON] DefaultCrumbIssuer -- 'getCrumb' route
+    :<|> "api" :> "json" :> Verb 'GET 200 '[JSON] Hudson -- 'getJenkins' route
+    :<|> "job" :> Capture "name" Text :> "api" :> "json" :> Verb 'GET 200 '[JSON] FreeStyleProject -- 'getJob' route
     :<|> "job" :> Capture "name" Text :> "config.xml" :> Verb 'GET 200 '[JSON] Text -- 'getJobConfig' route
-    :<|> "job" :> Capture "name" Text :> "lastBuild" :> "api" :> "json" :> Verb 'GET 200 '[JSON] HudsonmodelFreeStyleBuild -- 'getJobLastBuild' route
+    :<|> "job" :> Capture "name" Text :> "lastBuild" :> "api" :> "json" :> Verb 'GET 200 '[JSON] FreeStyleBuild -- 'getJobLastBuild' route
     :<|> "job" :> Capture "name" Text :> Capture "number" Text :> "logText" :> "progressiveText" :> QueryParam "start" Text :> Verb 'GET 200 '[JSON] () -- 'getJobProgressiveText' route
-    :<|> "queue" :> "api" :> "json" :> Verb 'GET 200 '[JSON] HudsonmodelQueue -- 'getQueue' route
-    :<|> "queue" :> "item" :> Capture "number" Text :> "api" :> "json" :> Verb 'GET 200 '[JSON] HudsonmodelQueue -- 'getQueueItem' route
-    :<|> "view" :> Capture "name" Text :> "api" :> "json" :> Verb 'GET 200 '[JSON] HudsonmodelListView -- 'getView' route
+    :<|> "queue" :> "api" :> "json" :> Verb 'GET 200 '[JSON] Queue -- 'getQueue' route
+    :<|> "queue" :> "item" :> Capture "number" Text :> "api" :> "json" :> Verb 'GET 200 '[JSON] Queue -- 'getQueueItem' route
+    :<|> "view" :> Capture "name" Text :> "api" :> "json" :> Verb 'GET 200 '[JSON] ListView -- 'getView' route
     :<|> "view" :> Capture "name" Text :> "config.xml" :> Verb 'GET 200 '[JSON] Text -- 'getViewConfig' route
     :<|> "api" :> "json" :> Verb 'HEAD 200 '[JSON] () -- 'headJenkins' route
     :<|> "createItem" :> QueryParam "name" Text :> QueryParam "from" Text :> QueryParam "mode" Text :> ReqBody '[JSON] Text :> Header "Jenkins-Crumb" Text :> Header "Content-Type" Text :> Verb 'POST 200 '[JSON] () -- 'postCreateItem' route
@@ -161,30 +182,51 @@ formatSeparatedQueryList char = T.intercalate (T.singleton char) . map toQueryPa
 -- is a backend that executes actions by sending HTTP requests (see @createSwaggyJenkinsClient@). Alternatively, provided
 -- a backend, the API can be served using @runSwaggyJenkinsServer@.
 data SwaggyJenkinsBackend m = SwaggyJenkinsBackend
-  { getAuthenticatedUser :: Text -> m SwaggyjenkinsUser{- ^ Retrieve authenticated user details for an organisation -}
+  { deletePipelineQueueItem :: Text -> Text -> Text -> m (){- ^ Delete queue item from an organization pipeline queue -}
+  , getAuthenticatedUser :: Text -> m User{- ^ Retrieve authenticated user details for an organization -}
   , getClasses :: Text -> m Text{- ^ Get a list of class names supported by a given class -}
-  , getOrganisation :: Text -> m SwaggyjenkinsOrganisation{- ^ Retrieve organisation details -}
-  , getOrganisations :: m GetOrganisations{- ^ Retrieve all organisations details -}
-  , getPipelineBranchByOrg :: Text -> Text -> Text -> m IojenkinsblueoceanrestimplpipelineBranchImpl{- ^ Retrieve branch details for an organisation pipeline -}
-  , getPipelineBranchesByOrg :: Text -> Text -> m GetMultibranchPipeline{- ^ Retrieve all branches details for an organisation pipeline -}
-  , getPipelineByOrg :: Text -> Text -> m SwaggyjenkinsPipeline{- ^ Retrieve pipeline details for an organisation -}
-  , getPipelineFolderByOrg :: Text -> Text -> m IojenkinsblueoceanserviceembeddedrestPipelineFolderImpl{- ^ Retrieve pipeline folder for an organisation -}
-  , getPipelineFolderByOrg_0 :: Text -> Text -> Text -> m IojenkinsblueoceanserviceembeddedrestPipelineImpl{- ^ Retrieve pipeline details for an organisation folder -}
-  , getPipelinesByOrg :: Text -> m GetPipelines{- ^ Retrieve all pipelines details for an organisation -}
-  , getUser :: Text -> Text -> m SwaggyjenkinsUser{- ^ Retrieve user details for an organisation -}
-  , getUsers :: Text -> m SwaggyjenkinsUser{- ^ Retrieve users details for an organisation -}
-  , search :: Maybe Text -> m Text{- ^ Get classes details -}
-  , search_0 :: Maybe Text -> m Text{- ^ Search for any resource details -}
-  , getComputer :: m HudsonmodelComputerSet{- ^ Retrieve computer details -}
-  , getCrumb :: m HudsonsecuritycsrfDefaultCrumbIssuer{- ^ Retrieve CSRF protection token -}
-  , getJenkins :: m HudsonmodelHudson{- ^ Retrieve Jenkins details -}
-  , getJob :: Text -> m HudsonmodelFreeStyleProject{- ^ Retrieve job details -}
+  , getOrganisation :: Text -> m Organisation{- ^ Retrieve organization details -}
+  , getOrganisations :: m Organisations{- ^ Retrieve all organizations details -}
+  , getPipeline :: Text -> Text -> m Pipeline{- ^ Retrieve pipeline details for an organization -}
+  , getPipelineActivities :: Text -> Text -> m PipelineActivities{- ^ Retrieve all activities details for an organization pipeline -}
+  , getPipelineBranch :: Text -> Text -> Text -> m BranchImpl{- ^ Retrieve branch details for an organization pipeline -}
+  , getPipelineBranchRun :: Text -> Text -> Text -> Text -> m PipelineRun{- ^ Retrieve branch run details for an organization pipeline -}
+  , getPipelineBranches :: Text -> Text -> m MultibranchPipeline{- ^ Retrieve all branches details for an organization pipeline -}
+  , getPipelineFolder :: Text -> Text -> m PipelineFolderImpl{- ^ Retrieve pipeline folder for an organization -}
+  , getPipelineFolderPipeline :: Text -> Text -> Text -> m PipelineImpl{- ^ Retrieve pipeline details for an organization folder -}
+  , getPipelineQueue :: Text -> Text -> m PipelineQueue{- ^ Retrieve queue details for an organization pipeline -}
+  , getPipelineRun :: Text -> Text -> Text -> m PipelineRun{- ^ Retrieve run details for an organization pipeline -}
+  , getPipelineRunLog :: Text -> Text -> Text -> Maybe Int -> Maybe Bool -> m Text{- ^ Get log for a pipeline run -}
+  , getPipelineRunNode :: Text -> Text -> Text -> Text -> m PipelineRunNode{- ^ Retrieve run node details for an organization pipeline -}
+  , getPipelineRunNodeStep :: Text -> Text -> Text -> Text -> Text -> m PipelineStepImpl{- ^ Retrieve run node details for an organization pipeline -}
+  , getPipelineRunNodeStepLog :: Text -> Text -> Text -> Text -> Text -> m Text{- ^ Get log for a pipeline run node step -}
+  , getPipelineRunNodeSteps :: Text -> Text -> Text -> Text -> m PipelineRunNodeSteps{- ^ Retrieve run node steps details for an organization pipeline -}
+  , getPipelineRunNodes :: Text -> Text -> Text -> m PipelineRunNodes{- ^ Retrieve run nodes details for an organization pipeline -}
+  , getPipelineRuns :: Text -> Text -> m PipelineRuns{- ^ Retrieve all runs details for an organization pipeline -}
+  , getPipelines :: Text -> m Pipelines{- ^ Retrieve all pipelines details for an organization -}
+  , getSCM :: Text -> Text -> m GithubScm{- ^ Retrieve SCM details for an organization -}
+  , getSCMOrganisationRepositories :: Text -> Text -> Text -> Maybe Text -> Maybe Int -> Maybe Int -> m ScmOrganisations{- ^ Retrieve SCM organization repositories details for an organization -}
+  , getSCMOrganisationRepository :: Text -> Text -> Text -> Text -> Maybe Text -> m ScmOrganisations{- ^ Retrieve SCM organization repository details for an organization -}
+  , getSCMOrganisations :: Text -> Text -> Maybe Text -> m ScmOrganisations{- ^ Retrieve SCM organizations details for an organization -}
+  , getUser :: Text -> Text -> m User{- ^ Retrieve user details for an organization -}
+  , getUserFavorites :: Text -> m UserFavorites{- ^ Retrieve user favorites details for an organization -}
+  , getUsers :: Text -> m User{- ^ Retrieve users details for an organization -}
+  , postPipelineRun :: Text -> Text -> Text -> m QueueItemImpl{- ^ Replay an organization pipeline run -}
+  , postPipelineRuns :: Text -> Text -> m QueueItemImpl{- ^ Start a build for an organization pipeline -}
+  , putPipelineFavorite :: Text -> Text -> Body -> m FavoriteImpl{- ^ Favorite/unfavorite a pipeline -}
+  , putPipelineRun :: Text -> Text -> Text -> Maybe Text -> Maybe Int -> m PipelineRun{- ^ Stop a build of an organization pipeline -}
+  , search :: Maybe Text -> m Text{- ^ Search for any resource details -}
+  , searchClasses :: Maybe Text -> m Text{- ^ Get classes details -}
+  , getComputer :: Maybe Int -> m ComputerSet{- ^ Retrieve computer details -}
+  , getCrumb :: m DefaultCrumbIssuer{- ^ Retrieve CSRF protection token -}
+  , getJenkins :: m Hudson{- ^ Retrieve Jenkins details -}
+  , getJob :: Text -> m FreeStyleProject{- ^ Retrieve job details -}
   , getJobConfig :: Text -> m Text{- ^ Retrieve job configuration -}
-  , getJobLastBuild :: Text -> m HudsonmodelFreeStyleBuild{- ^ Retrieve job's last build details -}
+  , getJobLastBuild :: Text -> m FreeStyleBuild{- ^ Retrieve job's last build details -}
   , getJobProgressiveText :: Text -> Text -> Maybe Text -> m (){- ^ Retrieve job's build progressive text output -}
-  , getQueue :: m HudsonmodelQueue{- ^ Retrieve queue details -}
-  , getQueueItem :: Text -> m HudsonmodelQueue{- ^ Retrieve queued item details -}
-  , getView :: Text -> m HudsonmodelListView{- ^ Retrieve view details -}
+  , getQueue :: m Queue{- ^ Retrieve queue details -}
+  , getQueueItem :: Text -> m Queue{- ^ Retrieve queued item details -}
+  , getView :: Text -> m ListView{- ^ Retrieve view details -}
   , getViewConfig :: Text -> m Text{- ^ Retrieve view configuration -}
   , headJenkins :: m (){- ^ Retrieve Jenkins headers -}
   , postCreateItem :: Maybe Text -> Maybe Text -> Maybe Text -> Text -> Maybe Text -> Maybe Text -> m (){- ^ Create a new job using job configuration, or copied from an existing job -}
@@ -219,20 +261,41 @@ instance MonadIO SwaggyJenkinsClient where
 createSwaggyJenkinsClient :: SwaggyJenkinsBackend SwaggyJenkinsClient
 createSwaggyJenkinsClient = SwaggyJenkinsBackend{..}
   where
-    ((coerce -> getAuthenticatedUser) :<|>
+    ((coerce -> deletePipelineQueueItem) :<|>
+     (coerce -> getAuthenticatedUser) :<|>
      (coerce -> getClasses) :<|>
      (coerce -> getOrganisation) :<|>
      (coerce -> getOrganisations) :<|>
-     (coerce -> getPipelineBranchByOrg) :<|>
-     (coerce -> getPipelineBranchesByOrg) :<|>
-     (coerce -> getPipelineByOrg) :<|>
-     (coerce -> getPipelineFolderByOrg) :<|>
-     (coerce -> getPipelineFolderByOrg_0) :<|>
-     (coerce -> getPipelinesByOrg) :<|>
+     (coerce -> getPipeline) :<|>
+     (coerce -> getPipelineActivities) :<|>
+     (coerce -> getPipelineBranch) :<|>
+     (coerce -> getPipelineBranchRun) :<|>
+     (coerce -> getPipelineBranches) :<|>
+     (coerce -> getPipelineFolder) :<|>
+     (coerce -> getPipelineFolderPipeline) :<|>
+     (coerce -> getPipelineQueue) :<|>
+     (coerce -> getPipelineRun) :<|>
+     (coerce -> getPipelineRunLog) :<|>
+     (coerce -> getPipelineRunNode) :<|>
+     (coerce -> getPipelineRunNodeStep) :<|>
+     (coerce -> getPipelineRunNodeStepLog) :<|>
+     (coerce -> getPipelineRunNodeSteps) :<|>
+     (coerce -> getPipelineRunNodes) :<|>
+     (coerce -> getPipelineRuns) :<|>
+     (coerce -> getPipelines) :<|>
+     (coerce -> getSCM) :<|>
+     (coerce -> getSCMOrganisationRepositories) :<|>
+     (coerce -> getSCMOrganisationRepository) :<|>
+     (coerce -> getSCMOrganisations) :<|>
      (coerce -> getUser) :<|>
+     (coerce -> getUserFavorites) :<|>
      (coerce -> getUsers) :<|>
+     (coerce -> postPipelineRun) :<|>
+     (coerce -> postPipelineRuns) :<|>
+     (coerce -> putPipelineFavorite) :<|>
+     (coerce -> putPipelineRun) :<|>
      (coerce -> search) :<|>
-     (coerce -> search_0) :<|>
+     (coerce -> searchClasses) :<|>
      (coerce -> getComputer) :<|>
      (coerce -> getCrumb) :<|>
      (coerce -> getJenkins) :<|>
@@ -273,20 +336,41 @@ runSwaggyJenkinsServer ServerConfig{..} backend =
   where
     warpSettings = Warp.defaultSettings & Warp.setPort configPort & Warp.setHost (fromString configHost)
     serverFromBackend SwaggyJenkinsBackend{..} =
-      (coerce getAuthenticatedUser :<|>
+      (coerce deletePipelineQueueItem :<|>
+       coerce getAuthenticatedUser :<|>
        coerce getClasses :<|>
        coerce getOrganisation :<|>
        coerce getOrganisations :<|>
-       coerce getPipelineBranchByOrg :<|>
-       coerce getPipelineBranchesByOrg :<|>
-       coerce getPipelineByOrg :<|>
-       coerce getPipelineFolderByOrg :<|>
-       coerce getPipelineFolderByOrg_0 :<|>
-       coerce getPipelinesByOrg :<|>
+       coerce getPipeline :<|>
+       coerce getPipelineActivities :<|>
+       coerce getPipelineBranch :<|>
+       coerce getPipelineBranchRun :<|>
+       coerce getPipelineBranches :<|>
+       coerce getPipelineFolder :<|>
+       coerce getPipelineFolderPipeline :<|>
+       coerce getPipelineQueue :<|>
+       coerce getPipelineRun :<|>
+       coerce getPipelineRunLog :<|>
+       coerce getPipelineRunNode :<|>
+       coerce getPipelineRunNodeStep :<|>
+       coerce getPipelineRunNodeStepLog :<|>
+       coerce getPipelineRunNodeSteps :<|>
+       coerce getPipelineRunNodes :<|>
+       coerce getPipelineRuns :<|>
+       coerce getPipelines :<|>
+       coerce getSCM :<|>
+       coerce getSCMOrganisationRepositories :<|>
+       coerce getSCMOrganisationRepository :<|>
+       coerce getSCMOrganisations :<|>
        coerce getUser :<|>
+       coerce getUserFavorites :<|>
        coerce getUsers :<|>
+       coerce postPipelineRun :<|>
+       coerce postPipelineRuns :<|>
+       coerce putPipelineFavorite :<|>
+       coerce putPipelineRun :<|>
        coerce search :<|>
-       coerce search_0 :<|>
+       coerce searchClasses :<|>
        coerce getComputer :<|>
        coerce getCrumb :<|>
        coerce getJenkins :<|>

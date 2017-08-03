@@ -8,7 +8,12 @@ use Silex\Application;
 $app = new Silex\Application();
 
 
-$app->GET('//blue/rest/organizations/{organisation}/user/', function(Application $app, Request $request, $organisation) {
+$app->DELETE('//blue/rest/organizations/{organization}/pipelines/{pipeline}/queue/{queue}', function(Application $app, Request $request, $organization, $pipeline, $queue) {
+            return new Response('How about implementing deletePipelineQueueItem as a DELETE method ?');
+            });
+
+
+$app->GET('//blue/rest/organizations/{organization}/user/', function(Application $app, Request $request, $organization) {
             return new Response('How about implementing getAuthenticatedUser as a GET method ?');
             });
 
@@ -18,7 +23,7 @@ $app->GET('//blue/rest/classes/{class}', function(Application $app, Request $req
             });
 
 
-$app->GET('//blue/rest/organizations/{organisation}', function(Application $app, Request $request, $organisation) {
+$app->GET('//blue/rest/organizations/{organization}', function(Application $app, Request $request, $organization) {
             return new Response('How about implementing getOrganisation as a GET method ?');
             });
 
@@ -28,59 +33,169 @@ $app->GET('//blue/rest/organizations/', function(Application $app, Request $requ
             });
 
 
-$app->GET('//blue/rest/organizations/{organisation}/pipelines/{pipeline}/branches/{branch}/', function(Application $app, Request $request, $organisation, $pipeline, $branch) {
-            return new Response('How about implementing getPipelineBranchByOrg as a GET method ?');
+$app->GET('//blue/rest/organizations/{organization}/pipelines/{pipeline}', function(Application $app, Request $request, $organization, $pipeline) {
+            return new Response('How about implementing getPipeline as a GET method ?');
             });
 
 
-$app->GET('//blue/rest/organizations/{organisation}/pipelines/{pipeline}/branches', function(Application $app, Request $request, $organisation, $pipeline) {
-            return new Response('How about implementing getPipelineBranchesByOrg as a GET method ?');
+$app->GET('//blue/rest/organizations/{organization}/pipelines/{pipeline}/activities', function(Application $app, Request $request, $organization, $pipeline) {
+            return new Response('How about implementing getPipelineActivities as a GET method ?');
             });
 
 
-$app->GET('//blue/rest/organizations/{organisation}/pipelines/{pipeline}', function(Application $app, Request $request, $organisation, $pipeline) {
-            return new Response('How about implementing getPipelineByOrg as a GET method ?');
+$app->GET('//blue/rest/organizations/{organization}/pipelines/{pipeline}/branches/{branch}/', function(Application $app, Request $request, $organization, $pipeline, $branch) {
+            return new Response('How about implementing getPipelineBranch as a GET method ?');
             });
 
 
-$app->GET('//blue/rest/organizations/{organisation}/pipelines/{folder}/', function(Application $app, Request $request, $organisation, $folder) {
-            return new Response('How about implementing getPipelineFolderByOrg as a GET method ?');
+$app->GET('//blue/rest/organizations/{organization}/pipelines/{pipeline}/branches/{branch}/runs/{run}', function(Application $app, Request $request, $organization, $pipeline, $branch, $run) {
+            return new Response('How about implementing getPipelineBranchRun as a GET method ?');
             });
 
 
-$app->GET('//blue/rest/organizations/{organisation}/pipelines/{folder}/pipelines/{pipeline}', function(Application $app, Request $request, $organisation, $pipeline, $folder) {
-            return new Response('How about implementing getPipelineFolderByOrg_0 as a GET method ?');
+$app->GET('//blue/rest/organizations/{organization}/pipelines/{pipeline}/branches', function(Application $app, Request $request, $organization, $pipeline) {
+            return new Response('How about implementing getPipelineBranches as a GET method ?');
             });
 
 
-$app->GET('//blue/rest/organizations/{organisation}/pipelines/', function(Application $app, Request $request, $organisation) {
-            return new Response('How about implementing getPipelinesByOrg as a GET method ?');
+$app->GET('//blue/rest/organizations/{organization}/pipelines/{folder}/', function(Application $app, Request $request, $organization, $folder) {
+            return new Response('How about implementing getPipelineFolder as a GET method ?');
             });
 
 
-$app->GET('//blue/rest/organizations/{organisation}/users/{user}', function(Application $app, Request $request, $organisation, $user) {
+$app->GET('//blue/rest/organizations/{organization}/pipelines/{folder}/pipelines/{pipeline}', function(Application $app, Request $request, $organization, $pipeline, $folder) {
+            return new Response('How about implementing getPipelineFolderPipeline as a GET method ?');
+            });
+
+
+$app->GET('//blue/rest/organizations/{organization}/pipelines/{pipeline}/queue', function(Application $app, Request $request, $organization, $pipeline) {
+            return new Response('How about implementing getPipelineQueue as a GET method ?');
+            });
+
+
+$app->GET('//blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}', function(Application $app, Request $request, $organization, $pipeline, $run) {
+            return new Response('How about implementing getPipelineRun as a GET method ?');
+            });
+
+
+$app->GET('//blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/log', function(Application $app, Request $request, $organization, $pipeline, $run) {
+            $start = $request->get('start');
+            $download = $request->get('download');
+            return new Response('How about implementing getPipelineRunLog as a GET method ?');
+            });
+
+
+$app->GET('//blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}', function(Application $app, Request $request, $organization, $pipeline, $run, $node) {
+            return new Response('How about implementing getPipelineRunNode as a GET method ?');
+            });
+
+
+$app->GET('//blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps/{step}', function(Application $app, Request $request, $organization, $pipeline, $run, $node, $step) {
+            return new Response('How about implementing getPipelineRunNodeStep as a GET method ?');
+            });
+
+
+$app->GET('//blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps/{step}/log', function(Application $app, Request $request, $organization, $pipeline, $run, $node, $step) {
+            return new Response('How about implementing getPipelineRunNodeStepLog as a GET method ?');
+            });
+
+
+$app->GET('//blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps', function(Application $app, Request $request, $organization, $pipeline, $run, $node) {
+            return new Response('How about implementing getPipelineRunNodeSteps as a GET method ?');
+            });
+
+
+$app->GET('//blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes', function(Application $app, Request $request, $organization, $pipeline, $run) {
+            return new Response('How about implementing getPipelineRunNodes as a GET method ?');
+            });
+
+
+$app->GET('//blue/rest/organizations/{organization}/pipelines/{pipeline}/runs', function(Application $app, Request $request, $organization, $pipeline) {
+            return new Response('How about implementing getPipelineRuns as a GET method ?');
+            });
+
+
+$app->GET('//blue/rest/organizations/{organization}/pipelines/', function(Application $app, Request $request, $organization) {
+            return new Response('How about implementing getPipelines as a GET method ?');
+            });
+
+
+$app->GET('//blue/rest/organizations/{organization}/scm/{scm}', function(Application $app, Request $request, $organization, $scm) {
+            return new Response('How about implementing getSCM as a GET method ?');
+            });
+
+
+$app->GET('//blue/rest/organizations/{organization}/scm/{scm}/organizations/{scmOrganisation}/repositories', function(Application $app, Request $request, $organization, $scm, $scmOrganisation) {
+            $credential_id = $request->get('credential_id');
+            $page_size = $request->get('page_size');
+            $page_number = $request->get('page_number');
+            return new Response('How about implementing getSCMOrganisationRepositories as a GET method ?');
+            });
+
+
+$app->GET('//blue/rest/organizations/{organization}/scm/{scm}/organizations/{scmOrganisation}/repositories/{repository}', function(Application $app, Request $request, $organization, $scm, $scmOrganisation, $repository) {
+            $credential_id = $request->get('credential_id');
+            return new Response('How about implementing getSCMOrganisationRepository as a GET method ?');
+            });
+
+
+$app->GET('//blue/rest/organizations/{organization}/scm/{scm}/organizations', function(Application $app, Request $request, $organization, $scm) {
+            $credential_id = $request->get('credential_id');
+            return new Response('How about implementing getSCMOrganisations as a GET method ?');
+            });
+
+
+$app->GET('//blue/rest/organizations/{organization}/users/{user}', function(Application $app, Request $request, $organization, $user) {
             return new Response('How about implementing getUser as a GET method ?');
             });
 
 
-$app->GET('//blue/rest/organizations/{organisation}/users/', function(Application $app, Request $request, $organisation) {
+$app->GET('//blue/rest/users/{user}/favorites', function(Application $app, Request $request, $user) {
+            return new Response('How about implementing getUserFavorites as a GET method ?');
+            });
+
+
+$app->GET('//blue/rest/organizations/{organization}/users/', function(Application $app, Request $request, $organization) {
             return new Response('How about implementing getUsers as a GET method ?');
             });
 
 
-$app->GET('//blue/rest/classes/', function(Application $app, Request $request) {
-            $q = $request->get('q');
-            return new Response('How about implementing search as a GET method ?');
+$app->POST('//blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/replay', function(Application $app, Request $request, $organization, $pipeline, $run) {
+            return new Response('How about implementing postPipelineRun as a POST method ?');
+            });
+
+
+$app->POST('//blue/rest/organizations/{organization}/pipelines/{pipeline}/runs', function(Application $app, Request $request, $organization, $pipeline) {
+            return new Response('How about implementing postPipelineRuns as a POST method ?');
+            });
+
+
+$app->PUT('//blue/rest/organizations/{organization}/pipelines/{pipeline}/favorite', function(Application $app, Request $request, $organization, $pipeline) {
+            return new Response('How about implementing putPipelineFavorite as a PUT method ?');
+            });
+
+
+$app->PUT('//blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/stop', function(Application $app, Request $request, $organization, $pipeline, $run) {
+            $blocking = $request->get('blocking');
+            $time_out_in_secs = $request->get('time_out_in_secs');
+            return new Response('How about implementing putPipelineRun as a PUT method ?');
             });
 
 
 $app->GET('//blue/rest/search/', function(Application $app, Request $request) {
             $q = $request->get('q');
-            return new Response('How about implementing search_0 as a GET method ?');
+            return new Response('How about implementing search as a GET method ?');
             });
 
 
-$app->GET('//computer/api/json?depth=1', function(Application $app, Request $request) {
+$app->GET('//blue/rest/classes/', function(Application $app, Request $request) {
+            $q = $request->get('q');
+            return new Response('How about implementing searchClasses as a GET method ?');
+            });
+
+
+$app->GET('//computer/api/json', function(Application $app, Request $request) {
+            $depth = $request->get('depth');
             return new Response('How about implementing getComputer as a GET method ?');
             });
 

@@ -56,6 +56,14 @@ rest_init(Req0, {Operations, LogicHandler, ValidatorState}) ->
 allowed_methods(
     Req,
     State = #state{
+        operation_id = 'DeletePipelineQueueItem'
+    }
+) ->
+    {[<<"DELETE">>], Req, State};
+
+allowed_methods(
+    Req,
+    State = #state{
         operation_id = 'GetAuthenticatedUser'
     }
 ) ->
@@ -88,7 +96,7 @@ allowed_methods(
 allowed_methods(
     Req,
     State = #state{
-        operation_id = 'GetPipelineBranchByOrg'
+        operation_id = 'GetPipeline'
     }
 ) ->
     {[<<"GET">>], Req, State};
@@ -96,7 +104,7 @@ allowed_methods(
 allowed_methods(
     Req,
     State = #state{
-        operation_id = 'GetPipelineBranchesByOrg'
+        operation_id = 'GetPipelineActivities'
     }
 ) ->
     {[<<"GET">>], Req, State};
@@ -104,7 +112,7 @@ allowed_methods(
 allowed_methods(
     Req,
     State = #state{
-        operation_id = 'GetPipelineByOrg'
+        operation_id = 'GetPipelineBranch'
     }
 ) ->
     {[<<"GET">>], Req, State};
@@ -112,7 +120,7 @@ allowed_methods(
 allowed_methods(
     Req,
     State = #state{
-        operation_id = 'GetPipelineFolderByOrg'
+        operation_id = 'GetPipelineBranchRun'
     }
 ) ->
     {[<<"GET">>], Req, State};
@@ -120,7 +128,7 @@ allowed_methods(
 allowed_methods(
     Req,
     State = #state{
-        operation_id = 'GetPipelineFolderByOrg_0'
+        operation_id = 'GetPipelineBranches'
     }
 ) ->
     {[<<"GET">>], Req, State};
@@ -128,7 +136,127 @@ allowed_methods(
 allowed_methods(
     Req,
     State = #state{
-        operation_id = 'GetPipelinesByOrg'
+        operation_id = 'GetPipelineFolder'
+    }
+) ->
+    {[<<"GET">>], Req, State};
+
+allowed_methods(
+    Req,
+    State = #state{
+        operation_id = 'GetPipelineFolderPipeline'
+    }
+) ->
+    {[<<"GET">>], Req, State};
+
+allowed_methods(
+    Req,
+    State = #state{
+        operation_id = 'GetPipelineQueue'
+    }
+) ->
+    {[<<"GET">>], Req, State};
+
+allowed_methods(
+    Req,
+    State = #state{
+        operation_id = 'GetPipelineRun'
+    }
+) ->
+    {[<<"GET">>], Req, State};
+
+allowed_methods(
+    Req,
+    State = #state{
+        operation_id = 'GetPipelineRunLog'
+    }
+) ->
+    {[<<"GET">>], Req, State};
+
+allowed_methods(
+    Req,
+    State = #state{
+        operation_id = 'GetPipelineRunNode'
+    }
+) ->
+    {[<<"GET">>], Req, State};
+
+allowed_methods(
+    Req,
+    State = #state{
+        operation_id = 'GetPipelineRunNodeStep'
+    }
+) ->
+    {[<<"GET">>], Req, State};
+
+allowed_methods(
+    Req,
+    State = #state{
+        operation_id = 'GetPipelineRunNodeStepLog'
+    }
+) ->
+    {[<<"GET">>], Req, State};
+
+allowed_methods(
+    Req,
+    State = #state{
+        operation_id = 'GetPipelineRunNodeSteps'
+    }
+) ->
+    {[<<"GET">>], Req, State};
+
+allowed_methods(
+    Req,
+    State = #state{
+        operation_id = 'GetPipelineRunNodes'
+    }
+) ->
+    {[<<"GET">>], Req, State};
+
+allowed_methods(
+    Req,
+    State = #state{
+        operation_id = 'GetPipelineRuns'
+    }
+) ->
+    {[<<"GET">>], Req, State};
+
+allowed_methods(
+    Req,
+    State = #state{
+        operation_id = 'GetPipelines'
+    }
+) ->
+    {[<<"GET">>], Req, State};
+
+allowed_methods(
+    Req,
+    State = #state{
+        operation_id = 'GetSCM'
+    }
+) ->
+    {[<<"GET">>], Req, State};
+
+allowed_methods(
+    Req,
+    State = #state{
+        operation_id = 'GetSCMOrganisationRepositories'
+    }
+) ->
+    {[<<"GET">>], Req, State};
+
+allowed_methods(
+    Req,
+    State = #state{
+        operation_id = 'GetSCMOrganisationRepository'
+    }
+) ->
+    {[<<"GET">>], Req, State};
+
+allowed_methods(
+    Req,
+    State = #state{
+        operation_id = 'GetSCMOrganisations'
     }
 ) ->
     {[<<"GET">>], Req, State};
@@ -144,10 +272,50 @@ allowed_methods(
 allowed_methods(
     Req,
     State = #state{
+        operation_id = 'GetUserFavorites'
+    }
+) ->
+    {[<<"GET">>], Req, State};
+
+allowed_methods(
+    Req,
+    State = #state{
         operation_id = 'GetUsers'
     }
 ) ->
     {[<<"GET">>], Req, State};
+
+allowed_methods(
+    Req,
+    State = #state{
+        operation_id = 'PostPipelineRun'
+    }
+) ->
+    {[<<"POST">>], Req, State};
+
+allowed_methods(
+    Req,
+    State = #state{
+        operation_id = 'PostPipelineRuns'
+    }
+) ->
+    {[<<"POST">>], Req, State};
+
+allowed_methods(
+    Req,
+    State = #state{
+        operation_id = 'PutPipelineFavorite'
+    }
+) ->
+    {[<<"PUT">>], Req, State};
+
+allowed_methods(
+    Req,
+    State = #state{
+        operation_id = 'PutPipelineRun'
+    }
+) ->
+    {[<<"PUT">>], Req, State};
 
 allowed_methods(
     Req,
@@ -160,7 +328,7 @@ allowed_methods(
 allowed_methods(
     Req,
     State = #state{
-        operation_id = 'Search_0'
+        operation_id = 'SearchClasses'
     }
 ) ->
     {[<<"GET">>], Req, State};
@@ -174,6 +342,14 @@ allowed_methods(Req, State) ->
         Req :: cowboy_req:req(),
         State :: state()
     }.
+
+is_authorized(
+    Req0,
+    State = #state{
+        operation_id = 'DeletePipelineQueueItem' = OperationID,
+        logic_handler = LogicHandler
+    }
+) ->
 
 is_authorized(
     Req0,
@@ -210,7 +386,7 @@ is_authorized(
 is_authorized(
     Req0,
     State = #state{
-        operation_id = 'GetPipelineBranchByOrg' = OperationID,
+        operation_id = 'GetPipeline' = OperationID,
         logic_handler = LogicHandler
     }
 ) ->
@@ -218,7 +394,7 @@ is_authorized(
 is_authorized(
     Req0,
     State = #state{
-        operation_id = 'GetPipelineBranchesByOrg' = OperationID,
+        operation_id = 'GetPipelineActivities' = OperationID,
         logic_handler = LogicHandler
     }
 ) ->
@@ -226,7 +402,7 @@ is_authorized(
 is_authorized(
     Req0,
     State = #state{
-        operation_id = 'GetPipelineByOrg' = OperationID,
+        operation_id = 'GetPipelineBranch' = OperationID,
         logic_handler = LogicHandler
     }
 ) ->
@@ -234,7 +410,7 @@ is_authorized(
 is_authorized(
     Req0,
     State = #state{
-        operation_id = 'GetPipelineFolderByOrg' = OperationID,
+        operation_id = 'GetPipelineBranchRun' = OperationID,
         logic_handler = LogicHandler
     }
 ) ->
@@ -242,7 +418,7 @@ is_authorized(
 is_authorized(
     Req0,
     State = #state{
-        operation_id = 'GetPipelineFolderByOrg_0' = OperationID,
+        operation_id = 'GetPipelineBranches' = OperationID,
         logic_handler = LogicHandler
     }
 ) ->
@@ -250,7 +426,127 @@ is_authorized(
 is_authorized(
     Req0,
     State = #state{
-        operation_id = 'GetPipelinesByOrg' = OperationID,
+        operation_id = 'GetPipelineFolder' = OperationID,
+        logic_handler = LogicHandler
+    }
+) ->
+
+is_authorized(
+    Req0,
+    State = #state{
+        operation_id = 'GetPipelineFolderPipeline' = OperationID,
+        logic_handler = LogicHandler
+    }
+) ->
+
+is_authorized(
+    Req0,
+    State = #state{
+        operation_id = 'GetPipelineQueue' = OperationID,
+        logic_handler = LogicHandler
+    }
+) ->
+
+is_authorized(
+    Req0,
+    State = #state{
+        operation_id = 'GetPipelineRun' = OperationID,
+        logic_handler = LogicHandler
+    }
+) ->
+
+is_authorized(
+    Req0,
+    State = #state{
+        operation_id = 'GetPipelineRunLog' = OperationID,
+        logic_handler = LogicHandler
+    }
+) ->
+
+is_authorized(
+    Req0,
+    State = #state{
+        operation_id = 'GetPipelineRunNode' = OperationID,
+        logic_handler = LogicHandler
+    }
+) ->
+
+is_authorized(
+    Req0,
+    State = #state{
+        operation_id = 'GetPipelineRunNodeStep' = OperationID,
+        logic_handler = LogicHandler
+    }
+) ->
+
+is_authorized(
+    Req0,
+    State = #state{
+        operation_id = 'GetPipelineRunNodeStepLog' = OperationID,
+        logic_handler = LogicHandler
+    }
+) ->
+
+is_authorized(
+    Req0,
+    State = #state{
+        operation_id = 'GetPipelineRunNodeSteps' = OperationID,
+        logic_handler = LogicHandler
+    }
+) ->
+
+is_authorized(
+    Req0,
+    State = #state{
+        operation_id = 'GetPipelineRunNodes' = OperationID,
+        logic_handler = LogicHandler
+    }
+) ->
+
+is_authorized(
+    Req0,
+    State = #state{
+        operation_id = 'GetPipelineRuns' = OperationID,
+        logic_handler = LogicHandler
+    }
+) ->
+
+is_authorized(
+    Req0,
+    State = #state{
+        operation_id = 'GetPipelines' = OperationID,
+        logic_handler = LogicHandler
+    }
+) ->
+
+is_authorized(
+    Req0,
+    State = #state{
+        operation_id = 'GetSCM' = OperationID,
+        logic_handler = LogicHandler
+    }
+) ->
+
+is_authorized(
+    Req0,
+    State = #state{
+        operation_id = 'GetSCMOrganisationRepositories' = OperationID,
+        logic_handler = LogicHandler
+    }
+) ->
+
+is_authorized(
+    Req0,
+    State = #state{
+        operation_id = 'GetSCMOrganisationRepository' = OperationID,
+        logic_handler = LogicHandler
+    }
+) ->
+
+is_authorized(
+    Req0,
+    State = #state{
+        operation_id = 'GetSCMOrganisations' = OperationID,
         logic_handler = LogicHandler
     }
 ) ->
@@ -266,7 +562,47 @@ is_authorized(
 is_authorized(
     Req0,
     State = #state{
+        operation_id = 'GetUserFavorites' = OperationID,
+        logic_handler = LogicHandler
+    }
+) ->
+
+is_authorized(
+    Req0,
+    State = #state{
         operation_id = 'GetUsers' = OperationID,
+        logic_handler = LogicHandler
+    }
+) ->
+
+is_authorized(
+    Req0,
+    State = #state{
+        operation_id = 'PostPipelineRun' = OperationID,
+        logic_handler = LogicHandler
+    }
+) ->
+
+is_authorized(
+    Req0,
+    State = #state{
+        operation_id = 'PostPipelineRuns' = OperationID,
+        logic_handler = LogicHandler
+    }
+) ->
+
+is_authorized(
+    Req0,
+    State = #state{
+        operation_id = 'PutPipelineFavorite' = OperationID,
+        logic_handler = LogicHandler
+    }
+) ->
+
+is_authorized(
+    Req0,
+    State = #state{
+        operation_id = 'PutPipelineRun' = OperationID,
         logic_handler = LogicHandler
     }
 ) ->
@@ -282,7 +618,7 @@ is_authorized(
 is_authorized(
     Req0,
     State = #state{
-        operation_id = 'Search_0' = OperationID,
+        operation_id = 'SearchClasses' = OperationID,
         logic_handler = LogicHandler
     }
 ) ->
@@ -304,6 +640,16 @@ content_types_accepted(Req, State) ->
 
 -spec valid_content_headers(Req :: cowboy_req:req(), State :: state()) ->
     {Value :: boolean(), Req :: cowboy_req:req(), State :: state()}.
+
+valid_content_headers(
+    Req0,
+    State = #state{
+        operation_id = 'DeletePipelineQueueItem'
+    }
+) ->
+    Headers = [],
+    {Result, Req} = validate_headers(Headers, Req0),
+    {Result, Req, State};
 
 valid_content_headers(
     Req0,
@@ -348,7 +694,7 @@ valid_content_headers(
 valid_content_headers(
     Req0,
     State = #state{
-        operation_id = 'GetPipelineBranchByOrg'
+        operation_id = 'GetPipeline'
     }
 ) ->
     Headers = [],
@@ -358,7 +704,7 @@ valid_content_headers(
 valid_content_headers(
     Req0,
     State = #state{
-        operation_id = 'GetPipelineBranchesByOrg'
+        operation_id = 'GetPipelineActivities'
     }
 ) ->
     Headers = [],
@@ -368,7 +714,7 @@ valid_content_headers(
 valid_content_headers(
     Req0,
     State = #state{
-        operation_id = 'GetPipelineByOrg'
+        operation_id = 'GetPipelineBranch'
     }
 ) ->
     Headers = [],
@@ -378,7 +724,7 @@ valid_content_headers(
 valid_content_headers(
     Req0,
     State = #state{
-        operation_id = 'GetPipelineFolderByOrg'
+        operation_id = 'GetPipelineBranchRun'
     }
 ) ->
     Headers = [],
@@ -388,7 +734,7 @@ valid_content_headers(
 valid_content_headers(
     Req0,
     State = #state{
-        operation_id = 'GetPipelineFolderByOrg_0'
+        operation_id = 'GetPipelineBranches'
     }
 ) ->
     Headers = [],
@@ -398,7 +744,157 @@ valid_content_headers(
 valid_content_headers(
     Req0,
     State = #state{
-        operation_id = 'GetPipelinesByOrg'
+        operation_id = 'GetPipelineFolder'
+    }
+) ->
+    Headers = [],
+    {Result, Req} = validate_headers(Headers, Req0),
+    {Result, Req, State};
+
+valid_content_headers(
+    Req0,
+    State = #state{
+        operation_id = 'GetPipelineFolderPipeline'
+    }
+) ->
+    Headers = [],
+    {Result, Req} = validate_headers(Headers, Req0),
+    {Result, Req, State};
+
+valid_content_headers(
+    Req0,
+    State = #state{
+        operation_id = 'GetPipelineQueue'
+    }
+) ->
+    Headers = [],
+    {Result, Req} = validate_headers(Headers, Req0),
+    {Result, Req, State};
+
+valid_content_headers(
+    Req0,
+    State = #state{
+        operation_id = 'GetPipelineRun'
+    }
+) ->
+    Headers = [],
+    {Result, Req} = validate_headers(Headers, Req0),
+    {Result, Req, State};
+
+valid_content_headers(
+    Req0,
+    State = #state{
+        operation_id = 'GetPipelineRunLog'
+    }
+) ->
+    Headers = [],
+    {Result, Req} = validate_headers(Headers, Req0),
+    {Result, Req, State};
+
+valid_content_headers(
+    Req0,
+    State = #state{
+        operation_id = 'GetPipelineRunNode'
+    }
+) ->
+    Headers = [],
+    {Result, Req} = validate_headers(Headers, Req0),
+    {Result, Req, State};
+
+valid_content_headers(
+    Req0,
+    State = #state{
+        operation_id = 'GetPipelineRunNodeStep'
+    }
+) ->
+    Headers = [],
+    {Result, Req} = validate_headers(Headers, Req0),
+    {Result, Req, State};
+
+valid_content_headers(
+    Req0,
+    State = #state{
+        operation_id = 'GetPipelineRunNodeStepLog'
+    }
+) ->
+    Headers = [],
+    {Result, Req} = validate_headers(Headers, Req0),
+    {Result, Req, State};
+
+valid_content_headers(
+    Req0,
+    State = #state{
+        operation_id = 'GetPipelineRunNodeSteps'
+    }
+) ->
+    Headers = [],
+    {Result, Req} = validate_headers(Headers, Req0),
+    {Result, Req, State};
+
+valid_content_headers(
+    Req0,
+    State = #state{
+        operation_id = 'GetPipelineRunNodes'
+    }
+) ->
+    Headers = [],
+    {Result, Req} = validate_headers(Headers, Req0),
+    {Result, Req, State};
+
+valid_content_headers(
+    Req0,
+    State = #state{
+        operation_id = 'GetPipelineRuns'
+    }
+) ->
+    Headers = [],
+    {Result, Req} = validate_headers(Headers, Req0),
+    {Result, Req, State};
+
+valid_content_headers(
+    Req0,
+    State = #state{
+        operation_id = 'GetPipelines'
+    }
+) ->
+    Headers = [],
+    {Result, Req} = validate_headers(Headers, Req0),
+    {Result, Req, State};
+
+valid_content_headers(
+    Req0,
+    State = #state{
+        operation_id = 'GetSCM'
+    }
+) ->
+    Headers = [],
+    {Result, Req} = validate_headers(Headers, Req0),
+    {Result, Req, State};
+
+valid_content_headers(
+    Req0,
+    State = #state{
+        operation_id = 'GetSCMOrganisationRepositories'
+    }
+) ->
+    Headers = [],
+    {Result, Req} = validate_headers(Headers, Req0),
+    {Result, Req, State};
+
+valid_content_headers(
+    Req0,
+    State = #state{
+        operation_id = 'GetSCMOrganisationRepository'
+    }
+) ->
+    Headers = [],
+    {Result, Req} = validate_headers(Headers, Req0),
+    {Result, Req, State};
+
+valid_content_headers(
+    Req0,
+    State = #state{
+        operation_id = 'GetSCMOrganisations'
     }
 ) ->
     Headers = [],
@@ -418,7 +914,57 @@ valid_content_headers(
 valid_content_headers(
     Req0,
     State = #state{
+        operation_id = 'GetUserFavorites'
+    }
+) ->
+    Headers = [],
+    {Result, Req} = validate_headers(Headers, Req0),
+    {Result, Req, State};
+
+valid_content_headers(
+    Req0,
+    State = #state{
         operation_id = 'GetUsers'
+    }
+) ->
+    Headers = [],
+    {Result, Req} = validate_headers(Headers, Req0),
+    {Result, Req, State};
+
+valid_content_headers(
+    Req0,
+    State = #state{
+        operation_id = 'PostPipelineRun'
+    }
+) ->
+    Headers = [],
+    {Result, Req} = validate_headers(Headers, Req0),
+    {Result, Req, State};
+
+valid_content_headers(
+    Req0,
+    State = #state{
+        operation_id = 'PostPipelineRuns'
+    }
+) ->
+    Headers = [],
+    {Result, Req} = validate_headers(Headers, Req0),
+    {Result, Req, State};
+
+valid_content_headers(
+    Req0,
+    State = #state{
+        operation_id = 'PutPipelineFavorite'
+    }
+) ->
+    Headers = [],
+    {Result, Req} = validate_headers(Headers, Req0),
+    {Result, Req, State};
+
+valid_content_headers(
+    Req0,
+    State = #state{
+        operation_id = 'PutPipelineRun'
     }
 ) ->
     Headers = [],
@@ -438,7 +984,7 @@ valid_content_headers(
 valid_content_headers(
     Req0,
     State = #state{
-        operation_id = 'Search_0'
+        operation_id = 'SearchClasses'
     }
 ) ->
     Headers = [],

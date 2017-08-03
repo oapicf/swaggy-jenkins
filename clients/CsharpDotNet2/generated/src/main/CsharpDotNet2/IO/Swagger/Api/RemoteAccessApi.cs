@@ -14,24 +14,25 @@ namespace IO.Swagger.Api
         /// <summary>
         ///  Retrieve computer details
         /// </summary>
-        /// <returns>HudsonmodelComputerSet</returns>
-        HudsonmodelComputerSet GetComputer ();
+        /// <param name="depth">Recursion depth in response model</param>
+        /// <returns>ComputerSet</returns>
+        ComputerSet GetComputer (int? depth);
         /// <summary>
         ///  Retrieve CSRF protection token
         /// </summary>
-        /// <returns>HudsonsecuritycsrfDefaultCrumbIssuer</returns>
-        HudsonsecuritycsrfDefaultCrumbIssuer GetCrumb ();
+        /// <returns>DefaultCrumbIssuer</returns>
+        DefaultCrumbIssuer GetCrumb ();
         /// <summary>
         ///  Retrieve Jenkins details
         /// </summary>
-        /// <returns>HudsonmodelHudson</returns>
-        HudsonmodelHudson GetJenkins ();
+        /// <returns>Hudson</returns>
+        Hudson GetJenkins ();
         /// <summary>
         ///  Retrieve job details
         /// </summary>
         /// <param name="name">Name of the job</param>
-        /// <returns>HudsonmodelFreeStyleProject</returns>
-        HudsonmodelFreeStyleProject GetJob (string name);
+        /// <returns>FreeStyleProject</returns>
+        FreeStyleProject GetJob (string name);
         /// <summary>
         ///  Retrieve job configuration
         /// </summary>
@@ -42,8 +43,8 @@ namespace IO.Swagger.Api
         ///  Retrieve job&#39;s last build details
         /// </summary>
         /// <param name="name">Name of the job</param>
-        /// <returns>HudsonmodelFreeStyleBuild</returns>
-        HudsonmodelFreeStyleBuild GetJobLastBuild (string name);
+        /// <returns>FreeStyleBuild</returns>
+        FreeStyleBuild GetJobLastBuild (string name);
         /// <summary>
         ///  Retrieve job&#39;s build progressive text output
         /// </summary>
@@ -55,20 +56,20 @@ namespace IO.Swagger.Api
         /// <summary>
         ///  Retrieve queue details
         /// </summary>
-        /// <returns>HudsonmodelQueue</returns>
-        HudsonmodelQueue GetQueue ();
+        /// <returns>Queue</returns>
+        Queue GetQueue ();
         /// <summary>
         ///  Retrieve queued item details
         /// </summary>
         /// <param name="number">Queue number</param>
-        /// <returns>HudsonmodelQueue</returns>
-        HudsonmodelQueue GetQueueItem (string number);
+        /// <returns>Queue</returns>
+        Queue GetQueueItem (string number);
         /// <summary>
         ///  Retrieve view details
         /// </summary>
         /// <param name="name">Name of the view</param>
-        /// <returns>HudsonmodelListView</returns>
-        HudsonmodelListView GetView (string name);
+        /// <returns>ListView</returns>
+        ListView GetView (string name);
         /// <summary>
         ///  Retrieve view configuration
         /// </summary>
@@ -211,12 +212,16 @@ namespace IO.Swagger.Api
         /// <summary>
         ///  Retrieve computer details
         /// </summary>
-        /// <returns>HudsonmodelComputerSet</returns>            
-        public HudsonmodelComputerSet GetComputer ()
+        /// <param name="depth">Recursion depth in response model</param> 
+        /// <returns>ComputerSet</returns>            
+        public ComputerSet GetComputer (int? depth)
         {
             
+            // verify the required parameter 'depth' is set
+            if (depth == null) throw new ApiException(400, "Missing required parameter 'depth' when calling GetComputer");
+            
     
-            var path = "/computer/api/json?depth=1";
+            var path = "/computer/api/json";
             path = path.Replace("{format}", "json");
                 
             var queryParams = new Dictionary<String, String>();
@@ -225,9 +230,10 @@ namespace IO.Swagger.Api
             var fileParams = new Dictionary<String, FileParameter>();
             String postBody = null;
     
-                                                    
+             if (depth != null) queryParams.Add("depth", ApiClient.ParameterToString(depth)); // query parameter
+                                        
             // authentication setting, if any
-            String[] authSettings = new String[] {  };
+            String[] authSettings = new String[] { "jenkins_auth" };
     
             // make the HTTP request
             IRestResponse response = (IRestResponse) ApiClient.CallApi(path, Method.GET, queryParams, postBody, headerParams, formParams, fileParams, authSettings);
@@ -237,14 +243,14 @@ namespace IO.Swagger.Api
             else if (((int)response.StatusCode) == 0)
                 throw new ApiException ((int)response.StatusCode, "Error calling GetComputer: " + response.ErrorMessage, response.ErrorMessage);
     
-            return (HudsonmodelComputerSet) ApiClient.Deserialize(response.Content, typeof(HudsonmodelComputerSet), response.Headers);
+            return (ComputerSet) ApiClient.Deserialize(response.Content, typeof(ComputerSet), response.Headers);
         }
     
         /// <summary>
         ///  Retrieve CSRF protection token
         /// </summary>
-        /// <returns>HudsonsecuritycsrfDefaultCrumbIssuer</returns>            
-        public HudsonsecuritycsrfDefaultCrumbIssuer GetCrumb ()
+        /// <returns>DefaultCrumbIssuer</returns>            
+        public DefaultCrumbIssuer GetCrumb ()
         {
             
     
@@ -259,7 +265,7 @@ namespace IO.Swagger.Api
     
                                                     
             // authentication setting, if any
-            String[] authSettings = new String[] {  };
+            String[] authSettings = new String[] { "jenkins_auth" };
     
             // make the HTTP request
             IRestResponse response = (IRestResponse) ApiClient.CallApi(path, Method.GET, queryParams, postBody, headerParams, formParams, fileParams, authSettings);
@@ -269,14 +275,14 @@ namespace IO.Swagger.Api
             else if (((int)response.StatusCode) == 0)
                 throw new ApiException ((int)response.StatusCode, "Error calling GetCrumb: " + response.ErrorMessage, response.ErrorMessage);
     
-            return (HudsonsecuritycsrfDefaultCrumbIssuer) ApiClient.Deserialize(response.Content, typeof(HudsonsecuritycsrfDefaultCrumbIssuer), response.Headers);
+            return (DefaultCrumbIssuer) ApiClient.Deserialize(response.Content, typeof(DefaultCrumbIssuer), response.Headers);
         }
     
         /// <summary>
         ///  Retrieve Jenkins details
         /// </summary>
-        /// <returns>HudsonmodelHudson</returns>            
-        public HudsonmodelHudson GetJenkins ()
+        /// <returns>Hudson</returns>            
+        public Hudson GetJenkins ()
         {
             
     
@@ -291,7 +297,7 @@ namespace IO.Swagger.Api
     
                                                     
             // authentication setting, if any
-            String[] authSettings = new String[] {  };
+            String[] authSettings = new String[] { "jenkins_auth" };
     
             // make the HTTP request
             IRestResponse response = (IRestResponse) ApiClient.CallApi(path, Method.GET, queryParams, postBody, headerParams, formParams, fileParams, authSettings);
@@ -301,15 +307,15 @@ namespace IO.Swagger.Api
             else if (((int)response.StatusCode) == 0)
                 throw new ApiException ((int)response.StatusCode, "Error calling GetJenkins: " + response.ErrorMessage, response.ErrorMessage);
     
-            return (HudsonmodelHudson) ApiClient.Deserialize(response.Content, typeof(HudsonmodelHudson), response.Headers);
+            return (Hudson) ApiClient.Deserialize(response.Content, typeof(Hudson), response.Headers);
         }
     
         /// <summary>
         ///  Retrieve job details
         /// </summary>
         /// <param name="name">Name of the job</param> 
-        /// <returns>HudsonmodelFreeStyleProject</returns>            
-        public HudsonmodelFreeStyleProject GetJob (string name)
+        /// <returns>FreeStyleProject</returns>            
+        public FreeStyleProject GetJob (string name)
         {
             
             // verify the required parameter 'name' is set
@@ -328,7 +334,7 @@ namespace IO.Swagger.Api
     
                                                     
             // authentication setting, if any
-            String[] authSettings = new String[] {  };
+            String[] authSettings = new String[] { "jenkins_auth" };
     
             // make the HTTP request
             IRestResponse response = (IRestResponse) ApiClient.CallApi(path, Method.GET, queryParams, postBody, headerParams, formParams, fileParams, authSettings);
@@ -338,7 +344,7 @@ namespace IO.Swagger.Api
             else if (((int)response.StatusCode) == 0)
                 throw new ApiException ((int)response.StatusCode, "Error calling GetJob: " + response.ErrorMessage, response.ErrorMessage);
     
-            return (HudsonmodelFreeStyleProject) ApiClient.Deserialize(response.Content, typeof(HudsonmodelFreeStyleProject), response.Headers);
+            return (FreeStyleProject) ApiClient.Deserialize(response.Content, typeof(FreeStyleProject), response.Headers);
         }
     
         /// <summary>
@@ -365,7 +371,7 @@ namespace IO.Swagger.Api
     
                                                     
             // authentication setting, if any
-            String[] authSettings = new String[] {  };
+            String[] authSettings = new String[] { "jenkins_auth" };
     
             // make the HTTP request
             IRestResponse response = (IRestResponse) ApiClient.CallApi(path, Method.GET, queryParams, postBody, headerParams, formParams, fileParams, authSettings);
@@ -382,8 +388,8 @@ namespace IO.Swagger.Api
         ///  Retrieve job&#39;s last build details
         /// </summary>
         /// <param name="name">Name of the job</param> 
-        /// <returns>HudsonmodelFreeStyleBuild</returns>            
-        public HudsonmodelFreeStyleBuild GetJobLastBuild (string name)
+        /// <returns>FreeStyleBuild</returns>            
+        public FreeStyleBuild GetJobLastBuild (string name)
         {
             
             // verify the required parameter 'name' is set
@@ -402,7 +408,7 @@ namespace IO.Swagger.Api
     
                                                     
             // authentication setting, if any
-            String[] authSettings = new String[] {  };
+            String[] authSettings = new String[] { "jenkins_auth" };
     
             // make the HTTP request
             IRestResponse response = (IRestResponse) ApiClient.CallApi(path, Method.GET, queryParams, postBody, headerParams, formParams, fileParams, authSettings);
@@ -412,7 +418,7 @@ namespace IO.Swagger.Api
             else if (((int)response.StatusCode) == 0)
                 throw new ApiException ((int)response.StatusCode, "Error calling GetJobLastBuild: " + response.ErrorMessage, response.ErrorMessage);
     
-            return (HudsonmodelFreeStyleBuild) ApiClient.Deserialize(response.Content, typeof(HudsonmodelFreeStyleBuild), response.Headers);
+            return (FreeStyleBuild) ApiClient.Deserialize(response.Content, typeof(FreeStyleBuild), response.Headers);
         }
     
         /// <summary>
@@ -449,7 +455,7 @@ path = path.Replace("{" + "number" + "}", ApiClient.ParameterToString(number));
              if (start != null) queryParams.Add("start", ApiClient.ParameterToString(start)); // query parameter
                                         
             // authentication setting, if any
-            String[] authSettings = new String[] {  };
+            String[] authSettings = new String[] { "jenkins_auth" };
     
             // make the HTTP request
             IRestResponse response = (IRestResponse) ApiClient.CallApi(path, Method.GET, queryParams, postBody, headerParams, formParams, fileParams, authSettings);
@@ -465,8 +471,8 @@ path = path.Replace("{" + "number" + "}", ApiClient.ParameterToString(number));
         /// <summary>
         ///  Retrieve queue details
         /// </summary>
-        /// <returns>HudsonmodelQueue</returns>            
-        public HudsonmodelQueue GetQueue ()
+        /// <returns>Queue</returns>            
+        public Queue GetQueue ()
         {
             
     
@@ -481,7 +487,7 @@ path = path.Replace("{" + "number" + "}", ApiClient.ParameterToString(number));
     
                                                     
             // authentication setting, if any
-            String[] authSettings = new String[] {  };
+            String[] authSettings = new String[] { "jenkins_auth" };
     
             // make the HTTP request
             IRestResponse response = (IRestResponse) ApiClient.CallApi(path, Method.GET, queryParams, postBody, headerParams, formParams, fileParams, authSettings);
@@ -491,15 +497,15 @@ path = path.Replace("{" + "number" + "}", ApiClient.ParameterToString(number));
             else if (((int)response.StatusCode) == 0)
                 throw new ApiException ((int)response.StatusCode, "Error calling GetQueue: " + response.ErrorMessage, response.ErrorMessage);
     
-            return (HudsonmodelQueue) ApiClient.Deserialize(response.Content, typeof(HudsonmodelQueue), response.Headers);
+            return (Queue) ApiClient.Deserialize(response.Content, typeof(Queue), response.Headers);
         }
     
         /// <summary>
         ///  Retrieve queued item details
         /// </summary>
         /// <param name="number">Queue number</param> 
-        /// <returns>HudsonmodelQueue</returns>            
-        public HudsonmodelQueue GetQueueItem (string number)
+        /// <returns>Queue</returns>            
+        public Queue GetQueueItem (string number)
         {
             
             // verify the required parameter 'number' is set
@@ -518,7 +524,7 @@ path = path.Replace("{" + "number" + "}", ApiClient.ParameterToString(number));
     
                                                     
             // authentication setting, if any
-            String[] authSettings = new String[] {  };
+            String[] authSettings = new String[] { "jenkins_auth" };
     
             // make the HTTP request
             IRestResponse response = (IRestResponse) ApiClient.CallApi(path, Method.GET, queryParams, postBody, headerParams, formParams, fileParams, authSettings);
@@ -528,15 +534,15 @@ path = path.Replace("{" + "number" + "}", ApiClient.ParameterToString(number));
             else if (((int)response.StatusCode) == 0)
                 throw new ApiException ((int)response.StatusCode, "Error calling GetQueueItem: " + response.ErrorMessage, response.ErrorMessage);
     
-            return (HudsonmodelQueue) ApiClient.Deserialize(response.Content, typeof(HudsonmodelQueue), response.Headers);
+            return (Queue) ApiClient.Deserialize(response.Content, typeof(Queue), response.Headers);
         }
     
         /// <summary>
         ///  Retrieve view details
         /// </summary>
         /// <param name="name">Name of the view</param> 
-        /// <returns>HudsonmodelListView</returns>            
-        public HudsonmodelListView GetView (string name)
+        /// <returns>ListView</returns>            
+        public ListView GetView (string name)
         {
             
             // verify the required parameter 'name' is set
@@ -555,7 +561,7 @@ path = path.Replace("{" + "number" + "}", ApiClient.ParameterToString(number));
     
                                                     
             // authentication setting, if any
-            String[] authSettings = new String[] {  };
+            String[] authSettings = new String[] { "jenkins_auth" };
     
             // make the HTTP request
             IRestResponse response = (IRestResponse) ApiClient.CallApi(path, Method.GET, queryParams, postBody, headerParams, formParams, fileParams, authSettings);
@@ -565,7 +571,7 @@ path = path.Replace("{" + "number" + "}", ApiClient.ParameterToString(number));
             else if (((int)response.StatusCode) == 0)
                 throw new ApiException ((int)response.StatusCode, "Error calling GetView: " + response.ErrorMessage, response.ErrorMessage);
     
-            return (HudsonmodelListView) ApiClient.Deserialize(response.Content, typeof(HudsonmodelListView), response.Headers);
+            return (ListView) ApiClient.Deserialize(response.Content, typeof(ListView), response.Headers);
         }
     
         /// <summary>
@@ -592,7 +598,7 @@ path = path.Replace("{" + "number" + "}", ApiClient.ParameterToString(number));
     
                                                     
             // authentication setting, if any
-            String[] authSettings = new String[] {  };
+            String[] authSettings = new String[] { "jenkins_auth" };
     
             // make the HTTP request
             IRestResponse response = (IRestResponse) ApiClient.CallApi(path, Method.GET, queryParams, postBody, headerParams, formParams, fileParams, authSettings);
@@ -624,7 +630,7 @@ path = path.Replace("{" + "number" + "}", ApiClient.ParameterToString(number));
     
                                                     
             // authentication setting, if any
-            String[] authSettings = new String[] {  };
+            String[] authSettings = new String[] { "jenkins_auth" };
     
             // make the HTTP request
             IRestResponse response = (IRestResponse) ApiClient.CallApi(path, Method.HEAD, queryParams, postBody, headerParams, formParams, fileParams, authSettings);
@@ -671,7 +677,7 @@ path = path.Replace("{" + "number" + "}", ApiClient.ParameterToString(number));
                         postBody = ApiClient.Serialize(body); // http body (model) parameter
     
             // authentication setting, if any
-            String[] authSettings = new String[] {  };
+            String[] authSettings = new String[] { "jenkins_auth" };
     
             // make the HTTP request
             IRestResponse response = (IRestResponse) ApiClient.CallApi(path, Method.POST, queryParams, postBody, headerParams, formParams, fileParams, authSettings);
@@ -714,7 +720,7 @@ path = path.Replace("{" + "number" + "}", ApiClient.ParameterToString(number));
                         postBody = ApiClient.Serialize(body); // http body (model) parameter
     
             // authentication setting, if any
-            String[] authSettings = new String[] {  };
+            String[] authSettings = new String[] { "jenkins_auth" };
     
             // make the HTTP request
             IRestResponse response = (IRestResponse) ApiClient.CallApi(path, Method.POST, queryParams, postBody, headerParams, formParams, fileParams, authSettings);
@@ -760,7 +766,7 @@ path = path.Replace("{" + "number" + "}", ApiClient.ParameterToString(number));
              if (jenkinsCrumb != null) headerParams.Add("Jenkins-Crumb", ApiClient.ParameterToString(jenkinsCrumb)); // header parameter
                             
             // authentication setting, if any
-            String[] authSettings = new String[] {  };
+            String[] authSettings = new String[] { "jenkins_auth" };
     
             // make the HTTP request
             IRestResponse response = (IRestResponse) ApiClient.CallApi(path, Method.POST, queryParams, postBody, headerParams, formParams, fileParams, authSettings);
@@ -804,7 +810,7 @@ path = path.Replace("{" + "number" + "}", ApiClient.ParameterToString(number));
                         postBody = ApiClient.Serialize(body); // http body (model) parameter
     
             // authentication setting, if any
-            String[] authSettings = new String[] {  };
+            String[] authSettings = new String[] { "jenkins_auth" };
     
             // make the HTTP request
             IRestResponse response = (IRestResponse) ApiClient.CallApi(path, Method.POST, queryParams, postBody, headerParams, formParams, fileParams, authSettings);
@@ -843,7 +849,7 @@ path = path.Replace("{" + "number" + "}", ApiClient.ParameterToString(number));
                          if (jenkinsCrumb != null) headerParams.Add("Jenkins-Crumb", ApiClient.ParameterToString(jenkinsCrumb)); // header parameter
                             
             // authentication setting, if any
-            String[] authSettings = new String[] {  };
+            String[] authSettings = new String[] { "jenkins_auth" };
     
             // make the HTTP request
             IRestResponse response = (IRestResponse) ApiClient.CallApi(path, Method.POST, queryParams, postBody, headerParams, formParams, fileParams, authSettings);
@@ -882,7 +888,7 @@ path = path.Replace("{" + "number" + "}", ApiClient.ParameterToString(number));
                          if (jenkinsCrumb != null) headerParams.Add("Jenkins-Crumb", ApiClient.ParameterToString(jenkinsCrumb)); // header parameter
                             
             // authentication setting, if any
-            String[] authSettings = new String[] {  };
+            String[] authSettings = new String[] { "jenkins_auth" };
     
             // make the HTTP request
             IRestResponse response = (IRestResponse) ApiClient.CallApi(path, Method.POST, queryParams, postBody, headerParams, formParams, fileParams, authSettings);
@@ -921,7 +927,7 @@ path = path.Replace("{" + "number" + "}", ApiClient.ParameterToString(number));
                          if (jenkinsCrumb != null) headerParams.Add("Jenkins-Crumb", ApiClient.ParameterToString(jenkinsCrumb)); // header parameter
                             
             // authentication setting, if any
-            String[] authSettings = new String[] {  };
+            String[] authSettings = new String[] { "jenkins_auth" };
     
             // make the HTTP request
             IRestResponse response = (IRestResponse) ApiClient.CallApi(path, Method.POST, queryParams, postBody, headerParams, formParams, fileParams, authSettings);
@@ -960,7 +966,7 @@ path = path.Replace("{" + "number" + "}", ApiClient.ParameterToString(number));
                          if (jenkinsCrumb != null) headerParams.Add("Jenkins-Crumb", ApiClient.ParameterToString(jenkinsCrumb)); // header parameter
                             
             // authentication setting, if any
-            String[] authSettings = new String[] {  };
+            String[] authSettings = new String[] { "jenkins_auth" };
     
             // make the HTTP request
             IRestResponse response = (IRestResponse) ApiClient.CallApi(path, Method.POST, queryParams, postBody, headerParams, formParams, fileParams, authSettings);
@@ -1004,7 +1010,7 @@ path = path.Replace("{" + "number" + "}", ApiClient.ParameterToString(number));
                         postBody = ApiClient.Serialize(body); // http body (model) parameter
     
             // authentication setting, if any
-            String[] authSettings = new String[] {  };
+            String[] authSettings = new String[] { "jenkins_auth" };
     
             // make the HTTP request
             IRestResponse response = (IRestResponse) ApiClient.CallApi(path, Method.POST, queryParams, postBody, headerParams, formParams, fileParams, authSettings);

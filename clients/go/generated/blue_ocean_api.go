@@ -12,896 +12,2419 @@ package swagger
 
 import (
 	"net/url"
+	"net/http"
 	"strings"
+	"golang.org/x/net/context"
 	"encoding/json"
 	"fmt"
 )
 
-type BlueOceanApi struct {
-	Configuration *Configuration
-}
+// Linger please
+var (
+	_ context.Context
+)
 
-func NewBlueOceanApi() *BlueOceanApi {
-	configuration := NewConfiguration()
-	return &BlueOceanApi{
-		Configuration: configuration,
-	}
-}
+type BlueOceanApiService service
 
-func NewBlueOceanApiWithBasePath(basePath string) *BlueOceanApi {
-	configuration := NewConfiguration()
-	configuration.BasePath = basePath
 
-	return &BlueOceanApi{
-		Configuration: configuration,
-	}
-}
+/* BlueOceanApiService 
+ Delete queue item from an organization pipeline queue
+ * @param ctx context.Context Authentication Context 
+ @param organization Name of the organization
+ @param pipeline Name of the pipeline
+ @param queue Name of the queue item
+ @return */
+func (a *BlueOceanApiService) DeletePipelineQueueItem(ctx context.Context, organization string, pipeline string, queue string) ( *http.Response, error) {
+	var (
+		localVarHttpMethod = strings.ToUpper("Delete")
+		localVarPostBody interface{}
+		localVarFileName string
+		localVarFileBytes []byte
+	)
 
-/**
- * 
- * Retrieve authenticated user details for an organisation
- *
- * @param organisation Name of the organisation
- * @return *SwaggyjenkinsUser
- */
-func (a BlueOceanApi) GetAuthenticatedUser(organisation string) (*SwaggyjenkinsUser, *APIResponse, error) {
-
-	var localVarHttpMethod = strings.ToUpper("Get")
 	// create path and map variables
-	localVarPath := a.Configuration.BasePath + "/blue/rest/organizations/{organisation}/user/"
-	localVarPath = strings.Replace(localVarPath, "{"+"organisation"+"}", fmt.Sprintf("%v", organisation), -1)
+	localVarPath := a.client.cfg.BasePath + "/blue/rest/organizations/{organization}/pipelines/{pipeline}/queue/{queue}"
+	localVarPath = strings.Replace(localVarPath, "{"+"organization"+"}", fmt.Sprintf("%v", organization), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"pipeline"+"}", fmt.Sprintf("%v", pipeline), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"queue"+"}", fmt.Sprintf("%v", queue), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
-	localVarFormParams := make(map[string]string)
-	var localVarPostBody interface{}
-	var localVarFileName string
-	var localVarFileBytes []byte
-	// add default headers if any
-	for key := range a.Configuration.DefaultHeader {
-		localVarHeaderParams[key] = a.Configuration.DefaultHeader[key]
-	}
+	localVarFormParams := url.Values{}
+
 
 	// to determine the Content-Type header
 	localVarHttpContentTypes := []string{  }
 
 	// set Content-Type header
-	localVarHttpContentType := a.Configuration.APIClient.SelectHeaderContentType(localVarHttpContentTypes)
+	localVarHttpContentType := selectHeaderContentType(localVarHttpContentTypes)
 	if localVarHttpContentType != "" {
 		localVarHeaderParams["Content-Type"] = localVarHttpContentType
 	}
+
 	// to determine the Accept header
 	localVarHttpHeaderAccepts := []string{
 		"application/json",
 		}
 
 	// set Accept header
-	localVarHttpHeaderAccept := a.Configuration.APIClient.SelectHeaderAccept(localVarHttpHeaderAccepts)
+	localVarHttpHeaderAccept := selectHeaderAccept(localVarHttpHeaderAccepts)
 	if localVarHttpHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
 	}
-	var successPayload = new(SwaggyjenkinsUser)
-	localVarHttpResponse, err := a.Configuration.APIClient.CallAPI(localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
-
-	var localVarURL, _ = url.Parse(localVarPath)
-	localVarURL.RawQuery = localVarQueryParams.Encode()
-	var localVarAPIResponse = &APIResponse{Operation: "GetAuthenticatedUser", Method: localVarHttpMethod, RequestURL: localVarURL.String()}
-	if localVarHttpResponse != nil {
-		localVarAPIResponse.Response = localVarHttpResponse.RawResponse
-		localVarAPIResponse.Payload = localVarHttpResponse.Body()
-	}
-
+	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
-		return successPayload, localVarAPIResponse, err
+		return nil, err
 	}
-	err = json.Unmarshal(localVarHttpResponse.Body(), &successPayload)
-	return successPayload, localVarAPIResponse, err
+
+	 localVarHttpResponse, err := a.client.callAPI(r)
+	 if err != nil || localVarHttpResponse == nil {
+		  return localVarHttpResponse, err
+	 }
+	 defer localVarHttpResponse.Body.Close()
+	 if localVarHttpResponse.StatusCode >= 300 {
+		return localVarHttpResponse, reportError(localVarHttpResponse.Status)
+	 }
+
+	return localVarHttpResponse, err
 }
 
-/**
- * 
- * Get a list of class names supported by a given class
- *
- * @param class Name of the class
- * @return *string
- */
-func (a BlueOceanApi) GetClasses(class string) (*string, *APIResponse, error) {
+/* BlueOceanApiService 
+ Retrieve authenticated user details for an organization
+ * @param ctx context.Context Authentication Context 
+ @param organization Name of the organization
+ @return User*/
+func (a *BlueOceanApiService) GetAuthenticatedUser(ctx context.Context, organization string) (User,  *http.Response, error) {
+	var (
+		localVarHttpMethod = strings.ToUpper("Get")
+		localVarPostBody interface{}
+		localVarFileName string
+		localVarFileBytes []byte
+	 	successPayload  User
+	)
 
-	var localVarHttpMethod = strings.ToUpper("Get")
 	// create path and map variables
-	localVarPath := a.Configuration.BasePath + "/blue/rest/classes/{class}"
+	localVarPath := a.client.cfg.BasePath + "/blue/rest/organizations/{organization}/user/"
+	localVarPath = strings.Replace(localVarPath, "{"+"organization"+"}", fmt.Sprintf("%v", organization), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+
+	// to determine the Content-Type header
+	localVarHttpContentTypes := []string{  }
+
+	// set Content-Type header
+	localVarHttpContentType := selectHeaderContentType(localVarHttpContentTypes)
+	if localVarHttpContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHttpContentType
+	}
+
+	// to determine the Accept header
+	localVarHttpHeaderAccepts := []string{
+		"application/json",
+		}
+
+	// set Accept header
+	localVarHttpHeaderAccept := selectHeaderAccept(localVarHttpHeaderAccepts)
+	if localVarHttpHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
+	}
+	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return successPayload, nil, err
+	}
+
+	 localVarHttpResponse, err := a.client.callAPI(r)
+	 if err != nil || localVarHttpResponse == nil {
+		  return successPayload, localVarHttpResponse, err
+	 }
+	 defer localVarHttpResponse.Body.Close()
+	 if localVarHttpResponse.StatusCode >= 300 {
+		return successPayload, localVarHttpResponse, reportError(localVarHttpResponse.Status)
+	 }
+	
+	if err = json.NewDecoder(localVarHttpResponse.Body).Decode(&successPayload); err != nil {
+	 	return successPayload, localVarHttpResponse, err
+	}
+
+
+	return successPayload, localVarHttpResponse, err
+}
+
+/* BlueOceanApiService 
+ Get a list of class names supported by a given class
+ * @param ctx context.Context Authentication Context 
+ @param class Name of the class
+ @return string*/
+func (a *BlueOceanApiService) GetClasses(ctx context.Context, class string) (string,  *http.Response, error) {
+	var (
+		localVarHttpMethod = strings.ToUpper("Get")
+		localVarPostBody interface{}
+		localVarFileName string
+		localVarFileBytes []byte
+	 	successPayload  string
+	)
+
+	// create path and map variables
+	localVarPath := a.client.cfg.BasePath + "/blue/rest/classes/{class}"
 	localVarPath = strings.Replace(localVarPath, "{"+"class"+"}", fmt.Sprintf("%v", class), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
-	localVarFormParams := make(map[string]string)
-	var localVarPostBody interface{}
-	var localVarFileName string
-	var localVarFileBytes []byte
-	// add default headers if any
-	for key := range a.Configuration.DefaultHeader {
-		localVarHeaderParams[key] = a.Configuration.DefaultHeader[key]
-	}
+	localVarFormParams := url.Values{}
+
 
 	// to determine the Content-Type header
 	localVarHttpContentTypes := []string{  }
 
 	// set Content-Type header
-	localVarHttpContentType := a.Configuration.APIClient.SelectHeaderContentType(localVarHttpContentTypes)
+	localVarHttpContentType := selectHeaderContentType(localVarHttpContentTypes)
 	if localVarHttpContentType != "" {
 		localVarHeaderParams["Content-Type"] = localVarHttpContentType
 	}
+
 	// to determine the Accept header
 	localVarHttpHeaderAccepts := []string{
 		"application/json",
 		}
 
 	// set Accept header
-	localVarHttpHeaderAccept := a.Configuration.APIClient.SelectHeaderAccept(localVarHttpHeaderAccepts)
+	localVarHttpHeaderAccept := selectHeaderAccept(localVarHttpHeaderAccepts)
 	if localVarHttpHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
 	}
-	var successPayload = new(string)
-	localVarHttpResponse, err := a.Configuration.APIClient.CallAPI(localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
-
-	var localVarURL, _ = url.Parse(localVarPath)
-	localVarURL.RawQuery = localVarQueryParams.Encode()
-	var localVarAPIResponse = &APIResponse{Operation: "GetClasses", Method: localVarHttpMethod, RequestURL: localVarURL.String()}
-	if localVarHttpResponse != nil {
-		localVarAPIResponse.Response = localVarHttpResponse.RawResponse
-		localVarAPIResponse.Payload = localVarHttpResponse.Body()
-	}
-
+	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
-		return successPayload, localVarAPIResponse, err
+		return successPayload, nil, err
 	}
-	err = json.Unmarshal(localVarHttpResponse.Body(), &successPayload)
-	return successPayload, localVarAPIResponse, err
+
+	 localVarHttpResponse, err := a.client.callAPI(r)
+	 if err != nil || localVarHttpResponse == nil {
+		  return successPayload, localVarHttpResponse, err
+	 }
+	 defer localVarHttpResponse.Body.Close()
+	 if localVarHttpResponse.StatusCode >= 300 {
+		return successPayload, localVarHttpResponse, reportError(localVarHttpResponse.Status)
+	 }
+	
+	if err = json.NewDecoder(localVarHttpResponse.Body).Decode(&successPayload); err != nil {
+	 	return successPayload, localVarHttpResponse, err
+	}
+
+
+	return successPayload, localVarHttpResponse, err
 }
 
-/**
- * 
- * Retrieve organisation details
- *
- * @param organisation Name of the organisation
- * @return *SwaggyjenkinsOrganisation
- */
-func (a BlueOceanApi) GetOrganisation(organisation string) (*SwaggyjenkinsOrganisation, *APIResponse, error) {
+/* BlueOceanApiService 
+ Retrieve organization details
+ * @param ctx context.Context Authentication Context 
+ @param organization Name of the organization
+ @return Organisation*/
+func (a *BlueOceanApiService) GetOrganisation(ctx context.Context, organization string) (Organisation,  *http.Response, error) {
+	var (
+		localVarHttpMethod = strings.ToUpper("Get")
+		localVarPostBody interface{}
+		localVarFileName string
+		localVarFileBytes []byte
+	 	successPayload  Organisation
+	)
 
-	var localVarHttpMethod = strings.ToUpper("Get")
 	// create path and map variables
-	localVarPath := a.Configuration.BasePath + "/blue/rest/organizations/{organisation}"
-	localVarPath = strings.Replace(localVarPath, "{"+"organisation"+"}", fmt.Sprintf("%v", organisation), -1)
+	localVarPath := a.client.cfg.BasePath + "/blue/rest/organizations/{organization}"
+	localVarPath = strings.Replace(localVarPath, "{"+"organization"+"}", fmt.Sprintf("%v", organization), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
-	localVarFormParams := make(map[string]string)
-	var localVarPostBody interface{}
-	var localVarFileName string
-	var localVarFileBytes []byte
-	// add default headers if any
-	for key := range a.Configuration.DefaultHeader {
-		localVarHeaderParams[key] = a.Configuration.DefaultHeader[key]
-	}
+	localVarFormParams := url.Values{}
+
 
 	// to determine the Content-Type header
 	localVarHttpContentTypes := []string{  }
 
 	// set Content-Type header
-	localVarHttpContentType := a.Configuration.APIClient.SelectHeaderContentType(localVarHttpContentTypes)
+	localVarHttpContentType := selectHeaderContentType(localVarHttpContentTypes)
 	if localVarHttpContentType != "" {
 		localVarHeaderParams["Content-Type"] = localVarHttpContentType
 	}
+
 	// to determine the Accept header
 	localVarHttpHeaderAccepts := []string{
 		"application/json",
 		}
 
 	// set Accept header
-	localVarHttpHeaderAccept := a.Configuration.APIClient.SelectHeaderAccept(localVarHttpHeaderAccepts)
+	localVarHttpHeaderAccept := selectHeaderAccept(localVarHttpHeaderAccepts)
 	if localVarHttpHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
 	}
-	var successPayload = new(SwaggyjenkinsOrganisation)
-	localVarHttpResponse, err := a.Configuration.APIClient.CallAPI(localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
-
-	var localVarURL, _ = url.Parse(localVarPath)
-	localVarURL.RawQuery = localVarQueryParams.Encode()
-	var localVarAPIResponse = &APIResponse{Operation: "GetOrganisation", Method: localVarHttpMethod, RequestURL: localVarURL.String()}
-	if localVarHttpResponse != nil {
-		localVarAPIResponse.Response = localVarHttpResponse.RawResponse
-		localVarAPIResponse.Payload = localVarHttpResponse.Body()
-	}
-
+	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
-		return successPayload, localVarAPIResponse, err
+		return successPayload, nil, err
 	}
-	err = json.Unmarshal(localVarHttpResponse.Body(), &successPayload)
-	return successPayload, localVarAPIResponse, err
+
+	 localVarHttpResponse, err := a.client.callAPI(r)
+	 if err != nil || localVarHttpResponse == nil {
+		  return successPayload, localVarHttpResponse, err
+	 }
+	 defer localVarHttpResponse.Body.Close()
+	 if localVarHttpResponse.StatusCode >= 300 {
+		return successPayload, localVarHttpResponse, reportError(localVarHttpResponse.Status)
+	 }
+	
+	if err = json.NewDecoder(localVarHttpResponse.Body).Decode(&successPayload); err != nil {
+	 	return successPayload, localVarHttpResponse, err
+	}
+
+
+	return successPayload, localVarHttpResponse, err
 }
 
-/**
- * 
- * Retrieve all organisations details
- *
- * @return *GetOrganisations
- */
-func (a BlueOceanApi) GetOrganisations() (*GetOrganisations, *APIResponse, error) {
+/* BlueOceanApiService 
+ Retrieve all organizations details
+ * @param ctx context.Context Authentication Context 
+ @return Organisations*/
+func (a *BlueOceanApiService) GetOrganisations(ctx context.Context, ) (Organisations,  *http.Response, error) {
+	var (
+		localVarHttpMethod = strings.ToUpper("Get")
+		localVarPostBody interface{}
+		localVarFileName string
+		localVarFileBytes []byte
+	 	successPayload  Organisations
+	)
 
-	var localVarHttpMethod = strings.ToUpper("Get")
 	// create path and map variables
-	localVarPath := a.Configuration.BasePath + "/blue/rest/organizations/"
+	localVarPath := a.client.cfg.BasePath + "/blue/rest/organizations/"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
-	localVarFormParams := make(map[string]string)
-	var localVarPostBody interface{}
-	var localVarFileName string
-	var localVarFileBytes []byte
-	// add default headers if any
-	for key := range a.Configuration.DefaultHeader {
-		localVarHeaderParams[key] = a.Configuration.DefaultHeader[key]
-	}
+	localVarFormParams := url.Values{}
+
 
 	// to determine the Content-Type header
 	localVarHttpContentTypes := []string{  }
 
 	// set Content-Type header
-	localVarHttpContentType := a.Configuration.APIClient.SelectHeaderContentType(localVarHttpContentTypes)
+	localVarHttpContentType := selectHeaderContentType(localVarHttpContentTypes)
 	if localVarHttpContentType != "" {
 		localVarHeaderParams["Content-Type"] = localVarHttpContentType
 	}
+
 	// to determine the Accept header
 	localVarHttpHeaderAccepts := []string{
 		"application/json",
 		}
 
 	// set Accept header
-	localVarHttpHeaderAccept := a.Configuration.APIClient.SelectHeaderAccept(localVarHttpHeaderAccepts)
+	localVarHttpHeaderAccept := selectHeaderAccept(localVarHttpHeaderAccepts)
 	if localVarHttpHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
 	}
-	var successPayload = new(GetOrganisations)
-	localVarHttpResponse, err := a.Configuration.APIClient.CallAPI(localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
-
-	var localVarURL, _ = url.Parse(localVarPath)
-	localVarURL.RawQuery = localVarQueryParams.Encode()
-	var localVarAPIResponse = &APIResponse{Operation: "GetOrganisations", Method: localVarHttpMethod, RequestURL: localVarURL.String()}
-	if localVarHttpResponse != nil {
-		localVarAPIResponse.Response = localVarHttpResponse.RawResponse
-		localVarAPIResponse.Payload = localVarHttpResponse.Body()
-	}
-
+	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
-		return successPayload, localVarAPIResponse, err
+		return successPayload, nil, err
 	}
-	err = json.Unmarshal(localVarHttpResponse.Body(), &successPayload)
-	return successPayload, localVarAPIResponse, err
+
+	 localVarHttpResponse, err := a.client.callAPI(r)
+	 if err != nil || localVarHttpResponse == nil {
+		  return successPayload, localVarHttpResponse, err
+	 }
+	 defer localVarHttpResponse.Body.Close()
+	 if localVarHttpResponse.StatusCode >= 300 {
+		return successPayload, localVarHttpResponse, reportError(localVarHttpResponse.Status)
+	 }
+	
+	if err = json.NewDecoder(localVarHttpResponse.Body).Decode(&successPayload); err != nil {
+	 	return successPayload, localVarHttpResponse, err
+	}
+
+
+	return successPayload, localVarHttpResponse, err
 }
 
-/**
- * 
- * Retrieve branch details for an organisation pipeline
- *
- * @param organisation Name of the organisation
- * @param pipeline Name of the pipeline
- * @param branch Name of the branch
- * @return *IojenkinsblueoceanrestimplpipelineBranchImpl
- */
-func (a BlueOceanApi) GetPipelineBranchByOrg(organisation string, pipeline string, branch string) (*IojenkinsblueoceanrestimplpipelineBranchImpl, *APIResponse, error) {
+/* BlueOceanApiService 
+ Retrieve pipeline details for an organization
+ * @param ctx context.Context Authentication Context 
+ @param organization Name of the organization
+ @param pipeline Name of the pipeline
+ @return Pipeline*/
+func (a *BlueOceanApiService) GetPipeline(ctx context.Context, organization string, pipeline string) (Pipeline,  *http.Response, error) {
+	var (
+		localVarHttpMethod = strings.ToUpper("Get")
+		localVarPostBody interface{}
+		localVarFileName string
+		localVarFileBytes []byte
+	 	successPayload  Pipeline
+	)
 
-	var localVarHttpMethod = strings.ToUpper("Get")
 	// create path and map variables
-	localVarPath := a.Configuration.BasePath + "/blue/rest/organizations/{organisation}/pipelines/{pipeline}/branches/{branch}/"
-	localVarPath = strings.Replace(localVarPath, "{"+"organisation"+"}", fmt.Sprintf("%v", organisation), -1)
+	localVarPath := a.client.cfg.BasePath + "/blue/rest/organizations/{organization}/pipelines/{pipeline}"
+	localVarPath = strings.Replace(localVarPath, "{"+"organization"+"}", fmt.Sprintf("%v", organization), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"pipeline"+"}", fmt.Sprintf("%v", pipeline), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+
+	// to determine the Content-Type header
+	localVarHttpContentTypes := []string{  }
+
+	// set Content-Type header
+	localVarHttpContentType := selectHeaderContentType(localVarHttpContentTypes)
+	if localVarHttpContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHttpContentType
+	}
+
+	// to determine the Accept header
+	localVarHttpHeaderAccepts := []string{
+		"application/json",
+		}
+
+	// set Accept header
+	localVarHttpHeaderAccept := selectHeaderAccept(localVarHttpHeaderAccepts)
+	if localVarHttpHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
+	}
+	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return successPayload, nil, err
+	}
+
+	 localVarHttpResponse, err := a.client.callAPI(r)
+	 if err != nil || localVarHttpResponse == nil {
+		  return successPayload, localVarHttpResponse, err
+	 }
+	 defer localVarHttpResponse.Body.Close()
+	 if localVarHttpResponse.StatusCode >= 300 {
+		return successPayload, localVarHttpResponse, reportError(localVarHttpResponse.Status)
+	 }
+	
+	if err = json.NewDecoder(localVarHttpResponse.Body).Decode(&successPayload); err != nil {
+	 	return successPayload, localVarHttpResponse, err
+	}
+
+
+	return successPayload, localVarHttpResponse, err
+}
+
+/* BlueOceanApiService 
+ Retrieve all activities details for an organization pipeline
+ * @param ctx context.Context Authentication Context 
+ @param organization Name of the organization
+ @param pipeline Name of the pipeline
+ @return PipelineActivities*/
+func (a *BlueOceanApiService) GetPipelineActivities(ctx context.Context, organization string, pipeline string) (PipelineActivities,  *http.Response, error) {
+	var (
+		localVarHttpMethod = strings.ToUpper("Get")
+		localVarPostBody interface{}
+		localVarFileName string
+		localVarFileBytes []byte
+	 	successPayload  PipelineActivities
+	)
+
+	// create path and map variables
+	localVarPath := a.client.cfg.BasePath + "/blue/rest/organizations/{organization}/pipelines/{pipeline}/activities"
+	localVarPath = strings.Replace(localVarPath, "{"+"organization"+"}", fmt.Sprintf("%v", organization), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"pipeline"+"}", fmt.Sprintf("%v", pipeline), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+
+	// to determine the Content-Type header
+	localVarHttpContentTypes := []string{  }
+
+	// set Content-Type header
+	localVarHttpContentType := selectHeaderContentType(localVarHttpContentTypes)
+	if localVarHttpContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHttpContentType
+	}
+
+	// to determine the Accept header
+	localVarHttpHeaderAccepts := []string{
+		"application/json",
+		}
+
+	// set Accept header
+	localVarHttpHeaderAccept := selectHeaderAccept(localVarHttpHeaderAccepts)
+	if localVarHttpHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
+	}
+	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return successPayload, nil, err
+	}
+
+	 localVarHttpResponse, err := a.client.callAPI(r)
+	 if err != nil || localVarHttpResponse == nil {
+		  return successPayload, localVarHttpResponse, err
+	 }
+	 defer localVarHttpResponse.Body.Close()
+	 if localVarHttpResponse.StatusCode >= 300 {
+		return successPayload, localVarHttpResponse, reportError(localVarHttpResponse.Status)
+	 }
+	
+	if err = json.NewDecoder(localVarHttpResponse.Body).Decode(&successPayload); err != nil {
+	 	return successPayload, localVarHttpResponse, err
+	}
+
+
+	return successPayload, localVarHttpResponse, err
+}
+
+/* BlueOceanApiService 
+ Retrieve branch details for an organization pipeline
+ * @param ctx context.Context Authentication Context 
+ @param organization Name of the organization
+ @param pipeline Name of the pipeline
+ @param branch Name of the branch
+ @return BranchImpl*/
+func (a *BlueOceanApiService) GetPipelineBranch(ctx context.Context, organization string, pipeline string, branch string) (BranchImpl,  *http.Response, error) {
+	var (
+		localVarHttpMethod = strings.ToUpper("Get")
+		localVarPostBody interface{}
+		localVarFileName string
+		localVarFileBytes []byte
+	 	successPayload  BranchImpl
+	)
+
+	// create path and map variables
+	localVarPath := a.client.cfg.BasePath + "/blue/rest/organizations/{organization}/pipelines/{pipeline}/branches/{branch}/"
+	localVarPath = strings.Replace(localVarPath, "{"+"organization"+"}", fmt.Sprintf("%v", organization), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"pipeline"+"}", fmt.Sprintf("%v", pipeline), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"branch"+"}", fmt.Sprintf("%v", branch), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
-	localVarFormParams := make(map[string]string)
-	var localVarPostBody interface{}
-	var localVarFileName string
-	var localVarFileBytes []byte
-	// add default headers if any
-	for key := range a.Configuration.DefaultHeader {
-		localVarHeaderParams[key] = a.Configuration.DefaultHeader[key]
-	}
+	localVarFormParams := url.Values{}
+
 
 	// to determine the Content-Type header
 	localVarHttpContentTypes := []string{  }
 
 	// set Content-Type header
-	localVarHttpContentType := a.Configuration.APIClient.SelectHeaderContentType(localVarHttpContentTypes)
+	localVarHttpContentType := selectHeaderContentType(localVarHttpContentTypes)
 	if localVarHttpContentType != "" {
 		localVarHeaderParams["Content-Type"] = localVarHttpContentType
 	}
+
 	// to determine the Accept header
 	localVarHttpHeaderAccepts := []string{
 		"application/json",
 		}
 
 	// set Accept header
-	localVarHttpHeaderAccept := a.Configuration.APIClient.SelectHeaderAccept(localVarHttpHeaderAccepts)
+	localVarHttpHeaderAccept := selectHeaderAccept(localVarHttpHeaderAccepts)
 	if localVarHttpHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
 	}
-	var successPayload = new(IojenkinsblueoceanrestimplpipelineBranchImpl)
-	localVarHttpResponse, err := a.Configuration.APIClient.CallAPI(localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
-
-	var localVarURL, _ = url.Parse(localVarPath)
-	localVarURL.RawQuery = localVarQueryParams.Encode()
-	var localVarAPIResponse = &APIResponse{Operation: "GetPipelineBranchByOrg", Method: localVarHttpMethod, RequestURL: localVarURL.String()}
-	if localVarHttpResponse != nil {
-		localVarAPIResponse.Response = localVarHttpResponse.RawResponse
-		localVarAPIResponse.Payload = localVarHttpResponse.Body()
-	}
-
+	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
-		return successPayload, localVarAPIResponse, err
+		return successPayload, nil, err
 	}
-	err = json.Unmarshal(localVarHttpResponse.Body(), &successPayload)
-	return successPayload, localVarAPIResponse, err
+
+	 localVarHttpResponse, err := a.client.callAPI(r)
+	 if err != nil || localVarHttpResponse == nil {
+		  return successPayload, localVarHttpResponse, err
+	 }
+	 defer localVarHttpResponse.Body.Close()
+	 if localVarHttpResponse.StatusCode >= 300 {
+		return successPayload, localVarHttpResponse, reportError(localVarHttpResponse.Status)
+	 }
+	
+	if err = json.NewDecoder(localVarHttpResponse.Body).Decode(&successPayload); err != nil {
+	 	return successPayload, localVarHttpResponse, err
+	}
+
+
+	return successPayload, localVarHttpResponse, err
 }
 
-/**
- * 
- * Retrieve all branches details for an organisation pipeline
- *
- * @param organisation Name of the organisation
- * @param pipeline Name of the pipeline
- * @return *GetMultibranchPipeline
- */
-func (a BlueOceanApi) GetPipelineBranchesByOrg(organisation string, pipeline string) (*GetMultibranchPipeline, *APIResponse, error) {
+/* BlueOceanApiService 
+ Retrieve branch run details for an organization pipeline
+ * @param ctx context.Context Authentication Context 
+ @param organization Name of the organization
+ @param pipeline Name of the pipeline
+ @param branch Name of the branch
+ @param run Name of the run
+ @return PipelineRun*/
+func (a *BlueOceanApiService) GetPipelineBranchRun(ctx context.Context, organization string, pipeline string, branch string, run string) (PipelineRun,  *http.Response, error) {
+	var (
+		localVarHttpMethod = strings.ToUpper("Get")
+		localVarPostBody interface{}
+		localVarFileName string
+		localVarFileBytes []byte
+	 	successPayload  PipelineRun
+	)
 
-	var localVarHttpMethod = strings.ToUpper("Get")
 	// create path and map variables
-	localVarPath := a.Configuration.BasePath + "/blue/rest/organizations/{organisation}/pipelines/{pipeline}/branches"
-	localVarPath = strings.Replace(localVarPath, "{"+"organisation"+"}", fmt.Sprintf("%v", organisation), -1)
+	localVarPath := a.client.cfg.BasePath + "/blue/rest/organizations/{organization}/pipelines/{pipeline}/branches/{branch}/runs/{run}"
+	localVarPath = strings.Replace(localVarPath, "{"+"organization"+"}", fmt.Sprintf("%v", organization), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"pipeline"+"}", fmt.Sprintf("%v", pipeline), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"branch"+"}", fmt.Sprintf("%v", branch), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"run"+"}", fmt.Sprintf("%v", run), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+
+	// to determine the Content-Type header
+	localVarHttpContentTypes := []string{  }
+
+	// set Content-Type header
+	localVarHttpContentType := selectHeaderContentType(localVarHttpContentTypes)
+	if localVarHttpContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHttpContentType
+	}
+
+	// to determine the Accept header
+	localVarHttpHeaderAccepts := []string{
+		"application/json",
+		}
+
+	// set Accept header
+	localVarHttpHeaderAccept := selectHeaderAccept(localVarHttpHeaderAccepts)
+	if localVarHttpHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
+	}
+	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return successPayload, nil, err
+	}
+
+	 localVarHttpResponse, err := a.client.callAPI(r)
+	 if err != nil || localVarHttpResponse == nil {
+		  return successPayload, localVarHttpResponse, err
+	 }
+	 defer localVarHttpResponse.Body.Close()
+	 if localVarHttpResponse.StatusCode >= 300 {
+		return successPayload, localVarHttpResponse, reportError(localVarHttpResponse.Status)
+	 }
+	
+	if err = json.NewDecoder(localVarHttpResponse.Body).Decode(&successPayload); err != nil {
+	 	return successPayload, localVarHttpResponse, err
+	}
+
+
+	return successPayload, localVarHttpResponse, err
+}
+
+/* BlueOceanApiService 
+ Retrieve all branches details for an organization pipeline
+ * @param ctx context.Context Authentication Context 
+ @param organization Name of the organization
+ @param pipeline Name of the pipeline
+ @return MultibranchPipeline*/
+func (a *BlueOceanApiService) GetPipelineBranches(ctx context.Context, organization string, pipeline string) (MultibranchPipeline,  *http.Response, error) {
+	var (
+		localVarHttpMethod = strings.ToUpper("Get")
+		localVarPostBody interface{}
+		localVarFileName string
+		localVarFileBytes []byte
+	 	successPayload  MultibranchPipeline
+	)
+
+	// create path and map variables
+	localVarPath := a.client.cfg.BasePath + "/blue/rest/organizations/{organization}/pipelines/{pipeline}/branches"
+	localVarPath = strings.Replace(localVarPath, "{"+"organization"+"}", fmt.Sprintf("%v", organization), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"pipeline"+"}", fmt.Sprintf("%v", pipeline), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
-	localVarFormParams := make(map[string]string)
-	var localVarPostBody interface{}
-	var localVarFileName string
-	var localVarFileBytes []byte
-	// add default headers if any
-	for key := range a.Configuration.DefaultHeader {
-		localVarHeaderParams[key] = a.Configuration.DefaultHeader[key]
-	}
+	localVarFormParams := url.Values{}
+
 
 	// to determine the Content-Type header
 	localVarHttpContentTypes := []string{  }
 
 	// set Content-Type header
-	localVarHttpContentType := a.Configuration.APIClient.SelectHeaderContentType(localVarHttpContentTypes)
+	localVarHttpContentType := selectHeaderContentType(localVarHttpContentTypes)
 	if localVarHttpContentType != "" {
 		localVarHeaderParams["Content-Type"] = localVarHttpContentType
 	}
+
 	// to determine the Accept header
 	localVarHttpHeaderAccepts := []string{
 		"application/json",
 		}
 
 	// set Accept header
-	localVarHttpHeaderAccept := a.Configuration.APIClient.SelectHeaderAccept(localVarHttpHeaderAccepts)
+	localVarHttpHeaderAccept := selectHeaderAccept(localVarHttpHeaderAccepts)
 	if localVarHttpHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
 	}
-	var successPayload = new(GetMultibranchPipeline)
-	localVarHttpResponse, err := a.Configuration.APIClient.CallAPI(localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
-
-	var localVarURL, _ = url.Parse(localVarPath)
-	localVarURL.RawQuery = localVarQueryParams.Encode()
-	var localVarAPIResponse = &APIResponse{Operation: "GetPipelineBranchesByOrg", Method: localVarHttpMethod, RequestURL: localVarURL.String()}
-	if localVarHttpResponse != nil {
-		localVarAPIResponse.Response = localVarHttpResponse.RawResponse
-		localVarAPIResponse.Payload = localVarHttpResponse.Body()
-	}
-
+	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
-		return successPayload, localVarAPIResponse, err
+		return successPayload, nil, err
 	}
-	err = json.Unmarshal(localVarHttpResponse.Body(), &successPayload)
-	return successPayload, localVarAPIResponse, err
+
+	 localVarHttpResponse, err := a.client.callAPI(r)
+	 if err != nil || localVarHttpResponse == nil {
+		  return successPayload, localVarHttpResponse, err
+	 }
+	 defer localVarHttpResponse.Body.Close()
+	 if localVarHttpResponse.StatusCode >= 300 {
+		return successPayload, localVarHttpResponse, reportError(localVarHttpResponse.Status)
+	 }
+	
+	if err = json.NewDecoder(localVarHttpResponse.Body).Decode(&successPayload); err != nil {
+	 	return successPayload, localVarHttpResponse, err
+	}
+
+
+	return successPayload, localVarHttpResponse, err
 }
 
-/**
- * 
- * Retrieve pipeline details for an organisation
- *
- * @param organisation Name of the organisation
- * @param pipeline Name of the pipeline
- * @return *SwaggyjenkinsPipeline
- */
-func (a BlueOceanApi) GetPipelineByOrg(organisation string, pipeline string) (*SwaggyjenkinsPipeline, *APIResponse, error) {
+/* BlueOceanApiService 
+ Retrieve pipeline folder for an organization
+ * @param ctx context.Context Authentication Context 
+ @param organization Name of the organization
+ @param folder Name of the folder
+ @return PipelineFolderImpl*/
+func (a *BlueOceanApiService) GetPipelineFolder(ctx context.Context, organization string, folder string) (PipelineFolderImpl,  *http.Response, error) {
+	var (
+		localVarHttpMethod = strings.ToUpper("Get")
+		localVarPostBody interface{}
+		localVarFileName string
+		localVarFileBytes []byte
+	 	successPayload  PipelineFolderImpl
+	)
 
-	var localVarHttpMethod = strings.ToUpper("Get")
 	// create path and map variables
-	localVarPath := a.Configuration.BasePath + "/blue/rest/organizations/{organisation}/pipelines/{pipeline}"
-	localVarPath = strings.Replace(localVarPath, "{"+"organisation"+"}", fmt.Sprintf("%v", organisation), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"pipeline"+"}", fmt.Sprintf("%v", pipeline), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := make(map[string]string)
-	var localVarPostBody interface{}
-	var localVarFileName string
-	var localVarFileBytes []byte
-	// add default headers if any
-	for key := range a.Configuration.DefaultHeader {
-		localVarHeaderParams[key] = a.Configuration.DefaultHeader[key]
-	}
-
-	// to determine the Content-Type header
-	localVarHttpContentTypes := []string{  }
-
-	// set Content-Type header
-	localVarHttpContentType := a.Configuration.APIClient.SelectHeaderContentType(localVarHttpContentTypes)
-	if localVarHttpContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHttpContentType
-	}
-	// to determine the Accept header
-	localVarHttpHeaderAccepts := []string{
-		"application/json",
-		}
-
-	// set Accept header
-	localVarHttpHeaderAccept := a.Configuration.APIClient.SelectHeaderAccept(localVarHttpHeaderAccepts)
-	if localVarHttpHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
-	}
-	var successPayload = new(SwaggyjenkinsPipeline)
-	localVarHttpResponse, err := a.Configuration.APIClient.CallAPI(localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
-
-	var localVarURL, _ = url.Parse(localVarPath)
-	localVarURL.RawQuery = localVarQueryParams.Encode()
-	var localVarAPIResponse = &APIResponse{Operation: "GetPipelineByOrg", Method: localVarHttpMethod, RequestURL: localVarURL.String()}
-	if localVarHttpResponse != nil {
-		localVarAPIResponse.Response = localVarHttpResponse.RawResponse
-		localVarAPIResponse.Payload = localVarHttpResponse.Body()
-	}
-
-	if err != nil {
-		return successPayload, localVarAPIResponse, err
-	}
-	err = json.Unmarshal(localVarHttpResponse.Body(), &successPayload)
-	return successPayload, localVarAPIResponse, err
-}
-
-/**
- * 
- * Retrieve pipeline folder for an organisation
- *
- * @param organisation Name of the organisation
- * @param folder Name of the folder
- * @return *IojenkinsblueoceanserviceembeddedrestPipelineFolderImpl
- */
-func (a BlueOceanApi) GetPipelineFolderByOrg(organisation string, folder string) (*IojenkinsblueoceanserviceembeddedrestPipelineFolderImpl, *APIResponse, error) {
-
-	var localVarHttpMethod = strings.ToUpper("Get")
-	// create path and map variables
-	localVarPath := a.Configuration.BasePath + "/blue/rest/organizations/{organisation}/pipelines/{folder}/"
-	localVarPath = strings.Replace(localVarPath, "{"+"organisation"+"}", fmt.Sprintf("%v", organisation), -1)
+	localVarPath := a.client.cfg.BasePath + "/blue/rest/organizations/{organization}/pipelines/{folder}/"
+	localVarPath = strings.Replace(localVarPath, "{"+"organization"+"}", fmt.Sprintf("%v", organization), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"folder"+"}", fmt.Sprintf("%v", folder), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
-	localVarFormParams := make(map[string]string)
-	var localVarPostBody interface{}
-	var localVarFileName string
-	var localVarFileBytes []byte
-	// add default headers if any
-	for key := range a.Configuration.DefaultHeader {
-		localVarHeaderParams[key] = a.Configuration.DefaultHeader[key]
-	}
+	localVarFormParams := url.Values{}
+
 
 	// to determine the Content-Type header
 	localVarHttpContentTypes := []string{  }
 
 	// set Content-Type header
-	localVarHttpContentType := a.Configuration.APIClient.SelectHeaderContentType(localVarHttpContentTypes)
+	localVarHttpContentType := selectHeaderContentType(localVarHttpContentTypes)
 	if localVarHttpContentType != "" {
 		localVarHeaderParams["Content-Type"] = localVarHttpContentType
 	}
+
 	// to determine the Accept header
 	localVarHttpHeaderAccepts := []string{
 		"application/json",
 		}
 
 	// set Accept header
-	localVarHttpHeaderAccept := a.Configuration.APIClient.SelectHeaderAccept(localVarHttpHeaderAccepts)
+	localVarHttpHeaderAccept := selectHeaderAccept(localVarHttpHeaderAccepts)
 	if localVarHttpHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
 	}
-	var successPayload = new(IojenkinsblueoceanserviceembeddedrestPipelineFolderImpl)
-	localVarHttpResponse, err := a.Configuration.APIClient.CallAPI(localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
-
-	var localVarURL, _ = url.Parse(localVarPath)
-	localVarURL.RawQuery = localVarQueryParams.Encode()
-	var localVarAPIResponse = &APIResponse{Operation: "GetPipelineFolderByOrg", Method: localVarHttpMethod, RequestURL: localVarURL.String()}
-	if localVarHttpResponse != nil {
-		localVarAPIResponse.Response = localVarHttpResponse.RawResponse
-		localVarAPIResponse.Payload = localVarHttpResponse.Body()
-	}
-
+	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
-		return successPayload, localVarAPIResponse, err
+		return successPayload, nil, err
 	}
-	err = json.Unmarshal(localVarHttpResponse.Body(), &successPayload)
-	return successPayload, localVarAPIResponse, err
+
+	 localVarHttpResponse, err := a.client.callAPI(r)
+	 if err != nil || localVarHttpResponse == nil {
+		  return successPayload, localVarHttpResponse, err
+	 }
+	 defer localVarHttpResponse.Body.Close()
+	 if localVarHttpResponse.StatusCode >= 300 {
+		return successPayload, localVarHttpResponse, reportError(localVarHttpResponse.Status)
+	 }
+	
+	if err = json.NewDecoder(localVarHttpResponse.Body).Decode(&successPayload); err != nil {
+	 	return successPayload, localVarHttpResponse, err
+	}
+
+
+	return successPayload, localVarHttpResponse, err
 }
 
-/**
- * 
- * Retrieve pipeline details for an organisation folder
- *
- * @param organisation Name of the organisation
- * @param pipeline Name of the pipeline
- * @param folder Name of the folder
- * @return *IojenkinsblueoceanserviceembeddedrestPipelineImpl
- */
-func (a BlueOceanApi) GetPipelineFolderByOrg_1(organisation string, pipeline string, folder string) (*IojenkinsblueoceanserviceembeddedrestPipelineImpl, *APIResponse, error) {
+/* BlueOceanApiService 
+ Retrieve pipeline details for an organization folder
+ * @param ctx context.Context Authentication Context 
+ @param organization Name of the organization
+ @param pipeline Name of the pipeline
+ @param folder Name of the folder
+ @return PipelineImpl*/
+func (a *BlueOceanApiService) GetPipelineFolderPipeline(ctx context.Context, organization string, pipeline string, folder string) (PipelineImpl,  *http.Response, error) {
+	var (
+		localVarHttpMethod = strings.ToUpper("Get")
+		localVarPostBody interface{}
+		localVarFileName string
+		localVarFileBytes []byte
+	 	successPayload  PipelineImpl
+	)
 
-	var localVarHttpMethod = strings.ToUpper("Get")
 	// create path and map variables
-	localVarPath := a.Configuration.BasePath + "/blue/rest/organizations/{organisation}/pipelines/{folder}/pipelines/{pipeline}"
-	localVarPath = strings.Replace(localVarPath, "{"+"organisation"+"}", fmt.Sprintf("%v", organisation), -1)
+	localVarPath := a.client.cfg.BasePath + "/blue/rest/organizations/{organization}/pipelines/{folder}/pipelines/{pipeline}"
+	localVarPath = strings.Replace(localVarPath, "{"+"organization"+"}", fmt.Sprintf("%v", organization), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"pipeline"+"}", fmt.Sprintf("%v", pipeline), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"folder"+"}", fmt.Sprintf("%v", folder), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
-	localVarFormParams := make(map[string]string)
-	var localVarPostBody interface{}
-	var localVarFileName string
-	var localVarFileBytes []byte
-	// add default headers if any
-	for key := range a.Configuration.DefaultHeader {
-		localVarHeaderParams[key] = a.Configuration.DefaultHeader[key]
-	}
+	localVarFormParams := url.Values{}
+
 
 	// to determine the Content-Type header
 	localVarHttpContentTypes := []string{  }
 
 	// set Content-Type header
-	localVarHttpContentType := a.Configuration.APIClient.SelectHeaderContentType(localVarHttpContentTypes)
+	localVarHttpContentType := selectHeaderContentType(localVarHttpContentTypes)
 	if localVarHttpContentType != "" {
 		localVarHeaderParams["Content-Type"] = localVarHttpContentType
 	}
+
 	// to determine the Accept header
 	localVarHttpHeaderAccepts := []string{
 		"application/json",
 		}
 
 	// set Accept header
-	localVarHttpHeaderAccept := a.Configuration.APIClient.SelectHeaderAccept(localVarHttpHeaderAccepts)
+	localVarHttpHeaderAccept := selectHeaderAccept(localVarHttpHeaderAccepts)
 	if localVarHttpHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
 	}
-	var successPayload = new(IojenkinsblueoceanserviceembeddedrestPipelineImpl)
-	localVarHttpResponse, err := a.Configuration.APIClient.CallAPI(localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
-
-	var localVarURL, _ = url.Parse(localVarPath)
-	localVarURL.RawQuery = localVarQueryParams.Encode()
-	var localVarAPIResponse = &APIResponse{Operation: "GetPipelineFolderByOrg_0", Method: localVarHttpMethod, RequestURL: localVarURL.String()}
-	if localVarHttpResponse != nil {
-		localVarAPIResponse.Response = localVarHttpResponse.RawResponse
-		localVarAPIResponse.Payload = localVarHttpResponse.Body()
-	}
-
+	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
-		return successPayload, localVarAPIResponse, err
+		return successPayload, nil, err
 	}
-	err = json.Unmarshal(localVarHttpResponse.Body(), &successPayload)
-	return successPayload, localVarAPIResponse, err
+
+	 localVarHttpResponse, err := a.client.callAPI(r)
+	 if err != nil || localVarHttpResponse == nil {
+		  return successPayload, localVarHttpResponse, err
+	 }
+	 defer localVarHttpResponse.Body.Close()
+	 if localVarHttpResponse.StatusCode >= 300 {
+		return successPayload, localVarHttpResponse, reportError(localVarHttpResponse.Status)
+	 }
+	
+	if err = json.NewDecoder(localVarHttpResponse.Body).Decode(&successPayload); err != nil {
+	 	return successPayload, localVarHttpResponse, err
+	}
+
+
+	return successPayload, localVarHttpResponse, err
 }
 
-/**
- * 
- * Retrieve all pipelines details for an organisation
- *
- * @param organisation Name of the organisation
- * @return *GetPipelines
- */
-func (a BlueOceanApi) GetPipelinesByOrg(organisation string) (*GetPipelines, *APIResponse, error) {
+/* BlueOceanApiService 
+ Retrieve queue details for an organization pipeline
+ * @param ctx context.Context Authentication Context 
+ @param organization Name of the organization
+ @param pipeline Name of the pipeline
+ @return PipelineQueue*/
+func (a *BlueOceanApiService) GetPipelineQueue(ctx context.Context, organization string, pipeline string) (PipelineQueue,  *http.Response, error) {
+	var (
+		localVarHttpMethod = strings.ToUpper("Get")
+		localVarPostBody interface{}
+		localVarFileName string
+		localVarFileBytes []byte
+	 	successPayload  PipelineQueue
+	)
 
-	var localVarHttpMethod = strings.ToUpper("Get")
 	// create path and map variables
-	localVarPath := a.Configuration.BasePath + "/blue/rest/organizations/{organisation}/pipelines/"
-	localVarPath = strings.Replace(localVarPath, "{"+"organisation"+"}", fmt.Sprintf("%v", organisation), -1)
+	localVarPath := a.client.cfg.BasePath + "/blue/rest/organizations/{organization}/pipelines/{pipeline}/queue"
+	localVarPath = strings.Replace(localVarPath, "{"+"organization"+"}", fmt.Sprintf("%v", organization), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"pipeline"+"}", fmt.Sprintf("%v", pipeline), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
-	localVarFormParams := make(map[string]string)
-	var localVarPostBody interface{}
-	var localVarFileName string
-	var localVarFileBytes []byte
-	// add default headers if any
-	for key := range a.Configuration.DefaultHeader {
-		localVarHeaderParams[key] = a.Configuration.DefaultHeader[key]
-	}
+	localVarFormParams := url.Values{}
+
 
 	// to determine the Content-Type header
 	localVarHttpContentTypes := []string{  }
 
 	// set Content-Type header
-	localVarHttpContentType := a.Configuration.APIClient.SelectHeaderContentType(localVarHttpContentTypes)
+	localVarHttpContentType := selectHeaderContentType(localVarHttpContentTypes)
 	if localVarHttpContentType != "" {
 		localVarHeaderParams["Content-Type"] = localVarHttpContentType
 	}
+
 	// to determine the Accept header
 	localVarHttpHeaderAccepts := []string{
 		"application/json",
 		}
 
 	// set Accept header
-	localVarHttpHeaderAccept := a.Configuration.APIClient.SelectHeaderAccept(localVarHttpHeaderAccepts)
+	localVarHttpHeaderAccept := selectHeaderAccept(localVarHttpHeaderAccepts)
 	if localVarHttpHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
 	}
-	var successPayload = new(GetPipelines)
-	localVarHttpResponse, err := a.Configuration.APIClient.CallAPI(localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
-
-	var localVarURL, _ = url.Parse(localVarPath)
-	localVarURL.RawQuery = localVarQueryParams.Encode()
-	var localVarAPIResponse = &APIResponse{Operation: "GetPipelinesByOrg", Method: localVarHttpMethod, RequestURL: localVarURL.String()}
-	if localVarHttpResponse != nil {
-		localVarAPIResponse.Response = localVarHttpResponse.RawResponse
-		localVarAPIResponse.Payload = localVarHttpResponse.Body()
-	}
-
+	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
-		return successPayload, localVarAPIResponse, err
+		return successPayload, nil, err
 	}
-	err = json.Unmarshal(localVarHttpResponse.Body(), &successPayload)
-	return successPayload, localVarAPIResponse, err
+
+	 localVarHttpResponse, err := a.client.callAPI(r)
+	 if err != nil || localVarHttpResponse == nil {
+		  return successPayload, localVarHttpResponse, err
+	 }
+	 defer localVarHttpResponse.Body.Close()
+	 if localVarHttpResponse.StatusCode >= 300 {
+		return successPayload, localVarHttpResponse, reportError(localVarHttpResponse.Status)
+	 }
+	
+	if err = json.NewDecoder(localVarHttpResponse.Body).Decode(&successPayload); err != nil {
+	 	return successPayload, localVarHttpResponse, err
+	}
+
+
+	return successPayload, localVarHttpResponse, err
 }
 
-/**
- * 
- * Retrieve user details for an organisation
- *
- * @param organisation Name of the organisation
- * @param user Name of the user
- * @return *SwaggyjenkinsUser
- */
-func (a BlueOceanApi) GetUser(organisation string, user string) (*SwaggyjenkinsUser, *APIResponse, error) {
+/* BlueOceanApiService 
+ Retrieve run details for an organization pipeline
+ * @param ctx context.Context Authentication Context 
+ @param organization Name of the organization
+ @param pipeline Name of the pipeline
+ @param run Name of the run
+ @return PipelineRun*/
+func (a *BlueOceanApiService) GetPipelineRun(ctx context.Context, organization string, pipeline string, run string) (PipelineRun,  *http.Response, error) {
+	var (
+		localVarHttpMethod = strings.ToUpper("Get")
+		localVarPostBody interface{}
+		localVarFileName string
+		localVarFileBytes []byte
+	 	successPayload  PipelineRun
+	)
 
-	var localVarHttpMethod = strings.ToUpper("Get")
 	// create path and map variables
-	localVarPath := a.Configuration.BasePath + "/blue/rest/organizations/{organisation}/users/{user}"
-	localVarPath = strings.Replace(localVarPath, "{"+"organisation"+"}", fmt.Sprintf("%v", organisation), -1)
+	localVarPath := a.client.cfg.BasePath + "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}"
+	localVarPath = strings.Replace(localVarPath, "{"+"organization"+"}", fmt.Sprintf("%v", organization), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"pipeline"+"}", fmt.Sprintf("%v", pipeline), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"run"+"}", fmt.Sprintf("%v", run), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+
+	// to determine the Content-Type header
+	localVarHttpContentTypes := []string{  }
+
+	// set Content-Type header
+	localVarHttpContentType := selectHeaderContentType(localVarHttpContentTypes)
+	if localVarHttpContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHttpContentType
+	}
+
+	// to determine the Accept header
+	localVarHttpHeaderAccepts := []string{
+		"application/json",
+		}
+
+	// set Accept header
+	localVarHttpHeaderAccept := selectHeaderAccept(localVarHttpHeaderAccepts)
+	if localVarHttpHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
+	}
+	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return successPayload, nil, err
+	}
+
+	 localVarHttpResponse, err := a.client.callAPI(r)
+	 if err != nil || localVarHttpResponse == nil {
+		  return successPayload, localVarHttpResponse, err
+	 }
+	 defer localVarHttpResponse.Body.Close()
+	 if localVarHttpResponse.StatusCode >= 300 {
+		return successPayload, localVarHttpResponse, reportError(localVarHttpResponse.Status)
+	 }
+	
+	if err = json.NewDecoder(localVarHttpResponse.Body).Decode(&successPayload); err != nil {
+	 	return successPayload, localVarHttpResponse, err
+	}
+
+
+	return successPayload, localVarHttpResponse, err
+}
+
+/* BlueOceanApiService 
+ Get log for a pipeline run
+ * @param ctx context.Context Authentication Context 
+ @param organization Name of the organization
+ @param pipeline Name of the pipeline
+ @param run Name of the run
+ @param optional (nil or map[string]interface{}) with one or more of:
+     @param "start" (int32) Start position of the log
+     @param "download" (bool) Set to true in order to download the file, otherwise it&#39;s passed as a response body
+ @return string*/
+func (a *BlueOceanApiService) GetPipelineRunLog(ctx context.Context, organization string, pipeline string, run string, localVarOptionals map[string]interface{}) (string,  *http.Response, error) {
+	var (
+		localVarHttpMethod = strings.ToUpper("Get")
+		localVarPostBody interface{}
+		localVarFileName string
+		localVarFileBytes []byte
+	 	successPayload  string
+	)
+
+	// create path and map variables
+	localVarPath := a.client.cfg.BasePath + "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/log"
+	localVarPath = strings.Replace(localVarPath, "{"+"organization"+"}", fmt.Sprintf("%v", organization), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"pipeline"+"}", fmt.Sprintf("%v", pipeline), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"run"+"}", fmt.Sprintf("%v", run), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	if err := typeCheckParameter(localVarOptionals["start"], "int32", "start"); err != nil {
+		return successPayload, nil, err
+	}
+	if err := typeCheckParameter(localVarOptionals["download"], "bool", "download"); err != nil {
+		return successPayload, nil, err
+	}
+
+	if localVarTempParam, localVarOk := localVarOptionals["start"].(int32); localVarOk {
+		localVarQueryParams.Add("start", parameterToString(localVarTempParam, ""))
+	}
+	if localVarTempParam, localVarOk := localVarOptionals["download"].(bool); localVarOk {
+		localVarQueryParams.Add("download", parameterToString(localVarTempParam, ""))
+	}
+	// to determine the Content-Type header
+	localVarHttpContentTypes := []string{  }
+
+	// set Content-Type header
+	localVarHttpContentType := selectHeaderContentType(localVarHttpContentTypes)
+	if localVarHttpContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHttpContentType
+	}
+
+	// to determine the Accept header
+	localVarHttpHeaderAccepts := []string{
+		"application/json",
+		}
+
+	// set Accept header
+	localVarHttpHeaderAccept := selectHeaderAccept(localVarHttpHeaderAccepts)
+	if localVarHttpHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
+	}
+	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return successPayload, nil, err
+	}
+
+	 localVarHttpResponse, err := a.client.callAPI(r)
+	 if err != nil || localVarHttpResponse == nil {
+		  return successPayload, localVarHttpResponse, err
+	 }
+	 defer localVarHttpResponse.Body.Close()
+	 if localVarHttpResponse.StatusCode >= 300 {
+		return successPayload, localVarHttpResponse, reportError(localVarHttpResponse.Status)
+	 }
+	
+	if err = json.NewDecoder(localVarHttpResponse.Body).Decode(&successPayload); err != nil {
+	 	return successPayload, localVarHttpResponse, err
+	}
+
+
+	return successPayload, localVarHttpResponse, err
+}
+
+/* BlueOceanApiService 
+ Retrieve run node details for an organization pipeline
+ * @param ctx context.Context Authentication Context 
+ @param organization Name of the organization
+ @param pipeline Name of the pipeline
+ @param run Name of the run
+ @param node Name of the node
+ @return PipelineRunNode*/
+func (a *BlueOceanApiService) GetPipelineRunNode(ctx context.Context, organization string, pipeline string, run string, node string) (PipelineRunNode,  *http.Response, error) {
+	var (
+		localVarHttpMethod = strings.ToUpper("Get")
+		localVarPostBody interface{}
+		localVarFileName string
+		localVarFileBytes []byte
+	 	successPayload  PipelineRunNode
+	)
+
+	// create path and map variables
+	localVarPath := a.client.cfg.BasePath + "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}"
+	localVarPath = strings.Replace(localVarPath, "{"+"organization"+"}", fmt.Sprintf("%v", organization), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"pipeline"+"}", fmt.Sprintf("%v", pipeline), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"run"+"}", fmt.Sprintf("%v", run), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"node"+"}", fmt.Sprintf("%v", node), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+
+	// to determine the Content-Type header
+	localVarHttpContentTypes := []string{  }
+
+	// set Content-Type header
+	localVarHttpContentType := selectHeaderContentType(localVarHttpContentTypes)
+	if localVarHttpContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHttpContentType
+	}
+
+	// to determine the Accept header
+	localVarHttpHeaderAccepts := []string{
+		"application/json",
+		}
+
+	// set Accept header
+	localVarHttpHeaderAccept := selectHeaderAccept(localVarHttpHeaderAccepts)
+	if localVarHttpHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
+	}
+	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return successPayload, nil, err
+	}
+
+	 localVarHttpResponse, err := a.client.callAPI(r)
+	 if err != nil || localVarHttpResponse == nil {
+		  return successPayload, localVarHttpResponse, err
+	 }
+	 defer localVarHttpResponse.Body.Close()
+	 if localVarHttpResponse.StatusCode >= 300 {
+		return successPayload, localVarHttpResponse, reportError(localVarHttpResponse.Status)
+	 }
+	
+	if err = json.NewDecoder(localVarHttpResponse.Body).Decode(&successPayload); err != nil {
+	 	return successPayload, localVarHttpResponse, err
+	}
+
+
+	return successPayload, localVarHttpResponse, err
+}
+
+/* BlueOceanApiService 
+ Retrieve run node details for an organization pipeline
+ * @param ctx context.Context Authentication Context 
+ @param organization Name of the organization
+ @param pipeline Name of the pipeline
+ @param run Name of the run
+ @param node Name of the node
+ @param step Name of the step
+ @return PipelineStepImpl*/
+func (a *BlueOceanApiService) GetPipelineRunNodeStep(ctx context.Context, organization string, pipeline string, run string, node string, step string) (PipelineStepImpl,  *http.Response, error) {
+	var (
+		localVarHttpMethod = strings.ToUpper("Get")
+		localVarPostBody interface{}
+		localVarFileName string
+		localVarFileBytes []byte
+	 	successPayload  PipelineStepImpl
+	)
+
+	// create path and map variables
+	localVarPath := a.client.cfg.BasePath + "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps/{step}"
+	localVarPath = strings.Replace(localVarPath, "{"+"organization"+"}", fmt.Sprintf("%v", organization), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"pipeline"+"}", fmt.Sprintf("%v", pipeline), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"run"+"}", fmt.Sprintf("%v", run), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"node"+"}", fmt.Sprintf("%v", node), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"step"+"}", fmt.Sprintf("%v", step), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+
+	// to determine the Content-Type header
+	localVarHttpContentTypes := []string{  }
+
+	// set Content-Type header
+	localVarHttpContentType := selectHeaderContentType(localVarHttpContentTypes)
+	if localVarHttpContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHttpContentType
+	}
+
+	// to determine the Accept header
+	localVarHttpHeaderAccepts := []string{
+		"application/json",
+		}
+
+	// set Accept header
+	localVarHttpHeaderAccept := selectHeaderAccept(localVarHttpHeaderAccepts)
+	if localVarHttpHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
+	}
+	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return successPayload, nil, err
+	}
+
+	 localVarHttpResponse, err := a.client.callAPI(r)
+	 if err != nil || localVarHttpResponse == nil {
+		  return successPayload, localVarHttpResponse, err
+	 }
+	 defer localVarHttpResponse.Body.Close()
+	 if localVarHttpResponse.StatusCode >= 300 {
+		return successPayload, localVarHttpResponse, reportError(localVarHttpResponse.Status)
+	 }
+	
+	if err = json.NewDecoder(localVarHttpResponse.Body).Decode(&successPayload); err != nil {
+	 	return successPayload, localVarHttpResponse, err
+	}
+
+
+	return successPayload, localVarHttpResponse, err
+}
+
+/* BlueOceanApiService 
+ Get log for a pipeline run node step
+ * @param ctx context.Context Authentication Context 
+ @param organization Name of the organization
+ @param pipeline Name of the pipeline
+ @param run Name of the run
+ @param node Name of the node
+ @param step Name of the step
+ @return string*/
+func (a *BlueOceanApiService) GetPipelineRunNodeStepLog(ctx context.Context, organization string, pipeline string, run string, node string, step string) (string,  *http.Response, error) {
+	var (
+		localVarHttpMethod = strings.ToUpper("Get")
+		localVarPostBody interface{}
+		localVarFileName string
+		localVarFileBytes []byte
+	 	successPayload  string
+	)
+
+	// create path and map variables
+	localVarPath := a.client.cfg.BasePath + "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps/{step}/log"
+	localVarPath = strings.Replace(localVarPath, "{"+"organization"+"}", fmt.Sprintf("%v", organization), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"pipeline"+"}", fmt.Sprintf("%v", pipeline), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"run"+"}", fmt.Sprintf("%v", run), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"node"+"}", fmt.Sprintf("%v", node), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"step"+"}", fmt.Sprintf("%v", step), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+
+	// to determine the Content-Type header
+	localVarHttpContentTypes := []string{  }
+
+	// set Content-Type header
+	localVarHttpContentType := selectHeaderContentType(localVarHttpContentTypes)
+	if localVarHttpContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHttpContentType
+	}
+
+	// to determine the Accept header
+	localVarHttpHeaderAccepts := []string{
+		"application/json",
+		}
+
+	// set Accept header
+	localVarHttpHeaderAccept := selectHeaderAccept(localVarHttpHeaderAccepts)
+	if localVarHttpHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
+	}
+	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return successPayload, nil, err
+	}
+
+	 localVarHttpResponse, err := a.client.callAPI(r)
+	 if err != nil || localVarHttpResponse == nil {
+		  return successPayload, localVarHttpResponse, err
+	 }
+	 defer localVarHttpResponse.Body.Close()
+	 if localVarHttpResponse.StatusCode >= 300 {
+		return successPayload, localVarHttpResponse, reportError(localVarHttpResponse.Status)
+	 }
+	
+	if err = json.NewDecoder(localVarHttpResponse.Body).Decode(&successPayload); err != nil {
+	 	return successPayload, localVarHttpResponse, err
+	}
+
+
+	return successPayload, localVarHttpResponse, err
+}
+
+/* BlueOceanApiService 
+ Retrieve run node steps details for an organization pipeline
+ * @param ctx context.Context Authentication Context 
+ @param organization Name of the organization
+ @param pipeline Name of the pipeline
+ @param run Name of the run
+ @param node Name of the node
+ @return PipelineRunNodeSteps*/
+func (a *BlueOceanApiService) GetPipelineRunNodeSteps(ctx context.Context, organization string, pipeline string, run string, node string) (PipelineRunNodeSteps,  *http.Response, error) {
+	var (
+		localVarHttpMethod = strings.ToUpper("Get")
+		localVarPostBody interface{}
+		localVarFileName string
+		localVarFileBytes []byte
+	 	successPayload  PipelineRunNodeSteps
+	)
+
+	// create path and map variables
+	localVarPath := a.client.cfg.BasePath + "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps"
+	localVarPath = strings.Replace(localVarPath, "{"+"organization"+"}", fmt.Sprintf("%v", organization), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"pipeline"+"}", fmt.Sprintf("%v", pipeline), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"run"+"}", fmt.Sprintf("%v", run), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"node"+"}", fmt.Sprintf("%v", node), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+
+	// to determine the Content-Type header
+	localVarHttpContentTypes := []string{  }
+
+	// set Content-Type header
+	localVarHttpContentType := selectHeaderContentType(localVarHttpContentTypes)
+	if localVarHttpContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHttpContentType
+	}
+
+	// to determine the Accept header
+	localVarHttpHeaderAccepts := []string{
+		"application/json",
+		}
+
+	// set Accept header
+	localVarHttpHeaderAccept := selectHeaderAccept(localVarHttpHeaderAccepts)
+	if localVarHttpHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
+	}
+	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return successPayload, nil, err
+	}
+
+	 localVarHttpResponse, err := a.client.callAPI(r)
+	 if err != nil || localVarHttpResponse == nil {
+		  return successPayload, localVarHttpResponse, err
+	 }
+	 defer localVarHttpResponse.Body.Close()
+	 if localVarHttpResponse.StatusCode >= 300 {
+		return successPayload, localVarHttpResponse, reportError(localVarHttpResponse.Status)
+	 }
+	
+	if err = json.NewDecoder(localVarHttpResponse.Body).Decode(&successPayload); err != nil {
+	 	return successPayload, localVarHttpResponse, err
+	}
+
+
+	return successPayload, localVarHttpResponse, err
+}
+
+/* BlueOceanApiService 
+ Retrieve run nodes details for an organization pipeline
+ * @param ctx context.Context Authentication Context 
+ @param organization Name of the organization
+ @param pipeline Name of the pipeline
+ @param run Name of the run
+ @return PipelineRunNodes*/
+func (a *BlueOceanApiService) GetPipelineRunNodes(ctx context.Context, organization string, pipeline string, run string) (PipelineRunNodes,  *http.Response, error) {
+	var (
+		localVarHttpMethod = strings.ToUpper("Get")
+		localVarPostBody interface{}
+		localVarFileName string
+		localVarFileBytes []byte
+	 	successPayload  PipelineRunNodes
+	)
+
+	// create path and map variables
+	localVarPath := a.client.cfg.BasePath + "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes"
+	localVarPath = strings.Replace(localVarPath, "{"+"organization"+"}", fmt.Sprintf("%v", organization), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"pipeline"+"}", fmt.Sprintf("%v", pipeline), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"run"+"}", fmt.Sprintf("%v", run), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+
+	// to determine the Content-Type header
+	localVarHttpContentTypes := []string{  }
+
+	// set Content-Type header
+	localVarHttpContentType := selectHeaderContentType(localVarHttpContentTypes)
+	if localVarHttpContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHttpContentType
+	}
+
+	// to determine the Accept header
+	localVarHttpHeaderAccepts := []string{
+		"application/json",
+		}
+
+	// set Accept header
+	localVarHttpHeaderAccept := selectHeaderAccept(localVarHttpHeaderAccepts)
+	if localVarHttpHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
+	}
+	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return successPayload, nil, err
+	}
+
+	 localVarHttpResponse, err := a.client.callAPI(r)
+	 if err != nil || localVarHttpResponse == nil {
+		  return successPayload, localVarHttpResponse, err
+	 }
+	 defer localVarHttpResponse.Body.Close()
+	 if localVarHttpResponse.StatusCode >= 300 {
+		return successPayload, localVarHttpResponse, reportError(localVarHttpResponse.Status)
+	 }
+	
+	if err = json.NewDecoder(localVarHttpResponse.Body).Decode(&successPayload); err != nil {
+	 	return successPayload, localVarHttpResponse, err
+	}
+
+
+	return successPayload, localVarHttpResponse, err
+}
+
+/* BlueOceanApiService 
+ Retrieve all runs details for an organization pipeline
+ * @param ctx context.Context Authentication Context 
+ @param organization Name of the organization
+ @param pipeline Name of the pipeline
+ @return PipelineRuns*/
+func (a *BlueOceanApiService) GetPipelineRuns(ctx context.Context, organization string, pipeline string) (PipelineRuns,  *http.Response, error) {
+	var (
+		localVarHttpMethod = strings.ToUpper("Get")
+		localVarPostBody interface{}
+		localVarFileName string
+		localVarFileBytes []byte
+	 	successPayload  PipelineRuns
+	)
+
+	// create path and map variables
+	localVarPath := a.client.cfg.BasePath + "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs"
+	localVarPath = strings.Replace(localVarPath, "{"+"organization"+"}", fmt.Sprintf("%v", organization), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"pipeline"+"}", fmt.Sprintf("%v", pipeline), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+
+	// to determine the Content-Type header
+	localVarHttpContentTypes := []string{  }
+
+	// set Content-Type header
+	localVarHttpContentType := selectHeaderContentType(localVarHttpContentTypes)
+	if localVarHttpContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHttpContentType
+	}
+
+	// to determine the Accept header
+	localVarHttpHeaderAccepts := []string{
+		"application/json",
+		}
+
+	// set Accept header
+	localVarHttpHeaderAccept := selectHeaderAccept(localVarHttpHeaderAccepts)
+	if localVarHttpHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
+	}
+	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return successPayload, nil, err
+	}
+
+	 localVarHttpResponse, err := a.client.callAPI(r)
+	 if err != nil || localVarHttpResponse == nil {
+		  return successPayload, localVarHttpResponse, err
+	 }
+	 defer localVarHttpResponse.Body.Close()
+	 if localVarHttpResponse.StatusCode >= 300 {
+		return successPayload, localVarHttpResponse, reportError(localVarHttpResponse.Status)
+	 }
+	
+	if err = json.NewDecoder(localVarHttpResponse.Body).Decode(&successPayload); err != nil {
+	 	return successPayload, localVarHttpResponse, err
+	}
+
+
+	return successPayload, localVarHttpResponse, err
+}
+
+/* BlueOceanApiService 
+ Retrieve all pipelines details for an organization
+ * @param ctx context.Context Authentication Context 
+ @param organization Name of the organization
+ @return Pipelines*/
+func (a *BlueOceanApiService) GetPipelines(ctx context.Context, organization string) (Pipelines,  *http.Response, error) {
+	var (
+		localVarHttpMethod = strings.ToUpper("Get")
+		localVarPostBody interface{}
+		localVarFileName string
+		localVarFileBytes []byte
+	 	successPayload  Pipelines
+	)
+
+	// create path and map variables
+	localVarPath := a.client.cfg.BasePath + "/blue/rest/organizations/{organization}/pipelines/"
+	localVarPath = strings.Replace(localVarPath, "{"+"organization"+"}", fmt.Sprintf("%v", organization), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+
+	// to determine the Content-Type header
+	localVarHttpContentTypes := []string{  }
+
+	// set Content-Type header
+	localVarHttpContentType := selectHeaderContentType(localVarHttpContentTypes)
+	if localVarHttpContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHttpContentType
+	}
+
+	// to determine the Accept header
+	localVarHttpHeaderAccepts := []string{
+		"application/json",
+		}
+
+	// set Accept header
+	localVarHttpHeaderAccept := selectHeaderAccept(localVarHttpHeaderAccepts)
+	if localVarHttpHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
+	}
+	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return successPayload, nil, err
+	}
+
+	 localVarHttpResponse, err := a.client.callAPI(r)
+	 if err != nil || localVarHttpResponse == nil {
+		  return successPayload, localVarHttpResponse, err
+	 }
+	 defer localVarHttpResponse.Body.Close()
+	 if localVarHttpResponse.StatusCode >= 300 {
+		return successPayload, localVarHttpResponse, reportError(localVarHttpResponse.Status)
+	 }
+	
+	if err = json.NewDecoder(localVarHttpResponse.Body).Decode(&successPayload); err != nil {
+	 	return successPayload, localVarHttpResponse, err
+	}
+
+
+	return successPayload, localVarHttpResponse, err
+}
+
+/* BlueOceanApiService 
+ Retrieve SCM details for an organization
+ * @param ctx context.Context Authentication Context 
+ @param organization Name of the organization
+ @param scm Name of SCM
+ @return GithubScm*/
+func (a *BlueOceanApiService) GetSCM(ctx context.Context, organization string, scm string) (GithubScm,  *http.Response, error) {
+	var (
+		localVarHttpMethod = strings.ToUpper("Get")
+		localVarPostBody interface{}
+		localVarFileName string
+		localVarFileBytes []byte
+	 	successPayload  GithubScm
+	)
+
+	// create path and map variables
+	localVarPath := a.client.cfg.BasePath + "/blue/rest/organizations/{organization}/scm/{scm}"
+	localVarPath = strings.Replace(localVarPath, "{"+"organization"+"}", fmt.Sprintf("%v", organization), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"scm"+"}", fmt.Sprintf("%v", scm), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+
+	// to determine the Content-Type header
+	localVarHttpContentTypes := []string{  }
+
+	// set Content-Type header
+	localVarHttpContentType := selectHeaderContentType(localVarHttpContentTypes)
+	if localVarHttpContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHttpContentType
+	}
+
+	// to determine the Accept header
+	localVarHttpHeaderAccepts := []string{
+		"application/json",
+		}
+
+	// set Accept header
+	localVarHttpHeaderAccept := selectHeaderAccept(localVarHttpHeaderAccepts)
+	if localVarHttpHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
+	}
+	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return successPayload, nil, err
+	}
+
+	 localVarHttpResponse, err := a.client.callAPI(r)
+	 if err != nil || localVarHttpResponse == nil {
+		  return successPayload, localVarHttpResponse, err
+	 }
+	 defer localVarHttpResponse.Body.Close()
+	 if localVarHttpResponse.StatusCode >= 300 {
+		return successPayload, localVarHttpResponse, reportError(localVarHttpResponse.Status)
+	 }
+	
+	if err = json.NewDecoder(localVarHttpResponse.Body).Decode(&successPayload); err != nil {
+	 	return successPayload, localVarHttpResponse, err
+	}
+
+
+	return successPayload, localVarHttpResponse, err
+}
+
+/* BlueOceanApiService 
+ Retrieve SCM organization repositories details for an organization
+ * @param ctx context.Context Authentication Context 
+ @param organization Name of the organization
+ @param scm Name of SCM
+ @param scmOrganisation Name of the SCM organization
+ @param optional (nil or map[string]interface{}) with one or more of:
+     @param "credentialId" (string) Credential ID
+     @param "pageSize" (int32) Number of items in a page
+     @param "pageNumber" (int32) Page number
+ @return ScmOrganisations*/
+func (a *BlueOceanApiService) GetSCMOrganisationRepositories(ctx context.Context, organization string, scm string, scmOrganisation string, localVarOptionals map[string]interface{}) (ScmOrganisations,  *http.Response, error) {
+	var (
+		localVarHttpMethod = strings.ToUpper("Get")
+		localVarPostBody interface{}
+		localVarFileName string
+		localVarFileBytes []byte
+	 	successPayload  ScmOrganisations
+	)
+
+	// create path and map variables
+	localVarPath := a.client.cfg.BasePath + "/blue/rest/organizations/{organization}/scm/{scm}/organizations/{scmOrganisation}/repositories"
+	localVarPath = strings.Replace(localVarPath, "{"+"organization"+"}", fmt.Sprintf("%v", organization), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"scm"+"}", fmt.Sprintf("%v", scm), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"scmOrganisation"+"}", fmt.Sprintf("%v", scmOrganisation), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	if err := typeCheckParameter(localVarOptionals["credentialId"], "string", "credentialId"); err != nil {
+		return successPayload, nil, err
+	}
+	if err := typeCheckParameter(localVarOptionals["pageSize"], "int32", "pageSize"); err != nil {
+		return successPayload, nil, err
+	}
+	if err := typeCheckParameter(localVarOptionals["pageNumber"], "int32", "pageNumber"); err != nil {
+		return successPayload, nil, err
+	}
+
+	if localVarTempParam, localVarOk := localVarOptionals["credentialId"].(string); localVarOk {
+		localVarQueryParams.Add("credentialId", parameterToString(localVarTempParam, ""))
+	}
+	if localVarTempParam, localVarOk := localVarOptionals["pageSize"].(int32); localVarOk {
+		localVarQueryParams.Add("pageSize", parameterToString(localVarTempParam, ""))
+	}
+	if localVarTempParam, localVarOk := localVarOptionals["pageNumber"].(int32); localVarOk {
+		localVarQueryParams.Add("pageNumber", parameterToString(localVarTempParam, ""))
+	}
+	// to determine the Content-Type header
+	localVarHttpContentTypes := []string{  }
+
+	// set Content-Type header
+	localVarHttpContentType := selectHeaderContentType(localVarHttpContentTypes)
+	if localVarHttpContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHttpContentType
+	}
+
+	// to determine the Accept header
+	localVarHttpHeaderAccepts := []string{
+		"application/json",
+		}
+
+	// set Accept header
+	localVarHttpHeaderAccept := selectHeaderAccept(localVarHttpHeaderAccepts)
+	if localVarHttpHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
+	}
+	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return successPayload, nil, err
+	}
+
+	 localVarHttpResponse, err := a.client.callAPI(r)
+	 if err != nil || localVarHttpResponse == nil {
+		  return successPayload, localVarHttpResponse, err
+	 }
+	 defer localVarHttpResponse.Body.Close()
+	 if localVarHttpResponse.StatusCode >= 300 {
+		return successPayload, localVarHttpResponse, reportError(localVarHttpResponse.Status)
+	 }
+	
+	if err = json.NewDecoder(localVarHttpResponse.Body).Decode(&successPayload); err != nil {
+	 	return successPayload, localVarHttpResponse, err
+	}
+
+
+	return successPayload, localVarHttpResponse, err
+}
+
+/* BlueOceanApiService 
+ Retrieve SCM organization repository details for an organization
+ * @param ctx context.Context Authentication Context 
+ @param organization Name of the organization
+ @param scm Name of SCM
+ @param scmOrganisation Name of the SCM organization
+ @param repository Name of the SCM repository
+ @param optional (nil or map[string]interface{}) with one or more of:
+     @param "credentialId" (string) Credential ID
+ @return ScmOrganisations*/
+func (a *BlueOceanApiService) GetSCMOrganisationRepository(ctx context.Context, organization string, scm string, scmOrganisation string, repository string, localVarOptionals map[string]interface{}) (ScmOrganisations,  *http.Response, error) {
+	var (
+		localVarHttpMethod = strings.ToUpper("Get")
+		localVarPostBody interface{}
+		localVarFileName string
+		localVarFileBytes []byte
+	 	successPayload  ScmOrganisations
+	)
+
+	// create path and map variables
+	localVarPath := a.client.cfg.BasePath + "/blue/rest/organizations/{organization}/scm/{scm}/organizations/{scmOrganisation}/repositories/{repository}"
+	localVarPath = strings.Replace(localVarPath, "{"+"organization"+"}", fmt.Sprintf("%v", organization), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"scm"+"}", fmt.Sprintf("%v", scm), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"scmOrganisation"+"}", fmt.Sprintf("%v", scmOrganisation), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"repository"+"}", fmt.Sprintf("%v", repository), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	if err := typeCheckParameter(localVarOptionals["credentialId"], "string", "credentialId"); err != nil {
+		return successPayload, nil, err
+	}
+
+	if localVarTempParam, localVarOk := localVarOptionals["credentialId"].(string); localVarOk {
+		localVarQueryParams.Add("credentialId", parameterToString(localVarTempParam, ""))
+	}
+	// to determine the Content-Type header
+	localVarHttpContentTypes := []string{  }
+
+	// set Content-Type header
+	localVarHttpContentType := selectHeaderContentType(localVarHttpContentTypes)
+	if localVarHttpContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHttpContentType
+	}
+
+	// to determine the Accept header
+	localVarHttpHeaderAccepts := []string{
+		"application/json",
+		}
+
+	// set Accept header
+	localVarHttpHeaderAccept := selectHeaderAccept(localVarHttpHeaderAccepts)
+	if localVarHttpHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
+	}
+	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return successPayload, nil, err
+	}
+
+	 localVarHttpResponse, err := a.client.callAPI(r)
+	 if err != nil || localVarHttpResponse == nil {
+		  return successPayload, localVarHttpResponse, err
+	 }
+	 defer localVarHttpResponse.Body.Close()
+	 if localVarHttpResponse.StatusCode >= 300 {
+		return successPayload, localVarHttpResponse, reportError(localVarHttpResponse.Status)
+	 }
+	
+	if err = json.NewDecoder(localVarHttpResponse.Body).Decode(&successPayload); err != nil {
+	 	return successPayload, localVarHttpResponse, err
+	}
+
+
+	return successPayload, localVarHttpResponse, err
+}
+
+/* BlueOceanApiService 
+ Retrieve SCM organizations details for an organization
+ * @param ctx context.Context Authentication Context 
+ @param organization Name of the organization
+ @param scm Name of SCM
+ @param optional (nil or map[string]interface{}) with one or more of:
+     @param "credentialId" (string) Credential ID
+ @return ScmOrganisations*/
+func (a *BlueOceanApiService) GetSCMOrganisations(ctx context.Context, organization string, scm string, localVarOptionals map[string]interface{}) (ScmOrganisations,  *http.Response, error) {
+	var (
+		localVarHttpMethod = strings.ToUpper("Get")
+		localVarPostBody interface{}
+		localVarFileName string
+		localVarFileBytes []byte
+	 	successPayload  ScmOrganisations
+	)
+
+	// create path and map variables
+	localVarPath := a.client.cfg.BasePath + "/blue/rest/organizations/{organization}/scm/{scm}/organizations"
+	localVarPath = strings.Replace(localVarPath, "{"+"organization"+"}", fmt.Sprintf("%v", organization), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"scm"+"}", fmt.Sprintf("%v", scm), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	if err := typeCheckParameter(localVarOptionals["credentialId"], "string", "credentialId"); err != nil {
+		return successPayload, nil, err
+	}
+
+	if localVarTempParam, localVarOk := localVarOptionals["credentialId"].(string); localVarOk {
+		localVarQueryParams.Add("credentialId", parameterToString(localVarTempParam, ""))
+	}
+	// to determine the Content-Type header
+	localVarHttpContentTypes := []string{  }
+
+	// set Content-Type header
+	localVarHttpContentType := selectHeaderContentType(localVarHttpContentTypes)
+	if localVarHttpContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHttpContentType
+	}
+
+	// to determine the Accept header
+	localVarHttpHeaderAccepts := []string{
+		"application/json",
+		}
+
+	// set Accept header
+	localVarHttpHeaderAccept := selectHeaderAccept(localVarHttpHeaderAccepts)
+	if localVarHttpHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
+	}
+	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return successPayload, nil, err
+	}
+
+	 localVarHttpResponse, err := a.client.callAPI(r)
+	 if err != nil || localVarHttpResponse == nil {
+		  return successPayload, localVarHttpResponse, err
+	 }
+	 defer localVarHttpResponse.Body.Close()
+	 if localVarHttpResponse.StatusCode >= 300 {
+		return successPayload, localVarHttpResponse, reportError(localVarHttpResponse.Status)
+	 }
+	
+	if err = json.NewDecoder(localVarHttpResponse.Body).Decode(&successPayload); err != nil {
+	 	return successPayload, localVarHttpResponse, err
+	}
+
+
+	return successPayload, localVarHttpResponse, err
+}
+
+/* BlueOceanApiService 
+ Retrieve user details for an organization
+ * @param ctx context.Context Authentication Context 
+ @param organization Name of the organization
+ @param user Name of the user
+ @return User*/
+func (a *BlueOceanApiService) GetUser(ctx context.Context, organization string, user string) (User,  *http.Response, error) {
+	var (
+		localVarHttpMethod = strings.ToUpper("Get")
+		localVarPostBody interface{}
+		localVarFileName string
+		localVarFileBytes []byte
+	 	successPayload  User
+	)
+
+	// create path and map variables
+	localVarPath := a.client.cfg.BasePath + "/blue/rest/organizations/{organization}/users/{user}"
+	localVarPath = strings.Replace(localVarPath, "{"+"organization"+"}", fmt.Sprintf("%v", organization), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"user"+"}", fmt.Sprintf("%v", user), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
-	localVarFormParams := make(map[string]string)
-	var localVarPostBody interface{}
-	var localVarFileName string
-	var localVarFileBytes []byte
-	// add default headers if any
-	for key := range a.Configuration.DefaultHeader {
-		localVarHeaderParams[key] = a.Configuration.DefaultHeader[key]
-	}
+	localVarFormParams := url.Values{}
+
 
 	// to determine the Content-Type header
 	localVarHttpContentTypes := []string{  }
 
 	// set Content-Type header
-	localVarHttpContentType := a.Configuration.APIClient.SelectHeaderContentType(localVarHttpContentTypes)
+	localVarHttpContentType := selectHeaderContentType(localVarHttpContentTypes)
 	if localVarHttpContentType != "" {
 		localVarHeaderParams["Content-Type"] = localVarHttpContentType
 	}
+
 	// to determine the Accept header
 	localVarHttpHeaderAccepts := []string{
 		"application/json",
 		}
 
 	// set Accept header
-	localVarHttpHeaderAccept := a.Configuration.APIClient.SelectHeaderAccept(localVarHttpHeaderAccepts)
+	localVarHttpHeaderAccept := selectHeaderAccept(localVarHttpHeaderAccepts)
 	if localVarHttpHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
 	}
-	var successPayload = new(SwaggyjenkinsUser)
-	localVarHttpResponse, err := a.Configuration.APIClient.CallAPI(localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
-
-	var localVarURL, _ = url.Parse(localVarPath)
-	localVarURL.RawQuery = localVarQueryParams.Encode()
-	var localVarAPIResponse = &APIResponse{Operation: "GetUser", Method: localVarHttpMethod, RequestURL: localVarURL.String()}
-	if localVarHttpResponse != nil {
-		localVarAPIResponse.Response = localVarHttpResponse.RawResponse
-		localVarAPIResponse.Payload = localVarHttpResponse.Body()
-	}
-
+	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
-		return successPayload, localVarAPIResponse, err
+		return successPayload, nil, err
 	}
-	err = json.Unmarshal(localVarHttpResponse.Body(), &successPayload)
-	return successPayload, localVarAPIResponse, err
+
+	 localVarHttpResponse, err := a.client.callAPI(r)
+	 if err != nil || localVarHttpResponse == nil {
+		  return successPayload, localVarHttpResponse, err
+	 }
+	 defer localVarHttpResponse.Body.Close()
+	 if localVarHttpResponse.StatusCode >= 300 {
+		return successPayload, localVarHttpResponse, reportError(localVarHttpResponse.Status)
+	 }
+	
+	if err = json.NewDecoder(localVarHttpResponse.Body).Decode(&successPayload); err != nil {
+	 	return successPayload, localVarHttpResponse, err
+	}
+
+
+	return successPayload, localVarHttpResponse, err
 }
 
-/**
- * 
- * Retrieve users details for an organisation
- *
- * @param organisation Name of the organisation
- * @return *SwaggyjenkinsUser
- */
-func (a BlueOceanApi) GetUsers(organisation string) (*SwaggyjenkinsUser, *APIResponse, error) {
+/* BlueOceanApiService 
+ Retrieve user favorites details for an organization
+ * @param ctx context.Context Authentication Context 
+ @param user Name of the user
+ @return UserFavorites*/
+func (a *BlueOceanApiService) GetUserFavorites(ctx context.Context, user string) (UserFavorites,  *http.Response, error) {
+	var (
+		localVarHttpMethod = strings.ToUpper("Get")
+		localVarPostBody interface{}
+		localVarFileName string
+		localVarFileBytes []byte
+	 	successPayload  UserFavorites
+	)
 
-	var localVarHttpMethod = strings.ToUpper("Get")
 	// create path and map variables
-	localVarPath := a.Configuration.BasePath + "/blue/rest/organizations/{organisation}/users/"
-	localVarPath = strings.Replace(localVarPath, "{"+"organisation"+"}", fmt.Sprintf("%v", organisation), -1)
+	localVarPath := a.client.cfg.BasePath + "/blue/rest/users/{user}/favorites"
+	localVarPath = strings.Replace(localVarPath, "{"+"user"+"}", fmt.Sprintf("%v", user), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
-	localVarFormParams := make(map[string]string)
-	var localVarPostBody interface{}
-	var localVarFileName string
-	var localVarFileBytes []byte
-	// add default headers if any
-	for key := range a.Configuration.DefaultHeader {
-		localVarHeaderParams[key] = a.Configuration.DefaultHeader[key]
-	}
+	localVarFormParams := url.Values{}
+
 
 	// to determine the Content-Type header
 	localVarHttpContentTypes := []string{  }
 
 	// set Content-Type header
-	localVarHttpContentType := a.Configuration.APIClient.SelectHeaderContentType(localVarHttpContentTypes)
+	localVarHttpContentType := selectHeaderContentType(localVarHttpContentTypes)
 	if localVarHttpContentType != "" {
 		localVarHeaderParams["Content-Type"] = localVarHttpContentType
 	}
+
 	// to determine the Accept header
 	localVarHttpHeaderAccepts := []string{
 		"application/json",
 		}
 
 	// set Accept header
-	localVarHttpHeaderAccept := a.Configuration.APIClient.SelectHeaderAccept(localVarHttpHeaderAccepts)
+	localVarHttpHeaderAccept := selectHeaderAccept(localVarHttpHeaderAccepts)
 	if localVarHttpHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
 	}
-	var successPayload = new(SwaggyjenkinsUser)
-	localVarHttpResponse, err := a.Configuration.APIClient.CallAPI(localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
-
-	var localVarURL, _ = url.Parse(localVarPath)
-	localVarURL.RawQuery = localVarQueryParams.Encode()
-	var localVarAPIResponse = &APIResponse{Operation: "GetUsers", Method: localVarHttpMethod, RequestURL: localVarURL.String()}
-	if localVarHttpResponse != nil {
-		localVarAPIResponse.Response = localVarHttpResponse.RawResponse
-		localVarAPIResponse.Payload = localVarHttpResponse.Body()
-	}
-
+	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
-		return successPayload, localVarAPIResponse, err
+		return successPayload, nil, err
 	}
-	err = json.Unmarshal(localVarHttpResponse.Body(), &successPayload)
-	return successPayload, localVarAPIResponse, err
+
+	 localVarHttpResponse, err := a.client.callAPI(r)
+	 if err != nil || localVarHttpResponse == nil {
+		  return successPayload, localVarHttpResponse, err
+	 }
+	 defer localVarHttpResponse.Body.Close()
+	 if localVarHttpResponse.StatusCode >= 300 {
+		return successPayload, localVarHttpResponse, reportError(localVarHttpResponse.Status)
+	 }
+	
+	if err = json.NewDecoder(localVarHttpResponse.Body).Decode(&successPayload); err != nil {
+	 	return successPayload, localVarHttpResponse, err
+	}
+
+
+	return successPayload, localVarHttpResponse, err
 }
 
-/**
- * 
- * Get classes details
- *
- * @param q Query string containing an array of class names
- * @return *string
- */
-func (a BlueOceanApi) Search(q string) (*string, *APIResponse, error) {
+/* BlueOceanApiService 
+ Retrieve users details for an organization
+ * @param ctx context.Context Authentication Context 
+ @param organization Name of the organization
+ @return User*/
+func (a *BlueOceanApiService) GetUsers(ctx context.Context, organization string) (User,  *http.Response, error) {
+	var (
+		localVarHttpMethod = strings.ToUpper("Get")
+		localVarPostBody interface{}
+		localVarFileName string
+		localVarFileBytes []byte
+	 	successPayload  User
+	)
 
-	var localVarHttpMethod = strings.ToUpper("Get")
 	// create path and map variables
-	localVarPath := a.Configuration.BasePath + "/blue/rest/classes/"
+	localVarPath := a.client.cfg.BasePath + "/blue/rest/organizations/{organization}/users/"
+	localVarPath = strings.Replace(localVarPath, "{"+"organization"+"}", fmt.Sprintf("%v", organization), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
-	localVarFormParams := make(map[string]string)
-	var localVarPostBody interface{}
-	var localVarFileName string
-	var localVarFileBytes []byte
-	// add default headers if any
-	for key := range a.Configuration.DefaultHeader {
-		localVarHeaderParams[key] = a.Configuration.DefaultHeader[key]
-	}
-	localVarQueryParams.Add("q", a.Configuration.APIClient.ParameterToString(q, ""))
+	localVarFormParams := url.Values{}
+
 
 	// to determine the Content-Type header
 	localVarHttpContentTypes := []string{  }
 
 	// set Content-Type header
-	localVarHttpContentType := a.Configuration.APIClient.SelectHeaderContentType(localVarHttpContentTypes)
+	localVarHttpContentType := selectHeaderContentType(localVarHttpContentTypes)
 	if localVarHttpContentType != "" {
 		localVarHeaderParams["Content-Type"] = localVarHttpContentType
 	}
+
 	// to determine the Accept header
 	localVarHttpHeaderAccepts := []string{
 		"application/json",
 		}
 
 	// set Accept header
-	localVarHttpHeaderAccept := a.Configuration.APIClient.SelectHeaderAccept(localVarHttpHeaderAccepts)
+	localVarHttpHeaderAccept := selectHeaderAccept(localVarHttpHeaderAccepts)
 	if localVarHttpHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
 	}
-	var successPayload = new(string)
-	localVarHttpResponse, err := a.Configuration.APIClient.CallAPI(localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
-
-	var localVarURL, _ = url.Parse(localVarPath)
-	localVarURL.RawQuery = localVarQueryParams.Encode()
-	var localVarAPIResponse = &APIResponse{Operation: "Search", Method: localVarHttpMethod, RequestURL: localVarURL.String()}
-	if localVarHttpResponse != nil {
-		localVarAPIResponse.Response = localVarHttpResponse.RawResponse
-		localVarAPIResponse.Payload = localVarHttpResponse.Body()
-	}
-
+	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
-		return successPayload, localVarAPIResponse, err
+		return successPayload, nil, err
 	}
-	err = json.Unmarshal(localVarHttpResponse.Body(), &successPayload)
-	return successPayload, localVarAPIResponse, err
+
+	 localVarHttpResponse, err := a.client.callAPI(r)
+	 if err != nil || localVarHttpResponse == nil {
+		  return successPayload, localVarHttpResponse, err
+	 }
+	 defer localVarHttpResponse.Body.Close()
+	 if localVarHttpResponse.StatusCode >= 300 {
+		return successPayload, localVarHttpResponse, reportError(localVarHttpResponse.Status)
+	 }
+	
+	if err = json.NewDecoder(localVarHttpResponse.Body).Decode(&successPayload); err != nil {
+	 	return successPayload, localVarHttpResponse, err
+	}
+
+
+	return successPayload, localVarHttpResponse, err
 }
 
-/**
- * 
- * Search for any resource details
- *
- * @param q Query string
- * @return *string
- */
-func (a BlueOceanApi) Search_2(q string) (*string, *APIResponse, error) {
+/* BlueOceanApiService 
+ Replay an organization pipeline run
+ * @param ctx context.Context Authentication Context 
+ @param organization Name of the organization
+ @param pipeline Name of the pipeline
+ @param run Name of the run
+ @return QueueItemImpl*/
+func (a *BlueOceanApiService) PostPipelineRun(ctx context.Context, organization string, pipeline string, run string) (QueueItemImpl,  *http.Response, error) {
+	var (
+		localVarHttpMethod = strings.ToUpper("Post")
+		localVarPostBody interface{}
+		localVarFileName string
+		localVarFileBytes []byte
+	 	successPayload  QueueItemImpl
+	)
 
-	var localVarHttpMethod = strings.ToUpper("Get")
 	// create path and map variables
-	localVarPath := a.Configuration.BasePath + "/blue/rest/search/"
+	localVarPath := a.client.cfg.BasePath + "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/replay"
+	localVarPath = strings.Replace(localVarPath, "{"+"organization"+"}", fmt.Sprintf("%v", organization), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"pipeline"+"}", fmt.Sprintf("%v", pipeline), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"run"+"}", fmt.Sprintf("%v", run), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
-	localVarFormParams := make(map[string]string)
-	var localVarPostBody interface{}
-	var localVarFileName string
-	var localVarFileBytes []byte
-	// add default headers if any
-	for key := range a.Configuration.DefaultHeader {
-		localVarHeaderParams[key] = a.Configuration.DefaultHeader[key]
-	}
-	localVarQueryParams.Add("q", a.Configuration.APIClient.ParameterToString(q, ""))
+	localVarFormParams := url.Values{}
+
 
 	// to determine the Content-Type header
 	localVarHttpContentTypes := []string{  }
 
 	// set Content-Type header
-	localVarHttpContentType := a.Configuration.APIClient.SelectHeaderContentType(localVarHttpContentTypes)
+	localVarHttpContentType := selectHeaderContentType(localVarHttpContentTypes)
 	if localVarHttpContentType != "" {
 		localVarHeaderParams["Content-Type"] = localVarHttpContentType
 	}
+
 	// to determine the Accept header
 	localVarHttpHeaderAccepts := []string{
 		"application/json",
 		}
 
 	// set Accept header
-	localVarHttpHeaderAccept := a.Configuration.APIClient.SelectHeaderAccept(localVarHttpHeaderAccepts)
+	localVarHttpHeaderAccept := selectHeaderAccept(localVarHttpHeaderAccepts)
 	if localVarHttpHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
 	}
-	var successPayload = new(string)
-	localVarHttpResponse, err := a.Configuration.APIClient.CallAPI(localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
-
-	var localVarURL, _ = url.Parse(localVarPath)
-	localVarURL.RawQuery = localVarQueryParams.Encode()
-	var localVarAPIResponse = &APIResponse{Operation: "Search_0", Method: localVarHttpMethod, RequestURL: localVarURL.String()}
-	if localVarHttpResponse != nil {
-		localVarAPIResponse.Response = localVarHttpResponse.RawResponse
-		localVarAPIResponse.Payload = localVarHttpResponse.Body()
-	}
-
+	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
-		return successPayload, localVarAPIResponse, err
+		return successPayload, nil, err
 	}
-	err = json.Unmarshal(localVarHttpResponse.Body(), &successPayload)
-	return successPayload, localVarAPIResponse, err
+
+	 localVarHttpResponse, err := a.client.callAPI(r)
+	 if err != nil || localVarHttpResponse == nil {
+		  return successPayload, localVarHttpResponse, err
+	 }
+	 defer localVarHttpResponse.Body.Close()
+	 if localVarHttpResponse.StatusCode >= 300 {
+		return successPayload, localVarHttpResponse, reportError(localVarHttpResponse.Status)
+	 }
+	
+	if err = json.NewDecoder(localVarHttpResponse.Body).Decode(&successPayload); err != nil {
+	 	return successPayload, localVarHttpResponse, err
+	}
+
+
+	return successPayload, localVarHttpResponse, err
+}
+
+/* BlueOceanApiService 
+ Start a build for an organization pipeline
+ * @param ctx context.Context Authentication Context 
+ @param organization Name of the organization
+ @param pipeline Name of the pipeline
+ @return QueueItemImpl*/
+func (a *BlueOceanApiService) PostPipelineRuns(ctx context.Context, organization string, pipeline string) (QueueItemImpl,  *http.Response, error) {
+	var (
+		localVarHttpMethod = strings.ToUpper("Post")
+		localVarPostBody interface{}
+		localVarFileName string
+		localVarFileBytes []byte
+	 	successPayload  QueueItemImpl
+	)
+
+	// create path and map variables
+	localVarPath := a.client.cfg.BasePath + "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs"
+	localVarPath = strings.Replace(localVarPath, "{"+"organization"+"}", fmt.Sprintf("%v", organization), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"pipeline"+"}", fmt.Sprintf("%v", pipeline), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+
+	// to determine the Content-Type header
+	localVarHttpContentTypes := []string{  }
+
+	// set Content-Type header
+	localVarHttpContentType := selectHeaderContentType(localVarHttpContentTypes)
+	if localVarHttpContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHttpContentType
+	}
+
+	// to determine the Accept header
+	localVarHttpHeaderAccepts := []string{
+		"application/json",
+		}
+
+	// set Accept header
+	localVarHttpHeaderAccept := selectHeaderAccept(localVarHttpHeaderAccepts)
+	if localVarHttpHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
+	}
+	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return successPayload, nil, err
+	}
+
+	 localVarHttpResponse, err := a.client.callAPI(r)
+	 if err != nil || localVarHttpResponse == nil {
+		  return successPayload, localVarHttpResponse, err
+	 }
+	 defer localVarHttpResponse.Body.Close()
+	 if localVarHttpResponse.StatusCode >= 300 {
+		return successPayload, localVarHttpResponse, reportError(localVarHttpResponse.Status)
+	 }
+	
+	if err = json.NewDecoder(localVarHttpResponse.Body).Decode(&successPayload); err != nil {
+	 	return successPayload, localVarHttpResponse, err
+	}
+
+
+	return successPayload, localVarHttpResponse, err
+}
+
+/* BlueOceanApiService 
+ Favorite/unfavorite a pipeline
+ * @param ctx context.Context Authentication Context 
+ @param organization Name of the organization
+ @param pipeline Name of the pipeline
+ @param body Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite
+ @return FavoriteImpl*/
+func (a *BlueOceanApiService) PutPipelineFavorite(ctx context.Context, organization string, pipeline string, body Body) (FavoriteImpl,  *http.Response, error) {
+	var (
+		localVarHttpMethod = strings.ToUpper("Put")
+		localVarPostBody interface{}
+		localVarFileName string
+		localVarFileBytes []byte
+	 	successPayload  FavoriteImpl
+	)
+
+	// create path and map variables
+	localVarPath := a.client.cfg.BasePath + "/blue/rest/organizations/{organization}/pipelines/{pipeline}/favorite"
+	localVarPath = strings.Replace(localVarPath, "{"+"organization"+"}", fmt.Sprintf("%v", organization), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"pipeline"+"}", fmt.Sprintf("%v", pipeline), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+
+	// to determine the Content-Type header
+	localVarHttpContentTypes := []string{  }
+
+	// set Content-Type header
+	localVarHttpContentType := selectHeaderContentType(localVarHttpContentTypes)
+	if localVarHttpContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHttpContentType
+	}
+
+	// to determine the Accept header
+	localVarHttpHeaderAccepts := []string{
+		"application/json",
+		}
+
+	// set Accept header
+	localVarHttpHeaderAccept := selectHeaderAccept(localVarHttpHeaderAccepts)
+	if localVarHttpHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
+	}
+	// body params
+	localVarPostBody = &body
+	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return successPayload, nil, err
+	}
+
+	 localVarHttpResponse, err := a.client.callAPI(r)
+	 if err != nil || localVarHttpResponse == nil {
+		  return successPayload, localVarHttpResponse, err
+	 }
+	 defer localVarHttpResponse.Body.Close()
+	 if localVarHttpResponse.StatusCode >= 300 {
+		return successPayload, localVarHttpResponse, reportError(localVarHttpResponse.Status)
+	 }
+	
+	if err = json.NewDecoder(localVarHttpResponse.Body).Decode(&successPayload); err != nil {
+	 	return successPayload, localVarHttpResponse, err
+	}
+
+
+	return successPayload, localVarHttpResponse, err
+}
+
+/* BlueOceanApiService 
+ Stop a build of an organization pipeline
+ * @param ctx context.Context Authentication Context 
+ @param organization Name of the organization
+ @param pipeline Name of the pipeline
+ @param run Name of the run
+ @param optional (nil or map[string]interface{}) with one or more of:
+     @param "blocking" (string) Set to true to make blocking stop, default: false
+     @param "timeOutInSecs" (int32) Timeout in seconds, default: 10 seconds
+ @return PipelineRun*/
+func (a *BlueOceanApiService) PutPipelineRun(ctx context.Context, organization string, pipeline string, run string, localVarOptionals map[string]interface{}) (PipelineRun,  *http.Response, error) {
+	var (
+		localVarHttpMethod = strings.ToUpper("Put")
+		localVarPostBody interface{}
+		localVarFileName string
+		localVarFileBytes []byte
+	 	successPayload  PipelineRun
+	)
+
+	// create path and map variables
+	localVarPath := a.client.cfg.BasePath + "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/stop"
+	localVarPath = strings.Replace(localVarPath, "{"+"organization"+"}", fmt.Sprintf("%v", organization), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"pipeline"+"}", fmt.Sprintf("%v", pipeline), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"run"+"}", fmt.Sprintf("%v", run), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	if err := typeCheckParameter(localVarOptionals["blocking"], "string", "blocking"); err != nil {
+		return successPayload, nil, err
+	}
+	if err := typeCheckParameter(localVarOptionals["timeOutInSecs"], "int32", "timeOutInSecs"); err != nil {
+		return successPayload, nil, err
+	}
+
+	if localVarTempParam, localVarOk := localVarOptionals["blocking"].(string); localVarOk {
+		localVarQueryParams.Add("blocking", parameterToString(localVarTempParam, ""))
+	}
+	if localVarTempParam, localVarOk := localVarOptionals["timeOutInSecs"].(int32); localVarOk {
+		localVarQueryParams.Add("timeOutInSecs", parameterToString(localVarTempParam, ""))
+	}
+	// to determine the Content-Type header
+	localVarHttpContentTypes := []string{  }
+
+	// set Content-Type header
+	localVarHttpContentType := selectHeaderContentType(localVarHttpContentTypes)
+	if localVarHttpContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHttpContentType
+	}
+
+	// to determine the Accept header
+	localVarHttpHeaderAccepts := []string{
+		"application/json",
+		}
+
+	// set Accept header
+	localVarHttpHeaderAccept := selectHeaderAccept(localVarHttpHeaderAccepts)
+	if localVarHttpHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
+	}
+	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return successPayload, nil, err
+	}
+
+	 localVarHttpResponse, err := a.client.callAPI(r)
+	 if err != nil || localVarHttpResponse == nil {
+		  return successPayload, localVarHttpResponse, err
+	 }
+	 defer localVarHttpResponse.Body.Close()
+	 if localVarHttpResponse.StatusCode >= 300 {
+		return successPayload, localVarHttpResponse, reportError(localVarHttpResponse.Status)
+	 }
+	
+	if err = json.NewDecoder(localVarHttpResponse.Body).Decode(&successPayload); err != nil {
+	 	return successPayload, localVarHttpResponse, err
+	}
+
+
+	return successPayload, localVarHttpResponse, err
+}
+
+/* BlueOceanApiService 
+ Search for any resource details
+ * @param ctx context.Context Authentication Context 
+ @param q Query string
+ @return string*/
+func (a *BlueOceanApiService) Search(ctx context.Context, q string) (string,  *http.Response, error) {
+	var (
+		localVarHttpMethod = strings.ToUpper("Get")
+		localVarPostBody interface{}
+		localVarFileName string
+		localVarFileBytes []byte
+	 	successPayload  string
+	)
+
+	// create path and map variables
+	localVarPath := a.client.cfg.BasePath + "/blue/rest/search/"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+
+	localVarQueryParams.Add("q", parameterToString(q, ""))
+	// to determine the Content-Type header
+	localVarHttpContentTypes := []string{  }
+
+	// set Content-Type header
+	localVarHttpContentType := selectHeaderContentType(localVarHttpContentTypes)
+	if localVarHttpContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHttpContentType
+	}
+
+	// to determine the Accept header
+	localVarHttpHeaderAccepts := []string{
+		"application/json",
+		}
+
+	// set Accept header
+	localVarHttpHeaderAccept := selectHeaderAccept(localVarHttpHeaderAccepts)
+	if localVarHttpHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
+	}
+	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return successPayload, nil, err
+	}
+
+	 localVarHttpResponse, err := a.client.callAPI(r)
+	 if err != nil || localVarHttpResponse == nil {
+		  return successPayload, localVarHttpResponse, err
+	 }
+	 defer localVarHttpResponse.Body.Close()
+	 if localVarHttpResponse.StatusCode >= 300 {
+		return successPayload, localVarHttpResponse, reportError(localVarHttpResponse.Status)
+	 }
+	
+	if err = json.NewDecoder(localVarHttpResponse.Body).Decode(&successPayload); err != nil {
+	 	return successPayload, localVarHttpResponse, err
+	}
+
+
+	return successPayload, localVarHttpResponse, err
+}
+
+/* BlueOceanApiService 
+ Get classes details
+ * @param ctx context.Context Authentication Context 
+ @param q Query string containing an array of class names
+ @return string*/
+func (a *BlueOceanApiService) SearchClasses(ctx context.Context, q string) (string,  *http.Response, error) {
+	var (
+		localVarHttpMethod = strings.ToUpper("Get")
+		localVarPostBody interface{}
+		localVarFileName string
+		localVarFileBytes []byte
+	 	successPayload  string
+	)
+
+	// create path and map variables
+	localVarPath := a.client.cfg.BasePath + "/blue/rest/classes/"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+
+	localVarQueryParams.Add("q", parameterToString(q, ""))
+	// to determine the Content-Type header
+	localVarHttpContentTypes := []string{  }
+
+	// set Content-Type header
+	localVarHttpContentType := selectHeaderContentType(localVarHttpContentTypes)
+	if localVarHttpContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHttpContentType
+	}
+
+	// to determine the Accept header
+	localVarHttpHeaderAccepts := []string{
+		"application/json",
+		}
+
+	// set Accept header
+	localVarHttpHeaderAccept := selectHeaderAccept(localVarHttpHeaderAccepts)
+	if localVarHttpHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
+	}
+	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return successPayload, nil, err
+	}
+
+	 localVarHttpResponse, err := a.client.callAPI(r)
+	 if err != nil || localVarHttpResponse == nil {
+		  return successPayload, localVarHttpResponse, err
+	 }
+	 defer localVarHttpResponse.Body.Close()
+	 if localVarHttpResponse.StatusCode >= 300 {
+		return successPayload, localVarHttpResponse, reportError(localVarHttpResponse.Status)
+	 }
+	
+	if err = json.NewDecoder(localVarHttpResponse.Body).Decode(&successPayload); err != nil {
+	 	return successPayload, localVarHttpResponse, err
+	}
+
+
+	return successPayload, localVarHttpResponse, err
 }
 

@@ -4,8 +4,8 @@ import io.swagger.api.*;
 import io.swagger.model.*;
 
 
-import io.swagger.model.HudsonmodelFreeStyleBuild;
-import io.swagger.model.HudsonmodelFreeStyleProject;
+import io.swagger.model.FreeStyleBuild;
+import io.swagger.model.FreeStyleProject;
 
 import java.util.List;
 
@@ -14,7 +14,7 @@ import java.io.InputStream;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
 
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaResteasyEapServerCodegen", date = "2017-07-25T10:45:10.773+10:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaResteasyEapServerCodegen", date = "2017-08-03T23:34:59.445Z")
 public class JobApiServiceImpl implements JobApi {
       public Response getJob(String name,SecurityContext securityContext) {
       // do some magic!

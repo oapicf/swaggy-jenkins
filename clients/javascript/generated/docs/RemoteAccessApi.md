@@ -4,7 +4,7 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**getComputer**](RemoteAccessApi.md#getComputer) | **GET** /computer/api/json?depth&#x3D;1 | 
+[**getComputer**](RemoteAccessApi.md#getComputer) | **GET** /computer/api/json | 
 [**getCrumb**](RemoteAccessApi.md#getCrumb) | **GET** /crumbIssuer/api/json | 
 [**getJenkins**](RemoteAccessApi.md#getJenkins) | **GET** /api/json | 
 [**getJob**](RemoteAccessApi.md#getJob) | **GET** /job/{name}/api/json | 
@@ -29,7 +29,7 @@ Method | HTTP request | Description
 
 <a name="getComputer"></a>
 # **getComputer**
-> HudsonmodelComputerSet getComputer()
+> ComputerSet getComputer(depth)
 
 
 
@@ -37,30 +37,41 @@ Retrieve computer details
 
 ### Example
 ```javascript
-var SwaggyJenkins = require('swaggy_jenkins');
+import SwaggyJenkins from 'swaggy_jenkins';
+let defaultClient = SwaggyJenkins.ApiClient.instance;
 
-var apiInstance = new SwaggyJenkins.RemoteAccessApi();
+// Configure HTTP basic authorization: jenkins_auth
+let jenkins_auth = defaultClient.authentications['jenkins_auth'];
+jenkins_auth.username = 'YOUR USERNAME';
+jenkins_auth.password = 'YOUR PASSWORD';
 
-var callback = function(error, data, response) {
+let apiInstance = new SwaggyJenkins.RemoteAccessApi();
+
+let depth = 56; // Number | Recursion depth in response model
+
+
+apiInstance.getComputer(depth, (error, data, response) => {
   if (error) {
     console.error(error);
   } else {
     console.log('API called successfully. Returned data: ' + data);
   }
-};
-apiInstance.getComputer(callback);
+});
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **depth** | **Number**| Recursion depth in response model | 
 
 ### Return type
 
-[**HudsonmodelComputerSet**](HudsonmodelComputerSet.md)
+[**ComputerSet**](ComputerSet.md)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -69,7 +80,7 @@ No authorization required
 
 <a name="getCrumb"></a>
 # **getCrumb**
-> HudsonsecuritycsrfDefaultCrumbIssuer getCrumb()
+> DefaultCrumbIssuer getCrumb()
 
 
 
@@ -77,18 +88,23 @@ Retrieve CSRF protection token
 
 ### Example
 ```javascript
-var SwaggyJenkins = require('swaggy_jenkins');
+import SwaggyJenkins from 'swaggy_jenkins';
+let defaultClient = SwaggyJenkins.ApiClient.instance;
 
-var apiInstance = new SwaggyJenkins.RemoteAccessApi();
+// Configure HTTP basic authorization: jenkins_auth
+let jenkins_auth = defaultClient.authentications['jenkins_auth'];
+jenkins_auth.username = 'YOUR USERNAME';
+jenkins_auth.password = 'YOUR PASSWORD';
 
-var callback = function(error, data, response) {
+let apiInstance = new SwaggyJenkins.RemoteAccessApi();
+
+apiInstance.getCrumb((error, data, response) => {
   if (error) {
     console.error(error);
   } else {
     console.log('API called successfully. Returned data: ' + data);
   }
-};
-apiInstance.getCrumb(callback);
+});
 ```
 
 ### Parameters
@@ -96,11 +112,11 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**HudsonsecuritycsrfDefaultCrumbIssuer**](HudsonsecuritycsrfDefaultCrumbIssuer.md)
+[**DefaultCrumbIssuer**](DefaultCrumbIssuer.md)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -109,7 +125,7 @@ No authorization required
 
 <a name="getJenkins"></a>
 # **getJenkins**
-> HudsonmodelHudson getJenkins()
+> Hudson getJenkins()
 
 
 
@@ -117,18 +133,23 @@ Retrieve Jenkins details
 
 ### Example
 ```javascript
-var SwaggyJenkins = require('swaggy_jenkins');
+import SwaggyJenkins from 'swaggy_jenkins';
+let defaultClient = SwaggyJenkins.ApiClient.instance;
 
-var apiInstance = new SwaggyJenkins.RemoteAccessApi();
+// Configure HTTP basic authorization: jenkins_auth
+let jenkins_auth = defaultClient.authentications['jenkins_auth'];
+jenkins_auth.username = 'YOUR USERNAME';
+jenkins_auth.password = 'YOUR PASSWORD';
 
-var callback = function(error, data, response) {
+let apiInstance = new SwaggyJenkins.RemoteAccessApi();
+
+apiInstance.getJenkins((error, data, response) => {
   if (error) {
     console.error(error);
   } else {
     console.log('API called successfully. Returned data: ' + data);
   }
-};
-apiInstance.getJenkins(callback);
+});
 ```
 
 ### Parameters
@@ -136,11 +157,11 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**HudsonmodelHudson**](HudsonmodelHudson.md)
+[**Hudson**](Hudson.md)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -149,7 +170,7 @@ No authorization required
 
 <a name="getJob"></a>
 # **getJob**
-> HudsonmodelFreeStyleProject getJob(name, )
+> FreeStyleProject getJob(name, )
 
 
 
@@ -157,21 +178,26 @@ Retrieve job details
 
 ### Example
 ```javascript
-var SwaggyJenkins = require('swaggy_jenkins');
+import SwaggyJenkins from 'swaggy_jenkins';
+let defaultClient = SwaggyJenkins.ApiClient.instance;
 
-var apiInstance = new SwaggyJenkins.RemoteAccessApi();
+// Configure HTTP basic authorization: jenkins_auth
+let jenkins_auth = defaultClient.authentications['jenkins_auth'];
+jenkins_auth.username = 'YOUR USERNAME';
+jenkins_auth.password = 'YOUR PASSWORD';
 
-var name = "name_example"; // String | Name of the job
+let apiInstance = new SwaggyJenkins.RemoteAccessApi();
+
+let name = "name_example"; // String | Name of the job
 
 
-var callback = function(error, data, response) {
+apiInstance.getJob(name, , (error, data, response) => {
   if (error) {
     console.error(error);
   } else {
     console.log('API called successfully. Returned data: ' + data);
   }
-};
-apiInstance.getJob(name, , callback);
+});
 ```
 
 ### Parameters
@@ -182,11 +208,11 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**HudsonmodelFreeStyleProject**](HudsonmodelFreeStyleProject.md)
+[**FreeStyleProject**](FreeStyleProject.md)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -203,21 +229,26 @@ Retrieve job configuration
 
 ### Example
 ```javascript
-var SwaggyJenkins = require('swaggy_jenkins');
+import SwaggyJenkins from 'swaggy_jenkins';
+let defaultClient = SwaggyJenkins.ApiClient.instance;
 
-var apiInstance = new SwaggyJenkins.RemoteAccessApi();
+// Configure HTTP basic authorization: jenkins_auth
+let jenkins_auth = defaultClient.authentications['jenkins_auth'];
+jenkins_auth.username = 'YOUR USERNAME';
+jenkins_auth.password = 'YOUR PASSWORD';
 
-var name = "name_example"; // String | Name of the job
+let apiInstance = new SwaggyJenkins.RemoteAccessApi();
+
+let name = "name_example"; // String | Name of the job
 
 
-var callback = function(error, data, response) {
+apiInstance.getJobConfig(name, , (error, data, response) => {
   if (error) {
     console.error(error);
   } else {
     console.log('API called successfully. Returned data: ' + data);
   }
-};
-apiInstance.getJobConfig(name, , callback);
+});
 ```
 
 ### Parameters
@@ -232,7 +263,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -241,7 +272,7 @@ No authorization required
 
 <a name="getJobLastBuild"></a>
 # **getJobLastBuild**
-> HudsonmodelFreeStyleBuild getJobLastBuild(name, )
+> FreeStyleBuild getJobLastBuild(name, )
 
 
 
@@ -249,21 +280,26 @@ Retrieve job&#39;s last build details
 
 ### Example
 ```javascript
-var SwaggyJenkins = require('swaggy_jenkins');
+import SwaggyJenkins from 'swaggy_jenkins';
+let defaultClient = SwaggyJenkins.ApiClient.instance;
 
-var apiInstance = new SwaggyJenkins.RemoteAccessApi();
+// Configure HTTP basic authorization: jenkins_auth
+let jenkins_auth = defaultClient.authentications['jenkins_auth'];
+jenkins_auth.username = 'YOUR USERNAME';
+jenkins_auth.password = 'YOUR PASSWORD';
 
-var name = "name_example"; // String | Name of the job
+let apiInstance = new SwaggyJenkins.RemoteAccessApi();
+
+let name = "name_example"; // String | Name of the job
 
 
-var callback = function(error, data, response) {
+apiInstance.getJobLastBuild(name, , (error, data, response) => {
   if (error) {
     console.error(error);
   } else {
     console.log('API called successfully. Returned data: ' + data);
   }
-};
-apiInstance.getJobLastBuild(name, , callback);
+});
 ```
 
 ### Parameters
@@ -274,11 +310,11 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**HudsonmodelFreeStyleBuild**](HudsonmodelFreeStyleBuild.md)
+[**FreeStyleBuild**](FreeStyleBuild.md)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -295,25 +331,30 @@ Retrieve job&#39;s build progressive text output
 
 ### Example
 ```javascript
-var SwaggyJenkins = require('swaggy_jenkins');
+import SwaggyJenkins from 'swaggy_jenkins';
+let defaultClient = SwaggyJenkins.ApiClient.instance;
 
-var apiInstance = new SwaggyJenkins.RemoteAccessApi();
+// Configure HTTP basic authorization: jenkins_auth
+let jenkins_auth = defaultClient.authentications['jenkins_auth'];
+jenkins_auth.username = 'YOUR USERNAME';
+jenkins_auth.password = 'YOUR PASSWORD';
 
-var name = "name_example"; // String | Name of the job
+let apiInstance = new SwaggyJenkins.RemoteAccessApi();
 
-var _number = "_number_example"; // String | Build number
+let name = "name_example"; // String | Name of the job
 
-var start = "start_example"; // String | Starting point of progressive text output
+let _number = "_number_example"; // String | Build number
+
+let start = "start_example"; // String | Starting point of progressive text output
 
 
-var callback = function(error, data, response) {
+apiInstance.getJobProgressiveText(name, _number, start, (error, data, response) => {
   if (error) {
     console.error(error);
   } else {
     console.log('API called successfully.');
   }
-};
-apiInstance.getJobProgressiveText(name, _number, start, callback);
+});
 ```
 
 ### Parameters
@@ -330,7 +371,7 @@ null (empty response body)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -339,7 +380,7 @@ No authorization required
 
 <a name="getQueue"></a>
 # **getQueue**
-> HudsonmodelQueue getQueue()
+> Queue getQueue()
 
 
 
@@ -347,18 +388,23 @@ Retrieve queue details
 
 ### Example
 ```javascript
-var SwaggyJenkins = require('swaggy_jenkins');
+import SwaggyJenkins from 'swaggy_jenkins';
+let defaultClient = SwaggyJenkins.ApiClient.instance;
 
-var apiInstance = new SwaggyJenkins.RemoteAccessApi();
+// Configure HTTP basic authorization: jenkins_auth
+let jenkins_auth = defaultClient.authentications['jenkins_auth'];
+jenkins_auth.username = 'YOUR USERNAME';
+jenkins_auth.password = 'YOUR PASSWORD';
 
-var callback = function(error, data, response) {
+let apiInstance = new SwaggyJenkins.RemoteAccessApi();
+
+apiInstance.getQueue((error, data, response) => {
   if (error) {
     console.error(error);
   } else {
     console.log('API called successfully. Returned data: ' + data);
   }
-};
-apiInstance.getQueue(callback);
+});
 ```
 
 ### Parameters
@@ -366,11 +412,11 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**HudsonmodelQueue**](HudsonmodelQueue.md)
+[**Queue**](Queue.md)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -379,7 +425,7 @@ No authorization required
 
 <a name="getQueueItem"></a>
 # **getQueueItem**
-> HudsonmodelQueue getQueueItem(_number)
+> Queue getQueueItem(_number)
 
 
 
@@ -387,21 +433,26 @@ Retrieve queued item details
 
 ### Example
 ```javascript
-var SwaggyJenkins = require('swaggy_jenkins');
+import SwaggyJenkins from 'swaggy_jenkins';
+let defaultClient = SwaggyJenkins.ApiClient.instance;
 
-var apiInstance = new SwaggyJenkins.RemoteAccessApi();
+// Configure HTTP basic authorization: jenkins_auth
+let jenkins_auth = defaultClient.authentications['jenkins_auth'];
+jenkins_auth.username = 'YOUR USERNAME';
+jenkins_auth.password = 'YOUR PASSWORD';
 
-var _number = "_number_example"; // String | Queue number
+let apiInstance = new SwaggyJenkins.RemoteAccessApi();
+
+let _number = "_number_example"; // String | Queue number
 
 
-var callback = function(error, data, response) {
+apiInstance.getQueueItem(_number, (error, data, response) => {
   if (error) {
     console.error(error);
   } else {
     console.log('API called successfully. Returned data: ' + data);
   }
-};
-apiInstance.getQueueItem(_number, callback);
+});
 ```
 
 ### Parameters
@@ -412,11 +463,11 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**HudsonmodelQueue**](HudsonmodelQueue.md)
+[**Queue**](Queue.md)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -425,7 +476,7 @@ No authorization required
 
 <a name="getView"></a>
 # **getView**
-> HudsonmodelListView getView(name, )
+> ListView getView(name, )
 
 
 
@@ -433,21 +484,26 @@ Retrieve view details
 
 ### Example
 ```javascript
-var SwaggyJenkins = require('swaggy_jenkins');
+import SwaggyJenkins from 'swaggy_jenkins';
+let defaultClient = SwaggyJenkins.ApiClient.instance;
 
-var apiInstance = new SwaggyJenkins.RemoteAccessApi();
+// Configure HTTP basic authorization: jenkins_auth
+let jenkins_auth = defaultClient.authentications['jenkins_auth'];
+jenkins_auth.username = 'YOUR USERNAME';
+jenkins_auth.password = 'YOUR PASSWORD';
 
-var name = "name_example"; // String | Name of the view
+let apiInstance = new SwaggyJenkins.RemoteAccessApi();
+
+let name = "name_example"; // String | Name of the view
 
 
-var callback = function(error, data, response) {
+apiInstance.getView(name, , (error, data, response) => {
   if (error) {
     console.error(error);
   } else {
     console.log('API called successfully. Returned data: ' + data);
   }
-};
-apiInstance.getView(name, , callback);
+});
 ```
 
 ### Parameters
@@ -458,11 +514,11 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**HudsonmodelListView**](HudsonmodelListView.md)
+[**ListView**](ListView.md)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -479,21 +535,26 @@ Retrieve view configuration
 
 ### Example
 ```javascript
-var SwaggyJenkins = require('swaggy_jenkins');
+import SwaggyJenkins from 'swaggy_jenkins';
+let defaultClient = SwaggyJenkins.ApiClient.instance;
 
-var apiInstance = new SwaggyJenkins.RemoteAccessApi();
+// Configure HTTP basic authorization: jenkins_auth
+let jenkins_auth = defaultClient.authentications['jenkins_auth'];
+jenkins_auth.username = 'YOUR USERNAME';
+jenkins_auth.password = 'YOUR PASSWORD';
 
-var name = "name_example"; // String | Name of the view
+let apiInstance = new SwaggyJenkins.RemoteAccessApi();
+
+let name = "name_example"; // String | Name of the view
 
 
-var callback = function(error, data, response) {
+apiInstance.getViewConfig(name, , (error, data, response) => {
   if (error) {
     console.error(error);
   } else {
     console.log('API called successfully. Returned data: ' + data);
   }
-};
-apiInstance.getViewConfig(name, , callback);
+});
 ```
 
 ### Parameters
@@ -508,7 +569,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -525,18 +586,23 @@ Retrieve Jenkins headers
 
 ### Example
 ```javascript
-var SwaggyJenkins = require('swaggy_jenkins');
+import SwaggyJenkins from 'swaggy_jenkins';
+let defaultClient = SwaggyJenkins.ApiClient.instance;
 
-var apiInstance = new SwaggyJenkins.RemoteAccessApi();
+// Configure HTTP basic authorization: jenkins_auth
+let jenkins_auth = defaultClient.authentications['jenkins_auth'];
+jenkins_auth.username = 'YOUR USERNAME';
+jenkins_auth.password = 'YOUR PASSWORD';
 
-var callback = function(error, data, response) {
+let apiInstance = new SwaggyJenkins.RemoteAccessApi();
+
+apiInstance.headJenkins((error, data, response) => {
   if (error) {
     console.error(error);
   } else {
     console.log('API called successfully.');
   }
-};
-apiInstance.headJenkins(callback);
+});
 ```
 
 ### Parameters
@@ -548,7 +614,7 @@ null (empty response body)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -565,13 +631,19 @@ Create a new job using job configuration, or copied from an existing job
 
 ### Example
 ```javascript
-var SwaggyJenkins = require('swaggy_jenkins');
+import SwaggyJenkins from 'swaggy_jenkins';
+let defaultClient = SwaggyJenkins.ApiClient.instance;
 
-var apiInstance = new SwaggyJenkins.RemoteAccessApi();
+// Configure HTTP basic authorization: jenkins_auth
+let jenkins_auth = defaultClient.authentications['jenkins_auth'];
+jenkins_auth.username = 'YOUR USERNAME';
+jenkins_auth.password = 'YOUR PASSWORD';
 
-var name = "name_example"; // String | Name of the new job
+let apiInstance = new SwaggyJenkins.RemoteAccessApi();
 
-var opts = { 
+let name = "name_example"; // String | Name of the new job
+
+let opts = { 
   'from': "from_example", // String | Existing job to copy from
   'mode': "mode_example", // String | Set to 'copy' for copying an existing job
   'body': "body_example", // String | Job configuration in config.xml format
@@ -579,14 +651,13 @@ var opts = {
   'contentType': "contentType_example" // String | Content type header application/xml
 };
 
-var callback = function(error, data, response) {
+apiInstance.postCreateItem(name, opts, (error, data, response) => {
   if (error) {
     console.error(error);
   } else {
     console.log('API called successfully.');
   }
-};
-apiInstance.postCreateItem(name, opts, callback);
+});
 ```
 
 ### Parameters
@@ -606,7 +677,7 @@ null (empty response body)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -623,26 +694,31 @@ Create a new view using view configuration
 
 ### Example
 ```javascript
-var SwaggyJenkins = require('swaggy_jenkins');
+import SwaggyJenkins from 'swaggy_jenkins';
+let defaultClient = SwaggyJenkins.ApiClient.instance;
 
-var apiInstance = new SwaggyJenkins.RemoteAccessApi();
+// Configure HTTP basic authorization: jenkins_auth
+let jenkins_auth = defaultClient.authentications['jenkins_auth'];
+jenkins_auth.username = 'YOUR USERNAME';
+jenkins_auth.password = 'YOUR PASSWORD';
 
-var name = "name_example"; // String | Name of the new view
+let apiInstance = new SwaggyJenkins.RemoteAccessApi();
 
-var opts = { 
+let name = "name_example"; // String | Name of the new view
+
+let opts = { 
   'body': "body_example", // String | View configuration in config.xml format
   'jenkinsCrumb': "jenkinsCrumb_example" // String | CSRF protection token
   'contentType': "contentType_example" // String | Content type header application/xml
 };
 
-var callback = function(error, data, response) {
+apiInstance.postCreateView(name, opts, (error, data, response) => {
   if (error) {
     console.error(error);
   } else {
     console.log('API called successfully.');
   }
-};
-apiInstance.postCreateView(name, opts, callback);
+});
 ```
 
 ### Parameters
@@ -660,7 +736,7 @@ null (empty response body)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -677,27 +753,32 @@ Build a job
 
 ### Example
 ```javascript
-var SwaggyJenkins = require('swaggy_jenkins');
+import SwaggyJenkins from 'swaggy_jenkins';
+let defaultClient = SwaggyJenkins.ApiClient.instance;
 
-var apiInstance = new SwaggyJenkins.RemoteAccessApi();
+// Configure HTTP basic authorization: jenkins_auth
+let jenkins_auth = defaultClient.authentications['jenkins_auth'];
+jenkins_auth.username = 'YOUR USERNAME';
+jenkins_auth.password = 'YOUR PASSWORD';
 
-var name = "name_example"; // String | Name of the job
+let apiInstance = new SwaggyJenkins.RemoteAccessApi();
 
-var json = "json_example"; // String | 
+let name = "name_example"; // String | Name of the job
 
-var opts = { 
+let json = "json_example"; // String | 
+
+let opts = { 
   'token': "token_example", // String | 
   'jenkinsCrumb': "jenkinsCrumb_example" // String | CSRF protection token
 };
 
-var callback = function(error, data, response) {
+apiInstance.postJobBuild(name, json, opts, (error, data, response) => {
   if (error) {
     console.error(error);
   } else {
     console.log('API called successfully.');
   }
-};
-apiInstance.postJobBuild(name, json, opts, callback);
+});
 ```
 
 ### Parameters
@@ -715,7 +796,7 @@ null (empty response body)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -732,26 +813,31 @@ Update job configuration
 
 ### Example
 ```javascript
-var SwaggyJenkins = require('swaggy_jenkins');
+import SwaggyJenkins from 'swaggy_jenkins';
+let defaultClient = SwaggyJenkins.ApiClient.instance;
 
-var apiInstance = new SwaggyJenkins.RemoteAccessApi();
+// Configure HTTP basic authorization: jenkins_auth
+let jenkins_auth = defaultClient.authentications['jenkins_auth'];
+jenkins_auth.username = 'YOUR USERNAME';
+jenkins_auth.password = 'YOUR PASSWORD';
 
-var name = "name_example"; // String | Name of the job
+let apiInstance = new SwaggyJenkins.RemoteAccessApi();
 
-var body = "body_example"; // String | Job configuration in config.xml format
+let name = "name_example"; // String | Name of the job
 
-var opts = { 
+let body = "body_example"; // String | Job configuration in config.xml format
+
+let opts = { 
   'jenkinsCrumb': "jenkinsCrumb_example" // String | CSRF protection token
 };
 
-var callback = function(error, data, response) {
+apiInstance.postJobConfig(name, body, opts, (error, data, response) => {
   if (error) {
     console.error(error);
   } else {
     console.log('API called successfully.');
   }
-};
-apiInstance.postJobConfig(name, body, opts, callback);
+});
 ```
 
 ### Parameters
@@ -768,7 +854,7 @@ null (empty response body)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -785,24 +871,29 @@ Delete a job
 
 ### Example
 ```javascript
-var SwaggyJenkins = require('swaggy_jenkins');
+import SwaggyJenkins from 'swaggy_jenkins';
+let defaultClient = SwaggyJenkins.ApiClient.instance;
 
-var apiInstance = new SwaggyJenkins.RemoteAccessApi();
+// Configure HTTP basic authorization: jenkins_auth
+let jenkins_auth = defaultClient.authentications['jenkins_auth'];
+jenkins_auth.username = 'YOUR USERNAME';
+jenkins_auth.password = 'YOUR PASSWORD';
 
-var name = "name_example"; // String | Name of the job
+let apiInstance = new SwaggyJenkins.RemoteAccessApi();
 
-var opts = { 
+let name = "name_example"; // String | Name of the job
+
+let opts = { 
   'jenkinsCrumb': "jenkinsCrumb_example" // String | CSRF protection token
 };
 
-var callback = function(error, data, response) {
+apiInstance.postJobDelete(name, , opts, (error, data, response) => {
   if (error) {
     console.error(error);
   } else {
     console.log('API called successfully.');
   }
-};
-apiInstance.postJobDelete(name, , opts, callback);
+});
 ```
 
 ### Parameters
@@ -818,7 +909,7 @@ null (empty response body)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -835,24 +926,29 @@ Disable a job
 
 ### Example
 ```javascript
-var SwaggyJenkins = require('swaggy_jenkins');
+import SwaggyJenkins from 'swaggy_jenkins';
+let defaultClient = SwaggyJenkins.ApiClient.instance;
 
-var apiInstance = new SwaggyJenkins.RemoteAccessApi();
+// Configure HTTP basic authorization: jenkins_auth
+let jenkins_auth = defaultClient.authentications['jenkins_auth'];
+jenkins_auth.username = 'YOUR USERNAME';
+jenkins_auth.password = 'YOUR PASSWORD';
 
-var name = "name_example"; // String | Name of the job
+let apiInstance = new SwaggyJenkins.RemoteAccessApi();
 
-var opts = { 
+let name = "name_example"; // String | Name of the job
+
+let opts = { 
   'jenkinsCrumb': "jenkinsCrumb_example" // String | CSRF protection token
 };
 
-var callback = function(error, data, response) {
+apiInstance.postJobDisable(name, , opts, (error, data, response) => {
   if (error) {
     console.error(error);
   } else {
     console.log('API called successfully.');
   }
-};
-apiInstance.postJobDisable(name, , opts, callback);
+});
 ```
 
 ### Parameters
@@ -868,7 +964,7 @@ null (empty response body)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -885,24 +981,29 @@ Enable a job
 
 ### Example
 ```javascript
-var SwaggyJenkins = require('swaggy_jenkins');
+import SwaggyJenkins from 'swaggy_jenkins';
+let defaultClient = SwaggyJenkins.ApiClient.instance;
 
-var apiInstance = new SwaggyJenkins.RemoteAccessApi();
+// Configure HTTP basic authorization: jenkins_auth
+let jenkins_auth = defaultClient.authentications['jenkins_auth'];
+jenkins_auth.username = 'YOUR USERNAME';
+jenkins_auth.password = 'YOUR PASSWORD';
 
-var name = "name_example"; // String | Name of the job
+let apiInstance = new SwaggyJenkins.RemoteAccessApi();
 
-var opts = { 
+let name = "name_example"; // String | Name of the job
+
+let opts = { 
   'jenkinsCrumb': "jenkinsCrumb_example" // String | CSRF protection token
 };
 
-var callback = function(error, data, response) {
+apiInstance.postJobEnable(name, , opts, (error, data, response) => {
   if (error) {
     console.error(error);
   } else {
     console.log('API called successfully.');
   }
-};
-apiInstance.postJobEnable(name, , opts, callback);
+});
 ```
 
 ### Parameters
@@ -918,7 +1019,7 @@ null (empty response body)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -935,24 +1036,29 @@ Stop a job
 
 ### Example
 ```javascript
-var SwaggyJenkins = require('swaggy_jenkins');
+import SwaggyJenkins from 'swaggy_jenkins';
+let defaultClient = SwaggyJenkins.ApiClient.instance;
 
-var apiInstance = new SwaggyJenkins.RemoteAccessApi();
+// Configure HTTP basic authorization: jenkins_auth
+let jenkins_auth = defaultClient.authentications['jenkins_auth'];
+jenkins_auth.username = 'YOUR USERNAME';
+jenkins_auth.password = 'YOUR PASSWORD';
 
-var name = "name_example"; // String | Name of the job
+let apiInstance = new SwaggyJenkins.RemoteAccessApi();
 
-var opts = { 
+let name = "name_example"; // String | Name of the job
+
+let opts = { 
   'jenkinsCrumb': "jenkinsCrumb_example" // String | CSRF protection token
 };
 
-var callback = function(error, data, response) {
+apiInstance.postJobLastBuildStop(name, , opts, (error, data, response) => {
   if (error) {
     console.error(error);
   } else {
     console.log('API called successfully.');
   }
-};
-apiInstance.postJobLastBuildStop(name, , opts, callback);
+});
 ```
 
 ### Parameters
@@ -968,7 +1074,7 @@ null (empty response body)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -985,26 +1091,31 @@ Update view configuration
 
 ### Example
 ```javascript
-var SwaggyJenkins = require('swaggy_jenkins');
+import SwaggyJenkins from 'swaggy_jenkins';
+let defaultClient = SwaggyJenkins.ApiClient.instance;
 
-var apiInstance = new SwaggyJenkins.RemoteAccessApi();
+// Configure HTTP basic authorization: jenkins_auth
+let jenkins_auth = defaultClient.authentications['jenkins_auth'];
+jenkins_auth.username = 'YOUR USERNAME';
+jenkins_auth.password = 'YOUR PASSWORD';
 
-var name = "name_example"; // String | Name of the view
+let apiInstance = new SwaggyJenkins.RemoteAccessApi();
 
-var body = "body_example"; // String | View configuration in config.xml format
+let name = "name_example"; // String | Name of the view
 
-var opts = { 
+let body = "body_example"; // String | View configuration in config.xml format
+
+let opts = { 
   'jenkinsCrumb': "jenkinsCrumb_example" // String | CSRF protection token
 };
 
-var callback = function(error, data, response) {
+apiInstance.postViewConfig(name, body, opts, (error, data, response) => {
   if (error) {
     console.error(error);
   } else {
     console.log('API called successfully.');
   }
-};
-apiInstance.postViewConfig(name, body, opts, callback);
+});
 ```
 
 ### Parameters
@@ -1021,7 +1132,7 @@ null (empty response body)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 

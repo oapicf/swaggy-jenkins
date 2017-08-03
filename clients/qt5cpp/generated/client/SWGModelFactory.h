@@ -14,221 +14,381 @@
 #define ModelFactory_H_
 
 
-#include "SWGGetClassesByClass.h"
-#include "SWGGetMultibranchPipeline.h"
-#include "SWGGetOrganisations.h"
-#include "SWGGetPipelineBranches.h"
-#include "SWGGetPipelineBranchesitem.h"
-#include "SWGGetPipelineBranchesitem_latestRun.h"
-#include "SWGGetPipelineBranchesitem_pullRequest.h"
-#include "SWGGetPipelineBranchesitem_pullRequest__links.h"
-#include "SWGGetPipelines.h"
-#include "SWGGetUsers.h"
-#include "SWGHudsonmodelAllView.h"
-#include "SWGHudsonmodelCauseAction.h"
-#include "SWGHudsonmodelCauseUserIdCause.h"
-#include "SWGHudsonmodelComputerSet.h"
-#include "SWGHudsonmodelFreeStyleBuild.h"
-#include "SWGHudsonmodelFreeStyleProject.h"
-#include "SWGHudsonmodelFreeStyleProjectactions.h"
-#include "SWGHudsonmodelFreeStyleProjecthealthReport.h"
-#include "SWGHudsonmodelHudson.h"
-#include "SWGHudsonmodelHudsonMasterComputer.h"
-#include "SWGHudsonmodelHudsonMasterComputer_monitorData.h"
-#include "SWGHudsonmodelHudsonMasterComputerexecutors.h"
-#include "SWGHudsonmodelHudsonassignedLabels.h"
-#include "SWGHudsonmodelLabel1.h"
-#include "SWGHudsonmodelListView.h"
-#include "SWGHudsonmodelQueue.h"
-#include "SWGHudsonmodelQueueBlockedItem.h"
-#include "SWGHudsonmodelQueueLeftItem.h"
-#include "SWGHudsonmodelStringParameterDefinition.h"
-#include "SWGHudsonmodelStringParameterValue.h"
-#include "SWGHudsonnode_monitorsDiskSpaceMonitorDescriptorDiskSpace.h"
-#include "SWGHudsonnode_monitorsResponseTimeMonitorData.h"
-#include "SWGHudsonnode_monitorsSwapSpaceMonitorMemoryUsage2.h"
-#include "SWGHudsonscmEmptyChangeLogSet.h"
-#include "SWGHudsonscmNullSCM.h"
-#include "SWGHudsonsecuritycsrfDefaultCrumbIssuer.h"
-#include "SWGHudsonutilClockDifference.h"
-#include "SWGIojenkinsblueoceanresthalLink.h"
-#include "SWGIojenkinsblueoceanrestimplpipelineBranchImpl.h"
-#include "SWGIojenkinsblueoceanrestimplpipelineBranchImpl_permissions.h"
-#include "SWGIojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1.h"
-#include "SWGIojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1__links.h"
-#include "SWGIojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1_map.h"
-#include "SWGIojenkinsblueoceanserviceembeddedrestExtensionClassImpl.h"
-#include "SWGIojenkinsblueoceanserviceembeddedrestExtensionClassImpl__links.h"
-#include "SWGIojenkinsblueoceanserviceembeddedrestPipelineFolderImpl.h"
-#include "SWGIojenkinsblueoceanserviceembeddedrestPipelineImpl.h"
-#include "SWGJenkinsmodelUnlabeledLoadStatistics.h"
-#include "SWGSwaggyjenkinsOrganisation.h"
-#include "SWGSwaggyjenkinsPipeline.h"
-#include "SWGSwaggyjenkinsPipeline_latestRun.h"
-#include "SWGSwaggyjenkinsPipeline_latestRunartifacts.h"
-#include "SWGSwaggyjenkinsUser.h"
+#include "AllView.h"
+#include "Body.h"
+#include "BranchImpl.h"
+#include "BranchImpllinks.h"
+#include "BranchImplpermissions.h"
+#include "CauseAction.h"
+#include "CauseUserIdCause.h"
+#include "ClassesByClass.h"
+#include "ClockDifference.h"
+#include "ComputerSet.h"
+#include "DefaultCrumbIssuer.h"
+#include "DiskSpaceMonitorDescriptorDiskSpace.h"
+#include "EmptyChangeLogSet.h"
+#include "ExtensionClassContainerImpl1.h"
+#include "ExtensionClassContainerImpl1links.h"
+#include "ExtensionClassContainerImpl1map.h"
+#include "ExtensionClassImpl.h"
+#include "ExtensionClassImpllinks.h"
+#include "FavoriteImpl.h"
+#include "FavoriteImpllinks.h"
+#include "FreeStyleBuild.h"
+#include "FreeStyleProject.h"
+#include "FreeStyleProjectactions.h"
+#include "FreeStyleProjecthealthReport.h"
+#include "GenericResource.h"
+#include "GithubContent.h"
+#include "GithubFile.h"
+#include "GithubOrganization.h"
+#include "GithubOrganizationlinks.h"
+#include "GithubRepositories.h"
+#include "GithubRepositorieslinks.h"
+#include "GithubRepository.h"
+#include "GithubRepositorylinks.h"
+#include "GithubRepositorypermissions.h"
+#include "GithubRespositoryContainer.h"
+#include "GithubRespositoryContainerlinks.h"
+#include "GithubScm.h"
+#include "GithubScmlinks.h"
+#include "Hudson.h"
+#include "HudsonMasterComputer.h"
+#include "HudsonMasterComputerexecutors.h"
+#include "HudsonMasterComputermonitorData.h"
+#include "HudsonassignedLabels.h"
+#include "InputStepImpl.h"
+#include "InputStepImpllinks.h"
+#include "Label1.h"
+#include "Link.h"
+#include "ListView.h"
+#include "MultibranchPipeline.h"
+#include "NullSCM.h"
+#include "Organisation.h"
+#include "Organisations.h"
+#include "Pipeline.h"
+#include "PipelineActivities.h"
+#include "PipelineActivity.h"
+#include "PipelineActivityartifacts.h"
+#include "PipelineBranches.h"
+#include "PipelineBranchesitem.h"
+#include "PipelineBranchesitemlatestRun.h"
+#include "PipelineBranchesitempullRequest.h"
+#include "PipelineBranchesitempullRequestlinks.h"
+#include "PipelineFolderImpl.h"
+#include "PipelineImpl.h"
+#include "PipelineImpllinks.h"
+#include "PipelineQueue.h"
+#include "PipelineRun.h"
+#include "PipelineRunImpl.h"
+#include "PipelineRunImpllinks.h"
+#include "PipelineRunNode.h"
+#include "PipelineRunNodeSteps.h"
+#include "PipelineRunNodeedges.h"
+#include "PipelineRunNodes.h"
+#include "PipelineRunSteps.h"
+#include "PipelineRunartifacts.h"
+#include "PipelineRuns.h"
+#include "PipelineStepImpl.h"
+#include "PipelineStepImpllinks.h"
+#include "PipelinelatestRun.h"
+#include "PipelinelatestRunartifacts.h"
+#include "Pipelines.h"
+#include "Queue.h"
+#include "QueueBlockedItem.h"
+#include "QueueItemImpl.h"
+#include "QueueLeftItem.h"
+#include "ResponseTimeMonitorData.h"
+#include "ScmOrganisations.h"
+#include "StringParameterDefinition.h"
+#include "StringParameterValue.h"
+#include "SwapSpaceMonitorMemoryUsage2.h"
+#include "UnlabeledLoadStatistics.h"
+#include "User.h"
+#include "UserFavorites.h"
+#include "Users.h"
 
 namespace Swagger {
 
   inline void* create(QString type) {
-    if(QString("SWGGetClassesByClass").compare(type) == 0) {
-      return new SWGGetClassesByClass();
+    if(QString("AllView").compare(type) == 0) {
+      return new AllView();
     }
-    if(QString("SWGGetMultibranchPipeline").compare(type) == 0) {
-      return new SWGGetMultibranchPipeline();
+    if(QString("Body").compare(type) == 0) {
+      return new Body();
     }
-    if(QString("SWGGetOrganisations").compare(type) == 0) {
-      return new SWGGetOrganisations();
+    if(QString("BranchImpl").compare(type) == 0) {
+      return new BranchImpl();
     }
-    if(QString("SWGGetPipelineBranches").compare(type) == 0) {
-      return new SWGGetPipelineBranches();
+    if(QString("BranchImpllinks").compare(type) == 0) {
+      return new BranchImpllinks();
     }
-    if(QString("SWGGetPipelineBranchesitem").compare(type) == 0) {
-      return new SWGGetPipelineBranchesitem();
+    if(QString("BranchImplpermissions").compare(type) == 0) {
+      return new BranchImplpermissions();
     }
-    if(QString("SWGGetPipelineBranchesitem_latestRun").compare(type) == 0) {
-      return new SWGGetPipelineBranchesitem_latestRun();
+    if(QString("CauseAction").compare(type) == 0) {
+      return new CauseAction();
     }
-    if(QString("SWGGetPipelineBranchesitem_pullRequest").compare(type) == 0) {
-      return new SWGGetPipelineBranchesitem_pullRequest();
+    if(QString("CauseUserIdCause").compare(type) == 0) {
+      return new CauseUserIdCause();
     }
-    if(QString("SWGGetPipelineBranchesitem_pullRequest__links").compare(type) == 0) {
-      return new SWGGetPipelineBranchesitem_pullRequest__links();
+    if(QString("ClassesByClass").compare(type) == 0) {
+      return new ClassesByClass();
     }
-    if(QString("SWGGetPipelines").compare(type) == 0) {
-      return new SWGGetPipelines();
+    if(QString("ClockDifference").compare(type) == 0) {
+      return new ClockDifference();
     }
-    if(QString("SWGGetUsers").compare(type) == 0) {
-      return new SWGGetUsers();
+    if(QString("ComputerSet").compare(type) == 0) {
+      return new ComputerSet();
     }
-    if(QString("SWGHudsonmodelAllView").compare(type) == 0) {
-      return new SWGHudsonmodelAllView();
+    if(QString("DefaultCrumbIssuer").compare(type) == 0) {
+      return new DefaultCrumbIssuer();
     }
-    if(QString("SWGHudsonmodelCauseAction").compare(type) == 0) {
-      return new SWGHudsonmodelCauseAction();
+    if(QString("DiskSpaceMonitorDescriptorDiskSpace").compare(type) == 0) {
+      return new DiskSpaceMonitorDescriptorDiskSpace();
     }
-    if(QString("SWGHudsonmodelCauseUserIdCause").compare(type) == 0) {
-      return new SWGHudsonmodelCauseUserIdCause();
+    if(QString("EmptyChangeLogSet").compare(type) == 0) {
+      return new EmptyChangeLogSet();
     }
-    if(QString("SWGHudsonmodelComputerSet").compare(type) == 0) {
-      return new SWGHudsonmodelComputerSet();
+    if(QString("ExtensionClassContainerImpl1").compare(type) == 0) {
+      return new ExtensionClassContainerImpl1();
     }
-    if(QString("SWGHudsonmodelFreeStyleBuild").compare(type) == 0) {
-      return new SWGHudsonmodelFreeStyleBuild();
+    if(QString("ExtensionClassContainerImpl1links").compare(type) == 0) {
+      return new ExtensionClassContainerImpl1links();
     }
-    if(QString("SWGHudsonmodelFreeStyleProject").compare(type) == 0) {
-      return new SWGHudsonmodelFreeStyleProject();
+    if(QString("ExtensionClassContainerImpl1map").compare(type) == 0) {
+      return new ExtensionClassContainerImpl1map();
     }
-    if(QString("SWGHudsonmodelFreeStyleProjectactions").compare(type) == 0) {
-      return new SWGHudsonmodelFreeStyleProjectactions();
+    if(QString("ExtensionClassImpl").compare(type) == 0) {
+      return new ExtensionClassImpl();
     }
-    if(QString("SWGHudsonmodelFreeStyleProjecthealthReport").compare(type) == 0) {
-      return new SWGHudsonmodelFreeStyleProjecthealthReport();
+    if(QString("ExtensionClassImpllinks").compare(type) == 0) {
+      return new ExtensionClassImpllinks();
     }
-    if(QString("SWGHudsonmodelHudson").compare(type) == 0) {
-      return new SWGHudsonmodelHudson();
+    if(QString("FavoriteImpl").compare(type) == 0) {
+      return new FavoriteImpl();
     }
-    if(QString("SWGHudsonmodelHudsonMasterComputer").compare(type) == 0) {
-      return new SWGHudsonmodelHudsonMasterComputer();
+    if(QString("FavoriteImpllinks").compare(type) == 0) {
+      return new FavoriteImpllinks();
     }
-    if(QString("SWGHudsonmodelHudsonMasterComputer_monitorData").compare(type) == 0) {
-      return new SWGHudsonmodelHudsonMasterComputer_monitorData();
+    if(QString("FreeStyleBuild").compare(type) == 0) {
+      return new FreeStyleBuild();
     }
-    if(QString("SWGHudsonmodelHudsonMasterComputerexecutors").compare(type) == 0) {
-      return new SWGHudsonmodelHudsonMasterComputerexecutors();
+    if(QString("FreeStyleProject").compare(type) == 0) {
+      return new FreeStyleProject();
     }
-    if(QString("SWGHudsonmodelHudsonassignedLabels").compare(type) == 0) {
-      return new SWGHudsonmodelHudsonassignedLabels();
+    if(QString("FreeStyleProjectactions").compare(type) == 0) {
+      return new FreeStyleProjectactions();
     }
-    if(QString("SWGHudsonmodelLabel1").compare(type) == 0) {
-      return new SWGHudsonmodelLabel1();
+    if(QString("FreeStyleProjecthealthReport").compare(type) == 0) {
+      return new FreeStyleProjecthealthReport();
     }
-    if(QString("SWGHudsonmodelListView").compare(type) == 0) {
-      return new SWGHudsonmodelListView();
+    if(QString("GenericResource").compare(type) == 0) {
+      return new GenericResource();
     }
-    if(QString("SWGHudsonmodelQueue").compare(type) == 0) {
-      return new SWGHudsonmodelQueue();
+    if(QString("GithubContent").compare(type) == 0) {
+      return new GithubContent();
     }
-    if(QString("SWGHudsonmodelQueueBlockedItem").compare(type) == 0) {
-      return new SWGHudsonmodelQueueBlockedItem();
+    if(QString("GithubFile").compare(type) == 0) {
+      return new GithubFile();
     }
-    if(QString("SWGHudsonmodelQueueLeftItem").compare(type) == 0) {
-      return new SWGHudsonmodelQueueLeftItem();
+    if(QString("GithubOrganization").compare(type) == 0) {
+      return new GithubOrganization();
     }
-    if(QString("SWGHudsonmodelStringParameterDefinition").compare(type) == 0) {
-      return new SWGHudsonmodelStringParameterDefinition();
+    if(QString("GithubOrganizationlinks").compare(type) == 0) {
+      return new GithubOrganizationlinks();
     }
-    if(QString("SWGHudsonmodelStringParameterValue").compare(type) == 0) {
-      return new SWGHudsonmodelStringParameterValue();
+    if(QString("GithubRepositories").compare(type) == 0) {
+      return new GithubRepositories();
     }
-    if(QString("SWGHudsonnode_monitorsDiskSpaceMonitorDescriptorDiskSpace").compare(type) == 0) {
-      return new SWGHudsonnode_monitorsDiskSpaceMonitorDescriptorDiskSpace();
+    if(QString("GithubRepositorieslinks").compare(type) == 0) {
+      return new GithubRepositorieslinks();
     }
-    if(QString("SWGHudsonnode_monitorsResponseTimeMonitorData").compare(type) == 0) {
-      return new SWGHudsonnode_monitorsResponseTimeMonitorData();
+    if(QString("GithubRepository").compare(type) == 0) {
+      return new GithubRepository();
     }
-    if(QString("SWGHudsonnode_monitorsSwapSpaceMonitorMemoryUsage2").compare(type) == 0) {
-      return new SWGHudsonnode_monitorsSwapSpaceMonitorMemoryUsage2();
+    if(QString("GithubRepositorylinks").compare(type) == 0) {
+      return new GithubRepositorylinks();
     }
-    if(QString("SWGHudsonscmEmptyChangeLogSet").compare(type) == 0) {
-      return new SWGHudsonscmEmptyChangeLogSet();
+    if(QString("GithubRepositorypermissions").compare(type) == 0) {
+      return new GithubRepositorypermissions();
     }
-    if(QString("SWGHudsonscmNullSCM").compare(type) == 0) {
-      return new SWGHudsonscmNullSCM();
+    if(QString("GithubRespositoryContainer").compare(type) == 0) {
+      return new GithubRespositoryContainer();
     }
-    if(QString("SWGHudsonsecuritycsrfDefaultCrumbIssuer").compare(type) == 0) {
-      return new SWGHudsonsecuritycsrfDefaultCrumbIssuer();
+    if(QString("GithubRespositoryContainerlinks").compare(type) == 0) {
+      return new GithubRespositoryContainerlinks();
     }
-    if(QString("SWGHudsonutilClockDifference").compare(type) == 0) {
-      return new SWGHudsonutilClockDifference();
+    if(QString("GithubScm").compare(type) == 0) {
+      return new GithubScm();
     }
-    if(QString("SWGIojenkinsblueoceanresthalLink").compare(type) == 0) {
-      return new SWGIojenkinsblueoceanresthalLink();
+    if(QString("GithubScmlinks").compare(type) == 0) {
+      return new GithubScmlinks();
     }
-    if(QString("SWGIojenkinsblueoceanrestimplpipelineBranchImpl").compare(type) == 0) {
-      return new SWGIojenkinsblueoceanrestimplpipelineBranchImpl();
+    if(QString("Hudson").compare(type) == 0) {
+      return new Hudson();
     }
-    if(QString("SWGIojenkinsblueoceanrestimplpipelineBranchImpl_permissions").compare(type) == 0) {
-      return new SWGIojenkinsblueoceanrestimplpipelineBranchImpl_permissions();
+    if(QString("HudsonMasterComputer").compare(type) == 0) {
+      return new HudsonMasterComputer();
     }
-    if(QString("SWGIojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1").compare(type) == 0) {
-      return new SWGIojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1();
+    if(QString("HudsonMasterComputerexecutors").compare(type) == 0) {
+      return new HudsonMasterComputerexecutors();
     }
-    if(QString("SWGIojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1__links").compare(type) == 0) {
-      return new SWGIojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1__links();
+    if(QString("HudsonMasterComputermonitorData").compare(type) == 0) {
+      return new HudsonMasterComputermonitorData();
     }
-    if(QString("SWGIojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1_map").compare(type) == 0) {
-      return new SWGIojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1_map();
+    if(QString("HudsonassignedLabels").compare(type) == 0) {
+      return new HudsonassignedLabels();
     }
-    if(QString("SWGIojenkinsblueoceanserviceembeddedrestExtensionClassImpl").compare(type) == 0) {
-      return new SWGIojenkinsblueoceanserviceembeddedrestExtensionClassImpl();
+    if(QString("InputStepImpl").compare(type) == 0) {
+      return new InputStepImpl();
     }
-    if(QString("SWGIojenkinsblueoceanserviceembeddedrestExtensionClassImpl__links").compare(type) == 0) {
-      return new SWGIojenkinsblueoceanserviceembeddedrestExtensionClassImpl__links();
+    if(QString("InputStepImpllinks").compare(type) == 0) {
+      return new InputStepImpllinks();
     }
-    if(QString("SWGIojenkinsblueoceanserviceembeddedrestPipelineFolderImpl").compare(type) == 0) {
-      return new SWGIojenkinsblueoceanserviceembeddedrestPipelineFolderImpl();
+    if(QString("Label1").compare(type) == 0) {
+      return new Label1();
     }
-    if(QString("SWGIojenkinsblueoceanserviceembeddedrestPipelineImpl").compare(type) == 0) {
-      return new SWGIojenkinsblueoceanserviceembeddedrestPipelineImpl();
+    if(QString("Link").compare(type) == 0) {
+      return new Link();
     }
-    if(QString("SWGJenkinsmodelUnlabeledLoadStatistics").compare(type) == 0) {
-      return new SWGJenkinsmodelUnlabeledLoadStatistics();
+    if(QString("ListView").compare(type) == 0) {
+      return new ListView();
     }
-    if(QString("SWGSwaggyjenkinsOrganisation").compare(type) == 0) {
-      return new SWGSwaggyjenkinsOrganisation();
+    if(QString("MultibranchPipeline").compare(type) == 0) {
+      return new MultibranchPipeline();
     }
-    if(QString("SWGSwaggyjenkinsPipeline").compare(type) == 0) {
-      return new SWGSwaggyjenkinsPipeline();
+    if(QString("NullSCM").compare(type) == 0) {
+      return new NullSCM();
     }
-    if(QString("SWGSwaggyjenkinsPipeline_latestRun").compare(type) == 0) {
-      return new SWGSwaggyjenkinsPipeline_latestRun();
+    if(QString("Organisation").compare(type) == 0) {
+      return new Organisation();
     }
-    if(QString("SWGSwaggyjenkinsPipeline_latestRunartifacts").compare(type) == 0) {
-      return new SWGSwaggyjenkinsPipeline_latestRunartifacts();
+    if(QString("Organisations").compare(type) == 0) {
+      return new Organisations();
     }
-    if(QString("SWGSwaggyjenkinsUser").compare(type) == 0) {
-      return new SWGSwaggyjenkinsUser();
+    if(QString("Pipeline").compare(type) == 0) {
+      return new Pipeline();
+    }
+    if(QString("PipelineActivities").compare(type) == 0) {
+      return new PipelineActivities();
+    }
+    if(QString("PipelineActivity").compare(type) == 0) {
+      return new PipelineActivity();
+    }
+    if(QString("PipelineActivityartifacts").compare(type) == 0) {
+      return new PipelineActivityartifacts();
+    }
+    if(QString("PipelineBranches").compare(type) == 0) {
+      return new PipelineBranches();
+    }
+    if(QString("PipelineBranchesitem").compare(type) == 0) {
+      return new PipelineBranchesitem();
+    }
+    if(QString("PipelineBranchesitemlatestRun").compare(type) == 0) {
+      return new PipelineBranchesitemlatestRun();
+    }
+    if(QString("PipelineBranchesitempullRequest").compare(type) == 0) {
+      return new PipelineBranchesitempullRequest();
+    }
+    if(QString("PipelineBranchesitempullRequestlinks").compare(type) == 0) {
+      return new PipelineBranchesitempullRequestlinks();
+    }
+    if(QString("PipelineFolderImpl").compare(type) == 0) {
+      return new PipelineFolderImpl();
+    }
+    if(QString("PipelineImpl").compare(type) == 0) {
+      return new PipelineImpl();
+    }
+    if(QString("PipelineImpllinks").compare(type) == 0) {
+      return new PipelineImpllinks();
+    }
+    if(QString("PipelineQueue").compare(type) == 0) {
+      return new PipelineQueue();
+    }
+    if(QString("PipelineRun").compare(type) == 0) {
+      return new PipelineRun();
+    }
+    if(QString("PipelineRunImpl").compare(type) == 0) {
+      return new PipelineRunImpl();
+    }
+    if(QString("PipelineRunImpllinks").compare(type) == 0) {
+      return new PipelineRunImpllinks();
+    }
+    if(QString("PipelineRunNode").compare(type) == 0) {
+      return new PipelineRunNode();
+    }
+    if(QString("PipelineRunNodeSteps").compare(type) == 0) {
+      return new PipelineRunNodeSteps();
+    }
+    if(QString("PipelineRunNodeedges").compare(type) == 0) {
+      return new PipelineRunNodeedges();
+    }
+    if(QString("PipelineRunNodes").compare(type) == 0) {
+      return new PipelineRunNodes();
+    }
+    if(QString("PipelineRunSteps").compare(type) == 0) {
+      return new PipelineRunSteps();
+    }
+    if(QString("PipelineRunartifacts").compare(type) == 0) {
+      return new PipelineRunartifacts();
+    }
+    if(QString("PipelineRuns").compare(type) == 0) {
+      return new PipelineRuns();
+    }
+    if(QString("PipelineStepImpl").compare(type) == 0) {
+      return new PipelineStepImpl();
+    }
+    if(QString("PipelineStepImpllinks").compare(type) == 0) {
+      return new PipelineStepImpllinks();
+    }
+    if(QString("PipelinelatestRun").compare(type) == 0) {
+      return new PipelinelatestRun();
+    }
+    if(QString("PipelinelatestRunartifacts").compare(type) == 0) {
+      return new PipelinelatestRunartifacts();
+    }
+    if(QString("Pipelines").compare(type) == 0) {
+      return new Pipelines();
+    }
+    if(QString("Queue").compare(type) == 0) {
+      return new Queue();
+    }
+    if(QString("QueueBlockedItem").compare(type) == 0) {
+      return new QueueBlockedItem();
+    }
+    if(QString("QueueItemImpl").compare(type) == 0) {
+      return new QueueItemImpl();
+    }
+    if(QString("QueueLeftItem").compare(type) == 0) {
+      return new QueueLeftItem();
+    }
+    if(QString("ResponseTimeMonitorData").compare(type) == 0) {
+      return new ResponseTimeMonitorData();
+    }
+    if(QString("ScmOrganisations").compare(type) == 0) {
+      return new ScmOrganisations();
+    }
+    if(QString("StringParameterDefinition").compare(type) == 0) {
+      return new StringParameterDefinition();
+    }
+    if(QString("StringParameterValue").compare(type) == 0) {
+      return new StringParameterValue();
+    }
+    if(QString("SwapSpaceMonitorMemoryUsage2").compare(type) == 0) {
+      return new SwapSpaceMonitorMemoryUsage2();
+    }
+    if(QString("UnlabeledLoadStatistics").compare(type) == 0) {
+      return new UnlabeledLoadStatistics();
+    }
+    if(QString("User").compare(type) == 0) {
+      return new User();
+    }
+    if(QString("UserFavorites").compare(type) == 0) {
+      return new UserFavorites();
+    }
+    if(QString("Users").compare(type) == 0) {
+      return new Users();
     }
     
     return nullptr;

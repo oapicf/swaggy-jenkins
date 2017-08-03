@@ -43,6 +43,8 @@ Please follow the [installation](#installation) instruction and execute the foll
 
 ```java
 SwagBlueOceanApi api = new SwagBlueOceanApi();
+SwagClient client = api.getClient();
+
 
 Map<String, Object> params = new Map<String, Object>{
     'q' => 'q_example'
@@ -63,21 +65,42 @@ All URIs are relative to *http://localhost*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*SwagBlueOceanApi* | [**callSearch**](docs/SwagBlueOceanApi.md#callSearch) | **GET** /blue/rest/classes/ | 
-*SwagBlueOceanApi* | [**callSearch_0**](docs/SwagBlueOceanApi.md#callSearch_0) | **GET** /blue/rest/search/ | 
-*SwagBlueOceanApi* | [**getAuthenticatedUser**](docs/SwagBlueOceanApi.md#getAuthenticatedUser) | **GET** /blue/rest/organizations/{organisation}/user/ | 
+*SwagBlueOceanApi* | [**callSearch**](docs/SwagBlueOceanApi.md#callSearch) | **GET** /blue/rest/search/ | 
+*SwagBlueOceanApi* | [**deletePipelineQueueItem**](docs/SwagBlueOceanApi.md#deletePipelineQueueItem) | **DELETE** /blue/rest/organizations/{organization}/pipelines/{pipeline}/queue/{queue} | 
+*SwagBlueOceanApi* | [**getAuthenticatedUser**](docs/SwagBlueOceanApi.md#getAuthenticatedUser) | **GET** /blue/rest/organizations/{organization}/user/ | 
 *SwagBlueOceanApi* | [**getClasses**](docs/SwagBlueOceanApi.md#getClasses) | **GET** /blue/rest/classes/{class} | 
-*SwagBlueOceanApi* | [**getOrganisation**](docs/SwagBlueOceanApi.md#getOrganisation) | **GET** /blue/rest/organizations/{organisation} | 
+*SwagBlueOceanApi* | [**getOrganisation**](docs/SwagBlueOceanApi.md#getOrganisation) | **GET** /blue/rest/organizations/{organization} | 
 *SwagBlueOceanApi* | [**getOrganisations**](docs/SwagBlueOceanApi.md#getOrganisations) | **GET** /blue/rest/organizations/ | 
-*SwagBlueOceanApi* | [**getPipelineBranchByOrg**](docs/SwagBlueOceanApi.md#getPipelineBranchByOrg) | **GET** /blue/rest/organizations/{organisation}/pipelines/{pipeline}/branches/{branch}/ | 
-*SwagBlueOceanApi* | [**getPipelineBranchesByOrg**](docs/SwagBlueOceanApi.md#getPipelineBranchesByOrg) | **GET** /blue/rest/organizations/{organisation}/pipelines/{pipeline}/branches | 
-*SwagBlueOceanApi* | [**getPipelineByOrg**](docs/SwagBlueOceanApi.md#getPipelineByOrg) | **GET** /blue/rest/organizations/{organisation}/pipelines/{pipeline} | 
-*SwagBlueOceanApi* | [**getPipelineFolderByOrg**](docs/SwagBlueOceanApi.md#getPipelineFolderByOrg) | **GET** /blue/rest/organizations/{organisation}/pipelines/{folder}/ | 
-*SwagBlueOceanApi* | [**getPipelineFolderByOrg_0**](docs/SwagBlueOceanApi.md#getPipelineFolderByOrg_0) | **GET** /blue/rest/organizations/{organisation}/pipelines/{folder}/pipelines/{pipeline} | 
-*SwagBlueOceanApi* | [**getPipelinesByOrg**](docs/SwagBlueOceanApi.md#getPipelinesByOrg) | **GET** /blue/rest/organizations/{organisation}/pipelines/ | 
-*SwagBlueOceanApi* | [**getUser**](docs/SwagBlueOceanApi.md#getUser) | **GET** /blue/rest/organizations/{organisation}/users/{user} | 
-*SwagBlueOceanApi* | [**getUsers**](docs/SwagBlueOceanApi.md#getUsers) | **GET** /blue/rest/organizations/{organisation}/users/ | 
-*SwagRemoteAccessApi* | [**getComputer**](docs/SwagRemoteAccessApi.md#getComputer) | **GET** /computer/api/json?depth&#x3D;1 | 
+*SwagBlueOceanApi* | [**getPipeline**](docs/SwagBlueOceanApi.md#getPipeline) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline} | 
+*SwagBlueOceanApi* | [**getPipelineActivities**](docs/SwagBlueOceanApi.md#getPipelineActivities) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/activities | 
+*SwagBlueOceanApi* | [**getPipelineBranch**](docs/SwagBlueOceanApi.md#getPipelineBranch) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/branches/{branch}/ | 
+*SwagBlueOceanApi* | [**getPipelineBranchRun**](docs/SwagBlueOceanApi.md#getPipelineBranchRun) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/branches/{branch}/runs/{run} | 
+*SwagBlueOceanApi* | [**getPipelineBranches**](docs/SwagBlueOceanApi.md#getPipelineBranches) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/branches | 
+*SwagBlueOceanApi* | [**getPipelineFolder**](docs/SwagBlueOceanApi.md#getPipelineFolder) | **GET** /blue/rest/organizations/{organization}/pipelines/{folder}/ | 
+*SwagBlueOceanApi* | [**getPipelineFolderPipeline**](docs/SwagBlueOceanApi.md#getPipelineFolderPipeline) | **GET** /blue/rest/organizations/{organization}/pipelines/{folder}/pipelines/{pipeline} | 
+*SwagBlueOceanApi* | [**getPipelineQueue**](docs/SwagBlueOceanApi.md#getPipelineQueue) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/queue | 
+*SwagBlueOceanApi* | [**getPipelineRun**](docs/SwagBlueOceanApi.md#getPipelineRun) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run} | 
+*SwagBlueOceanApi* | [**getPipelineRunLog**](docs/SwagBlueOceanApi.md#getPipelineRunLog) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/log | 
+*SwagBlueOceanApi* | [**getPipelineRunNode**](docs/SwagBlueOceanApi.md#getPipelineRunNode) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node} | 
+*SwagBlueOceanApi* | [**getPipelineRunNodeStep**](docs/SwagBlueOceanApi.md#getPipelineRunNodeStep) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps/{step} | 
+*SwagBlueOceanApi* | [**getPipelineRunNodeStepLog**](docs/SwagBlueOceanApi.md#getPipelineRunNodeStepLog) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps/{step}/log | 
+*SwagBlueOceanApi* | [**getPipelineRunNodeSteps**](docs/SwagBlueOceanApi.md#getPipelineRunNodeSteps) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps | 
+*SwagBlueOceanApi* | [**getPipelineRunNodes**](docs/SwagBlueOceanApi.md#getPipelineRunNodes) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes | 
+*SwagBlueOceanApi* | [**getPipelineRuns**](docs/SwagBlueOceanApi.md#getPipelineRuns) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs | 
+*SwagBlueOceanApi* | [**getPipelines**](docs/SwagBlueOceanApi.md#getPipelines) | **GET** /blue/rest/organizations/{organization}/pipelines/ | 
+*SwagBlueOceanApi* | [**getSCM**](docs/SwagBlueOceanApi.md#getSCM) | **GET** /blue/rest/organizations/{organization}/scm/{scm} | 
+*SwagBlueOceanApi* | [**getSCMOrganisationRepositories**](docs/SwagBlueOceanApi.md#getSCMOrganisationRepositories) | **GET** /blue/rest/organizations/{organization}/scm/{scm}/organizations/{scmOrganisation}/repositories | 
+*SwagBlueOceanApi* | [**getSCMOrganisationRepository**](docs/SwagBlueOceanApi.md#getSCMOrganisationRepository) | **GET** /blue/rest/organizations/{organization}/scm/{scm}/organizations/{scmOrganisation}/repositories/{repository} | 
+*SwagBlueOceanApi* | [**getSCMOrganisations**](docs/SwagBlueOceanApi.md#getSCMOrganisations) | **GET** /blue/rest/organizations/{organization}/scm/{scm}/organizations | 
+*SwagBlueOceanApi* | [**getUser**](docs/SwagBlueOceanApi.md#getUser) | **GET** /blue/rest/organizations/{organization}/users/{user} | 
+*SwagBlueOceanApi* | [**getUserFavorites**](docs/SwagBlueOceanApi.md#getUserFavorites) | **GET** /blue/rest/users/{user}/favorites | 
+*SwagBlueOceanApi* | [**getUsers**](docs/SwagBlueOceanApi.md#getUsers) | **GET** /blue/rest/organizations/{organization}/users/ | 
+*SwagBlueOceanApi* | [**postPipelineRun**](docs/SwagBlueOceanApi.md#postPipelineRun) | **POST** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/replay | 
+*SwagBlueOceanApi* | [**postPipelineRuns**](docs/SwagBlueOceanApi.md#postPipelineRuns) | **POST** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs | 
+*SwagBlueOceanApi* | [**putPipelineFavorite**](docs/SwagBlueOceanApi.md#putPipelineFavorite) | **PUT** /blue/rest/organizations/{organization}/pipelines/{pipeline}/favorite | 
+*SwagBlueOceanApi* | [**putPipelineRun**](docs/SwagBlueOceanApi.md#putPipelineRun) | **PUT** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/stop | 
+*SwagBlueOceanApi* | [**searchClasses**](docs/SwagBlueOceanApi.md#searchClasses) | **GET** /blue/rest/classes/ | 
+*SwagRemoteAccessApi* | [**getComputer**](docs/SwagRemoteAccessApi.md#getComputer) | **GET** /computer/api/json | 
 *SwagRemoteAccessApi* | [**getCrumb**](docs/SwagRemoteAccessApi.md#getCrumb) | **GET** /crumbIssuer/api/json | 
 *SwagRemoteAccessApi* | [**getJenkins**](docs/SwagRemoteAccessApi.md#getJenkins) | **GET** /api/json | 
 *SwagRemoteAccessApi* | [**getJob**](docs/SwagRemoteAccessApi.md#getJob) | **GET** /job/{name}/api/json | 
@@ -102,51 +125,99 @@ Class | Method | HTTP request | Description
 
 ## Documentation for Models
 
- - [SwagGetClassesByClass](docs/SwagGetClassesByClass.md)
- - [SwagGetMultibranchPipeline](docs/SwagGetMultibranchPipeline.md)
- - [SwagGetOrganisations](docs/SwagGetOrganisations.md)
- - [SwagGetPipelineBranches](docs/SwagGetPipelineBranches.md)
- - [SwagGetPipelineBranchesitem](docs/SwagGetPipelineBranchesitem.md)
- - [SwagGetPipelineBranchesitemLatestRun](docs/SwagGetPipelineBranchesitemLatestRun.md)
- - [SwagGetPipelineBranchesitemPullReque](docs/SwagGetPipelineBranchesitemPullReque.md)
- - [SwagGetPipelines](docs/SwagGetPipelines.md)
- - [SwagGetUsers](docs/SwagGetUsers.md)
- - [SwagHudsonmodelAllView](docs/SwagHudsonmodelAllView.md)
- - [SwagHudsonmodelCauseAction](docs/SwagHudsonmodelCauseAction.md)
- - [SwagHudsonmodelCauseUserIdCause](docs/SwagHudsonmodelCauseUserIdCause.md)
- - [SwagHudsonmodelComputerSet](docs/SwagHudsonmodelComputerSet.md)
- - [SwagHudsonmodelFreeStyleBuild](docs/SwagHudsonmodelFreeStyleBuild.md)
- - [SwagHudsonmodelFreeStyleProject](docs/SwagHudsonmodelFreeStyleProject.md)
- - [SwagHudsonmodelFreeStyleProjectactio](docs/SwagHudsonmodelFreeStyleProjectactio.md)
- - [SwagHudsonmodelFreeStyleProjecthealt](docs/SwagHudsonmodelFreeStyleProjecthealt.md)
- - [SwagHudsonmodelHudson](docs/SwagHudsonmodelHudson.md)
- - [SwagHudsonmodelHudsonMasterComputer](docs/SwagHudsonmodelHudsonMasterComputer.md)
- - [SwagHudsonmodelHudsonMasterComputerM](docs/SwagHudsonmodelHudsonMasterComputerM.md)
- - [SwagHudsonmodelHudsonMasterComputere](docs/SwagHudsonmodelHudsonMasterComputere.md)
- - [SwagHudsonmodelHudsonassignedLabels](docs/SwagHudsonmodelHudsonassignedLabels.md)
- - [SwagHudsonmodelLabel1](docs/SwagHudsonmodelLabel1.md)
- - [SwagHudsonmodelListView](docs/SwagHudsonmodelListView.md)
- - [SwagHudsonmodelQueue](docs/SwagHudsonmodelQueue.md)
- - [SwagHudsonmodelQueueBlockedItem](docs/SwagHudsonmodelQueueBlockedItem.md)
- - [SwagHudsonmodelQueueLeftItem](docs/SwagHudsonmodelQueueLeftItem.md)
- - [SwagHudsonmodelStringParameterDefini](docs/SwagHudsonmodelStringParameterDefini.md)
- - [SwagHudsonmodelStringParameterValue](docs/SwagHudsonmodelStringParameterValue.md)
- - [SwagHudsonnodeMonitorsDiskSpaceMonit](docs/SwagHudsonnodeMonitorsDiskSpaceMonit.md)
- - [SwagHudsonnodeMonitorsResponseTimeMo](docs/SwagHudsonnodeMonitorsResponseTimeMo.md)
- - [SwagHudsonnodeMonitorsSwapSpaceMonit](docs/SwagHudsonnodeMonitorsSwapSpaceMonit.md)
- - [SwagHudsonscmEmptyChangeLogSet](docs/SwagHudsonscmEmptyChangeLogSet.md)
- - [SwagHudsonscmNullSCM](docs/SwagHudsonscmNullSCM.md)
- - [SwagHudsonsecuritycsrfDefaultCrumbIs](docs/SwagHudsonsecuritycsrfDefaultCrumbIs.md)
- - [SwagHudsonutilClockDifference](docs/SwagHudsonutilClockDifference.md)
- - [SwagIojenkinsblueoceanresthalLink](docs/SwagIojenkinsblueoceanresthalLink.md)
- - [SwagIojenkinsblueoceanrestimplpipeli](docs/SwagIojenkinsblueoceanrestimplpipeli.md)
- - [SwagIojenkinsblueoceanserviceembedde](docs/SwagIojenkinsblueoceanserviceembedde.md)
- - [SwagJenkinsmodelUnlabeledLoadStatist](docs/SwagJenkinsmodelUnlabeledLoadStatist.md)
- - [SwagSwaggyjenkinsOrganisation](docs/SwagSwaggyjenkinsOrganisation.md)
- - [SwagSwaggyjenkinsPipeline](docs/SwagSwaggyjenkinsPipeline.md)
- - [SwagSwaggyjenkinsPipelineLatestRun](docs/SwagSwaggyjenkinsPipelineLatestRun.md)
- - [SwagSwaggyjenkinsPipelineLatestRunar](docs/SwagSwaggyjenkinsPipelineLatestRunar.md)
- - [SwagSwaggyjenkinsUser](docs/SwagSwaggyjenkinsUser.md)
+ - [SwagAllView](docs/SwagAllView.md)
+ - [SwagBody](docs/SwagBody.md)
+ - [SwagBranchImpl](docs/SwagBranchImpl.md)
+ - [SwagBranchImpllinks](docs/SwagBranchImpllinks.md)
+ - [SwagBranchImplpermissions](docs/SwagBranchImplpermissions.md)
+ - [SwagCauseAction](docs/SwagCauseAction.md)
+ - [SwagCauseUserIdCause](docs/SwagCauseUserIdCause.md)
+ - [SwagClassesByClass](docs/SwagClassesByClass.md)
+ - [SwagClockDifference](docs/SwagClockDifference.md)
+ - [SwagComputerSet](docs/SwagComputerSet.md)
+ - [SwagDefaultCrumbIssuer](docs/SwagDefaultCrumbIssuer.md)
+ - [SwagDiskSpaceMonitorDescriptorDiskSp](docs/SwagDiskSpaceMonitorDescriptorDiskSp.md)
+ - [SwagEmptyChangeLogSet](docs/SwagEmptyChangeLogSet.md)
+ - [SwagExtensionClassContainerImpl1](docs/SwagExtensionClassContainerImpl1.md)
+ - [SwagExtensionClassContainerImpl1link](docs/SwagExtensionClassContainerImpl1link.md)
+ - [SwagExtensionClassContainerImpl1map](docs/SwagExtensionClassContainerImpl1map.md)
+ - [SwagExtensionClassImpl](docs/SwagExtensionClassImpl.md)
+ - [SwagExtensionClassImpllinks](docs/SwagExtensionClassImpllinks.md)
+ - [SwagFavoriteImpl](docs/SwagFavoriteImpl.md)
+ - [SwagFavoriteImpllinks](docs/SwagFavoriteImpllinks.md)
+ - [SwagFreeStyleBuild](docs/SwagFreeStyleBuild.md)
+ - [SwagFreeStyleProject](docs/SwagFreeStyleProject.md)
+ - [SwagFreeStyleProjectactions](docs/SwagFreeStyleProjectactions.md)
+ - [SwagFreeStyleProjecthealthReport](docs/SwagFreeStyleProjecthealthReport.md)
+ - [SwagGenericResource](docs/SwagGenericResource.md)
+ - [SwagGithubContent](docs/SwagGithubContent.md)
+ - [SwagGithubFile](docs/SwagGithubFile.md)
+ - [SwagGithubOrganization](docs/SwagGithubOrganization.md)
+ - [SwagGithubOrganizationlinks](docs/SwagGithubOrganizationlinks.md)
+ - [SwagGithubRepositories](docs/SwagGithubRepositories.md)
+ - [SwagGithubRepositorieslinks](docs/SwagGithubRepositorieslinks.md)
+ - [SwagGithubRepository](docs/SwagGithubRepository.md)
+ - [SwagGithubRepositorylinks](docs/SwagGithubRepositorylinks.md)
+ - [SwagGithubRepositorypermissions](docs/SwagGithubRepositorypermissions.md)
+ - [SwagGithubRespositoryContainer](docs/SwagGithubRespositoryContainer.md)
+ - [SwagGithubRespositoryContainerlinks](docs/SwagGithubRespositoryContainerlinks.md)
+ - [SwagGithubScm](docs/SwagGithubScm.md)
+ - [SwagGithubScmlinks](docs/SwagGithubScmlinks.md)
+ - [SwagHudson](docs/SwagHudson.md)
+ - [SwagHudsonMasterComputer](docs/SwagHudsonMasterComputer.md)
+ - [SwagHudsonMasterComputerexecutors](docs/SwagHudsonMasterComputerexecutors.md)
+ - [SwagHudsonMasterComputermonitorData](docs/SwagHudsonMasterComputermonitorData.md)
+ - [SwagHudsonassignedLabels](docs/SwagHudsonassignedLabels.md)
+ - [SwagInputStepImpl](docs/SwagInputStepImpl.md)
+ - [SwagInputStepImpllinks](docs/SwagInputStepImpllinks.md)
+ - [SwagLabel1](docs/SwagLabel1.md)
+ - [SwagLink](docs/SwagLink.md)
+ - [SwagListView](docs/SwagListView.md)
+ - [SwagMultibranchPipeline](docs/SwagMultibranchPipeline.md)
+ - [SwagNullSCM](docs/SwagNullSCM.md)
+ - [SwagOrganisation](docs/SwagOrganisation.md)
+ - [SwagOrganisations](docs/SwagOrganisations.md)
+ - [SwagPipeline](docs/SwagPipeline.md)
+ - [SwagPipelineActivities](docs/SwagPipelineActivities.md)
+ - [SwagPipelineActivity](docs/SwagPipelineActivity.md)
+ - [SwagPipelineActivityartifacts](docs/SwagPipelineActivityartifacts.md)
+ - [SwagPipelineBranches](docs/SwagPipelineBranches.md)
+ - [SwagPipelineBranchesitem](docs/SwagPipelineBranchesitem.md)
+ - [SwagPipelineBranchesitemlatestRun](docs/SwagPipelineBranchesitemlatestRun.md)
+ - [SwagPipelineBranchesitempullRequest](docs/SwagPipelineBranchesitempullRequest.md)
+ - [SwagPipelineBranchesitempullRequestl](docs/SwagPipelineBranchesitempullRequestl.md)
+ - [SwagPipelineFolderImpl](docs/SwagPipelineFolderImpl.md)
+ - [SwagPipelineImpl](docs/SwagPipelineImpl.md)
+ - [SwagPipelineImpllinks](docs/SwagPipelineImpllinks.md)
+ - [SwagPipelineQueue](docs/SwagPipelineQueue.md)
+ - [SwagPipelineRun](docs/SwagPipelineRun.md)
+ - [SwagPipelineRunImpl](docs/SwagPipelineRunImpl.md)
+ - [SwagPipelineRunImpllinks](docs/SwagPipelineRunImpllinks.md)
+ - [SwagPipelineRunNode](docs/SwagPipelineRunNode.md)
+ - [SwagPipelineRunNodeSteps](docs/SwagPipelineRunNodeSteps.md)
+ - [SwagPipelineRunNodeedges](docs/SwagPipelineRunNodeedges.md)
+ - [SwagPipelineRunNodes](docs/SwagPipelineRunNodes.md)
+ - [SwagPipelineRunSteps](docs/SwagPipelineRunSteps.md)
+ - [SwagPipelineRunartifacts](docs/SwagPipelineRunartifacts.md)
+ - [SwagPipelineRuns](docs/SwagPipelineRuns.md)
+ - [SwagPipelineStepImpl](docs/SwagPipelineStepImpl.md)
+ - [SwagPipelineStepImpllinks](docs/SwagPipelineStepImpllinks.md)
+ - [SwagPipelinelatestRun](docs/SwagPipelinelatestRun.md)
+ - [SwagPipelinelatestRunartifacts](docs/SwagPipelinelatestRunartifacts.md)
+ - [SwagPipelines](docs/SwagPipelines.md)
+ - [SwagQueue](docs/SwagQueue.md)
+ - [SwagQueueBlockedItem](docs/SwagQueueBlockedItem.md)
+ - [SwagQueueItemImpl](docs/SwagQueueItemImpl.md)
+ - [SwagQueueLeftItem](docs/SwagQueueLeftItem.md)
+ - [SwagResponseTimeMonitorData](docs/SwagResponseTimeMonitorData.md)
+ - [SwagScmOrganisations](docs/SwagScmOrganisations.md)
+ - [SwagStringParameterDefinition](docs/SwagStringParameterDefinition.md)
+ - [SwagStringParameterValue](docs/SwagStringParameterValue.md)
+ - [SwagSwapSpaceMonitorMemoryUsage2](docs/SwagSwapSpaceMonitorMemoryUsage2.md)
+ - [SwagUnlabeledLoadStatistics](docs/SwagUnlabeledLoadStatistics.md)
+ - [SwagUser](docs/SwagUser.md)
+ - [SwagUserFavorites](docs/SwagUserFavorites.md)
+ - [SwagUsers](docs/SwagUsers.md)
 
 
 ## Documentation for Authorization

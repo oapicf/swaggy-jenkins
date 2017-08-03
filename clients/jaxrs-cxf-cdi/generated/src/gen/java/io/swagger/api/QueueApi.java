@@ -1,6 +1,6 @@
 package io.swagger.api;
 
-import io.swagger.model.HudsonmodelQueue;
+import io.swagger.model.Queue;
 import io.swagger.api.QueueApiService;
 
 import javax.ws.rs.*;
@@ -24,7 +24,7 @@ import javax.validation.constraints.*;
 @Api(description = "the queue API")
 
 
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaJAXRSCXFCDIServerCodegen", date = "2017-07-25T10:45:05.448+10:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaJAXRSCXFCDIServerCodegen", date = "2017-08-03T23:34:47.267Z")
 
 public class QueueApi  {
 
@@ -37,11 +37,13 @@ public class QueueApi  {
     @Path("/api/json")
     
     @Produces({ "application/json" })
-    @ApiOperation(value = "", notes = "Retrieve queue details", response = HudsonmodelQueue.class, tags={ "remoteAccess",  })
+    @ApiOperation(value = "", notes = "Retrieve queue details", response = Queue.class, authorizations = {
+        @Authorization(value = "jenkins_auth")
+    }, tags={ "remoteAccess",  })
     @ApiResponses(value = { 
-        @ApiResponse(code = 200, message = "Successfully retrieved queue details", response = HudsonmodelQueue.class),
-        @ApiResponse(code = 401, message = "Authentication failed - incorrect username and/or password", response = HudsonmodelQueue.class),
-        @ApiResponse(code = 403, message = "Jenkins requires authentication - please set username and password", response = HudsonmodelQueue.class) })
+        @ApiResponse(code = 200, message = "Successfully retrieved queue details", response = Queue.class),
+        @ApiResponse(code = 401, message = "Authentication failed - incorrect username and/or password", response = Queue.class),
+        @ApiResponse(code = 403, message = "Jenkins requires authentication - please set username and password", response = Queue.class) })
     public Response getQueue() {
         return delegate.getQueue(securityContext);
     }
@@ -50,11 +52,13 @@ public class QueueApi  {
     @Path("/item/{number}/api/json")
     
     @Produces({ "application/json" })
-    @ApiOperation(value = "", notes = "Retrieve queued item details", response = HudsonmodelQueue.class, tags={ "remoteAccess" })
+    @ApiOperation(value = "", notes = "Retrieve queued item details", response = Queue.class, authorizations = {
+        @Authorization(value = "jenkins_auth")
+    }, tags={ "remoteAccess" })
     @ApiResponses(value = { 
-        @ApiResponse(code = 200, message = "Successfully retrieved queued item details", response = HudsonmodelQueue.class),
-        @ApiResponse(code = 401, message = "Authentication failed - incorrect username and/or password", response = HudsonmodelQueue.class),
-        @ApiResponse(code = 403, message = "Jenkins requires authentication - please set username and password", response = HudsonmodelQueue.class) })
+        @ApiResponse(code = 200, message = "Successfully retrieved queued item details", response = Queue.class),
+        @ApiResponse(code = 401, message = "Authentication failed - incorrect username and/or password", response = Queue.class),
+        @ApiResponse(code = 403, message = "Jenkins requires authentication - please set username and password", response = Queue.class) })
     public Response getQueueItem(@ApiParam(value = "Queue number",required=true) @PathParam("number") String number) {
         return delegate.getQueueItem(number, securityContext);
     }

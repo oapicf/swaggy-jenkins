@@ -10,15 +10,17 @@
 
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.IO;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.WebUtilities;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Primitives;
+using Swashbuckle.AspNetCore.SwaggerGen;
 using Newtonsoft.Json;
-using Swashbuckle.SwaggerGen.Annotations;
+using IO.Swagger.Attributes;
 using IO.Swagger.Models;
 
 namespace IO.Swagger.Controllers
@@ -28,29 +30,49 @@ namespace IO.Swagger.Controllers
     /// </summary>
     public class BlueOceanApiController : Controller
     { 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>Delete queue item from an organization pipeline queue</remarks>
+        /// <param name="organization">Name of the organization</param>
+        /// <param name="pipeline">Name of the pipeline</param>
+        /// <param name="queue">Name of the queue item</param>
+        /// <response code="200">Successfully deleted queue item</response>
+        /// <response code="401">Authentication failed - incorrect username and/or password</response>
+        /// <response code="403">Jenkins requires authentication - please set username and password</response>
+        [HttpDelete]
+        [Route("//blue/rest/organizations/{organization}/pipelines/{pipeline}/queue/{queue}")]
+        [ValidateModelState]
+        [SwaggerOperation("DeletePipelineQueueItem")]
+        public virtual void DeletePipelineQueueItem([FromRoute]string organization, [FromRoute]string pipeline, [FromRoute]string queue)
+        { 
+            throw new NotImplementedException();
+        }
 
         /// <summary>
         /// 
         /// </summary>
-        /// <remarks>Retrieve authenticated user details for an organisation</remarks>
-        /// <param name="organisation">Name of the organisation</param>
+        /// <remarks>Retrieve authenticated user details for an organization</remarks>
+        /// <param name="organization">Name of the organization</param>
         /// <response code="200">Successfully retrieved authenticated user details</response>
         /// <response code="401">Authentication failed - incorrect username and/or password</response>
         /// <response code="403">Jenkins requires authentication - please set username and password</response>
         [HttpGet]
-        [Route("//blue/rest/organizations/{organisation}/user/")]
+        [Route("//blue/rest/organizations/{organization}/user/")]
+        [ValidateModelState]
         [SwaggerOperation("GetAuthenticatedUser")]
-        [SwaggerResponse(200, type: typeof(SwaggyjenkinsUser))]
-        public virtual IActionResult GetAuthenticatedUser([FromRoute]string organisation)
+        [SwaggerResponse(200, typeof(User), "Successfully retrieved authenticated user details")]
+        [SwaggerResponse(401, typeof(User), "Authentication failed - incorrect username and/or password")]
+        [SwaggerResponse(403, typeof(User), "Jenkins requires authentication - please set username and password")]
+        public virtual IActionResult GetAuthenticatedUser([FromRoute]string organization)
         { 
             string exampleJson = null;
             
             var example = exampleJson != null
-            ? JsonConvert.DeserializeObject<SwaggyjenkinsUser>(exampleJson)
-            : default(SwaggyjenkinsUser);
+            ? JsonConvert.DeserializeObject<User>(exampleJson)
+            : default(User);
             return new ObjectResult(example);
         }
-
 
         /// <summary>
         /// 
@@ -62,8 +84,11 @@ namespace IO.Swagger.Controllers
         /// <response code="403">Jenkins requires authentication - please set username and password</response>
         [HttpGet]
         [Route("//blue/rest/classes/{class}")]
+        [ValidateModelState]
         [SwaggerOperation("GetClasses")]
-        [SwaggerResponse(200, type: typeof(string))]
+        [SwaggerResponse(200, typeof(string), "Successfully retrieved class names")]
+        [SwaggerResponse(401, typeof(string), "Authentication failed - incorrect username and/or password")]
+        [SwaggerResponse(403, typeof(string), "Jenkins requires authentication - please set username and password")]
         public virtual IActionResult GetClasses([FromRoute]string class)
         { 
             string exampleJson = null;
@@ -74,259 +99,318 @@ namespace IO.Swagger.Controllers
             return new ObjectResult(example);
         }
 
-
         /// <summary>
         /// 
         /// </summary>
-        /// <remarks>Retrieve organisation details</remarks>
-        /// <param name="organisation">Name of the organisation</param>
+        /// <remarks>Retrieve organization details</remarks>
+        /// <param name="organization">Name of the organization</param>
         /// <response code="200">Successfully retrieved pipeline details</response>
         /// <response code="401">Authentication failed - incorrect username and/or password</response>
         /// <response code="403">Jenkins requires authentication - please set username and password</response>
         /// <response code="404">Pipeline cannot be found on Jenkins instance</response>
         [HttpGet]
-        [Route("//blue/rest/organizations/{organisation}")]
+        [Route("//blue/rest/organizations/{organization}")]
+        [ValidateModelState]
         [SwaggerOperation("GetOrganisation")]
-        [SwaggerResponse(200, type: typeof(SwaggyjenkinsOrganisation))]
-        public virtual IActionResult GetOrganisation([FromRoute]string organisation)
+        [SwaggerResponse(200, typeof(Organisation), "Successfully retrieved pipeline details")]
+        [SwaggerResponse(401, typeof(Organisation), "Authentication failed - incorrect username and/or password")]
+        [SwaggerResponse(403, typeof(Organisation), "Jenkins requires authentication - please set username and password")]
+        [SwaggerResponse(404, typeof(Organisation), "Pipeline cannot be found on Jenkins instance")]
+        public virtual IActionResult GetOrganisation([FromRoute]string organization)
         { 
             string exampleJson = null;
             
             var example = exampleJson != null
-            ? JsonConvert.DeserializeObject<SwaggyjenkinsOrganisation>(exampleJson)
-            : default(SwaggyjenkinsOrganisation);
+            ? JsonConvert.DeserializeObject<Organisation>(exampleJson)
+            : default(Organisation);
             return new ObjectResult(example);
         }
-
 
         /// <summary>
         /// 
         /// </summary>
-        /// <remarks>Retrieve all organisations details</remarks>
+        /// <remarks>Retrieve all organizations details</remarks>
         /// <response code="200">Successfully retrieved pipelines details</response>
         /// <response code="401">Authentication failed - incorrect username and/or password</response>
         /// <response code="403">Jenkins requires authentication - please set username and password</response>
         [HttpGet]
         [Route("//blue/rest/organizations/")]
+        [ValidateModelState]
         [SwaggerOperation("GetOrganisations")]
-        [SwaggerResponse(200, type: typeof(GetOrganisations))]
+        [SwaggerResponse(200, typeof(Organisations), "Successfully retrieved pipelines details")]
+        [SwaggerResponse(401, typeof(Organisations), "Authentication failed - incorrect username and/or password")]
+        [SwaggerResponse(403, typeof(Organisations), "Jenkins requires authentication - please set username and password")]
         public virtual IActionResult GetOrganisations()
         { 
             string exampleJson = null;
             
             var example = exampleJson != null
-            ? JsonConvert.DeserializeObject<GetOrganisations>(exampleJson)
-            : default(GetOrganisations);
+            ? JsonConvert.DeserializeObject<Organisations>(exampleJson)
+            : default(Organisations);
             return new ObjectResult(example);
         }
-
 
         /// <summary>
         /// 
         /// </summary>
-        /// <remarks>Retrieve branch details for an organisation pipeline</remarks>
-        /// <param name="organisation">Name of the organisation</param>
+        /// <remarks>Retrieve pipeline details for an organization</remarks>
+        /// <param name="organization">Name of the organization</param>
+        /// <param name="pipeline">Name of the pipeline</param>
+        /// <response code="200">Successfully retrieved pipeline details</response>
+        /// <response code="401">Authentication failed - incorrect username and/or password</response>
+        /// <response code="403">Jenkins requires authentication - please set username and password</response>
+        /// <response code="404">Pipeline cannot be found on Jenkins instance</response>
+        [HttpGet]
+        [Route("//blue/rest/organizations/{organization}/pipelines/{pipeline}")]
+        [ValidateModelState]
+        [SwaggerOperation("GetPipeline")]
+        [SwaggerResponse(200, typeof(Pipeline), "Successfully retrieved pipeline details")]
+        [SwaggerResponse(401, typeof(Pipeline), "Authentication failed - incorrect username and/or password")]
+        [SwaggerResponse(403, typeof(Pipeline), "Jenkins requires authentication - please set username and password")]
+        [SwaggerResponse(404, typeof(Pipeline), "Pipeline cannot be found on Jenkins instance")]
+        public virtual IActionResult GetPipeline([FromRoute]string organization, [FromRoute]string pipeline)
+        { 
+            string exampleJson = null;
+            
+            var example = exampleJson != null
+            ? JsonConvert.DeserializeObject<Pipeline>(exampleJson)
+            : default(Pipeline);
+            return new ObjectResult(example);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>Retrieve all activities details for an organization pipeline</remarks>
+        /// <param name="organization">Name of the organization</param>
+        /// <param name="pipeline">Name of the pipeline</param>
+        /// <response code="200">Successfully retrieved all activities details</response>
+        /// <response code="401">Authentication failed - incorrect username and/or password</response>
+        /// <response code="403">Jenkins requires authentication - please set username and password</response>
+        [HttpGet]
+        [Route("//blue/rest/organizations/{organization}/pipelines/{pipeline}/activities")]
+        [ValidateModelState]
+        [SwaggerOperation("GetPipelineActivities")]
+        [SwaggerResponse(200, typeof(PipelineActivities), "Successfully retrieved all activities details")]
+        [SwaggerResponse(401, typeof(PipelineActivities), "Authentication failed - incorrect username and/or password")]
+        [SwaggerResponse(403, typeof(PipelineActivities), "Jenkins requires authentication - please set username and password")]
+        public virtual IActionResult GetPipelineActivities([FromRoute]string organization, [FromRoute]string pipeline)
+        { 
+            string exampleJson = null;
+            
+            var example = exampleJson != null
+            ? JsonConvert.DeserializeObject<PipelineActivities>(exampleJson)
+            : default(PipelineActivities);
+            return new ObjectResult(example);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>Retrieve branch details for an organization pipeline</remarks>
+        /// <param name="organization">Name of the organization</param>
         /// <param name="pipeline">Name of the pipeline</param>
         /// <param name="branch">Name of the branch</param>
         /// <response code="200">Successfully retrieved branch details</response>
         /// <response code="401">Authentication failed - incorrect username and/or password</response>
         /// <response code="403">Jenkins requires authentication - please set username and password</response>
         [HttpGet]
-        [Route("//blue/rest/organizations/{organisation}/pipelines/{pipeline}/branches/{branch}/")]
-        [SwaggerOperation("GetPipelineBranchByOrg")]
-        [SwaggerResponse(200, type: typeof(IojenkinsblueoceanrestimplpipelineBranchImpl))]
-        public virtual IActionResult GetPipelineBranchByOrg([FromRoute]string organisation, [FromRoute]string pipeline, [FromRoute]string branch)
+        [Route("//blue/rest/organizations/{organization}/pipelines/{pipeline}/branches/{branch}/")]
+        [ValidateModelState]
+        [SwaggerOperation("GetPipelineBranch")]
+        [SwaggerResponse(200, typeof(BranchImpl), "Successfully retrieved branch details")]
+        [SwaggerResponse(401, typeof(BranchImpl), "Authentication failed - incorrect username and/or password")]
+        [SwaggerResponse(403, typeof(BranchImpl), "Jenkins requires authentication - please set username and password")]
+        public virtual IActionResult GetPipelineBranch([FromRoute]string organization, [FromRoute]string pipeline, [FromRoute]string branch)
         { 
             string exampleJson = null;
             
             var example = exampleJson != null
-            ? JsonConvert.DeserializeObject<IojenkinsblueoceanrestimplpipelineBranchImpl>(exampleJson)
-            : default(IojenkinsblueoceanrestimplpipelineBranchImpl);
+            ? JsonConvert.DeserializeObject<BranchImpl>(exampleJson)
+            : default(BranchImpl);
             return new ObjectResult(example);
         }
-
 
         /// <summary>
         /// 
         /// </summary>
-        /// <remarks>Retrieve all branches details for an organisation pipeline</remarks>
-        /// <param name="organisation">Name of the organisation</param>
+        /// <remarks>Retrieve branch run details for an organization pipeline</remarks>
+        /// <param name="organization">Name of the organization</param>
+        /// <param name="pipeline">Name of the pipeline</param>
+        /// <param name="branch">Name of the branch</param>
+        /// <param name="run">Name of the run</param>
+        /// <response code="200">Successfully retrieved run details</response>
+        /// <response code="401">Authentication failed - incorrect username and/or password</response>
+        /// <response code="403">Jenkins requires authentication - please set username and password</response>
+        [HttpGet]
+        [Route("//blue/rest/organizations/{organization}/pipelines/{pipeline}/branches/{branch}/runs/{run}")]
+        [ValidateModelState]
+        [SwaggerOperation("GetPipelineBranchRun")]
+        [SwaggerResponse(200, typeof(PipelineRun), "Successfully retrieved run details")]
+        [SwaggerResponse(401, typeof(PipelineRun), "Authentication failed - incorrect username and/or password")]
+        [SwaggerResponse(403, typeof(PipelineRun), "Jenkins requires authentication - please set username and password")]
+        public virtual IActionResult GetPipelineBranchRun([FromRoute]string organization, [FromRoute]string pipeline, [FromRoute]string branch, [FromRoute]string run)
+        { 
+            string exampleJson = null;
+            
+            var example = exampleJson != null
+            ? JsonConvert.DeserializeObject<PipelineRun>(exampleJson)
+            : default(PipelineRun);
+            return new ObjectResult(example);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>Retrieve all branches details for an organization pipeline</remarks>
+        /// <param name="organization">Name of the organization</param>
         /// <param name="pipeline">Name of the pipeline</param>
         /// <response code="200">Successfully retrieved all branches details</response>
         /// <response code="401">Authentication failed - incorrect username and/or password</response>
         /// <response code="403">Jenkins requires authentication - please set username and password</response>
         [HttpGet]
-        [Route("//blue/rest/organizations/{organisation}/pipelines/{pipeline}/branches")]
-        [SwaggerOperation("GetPipelineBranchesByOrg")]
-        [SwaggerResponse(200, type: typeof(GetMultibranchPipeline))]
-        public virtual IActionResult GetPipelineBranchesByOrg([FromRoute]string organisation, [FromRoute]string pipeline)
+        [Route("//blue/rest/organizations/{organization}/pipelines/{pipeline}/branches")]
+        [ValidateModelState]
+        [SwaggerOperation("GetPipelineBranches")]
+        [SwaggerResponse(200, typeof(MultibranchPipeline), "Successfully retrieved all branches details")]
+        [SwaggerResponse(401, typeof(MultibranchPipeline), "Authentication failed - incorrect username and/or password")]
+        [SwaggerResponse(403, typeof(MultibranchPipeline), "Jenkins requires authentication - please set username and password")]
+        public virtual IActionResult GetPipelineBranches([FromRoute]string organization, [FromRoute]string pipeline)
         { 
             string exampleJson = null;
             
             var example = exampleJson != null
-            ? JsonConvert.DeserializeObject<GetMultibranchPipeline>(exampleJson)
-            : default(GetMultibranchPipeline);
+            ? JsonConvert.DeserializeObject<MultibranchPipeline>(exampleJson)
+            : default(MultibranchPipeline);
             return new ObjectResult(example);
         }
-
 
         /// <summary>
         /// 
         /// </summary>
-        /// <remarks>Retrieve pipeline details for an organisation</remarks>
-        /// <param name="organisation">Name of the organisation</param>
-        /// <param name="pipeline">Name of the pipeline</param>
-        /// <response code="200">Successfully retrieved pipeline details</response>
-        /// <response code="401">Authentication failed - incorrect username and/or password</response>
-        /// <response code="403">Jenkins requires authentication - please set username and password</response>
-        /// <response code="404">Pipeline cannot be found on Jenkins instance</response>
-        [HttpGet]
-        [Route("//blue/rest/organizations/{organisation}/pipelines/{pipeline}")]
-        [SwaggerOperation("GetPipelineByOrg")]
-        [SwaggerResponse(200, type: typeof(SwaggyjenkinsPipeline))]
-        public virtual IActionResult GetPipelineByOrg([FromRoute]string organisation, [FromRoute]string pipeline)
-        { 
-            string exampleJson = null;
-            
-            var example = exampleJson != null
-            ? JsonConvert.DeserializeObject<SwaggyjenkinsPipeline>(exampleJson)
-            : default(SwaggyjenkinsPipeline);
-            return new ObjectResult(example);
-        }
-
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>Retrieve pipeline folder for an organisation</remarks>
-        /// <param name="organisation">Name of the organisation</param>
+        /// <remarks>Retrieve pipeline folder for an organization</remarks>
+        /// <param name="organization">Name of the organization</param>
         /// <param name="folder">Name of the folder</param>
         /// <response code="200">Successfully retrieved folder details</response>
         /// <response code="401">Authentication failed - incorrect username and/or password</response>
         /// <response code="403">Jenkins requires authentication - please set username and password</response>
         [HttpGet]
-        [Route("//blue/rest/organizations/{organisation}/pipelines/{folder}/")]
-        [SwaggerOperation("GetPipelineFolderByOrg")]
-        [SwaggerResponse(200, type: typeof(IojenkinsblueoceanserviceembeddedrestPipelineFolderImpl))]
-        public virtual IActionResult GetPipelineFolderByOrg([FromRoute]string organisation, [FromRoute]string folder)
+        [Route("//blue/rest/organizations/{organization}/pipelines/{folder}/")]
+        [ValidateModelState]
+        [SwaggerOperation("GetPipelineFolder")]
+        [SwaggerResponse(200, typeof(PipelineFolderImpl), "Successfully retrieved folder details")]
+        [SwaggerResponse(401, typeof(PipelineFolderImpl), "Authentication failed - incorrect username and/or password")]
+        [SwaggerResponse(403, typeof(PipelineFolderImpl), "Jenkins requires authentication - please set username and password")]
+        public virtual IActionResult GetPipelineFolder([FromRoute]string organization, [FromRoute]string folder)
         { 
             string exampleJson = null;
             
             var example = exampleJson != null
-            ? JsonConvert.DeserializeObject<IojenkinsblueoceanserviceembeddedrestPipelineFolderImpl>(exampleJson)
-            : default(IojenkinsblueoceanserviceembeddedrestPipelineFolderImpl);
+            ? JsonConvert.DeserializeObject<PipelineFolderImpl>(exampleJson)
+            : default(PipelineFolderImpl);
             return new ObjectResult(example);
         }
-
 
         /// <summary>
         /// 
         /// </summary>
-        /// <remarks>Retrieve pipeline details for an organisation folder</remarks>
-        /// <param name="organisation">Name of the organisation</param>
+        /// <remarks>Retrieve pipeline details for an organization folder</remarks>
+        /// <param name="organization">Name of the organization</param>
         /// <param name="pipeline">Name of the pipeline</param>
         /// <param name="folder">Name of the folder</param>
         /// <response code="200">Successfully retrieved pipeline details</response>
         /// <response code="401">Authentication failed - incorrect username and/or password</response>
         /// <response code="403">Jenkins requires authentication - please set username and password</response>
         [HttpGet]
-        [Route("//blue/rest/organizations/{organisation}/pipelines/{folder}/pipelines/{pipeline}")]
-        [SwaggerOperation("GetPipelineFolderByOrg_0")]
-        [SwaggerResponse(200, type: typeof(IojenkinsblueoceanserviceembeddedrestPipelineImpl))]
-        public virtual IActionResult GetPipelineFolderByOrg_0([FromRoute]string organisation, [FromRoute]string pipeline, [FromRoute]string folder)
+        [Route("//blue/rest/organizations/{organization}/pipelines/{folder}/pipelines/{pipeline}")]
+        [ValidateModelState]
+        [SwaggerOperation("GetPipelineFolderPipeline")]
+        [SwaggerResponse(200, typeof(PipelineImpl), "Successfully retrieved pipeline details")]
+        [SwaggerResponse(401, typeof(PipelineImpl), "Authentication failed - incorrect username and/or password")]
+        [SwaggerResponse(403, typeof(PipelineImpl), "Jenkins requires authentication - please set username and password")]
+        public virtual IActionResult GetPipelineFolderPipeline([FromRoute]string organization, [FromRoute]string pipeline, [FromRoute]string folder)
         { 
             string exampleJson = null;
             
             var example = exampleJson != null
-            ? JsonConvert.DeserializeObject<IojenkinsblueoceanserviceembeddedrestPipelineImpl>(exampleJson)
-            : default(IojenkinsblueoceanserviceembeddedrestPipelineImpl);
+            ? JsonConvert.DeserializeObject<PipelineImpl>(exampleJson)
+            : default(PipelineImpl);
             return new ObjectResult(example);
         }
-
 
         /// <summary>
         /// 
         /// </summary>
-        /// <remarks>Retrieve all pipelines details for an organisation</remarks>
-        /// <param name="organisation">Name of the organisation</param>
-        /// <response code="200">Successfully retrieved pipelines details</response>
+        /// <remarks>Retrieve queue details for an organization pipeline</remarks>
+        /// <param name="organization">Name of the organization</param>
+        /// <param name="pipeline">Name of the pipeline</param>
+        /// <response code="200">Successfully retrieved queue details</response>
         /// <response code="401">Authentication failed - incorrect username and/or password</response>
         /// <response code="403">Jenkins requires authentication - please set username and password</response>
         [HttpGet]
-        [Route("//blue/rest/organizations/{organisation}/pipelines/")]
-        [SwaggerOperation("GetPipelinesByOrg")]
-        [SwaggerResponse(200, type: typeof(GetPipelines))]
-        public virtual IActionResult GetPipelinesByOrg([FromRoute]string organisation)
+        [Route("//blue/rest/organizations/{organization}/pipelines/{pipeline}/queue")]
+        [ValidateModelState]
+        [SwaggerOperation("GetPipelineQueue")]
+        [SwaggerResponse(200, typeof(PipelineQueue), "Successfully retrieved queue details")]
+        [SwaggerResponse(401, typeof(PipelineQueue), "Authentication failed - incorrect username and/or password")]
+        [SwaggerResponse(403, typeof(PipelineQueue), "Jenkins requires authentication - please set username and password")]
+        public virtual IActionResult GetPipelineQueue([FromRoute]string organization, [FromRoute]string pipeline)
         { 
             string exampleJson = null;
             
             var example = exampleJson != null
-            ? JsonConvert.DeserializeObject<GetPipelines>(exampleJson)
-            : default(GetPipelines);
+            ? JsonConvert.DeserializeObject<PipelineQueue>(exampleJson)
+            : default(PipelineQueue);
             return new ObjectResult(example);
         }
-
 
         /// <summary>
         /// 
         /// </summary>
-        /// <remarks>Retrieve user details for an organisation</remarks>
-        /// <param name="organisation">Name of the organisation</param>
-        /// <param name="user">Name of the user</param>
-        /// <response code="200">Successfully retrieved users details</response>
+        /// <remarks>Retrieve run details for an organization pipeline</remarks>
+        /// <param name="organization">Name of the organization</param>
+        /// <param name="pipeline">Name of the pipeline</param>
+        /// <param name="run">Name of the run</param>
+        /// <response code="200">Successfully retrieved run details</response>
         /// <response code="401">Authentication failed - incorrect username and/or password</response>
         /// <response code="403">Jenkins requires authentication - please set username and password</response>
         [HttpGet]
-        [Route("//blue/rest/organizations/{organisation}/users/{user}")]
-        [SwaggerOperation("GetUser")]
-        [SwaggerResponse(200, type: typeof(SwaggyjenkinsUser))]
-        public virtual IActionResult GetUser([FromRoute]string organisation, [FromRoute]string user)
+        [Route("//blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}")]
+        [ValidateModelState]
+        [SwaggerOperation("GetPipelineRun")]
+        [SwaggerResponse(200, typeof(PipelineRun), "Successfully retrieved run details")]
+        [SwaggerResponse(401, typeof(PipelineRun), "Authentication failed - incorrect username and/or password")]
+        [SwaggerResponse(403, typeof(PipelineRun), "Jenkins requires authentication - please set username and password")]
+        public virtual IActionResult GetPipelineRun([FromRoute]string organization, [FromRoute]string pipeline, [FromRoute]string run)
         { 
             string exampleJson = null;
             
             var example = exampleJson != null
-            ? JsonConvert.DeserializeObject<SwaggyjenkinsUser>(exampleJson)
-            : default(SwaggyjenkinsUser);
+            ? JsonConvert.DeserializeObject<PipelineRun>(exampleJson)
+            : default(PipelineRun);
             return new ObjectResult(example);
         }
-
 
         /// <summary>
         /// 
         /// </summary>
-        /// <remarks>Retrieve users details for an organisation</remarks>
-        /// <param name="organisation">Name of the organisation</param>
-        /// <response code="200">Successfully retrieved users details</response>
+        /// <remarks>Get log for a pipeline run</remarks>
+        /// <param name="organization">Name of the organization</param>
+        /// <param name="pipeline">Name of the pipeline</param>
+        /// <param name="run">Name of the run</param>
+        /// <param name="start">Start position of the log</param>
+        /// <param name="download">Set to true in order to download the file, otherwise it&#39;s passed as a response body</param>
+        /// <response code="200">Successfully retrieved pipeline run log</response>
         /// <response code="401">Authentication failed - incorrect username and/or password</response>
         /// <response code="403">Jenkins requires authentication - please set username and password</response>
         [HttpGet]
-        [Route("//blue/rest/organizations/{organisation}/users/")]
-        [SwaggerOperation("GetUsers")]
-        [SwaggerResponse(200, type: typeof(SwaggyjenkinsUser))]
-        public virtual IActionResult GetUsers([FromRoute]string organisation)
-        { 
-            string exampleJson = null;
-            
-            var example = exampleJson != null
-            ? JsonConvert.DeserializeObject<SwaggyjenkinsUser>(exampleJson)
-            : default(SwaggyjenkinsUser);
-            return new ObjectResult(example);
-        }
-
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>Get classes details</remarks>
-        /// <param name="q">Query string containing an array of class names</param>
-        /// <response code="200">Successfully retrieved search result</response>
-        /// <response code="401">Authentication failed - incorrect username and/or password</response>
-        /// <response code="403">Jenkins requires authentication - please set username and password</response>
-        [HttpGet]
-        [Route("//blue/rest/classes/")]
-        [SwaggerOperation("Search")]
-        [SwaggerResponse(200, type: typeof(string))]
-        public virtual IActionResult Search([FromQuery]string q)
+        [Route("//blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/log")]
+        [ValidateModelState]
+        [SwaggerOperation("GetPipelineRunLog")]
+        [SwaggerResponse(200, typeof(string), "Successfully retrieved pipeline run log")]
+        [SwaggerResponse(401, typeof(string), "Authentication failed - incorrect username and/or password")]
+        [SwaggerResponse(403, typeof(string), "Jenkins requires authentication - please set username and password")]
+        public virtual IActionResult GetPipelineRunLog([FromRoute]string organization, [FromRoute]string pipeline, [FromRoute]string run, [FromQuery]int? start, [FromQuery]bool? download)
         { 
             string exampleJson = null;
             
@@ -336,6 +420,494 @@ namespace IO.Swagger.Controllers
             return new ObjectResult(example);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>Retrieve run node details for an organization pipeline</remarks>
+        /// <param name="organization">Name of the organization</param>
+        /// <param name="pipeline">Name of the pipeline</param>
+        /// <param name="run">Name of the run</param>
+        /// <param name="node">Name of the node</param>
+        /// <response code="200">Successfully retrieved run node details</response>
+        /// <response code="401">Authentication failed - incorrect username and/or password</response>
+        /// <response code="403">Jenkins requires authentication - please set username and password</response>
+        [HttpGet]
+        [Route("//blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}")]
+        [ValidateModelState]
+        [SwaggerOperation("GetPipelineRunNode")]
+        [SwaggerResponse(200, typeof(PipelineRunNode), "Successfully retrieved run node details")]
+        [SwaggerResponse(401, typeof(PipelineRunNode), "Authentication failed - incorrect username and/or password")]
+        [SwaggerResponse(403, typeof(PipelineRunNode), "Jenkins requires authentication - please set username and password")]
+        public virtual IActionResult GetPipelineRunNode([FromRoute]string organization, [FromRoute]string pipeline, [FromRoute]string run, [FromRoute]string node)
+        { 
+            string exampleJson = null;
+            
+            var example = exampleJson != null
+            ? JsonConvert.DeserializeObject<PipelineRunNode>(exampleJson)
+            : default(PipelineRunNode);
+            return new ObjectResult(example);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>Retrieve run node details for an organization pipeline</remarks>
+        /// <param name="organization">Name of the organization</param>
+        /// <param name="pipeline">Name of the pipeline</param>
+        /// <param name="run">Name of the run</param>
+        /// <param name="node">Name of the node</param>
+        /// <param name="step">Name of the step</param>
+        /// <response code="200">Successfully retrieved run node step details</response>
+        /// <response code="401">Authentication failed - incorrect username and/or password</response>
+        /// <response code="403">Jenkins requires authentication - please set username and password</response>
+        [HttpGet]
+        [Route("//blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps/{step}")]
+        [ValidateModelState]
+        [SwaggerOperation("GetPipelineRunNodeStep")]
+        [SwaggerResponse(200, typeof(PipelineStepImpl), "Successfully retrieved run node step details")]
+        [SwaggerResponse(401, typeof(PipelineStepImpl), "Authentication failed - incorrect username and/or password")]
+        [SwaggerResponse(403, typeof(PipelineStepImpl), "Jenkins requires authentication - please set username and password")]
+        public virtual IActionResult GetPipelineRunNodeStep([FromRoute]string organization, [FromRoute]string pipeline, [FromRoute]string run, [FromRoute]string node, [FromRoute]string step)
+        { 
+            string exampleJson = null;
+            
+            var example = exampleJson != null
+            ? JsonConvert.DeserializeObject<PipelineStepImpl>(exampleJson)
+            : default(PipelineStepImpl);
+            return new ObjectResult(example);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>Get log for a pipeline run node step</remarks>
+        /// <param name="organization">Name of the organization</param>
+        /// <param name="pipeline">Name of the pipeline</param>
+        /// <param name="run">Name of the run</param>
+        /// <param name="node">Name of the node</param>
+        /// <param name="step">Name of the step</param>
+        /// <response code="200">Successfully retrieved pipeline run node step log</response>
+        /// <response code="401">Authentication failed - incorrect username and/or password</response>
+        /// <response code="403">Jenkins requires authentication - please set username and password</response>
+        [HttpGet]
+        [Route("//blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps/{step}/log")]
+        [ValidateModelState]
+        [SwaggerOperation("GetPipelineRunNodeStepLog")]
+        [SwaggerResponse(200, typeof(string), "Successfully retrieved pipeline run node step log")]
+        [SwaggerResponse(401, typeof(string), "Authentication failed - incorrect username and/or password")]
+        [SwaggerResponse(403, typeof(string), "Jenkins requires authentication - please set username and password")]
+        public virtual IActionResult GetPipelineRunNodeStepLog([FromRoute]string organization, [FromRoute]string pipeline, [FromRoute]string run, [FromRoute]string node, [FromRoute]string step)
+        { 
+            string exampleJson = null;
+            
+            var example = exampleJson != null
+            ? JsonConvert.DeserializeObject<string>(exampleJson)
+            : default(string);
+            return new ObjectResult(example);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>Retrieve run node steps details for an organization pipeline</remarks>
+        /// <param name="organization">Name of the organization</param>
+        /// <param name="pipeline">Name of the pipeline</param>
+        /// <param name="run">Name of the run</param>
+        /// <param name="node">Name of the node</param>
+        /// <response code="200">Successfully retrieved run node steps details</response>
+        /// <response code="401">Authentication failed - incorrect username and/or password</response>
+        /// <response code="403">Jenkins requires authentication - please set username and password</response>
+        [HttpGet]
+        [Route("//blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps")]
+        [ValidateModelState]
+        [SwaggerOperation("GetPipelineRunNodeSteps")]
+        [SwaggerResponse(200, typeof(PipelineRunNodeSteps), "Successfully retrieved run node steps details")]
+        [SwaggerResponse(401, typeof(PipelineRunNodeSteps), "Authentication failed - incorrect username and/or password")]
+        [SwaggerResponse(403, typeof(PipelineRunNodeSteps), "Jenkins requires authentication - please set username and password")]
+        public virtual IActionResult GetPipelineRunNodeSteps([FromRoute]string organization, [FromRoute]string pipeline, [FromRoute]string run, [FromRoute]string node)
+        { 
+            string exampleJson = null;
+            
+            var example = exampleJson != null
+            ? JsonConvert.DeserializeObject<PipelineRunNodeSteps>(exampleJson)
+            : default(PipelineRunNodeSteps);
+            return new ObjectResult(example);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>Retrieve run nodes details for an organization pipeline</remarks>
+        /// <param name="organization">Name of the organization</param>
+        /// <param name="pipeline">Name of the pipeline</param>
+        /// <param name="run">Name of the run</param>
+        /// <response code="200">Successfully retrieved run nodes details</response>
+        /// <response code="401">Authentication failed - incorrect username and/or password</response>
+        /// <response code="403">Jenkins requires authentication - please set username and password</response>
+        [HttpGet]
+        [Route("//blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes")]
+        [ValidateModelState]
+        [SwaggerOperation("GetPipelineRunNodes")]
+        [SwaggerResponse(200, typeof(PipelineRunNodes), "Successfully retrieved run nodes details")]
+        [SwaggerResponse(401, typeof(PipelineRunNodes), "Authentication failed - incorrect username and/or password")]
+        [SwaggerResponse(403, typeof(PipelineRunNodes), "Jenkins requires authentication - please set username and password")]
+        public virtual IActionResult GetPipelineRunNodes([FromRoute]string organization, [FromRoute]string pipeline, [FromRoute]string run)
+        { 
+            string exampleJson = null;
+            
+            var example = exampleJson != null
+            ? JsonConvert.DeserializeObject<PipelineRunNodes>(exampleJson)
+            : default(PipelineRunNodes);
+            return new ObjectResult(example);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>Retrieve all runs details for an organization pipeline</remarks>
+        /// <param name="organization">Name of the organization</param>
+        /// <param name="pipeline">Name of the pipeline</param>
+        /// <response code="200">Successfully retrieved runs details</response>
+        /// <response code="401">Authentication failed - incorrect username and/or password</response>
+        /// <response code="403">Jenkins requires authentication - please set username and password</response>
+        [HttpGet]
+        [Route("//blue/rest/organizations/{organization}/pipelines/{pipeline}/runs")]
+        [ValidateModelState]
+        [SwaggerOperation("GetPipelineRuns")]
+        [SwaggerResponse(200, typeof(PipelineRuns), "Successfully retrieved runs details")]
+        [SwaggerResponse(401, typeof(PipelineRuns), "Authentication failed - incorrect username and/or password")]
+        [SwaggerResponse(403, typeof(PipelineRuns), "Jenkins requires authentication - please set username and password")]
+        public virtual IActionResult GetPipelineRuns([FromRoute]string organization, [FromRoute]string pipeline)
+        { 
+            string exampleJson = null;
+            
+            var example = exampleJson != null
+            ? JsonConvert.DeserializeObject<PipelineRuns>(exampleJson)
+            : default(PipelineRuns);
+            return new ObjectResult(example);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>Retrieve all pipelines details for an organization</remarks>
+        /// <param name="organization">Name of the organization</param>
+        /// <response code="200">Successfully retrieved pipelines details</response>
+        /// <response code="401">Authentication failed - incorrect username and/or password</response>
+        /// <response code="403">Jenkins requires authentication - please set username and password</response>
+        [HttpGet]
+        [Route("//blue/rest/organizations/{organization}/pipelines/")]
+        [ValidateModelState]
+        [SwaggerOperation("GetPipelines")]
+        [SwaggerResponse(200, typeof(Pipelines), "Successfully retrieved pipelines details")]
+        [SwaggerResponse(401, typeof(Pipelines), "Authentication failed - incorrect username and/or password")]
+        [SwaggerResponse(403, typeof(Pipelines), "Jenkins requires authentication - please set username and password")]
+        public virtual IActionResult GetPipelines([FromRoute]string organization)
+        { 
+            string exampleJson = null;
+            
+            var example = exampleJson != null
+            ? JsonConvert.DeserializeObject<Pipelines>(exampleJson)
+            : default(Pipelines);
+            return new ObjectResult(example);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>Retrieve SCM details for an organization</remarks>
+        /// <param name="organization">Name of the organization</param>
+        /// <param name="scm">Name of SCM</param>
+        /// <response code="200">Successfully retrieved SCM details</response>
+        /// <response code="401">Authentication failed - incorrect username and/or password</response>
+        /// <response code="403">Jenkins requires authentication - please set username and password</response>
+        [HttpGet]
+        [Route("//blue/rest/organizations/{organization}/scm/{scm}")]
+        [ValidateModelState]
+        [SwaggerOperation("GetSCM")]
+        [SwaggerResponse(200, typeof(GithubScm), "Successfully retrieved SCM details")]
+        [SwaggerResponse(401, typeof(GithubScm), "Authentication failed - incorrect username and/or password")]
+        [SwaggerResponse(403, typeof(GithubScm), "Jenkins requires authentication - please set username and password")]
+        public virtual IActionResult GetSCM([FromRoute]string organization, [FromRoute]string scm)
+        { 
+            string exampleJson = null;
+            
+            var example = exampleJson != null
+            ? JsonConvert.DeserializeObject<GithubScm>(exampleJson)
+            : default(GithubScm);
+            return new ObjectResult(example);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>Retrieve SCM organization repositories details for an organization</remarks>
+        /// <param name="organization">Name of the organization</param>
+        /// <param name="scm">Name of SCM</param>
+        /// <param name="scmOrganisation">Name of the SCM organization</param>
+        /// <param name="credentialId">Credential ID</param>
+        /// <param name="pageSize">Number of items in a page</param>
+        /// <param name="pageNumber">Page number</param>
+        /// <response code="200">Successfully retrieved SCM organization repositories details</response>
+        /// <response code="401">Authentication failed - incorrect username and/or password</response>
+        /// <response code="403">Jenkins requires authentication - please set username and password</response>
+        [HttpGet]
+        [Route("//blue/rest/organizations/{organization}/scm/{scm}/organizations/{scmOrganisation}/repositories")]
+        [ValidateModelState]
+        [SwaggerOperation("GetSCMOrganisationRepositories")]
+        [SwaggerResponse(200, typeof(ScmOrganisations), "Successfully retrieved SCM organization repositories details")]
+        [SwaggerResponse(401, typeof(ScmOrganisations), "Authentication failed - incorrect username and/or password")]
+        [SwaggerResponse(403, typeof(ScmOrganisations), "Jenkins requires authentication - please set username and password")]
+        public virtual IActionResult GetSCMOrganisationRepositories([FromRoute]string organization, [FromRoute]string scm, [FromRoute]string scmOrganisation, [FromQuery]string credentialId, [FromQuery]int? pageSize, [FromQuery]int? pageNumber)
+        { 
+            string exampleJson = null;
+            
+            var example = exampleJson != null
+            ? JsonConvert.DeserializeObject<ScmOrganisations>(exampleJson)
+            : default(ScmOrganisations);
+            return new ObjectResult(example);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>Retrieve SCM organization repository details for an organization</remarks>
+        /// <param name="organization">Name of the organization</param>
+        /// <param name="scm">Name of SCM</param>
+        /// <param name="scmOrganisation">Name of the SCM organization</param>
+        /// <param name="repository">Name of the SCM repository</param>
+        /// <param name="credentialId">Credential ID</param>
+        /// <response code="200">Successfully retrieved SCM organizations details</response>
+        /// <response code="401">Authentication failed - incorrect username and/or password</response>
+        /// <response code="403">Jenkins requires authentication - please set username and password</response>
+        [HttpGet]
+        [Route("//blue/rest/organizations/{organization}/scm/{scm}/organizations/{scmOrganisation}/repositories/{repository}")]
+        [ValidateModelState]
+        [SwaggerOperation("GetSCMOrganisationRepository")]
+        [SwaggerResponse(200, typeof(ScmOrganisations), "Successfully retrieved SCM organizations details")]
+        [SwaggerResponse(401, typeof(ScmOrganisations), "Authentication failed - incorrect username and/or password")]
+        [SwaggerResponse(403, typeof(ScmOrganisations), "Jenkins requires authentication - please set username and password")]
+        public virtual IActionResult GetSCMOrganisationRepository([FromRoute]string organization, [FromRoute]string scm, [FromRoute]string scmOrganisation, [FromRoute]string repository, [FromQuery]string credentialId)
+        { 
+            string exampleJson = null;
+            
+            var example = exampleJson != null
+            ? JsonConvert.DeserializeObject<ScmOrganisations>(exampleJson)
+            : default(ScmOrganisations);
+            return new ObjectResult(example);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>Retrieve SCM organizations details for an organization</remarks>
+        /// <param name="organization">Name of the organization</param>
+        /// <param name="scm">Name of SCM</param>
+        /// <param name="credentialId">Credential ID</param>
+        /// <response code="200">Successfully retrieved SCM organizations details</response>
+        /// <response code="401">Authentication failed - incorrect username and/or password</response>
+        /// <response code="403">Jenkins requires authentication - please set username and password</response>
+        [HttpGet]
+        [Route("//blue/rest/organizations/{organization}/scm/{scm}/organizations")]
+        [ValidateModelState]
+        [SwaggerOperation("GetSCMOrganisations")]
+        [SwaggerResponse(200, typeof(ScmOrganisations), "Successfully retrieved SCM organizations details")]
+        [SwaggerResponse(401, typeof(ScmOrganisations), "Authentication failed - incorrect username and/or password")]
+        [SwaggerResponse(403, typeof(ScmOrganisations), "Jenkins requires authentication - please set username and password")]
+        public virtual IActionResult GetSCMOrganisations([FromRoute]string organization, [FromRoute]string scm, [FromQuery]string credentialId)
+        { 
+            string exampleJson = null;
+            
+            var example = exampleJson != null
+            ? JsonConvert.DeserializeObject<ScmOrganisations>(exampleJson)
+            : default(ScmOrganisations);
+            return new ObjectResult(example);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>Retrieve user details for an organization</remarks>
+        /// <param name="organization">Name of the organization</param>
+        /// <param name="user">Name of the user</param>
+        /// <response code="200">Successfully retrieved users details</response>
+        /// <response code="401">Authentication failed - incorrect username and/or password</response>
+        /// <response code="403">Jenkins requires authentication - please set username and password</response>
+        [HttpGet]
+        [Route("//blue/rest/organizations/{organization}/users/{user}")]
+        [ValidateModelState]
+        [SwaggerOperation("GetUser")]
+        [SwaggerResponse(200, typeof(User), "Successfully retrieved users details")]
+        [SwaggerResponse(401, typeof(User), "Authentication failed - incorrect username and/or password")]
+        [SwaggerResponse(403, typeof(User), "Jenkins requires authentication - please set username and password")]
+        public virtual IActionResult GetUser([FromRoute]string organization, [FromRoute]string user)
+        { 
+            string exampleJson = null;
+            
+            var example = exampleJson != null
+            ? JsonConvert.DeserializeObject<User>(exampleJson)
+            : default(User);
+            return new ObjectResult(example);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>Retrieve user favorites details for an organization</remarks>
+        /// <param name="user">Name of the user</param>
+        /// <response code="200">Successfully retrieved users favorites details</response>
+        /// <response code="401">Authentication failed - incorrect username and/or password</response>
+        /// <response code="403">Jenkins requires authentication - please set username and password</response>
+        [HttpGet]
+        [Route("//blue/rest/users/{user}/favorites")]
+        [ValidateModelState]
+        [SwaggerOperation("GetUserFavorites")]
+        [SwaggerResponse(200, typeof(UserFavorites), "Successfully retrieved users favorites details")]
+        [SwaggerResponse(401, typeof(UserFavorites), "Authentication failed - incorrect username and/or password")]
+        [SwaggerResponse(403, typeof(UserFavorites), "Jenkins requires authentication - please set username and password")]
+        public virtual IActionResult GetUserFavorites([FromRoute]string user)
+        { 
+            string exampleJson = null;
+            
+            var example = exampleJson != null
+            ? JsonConvert.DeserializeObject<UserFavorites>(exampleJson)
+            : default(UserFavorites);
+            return new ObjectResult(example);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>Retrieve users details for an organization</remarks>
+        /// <param name="organization">Name of the organization</param>
+        /// <response code="200">Successfully retrieved users details</response>
+        /// <response code="401">Authentication failed - incorrect username and/or password</response>
+        /// <response code="403">Jenkins requires authentication - please set username and password</response>
+        [HttpGet]
+        [Route("//blue/rest/organizations/{organization}/users/")]
+        [ValidateModelState]
+        [SwaggerOperation("GetUsers")]
+        [SwaggerResponse(200, typeof(User), "Successfully retrieved users details")]
+        [SwaggerResponse(401, typeof(User), "Authentication failed - incorrect username and/or password")]
+        [SwaggerResponse(403, typeof(User), "Jenkins requires authentication - please set username and password")]
+        public virtual IActionResult GetUsers([FromRoute]string organization)
+        { 
+            string exampleJson = null;
+            
+            var example = exampleJson != null
+            ? JsonConvert.DeserializeObject<User>(exampleJson)
+            : default(User);
+            return new ObjectResult(example);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>Replay an organization pipeline run</remarks>
+        /// <param name="organization">Name of the organization</param>
+        /// <param name="pipeline">Name of the pipeline</param>
+        /// <param name="run">Name of the run</param>
+        /// <response code="200">Successfully replayed a pipeline run</response>
+        /// <response code="401">Authentication failed - incorrect username and/or password</response>
+        /// <response code="403">Jenkins requires authentication - please set username and password</response>
+        [HttpPost]
+        [Route("//blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/replay")]
+        [ValidateModelState]
+        [SwaggerOperation("PostPipelineRun")]
+        [SwaggerResponse(200, typeof(QueueItemImpl), "Successfully replayed a pipeline run")]
+        [SwaggerResponse(401, typeof(QueueItemImpl), "Authentication failed - incorrect username and/or password")]
+        [SwaggerResponse(403, typeof(QueueItemImpl), "Jenkins requires authentication - please set username and password")]
+        public virtual IActionResult PostPipelineRun([FromRoute]string organization, [FromRoute]string pipeline, [FromRoute]string run)
+        { 
+            string exampleJson = null;
+            
+            var example = exampleJson != null
+            ? JsonConvert.DeserializeObject<QueueItemImpl>(exampleJson)
+            : default(QueueItemImpl);
+            return new ObjectResult(example);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>Start a build for an organization pipeline</remarks>
+        /// <param name="organization">Name of the organization</param>
+        /// <param name="pipeline">Name of the pipeline</param>
+        /// <response code="200">Successfully started a build</response>
+        /// <response code="401">Authentication failed - incorrect username and/or password</response>
+        /// <response code="403">Jenkins requires authentication - please set username and password</response>
+        [HttpPost]
+        [Route("//blue/rest/organizations/{organization}/pipelines/{pipeline}/runs")]
+        [ValidateModelState]
+        [SwaggerOperation("PostPipelineRuns")]
+        [SwaggerResponse(200, typeof(QueueItemImpl), "Successfully started a build")]
+        [SwaggerResponse(401, typeof(QueueItemImpl), "Authentication failed - incorrect username and/or password")]
+        [SwaggerResponse(403, typeof(QueueItemImpl), "Jenkins requires authentication - please set username and password")]
+        public virtual IActionResult PostPipelineRuns([FromRoute]string organization, [FromRoute]string pipeline)
+        { 
+            string exampleJson = null;
+            
+            var example = exampleJson != null
+            ? JsonConvert.DeserializeObject<QueueItemImpl>(exampleJson)
+            : default(QueueItemImpl);
+            return new ObjectResult(example);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>Favorite/unfavorite a pipeline</remarks>
+        /// <param name="organization">Name of the organization</param>
+        /// <param name="pipeline">Name of the pipeline</param>
+        /// <param name="body">Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite</param>
+        /// <response code="200">Successfully favorited/unfavorited a pipeline</response>
+        /// <response code="401">Authentication failed - incorrect username and/or password</response>
+        /// <response code="403">Jenkins requires authentication - please set username and password</response>
+        [HttpPut]
+        [Route("//blue/rest/organizations/{organization}/pipelines/{pipeline}/favorite")]
+        [ValidateModelState]
+        [SwaggerOperation("PutPipelineFavorite")]
+        [SwaggerResponse(200, typeof(FavoriteImpl), "Successfully favorited/unfavorited a pipeline")]
+        [SwaggerResponse(401, typeof(FavoriteImpl), "Authentication failed - incorrect username and/or password")]
+        [SwaggerResponse(403, typeof(FavoriteImpl), "Jenkins requires authentication - please set username and password")]
+        public virtual IActionResult PutPipelineFavorite([FromRoute]string organization, [FromRoute]string pipeline, [FromBody]Body body)
+        { 
+            string exampleJson = null;
+            
+            var example = exampleJson != null
+            ? JsonConvert.DeserializeObject<FavoriteImpl>(exampleJson)
+            : default(FavoriteImpl);
+            return new ObjectResult(example);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>Stop a build of an organization pipeline</remarks>
+        /// <param name="organization">Name of the organization</param>
+        /// <param name="pipeline">Name of the pipeline</param>
+        /// <param name="run">Name of the run</param>
+        /// <param name="blocking">Set to true to make blocking stop, default: false</param>
+        /// <param name="timeOutInSecs">Timeout in seconds, default: 10 seconds</param>
+        /// <response code="200">Successfully stopped a build</response>
+        /// <response code="401">Authentication failed - incorrect username and/or password</response>
+        /// <response code="403">Jenkins requires authentication - please set username and password</response>
+        [HttpPut]
+        [Route("//blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/stop")]
+        [ValidateModelState]
+        [SwaggerOperation("PutPipelineRun")]
+        [SwaggerResponse(200, typeof(PipelineRun), "Successfully stopped a build")]
+        [SwaggerResponse(401, typeof(PipelineRun), "Authentication failed - incorrect username and/or password")]
+        [SwaggerResponse(403, typeof(PipelineRun), "Jenkins requires authentication - please set username and password")]
+        public virtual IActionResult PutPipelineRun([FromRoute]string organization, [FromRoute]string pipeline, [FromRoute]string run, [FromQuery]string blocking, [FromQuery]int? timeOutInSecs)
+        { 
+            string exampleJson = null;
+            
+            var example = exampleJson != null
+            ? JsonConvert.DeserializeObject<PipelineRun>(exampleJson)
+            : default(PipelineRun);
+            return new ObjectResult(example);
+        }
 
         /// <summary>
         /// 
@@ -347,9 +919,37 @@ namespace IO.Swagger.Controllers
         /// <response code="403">Jenkins requires authentication - please set username and password</response>
         [HttpGet]
         [Route("//blue/rest/search/")]
-        [SwaggerOperation("Search_0")]
-        [SwaggerResponse(200, type: typeof(string))]
-        public virtual IActionResult Search_0([FromQuery]string q)
+        [ValidateModelState]
+        [SwaggerOperation("Search")]
+        [SwaggerResponse(200, typeof(string), "Successfully retrieved search result")]
+        [SwaggerResponse(401, typeof(string), "Authentication failed - incorrect username and/or password")]
+        [SwaggerResponse(403, typeof(string), "Jenkins requires authentication - please set username and password")]
+        public virtual IActionResult Search([FromQuery]string q)
+        { 
+            string exampleJson = null;
+            
+            var example = exampleJson != null
+            ? JsonConvert.DeserializeObject<string>(exampleJson)
+            : default(string);
+            return new ObjectResult(example);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>Get classes details</remarks>
+        /// <param name="q">Query string containing an array of class names</param>
+        /// <response code="200">Successfully retrieved search result</response>
+        /// <response code="401">Authentication failed - incorrect username and/or password</response>
+        /// <response code="403">Jenkins requires authentication - please set username and password</response>
+        [HttpGet]
+        [Route("//blue/rest/classes/")]
+        [ValidateModelState]
+        [SwaggerOperation("SearchClasses")]
+        [SwaggerResponse(200, typeof(string), "Successfully retrieved search result")]
+        [SwaggerResponse(401, typeof(string), "Authentication failed - incorrect username and/or password")]
+        [SwaggerResponse(403, typeof(string), "Jenkins requires authentication - please set username and password")]
+        public virtual IActionResult SearchClasses([FromQuery]string q)
         { 
             string exampleJson = null;
             

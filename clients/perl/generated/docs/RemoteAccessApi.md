@@ -9,7 +9,7 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**get_computer**](RemoteAccessApi.md#get_computer) | **GET** /computer/api/json?depth&#x3D;1 | 
+[**get_computer**](RemoteAccessApi.md#get_computer) | **GET** /computer/api/json | 
 [**get_crumb**](RemoteAccessApi.md#get_crumb) | **GET** /crumbIssuer/api/json | 
 [**get_jenkins**](RemoteAccessApi.md#get_jenkins) | **GET** /api/json | 
 [**get_job**](RemoteAccessApi.md#get_job) | **GET** /job/{name}/api/json | 
@@ -33,7 +33,7 @@ Method | HTTP request | Description
 
 
 # **get_computer**
-> HudsonmodelComputerSet get_computer()
+> ComputerSet get_computer(depth => $depth)
 
 
 
@@ -42,13 +42,18 @@ Retrieve computer details
 ### Example 
 ```perl
 use Data::Dumper;
-use WWW::SwaggerClient::Configuration;
 use WWW::SwaggerClient::RemoteAccessApi;
+my $api_instance = WWW::SwaggerClient::RemoteAccessApi->new(
 
-my $api_instance = WWW::SwaggerClient::RemoteAccessApi->new();
+    # Configure HTTP basic authorization: jenkins_auth
+    username => 'YOUR_USERNAME',
+    password => 'YOUR_PASSWORD',
+);
+
+my $depth = 56; # int | Recursion depth in response model
 
 eval { 
-    my $result = $api_instance->get_computer();
+    my $result = $api_instance->get_computer(depth => $depth);
     print Dumper($result);
 };
 if ($@) {
@@ -57,15 +62,18 @@ if ($@) {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **depth** | **int**| Recursion depth in response model | 
 
 ### Return type
 
-[**HudsonmodelComputerSet**](HudsonmodelComputerSet.md)
+[**ComputerSet**](ComputerSet.md)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -75,7 +83,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_crumb**
-> HudsonsecuritycsrfDefaultCrumbIssuer get_crumb()
+> DefaultCrumbIssuer get_crumb()
 
 
 
@@ -84,10 +92,14 @@ Retrieve CSRF protection token
 ### Example 
 ```perl
 use Data::Dumper;
-use WWW::SwaggerClient::Configuration;
 use WWW::SwaggerClient::RemoteAccessApi;
+my $api_instance = WWW::SwaggerClient::RemoteAccessApi->new(
 
-my $api_instance = WWW::SwaggerClient::RemoteAccessApi->new();
+    # Configure HTTP basic authorization: jenkins_auth
+    username => 'YOUR_USERNAME',
+    password => 'YOUR_PASSWORD',
+);
+
 
 eval { 
     my $result = $api_instance->get_crumb();
@@ -103,11 +115,11 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**HudsonsecuritycsrfDefaultCrumbIssuer**](HudsonsecuritycsrfDefaultCrumbIssuer.md)
+[**DefaultCrumbIssuer**](DefaultCrumbIssuer.md)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -117,7 +129,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_jenkins**
-> HudsonmodelHudson get_jenkins()
+> Hudson get_jenkins()
 
 
 
@@ -126,10 +138,14 @@ Retrieve Jenkins details
 ### Example 
 ```perl
 use Data::Dumper;
-use WWW::SwaggerClient::Configuration;
 use WWW::SwaggerClient::RemoteAccessApi;
+my $api_instance = WWW::SwaggerClient::RemoteAccessApi->new(
 
-my $api_instance = WWW::SwaggerClient::RemoteAccessApi->new();
+    # Configure HTTP basic authorization: jenkins_auth
+    username => 'YOUR_USERNAME',
+    password => 'YOUR_PASSWORD',
+);
+
 
 eval { 
     my $result = $api_instance->get_jenkins();
@@ -145,11 +161,11 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**HudsonmodelHudson**](HudsonmodelHudson.md)
+[**Hudson**](Hudson.md)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -159,7 +175,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_job**
-> HudsonmodelFreeStyleProject get_job(name => $name)
+> FreeStyleProject get_job(name => $name)
 
 
 
@@ -168,10 +184,14 @@ Retrieve job details
 ### Example 
 ```perl
 use Data::Dumper;
-use WWW::SwaggerClient::Configuration;
 use WWW::SwaggerClient::RemoteAccessApi;
+my $api_instance = WWW::SwaggerClient::RemoteAccessApi->new(
 
-my $api_instance = WWW::SwaggerClient::RemoteAccessApi->new();
+    # Configure HTTP basic authorization: jenkins_auth
+    username => 'YOUR_USERNAME',
+    password => 'YOUR_PASSWORD',
+);
+
 my $name = 'name_example'; # string | Name of the job
 
 eval { 
@@ -191,11 +211,11 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**HudsonmodelFreeStyleProject**](HudsonmodelFreeStyleProject.md)
+[**FreeStyleProject**](FreeStyleProject.md)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -214,10 +234,14 @@ Retrieve job configuration
 ### Example 
 ```perl
 use Data::Dumper;
-use WWW::SwaggerClient::Configuration;
 use WWW::SwaggerClient::RemoteAccessApi;
+my $api_instance = WWW::SwaggerClient::RemoteAccessApi->new(
 
-my $api_instance = WWW::SwaggerClient::RemoteAccessApi->new();
+    # Configure HTTP basic authorization: jenkins_auth
+    username => 'YOUR_USERNAME',
+    password => 'YOUR_PASSWORD',
+);
+
 my $name = 'name_example'; # string | Name of the job
 
 eval { 
@@ -241,7 +265,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -251,7 +275,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_job_last_build**
-> HudsonmodelFreeStyleBuild get_job_last_build(name => $name)
+> FreeStyleBuild get_job_last_build(name => $name)
 
 
 
@@ -260,10 +284,14 @@ Retrieve job's last build details
 ### Example 
 ```perl
 use Data::Dumper;
-use WWW::SwaggerClient::Configuration;
 use WWW::SwaggerClient::RemoteAccessApi;
+my $api_instance = WWW::SwaggerClient::RemoteAccessApi->new(
 
-my $api_instance = WWW::SwaggerClient::RemoteAccessApi->new();
+    # Configure HTTP basic authorization: jenkins_auth
+    username => 'YOUR_USERNAME',
+    password => 'YOUR_PASSWORD',
+);
+
 my $name = 'name_example'; # string | Name of the job
 
 eval { 
@@ -283,11 +311,11 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**HudsonmodelFreeStyleBuild**](HudsonmodelFreeStyleBuild.md)
+[**FreeStyleBuild**](FreeStyleBuild.md)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -306,10 +334,14 @@ Retrieve job's build progressive text output
 ### Example 
 ```perl
 use Data::Dumper;
-use WWW::SwaggerClient::Configuration;
 use WWW::SwaggerClient::RemoteAccessApi;
+my $api_instance = WWW::SwaggerClient::RemoteAccessApi->new(
 
-my $api_instance = WWW::SwaggerClient::RemoteAccessApi->new();
+    # Configure HTTP basic authorization: jenkins_auth
+    username => 'YOUR_USERNAME',
+    password => 'YOUR_PASSWORD',
+);
+
 my $name = 'name_example'; # string | Name of the job
 my $number = 'number_example'; # string | Build number
 my $start = 'start_example'; # string | Starting point of progressive text output
@@ -336,7 +368,7 @@ void (empty response body)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -346,7 +378,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_queue**
-> HudsonmodelQueue get_queue()
+> Queue get_queue()
 
 
 
@@ -355,10 +387,14 @@ Retrieve queue details
 ### Example 
 ```perl
 use Data::Dumper;
-use WWW::SwaggerClient::Configuration;
 use WWW::SwaggerClient::RemoteAccessApi;
+my $api_instance = WWW::SwaggerClient::RemoteAccessApi->new(
 
-my $api_instance = WWW::SwaggerClient::RemoteAccessApi->new();
+    # Configure HTTP basic authorization: jenkins_auth
+    username => 'YOUR_USERNAME',
+    password => 'YOUR_PASSWORD',
+);
+
 
 eval { 
     my $result = $api_instance->get_queue();
@@ -374,11 +410,11 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**HudsonmodelQueue**](HudsonmodelQueue.md)
+[**Queue**](Queue.md)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -388,7 +424,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_queue_item**
-> HudsonmodelQueue get_queue_item(number => $number)
+> Queue get_queue_item(number => $number)
 
 
 
@@ -397,10 +433,14 @@ Retrieve queued item details
 ### Example 
 ```perl
 use Data::Dumper;
-use WWW::SwaggerClient::Configuration;
 use WWW::SwaggerClient::RemoteAccessApi;
+my $api_instance = WWW::SwaggerClient::RemoteAccessApi->new(
 
-my $api_instance = WWW::SwaggerClient::RemoteAccessApi->new();
+    # Configure HTTP basic authorization: jenkins_auth
+    username => 'YOUR_USERNAME',
+    password => 'YOUR_PASSWORD',
+);
+
 my $number = 'number_example'; # string | Queue number
 
 eval { 
@@ -420,11 +460,11 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**HudsonmodelQueue**](HudsonmodelQueue.md)
+[**Queue**](Queue.md)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -434,7 +474,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_view**
-> HudsonmodelListView get_view(name => $name)
+> ListView get_view(name => $name)
 
 
 
@@ -443,10 +483,14 @@ Retrieve view details
 ### Example 
 ```perl
 use Data::Dumper;
-use WWW::SwaggerClient::Configuration;
 use WWW::SwaggerClient::RemoteAccessApi;
+my $api_instance = WWW::SwaggerClient::RemoteAccessApi->new(
 
-my $api_instance = WWW::SwaggerClient::RemoteAccessApi->new();
+    # Configure HTTP basic authorization: jenkins_auth
+    username => 'YOUR_USERNAME',
+    password => 'YOUR_PASSWORD',
+);
+
 my $name = 'name_example'; # string | Name of the view
 
 eval { 
@@ -466,11 +510,11 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**HudsonmodelListView**](HudsonmodelListView.md)
+[**ListView**](ListView.md)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -489,10 +533,14 @@ Retrieve view configuration
 ### Example 
 ```perl
 use Data::Dumper;
-use WWW::SwaggerClient::Configuration;
 use WWW::SwaggerClient::RemoteAccessApi;
+my $api_instance = WWW::SwaggerClient::RemoteAccessApi->new(
 
-my $api_instance = WWW::SwaggerClient::RemoteAccessApi->new();
+    # Configure HTTP basic authorization: jenkins_auth
+    username => 'YOUR_USERNAME',
+    password => 'YOUR_PASSWORD',
+);
+
 my $name = 'name_example'; # string | Name of the view
 
 eval { 
@@ -516,7 +564,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -535,10 +583,14 @@ Retrieve Jenkins headers
 ### Example 
 ```perl
 use Data::Dumper;
-use WWW::SwaggerClient::Configuration;
 use WWW::SwaggerClient::RemoteAccessApi;
+my $api_instance = WWW::SwaggerClient::RemoteAccessApi->new(
 
-my $api_instance = WWW::SwaggerClient::RemoteAccessApi->new();
+    # Configure HTTP basic authorization: jenkins_auth
+    username => 'YOUR_USERNAME',
+    password => 'YOUR_PASSWORD',
+);
+
 
 eval { 
     $api_instance->head_jenkins();
@@ -557,7 +609,7 @@ void (empty response body)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -576,10 +628,14 @@ Create a new job using job configuration, or copied from an existing job
 ### Example 
 ```perl
 use Data::Dumper;
-use WWW::SwaggerClient::Configuration;
 use WWW::SwaggerClient::RemoteAccessApi;
+my $api_instance = WWW::SwaggerClient::RemoteAccessApi->new(
 
-my $api_instance = WWW::SwaggerClient::RemoteAccessApi->new();
+    # Configure HTTP basic authorization: jenkins_auth
+    username => 'YOUR_USERNAME',
+    password => 'YOUR_PASSWORD',
+);
+
 my $name = 'name_example'; # string | Name of the new job
 my $from = 'from_example'; # string | Existing job to copy from
 my $mode = 'mode_example'; # string | Set to 'copy' for copying an existing job
@@ -612,7 +668,7 @@ void (empty response body)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -631,10 +687,14 @@ Create a new view using view configuration
 ### Example 
 ```perl
 use Data::Dumper;
-use WWW::SwaggerClient::Configuration;
 use WWW::SwaggerClient::RemoteAccessApi;
+my $api_instance = WWW::SwaggerClient::RemoteAccessApi->new(
 
-my $api_instance = WWW::SwaggerClient::RemoteAccessApi->new();
+    # Configure HTTP basic authorization: jenkins_auth
+    username => 'YOUR_USERNAME',
+    password => 'YOUR_PASSWORD',
+);
+
 my $name = 'name_example'; # string | Name of the new view
 my $body = WWW::SwaggerClient::Object::string->new(); # string | View configuration in config.xml format
 my $jenkins_crumb = 'jenkins_crumb_example'; # string | CSRF protection token
@@ -663,7 +723,7 @@ void (empty response body)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -682,10 +742,14 @@ Build a job
 ### Example 
 ```perl
 use Data::Dumper;
-use WWW::SwaggerClient::Configuration;
 use WWW::SwaggerClient::RemoteAccessApi;
+my $api_instance = WWW::SwaggerClient::RemoteAccessApi->new(
 
-my $api_instance = WWW::SwaggerClient::RemoteAccessApi->new();
+    # Configure HTTP basic authorization: jenkins_auth
+    username => 'YOUR_USERNAME',
+    password => 'YOUR_PASSWORD',
+);
+
 my $name = 'name_example'; # string | Name of the job
 my $json = 'json_example'; # string | 
 my $token = 'token_example'; # string | 
@@ -714,7 +778,7 @@ void (empty response body)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -733,10 +797,14 @@ Update job configuration
 ### Example 
 ```perl
 use Data::Dumper;
-use WWW::SwaggerClient::Configuration;
 use WWW::SwaggerClient::RemoteAccessApi;
+my $api_instance = WWW::SwaggerClient::RemoteAccessApi->new(
 
-my $api_instance = WWW::SwaggerClient::RemoteAccessApi->new();
+    # Configure HTTP basic authorization: jenkins_auth
+    username => 'YOUR_USERNAME',
+    password => 'YOUR_PASSWORD',
+);
+
 my $name = 'name_example'; # string | Name of the job
 my $body = WWW::SwaggerClient::Object::string->new(); # string | Job configuration in config.xml format
 my $jenkins_crumb = 'jenkins_crumb_example'; # string | CSRF protection token
@@ -763,7 +831,7 @@ void (empty response body)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -782,10 +850,14 @@ Delete a job
 ### Example 
 ```perl
 use Data::Dumper;
-use WWW::SwaggerClient::Configuration;
 use WWW::SwaggerClient::RemoteAccessApi;
+my $api_instance = WWW::SwaggerClient::RemoteAccessApi->new(
 
-my $api_instance = WWW::SwaggerClient::RemoteAccessApi->new();
+    # Configure HTTP basic authorization: jenkins_auth
+    username => 'YOUR_USERNAME',
+    password => 'YOUR_PASSWORD',
+);
+
 my $name = 'name_example'; # string | Name of the job
 my $jenkins_crumb = 'jenkins_crumb_example'; # string | CSRF protection token
 
@@ -810,7 +882,7 @@ void (empty response body)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -829,10 +901,14 @@ Disable a job
 ### Example 
 ```perl
 use Data::Dumper;
-use WWW::SwaggerClient::Configuration;
 use WWW::SwaggerClient::RemoteAccessApi;
+my $api_instance = WWW::SwaggerClient::RemoteAccessApi->new(
 
-my $api_instance = WWW::SwaggerClient::RemoteAccessApi->new();
+    # Configure HTTP basic authorization: jenkins_auth
+    username => 'YOUR_USERNAME',
+    password => 'YOUR_PASSWORD',
+);
+
 my $name = 'name_example'; # string | Name of the job
 my $jenkins_crumb = 'jenkins_crumb_example'; # string | CSRF protection token
 
@@ -857,7 +933,7 @@ void (empty response body)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -876,10 +952,14 @@ Enable a job
 ### Example 
 ```perl
 use Data::Dumper;
-use WWW::SwaggerClient::Configuration;
 use WWW::SwaggerClient::RemoteAccessApi;
+my $api_instance = WWW::SwaggerClient::RemoteAccessApi->new(
 
-my $api_instance = WWW::SwaggerClient::RemoteAccessApi->new();
+    # Configure HTTP basic authorization: jenkins_auth
+    username => 'YOUR_USERNAME',
+    password => 'YOUR_PASSWORD',
+);
+
 my $name = 'name_example'; # string | Name of the job
 my $jenkins_crumb = 'jenkins_crumb_example'; # string | CSRF protection token
 
@@ -904,7 +984,7 @@ void (empty response body)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -923,10 +1003,14 @@ Stop a job
 ### Example 
 ```perl
 use Data::Dumper;
-use WWW::SwaggerClient::Configuration;
 use WWW::SwaggerClient::RemoteAccessApi;
+my $api_instance = WWW::SwaggerClient::RemoteAccessApi->new(
 
-my $api_instance = WWW::SwaggerClient::RemoteAccessApi->new();
+    # Configure HTTP basic authorization: jenkins_auth
+    username => 'YOUR_USERNAME',
+    password => 'YOUR_PASSWORD',
+);
+
 my $name = 'name_example'; # string | Name of the job
 my $jenkins_crumb = 'jenkins_crumb_example'; # string | CSRF protection token
 
@@ -951,7 +1035,7 @@ void (empty response body)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -970,10 +1054,14 @@ Update view configuration
 ### Example 
 ```perl
 use Data::Dumper;
-use WWW::SwaggerClient::Configuration;
 use WWW::SwaggerClient::RemoteAccessApi;
+my $api_instance = WWW::SwaggerClient::RemoteAccessApi->new(
 
-my $api_instance = WWW::SwaggerClient::RemoteAccessApi->new();
+    # Configure HTTP basic authorization: jenkins_auth
+    username => 'YOUR_USERNAME',
+    password => 'YOUR_PASSWORD',
+);
+
 my $name = 'name_example'; # string | Name of the view
 my $body = WWW::SwaggerClient::Object::string->new(); # string | View configuration in config.xml format
 my $jenkins_crumb = 'jenkins_crumb_example'; # string | CSRF protection token
@@ -1000,7 +1088,7 @@ void (empty response body)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 

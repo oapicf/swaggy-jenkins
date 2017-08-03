@@ -140,30 +140,840 @@ class Decoders {
                     return NSDate(timeIntervalSince1970: Double(sourceInt / 1000) )
                 }
                 fatalError("formatter failed to parse \(source)")
-            } 
-
-            // Decoder for [GetClassesByClass]
-            Decoders.addDecoder(clazz: [GetClassesByClass].self) { (source: AnyObject) -> [GetClassesByClass] in
-                return Decoders.decode(clazz: [GetClassesByClass].self, source: source)
             }
-            // Decoder for GetClassesByClass
-            Decoders.addDecoder(clazz: GetClassesByClass.self) { (source: AnyObject) -> GetClassesByClass in
+
+            // Decoder for ISOFullDate
+            Decoders.addDecoder(clazz: ISOFullDate.self, decoder: { (source: AnyObject) -> ISOFullDate in
+                if let string = source as? String,
+                   let isoDate = ISOFullDate.from(string: string) {
+                    return isoDate
+                }
+                fatalError("formatter failed to parse \(source)")
+            }) 
+
+            // Decoder for [AllView]
+            Decoders.addDecoder(clazz: [AllView].self) { (source: AnyObject) -> [AllView] in
+                return Decoders.decode(clazz: [AllView].self, source: source)
+            }
+            // Decoder for AllView
+            Decoders.addDecoder(clazz: AllView.self) { (source: AnyObject) -> AllView in
                 let sourceDictionary = source as! [NSObject:AnyObject]
-                let instance = GetClassesByClass()
+                let instance = AllView()
+                instance._class = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["_class"])
+                instance.name = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["name"])
+                instance.url = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["url"])
+                return instance
+            }
+
+
+            // Decoder for [Body]
+            Decoders.addDecoder(clazz: [Body].self) { (source: AnyObject) -> [Body] in
+                return Decoders.decode(clazz: [Body].self, source: source)
+            }
+            // Decoder for Body
+            Decoders.addDecoder(clazz: Body.self) { (source: AnyObject) -> Body in
+                let sourceDictionary = source as! [NSObject:AnyObject]
+                let instance = Body()
+                instance.favorite = Decoders.decodeOptional(clazz: Bool.self, source: sourceDictionary["favorite"])
+                return instance
+            }
+
+
+            // Decoder for [BranchImpl]
+            Decoders.addDecoder(clazz: [BranchImpl].self) { (source: AnyObject) -> [BranchImpl] in
+                return Decoders.decode(clazz: [BranchImpl].self, source: source)
+            }
+            // Decoder for BranchImpl
+            Decoders.addDecoder(clazz: BranchImpl.self) { (source: AnyObject) -> BranchImpl in
+                let sourceDictionary = source as! [NSObject:AnyObject]
+                let instance = BranchImpl()
+                instance._class = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["_class"])
+                instance.displayName = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["displayName"])
+                instance.estimatedDurationInMillis = Decoders.decodeOptional(clazz: Int32.self, source: sourceDictionary["estimatedDurationInMillis"])
+                instance.fullDisplayName = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["fullDisplayName"])
+                instance.fullName = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["fullName"])
+                instance.name = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["name"])
+                instance.organization = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["organization"])
+                instance.parameters = Decoders.decodeOptional(clazz: Array.self, source: sourceDictionary["parameters"])
+                instance.permissions = Decoders.decodeOptional(clazz: BranchImplpermissions.self, source: sourceDictionary["permissions"])
+                instance.weatherScore = Decoders.decodeOptional(clazz: Int32.self, source: sourceDictionary["weatherScore"])
+                instance.pullRequest = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["pullRequest"])
+                instance.links = Decoders.decodeOptional(clazz: BranchImpllinks.self, source: sourceDictionary["_links"])
+                instance.latestRun = Decoders.decodeOptional(clazz: PipelineRunImpl.self, source: sourceDictionary["latestRun"])
+                return instance
+            }
+
+
+            // Decoder for [BranchImpllinks]
+            Decoders.addDecoder(clazz: [BranchImpllinks].self) { (source: AnyObject) -> [BranchImpllinks] in
+                return Decoders.decode(clazz: [BranchImpllinks].self, source: source)
+            }
+            // Decoder for BranchImpllinks
+            Decoders.addDecoder(clazz: BranchImpllinks.self) { (source: AnyObject) -> BranchImpllinks in
+                let sourceDictionary = source as! [NSObject:AnyObject]
+                let instance = BranchImpllinks()
+                instance._self = Decoders.decodeOptional(clazz: Link.self, source: sourceDictionary["self"])
+                instance.actions = Decoders.decodeOptional(clazz: Link.self, source: sourceDictionary["actions"])
+                instance.runs = Decoders.decodeOptional(clazz: Link.self, source: sourceDictionary["runs"])
+                instance.queue = Decoders.decodeOptional(clazz: Link.self, source: sourceDictionary["queue"])
+                instance._class = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["_class"])
+                return instance
+            }
+
+
+            // Decoder for [BranchImplpermissions]
+            Decoders.addDecoder(clazz: [BranchImplpermissions].self) { (source: AnyObject) -> [BranchImplpermissions] in
+                return Decoders.decode(clazz: [BranchImplpermissions].self, source: source)
+            }
+            // Decoder for BranchImplpermissions
+            Decoders.addDecoder(clazz: BranchImplpermissions.self) { (source: AnyObject) -> BranchImplpermissions in
+                let sourceDictionary = source as! [NSObject:AnyObject]
+                let instance = BranchImplpermissions()
+                instance.create = Decoders.decodeOptional(clazz: Bool.self, source: sourceDictionary["create"])
+                instance.read = Decoders.decodeOptional(clazz: Bool.self, source: sourceDictionary["read"])
+                instance.start = Decoders.decodeOptional(clazz: Bool.self, source: sourceDictionary["start"])
+                instance.stop = Decoders.decodeOptional(clazz: Bool.self, source: sourceDictionary["stop"])
+                instance._class = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["_class"])
+                return instance
+            }
+
+
+            // Decoder for [CauseAction]
+            Decoders.addDecoder(clazz: [CauseAction].self) { (source: AnyObject) -> [CauseAction] in
+                return Decoders.decode(clazz: [CauseAction].self, source: source)
+            }
+            // Decoder for CauseAction
+            Decoders.addDecoder(clazz: CauseAction.self) { (source: AnyObject) -> CauseAction in
+                let sourceDictionary = source as! [NSObject:AnyObject]
+                let instance = CauseAction()
+                instance._class = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["_class"])
+                instance.causes = Decoders.decodeOptional(clazz: Array.self, source: sourceDictionary["causes"])
+                return instance
+            }
+
+
+            // Decoder for [CauseUserIdCause]
+            Decoders.addDecoder(clazz: [CauseUserIdCause].self) { (source: AnyObject) -> [CauseUserIdCause] in
+                return Decoders.decode(clazz: [CauseUserIdCause].self, source: source)
+            }
+            // Decoder for CauseUserIdCause
+            Decoders.addDecoder(clazz: CauseUserIdCause.self) { (source: AnyObject) -> CauseUserIdCause in
+                let sourceDictionary = source as! [NSObject:AnyObject]
+                let instance = CauseUserIdCause()
+                instance._class = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["_class"])
+                instance.shortDescription = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["shortDescription"])
+                instance.userId = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["userId"])
+                instance.userName = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["userName"])
+                return instance
+            }
+
+
+            // Decoder for [ClassesByClass]
+            Decoders.addDecoder(clazz: [ClassesByClass].self) { (source: AnyObject) -> [ClassesByClass] in
+                return Decoders.decode(clazz: [ClassesByClass].self, source: source)
+            }
+            // Decoder for ClassesByClass
+            Decoders.addDecoder(clazz: ClassesByClass.self) { (source: AnyObject) -> ClassesByClass in
+                let sourceDictionary = source as! [NSObject:AnyObject]
+                let instance = ClassesByClass()
                 instance.classes = Decoders.decodeOptional(clazz: Array.self, source: sourceDictionary["classes"])
                 instance._class = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["_class"])
                 return instance
             }
 
 
-            // Decoder for [GetMultibranchPipeline]
-            Decoders.addDecoder(clazz: [GetMultibranchPipeline].self) { (source: AnyObject) -> [GetMultibranchPipeline] in
-                return Decoders.decode(clazz: [GetMultibranchPipeline].self, source: source)
+            // Decoder for [ClockDifference]
+            Decoders.addDecoder(clazz: [ClockDifference].self) { (source: AnyObject) -> [ClockDifference] in
+                return Decoders.decode(clazz: [ClockDifference].self, source: source)
             }
-            // Decoder for GetMultibranchPipeline
-            Decoders.addDecoder(clazz: GetMultibranchPipeline.self) { (source: AnyObject) -> GetMultibranchPipeline in
+            // Decoder for ClockDifference
+            Decoders.addDecoder(clazz: ClockDifference.self) { (source: AnyObject) -> ClockDifference in
                 let sourceDictionary = source as! [NSObject:AnyObject]
-                let instance = GetMultibranchPipeline()
+                let instance = ClockDifference()
+                instance._class = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["_class"])
+                instance.diff = Decoders.decodeOptional(clazz: Int32.self, source: sourceDictionary["diff"])
+                return instance
+            }
+
+
+            // Decoder for [ComputerSet]
+            Decoders.addDecoder(clazz: [ComputerSet].self) { (source: AnyObject) -> [ComputerSet] in
+                return Decoders.decode(clazz: [ComputerSet].self, source: source)
+            }
+            // Decoder for ComputerSet
+            Decoders.addDecoder(clazz: ComputerSet.self) { (source: AnyObject) -> ComputerSet in
+                let sourceDictionary = source as! [NSObject:AnyObject]
+                let instance = ComputerSet()
+                instance._class = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["_class"])
+                instance.busyExecutors = Decoders.decodeOptional(clazz: Int32.self, source: sourceDictionary["busyExecutors"])
+                instance.computer = Decoders.decodeOptional(clazz: Array.self, source: sourceDictionary["computer"])
+                instance.displayName = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["displayName"])
+                instance.totalExecutors = Decoders.decodeOptional(clazz: Int32.self, source: sourceDictionary["totalExecutors"])
+                return instance
+            }
+
+
+            // Decoder for [DefaultCrumbIssuer]
+            Decoders.addDecoder(clazz: [DefaultCrumbIssuer].self) { (source: AnyObject) -> [DefaultCrumbIssuer] in
+                return Decoders.decode(clazz: [DefaultCrumbIssuer].self, source: source)
+            }
+            // Decoder for DefaultCrumbIssuer
+            Decoders.addDecoder(clazz: DefaultCrumbIssuer.self) { (source: AnyObject) -> DefaultCrumbIssuer in
+                let sourceDictionary = source as! [NSObject:AnyObject]
+                let instance = DefaultCrumbIssuer()
+                instance._class = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["_class"])
+                instance.crumb = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["crumb"])
+                instance.crumbRequestField = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["crumbRequestField"])
+                return instance
+            }
+
+
+            // Decoder for [DiskSpaceMonitorDescriptorDiskSpace]
+            Decoders.addDecoder(clazz: [DiskSpaceMonitorDescriptorDiskSpace].self) { (source: AnyObject) -> [DiskSpaceMonitorDescriptorDiskSpace] in
+                return Decoders.decode(clazz: [DiskSpaceMonitorDescriptorDiskSpace].self, source: source)
+            }
+            // Decoder for DiskSpaceMonitorDescriptorDiskSpace
+            Decoders.addDecoder(clazz: DiskSpaceMonitorDescriptorDiskSpace.self) { (source: AnyObject) -> DiskSpaceMonitorDescriptorDiskSpace in
+                let sourceDictionary = source as! [NSObject:AnyObject]
+                let instance = DiskSpaceMonitorDescriptorDiskSpace()
+                instance._class = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["_class"])
+                instance.timestamp = Decoders.decodeOptional(clazz: Int32.self, source: sourceDictionary["timestamp"])
+                instance.path = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["path"])
+                instance.size = Decoders.decodeOptional(clazz: Int32.self, source: sourceDictionary["size"])
+                return instance
+            }
+
+
+            // Decoder for [EmptyChangeLogSet]
+            Decoders.addDecoder(clazz: [EmptyChangeLogSet].self) { (source: AnyObject) -> [EmptyChangeLogSet] in
+                return Decoders.decode(clazz: [EmptyChangeLogSet].self, source: source)
+            }
+            // Decoder for EmptyChangeLogSet
+            Decoders.addDecoder(clazz: EmptyChangeLogSet.self) { (source: AnyObject) -> EmptyChangeLogSet in
+                let sourceDictionary = source as! [NSObject:AnyObject]
+                let instance = EmptyChangeLogSet()
+                instance._class = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["_class"])
+                instance.kind = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["kind"])
+                return instance
+            }
+
+
+            // Decoder for [ExtensionClassContainerImpl1]
+            Decoders.addDecoder(clazz: [ExtensionClassContainerImpl1].self) { (source: AnyObject) -> [ExtensionClassContainerImpl1] in
+                return Decoders.decode(clazz: [ExtensionClassContainerImpl1].self, source: source)
+            }
+            // Decoder for ExtensionClassContainerImpl1
+            Decoders.addDecoder(clazz: ExtensionClassContainerImpl1.self) { (source: AnyObject) -> ExtensionClassContainerImpl1 in
+                let sourceDictionary = source as! [NSObject:AnyObject]
+                let instance = ExtensionClassContainerImpl1()
+                instance._class = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["_class"])
+                instance.links = Decoders.decodeOptional(clazz: ExtensionClassContainerImpl1links.self, source: sourceDictionary["_links"])
+                instance.map = Decoders.decodeOptional(clazz: ExtensionClassContainerImpl1map.self, source: sourceDictionary["map"])
+                return instance
+            }
+
+
+            // Decoder for [ExtensionClassContainerImpl1links]
+            Decoders.addDecoder(clazz: [ExtensionClassContainerImpl1links].self) { (source: AnyObject) -> [ExtensionClassContainerImpl1links] in
+                return Decoders.decode(clazz: [ExtensionClassContainerImpl1links].self, source: source)
+            }
+            // Decoder for ExtensionClassContainerImpl1links
+            Decoders.addDecoder(clazz: ExtensionClassContainerImpl1links.self) { (source: AnyObject) -> ExtensionClassContainerImpl1links in
+                let sourceDictionary = source as! [NSObject:AnyObject]
+                let instance = ExtensionClassContainerImpl1links()
+                instance._self = Decoders.decodeOptional(clazz: Link.self, source: sourceDictionary["self"])
+                instance._class = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["_class"])
+                return instance
+            }
+
+
+            // Decoder for [ExtensionClassContainerImpl1map]
+            Decoders.addDecoder(clazz: [ExtensionClassContainerImpl1map].self) { (source: AnyObject) -> [ExtensionClassContainerImpl1map] in
+                return Decoders.decode(clazz: [ExtensionClassContainerImpl1map].self, source: source)
+            }
+            // Decoder for ExtensionClassContainerImpl1map
+            Decoders.addDecoder(clazz: ExtensionClassContainerImpl1map.self) { (source: AnyObject) -> ExtensionClassContainerImpl1map in
+                let sourceDictionary = source as! [NSObject:AnyObject]
+                let instance = ExtensionClassContainerImpl1map()
+                instance.ioJenkinsBlueoceanServiceEmbeddedRestPipelineImpl = Decoders.decodeOptional(clazz: ExtensionClassImpl.self, source: sourceDictionary["io.jenkins.blueocean.service.embedded.rest.PipelineImpl"])
+                instance.ioJenkinsBlueoceanServiceEmbeddedRestMultiBranchPipelineImpl = Decoders.decodeOptional(clazz: ExtensionClassImpl.self, source: sourceDictionary["io.jenkins.blueocean.service.embedded.rest.MultiBranchPipelineImpl"])
+                instance._class = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["_class"])
+                return instance
+            }
+
+
+            // Decoder for [ExtensionClassImpl]
+            Decoders.addDecoder(clazz: [ExtensionClassImpl].self) { (source: AnyObject) -> [ExtensionClassImpl] in
+                return Decoders.decode(clazz: [ExtensionClassImpl].self, source: source)
+            }
+            // Decoder for ExtensionClassImpl
+            Decoders.addDecoder(clazz: ExtensionClassImpl.self) { (source: AnyObject) -> ExtensionClassImpl in
+                let sourceDictionary = source as! [NSObject:AnyObject]
+                let instance = ExtensionClassImpl()
+                instance._class = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["_class"])
+                instance.links = Decoders.decodeOptional(clazz: ExtensionClassImpllinks.self, source: sourceDictionary["_links"])
+                instance.classes = Decoders.decodeOptional(clazz: Array.self, source: sourceDictionary["classes"])
+                return instance
+            }
+
+
+            // Decoder for [ExtensionClassImpllinks]
+            Decoders.addDecoder(clazz: [ExtensionClassImpllinks].self) { (source: AnyObject) -> [ExtensionClassImpllinks] in
+                return Decoders.decode(clazz: [ExtensionClassImpllinks].self, source: source)
+            }
+            // Decoder for ExtensionClassImpllinks
+            Decoders.addDecoder(clazz: ExtensionClassImpllinks.self) { (source: AnyObject) -> ExtensionClassImpllinks in
+                let sourceDictionary = source as! [NSObject:AnyObject]
+                let instance = ExtensionClassImpllinks()
+                instance._self = Decoders.decodeOptional(clazz: Link.self, source: sourceDictionary["self"])
+                instance._class = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["_class"])
+                return instance
+            }
+
+
+            // Decoder for [FavoriteImpl]
+            Decoders.addDecoder(clazz: [FavoriteImpl].self) { (source: AnyObject) -> [FavoriteImpl] in
+                return Decoders.decode(clazz: [FavoriteImpl].self, source: source)
+            }
+            // Decoder for FavoriteImpl
+            Decoders.addDecoder(clazz: FavoriteImpl.self) { (source: AnyObject) -> FavoriteImpl in
+                let sourceDictionary = source as! [NSObject:AnyObject]
+                let instance = FavoriteImpl()
+                instance._class = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["_class"])
+                instance.links = Decoders.decodeOptional(clazz: FavoriteImpllinks.self, source: sourceDictionary["_links"])
+                instance.item = Decoders.decodeOptional(clazz: PipelineImpl.self, source: sourceDictionary["item"])
+                return instance
+            }
+
+
+            // Decoder for [FavoriteImpllinks]
+            Decoders.addDecoder(clazz: [FavoriteImpllinks].self) { (source: AnyObject) -> [FavoriteImpllinks] in
+                return Decoders.decode(clazz: [FavoriteImpllinks].self, source: source)
+            }
+            // Decoder for FavoriteImpllinks
+            Decoders.addDecoder(clazz: FavoriteImpllinks.self) { (source: AnyObject) -> FavoriteImpllinks in
+                let sourceDictionary = source as! [NSObject:AnyObject]
+                let instance = FavoriteImpllinks()
+                instance._self = Decoders.decodeOptional(clazz: Link.self, source: sourceDictionary["self"])
+                instance._class = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["_class"])
+                return instance
+            }
+
+
+            // Decoder for [FreeStyleBuild]
+            Decoders.addDecoder(clazz: [FreeStyleBuild].self) { (source: AnyObject) -> [FreeStyleBuild] in
+                return Decoders.decode(clazz: [FreeStyleBuild].self, source: source)
+            }
+            // Decoder for FreeStyleBuild
+            Decoders.addDecoder(clazz: FreeStyleBuild.self) { (source: AnyObject) -> FreeStyleBuild in
+                let sourceDictionary = source as! [NSObject:AnyObject]
+                let instance = FreeStyleBuild()
+                instance._class = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["_class"])
+                instance.number = Decoders.decodeOptional(clazz: Int32.self, source: sourceDictionary["number"])
+                instance.url = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["url"])
+                instance.actions = Decoders.decodeOptional(clazz: Array.self, source: sourceDictionary["actions"])
+                instance.building = Decoders.decodeOptional(clazz: Bool.self, source: sourceDictionary["building"])
+                instance.description = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["description"])
+                instance.displayName = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["displayName"])
+                instance.duration = Decoders.decodeOptional(clazz: Int32.self, source: sourceDictionary["duration"])
+                instance.estimatedDuration = Decoders.decodeOptional(clazz: Int32.self, source: sourceDictionary["estimatedDuration"])
+                instance.executor = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["executor"])
+                instance.fullDisplayName = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["fullDisplayName"])
+                instance.id = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["id"])
+                instance.keepLog = Decoders.decodeOptional(clazz: Bool.self, source: sourceDictionary["keepLog"])
+                instance.queueId = Decoders.decodeOptional(clazz: Int32.self, source: sourceDictionary["queueId"])
+                instance.result = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["result"])
+                instance.timestamp = Decoders.decodeOptional(clazz: Int32.self, source: sourceDictionary["timestamp"])
+                instance.builtOn = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["builtOn"])
+                instance.changeSet = Decoders.decodeOptional(clazz: EmptyChangeLogSet.self, source: sourceDictionary["changeSet"])
+                return instance
+            }
+
+
+            // Decoder for [FreeStyleProject]
+            Decoders.addDecoder(clazz: [FreeStyleProject].self) { (source: AnyObject) -> [FreeStyleProject] in
+                return Decoders.decode(clazz: [FreeStyleProject].self, source: source)
+            }
+            // Decoder for FreeStyleProject
+            Decoders.addDecoder(clazz: FreeStyleProject.self) { (source: AnyObject) -> FreeStyleProject in
+                let sourceDictionary = source as! [NSObject:AnyObject]
+                let instance = FreeStyleProject()
+                instance._class = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["_class"])
+                instance.name = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["name"])
+                instance.url = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["url"])
+                instance.color = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["color"])
+                instance.actions = Decoders.decodeOptional(clazz: Array.self, source: sourceDictionary["actions"])
+                instance.description = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["description"])
+                instance.displayName = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["displayName"])
+                instance.displayNameOrNull = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["displayNameOrNull"])
+                instance.fullDisplayName = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["fullDisplayName"])
+                instance.fullName = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["fullName"])
+                instance.buildable = Decoders.decodeOptional(clazz: Bool.self, source: sourceDictionary["buildable"])
+                instance.builds = Decoders.decodeOptional(clazz: Array.self, source: sourceDictionary["builds"])
+                instance.firstBuild = Decoders.decodeOptional(clazz: FreeStyleBuild.self, source: sourceDictionary["firstBuild"])
+                instance.healthReport = Decoders.decodeOptional(clazz: Array.self, source: sourceDictionary["healthReport"])
+                instance.inQueue = Decoders.decodeOptional(clazz: Bool.self, source: sourceDictionary["inQueue"])
+                instance.keepDependencies = Decoders.decodeOptional(clazz: Bool.self, source: sourceDictionary["keepDependencies"])
+                instance.lastBuild = Decoders.decodeOptional(clazz: FreeStyleBuild.self, source: sourceDictionary["lastBuild"])
+                instance.lastCompletedBuild = Decoders.decodeOptional(clazz: FreeStyleBuild.self, source: sourceDictionary["lastCompletedBuild"])
+                instance.lastFailedBuild = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["lastFailedBuild"])
+                instance.lastStableBuild = Decoders.decodeOptional(clazz: FreeStyleBuild.self, source: sourceDictionary["lastStableBuild"])
+                instance.lastSuccessfulBuild = Decoders.decodeOptional(clazz: FreeStyleBuild.self, source: sourceDictionary["lastSuccessfulBuild"])
+                instance.lastUnstableBuild = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["lastUnstableBuild"])
+                instance.lastUnsuccessfulBuild = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["lastUnsuccessfulBuild"])
+                instance.nextBuildNumber = Decoders.decodeOptional(clazz: Int32.self, source: sourceDictionary["nextBuildNumber"])
+                instance.queueItem = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["queueItem"])
+                instance.concurrentBuild = Decoders.decodeOptional(clazz: Bool.self, source: sourceDictionary["concurrentBuild"])
+                instance.scm = Decoders.decodeOptional(clazz: NullSCM.self, source: sourceDictionary["scm"])
+                return instance
+            }
+
+
+            // Decoder for [FreeStyleProjectactions]
+            Decoders.addDecoder(clazz: [FreeStyleProjectactions].self) { (source: AnyObject) -> [FreeStyleProjectactions] in
+                return Decoders.decode(clazz: [FreeStyleProjectactions].self, source: source)
+            }
+            // Decoder for FreeStyleProjectactions
+            Decoders.addDecoder(clazz: FreeStyleProjectactions.self) { (source: AnyObject) -> FreeStyleProjectactions in
+                let sourceDictionary = source as! [NSObject:AnyObject]
+                let instance = FreeStyleProjectactions()
+                instance._class = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["_class"])
+                return instance
+            }
+
+
+            // Decoder for [FreeStyleProjecthealthReport]
+            Decoders.addDecoder(clazz: [FreeStyleProjecthealthReport].self) { (source: AnyObject) -> [FreeStyleProjecthealthReport] in
+                return Decoders.decode(clazz: [FreeStyleProjecthealthReport].self, source: source)
+            }
+            // Decoder for FreeStyleProjecthealthReport
+            Decoders.addDecoder(clazz: FreeStyleProjecthealthReport.self) { (source: AnyObject) -> FreeStyleProjecthealthReport in
+                let sourceDictionary = source as! [NSObject:AnyObject]
+                let instance = FreeStyleProjecthealthReport()
+                instance.description = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["description"])
+                instance.iconClassName = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["iconClassName"])
+                instance.iconUrl = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["iconUrl"])
+                instance.score = Decoders.decodeOptional(clazz: Int32.self, source: sourceDictionary["score"])
+                instance._class = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["_class"])
+                return instance
+            }
+
+
+            // Decoder for [GenericResource]
+            Decoders.addDecoder(clazz: [GenericResource].self) { (source: AnyObject) -> [GenericResource] in
+                return Decoders.decode(clazz: [GenericResource].self, source: source)
+            }
+            // Decoder for GenericResource
+            Decoders.addDecoder(clazz: GenericResource.self) { (source: AnyObject) -> GenericResource in
+                let sourceDictionary = source as! [NSObject:AnyObject]
+                let instance = GenericResource()
+                instance._class = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["_class"])
+                instance.displayName = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["displayName"])
+                instance.durationInMillis = Decoders.decodeOptional(clazz: Int32.self, source: sourceDictionary["durationInMillis"])
+                instance.id = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["id"])
+                instance.result = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["result"])
+                instance.startTime = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["startTime"])
+                return instance
+            }
+
+
+            // Decoder for [GithubContent]
+            Decoders.addDecoder(clazz: [GithubContent].self) { (source: AnyObject) -> [GithubContent] in
+                return Decoders.decode(clazz: [GithubContent].self, source: source)
+            }
+            // Decoder for GithubContent
+            Decoders.addDecoder(clazz: GithubContent.self) { (source: AnyObject) -> GithubContent in
+                let sourceDictionary = source as! [NSObject:AnyObject]
+                let instance = GithubContent()
+                instance.name = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["name"])
+                instance.sha = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["sha"])
+                instance._class = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["_class"])
+                instance.repo = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["repo"])
+                instance.size = Decoders.decodeOptional(clazz: Int32.self, source: sourceDictionary["size"])
+                instance.owner = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["owner"])
+                instance.path = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["path"])
+                instance.base64Data = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["base64Data"])
+                return instance
+            }
+
+
+            // Decoder for [GithubFile]
+            Decoders.addDecoder(clazz: [GithubFile].self) { (source: AnyObject) -> [GithubFile] in
+                return Decoders.decode(clazz: [GithubFile].self, source: source)
+            }
+            // Decoder for GithubFile
+            Decoders.addDecoder(clazz: GithubFile.self) { (source: AnyObject) -> GithubFile in
+                let sourceDictionary = source as! [NSObject:AnyObject]
+                let instance = GithubFile()
+                instance.content = Decoders.decodeOptional(clazz: GithubContent.self, source: sourceDictionary["content"])
+                instance._class = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["_class"])
+                return instance
+            }
+
+
+            // Decoder for [GithubOrganization]
+            Decoders.addDecoder(clazz: [GithubOrganization].self) { (source: AnyObject) -> [GithubOrganization] in
+                return Decoders.decode(clazz: [GithubOrganization].self, source: source)
+            }
+            // Decoder for GithubOrganization
+            Decoders.addDecoder(clazz: GithubOrganization.self) { (source: AnyObject) -> GithubOrganization in
+                let sourceDictionary = source as! [NSObject:AnyObject]
+                let instance = GithubOrganization()
+                instance._class = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["_class"])
+                instance.links = Decoders.decodeOptional(clazz: GithubOrganizationlinks.self, source: sourceDictionary["_links"])
+                instance.jenkinsOrganizationPipeline = Decoders.decodeOptional(clazz: Bool.self, source: sourceDictionary["jenkinsOrganizationPipeline"])
+                instance.name = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["name"])
+                return instance
+            }
+
+
+            // Decoder for [GithubOrganizationlinks]
+            Decoders.addDecoder(clazz: [GithubOrganizationlinks].self) { (source: AnyObject) -> [GithubOrganizationlinks] in
+                return Decoders.decode(clazz: [GithubOrganizationlinks].self, source: source)
+            }
+            // Decoder for GithubOrganizationlinks
+            Decoders.addDecoder(clazz: GithubOrganizationlinks.self) { (source: AnyObject) -> GithubOrganizationlinks in
+                let sourceDictionary = source as! [NSObject:AnyObject]
+                let instance = GithubOrganizationlinks()
+                instance.repositories = Decoders.decodeOptional(clazz: Link.self, source: sourceDictionary["repositories"])
+                instance._self = Decoders.decodeOptional(clazz: Link.self, source: sourceDictionary["self"])
+                instance._class = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["_class"])
+                return instance
+            }
+
+
+            // Decoder for [GithubRepositories]
+            Decoders.addDecoder(clazz: [GithubRepositories].self) { (source: AnyObject) -> [GithubRepositories] in
+                return Decoders.decode(clazz: [GithubRepositories].self, source: source)
+            }
+            // Decoder for GithubRepositories
+            Decoders.addDecoder(clazz: GithubRepositories.self) { (source: AnyObject) -> GithubRepositories in
+                let sourceDictionary = source as! [NSObject:AnyObject]
+                let instance = GithubRepositories()
+                instance._class = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["_class"])
+                instance.links = Decoders.decodeOptional(clazz: GithubRepositorieslinks.self, source: sourceDictionary["_links"])
+                instance.items = Decoders.decodeOptional(clazz: Array.self, source: sourceDictionary["items"])
+                instance.lastPage = Decoders.decodeOptional(clazz: Int32.self, source: sourceDictionary["lastPage"])
+                instance.nextPage = Decoders.decodeOptional(clazz: Int32.self, source: sourceDictionary["nextPage"])
+                instance.pageSize = Decoders.decodeOptional(clazz: Int32.self, source: sourceDictionary["pageSize"])
+                return instance
+            }
+
+
+            // Decoder for [GithubRepositorieslinks]
+            Decoders.addDecoder(clazz: [GithubRepositorieslinks].self) { (source: AnyObject) -> [GithubRepositorieslinks] in
+                return Decoders.decode(clazz: [GithubRepositorieslinks].self, source: source)
+            }
+            // Decoder for GithubRepositorieslinks
+            Decoders.addDecoder(clazz: GithubRepositorieslinks.self) { (source: AnyObject) -> GithubRepositorieslinks in
+                let sourceDictionary = source as! [NSObject:AnyObject]
+                let instance = GithubRepositorieslinks()
+                instance._self = Decoders.decodeOptional(clazz: Link.self, source: sourceDictionary["self"])
+                instance._class = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["_class"])
+                return instance
+            }
+
+
+            // Decoder for [GithubRepository]
+            Decoders.addDecoder(clazz: [GithubRepository].self) { (source: AnyObject) -> [GithubRepository] in
+                return Decoders.decode(clazz: [GithubRepository].self, source: source)
+            }
+            // Decoder for GithubRepository
+            Decoders.addDecoder(clazz: GithubRepository.self) { (source: AnyObject) -> GithubRepository in
+                let sourceDictionary = source as! [NSObject:AnyObject]
+                let instance = GithubRepository()
+                instance._class = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["_class"])
+                instance.links = Decoders.decodeOptional(clazz: GithubRepositorylinks.self, source: sourceDictionary["_links"])
+                instance.defaultBranch = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["defaultBranch"])
+                instance.description = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["description"])
+                instance.name = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["name"])
+                instance.permissions = Decoders.decodeOptional(clazz: GithubRepositorypermissions.self, source: sourceDictionary["permissions"])
+                instance._private = Decoders.decodeOptional(clazz: Bool.self, source: sourceDictionary["private"])
+                instance.fullName = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["fullName"])
+                return instance
+            }
+
+
+            // Decoder for [GithubRepositorylinks]
+            Decoders.addDecoder(clazz: [GithubRepositorylinks].self) { (source: AnyObject) -> [GithubRepositorylinks] in
+                return Decoders.decode(clazz: [GithubRepositorylinks].self, source: source)
+            }
+            // Decoder for GithubRepositorylinks
+            Decoders.addDecoder(clazz: GithubRepositorylinks.self) { (source: AnyObject) -> GithubRepositorylinks in
+                let sourceDictionary = source as! [NSObject:AnyObject]
+                let instance = GithubRepositorylinks()
+                instance._self = Decoders.decodeOptional(clazz: Link.self, source: sourceDictionary["self"])
+                instance._class = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["_class"])
+                return instance
+            }
+
+
+            // Decoder for [GithubRepositorypermissions]
+            Decoders.addDecoder(clazz: [GithubRepositorypermissions].self) { (source: AnyObject) -> [GithubRepositorypermissions] in
+                return Decoders.decode(clazz: [GithubRepositorypermissions].self, source: source)
+            }
+            // Decoder for GithubRepositorypermissions
+            Decoders.addDecoder(clazz: GithubRepositorypermissions.self) { (source: AnyObject) -> GithubRepositorypermissions in
+                let sourceDictionary = source as! [NSObject:AnyObject]
+                let instance = GithubRepositorypermissions()
+                instance.admin = Decoders.decodeOptional(clazz: Bool.self, source: sourceDictionary["admin"])
+                instance.push = Decoders.decodeOptional(clazz: Bool.self, source: sourceDictionary["push"])
+                instance.pull = Decoders.decodeOptional(clazz: Bool.self, source: sourceDictionary["pull"])
+                instance._class = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["_class"])
+                return instance
+            }
+
+
+            // Decoder for [GithubRespositoryContainer]
+            Decoders.addDecoder(clazz: [GithubRespositoryContainer].self) { (source: AnyObject) -> [GithubRespositoryContainer] in
+                return Decoders.decode(clazz: [GithubRespositoryContainer].self, source: source)
+            }
+            // Decoder for GithubRespositoryContainer
+            Decoders.addDecoder(clazz: GithubRespositoryContainer.self) { (source: AnyObject) -> GithubRespositoryContainer in
+                let sourceDictionary = source as! [NSObject:AnyObject]
+                let instance = GithubRespositoryContainer()
+                instance._class = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["_class"])
+                instance.links = Decoders.decodeOptional(clazz: GithubRespositoryContainerlinks.self, source: sourceDictionary["_links"])
+                instance.repositories = Decoders.decodeOptional(clazz: GithubRepositories.self, source: sourceDictionary["repositories"])
+                return instance
+            }
+
+
+            // Decoder for [GithubRespositoryContainerlinks]
+            Decoders.addDecoder(clazz: [GithubRespositoryContainerlinks].self) { (source: AnyObject) -> [GithubRespositoryContainerlinks] in
+                return Decoders.decode(clazz: [GithubRespositoryContainerlinks].self, source: source)
+            }
+            // Decoder for GithubRespositoryContainerlinks
+            Decoders.addDecoder(clazz: GithubRespositoryContainerlinks.self) { (source: AnyObject) -> GithubRespositoryContainerlinks in
+                let sourceDictionary = source as! [NSObject:AnyObject]
+                let instance = GithubRespositoryContainerlinks()
+                instance._self = Decoders.decodeOptional(clazz: Link.self, source: sourceDictionary["self"])
+                instance._class = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["_class"])
+                return instance
+            }
+
+
+            // Decoder for [GithubScm]
+            Decoders.addDecoder(clazz: [GithubScm].self) { (source: AnyObject) -> [GithubScm] in
+                return Decoders.decode(clazz: [GithubScm].self, source: source)
+            }
+            // Decoder for GithubScm
+            Decoders.addDecoder(clazz: GithubScm.self) { (source: AnyObject) -> GithubScm in
+                let sourceDictionary = source as! [NSObject:AnyObject]
+                let instance = GithubScm()
+                instance._class = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["_class"])
+                instance.links = Decoders.decodeOptional(clazz: GithubScmlinks.self, source: sourceDictionary["_links"])
+                instance.credentialId = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["credentialId"])
+                instance.id = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["id"])
+                instance.uri = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["uri"])
+                return instance
+            }
+
+
+            // Decoder for [GithubScmlinks]
+            Decoders.addDecoder(clazz: [GithubScmlinks].self) { (source: AnyObject) -> [GithubScmlinks] in
+                return Decoders.decode(clazz: [GithubScmlinks].self, source: source)
+            }
+            // Decoder for GithubScmlinks
+            Decoders.addDecoder(clazz: GithubScmlinks.self) { (source: AnyObject) -> GithubScmlinks in
+                let sourceDictionary = source as! [NSObject:AnyObject]
+                let instance = GithubScmlinks()
+                instance._self = Decoders.decodeOptional(clazz: Link.self, source: sourceDictionary["self"])
+                instance._class = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["_class"])
+                return instance
+            }
+
+
+            // Decoder for [Hudson]
+            Decoders.addDecoder(clazz: [Hudson].self) { (source: AnyObject) -> [Hudson] in
+                return Decoders.decode(clazz: [Hudson].self, source: source)
+            }
+            // Decoder for Hudson
+            Decoders.addDecoder(clazz: Hudson.self) { (source: AnyObject) -> Hudson in
+                let sourceDictionary = source as! [NSObject:AnyObject]
+                let instance = Hudson()
+                instance._class = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["_class"])
+                instance.assignedLabels = Decoders.decodeOptional(clazz: Array.self, source: sourceDictionary["assignedLabels"])
+                instance.mode = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["mode"])
+                instance.nodeDescription = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["nodeDescription"])
+                instance.nodeName = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["nodeName"])
+                instance.numExecutors = Decoders.decodeOptional(clazz: Int32.self, source: sourceDictionary["numExecutors"])
+                instance.description = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["description"])
+                instance.jobs = Decoders.decodeOptional(clazz: Array.self, source: sourceDictionary["jobs"])
+                instance.primaryView = Decoders.decodeOptional(clazz: AllView.self, source: sourceDictionary["primaryView"])
+                instance.quietingDown = Decoders.decodeOptional(clazz: Bool.self, source: sourceDictionary["quietingDown"])
+                instance.slaveAgentPort = Decoders.decodeOptional(clazz: Int32.self, source: sourceDictionary["slaveAgentPort"])
+                instance.unlabeledLoad = Decoders.decodeOptional(clazz: UnlabeledLoadStatistics.self, source: sourceDictionary["unlabeledLoad"])
+                instance.useCrumbs = Decoders.decodeOptional(clazz: Bool.self, source: sourceDictionary["useCrumbs"])
+                instance.useSecurity = Decoders.decodeOptional(clazz: Bool.self, source: sourceDictionary["useSecurity"])
+                instance.views = Decoders.decodeOptional(clazz: Array.self, source: sourceDictionary["views"])
+                return instance
+            }
+
+
+            // Decoder for [HudsonMasterComputer]
+            Decoders.addDecoder(clazz: [HudsonMasterComputer].self) { (source: AnyObject) -> [HudsonMasterComputer] in
+                return Decoders.decode(clazz: [HudsonMasterComputer].self, source: source)
+            }
+            // Decoder for HudsonMasterComputer
+            Decoders.addDecoder(clazz: HudsonMasterComputer.self) { (source: AnyObject) -> HudsonMasterComputer in
+                let sourceDictionary = source as! [NSObject:AnyObject]
+                let instance = HudsonMasterComputer()
+                instance._class = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["_class"])
+                instance.displayName = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["displayName"])
+                instance.executors = Decoders.decodeOptional(clazz: Array.self, source: sourceDictionary["executors"])
+                instance.icon = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["icon"])
+                instance.iconClassName = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["iconClassName"])
+                instance.idle = Decoders.decodeOptional(clazz: Bool.self, source: sourceDictionary["idle"])
+                instance.jnlpAgent = Decoders.decodeOptional(clazz: Bool.self, source: sourceDictionary["jnlpAgent"])
+                instance.launchSupported = Decoders.decodeOptional(clazz: Bool.self, source: sourceDictionary["launchSupported"])
+                instance.loadStatistics = Decoders.decodeOptional(clazz: Label1.self, source: sourceDictionary["loadStatistics"])
+                instance.manualLaunchAllowed = Decoders.decodeOptional(clazz: Bool.self, source: sourceDictionary["manualLaunchAllowed"])
+                instance.monitorData = Decoders.decodeOptional(clazz: HudsonMasterComputermonitorData.self, source: sourceDictionary["monitorData"])
+                instance.numExecutors = Decoders.decodeOptional(clazz: Int32.self, source: sourceDictionary["numExecutors"])
+                instance.offline = Decoders.decodeOptional(clazz: Bool.self, source: sourceDictionary["offline"])
+                instance.offlineCause = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["offlineCause"])
+                instance.offlineCauseReason = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["offlineCauseReason"])
+                instance.temporarilyOffline = Decoders.decodeOptional(clazz: Bool.self, source: sourceDictionary["temporarilyOffline"])
+                return instance
+            }
+
+
+            // Decoder for [HudsonMasterComputerexecutors]
+            Decoders.addDecoder(clazz: [HudsonMasterComputerexecutors].self) { (source: AnyObject) -> [HudsonMasterComputerexecutors] in
+                return Decoders.decode(clazz: [HudsonMasterComputerexecutors].self, source: source)
+            }
+            // Decoder for HudsonMasterComputerexecutors
+            Decoders.addDecoder(clazz: HudsonMasterComputerexecutors.self) { (source: AnyObject) -> HudsonMasterComputerexecutors in
+                let sourceDictionary = source as! [NSObject:AnyObject]
+                let instance = HudsonMasterComputerexecutors()
+                instance.currentExecutable = Decoders.decodeOptional(clazz: FreeStyleBuild.self, source: sourceDictionary["currentExecutable"])
+                instance.idle = Decoders.decodeOptional(clazz: Bool.self, source: sourceDictionary["idle"])
+                instance.likelyStuck = Decoders.decodeOptional(clazz: Bool.self, source: sourceDictionary["likelyStuck"])
+                instance.number = Decoders.decodeOptional(clazz: Int32.self, source: sourceDictionary["number"])
+                instance.progress = Decoders.decodeOptional(clazz: Int32.self, source: sourceDictionary["progress"])
+                instance._class = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["_class"])
+                return instance
+            }
+
+
+            // Decoder for [HudsonMasterComputermonitorData]
+            Decoders.addDecoder(clazz: [HudsonMasterComputermonitorData].self) { (source: AnyObject) -> [HudsonMasterComputermonitorData] in
+                return Decoders.decode(clazz: [HudsonMasterComputermonitorData].self, source: source)
+            }
+            // Decoder for HudsonMasterComputermonitorData
+            Decoders.addDecoder(clazz: HudsonMasterComputermonitorData.self) { (source: AnyObject) -> HudsonMasterComputermonitorData in
+                let sourceDictionary = source as! [NSObject:AnyObject]
+                let instance = HudsonMasterComputermonitorData()
+                instance.hudsonNodeMonitorsSwapSpaceMonitor = Decoders.decodeOptional(clazz: SwapSpaceMonitorMemoryUsage2.self, source: sourceDictionary["hudson.node_monitors.SwapSpaceMonitor"])
+                instance.hudsonNodeMonitorsTemporarySpaceMonitor = Decoders.decodeOptional(clazz: DiskSpaceMonitorDescriptorDiskSpace.self, source: sourceDictionary["hudson.node_monitors.TemporarySpaceMonitor"])
+                instance.hudsonNodeMonitorsDiskSpaceMonitor = Decoders.decodeOptional(clazz: DiskSpaceMonitorDescriptorDiskSpace.self, source: sourceDictionary["hudson.node_monitors.DiskSpaceMonitor"])
+                instance.hudsonNodeMonitorsArchitectureMonitor = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["hudson.node_monitors.ArchitectureMonitor"])
+                instance.hudsonNodeMonitorsResponseTimeMonitor = Decoders.decodeOptional(clazz: ResponseTimeMonitorData.self, source: sourceDictionary["hudson.node_monitors.ResponseTimeMonitor"])
+                instance.hudsonNodeMonitorsClockMonitor = Decoders.decodeOptional(clazz: ClockDifference.self, source: sourceDictionary["hudson.node_monitors.ClockMonitor"])
+                instance._class = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["_class"])
+                return instance
+            }
+
+
+            // Decoder for [HudsonassignedLabels]
+            Decoders.addDecoder(clazz: [HudsonassignedLabels].self) { (source: AnyObject) -> [HudsonassignedLabels] in
+                return Decoders.decode(clazz: [HudsonassignedLabels].self, source: source)
+            }
+            // Decoder for HudsonassignedLabels
+            Decoders.addDecoder(clazz: HudsonassignedLabels.self) { (source: AnyObject) -> HudsonassignedLabels in
+                let sourceDictionary = source as! [NSObject:AnyObject]
+                let instance = HudsonassignedLabels()
+                instance._class = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["_class"])
+                return instance
+            }
+
+
+            // Decoder for [InputStepImpl]
+            Decoders.addDecoder(clazz: [InputStepImpl].self) { (source: AnyObject) -> [InputStepImpl] in
+                return Decoders.decode(clazz: [InputStepImpl].self, source: source)
+            }
+            // Decoder for InputStepImpl
+            Decoders.addDecoder(clazz: InputStepImpl.self) { (source: AnyObject) -> InputStepImpl in
+                let sourceDictionary = source as! [NSObject:AnyObject]
+                let instance = InputStepImpl()
+                instance._class = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["_class"])
+                instance.links = Decoders.decodeOptional(clazz: InputStepImpllinks.self, source: sourceDictionary["_links"])
+                instance.id = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["id"])
+                instance.message = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["message"])
+                instance.ok = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["ok"])
+                instance.parameters = Decoders.decodeOptional(clazz: Array.self, source: sourceDictionary["parameters"])
+                instance.submitter = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["submitter"])
+                return instance
+            }
+
+
+            // Decoder for [InputStepImpllinks]
+            Decoders.addDecoder(clazz: [InputStepImpllinks].self) { (source: AnyObject) -> [InputStepImpllinks] in
+                return Decoders.decode(clazz: [InputStepImpllinks].self, source: source)
+            }
+            // Decoder for InputStepImpllinks
+            Decoders.addDecoder(clazz: InputStepImpllinks.self) { (source: AnyObject) -> InputStepImpllinks in
+                let sourceDictionary = source as! [NSObject:AnyObject]
+                let instance = InputStepImpllinks()
+                instance._self = Decoders.decodeOptional(clazz: Link.self, source: sourceDictionary["self"])
+                instance._class = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["_class"])
+                return instance
+            }
+
+
+            // Decoder for [Label1]
+            Decoders.addDecoder(clazz: [Label1].self) { (source: AnyObject) -> [Label1] in
+                return Decoders.decode(clazz: [Label1].self, source: source)
+            }
+            // Decoder for Label1
+            Decoders.addDecoder(clazz: Label1.self) { (source: AnyObject) -> Label1 in
+                let sourceDictionary = source as! [NSObject:AnyObject]
+                let instance = Label1()
+                instance._class = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["_class"])
+                return instance
+            }
+
+
+            // Decoder for [Link]
+            Decoders.addDecoder(clazz: [Link].self) { (source: AnyObject) -> [Link] in
+                return Decoders.decode(clazz: [Link].self, source: source)
+            }
+            // Decoder for Link
+            Decoders.addDecoder(clazz: Link.self) { (source: AnyObject) -> Link in
+                let sourceDictionary = source as! [NSObject:AnyObject]
+                let instance = Link()
+                instance._class = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["_class"])
+                instance.href = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["href"])
+                return instance
+            }
+
+
+            // Decoder for [ListView]
+            Decoders.addDecoder(clazz: [ListView].self) { (source: AnyObject) -> [ListView] in
+                return Decoders.decode(clazz: [ListView].self, source: source)
+            }
+            // Decoder for ListView
+            Decoders.addDecoder(clazz: ListView.self) { (source: AnyObject) -> ListView in
+                let sourceDictionary = source as! [NSObject:AnyObject]
+                let instance = ListView()
+                instance._class = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["_class"])
+                instance.description = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["description"])
+                instance.jobs = Decoders.decodeOptional(clazz: Array.self, source: sourceDictionary["jobs"])
+                instance.name = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["name"])
+                instance.url = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["url"])
+                return instance
+            }
+
+
+            // Decoder for [MultibranchPipeline]
+            Decoders.addDecoder(clazz: [MultibranchPipeline].self) { (source: AnyObject) -> [MultibranchPipeline] in
+                return Decoders.decode(clazz: [MultibranchPipeline].self, source: source)
+            }
+            // Decoder for MultibranchPipeline
+            Decoders.addDecoder(clazz: MultibranchPipeline.self) { (source: AnyObject) -> MultibranchPipeline in
+                let sourceDictionary = source as! [NSObject:AnyObject]
+                let instance = MultibranchPipeline()
                 instance.displayName = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["displayName"])
                 instance.estimatedDurationInMillis = Decoders.decodeOptional(clazz: Int32.self, source: sourceDictionary["estimatedDurationInMillis"])
                 instance.latestRun = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["latestRun"])
@@ -182,59 +992,161 @@ class Decoders {
             }
 
 
-            // Decoder for [GetOrganisations]
-            Decoders.addDecoder(clazz: [GetOrganisations].self) { (source: AnyObject) -> [GetOrganisations] in
-                return Decoders.decode(clazz: [GetOrganisations].self, source: source)
+            // Decoder for [NullSCM]
+            Decoders.addDecoder(clazz: [NullSCM].self) { (source: AnyObject) -> [NullSCM] in
+                return Decoders.decode(clazz: [NullSCM].self, source: source)
             }
-            // Decoder for GetOrganisations
-            Decoders.addDecoder(clazz: GetOrganisations.self) { (source: AnyObject) -> GetOrganisations in
+            // Decoder for NullSCM
+            Decoders.addDecoder(clazz: NullSCM.self) { (source: AnyObject) -> NullSCM in
                 let sourceDictionary = source as! [NSObject:AnyObject]
-                let instance = GetOrganisations()
+                let instance = NullSCM()
+                instance._class = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["_class"])
                 return instance
             }
 
 
-            // Decoder for [GetPipelineBranches]
-            Decoders.addDecoder(clazz: [GetPipelineBranches].self) { (source: AnyObject) -> [GetPipelineBranches] in
-                return Decoders.decode(clazz: [GetPipelineBranches].self, source: source)
+            // Decoder for [Organisation]
+            Decoders.addDecoder(clazz: [Organisation].self) { (source: AnyObject) -> [Organisation] in
+                return Decoders.decode(clazz: [Organisation].self, source: source)
             }
-            // Decoder for GetPipelineBranches
-            Decoders.addDecoder(clazz: GetPipelineBranches.self) { (source: AnyObject) -> GetPipelineBranches in
+            // Decoder for Organisation
+            Decoders.addDecoder(clazz: Organisation.self) { (source: AnyObject) -> Organisation in
                 let sourceDictionary = source as! [NSObject:AnyObject]
-                let instance = GetPipelineBranches()
+                let instance = Organisation()
+                instance._class = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["_class"])
+                instance.name = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["name"])
                 return instance
             }
 
 
-            // Decoder for [GetPipelineBranchesitem]
-            Decoders.addDecoder(clazz: [GetPipelineBranchesitem].self) { (source: AnyObject) -> [GetPipelineBranchesitem] in
-                return Decoders.decode(clazz: [GetPipelineBranchesitem].self, source: source)
+            // Decoder for [Organisations]
+            Decoders.addDecoder(clazz: [Organisations].self) { (source: AnyObject) -> [Organisations] in
+                return Decoders.decode(clazz: [Organisations].self, source: source)
             }
-            // Decoder for GetPipelineBranchesitem
-            Decoders.addDecoder(clazz: GetPipelineBranchesitem.self) { (source: AnyObject) -> GetPipelineBranchesitem in
+            // Decoder for Organisations
+            Decoders.addDecoder(clazz: Organisations.self) { (source: AnyObject) -> Organisations in
                 let sourceDictionary = source as! [NSObject:AnyObject]
-                let instance = GetPipelineBranchesitem()
+                let instance = Organisations()
+                return instance
+            }
+
+
+            // Decoder for [Pipeline]
+            Decoders.addDecoder(clazz: [Pipeline].self) { (source: AnyObject) -> [Pipeline] in
+                return Decoders.decode(clazz: [Pipeline].self, source: source)
+            }
+            // Decoder for Pipeline
+            Decoders.addDecoder(clazz: Pipeline.self) { (source: AnyObject) -> Pipeline in
+                let sourceDictionary = source as! [NSObject:AnyObject]
+                let instance = Pipeline()
+                instance._class = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["_class"])
+                instance.organization = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["organization"])
+                instance.name = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["name"])
+                instance.displayName = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["displayName"])
+                instance.fullName = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["fullName"])
+                instance.weatherScore = Decoders.decodeOptional(clazz: Int32.self, source: sourceDictionary["weatherScore"])
+                instance.estimatedDurationInMillis = Decoders.decodeOptional(clazz: Int32.self, source: sourceDictionary["estimatedDurationInMillis"])
+                instance.latestRun = Decoders.decodeOptional(clazz: PipelinelatestRun.self, source: sourceDictionary["latestRun"])
+                return instance
+            }
+
+
+            // Decoder for [PipelineActivities]
+            Decoders.addDecoder(clazz: [PipelineActivities].self) { (source: AnyObject) -> [PipelineActivities] in
+                return Decoders.decode(clazz: [PipelineActivities].self, source: source)
+            }
+            // Decoder for PipelineActivities
+            Decoders.addDecoder(clazz: PipelineActivities.self) { (source: AnyObject) -> PipelineActivities in
+                let sourceDictionary = source as! [NSObject:AnyObject]
+                let instance = PipelineActivities()
+                return instance
+            }
+
+
+            // Decoder for [PipelineActivity]
+            Decoders.addDecoder(clazz: [PipelineActivity].self) { (source: AnyObject) -> [PipelineActivity] in
+                return Decoders.decode(clazz: [PipelineActivity].self, source: source)
+            }
+            // Decoder for PipelineActivity
+            Decoders.addDecoder(clazz: PipelineActivity.self) { (source: AnyObject) -> PipelineActivity in
+                let sourceDictionary = source as! [NSObject:AnyObject]
+                let instance = PipelineActivity()
+                instance._class = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["_class"])
+                instance.artifacts = Decoders.decodeOptional(clazz: Array.self, source: sourceDictionary["artifacts"])
+                instance.durationInMillis = Decoders.decodeOptional(clazz: Int32.self, source: sourceDictionary["durationInMillis"])
+                instance.estimatedDurationInMillis = Decoders.decodeOptional(clazz: Int32.self, source: sourceDictionary["estimatedDurationInMillis"])
+                instance.enQueueTime = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["enQueueTime"])
+                instance.endTime = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["endTime"])
+                instance.id = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["id"])
+                instance.organization = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["organization"])
+                instance.pipeline = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["pipeline"])
+                instance.result = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["result"])
+                instance.runSummary = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["runSummary"])
+                instance.startTime = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["startTime"])
+                instance.state = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["state"])
+                instance.type = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["type"])
+                instance.commitId = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["commitId"])
+                return instance
+            }
+
+
+            // Decoder for [PipelineActivityartifacts]
+            Decoders.addDecoder(clazz: [PipelineActivityartifacts].self) { (source: AnyObject) -> [PipelineActivityartifacts] in
+                return Decoders.decode(clazz: [PipelineActivityartifacts].self, source: source)
+            }
+            // Decoder for PipelineActivityartifacts
+            Decoders.addDecoder(clazz: PipelineActivityartifacts.self) { (source: AnyObject) -> PipelineActivityartifacts in
+                let sourceDictionary = source as! [NSObject:AnyObject]
+                let instance = PipelineActivityartifacts()
+                instance.name = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["name"])
+                instance.size = Decoders.decodeOptional(clazz: Int32.self, source: sourceDictionary["size"])
+                instance.url = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["url"])
+                instance._class = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["_class"])
+                return instance
+            }
+
+
+            // Decoder for [PipelineBranches]
+            Decoders.addDecoder(clazz: [PipelineBranches].self) { (source: AnyObject) -> [PipelineBranches] in
+                return Decoders.decode(clazz: [PipelineBranches].self, source: source)
+            }
+            // Decoder for PipelineBranches
+            Decoders.addDecoder(clazz: PipelineBranches.self) { (source: AnyObject) -> PipelineBranches in
+                let sourceDictionary = source as! [NSObject:AnyObject]
+                let instance = PipelineBranches()
+                return instance
+            }
+
+
+            // Decoder for [PipelineBranchesitem]
+            Decoders.addDecoder(clazz: [PipelineBranchesitem].self) { (source: AnyObject) -> [PipelineBranchesitem] in
+                return Decoders.decode(clazz: [PipelineBranchesitem].self, source: source)
+            }
+            // Decoder for PipelineBranchesitem
+            Decoders.addDecoder(clazz: PipelineBranchesitem.self) { (source: AnyObject) -> PipelineBranchesitem in
+                let sourceDictionary = source as! [NSObject:AnyObject]
+                let instance = PipelineBranchesitem()
                 instance.displayName = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["displayName"])
                 instance.estimatedDurationInMillis = Decoders.decodeOptional(clazz: Int32.self, source: sourceDictionary["estimatedDurationInMillis"])
                 instance.name = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["name"])
                 instance.weatherScore = Decoders.decodeOptional(clazz: Int32.self, source: sourceDictionary["weatherScore"])
-                instance.latestRun = Decoders.decodeOptional(clazz: GetPipelineBranchesitemLatestRun.self, source: sourceDictionary["latestRun"])
+                instance.latestRun = Decoders.decodeOptional(clazz: PipelineBranchesitemlatestRun.self, source: sourceDictionary["latestRun"])
                 instance.organization = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["organization"])
-                instance.pullRequest = Decoders.decodeOptional(clazz: GetPipelineBranchesitemPullRequest.self, source: sourceDictionary["pullRequest"])
+                instance.pullRequest = Decoders.decodeOptional(clazz: PipelineBranchesitempullRequest.self, source: sourceDictionary["pullRequest"])
                 instance.totalNumberOfPullRequests = Decoders.decodeOptional(clazz: Int32.self, source: sourceDictionary["totalNumberOfPullRequests"])
                 instance._class = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["_class"])
                 return instance
             }
 
 
-            // Decoder for [GetPipelineBranchesitemLatestRun]
-            Decoders.addDecoder(clazz: [GetPipelineBranchesitemLatestRun].self) { (source: AnyObject) -> [GetPipelineBranchesitemLatestRun] in
-                return Decoders.decode(clazz: [GetPipelineBranchesitemLatestRun].self, source: source)
+            // Decoder for [PipelineBranchesitemlatestRun]
+            Decoders.addDecoder(clazz: [PipelineBranchesitemlatestRun].self) { (source: AnyObject) -> [PipelineBranchesitemlatestRun] in
+                return Decoders.decode(clazz: [PipelineBranchesitemlatestRun].self, source: source)
             }
-            // Decoder for GetPipelineBranchesitemLatestRun
-            Decoders.addDecoder(clazz: GetPipelineBranchesitemLatestRun.self) { (source: AnyObject) -> GetPipelineBranchesitemLatestRun in
+            // Decoder for PipelineBranchesitemlatestRun
+            Decoders.addDecoder(clazz: PipelineBranchesitemlatestRun.self) { (source: AnyObject) -> PipelineBranchesitemlatestRun in
                 let sourceDictionary = source as! [NSObject:AnyObject]
-                let instance = GetPipelineBranchesitemLatestRun()
+                let instance = PipelineBranchesitemlatestRun()
                 instance.durationInMillis = Decoders.decodeOptional(clazz: Int32.self, source: sourceDictionary["durationInMillis"])
                 instance.estimatedDurationInMillis = Decoders.decodeOptional(clazz: Int32.self, source: sourceDictionary["estimatedDurationInMillis"])
                 instance.enQueueTime = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["enQueueTime"])
@@ -253,15 +1165,15 @@ class Decoders {
             }
 
 
-            // Decoder for [GetPipelineBranchesitemPullRequest]
-            Decoders.addDecoder(clazz: [GetPipelineBranchesitemPullRequest].self) { (source: AnyObject) -> [GetPipelineBranchesitemPullRequest] in
-                return Decoders.decode(clazz: [GetPipelineBranchesitemPullRequest].self, source: source)
+            // Decoder for [PipelineBranchesitempullRequest]
+            Decoders.addDecoder(clazz: [PipelineBranchesitempullRequest].self) { (source: AnyObject) -> [PipelineBranchesitempullRequest] in
+                return Decoders.decode(clazz: [PipelineBranchesitempullRequest].self, source: source)
             }
-            // Decoder for GetPipelineBranchesitemPullRequest
-            Decoders.addDecoder(clazz: GetPipelineBranchesitemPullRequest.self) { (source: AnyObject) -> GetPipelineBranchesitemPullRequest in
+            // Decoder for PipelineBranchesitempullRequest
+            Decoders.addDecoder(clazz: PipelineBranchesitempullRequest.self) { (source: AnyObject) -> PipelineBranchesitempullRequest in
                 let sourceDictionary = source as! [NSObject:AnyObject]
-                let instance = GetPipelineBranchesitemPullRequest()
-                instance.links = Decoders.decodeOptional(clazz: GetPipelineBranchesitemPullRequestLinks.self, source: sourceDictionary["_links"])
+                let instance = PipelineBranchesitempullRequest()
+                instance.links = Decoders.decodeOptional(clazz: PipelineBranchesitempullRequestlinks.self, source: sourceDictionary["_links"])
                 instance.author = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["author"])
                 instance.id = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["id"])
                 instance.title = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["title"])
@@ -271,674 +1183,28 @@ class Decoders {
             }
 
 
-            // Decoder for [GetPipelineBranchesitemPullRequestLinks]
-            Decoders.addDecoder(clazz: [GetPipelineBranchesitemPullRequestLinks].self) { (source: AnyObject) -> [GetPipelineBranchesitemPullRequestLinks] in
-                return Decoders.decode(clazz: [GetPipelineBranchesitemPullRequestLinks].self, source: source)
+            // Decoder for [PipelineBranchesitempullRequestlinks]
+            Decoders.addDecoder(clazz: [PipelineBranchesitempullRequestlinks].self) { (source: AnyObject) -> [PipelineBranchesitempullRequestlinks] in
+                return Decoders.decode(clazz: [PipelineBranchesitempullRequestlinks].self, source: source)
             }
-            // Decoder for GetPipelineBranchesitemPullRequestLinks
-            Decoders.addDecoder(clazz: GetPipelineBranchesitemPullRequestLinks.self) { (source: AnyObject) -> GetPipelineBranchesitemPullRequestLinks in
+            // Decoder for PipelineBranchesitempullRequestlinks
+            Decoders.addDecoder(clazz: PipelineBranchesitempullRequestlinks.self) { (source: AnyObject) -> PipelineBranchesitempullRequestlinks in
                 let sourceDictionary = source as! [NSObject:AnyObject]
-                let instance = GetPipelineBranchesitemPullRequestLinks()
+                let instance = PipelineBranchesitempullRequestlinks()
                 instance._self = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["self"])
                 instance._class = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["_class"])
                 return instance
             }
 
 
-            // Decoder for [GetPipelines]
-            Decoders.addDecoder(clazz: [GetPipelines].self) { (source: AnyObject) -> [GetPipelines] in
-                return Decoders.decode(clazz: [GetPipelines].self, source: source)
+            // Decoder for [PipelineFolderImpl]
+            Decoders.addDecoder(clazz: [PipelineFolderImpl].self) { (source: AnyObject) -> [PipelineFolderImpl] in
+                return Decoders.decode(clazz: [PipelineFolderImpl].self, source: source)
             }
-            // Decoder for GetPipelines
-            Decoders.addDecoder(clazz: GetPipelines.self) { (source: AnyObject) -> GetPipelines in
+            // Decoder for PipelineFolderImpl
+            Decoders.addDecoder(clazz: PipelineFolderImpl.self) { (source: AnyObject) -> PipelineFolderImpl in
                 let sourceDictionary = source as! [NSObject:AnyObject]
-                let instance = GetPipelines()
-                return instance
-            }
-
-
-            // Decoder for [GetUsers]
-            Decoders.addDecoder(clazz: [GetUsers].self) { (source: AnyObject) -> [GetUsers] in
-                return Decoders.decode(clazz: [GetUsers].self, source: source)
-            }
-            // Decoder for GetUsers
-            Decoders.addDecoder(clazz: GetUsers.self) { (source: AnyObject) -> GetUsers in
-                let sourceDictionary = source as! [NSObject:AnyObject]
-                let instance = GetUsers()
-                return instance
-            }
-
-
-            // Decoder for [HudsonmodelAllView]
-            Decoders.addDecoder(clazz: [HudsonmodelAllView].self) { (source: AnyObject) -> [HudsonmodelAllView] in
-                return Decoders.decode(clazz: [HudsonmodelAllView].self, source: source)
-            }
-            // Decoder for HudsonmodelAllView
-            Decoders.addDecoder(clazz: HudsonmodelAllView.self) { (source: AnyObject) -> HudsonmodelAllView in
-                let sourceDictionary = source as! [NSObject:AnyObject]
-                let instance = HudsonmodelAllView()
-                instance._class = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["_class"])
-                instance.name = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["name"])
-                instance.url = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["url"])
-                return instance
-            }
-
-
-            // Decoder for [HudsonmodelCauseAction]
-            Decoders.addDecoder(clazz: [HudsonmodelCauseAction].self) { (source: AnyObject) -> [HudsonmodelCauseAction] in
-                return Decoders.decode(clazz: [HudsonmodelCauseAction].self, source: source)
-            }
-            // Decoder for HudsonmodelCauseAction
-            Decoders.addDecoder(clazz: HudsonmodelCauseAction.self) { (source: AnyObject) -> HudsonmodelCauseAction in
-                let sourceDictionary = source as! [NSObject:AnyObject]
-                let instance = HudsonmodelCauseAction()
-                instance._class = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["_class"])
-                instance.causes = Decoders.decodeOptional(clazz: Array.self, source: sourceDictionary["causes"])
-                return instance
-            }
-
-
-            // Decoder for [HudsonmodelCauseUserIdCause]
-            Decoders.addDecoder(clazz: [HudsonmodelCauseUserIdCause].self) { (source: AnyObject) -> [HudsonmodelCauseUserIdCause] in
-                return Decoders.decode(clazz: [HudsonmodelCauseUserIdCause].self, source: source)
-            }
-            // Decoder for HudsonmodelCauseUserIdCause
-            Decoders.addDecoder(clazz: HudsonmodelCauseUserIdCause.self) { (source: AnyObject) -> HudsonmodelCauseUserIdCause in
-                let sourceDictionary = source as! [NSObject:AnyObject]
-                let instance = HudsonmodelCauseUserIdCause()
-                instance._class = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["_class"])
-                instance.shortDescription = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["shortDescription"])
-                instance.userId = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["userId"])
-                instance.userName = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["userName"])
-                return instance
-            }
-
-
-            // Decoder for [HudsonmodelComputerSet]
-            Decoders.addDecoder(clazz: [HudsonmodelComputerSet].self) { (source: AnyObject) -> [HudsonmodelComputerSet] in
-                return Decoders.decode(clazz: [HudsonmodelComputerSet].self, source: source)
-            }
-            // Decoder for HudsonmodelComputerSet
-            Decoders.addDecoder(clazz: HudsonmodelComputerSet.self) { (source: AnyObject) -> HudsonmodelComputerSet in
-                let sourceDictionary = source as! [NSObject:AnyObject]
-                let instance = HudsonmodelComputerSet()
-                instance._class = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["_class"])
-                instance.busyExecutors = Decoders.decodeOptional(clazz: Int32.self, source: sourceDictionary["busyExecutors"])
-                instance.computer = Decoders.decodeOptional(clazz: Array.self, source: sourceDictionary["computer"])
-                instance.displayName = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["displayName"])
-                instance.totalExecutors = Decoders.decodeOptional(clazz: Int32.self, source: sourceDictionary["totalExecutors"])
-                return instance
-            }
-
-
-            // Decoder for [HudsonmodelFreeStyleBuild]
-            Decoders.addDecoder(clazz: [HudsonmodelFreeStyleBuild].self) { (source: AnyObject) -> [HudsonmodelFreeStyleBuild] in
-                return Decoders.decode(clazz: [HudsonmodelFreeStyleBuild].self, source: source)
-            }
-            // Decoder for HudsonmodelFreeStyleBuild
-            Decoders.addDecoder(clazz: HudsonmodelFreeStyleBuild.self) { (source: AnyObject) -> HudsonmodelFreeStyleBuild in
-                let sourceDictionary = source as! [NSObject:AnyObject]
-                let instance = HudsonmodelFreeStyleBuild()
-                instance._class = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["_class"])
-                instance.number = Decoders.decodeOptional(clazz: Int32.self, source: sourceDictionary["number"])
-                instance.url = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["url"])
-                instance.actions = Decoders.decodeOptional(clazz: Array.self, source: sourceDictionary["actions"])
-                instance.building = Decoders.decodeOptional(clazz: Bool.self, source: sourceDictionary["building"])
-                instance.description = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["description"])
-                instance.displayName = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["displayName"])
-                instance.duration = Decoders.decodeOptional(clazz: Int32.self, source: sourceDictionary["duration"])
-                instance.estimatedDuration = Decoders.decodeOptional(clazz: Int32.self, source: sourceDictionary["estimatedDuration"])
-                instance.executor = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["executor"])
-                instance.fullDisplayName = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["fullDisplayName"])
-                instance.id = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["id"])
-                instance.keepLog = Decoders.decodeOptional(clazz: Bool.self, source: sourceDictionary["keepLog"])
-                instance.queueId = Decoders.decodeOptional(clazz: Int32.self, source: sourceDictionary["queueId"])
-                instance.result = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["result"])
-                instance.timestamp = Decoders.decodeOptional(clazz: Int32.self, source: sourceDictionary["timestamp"])
-                instance.builtOn = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["builtOn"])
-                instance.changeSet = Decoders.decodeOptional(clazz: HudsonscmEmptyChangeLogSet.self, source: sourceDictionary["changeSet"])
-                return instance
-            }
-
-
-            // Decoder for [HudsonmodelFreeStyleProject]
-            Decoders.addDecoder(clazz: [HudsonmodelFreeStyleProject].self) { (source: AnyObject) -> [HudsonmodelFreeStyleProject] in
-                return Decoders.decode(clazz: [HudsonmodelFreeStyleProject].self, source: source)
-            }
-            // Decoder for HudsonmodelFreeStyleProject
-            Decoders.addDecoder(clazz: HudsonmodelFreeStyleProject.self) { (source: AnyObject) -> HudsonmodelFreeStyleProject in
-                let sourceDictionary = source as! [NSObject:AnyObject]
-                let instance = HudsonmodelFreeStyleProject()
-                instance._class = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["_class"])
-                instance.name = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["name"])
-                instance.url = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["url"])
-                instance.color = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["color"])
-                instance.actions = Decoders.decodeOptional(clazz: Array.self, source: sourceDictionary["actions"])
-                instance.description = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["description"])
-                instance.displayName = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["displayName"])
-                instance.displayNameOrNull = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["displayNameOrNull"])
-                instance.fullDisplayName = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["fullDisplayName"])
-                instance.fullName = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["fullName"])
-                instance.buildable = Decoders.decodeOptional(clazz: Bool.self, source: sourceDictionary["buildable"])
-                instance.builds = Decoders.decodeOptional(clazz: Array.self, source: sourceDictionary["builds"])
-                instance.firstBuild = Decoders.decodeOptional(clazz: HudsonmodelFreeStyleBuild.self, source: sourceDictionary["firstBuild"])
-                instance.healthReport = Decoders.decodeOptional(clazz: Array.self, source: sourceDictionary["healthReport"])
-                instance.inQueue = Decoders.decodeOptional(clazz: Bool.self, source: sourceDictionary["inQueue"])
-                instance.keepDependencies = Decoders.decodeOptional(clazz: Bool.self, source: sourceDictionary["keepDependencies"])
-                instance.lastBuild = Decoders.decodeOptional(clazz: HudsonmodelFreeStyleBuild.self, source: sourceDictionary["lastBuild"])
-                instance.lastCompletedBuild = Decoders.decodeOptional(clazz: HudsonmodelFreeStyleBuild.self, source: sourceDictionary["lastCompletedBuild"])
-                instance.lastFailedBuild = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["lastFailedBuild"])
-                instance.lastStableBuild = Decoders.decodeOptional(clazz: HudsonmodelFreeStyleBuild.self, source: sourceDictionary["lastStableBuild"])
-                instance.lastSuccessfulBuild = Decoders.decodeOptional(clazz: HudsonmodelFreeStyleBuild.self, source: sourceDictionary["lastSuccessfulBuild"])
-                instance.lastUnstableBuild = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["lastUnstableBuild"])
-                instance.lastUnsuccessfulBuild = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["lastUnsuccessfulBuild"])
-                instance.nextBuildNumber = Decoders.decodeOptional(clazz: Int32.self, source: sourceDictionary["nextBuildNumber"])
-                instance.queueItem = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["queueItem"])
-                instance.concurrentBuild = Decoders.decodeOptional(clazz: Bool.self, source: sourceDictionary["concurrentBuild"])
-                instance.scm = Decoders.decodeOptional(clazz: HudsonscmNullSCM.self, source: sourceDictionary["scm"])
-                return instance
-            }
-
-
-            // Decoder for [HudsonmodelFreeStyleProjectactions]
-            Decoders.addDecoder(clazz: [HudsonmodelFreeStyleProjectactions].self) { (source: AnyObject) -> [HudsonmodelFreeStyleProjectactions] in
-                return Decoders.decode(clazz: [HudsonmodelFreeStyleProjectactions].self, source: source)
-            }
-            // Decoder for HudsonmodelFreeStyleProjectactions
-            Decoders.addDecoder(clazz: HudsonmodelFreeStyleProjectactions.self) { (source: AnyObject) -> HudsonmodelFreeStyleProjectactions in
-                let sourceDictionary = source as! [NSObject:AnyObject]
-                let instance = HudsonmodelFreeStyleProjectactions()
-                instance._class = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["_class"])
-                return instance
-            }
-
-
-            // Decoder for [HudsonmodelFreeStyleProjecthealthReport]
-            Decoders.addDecoder(clazz: [HudsonmodelFreeStyleProjecthealthReport].self) { (source: AnyObject) -> [HudsonmodelFreeStyleProjecthealthReport] in
-                return Decoders.decode(clazz: [HudsonmodelFreeStyleProjecthealthReport].self, source: source)
-            }
-            // Decoder for HudsonmodelFreeStyleProjecthealthReport
-            Decoders.addDecoder(clazz: HudsonmodelFreeStyleProjecthealthReport.self) { (source: AnyObject) -> HudsonmodelFreeStyleProjecthealthReport in
-                let sourceDictionary = source as! [NSObject:AnyObject]
-                let instance = HudsonmodelFreeStyleProjecthealthReport()
-                instance.description = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["description"])
-                instance.iconClassName = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["iconClassName"])
-                instance.iconUrl = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["iconUrl"])
-                instance.score = Decoders.decodeOptional(clazz: Int32.self, source: sourceDictionary["score"])
-                instance._class = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["_class"])
-                return instance
-            }
-
-
-            // Decoder for [HudsonmodelHudson]
-            Decoders.addDecoder(clazz: [HudsonmodelHudson].self) { (source: AnyObject) -> [HudsonmodelHudson] in
-                return Decoders.decode(clazz: [HudsonmodelHudson].self, source: source)
-            }
-            // Decoder for HudsonmodelHudson
-            Decoders.addDecoder(clazz: HudsonmodelHudson.self) { (source: AnyObject) -> HudsonmodelHudson in
-                let sourceDictionary = source as! [NSObject:AnyObject]
-                let instance = HudsonmodelHudson()
-                instance._class = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["_class"])
-                instance.assignedLabels = Decoders.decodeOptional(clazz: Array.self, source: sourceDictionary["assignedLabels"])
-                instance.mode = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["mode"])
-                instance.nodeDescription = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["nodeDescription"])
-                instance.nodeName = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["nodeName"])
-                instance.numExecutors = Decoders.decodeOptional(clazz: Int32.self, source: sourceDictionary["numExecutors"])
-                instance.description = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["description"])
-                instance.jobs = Decoders.decodeOptional(clazz: Array.self, source: sourceDictionary["jobs"])
-                instance.primaryView = Decoders.decodeOptional(clazz: HudsonmodelAllView.self, source: sourceDictionary["primaryView"])
-                instance.quietingDown = Decoders.decodeOptional(clazz: Bool.self, source: sourceDictionary["quietingDown"])
-                instance.slaveAgentPort = Decoders.decodeOptional(clazz: Int32.self, source: sourceDictionary["slaveAgentPort"])
-                instance.unlabeledLoad = Decoders.decodeOptional(clazz: JenkinsmodelUnlabeledLoadStatistics.self, source: sourceDictionary["unlabeledLoad"])
-                instance.useCrumbs = Decoders.decodeOptional(clazz: Bool.self, source: sourceDictionary["useCrumbs"])
-                instance.useSecurity = Decoders.decodeOptional(clazz: Bool.self, source: sourceDictionary["useSecurity"])
-                instance.views = Decoders.decodeOptional(clazz: Array.self, source: sourceDictionary["views"])
-                return instance
-            }
-
-
-            // Decoder for [HudsonmodelHudsonMasterComputer]
-            Decoders.addDecoder(clazz: [HudsonmodelHudsonMasterComputer].self) { (source: AnyObject) -> [HudsonmodelHudsonMasterComputer] in
-                return Decoders.decode(clazz: [HudsonmodelHudsonMasterComputer].self, source: source)
-            }
-            // Decoder for HudsonmodelHudsonMasterComputer
-            Decoders.addDecoder(clazz: HudsonmodelHudsonMasterComputer.self) { (source: AnyObject) -> HudsonmodelHudsonMasterComputer in
-                let sourceDictionary = source as! [NSObject:AnyObject]
-                let instance = HudsonmodelHudsonMasterComputer()
-                instance._class = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["_class"])
-                instance.displayName = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["displayName"])
-                instance.executors = Decoders.decodeOptional(clazz: Array.self, source: sourceDictionary["executors"])
-                instance.icon = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["icon"])
-                instance.iconClassName = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["iconClassName"])
-                instance.idle = Decoders.decodeOptional(clazz: Bool.self, source: sourceDictionary["idle"])
-                instance.jnlpAgent = Decoders.decodeOptional(clazz: Bool.self, source: sourceDictionary["jnlpAgent"])
-                instance.launchSupported = Decoders.decodeOptional(clazz: Bool.self, source: sourceDictionary["launchSupported"])
-                instance.loadStatistics = Decoders.decodeOptional(clazz: HudsonmodelLabel1.self, source: sourceDictionary["loadStatistics"])
-                instance.manualLaunchAllowed = Decoders.decodeOptional(clazz: Bool.self, source: sourceDictionary["manualLaunchAllowed"])
-                instance.monitorData = Decoders.decodeOptional(clazz: HudsonmodelHudsonMasterComputerMonitorData.self, source: sourceDictionary["monitorData"])
-                instance.numExecutors = Decoders.decodeOptional(clazz: Int32.self, source: sourceDictionary["numExecutors"])
-                instance.offline = Decoders.decodeOptional(clazz: Bool.self, source: sourceDictionary["offline"])
-                instance.offlineCause = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["offlineCause"])
-                instance.offlineCauseReason = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["offlineCauseReason"])
-                instance.temporarilyOffline = Decoders.decodeOptional(clazz: Bool.self, source: sourceDictionary["temporarilyOffline"])
-                return instance
-            }
-
-
-            // Decoder for [HudsonmodelHudsonMasterComputerMonitorData]
-            Decoders.addDecoder(clazz: [HudsonmodelHudsonMasterComputerMonitorData].self) { (source: AnyObject) -> [HudsonmodelHudsonMasterComputerMonitorData] in
-                return Decoders.decode(clazz: [HudsonmodelHudsonMasterComputerMonitorData].self, source: source)
-            }
-            // Decoder for HudsonmodelHudsonMasterComputerMonitorData
-            Decoders.addDecoder(clazz: HudsonmodelHudsonMasterComputerMonitorData.self) { (source: AnyObject) -> HudsonmodelHudsonMasterComputerMonitorData in
-                let sourceDictionary = source as! [NSObject:AnyObject]
-                let instance = HudsonmodelHudsonMasterComputerMonitorData()
-                instance.hudsonNodeMonitorsSwapSpaceMonitor = Decoders.decodeOptional(clazz: HudsonnodeMonitorsSwapSpaceMonitorMemoryUsage2.self, source: sourceDictionary["hudson.node_monitors.SwapSpaceMonitor"])
-                instance.hudsonNodeMonitorsTemporarySpaceMonitor = Decoders.decodeOptional(clazz: HudsonnodeMonitorsDiskSpaceMonitorDescriptorDiskSpace.self, source: sourceDictionary["hudson.node_monitors.TemporarySpaceMonitor"])
-                instance.hudsonNodeMonitorsDiskSpaceMonitor = Decoders.decodeOptional(clazz: HudsonnodeMonitorsDiskSpaceMonitorDescriptorDiskSpace.self, source: sourceDictionary["hudson.node_monitors.DiskSpaceMonitor"])
-                instance.hudsonNodeMonitorsArchitectureMonitor = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["hudson.node_monitors.ArchitectureMonitor"])
-                instance.hudsonNodeMonitorsResponseTimeMonitor = Decoders.decodeOptional(clazz: HudsonnodeMonitorsResponseTimeMonitorData.self, source: sourceDictionary["hudson.node_monitors.ResponseTimeMonitor"])
-                instance.hudsonNodeMonitorsClockMonitor = Decoders.decodeOptional(clazz: HudsonutilClockDifference.self, source: sourceDictionary["hudson.node_monitors.ClockMonitor"])
-                instance._class = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["_class"])
-                return instance
-            }
-
-
-            // Decoder for [HudsonmodelHudsonMasterComputerexecutors]
-            Decoders.addDecoder(clazz: [HudsonmodelHudsonMasterComputerexecutors].self) { (source: AnyObject) -> [HudsonmodelHudsonMasterComputerexecutors] in
-                return Decoders.decode(clazz: [HudsonmodelHudsonMasterComputerexecutors].self, source: source)
-            }
-            // Decoder for HudsonmodelHudsonMasterComputerexecutors
-            Decoders.addDecoder(clazz: HudsonmodelHudsonMasterComputerexecutors.self) { (source: AnyObject) -> HudsonmodelHudsonMasterComputerexecutors in
-                let sourceDictionary = source as! [NSObject:AnyObject]
-                let instance = HudsonmodelHudsonMasterComputerexecutors()
-                instance.currentExecutable = Decoders.decodeOptional(clazz: HudsonmodelFreeStyleBuild.self, source: sourceDictionary["currentExecutable"])
-                instance.idle = Decoders.decodeOptional(clazz: Bool.self, source: sourceDictionary["idle"])
-                instance.likelyStuck = Decoders.decodeOptional(clazz: Bool.self, source: sourceDictionary["likelyStuck"])
-                instance.number = Decoders.decodeOptional(clazz: Int32.self, source: sourceDictionary["number"])
-                instance.progress = Decoders.decodeOptional(clazz: Int32.self, source: sourceDictionary["progress"])
-                instance._class = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["_class"])
-                return instance
-            }
-
-
-            // Decoder for [HudsonmodelHudsonassignedLabels]
-            Decoders.addDecoder(clazz: [HudsonmodelHudsonassignedLabels].self) { (source: AnyObject) -> [HudsonmodelHudsonassignedLabels] in
-                return Decoders.decode(clazz: [HudsonmodelHudsonassignedLabels].self, source: source)
-            }
-            // Decoder for HudsonmodelHudsonassignedLabels
-            Decoders.addDecoder(clazz: HudsonmodelHudsonassignedLabels.self) { (source: AnyObject) -> HudsonmodelHudsonassignedLabels in
-                let sourceDictionary = source as! [NSObject:AnyObject]
-                let instance = HudsonmodelHudsonassignedLabels()
-                instance._class = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["_class"])
-                return instance
-            }
-
-
-            // Decoder for [HudsonmodelLabel1]
-            Decoders.addDecoder(clazz: [HudsonmodelLabel1].self) { (source: AnyObject) -> [HudsonmodelLabel1] in
-                return Decoders.decode(clazz: [HudsonmodelLabel1].self, source: source)
-            }
-            // Decoder for HudsonmodelLabel1
-            Decoders.addDecoder(clazz: HudsonmodelLabel1.self) { (source: AnyObject) -> HudsonmodelLabel1 in
-                let sourceDictionary = source as! [NSObject:AnyObject]
-                let instance = HudsonmodelLabel1()
-                instance._class = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["_class"])
-                return instance
-            }
-
-
-            // Decoder for [HudsonmodelListView]
-            Decoders.addDecoder(clazz: [HudsonmodelListView].self) { (source: AnyObject) -> [HudsonmodelListView] in
-                return Decoders.decode(clazz: [HudsonmodelListView].self, source: source)
-            }
-            // Decoder for HudsonmodelListView
-            Decoders.addDecoder(clazz: HudsonmodelListView.self) { (source: AnyObject) -> HudsonmodelListView in
-                let sourceDictionary = source as! [NSObject:AnyObject]
-                let instance = HudsonmodelListView()
-                instance._class = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["_class"])
-                instance.description = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["description"])
-                instance.jobs = Decoders.decodeOptional(clazz: Array.self, source: sourceDictionary["jobs"])
-                instance.name = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["name"])
-                instance.url = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["url"])
-                return instance
-            }
-
-
-            // Decoder for [HudsonmodelQueue]
-            Decoders.addDecoder(clazz: [HudsonmodelQueue].self) { (source: AnyObject) -> [HudsonmodelQueue] in
-                return Decoders.decode(clazz: [HudsonmodelQueue].self, source: source)
-            }
-            // Decoder for HudsonmodelQueue
-            Decoders.addDecoder(clazz: HudsonmodelQueue.self) { (source: AnyObject) -> HudsonmodelQueue in
-                let sourceDictionary = source as! [NSObject:AnyObject]
-                let instance = HudsonmodelQueue()
-                instance._class = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["_class"])
-                instance.items = Decoders.decodeOptional(clazz: Array.self, source: sourceDictionary["items"])
-                return instance
-            }
-
-
-            // Decoder for [HudsonmodelQueueBlockedItem]
-            Decoders.addDecoder(clazz: [HudsonmodelQueueBlockedItem].self) { (source: AnyObject) -> [HudsonmodelQueueBlockedItem] in
-                return Decoders.decode(clazz: [HudsonmodelQueueBlockedItem].self, source: source)
-            }
-            // Decoder for HudsonmodelQueueBlockedItem
-            Decoders.addDecoder(clazz: HudsonmodelQueueBlockedItem.self) { (source: AnyObject) -> HudsonmodelQueueBlockedItem in
-                let sourceDictionary = source as! [NSObject:AnyObject]
-                let instance = HudsonmodelQueueBlockedItem()
-                instance._class = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["_class"])
-                instance.actions = Decoders.decodeOptional(clazz: Array.self, source: sourceDictionary["actions"])
-                instance.blocked = Decoders.decodeOptional(clazz: Bool.self, source: sourceDictionary["blocked"])
-                instance.buildable = Decoders.decodeOptional(clazz: Bool.self, source: sourceDictionary["buildable"])
-                instance.id = Decoders.decodeOptional(clazz: Int32.self, source: sourceDictionary["id"])
-                instance.inQueueSince = Decoders.decodeOptional(clazz: Int32.self, source: sourceDictionary["inQueueSince"])
-                instance.params = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["params"])
-                instance.stuck = Decoders.decodeOptional(clazz: Bool.self, source: sourceDictionary["stuck"])
-                instance.task = Decoders.decodeOptional(clazz: HudsonmodelFreeStyleProject.self, source: sourceDictionary["task"])
-                instance.url = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["url"])
-                instance.why = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["why"])
-                instance.buildableStartMilliseconds = Decoders.decodeOptional(clazz: Int32.self, source: sourceDictionary["buildableStartMilliseconds"])
-                return instance
-            }
-
-
-            // Decoder for [HudsonmodelQueueLeftItem]
-            Decoders.addDecoder(clazz: [HudsonmodelQueueLeftItem].self) { (source: AnyObject) -> [HudsonmodelQueueLeftItem] in
-                return Decoders.decode(clazz: [HudsonmodelQueueLeftItem].self, source: source)
-            }
-            // Decoder for HudsonmodelQueueLeftItem
-            Decoders.addDecoder(clazz: HudsonmodelQueueLeftItem.self) { (source: AnyObject) -> HudsonmodelQueueLeftItem in
-                let sourceDictionary = source as! [NSObject:AnyObject]
-                let instance = HudsonmodelQueueLeftItem()
-                instance._class = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["_class"])
-                instance.actions = Decoders.decodeOptional(clazz: Array.self, source: sourceDictionary["actions"])
-                instance.blocked = Decoders.decodeOptional(clazz: Bool.self, source: sourceDictionary["blocked"])
-                instance.buildable = Decoders.decodeOptional(clazz: Bool.self, source: sourceDictionary["buildable"])
-                instance.id = Decoders.decodeOptional(clazz: Int32.self, source: sourceDictionary["id"])
-                instance.inQueueSince = Decoders.decodeOptional(clazz: Int32.self, source: sourceDictionary["inQueueSince"])
-                instance.params = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["params"])
-                instance.stuck = Decoders.decodeOptional(clazz: Bool.self, source: sourceDictionary["stuck"])
-                instance.task = Decoders.decodeOptional(clazz: HudsonmodelFreeStyleProject.self, source: sourceDictionary["task"])
-                instance.url = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["url"])
-                instance.why = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["why"])
-                instance.cancelled = Decoders.decodeOptional(clazz: Bool.self, source: sourceDictionary["cancelled"])
-                instance.executable = Decoders.decodeOptional(clazz: HudsonmodelFreeStyleBuild.self, source: sourceDictionary["executable"])
-                return instance
-            }
-
-
-            // Decoder for [HudsonmodelStringParameterDefinition]
-            Decoders.addDecoder(clazz: [HudsonmodelStringParameterDefinition].self) { (source: AnyObject) -> [HudsonmodelStringParameterDefinition] in
-                return Decoders.decode(clazz: [HudsonmodelStringParameterDefinition].self, source: source)
-            }
-            // Decoder for HudsonmodelStringParameterDefinition
-            Decoders.addDecoder(clazz: HudsonmodelStringParameterDefinition.self) { (source: AnyObject) -> HudsonmodelStringParameterDefinition in
-                let sourceDictionary = source as! [NSObject:AnyObject]
-                let instance = HudsonmodelStringParameterDefinition()
-                instance._class = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["_class"])
-                instance.defaultParameterValue = Decoders.decodeOptional(clazz: HudsonmodelStringParameterValue.self, source: sourceDictionary["defaultParameterValue"])
-                instance.description = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["description"])
-                instance.name = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["name"])
-                instance.type = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["type"])
-                return instance
-            }
-
-
-            // Decoder for [HudsonmodelStringParameterValue]
-            Decoders.addDecoder(clazz: [HudsonmodelStringParameterValue].self) { (source: AnyObject) -> [HudsonmodelStringParameterValue] in
-                return Decoders.decode(clazz: [HudsonmodelStringParameterValue].self, source: source)
-            }
-            // Decoder for HudsonmodelStringParameterValue
-            Decoders.addDecoder(clazz: HudsonmodelStringParameterValue.self) { (source: AnyObject) -> HudsonmodelStringParameterValue in
-                let sourceDictionary = source as! [NSObject:AnyObject]
-                let instance = HudsonmodelStringParameterValue()
-                instance._class = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["_class"])
-                instance.name = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["name"])
-                instance.value = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["value"])
-                return instance
-            }
-
-
-            // Decoder for [HudsonnodeMonitorsDiskSpaceMonitorDescriptorDiskSpace]
-            Decoders.addDecoder(clazz: [HudsonnodeMonitorsDiskSpaceMonitorDescriptorDiskSpace].self) { (source: AnyObject) -> [HudsonnodeMonitorsDiskSpaceMonitorDescriptorDiskSpace] in
-                return Decoders.decode(clazz: [HudsonnodeMonitorsDiskSpaceMonitorDescriptorDiskSpace].self, source: source)
-            }
-            // Decoder for HudsonnodeMonitorsDiskSpaceMonitorDescriptorDiskSpace
-            Decoders.addDecoder(clazz: HudsonnodeMonitorsDiskSpaceMonitorDescriptorDiskSpace.self) { (source: AnyObject) -> HudsonnodeMonitorsDiskSpaceMonitorDescriptorDiskSpace in
-                let sourceDictionary = source as! [NSObject:AnyObject]
-                let instance = HudsonnodeMonitorsDiskSpaceMonitorDescriptorDiskSpace()
-                instance._class = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["_class"])
-                instance.timestamp = Decoders.decodeOptional(clazz: Int32.self, source: sourceDictionary["timestamp"])
-                instance.path = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["path"])
-                instance.size = Decoders.decodeOptional(clazz: Int32.self, source: sourceDictionary["size"])
-                return instance
-            }
-
-
-            // Decoder for [HudsonnodeMonitorsResponseTimeMonitorData]
-            Decoders.addDecoder(clazz: [HudsonnodeMonitorsResponseTimeMonitorData].self) { (source: AnyObject) -> [HudsonnodeMonitorsResponseTimeMonitorData] in
-                return Decoders.decode(clazz: [HudsonnodeMonitorsResponseTimeMonitorData].self, source: source)
-            }
-            // Decoder for HudsonnodeMonitorsResponseTimeMonitorData
-            Decoders.addDecoder(clazz: HudsonnodeMonitorsResponseTimeMonitorData.self) { (source: AnyObject) -> HudsonnodeMonitorsResponseTimeMonitorData in
-                let sourceDictionary = source as! [NSObject:AnyObject]
-                let instance = HudsonnodeMonitorsResponseTimeMonitorData()
-                instance._class = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["_class"])
-                instance.timestamp = Decoders.decodeOptional(clazz: Int32.self, source: sourceDictionary["timestamp"])
-                instance.average = Decoders.decodeOptional(clazz: Int32.self, source: sourceDictionary["average"])
-                return instance
-            }
-
-
-            // Decoder for [HudsonnodeMonitorsSwapSpaceMonitorMemoryUsage2]
-            Decoders.addDecoder(clazz: [HudsonnodeMonitorsSwapSpaceMonitorMemoryUsage2].self) { (source: AnyObject) -> [HudsonnodeMonitorsSwapSpaceMonitorMemoryUsage2] in
-                return Decoders.decode(clazz: [HudsonnodeMonitorsSwapSpaceMonitorMemoryUsage2].self, source: source)
-            }
-            // Decoder for HudsonnodeMonitorsSwapSpaceMonitorMemoryUsage2
-            Decoders.addDecoder(clazz: HudsonnodeMonitorsSwapSpaceMonitorMemoryUsage2.self) { (source: AnyObject) -> HudsonnodeMonitorsSwapSpaceMonitorMemoryUsage2 in
-                let sourceDictionary = source as! [NSObject:AnyObject]
-                let instance = HudsonnodeMonitorsSwapSpaceMonitorMemoryUsage2()
-                instance._class = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["_class"])
-                instance.availablePhysicalMemory = Decoders.decodeOptional(clazz: Int32.self, source: sourceDictionary["availablePhysicalMemory"])
-                instance.availableSwapSpace = Decoders.decodeOptional(clazz: Int32.self, source: sourceDictionary["availableSwapSpace"])
-                instance.totalPhysicalMemory = Decoders.decodeOptional(clazz: Int32.self, source: sourceDictionary["totalPhysicalMemory"])
-                instance.totalSwapSpace = Decoders.decodeOptional(clazz: Int32.self, source: sourceDictionary["totalSwapSpace"])
-                return instance
-            }
-
-
-            // Decoder for [HudsonscmEmptyChangeLogSet]
-            Decoders.addDecoder(clazz: [HudsonscmEmptyChangeLogSet].self) { (source: AnyObject) -> [HudsonscmEmptyChangeLogSet] in
-                return Decoders.decode(clazz: [HudsonscmEmptyChangeLogSet].self, source: source)
-            }
-            // Decoder for HudsonscmEmptyChangeLogSet
-            Decoders.addDecoder(clazz: HudsonscmEmptyChangeLogSet.self) { (source: AnyObject) -> HudsonscmEmptyChangeLogSet in
-                let sourceDictionary = source as! [NSObject:AnyObject]
-                let instance = HudsonscmEmptyChangeLogSet()
-                instance._class = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["_class"])
-                instance.kind = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["kind"])
-                return instance
-            }
-
-
-            // Decoder for [HudsonscmNullSCM]
-            Decoders.addDecoder(clazz: [HudsonscmNullSCM].self) { (source: AnyObject) -> [HudsonscmNullSCM] in
-                return Decoders.decode(clazz: [HudsonscmNullSCM].self, source: source)
-            }
-            // Decoder for HudsonscmNullSCM
-            Decoders.addDecoder(clazz: HudsonscmNullSCM.self) { (source: AnyObject) -> HudsonscmNullSCM in
-                let sourceDictionary = source as! [NSObject:AnyObject]
-                let instance = HudsonscmNullSCM()
-                instance._class = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["_class"])
-                return instance
-            }
-
-
-            // Decoder for [HudsonsecuritycsrfDefaultCrumbIssuer]
-            Decoders.addDecoder(clazz: [HudsonsecuritycsrfDefaultCrumbIssuer].self) { (source: AnyObject) -> [HudsonsecuritycsrfDefaultCrumbIssuer] in
-                return Decoders.decode(clazz: [HudsonsecuritycsrfDefaultCrumbIssuer].self, source: source)
-            }
-            // Decoder for HudsonsecuritycsrfDefaultCrumbIssuer
-            Decoders.addDecoder(clazz: HudsonsecuritycsrfDefaultCrumbIssuer.self) { (source: AnyObject) -> HudsonsecuritycsrfDefaultCrumbIssuer in
-                let sourceDictionary = source as! [NSObject:AnyObject]
-                let instance = HudsonsecuritycsrfDefaultCrumbIssuer()
-                instance._class = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["_class"])
-                instance.crumb = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["crumb"])
-                instance.crumbRequestField = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["crumbRequestField"])
-                return instance
-            }
-
-
-            // Decoder for [HudsonutilClockDifference]
-            Decoders.addDecoder(clazz: [HudsonutilClockDifference].self) { (source: AnyObject) -> [HudsonutilClockDifference] in
-                return Decoders.decode(clazz: [HudsonutilClockDifference].self, source: source)
-            }
-            // Decoder for HudsonutilClockDifference
-            Decoders.addDecoder(clazz: HudsonutilClockDifference.self) { (source: AnyObject) -> HudsonutilClockDifference in
-                let sourceDictionary = source as! [NSObject:AnyObject]
-                let instance = HudsonutilClockDifference()
-                instance._class = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["_class"])
-                instance.diff = Decoders.decodeOptional(clazz: Int32.self, source: sourceDictionary["diff"])
-                return instance
-            }
-
-
-            // Decoder for [IojenkinsblueoceanresthalLink]
-            Decoders.addDecoder(clazz: [IojenkinsblueoceanresthalLink].self) { (source: AnyObject) -> [IojenkinsblueoceanresthalLink] in
-                return Decoders.decode(clazz: [IojenkinsblueoceanresthalLink].self, source: source)
-            }
-            // Decoder for IojenkinsblueoceanresthalLink
-            Decoders.addDecoder(clazz: IojenkinsblueoceanresthalLink.self) { (source: AnyObject) -> IojenkinsblueoceanresthalLink in
-                let sourceDictionary = source as! [NSObject:AnyObject]
-                let instance = IojenkinsblueoceanresthalLink()
-                instance._class = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["_class"])
-                instance.href = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["href"])
-                return instance
-            }
-
-
-            // Decoder for [IojenkinsblueoceanrestimplpipelineBranchImpl]
-            Decoders.addDecoder(clazz: [IojenkinsblueoceanrestimplpipelineBranchImpl].self) { (source: AnyObject) -> [IojenkinsblueoceanrestimplpipelineBranchImpl] in
-                return Decoders.decode(clazz: [IojenkinsblueoceanrestimplpipelineBranchImpl].self, source: source)
-            }
-            // Decoder for IojenkinsblueoceanrestimplpipelineBranchImpl
-            Decoders.addDecoder(clazz: IojenkinsblueoceanrestimplpipelineBranchImpl.self) { (source: AnyObject) -> IojenkinsblueoceanrestimplpipelineBranchImpl in
-                let sourceDictionary = source as! [NSObject:AnyObject]
-                let instance = IojenkinsblueoceanrestimplpipelineBranchImpl()
-                instance._class = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["_class"])
-                instance.displayName = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["displayName"])
-                instance.estimatedDurationInMillis = Decoders.decodeOptional(clazz: Int32.self, source: sourceDictionary["estimatedDurationInMillis"])
-                instance.fullDisplayName = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["fullDisplayName"])
-                instance.fullName = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["fullName"])
-                instance.name = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["name"])
-                instance.organization = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["organization"])
-                instance.parameters = Decoders.decodeOptional(clazz: Array.self, source: sourceDictionary["parameters"])
-                instance.permissions = Decoders.decodeOptional(clazz: IojenkinsblueoceanrestimplpipelineBranchImplPermissions.self, source: sourceDictionary["permissions"])
-                instance.weatherScore = Decoders.decodeOptional(clazz: Int32.self, source: sourceDictionary["weatherScore"])
-                instance.pullRequest = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["pullRequest"])
-                return instance
-            }
-
-
-            // Decoder for [IojenkinsblueoceanrestimplpipelineBranchImplPermissions]
-            Decoders.addDecoder(clazz: [IojenkinsblueoceanrestimplpipelineBranchImplPermissions].self) { (source: AnyObject) -> [IojenkinsblueoceanrestimplpipelineBranchImplPermissions] in
-                return Decoders.decode(clazz: [IojenkinsblueoceanrestimplpipelineBranchImplPermissions].self, source: source)
-            }
-            // Decoder for IojenkinsblueoceanrestimplpipelineBranchImplPermissions
-            Decoders.addDecoder(clazz: IojenkinsblueoceanrestimplpipelineBranchImplPermissions.self) { (source: AnyObject) -> IojenkinsblueoceanrestimplpipelineBranchImplPermissions in
-                let sourceDictionary = source as! [NSObject:AnyObject]
-                let instance = IojenkinsblueoceanrestimplpipelineBranchImplPermissions()
-                instance.create = Decoders.decodeOptional(clazz: Bool.self, source: sourceDictionary["create"])
-                instance.read = Decoders.decodeOptional(clazz: Bool.self, source: sourceDictionary["read"])
-                instance.start = Decoders.decodeOptional(clazz: Bool.self, source: sourceDictionary["start"])
-                instance.stop = Decoders.decodeOptional(clazz: Bool.self, source: sourceDictionary["stop"])
-                instance._class = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["_class"])
-                return instance
-            }
-
-
-            // Decoder for [IojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1]
-            Decoders.addDecoder(clazz: [IojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1].self) { (source: AnyObject) -> [IojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1] in
-                return Decoders.decode(clazz: [IojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1].self, source: source)
-            }
-            // Decoder for IojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1
-            Decoders.addDecoder(clazz: IojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1.self) { (source: AnyObject) -> IojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1 in
-                let sourceDictionary = source as! [NSObject:AnyObject]
-                let instance = IojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1()
-                instance._class = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["_class"])
-                instance.links = Decoders.decodeOptional(clazz: IojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1Links.self, source: sourceDictionary["_links"])
-                instance.map = Decoders.decodeOptional(clazz: IojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1Map.self, source: sourceDictionary["map"])
-                return instance
-            }
-
-
-            // Decoder for [IojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1Links]
-            Decoders.addDecoder(clazz: [IojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1Links].self) { (source: AnyObject) -> [IojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1Links] in
-                return Decoders.decode(clazz: [IojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1Links].self, source: source)
-            }
-            // Decoder for IojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1Links
-            Decoders.addDecoder(clazz: IojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1Links.self) { (source: AnyObject) -> IojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1Links in
-                let sourceDictionary = source as! [NSObject:AnyObject]
-                let instance = IojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1Links()
-                instance._self = Decoders.decodeOptional(clazz: IojenkinsblueoceanresthalLink.self, source: sourceDictionary["self"])
-                instance._class = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["_class"])
-                return instance
-            }
-
-
-            // Decoder for [IojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1Map]
-            Decoders.addDecoder(clazz: [IojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1Map].self) { (source: AnyObject) -> [IojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1Map] in
-                return Decoders.decode(clazz: [IojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1Map].self, source: source)
-            }
-            // Decoder for IojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1Map
-            Decoders.addDecoder(clazz: IojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1Map.self) { (source: AnyObject) -> IojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1Map in
-                let sourceDictionary = source as! [NSObject:AnyObject]
-                let instance = IojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1Map()
-                instance.ioJenkinsBlueoceanServiceEmbeddedRestPipelineImpl = Decoders.decodeOptional(clazz: IojenkinsblueoceanserviceembeddedrestExtensionClassImpl.self, source: sourceDictionary["io.jenkins.blueocean.service.embedded.rest.PipelineImpl"])
-                instance.ioJenkinsBlueoceanServiceEmbeddedRestMultiBranchPipelineImpl = Decoders.decodeOptional(clazz: IojenkinsblueoceanserviceembeddedrestExtensionClassImpl.self, source: sourceDictionary["io.jenkins.blueocean.service.embedded.rest.MultiBranchPipelineImpl"])
-                instance._class = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["_class"])
-                return instance
-            }
-
-
-            // Decoder for [IojenkinsblueoceanserviceembeddedrestExtensionClassImpl]
-            Decoders.addDecoder(clazz: [IojenkinsblueoceanserviceembeddedrestExtensionClassImpl].self) { (source: AnyObject) -> [IojenkinsblueoceanserviceembeddedrestExtensionClassImpl] in
-                return Decoders.decode(clazz: [IojenkinsblueoceanserviceembeddedrestExtensionClassImpl].self, source: source)
-            }
-            // Decoder for IojenkinsblueoceanserviceembeddedrestExtensionClassImpl
-            Decoders.addDecoder(clazz: IojenkinsblueoceanserviceembeddedrestExtensionClassImpl.self) { (source: AnyObject) -> IojenkinsblueoceanserviceembeddedrestExtensionClassImpl in
-                let sourceDictionary = source as! [NSObject:AnyObject]
-                let instance = IojenkinsblueoceanserviceembeddedrestExtensionClassImpl()
-                instance._class = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["_class"])
-                instance.links = Decoders.decodeOptional(clazz: IojenkinsblueoceanserviceembeddedrestExtensionClassImplLinks.self, source: sourceDictionary["_links"])
-                instance.classes = Decoders.decodeOptional(clazz: Array.self, source: sourceDictionary["classes"])
-                return instance
-            }
-
-
-            // Decoder for [IojenkinsblueoceanserviceembeddedrestExtensionClassImplLinks]
-            Decoders.addDecoder(clazz: [IojenkinsblueoceanserviceembeddedrestExtensionClassImplLinks].self) { (source: AnyObject) -> [IojenkinsblueoceanserviceembeddedrestExtensionClassImplLinks] in
-                return Decoders.decode(clazz: [IojenkinsblueoceanserviceembeddedrestExtensionClassImplLinks].self, source: source)
-            }
-            // Decoder for IojenkinsblueoceanserviceembeddedrestExtensionClassImplLinks
-            Decoders.addDecoder(clazz: IojenkinsblueoceanserviceembeddedrestExtensionClassImplLinks.self) { (source: AnyObject) -> IojenkinsblueoceanserviceembeddedrestExtensionClassImplLinks in
-                let sourceDictionary = source as! [NSObject:AnyObject]
-                let instance = IojenkinsblueoceanserviceembeddedrestExtensionClassImplLinks()
-                instance._self = Decoders.decodeOptional(clazz: IojenkinsblueoceanresthalLink.self, source: sourceDictionary["self"])
-                instance._class = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["_class"])
-                return instance
-            }
-
-
-            // Decoder for [IojenkinsblueoceanserviceembeddedrestPipelineFolderImpl]
-            Decoders.addDecoder(clazz: [IojenkinsblueoceanserviceembeddedrestPipelineFolderImpl].self) { (source: AnyObject) -> [IojenkinsblueoceanserviceembeddedrestPipelineFolderImpl] in
-                return Decoders.decode(clazz: [IojenkinsblueoceanserviceembeddedrestPipelineFolderImpl].self, source: source)
-            }
-            // Decoder for IojenkinsblueoceanserviceembeddedrestPipelineFolderImpl
-            Decoders.addDecoder(clazz: IojenkinsblueoceanserviceembeddedrestPipelineFolderImpl.self) { (source: AnyObject) -> IojenkinsblueoceanserviceembeddedrestPipelineFolderImpl in
-                let sourceDictionary = source as! [NSObject:AnyObject]
-                let instance = IojenkinsblueoceanserviceembeddedrestPipelineFolderImpl()
+                let instance = PipelineFolderImpl()
                 instance._class = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["_class"])
                 instance.displayName = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["displayName"])
                 instance.fullName = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["fullName"])
@@ -950,14 +1216,14 @@ class Decoders {
             }
 
 
-            // Decoder for [IojenkinsblueoceanserviceembeddedrestPipelineImpl]
-            Decoders.addDecoder(clazz: [IojenkinsblueoceanserviceembeddedrestPipelineImpl].self) { (source: AnyObject) -> [IojenkinsblueoceanserviceembeddedrestPipelineImpl] in
-                return Decoders.decode(clazz: [IojenkinsblueoceanserviceembeddedrestPipelineImpl].self, source: source)
+            // Decoder for [PipelineImpl]
+            Decoders.addDecoder(clazz: [PipelineImpl].self) { (source: AnyObject) -> [PipelineImpl] in
+                return Decoders.decode(clazz: [PipelineImpl].self, source: source)
             }
-            // Decoder for IojenkinsblueoceanserviceembeddedrestPipelineImpl
-            Decoders.addDecoder(clazz: IojenkinsblueoceanserviceembeddedrestPipelineImpl.self) { (source: AnyObject) -> IojenkinsblueoceanserviceembeddedrestPipelineImpl in
+            // Decoder for PipelineImpl
+            Decoders.addDecoder(clazz: PipelineImpl.self) { (source: AnyObject) -> PipelineImpl in
                 let sourceDictionary = source as! [NSObject:AnyObject]
-                let instance = IojenkinsblueoceanserviceembeddedrestPipelineImpl()
+                let instance = PipelineImpl()
                 instance._class = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["_class"])
                 instance.displayName = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["displayName"])
                 instance.estimatedDurationInMillis = Decoders.decodeOptional(clazz: Int32.self, source: sourceDictionary["estimatedDurationInMillis"])
@@ -966,65 +1232,254 @@ class Decoders {
                 instance.name = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["name"])
                 instance.organization = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["organization"])
                 instance.weatherScore = Decoders.decodeOptional(clazz: Int32.self, source: sourceDictionary["weatherScore"])
+                instance.links = Decoders.decodeOptional(clazz: PipelineImpllinks.self, source: sourceDictionary["_links"])
                 return instance
             }
 
 
-            // Decoder for [JenkinsmodelUnlabeledLoadStatistics]
-            Decoders.addDecoder(clazz: [JenkinsmodelUnlabeledLoadStatistics].self) { (source: AnyObject) -> [JenkinsmodelUnlabeledLoadStatistics] in
-                return Decoders.decode(clazz: [JenkinsmodelUnlabeledLoadStatistics].self, source: source)
+            // Decoder for [PipelineImpllinks]
+            Decoders.addDecoder(clazz: [PipelineImpllinks].self) { (source: AnyObject) -> [PipelineImpllinks] in
+                return Decoders.decode(clazz: [PipelineImpllinks].self, source: source)
             }
-            // Decoder for JenkinsmodelUnlabeledLoadStatistics
-            Decoders.addDecoder(clazz: JenkinsmodelUnlabeledLoadStatistics.self) { (source: AnyObject) -> JenkinsmodelUnlabeledLoadStatistics in
+            // Decoder for PipelineImpllinks
+            Decoders.addDecoder(clazz: PipelineImpllinks.self) { (source: AnyObject) -> PipelineImpllinks in
                 let sourceDictionary = source as! [NSObject:AnyObject]
-                let instance = JenkinsmodelUnlabeledLoadStatistics()
+                let instance = PipelineImpllinks()
+                instance.runs = Decoders.decodeOptional(clazz: Link.self, source: sourceDictionary["runs"])
+                instance._self = Decoders.decodeOptional(clazz: Link.self, source: sourceDictionary["self"])
+                instance.queue = Decoders.decodeOptional(clazz: Link.self, source: sourceDictionary["queue"])
+                instance.actions = Decoders.decodeOptional(clazz: Link.self, source: sourceDictionary["actions"])
                 instance._class = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["_class"])
                 return instance
             }
 
 
-            // Decoder for [SwaggyjenkinsOrganisation]
-            Decoders.addDecoder(clazz: [SwaggyjenkinsOrganisation].self) { (source: AnyObject) -> [SwaggyjenkinsOrganisation] in
-                return Decoders.decode(clazz: [SwaggyjenkinsOrganisation].self, source: source)
+            // Decoder for [PipelineQueue]
+            Decoders.addDecoder(clazz: [PipelineQueue].self) { (source: AnyObject) -> [PipelineQueue] in
+                return Decoders.decode(clazz: [PipelineQueue].self, source: source)
             }
-            // Decoder for SwaggyjenkinsOrganisation
-            Decoders.addDecoder(clazz: SwaggyjenkinsOrganisation.self) { (source: AnyObject) -> SwaggyjenkinsOrganisation in
+            // Decoder for PipelineQueue
+            Decoders.addDecoder(clazz: PipelineQueue.self) { (source: AnyObject) -> PipelineQueue in
                 let sourceDictionary = source as! [NSObject:AnyObject]
-                let instance = SwaggyjenkinsOrganisation()
-                instance._class = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["_class"])
-                instance.name = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["name"])
+                let instance = PipelineQueue()
                 return instance
             }
 
 
-            // Decoder for [SwaggyjenkinsPipeline]
-            Decoders.addDecoder(clazz: [SwaggyjenkinsPipeline].self) { (source: AnyObject) -> [SwaggyjenkinsPipeline] in
-                return Decoders.decode(clazz: [SwaggyjenkinsPipeline].self, source: source)
+            // Decoder for [PipelineRun]
+            Decoders.addDecoder(clazz: [PipelineRun].self) { (source: AnyObject) -> [PipelineRun] in
+                return Decoders.decode(clazz: [PipelineRun].self, source: source)
             }
-            // Decoder for SwaggyjenkinsPipeline
-            Decoders.addDecoder(clazz: SwaggyjenkinsPipeline.self) { (source: AnyObject) -> SwaggyjenkinsPipeline in
+            // Decoder for PipelineRun
+            Decoders.addDecoder(clazz: PipelineRun.self) { (source: AnyObject) -> PipelineRun in
                 let sourceDictionary = source as! [NSObject:AnyObject]
-                let instance = SwaggyjenkinsPipeline()
+                let instance = PipelineRun()
                 instance._class = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["_class"])
-                instance.organization = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["organization"])
-                instance.name = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["name"])
-                instance.displayName = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["displayName"])
-                instance.fullName = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["fullName"])
-                instance.weatherScore = Decoders.decodeOptional(clazz: Int32.self, source: sourceDictionary["weatherScore"])
+                instance.artifacts = Decoders.decodeOptional(clazz: Array.self, source: sourceDictionary["artifacts"])
+                instance.durationInMillis = Decoders.decodeOptional(clazz: Int32.self, source: sourceDictionary["durationInMillis"])
                 instance.estimatedDurationInMillis = Decoders.decodeOptional(clazz: Int32.self, source: sourceDictionary["estimatedDurationInMillis"])
-                instance.latestRun = Decoders.decodeOptional(clazz: SwaggyjenkinsPipelineLatestRun.self, source: sourceDictionary["latestRun"])
+                instance.enQueueTime = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["enQueueTime"])
+                instance.endTime = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["endTime"])
+                instance.id = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["id"])
+                instance.organization = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["organization"])
+                instance.pipeline = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["pipeline"])
+                instance.result = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["result"])
+                instance.runSummary = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["runSummary"])
+                instance.startTime = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["startTime"])
+                instance.state = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["state"])
+                instance.type = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["type"])
+                instance.commitId = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["commitId"])
                 return instance
             }
 
 
-            // Decoder for [SwaggyjenkinsPipelineLatestRun]
-            Decoders.addDecoder(clazz: [SwaggyjenkinsPipelineLatestRun].self) { (source: AnyObject) -> [SwaggyjenkinsPipelineLatestRun] in
-                return Decoders.decode(clazz: [SwaggyjenkinsPipelineLatestRun].self, source: source)
+            // Decoder for [PipelineRunImpl]
+            Decoders.addDecoder(clazz: [PipelineRunImpl].self) { (source: AnyObject) -> [PipelineRunImpl] in
+                return Decoders.decode(clazz: [PipelineRunImpl].self, source: source)
             }
-            // Decoder for SwaggyjenkinsPipelineLatestRun
-            Decoders.addDecoder(clazz: SwaggyjenkinsPipelineLatestRun.self) { (source: AnyObject) -> SwaggyjenkinsPipelineLatestRun in
+            // Decoder for PipelineRunImpl
+            Decoders.addDecoder(clazz: PipelineRunImpl.self) { (source: AnyObject) -> PipelineRunImpl in
                 let sourceDictionary = source as! [NSObject:AnyObject]
-                let instance = SwaggyjenkinsPipelineLatestRun()
+                let instance = PipelineRunImpl()
+                instance._class = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["_class"])
+                instance.links = Decoders.decodeOptional(clazz: PipelineRunImpllinks.self, source: sourceDictionary["_links"])
+                instance.durationInMillis = Decoders.decodeOptional(clazz: Int32.self, source: sourceDictionary["durationInMillis"])
+                instance.enQueueTime = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["enQueueTime"])
+                instance.endTime = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["endTime"])
+                instance.estimatedDurationInMillis = Decoders.decodeOptional(clazz: Int32.self, source: sourceDictionary["estimatedDurationInMillis"])
+                instance.id = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["id"])
+                instance.organization = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["organization"])
+                instance.pipeline = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["pipeline"])
+                instance.result = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["result"])
+                instance.runSummary = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["runSummary"])
+                instance.startTime = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["startTime"])
+                instance.state = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["state"])
+                instance.type = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["type"])
+                instance.commitId = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["commitId"])
+                return instance
+            }
+
+
+            // Decoder for [PipelineRunImpllinks]
+            Decoders.addDecoder(clazz: [PipelineRunImpllinks].self) { (source: AnyObject) -> [PipelineRunImpllinks] in
+                return Decoders.decode(clazz: [PipelineRunImpllinks].self, source: source)
+            }
+            // Decoder for PipelineRunImpllinks
+            Decoders.addDecoder(clazz: PipelineRunImpllinks.self) { (source: AnyObject) -> PipelineRunImpllinks in
+                let sourceDictionary = source as! [NSObject:AnyObject]
+                let instance = PipelineRunImpllinks()
+                instance.nodes = Decoders.decodeOptional(clazz: Link.self, source: sourceDictionary["nodes"])
+                instance.log = Decoders.decodeOptional(clazz: Link.self, source: sourceDictionary["log"])
+                instance._self = Decoders.decodeOptional(clazz: Link.self, source: sourceDictionary["self"])
+                instance.actions = Decoders.decodeOptional(clazz: Link.self, source: sourceDictionary["actions"])
+                instance.steps = Decoders.decodeOptional(clazz: Link.self, source: sourceDictionary["steps"])
+                instance._class = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["_class"])
+                return instance
+            }
+
+
+            // Decoder for [PipelineRunNode]
+            Decoders.addDecoder(clazz: [PipelineRunNode].self) { (source: AnyObject) -> [PipelineRunNode] in
+                return Decoders.decode(clazz: [PipelineRunNode].self, source: source)
+            }
+            // Decoder for PipelineRunNode
+            Decoders.addDecoder(clazz: PipelineRunNode.self) { (source: AnyObject) -> PipelineRunNode in
+                let sourceDictionary = source as! [NSObject:AnyObject]
+                let instance = PipelineRunNode()
+                instance._class = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["_class"])
+                instance.displayName = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["displayName"])
+                instance.durationInMillis = Decoders.decodeOptional(clazz: Int32.self, source: sourceDictionary["durationInMillis"])
+                instance.edges = Decoders.decodeOptional(clazz: Array.self, source: sourceDictionary["edges"])
+                instance.id = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["id"])
+                instance.result = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["result"])
+                instance.startTime = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["startTime"])
+                instance.state = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["state"])
+                return instance
+            }
+
+
+            // Decoder for [PipelineRunNodeSteps]
+            Decoders.addDecoder(clazz: [PipelineRunNodeSteps].self) { (source: AnyObject) -> [PipelineRunNodeSteps] in
+                return Decoders.decode(clazz: [PipelineRunNodeSteps].self, source: source)
+            }
+            // Decoder for PipelineRunNodeSteps
+            Decoders.addDecoder(clazz: PipelineRunNodeSteps.self) { (source: AnyObject) -> PipelineRunNodeSteps in
+                let sourceDictionary = source as! [NSObject:AnyObject]
+                let instance = PipelineRunNodeSteps()
+                return instance
+            }
+
+
+            // Decoder for [PipelineRunNodeedges]
+            Decoders.addDecoder(clazz: [PipelineRunNodeedges].self) { (source: AnyObject) -> [PipelineRunNodeedges] in
+                return Decoders.decode(clazz: [PipelineRunNodeedges].self, source: source)
+            }
+            // Decoder for PipelineRunNodeedges
+            Decoders.addDecoder(clazz: PipelineRunNodeedges.self) { (source: AnyObject) -> PipelineRunNodeedges in
+                let sourceDictionary = source as! [NSObject:AnyObject]
+                let instance = PipelineRunNodeedges()
+                instance.id = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["id"])
+                instance._class = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["_class"])
+                return instance
+            }
+
+
+            // Decoder for [PipelineRunNodes]
+            Decoders.addDecoder(clazz: [PipelineRunNodes].self) { (source: AnyObject) -> [PipelineRunNodes] in
+                return Decoders.decode(clazz: [PipelineRunNodes].self, source: source)
+            }
+            // Decoder for PipelineRunNodes
+            Decoders.addDecoder(clazz: PipelineRunNodes.self) { (source: AnyObject) -> PipelineRunNodes in
+                let sourceDictionary = source as! [NSObject:AnyObject]
+                let instance = PipelineRunNodes()
+                return instance
+            }
+
+
+            // Decoder for [PipelineRunSteps]
+            Decoders.addDecoder(clazz: [PipelineRunSteps].self) { (source: AnyObject) -> [PipelineRunSteps] in
+                return Decoders.decode(clazz: [PipelineRunSteps].self, source: source)
+            }
+            // Decoder for PipelineRunSteps
+            Decoders.addDecoder(clazz: PipelineRunSteps.self) { (source: AnyObject) -> PipelineRunSteps in
+                let sourceDictionary = source as! [NSObject:AnyObject]
+                let instance = PipelineRunSteps()
+                return instance
+            }
+
+
+            // Decoder for [PipelineRunartifacts]
+            Decoders.addDecoder(clazz: [PipelineRunartifacts].self) { (source: AnyObject) -> [PipelineRunartifacts] in
+                return Decoders.decode(clazz: [PipelineRunartifacts].self, source: source)
+            }
+            // Decoder for PipelineRunartifacts
+            Decoders.addDecoder(clazz: PipelineRunartifacts.self) { (source: AnyObject) -> PipelineRunartifacts in
+                let sourceDictionary = source as! [NSObject:AnyObject]
+                let instance = PipelineRunartifacts()
+                instance.name = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["name"])
+                instance.size = Decoders.decodeOptional(clazz: Int32.self, source: sourceDictionary["size"])
+                instance.url = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["url"])
+                instance._class = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["_class"])
+                return instance
+            }
+
+
+            // Decoder for [PipelineRuns]
+            Decoders.addDecoder(clazz: [PipelineRuns].self) { (source: AnyObject) -> [PipelineRuns] in
+                return Decoders.decode(clazz: [PipelineRuns].self, source: source)
+            }
+            // Decoder for PipelineRuns
+            Decoders.addDecoder(clazz: PipelineRuns.self) { (source: AnyObject) -> PipelineRuns in
+                let sourceDictionary = source as! [NSObject:AnyObject]
+                let instance = PipelineRuns()
+                return instance
+            }
+
+
+            // Decoder for [PipelineStepImpl]
+            Decoders.addDecoder(clazz: [PipelineStepImpl].self) { (source: AnyObject) -> [PipelineStepImpl] in
+                return Decoders.decode(clazz: [PipelineStepImpl].self, source: source)
+            }
+            // Decoder for PipelineStepImpl
+            Decoders.addDecoder(clazz: PipelineStepImpl.self) { (source: AnyObject) -> PipelineStepImpl in
+                let sourceDictionary = source as! [NSObject:AnyObject]
+                let instance = PipelineStepImpl()
+                instance._class = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["_class"])
+                instance.links = Decoders.decodeOptional(clazz: PipelineStepImpllinks.self, source: sourceDictionary["_links"])
+                instance.displayName = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["displayName"])
+                instance.durationInMillis = Decoders.decodeOptional(clazz: Int32.self, source: sourceDictionary["durationInMillis"])
+                instance.id = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["id"])
+                instance.input = Decoders.decodeOptional(clazz: InputStepImpl.self, source: sourceDictionary["input"])
+                instance.result = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["result"])
+                instance.startTime = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["startTime"])
+                instance.state = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["state"])
+                return instance
+            }
+
+
+            // Decoder for [PipelineStepImpllinks]
+            Decoders.addDecoder(clazz: [PipelineStepImpllinks].self) { (source: AnyObject) -> [PipelineStepImpllinks] in
+                return Decoders.decode(clazz: [PipelineStepImpllinks].self, source: source)
+            }
+            // Decoder for PipelineStepImpllinks
+            Decoders.addDecoder(clazz: PipelineStepImpllinks.self) { (source: AnyObject) -> PipelineStepImpllinks in
+                let sourceDictionary = source as! [NSObject:AnyObject]
+                let instance = PipelineStepImpllinks()
+                instance._self = Decoders.decodeOptional(clazz: Link.self, source: sourceDictionary["self"])
+                instance.actions = Decoders.decodeOptional(clazz: Link.self, source: sourceDictionary["actions"])
+                instance._class = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["_class"])
+                return instance
+            }
+
+
+            // Decoder for [PipelinelatestRun]
+            Decoders.addDecoder(clazz: [PipelinelatestRun].self) { (source: AnyObject) -> [PipelinelatestRun] in
+                return Decoders.decode(clazz: [PipelinelatestRun].self, source: source)
+            }
+            // Decoder for PipelinelatestRun
+            Decoders.addDecoder(clazz: PipelinelatestRun.self) { (source: AnyObject) -> PipelinelatestRun in
+                let sourceDictionary = source as! [NSObject:AnyObject]
+                let instance = PipelinelatestRun()
                 instance.artifacts = Decoders.decodeOptional(clazz: Array.self, source: sourceDictionary["artifacts"])
                 instance.durationInMillis = Decoders.decodeOptional(clazz: Int32.self, source: sourceDictionary["durationInMillis"])
                 instance.estimatedDurationInMillis = Decoders.decodeOptional(clazz: Int32.self, source: sourceDictionary["estimatedDurationInMillis"])
@@ -1044,14 +1499,14 @@ class Decoders {
             }
 
 
-            // Decoder for [SwaggyjenkinsPipelineLatestRunartifacts]
-            Decoders.addDecoder(clazz: [SwaggyjenkinsPipelineLatestRunartifacts].self) { (source: AnyObject) -> [SwaggyjenkinsPipelineLatestRunartifacts] in
-                return Decoders.decode(clazz: [SwaggyjenkinsPipelineLatestRunartifacts].self, source: source)
+            // Decoder for [PipelinelatestRunartifacts]
+            Decoders.addDecoder(clazz: [PipelinelatestRunartifacts].self) { (source: AnyObject) -> [PipelinelatestRunartifacts] in
+                return Decoders.decode(clazz: [PipelinelatestRunartifacts].self, source: source)
             }
-            // Decoder for SwaggyjenkinsPipelineLatestRunartifacts
-            Decoders.addDecoder(clazz: SwaggyjenkinsPipelineLatestRunartifacts.self) { (source: AnyObject) -> SwaggyjenkinsPipelineLatestRunartifacts in
+            // Decoder for PipelinelatestRunartifacts
+            Decoders.addDecoder(clazz: PipelinelatestRunartifacts.self) { (source: AnyObject) -> PipelinelatestRunartifacts in
                 let sourceDictionary = source as! [NSObject:AnyObject]
-                let instance = SwaggyjenkinsPipelineLatestRunartifacts()
+                let instance = PipelinelatestRunartifacts()
                 instance.name = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["name"])
                 instance.size = Decoders.decodeOptional(clazz: Int32.self, source: sourceDictionary["size"])
                 instance.url = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["url"])
@@ -1060,19 +1515,224 @@ class Decoders {
             }
 
 
-            // Decoder for [SwaggyjenkinsUser]
-            Decoders.addDecoder(clazz: [SwaggyjenkinsUser].self) { (source: AnyObject) -> [SwaggyjenkinsUser] in
-                return Decoders.decode(clazz: [SwaggyjenkinsUser].self, source: source)
+            // Decoder for [Pipelines]
+            Decoders.addDecoder(clazz: [Pipelines].self) { (source: AnyObject) -> [Pipelines] in
+                return Decoders.decode(clazz: [Pipelines].self, source: source)
             }
-            // Decoder for SwaggyjenkinsUser
-            Decoders.addDecoder(clazz: SwaggyjenkinsUser.self) { (source: AnyObject) -> SwaggyjenkinsUser in
+            // Decoder for Pipelines
+            Decoders.addDecoder(clazz: Pipelines.self) { (source: AnyObject) -> Pipelines in
                 let sourceDictionary = source as! [NSObject:AnyObject]
-                let instance = SwaggyjenkinsUser()
+                let instance = Pipelines()
+                return instance
+            }
+
+
+            // Decoder for [Queue]
+            Decoders.addDecoder(clazz: [Queue].self) { (source: AnyObject) -> [Queue] in
+                return Decoders.decode(clazz: [Queue].self, source: source)
+            }
+            // Decoder for Queue
+            Decoders.addDecoder(clazz: Queue.self) { (source: AnyObject) -> Queue in
+                let sourceDictionary = source as! [NSObject:AnyObject]
+                let instance = Queue()
+                instance._class = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["_class"])
+                instance.items = Decoders.decodeOptional(clazz: Array.self, source: sourceDictionary["items"])
+                return instance
+            }
+
+
+            // Decoder for [QueueBlockedItem]
+            Decoders.addDecoder(clazz: [QueueBlockedItem].self) { (source: AnyObject) -> [QueueBlockedItem] in
+                return Decoders.decode(clazz: [QueueBlockedItem].self, source: source)
+            }
+            // Decoder for QueueBlockedItem
+            Decoders.addDecoder(clazz: QueueBlockedItem.self) { (source: AnyObject) -> QueueBlockedItem in
+                let sourceDictionary = source as! [NSObject:AnyObject]
+                let instance = QueueBlockedItem()
+                instance._class = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["_class"])
+                instance.actions = Decoders.decodeOptional(clazz: Array.self, source: sourceDictionary["actions"])
+                instance.blocked = Decoders.decodeOptional(clazz: Bool.self, source: sourceDictionary["blocked"])
+                instance.buildable = Decoders.decodeOptional(clazz: Bool.self, source: sourceDictionary["buildable"])
+                instance.id = Decoders.decodeOptional(clazz: Int32.self, source: sourceDictionary["id"])
+                instance.inQueueSince = Decoders.decodeOptional(clazz: Int32.self, source: sourceDictionary["inQueueSince"])
+                instance.params = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["params"])
+                instance.stuck = Decoders.decodeOptional(clazz: Bool.self, source: sourceDictionary["stuck"])
+                instance.task = Decoders.decodeOptional(clazz: FreeStyleProject.self, source: sourceDictionary["task"])
+                instance.url = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["url"])
+                instance.why = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["why"])
+                instance.buildableStartMilliseconds = Decoders.decodeOptional(clazz: Int32.self, source: sourceDictionary["buildableStartMilliseconds"])
+                return instance
+            }
+
+
+            // Decoder for [QueueItemImpl]
+            Decoders.addDecoder(clazz: [QueueItemImpl].self) { (source: AnyObject) -> [QueueItemImpl] in
+                return Decoders.decode(clazz: [QueueItemImpl].self, source: source)
+            }
+            // Decoder for QueueItemImpl
+            Decoders.addDecoder(clazz: QueueItemImpl.self) { (source: AnyObject) -> QueueItemImpl in
+                let sourceDictionary = source as! [NSObject:AnyObject]
+                let instance = QueueItemImpl()
+                instance._class = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["_class"])
+                instance.expectedBuildNumber = Decoders.decodeOptional(clazz: Int32.self, source: sourceDictionary["expectedBuildNumber"])
+                instance.id = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["id"])
+                instance.pipeline = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["pipeline"])
+                instance.queuedTime = Decoders.decodeOptional(clazz: Int32.self, source: sourceDictionary["queuedTime"])
+                return instance
+            }
+
+
+            // Decoder for [QueueLeftItem]
+            Decoders.addDecoder(clazz: [QueueLeftItem].self) { (source: AnyObject) -> [QueueLeftItem] in
+                return Decoders.decode(clazz: [QueueLeftItem].self, source: source)
+            }
+            // Decoder for QueueLeftItem
+            Decoders.addDecoder(clazz: QueueLeftItem.self) { (source: AnyObject) -> QueueLeftItem in
+                let sourceDictionary = source as! [NSObject:AnyObject]
+                let instance = QueueLeftItem()
+                instance._class = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["_class"])
+                instance.actions = Decoders.decodeOptional(clazz: Array.self, source: sourceDictionary["actions"])
+                instance.blocked = Decoders.decodeOptional(clazz: Bool.self, source: sourceDictionary["blocked"])
+                instance.buildable = Decoders.decodeOptional(clazz: Bool.self, source: sourceDictionary["buildable"])
+                instance.id = Decoders.decodeOptional(clazz: Int32.self, source: sourceDictionary["id"])
+                instance.inQueueSince = Decoders.decodeOptional(clazz: Int32.self, source: sourceDictionary["inQueueSince"])
+                instance.params = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["params"])
+                instance.stuck = Decoders.decodeOptional(clazz: Bool.self, source: sourceDictionary["stuck"])
+                instance.task = Decoders.decodeOptional(clazz: FreeStyleProject.self, source: sourceDictionary["task"])
+                instance.url = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["url"])
+                instance.why = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["why"])
+                instance.cancelled = Decoders.decodeOptional(clazz: Bool.self, source: sourceDictionary["cancelled"])
+                instance.executable = Decoders.decodeOptional(clazz: FreeStyleBuild.self, source: sourceDictionary["executable"])
+                return instance
+            }
+
+
+            // Decoder for [ResponseTimeMonitorData]
+            Decoders.addDecoder(clazz: [ResponseTimeMonitorData].self) { (source: AnyObject) -> [ResponseTimeMonitorData] in
+                return Decoders.decode(clazz: [ResponseTimeMonitorData].self, source: source)
+            }
+            // Decoder for ResponseTimeMonitorData
+            Decoders.addDecoder(clazz: ResponseTimeMonitorData.self) { (source: AnyObject) -> ResponseTimeMonitorData in
+                let sourceDictionary = source as! [NSObject:AnyObject]
+                let instance = ResponseTimeMonitorData()
+                instance._class = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["_class"])
+                instance.timestamp = Decoders.decodeOptional(clazz: Int32.self, source: sourceDictionary["timestamp"])
+                instance.average = Decoders.decodeOptional(clazz: Int32.self, source: sourceDictionary["average"])
+                return instance
+            }
+
+
+            // Decoder for [ScmOrganisations]
+            Decoders.addDecoder(clazz: [ScmOrganisations].self) { (source: AnyObject) -> [ScmOrganisations] in
+                return Decoders.decode(clazz: [ScmOrganisations].self, source: source)
+            }
+            // Decoder for ScmOrganisations
+            Decoders.addDecoder(clazz: ScmOrganisations.self) { (source: AnyObject) -> ScmOrganisations in
+                let sourceDictionary = source as! [NSObject:AnyObject]
+                let instance = ScmOrganisations()
+                return instance
+            }
+
+
+            // Decoder for [StringParameterDefinition]
+            Decoders.addDecoder(clazz: [StringParameterDefinition].self) { (source: AnyObject) -> [StringParameterDefinition] in
+                return Decoders.decode(clazz: [StringParameterDefinition].self, source: source)
+            }
+            // Decoder for StringParameterDefinition
+            Decoders.addDecoder(clazz: StringParameterDefinition.self) { (source: AnyObject) -> StringParameterDefinition in
+                let sourceDictionary = source as! [NSObject:AnyObject]
+                let instance = StringParameterDefinition()
+                instance._class = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["_class"])
+                instance.defaultParameterValue = Decoders.decodeOptional(clazz: StringParameterValue.self, source: sourceDictionary["defaultParameterValue"])
+                instance.description = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["description"])
+                instance.name = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["name"])
+                instance.type = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["type"])
+                return instance
+            }
+
+
+            // Decoder for [StringParameterValue]
+            Decoders.addDecoder(clazz: [StringParameterValue].self) { (source: AnyObject) -> [StringParameterValue] in
+                return Decoders.decode(clazz: [StringParameterValue].self, source: source)
+            }
+            // Decoder for StringParameterValue
+            Decoders.addDecoder(clazz: StringParameterValue.self) { (source: AnyObject) -> StringParameterValue in
+                let sourceDictionary = source as! [NSObject:AnyObject]
+                let instance = StringParameterValue()
+                instance._class = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["_class"])
+                instance.name = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["name"])
+                instance.value = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["value"])
+                return instance
+            }
+
+
+            // Decoder for [SwapSpaceMonitorMemoryUsage2]
+            Decoders.addDecoder(clazz: [SwapSpaceMonitorMemoryUsage2].self) { (source: AnyObject) -> [SwapSpaceMonitorMemoryUsage2] in
+                return Decoders.decode(clazz: [SwapSpaceMonitorMemoryUsage2].self, source: source)
+            }
+            // Decoder for SwapSpaceMonitorMemoryUsage2
+            Decoders.addDecoder(clazz: SwapSpaceMonitorMemoryUsage2.self) { (source: AnyObject) -> SwapSpaceMonitorMemoryUsage2 in
+                let sourceDictionary = source as! [NSObject:AnyObject]
+                let instance = SwapSpaceMonitorMemoryUsage2()
+                instance._class = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["_class"])
+                instance.availablePhysicalMemory = Decoders.decodeOptional(clazz: Int32.self, source: sourceDictionary["availablePhysicalMemory"])
+                instance.availableSwapSpace = Decoders.decodeOptional(clazz: Int32.self, source: sourceDictionary["availableSwapSpace"])
+                instance.totalPhysicalMemory = Decoders.decodeOptional(clazz: Int32.self, source: sourceDictionary["totalPhysicalMemory"])
+                instance.totalSwapSpace = Decoders.decodeOptional(clazz: Int32.self, source: sourceDictionary["totalSwapSpace"])
+                return instance
+            }
+
+
+            // Decoder for [UnlabeledLoadStatistics]
+            Decoders.addDecoder(clazz: [UnlabeledLoadStatistics].self) { (source: AnyObject) -> [UnlabeledLoadStatistics] in
+                return Decoders.decode(clazz: [UnlabeledLoadStatistics].self, source: source)
+            }
+            // Decoder for UnlabeledLoadStatistics
+            Decoders.addDecoder(clazz: UnlabeledLoadStatistics.self) { (source: AnyObject) -> UnlabeledLoadStatistics in
+                let sourceDictionary = source as! [NSObject:AnyObject]
+                let instance = UnlabeledLoadStatistics()
+                instance._class = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["_class"])
+                return instance
+            }
+
+
+            // Decoder for [User]
+            Decoders.addDecoder(clazz: [User].self) { (source: AnyObject) -> [User] in
+                return Decoders.decode(clazz: [User].self, source: source)
+            }
+            // Decoder for User
+            Decoders.addDecoder(clazz: User.self) { (source: AnyObject) -> User in
+                let sourceDictionary = source as! [NSObject:AnyObject]
+                let instance = User()
                 instance._class = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["_class"])
                 instance.id = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["id"])
                 instance.fullName = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["fullName"])
                 instance.email = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["email"])
                 instance.name = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["name"])
+                return instance
+            }
+
+
+            // Decoder for [UserFavorites]
+            Decoders.addDecoder(clazz: [UserFavorites].self) { (source: AnyObject) -> [UserFavorites] in
+                return Decoders.decode(clazz: [UserFavorites].self, source: source)
+            }
+            // Decoder for UserFavorites
+            Decoders.addDecoder(clazz: UserFavorites.self) { (source: AnyObject) -> UserFavorites in
+                let sourceDictionary = source as! [NSObject:AnyObject]
+                let instance = UserFavorites()
+                return instance
+            }
+
+
+            // Decoder for [Users]
+            Decoders.addDecoder(clazz: [Users].self) { (source: AnyObject) -> [Users] in
+                return Decoders.decode(clazz: [Users].self, source: source)
+            }
+            // Decoder for Users
+            Decoders.addDecoder(clazz: Users.self) { (source: AnyObject) -> Users in
+                let sourceDictionary = source as! [NSObject:AnyObject]
+                let instance = Users()
                 return instance
             }
         }

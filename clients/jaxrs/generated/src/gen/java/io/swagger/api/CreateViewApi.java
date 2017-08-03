@@ -16,6 +16,7 @@ import java.io.InputStream;
 import org.glassfish.jersey.media.multipart.FormDataContentDisposition;
 import org.glassfish.jersey.media.multipart.FormDataParam;
 
+import javax.servlet.ServletConfig;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
@@ -26,15 +27,38 @@ import javax.validation.constraints.*;
 
 
 @io.swagger.annotations.Api(description = "the createView API")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaJerseyServerCodegen", date = "2017-07-25T10:45:00.143+10:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaJerseyServerCodegen", date = "2017-08-03T23:34:37.174Z")
 public class CreateViewApi  {
-   private final CreateViewApiService delegate = CreateViewApiServiceFactory.getCreateViewApi();
+   private final CreateViewApiService delegate;
+
+   public CreateViewApi(@Context ServletConfig servletContext) {
+      CreateViewApiService delegate = null;
+
+      if (servletContext != null) {
+         String implClass = servletContext.getInitParameter("CreateViewApi.implementation");
+         if (implClass != null && !"".equals(implClass.trim())) {
+            try {
+               delegate = (CreateViewApiService) Class.forName(implClass).newInstance();
+            } catch (Exception e) {
+               throw new RuntimeException(e);
+            }
+         } 
+      }
+
+      if (delegate == null) {
+         delegate = CreateViewApiServiceFactory.getCreateViewApi();
+      }
+
+      this.delegate = delegate;
+   }
 
     @POST
     
     
     @Produces({ "text/html" })
-    @io.swagger.annotations.ApiOperation(value = "", notes = "Create a new view using view configuration", response = void.class, tags={ "remoteAccess", })
+    @io.swagger.annotations.ApiOperation(value = "", notes = "Create a new view using view configuration", response = void.class, authorizations = {
+        @io.swagger.annotations.Authorization(value = "jenkins_auth")
+    }, tags={ "remoteAccess", })
     @io.swagger.annotations.ApiResponses(value = { 
         @io.swagger.annotations.ApiResponse(code = 200, message = "Successfully created the view", response = void.class),
         

@@ -42,59 +42,99 @@ Import the following:
 #import <SwaggerClient/SWGApiClient.h>
 #import <SwaggerClient/SWGDefaultConfiguration.h>
 // load models
-#import <SwaggerClient/SWGGetClassesByClass.h>
-#import <SwaggerClient/SWGGetMultibranchPipeline.h>
-#import <SwaggerClient/SWGGetOrganisations.h>
-#import <SwaggerClient/SWGGetPipelineBranches.h>
-#import <SwaggerClient/SWGGetPipelineBranchesitem.h>
-#import <SwaggerClient/SWGGetPipelineBranchesitemLatestRun.h>
-#import <SwaggerClient/SWGGetPipelineBranchesitemPullRequest.h>
-#import <SwaggerClient/SWGGetPipelineBranchesitemPullRequestLinks.h>
-#import <SwaggerClient/SWGGetPipelines.h>
-#import <SwaggerClient/SWGGetUsers.h>
-#import <SwaggerClient/SWGHudsonmodelAllView.h>
-#import <SwaggerClient/SWGHudsonmodelCauseAction.h>
-#import <SwaggerClient/SWGHudsonmodelCauseUserIdCause.h>
-#import <SwaggerClient/SWGHudsonmodelComputerSet.h>
-#import <SwaggerClient/SWGHudsonmodelFreeStyleBuild.h>
-#import <SwaggerClient/SWGHudsonmodelFreeStyleProject.h>
-#import <SwaggerClient/SWGHudsonmodelFreeStyleProjectactions.h>
-#import <SwaggerClient/SWGHudsonmodelFreeStyleProjecthealthReport.h>
-#import <SwaggerClient/SWGHudsonmodelHudson.h>
-#import <SwaggerClient/SWGHudsonmodelHudsonMasterComputer.h>
-#import <SwaggerClient/SWGHudsonmodelHudsonMasterComputerMonitorData.h>
-#import <SwaggerClient/SWGHudsonmodelHudsonMasterComputerexecutors.h>
-#import <SwaggerClient/SWGHudsonmodelHudsonassignedLabels.h>
-#import <SwaggerClient/SWGHudsonmodelLabel1.h>
-#import <SwaggerClient/SWGHudsonmodelListView.h>
-#import <SwaggerClient/SWGHudsonmodelQueue.h>
-#import <SwaggerClient/SWGHudsonmodelQueueBlockedItem.h>
-#import <SwaggerClient/SWGHudsonmodelQueueLeftItem.h>
-#import <SwaggerClient/SWGHudsonmodelStringParameterDefinition.h>
-#import <SwaggerClient/SWGHudsonmodelStringParameterValue.h>
-#import <SwaggerClient/SWGHudsonnodeMonitorsDiskSpaceMonitorDescriptorDiskSpace.h>
-#import <SwaggerClient/SWGHudsonnodeMonitorsResponseTimeMonitorData.h>
-#import <SwaggerClient/SWGHudsonnodeMonitorsSwapSpaceMonitorMemoryUsage2.h>
-#import <SwaggerClient/SWGHudsonscmEmptyChangeLogSet.h>
-#import <SwaggerClient/SWGHudsonscmNullSCM.h>
-#import <SwaggerClient/SWGHudsonsecuritycsrfDefaultCrumbIssuer.h>
-#import <SwaggerClient/SWGHudsonutilClockDifference.h>
-#import <SwaggerClient/SWGIojenkinsblueoceanresthalLink.h>
-#import <SwaggerClient/SWGIojenkinsblueoceanrestimplpipelineBranchImpl.h>
-#import <SwaggerClient/SWGIojenkinsblueoceanrestimplpipelineBranchImplPermissions.h>
-#import <SwaggerClient/SWGIojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1.h>
-#import <SwaggerClient/SWGIojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1Links.h>
-#import <SwaggerClient/SWGIojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1Map.h>
-#import <SwaggerClient/SWGIojenkinsblueoceanserviceembeddedrestExtensionClassImpl.h>
-#import <SwaggerClient/SWGIojenkinsblueoceanserviceembeddedrestExtensionClassImplLinks.h>
-#import <SwaggerClient/SWGIojenkinsblueoceanserviceembeddedrestPipelineFolderImpl.h>
-#import <SwaggerClient/SWGIojenkinsblueoceanserviceembeddedrestPipelineImpl.h>
-#import <SwaggerClient/SWGJenkinsmodelUnlabeledLoadStatistics.h>
-#import <SwaggerClient/SWGSwaggyjenkinsOrganisation.h>
-#import <SwaggerClient/SWGSwaggyjenkinsPipeline.h>
-#import <SwaggerClient/SWGSwaggyjenkinsPipelineLatestRun.h>
-#import <SwaggerClient/SWGSwaggyjenkinsPipelineLatestRunartifacts.h>
-#import <SwaggerClient/SWGSwaggyjenkinsUser.h>
+#import <SwaggerClient/SWGAllView.h>
+#import <SwaggerClient/SWGBody.h>
+#import <SwaggerClient/SWGBranchImpl.h>
+#import <SwaggerClient/SWGBranchImpllinks.h>
+#import <SwaggerClient/SWGBranchImplpermissions.h>
+#import <SwaggerClient/SWGCauseAction.h>
+#import <SwaggerClient/SWGCauseUserIdCause.h>
+#import <SwaggerClient/SWGClassesByClass.h>
+#import <SwaggerClient/SWGClockDifference.h>
+#import <SwaggerClient/SWGComputerSet.h>
+#import <SwaggerClient/SWGDefaultCrumbIssuer.h>
+#import <SwaggerClient/SWGDiskSpaceMonitorDescriptorDiskSpace.h>
+#import <SwaggerClient/SWGEmptyChangeLogSet.h>
+#import <SwaggerClient/SWGExtensionClassContainerImpl1.h>
+#import <SwaggerClient/SWGExtensionClassContainerImpl1links.h>
+#import <SwaggerClient/SWGExtensionClassContainerImpl1map.h>
+#import <SwaggerClient/SWGExtensionClassImpl.h>
+#import <SwaggerClient/SWGExtensionClassImpllinks.h>
+#import <SwaggerClient/SWGFavoriteImpl.h>
+#import <SwaggerClient/SWGFavoriteImpllinks.h>
+#import <SwaggerClient/SWGFreeStyleBuild.h>
+#import <SwaggerClient/SWGFreeStyleProject.h>
+#import <SwaggerClient/SWGFreeStyleProjectactions.h>
+#import <SwaggerClient/SWGFreeStyleProjecthealthReport.h>
+#import <SwaggerClient/SWGGenericResource.h>
+#import <SwaggerClient/SWGGithubContent.h>
+#import <SwaggerClient/SWGGithubFile.h>
+#import <SwaggerClient/SWGGithubOrganization.h>
+#import <SwaggerClient/SWGGithubOrganizationlinks.h>
+#import <SwaggerClient/SWGGithubRepositories.h>
+#import <SwaggerClient/SWGGithubRepositorieslinks.h>
+#import <SwaggerClient/SWGGithubRepository.h>
+#import <SwaggerClient/SWGGithubRepositorylinks.h>
+#import <SwaggerClient/SWGGithubRepositorypermissions.h>
+#import <SwaggerClient/SWGGithubRespositoryContainer.h>
+#import <SwaggerClient/SWGGithubRespositoryContainerlinks.h>
+#import <SwaggerClient/SWGGithubScm.h>
+#import <SwaggerClient/SWGGithubScmlinks.h>
+#import <SwaggerClient/SWGHudson.h>
+#import <SwaggerClient/SWGHudsonMasterComputer.h>
+#import <SwaggerClient/SWGHudsonMasterComputerexecutors.h>
+#import <SwaggerClient/SWGHudsonMasterComputermonitorData.h>
+#import <SwaggerClient/SWGHudsonassignedLabels.h>
+#import <SwaggerClient/SWGInputStepImpl.h>
+#import <SwaggerClient/SWGInputStepImpllinks.h>
+#import <SwaggerClient/SWGLabel1.h>
+#import <SwaggerClient/SWGLink.h>
+#import <SwaggerClient/SWGListView.h>
+#import <SwaggerClient/SWGMultibranchPipeline.h>
+#import <SwaggerClient/SWGNullSCM.h>
+#import <SwaggerClient/SWGOrganisation.h>
+#import <SwaggerClient/SWGOrganisations.h>
+#import <SwaggerClient/SWGPipeline.h>
+#import <SwaggerClient/SWGPipelineActivities.h>
+#import <SwaggerClient/SWGPipelineActivity.h>
+#import <SwaggerClient/SWGPipelineActivityartifacts.h>
+#import <SwaggerClient/SWGPipelineBranches.h>
+#import <SwaggerClient/SWGPipelineBranchesitem.h>
+#import <SwaggerClient/SWGPipelineBranchesitemlatestRun.h>
+#import <SwaggerClient/SWGPipelineBranchesitempullRequest.h>
+#import <SwaggerClient/SWGPipelineBranchesitempullRequestlinks.h>
+#import <SwaggerClient/SWGPipelineFolderImpl.h>
+#import <SwaggerClient/SWGPipelineImpl.h>
+#import <SwaggerClient/SWGPipelineImpllinks.h>
+#import <SwaggerClient/SWGPipelineQueue.h>
+#import <SwaggerClient/SWGPipelineRun.h>
+#import <SwaggerClient/SWGPipelineRunImpl.h>
+#import <SwaggerClient/SWGPipelineRunImpllinks.h>
+#import <SwaggerClient/SWGPipelineRunNode.h>
+#import <SwaggerClient/SWGPipelineRunNodeSteps.h>
+#import <SwaggerClient/SWGPipelineRunNodeedges.h>
+#import <SwaggerClient/SWGPipelineRunNodes.h>
+#import <SwaggerClient/SWGPipelineRunSteps.h>
+#import <SwaggerClient/SWGPipelineRunartifacts.h>
+#import <SwaggerClient/SWGPipelineRuns.h>
+#import <SwaggerClient/SWGPipelineStepImpl.h>
+#import <SwaggerClient/SWGPipelineStepImpllinks.h>
+#import <SwaggerClient/SWGPipelinelatestRun.h>
+#import <SwaggerClient/SWGPipelinelatestRunartifacts.h>
+#import <SwaggerClient/SWGPipelines.h>
+#import <SwaggerClient/SWGQueue.h>
+#import <SwaggerClient/SWGQueueBlockedItem.h>
+#import <SwaggerClient/SWGQueueItemImpl.h>
+#import <SwaggerClient/SWGQueueLeftItem.h>
+#import <SwaggerClient/SWGResponseTimeMonitorData.h>
+#import <SwaggerClient/SWGScmOrganisations.h>
+#import <SwaggerClient/SWGStringParameterDefinition.h>
+#import <SwaggerClient/SWGStringParameterValue.h>
+#import <SwaggerClient/SWGSwapSpaceMonitorMemoryUsage2.h>
+#import <SwaggerClient/SWGUnlabeledLoadStatistics.h>
+#import <SwaggerClient/SWGUser.h>
+#import <SwaggerClient/SWGUserFavorites.h>
+#import <SwaggerClient/SWGUsers.h>
 // load API classes for accessing endpoints
 #import <SwaggerClient/SWGBlueOceanApi.h>
 #import <SwaggerClient/SWGRemoteAccessApi.h>
@@ -111,16 +151,22 @@ Please follow the [installation procedure](#installation--usage) and then run th
 
 ```objc
 
+SWGDefaultConfiguration *apiConfig = [SWGDefaultConfiguration sharedConfig];
+// Configure HTTP basic authorization (authentication scheme: jenkins_auth)
+[apiConfig setUsername:@"YOUR_USERNAME"];
+[apiConfig setPassword:@"YOUR_PASSWORD"];
 
-NSString* *organisation = @"organisation_example"; // Name of the organisation
+
+NSString* *organization = @"organization_example"; // Name of the organization
+NSString* *pipeline = @"pipeline_example"; // Name of the pipeline
+NSString* *queue = @"queue_example"; // Name of the queue item
 
 SWGBlueOceanApi *apiInstance = [[SWGBlueOceanApi alloc] init];
 
-[apiInstance getAuthenticatedUserWithOrganisation:organisation
-              completionHandler: ^(SWGSwaggyjenkinsUser* output, NSError* error) {
-                            if (output) {
-                                NSLog(@"%@", output);
-                            }
+[apiInstance deletePipelineQueueItemWithOrganization:organization
+    pipeline:pipeline
+    queue:queue
+              completionHandler: ^(NSError* error) {
                             if (error) {
                                 NSLog(@"Error: %@", error);
                             }
@@ -134,21 +180,42 @@ All URIs are relative to *http://localhost*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*SWGBlueOceanApi* | [**getAuthenticatedUser**](docs/SWGBlueOceanApi.md#getauthenticateduser) | **GET** /blue/rest/organizations/{organisation}/user/ | 
+*SWGBlueOceanApi* | [**deletePipelineQueueItem**](docs/SWGBlueOceanApi.md#deletepipelinequeueitem) | **DELETE** /blue/rest/organizations/{organization}/pipelines/{pipeline}/queue/{queue} | 
+*SWGBlueOceanApi* | [**getAuthenticatedUser**](docs/SWGBlueOceanApi.md#getauthenticateduser) | **GET** /blue/rest/organizations/{organization}/user/ | 
 *SWGBlueOceanApi* | [**getClasses**](docs/SWGBlueOceanApi.md#getclasses) | **GET** /blue/rest/classes/{class} | 
-*SWGBlueOceanApi* | [**getOrganisation**](docs/SWGBlueOceanApi.md#getorganisation) | **GET** /blue/rest/organizations/{organisation} | 
+*SWGBlueOceanApi* | [**getOrganisation**](docs/SWGBlueOceanApi.md#getorganisation) | **GET** /blue/rest/organizations/{organization} | 
 *SWGBlueOceanApi* | [**getOrganisations**](docs/SWGBlueOceanApi.md#getorganisations) | **GET** /blue/rest/organizations/ | 
-*SWGBlueOceanApi* | [**getPipelineBranchByOrg**](docs/SWGBlueOceanApi.md#getpipelinebranchbyorg) | **GET** /blue/rest/organizations/{organisation}/pipelines/{pipeline}/branches/{branch}/ | 
-*SWGBlueOceanApi* | [**getPipelineBranchesByOrg**](docs/SWGBlueOceanApi.md#getpipelinebranchesbyorg) | **GET** /blue/rest/organizations/{organisation}/pipelines/{pipeline}/branches | 
-*SWGBlueOceanApi* | [**getPipelineByOrg**](docs/SWGBlueOceanApi.md#getpipelinebyorg) | **GET** /blue/rest/organizations/{organisation}/pipelines/{pipeline} | 
-*SWGBlueOceanApi* | [**getPipelineFolderByOrg**](docs/SWGBlueOceanApi.md#getpipelinefolderbyorg) | **GET** /blue/rest/organizations/{organisation}/pipelines/{folder}/ | 
-*SWGBlueOceanApi* | [**getPipelineFolderByOrg_0**](docs/SWGBlueOceanApi.md#getpipelinefolderbyorg_0) | **GET** /blue/rest/organizations/{organisation}/pipelines/{folder}/pipelines/{pipeline} | 
-*SWGBlueOceanApi* | [**getPipelinesByOrg**](docs/SWGBlueOceanApi.md#getpipelinesbyorg) | **GET** /blue/rest/organizations/{organisation}/pipelines/ | 
-*SWGBlueOceanApi* | [**getUser**](docs/SWGBlueOceanApi.md#getuser) | **GET** /blue/rest/organizations/{organisation}/users/{user} | 
-*SWGBlueOceanApi* | [**getUsers**](docs/SWGBlueOceanApi.md#getusers) | **GET** /blue/rest/organizations/{organisation}/users/ | 
-*SWGBlueOceanApi* | [**search**](docs/SWGBlueOceanApi.md#search) | **GET** /blue/rest/classes/ | 
-*SWGBlueOceanApi* | [**search_0**](docs/SWGBlueOceanApi.md#search_0) | **GET** /blue/rest/search/ | 
-*SWGRemoteAccessApi* | [**getComputer**](docs/SWGRemoteAccessApi.md#getcomputer) | **GET** /computer/api/json?depth&#x3D;1 | 
+*SWGBlueOceanApi* | [**getPipeline**](docs/SWGBlueOceanApi.md#getpipeline) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline} | 
+*SWGBlueOceanApi* | [**getPipelineActivities**](docs/SWGBlueOceanApi.md#getpipelineactivities) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/activities | 
+*SWGBlueOceanApi* | [**getPipelineBranch**](docs/SWGBlueOceanApi.md#getpipelinebranch) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/branches/{branch}/ | 
+*SWGBlueOceanApi* | [**getPipelineBranchRun**](docs/SWGBlueOceanApi.md#getpipelinebranchrun) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/branches/{branch}/runs/{run} | 
+*SWGBlueOceanApi* | [**getPipelineBranches**](docs/SWGBlueOceanApi.md#getpipelinebranches) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/branches | 
+*SWGBlueOceanApi* | [**getPipelineFolder**](docs/SWGBlueOceanApi.md#getpipelinefolder) | **GET** /blue/rest/organizations/{organization}/pipelines/{folder}/ | 
+*SWGBlueOceanApi* | [**getPipelineFolderPipeline**](docs/SWGBlueOceanApi.md#getpipelinefolderpipeline) | **GET** /blue/rest/organizations/{organization}/pipelines/{folder}/pipelines/{pipeline} | 
+*SWGBlueOceanApi* | [**getPipelineQueue**](docs/SWGBlueOceanApi.md#getpipelinequeue) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/queue | 
+*SWGBlueOceanApi* | [**getPipelineRun**](docs/SWGBlueOceanApi.md#getpipelinerun) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run} | 
+*SWGBlueOceanApi* | [**getPipelineRunLog**](docs/SWGBlueOceanApi.md#getpipelinerunlog) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/log | 
+*SWGBlueOceanApi* | [**getPipelineRunNode**](docs/SWGBlueOceanApi.md#getpipelinerunnode) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node} | 
+*SWGBlueOceanApi* | [**getPipelineRunNodeStep**](docs/SWGBlueOceanApi.md#getpipelinerunnodestep) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps/{step} | 
+*SWGBlueOceanApi* | [**getPipelineRunNodeStepLog**](docs/SWGBlueOceanApi.md#getpipelinerunnodesteplog) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps/{step}/log | 
+*SWGBlueOceanApi* | [**getPipelineRunNodeSteps**](docs/SWGBlueOceanApi.md#getpipelinerunnodesteps) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps | 
+*SWGBlueOceanApi* | [**getPipelineRunNodes**](docs/SWGBlueOceanApi.md#getpipelinerunnodes) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes | 
+*SWGBlueOceanApi* | [**getPipelineRuns**](docs/SWGBlueOceanApi.md#getpipelineruns) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs | 
+*SWGBlueOceanApi* | [**getPipelines**](docs/SWGBlueOceanApi.md#getpipelines) | **GET** /blue/rest/organizations/{organization}/pipelines/ | 
+*SWGBlueOceanApi* | [**getSCM**](docs/SWGBlueOceanApi.md#getscm) | **GET** /blue/rest/organizations/{organization}/scm/{scm} | 
+*SWGBlueOceanApi* | [**getSCMOrganisationRepositories**](docs/SWGBlueOceanApi.md#getscmorganisationrepositories) | **GET** /blue/rest/organizations/{organization}/scm/{scm}/organizations/{scmOrganisation}/repositories | 
+*SWGBlueOceanApi* | [**getSCMOrganisationRepository**](docs/SWGBlueOceanApi.md#getscmorganisationrepository) | **GET** /blue/rest/organizations/{organization}/scm/{scm}/organizations/{scmOrganisation}/repositories/{repository} | 
+*SWGBlueOceanApi* | [**getSCMOrganisations**](docs/SWGBlueOceanApi.md#getscmorganisations) | **GET** /blue/rest/organizations/{organization}/scm/{scm}/organizations | 
+*SWGBlueOceanApi* | [**getUser**](docs/SWGBlueOceanApi.md#getuser) | **GET** /blue/rest/organizations/{organization}/users/{user} | 
+*SWGBlueOceanApi* | [**getUserFavorites**](docs/SWGBlueOceanApi.md#getuserfavorites) | **GET** /blue/rest/users/{user}/favorites | 
+*SWGBlueOceanApi* | [**getUsers**](docs/SWGBlueOceanApi.md#getusers) | **GET** /blue/rest/organizations/{organization}/users/ | 
+*SWGBlueOceanApi* | [**postPipelineRun**](docs/SWGBlueOceanApi.md#postpipelinerun) | **POST** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/replay | 
+*SWGBlueOceanApi* | [**postPipelineRuns**](docs/SWGBlueOceanApi.md#postpipelineruns) | **POST** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs | 
+*SWGBlueOceanApi* | [**putPipelineFavorite**](docs/SWGBlueOceanApi.md#putpipelinefavorite) | **PUT** /blue/rest/organizations/{organization}/pipelines/{pipeline}/favorite | 
+*SWGBlueOceanApi* | [**putPipelineRun**](docs/SWGBlueOceanApi.md#putpipelinerun) | **PUT** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/stop | 
+*SWGBlueOceanApi* | [**search**](docs/SWGBlueOceanApi.md#search) | **GET** /blue/rest/search/ | 
+*SWGBlueOceanApi* | [**searchClasses**](docs/SWGBlueOceanApi.md#searchclasses) | **GET** /blue/rest/classes/ | 
+*SWGRemoteAccessApi* | [**getComputer**](docs/SWGRemoteAccessApi.md#getcomputer) | **GET** /computer/api/json | 
 *SWGRemoteAccessApi* | [**getCrumb**](docs/SWGRemoteAccessApi.md#getcrumb) | **GET** /crumbIssuer/api/json | 
 *SWGRemoteAccessApi* | [**getJenkins**](docs/SWGRemoteAccessApi.md#getjenkins) | **GET** /api/json | 
 *SWGRemoteAccessApi* | [**getJob**](docs/SWGRemoteAccessApi.md#getjob) | **GET** /job/{name}/api/json | 
@@ -173,59 +240,99 @@ Class | Method | HTTP request | Description
 
 ## Documentation For Models
 
- - [SWGGetClassesByClass](docs/SWGGetClassesByClass.md)
- - [SWGGetMultibranchPipeline](docs/SWGGetMultibranchPipeline.md)
- - [SWGGetOrganisations](docs/SWGGetOrganisations.md)
- - [SWGGetPipelineBranches](docs/SWGGetPipelineBranches.md)
- - [SWGGetPipelineBranchesitem](docs/SWGGetPipelineBranchesitem.md)
- - [SWGGetPipelineBranchesitemLatestRun](docs/SWGGetPipelineBranchesitemLatestRun.md)
- - [SWGGetPipelineBranchesitemPullRequest](docs/SWGGetPipelineBranchesitemPullRequest.md)
- - [SWGGetPipelineBranchesitemPullRequestLinks](docs/SWGGetPipelineBranchesitemPullRequestLinks.md)
- - [SWGGetPipelines](docs/SWGGetPipelines.md)
- - [SWGGetUsers](docs/SWGGetUsers.md)
- - [SWGHudsonmodelAllView](docs/SWGHudsonmodelAllView.md)
- - [SWGHudsonmodelCauseAction](docs/SWGHudsonmodelCauseAction.md)
- - [SWGHudsonmodelCauseUserIdCause](docs/SWGHudsonmodelCauseUserIdCause.md)
- - [SWGHudsonmodelComputerSet](docs/SWGHudsonmodelComputerSet.md)
- - [SWGHudsonmodelFreeStyleBuild](docs/SWGHudsonmodelFreeStyleBuild.md)
- - [SWGHudsonmodelFreeStyleProject](docs/SWGHudsonmodelFreeStyleProject.md)
- - [SWGHudsonmodelFreeStyleProjectactions](docs/SWGHudsonmodelFreeStyleProjectactions.md)
- - [SWGHudsonmodelFreeStyleProjecthealthReport](docs/SWGHudsonmodelFreeStyleProjecthealthReport.md)
- - [SWGHudsonmodelHudson](docs/SWGHudsonmodelHudson.md)
- - [SWGHudsonmodelHudsonMasterComputer](docs/SWGHudsonmodelHudsonMasterComputer.md)
- - [SWGHudsonmodelHudsonMasterComputerMonitorData](docs/SWGHudsonmodelHudsonMasterComputerMonitorData.md)
- - [SWGHudsonmodelHudsonMasterComputerexecutors](docs/SWGHudsonmodelHudsonMasterComputerexecutors.md)
- - [SWGHudsonmodelHudsonassignedLabels](docs/SWGHudsonmodelHudsonassignedLabels.md)
- - [SWGHudsonmodelLabel1](docs/SWGHudsonmodelLabel1.md)
- - [SWGHudsonmodelListView](docs/SWGHudsonmodelListView.md)
- - [SWGHudsonmodelQueue](docs/SWGHudsonmodelQueue.md)
- - [SWGHudsonmodelQueueBlockedItem](docs/SWGHudsonmodelQueueBlockedItem.md)
- - [SWGHudsonmodelQueueLeftItem](docs/SWGHudsonmodelQueueLeftItem.md)
- - [SWGHudsonmodelStringParameterDefinition](docs/SWGHudsonmodelStringParameterDefinition.md)
- - [SWGHudsonmodelStringParameterValue](docs/SWGHudsonmodelStringParameterValue.md)
- - [SWGHudsonnodeMonitorsDiskSpaceMonitorDescriptorDiskSpace](docs/SWGHudsonnodeMonitorsDiskSpaceMonitorDescriptorDiskSpace.md)
- - [SWGHudsonnodeMonitorsResponseTimeMonitorData](docs/SWGHudsonnodeMonitorsResponseTimeMonitorData.md)
- - [SWGHudsonnodeMonitorsSwapSpaceMonitorMemoryUsage2](docs/SWGHudsonnodeMonitorsSwapSpaceMonitorMemoryUsage2.md)
- - [SWGHudsonscmEmptyChangeLogSet](docs/SWGHudsonscmEmptyChangeLogSet.md)
- - [SWGHudsonscmNullSCM](docs/SWGHudsonscmNullSCM.md)
- - [SWGHudsonsecuritycsrfDefaultCrumbIssuer](docs/SWGHudsonsecuritycsrfDefaultCrumbIssuer.md)
- - [SWGHudsonutilClockDifference](docs/SWGHudsonutilClockDifference.md)
- - [SWGIojenkinsblueoceanresthalLink](docs/SWGIojenkinsblueoceanresthalLink.md)
- - [SWGIojenkinsblueoceanrestimplpipelineBranchImpl](docs/SWGIojenkinsblueoceanrestimplpipelineBranchImpl.md)
- - [SWGIojenkinsblueoceanrestimplpipelineBranchImplPermissions](docs/SWGIojenkinsblueoceanrestimplpipelineBranchImplPermissions.md)
- - [SWGIojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1](docs/SWGIojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1.md)
- - [SWGIojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1Links](docs/SWGIojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1Links.md)
- - [SWGIojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1Map](docs/SWGIojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1Map.md)
- - [SWGIojenkinsblueoceanserviceembeddedrestExtensionClassImpl](docs/SWGIojenkinsblueoceanserviceembeddedrestExtensionClassImpl.md)
- - [SWGIojenkinsblueoceanserviceembeddedrestExtensionClassImplLinks](docs/SWGIojenkinsblueoceanserviceembeddedrestExtensionClassImplLinks.md)
- - [SWGIojenkinsblueoceanserviceembeddedrestPipelineFolderImpl](docs/SWGIojenkinsblueoceanserviceembeddedrestPipelineFolderImpl.md)
- - [SWGIojenkinsblueoceanserviceembeddedrestPipelineImpl](docs/SWGIojenkinsblueoceanserviceembeddedrestPipelineImpl.md)
- - [SWGJenkinsmodelUnlabeledLoadStatistics](docs/SWGJenkinsmodelUnlabeledLoadStatistics.md)
- - [SWGSwaggyjenkinsOrganisation](docs/SWGSwaggyjenkinsOrganisation.md)
- - [SWGSwaggyjenkinsPipeline](docs/SWGSwaggyjenkinsPipeline.md)
- - [SWGSwaggyjenkinsPipelineLatestRun](docs/SWGSwaggyjenkinsPipelineLatestRun.md)
- - [SWGSwaggyjenkinsPipelineLatestRunartifacts](docs/SWGSwaggyjenkinsPipelineLatestRunartifacts.md)
- - [SWGSwaggyjenkinsUser](docs/SWGSwaggyjenkinsUser.md)
+ - [SWGAllView](docs/SWGAllView.md)
+ - [SWGBody](docs/SWGBody.md)
+ - [SWGBranchImpl](docs/SWGBranchImpl.md)
+ - [SWGBranchImpllinks](docs/SWGBranchImpllinks.md)
+ - [SWGBranchImplpermissions](docs/SWGBranchImplpermissions.md)
+ - [SWGCauseAction](docs/SWGCauseAction.md)
+ - [SWGCauseUserIdCause](docs/SWGCauseUserIdCause.md)
+ - [SWGClassesByClass](docs/SWGClassesByClass.md)
+ - [SWGClockDifference](docs/SWGClockDifference.md)
+ - [SWGComputerSet](docs/SWGComputerSet.md)
+ - [SWGDefaultCrumbIssuer](docs/SWGDefaultCrumbIssuer.md)
+ - [SWGDiskSpaceMonitorDescriptorDiskSpace](docs/SWGDiskSpaceMonitorDescriptorDiskSpace.md)
+ - [SWGEmptyChangeLogSet](docs/SWGEmptyChangeLogSet.md)
+ - [SWGExtensionClassContainerImpl1](docs/SWGExtensionClassContainerImpl1.md)
+ - [SWGExtensionClassContainerImpl1links](docs/SWGExtensionClassContainerImpl1links.md)
+ - [SWGExtensionClassContainerImpl1map](docs/SWGExtensionClassContainerImpl1map.md)
+ - [SWGExtensionClassImpl](docs/SWGExtensionClassImpl.md)
+ - [SWGExtensionClassImpllinks](docs/SWGExtensionClassImpllinks.md)
+ - [SWGFavoriteImpl](docs/SWGFavoriteImpl.md)
+ - [SWGFavoriteImpllinks](docs/SWGFavoriteImpllinks.md)
+ - [SWGFreeStyleBuild](docs/SWGFreeStyleBuild.md)
+ - [SWGFreeStyleProject](docs/SWGFreeStyleProject.md)
+ - [SWGFreeStyleProjectactions](docs/SWGFreeStyleProjectactions.md)
+ - [SWGFreeStyleProjecthealthReport](docs/SWGFreeStyleProjecthealthReport.md)
+ - [SWGGenericResource](docs/SWGGenericResource.md)
+ - [SWGGithubContent](docs/SWGGithubContent.md)
+ - [SWGGithubFile](docs/SWGGithubFile.md)
+ - [SWGGithubOrganization](docs/SWGGithubOrganization.md)
+ - [SWGGithubOrganizationlinks](docs/SWGGithubOrganizationlinks.md)
+ - [SWGGithubRepositories](docs/SWGGithubRepositories.md)
+ - [SWGGithubRepositorieslinks](docs/SWGGithubRepositorieslinks.md)
+ - [SWGGithubRepository](docs/SWGGithubRepository.md)
+ - [SWGGithubRepositorylinks](docs/SWGGithubRepositorylinks.md)
+ - [SWGGithubRepositorypermissions](docs/SWGGithubRepositorypermissions.md)
+ - [SWGGithubRespositoryContainer](docs/SWGGithubRespositoryContainer.md)
+ - [SWGGithubRespositoryContainerlinks](docs/SWGGithubRespositoryContainerlinks.md)
+ - [SWGGithubScm](docs/SWGGithubScm.md)
+ - [SWGGithubScmlinks](docs/SWGGithubScmlinks.md)
+ - [SWGHudson](docs/SWGHudson.md)
+ - [SWGHudsonMasterComputer](docs/SWGHudsonMasterComputer.md)
+ - [SWGHudsonMasterComputerexecutors](docs/SWGHudsonMasterComputerexecutors.md)
+ - [SWGHudsonMasterComputermonitorData](docs/SWGHudsonMasterComputermonitorData.md)
+ - [SWGHudsonassignedLabels](docs/SWGHudsonassignedLabels.md)
+ - [SWGInputStepImpl](docs/SWGInputStepImpl.md)
+ - [SWGInputStepImpllinks](docs/SWGInputStepImpllinks.md)
+ - [SWGLabel1](docs/SWGLabel1.md)
+ - [SWGLink](docs/SWGLink.md)
+ - [SWGListView](docs/SWGListView.md)
+ - [SWGMultibranchPipeline](docs/SWGMultibranchPipeline.md)
+ - [SWGNullSCM](docs/SWGNullSCM.md)
+ - [SWGOrganisation](docs/SWGOrganisation.md)
+ - [SWGOrganisations](docs/SWGOrganisations.md)
+ - [SWGPipeline](docs/SWGPipeline.md)
+ - [SWGPipelineActivities](docs/SWGPipelineActivities.md)
+ - [SWGPipelineActivity](docs/SWGPipelineActivity.md)
+ - [SWGPipelineActivityartifacts](docs/SWGPipelineActivityartifacts.md)
+ - [SWGPipelineBranches](docs/SWGPipelineBranches.md)
+ - [SWGPipelineBranchesitem](docs/SWGPipelineBranchesitem.md)
+ - [SWGPipelineBranchesitemlatestRun](docs/SWGPipelineBranchesitemlatestRun.md)
+ - [SWGPipelineBranchesitempullRequest](docs/SWGPipelineBranchesitempullRequest.md)
+ - [SWGPipelineBranchesitempullRequestlinks](docs/SWGPipelineBranchesitempullRequestlinks.md)
+ - [SWGPipelineFolderImpl](docs/SWGPipelineFolderImpl.md)
+ - [SWGPipelineImpl](docs/SWGPipelineImpl.md)
+ - [SWGPipelineImpllinks](docs/SWGPipelineImpllinks.md)
+ - [SWGPipelineQueue](docs/SWGPipelineQueue.md)
+ - [SWGPipelineRun](docs/SWGPipelineRun.md)
+ - [SWGPipelineRunImpl](docs/SWGPipelineRunImpl.md)
+ - [SWGPipelineRunImpllinks](docs/SWGPipelineRunImpllinks.md)
+ - [SWGPipelineRunNode](docs/SWGPipelineRunNode.md)
+ - [SWGPipelineRunNodeSteps](docs/SWGPipelineRunNodeSteps.md)
+ - [SWGPipelineRunNodeedges](docs/SWGPipelineRunNodeedges.md)
+ - [SWGPipelineRunNodes](docs/SWGPipelineRunNodes.md)
+ - [SWGPipelineRunSteps](docs/SWGPipelineRunSteps.md)
+ - [SWGPipelineRunartifacts](docs/SWGPipelineRunartifacts.md)
+ - [SWGPipelineRuns](docs/SWGPipelineRuns.md)
+ - [SWGPipelineStepImpl](docs/SWGPipelineStepImpl.md)
+ - [SWGPipelineStepImpllinks](docs/SWGPipelineStepImpllinks.md)
+ - [SWGPipelinelatestRun](docs/SWGPipelinelatestRun.md)
+ - [SWGPipelinelatestRunartifacts](docs/SWGPipelinelatestRunartifacts.md)
+ - [SWGPipelines](docs/SWGPipelines.md)
+ - [SWGQueue](docs/SWGQueue.md)
+ - [SWGQueueBlockedItem](docs/SWGQueueBlockedItem.md)
+ - [SWGQueueItemImpl](docs/SWGQueueItemImpl.md)
+ - [SWGQueueLeftItem](docs/SWGQueueLeftItem.md)
+ - [SWGResponseTimeMonitorData](docs/SWGResponseTimeMonitorData.md)
+ - [SWGScmOrganisations](docs/SWGScmOrganisations.md)
+ - [SWGStringParameterDefinition](docs/SWGStringParameterDefinition.md)
+ - [SWGStringParameterValue](docs/SWGStringParameterValue.md)
+ - [SWGSwapSpaceMonitorMemoryUsage2](docs/SWGSwapSpaceMonitorMemoryUsage2.md)
+ - [SWGUnlabeledLoadStatistics](docs/SWGUnlabeledLoadStatistics.md)
+ - [SWGUser](docs/SWGUser.md)
+ - [SWGUserFavorites](docs/SWGUserFavorites.md)
+ - [SWGUsers](docs/SWGUsers.md)
 
 
 ## Documentation For Authorization

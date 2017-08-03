@@ -30,7 +30,7 @@ setup(
     version=VERSION,
     description="Swaggy Jenkins",
     author_email="blah@cliffano.com",
-    url="https://github.com/cliffano/swaggy-jenkins/tree/master/python",
+    url="https://github.com/cliffano/swaggy-jenkins/tree/master/clients/python",
     keywords=["Swagger", "Swaggy Jenkins"],
     install_requires=REQUIRES,
     packages=find_packages(),

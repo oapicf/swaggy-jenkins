@@ -1,26 +1,27 @@
 package io.swagger.client.api
 
-import io.swagger.client.model.HudsonmodelComputerSet
-import io.swagger.client.model.HudsonmodelFreeStyleBuild
-import io.swagger.client.model.HudsonmodelFreeStyleProject
-import io.swagger.client.model.HudsonmodelHudson
-import io.swagger.client.model.HudsonmodelListView
-import io.swagger.client.model.HudsonmodelQueue
-import io.swagger.client.model.HudsonsecuritycsrfDefaultCrumbIssuer
+import io.swagger.client.model.ComputerSet
+import io.swagger.client.model.DefaultCrumbIssuer
+import io.swagger.client.model.FreeStyleBuild
+import io.swagger.client.model.FreeStyleProject
+import io.swagger.client.model.Hudson
+import io.swagger.client.model.ListView
+import io.swagger.client.model.Queue
 import com.wordnik.swagger.client._
 import scala.concurrent.Future
 import collection.mutable
 
 class RemoteAccessApi(client: TransportClient, config: SwaggerConfig) extends ApiClient(client, config) {
 
-  def getComputer()(implicit reader: ClientResponseReader[HudsonmodelComputerSet]): Future[HudsonmodelComputerSet] = {
+  def getComputer(depth: Integer)(implicit reader: ClientResponseReader[ComputerSet]): Future[ComputerSet] = {
     // create path and map variables
-    val path = (addFmt("/computer/api/json?depth=1"))
+    val path = (addFmt("/computer/api/json"))
 
     // query params
     val queryParams = new mutable.HashMap[String, String]
     val headerParams = new mutable.HashMap[String, String]
 
+    queryParams += "depth" -> depth.toString
 
     val resFuture = client.submit("GET", path, queryParams.toMap, headerParams.toMap, "")
     resFuture flatMap { resp =>
@@ -28,7 +29,7 @@ class RemoteAccessApi(client: TransportClient, config: SwaggerConfig) extends Ap
     }
   }
 
-  def getCrumb()(implicit reader: ClientResponseReader[HudsonsecuritycsrfDefaultCrumbIssuer]): Future[HudsonsecuritycsrfDefaultCrumbIssuer] = {
+  def getCrumb()(implicit reader: ClientResponseReader[DefaultCrumbIssuer]): Future[DefaultCrumbIssuer] = {
     // create path and map variables
     val path = (addFmt("/crumbIssuer/api/json"))
 
@@ -43,7 +44,7 @@ class RemoteAccessApi(client: TransportClient, config: SwaggerConfig) extends Ap
     }
   }
 
-  def getJenkins()(implicit reader: ClientResponseReader[HudsonmodelHudson]): Future[HudsonmodelHudson] = {
+  def getJenkins()(implicit reader: ClientResponseReader[Hudson]): Future[Hudson] = {
     // create path and map variables
     val path = (addFmt("/api/json"))
 
@@ -58,7 +59,7 @@ class RemoteAccessApi(client: TransportClient, config: SwaggerConfig) extends Ap
     }
   }
 
-  def getJob(name: String)(implicit reader: ClientResponseReader[HudsonmodelFreeStyleProject]): Future[HudsonmodelFreeStyleProject] = {
+  def getJob(name: String)(implicit reader: ClientResponseReader[FreeStyleProject]): Future[FreeStyleProject] = {
     // create path and map variables
     val path = (addFmt("/job/{name}/api/json")
         replaceAll ("\\{" + "name" + "\\}",name.toString))
@@ -94,7 +95,7 @@ class RemoteAccessApi(client: TransportClient, config: SwaggerConfig) extends Ap
     }
   }
 
-  def getJobLastBuild(name: String)(implicit reader: ClientResponseReader[HudsonmodelFreeStyleBuild]): Future[HudsonmodelFreeStyleBuild] = {
+  def getJobLastBuild(name: String)(implicit reader: ClientResponseReader[FreeStyleBuild]): Future[FreeStyleBuild] = {
     // create path and map variables
     val path = (addFmt("/job/{name}/lastBuild/api/json")
         replaceAll ("\\{" + "name" + "\\}",name.toString))
@@ -138,7 +139,7 @@ class RemoteAccessApi(client: TransportClient, config: SwaggerConfig) extends Ap
     }
   }
 
-  def getQueue()(implicit reader: ClientResponseReader[HudsonmodelQueue]): Future[HudsonmodelQueue] = {
+  def getQueue()(implicit reader: ClientResponseReader[Queue]): Future[Queue] = {
     // create path and map variables
     val path = (addFmt("/queue/api/json"))
 
@@ -153,7 +154,7 @@ class RemoteAccessApi(client: TransportClient, config: SwaggerConfig) extends Ap
     }
   }
 
-  def getQueueItem(number: String)(implicit reader: ClientResponseReader[HudsonmodelQueue]): Future[HudsonmodelQueue] = {
+  def getQueueItem(number: String)(implicit reader: ClientResponseReader[Queue]): Future[Queue] = {
     // create path and map variables
     val path = (addFmt("/queue/item/{number}/api/json")
         replaceAll ("\\{" + "number" + "\\}",number.toString))
@@ -171,7 +172,7 @@ class RemoteAccessApi(client: TransportClient, config: SwaggerConfig) extends Ap
     }
   }
 
-  def getView(name: String)(implicit reader: ClientResponseReader[HudsonmodelListView]): Future[HudsonmodelListView] = {
+  def getView(name: String)(implicit reader: ClientResponseReader[ListView]): Future[ListView] = {
     // create path and map variables
     val path = (addFmt("/view/{name}/api/json")
         replaceAll ("\\{" + "name" + "\\}",name.toString))

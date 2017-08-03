@@ -71,8 +71,9 @@ namespace IO.Swagger.Test
         public void GetComputerTest()
         {
             // TODO uncomment below to test the method and replace null with proper value
-            //var response = instance.GetComputer();
-            //Assert.IsInstanceOf<HudsonmodelComputerSet> (response, "response is HudsonmodelComputerSet");
+            //int? depth = null;
+            //var response = instance.GetComputer(depth);
+            //Assert.IsInstanceOf<ComputerSet> (response, "response is ComputerSet");
         }
         
         /// <summary>
@@ -83,7 +84,7 @@ namespace IO.Swagger.Test
         {
             // TODO uncomment below to test the method and replace null with proper value
             //var response = instance.GetCrumb();
-            //Assert.IsInstanceOf<HudsonsecuritycsrfDefaultCrumbIssuer> (response, "response is HudsonsecuritycsrfDefaultCrumbIssuer");
+            //Assert.IsInstanceOf<DefaultCrumbIssuer> (response, "response is DefaultCrumbIssuer");
         }
         
         /// <summary>
@@ -94,7 +95,7 @@ namespace IO.Swagger.Test
         {
             // TODO uncomment below to test the method and replace null with proper value
             //var response = instance.GetJenkins();
-            //Assert.IsInstanceOf<HudsonmodelHudson> (response, "response is HudsonmodelHudson");
+            //Assert.IsInstanceOf<Hudson> (response, "response is Hudson");
         }
         
         /// <summary>
@@ -106,7 +107,7 @@ namespace IO.Swagger.Test
             // TODO uncomment below to test the method and replace null with proper value
             //string name = null;
             //var response = instance.GetJob(name);
-            //Assert.IsInstanceOf<HudsonmodelFreeStyleProject> (response, "response is HudsonmodelFreeStyleProject");
+            //Assert.IsInstanceOf<FreeStyleProject> (response, "response is FreeStyleProject");
         }
         
         /// <summary>
@@ -130,7 +131,7 @@ namespace IO.Swagger.Test
             // TODO uncomment below to test the method and replace null with proper value
             //string name = null;
             //var response = instance.GetJobLastBuild(name);
-            //Assert.IsInstanceOf<HudsonmodelFreeStyleBuild> (response, "response is HudsonmodelFreeStyleBuild");
+            //Assert.IsInstanceOf<FreeStyleBuild> (response, "response is FreeStyleBuild");
         }
         
         /// <summary>
@@ -155,7 +156,7 @@ namespace IO.Swagger.Test
         {
             // TODO uncomment below to test the method and replace null with proper value
             //var response = instance.GetQueue();
-            //Assert.IsInstanceOf<HudsonmodelQueue> (response, "response is HudsonmodelQueue");
+            //Assert.IsInstanceOf<Queue> (response, "response is Queue");
         }
         
         /// <summary>
@@ -167,7 +168,7 @@ namespace IO.Swagger.Test
             // TODO uncomment below to test the method and replace null with proper value
             //string number = null;
             //var response = instance.GetQueueItem(number);
-            //Assert.IsInstanceOf<HudsonmodelQueue> (response, "response is HudsonmodelQueue");
+            //Assert.IsInstanceOf<Queue> (response, "response is Queue");
         }
         
         /// <summary>
@@ -179,7 +180,7 @@ namespace IO.Swagger.Test
             // TODO uncomment below to test the method and replace null with proper value
             //string name = null;
             //var response = instance.GetView(name);
-            //Assert.IsInstanceOf<HudsonmodelListView> (response, "response is HudsonmodelListView");
+            //Assert.IsInstanceOf<ListView> (response, "response is ListView");
         }
         
         /// <summary>

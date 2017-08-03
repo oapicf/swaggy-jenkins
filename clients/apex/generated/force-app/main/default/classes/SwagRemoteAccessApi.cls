@@ -28,79 +28,85 @@ public class SwagRemoteAccessApi {
     /**
      * 
      * Retrieve computer details
-     * @return SwagHudsonmodelComputerSet
+     * @param depth Recursion depth in response model (required)
+     * @return SwagComputerSet
      * @throws Swagger.ApiException if fails to make API call
      */
-    public SwagHudsonmodelComputerSet getComputer() {
+    public SwagComputerSet getComputer(Map<String, Object> params) {
+        client.assertNotNull(params.get('depth'), 'depth');
         List<Swagger.Param> query = new List<Swagger.Param>();
+
+        // cast query params to verify their expected type
+        query.addAll(client.makeParam('depth', (Integer) params.get('depth')));
+
         List<Swagger.Param> form = new List<Swagger.Param>();
 
-        return (SwagHudsonmodelComputerSet) client.invoke(
-            'GET', '/computer/api/json?depth&#x3D;1', '',
+        return (SwagComputerSet) client.invoke(
+            'GET', '/computer/api/json', '',
             query, form,
             new Map<String, Object>(),
             new Map<String, Object>(),
             new List<String>{ 'application/json' },
             new List<String>{ 'application/json' },
-            new List<String>(),
-            SwagHudsonmodelComputerSet.class
+            new List<String> { 'jenkins_auth' },
+            SwagComputerSet.class
         );
     }
     /**
      * 
      * Retrieve CSRF protection token
-     * @return SwagHudsonsecuritycsrfDefaultCrumbIs
+     * @return SwagDefaultCrumbIssuer
      * @throws Swagger.ApiException if fails to make API call
      */
-    public SwagHudsonsecuritycsrfDefaultCrumbIs getCrumb() {
+    public SwagDefaultCrumbIssuer getCrumb() {
         List<Swagger.Param> query = new List<Swagger.Param>();
         List<Swagger.Param> form = new List<Swagger.Param>();
 
-        return (SwagHudsonsecuritycsrfDefaultCrumbIs) client.invoke(
+        return (SwagDefaultCrumbIssuer) client.invoke(
             'GET', '/crumbIssuer/api/json', '',
             query, form,
             new Map<String, Object>(),
             new Map<String, Object>(),
             new List<String>{ 'application/json' },
             new List<String>{ 'application/json' },
-            new List<String>(),
-            SwagHudsonsecuritycsrfDefaultCrumbIs.class
+            new List<String> { 'jenkins_auth' },
+            SwagDefaultCrumbIssuer.class
         );
     }
     /**
      * 
      * Retrieve Jenkins details
-     * @return SwagHudsonmodelHudson
+     * @return SwagHudson
      * @throws Swagger.ApiException if fails to make API call
      */
-    public SwagHudsonmodelHudson getJenkins() {
+    public SwagHudson getJenkins() {
         List<Swagger.Param> query = new List<Swagger.Param>();
         List<Swagger.Param> form = new List<Swagger.Param>();
 
-        return (SwagHudsonmodelHudson) client.invoke(
+        return (SwagHudson) client.invoke(
             'GET', '/api/json', '',
             query, form,
             new Map<String, Object>(),
             new Map<String, Object>(),
             new List<String>{ 'application/json' },
             new List<String>{ 'application/json' },
-            new List<String>(),
-            SwagHudsonmodelHudson.class
+            new List<String> { 'jenkins_auth' },
+            SwagHudson.class
         );
     }
     /**
      * 
      * Retrieve job details
      * @param name Name of the job (required)
-     * @return SwagHudsonmodelFreeStyleProject
+     * @return SwagFreeStyleProject
      * @throws Swagger.ApiException if fails to make API call
      */
-    public SwagHudsonmodelFreeStyleProject getJob(Map<String, Object> params) {
+    public SwagFreeStyleProject getJob(Map<String, Object> params) {
         client.assertNotNull(params.get('name'), 'name');
         List<Swagger.Param> query = new List<Swagger.Param>();
         List<Swagger.Param> form = new List<Swagger.Param>();
 
-        return (SwagHudsonmodelFreeStyleProject) client.invoke(
+        return (SwagFreeStyleProject) client.invoke(
             'GET', '/job/{name}/api/json', '',
             query, form,
             new Map<String, Object>{
@@ -109,8 +115,8 @@ public class SwagRemoteAccessApi {
             new Map<String, Object>(),
             new List<String>{ 'application/json' },
             new List<String>{ 'application/json' },
-            new List<String>(),
-            SwagHudsonmodelFreeStyleProject.class
+            new List<String> { 'jenkins_auth' },
+            SwagFreeStyleProject.class
         );
     }
     /**
@@ -134,7 +140,7 @@ public class SwagRemoteAccessApi {
             new Map<String, Object>(),
             new List<String>{ 'application/json' },
             new List<String>{ 'application/json' },
-            new List<String>(),
+            new List<String> { 'jenkins_auth' },
             String.class
         );
     }
@@ -142,15 +148,15 @@ public class SwagRemoteAccessApi {
      * 
      * Retrieve job\&#39;s last build details
      * @param name Name of the job (required)
-     * @return SwagHudsonmodelFreeStyleBuild
+     * @return SwagFreeStyleBuild
      * @throws Swagger.ApiException if fails to make API call
      */
-    public SwagHudsonmodelFreeStyleBuild getJobLastBuild(Map<String, Object> params) {
+    public SwagFreeStyleBuild getJobLastBuild(Map<String, Object> params) {
         client.assertNotNull(params.get('name'), 'name');
         List<Swagger.Param> query = new List<Swagger.Param>();
         List<Swagger.Param> form = new List<Swagger.Param>();
 
-        return (SwagHudsonmodelFreeStyleBuild) client.invoke(
+        return (SwagFreeStyleBuild) client.invoke(
             'GET', '/job/{name}/lastBuild/api/json', '',
             query, form,
             new Map<String, Object>{
@@ -159,8 +165,8 @@ public class SwagRemoteAccessApi {
             new Map<String, Object>(),
             new List<String>{ 'application/json' },
             new List<String>{ 'application/json' },
-            new List<String>(),
-            SwagHudsonmodelFreeStyleBuild.class
+            new List<String> { 'jenkins_auth' },
+            SwagFreeStyleBuild.class
         );
     }
     /**
@@ -192,44 +198,44 @@ public class SwagRemoteAccessApi {
             new Map<String, Object>(),
             new List<String>{ 'application/json' },
             new List<String>{ 'application/json' },
-            new List<String>(),
+            new List<String> { 'jenkins_auth' },
             null
         );
     }
     /**
      * 
      * Retrieve queue details
-     * @return SwagHudsonmodelQueue
+     * @return SwagQueue
      * @throws Swagger.ApiException if fails to make API call
      */
-    public SwagHudsonmodelQueue getQueue() {
+    public SwagQueue getQueue() {
         List<Swagger.Param> query = new List<Swagger.Param>();
         List<Swagger.Param> form = new List<Swagger.Param>();
 
-        return (SwagHudsonmodelQueue) client.invoke(
+        return (SwagQueue) client.invoke(
             'GET', '/queue/api/json', '',
             query, form,
             new Map<String, Object>(),
             new Map<String, Object>(),
             new List<String>{ 'application/json' },
             new List<String>{ 'application/json' },
-            new List<String>(),
-            SwagHudsonmodelQueue.class
+            new List<String> { 'jenkins_auth' },
+            SwagQueue.class
         );
     }
     /**
      * 
      * Retrieve queued item details
      * @param r_number Queue number (required)
-     * @return SwagHudsonmodelQueue
+     * @return SwagQueue
      * @throws Swagger.ApiException if fails to make API call
      */
-    public SwagHudsonmodelQueue getQueueItem(Map<String, Object> params) {
+    public SwagQueue getQueueItem(Map<String, Object> params) {
         client.assertNotNull(params.get('r_number'), 'r_number');
         List<Swagger.Param> query = new List<Swagger.Param>();
         List<Swagger.Param> form = new List<Swagger.Param>();
 
-        return (SwagHudsonmodelQueue) client.invoke(
+        return (SwagQueue) client.invoke(
             'GET', '/queue/item/{number}/api/json', '',
             query, form,
             new Map<String, Object>{
@@ -238,23 +244,23 @@ public class SwagRemoteAccessApi {
             new Map<String, Object>(),
             new List<String>{ 'application/json' },
             new List<String>{ 'application/json' },
-            new List<String>(),
-            SwagHudsonmodelQueue.class
+            new List<String> { 'jenkins_auth' },
+            SwagQueue.class
         );
     }
     /**
      * 
      * Retrieve view details
      * @param name Name of the view (required)
-     * @return SwagHudsonmodelListView
+     * @return SwagListView
      * @throws Swagger.ApiException if fails to make API call
      */
-    public SwagHudsonmodelListView getView(Map<String, Object> params) {
+    public SwagListView getView(Map<String, Object> params) {
         client.assertNotNull(params.get('name'), 'name');
         List<Swagger.Param> query = new List<Swagger.Param>();
         List<Swagger.Param> form = new List<Swagger.Param>();
 
-        return (SwagHudsonmodelListView) client.invoke(
+        return (SwagListView) client.invoke(
             'GET', '/view/{name}/api/json', '',
             query, form,
             new Map<String, Object>{
@@ -263,8 +269,8 @@ public class SwagRemoteAccessApi {
             new Map<String, Object>(),
             new List<String>{ 'application/json' },
             new List<String>{ 'application/json' },
-            new List<String>(),
-            SwagHudsonmodelListView.class
+            new List<String> { 'jenkins_auth' },
+            SwagListView.class
         );
     }
     /**
@@ -288,7 +294,7 @@ public class SwagRemoteAccessApi {
             new Map<String, Object>(),
             new List<String>{ 'application/json' },
             new List<String>{ 'application/json' },
-            new List<String>(),
+            new List<String> { 'jenkins_auth' },
             String.class
         );
     }
@@ -308,7 +314,7 @@ public class SwagRemoteAccessApi {
             new Map<String, Object>(),
             new List<String>{ 'application/json' },
             new List<String>{ 'application/json' },
-            new List<String>(),
+            new List<String> { 'jenkins_auth' },
             null
         );
     }
@@ -345,7 +351,7 @@ public class SwagRemoteAccessApi {
             },
             new List<String>{ 'application/json' },
             new List<String>{ 'application/json' },
-            new List<String>(),
+            new List<String> { 'jenkins_auth' },
             null
         );
     }
@@ -378,7 +384,7 @@ public class SwagRemoteAccessApi {
             },
             new List<String>{ 'application/json' },
             new List<String>{ 'application/json' },
-            new List<String>(),
+            new List<String> { 'jenkins_auth' },
             null
         );
     }
@@ -413,7 +419,7 @@ public class SwagRemoteAccessApi {
             },
             new List<String>{ 'application/json' },
             new List<String>{ 'application/json' },
-            new List<String>(),
+            new List<String> { 'jenkins_auth' },
             null
         );
     }
@@ -443,7 +449,7 @@ public class SwagRemoteAccessApi {
             },
             new List<String>{ 'application/json' },
             new List<String>{ 'application/json' },
-            new List<String>(),
+            new List<String> { 'jenkins_auth' },
             null
         );
     }
@@ -470,7 +476,7 @@ public class SwagRemoteAccessApi {
             },
             new List<String>{ 'application/json' },
             new List<String>{ 'application/json' },
-            new List<String>(),
+            new List<String> { 'jenkins_auth' },
             null
         );
     }
@@ -497,7 +503,7 @@ public class SwagRemoteAccessApi {
             },
             new List<String>{ 'application/json' },
             new List<String>{ 'application/json' },
-            new List<String>(),
+            new List<String> { 'jenkins_auth' },
             null
         );
     }
@@ -524,7 +530,7 @@ public class SwagRemoteAccessApi {
             },
             new List<String>{ 'application/json' },
             new List<String>{ 'application/json' },
-            new List<String>(),
+            new List<String> { 'jenkins_auth' },
             null
         );
     }
@@ -551,7 +557,7 @@ public class SwagRemoteAccessApi {
             },
             new List<String>{ 'application/json' },
             new List<String>{ 'application/json' },
-            new List<String>(),
+            new List<String> { 'jenkins_auth' },
             null
         );
     }
@@ -581,7 +587,7 @@ public class SwagRemoteAccessApi {
             },
             new List<String>{ 'application/json' },
             new List<String>{ 'application/json' },
-            new List<String>(),
+            new List<String> { 'jenkins_auth' },
             null
         );
     }

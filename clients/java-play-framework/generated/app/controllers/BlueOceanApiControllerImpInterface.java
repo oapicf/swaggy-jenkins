@@ -1,14 +1,27 @@
 package controllers;
 
-import apimodels.GetMultibranchPipeline;
-import apimodels.GetOrganisations;
-import apimodels.GetPipelines;
-import apimodels.IojenkinsblueoceanrestimplpipelineBranchImpl;
-import apimodels.IojenkinsblueoceanserviceembeddedrestPipelineFolderImpl;
-import apimodels.IojenkinsblueoceanserviceembeddedrestPipelineImpl;
-import apimodels.SwaggyjenkinsOrganisation;
-import apimodels.SwaggyjenkinsPipeline;
-import apimodels.SwaggyjenkinsUser;
+import apimodels.BranchImpl;
+import apimodels.FavoriteImpl;
+import apimodels.GithubScm;
+import apimodels.MultibranchPipeline;
+import apimodels.Organisation;
+import apimodels.Organisations;
+import apimodels.Pipeline;
+import apimodels.PipelineActivities;
+import apimodels.PipelineFolderImpl;
+import apimodels.PipelineImpl;
+import apimodels.PipelineQueue;
+import apimodels.PipelineRun;
+import apimodels.PipelineRunNode;
+import apimodels.PipelineRunNodeSteps;
+import apimodels.PipelineRunNodes;
+import apimodels.PipelineRuns;
+import apimodels.PipelineStepImpl;
+import apimodels.Pipelines;
+import apimodels.QueueItemImpl;
+import apimodels.ScmOrganisations;
+import apimodels.User;
+import apimodels.UserFavorites;
 
 import play.mvc.Http;
 import java.util.List;
@@ -18,32 +31,74 @@ import java.util.HashMap;
 import javax.validation.constraints.*;
 
 public interface BlueOceanApiControllerImpInterface {
-    SwaggyjenkinsUser getAuthenticatedUser(String organisation) throws Exception;
+    void deletePipelineQueueItem(String organization, String pipeline, String queue) throws Exception;
+
+    User getAuthenticatedUser(String organization) throws Exception;
 
     String getClasses(String propertyClass) throws Exception;
 
-    SwaggyjenkinsOrganisation getOrganisation(String organisation) throws Exception;
+    Organisation getOrganisation(String organization) throws Exception;
 
-    GetOrganisations getOrganisations() throws Exception;
+    Organisations getOrganisations() throws Exception;
 
-    IojenkinsblueoceanrestimplpipelineBranchImpl getPipelineBranchByOrg(String organisation, String pipeline, String branch) throws Exception;
+    Pipeline getPipeline(String organization, String pipeline) throws Exception;
 
-    GetMultibranchPipeline getPipelineBranchesByOrg(String organisation, String pipeline) throws Exception;
+    PipelineActivities getPipelineActivities(String organization, String pipeline) throws Exception;
 
-    SwaggyjenkinsPipeline getPipelineByOrg(String organisation, String pipeline) throws Exception;
+    BranchImpl getPipelineBranch(String organization, String pipeline, String branch) throws Exception;
 
-    IojenkinsblueoceanserviceembeddedrestPipelineFolderImpl getPipelineFolderByOrg(String organisation, String folder) throws Exception;
+    PipelineRun getPipelineBranchRun(String organization, String pipeline, String branch, String run) throws Exception;
 
-    IojenkinsblueoceanserviceembeddedrestPipelineImpl getPipelineFolderByOrg_0(String organisation, String pipeline, String folder) throws Exception;
+    MultibranchPipeline getPipelineBranches(String organization, String pipeline) throws Exception;
 
-    GetPipelines getPipelinesByOrg(String organisation) throws Exception;
+    PipelineFolderImpl getPipelineFolder(String organization, String folder) throws Exception;
 
-    SwaggyjenkinsUser getUser(String organisation, String user) throws Exception;
+    PipelineImpl getPipelineFolderPipeline(String organization, String pipeline, String folder) throws Exception;
 
-    SwaggyjenkinsUser getUsers(String organisation) throws Exception;
+    PipelineQueue getPipelineQueue(String organization, String pipeline) throws Exception;
+
+    PipelineRun getPipelineRun(String organization, String pipeline, String run) throws Exception;
+
+    String getPipelineRunLog(String organization, String pipeline, String run, Integer start, Boolean download) throws Exception;
+
+    PipelineRunNode getPipelineRunNode(String organization, String pipeline, String run, String node) throws Exception;
+
+    PipelineStepImpl getPipelineRunNodeStep(String organization, String pipeline, String run, String node, String step) throws Exception;
+
+    String getPipelineRunNodeStepLog(String organization, String pipeline, String run, String node, String step) throws Exception;
+
+    PipelineRunNodeSteps getPipelineRunNodeSteps(String organization, String pipeline, String run, String node) throws Exception;
+
+    PipelineRunNodes getPipelineRunNodes(String organization, String pipeline, String run) throws Exception;
+
+    PipelineRuns getPipelineRuns(String organization, String pipeline) throws Exception;
+
+    Pipelines getPipelines(String organization) throws Exception;
+
+    GithubScm getSCM(String organization, String scm) throws Exception;
+
+    ScmOrganisations getSCMOrganisationRepositories(String organization, String scm, String scmOrganisation, String credentialId, Integer pageSize, Integer pageNumber) throws Exception;
+
+    ScmOrganisations getSCMOrganisationRepository(String organization, String scm, String scmOrganisation, String repository, String credentialId) throws Exception;
+
+    ScmOrganisations getSCMOrganisations(String organization, String scm, String credentialId) throws Exception;
+
+    User getUser(String organization, String user) throws Exception;
+
+    UserFavorites getUserFavorites(String user) throws Exception;
+
+    User getUsers(String organization) throws Exception;
+
+    QueueItemImpl postPipelineRun(String organization, String pipeline, String run) throws Exception;
+
+    QueueItemImpl postPipelineRuns(String organization, String pipeline) throws Exception;
+
+    FavoriteImpl putPipelineFavorite(String organization, String pipeline, String body) throws Exception;
+
+    PipelineRun putPipelineRun(String organization, String pipeline, String run, String blocking, Integer timeOutInSecs) throws Exception;
 
     String search( @NotNull String q) throws Exception;
 
-    String search_0( @NotNull String q) throws Exception;
+    String searchClasses( @NotNull String q) throws Exception;
 
 }

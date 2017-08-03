@@ -6,13 +6,13 @@ import io.swagger.exception.ApiError;
 import io.swagger.common.ApiUserCredentials;
 import io.swagger.event.Response;
 import io.swagger.common.SwaggerApi;
-import io.swagger.client.model.HudsonmodelComputerSet;
-import io.swagger.client.model.HudsonmodelFreeStyleBuild;
-import io.swagger.client.model.HudsonmodelFreeStyleProject;
-import io.swagger.client.model.HudsonmodelHudson;
-import io.swagger.client.model.HudsonmodelListView;
-import io.swagger.client.model.HudsonmodelQueue;
-import io.swagger.client.model.HudsonsecuritycsrfDefaultCrumbIssuer;
+import io.swagger.client.model.ComputerSet;
+import io.swagger.client.model.DefaultCrumbIssuer;
+import io.swagger.client.model.FreeStyleBuild;
+import io.swagger.client.model.FreeStyleProject;
+import io.swagger.client.model.Hudson;
+import io.swagger.client.model.ListView;
+import io.swagger.client.model.Queue;
 
 import mx.rpc.AsyncToken;
 import mx.utils.UIDUtil;
@@ -53,18 +53,24 @@ public class RemoteAccessApi extends SwaggerApi {
 
 
     /*
-     * Returns HudsonmodelComputerSet 
+     * Returns ComputerSet 
      */
-    public function get_computer (): String {
+    public function get_computer (depth: Number): String {
         // create path and map variables
-        var path: String = "/computer/api/json?depth=1".replace(/{format}/g,"xml");
+        var path: String = "/computer/api/json".replace(/{format}/g,"xml");
 
         // query params
         var queryParams: Dictionary = new Dictionary();
         var headerParams: Dictionary = new Dictionary();
 
+        // verify required params are set
+        if() {
+            throw new ApiError(400, "missing required params");
+        }
 
-        
+        if("null" != String(depth))
+            queryParams["depth"] = toPathValue(depth);
+
         
         var token:AsyncToken = getApiInvoker().invokeAPI(path, "GET", queryParams, null, headerParams);
 
@@ -73,13 +79,13 @@ public class RemoteAccessApi extends SwaggerApi {
         token.requestId = requestId;
         token.completionEventType = "get_computer";
 
-        token.returnType = HudsonmodelComputerSet;
+        token.returnType = ComputerSet;
         return requestId;
 
     }
 
     /*
-     * Returns HudsonsecuritycsrfDefaultCrumbIssuer 
+     * Returns DefaultCrumbIssuer 
      */
     public function get_crumb (): String {
         // create path and map variables
@@ -99,13 +105,13 @@ public class RemoteAccessApi extends SwaggerApi {
         token.requestId = requestId;
         token.completionEventType = "get_crumb";
 
-        token.returnType = HudsonsecuritycsrfDefaultCrumbIssuer;
+        token.returnType = DefaultCrumbIssuer;
         return requestId;
 
     }
 
     /*
-     * Returns HudsonmodelHudson 
+     * Returns Hudson 
      */
     public function get_jenkins (): String {
         // create path and map variables
@@ -125,13 +131,13 @@ public class RemoteAccessApi extends SwaggerApi {
         token.requestId = requestId;
         token.completionEventType = "get_jenkins";
 
-        token.returnType = HudsonmodelHudson;
+        token.returnType = Hudson;
         return requestId;
 
     }
 
     /*
-     * Returns HudsonmodelFreeStyleProject 
+     * Returns FreeStyleProject 
      */
     public function get_job (name: String): String {
         // create path and map variables
@@ -155,7 +161,7 @@ public class RemoteAccessApi extends SwaggerApi {
         token.requestId = requestId;
         token.completionEventType = "get_job";
 
-        token.returnType = HudsonmodelFreeStyleProject;
+        token.returnType = FreeStyleProject;
         return requestId;
 
     }
@@ -191,7 +197,7 @@ public class RemoteAccessApi extends SwaggerApi {
     }
 
     /*
-     * Returns HudsonmodelFreeStyleBuild 
+     * Returns FreeStyleBuild 
      */
     public function get_job_last_build (name: String): String {
         // create path and map variables
@@ -215,7 +221,7 @@ public class RemoteAccessApi extends SwaggerApi {
         token.requestId = requestId;
         token.completionEventType = "get_job_last_build";
 
-        token.returnType = HudsonmodelFreeStyleBuild;
+        token.returnType = FreeStyleBuild;
         return requestId;
 
     }
@@ -261,7 +267,7 @@ public class RemoteAccessApi extends SwaggerApi {
     }
 
     /*
-     * Returns HudsonmodelQueue 
+     * Returns Queue 
      */
     public function get_queue (): String {
         // create path and map variables
@@ -281,13 +287,13 @@ public class RemoteAccessApi extends SwaggerApi {
         token.requestId = requestId;
         token.completionEventType = "get_queue";
 
-        token.returnType = HudsonmodelQueue;
+        token.returnType = Queue;
         return requestId;
 
     }
 
     /*
-     * Returns HudsonmodelQueue 
+     * Returns Queue 
      */
     public function get_queue_item (number: String): String {
         // create path and map variables
@@ -311,13 +317,13 @@ public class RemoteAccessApi extends SwaggerApi {
         token.requestId = requestId;
         token.completionEventType = "get_queue_item";
 
-        token.returnType = HudsonmodelQueue;
+        token.returnType = Queue;
         return requestId;
 
     }
 
     /*
-     * Returns HudsonmodelListView 
+     * Returns ListView 
      */
     public function get_view (name: String): String {
         // create path and map variables
@@ -341,7 +347,7 @@ public class RemoteAccessApi extends SwaggerApi {
         token.requestId = requestId;
         token.completionEventType = "get_view";
 
-        token.returnType = HudsonmodelListView;
+        token.returnType = ListView;
         return requestId;
 
     }

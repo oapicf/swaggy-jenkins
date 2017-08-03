@@ -23,3 +23,4 @@ class SwaggerClient(config: SwaggerConfig) extends Closeable {
     client.close()
   }
 }
+

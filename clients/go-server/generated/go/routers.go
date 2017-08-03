@@ -45,9 +45,16 @@ var routes = Routes{
 	},
 
 	Route{
+		"DeletePipelineQueueItem",
+		"DELETE",
+		"//blue/rest/organizations/{organization}/pipelines/{pipeline}/queue/{queue}",
+		DeletePipelineQueueItem,
+	},
+
+	Route{
 		"GetAuthenticatedUser",
 		"GET",
-		"//blue/rest/organizations/{organisation}/user/",
+		"//blue/rest/organizations/{organization}/user/",
 		GetAuthenticatedUser,
 	},
 
@@ -61,7 +68,7 @@ var routes = Routes{
 	Route{
 		"GetOrganisation",
 		"GET",
-		"//blue/rest/organizations/{organisation}",
+		"//blue/rest/organizations/{organization}",
 		GetOrganisation,
 	},
 
@@ -73,79 +80,219 @@ var routes = Routes{
 	},
 
 	Route{
-		"GetPipelineBranchByOrg",
+		"GetPipeline",
 		"GET",
-		"//blue/rest/organizations/{organisation}/pipelines/{pipeline}/branches/{branch}/",
-		GetPipelineBranchByOrg,
+		"//blue/rest/organizations/{organization}/pipelines/{pipeline}",
+		GetPipeline,
 	},
 
 	Route{
-		"GetPipelineBranchesByOrg",
+		"GetPipelineActivities",
 		"GET",
-		"//blue/rest/organizations/{organisation}/pipelines/{pipeline}/branches",
-		GetPipelineBranchesByOrg,
+		"//blue/rest/organizations/{organization}/pipelines/{pipeline}/activities",
+		GetPipelineActivities,
 	},
 
 	Route{
-		"GetPipelineByOrg",
+		"GetPipelineBranch",
 		"GET",
-		"//blue/rest/organizations/{organisation}/pipelines/{pipeline}",
-		GetPipelineByOrg,
+		"//blue/rest/organizations/{organization}/pipelines/{pipeline}/branches/{branch}/",
+		GetPipelineBranch,
 	},
 
 	Route{
-		"GetPipelineFolderByOrg",
+		"GetPipelineBranchRun",
 		"GET",
-		"//blue/rest/organizations/{organisation}/pipelines/{folder}/",
-		GetPipelineFolderByOrg,
+		"//blue/rest/organizations/{organization}/pipelines/{pipeline}/branches/{branch}/runs/{run}",
+		GetPipelineBranchRun,
 	},
 
 	Route{
-		"GetPipelineFolderByOrg_0",
+		"GetPipelineBranches",
 		"GET",
-		"//blue/rest/organizations/{organisation}/pipelines/{folder}/pipelines/{pipeline}",
-		GetPipelineFolderByOrg_0,
+		"//blue/rest/organizations/{organization}/pipelines/{pipeline}/branches",
+		GetPipelineBranches,
 	},
 
 	Route{
-		"GetPipelinesByOrg",
+		"GetPipelineFolder",
 		"GET",
-		"//blue/rest/organizations/{organisation}/pipelines/",
-		GetPipelinesByOrg,
+		"//blue/rest/organizations/{organization}/pipelines/{folder}/",
+		GetPipelineFolder,
+	},
+
+	Route{
+		"GetPipelineFolderPipeline",
+		"GET",
+		"//blue/rest/organizations/{organization}/pipelines/{folder}/pipelines/{pipeline}",
+		GetPipelineFolderPipeline,
+	},
+
+	Route{
+		"GetPipelineQueue",
+		"GET",
+		"//blue/rest/organizations/{organization}/pipelines/{pipeline}/queue",
+		GetPipelineQueue,
+	},
+
+	Route{
+		"GetPipelineRun",
+		"GET",
+		"//blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}",
+		GetPipelineRun,
+	},
+
+	Route{
+		"GetPipelineRunLog",
+		"GET",
+		"//blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/log",
+		GetPipelineRunLog,
+	},
+
+	Route{
+		"GetPipelineRunNode",
+		"GET",
+		"//blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}",
+		GetPipelineRunNode,
+	},
+
+	Route{
+		"GetPipelineRunNodeStep",
+		"GET",
+		"//blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps/{step}",
+		GetPipelineRunNodeStep,
+	},
+
+	Route{
+		"GetPipelineRunNodeStepLog",
+		"GET",
+		"//blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps/{step}/log",
+		GetPipelineRunNodeStepLog,
+	},
+
+	Route{
+		"GetPipelineRunNodeSteps",
+		"GET",
+		"//blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps",
+		GetPipelineRunNodeSteps,
+	},
+
+	Route{
+		"GetPipelineRunNodes",
+		"GET",
+		"//blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes",
+		GetPipelineRunNodes,
+	},
+
+	Route{
+		"GetPipelineRuns",
+		"GET",
+		"//blue/rest/organizations/{organization}/pipelines/{pipeline}/runs",
+		GetPipelineRuns,
+	},
+
+	Route{
+		"GetPipelines",
+		"GET",
+		"//blue/rest/organizations/{organization}/pipelines/",
+		GetPipelines,
+	},
+
+	Route{
+		"GetSCM",
+		"GET",
+		"//blue/rest/organizations/{organization}/scm/{scm}",
+		GetSCM,
+	},
+
+	Route{
+		"GetSCMOrganisationRepositories",
+		"GET",
+		"//blue/rest/organizations/{organization}/scm/{scm}/organizations/{scmOrganisation}/repositories",
+		GetSCMOrganisationRepositories,
+	},
+
+	Route{
+		"GetSCMOrganisationRepository",
+		"GET",
+		"//blue/rest/organizations/{organization}/scm/{scm}/organizations/{scmOrganisation}/repositories/{repository}",
+		GetSCMOrganisationRepository,
+	},
+
+	Route{
+		"GetSCMOrganisations",
+		"GET",
+		"//blue/rest/organizations/{organization}/scm/{scm}/organizations",
+		GetSCMOrganisations,
 	},
 
 	Route{
 		"GetUser",
 		"GET",
-		"//blue/rest/organizations/{organisation}/users/{user}",
+		"//blue/rest/organizations/{organization}/users/{user}",
 		GetUser,
+	},
+
+	Route{
+		"GetUserFavorites",
+		"GET",
+		"//blue/rest/users/{user}/favorites",
+		GetUserFavorites,
 	},
 
 	Route{
 		"GetUsers",
 		"GET",
-		"//blue/rest/organizations/{organisation}/users/",
+		"//blue/rest/organizations/{organization}/users/",
 		GetUsers,
+	},
+
+	Route{
+		"PostPipelineRun",
+		"POST",
+		"//blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/replay",
+		PostPipelineRun,
+	},
+
+	Route{
+		"PostPipelineRuns",
+		"POST",
+		"//blue/rest/organizations/{organization}/pipelines/{pipeline}/runs",
+		PostPipelineRuns,
+	},
+
+	Route{
+		"PutPipelineFavorite",
+		"PUT",
+		"//blue/rest/organizations/{organization}/pipelines/{pipeline}/favorite",
+		PutPipelineFavorite,
+	},
+
+	Route{
+		"PutPipelineRun",
+		"PUT",
+		"//blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/stop",
+		PutPipelineRun,
 	},
 
 	Route{
 		"Search",
 		"GET",
-		"//blue/rest/classes/",
+		"//blue/rest/search/",
 		Search,
 	},
 
 	Route{
-		"Search_0",
+		"SearchClasses",
 		"GET",
-		"//blue/rest/search/",
-		Search_0,
+		"//blue/rest/classes/",
+		SearchClasses,
 	},
 
 	Route{
 		"GetComputer",
 		"GET",
-		"//computer/api/json?depth=1",
+		"//computer/api/json",
 		GetComputer,
 	},
 

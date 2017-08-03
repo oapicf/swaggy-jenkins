@@ -27,39 +27,12 @@ public class SwagBlueOceanApi {
 
     /**
      * 
-     * Get classes details
-     * @param q Query string containing an array of class names (required)
-     * @return String
-     * @throws Swagger.ApiException if fails to make API call
-     */
-    public String callSearch(Map<String, Object> params) {
-        client.assertNotNull(params.get('q'), 'q');
-        List<Swagger.Param> query = new List<Swagger.Param>();
-
-        // cast query params to verify their expected type
-        query.addAll(client.makeParam('q', (String) params.get('q')));
-
-        List<Swagger.Param> form = new List<Swagger.Param>();
-
-        return (String) client.invoke(
-            'GET', '/blue/rest/classes/', '',
-            query, form,
-            new Map<String, Object>(),
-            new Map<String, Object>(),
-            new List<String>{ 'application/json' },
-            new List<String>{ 'application/json' },
-            new List<String>(),
-            String.class
-        );
-    }
-    /**
-     * 
      * Search for any resource details
      * @param q Query string (required)
      * @return String
      * @throws Swagger.ApiException if fails to make API call
      */
-    public String callSearch_0(Map<String, Object> params) {
+    public String callSearch(Map<String, Object> params) {
         client.assertNotNull(params.get('q'), 'q');
         List<Swagger.Param> query = new List<Swagger.Param>();
 
@@ -75,33 +48,63 @@ public class SwagBlueOceanApi {
             new Map<String, Object>(),
             new List<String>{ 'application/json' },
             new List<String>{ 'application/json' },
-            new List<String>(),
+            new List<String> { 'jenkins_auth' },
             String.class
         );
     }
     /**
      * 
-     * Retrieve authenticated user details for an organisation
-     * @param organisation Name of the organisation (required)
-     * @return SwagSwaggyjenkinsUser
+     * Delete queue item from an organization pipeline queue
+     * @param organization Name of the organization (required)
+     * @param pipeline Name of the pipeline (required)
+     * @param queue Name of the queue item (required)
      * @throws Swagger.ApiException if fails to make API call
      */
-    public SwagSwaggyjenkinsUser getAuthenticatedUser(Map<String, Object> params) {
-        client.assertNotNull(params.get('organisation'), 'organisation');
+    public void deletePipelineQueueItem(Map<String, Object> params) {
+        client.assertNotNull(params.get('organization'), 'organization');
+        client.assertNotNull(params.get('pipeline'), 'pipeline');
+        client.assertNotNull(params.get('queue'), 'queue');
         List<Swagger.Param> query = new List<Swagger.Param>();
         List<Swagger.Param> form = new List<Swagger.Param>();
 
-        return (SwagSwaggyjenkinsUser) client.invoke(
-            'GET', '/blue/rest/organizations/{organisation}/user/', '',
+        client.invoke(
+            'DELETE', '/blue/rest/organizations/{organization}/pipelines/{pipeline}/queue/{queue}', '',
             query, form,
             new Map<String, Object>{
-                'organisation' => (String) params.get('organisation')
+                'organization' => (String) params.get('organization'),
+                'pipeline' => (String) params.get('pipeline'),
+                'queue' => (String) params.get('queue')
             },
             new Map<String, Object>(),
             new List<String>{ 'application/json' },
             new List<String>{ 'application/json' },
-            new List<String>(),
-            SwagSwaggyjenkinsUser.class
+            new List<String> { 'jenkins_auth' },
+            null
+        );
+    }
+    /**
+     * 
+     * Retrieve authenticated user details for an organization
+     * @param organization Name of the organization (required)
+     * @return SwagUser
+     * @throws Swagger.ApiException if fails to make API call
+     */
+    public SwagUser getAuthenticatedUser(Map<String, Object> params) {
+        client.assertNotNull(params.get('organization'), 'organization');
+        List<Swagger.Param> query = new List<Swagger.Param>();
+        List<Swagger.Param> form = new List<Swagger.Param>();
+
+        return (SwagUser) client.invoke(
+            'GET', '/blue/rest/organizations/{organization}/user/', '',
+            query, form,
+            new Map<String, Object>{
+                'organization' => (String) params.get('organization')
+            },
+            new Map<String, Object>(),
+            new List<String>{ 'application/json' },
+            new List<String>{ 'application/json' },
+            new List<String> { 'jenkins_auth' },
+            SwagUser.class
         );
     }
     /**
@@ -125,278 +128,958 @@ public class SwagBlueOceanApi {
             new Map<String, Object>(),
             new List<String>{ 'application/json' },
             new List<String>{ 'application/json' },
-            new List<String>(),
+            new List<String> { 'jenkins_auth' },
             String.class
         );
     }
     /**
      * 
-     * Retrieve organisation details
-     * @param organisation Name of the organisation (required)
-     * @return SwagSwaggyjenkinsOrganisation
+     * Retrieve organization details
+     * @param organization Name of the organization (required)
+     * @return SwagOrganisation
      * @throws Swagger.ApiException if fails to make API call
      */
-    public SwagSwaggyjenkinsOrganisation getOrganisation(Map<String, Object> params) {
-        client.assertNotNull(params.get('organisation'), 'organisation');
+    public SwagOrganisation getOrganisation(Map<String, Object> params) {
+        client.assertNotNull(params.get('organization'), 'organization');
         List<Swagger.Param> query = new List<Swagger.Param>();
         List<Swagger.Param> form = new List<Swagger.Param>();
 
-        return (SwagSwaggyjenkinsOrganisation) client.invoke(
-            'GET', '/blue/rest/organizations/{organisation}', '',
+        return (SwagOrganisation) client.invoke(
+            'GET', '/blue/rest/organizations/{organization}', '',
             query, form,
             new Map<String, Object>{
-                'organisation' => (String) params.get('organisation')
+                'organization' => (String) params.get('organization')
             },
             new Map<String, Object>(),
             new List<String>{ 'application/json' },
             new List<String>{ 'application/json' },
-            new List<String>(),
-            SwagSwaggyjenkinsOrganisation.class
+            new List<String> { 'jenkins_auth' },
+            SwagOrganisation.class
         );
     }
     /**
      * 
-     * Retrieve all organisations details
-     * @return SwagGetOrganisations
+     * Retrieve all organizations details
+     * @return SwagOrganisations
      * @throws Swagger.ApiException if fails to make API call
      */
-    public SwagGetOrganisations getOrganisations() {
+    public SwagOrganisations getOrganisations() {
         List<Swagger.Param> query = new List<Swagger.Param>();
         List<Swagger.Param> form = new List<Swagger.Param>();
 
-        return (SwagGetOrganisations) client.invoke(
+        return (SwagOrganisations) client.invoke(
             'GET', '/blue/rest/organizations/', '',
             query, form,
             new Map<String, Object>(),
             new Map<String, Object>(),
             new List<String>{ 'application/json' },
             new List<String>{ 'application/json' },
-            new List<String>(),
-            SwagGetOrganisations.class
+            new List<String> { 'jenkins_auth' },
+            SwagOrganisations.class
         );
     }
     /**
      * 
-     * Retrieve branch details for an organisation pipeline
-     * @param organisation Name of the organisation (required)
+     * Retrieve pipeline details for an organization
+     * @param organization Name of the organization (required)
      * @param pipeline Name of the pipeline (required)
-     * @param branch Name of the branch (required)
-     * @return SwagIojenkinsblueoceanrestimplpipeli
+     * @return SwagPipeline
      * @throws Swagger.ApiException if fails to make API call
      */
-    public SwagIojenkinsblueoceanrestimplpipeli getPipelineBranchByOrg(Map<String, Object> params) {
-        client.assertNotNull(params.get('organisation'), 'organisation');
+    public SwagPipeline getPipeline(Map<String, Object> params) {
+        client.assertNotNull(params.get('organization'), 'organization');
+        client.assertNotNull(params.get('pipeline'), 'pipeline');
+        List<Swagger.Param> query = new List<Swagger.Param>();
+        List<Swagger.Param> form = new List<Swagger.Param>();
+
+        return (SwagPipeline) client.invoke(
+            'GET', '/blue/rest/organizations/{organization}/pipelines/{pipeline}', '',
+            query, form,
+            new Map<String, Object>{
+                'organization' => (String) params.get('organization'),
+                'pipeline' => (String) params.get('pipeline')
+            },
+            new Map<String, Object>(),
+            new List<String>{ 'application/json' },
+            new List<String>{ 'application/json' },
+            new List<String> { 'jenkins_auth' },
+            SwagPipeline.class
+        );
+    }
+    /**
+     * 
+     * Retrieve all activities details for an organization pipeline
+     * @param organization Name of the organization (required)
+     * @param pipeline Name of the pipeline (required)
+     * @return SwagPipelineActivities
+     * @throws Swagger.ApiException if fails to make API call
+     */
+    public SwagPipelineActivities getPipelineActivities(Map<String, Object> params) {
+        client.assertNotNull(params.get('organization'), 'organization');
+        client.assertNotNull(params.get('pipeline'), 'pipeline');
+        List<Swagger.Param> query = new List<Swagger.Param>();
+        List<Swagger.Param> form = new List<Swagger.Param>();
+
+        return (SwagPipelineActivities) client.invoke(
+            'GET', '/blue/rest/organizations/{organization}/pipelines/{pipeline}/activities', '',
+            query, form,
+            new Map<String, Object>{
+                'organization' => (String) params.get('organization'),
+                'pipeline' => (String) params.get('pipeline')
+            },
+            new Map<String, Object>(),
+            new List<String>{ 'application/json' },
+            new List<String>{ 'application/json' },
+            new List<String> { 'jenkins_auth' },
+            SwagPipelineActivities.class
+        );
+    }
+    /**
+     * 
+     * Retrieve branch details for an organization pipeline
+     * @param organization Name of the organization (required)
+     * @param pipeline Name of the pipeline (required)
+     * @param branch Name of the branch (required)
+     * @return SwagBranchImpl
+     * @throws Swagger.ApiException if fails to make API call
+     */
+    public SwagBranchImpl getPipelineBranch(Map<String, Object> params) {
+        client.assertNotNull(params.get('organization'), 'organization');
         client.assertNotNull(params.get('pipeline'), 'pipeline');
         client.assertNotNull(params.get('branch'), 'branch');
         List<Swagger.Param> query = new List<Swagger.Param>();
         List<Swagger.Param> form = new List<Swagger.Param>();
 
-        return (SwagIojenkinsblueoceanrestimplpipeli) client.invoke(
-            'GET', '/blue/rest/organizations/{organisation}/pipelines/{pipeline}/branches/{branch}/', '',
+        return (SwagBranchImpl) client.invoke(
+            'GET', '/blue/rest/organizations/{organization}/pipelines/{pipeline}/branches/{branch}/', '',
             query, form,
             new Map<String, Object>{
-                'organisation' => (String) params.get('organisation'),
+                'organization' => (String) params.get('organization'),
                 'pipeline' => (String) params.get('pipeline'),
                 'branch' => (String) params.get('branch')
             },
             new Map<String, Object>(),
             new List<String>{ 'application/json' },
             new List<String>{ 'application/json' },
-            new List<String>(),
-            SwagIojenkinsblueoceanrestimplpipeli.class
+            new List<String> { 'jenkins_auth' },
+            SwagBranchImpl.class
         );
     }
     /**
      * 
-     * Retrieve all branches details for an organisation pipeline
-     * @param organisation Name of the organisation (required)
+     * Retrieve branch run details for an organization pipeline
+     * @param organization Name of the organization (required)
      * @param pipeline Name of the pipeline (required)
-     * @return SwagGetMultibranchPipeline
+     * @param branch Name of the branch (required)
+     * @param run Name of the run (required)
+     * @return SwagPipelineRun
      * @throws Swagger.ApiException if fails to make API call
      */
-    public SwagGetMultibranchPipeline getPipelineBranchesByOrg(Map<String, Object> params) {
-        client.assertNotNull(params.get('organisation'), 'organisation');
+    public SwagPipelineRun getPipelineBranchRun(Map<String, Object> params) {
+        client.assertNotNull(params.get('organization'), 'organization');
+        client.assertNotNull(params.get('pipeline'), 'pipeline');
+        client.assertNotNull(params.get('branch'), 'branch');
+        client.assertNotNull(params.get('run'), 'run');
+        List<Swagger.Param> query = new List<Swagger.Param>();
+        List<Swagger.Param> form = new List<Swagger.Param>();
+
+        return (SwagPipelineRun) client.invoke(
+            'GET', '/blue/rest/organizations/{organization}/pipelines/{pipeline}/branches/{branch}/runs/{run}', '',
+            query, form,
+            new Map<String, Object>{
+                'organization' => (String) params.get('organization'),
+                'pipeline' => (String) params.get('pipeline'),
+                'branch' => (String) params.get('branch'),
+                'run' => (String) params.get('run')
+            },
+            new Map<String, Object>(),
+            new List<String>{ 'application/json' },
+            new List<String>{ 'application/json' },
+            new List<String> { 'jenkins_auth' },
+            SwagPipelineRun.class
+        );
+    }
+    /**
+     * 
+     * Retrieve all branches details for an organization pipeline
+     * @param organization Name of the organization (required)
+     * @param pipeline Name of the pipeline (required)
+     * @return SwagMultibranchPipeline
+     * @throws Swagger.ApiException if fails to make API call
+     */
+    public SwagMultibranchPipeline getPipelineBranches(Map<String, Object> params) {
+        client.assertNotNull(params.get('organization'), 'organization');
         client.assertNotNull(params.get('pipeline'), 'pipeline');
         List<Swagger.Param> query = new List<Swagger.Param>();
         List<Swagger.Param> form = new List<Swagger.Param>();
 
-        return (SwagGetMultibranchPipeline) client.invoke(
-            'GET', '/blue/rest/organizations/{organisation}/pipelines/{pipeline}/branches', '',
+        return (SwagMultibranchPipeline) client.invoke(
+            'GET', '/blue/rest/organizations/{organization}/pipelines/{pipeline}/branches', '',
             query, form,
             new Map<String, Object>{
-                'organisation' => (String) params.get('organisation'),
+                'organization' => (String) params.get('organization'),
                 'pipeline' => (String) params.get('pipeline')
             },
             new Map<String, Object>(),
             new List<String>{ 'application/json' },
             new List<String>{ 'application/json' },
-            new List<String>(),
-            SwagGetMultibranchPipeline.class
+            new List<String> { 'jenkins_auth' },
+            SwagMultibranchPipeline.class
         );
     }
     /**
      * 
-     * Retrieve pipeline details for an organisation
-     * @param organisation Name of the organisation (required)
-     * @param pipeline Name of the pipeline (required)
-     * @return SwagSwaggyjenkinsPipeline
-     * @throws Swagger.ApiException if fails to make API call
-     */
-    public SwagSwaggyjenkinsPipeline getPipelineByOrg(Map<String, Object> params) {
-        client.assertNotNull(params.get('organisation'), 'organisation');
-        client.assertNotNull(params.get('pipeline'), 'pipeline');
-        List<Swagger.Param> query = new List<Swagger.Param>();
-        List<Swagger.Param> form = new List<Swagger.Param>();
-
-        return (SwagSwaggyjenkinsPipeline) client.invoke(
-            'GET', '/blue/rest/organizations/{organisation}/pipelines/{pipeline}', '',
-            query, form,
-            new Map<String, Object>{
-                'organisation' => (String) params.get('organisation'),
-                'pipeline' => (String) params.get('pipeline')
-            },
-            new Map<String, Object>(),
-            new List<String>{ 'application/json' },
-            new List<String>{ 'application/json' },
-            new List<String>(),
-            SwagSwaggyjenkinsPipeline.class
-        );
-    }
-    /**
-     * 
-     * Retrieve pipeline folder for an organisation
-     * @param organisation Name of the organisation (required)
+     * Retrieve pipeline folder for an organization
+     * @param organization Name of the organization (required)
      * @param folder Name of the folder (required)
-     * @return SwagIojenkinsblueoceanserviceembedde
+     * @return SwagPipelineFolderImpl
      * @throws Swagger.ApiException if fails to make API call
      */
-    public SwagIojenkinsblueoceanserviceembedde getPipelineFolderByOrg(Map<String, Object> params) {
-        client.assertNotNull(params.get('organisation'), 'organisation');
+    public SwagPipelineFolderImpl getPipelineFolder(Map<String, Object> params) {
+        client.assertNotNull(params.get('organization'), 'organization');
         client.assertNotNull(params.get('folder'), 'folder');
         List<Swagger.Param> query = new List<Swagger.Param>();
         List<Swagger.Param> form = new List<Swagger.Param>();
 
-        return (SwagIojenkinsblueoceanserviceembedde) client.invoke(
-            'GET', '/blue/rest/organizations/{organisation}/pipelines/{folder}/', '',
+        return (SwagPipelineFolderImpl) client.invoke(
+            'GET', '/blue/rest/organizations/{organization}/pipelines/{folder}/', '',
             query, form,
             new Map<String, Object>{
-                'organisation' => (String) params.get('organisation'),
+                'organization' => (String) params.get('organization'),
                 'folder' => (String) params.get('folder')
             },
             new Map<String, Object>(),
             new List<String>{ 'application/json' },
             new List<String>{ 'application/json' },
-            new List<String>(),
-            SwagIojenkinsblueoceanserviceembedde.class
+            new List<String> { 'jenkins_auth' },
+            SwagPipelineFolderImpl.class
         );
     }
     /**
      * 
-     * Retrieve pipeline details for an organisation folder
-     * @param organisation Name of the organisation (required)
+     * Retrieve pipeline details for an organization folder
+     * @param organization Name of the organization (required)
      * @param pipeline Name of the pipeline (required)
      * @param folder Name of the folder (required)
-     * @return SwagIojenkinsblueoceanserviceembedde
+     * @return SwagPipelineImpl
      * @throws Swagger.ApiException if fails to make API call
      */
-    public SwagIojenkinsblueoceanserviceembedde getPipelineFolderByOrg_0(Map<String, Object> params) {
-        client.assertNotNull(params.get('organisation'), 'organisation');
+    public SwagPipelineImpl getPipelineFolderPipeline(Map<String, Object> params) {
+        client.assertNotNull(params.get('organization'), 'organization');
         client.assertNotNull(params.get('pipeline'), 'pipeline');
         client.assertNotNull(params.get('folder'), 'folder');
         List<Swagger.Param> query = new List<Swagger.Param>();
         List<Swagger.Param> form = new List<Swagger.Param>();
 
-        return (SwagIojenkinsblueoceanserviceembedde) client.invoke(
-            'GET', '/blue/rest/organizations/{organisation}/pipelines/{folder}/pipelines/{pipeline}', '',
+        return (SwagPipelineImpl) client.invoke(
+            'GET', '/blue/rest/organizations/{organization}/pipelines/{folder}/pipelines/{pipeline}', '',
             query, form,
             new Map<String, Object>{
-                'organisation' => (String) params.get('organisation'),
+                'organization' => (String) params.get('organization'),
                 'pipeline' => (String) params.get('pipeline'),
                 'folder' => (String) params.get('folder')
             },
             new Map<String, Object>(),
             new List<String>{ 'application/json' },
             new List<String>{ 'application/json' },
-            new List<String>(),
-            SwagIojenkinsblueoceanserviceembedde.class
+            new List<String> { 'jenkins_auth' },
+            SwagPipelineImpl.class
         );
     }
     /**
      * 
-     * Retrieve all pipelines details for an organisation
-     * @param organisation Name of the organisation (required)
-     * @return SwagGetPipelines
+     * Retrieve queue details for an organization pipeline
+     * @param organization Name of the organization (required)
+     * @param pipeline Name of the pipeline (required)
+     * @return SwagPipelineQueue
      * @throws Swagger.ApiException if fails to make API call
      */
-    public SwagGetPipelines getPipelinesByOrg(Map<String, Object> params) {
-        client.assertNotNull(params.get('organisation'), 'organisation');
+    public SwagPipelineQueue getPipelineQueue(Map<String, Object> params) {
+        client.assertNotNull(params.get('organization'), 'organization');
+        client.assertNotNull(params.get('pipeline'), 'pipeline');
         List<Swagger.Param> query = new List<Swagger.Param>();
         List<Swagger.Param> form = new List<Swagger.Param>();
 
-        return (SwagGetPipelines) client.invoke(
-            'GET', '/blue/rest/organizations/{organisation}/pipelines/', '',
+        return (SwagPipelineQueue) client.invoke(
+            'GET', '/blue/rest/organizations/{organization}/pipelines/{pipeline}/queue', '',
             query, form,
             new Map<String, Object>{
-                'organisation' => (String) params.get('organisation')
+                'organization' => (String) params.get('organization'),
+                'pipeline' => (String) params.get('pipeline')
             },
             new Map<String, Object>(),
             new List<String>{ 'application/json' },
             new List<String>{ 'application/json' },
-            new List<String>(),
-            SwagGetPipelines.class
+            new List<String> { 'jenkins_auth' },
+            SwagPipelineQueue.class
         );
     }
     /**
      * 
-     * Retrieve user details for an organisation
-     * @param organisation Name of the organisation (required)
-     * @param user Name of the user (required)
-     * @return SwagSwaggyjenkinsUser
+     * Retrieve run details for an organization pipeline
+     * @param organization Name of the organization (required)
+     * @param pipeline Name of the pipeline (required)
+     * @param run Name of the run (required)
+     * @return SwagPipelineRun
      * @throws Swagger.ApiException if fails to make API call
      */
-    public SwagSwaggyjenkinsUser getUser(Map<String, Object> params) {
-        client.assertNotNull(params.get('organisation'), 'organisation');
+    public SwagPipelineRun getPipelineRun(Map<String, Object> params) {
+        client.assertNotNull(params.get('organization'), 'organization');
+        client.assertNotNull(params.get('pipeline'), 'pipeline');
+        client.assertNotNull(params.get('run'), 'run');
+        List<Swagger.Param> query = new List<Swagger.Param>();
+        List<Swagger.Param> form = new List<Swagger.Param>();
+
+        return (SwagPipelineRun) client.invoke(
+            'GET', '/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}', '',
+            query, form,
+            new Map<String, Object>{
+                'organization' => (String) params.get('organization'),
+                'pipeline' => (String) params.get('pipeline'),
+                'run' => (String) params.get('run')
+            },
+            new Map<String, Object>(),
+            new List<String>{ 'application/json' },
+            new List<String>{ 'application/json' },
+            new List<String> { 'jenkins_auth' },
+            SwagPipelineRun.class
+        );
+    }
+    /**
+     * 
+     * Get log for a pipeline run
+     * @param organization Name of the organization (required)
+     * @param pipeline Name of the pipeline (required)
+     * @param run Name of the run (required)
+     * @param start Start position of the log (optional)
+     * @param download Set to true in order to download the file, otherwise it\&#39;s passed as a response body (optional)
+     * @return String
+     * @throws Swagger.ApiException if fails to make API call
+     */
+    public String getPipelineRunLog(Map<String, Object> params) {
+        client.assertNotNull(params.get('organization'), 'organization');
+        client.assertNotNull(params.get('pipeline'), 'pipeline');
+        client.assertNotNull(params.get('run'), 'run');
+        List<Swagger.Param> query = new List<Swagger.Param>();
+
+        // cast query params to verify their expected type
+        query.addAll(client.makeParam('start', (Integer) params.get('start')));
+        query.addAll(client.makeParam('download', (Boolean) params.get('download')));
+
+        List<Swagger.Param> form = new List<Swagger.Param>();
+
+        return (String) client.invoke(
+            'GET', '/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/log', '',
+            query, form,
+            new Map<String, Object>{
+                'organization' => (String) params.get('organization'),
+                'pipeline' => (String) params.get('pipeline'),
+                'run' => (String) params.get('run')
+            },
+            new Map<String, Object>(),
+            new List<String>{ 'application/json' },
+            new List<String>{ 'application/json' },
+            new List<String> { 'jenkins_auth' },
+            String.class
+        );
+    }
+    /**
+     * 
+     * Retrieve run node details for an organization pipeline
+     * @param organization Name of the organization (required)
+     * @param pipeline Name of the pipeline (required)
+     * @param run Name of the run (required)
+     * @param node Name of the node (required)
+     * @return SwagPipelineRunNode
+     * @throws Swagger.ApiException if fails to make API call
+     */
+    public SwagPipelineRunNode getPipelineRunNode(Map<String, Object> params) {
+        client.assertNotNull(params.get('organization'), 'organization');
+        client.assertNotNull(params.get('pipeline'), 'pipeline');
+        client.assertNotNull(params.get('run'), 'run');
+        client.assertNotNull(params.get('node'), 'node');
+        List<Swagger.Param> query = new List<Swagger.Param>();
+        List<Swagger.Param> form = new List<Swagger.Param>();
+
+        return (SwagPipelineRunNode) client.invoke(
+            'GET', '/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}', '',
+            query, form,
+            new Map<String, Object>{
+                'organization' => (String) params.get('organization'),
+                'pipeline' => (String) params.get('pipeline'),
+                'run' => (String) params.get('run'),
+                'node' => (String) params.get('node')
+            },
+            new Map<String, Object>(),
+            new List<String>{ 'application/json' },
+            new List<String>{ 'application/json' },
+            new List<String> { 'jenkins_auth' },
+            SwagPipelineRunNode.class
+        );
+    }
+    /**
+     * 
+     * Retrieve run node details for an organization pipeline
+     * @param organization Name of the organization (required)
+     * @param pipeline Name of the pipeline (required)
+     * @param run Name of the run (required)
+     * @param node Name of the node (required)
+     * @param step Name of the step (required)
+     * @return SwagPipelineStepImpl
+     * @throws Swagger.ApiException if fails to make API call
+     */
+    public SwagPipelineStepImpl getPipelineRunNodeStep(Map<String, Object> params) {
+        client.assertNotNull(params.get('organization'), 'organization');
+        client.assertNotNull(params.get('pipeline'), 'pipeline');
+        client.assertNotNull(params.get('run'), 'run');
+        client.assertNotNull(params.get('node'), 'node');
+        client.assertNotNull(params.get('step'), 'step');
+        List<Swagger.Param> query = new List<Swagger.Param>();
+        List<Swagger.Param> form = new List<Swagger.Param>();
+
+        return (SwagPipelineStepImpl) client.invoke(
+            'GET', '/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps/{step}', '',
+            query, form,
+            new Map<String, Object>{
+                'organization' => (String) params.get('organization'),
+                'pipeline' => (String) params.get('pipeline'),
+                'run' => (String) params.get('run'),
+                'node' => (String) params.get('node'),
+                'step' => (String) params.get('step')
+            },
+            new Map<String, Object>(),
+            new List<String>{ 'application/json' },
+            new List<String>{ 'application/json' },
+            new List<String> { 'jenkins_auth' },
+            SwagPipelineStepImpl.class
+        );
+    }
+    /**
+     * 
+     * Get log for a pipeline run node step
+     * @param organization Name of the organization (required)
+     * @param pipeline Name of the pipeline (required)
+     * @param run Name of the run (required)
+     * @param node Name of the node (required)
+     * @param step Name of the step (required)
+     * @return String
+     * @throws Swagger.ApiException if fails to make API call
+     */
+    public String getPipelineRunNodeStepLog(Map<String, Object> params) {
+        client.assertNotNull(params.get('organization'), 'organization');
+        client.assertNotNull(params.get('pipeline'), 'pipeline');
+        client.assertNotNull(params.get('run'), 'run');
+        client.assertNotNull(params.get('node'), 'node');
+        client.assertNotNull(params.get('step'), 'step');
+        List<Swagger.Param> query = new List<Swagger.Param>();
+        List<Swagger.Param> form = new List<Swagger.Param>();
+
+        return (String) client.invoke(
+            'GET', '/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps/{step}/log', '',
+            query, form,
+            new Map<String, Object>{
+                'organization' => (String) params.get('organization'),
+                'pipeline' => (String) params.get('pipeline'),
+                'run' => (String) params.get('run'),
+                'node' => (String) params.get('node'),
+                'step' => (String) params.get('step')
+            },
+            new Map<String, Object>(),
+            new List<String>{ 'application/json' },
+            new List<String>{ 'application/json' },
+            new List<String> { 'jenkins_auth' },
+            String.class
+        );
+    }
+    /**
+     * 
+     * Retrieve run node steps details for an organization pipeline
+     * @param organization Name of the organization (required)
+     * @param pipeline Name of the pipeline (required)
+     * @param run Name of the run (required)
+     * @param node Name of the node (required)
+     * @return SwagPipelineRunNodeSteps
+     * @throws Swagger.ApiException if fails to make API call
+     */
+    public SwagPipelineRunNodeSteps getPipelineRunNodeSteps(Map<String, Object> params) {
+        client.assertNotNull(params.get('organization'), 'organization');
+        client.assertNotNull(params.get('pipeline'), 'pipeline');
+        client.assertNotNull(params.get('run'), 'run');
+        client.assertNotNull(params.get('node'), 'node');
+        List<Swagger.Param> query = new List<Swagger.Param>();
+        List<Swagger.Param> form = new List<Swagger.Param>();
+
+        return (SwagPipelineRunNodeSteps) client.invoke(
+            'GET', '/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps', '',
+            query, form,
+            new Map<String, Object>{
+                'organization' => (String) params.get('organization'),
+                'pipeline' => (String) params.get('pipeline'),
+                'run' => (String) params.get('run'),
+                'node' => (String) params.get('node')
+            },
+            new Map<String, Object>(),
+            new List<String>{ 'application/json' },
+            new List<String>{ 'application/json' },
+            new List<String> { 'jenkins_auth' },
+            SwagPipelineRunNodeSteps.class
+        );
+    }
+    /**
+     * 
+     * Retrieve run nodes details for an organization pipeline
+     * @param organization Name of the organization (required)
+     * @param pipeline Name of the pipeline (required)
+     * @param run Name of the run (required)
+     * @return SwagPipelineRunNodes
+     * @throws Swagger.ApiException if fails to make API call
+     */
+    public SwagPipelineRunNodes getPipelineRunNodes(Map<String, Object> params) {
+        client.assertNotNull(params.get('organization'), 'organization');
+        client.assertNotNull(params.get('pipeline'), 'pipeline');
+        client.assertNotNull(params.get('run'), 'run');
+        List<Swagger.Param> query = new List<Swagger.Param>();
+        List<Swagger.Param> form = new List<Swagger.Param>();
+
+        return (SwagPipelineRunNodes) client.invoke(
+            'GET', '/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes', '',
+            query, form,
+            new Map<String, Object>{
+                'organization' => (String) params.get('organization'),
+                'pipeline' => (String) params.get('pipeline'),
+                'run' => (String) params.get('run')
+            },
+            new Map<String, Object>(),
+            new List<String>{ 'application/json' },
+            new List<String>{ 'application/json' },
+            new List<String> { 'jenkins_auth' },
+            SwagPipelineRunNodes.class
+        );
+    }
+    /**
+     * 
+     * Retrieve all runs details for an organization pipeline
+     * @param organization Name of the organization (required)
+     * @param pipeline Name of the pipeline (required)
+     * @return SwagPipelineRuns
+     * @throws Swagger.ApiException if fails to make API call
+     */
+    public SwagPipelineRuns getPipelineRuns(Map<String, Object> params) {
+        client.assertNotNull(params.get('organization'), 'organization');
+        client.assertNotNull(params.get('pipeline'), 'pipeline');
+        List<Swagger.Param> query = new List<Swagger.Param>();
+        List<Swagger.Param> form = new List<Swagger.Param>();
+
+        return (SwagPipelineRuns) client.invoke(
+            'GET', '/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs', '',
+            query, form,
+            new Map<String, Object>{
+                'organization' => (String) params.get('organization'),
+                'pipeline' => (String) params.get('pipeline')
+            },
+            new Map<String, Object>(),
+            new List<String>{ 'application/json' },
+            new List<String>{ 'application/json' },
+            new List<String> { 'jenkins_auth' },
+            SwagPipelineRuns.class
+        );
+    }
+    /**
+     * 
+     * Retrieve all pipelines details for an organization
+     * @param organization Name of the organization (required)
+     * @return SwagPipelines
+     * @throws Swagger.ApiException if fails to make API call
+     */
+    public SwagPipelines getPipelines(Map<String, Object> params) {
+        client.assertNotNull(params.get('organization'), 'organization');
+        List<Swagger.Param> query = new List<Swagger.Param>();
+        List<Swagger.Param> form = new List<Swagger.Param>();
+
+        return (SwagPipelines) client.invoke(
+            'GET', '/blue/rest/organizations/{organization}/pipelines/', '',
+            query, form,
+            new Map<String, Object>{
+                'organization' => (String) params.get('organization')
+            },
+            new Map<String, Object>(),
+            new List<String>{ 'application/json' },
+            new List<String>{ 'application/json' },
+            new List<String> { 'jenkins_auth' },
+            SwagPipelines.class
+        );
+    }
+    /**
+     * 
+     * Retrieve SCM details for an organization
+     * @param organization Name of the organization (required)
+     * @param scm Name of SCM (required)
+     * @return SwagGithubScm
+     * @throws Swagger.ApiException if fails to make API call
+     */
+    public SwagGithubScm getSCM(Map<String, Object> params) {
+        client.assertNotNull(params.get('organization'), 'organization');
+        client.assertNotNull(params.get('scm'), 'scm');
+        List<Swagger.Param> query = new List<Swagger.Param>();
+        List<Swagger.Param> form = new List<Swagger.Param>();
+
+        return (SwagGithubScm) client.invoke(
+            'GET', '/blue/rest/organizations/{organization}/scm/{scm}', '',
+            query, form,
+            new Map<String, Object>{
+                'organization' => (String) params.get('organization'),
+                'scm' => (String) params.get('scm')
+            },
+            new Map<String, Object>(),
+            new List<String>{ 'application/json' },
+            new List<String>{ 'application/json' },
+            new List<String> { 'jenkins_auth' },
+            SwagGithubScm.class
+        );
+    }
+    /**
+     * 
+     * Retrieve SCM organization repositories details for an organization
+     * @param organization Name of the organization (required)
+     * @param scm Name of SCM (required)
+     * @param scmOrganisation Name of the SCM organization (required)
+     * @param credentialId Credential ID (optional)
+     * @param pageSize Number of items in a page (optional)
+     * @param pageNumber Page number (optional)
+     * @return SwagScmOrganisations
+     * @throws Swagger.ApiException if fails to make API call
+     */
+    public SwagScmOrganisations getSCMOrganisationRepositories(Map<String, Object> params) {
+        client.assertNotNull(params.get('organization'), 'organization');
+        client.assertNotNull(params.get('scm'), 'scm');
+        client.assertNotNull(params.get('scmOrganisation'), 'scmOrganisation');
+        List<Swagger.Param> query = new List<Swagger.Param>();
+
+        // cast query params to verify their expected type
+        query.addAll(client.makeParam('credentialId', (String) params.get('credentialId')));
+        query.addAll(client.makeParam('pageSize', (Integer) params.get('pageSize')));
+        query.addAll(client.makeParam('pageNumber', (Integer) params.get('pageNumber')));
+
+        List<Swagger.Param> form = new List<Swagger.Param>();
+
+        return (SwagScmOrganisations) client.invoke(
+            'GET', '/blue/rest/organizations/{organization}/scm/{scm}/organizations/{scmOrganisation}/repositories', '',
+            query, form,
+            new Map<String, Object>{
+                'organization' => (String) params.get('organization'),
+                'scm' => (String) params.get('scm'),
+                'scmOrganisation' => (String) params.get('scmOrganisation')
+            },
+            new Map<String, Object>(),
+            new List<String>{ 'application/json' },
+            new List<String>{ 'application/json' },
+            new List<String> { 'jenkins_auth' },
+            SwagScmOrganisations.class
+        );
+    }
+    /**
+     * 
+     * Retrieve SCM organization repository details for an organization
+     * @param organization Name of the organization (required)
+     * @param scm Name of SCM (required)
+     * @param scmOrganisation Name of the SCM organization (required)
+     * @param repository Name of the SCM repository (required)
+     * @param credentialId Credential ID (optional)
+     * @return SwagScmOrganisations
+     * @throws Swagger.ApiException if fails to make API call
+     */
+    public SwagScmOrganisations getSCMOrganisationRepository(Map<String, Object> params) {
+        client.assertNotNull(params.get('organization'), 'organization');
+        client.assertNotNull(params.get('scm'), 'scm');
+        client.assertNotNull(params.get('scmOrganisation'), 'scmOrganisation');
+        client.assertNotNull(params.get('repository'), 'repository');
+        List<Swagger.Param> query = new List<Swagger.Param>();
+
+        // cast query params to verify their expected type
+        query.addAll(client.makeParam('credentialId', (String) params.get('credentialId')));
+
+        List<Swagger.Param> form = new List<Swagger.Param>();
+
+        return (SwagScmOrganisations) client.invoke(
+            'GET', '/blue/rest/organizations/{organization}/scm/{scm}/organizations/{scmOrganisation}/repositories/{repository}', '',
+            query, form,
+            new Map<String, Object>{
+                'organization' => (String) params.get('organization'),
+                'scm' => (String) params.get('scm'),
+                'scmOrganisation' => (String) params.get('scmOrganisation'),
+                'repository' => (String) params.get('repository')
+            },
+            new Map<String, Object>(),
+            new List<String>{ 'application/json' },
+            new List<String>{ 'application/json' },
+            new List<String> { 'jenkins_auth' },
+            SwagScmOrganisations.class
+        );
+    }
+    /**
+     * 
+     * Retrieve SCM organizations details for an organization
+     * @param organization Name of the organization (required)
+     * @param scm Name of SCM (required)
+     * @param credentialId Credential ID (optional)
+     * @return SwagScmOrganisations
+     * @throws Swagger.ApiException if fails to make API call
+     */
+    public SwagScmOrganisations getSCMOrganisations(Map<String, Object> params) {
+        client.assertNotNull(params.get('organization'), 'organization');
+        client.assertNotNull(params.get('scm'), 'scm');
+        List<Swagger.Param> query = new List<Swagger.Param>();
+
+        // cast query params to verify their expected type
+        query.addAll(client.makeParam('credentialId', (String) params.get('credentialId')));
+
+        List<Swagger.Param> form = new List<Swagger.Param>();
+
+        return (SwagScmOrganisations) client.invoke(
+            'GET', '/blue/rest/organizations/{organization}/scm/{scm}/organizations', '',
+            query, form,
+            new Map<String, Object>{
+                'organization' => (String) params.get('organization'),
+                'scm' => (String) params.get('scm')
+            },
+            new Map<String, Object>(),
+            new List<String>{ 'application/json' },
+            new List<String>{ 'application/json' },
+            new List<String> { 'jenkins_auth' },
+            SwagScmOrganisations.class
+        );
+    }
+    /**
+     * 
+     * Retrieve user details for an organization
+     * @param organization Name of the organization (required)
+     * @param user Name of the user (required)
+     * @return SwagUser
+     * @throws Swagger.ApiException if fails to make API call
+     */
+    public SwagUser getUser(Map<String, Object> params) {
+        client.assertNotNull(params.get('organization'), 'organization');
         client.assertNotNull(params.get('user'), 'user');
         List<Swagger.Param> query = new List<Swagger.Param>();
         List<Swagger.Param> form = new List<Swagger.Param>();
 
-        return (SwagSwaggyjenkinsUser) client.invoke(
-            'GET', '/blue/rest/organizations/{organisation}/users/{user}', '',
+        return (SwagUser) client.invoke(
+            'GET', '/blue/rest/organizations/{organization}/users/{user}', '',
             query, form,
             new Map<String, Object>{
-                'organisation' => (String) params.get('organisation'),
+                'organization' => (String) params.get('organization'),
                 'user' => (String) params.get('user')
             },
             new Map<String, Object>(),
             new List<String>{ 'application/json' },
             new List<String>{ 'application/json' },
-            new List<String>(),
-            SwagSwaggyjenkinsUser.class
+            new List<String> { 'jenkins_auth' },
+            SwagUser.class
         );
     }
     /**
      * 
-     * Retrieve users details for an organisation
-     * @param organisation Name of the organisation (required)
-     * @return SwagSwaggyjenkinsUser
+     * Retrieve user favorites details for an organization
+     * @param user Name of the user (required)
+     * @return SwagUserFavorites
      * @throws Swagger.ApiException if fails to make API call
      */
-    public SwagSwaggyjenkinsUser getUsers(Map<String, Object> params) {
-        client.assertNotNull(params.get('organisation'), 'organisation');
+    public SwagUserFavorites getUserFavorites(Map<String, Object> params) {
+        client.assertNotNull(params.get('user'), 'user');
         List<Swagger.Param> query = new List<Swagger.Param>();
         List<Swagger.Param> form = new List<Swagger.Param>();
 
-        return (SwagSwaggyjenkinsUser) client.invoke(
-            'GET', '/blue/rest/organizations/{organisation}/users/', '',
+        return (SwagUserFavorites) client.invoke(
+            'GET', '/blue/rest/users/{user}/favorites', '',
             query, form,
             new Map<String, Object>{
-                'organisation' => (String) params.get('organisation')
+                'user' => (String) params.get('user')
             },
             new Map<String, Object>(),
             new List<String>{ 'application/json' },
             new List<String>{ 'application/json' },
-            new List<String>(),
-            SwagSwaggyjenkinsUser.class
+            new List<String> { 'jenkins_auth' },
+            SwagUserFavorites.class
+        );
+    }
+    /**
+     * 
+     * Retrieve users details for an organization
+     * @param organization Name of the organization (required)
+     * @return SwagUser
+     * @throws Swagger.ApiException if fails to make API call
+     */
+    public SwagUser getUsers(Map<String, Object> params) {
+        client.assertNotNull(params.get('organization'), 'organization');
+        List<Swagger.Param> query = new List<Swagger.Param>();
+        List<Swagger.Param> form = new List<Swagger.Param>();
+
+        return (SwagUser) client.invoke(
+            'GET', '/blue/rest/organizations/{organization}/users/', '',
+            query, form,
+            new Map<String, Object>{
+                'organization' => (String) params.get('organization')
+            },
+            new Map<String, Object>(),
+            new List<String>{ 'application/json' },
+            new List<String>{ 'application/json' },
+            new List<String> { 'jenkins_auth' },
+            SwagUser.class
+        );
+    }
+    /**
+     * 
+     * Replay an organization pipeline run
+     * @param organization Name of the organization (required)
+     * @param pipeline Name of the pipeline (required)
+     * @param run Name of the run (required)
+     * @return SwagQueueItemImpl
+     * @throws Swagger.ApiException if fails to make API call
+     */
+    public SwagQueueItemImpl postPipelineRun(Map<String, Object> params) {
+        client.assertNotNull(params.get('organization'), 'organization');
+        client.assertNotNull(params.get('pipeline'), 'pipeline');
+        client.assertNotNull(params.get('run'), 'run');
+        List<Swagger.Param> query = new List<Swagger.Param>();
+        List<Swagger.Param> form = new List<Swagger.Param>();
+
+        return (SwagQueueItemImpl) client.invoke(
+            'POST', '/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/replay', '',
+            query, form,
+            new Map<String, Object>{
+                'organization' => (String) params.get('organization'),
+                'pipeline' => (String) params.get('pipeline'),
+                'run' => (String) params.get('run')
+            },
+            new Map<String, Object>(),
+            new List<String>{ 'application/json' },
+            new List<String>{ 'application/json' },
+            new List<String> { 'jenkins_auth' },
+            SwagQueueItemImpl.class
+        );
+    }
+    /**
+     * 
+     * Start a build for an organization pipeline
+     * @param organization Name of the organization (required)
+     * @param pipeline Name of the pipeline (required)
+     * @return SwagQueueItemImpl
+     * @throws Swagger.ApiException if fails to make API call
+     */
+    public SwagQueueItemImpl postPipelineRuns(Map<String, Object> params) {
+        client.assertNotNull(params.get('organization'), 'organization');
+        client.assertNotNull(params.get('pipeline'), 'pipeline');
+        List<Swagger.Param> query = new List<Swagger.Param>();
+        List<Swagger.Param> form = new List<Swagger.Param>();
+
+        return (SwagQueueItemImpl) client.invoke(
+            'POST', '/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs', '',
+            query, form,
+            new Map<String, Object>{
+                'organization' => (String) params.get('organization'),
+                'pipeline' => (String) params.get('pipeline')
+            },
+            new Map<String, Object>(),
+            new List<String>{ 'application/json' },
+            new List<String>{ 'application/json' },
+            new List<String> { 'jenkins_auth' },
+            SwagQueueItemImpl.class
+        );
+    }
+    /**
+     * 
+     * Favorite/unfavorite a pipeline
+     * @param organization Name of the organization (required)
+     * @param pipeline Name of the pipeline (required)
+     * @param body Set JSON string body to {&quot;favorite&quot;: true} to favorite, set value to false to unfavorite (required)
+     * @return SwagFavoriteImpl
+     * @throws Swagger.ApiException if fails to make API call
+     */
+    public SwagFavoriteImpl putPipelineFavorite(Map<String, Object> params) {
+        client.assertNotNull(params.get('organization'), 'organization');
+        client.assertNotNull(params.get('pipeline'), 'pipeline');
+        client.assertNotNull(params.get('body'), 'body');
+        List<Swagger.Param> query = new List<Swagger.Param>();
+        List<Swagger.Param> form = new List<Swagger.Param>();
+
+        return (SwagFavoriteImpl) client.invoke(
+            'PUT', '/blue/rest/organizations/{organization}/pipelines/{pipeline}/favorite',
+            (String) params.get('body'),
+            query, form,
+            new Map<String, Object>{
+                'organization' => (String) params.get('organization'),
+                'pipeline' => (String) params.get('pipeline')
+            },
+            new Map<String, Object>(),
+            new List<String>{ 'application/json' },
+            new List<String>{ 'application/json' },
+            new List<String> { 'jenkins_auth' },
+            SwagFavoriteImpl.class
+        );
+    }
+    /**
+     * 
+     * Stop a build of an organization pipeline
+     * @param organization Name of the organization (required)
+     * @param pipeline Name of the pipeline (required)
+     * @param run Name of the run (required)
+     * @param blocking Set to true to make blocking stop, default: false (optional)
+     * @param timeOutInSecs Timeout in seconds, default: 10 seconds (optional)
+     * @return SwagPipelineRun
+     * @throws Swagger.ApiException if fails to make API call
+     */
+    public SwagPipelineRun putPipelineRun(Map<String, Object> params) {
+        client.assertNotNull(params.get('organization'), 'organization');
+        client.assertNotNull(params.get('pipeline'), 'pipeline');
+        client.assertNotNull(params.get('run'), 'run');
+        List<Swagger.Param> query = new List<Swagger.Param>();
+
+        // cast query params to verify their expected type
+        query.addAll(client.makeParam('blocking', (String) params.get('blocking')));
+        query.addAll(client.makeParam('timeOutInSecs', (Integer) params.get('timeOutInSecs')));
+
+        List<Swagger.Param> form = new List<Swagger.Param>();
+
+        return (SwagPipelineRun) client.invoke(
+            'PUT', '/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/stop', '',
+            query, form,
+            new Map<String, Object>{
+                'organization' => (String) params.get('organization'),
+                'pipeline' => (String) params.get('pipeline'),
+                'run' => (String) params.get('run')
+            },
+            new Map<String, Object>(),
+            new List<String>{ 'application/json' },
+            new List<String>{ 'application/json' },
+            new List<String> { 'jenkins_auth' },
+            SwagPipelineRun.class
+        );
+    }
+    /**
+     * 
+     * Get classes details
+     * @param q Query string containing an array of class names (required)
+     * @return String
+     * @throws Swagger.ApiException if fails to make API call
+     */
+    public String searchClasses(Map<String, Object> params) {
+        client.assertNotNull(params.get('q'), 'q');
+        List<Swagger.Param> query = new List<Swagger.Param>();
+
+        // cast query params to verify their expected type
+        query.addAll(client.makeParam('q', (String) params.get('q')));
+
+        List<Swagger.Param> form = new List<Swagger.Param>();
+
+        return (String) client.invoke(
+            'GET', '/blue/rest/classes/', '',
+            query, form,
+            new Map<String, Object>(),
+            new Map<String, Object>(),
+            new List<String>{ 'application/json' },
+            new List<String>{ 'application/json' },
+            new List<String> { 'jenkins_auth' },
+            String.class
         );
     }
 }

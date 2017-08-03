@@ -11,15 +11,29 @@
 */
 package io.swagger.client.apis
 
-import io.swagger.client.models.GetMultibranchPipeline
-import io.swagger.client.models.GetOrganisations
-import io.swagger.client.models.GetPipelines
-import io.swagger.client.models.IojenkinsblueoceanrestimplpipelineBranchImpl
-import io.swagger.client.models.IojenkinsblueoceanserviceembeddedrestPipelineFolderImpl
-import io.swagger.client.models.IojenkinsblueoceanserviceembeddedrestPipelineImpl
-import io.swagger.client.models.SwaggyjenkinsOrganisation
-import io.swagger.client.models.SwaggyjenkinsPipeline
-import io.swagger.client.models.SwaggyjenkinsUser
+import io.swagger.client.models.Body
+import io.swagger.client.models.BranchImpl
+import io.swagger.client.models.FavoriteImpl
+import io.swagger.client.models.GithubScm
+import io.swagger.client.models.MultibranchPipeline
+import io.swagger.client.models.Organisation
+import io.swagger.client.models.Organisations
+import io.swagger.client.models.Pipeline
+import io.swagger.client.models.PipelineActivities
+import io.swagger.client.models.PipelineFolderImpl
+import io.swagger.client.models.PipelineImpl
+import io.swagger.client.models.PipelineQueue
+import io.swagger.client.models.PipelineRun
+import io.swagger.client.models.PipelineRunNode
+import io.swagger.client.models.PipelineRunNodeSteps
+import io.swagger.client.models.PipelineRunNodes
+import io.swagger.client.models.PipelineRuns
+import io.swagger.client.models.PipelineStepImpl
+import io.swagger.client.models.Pipelines
+import io.swagger.client.models.QueueItemImpl
+import io.swagger.client.models.ScmOrganisations
+import io.swagger.client.models.User
+import io.swagger.client.models.UserFavorites
 
 import io.swagger.client.infrastructure.*
 
@@ -27,28 +41,61 @@ class BlueOceanApi(basePath: kotlin.String = "http://localhost") : ApiClient(bas
 
     /**
     * 
-    * Retrieve authenticated user details for an organisation
-    * @param organisation Name of the organisation 
-    * @return SwaggyjenkinsUser
+    * Delete queue item from an organization pipeline queue
+    * @param organization Name of the organization 
+    * @param pipeline Name of the pipeline 
+    * @param queue Name of the queue item 
+    * @return void
     */
-    @Suppress("UNCHECKED_CAST")
-    fun getAuthenticatedUser(organisation: kotlin.String) : SwaggyjenkinsUser {
+    fun deletePipelineQueueItem(organization: kotlin.String, pipeline: kotlin.String, queue: kotlin.String) : Unit {
         val localVariableBody: kotlin.Any? = null
-        val localVariableQuery: kotlin.collections.Map<kotlin.String,kotlin.String> = mapOf()
+        val localVariableQuery: MultiValueMap = mapOf()
         val localVariableHeaders: kotlin.collections.Map<kotlin.String,kotlin.String> = mapOf()
         val localVariableConfig = RequestConfig(
-            RequestMethod.GET,
-            "/blue/rest/organizations/{organisation}/user/".replace("{"+"organisation"+"}", "$organisation"),
+            RequestMethod.DELETE,
+            "/blue/rest/organizations/{organization}/pipelines/{pipeline}/queue/{queue}".replace("{"+"organization"+"}", "$organization").replace("{"+"pipeline"+"}", "$pipeline").replace("{"+"queue"+"}", "$queue"),
             query = localVariableQuery,
             headers = localVariableHeaders
         )
-        val response = request<SwaggyjenkinsUser>(
+        val response = request<Any?>(
             localVariableConfig,
             localVariableBody
         )
 
         return when (response.responseType) {
-            ResponseType.Success -> (response as Success<*>).data as SwaggyjenkinsUser
+            ResponseType.Success -> Unit
+            ResponseType.Informational -> TODO()
+            ResponseType.Redirection -> TODO()
+            ResponseType.ClientError -> throw ClientException((response as ClientError<*>).body as? String ?: "Client error")
+            ResponseType.ServerError -> throw ServerException((response as ServerError<*>).message ?: "Server error")
+            else -> throw kotlin.IllegalStateException("Undefined ResponseType.")
+        }
+    }
+
+    /**
+    * 
+    * Retrieve authenticated user details for an organization
+    * @param organization Name of the organization 
+    * @return User
+    */
+    @Suppress("UNCHECKED_CAST")
+    fun getAuthenticatedUser(organization: kotlin.String) : User {
+        val localVariableBody: kotlin.Any? = null
+        val localVariableQuery: MultiValueMap = mapOf()
+        val localVariableHeaders: kotlin.collections.Map<kotlin.String,kotlin.String> = mapOf()
+        val localVariableConfig = RequestConfig(
+            RequestMethod.GET,
+            "/blue/rest/organizations/{organization}/user/".replace("{"+"organization"+"}", "$organization"),
+            query = localVariableQuery,
+            headers = localVariableHeaders
+        )
+        val response = request<User>(
+            localVariableConfig,
+            localVariableBody
+        )
+
+        return when (response.responseType) {
+            ResponseType.Success -> (response as Success<*>).data as User
             ResponseType.Informational -> TODO()
             ResponseType.Redirection -> TODO()
             ResponseType.ClientError -> throw ClientException((response as ClientError<*>).body as? String ?: "Client error")
@@ -66,7 +113,7 @@ class BlueOceanApi(basePath: kotlin.String = "http://localhost") : ApiClient(bas
     @Suppress("UNCHECKED_CAST")
     fun getClasses(_class: kotlin.String) : kotlin.String {
         val localVariableBody: kotlin.Any? = null
-        val localVariableQuery: kotlin.collections.Map<kotlin.String,kotlin.String> = mapOf()
+        val localVariableQuery: MultiValueMap = mapOf()
         val localVariableHeaders: kotlin.collections.Map<kotlin.String,kotlin.String> = mapOf()
         val localVariableConfig = RequestConfig(
             RequestMethod.GET,
@@ -91,28 +138,28 @@ class BlueOceanApi(basePath: kotlin.String = "http://localhost") : ApiClient(bas
 
     /**
     * 
-    * Retrieve organisation details
-    * @param organisation Name of the organisation 
-    * @return SwaggyjenkinsOrganisation
+    * Retrieve organization details
+    * @param organization Name of the organization 
+    * @return Organisation
     */
     @Suppress("UNCHECKED_CAST")
-    fun getOrganisation(organisation: kotlin.String) : SwaggyjenkinsOrganisation {
+    fun getOrganisation(organization: kotlin.String) : Organisation {
         val localVariableBody: kotlin.Any? = null
-        val localVariableQuery: kotlin.collections.Map<kotlin.String,kotlin.String> = mapOf()
+        val localVariableQuery: MultiValueMap = mapOf()
         val localVariableHeaders: kotlin.collections.Map<kotlin.String,kotlin.String> = mapOf()
         val localVariableConfig = RequestConfig(
             RequestMethod.GET,
-            "/blue/rest/organizations/{organisation}".replace("{"+"organisation"+"}", "$organisation"),
+            "/blue/rest/organizations/{organization}".replace("{"+"organization"+"}", "$organization"),
             query = localVariableQuery,
             headers = localVariableHeaders
         )
-        val response = request<SwaggyjenkinsOrganisation>(
+        val response = request<Organisation>(
             localVariableConfig,
             localVariableBody
         )
 
         return when (response.responseType) {
-            ResponseType.Success -> (response as Success<*>).data as SwaggyjenkinsOrganisation
+            ResponseType.Success -> (response as Success<*>).data as Organisation
             ResponseType.Informational -> TODO()
             ResponseType.Redirection -> TODO()
             ResponseType.ClientError -> throw ClientException((response as ClientError<*>).body as? String ?: "Client error")
@@ -123,13 +170,13 @@ class BlueOceanApi(basePath: kotlin.String = "http://localhost") : ApiClient(bas
 
     /**
     * 
-    * Retrieve all organisations details
-    * @return GetOrganisations
+    * Retrieve all organizations details
+    * @return Organisations
     */
     @Suppress("UNCHECKED_CAST")
-    fun getOrganisations() : GetOrganisations {
+    fun getOrganisations() : Organisations {
         val localVariableBody: kotlin.Any? = null
-        val localVariableQuery: kotlin.collections.Map<kotlin.String,kotlin.String> = mapOf()
+        val localVariableQuery: MultiValueMap = mapOf()
         val localVariableHeaders: kotlin.collections.Map<kotlin.String,kotlin.String> = mapOf()
         val localVariableConfig = RequestConfig(
             RequestMethod.GET,
@@ -137,13 +184,13 @@ class BlueOceanApi(basePath: kotlin.String = "http://localhost") : ApiClient(bas
             query = localVariableQuery,
             headers = localVariableHeaders
         )
-        val response = request<GetOrganisations>(
+        val response = request<Organisations>(
             localVariableConfig,
             localVariableBody
         )
 
         return when (response.responseType) {
-            ResponseType.Success -> (response as Success<*>).data as GetOrganisations
+            ResponseType.Success -> (response as Success<*>).data as Organisations
             ResponseType.Informational -> TODO()
             ResponseType.Redirection -> TODO()
             ResponseType.ClientError -> throw ClientException((response as ClientError<*>).body as? String ?: "Client error")
@@ -154,30 +201,96 @@ class BlueOceanApi(basePath: kotlin.String = "http://localhost") : ApiClient(bas
 
     /**
     * 
-    * Retrieve branch details for an organisation pipeline
-    * @param organisation Name of the organisation 
+    * Retrieve pipeline details for an organization
+    * @param organization Name of the organization 
+    * @param pipeline Name of the pipeline 
+    * @return Pipeline
+    */
+    @Suppress("UNCHECKED_CAST")
+    fun getPipeline(organization: kotlin.String, pipeline: kotlin.String) : Pipeline {
+        val localVariableBody: kotlin.Any? = null
+        val localVariableQuery: MultiValueMap = mapOf()
+        val localVariableHeaders: kotlin.collections.Map<kotlin.String,kotlin.String> = mapOf()
+        val localVariableConfig = RequestConfig(
+            RequestMethod.GET,
+            "/blue/rest/organizations/{organization}/pipelines/{pipeline}".replace("{"+"organization"+"}", "$organization").replace("{"+"pipeline"+"}", "$pipeline"),
+            query = localVariableQuery,
+            headers = localVariableHeaders
+        )
+        val response = request<Pipeline>(
+            localVariableConfig,
+            localVariableBody
+        )
+
+        return when (response.responseType) {
+            ResponseType.Success -> (response as Success<*>).data as Pipeline
+            ResponseType.Informational -> TODO()
+            ResponseType.Redirection -> TODO()
+            ResponseType.ClientError -> throw ClientException((response as ClientError<*>).body as? String ?: "Client error")
+            ResponseType.ServerError -> throw ServerException((response as ServerError<*>).message ?: "Server error")
+            else -> throw kotlin.IllegalStateException("Undefined ResponseType.")
+        }
+    }
+
+    /**
+    * 
+    * Retrieve all activities details for an organization pipeline
+    * @param organization Name of the organization 
+    * @param pipeline Name of the pipeline 
+    * @return PipelineActivities
+    */
+    @Suppress("UNCHECKED_CAST")
+    fun getPipelineActivities(organization: kotlin.String, pipeline: kotlin.String) : PipelineActivities {
+        val localVariableBody: kotlin.Any? = null
+        val localVariableQuery: MultiValueMap = mapOf()
+        val localVariableHeaders: kotlin.collections.Map<kotlin.String,kotlin.String> = mapOf()
+        val localVariableConfig = RequestConfig(
+            RequestMethod.GET,
+            "/blue/rest/organizations/{organization}/pipelines/{pipeline}/activities".replace("{"+"organization"+"}", "$organization").replace("{"+"pipeline"+"}", "$pipeline"),
+            query = localVariableQuery,
+            headers = localVariableHeaders
+        )
+        val response = request<PipelineActivities>(
+            localVariableConfig,
+            localVariableBody
+        )
+
+        return when (response.responseType) {
+            ResponseType.Success -> (response as Success<*>).data as PipelineActivities
+            ResponseType.Informational -> TODO()
+            ResponseType.Redirection -> TODO()
+            ResponseType.ClientError -> throw ClientException((response as ClientError<*>).body as? String ?: "Client error")
+            ResponseType.ServerError -> throw ServerException((response as ServerError<*>).message ?: "Server error")
+            else -> throw kotlin.IllegalStateException("Undefined ResponseType.")
+        }
+    }
+
+    /**
+    * 
+    * Retrieve branch details for an organization pipeline
+    * @param organization Name of the organization 
     * @param pipeline Name of the pipeline 
     * @param branch Name of the branch 
-    * @return IojenkinsblueoceanrestimplpipelineBranchImpl
+    * @return BranchImpl
     */
     @Suppress("UNCHECKED_CAST")
-    fun getPipelineBranchByOrg(organisation: kotlin.String, pipeline: kotlin.String, branch: kotlin.String) : IojenkinsblueoceanrestimplpipelineBranchImpl {
+    fun getPipelineBranch(organization: kotlin.String, pipeline: kotlin.String, branch: kotlin.String) : BranchImpl {
         val localVariableBody: kotlin.Any? = null
-        val localVariableQuery: kotlin.collections.Map<kotlin.String,kotlin.String> = mapOf()
+        val localVariableQuery: MultiValueMap = mapOf()
         val localVariableHeaders: kotlin.collections.Map<kotlin.String,kotlin.String> = mapOf()
         val localVariableConfig = RequestConfig(
             RequestMethod.GET,
-            "/blue/rest/organizations/{organisation}/pipelines/{pipeline}/branches/{branch}/".replace("{"+"organisation"+"}", "$organisation").replace("{"+"pipeline"+"}", "$pipeline").replace("{"+"branch"+"}", "$branch"),
+            "/blue/rest/organizations/{organization}/pipelines/{pipeline}/branches/{branch}/".replace("{"+"organization"+"}", "$organization").replace("{"+"pipeline"+"}", "$pipeline").replace("{"+"branch"+"}", "$branch"),
             query = localVariableQuery,
             headers = localVariableHeaders
         )
-        val response = request<IojenkinsblueoceanrestimplpipelineBranchImpl>(
+        val response = request<BranchImpl>(
             localVariableConfig,
             localVariableBody
         )
 
         return when (response.responseType) {
-            ResponseType.Success -> (response as Success<*>).data as IojenkinsblueoceanrestimplpipelineBranchImpl
+            ResponseType.Success -> (response as Success<*>).data as BranchImpl
             ResponseType.Informational -> TODO()
             ResponseType.Redirection -> TODO()
             ResponseType.ClientError -> throw ClientException((response as ClientError<*>).body as? String ?: "Client error")
@@ -188,29 +301,31 @@ class BlueOceanApi(basePath: kotlin.String = "http://localhost") : ApiClient(bas
 
     /**
     * 
-    * Retrieve all branches details for an organisation pipeline
-    * @param organisation Name of the organisation 
+    * Retrieve branch run details for an organization pipeline
+    * @param organization Name of the organization 
     * @param pipeline Name of the pipeline 
-    * @return GetMultibranchPipeline
+    * @param branch Name of the branch 
+    * @param run Name of the run 
+    * @return PipelineRun
     */
     @Suppress("UNCHECKED_CAST")
-    fun getPipelineBranchesByOrg(organisation: kotlin.String, pipeline: kotlin.String) : GetMultibranchPipeline {
+    fun getPipelineBranchRun(organization: kotlin.String, pipeline: kotlin.String, branch: kotlin.String, run: kotlin.String) : PipelineRun {
         val localVariableBody: kotlin.Any? = null
-        val localVariableQuery: kotlin.collections.Map<kotlin.String,kotlin.String> = mapOf()
+        val localVariableQuery: MultiValueMap = mapOf()
         val localVariableHeaders: kotlin.collections.Map<kotlin.String,kotlin.String> = mapOf()
         val localVariableConfig = RequestConfig(
             RequestMethod.GET,
-            "/blue/rest/organizations/{organisation}/pipelines/{pipeline}/branches".replace("{"+"organisation"+"}", "$organisation").replace("{"+"pipeline"+"}", "$pipeline"),
+            "/blue/rest/organizations/{organization}/pipelines/{pipeline}/branches/{branch}/runs/{run}".replace("{"+"organization"+"}", "$organization").replace("{"+"pipeline"+"}", "$pipeline").replace("{"+"branch"+"}", "$branch").replace("{"+"run"+"}", "$run"),
             query = localVariableQuery,
             headers = localVariableHeaders
         )
-        val response = request<GetMultibranchPipeline>(
+        val response = request<PipelineRun>(
             localVariableConfig,
             localVariableBody
         )
 
         return when (response.responseType) {
-            ResponseType.Success -> (response as Success<*>).data as GetMultibranchPipeline
+            ResponseType.Success -> (response as Success<*>).data as PipelineRun
             ResponseType.Informational -> TODO()
             ResponseType.Redirection -> TODO()
             ResponseType.ClientError -> throw ClientException((response as ClientError<*>).body as? String ?: "Client error")
@@ -221,29 +336,29 @@ class BlueOceanApi(basePath: kotlin.String = "http://localhost") : ApiClient(bas
 
     /**
     * 
-    * Retrieve pipeline details for an organisation
-    * @param organisation Name of the organisation 
+    * Retrieve all branches details for an organization pipeline
+    * @param organization Name of the organization 
     * @param pipeline Name of the pipeline 
-    * @return SwaggyjenkinsPipeline
+    * @return MultibranchPipeline
     */
     @Suppress("UNCHECKED_CAST")
-    fun getPipelineByOrg(organisation: kotlin.String, pipeline: kotlin.String) : SwaggyjenkinsPipeline {
+    fun getPipelineBranches(organization: kotlin.String, pipeline: kotlin.String) : MultibranchPipeline {
         val localVariableBody: kotlin.Any? = null
-        val localVariableQuery: kotlin.collections.Map<kotlin.String,kotlin.String> = mapOf()
+        val localVariableQuery: MultiValueMap = mapOf()
         val localVariableHeaders: kotlin.collections.Map<kotlin.String,kotlin.String> = mapOf()
         val localVariableConfig = RequestConfig(
             RequestMethod.GET,
-            "/blue/rest/organizations/{organisation}/pipelines/{pipeline}".replace("{"+"organisation"+"}", "$organisation").replace("{"+"pipeline"+"}", "$pipeline"),
+            "/blue/rest/organizations/{organization}/pipelines/{pipeline}/branches".replace("{"+"organization"+"}", "$organization").replace("{"+"pipeline"+"}", "$pipeline"),
             query = localVariableQuery,
             headers = localVariableHeaders
         )
-        val response = request<SwaggyjenkinsPipeline>(
+        val response = request<MultibranchPipeline>(
             localVariableConfig,
             localVariableBody
         )
 
         return when (response.responseType) {
-            ResponseType.Success -> (response as Success<*>).data as SwaggyjenkinsPipeline
+            ResponseType.Success -> (response as Success<*>).data as MultibranchPipeline
             ResponseType.Informational -> TODO()
             ResponseType.Redirection -> TODO()
             ResponseType.ClientError -> throw ClientException((response as ClientError<*>).body as? String ?: "Client error")
@@ -254,29 +369,29 @@ class BlueOceanApi(basePath: kotlin.String = "http://localhost") : ApiClient(bas
 
     /**
     * 
-    * Retrieve pipeline folder for an organisation
-    * @param organisation Name of the organisation 
+    * Retrieve pipeline folder for an organization
+    * @param organization Name of the organization 
     * @param folder Name of the folder 
-    * @return IojenkinsblueoceanserviceembeddedrestPipelineFolderImpl
+    * @return PipelineFolderImpl
     */
     @Suppress("UNCHECKED_CAST")
-    fun getPipelineFolderByOrg(organisation: kotlin.String, folder: kotlin.String) : IojenkinsblueoceanserviceembeddedrestPipelineFolderImpl {
+    fun getPipelineFolder(organization: kotlin.String, folder: kotlin.String) : PipelineFolderImpl {
         val localVariableBody: kotlin.Any? = null
-        val localVariableQuery: kotlin.collections.Map<kotlin.String,kotlin.String> = mapOf()
+        val localVariableQuery: MultiValueMap = mapOf()
         val localVariableHeaders: kotlin.collections.Map<kotlin.String,kotlin.String> = mapOf()
         val localVariableConfig = RequestConfig(
             RequestMethod.GET,
-            "/blue/rest/organizations/{organisation}/pipelines/{folder}/".replace("{"+"organisation"+"}", "$organisation").replace("{"+"folder"+"}", "$folder"),
+            "/blue/rest/organizations/{organization}/pipelines/{folder}/".replace("{"+"organization"+"}", "$organization").replace("{"+"folder"+"}", "$folder"),
             query = localVariableQuery,
             headers = localVariableHeaders
         )
-        val response = request<IojenkinsblueoceanserviceembeddedrestPipelineFolderImpl>(
+        val response = request<PipelineFolderImpl>(
             localVariableConfig,
             localVariableBody
         )
 
         return when (response.responseType) {
-            ResponseType.Success -> (response as Success<*>).data as IojenkinsblueoceanserviceembeddedrestPipelineFolderImpl
+            ResponseType.Success -> (response as Success<*>).data as PipelineFolderImpl
             ResponseType.Informational -> TODO()
             ResponseType.Redirection -> TODO()
             ResponseType.ClientError -> throw ClientException((response as ClientError<*>).body as? String ?: "Client error")
@@ -287,30 +402,30 @@ class BlueOceanApi(basePath: kotlin.String = "http://localhost") : ApiClient(bas
 
     /**
     * 
-    * Retrieve pipeline details for an organisation folder
-    * @param organisation Name of the organisation 
+    * Retrieve pipeline details for an organization folder
+    * @param organization Name of the organization 
     * @param pipeline Name of the pipeline 
     * @param folder Name of the folder 
-    * @return IojenkinsblueoceanserviceembeddedrestPipelineImpl
+    * @return PipelineImpl
     */
     @Suppress("UNCHECKED_CAST")
-    fun getPipelineFolderByOrg_0(organisation: kotlin.String, pipeline: kotlin.String, folder: kotlin.String) : IojenkinsblueoceanserviceembeddedrestPipelineImpl {
+    fun getPipelineFolderPipeline(organization: kotlin.String, pipeline: kotlin.String, folder: kotlin.String) : PipelineImpl {
         val localVariableBody: kotlin.Any? = null
-        val localVariableQuery: kotlin.collections.Map<kotlin.String,kotlin.String> = mapOf()
+        val localVariableQuery: MultiValueMap = mapOf()
         val localVariableHeaders: kotlin.collections.Map<kotlin.String,kotlin.String> = mapOf()
         val localVariableConfig = RequestConfig(
             RequestMethod.GET,
-            "/blue/rest/organizations/{organisation}/pipelines/{folder}/pipelines/{pipeline}".replace("{"+"organisation"+"}", "$organisation").replace("{"+"pipeline"+"}", "$pipeline").replace("{"+"folder"+"}", "$folder"),
+            "/blue/rest/organizations/{organization}/pipelines/{folder}/pipelines/{pipeline}".replace("{"+"organization"+"}", "$organization").replace("{"+"pipeline"+"}", "$pipeline").replace("{"+"folder"+"}", "$folder"),
             query = localVariableQuery,
             headers = localVariableHeaders
         )
-        val response = request<IojenkinsblueoceanserviceembeddedrestPipelineImpl>(
+        val response = request<PipelineImpl>(
             localVariableConfig,
             localVariableBody
         )
 
         return when (response.responseType) {
-            ResponseType.Success -> (response as Success<*>).data as IojenkinsblueoceanserviceembeddedrestPipelineImpl
+            ResponseType.Success -> (response as Success<*>).data as PipelineImpl
             ResponseType.Informational -> TODO()
             ResponseType.Redirection -> TODO()
             ResponseType.ClientError -> throw ClientException((response as ClientError<*>).body as? String ?: "Client error")
@@ -321,28 +436,29 @@ class BlueOceanApi(basePath: kotlin.String = "http://localhost") : ApiClient(bas
 
     /**
     * 
-    * Retrieve all pipelines details for an organisation
-    * @param organisation Name of the organisation 
-    * @return GetPipelines
+    * Retrieve queue details for an organization pipeline
+    * @param organization Name of the organization 
+    * @param pipeline Name of the pipeline 
+    * @return PipelineQueue
     */
     @Suppress("UNCHECKED_CAST")
-    fun getPipelinesByOrg(organisation: kotlin.String) : GetPipelines {
+    fun getPipelineQueue(organization: kotlin.String, pipeline: kotlin.String) : PipelineQueue {
         val localVariableBody: kotlin.Any? = null
-        val localVariableQuery: kotlin.collections.Map<kotlin.String,kotlin.String> = mapOf()
+        val localVariableQuery: MultiValueMap = mapOf()
         val localVariableHeaders: kotlin.collections.Map<kotlin.String,kotlin.String> = mapOf()
         val localVariableConfig = RequestConfig(
             RequestMethod.GET,
-            "/blue/rest/organizations/{organisation}/pipelines/".replace("{"+"organisation"+"}", "$organisation"),
+            "/blue/rest/organizations/{organization}/pipelines/{pipeline}/queue".replace("{"+"organization"+"}", "$organization").replace("{"+"pipeline"+"}", "$pipeline"),
             query = localVariableQuery,
             headers = localVariableHeaders
         )
-        val response = request<GetPipelines>(
+        val response = request<PipelineQueue>(
             localVariableConfig,
             localVariableBody
         )
 
         return when (response.responseType) {
-            ResponseType.Success -> (response as Success<*>).data as GetPipelines
+            ResponseType.Success -> (response as Success<*>).data as PipelineQueue
             ResponseType.Informational -> TODO()
             ResponseType.Redirection -> TODO()
             ResponseType.ClientError -> throw ClientException((response as ClientError<*>).body as? String ?: "Client error")
@@ -353,29 +469,30 @@ class BlueOceanApi(basePath: kotlin.String = "http://localhost") : ApiClient(bas
 
     /**
     * 
-    * Retrieve user details for an organisation
-    * @param organisation Name of the organisation 
-    * @param user Name of the user 
-    * @return SwaggyjenkinsUser
+    * Retrieve run details for an organization pipeline
+    * @param organization Name of the organization 
+    * @param pipeline Name of the pipeline 
+    * @param run Name of the run 
+    * @return PipelineRun
     */
     @Suppress("UNCHECKED_CAST")
-    fun getUser(organisation: kotlin.String, user: kotlin.String) : SwaggyjenkinsUser {
+    fun getPipelineRun(organization: kotlin.String, pipeline: kotlin.String, run: kotlin.String) : PipelineRun {
         val localVariableBody: kotlin.Any? = null
-        val localVariableQuery: kotlin.collections.Map<kotlin.String,kotlin.String> = mapOf()
+        val localVariableQuery: MultiValueMap = mapOf()
         val localVariableHeaders: kotlin.collections.Map<kotlin.String,kotlin.String> = mapOf()
         val localVariableConfig = RequestConfig(
             RequestMethod.GET,
-            "/blue/rest/organizations/{organisation}/users/{user}".replace("{"+"organisation"+"}", "$organisation").replace("{"+"user"+"}", "$user"),
+            "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}".replace("{"+"organization"+"}", "$organization").replace("{"+"pipeline"+"}", "$pipeline").replace("{"+"run"+"}", "$run"),
             query = localVariableQuery,
             headers = localVariableHeaders
         )
-        val response = request<SwaggyjenkinsUser>(
+        val response = request<PipelineRun>(
             localVariableConfig,
             localVariableBody
         )
 
         return when (response.responseType) {
-            ResponseType.Success -> (response as Success<*>).data as SwaggyjenkinsUser
+            ResponseType.Success -> (response as Success<*>).data as PipelineRun
             ResponseType.Informational -> TODO()
             ResponseType.Redirection -> TODO()
             ResponseType.ClientError -> throw ClientException((response as ClientError<*>).body as? String ?: "Client error")
@@ -386,50 +503,22 @@ class BlueOceanApi(basePath: kotlin.String = "http://localhost") : ApiClient(bas
 
     /**
     * 
-    * Retrieve users details for an organisation
-    * @param organisation Name of the organisation 
-    * @return SwaggyjenkinsUser
-    */
-    @Suppress("UNCHECKED_CAST")
-    fun getUsers(organisation: kotlin.String) : SwaggyjenkinsUser {
-        val localVariableBody: kotlin.Any? = null
-        val localVariableQuery: kotlin.collections.Map<kotlin.String,kotlin.String> = mapOf()
-        val localVariableHeaders: kotlin.collections.Map<kotlin.String,kotlin.String> = mapOf()
-        val localVariableConfig = RequestConfig(
-            RequestMethod.GET,
-            "/blue/rest/organizations/{organisation}/users/".replace("{"+"organisation"+"}", "$organisation"),
-            query = localVariableQuery,
-            headers = localVariableHeaders
-        )
-        val response = request<SwaggyjenkinsUser>(
-            localVariableConfig,
-            localVariableBody
-        )
-
-        return when (response.responseType) {
-            ResponseType.Success -> (response as Success<*>).data as SwaggyjenkinsUser
-            ResponseType.Informational -> TODO()
-            ResponseType.Redirection -> TODO()
-            ResponseType.ClientError -> throw ClientException((response as ClientError<*>).body as? String ?: "Client error")
-            ResponseType.ServerError -> throw ServerException((response as ServerError<*>).message ?: "Server error")
-            else -> throw kotlin.IllegalStateException("Undefined ResponseType.")
-        }
-    }
-
-    /**
-    * 
-    * Get classes details
-    * @param q Query string containing an array of class names 
+    * Get log for a pipeline run
+    * @param organization Name of the organization 
+    * @param pipeline Name of the pipeline 
+    * @param run Name of the run 
+    * @param start Start position of the log (optional)
+    * @param download Set to true in order to download the file, otherwise it&#39;s passed as a response body (optional)
     * @return kotlin.String
     */
     @Suppress("UNCHECKED_CAST")
-    fun search(q: kotlin.String) : kotlin.String {
+    fun getPipelineRunLog(organization: kotlin.String, pipeline: kotlin.String, run: kotlin.String, start: kotlin.Int, download: kotlin.Boolean) : kotlin.String {
         val localVariableBody: kotlin.Any? = null
-        val localVariableQuery: kotlin.collections.Map<kotlin.String,kotlin.String> = mapOf("q" to q)
+        val localVariableQuery: MultiValueMap = mapOf("start" to listOf("$start"), "download" to listOf("$download"))
         val localVariableHeaders: kotlin.collections.Map<kotlin.String,kotlin.String> = mapOf()
         val localVariableConfig = RequestConfig(
             RequestMethod.GET,
-            "/blue/rest/classes/",
+            "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/log".replace("{"+"organization"+"}", "$organization").replace("{"+"pipeline"+"}", "$pipeline").replace("{"+"run"+"}", "$run"),
             query = localVariableQuery,
             headers = localVariableHeaders
         )
@@ -450,14 +539,629 @@ class BlueOceanApi(basePath: kotlin.String = "http://localhost") : ApiClient(bas
 
     /**
     * 
+    * Retrieve run node details for an organization pipeline
+    * @param organization Name of the organization 
+    * @param pipeline Name of the pipeline 
+    * @param run Name of the run 
+    * @param node Name of the node 
+    * @return PipelineRunNode
+    */
+    @Suppress("UNCHECKED_CAST")
+    fun getPipelineRunNode(organization: kotlin.String, pipeline: kotlin.String, run: kotlin.String, node: kotlin.String) : PipelineRunNode {
+        val localVariableBody: kotlin.Any? = null
+        val localVariableQuery: MultiValueMap = mapOf()
+        val localVariableHeaders: kotlin.collections.Map<kotlin.String,kotlin.String> = mapOf()
+        val localVariableConfig = RequestConfig(
+            RequestMethod.GET,
+            "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}".replace("{"+"organization"+"}", "$organization").replace("{"+"pipeline"+"}", "$pipeline").replace("{"+"run"+"}", "$run").replace("{"+"node"+"}", "$node"),
+            query = localVariableQuery,
+            headers = localVariableHeaders
+        )
+        val response = request<PipelineRunNode>(
+            localVariableConfig,
+            localVariableBody
+        )
+
+        return when (response.responseType) {
+            ResponseType.Success -> (response as Success<*>).data as PipelineRunNode
+            ResponseType.Informational -> TODO()
+            ResponseType.Redirection -> TODO()
+            ResponseType.ClientError -> throw ClientException((response as ClientError<*>).body as? String ?: "Client error")
+            ResponseType.ServerError -> throw ServerException((response as ServerError<*>).message ?: "Server error")
+            else -> throw kotlin.IllegalStateException("Undefined ResponseType.")
+        }
+    }
+
+    /**
+    * 
+    * Retrieve run node details for an organization pipeline
+    * @param organization Name of the organization 
+    * @param pipeline Name of the pipeline 
+    * @param run Name of the run 
+    * @param node Name of the node 
+    * @param step Name of the step 
+    * @return PipelineStepImpl
+    */
+    @Suppress("UNCHECKED_CAST")
+    fun getPipelineRunNodeStep(organization: kotlin.String, pipeline: kotlin.String, run: kotlin.String, node: kotlin.String, step: kotlin.String) : PipelineStepImpl {
+        val localVariableBody: kotlin.Any? = null
+        val localVariableQuery: MultiValueMap = mapOf()
+        val localVariableHeaders: kotlin.collections.Map<kotlin.String,kotlin.String> = mapOf()
+        val localVariableConfig = RequestConfig(
+            RequestMethod.GET,
+            "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps/{step}".replace("{"+"organization"+"}", "$organization").replace("{"+"pipeline"+"}", "$pipeline").replace("{"+"run"+"}", "$run").replace("{"+"node"+"}", "$node").replace("{"+"step"+"}", "$step"),
+            query = localVariableQuery,
+            headers = localVariableHeaders
+        )
+        val response = request<PipelineStepImpl>(
+            localVariableConfig,
+            localVariableBody
+        )
+
+        return when (response.responseType) {
+            ResponseType.Success -> (response as Success<*>).data as PipelineStepImpl
+            ResponseType.Informational -> TODO()
+            ResponseType.Redirection -> TODO()
+            ResponseType.ClientError -> throw ClientException((response as ClientError<*>).body as? String ?: "Client error")
+            ResponseType.ServerError -> throw ServerException((response as ServerError<*>).message ?: "Server error")
+            else -> throw kotlin.IllegalStateException("Undefined ResponseType.")
+        }
+    }
+
+    /**
+    * 
+    * Get log for a pipeline run node step
+    * @param organization Name of the organization 
+    * @param pipeline Name of the pipeline 
+    * @param run Name of the run 
+    * @param node Name of the node 
+    * @param step Name of the step 
+    * @return kotlin.String
+    */
+    @Suppress("UNCHECKED_CAST")
+    fun getPipelineRunNodeStepLog(organization: kotlin.String, pipeline: kotlin.String, run: kotlin.String, node: kotlin.String, step: kotlin.String) : kotlin.String {
+        val localVariableBody: kotlin.Any? = null
+        val localVariableQuery: MultiValueMap = mapOf()
+        val localVariableHeaders: kotlin.collections.Map<kotlin.String,kotlin.String> = mapOf()
+        val localVariableConfig = RequestConfig(
+            RequestMethod.GET,
+            "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps/{step}/log".replace("{"+"organization"+"}", "$organization").replace("{"+"pipeline"+"}", "$pipeline").replace("{"+"run"+"}", "$run").replace("{"+"node"+"}", "$node").replace("{"+"step"+"}", "$step"),
+            query = localVariableQuery,
+            headers = localVariableHeaders
+        )
+        val response = request<kotlin.String>(
+            localVariableConfig,
+            localVariableBody
+        )
+
+        return when (response.responseType) {
+            ResponseType.Success -> (response as Success<*>).data as kotlin.String
+            ResponseType.Informational -> TODO()
+            ResponseType.Redirection -> TODO()
+            ResponseType.ClientError -> throw ClientException((response as ClientError<*>).body as? String ?: "Client error")
+            ResponseType.ServerError -> throw ServerException((response as ServerError<*>).message ?: "Server error")
+            else -> throw kotlin.IllegalStateException("Undefined ResponseType.")
+        }
+    }
+
+    /**
+    * 
+    * Retrieve run node steps details for an organization pipeline
+    * @param organization Name of the organization 
+    * @param pipeline Name of the pipeline 
+    * @param run Name of the run 
+    * @param node Name of the node 
+    * @return PipelineRunNodeSteps
+    */
+    @Suppress("UNCHECKED_CAST")
+    fun getPipelineRunNodeSteps(organization: kotlin.String, pipeline: kotlin.String, run: kotlin.String, node: kotlin.String) : PipelineRunNodeSteps {
+        val localVariableBody: kotlin.Any? = null
+        val localVariableQuery: MultiValueMap = mapOf()
+        val localVariableHeaders: kotlin.collections.Map<kotlin.String,kotlin.String> = mapOf()
+        val localVariableConfig = RequestConfig(
+            RequestMethod.GET,
+            "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps".replace("{"+"organization"+"}", "$organization").replace("{"+"pipeline"+"}", "$pipeline").replace("{"+"run"+"}", "$run").replace("{"+"node"+"}", "$node"),
+            query = localVariableQuery,
+            headers = localVariableHeaders
+        )
+        val response = request<PipelineRunNodeSteps>(
+            localVariableConfig,
+            localVariableBody
+        )
+
+        return when (response.responseType) {
+            ResponseType.Success -> (response as Success<*>).data as PipelineRunNodeSteps
+            ResponseType.Informational -> TODO()
+            ResponseType.Redirection -> TODO()
+            ResponseType.ClientError -> throw ClientException((response as ClientError<*>).body as? String ?: "Client error")
+            ResponseType.ServerError -> throw ServerException((response as ServerError<*>).message ?: "Server error")
+            else -> throw kotlin.IllegalStateException("Undefined ResponseType.")
+        }
+    }
+
+    /**
+    * 
+    * Retrieve run nodes details for an organization pipeline
+    * @param organization Name of the organization 
+    * @param pipeline Name of the pipeline 
+    * @param run Name of the run 
+    * @return PipelineRunNodes
+    */
+    @Suppress("UNCHECKED_CAST")
+    fun getPipelineRunNodes(organization: kotlin.String, pipeline: kotlin.String, run: kotlin.String) : PipelineRunNodes {
+        val localVariableBody: kotlin.Any? = null
+        val localVariableQuery: MultiValueMap = mapOf()
+        val localVariableHeaders: kotlin.collections.Map<kotlin.String,kotlin.String> = mapOf()
+        val localVariableConfig = RequestConfig(
+            RequestMethod.GET,
+            "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes".replace("{"+"organization"+"}", "$organization").replace("{"+"pipeline"+"}", "$pipeline").replace("{"+"run"+"}", "$run"),
+            query = localVariableQuery,
+            headers = localVariableHeaders
+        )
+        val response = request<PipelineRunNodes>(
+            localVariableConfig,
+            localVariableBody
+        )
+
+        return when (response.responseType) {
+            ResponseType.Success -> (response as Success<*>).data as PipelineRunNodes
+            ResponseType.Informational -> TODO()
+            ResponseType.Redirection -> TODO()
+            ResponseType.ClientError -> throw ClientException((response as ClientError<*>).body as? String ?: "Client error")
+            ResponseType.ServerError -> throw ServerException((response as ServerError<*>).message ?: "Server error")
+            else -> throw kotlin.IllegalStateException("Undefined ResponseType.")
+        }
+    }
+
+    /**
+    * 
+    * Retrieve all runs details for an organization pipeline
+    * @param organization Name of the organization 
+    * @param pipeline Name of the pipeline 
+    * @return PipelineRuns
+    */
+    @Suppress("UNCHECKED_CAST")
+    fun getPipelineRuns(organization: kotlin.String, pipeline: kotlin.String) : PipelineRuns {
+        val localVariableBody: kotlin.Any? = null
+        val localVariableQuery: MultiValueMap = mapOf()
+        val localVariableHeaders: kotlin.collections.Map<kotlin.String,kotlin.String> = mapOf()
+        val localVariableConfig = RequestConfig(
+            RequestMethod.GET,
+            "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs".replace("{"+"organization"+"}", "$organization").replace("{"+"pipeline"+"}", "$pipeline"),
+            query = localVariableQuery,
+            headers = localVariableHeaders
+        )
+        val response = request<PipelineRuns>(
+            localVariableConfig,
+            localVariableBody
+        )
+
+        return when (response.responseType) {
+            ResponseType.Success -> (response as Success<*>).data as PipelineRuns
+            ResponseType.Informational -> TODO()
+            ResponseType.Redirection -> TODO()
+            ResponseType.ClientError -> throw ClientException((response as ClientError<*>).body as? String ?: "Client error")
+            ResponseType.ServerError -> throw ServerException((response as ServerError<*>).message ?: "Server error")
+            else -> throw kotlin.IllegalStateException("Undefined ResponseType.")
+        }
+    }
+
+    /**
+    * 
+    * Retrieve all pipelines details for an organization
+    * @param organization Name of the organization 
+    * @return Pipelines
+    */
+    @Suppress("UNCHECKED_CAST")
+    fun getPipelines(organization: kotlin.String) : Pipelines {
+        val localVariableBody: kotlin.Any? = null
+        val localVariableQuery: MultiValueMap = mapOf()
+        val localVariableHeaders: kotlin.collections.Map<kotlin.String,kotlin.String> = mapOf()
+        val localVariableConfig = RequestConfig(
+            RequestMethod.GET,
+            "/blue/rest/organizations/{organization}/pipelines/".replace("{"+"organization"+"}", "$organization"),
+            query = localVariableQuery,
+            headers = localVariableHeaders
+        )
+        val response = request<Pipelines>(
+            localVariableConfig,
+            localVariableBody
+        )
+
+        return when (response.responseType) {
+            ResponseType.Success -> (response as Success<*>).data as Pipelines
+            ResponseType.Informational -> TODO()
+            ResponseType.Redirection -> TODO()
+            ResponseType.ClientError -> throw ClientException((response as ClientError<*>).body as? String ?: "Client error")
+            ResponseType.ServerError -> throw ServerException((response as ServerError<*>).message ?: "Server error")
+            else -> throw kotlin.IllegalStateException("Undefined ResponseType.")
+        }
+    }
+
+    /**
+    * 
+    * Retrieve SCM details for an organization
+    * @param organization Name of the organization 
+    * @param scm Name of SCM 
+    * @return GithubScm
+    */
+    @Suppress("UNCHECKED_CAST")
+    fun getSCM(organization: kotlin.String, scm: kotlin.String) : GithubScm {
+        val localVariableBody: kotlin.Any? = null
+        val localVariableQuery: MultiValueMap = mapOf()
+        val localVariableHeaders: kotlin.collections.Map<kotlin.String,kotlin.String> = mapOf()
+        val localVariableConfig = RequestConfig(
+            RequestMethod.GET,
+            "/blue/rest/organizations/{organization}/scm/{scm}".replace("{"+"organization"+"}", "$organization").replace("{"+"scm"+"}", "$scm"),
+            query = localVariableQuery,
+            headers = localVariableHeaders
+        )
+        val response = request<GithubScm>(
+            localVariableConfig,
+            localVariableBody
+        )
+
+        return when (response.responseType) {
+            ResponseType.Success -> (response as Success<*>).data as GithubScm
+            ResponseType.Informational -> TODO()
+            ResponseType.Redirection -> TODO()
+            ResponseType.ClientError -> throw ClientException((response as ClientError<*>).body as? String ?: "Client error")
+            ResponseType.ServerError -> throw ServerException((response as ServerError<*>).message ?: "Server error")
+            else -> throw kotlin.IllegalStateException("Undefined ResponseType.")
+        }
+    }
+
+    /**
+    * 
+    * Retrieve SCM organization repositories details for an organization
+    * @param organization Name of the organization 
+    * @param scm Name of SCM 
+    * @param scmOrganisation Name of the SCM organization 
+    * @param credentialId Credential ID (optional)
+    * @param pageSize Number of items in a page (optional)
+    * @param pageNumber Page number (optional)
+    * @return ScmOrganisations
+    */
+    @Suppress("UNCHECKED_CAST")
+    fun getSCMOrganisationRepositories(organization: kotlin.String, scm: kotlin.String, scmOrganisation: kotlin.String, credentialId: kotlin.String, pageSize: kotlin.Int, pageNumber: kotlin.Int) : ScmOrganisations {
+        val localVariableBody: kotlin.Any? = null
+        val localVariableQuery: MultiValueMap = mapOf("credentialId" to listOf("$credentialId"), "pageSize" to listOf("$pageSize"), "pageNumber" to listOf("$pageNumber"))
+        val localVariableHeaders: kotlin.collections.Map<kotlin.String,kotlin.String> = mapOf()
+        val localVariableConfig = RequestConfig(
+            RequestMethod.GET,
+            "/blue/rest/organizations/{organization}/scm/{scm}/organizations/{scmOrganisation}/repositories".replace("{"+"organization"+"}", "$organization").replace("{"+"scm"+"}", "$scm").replace("{"+"scmOrganisation"+"}", "$scmOrganisation"),
+            query = localVariableQuery,
+            headers = localVariableHeaders
+        )
+        val response = request<ScmOrganisations>(
+            localVariableConfig,
+            localVariableBody
+        )
+
+        return when (response.responseType) {
+            ResponseType.Success -> (response as Success<*>).data as ScmOrganisations
+            ResponseType.Informational -> TODO()
+            ResponseType.Redirection -> TODO()
+            ResponseType.ClientError -> throw ClientException((response as ClientError<*>).body as? String ?: "Client error")
+            ResponseType.ServerError -> throw ServerException((response as ServerError<*>).message ?: "Server error")
+            else -> throw kotlin.IllegalStateException("Undefined ResponseType.")
+        }
+    }
+
+    /**
+    * 
+    * Retrieve SCM organization repository details for an organization
+    * @param organization Name of the organization 
+    * @param scm Name of SCM 
+    * @param scmOrganisation Name of the SCM organization 
+    * @param repository Name of the SCM repository 
+    * @param credentialId Credential ID (optional)
+    * @return ScmOrganisations
+    */
+    @Suppress("UNCHECKED_CAST")
+    fun getSCMOrganisationRepository(organization: kotlin.String, scm: kotlin.String, scmOrganisation: kotlin.String, repository: kotlin.String, credentialId: kotlin.String) : ScmOrganisations {
+        val localVariableBody: kotlin.Any? = null
+        val localVariableQuery: MultiValueMap = mapOf("credentialId" to listOf("$credentialId"))
+        val localVariableHeaders: kotlin.collections.Map<kotlin.String,kotlin.String> = mapOf()
+        val localVariableConfig = RequestConfig(
+            RequestMethod.GET,
+            "/blue/rest/organizations/{organization}/scm/{scm}/organizations/{scmOrganisation}/repositories/{repository}".replace("{"+"organization"+"}", "$organization").replace("{"+"scm"+"}", "$scm").replace("{"+"scmOrganisation"+"}", "$scmOrganisation").replace("{"+"repository"+"}", "$repository"),
+            query = localVariableQuery,
+            headers = localVariableHeaders
+        )
+        val response = request<ScmOrganisations>(
+            localVariableConfig,
+            localVariableBody
+        )
+
+        return when (response.responseType) {
+            ResponseType.Success -> (response as Success<*>).data as ScmOrganisations
+            ResponseType.Informational -> TODO()
+            ResponseType.Redirection -> TODO()
+            ResponseType.ClientError -> throw ClientException((response as ClientError<*>).body as? String ?: "Client error")
+            ResponseType.ServerError -> throw ServerException((response as ServerError<*>).message ?: "Server error")
+            else -> throw kotlin.IllegalStateException("Undefined ResponseType.")
+        }
+    }
+
+    /**
+    * 
+    * Retrieve SCM organizations details for an organization
+    * @param organization Name of the organization 
+    * @param scm Name of SCM 
+    * @param credentialId Credential ID (optional)
+    * @return ScmOrganisations
+    */
+    @Suppress("UNCHECKED_CAST")
+    fun getSCMOrganisations(organization: kotlin.String, scm: kotlin.String, credentialId: kotlin.String) : ScmOrganisations {
+        val localVariableBody: kotlin.Any? = null
+        val localVariableQuery: MultiValueMap = mapOf("credentialId" to listOf("$credentialId"))
+        val localVariableHeaders: kotlin.collections.Map<kotlin.String,kotlin.String> = mapOf()
+        val localVariableConfig = RequestConfig(
+            RequestMethod.GET,
+            "/blue/rest/organizations/{organization}/scm/{scm}/organizations".replace("{"+"organization"+"}", "$organization").replace("{"+"scm"+"}", "$scm"),
+            query = localVariableQuery,
+            headers = localVariableHeaders
+        )
+        val response = request<ScmOrganisations>(
+            localVariableConfig,
+            localVariableBody
+        )
+
+        return when (response.responseType) {
+            ResponseType.Success -> (response as Success<*>).data as ScmOrganisations
+            ResponseType.Informational -> TODO()
+            ResponseType.Redirection -> TODO()
+            ResponseType.ClientError -> throw ClientException((response as ClientError<*>).body as? String ?: "Client error")
+            ResponseType.ServerError -> throw ServerException((response as ServerError<*>).message ?: "Server error")
+            else -> throw kotlin.IllegalStateException("Undefined ResponseType.")
+        }
+    }
+
+    /**
+    * 
+    * Retrieve user details for an organization
+    * @param organization Name of the organization 
+    * @param user Name of the user 
+    * @return User
+    */
+    @Suppress("UNCHECKED_CAST")
+    fun getUser(organization: kotlin.String, user: kotlin.String) : User {
+        val localVariableBody: kotlin.Any? = null
+        val localVariableQuery: MultiValueMap = mapOf()
+        val localVariableHeaders: kotlin.collections.Map<kotlin.String,kotlin.String> = mapOf()
+        val localVariableConfig = RequestConfig(
+            RequestMethod.GET,
+            "/blue/rest/organizations/{organization}/users/{user}".replace("{"+"organization"+"}", "$organization").replace("{"+"user"+"}", "$user"),
+            query = localVariableQuery,
+            headers = localVariableHeaders
+        )
+        val response = request<User>(
+            localVariableConfig,
+            localVariableBody
+        )
+
+        return when (response.responseType) {
+            ResponseType.Success -> (response as Success<*>).data as User
+            ResponseType.Informational -> TODO()
+            ResponseType.Redirection -> TODO()
+            ResponseType.ClientError -> throw ClientException((response as ClientError<*>).body as? String ?: "Client error")
+            ResponseType.ServerError -> throw ServerException((response as ServerError<*>).message ?: "Server error")
+            else -> throw kotlin.IllegalStateException("Undefined ResponseType.")
+        }
+    }
+
+    /**
+    * 
+    * Retrieve user favorites details for an organization
+    * @param user Name of the user 
+    * @return UserFavorites
+    */
+    @Suppress("UNCHECKED_CAST")
+    fun getUserFavorites(user: kotlin.String) : UserFavorites {
+        val localVariableBody: kotlin.Any? = null
+        val localVariableQuery: MultiValueMap = mapOf()
+        val localVariableHeaders: kotlin.collections.Map<kotlin.String,kotlin.String> = mapOf()
+        val localVariableConfig = RequestConfig(
+            RequestMethod.GET,
+            "/blue/rest/users/{user}/favorites".replace("{"+"user"+"}", "$user"),
+            query = localVariableQuery,
+            headers = localVariableHeaders
+        )
+        val response = request<UserFavorites>(
+            localVariableConfig,
+            localVariableBody
+        )
+
+        return when (response.responseType) {
+            ResponseType.Success -> (response as Success<*>).data as UserFavorites
+            ResponseType.Informational -> TODO()
+            ResponseType.Redirection -> TODO()
+            ResponseType.ClientError -> throw ClientException((response as ClientError<*>).body as? String ?: "Client error")
+            ResponseType.ServerError -> throw ServerException((response as ServerError<*>).message ?: "Server error")
+            else -> throw kotlin.IllegalStateException("Undefined ResponseType.")
+        }
+    }
+
+    /**
+    * 
+    * Retrieve users details for an organization
+    * @param organization Name of the organization 
+    * @return User
+    */
+    @Suppress("UNCHECKED_CAST")
+    fun getUsers(organization: kotlin.String) : User {
+        val localVariableBody: kotlin.Any? = null
+        val localVariableQuery: MultiValueMap = mapOf()
+        val localVariableHeaders: kotlin.collections.Map<kotlin.String,kotlin.String> = mapOf()
+        val localVariableConfig = RequestConfig(
+            RequestMethod.GET,
+            "/blue/rest/organizations/{organization}/users/".replace("{"+"organization"+"}", "$organization"),
+            query = localVariableQuery,
+            headers = localVariableHeaders
+        )
+        val response = request<User>(
+            localVariableConfig,
+            localVariableBody
+        )
+
+        return when (response.responseType) {
+            ResponseType.Success -> (response as Success<*>).data as User
+            ResponseType.Informational -> TODO()
+            ResponseType.Redirection -> TODO()
+            ResponseType.ClientError -> throw ClientException((response as ClientError<*>).body as? String ?: "Client error")
+            ResponseType.ServerError -> throw ServerException((response as ServerError<*>).message ?: "Server error")
+            else -> throw kotlin.IllegalStateException("Undefined ResponseType.")
+        }
+    }
+
+    /**
+    * 
+    * Replay an organization pipeline run
+    * @param organization Name of the organization 
+    * @param pipeline Name of the pipeline 
+    * @param run Name of the run 
+    * @return QueueItemImpl
+    */
+    @Suppress("UNCHECKED_CAST")
+    fun postPipelineRun(organization: kotlin.String, pipeline: kotlin.String, run: kotlin.String) : QueueItemImpl {
+        val localVariableBody: kotlin.Any? = null
+        val localVariableQuery: MultiValueMap = mapOf()
+        val localVariableHeaders: kotlin.collections.Map<kotlin.String,kotlin.String> = mapOf()
+        val localVariableConfig = RequestConfig(
+            RequestMethod.POST,
+            "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/replay".replace("{"+"organization"+"}", "$organization").replace("{"+"pipeline"+"}", "$pipeline").replace("{"+"run"+"}", "$run"),
+            query = localVariableQuery,
+            headers = localVariableHeaders
+        )
+        val response = request<QueueItemImpl>(
+            localVariableConfig,
+            localVariableBody
+        )
+
+        return when (response.responseType) {
+            ResponseType.Success -> (response as Success<*>).data as QueueItemImpl
+            ResponseType.Informational -> TODO()
+            ResponseType.Redirection -> TODO()
+            ResponseType.ClientError -> throw ClientException((response as ClientError<*>).body as? String ?: "Client error")
+            ResponseType.ServerError -> throw ServerException((response as ServerError<*>).message ?: "Server error")
+            else -> throw kotlin.IllegalStateException("Undefined ResponseType.")
+        }
+    }
+
+    /**
+    * 
+    * Start a build for an organization pipeline
+    * @param organization Name of the organization 
+    * @param pipeline Name of the pipeline 
+    * @return QueueItemImpl
+    */
+    @Suppress("UNCHECKED_CAST")
+    fun postPipelineRuns(organization: kotlin.String, pipeline: kotlin.String) : QueueItemImpl {
+        val localVariableBody: kotlin.Any? = null
+        val localVariableQuery: MultiValueMap = mapOf()
+        val localVariableHeaders: kotlin.collections.Map<kotlin.String,kotlin.String> = mapOf()
+        val localVariableConfig = RequestConfig(
+            RequestMethod.POST,
+            "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs".replace("{"+"organization"+"}", "$organization").replace("{"+"pipeline"+"}", "$pipeline"),
+            query = localVariableQuery,
+            headers = localVariableHeaders
+        )
+        val response = request<QueueItemImpl>(
+            localVariableConfig,
+            localVariableBody
+        )
+
+        return when (response.responseType) {
+            ResponseType.Success -> (response as Success<*>).data as QueueItemImpl
+            ResponseType.Informational -> TODO()
+            ResponseType.Redirection -> TODO()
+            ResponseType.ClientError -> throw ClientException((response as ClientError<*>).body as? String ?: "Client error")
+            ResponseType.ServerError -> throw ServerException((response as ServerError<*>).message ?: "Server error")
+            else -> throw kotlin.IllegalStateException("Undefined ResponseType.")
+        }
+    }
+
+    /**
+    * 
+    * Favorite/unfavorite a pipeline
+    * @param organization Name of the organization 
+    * @param pipeline Name of the pipeline 
+    * @param body Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite 
+    * @return FavoriteImpl
+    */
+    @Suppress("UNCHECKED_CAST")
+    fun putPipelineFavorite(organization: kotlin.String, pipeline: kotlin.String, body: Body) : FavoriteImpl {
+        val localVariableBody: kotlin.Any? = body
+        val localVariableQuery: MultiValueMap = mapOf()
+        val localVariableHeaders: kotlin.collections.Map<kotlin.String,kotlin.String> = mapOf()
+        val localVariableConfig = RequestConfig(
+            RequestMethod.PUT,
+            "/blue/rest/organizations/{organization}/pipelines/{pipeline}/favorite".replace("{"+"organization"+"}", "$organization").replace("{"+"pipeline"+"}", "$pipeline"),
+            query = localVariableQuery,
+            headers = localVariableHeaders
+        )
+        val response = request<FavoriteImpl>(
+            localVariableConfig,
+            localVariableBody
+        )
+
+        return when (response.responseType) {
+            ResponseType.Success -> (response as Success<*>).data as FavoriteImpl
+            ResponseType.Informational -> TODO()
+            ResponseType.Redirection -> TODO()
+            ResponseType.ClientError -> throw ClientException((response as ClientError<*>).body as? String ?: "Client error")
+            ResponseType.ServerError -> throw ServerException((response as ServerError<*>).message ?: "Server error")
+            else -> throw kotlin.IllegalStateException("Undefined ResponseType.")
+        }
+    }
+
+    /**
+    * 
+    * Stop a build of an organization pipeline
+    * @param organization Name of the organization 
+    * @param pipeline Name of the pipeline 
+    * @param run Name of the run 
+    * @param blocking Set to true to make blocking stop, default: false (optional)
+    * @param timeOutInSecs Timeout in seconds, default: 10 seconds (optional)
+    * @return PipelineRun
+    */
+    @Suppress("UNCHECKED_CAST")
+    fun putPipelineRun(organization: kotlin.String, pipeline: kotlin.String, run: kotlin.String, blocking: kotlin.String, timeOutInSecs: kotlin.Int) : PipelineRun {
+        val localVariableBody: kotlin.Any? = null
+        val localVariableQuery: MultiValueMap = mapOf("blocking" to listOf("$blocking"), "timeOutInSecs" to listOf("$timeOutInSecs"))
+        val localVariableHeaders: kotlin.collections.Map<kotlin.String,kotlin.String> = mapOf()
+        val localVariableConfig = RequestConfig(
+            RequestMethod.PUT,
+            "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/stop".replace("{"+"organization"+"}", "$organization").replace("{"+"pipeline"+"}", "$pipeline").replace("{"+"run"+"}", "$run"),
+            query = localVariableQuery,
+            headers = localVariableHeaders
+        )
+        val response = request<PipelineRun>(
+            localVariableConfig,
+            localVariableBody
+        )
+
+        return when (response.responseType) {
+            ResponseType.Success -> (response as Success<*>).data as PipelineRun
+            ResponseType.Informational -> TODO()
+            ResponseType.Redirection -> TODO()
+            ResponseType.ClientError -> throw ClientException((response as ClientError<*>).body as? String ?: "Client error")
+            ResponseType.ServerError -> throw ServerException((response as ServerError<*>).message ?: "Server error")
+            else -> throw kotlin.IllegalStateException("Undefined ResponseType.")
+        }
+    }
+
+    /**
+    * 
     * Search for any resource details
     * @param q Query string 
     * @return kotlin.String
     */
     @Suppress("UNCHECKED_CAST")
-    fun search_0(q: kotlin.String) : kotlin.String {
+    fun search(q: kotlin.String) : kotlin.String {
         val localVariableBody: kotlin.Any? = null
-        val localVariableQuery: kotlin.collections.Map<kotlin.String,kotlin.String> = mapOf("q" to q)
+        val localVariableQuery: MultiValueMap = mapOf("q" to listOf("$q"))
         val localVariableHeaders: kotlin.collections.Map<kotlin.String,kotlin.String> = mapOf()
         val localVariableConfig = RequestConfig(
             RequestMethod.GET,
@@ -480,12 +1184,36 @@ class BlueOceanApi(basePath: kotlin.String = "http://localhost") : ApiClient(bas
         }
     }
 
+    /**
+    * 
+    * Get classes details
+    * @param q Query string containing an array of class names 
+    * @return kotlin.String
+    */
+    @Suppress("UNCHECKED_CAST")
+    fun searchClasses(q: kotlin.String) : kotlin.String {
+        val localVariableBody: kotlin.Any? = null
+        val localVariableQuery: MultiValueMap = mapOf("q" to listOf("$q"))
+        val localVariableHeaders: kotlin.collections.Map<kotlin.String,kotlin.String> = mapOf()
+        val localVariableConfig = RequestConfig(
+            RequestMethod.GET,
+            "/blue/rest/classes/",
+            query = localVariableQuery,
+            headers = localVariableHeaders
+        )
+        val response = request<kotlin.String>(
+            localVariableConfig,
+            localVariableBody
+        )
 
-    private fun collectionDelimiter(collectionFormat: kotlin.String) = when(collectionFormat) {
-        "csv" -> ","
-        "tsv" -> "\t"
-        "pipes" -> "|"
-        "ssv" -> " "
-        else -> ""
+        return when (response.responseType) {
+            ResponseType.Success -> (response as Success<*>).data as kotlin.String
+            ResponseType.Informational -> TODO()
+            ResponseType.Redirection -> TODO()
+            ResponseType.ClientError -> throw ClientException((response as ClientError<*>).body as? String ?: "Client error")
+            ResponseType.ServerError -> throw ServerException((response as ServerError<*>).message ?: "Server error")
+            else -> throw kotlin.IllegalStateException("Undefined ResponseType.")
+        }
     }
+
 }

@@ -1,23 +1,25 @@
 import connexion
-from swagger_server.models.hudsonmodel_computer_set import HudsonmodelComputerSet
-from swagger_server.models.hudsonmodel_free_style_build import HudsonmodelFreeStyleBuild
-from swagger_server.models.hudsonmodel_free_style_project import HudsonmodelFreeStyleProject
-from swagger_server.models.hudsonmodel_hudson import HudsonmodelHudson
-from swagger_server.models.hudsonmodel_list_view import HudsonmodelListView
-from swagger_server.models.hudsonmodel_queue import HudsonmodelQueue
-from swagger_server.models.hudsonsecuritycsrf_default_crumb_issuer import HudsonsecuritycsrfDefaultCrumbIssuer
+from swagger_server.models.computer_set import ComputerSet
+from swagger_server.models.default_crumb_issuer import DefaultCrumbIssuer
+from swagger_server.models.free_style_build import FreeStyleBuild
+from swagger_server.models.free_style_project import FreeStyleProject
+from swagger_server.models.hudson import Hudson
+from swagger_server.models.list_view import ListView
+from swagger_server.models.queue import Queue
 from datetime import date, datetime
 from typing import List, Dict
 from six import iteritems
 from ..util import deserialize_date, deserialize_datetime
 
 
-def get_computer():
+def get_computer(depth):
     """
     get_computer
     Retrieve computer details
+    :param depth: Recursion depth in response model
+    :type depth: int
 
-    :rtype: HudsonmodelComputerSet
+    :rtype: ComputerSet
     """
     return 'do some magic!'
 
@@ -27,7 +29,7 @@ def get_crumb():
     get_crumb
     Retrieve CSRF protection token
 
-    :rtype: HudsonsecuritycsrfDefaultCrumbIssuer
+    :rtype: DefaultCrumbIssuer
     """
     return 'do some magic!'
 
@@ -37,7 +39,7 @@ def get_jenkins():
     get_jenkins
     Retrieve Jenkins details
 
-    :rtype: HudsonmodelHudson
+    :rtype: Hudson
     """
     return 'do some magic!'
 
@@ -49,7 +51,7 @@ def get_job(name):
     :param name: Name of the job
     :type name: str
 
-    :rtype: HudsonmodelFreeStyleProject
+    :rtype: FreeStyleProject
     """
     return 'do some magic!'
 
@@ -73,7 +75,7 @@ def get_job_last_build(name):
     :param name: Name of the job
     :type name: str
 
-    :rtype: HudsonmodelFreeStyleBuild
+    :rtype: FreeStyleBuild
     """
     return 'do some magic!'
 
@@ -99,7 +101,7 @@ def get_queue():
     get_queue
     Retrieve queue details
 
-    :rtype: HudsonmodelQueue
+    :rtype: Queue
     """
     return 'do some magic!'
 
@@ -111,7 +113,7 @@ def get_queue_item(number):
     :param number: Queue number
     :type number: str
 
-    :rtype: HudsonmodelQueue
+    :rtype: Queue
     """
     return 'do some magic!'
 
@@ -123,7 +125,7 @@ def get_view(name):
     :param name: Name of the view
     :type name: str
 
-    :rtype: HudsonmodelListView
+    :rtype: ListView
     """
     return 'do some magic!'
 
@@ -150,14 +152,14 @@ def head_jenkins():
     return 'do some magic!'
 
 
-def post_create_item(name, from=None, mode=None, body=None, Jenkins_Crumb=None, Content_Type=None):
+def post_create_item(name, _from=None, mode=None, body=None, Jenkins_Crumb=None, Content_Type=None):
     """
     post_create_item
     Create a new job using job configuration, or copied from an existing job
     :param name: Name of the new job
     :type name: str
-    :param from: Existing job to copy from
-    :type from: str
+    :param _from: Existing job to copy from
+    :type _from: str
     :param mode: Set to &#39;copy&#39; for copying an existing job
     :type mode: str
     :param body: Job configuration in config.xml format

@@ -18,7 +18,7 @@ import com.cliffano.swaggyjenkins.Pair;
 import java.util.Map;
 import java.util.List;
 
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2017-07-25T10:44:17.724+10:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2017-08-03T23:31:14.210Z")
 public class OAuth implements Authentication {
   private String accessToken;
 

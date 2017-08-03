@@ -10,23 +10,27 @@ class RemoteAccessApi {
   /// 
   ///
   /// Retrieve computer details
-  Future<HudsonmodelComputerSet> getComputer() async {
+  Future<ComputerSet> getComputer(int depth) async {
     Object postBody = null;
 
     // verify required params are set
+    if(depth == null) {
+     throw new ApiException(400, "Missing required param: depth");
+    }
 
     // create path and map variables
-    String path = "/computer/api/json?depth=1".replaceAll("{format}","json");
+    String path = "/computer/api/json".replaceAll("{format}","json");
 
     // query params
     List<QueryParam> queryParams = [];
     Map<String, String> headerParams = {};
     Map<String, String> formParams = {};
+      queryParams.addAll(_convertParametersForCollectionFormat("", "depth", depth));
     
     List<String> contentTypes = [];
 
     String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
-    List<String> authNames = [];
+    List<String> authNames = ["jenkins_auth"];
 
     if(contentType.startsWith("multipart/form-data")) {
       bool hasFields = false;
@@ -50,7 +54,7 @@ class RemoteAccessApi {
     if(response.statusCode >= 400) {
       throw new ApiException(response.statusCode, response.body);
     } else if(response.body != null) {
-      return apiClient.deserialize(response.body, 'HudsonmodelComputerSet') as HudsonmodelComputerSet ;
+      return apiClient.deserialize(response.body, 'ComputerSet') as ComputerSet ;
     } else {
       return null;
     }
@@ -58,7 +62,7 @@ class RemoteAccessApi {
   /// 
   ///
   /// Retrieve CSRF protection token
-  Future<HudsonsecuritycsrfDefaultCrumbIssuer> getCrumb() async {
+  Future<DefaultCrumbIssuer> getCrumb() async {
     Object postBody = null;
 
     // verify required params are set
@@ -74,7 +78,7 @@ class RemoteAccessApi {
     List<String> contentTypes = [];
 
     String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
-    List<String> authNames = [];
+    List<String> authNames = ["jenkins_auth"];
 
     if(contentType.startsWith("multipart/form-data")) {
       bool hasFields = false;
@@ -98,7 +102,7 @@ class RemoteAccessApi {
     if(response.statusCode >= 400) {
       throw new ApiException(response.statusCode, response.body);
     } else if(response.body != null) {
-      return apiClient.deserialize(response.body, 'HudsonsecuritycsrfDefaultCrumbIssuer') as HudsonsecuritycsrfDefaultCrumbIssuer ;
+      return apiClient.deserialize(response.body, 'DefaultCrumbIssuer') as DefaultCrumbIssuer ;
     } else {
       return null;
     }
@@ -106,7 +110,7 @@ class RemoteAccessApi {
   /// 
   ///
   /// Retrieve Jenkins details
-  Future<HudsonmodelHudson> getJenkins() async {
+  Future<Hudson> getJenkins() async {
     Object postBody = null;
 
     // verify required params are set
@@ -122,7 +126,7 @@ class RemoteAccessApi {
     List<String> contentTypes = [];
 
     String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
-    List<String> authNames = [];
+    List<String> authNames = ["jenkins_auth"];
 
     if(contentType.startsWith("multipart/form-data")) {
       bool hasFields = false;
@@ -146,7 +150,7 @@ class RemoteAccessApi {
     if(response.statusCode >= 400) {
       throw new ApiException(response.statusCode, response.body);
     } else if(response.body != null) {
-      return apiClient.deserialize(response.body, 'HudsonmodelHudson') as HudsonmodelHudson ;
+      return apiClient.deserialize(response.body, 'Hudson') as Hudson ;
     } else {
       return null;
     }
@@ -154,7 +158,7 @@ class RemoteAccessApi {
   /// 
   ///
   /// Retrieve job details
-  Future<HudsonmodelFreeStyleProject> getJob(String name) async {
+  Future<FreeStyleProject> getJob(String name) async {
     Object postBody = null;
 
     // verify required params are set
@@ -173,7 +177,7 @@ class RemoteAccessApi {
     List<String> contentTypes = [];
 
     String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
-    List<String> authNames = [];
+    List<String> authNames = ["jenkins_auth"];
 
     if(contentType.startsWith("multipart/form-data")) {
       bool hasFields = false;
@@ -197,7 +201,7 @@ class RemoteAccessApi {
     if(response.statusCode >= 400) {
       throw new ApiException(response.statusCode, response.body);
     } else if(response.body != null) {
-      return apiClient.deserialize(response.body, 'HudsonmodelFreeStyleProject') as HudsonmodelFreeStyleProject ;
+      return apiClient.deserialize(response.body, 'FreeStyleProject') as FreeStyleProject ;
     } else {
       return null;
     }
@@ -224,7 +228,7 @@ class RemoteAccessApi {
     List<String> contentTypes = [];
 
     String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
-    List<String> authNames = [];
+    List<String> authNames = ["jenkins_auth"];
 
     if(contentType.startsWith("multipart/form-data")) {
       bool hasFields = false;
@@ -256,7 +260,7 @@ class RemoteAccessApi {
   /// 
   ///
   /// Retrieve job&#39;s last build details
-  Future<HudsonmodelFreeStyleBuild> getJobLastBuild(String name) async {
+  Future<FreeStyleBuild> getJobLastBuild(String name) async {
     Object postBody = null;
 
     // verify required params are set
@@ -275,7 +279,7 @@ class RemoteAccessApi {
     List<String> contentTypes = [];
 
     String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
-    List<String> authNames = [];
+    List<String> authNames = ["jenkins_auth"];
 
     if(contentType.startsWith("multipart/form-data")) {
       bool hasFields = false;
@@ -299,7 +303,7 @@ class RemoteAccessApi {
     if(response.statusCode >= 400) {
       throw new ApiException(response.statusCode, response.body);
     } else if(response.body != null) {
-      return apiClient.deserialize(response.body, 'HudsonmodelFreeStyleBuild') as HudsonmodelFreeStyleBuild ;
+      return apiClient.deserialize(response.body, 'FreeStyleBuild') as FreeStyleBuild ;
     } else {
       return null;
     }
@@ -333,7 +337,7 @@ class RemoteAccessApi {
     List<String> contentTypes = [];
 
     String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
-    List<String> authNames = [];
+    List<String> authNames = ["jenkins_auth"];
 
     if(contentType.startsWith("multipart/form-data")) {
       bool hasFields = false;
@@ -365,7 +369,7 @@ class RemoteAccessApi {
   /// 
   ///
   /// Retrieve queue details
-  Future<HudsonmodelQueue> getQueue() async {
+  Future<Queue> getQueue() async {
     Object postBody = null;
 
     // verify required params are set
@@ -381,7 +385,7 @@ class RemoteAccessApi {
     List<String> contentTypes = [];
 
     String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
-    List<String> authNames = [];
+    List<String> authNames = ["jenkins_auth"];
 
     if(contentType.startsWith("multipart/form-data")) {
       bool hasFields = false;
@@ -405,7 +409,7 @@ class RemoteAccessApi {
     if(response.statusCode >= 400) {
       throw new ApiException(response.statusCode, response.body);
     } else if(response.body != null) {
-      return apiClient.deserialize(response.body, 'HudsonmodelQueue') as HudsonmodelQueue ;
+      return apiClient.deserialize(response.body, 'Queue') as Queue ;
     } else {
       return null;
     }
@@ -413,7 +417,7 @@ class RemoteAccessApi {
   /// 
   ///
   /// Retrieve queued item details
-  Future<HudsonmodelQueue> getQueueItem(String number) async {
+  Future<Queue> getQueueItem(String number) async {
     Object postBody = null;
 
     // verify required params are set
@@ -432,7 +436,7 @@ class RemoteAccessApi {
     List<String> contentTypes = [];
 
     String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
-    List<String> authNames = [];
+    List<String> authNames = ["jenkins_auth"];
 
     if(contentType.startsWith("multipart/form-data")) {
       bool hasFields = false;
@@ -456,7 +460,7 @@ class RemoteAccessApi {
     if(response.statusCode >= 400) {
       throw new ApiException(response.statusCode, response.body);
     } else if(response.body != null) {
-      return apiClient.deserialize(response.body, 'HudsonmodelQueue') as HudsonmodelQueue ;
+      return apiClient.deserialize(response.body, 'Queue') as Queue ;
     } else {
       return null;
     }
@@ -464,7 +468,7 @@ class RemoteAccessApi {
   /// 
   ///
   /// Retrieve view details
-  Future<HudsonmodelListView> getView(String name) async {
+  Future<ListView> getView(String name) async {
     Object postBody = null;
 
     // verify required params are set
@@ -483,7 +487,7 @@ class RemoteAccessApi {
     List<String> contentTypes = [];
 
     String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
-    List<String> authNames = [];
+    List<String> authNames = ["jenkins_auth"];
 
     if(contentType.startsWith("multipart/form-data")) {
       bool hasFields = false;
@@ -507,7 +511,7 @@ class RemoteAccessApi {
     if(response.statusCode >= 400) {
       throw new ApiException(response.statusCode, response.body);
     } else if(response.body != null) {
-      return apiClient.deserialize(response.body, 'HudsonmodelListView') as HudsonmodelListView ;
+      return apiClient.deserialize(response.body, 'ListView') as ListView ;
     } else {
       return null;
     }
@@ -534,7 +538,7 @@ class RemoteAccessApi {
     List<String> contentTypes = [];
 
     String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
-    List<String> authNames = [];
+    List<String> authNames = ["jenkins_auth"];
 
     if(contentType.startsWith("multipart/form-data")) {
       bool hasFields = false;
@@ -582,7 +586,7 @@ class RemoteAccessApi {
     List<String> contentTypes = [];
 
     String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
-    List<String> authNames = [];
+    List<String> authNames = ["jenkins_auth"];
 
     if(contentType.startsWith("multipart/form-data")) {
       bool hasFields = false;
@@ -642,7 +646,7 @@ headerParams["Content-Type"] = contentType;
     List<String> contentTypes = [];
 
     String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
-    List<String> authNames = [];
+    List<String> authNames = ["jenkins_auth"];
 
     if(contentType.startsWith("multipart/form-data")) {
       bool hasFields = false;
@@ -696,7 +700,7 @@ headerParams["Content-Type"] = contentType;
     List<String> contentTypes = [];
 
     String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
-    List<String> authNames = [];
+    List<String> authNames = ["jenkins_auth"];
 
     if(contentType.startsWith("multipart/form-data")) {
       bool hasFields = false;
@@ -755,7 +759,7 @@ headerParams["Content-Type"] = contentType;
     List<String> contentTypes = [];
 
     String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
-    List<String> authNames = [];
+    List<String> authNames = ["jenkins_auth"];
 
     if(contentType.startsWith("multipart/form-data")) {
       bool hasFields = false;
@@ -810,7 +814,7 @@ headerParams["Content-Type"] = contentType;
     List<String> contentTypes = [];
 
     String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
-    List<String> authNames = [];
+    List<String> authNames = ["jenkins_auth"];
 
     if(contentType.startsWith("multipart/form-data")) {
       bool hasFields = false;
@@ -862,7 +866,7 @@ headerParams["Content-Type"] = contentType;
     List<String> contentTypes = [];
 
     String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
-    List<String> authNames = [];
+    List<String> authNames = ["jenkins_auth"];
 
     if(contentType.startsWith("multipart/form-data")) {
       bool hasFields = false;
@@ -914,7 +918,7 @@ headerParams["Content-Type"] = contentType;
     List<String> contentTypes = [];
 
     String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
-    List<String> authNames = [];
+    List<String> authNames = ["jenkins_auth"];
 
     if(contentType.startsWith("multipart/form-data")) {
       bool hasFields = false;
@@ -966,7 +970,7 @@ headerParams["Content-Type"] = contentType;
     List<String> contentTypes = [];
 
     String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
-    List<String> authNames = [];
+    List<String> authNames = ["jenkins_auth"];
 
     if(contentType.startsWith("multipart/form-data")) {
       bool hasFields = false;
@@ -1018,7 +1022,7 @@ headerParams["Content-Type"] = contentType;
     List<String> contentTypes = [];
 
     String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
-    List<String> authNames = [];
+    List<String> authNames = ["jenkins_auth"];
 
     if(contentType.startsWith("multipart/form-data")) {
       bool hasFields = false;
@@ -1073,7 +1077,7 @@ headerParams["Content-Type"] = contentType;
     List<String> contentTypes = [];
 
     String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
-    List<String> authNames = [];
+    List<String> authNames = ["jenkins_auth"];
 
     if(contentType.startsWith("multipart/form-data")) {
       bool hasFields = false;

@@ -28,61 +28,157 @@ use Carp qw( croak );
 use Log::Any qw($log);
 
 use WWW::SwaggerClient::ApiClient;
-use WWW::SwaggerClient::Configuration;
 
 use base "Class::Data::Inheritable";
 
 __PACKAGE__->mk_classdata('method_documentation' => {});
 
 sub new {
-    my $class   = shift;
-    my (%self) = (
-        'api_client' => WWW::SwaggerClient::ApiClient->instance,
-        @_
-    );
+    my $class = shift;
+    my $api_client;
 
-    #my $self = {
-    #    #api_client => $options->{api_client}
-    #    api_client => $default_api_client
-    #}; 
+    if ($_[0] && ref $_[0] && ref $_[0] eq 'WWW::SwaggerClient::ApiClient' ) {
+        $api_client = $_[0];
+    } else {
+        $api_client = WWW::SwaggerClient::ApiClient->new(@_);
+    }
 
-    bless \%self, $class;
+    bless { api_client => $api_client }, $class;
 
 }
 
+
+#
+# delete_pipeline_queue_item
+#
+# 
+# 
+# @param string $organization Name of the organization (required)
+# @param string $pipeline Name of the pipeline (required)
+# @param string $queue Name of the queue item (required)
+{
+    my $params = {
+    'organization' => {
+        data_type => 'string',
+        description => 'Name of the organization',
+        required => '1',
+    },
+    'pipeline' => {
+        data_type => 'string',
+        description => 'Name of the pipeline',
+        required => '1',
+    },
+    'queue' => {
+        data_type => 'string',
+        description => 'Name of the queue item',
+        required => '1',
+    },
+    };
+    __PACKAGE__->method_documentation->{ 'delete_pipeline_queue_item' } = { 
+    	summary => '',
+        params => $params,
+        returns => undef,
+        };
+}
+# @return void
+#
+sub delete_pipeline_queue_item {
+    my ($self, %args) = @_;
+
+    # verify the required parameter 'organization' is set
+    unless (exists $args{'organization'}) {
+      croak("Missing the required parameter 'organization' when calling delete_pipeline_queue_item");
+    }
+
+    # verify the required parameter 'pipeline' is set
+    unless (exists $args{'pipeline'}) {
+      croak("Missing the required parameter 'pipeline' when calling delete_pipeline_queue_item");
+    }
+
+    # verify the required parameter 'queue' is set
+    unless (exists $args{'queue'}) {
+      croak("Missing the required parameter 'queue' when calling delete_pipeline_queue_item");
+    }
+
+    # parse inputs
+    my $_resource_path = '/blue/rest/organizations/{organization}/pipelines/{pipeline}/queue/{queue}';
+
+    my $_method = 'DELETE';
+    my $query_params = {};
+    my $header_params = {};
+    my $form_params = {};
+
+    # 'Accept' and 'Content-Type' header
+    my $_header_accept = $self->{api_client}->select_header_accept('application/json');
+    if ($_header_accept) {
+        $header_params->{'Accept'} = $_header_accept;
+    }
+    $header_params->{'Content-Type'} = $self->{api_client}->select_header_content_type();
+
+    # path params
+    if ( exists $args{'organization'}) {
+        my $_base_variable = "{" . "organization" . "}";
+        my $_base_value = $self->{api_client}->to_path_value($args{'organization'});
+        $_resource_path =~ s/$_base_variable/$_base_value/g;
+    }
+
+    # path params
+    if ( exists $args{'pipeline'}) {
+        my $_base_variable = "{" . "pipeline" . "}";
+        my $_base_value = $self->{api_client}->to_path_value($args{'pipeline'});
+        $_resource_path =~ s/$_base_variable/$_base_value/g;
+    }
+
+    # path params
+    if ( exists $args{'queue'}) {
+        my $_base_variable = "{" . "queue" . "}";
+        my $_base_value = $self->{api_client}->to_path_value($args{'queue'});
+        $_resource_path =~ s/$_base_variable/$_base_value/g;
+    }
+
+    my $_body_data;
+    # authentication setting, if any
+    my $auth_settings = [qw(jenkins_auth )];
+
+    # make the API Call
+    $self->{api_client}->call_api($_resource_path, $_method,
+                                           $query_params, $form_params,
+                                           $header_params, $_body_data, $auth_settings);
+    return;
+}
 
 #
 # get_authenticated_user
 #
 # 
 # 
-# @param string $organisation Name of the organisation (required)
+# @param string $organization Name of the organization (required)
 {
     my $params = {
-    'organisation' => {
+    'organization' => {
         data_type => 'string',
-        description => 'Name of the organisation',
+        description => 'Name of the organization',
         required => '1',
     },
     };
     __PACKAGE__->method_documentation->{ 'get_authenticated_user' } = { 
     	summary => '',
         params => $params,
-        returns => 'SwaggyjenkinsUser',
+        returns => 'User',
         };
 }
-# @return SwaggyjenkinsUser
+# @return User
 #
 sub get_authenticated_user {
     my ($self, %args) = @_;
 
-    # verify the required parameter 'organisation' is set
-    unless (exists $args{'organisation'}) {
-      croak("Missing the required parameter 'organisation' when calling get_authenticated_user");
+    # verify the required parameter 'organization' is set
+    unless (exists $args{'organization'}) {
+      croak("Missing the required parameter 'organization' when calling get_authenticated_user");
     }
 
     # parse inputs
-    my $_resource_path = '/blue/rest/organizations/{organisation}/user/';
+    my $_resource_path = '/blue/rest/organizations/{organization}/user/';
 
     my $_method = 'GET';
     my $query_params = {};
@@ -97,15 +193,15 @@ sub get_authenticated_user {
     $header_params->{'Content-Type'} = $self->{api_client}->select_header_content_type();
 
     # path params
-    if ( exists $args{'organisation'}) {
-        my $_base_variable = "{" . "organisation" . "}";
-        my $_base_value = $self->{api_client}->to_path_value($args{'organisation'});
+    if ( exists $args{'organization'}) {
+        my $_base_variable = "{" . "organization" . "}";
+        my $_base_value = $self->{api_client}->to_path_value($args{'organization'});
         $_resource_path =~ s/$_base_variable/$_base_value/g;
     }
 
     my $_body_data;
     # authentication setting, if any
-    my $auth_settings = [qw()];
+    my $auth_settings = [qw(jenkins_auth )];
 
     # make the API Call
     my $response = $self->{api_client}->call_api($_resource_path, $_method,
@@ -114,7 +210,7 @@ sub get_authenticated_user {
     if (!$response) {
         return;
     }
-    my $_response_object = $self->{api_client}->deserialize('SwaggyjenkinsUser', $response);
+    my $_response_object = $self->{api_client}->deserialize('User', $response);
     return $_response_object;
 }
 
@@ -172,7 +268,7 @@ sub get_classes {
 
     my $_body_data;
     # authentication setting, if any
-    my $auth_settings = [qw()];
+    my $auth_settings = [qw(jenkins_auth )];
 
     # make the API Call
     my $response = $self->{api_client}->call_api($_resource_path, $_method,
@@ -190,33 +286,33 @@ sub get_classes {
 #
 # 
 # 
-# @param string $organisation Name of the organisation (required)
+# @param string $organization Name of the organization (required)
 {
     my $params = {
-    'organisation' => {
+    'organization' => {
         data_type => 'string',
-        description => 'Name of the organisation',
+        description => 'Name of the organization',
         required => '1',
     },
     };
     __PACKAGE__->method_documentation->{ 'get_organisation' } = { 
     	summary => '',
         params => $params,
-        returns => 'SwaggyjenkinsOrganisation',
+        returns => 'Organisation',
         };
 }
-# @return SwaggyjenkinsOrganisation
+# @return Organisation
 #
 sub get_organisation {
     my ($self, %args) = @_;
 
-    # verify the required parameter 'organisation' is set
-    unless (exists $args{'organisation'}) {
-      croak("Missing the required parameter 'organisation' when calling get_organisation");
+    # verify the required parameter 'organization' is set
+    unless (exists $args{'organization'}) {
+      croak("Missing the required parameter 'organization' when calling get_organisation");
     }
 
     # parse inputs
-    my $_resource_path = '/blue/rest/organizations/{organisation}';
+    my $_resource_path = '/blue/rest/organizations/{organization}';
 
     my $_method = 'GET';
     my $query_params = {};
@@ -231,15 +327,15 @@ sub get_organisation {
     $header_params->{'Content-Type'} = $self->{api_client}->select_header_content_type();
 
     # path params
-    if ( exists $args{'organisation'}) {
-        my $_base_variable = "{" . "organisation" . "}";
-        my $_base_value = $self->{api_client}->to_path_value($args{'organisation'});
+    if ( exists $args{'organization'}) {
+        my $_base_variable = "{" . "organization" . "}";
+        my $_base_value = $self->{api_client}->to_path_value($args{'organization'});
         $_resource_path =~ s/$_base_variable/$_base_value/g;
     }
 
     my $_body_data;
     # authentication setting, if any
-    my $auth_settings = [qw()];
+    my $auth_settings = [qw(jenkins_auth )];
 
     # make the API Call
     my $response = $self->{api_client}->call_api($_resource_path, $_method,
@@ -248,7 +344,7 @@ sub get_organisation {
     if (!$response) {
         return;
     }
-    my $_response_object = $self->{api_client}->deserialize('SwaggyjenkinsOrganisation', $response);
+    my $_response_object = $self->{api_client}->deserialize('Organisation', $response);
     return $_response_object;
 }
 
@@ -263,10 +359,10 @@ sub get_organisation {
     __PACKAGE__->method_documentation->{ 'get_organisations' } = { 
     	summary => '',
         params => $params,
-        returns => 'GetOrganisations',
+        returns => 'Organisations',
         };
 }
-# @return GetOrganisations
+# @return Organisations
 #
 sub get_organisations {
     my ($self, %args) = @_;
@@ -288,7 +384,7 @@ sub get_organisations {
 
     my $_body_data;
     # authentication setting, if any
-    my $auth_settings = [qw()];
+    my $auth_settings = [qw(jenkins_auth )];
 
     # make the API Call
     my $response = $self->{api_client}->call_api($_resource_path, $_method,
@@ -297,23 +393,22 @@ sub get_organisations {
     if (!$response) {
         return;
     }
-    my $_response_object = $self->{api_client}->deserialize('GetOrganisations', $response);
+    my $_response_object = $self->{api_client}->deserialize('Organisations', $response);
     return $_response_object;
 }
 
 #
-# get_pipeline_branch_by_org
+# get_pipeline
 #
 # 
 # 
-# @param string $organisation Name of the organisation (required)
+# @param string $organization Name of the organization (required)
 # @param string $pipeline Name of the pipeline (required)
-# @param string $branch Name of the branch (required)
 {
     my $params = {
-    'organisation' => {
+    'organization' => {
         data_type => 'string',
-        description => 'Name of the organisation',
+        description => 'Name of the organization',
         required => '1',
     },
     'pipeline' => {
@@ -321,40 +416,30 @@ sub get_organisations {
         description => 'Name of the pipeline',
         required => '1',
     },
-    'branch' => {
-        data_type => 'string',
-        description => 'Name of the branch',
-        required => '1',
-    },
     };
-    __PACKAGE__->method_documentation->{ 'get_pipeline_branch_by_org' } = { 
+    __PACKAGE__->method_documentation->{ 'get_pipeline' } = { 
     	summary => '',
         params => $params,
-        returns => 'IojenkinsblueoceanrestimplpipelineBranchImpl',
+        returns => 'Pipeline',
         };
 }
-# @return IojenkinsblueoceanrestimplpipelineBranchImpl
+# @return Pipeline
 #
-sub get_pipeline_branch_by_org {
+sub get_pipeline {
     my ($self, %args) = @_;
 
-    # verify the required parameter 'organisation' is set
-    unless (exists $args{'organisation'}) {
-      croak("Missing the required parameter 'organisation' when calling get_pipeline_branch_by_org");
+    # verify the required parameter 'organization' is set
+    unless (exists $args{'organization'}) {
+      croak("Missing the required parameter 'organization' when calling get_pipeline");
     }
 
     # verify the required parameter 'pipeline' is set
     unless (exists $args{'pipeline'}) {
-      croak("Missing the required parameter 'pipeline' when calling get_pipeline_branch_by_org");
-    }
-
-    # verify the required parameter 'branch' is set
-    unless (exists $args{'branch'}) {
-      croak("Missing the required parameter 'branch' when calling get_pipeline_branch_by_org");
+      croak("Missing the required parameter 'pipeline' when calling get_pipeline");
     }
 
     # parse inputs
-    my $_resource_path = '/blue/rest/organizations/{organisation}/pipelines/{pipeline}/branches/{branch}/';
+    my $_resource_path = '/blue/rest/organizations/{organization}/pipelines/{pipeline}';
 
     my $_method = 'GET';
     my $query_params = {};
@@ -369,9 +454,190 @@ sub get_pipeline_branch_by_org {
     $header_params->{'Content-Type'} = $self->{api_client}->select_header_content_type();
 
     # path params
-    if ( exists $args{'organisation'}) {
-        my $_base_variable = "{" . "organisation" . "}";
-        my $_base_value = $self->{api_client}->to_path_value($args{'organisation'});
+    if ( exists $args{'organization'}) {
+        my $_base_variable = "{" . "organization" . "}";
+        my $_base_value = $self->{api_client}->to_path_value($args{'organization'});
+        $_resource_path =~ s/$_base_variable/$_base_value/g;
+    }
+
+    # path params
+    if ( exists $args{'pipeline'}) {
+        my $_base_variable = "{" . "pipeline" . "}";
+        my $_base_value = $self->{api_client}->to_path_value($args{'pipeline'});
+        $_resource_path =~ s/$_base_variable/$_base_value/g;
+    }
+
+    my $_body_data;
+    # authentication setting, if any
+    my $auth_settings = [qw(jenkins_auth )];
+
+    # make the API Call
+    my $response = $self->{api_client}->call_api($_resource_path, $_method,
+                                           $query_params, $form_params,
+                                           $header_params, $_body_data, $auth_settings);
+    if (!$response) {
+        return;
+    }
+    my $_response_object = $self->{api_client}->deserialize('Pipeline', $response);
+    return $_response_object;
+}
+
+#
+# get_pipeline_activities
+#
+# 
+# 
+# @param string $organization Name of the organization (required)
+# @param string $pipeline Name of the pipeline (required)
+{
+    my $params = {
+    'organization' => {
+        data_type => 'string',
+        description => 'Name of the organization',
+        required => '1',
+    },
+    'pipeline' => {
+        data_type => 'string',
+        description => 'Name of the pipeline',
+        required => '1',
+    },
+    };
+    __PACKAGE__->method_documentation->{ 'get_pipeline_activities' } = { 
+    	summary => '',
+        params => $params,
+        returns => 'PipelineActivities',
+        };
+}
+# @return PipelineActivities
+#
+sub get_pipeline_activities {
+    my ($self, %args) = @_;
+
+    # verify the required parameter 'organization' is set
+    unless (exists $args{'organization'}) {
+      croak("Missing the required parameter 'organization' when calling get_pipeline_activities");
+    }
+
+    # verify the required parameter 'pipeline' is set
+    unless (exists $args{'pipeline'}) {
+      croak("Missing the required parameter 'pipeline' when calling get_pipeline_activities");
+    }
+
+    # parse inputs
+    my $_resource_path = '/blue/rest/organizations/{organization}/pipelines/{pipeline}/activities';
+
+    my $_method = 'GET';
+    my $query_params = {};
+    my $header_params = {};
+    my $form_params = {};
+
+    # 'Accept' and 'Content-Type' header
+    my $_header_accept = $self->{api_client}->select_header_accept('application/json');
+    if ($_header_accept) {
+        $header_params->{'Accept'} = $_header_accept;
+    }
+    $header_params->{'Content-Type'} = $self->{api_client}->select_header_content_type();
+
+    # path params
+    if ( exists $args{'organization'}) {
+        my $_base_variable = "{" . "organization" . "}";
+        my $_base_value = $self->{api_client}->to_path_value($args{'organization'});
+        $_resource_path =~ s/$_base_variable/$_base_value/g;
+    }
+
+    # path params
+    if ( exists $args{'pipeline'}) {
+        my $_base_variable = "{" . "pipeline" . "}";
+        my $_base_value = $self->{api_client}->to_path_value($args{'pipeline'});
+        $_resource_path =~ s/$_base_variable/$_base_value/g;
+    }
+
+    my $_body_data;
+    # authentication setting, if any
+    my $auth_settings = [qw(jenkins_auth )];
+
+    # make the API Call
+    my $response = $self->{api_client}->call_api($_resource_path, $_method,
+                                           $query_params, $form_params,
+                                           $header_params, $_body_data, $auth_settings);
+    if (!$response) {
+        return;
+    }
+    my $_response_object = $self->{api_client}->deserialize('PipelineActivities', $response);
+    return $_response_object;
+}
+
+#
+# get_pipeline_branch
+#
+# 
+# 
+# @param string $organization Name of the organization (required)
+# @param string $pipeline Name of the pipeline (required)
+# @param string $branch Name of the branch (required)
+{
+    my $params = {
+    'organization' => {
+        data_type => 'string',
+        description => 'Name of the organization',
+        required => '1',
+    },
+    'pipeline' => {
+        data_type => 'string',
+        description => 'Name of the pipeline',
+        required => '1',
+    },
+    'branch' => {
+        data_type => 'string',
+        description => 'Name of the branch',
+        required => '1',
+    },
+    };
+    __PACKAGE__->method_documentation->{ 'get_pipeline_branch' } = { 
+    	summary => '',
+        params => $params,
+        returns => 'BranchImpl',
+        };
+}
+# @return BranchImpl
+#
+sub get_pipeline_branch {
+    my ($self, %args) = @_;
+
+    # verify the required parameter 'organization' is set
+    unless (exists $args{'organization'}) {
+      croak("Missing the required parameter 'organization' when calling get_pipeline_branch");
+    }
+
+    # verify the required parameter 'pipeline' is set
+    unless (exists $args{'pipeline'}) {
+      croak("Missing the required parameter 'pipeline' when calling get_pipeline_branch");
+    }
+
+    # verify the required parameter 'branch' is set
+    unless (exists $args{'branch'}) {
+      croak("Missing the required parameter 'branch' when calling get_pipeline_branch");
+    }
+
+    # parse inputs
+    my $_resource_path = '/blue/rest/organizations/{organization}/pipelines/{pipeline}/branches/{branch}/';
+
+    my $_method = 'GET';
+    my $query_params = {};
+    my $header_params = {};
+    my $form_params = {};
+
+    # 'Accept' and 'Content-Type' header
+    my $_header_accept = $self->{api_client}->select_header_accept('application/json');
+    if ($_header_accept) {
+        $header_params->{'Accept'} = $_header_accept;
+    }
+    $header_params->{'Content-Type'} = $self->{api_client}->select_header_content_type();
+
+    # path params
+    if ( exists $args{'organization'}) {
+        my $_base_variable = "{" . "organization" . "}";
+        my $_base_value = $self->{api_client}->to_path_value($args{'organization'});
         $_resource_path =~ s/$_base_variable/$_base_value/g;
     }
 
@@ -391,7 +657,7 @@ sub get_pipeline_branch_by_org {
 
     my $_body_data;
     # authentication setting, if any
-    my $auth_settings = [qw()];
+    my $auth_settings = [qw(jenkins_auth )];
 
     # make the API Call
     my $response = $self->{api_client}->call_api($_resource_path, $_method,
@@ -400,22 +666,24 @@ sub get_pipeline_branch_by_org {
     if (!$response) {
         return;
     }
-    my $_response_object = $self->{api_client}->deserialize('IojenkinsblueoceanrestimplpipelineBranchImpl', $response);
+    my $_response_object = $self->{api_client}->deserialize('BranchImpl', $response);
     return $_response_object;
 }
 
 #
-# get_pipeline_branches_by_org
+# get_pipeline_branch_run
 #
 # 
 # 
-# @param string $organisation Name of the organisation (required)
+# @param string $organization Name of the organization (required)
 # @param string $pipeline Name of the pipeline (required)
+# @param string $branch Name of the branch (required)
+# @param string $run Name of the run (required)
 {
     my $params = {
-    'organisation' => {
+    'organization' => {
         data_type => 'string',
-        description => 'Name of the organisation',
+        description => 'Name of the organization',
         required => '1',
     },
     'pipeline' => {
@@ -423,30 +691,50 @@ sub get_pipeline_branch_by_org {
         description => 'Name of the pipeline',
         required => '1',
     },
+    'branch' => {
+        data_type => 'string',
+        description => 'Name of the branch',
+        required => '1',
+    },
+    'run' => {
+        data_type => 'string',
+        description => 'Name of the run',
+        required => '1',
+    },
     };
-    __PACKAGE__->method_documentation->{ 'get_pipeline_branches_by_org' } = { 
+    __PACKAGE__->method_documentation->{ 'get_pipeline_branch_run' } = { 
     	summary => '',
         params => $params,
-        returns => 'GetMultibranchPipeline',
+        returns => 'PipelineRun',
         };
 }
-# @return GetMultibranchPipeline
+# @return PipelineRun
 #
-sub get_pipeline_branches_by_org {
+sub get_pipeline_branch_run {
     my ($self, %args) = @_;
 
-    # verify the required parameter 'organisation' is set
-    unless (exists $args{'organisation'}) {
-      croak("Missing the required parameter 'organisation' when calling get_pipeline_branches_by_org");
+    # verify the required parameter 'organization' is set
+    unless (exists $args{'organization'}) {
+      croak("Missing the required parameter 'organization' when calling get_pipeline_branch_run");
     }
 
     # verify the required parameter 'pipeline' is set
     unless (exists $args{'pipeline'}) {
-      croak("Missing the required parameter 'pipeline' when calling get_pipeline_branches_by_org");
+      croak("Missing the required parameter 'pipeline' when calling get_pipeline_branch_run");
+    }
+
+    # verify the required parameter 'branch' is set
+    unless (exists $args{'branch'}) {
+      croak("Missing the required parameter 'branch' when calling get_pipeline_branch_run");
+    }
+
+    # verify the required parameter 'run' is set
+    unless (exists $args{'run'}) {
+      croak("Missing the required parameter 'run' when calling get_pipeline_branch_run");
     }
 
     # parse inputs
-    my $_resource_path = '/blue/rest/organizations/{organisation}/pipelines/{pipeline}/branches';
+    my $_resource_path = '/blue/rest/organizations/{organization}/pipelines/{pipeline}/branches/{branch}/runs/{run}';
 
     my $_method = 'GET';
     my $query_params = {};
@@ -461,9 +749,9 @@ sub get_pipeline_branches_by_org {
     $header_params->{'Content-Type'} = $self->{api_client}->select_header_content_type();
 
     # path params
-    if ( exists $args{'organisation'}) {
-        my $_base_variable = "{" . "organisation" . "}";
-        my $_base_value = $self->{api_client}->to_path_value($args{'organisation'});
+    if ( exists $args{'organization'}) {
+        my $_base_variable = "{" . "organization" . "}";
+        my $_base_value = $self->{api_client}->to_path_value($args{'organization'});
         $_resource_path =~ s/$_base_variable/$_base_value/g;
     }
 
@@ -474,9 +762,23 @@ sub get_pipeline_branches_by_org {
         $_resource_path =~ s/$_base_variable/$_base_value/g;
     }
 
+    # path params
+    if ( exists $args{'branch'}) {
+        my $_base_variable = "{" . "branch" . "}";
+        my $_base_value = $self->{api_client}->to_path_value($args{'branch'});
+        $_resource_path =~ s/$_base_variable/$_base_value/g;
+    }
+
+    # path params
+    if ( exists $args{'run'}) {
+        my $_base_variable = "{" . "run" . "}";
+        my $_base_value = $self->{api_client}->to_path_value($args{'run'});
+        $_resource_path =~ s/$_base_variable/$_base_value/g;
+    }
+
     my $_body_data;
     # authentication setting, if any
-    my $auth_settings = [qw()];
+    my $auth_settings = [qw(jenkins_auth )];
 
     # make the API Call
     my $response = $self->{api_client}->call_api($_resource_path, $_method,
@@ -485,22 +787,22 @@ sub get_pipeline_branches_by_org {
     if (!$response) {
         return;
     }
-    my $_response_object = $self->{api_client}->deserialize('GetMultibranchPipeline', $response);
+    my $_response_object = $self->{api_client}->deserialize('PipelineRun', $response);
     return $_response_object;
 }
 
 #
-# get_pipeline_by_org
+# get_pipeline_branches
 #
 # 
 # 
-# @param string $organisation Name of the organisation (required)
+# @param string $organization Name of the organization (required)
 # @param string $pipeline Name of the pipeline (required)
 {
     my $params = {
-    'organisation' => {
+    'organization' => {
         data_type => 'string',
-        description => 'Name of the organisation',
+        description => 'Name of the organization',
         required => '1',
     },
     'pipeline' => {
@@ -509,29 +811,29 @@ sub get_pipeline_branches_by_org {
         required => '1',
     },
     };
-    __PACKAGE__->method_documentation->{ 'get_pipeline_by_org' } = { 
+    __PACKAGE__->method_documentation->{ 'get_pipeline_branches' } = { 
     	summary => '',
         params => $params,
-        returns => 'SwaggyjenkinsPipeline',
+        returns => 'MultibranchPipeline',
         };
 }
-# @return SwaggyjenkinsPipeline
+# @return MultibranchPipeline
 #
-sub get_pipeline_by_org {
+sub get_pipeline_branches {
     my ($self, %args) = @_;
 
-    # verify the required parameter 'organisation' is set
-    unless (exists $args{'organisation'}) {
-      croak("Missing the required parameter 'organisation' when calling get_pipeline_by_org");
+    # verify the required parameter 'organization' is set
+    unless (exists $args{'organization'}) {
+      croak("Missing the required parameter 'organization' when calling get_pipeline_branches");
     }
 
     # verify the required parameter 'pipeline' is set
     unless (exists $args{'pipeline'}) {
-      croak("Missing the required parameter 'pipeline' when calling get_pipeline_by_org");
+      croak("Missing the required parameter 'pipeline' when calling get_pipeline_branches");
     }
 
     # parse inputs
-    my $_resource_path = '/blue/rest/organizations/{organisation}/pipelines/{pipeline}';
+    my $_resource_path = '/blue/rest/organizations/{organization}/pipelines/{pipeline}/branches';
 
     my $_method = 'GET';
     my $query_params = {};
@@ -546,9 +848,9 @@ sub get_pipeline_by_org {
     $header_params->{'Content-Type'} = $self->{api_client}->select_header_content_type();
 
     # path params
-    if ( exists $args{'organisation'}) {
-        my $_base_variable = "{" . "organisation" . "}";
-        my $_base_value = $self->{api_client}->to_path_value($args{'organisation'});
+    if ( exists $args{'organization'}) {
+        my $_base_variable = "{" . "organization" . "}";
+        my $_base_value = $self->{api_client}->to_path_value($args{'organization'});
         $_resource_path =~ s/$_base_variable/$_base_value/g;
     }
 
@@ -561,7 +863,7 @@ sub get_pipeline_by_org {
 
     my $_body_data;
     # authentication setting, if any
-    my $auth_settings = [qw()];
+    my $auth_settings = [qw(jenkins_auth )];
 
     # make the API Call
     my $response = $self->{api_client}->call_api($_resource_path, $_method,
@@ -570,22 +872,22 @@ sub get_pipeline_by_org {
     if (!$response) {
         return;
     }
-    my $_response_object = $self->{api_client}->deserialize('SwaggyjenkinsPipeline', $response);
+    my $_response_object = $self->{api_client}->deserialize('MultibranchPipeline', $response);
     return $_response_object;
 }
 
 #
-# get_pipeline_folder_by_org
+# get_pipeline_folder
 #
 # 
 # 
-# @param string $organisation Name of the organisation (required)
+# @param string $organization Name of the organization (required)
 # @param string $folder Name of the folder (required)
 {
     my $params = {
-    'organisation' => {
+    'organization' => {
         data_type => 'string',
-        description => 'Name of the organisation',
+        description => 'Name of the organization',
         required => '1',
     },
     'folder' => {
@@ -594,29 +896,29 @@ sub get_pipeline_by_org {
         required => '1',
     },
     };
-    __PACKAGE__->method_documentation->{ 'get_pipeline_folder_by_org' } = { 
+    __PACKAGE__->method_documentation->{ 'get_pipeline_folder' } = { 
     	summary => '',
         params => $params,
-        returns => 'IojenkinsblueoceanserviceembeddedrestPipelineFolderImpl',
+        returns => 'PipelineFolderImpl',
         };
 }
-# @return IojenkinsblueoceanserviceembeddedrestPipelineFolderImpl
+# @return PipelineFolderImpl
 #
-sub get_pipeline_folder_by_org {
+sub get_pipeline_folder {
     my ($self, %args) = @_;
 
-    # verify the required parameter 'organisation' is set
-    unless (exists $args{'organisation'}) {
-      croak("Missing the required parameter 'organisation' when calling get_pipeline_folder_by_org");
+    # verify the required parameter 'organization' is set
+    unless (exists $args{'organization'}) {
+      croak("Missing the required parameter 'organization' when calling get_pipeline_folder");
     }
 
     # verify the required parameter 'folder' is set
     unless (exists $args{'folder'}) {
-      croak("Missing the required parameter 'folder' when calling get_pipeline_folder_by_org");
+      croak("Missing the required parameter 'folder' when calling get_pipeline_folder");
     }
 
     # parse inputs
-    my $_resource_path = '/blue/rest/organizations/{organisation}/pipelines/{folder}/';
+    my $_resource_path = '/blue/rest/organizations/{organization}/pipelines/{folder}/';
 
     my $_method = 'GET';
     my $query_params = {};
@@ -631,9 +933,9 @@ sub get_pipeline_folder_by_org {
     $header_params->{'Content-Type'} = $self->{api_client}->select_header_content_type();
 
     # path params
-    if ( exists $args{'organisation'}) {
-        my $_base_variable = "{" . "organisation" . "}";
-        my $_base_value = $self->{api_client}->to_path_value($args{'organisation'});
+    if ( exists $args{'organization'}) {
+        my $_base_variable = "{" . "organization" . "}";
+        my $_base_value = $self->{api_client}->to_path_value($args{'organization'});
         $_resource_path =~ s/$_base_variable/$_base_value/g;
     }
 
@@ -646,7 +948,7 @@ sub get_pipeline_folder_by_org {
 
     my $_body_data;
     # authentication setting, if any
-    my $auth_settings = [qw()];
+    my $auth_settings = [qw(jenkins_auth )];
 
     # make the API Call
     my $response = $self->{api_client}->call_api($_resource_path, $_method,
@@ -655,23 +957,23 @@ sub get_pipeline_folder_by_org {
     if (!$response) {
         return;
     }
-    my $_response_object = $self->{api_client}->deserialize('IojenkinsblueoceanserviceembeddedrestPipelineFolderImpl', $response);
+    my $_response_object = $self->{api_client}->deserialize('PipelineFolderImpl', $response);
     return $_response_object;
 }
 
 #
-# get_pipeline_folder_by_org_0
+# get_pipeline_folder_pipeline
 #
 # 
 # 
-# @param string $organisation Name of the organisation (required)
+# @param string $organization Name of the organization (required)
 # @param string $pipeline Name of the pipeline (required)
 # @param string $folder Name of the folder (required)
 {
     my $params = {
-    'organisation' => {
+    'organization' => {
         data_type => 'string',
-        description => 'Name of the organisation',
+        description => 'Name of the organization',
         required => '1',
     },
     'pipeline' => {
@@ -685,34 +987,34 @@ sub get_pipeline_folder_by_org {
         required => '1',
     },
     };
-    __PACKAGE__->method_documentation->{ 'get_pipeline_folder_by_org_0' } = { 
+    __PACKAGE__->method_documentation->{ 'get_pipeline_folder_pipeline' } = { 
     	summary => '',
         params => $params,
-        returns => 'IojenkinsblueoceanserviceembeddedrestPipelineImpl',
+        returns => 'PipelineImpl',
         };
 }
-# @return IojenkinsblueoceanserviceembeddedrestPipelineImpl
+# @return PipelineImpl
 #
-sub get_pipeline_folder_by_org_0 {
+sub get_pipeline_folder_pipeline {
     my ($self, %args) = @_;
 
-    # verify the required parameter 'organisation' is set
-    unless (exists $args{'organisation'}) {
-      croak("Missing the required parameter 'organisation' when calling get_pipeline_folder_by_org_0");
+    # verify the required parameter 'organization' is set
+    unless (exists $args{'organization'}) {
+      croak("Missing the required parameter 'organization' when calling get_pipeline_folder_pipeline");
     }
 
     # verify the required parameter 'pipeline' is set
     unless (exists $args{'pipeline'}) {
-      croak("Missing the required parameter 'pipeline' when calling get_pipeline_folder_by_org_0");
+      croak("Missing the required parameter 'pipeline' when calling get_pipeline_folder_pipeline");
     }
 
     # verify the required parameter 'folder' is set
     unless (exists $args{'folder'}) {
-      croak("Missing the required parameter 'folder' when calling get_pipeline_folder_by_org_0");
+      croak("Missing the required parameter 'folder' when calling get_pipeline_folder_pipeline");
     }
 
     # parse inputs
-    my $_resource_path = '/blue/rest/organizations/{organisation}/pipelines/{folder}/pipelines/{pipeline}';
+    my $_resource_path = '/blue/rest/organizations/{organization}/pipelines/{folder}/pipelines/{pipeline}';
 
     my $_method = 'GET';
     my $query_params = {};
@@ -727,9 +1029,9 @@ sub get_pipeline_folder_by_org_0 {
     $header_params->{'Content-Type'} = $self->{api_client}->select_header_content_type();
 
     # path params
-    if ( exists $args{'organisation'}) {
-        my $_base_variable = "{" . "organisation" . "}";
-        my $_base_value = $self->{api_client}->to_path_value($args{'organisation'});
+    if ( exists $args{'organization'}) {
+        my $_base_variable = "{" . "organization" . "}";
+        my $_base_value = $self->{api_client}->to_path_value($args{'organization'});
         $_resource_path =~ s/$_base_variable/$_base_value/g;
     }
 
@@ -749,7 +1051,7 @@ sub get_pipeline_folder_by_org_0 {
 
     my $_body_data;
     # authentication setting, if any
-    my $auth_settings = [qw()];
+    my $auth_settings = [qw(jenkins_auth )];
 
     # make the API Call
     my $response = $self->{api_client}->call_api($_resource_path, $_method,
@@ -758,42 +1060,53 @@ sub get_pipeline_folder_by_org_0 {
     if (!$response) {
         return;
     }
-    my $_response_object = $self->{api_client}->deserialize('IojenkinsblueoceanserviceembeddedrestPipelineImpl', $response);
+    my $_response_object = $self->{api_client}->deserialize('PipelineImpl', $response);
     return $_response_object;
 }
 
 #
-# get_pipelines_by_org
+# get_pipeline_queue
 #
 # 
 # 
-# @param string $organisation Name of the organisation (required)
+# @param string $organization Name of the organization (required)
+# @param string $pipeline Name of the pipeline (required)
 {
     my $params = {
-    'organisation' => {
+    'organization' => {
         data_type => 'string',
-        description => 'Name of the organisation',
+        description => 'Name of the organization',
+        required => '1',
+    },
+    'pipeline' => {
+        data_type => 'string',
+        description => 'Name of the pipeline',
         required => '1',
     },
     };
-    __PACKAGE__->method_documentation->{ 'get_pipelines_by_org' } = { 
+    __PACKAGE__->method_documentation->{ 'get_pipeline_queue' } = { 
     	summary => '',
         params => $params,
-        returns => 'GetPipelines',
+        returns => 'PipelineQueue',
         };
 }
-# @return GetPipelines
+# @return PipelineQueue
 #
-sub get_pipelines_by_org {
+sub get_pipeline_queue {
     my ($self, %args) = @_;
 
-    # verify the required parameter 'organisation' is set
-    unless (exists $args{'organisation'}) {
-      croak("Missing the required parameter 'organisation' when calling get_pipelines_by_org");
+    # verify the required parameter 'organization' is set
+    unless (exists $args{'organization'}) {
+      croak("Missing the required parameter 'organization' when calling get_pipeline_queue");
+    }
+
+    # verify the required parameter 'pipeline' is set
+    unless (exists $args{'pipeline'}) {
+      croak("Missing the required parameter 'pipeline' when calling get_pipeline_queue");
     }
 
     # parse inputs
-    my $_resource_path = '/blue/rest/organizations/{organisation}/pipelines/';
+    my $_resource_path = '/blue/rest/organizations/{organization}/pipelines/{pipeline}/queue';
 
     my $_method = 'GET';
     my $query_params = {};
@@ -808,15 +1121,22 @@ sub get_pipelines_by_org {
     $header_params->{'Content-Type'} = $self->{api_client}->select_header_content_type();
 
     # path params
-    if ( exists $args{'organisation'}) {
-        my $_base_variable = "{" . "organisation" . "}";
-        my $_base_value = $self->{api_client}->to_path_value($args{'organisation'});
+    if ( exists $args{'organization'}) {
+        my $_base_variable = "{" . "organization" . "}";
+        my $_base_value = $self->{api_client}->to_path_value($args{'organization'});
+        $_resource_path =~ s/$_base_variable/$_base_value/g;
+    }
+
+    # path params
+    if ( exists $args{'pipeline'}) {
+        my $_base_variable = "{" . "pipeline" . "}";
+        my $_base_value = $self->{api_client}->to_path_value($args{'pipeline'});
         $_resource_path =~ s/$_base_variable/$_base_value/g;
     }
 
     my $_body_data;
     # authentication setting, if any
-    my $auth_settings = [qw()];
+    my $auth_settings = [qw(jenkins_auth )];
 
     # make the API Call
     my $response = $self->{api_client}->call_api($_resource_path, $_method,
@@ -825,7 +1145,1459 @@ sub get_pipelines_by_org {
     if (!$response) {
         return;
     }
-    my $_response_object = $self->{api_client}->deserialize('GetPipelines', $response);
+    my $_response_object = $self->{api_client}->deserialize('PipelineQueue', $response);
+    return $_response_object;
+}
+
+#
+# get_pipeline_run
+#
+# 
+# 
+# @param string $organization Name of the organization (required)
+# @param string $pipeline Name of the pipeline (required)
+# @param string $run Name of the run (required)
+{
+    my $params = {
+    'organization' => {
+        data_type => 'string',
+        description => 'Name of the organization',
+        required => '1',
+    },
+    'pipeline' => {
+        data_type => 'string',
+        description => 'Name of the pipeline',
+        required => '1',
+    },
+    'run' => {
+        data_type => 'string',
+        description => 'Name of the run',
+        required => '1',
+    },
+    };
+    __PACKAGE__->method_documentation->{ 'get_pipeline_run' } = { 
+    	summary => '',
+        params => $params,
+        returns => 'PipelineRun',
+        };
+}
+# @return PipelineRun
+#
+sub get_pipeline_run {
+    my ($self, %args) = @_;
+
+    # verify the required parameter 'organization' is set
+    unless (exists $args{'organization'}) {
+      croak("Missing the required parameter 'organization' when calling get_pipeline_run");
+    }
+
+    # verify the required parameter 'pipeline' is set
+    unless (exists $args{'pipeline'}) {
+      croak("Missing the required parameter 'pipeline' when calling get_pipeline_run");
+    }
+
+    # verify the required parameter 'run' is set
+    unless (exists $args{'run'}) {
+      croak("Missing the required parameter 'run' when calling get_pipeline_run");
+    }
+
+    # parse inputs
+    my $_resource_path = '/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}';
+
+    my $_method = 'GET';
+    my $query_params = {};
+    my $header_params = {};
+    my $form_params = {};
+
+    # 'Accept' and 'Content-Type' header
+    my $_header_accept = $self->{api_client}->select_header_accept('application/json');
+    if ($_header_accept) {
+        $header_params->{'Accept'} = $_header_accept;
+    }
+    $header_params->{'Content-Type'} = $self->{api_client}->select_header_content_type();
+
+    # path params
+    if ( exists $args{'organization'}) {
+        my $_base_variable = "{" . "organization" . "}";
+        my $_base_value = $self->{api_client}->to_path_value($args{'organization'});
+        $_resource_path =~ s/$_base_variable/$_base_value/g;
+    }
+
+    # path params
+    if ( exists $args{'pipeline'}) {
+        my $_base_variable = "{" . "pipeline" . "}";
+        my $_base_value = $self->{api_client}->to_path_value($args{'pipeline'});
+        $_resource_path =~ s/$_base_variable/$_base_value/g;
+    }
+
+    # path params
+    if ( exists $args{'run'}) {
+        my $_base_variable = "{" . "run" . "}";
+        my $_base_value = $self->{api_client}->to_path_value($args{'run'});
+        $_resource_path =~ s/$_base_variable/$_base_value/g;
+    }
+
+    my $_body_data;
+    # authentication setting, if any
+    my $auth_settings = [qw(jenkins_auth )];
+
+    # make the API Call
+    my $response = $self->{api_client}->call_api($_resource_path, $_method,
+                                           $query_params, $form_params,
+                                           $header_params, $_body_data, $auth_settings);
+    if (!$response) {
+        return;
+    }
+    my $_response_object = $self->{api_client}->deserialize('PipelineRun', $response);
+    return $_response_object;
+}
+
+#
+# get_pipeline_run_log
+#
+# 
+# 
+# @param string $organization Name of the organization (required)
+# @param string $pipeline Name of the pipeline (required)
+# @param string $run Name of the run (required)
+# @param int $start Start position of the log (optional)
+# @param boolean $download Set to true in order to download the file, otherwise it&#39;s passed as a response body (optional)
+{
+    my $params = {
+    'organization' => {
+        data_type => 'string',
+        description => 'Name of the organization',
+        required => '1',
+    },
+    'pipeline' => {
+        data_type => 'string',
+        description => 'Name of the pipeline',
+        required => '1',
+    },
+    'run' => {
+        data_type => 'string',
+        description => 'Name of the run',
+        required => '1',
+    },
+    'start' => {
+        data_type => 'int',
+        description => 'Start position of the log',
+        required => '0',
+    },
+    'download' => {
+        data_type => 'boolean',
+        description => 'Set to true in order to download the file, otherwise it&#39;s passed as a response body',
+        required => '0',
+    },
+    };
+    __PACKAGE__->method_documentation->{ 'get_pipeline_run_log' } = { 
+    	summary => '',
+        params => $params,
+        returns => 'string',
+        };
+}
+# @return string
+#
+sub get_pipeline_run_log {
+    my ($self, %args) = @_;
+
+    # verify the required parameter 'organization' is set
+    unless (exists $args{'organization'}) {
+      croak("Missing the required parameter 'organization' when calling get_pipeline_run_log");
+    }
+
+    # verify the required parameter 'pipeline' is set
+    unless (exists $args{'pipeline'}) {
+      croak("Missing the required parameter 'pipeline' when calling get_pipeline_run_log");
+    }
+
+    # verify the required parameter 'run' is set
+    unless (exists $args{'run'}) {
+      croak("Missing the required parameter 'run' when calling get_pipeline_run_log");
+    }
+
+    # parse inputs
+    my $_resource_path = '/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/log';
+
+    my $_method = 'GET';
+    my $query_params = {};
+    my $header_params = {};
+    my $form_params = {};
+
+    # 'Accept' and 'Content-Type' header
+    my $_header_accept = $self->{api_client}->select_header_accept('application/json');
+    if ($_header_accept) {
+        $header_params->{'Accept'} = $_header_accept;
+    }
+    $header_params->{'Content-Type'} = $self->{api_client}->select_header_content_type();
+
+    # query params
+    if ( exists $args{'start'}) {
+        $query_params->{'start'} = $self->{api_client}->to_query_value($args{'start'});
+    }
+
+    # query params
+    if ( exists $args{'download'}) {
+        $query_params->{'download'} = $self->{api_client}->to_query_value($args{'download'});
+    }
+
+    # path params
+    if ( exists $args{'organization'}) {
+        my $_base_variable = "{" . "organization" . "}";
+        my $_base_value = $self->{api_client}->to_path_value($args{'organization'});
+        $_resource_path =~ s/$_base_variable/$_base_value/g;
+    }
+
+    # path params
+    if ( exists $args{'pipeline'}) {
+        my $_base_variable = "{" . "pipeline" . "}";
+        my $_base_value = $self->{api_client}->to_path_value($args{'pipeline'});
+        $_resource_path =~ s/$_base_variable/$_base_value/g;
+    }
+
+    # path params
+    if ( exists $args{'run'}) {
+        my $_base_variable = "{" . "run" . "}";
+        my $_base_value = $self->{api_client}->to_path_value($args{'run'});
+        $_resource_path =~ s/$_base_variable/$_base_value/g;
+    }
+
+    my $_body_data;
+    # authentication setting, if any
+    my $auth_settings = [qw(jenkins_auth )];
+
+    # make the API Call
+    my $response = $self->{api_client}->call_api($_resource_path, $_method,
+                                           $query_params, $form_params,
+                                           $header_params, $_body_data, $auth_settings);
+    if (!$response) {
+        return;
+    }
+    my $_response_object = $self->{api_client}->deserialize('string', $response);
+    return $_response_object;
+}
+
+#
+# get_pipeline_run_node
+#
+# 
+# 
+# @param string $organization Name of the organization (required)
+# @param string $pipeline Name of the pipeline (required)
+# @param string $run Name of the run (required)
+# @param string $node Name of the node (required)
+{
+    my $params = {
+    'organization' => {
+        data_type => 'string',
+        description => 'Name of the organization',
+        required => '1',
+    },
+    'pipeline' => {
+        data_type => 'string',
+        description => 'Name of the pipeline',
+        required => '1',
+    },
+    'run' => {
+        data_type => 'string',
+        description => 'Name of the run',
+        required => '1',
+    },
+    'node' => {
+        data_type => 'string',
+        description => 'Name of the node',
+        required => '1',
+    },
+    };
+    __PACKAGE__->method_documentation->{ 'get_pipeline_run_node' } = { 
+    	summary => '',
+        params => $params,
+        returns => 'PipelineRunNode',
+        };
+}
+# @return PipelineRunNode
+#
+sub get_pipeline_run_node {
+    my ($self, %args) = @_;
+
+    # verify the required parameter 'organization' is set
+    unless (exists $args{'organization'}) {
+      croak("Missing the required parameter 'organization' when calling get_pipeline_run_node");
+    }
+
+    # verify the required parameter 'pipeline' is set
+    unless (exists $args{'pipeline'}) {
+      croak("Missing the required parameter 'pipeline' when calling get_pipeline_run_node");
+    }
+
+    # verify the required parameter 'run' is set
+    unless (exists $args{'run'}) {
+      croak("Missing the required parameter 'run' when calling get_pipeline_run_node");
+    }
+
+    # verify the required parameter 'node' is set
+    unless (exists $args{'node'}) {
+      croak("Missing the required parameter 'node' when calling get_pipeline_run_node");
+    }
+
+    # parse inputs
+    my $_resource_path = '/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}';
+
+    my $_method = 'GET';
+    my $query_params = {};
+    my $header_params = {};
+    my $form_params = {};
+
+    # 'Accept' and 'Content-Type' header
+    my $_header_accept = $self->{api_client}->select_header_accept('application/json');
+    if ($_header_accept) {
+        $header_params->{'Accept'} = $_header_accept;
+    }
+    $header_params->{'Content-Type'} = $self->{api_client}->select_header_content_type();
+
+    # path params
+    if ( exists $args{'organization'}) {
+        my $_base_variable = "{" . "organization" . "}";
+        my $_base_value = $self->{api_client}->to_path_value($args{'organization'});
+        $_resource_path =~ s/$_base_variable/$_base_value/g;
+    }
+
+    # path params
+    if ( exists $args{'pipeline'}) {
+        my $_base_variable = "{" . "pipeline" . "}";
+        my $_base_value = $self->{api_client}->to_path_value($args{'pipeline'});
+        $_resource_path =~ s/$_base_variable/$_base_value/g;
+    }
+
+    # path params
+    if ( exists $args{'run'}) {
+        my $_base_variable = "{" . "run" . "}";
+        my $_base_value = $self->{api_client}->to_path_value($args{'run'});
+        $_resource_path =~ s/$_base_variable/$_base_value/g;
+    }
+
+    # path params
+    if ( exists $args{'node'}) {
+        my $_base_variable = "{" . "node" . "}";
+        my $_base_value = $self->{api_client}->to_path_value($args{'node'});
+        $_resource_path =~ s/$_base_variable/$_base_value/g;
+    }
+
+    my $_body_data;
+    # authentication setting, if any
+    my $auth_settings = [qw(jenkins_auth )];
+
+    # make the API Call
+    my $response = $self->{api_client}->call_api($_resource_path, $_method,
+                                           $query_params, $form_params,
+                                           $header_params, $_body_data, $auth_settings);
+    if (!$response) {
+        return;
+    }
+    my $_response_object = $self->{api_client}->deserialize('PipelineRunNode', $response);
+    return $_response_object;
+}
+
+#
+# get_pipeline_run_node_step
+#
+# 
+# 
+# @param string $organization Name of the organization (required)
+# @param string $pipeline Name of the pipeline (required)
+# @param string $run Name of the run (required)
+# @param string $node Name of the node (required)
+# @param string $step Name of the step (required)
+{
+    my $params = {
+    'organization' => {
+        data_type => 'string',
+        description => 'Name of the organization',
+        required => '1',
+    },
+    'pipeline' => {
+        data_type => 'string',
+        description => 'Name of the pipeline',
+        required => '1',
+    },
+    'run' => {
+        data_type => 'string',
+        description => 'Name of the run',
+        required => '1',
+    },
+    'node' => {
+        data_type => 'string',
+        description => 'Name of the node',
+        required => '1',
+    },
+    'step' => {
+        data_type => 'string',
+        description => 'Name of the step',
+        required => '1',
+    },
+    };
+    __PACKAGE__->method_documentation->{ 'get_pipeline_run_node_step' } = { 
+    	summary => '',
+        params => $params,
+        returns => 'PipelineStepImpl',
+        };
+}
+# @return PipelineStepImpl
+#
+sub get_pipeline_run_node_step {
+    my ($self, %args) = @_;
+
+    # verify the required parameter 'organization' is set
+    unless (exists $args{'organization'}) {
+      croak("Missing the required parameter 'organization' when calling get_pipeline_run_node_step");
+    }
+
+    # verify the required parameter 'pipeline' is set
+    unless (exists $args{'pipeline'}) {
+      croak("Missing the required parameter 'pipeline' when calling get_pipeline_run_node_step");
+    }
+
+    # verify the required parameter 'run' is set
+    unless (exists $args{'run'}) {
+      croak("Missing the required parameter 'run' when calling get_pipeline_run_node_step");
+    }
+
+    # verify the required parameter 'node' is set
+    unless (exists $args{'node'}) {
+      croak("Missing the required parameter 'node' when calling get_pipeline_run_node_step");
+    }
+
+    # verify the required parameter 'step' is set
+    unless (exists $args{'step'}) {
+      croak("Missing the required parameter 'step' when calling get_pipeline_run_node_step");
+    }
+
+    # parse inputs
+    my $_resource_path = '/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps/{step}';
+
+    my $_method = 'GET';
+    my $query_params = {};
+    my $header_params = {};
+    my $form_params = {};
+
+    # 'Accept' and 'Content-Type' header
+    my $_header_accept = $self->{api_client}->select_header_accept('application/json');
+    if ($_header_accept) {
+        $header_params->{'Accept'} = $_header_accept;
+    }
+    $header_params->{'Content-Type'} = $self->{api_client}->select_header_content_type();
+
+    # path params
+    if ( exists $args{'organization'}) {
+        my $_base_variable = "{" . "organization" . "}";
+        my $_base_value = $self->{api_client}->to_path_value($args{'organization'});
+        $_resource_path =~ s/$_base_variable/$_base_value/g;
+    }
+
+    # path params
+    if ( exists $args{'pipeline'}) {
+        my $_base_variable = "{" . "pipeline" . "}";
+        my $_base_value = $self->{api_client}->to_path_value($args{'pipeline'});
+        $_resource_path =~ s/$_base_variable/$_base_value/g;
+    }
+
+    # path params
+    if ( exists $args{'run'}) {
+        my $_base_variable = "{" . "run" . "}";
+        my $_base_value = $self->{api_client}->to_path_value($args{'run'});
+        $_resource_path =~ s/$_base_variable/$_base_value/g;
+    }
+
+    # path params
+    if ( exists $args{'node'}) {
+        my $_base_variable = "{" . "node" . "}";
+        my $_base_value = $self->{api_client}->to_path_value($args{'node'});
+        $_resource_path =~ s/$_base_variable/$_base_value/g;
+    }
+
+    # path params
+    if ( exists $args{'step'}) {
+        my $_base_variable = "{" . "step" . "}";
+        my $_base_value = $self->{api_client}->to_path_value($args{'step'});
+        $_resource_path =~ s/$_base_variable/$_base_value/g;
+    }
+
+    my $_body_data;
+    # authentication setting, if any
+    my $auth_settings = [qw(jenkins_auth )];
+
+    # make the API Call
+    my $response = $self->{api_client}->call_api($_resource_path, $_method,
+                                           $query_params, $form_params,
+                                           $header_params, $_body_data, $auth_settings);
+    if (!$response) {
+        return;
+    }
+    my $_response_object = $self->{api_client}->deserialize('PipelineStepImpl', $response);
+    return $_response_object;
+}
+
+#
+# get_pipeline_run_node_step_log
+#
+# 
+# 
+# @param string $organization Name of the organization (required)
+# @param string $pipeline Name of the pipeline (required)
+# @param string $run Name of the run (required)
+# @param string $node Name of the node (required)
+# @param string $step Name of the step (required)
+{
+    my $params = {
+    'organization' => {
+        data_type => 'string',
+        description => 'Name of the organization',
+        required => '1',
+    },
+    'pipeline' => {
+        data_type => 'string',
+        description => 'Name of the pipeline',
+        required => '1',
+    },
+    'run' => {
+        data_type => 'string',
+        description => 'Name of the run',
+        required => '1',
+    },
+    'node' => {
+        data_type => 'string',
+        description => 'Name of the node',
+        required => '1',
+    },
+    'step' => {
+        data_type => 'string',
+        description => 'Name of the step',
+        required => '1',
+    },
+    };
+    __PACKAGE__->method_documentation->{ 'get_pipeline_run_node_step_log' } = { 
+    	summary => '',
+        params => $params,
+        returns => 'string',
+        };
+}
+# @return string
+#
+sub get_pipeline_run_node_step_log {
+    my ($self, %args) = @_;
+
+    # verify the required parameter 'organization' is set
+    unless (exists $args{'organization'}) {
+      croak("Missing the required parameter 'organization' when calling get_pipeline_run_node_step_log");
+    }
+
+    # verify the required parameter 'pipeline' is set
+    unless (exists $args{'pipeline'}) {
+      croak("Missing the required parameter 'pipeline' when calling get_pipeline_run_node_step_log");
+    }
+
+    # verify the required parameter 'run' is set
+    unless (exists $args{'run'}) {
+      croak("Missing the required parameter 'run' when calling get_pipeline_run_node_step_log");
+    }
+
+    # verify the required parameter 'node' is set
+    unless (exists $args{'node'}) {
+      croak("Missing the required parameter 'node' when calling get_pipeline_run_node_step_log");
+    }
+
+    # verify the required parameter 'step' is set
+    unless (exists $args{'step'}) {
+      croak("Missing the required parameter 'step' when calling get_pipeline_run_node_step_log");
+    }
+
+    # parse inputs
+    my $_resource_path = '/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps/{step}/log';
+
+    my $_method = 'GET';
+    my $query_params = {};
+    my $header_params = {};
+    my $form_params = {};
+
+    # 'Accept' and 'Content-Type' header
+    my $_header_accept = $self->{api_client}->select_header_accept('application/json');
+    if ($_header_accept) {
+        $header_params->{'Accept'} = $_header_accept;
+    }
+    $header_params->{'Content-Type'} = $self->{api_client}->select_header_content_type();
+
+    # path params
+    if ( exists $args{'organization'}) {
+        my $_base_variable = "{" . "organization" . "}";
+        my $_base_value = $self->{api_client}->to_path_value($args{'organization'});
+        $_resource_path =~ s/$_base_variable/$_base_value/g;
+    }
+
+    # path params
+    if ( exists $args{'pipeline'}) {
+        my $_base_variable = "{" . "pipeline" . "}";
+        my $_base_value = $self->{api_client}->to_path_value($args{'pipeline'});
+        $_resource_path =~ s/$_base_variable/$_base_value/g;
+    }
+
+    # path params
+    if ( exists $args{'run'}) {
+        my $_base_variable = "{" . "run" . "}";
+        my $_base_value = $self->{api_client}->to_path_value($args{'run'});
+        $_resource_path =~ s/$_base_variable/$_base_value/g;
+    }
+
+    # path params
+    if ( exists $args{'node'}) {
+        my $_base_variable = "{" . "node" . "}";
+        my $_base_value = $self->{api_client}->to_path_value($args{'node'});
+        $_resource_path =~ s/$_base_variable/$_base_value/g;
+    }
+
+    # path params
+    if ( exists $args{'step'}) {
+        my $_base_variable = "{" . "step" . "}";
+        my $_base_value = $self->{api_client}->to_path_value($args{'step'});
+        $_resource_path =~ s/$_base_variable/$_base_value/g;
+    }
+
+    my $_body_data;
+    # authentication setting, if any
+    my $auth_settings = [qw(jenkins_auth )];
+
+    # make the API Call
+    my $response = $self->{api_client}->call_api($_resource_path, $_method,
+                                           $query_params, $form_params,
+                                           $header_params, $_body_data, $auth_settings);
+    if (!$response) {
+        return;
+    }
+    my $_response_object = $self->{api_client}->deserialize('string', $response);
+    return $_response_object;
+}
+
+#
+# get_pipeline_run_node_steps
+#
+# 
+# 
+# @param string $organization Name of the organization (required)
+# @param string $pipeline Name of the pipeline (required)
+# @param string $run Name of the run (required)
+# @param string $node Name of the node (required)
+{
+    my $params = {
+    'organization' => {
+        data_type => 'string',
+        description => 'Name of the organization',
+        required => '1',
+    },
+    'pipeline' => {
+        data_type => 'string',
+        description => 'Name of the pipeline',
+        required => '1',
+    },
+    'run' => {
+        data_type => 'string',
+        description => 'Name of the run',
+        required => '1',
+    },
+    'node' => {
+        data_type => 'string',
+        description => 'Name of the node',
+        required => '1',
+    },
+    };
+    __PACKAGE__->method_documentation->{ 'get_pipeline_run_node_steps' } = { 
+    	summary => '',
+        params => $params,
+        returns => 'PipelineRunNodeSteps',
+        };
+}
+# @return PipelineRunNodeSteps
+#
+sub get_pipeline_run_node_steps {
+    my ($self, %args) = @_;
+
+    # verify the required parameter 'organization' is set
+    unless (exists $args{'organization'}) {
+      croak("Missing the required parameter 'organization' when calling get_pipeline_run_node_steps");
+    }
+
+    # verify the required parameter 'pipeline' is set
+    unless (exists $args{'pipeline'}) {
+      croak("Missing the required parameter 'pipeline' when calling get_pipeline_run_node_steps");
+    }
+
+    # verify the required parameter 'run' is set
+    unless (exists $args{'run'}) {
+      croak("Missing the required parameter 'run' when calling get_pipeline_run_node_steps");
+    }
+
+    # verify the required parameter 'node' is set
+    unless (exists $args{'node'}) {
+      croak("Missing the required parameter 'node' when calling get_pipeline_run_node_steps");
+    }
+
+    # parse inputs
+    my $_resource_path = '/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps';
+
+    my $_method = 'GET';
+    my $query_params = {};
+    my $header_params = {};
+    my $form_params = {};
+
+    # 'Accept' and 'Content-Type' header
+    my $_header_accept = $self->{api_client}->select_header_accept('application/json');
+    if ($_header_accept) {
+        $header_params->{'Accept'} = $_header_accept;
+    }
+    $header_params->{'Content-Type'} = $self->{api_client}->select_header_content_type();
+
+    # path params
+    if ( exists $args{'organization'}) {
+        my $_base_variable = "{" . "organization" . "}";
+        my $_base_value = $self->{api_client}->to_path_value($args{'organization'});
+        $_resource_path =~ s/$_base_variable/$_base_value/g;
+    }
+
+    # path params
+    if ( exists $args{'pipeline'}) {
+        my $_base_variable = "{" . "pipeline" . "}";
+        my $_base_value = $self->{api_client}->to_path_value($args{'pipeline'});
+        $_resource_path =~ s/$_base_variable/$_base_value/g;
+    }
+
+    # path params
+    if ( exists $args{'run'}) {
+        my $_base_variable = "{" . "run" . "}";
+        my $_base_value = $self->{api_client}->to_path_value($args{'run'});
+        $_resource_path =~ s/$_base_variable/$_base_value/g;
+    }
+
+    # path params
+    if ( exists $args{'node'}) {
+        my $_base_variable = "{" . "node" . "}";
+        my $_base_value = $self->{api_client}->to_path_value($args{'node'});
+        $_resource_path =~ s/$_base_variable/$_base_value/g;
+    }
+
+    my $_body_data;
+    # authentication setting, if any
+    my $auth_settings = [qw(jenkins_auth )];
+
+    # make the API Call
+    my $response = $self->{api_client}->call_api($_resource_path, $_method,
+                                           $query_params, $form_params,
+                                           $header_params, $_body_data, $auth_settings);
+    if (!$response) {
+        return;
+    }
+    my $_response_object = $self->{api_client}->deserialize('PipelineRunNodeSteps', $response);
+    return $_response_object;
+}
+
+#
+# get_pipeline_run_nodes
+#
+# 
+# 
+# @param string $organization Name of the organization (required)
+# @param string $pipeline Name of the pipeline (required)
+# @param string $run Name of the run (required)
+{
+    my $params = {
+    'organization' => {
+        data_type => 'string',
+        description => 'Name of the organization',
+        required => '1',
+    },
+    'pipeline' => {
+        data_type => 'string',
+        description => 'Name of the pipeline',
+        required => '1',
+    },
+    'run' => {
+        data_type => 'string',
+        description => 'Name of the run',
+        required => '1',
+    },
+    };
+    __PACKAGE__->method_documentation->{ 'get_pipeline_run_nodes' } = { 
+    	summary => '',
+        params => $params,
+        returns => 'PipelineRunNodes',
+        };
+}
+# @return PipelineRunNodes
+#
+sub get_pipeline_run_nodes {
+    my ($self, %args) = @_;
+
+    # verify the required parameter 'organization' is set
+    unless (exists $args{'organization'}) {
+      croak("Missing the required parameter 'organization' when calling get_pipeline_run_nodes");
+    }
+
+    # verify the required parameter 'pipeline' is set
+    unless (exists $args{'pipeline'}) {
+      croak("Missing the required parameter 'pipeline' when calling get_pipeline_run_nodes");
+    }
+
+    # verify the required parameter 'run' is set
+    unless (exists $args{'run'}) {
+      croak("Missing the required parameter 'run' when calling get_pipeline_run_nodes");
+    }
+
+    # parse inputs
+    my $_resource_path = '/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes';
+
+    my $_method = 'GET';
+    my $query_params = {};
+    my $header_params = {};
+    my $form_params = {};
+
+    # 'Accept' and 'Content-Type' header
+    my $_header_accept = $self->{api_client}->select_header_accept('application/json');
+    if ($_header_accept) {
+        $header_params->{'Accept'} = $_header_accept;
+    }
+    $header_params->{'Content-Type'} = $self->{api_client}->select_header_content_type();
+
+    # path params
+    if ( exists $args{'organization'}) {
+        my $_base_variable = "{" . "organization" . "}";
+        my $_base_value = $self->{api_client}->to_path_value($args{'organization'});
+        $_resource_path =~ s/$_base_variable/$_base_value/g;
+    }
+
+    # path params
+    if ( exists $args{'pipeline'}) {
+        my $_base_variable = "{" . "pipeline" . "}";
+        my $_base_value = $self->{api_client}->to_path_value($args{'pipeline'});
+        $_resource_path =~ s/$_base_variable/$_base_value/g;
+    }
+
+    # path params
+    if ( exists $args{'run'}) {
+        my $_base_variable = "{" . "run" . "}";
+        my $_base_value = $self->{api_client}->to_path_value($args{'run'});
+        $_resource_path =~ s/$_base_variable/$_base_value/g;
+    }
+
+    my $_body_data;
+    # authentication setting, if any
+    my $auth_settings = [qw(jenkins_auth )];
+
+    # make the API Call
+    my $response = $self->{api_client}->call_api($_resource_path, $_method,
+                                           $query_params, $form_params,
+                                           $header_params, $_body_data, $auth_settings);
+    if (!$response) {
+        return;
+    }
+    my $_response_object = $self->{api_client}->deserialize('PipelineRunNodes', $response);
+    return $_response_object;
+}
+
+#
+# get_pipeline_runs
+#
+# 
+# 
+# @param string $organization Name of the organization (required)
+# @param string $pipeline Name of the pipeline (required)
+{
+    my $params = {
+    'organization' => {
+        data_type => 'string',
+        description => 'Name of the organization',
+        required => '1',
+    },
+    'pipeline' => {
+        data_type => 'string',
+        description => 'Name of the pipeline',
+        required => '1',
+    },
+    };
+    __PACKAGE__->method_documentation->{ 'get_pipeline_runs' } = { 
+    	summary => '',
+        params => $params,
+        returns => 'PipelineRuns',
+        };
+}
+# @return PipelineRuns
+#
+sub get_pipeline_runs {
+    my ($self, %args) = @_;
+
+    # verify the required parameter 'organization' is set
+    unless (exists $args{'organization'}) {
+      croak("Missing the required parameter 'organization' when calling get_pipeline_runs");
+    }
+
+    # verify the required parameter 'pipeline' is set
+    unless (exists $args{'pipeline'}) {
+      croak("Missing the required parameter 'pipeline' when calling get_pipeline_runs");
+    }
+
+    # parse inputs
+    my $_resource_path = '/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs';
+
+    my $_method = 'GET';
+    my $query_params = {};
+    my $header_params = {};
+    my $form_params = {};
+
+    # 'Accept' and 'Content-Type' header
+    my $_header_accept = $self->{api_client}->select_header_accept('application/json');
+    if ($_header_accept) {
+        $header_params->{'Accept'} = $_header_accept;
+    }
+    $header_params->{'Content-Type'} = $self->{api_client}->select_header_content_type();
+
+    # path params
+    if ( exists $args{'organization'}) {
+        my $_base_variable = "{" . "organization" . "}";
+        my $_base_value = $self->{api_client}->to_path_value($args{'organization'});
+        $_resource_path =~ s/$_base_variable/$_base_value/g;
+    }
+
+    # path params
+    if ( exists $args{'pipeline'}) {
+        my $_base_variable = "{" . "pipeline" . "}";
+        my $_base_value = $self->{api_client}->to_path_value($args{'pipeline'});
+        $_resource_path =~ s/$_base_variable/$_base_value/g;
+    }
+
+    my $_body_data;
+    # authentication setting, if any
+    my $auth_settings = [qw(jenkins_auth )];
+
+    # make the API Call
+    my $response = $self->{api_client}->call_api($_resource_path, $_method,
+                                           $query_params, $form_params,
+                                           $header_params, $_body_data, $auth_settings);
+    if (!$response) {
+        return;
+    }
+    my $_response_object = $self->{api_client}->deserialize('PipelineRuns', $response);
+    return $_response_object;
+}
+
+#
+# get_pipelines
+#
+# 
+# 
+# @param string $organization Name of the organization (required)
+{
+    my $params = {
+    'organization' => {
+        data_type => 'string',
+        description => 'Name of the organization',
+        required => '1',
+    },
+    };
+    __PACKAGE__->method_documentation->{ 'get_pipelines' } = { 
+    	summary => '',
+        params => $params,
+        returns => 'Pipelines',
+        };
+}
+# @return Pipelines
+#
+sub get_pipelines {
+    my ($self, %args) = @_;
+
+    # verify the required parameter 'organization' is set
+    unless (exists $args{'organization'}) {
+      croak("Missing the required parameter 'organization' when calling get_pipelines");
+    }
+
+    # parse inputs
+    my $_resource_path = '/blue/rest/organizations/{organization}/pipelines/';
+
+    my $_method = 'GET';
+    my $query_params = {};
+    my $header_params = {};
+    my $form_params = {};
+
+    # 'Accept' and 'Content-Type' header
+    my $_header_accept = $self->{api_client}->select_header_accept('application/json');
+    if ($_header_accept) {
+        $header_params->{'Accept'} = $_header_accept;
+    }
+    $header_params->{'Content-Type'} = $self->{api_client}->select_header_content_type();
+
+    # path params
+    if ( exists $args{'organization'}) {
+        my $_base_variable = "{" . "organization" . "}";
+        my $_base_value = $self->{api_client}->to_path_value($args{'organization'});
+        $_resource_path =~ s/$_base_variable/$_base_value/g;
+    }
+
+    my $_body_data;
+    # authentication setting, if any
+    my $auth_settings = [qw(jenkins_auth )];
+
+    # make the API Call
+    my $response = $self->{api_client}->call_api($_resource_path, $_method,
+                                           $query_params, $form_params,
+                                           $header_params, $_body_data, $auth_settings);
+    if (!$response) {
+        return;
+    }
+    my $_response_object = $self->{api_client}->deserialize('Pipelines', $response);
+    return $_response_object;
+}
+
+#
+# get_scm
+#
+# 
+# 
+# @param string $organization Name of the organization (required)
+# @param string $scm Name of SCM (required)
+{
+    my $params = {
+    'organization' => {
+        data_type => 'string',
+        description => 'Name of the organization',
+        required => '1',
+    },
+    'scm' => {
+        data_type => 'string',
+        description => 'Name of SCM',
+        required => '1',
+    },
+    };
+    __PACKAGE__->method_documentation->{ 'get_scm' } = { 
+    	summary => '',
+        params => $params,
+        returns => 'GithubScm',
+        };
+}
+# @return GithubScm
+#
+sub get_scm {
+    my ($self, %args) = @_;
+
+    # verify the required parameter 'organization' is set
+    unless (exists $args{'organization'}) {
+      croak("Missing the required parameter 'organization' when calling get_scm");
+    }
+
+    # verify the required parameter 'scm' is set
+    unless (exists $args{'scm'}) {
+      croak("Missing the required parameter 'scm' when calling get_scm");
+    }
+
+    # parse inputs
+    my $_resource_path = '/blue/rest/organizations/{organization}/scm/{scm}';
+
+    my $_method = 'GET';
+    my $query_params = {};
+    my $header_params = {};
+    my $form_params = {};
+
+    # 'Accept' and 'Content-Type' header
+    my $_header_accept = $self->{api_client}->select_header_accept('application/json');
+    if ($_header_accept) {
+        $header_params->{'Accept'} = $_header_accept;
+    }
+    $header_params->{'Content-Type'} = $self->{api_client}->select_header_content_type();
+
+    # path params
+    if ( exists $args{'organization'}) {
+        my $_base_variable = "{" . "organization" . "}";
+        my $_base_value = $self->{api_client}->to_path_value($args{'organization'});
+        $_resource_path =~ s/$_base_variable/$_base_value/g;
+    }
+
+    # path params
+    if ( exists $args{'scm'}) {
+        my $_base_variable = "{" . "scm" . "}";
+        my $_base_value = $self->{api_client}->to_path_value($args{'scm'});
+        $_resource_path =~ s/$_base_variable/$_base_value/g;
+    }
+
+    my $_body_data;
+    # authentication setting, if any
+    my $auth_settings = [qw(jenkins_auth )];
+
+    # make the API Call
+    my $response = $self->{api_client}->call_api($_resource_path, $_method,
+                                           $query_params, $form_params,
+                                           $header_params, $_body_data, $auth_settings);
+    if (!$response) {
+        return;
+    }
+    my $_response_object = $self->{api_client}->deserialize('GithubScm', $response);
+    return $_response_object;
+}
+
+#
+# get_scm_organisation_repositories
+#
+# 
+# 
+# @param string $organization Name of the organization (required)
+# @param string $scm Name of SCM (required)
+# @param string $scm_organisation Name of the SCM organization (required)
+# @param string $credential_id Credential ID (optional)
+# @param int $page_size Number of items in a page (optional)
+# @param int $page_number Page number (optional)
+{
+    my $params = {
+    'organization' => {
+        data_type => 'string',
+        description => 'Name of the organization',
+        required => '1',
+    },
+    'scm' => {
+        data_type => 'string',
+        description => 'Name of SCM',
+        required => '1',
+    },
+    'scm_organisation' => {
+        data_type => 'string',
+        description => 'Name of the SCM organization',
+        required => '1',
+    },
+    'credential_id' => {
+        data_type => 'string',
+        description => 'Credential ID',
+        required => '0',
+    },
+    'page_size' => {
+        data_type => 'int',
+        description => 'Number of items in a page',
+        required => '0',
+    },
+    'page_number' => {
+        data_type => 'int',
+        description => 'Page number',
+        required => '0',
+    },
+    };
+    __PACKAGE__->method_documentation->{ 'get_scm_organisation_repositories' } = { 
+    	summary => '',
+        params => $params,
+        returns => 'ScmOrganisations',
+        };
+}
+# @return ScmOrganisations
+#
+sub get_scm_organisation_repositories {
+    my ($self, %args) = @_;
+
+    # verify the required parameter 'organization' is set
+    unless (exists $args{'organization'}) {
+      croak("Missing the required parameter 'organization' when calling get_scm_organisation_repositories");
+    }
+
+    # verify the required parameter 'scm' is set
+    unless (exists $args{'scm'}) {
+      croak("Missing the required parameter 'scm' when calling get_scm_organisation_repositories");
+    }
+
+    # verify the required parameter 'scm_organisation' is set
+    unless (exists $args{'scm_organisation'}) {
+      croak("Missing the required parameter 'scm_organisation' when calling get_scm_organisation_repositories");
+    }
+
+    # parse inputs
+    my $_resource_path = '/blue/rest/organizations/{organization}/scm/{scm}/organizations/{scmOrganisation}/repositories';
+
+    my $_method = 'GET';
+    my $query_params = {};
+    my $header_params = {};
+    my $form_params = {};
+
+    # 'Accept' and 'Content-Type' header
+    my $_header_accept = $self->{api_client}->select_header_accept('application/json');
+    if ($_header_accept) {
+        $header_params->{'Accept'} = $_header_accept;
+    }
+    $header_params->{'Content-Type'} = $self->{api_client}->select_header_content_type();
+
+    # query params
+    if ( exists $args{'credential_id'}) {
+        $query_params->{'credentialId'} = $self->{api_client}->to_query_value($args{'credential_id'});
+    }
+
+    # query params
+    if ( exists $args{'page_size'}) {
+        $query_params->{'pageSize'} = $self->{api_client}->to_query_value($args{'page_size'});
+    }
+
+    # query params
+    if ( exists $args{'page_number'}) {
+        $query_params->{'pageNumber'} = $self->{api_client}->to_query_value($args{'page_number'});
+    }
+
+    # path params
+    if ( exists $args{'organization'}) {
+        my $_base_variable = "{" . "organization" . "}";
+        my $_base_value = $self->{api_client}->to_path_value($args{'organization'});
+        $_resource_path =~ s/$_base_variable/$_base_value/g;
+    }
+
+    # path params
+    if ( exists $args{'scm'}) {
+        my $_base_variable = "{" . "scm" . "}";
+        my $_base_value = $self->{api_client}->to_path_value($args{'scm'});
+        $_resource_path =~ s/$_base_variable/$_base_value/g;
+    }
+
+    # path params
+    if ( exists $args{'scm_organisation'}) {
+        my $_base_variable = "{" . "scmOrganisation" . "}";
+        my $_base_value = $self->{api_client}->to_path_value($args{'scm_organisation'});
+        $_resource_path =~ s/$_base_variable/$_base_value/g;
+    }
+
+    my $_body_data;
+    # authentication setting, if any
+    my $auth_settings = [qw(jenkins_auth )];
+
+    # make the API Call
+    my $response = $self->{api_client}->call_api($_resource_path, $_method,
+                                           $query_params, $form_params,
+                                           $header_params, $_body_data, $auth_settings);
+    if (!$response) {
+        return;
+    }
+    my $_response_object = $self->{api_client}->deserialize('ScmOrganisations', $response);
+    return $_response_object;
+}
+
+#
+# get_scm_organisation_repository
+#
+# 
+# 
+# @param string $organization Name of the organization (required)
+# @param string $scm Name of SCM (required)
+# @param string $scm_organisation Name of the SCM organization (required)
+# @param string $repository Name of the SCM repository (required)
+# @param string $credential_id Credential ID (optional)
+{
+    my $params = {
+    'organization' => {
+        data_type => 'string',
+        description => 'Name of the organization',
+        required => '1',
+    },
+    'scm' => {
+        data_type => 'string',
+        description => 'Name of SCM',
+        required => '1',
+    },
+    'scm_organisation' => {
+        data_type => 'string',
+        description => 'Name of the SCM organization',
+        required => '1',
+    },
+    'repository' => {
+        data_type => 'string',
+        description => 'Name of the SCM repository',
+        required => '1',
+    },
+    'credential_id' => {
+        data_type => 'string',
+        description => 'Credential ID',
+        required => '0',
+    },
+    };
+    __PACKAGE__->method_documentation->{ 'get_scm_organisation_repository' } = { 
+    	summary => '',
+        params => $params,
+        returns => 'ScmOrganisations',
+        };
+}
+# @return ScmOrganisations
+#
+sub get_scm_organisation_repository {
+    my ($self, %args) = @_;
+
+    # verify the required parameter 'organization' is set
+    unless (exists $args{'organization'}) {
+      croak("Missing the required parameter 'organization' when calling get_scm_organisation_repository");
+    }
+
+    # verify the required parameter 'scm' is set
+    unless (exists $args{'scm'}) {
+      croak("Missing the required parameter 'scm' when calling get_scm_organisation_repository");
+    }
+
+    # verify the required parameter 'scm_organisation' is set
+    unless (exists $args{'scm_organisation'}) {
+      croak("Missing the required parameter 'scm_organisation' when calling get_scm_organisation_repository");
+    }
+
+    # verify the required parameter 'repository' is set
+    unless (exists $args{'repository'}) {
+      croak("Missing the required parameter 'repository' when calling get_scm_organisation_repository");
+    }
+
+    # parse inputs
+    my $_resource_path = '/blue/rest/organizations/{organization}/scm/{scm}/organizations/{scmOrganisation}/repositories/{repository}';
+
+    my $_method = 'GET';
+    my $query_params = {};
+    my $header_params = {};
+    my $form_params = {};
+
+    # 'Accept' and 'Content-Type' header
+    my $_header_accept = $self->{api_client}->select_header_accept('application/json');
+    if ($_header_accept) {
+        $header_params->{'Accept'} = $_header_accept;
+    }
+    $header_params->{'Content-Type'} = $self->{api_client}->select_header_content_type();
+
+    # query params
+    if ( exists $args{'credential_id'}) {
+        $query_params->{'credentialId'} = $self->{api_client}->to_query_value($args{'credential_id'});
+    }
+
+    # path params
+    if ( exists $args{'organization'}) {
+        my $_base_variable = "{" . "organization" . "}";
+        my $_base_value = $self->{api_client}->to_path_value($args{'organization'});
+        $_resource_path =~ s/$_base_variable/$_base_value/g;
+    }
+
+    # path params
+    if ( exists $args{'scm'}) {
+        my $_base_variable = "{" . "scm" . "}";
+        my $_base_value = $self->{api_client}->to_path_value($args{'scm'});
+        $_resource_path =~ s/$_base_variable/$_base_value/g;
+    }
+
+    # path params
+    if ( exists $args{'scm_organisation'}) {
+        my $_base_variable = "{" . "scmOrganisation" . "}";
+        my $_base_value = $self->{api_client}->to_path_value($args{'scm_organisation'});
+        $_resource_path =~ s/$_base_variable/$_base_value/g;
+    }
+
+    # path params
+    if ( exists $args{'repository'}) {
+        my $_base_variable = "{" . "repository" . "}";
+        my $_base_value = $self->{api_client}->to_path_value($args{'repository'});
+        $_resource_path =~ s/$_base_variable/$_base_value/g;
+    }
+
+    my $_body_data;
+    # authentication setting, if any
+    my $auth_settings = [qw(jenkins_auth )];
+
+    # make the API Call
+    my $response = $self->{api_client}->call_api($_resource_path, $_method,
+                                           $query_params, $form_params,
+                                           $header_params, $_body_data, $auth_settings);
+    if (!$response) {
+        return;
+    }
+    my $_response_object = $self->{api_client}->deserialize('ScmOrganisations', $response);
+    return $_response_object;
+}
+
+#
+# get_scm_organisations
+#
+# 
+# 
+# @param string $organization Name of the organization (required)
+# @param string $scm Name of SCM (required)
+# @param string $credential_id Credential ID (optional)
+{
+    my $params = {
+    'organization' => {
+        data_type => 'string',
+        description => 'Name of the organization',
+        required => '1',
+    },
+    'scm' => {
+        data_type => 'string',
+        description => 'Name of SCM',
+        required => '1',
+    },
+    'credential_id' => {
+        data_type => 'string',
+        description => 'Credential ID',
+        required => '0',
+    },
+    };
+    __PACKAGE__->method_documentation->{ 'get_scm_organisations' } = { 
+    	summary => '',
+        params => $params,
+        returns => 'ScmOrganisations',
+        };
+}
+# @return ScmOrganisations
+#
+sub get_scm_organisations {
+    my ($self, %args) = @_;
+
+    # verify the required parameter 'organization' is set
+    unless (exists $args{'organization'}) {
+      croak("Missing the required parameter 'organization' when calling get_scm_organisations");
+    }
+
+    # verify the required parameter 'scm' is set
+    unless (exists $args{'scm'}) {
+      croak("Missing the required parameter 'scm' when calling get_scm_organisations");
+    }
+
+    # parse inputs
+    my $_resource_path = '/blue/rest/organizations/{organization}/scm/{scm}/organizations';
+
+    my $_method = 'GET';
+    my $query_params = {};
+    my $header_params = {};
+    my $form_params = {};
+
+    # 'Accept' and 'Content-Type' header
+    my $_header_accept = $self->{api_client}->select_header_accept('application/json');
+    if ($_header_accept) {
+        $header_params->{'Accept'} = $_header_accept;
+    }
+    $header_params->{'Content-Type'} = $self->{api_client}->select_header_content_type();
+
+    # query params
+    if ( exists $args{'credential_id'}) {
+        $query_params->{'credentialId'} = $self->{api_client}->to_query_value($args{'credential_id'});
+    }
+
+    # path params
+    if ( exists $args{'organization'}) {
+        my $_base_variable = "{" . "organization" . "}";
+        my $_base_value = $self->{api_client}->to_path_value($args{'organization'});
+        $_resource_path =~ s/$_base_variable/$_base_value/g;
+    }
+
+    # path params
+    if ( exists $args{'scm'}) {
+        my $_base_variable = "{" . "scm" . "}";
+        my $_base_value = $self->{api_client}->to_path_value($args{'scm'});
+        $_resource_path =~ s/$_base_variable/$_base_value/g;
+    }
+
+    my $_body_data;
+    # authentication setting, if any
+    my $auth_settings = [qw(jenkins_auth )];
+
+    # make the API Call
+    my $response = $self->{api_client}->call_api($_resource_path, $_method,
+                                           $query_params, $form_params,
+                                           $header_params, $_body_data, $auth_settings);
+    if (!$response) {
+        return;
+    }
+    my $_response_object = $self->{api_client}->deserialize('ScmOrganisations', $response);
     return $_response_object;
 }
 
@@ -834,13 +2606,13 @@ sub get_pipelines_by_org {
 #
 # 
 # 
-# @param string $organisation Name of the organisation (required)
+# @param string $organization Name of the organization (required)
 # @param string $user Name of the user (required)
 {
     my $params = {
-    'organisation' => {
+    'organization' => {
         data_type => 'string',
-        description => 'Name of the organisation',
+        description => 'Name of the organization',
         required => '1',
     },
     'user' => {
@@ -852,17 +2624,17 @@ sub get_pipelines_by_org {
     __PACKAGE__->method_documentation->{ 'get_user' } = { 
     	summary => '',
         params => $params,
-        returns => 'SwaggyjenkinsUser',
+        returns => 'User',
         };
 }
-# @return SwaggyjenkinsUser
+# @return User
 #
 sub get_user {
     my ($self, %args) = @_;
 
-    # verify the required parameter 'organisation' is set
-    unless (exists $args{'organisation'}) {
-      croak("Missing the required parameter 'organisation' when calling get_user");
+    # verify the required parameter 'organization' is set
+    unless (exists $args{'organization'}) {
+      croak("Missing the required parameter 'organization' when calling get_user");
     }
 
     # verify the required parameter 'user' is set
@@ -871,7 +2643,7 @@ sub get_user {
     }
 
     # parse inputs
-    my $_resource_path = '/blue/rest/organizations/{organisation}/users/{user}';
+    my $_resource_path = '/blue/rest/organizations/{organization}/users/{user}';
 
     my $_method = 'GET';
     my $query_params = {};
@@ -886,9 +2658,9 @@ sub get_user {
     $header_params->{'Content-Type'} = $self->{api_client}->select_header_content_type();
 
     # path params
-    if ( exists $args{'organisation'}) {
-        my $_base_variable = "{" . "organisation" . "}";
-        my $_base_value = $self->{api_client}->to_path_value($args{'organisation'});
+    if ( exists $args{'organization'}) {
+        my $_base_variable = "{" . "organization" . "}";
+        my $_base_value = $self->{api_client}->to_path_value($args{'organization'});
         $_resource_path =~ s/$_base_variable/$_base_value/g;
     }
 
@@ -901,7 +2673,7 @@ sub get_user {
 
     my $_body_data;
     # authentication setting, if any
-    my $auth_settings = [qw()];
+    my $auth_settings = [qw(jenkins_auth )];
 
     # make the API Call
     my $response = $self->{api_client}->call_api($_resource_path, $_method,
@@ -910,42 +2682,42 @@ sub get_user {
     if (!$response) {
         return;
     }
-    my $_response_object = $self->{api_client}->deserialize('SwaggyjenkinsUser', $response);
+    my $_response_object = $self->{api_client}->deserialize('User', $response);
     return $_response_object;
 }
 
 #
-# get_users
+# get_user_favorites
 #
 # 
 # 
-# @param string $organisation Name of the organisation (required)
+# @param string $user Name of the user (required)
 {
     my $params = {
-    'organisation' => {
+    'user' => {
         data_type => 'string',
-        description => 'Name of the organisation',
+        description => 'Name of the user',
         required => '1',
     },
     };
-    __PACKAGE__->method_documentation->{ 'get_users' } = { 
+    __PACKAGE__->method_documentation->{ 'get_user_favorites' } = { 
     	summary => '',
         params => $params,
-        returns => 'SwaggyjenkinsUser',
+        returns => 'UserFavorites',
         };
 }
-# @return SwaggyjenkinsUser
+# @return UserFavorites
 #
-sub get_users {
+sub get_user_favorites {
     my ($self, %args) = @_;
 
-    # verify the required parameter 'organisation' is set
-    unless (exists $args{'organisation'}) {
-      croak("Missing the required parameter 'organisation' when calling get_users");
+    # verify the required parameter 'user' is set
+    unless (exists $args{'user'}) {
+      croak("Missing the required parameter 'user' when calling get_user_favorites");
     }
 
     # parse inputs
-    my $_resource_path = '/blue/rest/organizations/{organisation}/users/';
+    my $_resource_path = '/blue/rest/users/{user}/favorites';
 
     my $_method = 'GET';
     my $query_params = {};
@@ -960,15 +2732,15 @@ sub get_users {
     $header_params->{'Content-Type'} = $self->{api_client}->select_header_content_type();
 
     # path params
-    if ( exists $args{'organisation'}) {
-        my $_base_variable = "{" . "organisation" . "}";
-        my $_base_value = $self->{api_client}->to_path_value($args{'organisation'});
+    if ( exists $args{'user'}) {
+        my $_base_variable = "{" . "user" . "}";
+        my $_base_value = $self->{api_client}->to_path_value($args{'user'});
         $_resource_path =~ s/$_base_variable/$_base_value/g;
     }
 
     my $_body_data;
     # authentication setting, if any
-    my $auth_settings = [qw()];
+    my $auth_settings = [qw(jenkins_auth )];
 
     # make the API Call
     my $response = $self->{api_client}->call_api($_resource_path, $_method,
@@ -977,7 +2749,488 @@ sub get_users {
     if (!$response) {
         return;
     }
-    my $_response_object = $self->{api_client}->deserialize('SwaggyjenkinsUser', $response);
+    my $_response_object = $self->{api_client}->deserialize('UserFavorites', $response);
+    return $_response_object;
+}
+
+#
+# get_users
+#
+# 
+# 
+# @param string $organization Name of the organization (required)
+{
+    my $params = {
+    'organization' => {
+        data_type => 'string',
+        description => 'Name of the organization',
+        required => '1',
+    },
+    };
+    __PACKAGE__->method_documentation->{ 'get_users' } = { 
+    	summary => '',
+        params => $params,
+        returns => 'User',
+        };
+}
+# @return User
+#
+sub get_users {
+    my ($self, %args) = @_;
+
+    # verify the required parameter 'organization' is set
+    unless (exists $args{'organization'}) {
+      croak("Missing the required parameter 'organization' when calling get_users");
+    }
+
+    # parse inputs
+    my $_resource_path = '/blue/rest/organizations/{organization}/users/';
+
+    my $_method = 'GET';
+    my $query_params = {};
+    my $header_params = {};
+    my $form_params = {};
+
+    # 'Accept' and 'Content-Type' header
+    my $_header_accept = $self->{api_client}->select_header_accept('application/json');
+    if ($_header_accept) {
+        $header_params->{'Accept'} = $_header_accept;
+    }
+    $header_params->{'Content-Type'} = $self->{api_client}->select_header_content_type();
+
+    # path params
+    if ( exists $args{'organization'}) {
+        my $_base_variable = "{" . "organization" . "}";
+        my $_base_value = $self->{api_client}->to_path_value($args{'organization'});
+        $_resource_path =~ s/$_base_variable/$_base_value/g;
+    }
+
+    my $_body_data;
+    # authentication setting, if any
+    my $auth_settings = [qw(jenkins_auth )];
+
+    # make the API Call
+    my $response = $self->{api_client}->call_api($_resource_path, $_method,
+                                           $query_params, $form_params,
+                                           $header_params, $_body_data, $auth_settings);
+    if (!$response) {
+        return;
+    }
+    my $_response_object = $self->{api_client}->deserialize('User', $response);
+    return $_response_object;
+}
+
+#
+# post_pipeline_run
+#
+# 
+# 
+# @param string $organization Name of the organization (required)
+# @param string $pipeline Name of the pipeline (required)
+# @param string $run Name of the run (required)
+{
+    my $params = {
+    'organization' => {
+        data_type => 'string',
+        description => 'Name of the organization',
+        required => '1',
+    },
+    'pipeline' => {
+        data_type => 'string',
+        description => 'Name of the pipeline',
+        required => '1',
+    },
+    'run' => {
+        data_type => 'string',
+        description => 'Name of the run',
+        required => '1',
+    },
+    };
+    __PACKAGE__->method_documentation->{ 'post_pipeline_run' } = { 
+    	summary => '',
+        params => $params,
+        returns => 'QueueItemImpl',
+        };
+}
+# @return QueueItemImpl
+#
+sub post_pipeline_run {
+    my ($self, %args) = @_;
+
+    # verify the required parameter 'organization' is set
+    unless (exists $args{'organization'}) {
+      croak("Missing the required parameter 'organization' when calling post_pipeline_run");
+    }
+
+    # verify the required parameter 'pipeline' is set
+    unless (exists $args{'pipeline'}) {
+      croak("Missing the required parameter 'pipeline' when calling post_pipeline_run");
+    }
+
+    # verify the required parameter 'run' is set
+    unless (exists $args{'run'}) {
+      croak("Missing the required parameter 'run' when calling post_pipeline_run");
+    }
+
+    # parse inputs
+    my $_resource_path = '/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/replay';
+
+    my $_method = 'POST';
+    my $query_params = {};
+    my $header_params = {};
+    my $form_params = {};
+
+    # 'Accept' and 'Content-Type' header
+    my $_header_accept = $self->{api_client}->select_header_accept('application/json');
+    if ($_header_accept) {
+        $header_params->{'Accept'} = $_header_accept;
+    }
+    $header_params->{'Content-Type'} = $self->{api_client}->select_header_content_type();
+
+    # path params
+    if ( exists $args{'organization'}) {
+        my $_base_variable = "{" . "organization" . "}";
+        my $_base_value = $self->{api_client}->to_path_value($args{'organization'});
+        $_resource_path =~ s/$_base_variable/$_base_value/g;
+    }
+
+    # path params
+    if ( exists $args{'pipeline'}) {
+        my $_base_variable = "{" . "pipeline" . "}";
+        my $_base_value = $self->{api_client}->to_path_value($args{'pipeline'});
+        $_resource_path =~ s/$_base_variable/$_base_value/g;
+    }
+
+    # path params
+    if ( exists $args{'run'}) {
+        my $_base_variable = "{" . "run" . "}";
+        my $_base_value = $self->{api_client}->to_path_value($args{'run'});
+        $_resource_path =~ s/$_base_variable/$_base_value/g;
+    }
+
+    my $_body_data;
+    # authentication setting, if any
+    my $auth_settings = [qw(jenkins_auth )];
+
+    # make the API Call
+    my $response = $self->{api_client}->call_api($_resource_path, $_method,
+                                           $query_params, $form_params,
+                                           $header_params, $_body_data, $auth_settings);
+    if (!$response) {
+        return;
+    }
+    my $_response_object = $self->{api_client}->deserialize('QueueItemImpl', $response);
+    return $_response_object;
+}
+
+#
+# post_pipeline_runs
+#
+# 
+# 
+# @param string $organization Name of the organization (required)
+# @param string $pipeline Name of the pipeline (required)
+{
+    my $params = {
+    'organization' => {
+        data_type => 'string',
+        description => 'Name of the organization',
+        required => '1',
+    },
+    'pipeline' => {
+        data_type => 'string',
+        description => 'Name of the pipeline',
+        required => '1',
+    },
+    };
+    __PACKAGE__->method_documentation->{ 'post_pipeline_runs' } = { 
+    	summary => '',
+        params => $params,
+        returns => 'QueueItemImpl',
+        };
+}
+# @return QueueItemImpl
+#
+sub post_pipeline_runs {
+    my ($self, %args) = @_;
+
+    # verify the required parameter 'organization' is set
+    unless (exists $args{'organization'}) {
+      croak("Missing the required parameter 'organization' when calling post_pipeline_runs");
+    }
+
+    # verify the required parameter 'pipeline' is set
+    unless (exists $args{'pipeline'}) {
+      croak("Missing the required parameter 'pipeline' when calling post_pipeline_runs");
+    }
+
+    # parse inputs
+    my $_resource_path = '/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs';
+
+    my $_method = 'POST';
+    my $query_params = {};
+    my $header_params = {};
+    my $form_params = {};
+
+    # 'Accept' and 'Content-Type' header
+    my $_header_accept = $self->{api_client}->select_header_accept('application/json');
+    if ($_header_accept) {
+        $header_params->{'Accept'} = $_header_accept;
+    }
+    $header_params->{'Content-Type'} = $self->{api_client}->select_header_content_type();
+
+    # path params
+    if ( exists $args{'organization'}) {
+        my $_base_variable = "{" . "organization" . "}";
+        my $_base_value = $self->{api_client}->to_path_value($args{'organization'});
+        $_resource_path =~ s/$_base_variable/$_base_value/g;
+    }
+
+    # path params
+    if ( exists $args{'pipeline'}) {
+        my $_base_variable = "{" . "pipeline" . "}";
+        my $_base_value = $self->{api_client}->to_path_value($args{'pipeline'});
+        $_resource_path =~ s/$_base_variable/$_base_value/g;
+    }
+
+    my $_body_data;
+    # authentication setting, if any
+    my $auth_settings = [qw(jenkins_auth )];
+
+    # make the API Call
+    my $response = $self->{api_client}->call_api($_resource_path, $_method,
+                                           $query_params, $form_params,
+                                           $header_params, $_body_data, $auth_settings);
+    if (!$response) {
+        return;
+    }
+    my $_response_object = $self->{api_client}->deserialize('QueueItemImpl', $response);
+    return $_response_object;
+}
+
+#
+# put_pipeline_favorite
+#
+# 
+# 
+# @param string $organization Name of the organization (required)
+# @param string $pipeline Name of the pipeline (required)
+# @param Body $body Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite (required)
+{
+    my $params = {
+    'organization' => {
+        data_type => 'string',
+        description => 'Name of the organization',
+        required => '1',
+    },
+    'pipeline' => {
+        data_type => 'string',
+        description => 'Name of the pipeline',
+        required => '1',
+    },
+    'body' => {
+        data_type => 'Body',
+        description => 'Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite',
+        required => '1',
+    },
+    };
+    __PACKAGE__->method_documentation->{ 'put_pipeline_favorite' } = { 
+    	summary => '',
+        params => $params,
+        returns => 'FavoriteImpl',
+        };
+}
+# @return FavoriteImpl
+#
+sub put_pipeline_favorite {
+    my ($self, %args) = @_;
+
+    # verify the required parameter 'organization' is set
+    unless (exists $args{'organization'}) {
+      croak("Missing the required parameter 'organization' when calling put_pipeline_favorite");
+    }
+
+    # verify the required parameter 'pipeline' is set
+    unless (exists $args{'pipeline'}) {
+      croak("Missing the required parameter 'pipeline' when calling put_pipeline_favorite");
+    }
+
+    # verify the required parameter 'body' is set
+    unless (exists $args{'body'}) {
+      croak("Missing the required parameter 'body' when calling put_pipeline_favorite");
+    }
+
+    # parse inputs
+    my $_resource_path = '/blue/rest/organizations/{organization}/pipelines/{pipeline}/favorite';
+
+    my $_method = 'PUT';
+    my $query_params = {};
+    my $header_params = {};
+    my $form_params = {};
+
+    # 'Accept' and 'Content-Type' header
+    my $_header_accept = $self->{api_client}->select_header_accept('application/json');
+    if ($_header_accept) {
+        $header_params->{'Accept'} = $_header_accept;
+    }
+    $header_params->{'Content-Type'} = $self->{api_client}->select_header_content_type();
+
+    # path params
+    if ( exists $args{'organization'}) {
+        my $_base_variable = "{" . "organization" . "}";
+        my $_base_value = $self->{api_client}->to_path_value($args{'organization'});
+        $_resource_path =~ s/$_base_variable/$_base_value/g;
+    }
+
+    # path params
+    if ( exists $args{'pipeline'}) {
+        my $_base_variable = "{" . "pipeline" . "}";
+        my $_base_value = $self->{api_client}->to_path_value($args{'pipeline'});
+        $_resource_path =~ s/$_base_variable/$_base_value/g;
+    }
+
+    my $_body_data;
+    # body params
+    if ( exists $args{'body'}) {
+        $_body_data = $args{'body'};
+    }
+
+    # authentication setting, if any
+    my $auth_settings = [qw(jenkins_auth )];
+
+    # make the API Call
+    my $response = $self->{api_client}->call_api($_resource_path, $_method,
+                                           $query_params, $form_params,
+                                           $header_params, $_body_data, $auth_settings);
+    if (!$response) {
+        return;
+    }
+    my $_response_object = $self->{api_client}->deserialize('FavoriteImpl', $response);
+    return $_response_object;
+}
+
+#
+# put_pipeline_run
+#
+# 
+# 
+# @param string $organization Name of the organization (required)
+# @param string $pipeline Name of the pipeline (required)
+# @param string $run Name of the run (required)
+# @param string $blocking Set to true to make blocking stop, default: false (optional)
+# @param int $time_out_in_secs Timeout in seconds, default: 10 seconds (optional)
+{
+    my $params = {
+    'organization' => {
+        data_type => 'string',
+        description => 'Name of the organization',
+        required => '1',
+    },
+    'pipeline' => {
+        data_type => 'string',
+        description => 'Name of the pipeline',
+        required => '1',
+    },
+    'run' => {
+        data_type => 'string',
+        description => 'Name of the run',
+        required => '1',
+    },
+    'blocking' => {
+        data_type => 'string',
+        description => 'Set to true to make blocking stop, default: false',
+        required => '0',
+    },
+    'time_out_in_secs' => {
+        data_type => 'int',
+        description => 'Timeout in seconds, default: 10 seconds',
+        required => '0',
+    },
+    };
+    __PACKAGE__->method_documentation->{ 'put_pipeline_run' } = { 
+    	summary => '',
+        params => $params,
+        returns => 'PipelineRun',
+        };
+}
+# @return PipelineRun
+#
+sub put_pipeline_run {
+    my ($self, %args) = @_;
+
+    # verify the required parameter 'organization' is set
+    unless (exists $args{'organization'}) {
+      croak("Missing the required parameter 'organization' when calling put_pipeline_run");
+    }
+
+    # verify the required parameter 'pipeline' is set
+    unless (exists $args{'pipeline'}) {
+      croak("Missing the required parameter 'pipeline' when calling put_pipeline_run");
+    }
+
+    # verify the required parameter 'run' is set
+    unless (exists $args{'run'}) {
+      croak("Missing the required parameter 'run' when calling put_pipeline_run");
+    }
+
+    # parse inputs
+    my $_resource_path = '/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/stop';
+
+    my $_method = 'PUT';
+    my $query_params = {};
+    my $header_params = {};
+    my $form_params = {};
+
+    # 'Accept' and 'Content-Type' header
+    my $_header_accept = $self->{api_client}->select_header_accept('application/json');
+    if ($_header_accept) {
+        $header_params->{'Accept'} = $_header_accept;
+    }
+    $header_params->{'Content-Type'} = $self->{api_client}->select_header_content_type();
+
+    # query params
+    if ( exists $args{'blocking'}) {
+        $query_params->{'blocking'} = $self->{api_client}->to_query_value($args{'blocking'});
+    }
+
+    # query params
+    if ( exists $args{'time_out_in_secs'}) {
+        $query_params->{'timeOutInSecs'} = $self->{api_client}->to_query_value($args{'time_out_in_secs'});
+    }
+
+    # path params
+    if ( exists $args{'organization'}) {
+        my $_base_variable = "{" . "organization" . "}";
+        my $_base_value = $self->{api_client}->to_path_value($args{'organization'});
+        $_resource_path =~ s/$_base_variable/$_base_value/g;
+    }
+
+    # path params
+    if ( exists $args{'pipeline'}) {
+        my $_base_variable = "{" . "pipeline" . "}";
+        my $_base_value = $self->{api_client}->to_path_value($args{'pipeline'});
+        $_resource_path =~ s/$_base_variable/$_base_value/g;
+    }
+
+    # path params
+    if ( exists $args{'run'}) {
+        my $_base_variable = "{" . "run" . "}";
+        my $_base_value = $self->{api_client}->to_path_value($args{'run'});
+        $_resource_path =~ s/$_base_variable/$_base_value/g;
+    }
+
+    my $_body_data;
+    # authentication setting, if any
+    my $auth_settings = [qw(jenkins_auth )];
+
+    # make the API Call
+    my $response = $self->{api_client}->call_api($_resource_path, $_method,
+                                           $query_params, $form_params,
+                                           $header_params, $_body_data, $auth_settings);
+    if (!$response) {
+        return;
+    }
+    my $_response_object = $self->{api_client}->deserialize('PipelineRun', $response);
     return $_response_object;
 }
 
@@ -986,12 +3239,12 @@ sub get_users {
 #
 # 
 # 
-# @param string $q Query string containing an array of class names (required)
+# @param string $q Query string (required)
 {
     my $params = {
     'q' => {
         data_type => 'string',
-        description => 'Query string containing an array of class names',
+        description => 'Query string',
         required => '1',
     },
     };
@@ -1009,71 +3262,6 @@ sub search {
     # verify the required parameter 'q' is set
     unless (exists $args{'q'}) {
       croak("Missing the required parameter 'q' when calling search");
-    }
-
-    # parse inputs
-    my $_resource_path = '/blue/rest/classes/';
-
-    my $_method = 'GET';
-    my $query_params = {};
-    my $header_params = {};
-    my $form_params = {};
-
-    # 'Accept' and 'Content-Type' header
-    my $_header_accept = $self->{api_client}->select_header_accept('application/json');
-    if ($_header_accept) {
-        $header_params->{'Accept'} = $_header_accept;
-    }
-    $header_params->{'Content-Type'} = $self->{api_client}->select_header_content_type();
-
-    # query params
-    if ( exists $args{'q'}) {
-        $query_params->{'q'} = $self->{api_client}->to_query_value($args{'q'});
-    }
-
-    my $_body_data;
-    # authentication setting, if any
-    my $auth_settings = [qw()];
-
-    # make the API Call
-    my $response = $self->{api_client}->call_api($_resource_path, $_method,
-                                           $query_params, $form_params,
-                                           $header_params, $_body_data, $auth_settings);
-    if (!$response) {
-        return;
-    }
-    my $_response_object = $self->{api_client}->deserialize('string', $response);
-    return $_response_object;
-}
-
-#
-# search_0
-#
-# 
-# 
-# @param string $q Query string (required)
-{
-    my $params = {
-    'q' => {
-        data_type => 'string',
-        description => 'Query string',
-        required => '1',
-    },
-    };
-    __PACKAGE__->method_documentation->{ 'search_0' } = { 
-    	summary => '',
-        params => $params,
-        returns => 'string',
-        };
-}
-# @return string
-#
-sub search_0 {
-    my ($self, %args) = @_;
-
-    # verify the required parameter 'q' is set
-    unless (exists $args{'q'}) {
-      croak("Missing the required parameter 'q' when calling search_0");
     }
 
     # parse inputs
@@ -1098,7 +3286,72 @@ sub search_0 {
 
     my $_body_data;
     # authentication setting, if any
-    my $auth_settings = [qw()];
+    my $auth_settings = [qw(jenkins_auth )];
+
+    # make the API Call
+    my $response = $self->{api_client}->call_api($_resource_path, $_method,
+                                           $query_params, $form_params,
+                                           $header_params, $_body_data, $auth_settings);
+    if (!$response) {
+        return;
+    }
+    my $_response_object = $self->{api_client}->deserialize('string', $response);
+    return $_response_object;
+}
+
+#
+# search_classes
+#
+# 
+# 
+# @param string $q Query string containing an array of class names (required)
+{
+    my $params = {
+    'q' => {
+        data_type => 'string',
+        description => 'Query string containing an array of class names',
+        required => '1',
+    },
+    };
+    __PACKAGE__->method_documentation->{ 'search_classes' } = { 
+    	summary => '',
+        params => $params,
+        returns => 'string',
+        };
+}
+# @return string
+#
+sub search_classes {
+    my ($self, %args) = @_;
+
+    # verify the required parameter 'q' is set
+    unless (exists $args{'q'}) {
+      croak("Missing the required parameter 'q' when calling search_classes");
+    }
+
+    # parse inputs
+    my $_resource_path = '/blue/rest/classes/';
+
+    my $_method = 'GET';
+    my $query_params = {};
+    my $header_params = {};
+    my $form_params = {};
+
+    # 'Accept' and 'Content-Type' header
+    my $_header_accept = $self->{api_client}->select_header_accept('application/json');
+    if ($_header_accept) {
+        $header_params->{'Accept'} = $_header_accept;
+    }
+    $header_params->{'Content-Type'} = $self->{api_client}->select_header_content_type();
+
+    # query params
+    if ( exists $args{'q'}) {
+        $query_params->{'q'} = $self->{api_client}->to_query_value($args{'q'});
+    }
+
+    my $_body_data;
+    # authentication setting, if any
+    my $auth_settings = [qw(jenkins_auth )];
 
     # make the API Call
     my $response = $self->{api_client}->call_api($_resource_path, $_method,

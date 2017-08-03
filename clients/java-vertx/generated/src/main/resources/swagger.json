@@ -1,0 +1,4505 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "description" : "Jenkins API clients generated from Swagger / Open API specification",
+    "version" : "0.1.0",
+    "title" : "Swaggy Jenkins",
+    "contact" : {
+      "name" : "Cliffano Subagio",
+      "url" : "http://github.com/cliffano/swaggy-jenkins",
+      "email" : "blah@cliffano.com"
+    }
+  },
+  "basePath" : "/",
+  "schemes" : [ "http", "https" ],
+  "paths" : {
+    "/api/json" : {
+      "get" : {
+        "tags" : [ "remoteAccess" ],
+        "description" : "Retrieve Jenkins details",
+        "operationId" : "getJenkins",
+        "produces" : [ "application/json" ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "Successfully retrieved Jenkins details",
+            "schema" : {
+              "$ref" : "#/definitions/Hudson"
+            }
+          },
+          "401" : {
+            "description" : "Authentication failed - incorrect username and/or password"
+          },
+          "403" : {
+            "description" : "Jenkins requires authentication - please set username and password"
+          }
+        },
+        "security" : [ {
+          "jenkins_auth" : [ ]
+        } ],
+        "x-contentType" : "application/json",
+        "x-accepts" : "application/json"
+      },
+      "head" : {
+        "tags" : [ "remoteAccess" ],
+        "description" : "Retrieve Jenkins headers",
+        "operationId" : "headJenkins",
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "Successfully retrieved Jenkins headers",
+            "headers" : {
+              "x-jenkins" : {
+                "type" : "string",
+                "description" : "Jenkins version number"
+              }
+            }
+          },
+          "401" : {
+            "description" : "Authentication failed - incorrect username and/or password"
+          },
+          "403" : {
+            "description" : "Jenkins requires authentication - please set username and password"
+          }
+        },
+        "security" : [ {
+          "jenkins_auth" : [ ]
+        } ],
+        "x-contentType" : "application/json",
+        "x-accepts" : "application/json"
+      }
+    },
+    "/computer/api/json" : {
+      "get" : {
+        "tags" : [ "remoteAccess" ],
+        "description" : "Retrieve computer details",
+        "operationId" : "getComputer",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "depth",
+          "in" : "query",
+          "description" : "Recursion depth in response model",
+          "required" : true,
+          "type" : "integer"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Successfully retrieved computer details",
+            "schema" : {
+              "$ref" : "#/definitions/ComputerSet"
+            }
+          },
+          "401" : {
+            "description" : "Authentication failed - incorrect username and/or password"
+          },
+          "403" : {
+            "description" : "Jenkins requires authentication - please set username and password"
+          }
+        },
+        "security" : [ {
+          "jenkins_auth" : [ ]
+        } ],
+        "x-contentType" : "application/json",
+        "x-accepts" : "application/json"
+      }
+    },
+    "/createItem" : {
+      "post" : {
+        "tags" : [ "remoteAccess" ],
+        "description" : "Create a new job using job configuration, or copied from an existing job",
+        "operationId" : "postCreateItem",
+        "produces" : [ "text/html" ],
+        "parameters" : [ {
+          "name" : "name",
+          "in" : "query",
+          "description" : "Name of the new job",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "from",
+          "in" : "query",
+          "description" : "Existing job to copy from",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "mode",
+          "in" : "query",
+          "description" : "Set to 'copy' for copying an existing job",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "in" : "body",
+          "name" : "body",
+          "description" : "Job configuration in config.xml format",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "Jenkins-Crumb",
+          "in" : "header",
+          "description" : "CSRF protection token",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "Content-Type",
+          "in" : "header",
+          "description" : "Content type header application/xml",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Successfully created a new job"
+          },
+          "400" : {
+            "description" : "An error has occurred - error message is embedded inside the HTML response",
+            "schema" : {
+              "type" : "string"
+            }
+          },
+          "401" : {
+            "description" : "Authentication failed - incorrect username and/or password"
+          },
+          "403" : {
+            "description" : "Jenkins requires authentication - please set username and password"
+          }
+        },
+        "security" : [ {
+          "jenkins_auth" : [ ]
+        } ],
+        "x-contentType" : "application/json",
+        "x-accepts" : "text/html"
+      }
+    },
+    "/createView" : {
+      "post" : {
+        "tags" : [ "remoteAccess" ],
+        "description" : "Create a new view using view configuration",
+        "operationId" : "postCreateView",
+        "produces" : [ "text/html" ],
+        "parameters" : [ {
+          "name" : "name",
+          "in" : "query",
+          "description" : "Name of the new view",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "in" : "body",
+          "name" : "body",
+          "description" : "View configuration in config.xml format",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "Jenkins-Crumb",
+          "in" : "header",
+          "description" : "CSRF protection token",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "Content-Type",
+          "in" : "header",
+          "description" : "Content type header application/xml",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Successfully created the view"
+          },
+          "400" : {
+            "description" : "An error has occurred - error message is embedded inside the HTML response",
+            "schema" : {
+              "type" : "string"
+            }
+          },
+          "401" : {
+            "description" : "Authentication failed - incorrect username and/or password"
+          },
+          "403" : {
+            "description" : "Jenkins requires authentication - please set username and password"
+          }
+        },
+        "security" : [ {
+          "jenkins_auth" : [ ]
+        } ],
+        "x-contentType" : "application/json",
+        "x-accepts" : "text/html"
+      }
+    },
+    "/crumbIssuer/api/json" : {
+      "get" : {
+        "tags" : [ "remoteAccess" ],
+        "description" : "Retrieve CSRF protection token",
+        "operationId" : "getCrumb",
+        "produces" : [ "application/json" ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "Successfully retrieved CSRF protection token",
+            "schema" : {
+              "$ref" : "#/definitions/DefaultCrumbIssuer"
+            }
+          },
+          "401" : {
+            "description" : "Authentication failed - incorrect username and/or password"
+          },
+          "403" : {
+            "description" : "Jenkins requires authentication - please set username and password"
+          }
+        },
+        "security" : [ {
+          "jenkins_auth" : [ ]
+        } ],
+        "x-contentType" : "application/json",
+        "x-accepts" : "application/json"
+      }
+    },
+    "/job/{name}/api/json" : {
+      "get" : {
+        "tags" : [ "remoteAccess" ],
+        "description" : "Retrieve job details",
+        "operationId" : "getJob",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "name",
+          "in" : "path",
+          "description" : "Name of the job",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Successfully retrieved job details",
+            "schema" : {
+              "$ref" : "#/definitions/FreeStyleProject"
+            }
+          },
+          "401" : {
+            "description" : "Authentication failed - incorrect username and/or password"
+          },
+          "403" : {
+            "description" : "Jenkins requires authentication - please set username and password"
+          },
+          "404" : {
+            "description" : "Job cannot be found on Jenkins instance"
+          }
+        },
+        "security" : [ {
+          "jenkins_auth" : [ ]
+        } ],
+        "x-contentType" : "application/json",
+        "x-accepts" : "application/json"
+      }
+    },
+    "/job/{name}/build" : {
+      "post" : {
+        "tags" : [ "remoteAccess" ],
+        "description" : "Build a job",
+        "operationId" : "postJobBuild",
+        "parameters" : [ {
+          "name" : "name",
+          "in" : "path",
+          "description" : "Name of the job",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "json",
+          "in" : "query",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "token",
+          "in" : "query",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "Jenkins-Crumb",
+          "in" : "header",
+          "description" : "CSRF protection token",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Successfully built the job (backward compatibility for older versions of Jenkins)"
+          },
+          "201" : {
+            "description" : "Successfully built the job"
+          },
+          "401" : {
+            "description" : "Authentication failed - incorrect username and/or password"
+          },
+          "403" : {
+            "description" : "Jenkins requires authentication - please set username and password"
+          },
+          "404" : {
+            "description" : "Job cannot be found on Jenkins instance"
+          }
+        },
+        "security" : [ {
+          "jenkins_auth" : [ ]
+        } ],
+        "x-contentType" : "application/json",
+        "x-accepts" : "application/json"
+      }
+    },
+    "/job/{name}/config.xml" : {
+      "get" : {
+        "tags" : [ "remoteAccess" ],
+        "description" : "Retrieve job configuration",
+        "operationId" : "getJobConfig",
+        "produces" : [ "text/xml" ],
+        "parameters" : [ {
+          "name" : "name",
+          "in" : "path",
+          "description" : "Name of the job",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Successfully retrieved job configuration in config.xml format",
+            "schema" : {
+              "type" : "string"
+            }
+          },
+          "401" : {
+            "description" : "Authentication failed - incorrect username and/or password"
+          },
+          "403" : {
+            "description" : "Jenkins requires authentication - please set username and password"
+          },
+          "404" : {
+            "description" : "Job cannot be found on Jenkins instance"
+          }
+        },
+        "security" : [ {
+          "jenkins_auth" : [ ]
+        } ],
+        "x-contentType" : "application/json",
+        "x-accepts" : "text/xml"
+      },
+      "post" : {
+        "tags" : [ "remoteAccess" ],
+        "description" : "Update job configuration",
+        "operationId" : "postJobConfig",
+        "produces" : [ "text/xml" ],
+        "parameters" : [ {
+          "name" : "name",
+          "in" : "path",
+          "description" : "Name of the job",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "in" : "body",
+          "name" : "body",
+          "description" : "Job configuration in config.xml format",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "Jenkins-Crumb",
+          "in" : "header",
+          "description" : "CSRF protection token",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Successfully retrieved job configuration in config.xml format"
+          },
+          "400" : {
+            "description" : "An error has occurred - error message is embedded inside the HTML response",
+            "schema" : {
+              "type" : "string"
+            }
+          },
+          "401" : {
+            "description" : "Authentication failed - incorrect username and/or password"
+          },
+          "403" : {
+            "description" : "Jenkins requires authentication - please set username and password"
+          },
+          "404" : {
+            "description" : "Job cannot be found on Jenkins instance"
+          }
+        },
+        "security" : [ {
+          "jenkins_auth" : [ ]
+        } ],
+        "x-contentType" : "application/json",
+        "x-accepts" : "text/xml"
+      }
+    },
+    "/job/{name}/doDelete" : {
+      "post" : {
+        "tags" : [ "remoteAccess" ],
+        "description" : "Delete a job",
+        "operationId" : "postJobDelete",
+        "parameters" : [ {
+          "name" : "name",
+          "in" : "path",
+          "description" : "Name of the job",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "Jenkins-Crumb",
+          "in" : "header",
+          "description" : "CSRF protection token",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Successfully deleted the job"
+          },
+          "401" : {
+            "description" : "Authentication failed - incorrect username and/or password"
+          },
+          "403" : {
+            "description" : "Jenkins requires authentication - please set username and password"
+          },
+          "404" : {
+            "description" : "Job cannot be found on Jenkins instance"
+          }
+        },
+        "security" : [ {
+          "jenkins_auth" : [ ]
+        } ],
+        "x-contentType" : "application/json",
+        "x-accepts" : "application/json"
+      }
+    },
+    "/job/{name}/disable" : {
+      "post" : {
+        "tags" : [ "remoteAccess" ],
+        "description" : "Disable a job",
+        "operationId" : "postJobDisable",
+        "parameters" : [ {
+          "name" : "name",
+          "in" : "path",
+          "description" : "Name of the job",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "Jenkins-Crumb",
+          "in" : "header",
+          "description" : "CSRF protection token",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Successfully disabled the job"
+          },
+          "401" : {
+            "description" : "Authentication failed - incorrect username and/or password"
+          },
+          "403" : {
+            "description" : "Jenkins requires authentication - please set username and password"
+          },
+          "404" : {
+            "description" : "Job cannot be found on Jenkins instance"
+          }
+        },
+        "security" : [ {
+          "jenkins_auth" : [ ]
+        } ],
+        "x-contentType" : "application/json",
+        "x-accepts" : "application/json"
+      }
+    },
+    "/job/{name}/enable" : {
+      "post" : {
+        "tags" : [ "remoteAccess" ],
+        "description" : "Enable a job",
+        "operationId" : "postJobEnable",
+        "parameters" : [ {
+          "name" : "name",
+          "in" : "path",
+          "description" : "Name of the job",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "Jenkins-Crumb",
+          "in" : "header",
+          "description" : "CSRF protection token",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Successfully enabled the job"
+          },
+          "401" : {
+            "description" : "Authentication failed - incorrect username and/or password"
+          },
+          "403" : {
+            "description" : "Jenkins requires authentication - please set username and password"
+          },
+          "404" : {
+            "description" : "Job cannot be found on Jenkins instance"
+          }
+        },
+        "security" : [ {
+          "jenkins_auth" : [ ]
+        } ],
+        "x-contentType" : "application/json",
+        "x-accepts" : "application/json"
+      }
+    },
+    "/job/{name}/lastBuild/api/json" : {
+      "get" : {
+        "tags" : [ "remoteAccess" ],
+        "description" : "Retrieve job's last build details",
+        "operationId" : "getJobLastBuild",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "name",
+          "in" : "path",
+          "description" : "Name of the job",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Successfully retrieved job's last build details",
+            "schema" : {
+              "$ref" : "#/definitions/FreeStyleBuild"
+            }
+          },
+          "401" : {
+            "description" : "Authentication failed - incorrect username and/or password"
+          },
+          "403" : {
+            "description" : "Jenkins requires authentication - please set username and password"
+          },
+          "404" : {
+            "description" : "Job cannot be found on Jenkins instance"
+          }
+        },
+        "security" : [ {
+          "jenkins_auth" : [ ]
+        } ],
+        "x-contentType" : "application/json",
+        "x-accepts" : "application/json"
+      }
+    },
+    "/job/{name}/lastBuild/stop" : {
+      "post" : {
+        "tags" : [ "remoteAccess" ],
+        "description" : "Stop a job",
+        "operationId" : "postJobLastBuildStop",
+        "parameters" : [ {
+          "name" : "name",
+          "in" : "path",
+          "description" : "Name of the job",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "Jenkins-Crumb",
+          "in" : "header",
+          "description" : "CSRF protection token",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Successfully stopped the job"
+          },
+          "401" : {
+            "description" : "Authentication failed - incorrect username and/or password"
+          },
+          "403" : {
+            "description" : "Jenkins requires authentication - please set username and password"
+          },
+          "404" : {
+            "description" : "Job cannot be found on Jenkins instance"
+          }
+        },
+        "security" : [ {
+          "jenkins_auth" : [ ]
+        } ],
+        "x-contentType" : "application/json",
+        "x-accepts" : "application/json"
+      }
+    },
+    "/job/{name}/{number}/logText/progressiveText" : {
+      "get" : {
+        "tags" : [ "remoteAccess" ],
+        "description" : "Retrieve job's build progressive text output",
+        "operationId" : "getJobProgressiveText",
+        "parameters" : [ {
+          "name" : "name",
+          "in" : "path",
+          "description" : "Name of the job",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "number",
+          "in" : "path",
+          "description" : "Build number",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "start",
+          "in" : "query",
+          "description" : "Starting point of progressive text output",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Successfully retrieved job's build progressive text output"
+          },
+          "401" : {
+            "description" : "Authentication failed - incorrect username and/or password"
+          },
+          "403" : {
+            "description" : "Jenkins requires authentication - please set username and password"
+          },
+          "404" : {
+            "description" : "Job cannot be found on Jenkins instance"
+          }
+        },
+        "security" : [ {
+          "jenkins_auth" : [ ]
+        } ],
+        "x-contentType" : "application/json",
+        "x-accepts" : "application/json"
+      }
+    },
+    "/queue/api/json" : {
+      "get" : {
+        "tags" : [ "remoteAccess" ],
+        "description" : "Retrieve queue details",
+        "operationId" : "getQueue",
+        "produces" : [ "application/json" ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "Successfully retrieved queue details",
+            "schema" : {
+              "$ref" : "#/definitions/Queue"
+            }
+          },
+          "401" : {
+            "description" : "Authentication failed - incorrect username and/or password"
+          },
+          "403" : {
+            "description" : "Jenkins requires authentication - please set username and password"
+          }
+        },
+        "security" : [ {
+          "jenkins_auth" : [ ]
+        } ],
+        "x-contentType" : "application/json",
+        "x-accepts" : "application/json"
+      }
+    },
+    "/queue/item/{number}/api/json" : {
+      "get" : {
+        "tags" : [ "remoteAccess" ],
+        "description" : "Retrieve queued item details",
+        "operationId" : "getQueueItem",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "number",
+          "in" : "path",
+          "description" : "Queue number",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Successfully retrieved queued item details",
+            "schema" : {
+              "$ref" : "#/definitions/Queue"
+            }
+          },
+          "401" : {
+            "description" : "Authentication failed - incorrect username and/or password"
+          },
+          "403" : {
+            "description" : "Jenkins requires authentication - please set username and password"
+          }
+        },
+        "security" : [ {
+          "jenkins_auth" : [ ]
+        } ],
+        "x-contentType" : "application/json",
+        "x-accepts" : "application/json"
+      }
+    },
+    "/view/{name}/api/json" : {
+      "get" : {
+        "tags" : [ "remoteAccess" ],
+        "description" : "Retrieve view details",
+        "operationId" : "getView",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "name",
+          "in" : "path",
+          "description" : "Name of the view",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Successfully retrieved view details",
+            "schema" : {
+              "$ref" : "#/definitions/ListView"
+            }
+          },
+          "401" : {
+            "description" : "Authentication failed - incorrect username and/or password"
+          },
+          "403" : {
+            "description" : "Jenkins requires authentication - please set username and password"
+          },
+          "404" : {
+            "description" : "View cannot be found on Jenkins instance"
+          }
+        },
+        "security" : [ {
+          "jenkins_auth" : [ ]
+        } ],
+        "x-contentType" : "application/json",
+        "x-accepts" : "application/json"
+      }
+    },
+    "/view/{name}/config.xml" : {
+      "get" : {
+        "tags" : [ "remoteAccess" ],
+        "description" : "Retrieve view configuration",
+        "operationId" : "getViewConfig",
+        "produces" : [ "text/xml" ],
+        "parameters" : [ {
+          "name" : "name",
+          "in" : "path",
+          "description" : "Name of the view",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Successfully retrieved view configuration in config.xml format",
+            "schema" : {
+              "type" : "string"
+            }
+          },
+          "401" : {
+            "description" : "Authentication failed - incorrect username and/or password"
+          },
+          "403" : {
+            "description" : "Jenkins requires authentication - please set username and password"
+          },
+          "404" : {
+            "description" : "View cannot be found on Jenkins instance"
+          }
+        },
+        "security" : [ {
+          "jenkins_auth" : [ ]
+        } ],
+        "x-contentType" : "application/json",
+        "x-accepts" : "text/xml"
+      },
+      "post" : {
+        "tags" : [ "remoteAccess" ],
+        "description" : "Update view configuration",
+        "operationId" : "postViewConfig",
+        "parameters" : [ {
+          "name" : "name",
+          "in" : "path",
+          "description" : "Name of the view",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "in" : "body",
+          "name" : "body",
+          "description" : "View configuration in config.xml format",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "Jenkins-Crumb",
+          "in" : "header",
+          "description" : "CSRF protection token",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Successfully updated view configuration"
+          },
+          "400" : {
+            "description" : "An error has occurred - error message is embedded inside the HTML response",
+            "schema" : {
+              "type" : "string"
+            }
+          },
+          "401" : {
+            "description" : "Authentication failed - incorrect username and/or password"
+          },
+          "403" : {
+            "description" : "Jenkins requires authentication - please set username and password"
+          },
+          "404" : {
+            "description" : "View cannot be found on Jenkins instance"
+          }
+        },
+        "security" : [ {
+          "jenkins_auth" : [ ]
+        } ],
+        "x-contentType" : "application/json",
+        "x-accepts" : "application/json"
+      }
+    },
+    "/blue/rest/classes/" : {
+      "get" : {
+        "tags" : [ "blueOcean" ],
+        "description" : "Get classes details",
+        "operationId" : "searchClasses",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "q",
+          "in" : "query",
+          "description" : "Query string containing an array of class names",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Successfully retrieved search result",
+            "schema" : {
+              "type" : "string"
+            }
+          },
+          "401" : {
+            "description" : "Authentication failed - incorrect username and/or password"
+          },
+          "403" : {
+            "description" : "Jenkins requires authentication - please set username and password"
+          }
+        },
+        "security" : [ {
+          "jenkins_auth" : [ ]
+        } ],
+        "x-contentType" : "application/json",
+        "x-accepts" : "application/json"
+      }
+    },
+    "/blue/rest/classes/{class}" : {
+      "get" : {
+        "tags" : [ "blueOcean" ],
+        "description" : "Get a list of class names supported by a given class",
+        "operationId" : "getClasses",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "class",
+          "in" : "path",
+          "description" : "Name of the class",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Successfully retrieved class names",
+            "schema" : {
+              "type" : "string"
+            }
+          },
+          "401" : {
+            "description" : "Authentication failed - incorrect username and/or password"
+          },
+          "403" : {
+            "description" : "Jenkins requires authentication - please set username and password"
+          }
+        },
+        "security" : [ {
+          "jenkins_auth" : [ ]
+        } ],
+        "x-contentType" : "application/json",
+        "x-accepts" : "application/json"
+      }
+    },
+    "/blue/rest/search/" : {
+      "get" : {
+        "tags" : [ "blueOcean" ],
+        "description" : "Search for any resource details",
+        "operationId" : "search",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "q",
+          "in" : "query",
+          "description" : "Query string",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Successfully retrieved search result",
+            "schema" : {
+              "type" : "string"
+            }
+          },
+          "401" : {
+            "description" : "Authentication failed - incorrect username and/or password"
+          },
+          "403" : {
+            "description" : "Jenkins requires authentication - please set username and password"
+          }
+        },
+        "security" : [ {
+          "jenkins_auth" : [ ]
+        } ],
+        "x-contentType" : "application/json",
+        "x-accepts" : "application/json"
+      }
+    },
+    "/blue/rest/organizations/" : {
+      "get" : {
+        "tags" : [ "blueOcean" ],
+        "description" : "Retrieve all organizations details",
+        "operationId" : "getOrganisations",
+        "produces" : [ "application/json" ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "Successfully retrieved pipelines details",
+            "schema" : {
+              "$ref" : "#/definitions/Organisations"
+            }
+          },
+          "401" : {
+            "description" : "Authentication failed - incorrect username and/or password"
+          },
+          "403" : {
+            "description" : "Jenkins requires authentication - please set username and password"
+          }
+        },
+        "security" : [ {
+          "jenkins_auth" : [ ]
+        } ],
+        "x-contentType" : "application/json",
+        "x-accepts" : "application/json"
+      }
+    },
+    "/blue/rest/organizations/{organization}" : {
+      "get" : {
+        "tags" : [ "blueOcean" ],
+        "description" : "Retrieve organization details",
+        "operationId" : "getOrganisation",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "organization",
+          "in" : "path",
+          "description" : "Name of the organization",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Successfully retrieved pipeline details",
+            "schema" : {
+              "$ref" : "#/definitions/Organisation"
+            }
+          },
+          "401" : {
+            "description" : "Authentication failed - incorrect username and/or password"
+          },
+          "403" : {
+            "description" : "Jenkins requires authentication - please set username and password"
+          },
+          "404" : {
+            "description" : "Pipeline cannot be found on Jenkins instance"
+          }
+        },
+        "security" : [ {
+          "jenkins_auth" : [ ]
+        } ],
+        "x-contentType" : "application/json",
+        "x-accepts" : "application/json"
+      }
+    },
+    "/blue/rest/organizations/{organization}/pipelines/" : {
+      "get" : {
+        "tags" : [ "blueOcean" ],
+        "description" : "Retrieve all pipelines details for an organization",
+        "operationId" : "getPipelines",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "organization",
+          "in" : "path",
+          "description" : "Name of the organization",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Successfully retrieved pipelines details",
+            "schema" : {
+              "$ref" : "#/definitions/Pipelines"
+            }
+          },
+          "401" : {
+            "description" : "Authentication failed - incorrect username and/or password"
+          },
+          "403" : {
+            "description" : "Jenkins requires authentication - please set username and password"
+          }
+        },
+        "security" : [ {
+          "jenkins_auth" : [ ]
+        } ],
+        "x-contentType" : "application/json",
+        "x-accepts" : "application/json"
+      }
+    },
+    "/blue/rest/organizations/{organization}/pipelines/{pipeline}" : {
+      "get" : {
+        "tags" : [ "blueOcean" ],
+        "description" : "Retrieve pipeline details for an organization",
+        "operationId" : "getPipeline",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "organization",
+          "in" : "path",
+          "description" : "Name of the organization",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "pipeline",
+          "in" : "path",
+          "description" : "Name of the pipeline",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Successfully retrieved pipeline details",
+            "schema" : {
+              "$ref" : "#/definitions/Pipeline"
+            }
+          },
+          "401" : {
+            "description" : "Authentication failed - incorrect username and/or password"
+          },
+          "403" : {
+            "description" : "Jenkins requires authentication - please set username and password"
+          },
+          "404" : {
+            "description" : "Pipeline cannot be found on Jenkins instance"
+          }
+        },
+        "security" : [ {
+          "jenkins_auth" : [ ]
+        } ],
+        "x-contentType" : "application/json",
+        "x-accepts" : "application/json"
+      }
+    },
+    "/blue/rest/organizations/{organization}/pipelines/{pipeline}/activities" : {
+      "get" : {
+        "tags" : [ "blueOcean" ],
+        "description" : "Retrieve all activities details for an organization pipeline",
+        "operationId" : "getPipelineActivities",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "organization",
+          "in" : "path",
+          "description" : "Name of the organization",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "pipeline",
+          "in" : "path",
+          "description" : "Name of the pipeline",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Successfully retrieved all activities details",
+            "schema" : {
+              "$ref" : "#/definitions/PipelineActivities"
+            }
+          },
+          "401" : {
+            "description" : "Authentication failed - incorrect username and/or password"
+          },
+          "403" : {
+            "description" : "Jenkins requires authentication - please set username and password"
+          }
+        },
+        "security" : [ {
+          "jenkins_auth" : [ ]
+        } ],
+        "x-contentType" : "application/json",
+        "x-accepts" : "application/json"
+      }
+    },
+    "/blue/rest/organizations/{organization}/pipelines/{pipeline}/branches" : {
+      "get" : {
+        "tags" : [ "blueOcean" ],
+        "description" : "Retrieve all branches details for an organization pipeline",
+        "operationId" : "getPipelineBranches",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "organization",
+          "in" : "path",
+          "description" : "Name of the organization",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "pipeline",
+          "in" : "path",
+          "description" : "Name of the pipeline",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Successfully retrieved all branches details",
+            "schema" : {
+              "$ref" : "#/definitions/MultibranchPipeline"
+            }
+          },
+          "401" : {
+            "description" : "Authentication failed - incorrect username and/or password"
+          },
+          "403" : {
+            "description" : "Jenkins requires authentication - please set username and password"
+          }
+        },
+        "security" : [ {
+          "jenkins_auth" : [ ]
+        } ],
+        "x-contentType" : "application/json",
+        "x-accepts" : "application/json"
+      }
+    },
+    "/blue/rest/organizations/{organization}/pipelines/{pipeline}/branches/{branch}/" : {
+      "get" : {
+        "tags" : [ "blueOcean" ],
+        "description" : "Retrieve branch details for an organization pipeline",
+        "operationId" : "getPipelineBranch",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "organization",
+          "in" : "path",
+          "description" : "Name of the organization",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "pipeline",
+          "in" : "path",
+          "description" : "Name of the pipeline",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "branch",
+          "in" : "path",
+          "description" : "Name of the branch",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Successfully retrieved branch details",
+            "schema" : {
+              "$ref" : "#/definitions/BranchImpl"
+            }
+          },
+          "401" : {
+            "description" : "Authentication failed - incorrect username and/or password"
+          },
+          "403" : {
+            "description" : "Jenkins requires authentication - please set username and password"
+          }
+        },
+        "security" : [ {
+          "jenkins_auth" : [ ]
+        } ],
+        "x-contentType" : "application/json",
+        "x-accepts" : "application/json"
+      }
+    },
+    "/blue/rest/organizations/{organization}/pipelines/{pipeline}/branches/{branch}/runs/{run}" : {
+      "get" : {
+        "tags" : [ "blueOcean" ],
+        "description" : "Retrieve branch run details for an organization pipeline",
+        "operationId" : "getPipelineBranchRun",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "organization",
+          "in" : "path",
+          "description" : "Name of the organization",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "pipeline",
+          "in" : "path",
+          "description" : "Name of the pipeline",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "branch",
+          "in" : "path",
+          "description" : "Name of the branch",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "run",
+          "in" : "path",
+          "description" : "Name of the run",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Successfully retrieved run details",
+            "schema" : {
+              "$ref" : "#/definitions/PipelineRun"
+            }
+          },
+          "401" : {
+            "description" : "Authentication failed - incorrect username and/or password"
+          },
+          "403" : {
+            "description" : "Jenkins requires authentication - please set username and password"
+          }
+        },
+        "security" : [ {
+          "jenkins_auth" : [ ]
+        } ],
+        "x-contentType" : "application/json",
+        "x-accepts" : "application/json"
+      }
+    },
+    "/blue/rest/organizations/{organization}/pipelines/{folder}/" : {
+      "get" : {
+        "tags" : [ "blueOcean" ],
+        "description" : "Retrieve pipeline folder for an organization",
+        "operationId" : "getPipelineFolder",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "organization",
+          "in" : "path",
+          "description" : "Name of the organization",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "folder",
+          "in" : "path",
+          "description" : "Name of the folder",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Successfully retrieved folder details",
+            "schema" : {
+              "$ref" : "#/definitions/PipelineFolderImpl"
+            }
+          },
+          "401" : {
+            "description" : "Authentication failed - incorrect username and/or password"
+          },
+          "403" : {
+            "description" : "Jenkins requires authentication - please set username and password"
+          }
+        },
+        "security" : [ {
+          "jenkins_auth" : [ ]
+        } ],
+        "x-contentType" : "application/json",
+        "x-accepts" : "application/json"
+      }
+    },
+    "/blue/rest/organizations/{organization}/pipelines/{folder}/pipelines/{pipeline}" : {
+      "get" : {
+        "tags" : [ "blueOcean" ],
+        "description" : "Retrieve pipeline details for an organization folder",
+        "operationId" : "getPipelineFolderPipeline",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "organization",
+          "in" : "path",
+          "description" : "Name of the organization",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "pipeline",
+          "in" : "path",
+          "description" : "Name of the pipeline",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "folder",
+          "in" : "path",
+          "description" : "Name of the folder",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Successfully retrieved pipeline details",
+            "schema" : {
+              "$ref" : "#/definitions/PipelineImpl"
+            }
+          },
+          "401" : {
+            "description" : "Authentication failed - incorrect username and/or password"
+          },
+          "403" : {
+            "description" : "Jenkins requires authentication - please set username and password"
+          }
+        },
+        "security" : [ {
+          "jenkins_auth" : [ ]
+        } ],
+        "x-contentType" : "application/json",
+        "x-accepts" : "application/json"
+      }
+    },
+    "/blue/rest/organizations/{organization}/pipelines/{pipeline}/favorite" : {
+      "put" : {
+        "tags" : [ "blueOcean" ],
+        "description" : "Favorite/unfavorite a pipeline",
+        "operationId" : "putPipelineFavorite",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "organization",
+          "in" : "path",
+          "description" : "Name of the organization",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "pipeline",
+          "in" : "path",
+          "description" : "Name of the pipeline",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "in" : "body",
+          "name" : "body",
+          "description" : "Set JSON string body to {\"favorite\": true} to favorite, set value to false to unfavorite",
+          "required" : true,
+          "schema" : {
+            "required" : [ "favorite" ],
+            "properties" : {
+              "favorite" : {
+                "type" : "boolean"
+              }
+            }
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Successfully favorited/unfavorited a pipeline",
+            "schema" : {
+              "$ref" : "#/definitions/FavoriteImpl"
+            }
+          },
+          "401" : {
+            "description" : "Authentication failed - incorrect username and/or password"
+          },
+          "403" : {
+            "description" : "Jenkins requires authentication - please set username and password"
+          }
+        },
+        "security" : [ {
+          "jenkins_auth" : [ ]
+        } ],
+        "x-contentType" : "application/json",
+        "x-accepts" : "application/json"
+      }
+    },
+    "/blue/rest/organizations/{organization}/pipelines/{pipeline}/queue" : {
+      "get" : {
+        "tags" : [ "blueOcean" ],
+        "description" : "Retrieve queue details for an organization pipeline",
+        "operationId" : "getPipelineQueue",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "organization",
+          "in" : "path",
+          "description" : "Name of the organization",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "pipeline",
+          "in" : "path",
+          "description" : "Name of the pipeline",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Successfully retrieved queue details",
+            "schema" : {
+              "$ref" : "#/definitions/PipelineQueue"
+            }
+          },
+          "401" : {
+            "description" : "Authentication failed - incorrect username and/or password"
+          },
+          "403" : {
+            "description" : "Jenkins requires authentication - please set username and password"
+          }
+        },
+        "security" : [ {
+          "jenkins_auth" : [ ]
+        } ],
+        "x-contentType" : "application/json",
+        "x-accepts" : "application/json"
+      }
+    },
+    "/blue/rest/organizations/{organization}/pipelines/{pipeline}/queue/{queue}" : {
+      "delete" : {
+        "tags" : [ "blueOcean" ],
+        "description" : "Delete queue item from an organization pipeline queue",
+        "operationId" : "deletePipelineQueueItem",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "organization",
+          "in" : "path",
+          "description" : "Name of the organization",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "pipeline",
+          "in" : "path",
+          "description" : "Name of the pipeline",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "queue",
+          "in" : "path",
+          "description" : "Name of the queue item",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Successfully deleted queue item"
+          },
+          "401" : {
+            "description" : "Authentication failed - incorrect username and/or password"
+          },
+          "403" : {
+            "description" : "Jenkins requires authentication - please set username and password"
+          }
+        },
+        "security" : [ {
+          "jenkins_auth" : [ ]
+        } ],
+        "x-contentType" : "application/json",
+        "x-accepts" : "application/json"
+      }
+    },
+    "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs" : {
+      "get" : {
+        "tags" : [ "blueOcean" ],
+        "description" : "Retrieve all runs details for an organization pipeline",
+        "operationId" : "getPipelineRuns",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "organization",
+          "in" : "path",
+          "description" : "Name of the organization",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "pipeline",
+          "in" : "path",
+          "description" : "Name of the pipeline",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Successfully retrieved runs details",
+            "schema" : {
+              "$ref" : "#/definitions/PipelineRuns"
+            }
+          },
+          "401" : {
+            "description" : "Authentication failed - incorrect username and/or password"
+          },
+          "403" : {
+            "description" : "Jenkins requires authentication - please set username and password"
+          }
+        },
+        "security" : [ {
+          "jenkins_auth" : [ ]
+        } ],
+        "x-contentType" : "application/json",
+        "x-accepts" : "application/json"
+      },
+      "post" : {
+        "tags" : [ "blueOcean" ],
+        "description" : "Start a build for an organization pipeline",
+        "operationId" : "postPipelineRuns",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "organization",
+          "in" : "path",
+          "description" : "Name of the organization",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "pipeline",
+          "in" : "path",
+          "description" : "Name of the pipeline",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Successfully started a build",
+            "schema" : {
+              "$ref" : "#/definitions/QueueItemImpl"
+            }
+          },
+          "401" : {
+            "description" : "Authentication failed - incorrect username and/or password"
+          },
+          "403" : {
+            "description" : "Jenkins requires authentication - please set username and password"
+          }
+        },
+        "security" : [ {
+          "jenkins_auth" : [ ]
+        } ],
+        "x-contentType" : "application/json",
+        "x-accepts" : "application/json"
+      }
+    },
+    "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}" : {
+      "get" : {
+        "tags" : [ "blueOcean" ],
+        "description" : "Retrieve run details for an organization pipeline",
+        "operationId" : "getPipelineRun",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "organization",
+          "in" : "path",
+          "description" : "Name of the organization",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "pipeline",
+          "in" : "path",
+          "description" : "Name of the pipeline",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "run",
+          "in" : "path",
+          "description" : "Name of the run",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Successfully retrieved run details",
+            "schema" : {
+              "$ref" : "#/definitions/PipelineRun"
+            }
+          },
+          "401" : {
+            "description" : "Authentication failed - incorrect username and/or password"
+          },
+          "403" : {
+            "description" : "Jenkins requires authentication - please set username and password"
+          }
+        },
+        "security" : [ {
+          "jenkins_auth" : [ ]
+        } ],
+        "x-contentType" : "application/json",
+        "x-accepts" : "application/json"
+      }
+    },
+    "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes" : {
+      "get" : {
+        "tags" : [ "blueOcean" ],
+        "description" : "Retrieve run nodes details for an organization pipeline",
+        "operationId" : "getPipelineRunNodes",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "organization",
+          "in" : "path",
+          "description" : "Name of the organization",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "pipeline",
+          "in" : "path",
+          "description" : "Name of the pipeline",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "run",
+          "in" : "path",
+          "description" : "Name of the run",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Successfully retrieved run nodes details",
+            "schema" : {
+              "$ref" : "#/definitions/PipelineRunNodes"
+            }
+          },
+          "401" : {
+            "description" : "Authentication failed - incorrect username and/or password"
+          },
+          "403" : {
+            "description" : "Jenkins requires authentication - please set username and password"
+          }
+        },
+        "security" : [ {
+          "jenkins_auth" : [ ]
+        } ],
+        "x-contentType" : "application/json",
+        "x-accepts" : "application/json"
+      }
+    },
+    "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}" : {
+      "get" : {
+        "tags" : [ "blueOcean" ],
+        "description" : "Retrieve run node details for an organization pipeline",
+        "operationId" : "getPipelineRunNode",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "organization",
+          "in" : "path",
+          "description" : "Name of the organization",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "pipeline",
+          "in" : "path",
+          "description" : "Name of the pipeline",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "run",
+          "in" : "path",
+          "description" : "Name of the run",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "node",
+          "in" : "path",
+          "description" : "Name of the node",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Successfully retrieved run node details",
+            "schema" : {
+              "$ref" : "#/definitions/PipelineRunNode"
+            }
+          },
+          "401" : {
+            "description" : "Authentication failed - incorrect username and/or password"
+          },
+          "403" : {
+            "description" : "Jenkins requires authentication - please set username and password"
+          }
+        },
+        "security" : [ {
+          "jenkins_auth" : [ ]
+        } ],
+        "x-contentType" : "application/json",
+        "x-accepts" : "application/json"
+      }
+    },
+    "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps" : {
+      "get" : {
+        "tags" : [ "blueOcean" ],
+        "description" : "Retrieve run node steps details for an organization pipeline",
+        "operationId" : "getPipelineRunNodeSteps",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "organization",
+          "in" : "path",
+          "description" : "Name of the organization",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "pipeline",
+          "in" : "path",
+          "description" : "Name of the pipeline",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "run",
+          "in" : "path",
+          "description" : "Name of the run",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "node",
+          "in" : "path",
+          "description" : "Name of the node",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Successfully retrieved run node steps details",
+            "schema" : {
+              "$ref" : "#/definitions/PipelineRunNodeSteps"
+            }
+          },
+          "401" : {
+            "description" : "Authentication failed - incorrect username and/or password"
+          },
+          "403" : {
+            "description" : "Jenkins requires authentication - please set username and password"
+          }
+        },
+        "security" : [ {
+          "jenkins_auth" : [ ]
+        } ],
+        "x-contentType" : "application/json",
+        "x-accepts" : "application/json"
+      }
+    },
+    "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps/{step}" : {
+      "get" : {
+        "tags" : [ "blueOcean" ],
+        "description" : "Retrieve run node details for an organization pipeline",
+        "operationId" : "getPipelineRunNodeStep",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "organization",
+          "in" : "path",
+          "description" : "Name of the organization",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "pipeline",
+          "in" : "path",
+          "description" : "Name of the pipeline",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "run",
+          "in" : "path",
+          "description" : "Name of the run",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "node",
+          "in" : "path",
+          "description" : "Name of the node",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "step",
+          "in" : "path",
+          "description" : "Name of the step",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Successfully retrieved run node step details",
+            "schema" : {
+              "$ref" : "#/definitions/PipelineStepImpl"
+            }
+          },
+          "401" : {
+            "description" : "Authentication failed - incorrect username and/or password"
+          },
+          "403" : {
+            "description" : "Jenkins requires authentication - please set username and password"
+          }
+        },
+        "security" : [ {
+          "jenkins_auth" : [ ]
+        } ],
+        "x-contentType" : "application/json",
+        "x-accepts" : "application/json"
+      }
+    },
+    "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps/{step}/log" : {
+      "get" : {
+        "tags" : [ "blueOcean" ],
+        "description" : "Get log for a pipeline run node step",
+        "operationId" : "getPipelineRunNodeStepLog",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "organization",
+          "in" : "path",
+          "description" : "Name of the organization",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "pipeline",
+          "in" : "path",
+          "description" : "Name of the pipeline",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "run",
+          "in" : "path",
+          "description" : "Name of the run",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "node",
+          "in" : "path",
+          "description" : "Name of the node",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "step",
+          "in" : "path",
+          "description" : "Name of the step",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Successfully retrieved pipeline run node step log",
+            "schema" : {
+              "type" : "string"
+            }
+          },
+          "401" : {
+            "description" : "Authentication failed - incorrect username and/or password"
+          },
+          "403" : {
+            "description" : "Jenkins requires authentication - please set username and password"
+          }
+        },
+        "security" : [ {
+          "jenkins_auth" : [ ]
+        } ],
+        "x-contentType" : "application/json",
+        "x-accepts" : "application/json"
+      }
+    },
+    "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/log" : {
+      "get" : {
+        "tags" : [ "blueOcean" ],
+        "description" : "Get log for a pipeline run",
+        "operationId" : "getPipelineRunLog",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "organization",
+          "in" : "path",
+          "description" : "Name of the organization",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "pipeline",
+          "in" : "path",
+          "description" : "Name of the pipeline",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "run",
+          "in" : "path",
+          "description" : "Name of the run",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "start",
+          "in" : "query",
+          "description" : "Start position of the log",
+          "required" : false,
+          "type" : "integer"
+        }, {
+          "name" : "download",
+          "in" : "query",
+          "description" : "Set to true in order to download the file, otherwise it's passed as a response body",
+          "required" : false,
+          "type" : "boolean"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Successfully retrieved pipeline run log",
+            "schema" : {
+              "type" : "string"
+            }
+          },
+          "401" : {
+            "description" : "Authentication failed - incorrect username and/or password"
+          },
+          "403" : {
+            "description" : "Jenkins requires authentication - please set username and password"
+          }
+        },
+        "security" : [ {
+          "jenkins_auth" : [ ]
+        } ],
+        "x-contentType" : "application/json",
+        "x-accepts" : "application/json"
+      }
+    },
+    "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/replay" : {
+      "post" : {
+        "tags" : [ "blueOcean" ],
+        "description" : "Replay an organization pipeline run",
+        "operationId" : "postPipelineRun",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "organization",
+          "in" : "path",
+          "description" : "Name of the organization",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "pipeline",
+          "in" : "path",
+          "description" : "Name of the pipeline",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "run",
+          "in" : "path",
+          "description" : "Name of the run",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Successfully replayed a pipeline run",
+            "schema" : {
+              "$ref" : "#/definitions/QueueItemImpl"
+            }
+          },
+          "401" : {
+            "description" : "Authentication failed - incorrect username and/or password"
+          },
+          "403" : {
+            "description" : "Jenkins requires authentication - please set username and password"
+          }
+        },
+        "security" : [ {
+          "jenkins_auth" : [ ]
+        } ],
+        "x-contentType" : "application/json",
+        "x-accepts" : "application/json"
+      }
+    },
+    "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/stop" : {
+      "put" : {
+        "tags" : [ "blueOcean" ],
+        "description" : "Stop a build of an organization pipeline",
+        "operationId" : "putPipelineRun",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "organization",
+          "in" : "path",
+          "description" : "Name of the organization",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "pipeline",
+          "in" : "path",
+          "description" : "Name of the pipeline",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "run",
+          "in" : "path",
+          "description" : "Name of the run",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "blocking",
+          "in" : "query",
+          "description" : "Set to true to make blocking stop, default: false",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "timeOutInSecs",
+          "in" : "query",
+          "description" : "Timeout in seconds, default: 10 seconds",
+          "required" : false,
+          "type" : "integer"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Successfully stopped a build",
+            "schema" : {
+              "$ref" : "#/definitions/PipelineRun"
+            }
+          },
+          "401" : {
+            "description" : "Authentication failed - incorrect username and/or password"
+          },
+          "403" : {
+            "description" : "Jenkins requires authentication - please set username and password"
+          }
+        },
+        "security" : [ {
+          "jenkins_auth" : [ ]
+        } ],
+        "x-contentType" : "application/json",
+        "x-accepts" : "application/json"
+      }
+    },
+    "/blue/rest/organizations/{organization}/scm/{scm}" : {
+      "get" : {
+        "tags" : [ "blueOcean" ],
+        "description" : "Retrieve SCM details for an organization",
+        "operationId" : "getSCM",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "organization",
+          "in" : "path",
+          "description" : "Name of the organization",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "scm",
+          "in" : "path",
+          "description" : "Name of SCM",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Successfully retrieved SCM details",
+            "schema" : {
+              "$ref" : "#/definitions/GithubScm"
+            }
+          },
+          "401" : {
+            "description" : "Authentication failed - incorrect username and/or password"
+          },
+          "403" : {
+            "description" : "Jenkins requires authentication - please set username and password"
+          }
+        },
+        "security" : [ {
+          "jenkins_auth" : [ ]
+        } ],
+        "x-contentType" : "application/json",
+        "x-accepts" : "application/json"
+      }
+    },
+    "/blue/rest/organizations/{organization}/scm/{scm}/organizations" : {
+      "get" : {
+        "tags" : [ "blueOcean" ],
+        "description" : "Retrieve SCM organizations details for an organization",
+        "operationId" : "getSCMOrganisations",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "organization",
+          "in" : "path",
+          "description" : "Name of the organization",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "scm",
+          "in" : "path",
+          "description" : "Name of SCM",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "credentialId",
+          "in" : "query",
+          "description" : "Credential ID",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Successfully retrieved SCM organizations details",
+            "schema" : {
+              "$ref" : "#/definitions/ScmOrganisations"
+            }
+          },
+          "401" : {
+            "description" : "Authentication failed - incorrect username and/or password"
+          },
+          "403" : {
+            "description" : "Jenkins requires authentication - please set username and password"
+          }
+        },
+        "security" : [ {
+          "jenkins_auth" : [ ]
+        } ],
+        "x-contentType" : "application/json",
+        "x-accepts" : "application/json"
+      }
+    },
+    "/blue/rest/organizations/{organization}/scm/{scm}/organizations/{scmOrganisation}/repositories" : {
+      "get" : {
+        "tags" : [ "blueOcean" ],
+        "description" : "Retrieve SCM organization repositories details for an organization",
+        "operationId" : "getSCMOrganisationRepositories",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "organization",
+          "in" : "path",
+          "description" : "Name of the organization",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "scm",
+          "in" : "path",
+          "description" : "Name of SCM",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "scmOrganisation",
+          "in" : "path",
+          "description" : "Name of the SCM organization",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "credentialId",
+          "in" : "query",
+          "description" : "Credential ID",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "pageSize",
+          "in" : "query",
+          "description" : "Number of items in a page",
+          "required" : false,
+          "type" : "integer"
+        }, {
+          "name" : "pageNumber",
+          "in" : "query",
+          "description" : "Page number",
+          "required" : false,
+          "type" : "integer"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Successfully retrieved SCM organization repositories details",
+            "schema" : {
+              "$ref" : "#/definitions/ScmOrganisations"
+            }
+          },
+          "401" : {
+            "description" : "Authentication failed - incorrect username and/or password"
+          },
+          "403" : {
+            "description" : "Jenkins requires authentication - please set username and password"
+          }
+        },
+        "security" : [ {
+          "jenkins_auth" : [ ]
+        } ],
+        "x-contentType" : "application/json",
+        "x-accepts" : "application/json"
+      }
+    },
+    "/blue/rest/organizations/{organization}/scm/{scm}/organizations/{scmOrganisation}/repositories/{repository}" : {
+      "get" : {
+        "tags" : [ "blueOcean" ],
+        "description" : "Retrieve SCM organization repository details for an organization",
+        "operationId" : "getSCMOrganisationRepository",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "organization",
+          "in" : "path",
+          "description" : "Name of the organization",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "scm",
+          "in" : "path",
+          "description" : "Name of SCM",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "scmOrganisation",
+          "in" : "path",
+          "description" : "Name of the SCM organization",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "repository",
+          "in" : "path",
+          "description" : "Name of the SCM repository",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "credentialId",
+          "in" : "query",
+          "description" : "Credential ID",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Successfully retrieved SCM organizations details",
+            "schema" : {
+              "$ref" : "#/definitions/ScmOrganisations"
+            }
+          },
+          "401" : {
+            "description" : "Authentication failed - incorrect username and/or password"
+          },
+          "403" : {
+            "description" : "Jenkins requires authentication - please set username and password"
+          }
+        },
+        "security" : [ {
+          "jenkins_auth" : [ ]
+        } ],
+        "x-contentType" : "application/json",
+        "x-accepts" : "application/json"
+      }
+    },
+    "/blue/rest/organizations/{organization}/user/" : {
+      "get" : {
+        "tags" : [ "blueOcean" ],
+        "description" : "Retrieve authenticated user details for an organization",
+        "operationId" : "getAuthenticatedUser",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "organization",
+          "in" : "path",
+          "description" : "Name of the organization",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Successfully retrieved authenticated user details",
+            "schema" : {
+              "$ref" : "#/definitions/User"
+            }
+          },
+          "401" : {
+            "description" : "Authentication failed - incorrect username and/or password"
+          },
+          "403" : {
+            "description" : "Jenkins requires authentication - please set username and password"
+          }
+        },
+        "security" : [ {
+          "jenkins_auth" : [ ]
+        } ],
+        "x-contentType" : "application/json",
+        "x-accepts" : "application/json"
+      }
+    },
+    "/blue/rest/organizations/{organization}/users/" : {
+      "get" : {
+        "tags" : [ "blueOcean" ],
+        "description" : "Retrieve users details for an organization",
+        "operationId" : "getUsers",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "organization",
+          "in" : "path",
+          "description" : "Name of the organization",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Successfully retrieved users details",
+            "schema" : {
+              "$ref" : "#/definitions/User"
+            }
+          },
+          "401" : {
+            "description" : "Authentication failed - incorrect username and/or password"
+          },
+          "403" : {
+            "description" : "Jenkins requires authentication - please set username and password"
+          }
+        },
+        "security" : [ {
+          "jenkins_auth" : [ ]
+        } ],
+        "x-contentType" : "application/json",
+        "x-accepts" : "application/json"
+      }
+    },
+    "/blue/rest/organizations/{organization}/users/{user}" : {
+      "get" : {
+        "tags" : [ "blueOcean" ],
+        "description" : "Retrieve user details for an organization",
+        "operationId" : "getUser",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "organization",
+          "in" : "path",
+          "description" : "Name of the organization",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "user",
+          "in" : "path",
+          "description" : "Name of the user",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Successfully retrieved users details",
+            "schema" : {
+              "$ref" : "#/definitions/User"
+            }
+          },
+          "401" : {
+            "description" : "Authentication failed - incorrect username and/or password"
+          },
+          "403" : {
+            "description" : "Jenkins requires authentication - please set username and password"
+          }
+        },
+        "security" : [ {
+          "jenkins_auth" : [ ]
+        } ],
+        "x-contentType" : "application/json",
+        "x-accepts" : "application/json"
+      }
+    },
+    "/blue/rest/users/{user}/favorites" : {
+      "get" : {
+        "tags" : [ "blueOcean" ],
+        "description" : "Retrieve user favorites details for an organization",
+        "operationId" : "getUserFavorites",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "user",
+          "in" : "path",
+          "description" : "Name of the user",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Successfully retrieved users favorites details",
+            "schema" : {
+              "$ref" : "#/definitions/UserFavorites"
+            }
+          },
+          "401" : {
+            "description" : "Authentication failed - incorrect username and/or password"
+          },
+          "403" : {
+            "description" : "Jenkins requires authentication - please set username and password"
+          }
+        },
+        "security" : [ {
+          "jenkins_auth" : [ ]
+        } ],
+        "x-contentType" : "application/json",
+        "x-accepts" : "application/json"
+      }
+    }
+  },
+  "securityDefinitions" : {
+    "jenkins_auth" : {
+      "type" : "basic"
+    }
+  },
+  "definitions" : {
+    "FreeStyleBuild" : {
+      "type" : "object",
+      "properties" : {
+        "_class" : {
+          "type" : "string"
+        },
+        "number" : {
+          "type" : "integer"
+        },
+        "url" : {
+          "type" : "string"
+        },
+        "actions" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/CauseAction"
+          }
+        },
+        "building" : {
+          "type" : "boolean"
+        },
+        "description" : {
+          "type" : "string"
+        },
+        "displayName" : {
+          "type" : "string"
+        },
+        "duration" : {
+          "type" : "integer"
+        },
+        "estimatedDuration" : {
+          "type" : "integer"
+        },
+        "executor" : {
+          "type" : "string"
+        },
+        "fullDisplayName" : {
+          "type" : "string"
+        },
+        "id" : {
+          "type" : "string"
+        },
+        "keepLog" : {
+          "type" : "boolean"
+        },
+        "queueId" : {
+          "type" : "integer"
+        },
+        "result" : {
+          "type" : "string"
+        },
+        "timestamp" : {
+          "type" : "integer"
+        },
+        "builtOn" : {
+          "type" : "string"
+        },
+        "changeSet" : {
+          "$ref" : "#/definitions/EmptyChangeLogSet"
+        }
+      }
+    },
+    "HudsonMasterComputerexecutors" : {
+      "type" : "object",
+      "properties" : {
+        "currentExecutable" : {
+          "$ref" : "#/definitions/FreeStyleBuild"
+        },
+        "idle" : {
+          "type" : "boolean"
+        },
+        "likelyStuck" : {
+          "type" : "boolean"
+        },
+        "number" : {
+          "type" : "integer"
+        },
+        "progress" : {
+          "type" : "integer"
+        },
+        "_class" : {
+          "type" : "string"
+        }
+      }
+    },
+    "Label1" : {
+      "type" : "object",
+      "properties" : {
+        "_class" : {
+          "type" : "string"
+        }
+      }
+    },
+    "SwapSpaceMonitorMemoryUsage2" : {
+      "type" : "object",
+      "properties" : {
+        "_class" : {
+          "type" : "string"
+        },
+        "availablePhysicalMemory" : {
+          "type" : "integer"
+        },
+        "availableSwapSpace" : {
+          "type" : "integer"
+        },
+        "totalPhysicalMemory" : {
+          "type" : "integer"
+        },
+        "totalSwapSpace" : {
+          "type" : "integer"
+        }
+      }
+    },
+    "DiskSpaceMonitorDescriptorDiskSpace" : {
+      "type" : "object",
+      "properties" : {
+        "_class" : {
+          "type" : "string"
+        },
+        "timestamp" : {
+          "type" : "integer"
+        },
+        "path" : {
+          "type" : "string"
+        },
+        "size" : {
+          "type" : "integer"
+        }
+      }
+    },
+    "ResponseTimeMonitorData" : {
+      "type" : "object",
+      "properties" : {
+        "_class" : {
+          "type" : "string"
+        },
+        "timestamp" : {
+          "type" : "integer"
+        },
+        "average" : {
+          "type" : "integer"
+        }
+      }
+    },
+    "ClockDifference" : {
+      "type" : "object",
+      "properties" : {
+        "_class" : {
+          "type" : "string"
+        },
+        "diff" : {
+          "type" : "integer"
+        }
+      }
+    },
+    "HudsonMasterComputermonitorData" : {
+      "type" : "object",
+      "properties" : {
+        "hudson.node_monitors.SwapSpaceMonitor" : {
+          "$ref" : "#/definitions/SwapSpaceMonitorMemoryUsage2"
+        },
+        "hudson.node_monitors.TemporarySpaceMonitor" : {
+          "$ref" : "#/definitions/DiskSpaceMonitorDescriptorDiskSpace"
+        },
+        "hudson.node_monitors.DiskSpaceMonitor" : {
+          "$ref" : "#/definitions/DiskSpaceMonitorDescriptorDiskSpace"
+        },
+        "hudson.node_monitors.ArchitectureMonitor" : {
+          "type" : "string"
+        },
+        "hudson.node_monitors.ResponseTimeMonitor" : {
+          "$ref" : "#/definitions/ResponseTimeMonitorData"
+        },
+        "hudson.node_monitors.ClockMonitor" : {
+          "$ref" : "#/definitions/ClockDifference"
+        },
+        "_class" : {
+          "type" : "string"
+        }
+      }
+    },
+    "HudsonMasterComputer" : {
+      "type" : "object",
+      "properties" : {
+        "_class" : {
+          "type" : "string"
+        },
+        "displayName" : {
+          "type" : "string"
+        },
+        "executors" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/HudsonMasterComputerexecutors"
+          }
+        },
+        "icon" : {
+          "type" : "string"
+        },
+        "iconClassName" : {
+          "type" : "string"
+        },
+        "idle" : {
+          "type" : "boolean"
+        },
+        "jnlpAgent" : {
+          "type" : "boolean"
+        },
+        "launchSupported" : {
+          "type" : "boolean"
+        },
+        "loadStatistics" : {
+          "$ref" : "#/definitions/Label1"
+        },
+        "manualLaunchAllowed" : {
+          "type" : "boolean"
+        },
+        "monitorData" : {
+          "$ref" : "#/definitions/HudsonMasterComputermonitorData"
+        },
+        "numExecutors" : {
+          "type" : "integer"
+        },
+        "offline" : {
+          "type" : "boolean"
+        },
+        "offlineCause" : {
+          "type" : "string"
+        },
+        "offlineCauseReason" : {
+          "type" : "string"
+        },
+        "temporarilyOffline" : {
+          "type" : "boolean"
+        }
+      }
+    },
+    "ComputerSet" : {
+      "type" : "object",
+      "properties" : {
+        "_class" : {
+          "type" : "string"
+        },
+        "busyExecutors" : {
+          "type" : "integer"
+        },
+        "computer" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/HudsonMasterComputer"
+          }
+        },
+        "displayName" : {
+          "type" : "string"
+        },
+        "totalExecutors" : {
+          "type" : "integer"
+        }
+      }
+    },
+    "DefaultCrumbIssuer" : {
+      "type" : "object",
+      "properties" : {
+        "_class" : {
+          "type" : "string"
+        },
+        "crumb" : {
+          "type" : "string"
+        },
+        "crumbRequestField" : {
+          "type" : "string"
+        }
+      }
+    },
+    "HudsonassignedLabels" : {
+      "type" : "object",
+      "properties" : {
+        "_class" : {
+          "type" : "string"
+        }
+      }
+    },
+    "FreeStyleProject" : {
+      "type" : "object",
+      "properties" : {
+        "_class" : {
+          "type" : "string"
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "url" : {
+          "type" : "string"
+        },
+        "color" : {
+          "type" : "string"
+        },
+        "actions" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/FreeStyleProjectactions"
+          }
+        },
+        "description" : {
+          "type" : "string"
+        },
+        "displayName" : {
+          "type" : "string"
+        },
+        "displayNameOrNull" : {
+          "type" : "string"
+        },
+        "fullDisplayName" : {
+          "type" : "string"
+        },
+        "fullName" : {
+          "type" : "string"
+        },
+        "buildable" : {
+          "type" : "boolean"
+        },
+        "builds" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/FreeStyleBuild"
+          }
+        },
+        "firstBuild" : {
+          "$ref" : "#/definitions/FreeStyleBuild"
+        },
+        "healthReport" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/FreeStyleProjecthealthReport"
+          }
+        },
+        "inQueue" : {
+          "type" : "boolean"
+        },
+        "keepDependencies" : {
+          "type" : "boolean"
+        },
+        "lastBuild" : {
+          "$ref" : "#/definitions/FreeStyleBuild"
+        },
+        "lastCompletedBuild" : {
+          "$ref" : "#/definitions/FreeStyleBuild"
+        },
+        "lastFailedBuild" : {
+          "type" : "string"
+        },
+        "lastStableBuild" : {
+          "$ref" : "#/definitions/FreeStyleBuild"
+        },
+        "lastSuccessfulBuild" : {
+          "$ref" : "#/definitions/FreeStyleBuild"
+        },
+        "lastUnstableBuild" : {
+          "type" : "string"
+        },
+        "lastUnsuccessfulBuild" : {
+          "type" : "string"
+        },
+        "nextBuildNumber" : {
+          "type" : "integer"
+        },
+        "queueItem" : {
+          "type" : "string"
+        },
+        "concurrentBuild" : {
+          "type" : "boolean"
+        },
+        "scm" : {
+          "$ref" : "#/definitions/NullSCM"
+        }
+      }
+    },
+    "AllView" : {
+      "type" : "object",
+      "properties" : {
+        "_class" : {
+          "type" : "string"
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "url" : {
+          "type" : "string"
+        }
+      }
+    },
+    "UnlabeledLoadStatistics" : {
+      "type" : "object",
+      "properties" : {
+        "_class" : {
+          "type" : "string"
+        }
+      }
+    },
+    "Hudson" : {
+      "type" : "object",
+      "properties" : {
+        "_class" : {
+          "type" : "string"
+        },
+        "assignedLabels" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/HudsonassignedLabels"
+          }
+        },
+        "mode" : {
+          "type" : "string"
+        },
+        "nodeDescription" : {
+          "type" : "string"
+        },
+        "nodeName" : {
+          "type" : "string"
+        },
+        "numExecutors" : {
+          "type" : "integer"
+        },
+        "description" : {
+          "type" : "string"
+        },
+        "jobs" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/FreeStyleProject"
+          }
+        },
+        "primaryView" : {
+          "$ref" : "#/definitions/AllView"
+        },
+        "quietingDown" : {
+          "type" : "boolean"
+        },
+        "slaveAgentPort" : {
+          "type" : "integer"
+        },
+        "unlabeledLoad" : {
+          "$ref" : "#/definitions/UnlabeledLoadStatistics"
+        },
+        "useCrumbs" : {
+          "type" : "boolean"
+        },
+        "useSecurity" : {
+          "type" : "boolean"
+        },
+        "views" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/AllView"
+          }
+        }
+      }
+    },
+    "FreeStyleProjectactions" : {
+      "type" : "object",
+      "properties" : {
+        "_class" : {
+          "type" : "string"
+        }
+      }
+    },
+    "FreeStyleProjecthealthReport" : {
+      "type" : "object",
+      "properties" : {
+        "description" : {
+          "type" : "string"
+        },
+        "iconClassName" : {
+          "type" : "string"
+        },
+        "iconUrl" : {
+          "type" : "string"
+        },
+        "score" : {
+          "type" : "integer"
+        },
+        "_class" : {
+          "type" : "string"
+        }
+      }
+    },
+    "NullSCM" : {
+      "type" : "object",
+      "properties" : {
+        "_class" : {
+          "type" : "string"
+        }
+      }
+    },
+    "CauseUserIdCause" : {
+      "type" : "object",
+      "properties" : {
+        "_class" : {
+          "type" : "string"
+        },
+        "shortDescription" : {
+          "type" : "string"
+        },
+        "userId" : {
+          "type" : "string"
+        },
+        "userName" : {
+          "type" : "string"
+        }
+      }
+    },
+    "CauseAction" : {
+      "type" : "object",
+      "properties" : {
+        "_class" : {
+          "type" : "string"
+        },
+        "causes" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/CauseUserIdCause"
+          }
+        }
+      }
+    },
+    "EmptyChangeLogSet" : {
+      "type" : "object",
+      "properties" : {
+        "_class" : {
+          "type" : "string"
+        },
+        "kind" : {
+          "type" : "string"
+        }
+      }
+    },
+    "QueueBlockedItem" : {
+      "type" : "object",
+      "properties" : {
+        "_class" : {
+          "type" : "string"
+        },
+        "actions" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/CauseAction"
+          }
+        },
+        "blocked" : {
+          "type" : "boolean"
+        },
+        "buildable" : {
+          "type" : "boolean"
+        },
+        "id" : {
+          "type" : "integer"
+        },
+        "inQueueSince" : {
+          "type" : "integer"
+        },
+        "params" : {
+          "type" : "string"
+        },
+        "stuck" : {
+          "type" : "boolean"
+        },
+        "task" : {
+          "$ref" : "#/definitions/FreeStyleProject"
+        },
+        "url" : {
+          "type" : "string"
+        },
+        "why" : {
+          "type" : "string"
+        },
+        "buildableStartMilliseconds" : {
+          "type" : "integer"
+        }
+      }
+    },
+    "Queue" : {
+      "type" : "object",
+      "properties" : {
+        "_class" : {
+          "type" : "string"
+        },
+        "items" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/QueueBlockedItem"
+          }
+        }
+      }
+    },
+    "QueueLeftItem" : {
+      "type" : "object",
+      "properties" : {
+        "_class" : {
+          "type" : "string"
+        },
+        "actions" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/CauseAction"
+          }
+        },
+        "blocked" : {
+          "type" : "boolean"
+        },
+        "buildable" : {
+          "type" : "boolean"
+        },
+        "id" : {
+          "type" : "integer"
+        },
+        "inQueueSince" : {
+          "type" : "integer"
+        },
+        "params" : {
+          "type" : "string"
+        },
+        "stuck" : {
+          "type" : "boolean"
+        },
+        "task" : {
+          "$ref" : "#/definitions/FreeStyleProject"
+        },
+        "url" : {
+          "type" : "string"
+        },
+        "why" : {
+          "type" : "string"
+        },
+        "cancelled" : {
+          "type" : "boolean"
+        },
+        "executable" : {
+          "$ref" : "#/definitions/FreeStyleBuild"
+        }
+      }
+    },
+    "ListView" : {
+      "type" : "object",
+      "properties" : {
+        "_class" : {
+          "type" : "string"
+        },
+        "description" : {
+          "type" : "string"
+        },
+        "jobs" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/FreeStyleProject"
+          }
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "url" : {
+          "type" : "string"
+        }
+      }
+    },
+    "Link" : {
+      "type" : "object",
+      "properties" : {
+        "_class" : {
+          "type" : "string"
+        },
+        "href" : {
+          "type" : "string"
+        }
+      }
+    },
+    "ExtensionClassContainerImpl1links" : {
+      "type" : "object",
+      "properties" : {
+        "self" : {
+          "$ref" : "#/definitions/Link"
+        },
+        "_class" : {
+          "type" : "string"
+        }
+      }
+    },
+    "ExtensionClassImpllinks" : {
+      "type" : "object",
+      "properties" : {
+        "self" : {
+          "$ref" : "#/definitions/Link"
+        },
+        "_class" : {
+          "type" : "string"
+        }
+      }
+    },
+    "ExtensionClassImpl" : {
+      "type" : "object",
+      "properties" : {
+        "_class" : {
+          "type" : "string"
+        },
+        "_links" : {
+          "$ref" : "#/definitions/ExtensionClassImpllinks"
+        },
+        "classes" : {
+          "type" : "array",
+          "items" : {
+            "type" : "string"
+          }
+        }
+      }
+    },
+    "ExtensionClassContainerImpl1map" : {
+      "type" : "object",
+      "properties" : {
+        "io.jenkins.blueocean.service.embedded.rest.PipelineImpl" : {
+          "$ref" : "#/definitions/ExtensionClassImpl"
+        },
+        "io.jenkins.blueocean.service.embedded.rest.MultiBranchPipelineImpl" : {
+          "$ref" : "#/definitions/ExtensionClassImpl"
+        },
+        "_class" : {
+          "type" : "string"
+        }
+      }
+    },
+    "ExtensionClassContainerImpl1" : {
+      "type" : "object",
+      "properties" : {
+        "_class" : {
+          "type" : "string"
+        },
+        "_links" : {
+          "$ref" : "#/definitions/ExtensionClassContainerImpl1links"
+        },
+        "map" : {
+          "$ref" : "#/definitions/ExtensionClassContainerImpl1map"
+        }
+      }
+    },
+    "ClassesByClass" : {
+      "type" : "object",
+      "properties" : {
+        "classes" : {
+          "type" : "array",
+          "items" : {
+            "type" : "string"
+          }
+        },
+        "_class" : {
+          "type" : "string"
+        }
+      }
+    },
+    "MultibranchPipeline" : {
+      "type" : "object",
+      "properties" : {
+        "displayName" : {
+          "type" : "string"
+        },
+        "estimatedDurationInMillis" : {
+          "type" : "integer"
+        },
+        "latestRun" : {
+          "type" : "string"
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "organization" : {
+          "type" : "string"
+        },
+        "weatherScore" : {
+          "type" : "integer"
+        },
+        "branchNames" : {
+          "type" : "array",
+          "items" : {
+            "type" : "string"
+          }
+        },
+        "numberOfFailingBranches" : {
+          "type" : "integer"
+        },
+        "numberOfFailingPullRequests" : {
+          "type" : "integer"
+        },
+        "numberOfSuccessfulBranches" : {
+          "type" : "integer"
+        },
+        "numberOfSuccessfulPullRequests" : {
+          "type" : "integer"
+        },
+        "totalNumberOfBranches" : {
+          "type" : "integer"
+        },
+        "totalNumberOfPullRequests" : {
+          "type" : "integer"
+        },
+        "_class" : {
+          "type" : "string"
+        }
+      }
+    },
+    "PipelineImpl" : {
+      "type" : "object",
+      "properties" : {
+        "_class" : {
+          "type" : "string"
+        },
+        "displayName" : {
+          "type" : "string"
+        },
+        "estimatedDurationInMillis" : {
+          "type" : "integer"
+        },
+        "fullName" : {
+          "type" : "string"
+        },
+        "latestRun" : {
+          "type" : "string"
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "organization" : {
+          "type" : "string"
+        },
+        "weatherScore" : {
+          "type" : "integer"
+        },
+        "_links" : {
+          "$ref" : "#/definitions/PipelineImpllinks"
+        }
+      }
+    },
+    "Organisation" : {
+      "type" : "object",
+      "properties" : {
+        "_class" : {
+          "type" : "string"
+        },
+        "name" : {
+          "type" : "string"
+        }
+      }
+    },
+    "Organisations" : {
+      "type" : "array",
+      "items" : {
+        "$ref" : "#/definitions/Organisation"
+      }
+    },
+    "PipelinelatestRunartifacts" : {
+      "type" : "object",
+      "properties" : {
+        "name" : {
+          "type" : "string"
+        },
+        "size" : {
+          "type" : "integer"
+        },
+        "url" : {
+          "type" : "string"
+        },
+        "_class" : {
+          "type" : "string"
+        }
+      }
+    },
+    "PipelinelatestRun" : {
+      "type" : "object",
+      "properties" : {
+        "artifacts" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/PipelinelatestRunartifacts"
+          }
+        },
+        "durationInMillis" : {
+          "type" : "integer"
+        },
+        "estimatedDurationInMillis" : {
+          "type" : "integer"
+        },
+        "enQueueTime" : {
+          "type" : "string"
+        },
+        "endTime" : {
+          "type" : "string"
+        },
+        "id" : {
+          "type" : "string"
+        },
+        "organization" : {
+          "type" : "string"
+        },
+        "pipeline" : {
+          "type" : "string"
+        },
+        "result" : {
+          "type" : "string"
+        },
+        "runSummary" : {
+          "type" : "string"
+        },
+        "startTime" : {
+          "type" : "string"
+        },
+        "state" : {
+          "type" : "string"
+        },
+        "type" : {
+          "type" : "string"
+        },
+        "commitId" : {
+          "type" : "string"
+        },
+        "_class" : {
+          "type" : "string"
+        }
+      }
+    },
+    "Pipeline" : {
+      "type" : "object",
+      "properties" : {
+        "_class" : {
+          "type" : "string"
+        },
+        "organization" : {
+          "type" : "string"
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "displayName" : {
+          "type" : "string"
+        },
+        "fullName" : {
+          "type" : "string"
+        },
+        "weatherScore" : {
+          "type" : "integer"
+        },
+        "estimatedDurationInMillis" : {
+          "type" : "integer"
+        },
+        "latestRun" : {
+          "$ref" : "#/definitions/PipelinelatestRun"
+        }
+      }
+    },
+    "PipelineActivityartifacts" : {
+      "type" : "object",
+      "properties" : {
+        "name" : {
+          "type" : "string"
+        },
+        "size" : {
+          "type" : "integer"
+        },
+        "url" : {
+          "type" : "string"
+        },
+        "_class" : {
+          "type" : "string"
+        }
+      }
+    },
+    "PipelineActivity" : {
+      "type" : "object",
+      "properties" : {
+        "_class" : {
+          "type" : "string"
+        },
+        "artifacts" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/PipelineActivityartifacts"
+          }
+        },
+        "durationInMillis" : {
+          "type" : "integer"
+        },
+        "estimatedDurationInMillis" : {
+          "type" : "integer"
+        },
+        "enQueueTime" : {
+          "type" : "string"
+        },
+        "endTime" : {
+          "type" : "string"
+        },
+        "id" : {
+          "type" : "string"
+        },
+        "organization" : {
+          "type" : "string"
+        },
+        "pipeline" : {
+          "type" : "string"
+        },
+        "result" : {
+          "type" : "string"
+        },
+        "runSummary" : {
+          "type" : "string"
+        },
+        "startTime" : {
+          "type" : "string"
+        },
+        "state" : {
+          "type" : "string"
+        },
+        "type" : {
+          "type" : "string"
+        },
+        "commitId" : {
+          "type" : "string"
+        }
+      }
+    },
+    "PipelineActivities" : {
+      "type" : "array",
+      "items" : {
+        "$ref" : "#/definitions/PipelineActivity"
+      }
+    },
+    "StringParameterValue" : {
+      "type" : "object",
+      "properties" : {
+        "_class" : {
+          "type" : "string"
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "value" : {
+          "type" : "string"
+        }
+      }
+    },
+    "StringParameterDefinition" : {
+      "type" : "object",
+      "properties" : {
+        "_class" : {
+          "type" : "string"
+        },
+        "defaultParameterValue" : {
+          "$ref" : "#/definitions/StringParameterValue"
+        },
+        "description" : {
+          "type" : "string"
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "type" : {
+          "type" : "string"
+        }
+      }
+    },
+    "BranchImplpermissions" : {
+      "type" : "object",
+      "properties" : {
+        "create" : {
+          "type" : "boolean"
+        },
+        "read" : {
+          "type" : "boolean"
+        },
+        "start" : {
+          "type" : "boolean"
+        },
+        "stop" : {
+          "type" : "boolean"
+        },
+        "_class" : {
+          "type" : "string"
+        }
+      }
+    },
+    "BranchImpl" : {
+      "type" : "object",
+      "properties" : {
+        "_class" : {
+          "type" : "string"
+        },
+        "displayName" : {
+          "type" : "string"
+        },
+        "estimatedDurationInMillis" : {
+          "type" : "integer"
+        },
+        "fullDisplayName" : {
+          "type" : "string"
+        },
+        "fullName" : {
+          "type" : "string"
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "organization" : {
+          "type" : "string"
+        },
+        "parameters" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/StringParameterDefinition"
+          }
+        },
+        "permissions" : {
+          "$ref" : "#/definitions/BranchImplpermissions"
+        },
+        "weatherScore" : {
+          "type" : "integer"
+        },
+        "pullRequest" : {
+          "type" : "string"
+        },
+        "_links" : {
+          "$ref" : "#/definitions/BranchImpllinks"
+        },
+        "latestRun" : {
+          "$ref" : "#/definitions/PipelineRunImpl"
+        }
+      }
+    },
+    "PipelineBranchesitemlatestRun" : {
+      "type" : "object",
+      "properties" : {
+        "durationInMillis" : {
+          "type" : "integer"
+        },
+        "estimatedDurationInMillis" : {
+          "type" : "integer"
+        },
+        "enQueueTime" : {
+          "type" : "string"
+        },
+        "endTime" : {
+          "type" : "string"
+        },
+        "id" : {
+          "type" : "string"
+        },
+        "organization" : {
+          "type" : "string"
+        },
+        "pipeline" : {
+          "type" : "string"
+        },
+        "result" : {
+          "type" : "string"
+        },
+        "runSummary" : {
+          "type" : "string"
+        },
+        "startTime" : {
+          "type" : "string"
+        },
+        "state" : {
+          "type" : "string"
+        },
+        "type" : {
+          "type" : "string"
+        },
+        "commitId" : {
+          "type" : "string"
+        },
+        "_class" : {
+          "type" : "string"
+        }
+      }
+    },
+    "PipelineBranchesitempullRequestlinks" : {
+      "type" : "object",
+      "properties" : {
+        "self" : {
+          "type" : "string"
+        },
+        "_class" : {
+          "type" : "string"
+        }
+      }
+    },
+    "PipelineBranchesitempullRequest" : {
+      "type" : "object",
+      "properties" : {
+        "_links" : {
+          "$ref" : "#/definitions/PipelineBranchesitempullRequestlinks"
+        },
+        "author" : {
+          "type" : "string"
+        },
+        "id" : {
+          "type" : "string"
+        },
+        "title" : {
+          "type" : "string"
+        },
+        "url" : {
+          "type" : "string"
+        },
+        "_class" : {
+          "type" : "string"
+        }
+      }
+    },
+    "PipelineBranchesitem" : {
+      "type" : "object",
+      "properties" : {
+        "displayName" : {
+          "type" : "string"
+        },
+        "estimatedDurationInMillis" : {
+          "type" : "integer"
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "weatherScore" : {
+          "type" : "integer"
+        },
+        "latestRun" : {
+          "$ref" : "#/definitions/PipelineBranchesitemlatestRun"
+        },
+        "organization" : {
+          "type" : "string"
+        },
+        "pullRequest" : {
+          "$ref" : "#/definitions/PipelineBranchesitempullRequest"
+        },
+        "totalNumberOfPullRequests" : {
+          "type" : "integer"
+        },
+        "_class" : {
+          "type" : "string"
+        }
+      }
+    },
+    "PipelineBranches" : {
+      "type" : "array",
+      "items" : {
+        "$ref" : "#/definitions/PipelineBranchesitem"
+      }
+    },
+    "FavoriteImpllinks" : {
+      "type" : "object",
+      "properties" : {
+        "self" : {
+          "$ref" : "#/definitions/Link"
+        },
+        "_class" : {
+          "type" : "string"
+        }
+      }
+    },
+    "PipelineImpllinks" : {
+      "type" : "object",
+      "properties" : {
+        "runs" : {
+          "$ref" : "#/definitions/Link"
+        },
+        "self" : {
+          "$ref" : "#/definitions/Link"
+        },
+        "queue" : {
+          "$ref" : "#/definitions/Link"
+        },
+        "actions" : {
+          "$ref" : "#/definitions/Link"
+        },
+        "_class" : {
+          "type" : "string"
+        }
+      }
+    },
+    "FavoriteImpl" : {
+      "type" : "object",
+      "properties" : {
+        "_class" : {
+          "type" : "string"
+        },
+        "_links" : {
+          "$ref" : "#/definitions/FavoriteImpllinks"
+        },
+        "item" : {
+          "$ref" : "#/definitions/PipelineImpl"
+        }
+      }
+    },
+    "PipelineFolderImpl" : {
+      "type" : "object",
+      "properties" : {
+        "_class" : {
+          "type" : "string"
+        },
+        "displayName" : {
+          "type" : "string"
+        },
+        "fullName" : {
+          "type" : "string"
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "organization" : {
+          "type" : "string"
+        },
+        "numberOfFolders" : {
+          "type" : "integer"
+        },
+        "numberOfPipelines" : {
+          "type" : "integer"
+        }
+      }
+    },
+    "QueueItemImpl" : {
+      "type" : "object",
+      "properties" : {
+        "_class" : {
+          "type" : "string"
+        },
+        "expectedBuildNumber" : {
+          "type" : "integer"
+        },
+        "id" : {
+          "type" : "string"
+        },
+        "pipeline" : {
+          "type" : "string"
+        },
+        "queuedTime" : {
+          "type" : "integer"
+        }
+      }
+    },
+    "PipelineQueue" : {
+      "type" : "array",
+      "items" : {
+        "$ref" : "#/definitions/QueueItemImpl"
+      }
+    },
+    "PipelineRunartifacts" : {
+      "type" : "object",
+      "properties" : {
+        "name" : {
+          "type" : "string"
+        },
+        "size" : {
+          "type" : "integer"
+        },
+        "url" : {
+          "type" : "string"
+        },
+        "_class" : {
+          "type" : "string"
+        }
+      }
+    },
+    "PipelineRun" : {
+      "type" : "object",
+      "properties" : {
+        "_class" : {
+          "type" : "string"
+        },
+        "artifacts" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/PipelineRunartifacts"
+          }
+        },
+        "durationInMillis" : {
+          "type" : "integer"
+        },
+        "estimatedDurationInMillis" : {
+          "type" : "integer"
+        },
+        "enQueueTime" : {
+          "type" : "string"
+        },
+        "endTime" : {
+          "type" : "string"
+        },
+        "id" : {
+          "type" : "string"
+        },
+        "organization" : {
+          "type" : "string"
+        },
+        "pipeline" : {
+          "type" : "string"
+        },
+        "result" : {
+          "type" : "string"
+        },
+        "runSummary" : {
+          "type" : "string"
+        },
+        "startTime" : {
+          "type" : "string"
+        },
+        "state" : {
+          "type" : "string"
+        },
+        "type" : {
+          "type" : "string"
+        },
+        "commitId" : {
+          "type" : "string"
+        }
+      }
+    },
+    "PipelineStepImpllinks" : {
+      "type" : "object",
+      "properties" : {
+        "self" : {
+          "$ref" : "#/definitions/Link"
+        },
+        "actions" : {
+          "$ref" : "#/definitions/Link"
+        },
+        "_class" : {
+          "type" : "string"
+        }
+      }
+    },
+    "InputStepImpllinks" : {
+      "type" : "object",
+      "properties" : {
+        "self" : {
+          "$ref" : "#/definitions/Link"
+        },
+        "_class" : {
+          "type" : "string"
+        }
+      }
+    },
+    "InputStepImpl" : {
+      "type" : "object",
+      "properties" : {
+        "_class" : {
+          "type" : "string"
+        },
+        "_links" : {
+          "$ref" : "#/definitions/InputStepImpllinks"
+        },
+        "id" : {
+          "type" : "string"
+        },
+        "message" : {
+          "type" : "string"
+        },
+        "ok" : {
+          "type" : "string"
+        },
+        "parameters" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/StringParameterDefinition"
+          }
+        },
+        "submitter" : {
+          "type" : "string"
+        }
+      }
+    },
+    "PipelineStepImpl" : {
+      "type" : "object",
+      "properties" : {
+        "_class" : {
+          "type" : "string"
+        },
+        "_links" : {
+          "$ref" : "#/definitions/PipelineStepImpllinks"
+        },
+        "displayName" : {
+          "type" : "string"
+        },
+        "durationInMillis" : {
+          "type" : "integer"
+        },
+        "id" : {
+          "type" : "string"
+        },
+        "input" : {
+          "$ref" : "#/definitions/InputStepImpl"
+        },
+        "result" : {
+          "type" : "string"
+        },
+        "startTime" : {
+          "type" : "string"
+        },
+        "state" : {
+          "type" : "string"
+        }
+      }
+    },
+    "PipelineRunNodeSteps" : {
+      "type" : "array",
+      "items" : {
+        "$ref" : "#/definitions/PipelineStepImpl"
+      }
+    },
+    "PipelineRunNodeedges" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "string"
+        },
+        "_class" : {
+          "type" : "string"
+        }
+      }
+    },
+    "PipelineRunNode" : {
+      "type" : "object",
+      "properties" : {
+        "_class" : {
+          "type" : "string"
+        },
+        "displayName" : {
+          "type" : "string"
+        },
+        "durationInMillis" : {
+          "type" : "integer"
+        },
+        "edges" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/PipelineRunNodeedges"
+          }
+        },
+        "id" : {
+          "type" : "string"
+        },
+        "result" : {
+          "type" : "string"
+        },
+        "startTime" : {
+          "type" : "string"
+        },
+        "state" : {
+          "type" : "string"
+        }
+      }
+    },
+    "PipelineRunNodes" : {
+      "type" : "array",
+      "items" : {
+        "$ref" : "#/definitions/PipelineRunNode"
+      }
+    },
+    "GenericResource" : {
+      "type" : "object",
+      "properties" : {
+        "_class" : {
+          "type" : "string"
+        },
+        "displayName" : {
+          "type" : "string"
+        },
+        "durationInMillis" : {
+          "type" : "integer"
+        },
+        "id" : {
+          "type" : "string"
+        },
+        "result" : {
+          "type" : "string"
+        },
+        "startTime" : {
+          "type" : "string"
+        }
+      }
+    },
+    "PipelineRunSteps" : {
+      "type" : "array",
+      "items" : {
+        "$ref" : "#/definitions/GenericResource"
+      }
+    },
+    "PipelineRuns" : {
+      "type" : "array",
+      "items" : {
+        "$ref" : "#/definitions/PipelineRun"
+      }
+    },
+    "Pipelines" : {
+      "type" : "array",
+      "items" : {
+        "$ref" : "#/definitions/Pipeline"
+      }
+    },
+    "GithubScmlinks" : {
+      "type" : "object",
+      "properties" : {
+        "self" : {
+          "$ref" : "#/definitions/Link"
+        },
+        "_class" : {
+          "type" : "string"
+        }
+      }
+    },
+    "GithubScm" : {
+      "type" : "object",
+      "properties" : {
+        "_class" : {
+          "type" : "string"
+        },
+        "_links" : {
+          "$ref" : "#/definitions/GithubScmlinks"
+        },
+        "credentialId" : {
+          "type" : "string"
+        },
+        "id" : {
+          "type" : "string"
+        },
+        "uri" : {
+          "type" : "string"
+        }
+      }
+    },
+    "GithubContent" : {
+      "type" : "object",
+      "properties" : {
+        "name" : {
+          "type" : "string"
+        },
+        "sha" : {
+          "type" : "string"
+        },
+        "_class" : {
+          "type" : "string"
+        },
+        "repo" : {
+          "type" : "string"
+        },
+        "size" : {
+          "type" : "integer"
+        },
+        "owner" : {
+          "type" : "string"
+        },
+        "path" : {
+          "type" : "string"
+        },
+        "base64Data" : {
+          "type" : "string"
+        }
+      }
+    },
+    "GithubFile" : {
+      "type" : "object",
+      "properties" : {
+        "content" : {
+          "$ref" : "#/definitions/GithubContent"
+        },
+        "_class" : {
+          "type" : "string"
+        }
+      }
+    },
+    "GithubRespositoryContainerlinks" : {
+      "type" : "object",
+      "properties" : {
+        "self" : {
+          "$ref" : "#/definitions/Link"
+        },
+        "_class" : {
+          "type" : "string"
+        }
+      }
+    },
+    "GithubRepositorieslinks" : {
+      "type" : "object",
+      "properties" : {
+        "self" : {
+          "$ref" : "#/definitions/Link"
+        },
+        "_class" : {
+          "type" : "string"
+        }
+      }
+    },
+    "GithubRepositorylinks" : {
+      "type" : "object",
+      "properties" : {
+        "self" : {
+          "$ref" : "#/definitions/Link"
+        },
+        "_class" : {
+          "type" : "string"
+        }
+      }
+    },
+    "GithubRepositorypermissions" : {
+      "type" : "object",
+      "properties" : {
+        "admin" : {
+          "type" : "boolean"
+        },
+        "push" : {
+          "type" : "boolean"
+        },
+        "pull" : {
+          "type" : "boolean"
+        },
+        "_class" : {
+          "type" : "string"
+        }
+      }
+    },
+    "GithubRepository" : {
+      "type" : "object",
+      "properties" : {
+        "_class" : {
+          "type" : "string"
+        },
+        "_links" : {
+          "$ref" : "#/definitions/GithubRepositorylinks"
+        },
+        "defaultBranch" : {
+          "type" : "string"
+        },
+        "description" : {
+          "type" : "string"
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "permissions" : {
+          "$ref" : "#/definitions/GithubRepositorypermissions"
+        },
+        "private" : {
+          "type" : "boolean"
+        },
+        "fullName" : {
+          "type" : "string"
+        }
+      }
+    },
+    "GithubRepositories" : {
+      "type" : "object",
+      "properties" : {
+        "_class" : {
+          "type" : "string"
+        },
+        "_links" : {
+          "$ref" : "#/definitions/GithubRepositorieslinks"
+        },
+        "items" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/GithubRepository"
+          }
+        },
+        "lastPage" : {
+          "type" : "integer"
+        },
+        "nextPage" : {
+          "type" : "integer"
+        },
+        "pageSize" : {
+          "type" : "integer"
+        }
+      }
+    },
+    "GithubRespositoryContainer" : {
+      "type" : "object",
+      "properties" : {
+        "_class" : {
+          "type" : "string"
+        },
+        "_links" : {
+          "$ref" : "#/definitions/GithubRespositoryContainerlinks"
+        },
+        "repositories" : {
+          "$ref" : "#/definitions/GithubRepositories"
+        }
+      }
+    },
+    "GithubOrganizationlinks" : {
+      "type" : "object",
+      "properties" : {
+        "repositories" : {
+          "$ref" : "#/definitions/Link"
+        },
+        "self" : {
+          "$ref" : "#/definitions/Link"
+        },
+        "_class" : {
+          "type" : "string"
+        }
+      }
+    },
+    "GithubOrganization" : {
+      "type" : "object",
+      "properties" : {
+        "_class" : {
+          "type" : "string"
+        },
+        "_links" : {
+          "$ref" : "#/definitions/GithubOrganizationlinks"
+        },
+        "jenkinsOrganizationPipeline" : {
+          "type" : "boolean"
+        },
+        "name" : {
+          "type" : "string"
+        }
+      }
+    },
+    "ScmOrganisations" : {
+      "type" : "array",
+      "items" : {
+        "$ref" : "#/definitions/GithubOrganization"
+      }
+    },
+    "User" : {
+      "type" : "object",
+      "properties" : {
+        "_class" : {
+          "type" : "string"
+        },
+        "id" : {
+          "type" : "string"
+        },
+        "fullName" : {
+          "type" : "string"
+        },
+        "email" : {
+          "type" : "string"
+        },
+        "name" : {
+          "type" : "string"
+        }
+      }
+    },
+    "BranchImpllinks" : {
+      "type" : "object",
+      "properties" : {
+        "self" : {
+          "$ref" : "#/definitions/Link"
+        },
+        "actions" : {
+          "$ref" : "#/definitions/Link"
+        },
+        "runs" : {
+          "$ref" : "#/definitions/Link"
+        },
+        "queue" : {
+          "$ref" : "#/definitions/Link"
+        },
+        "_class" : {
+          "type" : "string"
+        }
+      }
+    },
+    "PipelineRunImpllinks" : {
+      "type" : "object",
+      "properties" : {
+        "nodes" : {
+          "$ref" : "#/definitions/Link"
+        },
+        "log" : {
+          "$ref" : "#/definitions/Link"
+        },
+        "self" : {
+          "$ref" : "#/definitions/Link"
+        },
+        "actions" : {
+          "$ref" : "#/definitions/Link"
+        },
+        "steps" : {
+          "$ref" : "#/definitions/Link"
+        },
+        "_class" : {
+          "type" : "string"
+        }
+      }
+    },
+    "PipelineRunImpl" : {
+      "type" : "object",
+      "properties" : {
+        "_class" : {
+          "type" : "string"
+        },
+        "_links" : {
+          "$ref" : "#/definitions/PipelineRunImpllinks"
+        },
+        "durationInMillis" : {
+          "type" : "integer"
+        },
+        "enQueueTime" : {
+          "type" : "string"
+        },
+        "endTime" : {
+          "type" : "string"
+        },
+        "estimatedDurationInMillis" : {
+          "type" : "integer"
+        },
+        "id" : {
+          "type" : "string"
+        },
+        "organization" : {
+          "type" : "string"
+        },
+        "pipeline" : {
+          "type" : "string"
+        },
+        "result" : {
+          "type" : "string"
+        },
+        "runSummary" : {
+          "type" : "string"
+        },
+        "startTime" : {
+          "type" : "string"
+        },
+        "state" : {
+          "type" : "string"
+        },
+        "type" : {
+          "type" : "string"
+        },
+        "commitId" : {
+          "type" : "string"
+        }
+      }
+    },
+    "UserFavorites" : {
+      "type" : "array",
+      "items" : {
+        "$ref" : "#/definitions/FavoriteImpl"
+      }
+    },
+    "Users" : {
+      "type" : "array",
+      "items" : {
+        "$ref" : "#/definitions/User"
+      }
+    }
+  },
+  "parameters" : {
+    "jobName" : {
+      "name" : "name",
+      "in" : "path",
+      "description" : "Name of the job",
+      "required" : true,
+      "type" : "string"
+    },
+    "viewName" : {
+      "name" : "name",
+      "in" : "path",
+      "description" : "Name of the view",
+      "required" : true,
+      "type" : "string"
+    },
+    "crumb" : {
+      "name" : "Jenkins-Crumb",
+      "in" : "header",
+      "description" : "CSRF protection token",
+      "required" : false,
+      "type" : "string"
+    },
+    "orgName" : {
+      "name" : "organization",
+      "in" : "path",
+      "description" : "Name of the organization",
+      "required" : true,
+      "type" : "string"
+    },
+    "pipelineName" : {
+      "name" : "pipeline",
+      "in" : "path",
+      "description" : "Name of the pipeline",
+      "required" : true,
+      "type" : "string"
+    },
+    "branchName" : {
+      "name" : "branch",
+      "in" : "path",
+      "description" : "Name of the branch",
+      "required" : true,
+      "type" : "string"
+    },
+    "queueItemName" : {
+      "name" : "queue",
+      "in" : "path",
+      "description" : "Name of the queue item",
+      "required" : true,
+      "type" : "string"
+    },
+    "runName" : {
+      "name" : "run",
+      "in" : "path",
+      "description" : "Name of the run",
+      "required" : true,
+      "type" : "string"
+    },
+    "nodeName" : {
+      "name" : "node",
+      "in" : "path",
+      "description" : "Name of the node",
+      "required" : true,
+      "type" : "string"
+    },
+    "stepName" : {
+      "name" : "step",
+      "in" : "path",
+      "description" : "Name of the step",
+      "required" : true,
+      "type" : "string"
+    },
+    "scmName" : {
+      "name" : "scm",
+      "in" : "path",
+      "description" : "Name of SCM",
+      "required" : true,
+      "type" : "string"
+    },
+    "scmOrgName" : {
+      "name" : "scmOrganisation",
+      "in" : "path",
+      "description" : "Name of the SCM organization",
+      "required" : true,
+      "type" : "string"
+    },
+    "repositoryName" : {
+      "name" : "repository",
+      "in" : "path",
+      "description" : "Name of the SCM repository",
+      "required" : true,
+      "type" : "string"
+    },
+    "className" : {
+      "name" : "class",
+      "in" : "path",
+      "description" : "Name of the class",
+      "required" : true,
+      "type" : "string"
+    },
+    "folderName" : {
+      "name" : "folder",
+      "in" : "path",
+      "description" : "Name of the folder",
+      "required" : true,
+      "type" : "string"
+    },
+    "userName" : {
+      "name" : "user",
+      "in" : "path",
+      "description" : "Name of the user",
+      "required" : true,
+      "type" : "string"
+    }
+  },
+  "responses" : {
+    "errorInHtml" : {
+      "description" : "An error has occurred - error message is embedded inside the HTML response",
+      "schema" : {
+        "type" : "string"
+      }
+    },
+    "forbidden" : {
+      "description" : "Jenkins requires authentication - please set username and password"
+    },
+    "jobNotFound" : {
+      "description" : "Job cannot be found on Jenkins instance"
+    },
+    "pipelineNotFound" : {
+      "description" : "Pipeline cannot be found on Jenkins instance"
+    },
+    "unauthorized" : {
+      "description" : "Authentication failed - incorrect username and/or password"
+    },
+    "viewNotFound" : {
+      "description" : "View cannot be found on Jenkins instance"
+    }
+  }
+}

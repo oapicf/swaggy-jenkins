@@ -4,7 +4,7 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**GetComputer**](RemoteAccessApi.md#getcomputer) | **GET** /computer/api/json?depth&#x3D;1 | 
+[**GetComputer**](RemoteAccessApi.md#getcomputer) | **GET** /computer/api/json | 
 [**GetCrumb**](RemoteAccessApi.md#getcrumb) | **GET** /crumbIssuer/api/json | 
 [**GetJenkins**](RemoteAccessApi.md#getjenkins) | **GET** /api/json | 
 [**GetJob**](RemoteAccessApi.md#getjob) | **GET** /job/{name}/api/json | 
@@ -29,7 +29,7 @@ Method | HTTP request | Description
 
 <a name="getcomputer"></a>
 # **GetComputer**
-> HudsonmodelComputerSet GetComputer ()
+> ComputerSet GetComputer (int? depth)
 
 
 
@@ -50,11 +50,16 @@ namespace Example
         public void main()
         {
             
+            // Configure HTTP basic authorization: jenkins_auth
+            Configuration.Default.Username = "YOUR_USERNAME";
+            Configuration.Default.Password = "YOUR_PASSWORD";
+
             var apiInstance = new RemoteAccessApi();
+            var depth = 56;  // int? | Recursion depth in response model
 
             try
             {
-                HudsonmodelComputerSet result = apiInstance.GetComputer();
+                ComputerSet result = apiInstance.GetComputer(depth);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -67,15 +72,18 @@ namespace Example
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **depth** | **int?**| Recursion depth in response model | 
 
 ### Return type
 
-[**HudsonmodelComputerSet**](HudsonmodelComputerSet.md)
+[**ComputerSet**](ComputerSet.md)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -86,7 +94,7 @@ No authorization required
 
 <a name="getcrumb"></a>
 # **GetCrumb**
-> HudsonsecuritycsrfDefaultCrumbIssuer GetCrumb ()
+> DefaultCrumbIssuer GetCrumb ()
 
 
 
@@ -107,11 +115,15 @@ namespace Example
         public void main()
         {
             
+            // Configure HTTP basic authorization: jenkins_auth
+            Configuration.Default.Username = "YOUR_USERNAME";
+            Configuration.Default.Password = "YOUR_PASSWORD";
+
             var apiInstance = new RemoteAccessApi();
 
             try
             {
-                HudsonsecuritycsrfDefaultCrumbIssuer result = apiInstance.GetCrumb();
+                DefaultCrumbIssuer result = apiInstance.GetCrumb();
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -128,11 +140,11 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**HudsonsecuritycsrfDefaultCrumbIssuer**](HudsonsecuritycsrfDefaultCrumbIssuer.md)
+[**DefaultCrumbIssuer**](DefaultCrumbIssuer.md)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -143,7 +155,7 @@ No authorization required
 
 <a name="getjenkins"></a>
 # **GetJenkins**
-> HudsonmodelHudson GetJenkins ()
+> Hudson GetJenkins ()
 
 
 
@@ -164,11 +176,15 @@ namespace Example
         public void main()
         {
             
+            // Configure HTTP basic authorization: jenkins_auth
+            Configuration.Default.Username = "YOUR_USERNAME";
+            Configuration.Default.Password = "YOUR_PASSWORD";
+
             var apiInstance = new RemoteAccessApi();
 
             try
             {
-                HudsonmodelHudson result = apiInstance.GetJenkins();
+                Hudson result = apiInstance.GetJenkins();
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -185,11 +201,11 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**HudsonmodelHudson**](HudsonmodelHudson.md)
+[**Hudson**](Hudson.md)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -200,7 +216,7 @@ No authorization required
 
 <a name="getjob"></a>
 # **GetJob**
-> HudsonmodelFreeStyleProject GetJob (string name)
+> FreeStyleProject GetJob (string name)
 
 
 
@@ -221,12 +237,16 @@ namespace Example
         public void main()
         {
             
+            // Configure HTTP basic authorization: jenkins_auth
+            Configuration.Default.Username = "YOUR_USERNAME";
+            Configuration.Default.Password = "YOUR_PASSWORD";
+
             var apiInstance = new RemoteAccessApi();
             var name = name_example;  // string | Name of the job
 
             try
             {
-                HudsonmodelFreeStyleProject result = apiInstance.GetJob(name);
+                FreeStyleProject result = apiInstance.GetJob(name);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -246,11 +266,11 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**HudsonmodelFreeStyleProject**](HudsonmodelFreeStyleProject.md)
+[**FreeStyleProject**](FreeStyleProject.md)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -282,6 +302,10 @@ namespace Example
         public void main()
         {
             
+            // Configure HTTP basic authorization: jenkins_auth
+            Configuration.Default.Username = "YOUR_USERNAME";
+            Configuration.Default.Password = "YOUR_PASSWORD";
+
             var apiInstance = new RemoteAccessApi();
             var name = name_example;  // string | Name of the job
 
@@ -311,7 +335,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -322,7 +346,7 @@ No authorization required
 
 <a name="getjoblastbuild"></a>
 # **GetJobLastBuild**
-> HudsonmodelFreeStyleBuild GetJobLastBuild (string name)
+> FreeStyleBuild GetJobLastBuild (string name)
 
 
 
@@ -343,12 +367,16 @@ namespace Example
         public void main()
         {
             
+            // Configure HTTP basic authorization: jenkins_auth
+            Configuration.Default.Username = "YOUR_USERNAME";
+            Configuration.Default.Password = "YOUR_PASSWORD";
+
             var apiInstance = new RemoteAccessApi();
             var name = name_example;  // string | Name of the job
 
             try
             {
-                HudsonmodelFreeStyleBuild result = apiInstance.GetJobLastBuild(name);
+                FreeStyleBuild result = apiInstance.GetJobLastBuild(name);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -368,11 +396,11 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**HudsonmodelFreeStyleBuild**](HudsonmodelFreeStyleBuild.md)
+[**FreeStyleBuild**](FreeStyleBuild.md)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -404,6 +432,10 @@ namespace Example
         public void main()
         {
             
+            // Configure HTTP basic authorization: jenkins_auth
+            Configuration.Default.Username = "YOUR_USERNAME";
+            Configuration.Default.Password = "YOUR_PASSWORD";
+
             var apiInstance = new RemoteAccessApi();
             var name = name_example;  // string | Name of the job
             var number = number_example;  // string | Build number
@@ -436,7 +468,7 @@ void (empty response body)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -447,7 +479,7 @@ No authorization required
 
 <a name="getqueue"></a>
 # **GetQueue**
-> HudsonmodelQueue GetQueue ()
+> Queue GetQueue ()
 
 
 
@@ -468,11 +500,15 @@ namespace Example
         public void main()
         {
             
+            // Configure HTTP basic authorization: jenkins_auth
+            Configuration.Default.Username = "YOUR_USERNAME";
+            Configuration.Default.Password = "YOUR_PASSWORD";
+
             var apiInstance = new RemoteAccessApi();
 
             try
             {
-                HudsonmodelQueue result = apiInstance.GetQueue();
+                Queue result = apiInstance.GetQueue();
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -489,11 +525,11 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**HudsonmodelQueue**](HudsonmodelQueue.md)
+[**Queue**](Queue.md)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -504,7 +540,7 @@ No authorization required
 
 <a name="getqueueitem"></a>
 # **GetQueueItem**
-> HudsonmodelQueue GetQueueItem (string number)
+> Queue GetQueueItem (string number)
 
 
 
@@ -525,12 +561,16 @@ namespace Example
         public void main()
         {
             
+            // Configure HTTP basic authorization: jenkins_auth
+            Configuration.Default.Username = "YOUR_USERNAME";
+            Configuration.Default.Password = "YOUR_PASSWORD";
+
             var apiInstance = new RemoteAccessApi();
             var number = number_example;  // string | Queue number
 
             try
             {
-                HudsonmodelQueue result = apiInstance.GetQueueItem(number);
+                Queue result = apiInstance.GetQueueItem(number);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -550,11 +590,11 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**HudsonmodelQueue**](HudsonmodelQueue.md)
+[**Queue**](Queue.md)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -565,7 +605,7 @@ No authorization required
 
 <a name="getview"></a>
 # **GetView**
-> HudsonmodelListView GetView (string name)
+> ListView GetView (string name)
 
 
 
@@ -586,12 +626,16 @@ namespace Example
         public void main()
         {
             
+            // Configure HTTP basic authorization: jenkins_auth
+            Configuration.Default.Username = "YOUR_USERNAME";
+            Configuration.Default.Password = "YOUR_PASSWORD";
+
             var apiInstance = new RemoteAccessApi();
             var name = name_example;  // string | Name of the view
 
             try
             {
-                HudsonmodelListView result = apiInstance.GetView(name);
+                ListView result = apiInstance.GetView(name);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -611,11 +655,11 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**HudsonmodelListView**](HudsonmodelListView.md)
+[**ListView**](ListView.md)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -647,6 +691,10 @@ namespace Example
         public void main()
         {
             
+            // Configure HTTP basic authorization: jenkins_auth
+            Configuration.Default.Username = "YOUR_USERNAME";
+            Configuration.Default.Password = "YOUR_PASSWORD";
+
             var apiInstance = new RemoteAccessApi();
             var name = name_example;  // string | Name of the view
 
@@ -676,7 +724,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -708,6 +756,10 @@ namespace Example
         public void main()
         {
             
+            // Configure HTTP basic authorization: jenkins_auth
+            Configuration.Default.Username = "YOUR_USERNAME";
+            Configuration.Default.Password = "YOUR_PASSWORD";
+
             var apiInstance = new RemoteAccessApi();
 
             try
@@ -732,7 +784,7 @@ void (empty response body)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -764,6 +816,10 @@ namespace Example
         public void main()
         {
             
+            // Configure HTTP basic authorization: jenkins_auth
+            Configuration.Default.Username = "YOUR_USERNAME";
+            Configuration.Default.Password = "YOUR_PASSWORD";
+
             var apiInstance = new RemoteAccessApi();
             var name = name_example;  // string | Name of the new job
             var from = from_example;  // string | Existing job to copy from (optional) 
@@ -802,7 +858,7 @@ void (empty response body)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -834,6 +890,10 @@ namespace Example
         public void main()
         {
             
+            // Configure HTTP basic authorization: jenkins_auth
+            Configuration.Default.Username = "YOUR_USERNAME";
+            Configuration.Default.Password = "YOUR_PASSWORD";
+
             var apiInstance = new RemoteAccessApi();
             var name = name_example;  // string | Name of the new view
             var body = body_example;  // string | View configuration in config.xml format (optional) 
@@ -868,7 +928,7 @@ void (empty response body)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -900,6 +960,10 @@ namespace Example
         public void main()
         {
             
+            // Configure HTTP basic authorization: jenkins_auth
+            Configuration.Default.Username = "YOUR_USERNAME";
+            Configuration.Default.Password = "YOUR_PASSWORD";
+
             var apiInstance = new RemoteAccessApi();
             var name = name_example;  // string | Name of the job
             var json = json_example;  // string | 
@@ -934,7 +998,7 @@ void (empty response body)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -966,6 +1030,10 @@ namespace Example
         public void main()
         {
             
+            // Configure HTTP basic authorization: jenkins_auth
+            Configuration.Default.Username = "YOUR_USERNAME";
+            Configuration.Default.Password = "YOUR_PASSWORD";
+
             var apiInstance = new RemoteAccessApi();
             var name = name_example;  // string | Name of the job
             var body = body_example;  // string | Job configuration in config.xml format
@@ -998,7 +1066,7 @@ void (empty response body)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -1030,6 +1098,10 @@ namespace Example
         public void main()
         {
             
+            // Configure HTTP basic authorization: jenkins_auth
+            Configuration.Default.Username = "YOUR_USERNAME";
+            Configuration.Default.Password = "YOUR_PASSWORD";
+
             var apiInstance = new RemoteAccessApi();
             var name = name_example;  // string | Name of the job
             var jenkinsCrumb = jenkinsCrumb_example;  // string | CSRF protection token (optional) 
@@ -1060,7 +1132,7 @@ void (empty response body)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -1092,6 +1164,10 @@ namespace Example
         public void main()
         {
             
+            // Configure HTTP basic authorization: jenkins_auth
+            Configuration.Default.Username = "YOUR_USERNAME";
+            Configuration.Default.Password = "YOUR_PASSWORD";
+
             var apiInstance = new RemoteAccessApi();
             var name = name_example;  // string | Name of the job
             var jenkinsCrumb = jenkinsCrumb_example;  // string | CSRF protection token (optional) 
@@ -1122,7 +1198,7 @@ void (empty response body)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -1154,6 +1230,10 @@ namespace Example
         public void main()
         {
             
+            // Configure HTTP basic authorization: jenkins_auth
+            Configuration.Default.Username = "YOUR_USERNAME";
+            Configuration.Default.Password = "YOUR_PASSWORD";
+
             var apiInstance = new RemoteAccessApi();
             var name = name_example;  // string | Name of the job
             var jenkinsCrumb = jenkinsCrumb_example;  // string | CSRF protection token (optional) 
@@ -1184,7 +1264,7 @@ void (empty response body)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -1216,6 +1296,10 @@ namespace Example
         public void main()
         {
             
+            // Configure HTTP basic authorization: jenkins_auth
+            Configuration.Default.Username = "YOUR_USERNAME";
+            Configuration.Default.Password = "YOUR_PASSWORD";
+
             var apiInstance = new RemoteAccessApi();
             var name = name_example;  // string | Name of the job
             var jenkinsCrumb = jenkinsCrumb_example;  // string | CSRF protection token (optional) 
@@ -1246,7 +1330,7 @@ void (empty response body)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -1278,6 +1362,10 @@ namespace Example
         public void main()
         {
             
+            // Configure HTTP basic authorization: jenkins_auth
+            Configuration.Default.Username = "YOUR_USERNAME";
+            Configuration.Default.Password = "YOUR_PASSWORD";
+
             var apiInstance = new RemoteAccessApi();
             var name = name_example;  // string | Name of the view
             var body = body_example;  // string | View configuration in config.xml format
@@ -1310,7 +1398,7 @@ void (empty response body)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 

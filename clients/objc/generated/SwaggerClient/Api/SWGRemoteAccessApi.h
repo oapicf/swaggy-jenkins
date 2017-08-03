@@ -1,11 +1,11 @@
 #import <Foundation/Foundation.h>
-#import "SWGHudsonmodelComputerSet.h"
-#import "SWGHudsonmodelFreeStyleBuild.h"
-#import "SWGHudsonmodelFreeStyleProject.h"
-#import "SWGHudsonmodelHudson.h"
-#import "SWGHudsonmodelListView.h"
-#import "SWGHudsonmodelQueue.h"
-#import "SWGHudsonsecuritycsrfDefaultCrumbIssuer.h"
+#import "SWGComputerSet.h"
+#import "SWGDefaultCrumbIssuer.h"
+#import "SWGFreeStyleBuild.h"
+#import "SWGFreeStyleProject.h"
+#import "SWGHudson.h"
+#import "SWGListView.h"
+#import "SWGQueue.h"
 #import "SWGApi.h"
 
 /**
@@ -32,14 +32,15 @@ extern NSInteger kSWGRemoteAccessApiMissingParamErrorCode;
 /// 
 /// Retrieve computer details
 ///
+/// @param depth Recursion depth in response model
 /// 
 ///  code:200 message:"Successfully retrieved computer details",
 ///  code:401 message:"Authentication failed - incorrect username and/or password",
 ///  code:403 message:"Jenkins requires authentication - please set username and password"
 ///
-/// @return SWGHudsonmodelComputerSet*
--(NSURLSessionTask*) getComputerWithCompletionHandler: 
-    (void (^)(SWGHudsonmodelComputerSet* output, NSError* error)) handler;
+/// @return SWGComputerSet*
+-(NSURLSessionTask*) getComputerWithDepth: (NSNumber*) depth
+    completionHandler: (void (^)(SWGComputerSet* output, NSError* error)) handler;
 
 
 /// 
@@ -50,9 +51,9 @@ extern NSInteger kSWGRemoteAccessApiMissingParamErrorCode;
 ///  code:401 message:"Authentication failed - incorrect username and/or password",
 ///  code:403 message:"Jenkins requires authentication - please set username and password"
 ///
-/// @return SWGHudsonsecuritycsrfDefaultCrumbIssuer*
+/// @return SWGDefaultCrumbIssuer*
 -(NSURLSessionTask*) getCrumbWithCompletionHandler: 
-    (void (^)(SWGHudsonsecuritycsrfDefaultCrumbIssuer* output, NSError* error)) handler;
+    (void (^)(SWGDefaultCrumbIssuer* output, NSError* error)) handler;
 
 
 /// 
@@ -63,9 +64,9 @@ extern NSInteger kSWGRemoteAccessApiMissingParamErrorCode;
 ///  code:401 message:"Authentication failed - incorrect username and/or password",
 ///  code:403 message:"Jenkins requires authentication - please set username and password"
 ///
-/// @return SWGHudsonmodelHudson*
+/// @return SWGHudson*
 -(NSURLSessionTask*) getJenkinsWithCompletionHandler: 
-    (void (^)(SWGHudsonmodelHudson* output, NSError* error)) handler;
+    (void (^)(SWGHudson* output, NSError* error)) handler;
 
 
 /// 
@@ -78,9 +79,9 @@ extern NSInteger kSWGRemoteAccessApiMissingParamErrorCode;
 ///  code:403 message:"Jenkins requires authentication - please set username and password",
 ///  code:404 message:"Job cannot be found on Jenkins instance"
 ///
-/// @return SWGHudsonmodelFreeStyleProject*
+/// @return SWGFreeStyleProject*
 -(NSURLSessionTask*) getJobWithName: (NSString*) name
-    completionHandler: (void (^)(SWGHudsonmodelFreeStyleProject* output, NSError* error)) handler;
+    completionHandler: (void (^)(SWGFreeStyleProject* output, NSError* error)) handler;
 
 
 /// 
@@ -108,9 +109,9 @@ extern NSInteger kSWGRemoteAccessApiMissingParamErrorCode;
 ///  code:403 message:"Jenkins requires authentication - please set username and password",
 ///  code:404 message:"Job cannot be found on Jenkins instance"
 ///
-/// @return SWGHudsonmodelFreeStyleBuild*
+/// @return SWGFreeStyleBuild*
 -(NSURLSessionTask*) getJobLastBuildWithName: (NSString*) name
-    completionHandler: (void (^)(SWGHudsonmodelFreeStyleBuild* output, NSError* error)) handler;
+    completionHandler: (void (^)(SWGFreeStyleBuild* output, NSError* error)) handler;
 
 
 /// 
@@ -125,7 +126,7 @@ extern NSInteger kSWGRemoteAccessApiMissingParamErrorCode;
 ///  code:403 message:"Jenkins requires authentication - please set username and password",
 ///  code:404 message:"Job cannot be found on Jenkins instance"
 ///
-/// @return 
+/// @return void
 -(NSURLSessionTask*) getJobProgressiveTextWithName: (NSString*) name
     number: (NSString*) number
     start: (NSString*) start
@@ -140,9 +141,9 @@ extern NSInteger kSWGRemoteAccessApiMissingParamErrorCode;
 ///  code:401 message:"Authentication failed - incorrect username and/or password",
 ///  code:403 message:"Jenkins requires authentication - please set username and password"
 ///
-/// @return SWGHudsonmodelQueue*
+/// @return SWGQueue*
 -(NSURLSessionTask*) getQueueWithCompletionHandler: 
-    (void (^)(SWGHudsonmodelQueue* output, NSError* error)) handler;
+    (void (^)(SWGQueue* output, NSError* error)) handler;
 
 
 /// 
@@ -154,9 +155,9 @@ extern NSInteger kSWGRemoteAccessApiMissingParamErrorCode;
 ///  code:401 message:"Authentication failed - incorrect username and/or password",
 ///  code:403 message:"Jenkins requires authentication - please set username and password"
 ///
-/// @return SWGHudsonmodelQueue*
+/// @return SWGQueue*
 -(NSURLSessionTask*) getQueueItemWithNumber: (NSString*) number
-    completionHandler: (void (^)(SWGHudsonmodelQueue* output, NSError* error)) handler;
+    completionHandler: (void (^)(SWGQueue* output, NSError* error)) handler;
 
 
 /// 
@@ -169,9 +170,9 @@ extern NSInteger kSWGRemoteAccessApiMissingParamErrorCode;
 ///  code:403 message:"Jenkins requires authentication - please set username and password",
 ///  code:404 message:"View cannot be found on Jenkins instance"
 ///
-/// @return SWGHudsonmodelListView*
+/// @return SWGListView*
 -(NSURLSessionTask*) getViewWithName: (NSString*) name
-    completionHandler: (void (^)(SWGHudsonmodelListView* output, NSError* error)) handler;
+    completionHandler: (void (^)(SWGListView* output, NSError* error)) handler;
 
 
 /// 
@@ -197,7 +198,7 @@ extern NSInteger kSWGRemoteAccessApiMissingParamErrorCode;
 ///  code:401 message:"Authentication failed - incorrect username and/or password",
 ///  code:403 message:"Jenkins requires authentication - please set username and password"
 ///
-/// @return 
+/// @return void
 -(NSURLSessionTask*) headJenkinsWithCompletionHandler: 
     (void (^)(NSError* error)) handler;
 
@@ -217,7 +218,7 @@ extern NSInteger kSWGRemoteAccessApiMissingParamErrorCode;
 ///  code:401 message:"Authentication failed - incorrect username and/or password",
 ///  code:403 message:"Jenkins requires authentication - please set username and password"
 ///
-/// @return 
+/// @return void
 -(NSURLSessionTask*) postCreateItemWithName: (NSString*) name
     from: (NSString*) from
     mode: (NSString*) mode
@@ -240,7 +241,7 @@ extern NSInteger kSWGRemoteAccessApiMissingParamErrorCode;
 ///  code:401 message:"Authentication failed - incorrect username and/or password",
 ///  code:403 message:"Jenkins requires authentication - please set username and password"
 ///
-/// @return 
+/// @return void
 -(NSURLSessionTask*) postCreateViewWithName: (NSString*) name
     body: (NSString*) body
     jenkinsCrumb: (NSString*) jenkinsCrumb
@@ -262,7 +263,7 @@ extern NSInteger kSWGRemoteAccessApiMissingParamErrorCode;
 ///  code:403 message:"Jenkins requires authentication - please set username and password",
 ///  code:404 message:"Job cannot be found on Jenkins instance"
 ///
-/// @return 
+/// @return void
 -(NSURLSessionTask*) postJobBuildWithName: (NSString*) name
     json: (NSString*) json
     token: (NSString*) token
@@ -283,7 +284,7 @@ extern NSInteger kSWGRemoteAccessApiMissingParamErrorCode;
 ///  code:403 message:"Jenkins requires authentication - please set username and password",
 ///  code:404 message:"Job cannot be found on Jenkins instance"
 ///
-/// @return 
+/// @return void
 -(NSURLSessionTask*) postJobConfigWithName: (NSString*) name
     body: (NSString*) body
     jenkinsCrumb: (NSString*) jenkinsCrumb
@@ -301,7 +302,7 @@ extern NSInteger kSWGRemoteAccessApiMissingParamErrorCode;
 ///  code:403 message:"Jenkins requires authentication - please set username and password",
 ///  code:404 message:"Job cannot be found on Jenkins instance"
 ///
-/// @return 
+/// @return void
 -(NSURLSessionTask*) postJobDeleteWithName: (NSString*) name
     jenkinsCrumb: (NSString*) jenkinsCrumb
     completionHandler: (void (^)(NSError* error)) handler;
@@ -318,7 +319,7 @@ extern NSInteger kSWGRemoteAccessApiMissingParamErrorCode;
 ///  code:403 message:"Jenkins requires authentication - please set username and password",
 ///  code:404 message:"Job cannot be found on Jenkins instance"
 ///
-/// @return 
+/// @return void
 -(NSURLSessionTask*) postJobDisableWithName: (NSString*) name
     jenkinsCrumb: (NSString*) jenkinsCrumb
     completionHandler: (void (^)(NSError* error)) handler;
@@ -335,7 +336,7 @@ extern NSInteger kSWGRemoteAccessApiMissingParamErrorCode;
 ///  code:403 message:"Jenkins requires authentication - please set username and password",
 ///  code:404 message:"Job cannot be found on Jenkins instance"
 ///
-/// @return 
+/// @return void
 -(NSURLSessionTask*) postJobEnableWithName: (NSString*) name
     jenkinsCrumb: (NSString*) jenkinsCrumb
     completionHandler: (void (^)(NSError* error)) handler;
@@ -352,7 +353,7 @@ extern NSInteger kSWGRemoteAccessApiMissingParamErrorCode;
 ///  code:403 message:"Jenkins requires authentication - please set username and password",
 ///  code:404 message:"Job cannot be found on Jenkins instance"
 ///
-/// @return 
+/// @return void
 -(NSURLSessionTask*) postJobLastBuildStopWithName: (NSString*) name
     jenkinsCrumb: (NSString*) jenkinsCrumb
     completionHandler: (void (^)(NSError* error)) handler;
@@ -371,7 +372,7 @@ extern NSInteger kSWGRemoteAccessApiMissingParamErrorCode;
 ///  code:403 message:"Jenkins requires authentication - please set username and password",
 ///  code:404 message:"View cannot be found on Jenkins instance"
 ///
-/// @return 
+/// @return void
 -(NSURLSessionTask*) postViewConfigWithName: (NSString*) name
     body: (NSString*) body
     jenkinsCrumb: (NSString*) jenkinsCrumb

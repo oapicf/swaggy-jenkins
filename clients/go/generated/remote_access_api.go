@@ -12,1326 +12,1415 @@ package swagger
 
 import (
 	"net/url"
+	"net/http"
 	"strings"
+	"golang.org/x/net/context"
 	"encoding/json"
 	"fmt"
 )
 
-type RemoteAccessApi struct {
-	Configuration *Configuration
-}
+// Linger please
+var (
+	_ context.Context
+)
 
-func NewRemoteAccessApi() *RemoteAccessApi {
-	configuration := NewConfiguration()
-	return &RemoteAccessApi{
-		Configuration: configuration,
-	}
-}
+type RemoteAccessApiService service
 
-func NewRemoteAccessApiWithBasePath(basePath string) *RemoteAccessApi {
-	configuration := NewConfiguration()
-	configuration.BasePath = basePath
 
-	return &RemoteAccessApi{
-		Configuration: configuration,
-	}
-}
+/* RemoteAccessApiService 
+ Retrieve computer details
+ * @param ctx context.Context Authentication Context 
+ @param depth Recursion depth in response model
+ @return ComputerSet*/
+func (a *RemoteAccessApiService) GetComputer(ctx context.Context, depth int32) (ComputerSet,  *http.Response, error) {
+	var (
+		localVarHttpMethod = strings.ToUpper("Get")
+		localVarPostBody interface{}
+		localVarFileName string
+		localVarFileBytes []byte
+	 	successPayload  ComputerSet
+	)
 
-/**
- * 
- * Retrieve computer details
- *
- * @return *HudsonmodelComputerSet
- */
-func (a RemoteAccessApi) GetComputer() (*HudsonmodelComputerSet, *APIResponse, error) {
-
-	var localVarHttpMethod = strings.ToUpper("Get")
 	// create path and map variables
-	localVarPath := a.Configuration.BasePath + "/computer/api/json?depth=1"
+	localVarPath := a.client.cfg.BasePath + "/computer/api/json"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
-	localVarFormParams := make(map[string]string)
-	var localVarPostBody interface{}
-	var localVarFileName string
-	var localVarFileBytes []byte
-	// add default headers if any
-	for key := range a.Configuration.DefaultHeader {
-		localVarHeaderParams[key] = a.Configuration.DefaultHeader[key]
-	}
+	localVarFormParams := url.Values{}
 
+
+	localVarQueryParams.Add("depth", parameterToString(depth, ""))
 	// to determine the Content-Type header
 	localVarHttpContentTypes := []string{  }
 
 	// set Content-Type header
-	localVarHttpContentType := a.Configuration.APIClient.SelectHeaderContentType(localVarHttpContentTypes)
+	localVarHttpContentType := selectHeaderContentType(localVarHttpContentTypes)
 	if localVarHttpContentType != "" {
 		localVarHeaderParams["Content-Type"] = localVarHttpContentType
 	}
+
 	// to determine the Accept header
 	localVarHttpHeaderAccepts := []string{
 		"application/json",
 		}
 
 	// set Accept header
-	localVarHttpHeaderAccept := a.Configuration.APIClient.SelectHeaderAccept(localVarHttpHeaderAccepts)
+	localVarHttpHeaderAccept := selectHeaderAccept(localVarHttpHeaderAccepts)
 	if localVarHttpHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
 	}
-	var successPayload = new(HudsonmodelComputerSet)
-	localVarHttpResponse, err := a.Configuration.APIClient.CallAPI(localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
-
-	var localVarURL, _ = url.Parse(localVarPath)
-	localVarURL.RawQuery = localVarQueryParams.Encode()
-	var localVarAPIResponse = &APIResponse{Operation: "GetComputer", Method: localVarHttpMethod, RequestURL: localVarURL.String()}
-	if localVarHttpResponse != nil {
-		localVarAPIResponse.Response = localVarHttpResponse.RawResponse
-		localVarAPIResponse.Payload = localVarHttpResponse.Body()
-	}
-
+	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
-		return successPayload, localVarAPIResponse, err
+		return successPayload, nil, err
 	}
-	err = json.Unmarshal(localVarHttpResponse.Body(), &successPayload)
-	return successPayload, localVarAPIResponse, err
+
+	 localVarHttpResponse, err := a.client.callAPI(r)
+	 if err != nil || localVarHttpResponse == nil {
+		  return successPayload, localVarHttpResponse, err
+	 }
+	 defer localVarHttpResponse.Body.Close()
+	 if localVarHttpResponse.StatusCode >= 300 {
+		return successPayload, localVarHttpResponse, reportError(localVarHttpResponse.Status)
+	 }
+	
+	if err = json.NewDecoder(localVarHttpResponse.Body).Decode(&successPayload); err != nil {
+	 	return successPayload, localVarHttpResponse, err
+	}
+
+
+	return successPayload, localVarHttpResponse, err
 }
 
-/**
- * 
- * Retrieve CSRF protection token
- *
- * @return *HudsonsecuritycsrfDefaultCrumbIssuer
- */
-func (a RemoteAccessApi) GetCrumb() (*HudsonsecuritycsrfDefaultCrumbIssuer, *APIResponse, error) {
+/* RemoteAccessApiService 
+ Retrieve CSRF protection token
+ * @param ctx context.Context Authentication Context 
+ @return DefaultCrumbIssuer*/
+func (a *RemoteAccessApiService) GetCrumb(ctx context.Context, ) (DefaultCrumbIssuer,  *http.Response, error) {
+	var (
+		localVarHttpMethod = strings.ToUpper("Get")
+		localVarPostBody interface{}
+		localVarFileName string
+		localVarFileBytes []byte
+	 	successPayload  DefaultCrumbIssuer
+	)
 
-	var localVarHttpMethod = strings.ToUpper("Get")
 	// create path and map variables
-	localVarPath := a.Configuration.BasePath + "/crumbIssuer/api/json"
+	localVarPath := a.client.cfg.BasePath + "/crumbIssuer/api/json"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
-	localVarFormParams := make(map[string]string)
-	var localVarPostBody interface{}
-	var localVarFileName string
-	var localVarFileBytes []byte
-	// add default headers if any
-	for key := range a.Configuration.DefaultHeader {
-		localVarHeaderParams[key] = a.Configuration.DefaultHeader[key]
-	}
+	localVarFormParams := url.Values{}
+
 
 	// to determine the Content-Type header
 	localVarHttpContentTypes := []string{  }
 
 	// set Content-Type header
-	localVarHttpContentType := a.Configuration.APIClient.SelectHeaderContentType(localVarHttpContentTypes)
+	localVarHttpContentType := selectHeaderContentType(localVarHttpContentTypes)
 	if localVarHttpContentType != "" {
 		localVarHeaderParams["Content-Type"] = localVarHttpContentType
 	}
+
 	// to determine the Accept header
 	localVarHttpHeaderAccepts := []string{
 		"application/json",
 		}
 
 	// set Accept header
-	localVarHttpHeaderAccept := a.Configuration.APIClient.SelectHeaderAccept(localVarHttpHeaderAccepts)
+	localVarHttpHeaderAccept := selectHeaderAccept(localVarHttpHeaderAccepts)
 	if localVarHttpHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
 	}
-	var successPayload = new(HudsonsecuritycsrfDefaultCrumbIssuer)
-	localVarHttpResponse, err := a.Configuration.APIClient.CallAPI(localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
-
-	var localVarURL, _ = url.Parse(localVarPath)
-	localVarURL.RawQuery = localVarQueryParams.Encode()
-	var localVarAPIResponse = &APIResponse{Operation: "GetCrumb", Method: localVarHttpMethod, RequestURL: localVarURL.String()}
-	if localVarHttpResponse != nil {
-		localVarAPIResponse.Response = localVarHttpResponse.RawResponse
-		localVarAPIResponse.Payload = localVarHttpResponse.Body()
-	}
-
+	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
-		return successPayload, localVarAPIResponse, err
+		return successPayload, nil, err
 	}
-	err = json.Unmarshal(localVarHttpResponse.Body(), &successPayload)
-	return successPayload, localVarAPIResponse, err
+
+	 localVarHttpResponse, err := a.client.callAPI(r)
+	 if err != nil || localVarHttpResponse == nil {
+		  return successPayload, localVarHttpResponse, err
+	 }
+	 defer localVarHttpResponse.Body.Close()
+	 if localVarHttpResponse.StatusCode >= 300 {
+		return successPayload, localVarHttpResponse, reportError(localVarHttpResponse.Status)
+	 }
+	
+	if err = json.NewDecoder(localVarHttpResponse.Body).Decode(&successPayload); err != nil {
+	 	return successPayload, localVarHttpResponse, err
+	}
+
+
+	return successPayload, localVarHttpResponse, err
 }
 
-/**
- * 
- * Retrieve Jenkins details
- *
- * @return *HudsonmodelHudson
- */
-func (a RemoteAccessApi) GetJenkins() (*HudsonmodelHudson, *APIResponse, error) {
+/* RemoteAccessApiService 
+ Retrieve Jenkins details
+ * @param ctx context.Context Authentication Context 
+ @return Hudson*/
+func (a *RemoteAccessApiService) GetJenkins(ctx context.Context, ) (Hudson,  *http.Response, error) {
+	var (
+		localVarHttpMethod = strings.ToUpper("Get")
+		localVarPostBody interface{}
+		localVarFileName string
+		localVarFileBytes []byte
+	 	successPayload  Hudson
+	)
 
-	var localVarHttpMethod = strings.ToUpper("Get")
 	// create path and map variables
-	localVarPath := a.Configuration.BasePath + "/api/json"
+	localVarPath := a.client.cfg.BasePath + "/api/json"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
-	localVarFormParams := make(map[string]string)
-	var localVarPostBody interface{}
-	var localVarFileName string
-	var localVarFileBytes []byte
-	// add default headers if any
-	for key := range a.Configuration.DefaultHeader {
-		localVarHeaderParams[key] = a.Configuration.DefaultHeader[key]
-	}
+	localVarFormParams := url.Values{}
+
 
 	// to determine the Content-Type header
 	localVarHttpContentTypes := []string{  }
 
 	// set Content-Type header
-	localVarHttpContentType := a.Configuration.APIClient.SelectHeaderContentType(localVarHttpContentTypes)
+	localVarHttpContentType := selectHeaderContentType(localVarHttpContentTypes)
 	if localVarHttpContentType != "" {
 		localVarHeaderParams["Content-Type"] = localVarHttpContentType
 	}
+
 	// to determine the Accept header
 	localVarHttpHeaderAccepts := []string{
 		"application/json",
 		}
 
 	// set Accept header
-	localVarHttpHeaderAccept := a.Configuration.APIClient.SelectHeaderAccept(localVarHttpHeaderAccepts)
+	localVarHttpHeaderAccept := selectHeaderAccept(localVarHttpHeaderAccepts)
 	if localVarHttpHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
 	}
-	var successPayload = new(HudsonmodelHudson)
-	localVarHttpResponse, err := a.Configuration.APIClient.CallAPI(localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
-
-	var localVarURL, _ = url.Parse(localVarPath)
-	localVarURL.RawQuery = localVarQueryParams.Encode()
-	var localVarAPIResponse = &APIResponse{Operation: "GetJenkins", Method: localVarHttpMethod, RequestURL: localVarURL.String()}
-	if localVarHttpResponse != nil {
-		localVarAPIResponse.Response = localVarHttpResponse.RawResponse
-		localVarAPIResponse.Payload = localVarHttpResponse.Body()
-	}
-
+	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
-		return successPayload, localVarAPIResponse, err
+		return successPayload, nil, err
 	}
-	err = json.Unmarshal(localVarHttpResponse.Body(), &successPayload)
-	return successPayload, localVarAPIResponse, err
+
+	 localVarHttpResponse, err := a.client.callAPI(r)
+	 if err != nil || localVarHttpResponse == nil {
+		  return successPayload, localVarHttpResponse, err
+	 }
+	 defer localVarHttpResponse.Body.Close()
+	 if localVarHttpResponse.StatusCode >= 300 {
+		return successPayload, localVarHttpResponse, reportError(localVarHttpResponse.Status)
+	 }
+	
+	if err = json.NewDecoder(localVarHttpResponse.Body).Decode(&successPayload); err != nil {
+	 	return successPayload, localVarHttpResponse, err
+	}
+
+
+	return successPayload, localVarHttpResponse, err
 }
 
-/**
- * 
- * Retrieve job details
- *
- * @param name Name of the job
- * @return *HudsonmodelFreeStyleProject
- */
-func (a RemoteAccessApi) GetJob(name string) (*HudsonmodelFreeStyleProject, *APIResponse, error) {
+/* RemoteAccessApiService 
+ Retrieve job details
+ * @param ctx context.Context Authentication Context 
+ @param name Name of the job
+ @return FreeStyleProject*/
+func (a *RemoteAccessApiService) GetJob(ctx context.Context, name string) (FreeStyleProject,  *http.Response, error) {
+	var (
+		localVarHttpMethod = strings.ToUpper("Get")
+		localVarPostBody interface{}
+		localVarFileName string
+		localVarFileBytes []byte
+	 	successPayload  FreeStyleProject
+	)
 
-	var localVarHttpMethod = strings.ToUpper("Get")
 	// create path and map variables
-	localVarPath := a.Configuration.BasePath + "/job/{name}/api/json"
+	localVarPath := a.client.cfg.BasePath + "/job/{name}/api/json"
 	localVarPath = strings.Replace(localVarPath, "{"+"name"+"}", fmt.Sprintf("%v", name), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
-	localVarFormParams := make(map[string]string)
-	var localVarPostBody interface{}
-	var localVarFileName string
-	var localVarFileBytes []byte
-	// add default headers if any
-	for key := range a.Configuration.DefaultHeader {
-		localVarHeaderParams[key] = a.Configuration.DefaultHeader[key]
-	}
+	localVarFormParams := url.Values{}
+
 
 	// to determine the Content-Type header
 	localVarHttpContentTypes := []string{  }
 
 	// set Content-Type header
-	localVarHttpContentType := a.Configuration.APIClient.SelectHeaderContentType(localVarHttpContentTypes)
+	localVarHttpContentType := selectHeaderContentType(localVarHttpContentTypes)
 	if localVarHttpContentType != "" {
 		localVarHeaderParams["Content-Type"] = localVarHttpContentType
 	}
+
 	// to determine the Accept header
 	localVarHttpHeaderAccepts := []string{
 		"application/json",
 		}
 
 	// set Accept header
-	localVarHttpHeaderAccept := a.Configuration.APIClient.SelectHeaderAccept(localVarHttpHeaderAccepts)
+	localVarHttpHeaderAccept := selectHeaderAccept(localVarHttpHeaderAccepts)
 	if localVarHttpHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
 	}
-	var successPayload = new(HudsonmodelFreeStyleProject)
-	localVarHttpResponse, err := a.Configuration.APIClient.CallAPI(localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
-
-	var localVarURL, _ = url.Parse(localVarPath)
-	localVarURL.RawQuery = localVarQueryParams.Encode()
-	var localVarAPIResponse = &APIResponse{Operation: "GetJob", Method: localVarHttpMethod, RequestURL: localVarURL.String()}
-	if localVarHttpResponse != nil {
-		localVarAPIResponse.Response = localVarHttpResponse.RawResponse
-		localVarAPIResponse.Payload = localVarHttpResponse.Body()
-	}
-
+	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
-		return successPayload, localVarAPIResponse, err
+		return successPayload, nil, err
 	}
-	err = json.Unmarshal(localVarHttpResponse.Body(), &successPayload)
-	return successPayload, localVarAPIResponse, err
+
+	 localVarHttpResponse, err := a.client.callAPI(r)
+	 if err != nil || localVarHttpResponse == nil {
+		  return successPayload, localVarHttpResponse, err
+	 }
+	 defer localVarHttpResponse.Body.Close()
+	 if localVarHttpResponse.StatusCode >= 300 {
+		return successPayload, localVarHttpResponse, reportError(localVarHttpResponse.Status)
+	 }
+	
+	if err = json.NewDecoder(localVarHttpResponse.Body).Decode(&successPayload); err != nil {
+	 	return successPayload, localVarHttpResponse, err
+	}
+
+
+	return successPayload, localVarHttpResponse, err
 }
 
-/**
- * 
- * Retrieve job configuration
- *
- * @param name Name of the job
- * @return *string
- */
-func (a RemoteAccessApi) GetJobConfig(name string) (*string, *APIResponse, error) {
+/* RemoteAccessApiService 
+ Retrieve job configuration
+ * @param ctx context.Context Authentication Context 
+ @param name Name of the job
+ @return string*/
+func (a *RemoteAccessApiService) GetJobConfig(ctx context.Context, name string) (string,  *http.Response, error) {
+	var (
+		localVarHttpMethod = strings.ToUpper("Get")
+		localVarPostBody interface{}
+		localVarFileName string
+		localVarFileBytes []byte
+	 	successPayload  string
+	)
 
-	var localVarHttpMethod = strings.ToUpper("Get")
 	// create path and map variables
-	localVarPath := a.Configuration.BasePath + "/job/{name}/config.xml"
+	localVarPath := a.client.cfg.BasePath + "/job/{name}/config.xml"
 	localVarPath = strings.Replace(localVarPath, "{"+"name"+"}", fmt.Sprintf("%v", name), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
-	localVarFormParams := make(map[string]string)
-	var localVarPostBody interface{}
-	var localVarFileName string
-	var localVarFileBytes []byte
-	// add default headers if any
-	for key := range a.Configuration.DefaultHeader {
-		localVarHeaderParams[key] = a.Configuration.DefaultHeader[key]
-	}
+	localVarFormParams := url.Values{}
+
 
 	// to determine the Content-Type header
 	localVarHttpContentTypes := []string{  }
 
 	// set Content-Type header
-	localVarHttpContentType := a.Configuration.APIClient.SelectHeaderContentType(localVarHttpContentTypes)
+	localVarHttpContentType := selectHeaderContentType(localVarHttpContentTypes)
 	if localVarHttpContentType != "" {
 		localVarHeaderParams["Content-Type"] = localVarHttpContentType
 	}
+
 	// to determine the Accept header
 	localVarHttpHeaderAccepts := []string{
 		"text/xml",
 		}
 
 	// set Accept header
-	localVarHttpHeaderAccept := a.Configuration.APIClient.SelectHeaderAccept(localVarHttpHeaderAccepts)
+	localVarHttpHeaderAccept := selectHeaderAccept(localVarHttpHeaderAccepts)
 	if localVarHttpHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
 	}
-	var successPayload = new(string)
-	localVarHttpResponse, err := a.Configuration.APIClient.CallAPI(localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
-
-	var localVarURL, _ = url.Parse(localVarPath)
-	localVarURL.RawQuery = localVarQueryParams.Encode()
-	var localVarAPIResponse = &APIResponse{Operation: "GetJobConfig", Method: localVarHttpMethod, RequestURL: localVarURL.String()}
-	if localVarHttpResponse != nil {
-		localVarAPIResponse.Response = localVarHttpResponse.RawResponse
-		localVarAPIResponse.Payload = localVarHttpResponse.Body()
-	}
-
+	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
-		return successPayload, localVarAPIResponse, err
+		return successPayload, nil, err
 	}
-	err = json.Unmarshal(localVarHttpResponse.Body(), &successPayload)
-	return successPayload, localVarAPIResponse, err
+
+	 localVarHttpResponse, err := a.client.callAPI(r)
+	 if err != nil || localVarHttpResponse == nil {
+		  return successPayload, localVarHttpResponse, err
+	 }
+	 defer localVarHttpResponse.Body.Close()
+	 if localVarHttpResponse.StatusCode >= 300 {
+		return successPayload, localVarHttpResponse, reportError(localVarHttpResponse.Status)
+	 }
+	
+	if err = json.NewDecoder(localVarHttpResponse.Body).Decode(&successPayload); err != nil {
+	 	return successPayload, localVarHttpResponse, err
+	}
+
+
+	return successPayload, localVarHttpResponse, err
 }
 
-/**
- * 
- * Retrieve job&#39;s last build details
- *
- * @param name Name of the job
- * @return *HudsonmodelFreeStyleBuild
- */
-func (a RemoteAccessApi) GetJobLastBuild(name string) (*HudsonmodelFreeStyleBuild, *APIResponse, error) {
+/* RemoteAccessApiService 
+ Retrieve job&#39;s last build details
+ * @param ctx context.Context Authentication Context 
+ @param name Name of the job
+ @return FreeStyleBuild*/
+func (a *RemoteAccessApiService) GetJobLastBuild(ctx context.Context, name string) (FreeStyleBuild,  *http.Response, error) {
+	var (
+		localVarHttpMethod = strings.ToUpper("Get")
+		localVarPostBody interface{}
+		localVarFileName string
+		localVarFileBytes []byte
+	 	successPayload  FreeStyleBuild
+	)
 
-	var localVarHttpMethod = strings.ToUpper("Get")
 	// create path and map variables
-	localVarPath := a.Configuration.BasePath + "/job/{name}/lastBuild/api/json"
+	localVarPath := a.client.cfg.BasePath + "/job/{name}/lastBuild/api/json"
 	localVarPath = strings.Replace(localVarPath, "{"+"name"+"}", fmt.Sprintf("%v", name), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
-	localVarFormParams := make(map[string]string)
-	var localVarPostBody interface{}
-	var localVarFileName string
-	var localVarFileBytes []byte
-	// add default headers if any
-	for key := range a.Configuration.DefaultHeader {
-		localVarHeaderParams[key] = a.Configuration.DefaultHeader[key]
-	}
+	localVarFormParams := url.Values{}
+
 
 	// to determine the Content-Type header
 	localVarHttpContentTypes := []string{  }
 
 	// set Content-Type header
-	localVarHttpContentType := a.Configuration.APIClient.SelectHeaderContentType(localVarHttpContentTypes)
+	localVarHttpContentType := selectHeaderContentType(localVarHttpContentTypes)
 	if localVarHttpContentType != "" {
 		localVarHeaderParams["Content-Type"] = localVarHttpContentType
 	}
+
 	// to determine the Accept header
 	localVarHttpHeaderAccepts := []string{
 		"application/json",
 		}
 
 	// set Accept header
-	localVarHttpHeaderAccept := a.Configuration.APIClient.SelectHeaderAccept(localVarHttpHeaderAccepts)
+	localVarHttpHeaderAccept := selectHeaderAccept(localVarHttpHeaderAccepts)
 	if localVarHttpHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
 	}
-	var successPayload = new(HudsonmodelFreeStyleBuild)
-	localVarHttpResponse, err := a.Configuration.APIClient.CallAPI(localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
-
-	var localVarURL, _ = url.Parse(localVarPath)
-	localVarURL.RawQuery = localVarQueryParams.Encode()
-	var localVarAPIResponse = &APIResponse{Operation: "GetJobLastBuild", Method: localVarHttpMethod, RequestURL: localVarURL.String()}
-	if localVarHttpResponse != nil {
-		localVarAPIResponse.Response = localVarHttpResponse.RawResponse
-		localVarAPIResponse.Payload = localVarHttpResponse.Body()
-	}
-
+	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
-		return successPayload, localVarAPIResponse, err
+		return successPayload, nil, err
 	}
-	err = json.Unmarshal(localVarHttpResponse.Body(), &successPayload)
-	return successPayload, localVarAPIResponse, err
+
+	 localVarHttpResponse, err := a.client.callAPI(r)
+	 if err != nil || localVarHttpResponse == nil {
+		  return successPayload, localVarHttpResponse, err
+	 }
+	 defer localVarHttpResponse.Body.Close()
+	 if localVarHttpResponse.StatusCode >= 300 {
+		return successPayload, localVarHttpResponse, reportError(localVarHttpResponse.Status)
+	 }
+	
+	if err = json.NewDecoder(localVarHttpResponse.Body).Decode(&successPayload); err != nil {
+	 	return successPayload, localVarHttpResponse, err
+	}
+
+
+	return successPayload, localVarHttpResponse, err
 }
 
-/**
- * 
- * Retrieve job&#39;s build progressive text output
- *
- * @param name Name of the job
- * @param number Build number
- * @param start Starting point of progressive text output
- * @return void
- */
-func (a RemoteAccessApi) GetJobProgressiveText(name string, number string, start string) (*APIResponse, error) {
+/* RemoteAccessApiService 
+ Retrieve job&#39;s build progressive text output
+ * @param ctx context.Context Authentication Context 
+ @param name Name of the job
+ @param number Build number
+ @param start Starting point of progressive text output
+ @return */
+func (a *RemoteAccessApiService) GetJobProgressiveText(ctx context.Context, name string, number string, start string) ( *http.Response, error) {
+	var (
+		localVarHttpMethod = strings.ToUpper("Get")
+		localVarPostBody interface{}
+		localVarFileName string
+		localVarFileBytes []byte
+	)
 
-	var localVarHttpMethod = strings.ToUpper("Get")
 	// create path and map variables
-	localVarPath := a.Configuration.BasePath + "/job/{name}/{number}/logText/progressiveText"
+	localVarPath := a.client.cfg.BasePath + "/job/{name}/{number}/logText/progressiveText"
 	localVarPath = strings.Replace(localVarPath, "{"+"name"+"}", fmt.Sprintf("%v", name), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"number"+"}", fmt.Sprintf("%v", number), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
-	localVarFormParams := make(map[string]string)
-	var localVarPostBody interface{}
-	var localVarFileName string
-	var localVarFileBytes []byte
-	// add default headers if any
-	for key := range a.Configuration.DefaultHeader {
-		localVarHeaderParams[key] = a.Configuration.DefaultHeader[key]
-	}
-	localVarQueryParams.Add("start", a.Configuration.APIClient.ParameterToString(start, ""))
+	localVarFormParams := url.Values{}
 
+
+	localVarQueryParams.Add("start", parameterToString(start, ""))
 	// to determine the Content-Type header
 	localVarHttpContentTypes := []string{  }
 
 	// set Content-Type header
-	localVarHttpContentType := a.Configuration.APIClient.SelectHeaderContentType(localVarHttpContentTypes)
+	localVarHttpContentType := selectHeaderContentType(localVarHttpContentTypes)
 	if localVarHttpContentType != "" {
 		localVarHeaderParams["Content-Type"] = localVarHttpContentType
 	}
+
 	// to determine the Accept header
 	localVarHttpHeaderAccepts := []string{
 		}
 
 	// set Accept header
-	localVarHttpHeaderAccept := a.Configuration.APIClient.SelectHeaderAccept(localVarHttpHeaderAccepts)
+	localVarHttpHeaderAccept := selectHeaderAccept(localVarHttpHeaderAccepts)
 	if localVarHttpHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
 	}
-	localVarHttpResponse, err := a.Configuration.APIClient.CallAPI(localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
-
-	var localVarURL, _ = url.Parse(localVarPath)
-	localVarURL.RawQuery = localVarQueryParams.Encode()
-	var localVarAPIResponse = &APIResponse{Operation: "GetJobProgressiveText", Method: localVarHttpMethod, RequestURL: localVarURL.String()}
-	if localVarHttpResponse != nil {
-		localVarAPIResponse.Response = localVarHttpResponse.RawResponse
-		localVarAPIResponse.Payload = localVarHttpResponse.Body()
-	}
-
+	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
-		return localVarAPIResponse, err
+		return nil, err
 	}
-	return localVarAPIResponse, err
+
+	 localVarHttpResponse, err := a.client.callAPI(r)
+	 if err != nil || localVarHttpResponse == nil {
+		  return localVarHttpResponse, err
+	 }
+	 defer localVarHttpResponse.Body.Close()
+	 if localVarHttpResponse.StatusCode >= 300 {
+		return localVarHttpResponse, reportError(localVarHttpResponse.Status)
+	 }
+
+	return localVarHttpResponse, err
 }
 
-/**
- * 
- * Retrieve queue details
- *
- * @return *HudsonmodelQueue
- */
-func (a RemoteAccessApi) GetQueue() (*HudsonmodelQueue, *APIResponse, error) {
+/* RemoteAccessApiService 
+ Retrieve queue details
+ * @param ctx context.Context Authentication Context 
+ @return Queue*/
+func (a *RemoteAccessApiService) GetQueue(ctx context.Context, ) (Queue,  *http.Response, error) {
+	var (
+		localVarHttpMethod = strings.ToUpper("Get")
+		localVarPostBody interface{}
+		localVarFileName string
+		localVarFileBytes []byte
+	 	successPayload  Queue
+	)
 
-	var localVarHttpMethod = strings.ToUpper("Get")
 	// create path and map variables
-	localVarPath := a.Configuration.BasePath + "/queue/api/json"
+	localVarPath := a.client.cfg.BasePath + "/queue/api/json"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
-	localVarFormParams := make(map[string]string)
-	var localVarPostBody interface{}
-	var localVarFileName string
-	var localVarFileBytes []byte
-	// add default headers if any
-	for key := range a.Configuration.DefaultHeader {
-		localVarHeaderParams[key] = a.Configuration.DefaultHeader[key]
-	}
+	localVarFormParams := url.Values{}
+
 
 	// to determine the Content-Type header
 	localVarHttpContentTypes := []string{  }
 
 	// set Content-Type header
-	localVarHttpContentType := a.Configuration.APIClient.SelectHeaderContentType(localVarHttpContentTypes)
+	localVarHttpContentType := selectHeaderContentType(localVarHttpContentTypes)
 	if localVarHttpContentType != "" {
 		localVarHeaderParams["Content-Type"] = localVarHttpContentType
 	}
+
 	// to determine the Accept header
 	localVarHttpHeaderAccepts := []string{
 		"application/json",
 		}
 
 	// set Accept header
-	localVarHttpHeaderAccept := a.Configuration.APIClient.SelectHeaderAccept(localVarHttpHeaderAccepts)
+	localVarHttpHeaderAccept := selectHeaderAccept(localVarHttpHeaderAccepts)
 	if localVarHttpHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
 	}
-	var successPayload = new(HudsonmodelQueue)
-	localVarHttpResponse, err := a.Configuration.APIClient.CallAPI(localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
-
-	var localVarURL, _ = url.Parse(localVarPath)
-	localVarURL.RawQuery = localVarQueryParams.Encode()
-	var localVarAPIResponse = &APIResponse{Operation: "GetQueue", Method: localVarHttpMethod, RequestURL: localVarURL.String()}
-	if localVarHttpResponse != nil {
-		localVarAPIResponse.Response = localVarHttpResponse.RawResponse
-		localVarAPIResponse.Payload = localVarHttpResponse.Body()
-	}
-
+	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
-		return successPayload, localVarAPIResponse, err
+		return successPayload, nil, err
 	}
-	err = json.Unmarshal(localVarHttpResponse.Body(), &successPayload)
-	return successPayload, localVarAPIResponse, err
+
+	 localVarHttpResponse, err := a.client.callAPI(r)
+	 if err != nil || localVarHttpResponse == nil {
+		  return successPayload, localVarHttpResponse, err
+	 }
+	 defer localVarHttpResponse.Body.Close()
+	 if localVarHttpResponse.StatusCode >= 300 {
+		return successPayload, localVarHttpResponse, reportError(localVarHttpResponse.Status)
+	 }
+	
+	if err = json.NewDecoder(localVarHttpResponse.Body).Decode(&successPayload); err != nil {
+	 	return successPayload, localVarHttpResponse, err
+	}
+
+
+	return successPayload, localVarHttpResponse, err
 }
 
-/**
- * 
- * Retrieve queued item details
- *
- * @param number Queue number
- * @return *HudsonmodelQueue
- */
-func (a RemoteAccessApi) GetQueueItem(number string) (*HudsonmodelQueue, *APIResponse, error) {
+/* RemoteAccessApiService 
+ Retrieve queued item details
+ * @param ctx context.Context Authentication Context 
+ @param number Queue number
+ @return Queue*/
+func (a *RemoteAccessApiService) GetQueueItem(ctx context.Context, number string) (Queue,  *http.Response, error) {
+	var (
+		localVarHttpMethod = strings.ToUpper("Get")
+		localVarPostBody interface{}
+		localVarFileName string
+		localVarFileBytes []byte
+	 	successPayload  Queue
+	)
 
-	var localVarHttpMethod = strings.ToUpper("Get")
 	// create path and map variables
-	localVarPath := a.Configuration.BasePath + "/queue/item/{number}/api/json"
+	localVarPath := a.client.cfg.BasePath + "/queue/item/{number}/api/json"
 	localVarPath = strings.Replace(localVarPath, "{"+"number"+"}", fmt.Sprintf("%v", number), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
-	localVarFormParams := make(map[string]string)
-	var localVarPostBody interface{}
-	var localVarFileName string
-	var localVarFileBytes []byte
-	// add default headers if any
-	for key := range a.Configuration.DefaultHeader {
-		localVarHeaderParams[key] = a.Configuration.DefaultHeader[key]
-	}
+	localVarFormParams := url.Values{}
+
 
 	// to determine the Content-Type header
 	localVarHttpContentTypes := []string{  }
 
 	// set Content-Type header
-	localVarHttpContentType := a.Configuration.APIClient.SelectHeaderContentType(localVarHttpContentTypes)
+	localVarHttpContentType := selectHeaderContentType(localVarHttpContentTypes)
 	if localVarHttpContentType != "" {
 		localVarHeaderParams["Content-Type"] = localVarHttpContentType
 	}
+
 	// to determine the Accept header
 	localVarHttpHeaderAccepts := []string{
 		"application/json",
 		}
 
 	// set Accept header
-	localVarHttpHeaderAccept := a.Configuration.APIClient.SelectHeaderAccept(localVarHttpHeaderAccepts)
+	localVarHttpHeaderAccept := selectHeaderAccept(localVarHttpHeaderAccepts)
 	if localVarHttpHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
 	}
-	var successPayload = new(HudsonmodelQueue)
-	localVarHttpResponse, err := a.Configuration.APIClient.CallAPI(localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
-
-	var localVarURL, _ = url.Parse(localVarPath)
-	localVarURL.RawQuery = localVarQueryParams.Encode()
-	var localVarAPIResponse = &APIResponse{Operation: "GetQueueItem", Method: localVarHttpMethod, RequestURL: localVarURL.String()}
-	if localVarHttpResponse != nil {
-		localVarAPIResponse.Response = localVarHttpResponse.RawResponse
-		localVarAPIResponse.Payload = localVarHttpResponse.Body()
-	}
-
+	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
-		return successPayload, localVarAPIResponse, err
+		return successPayload, nil, err
 	}
-	err = json.Unmarshal(localVarHttpResponse.Body(), &successPayload)
-	return successPayload, localVarAPIResponse, err
+
+	 localVarHttpResponse, err := a.client.callAPI(r)
+	 if err != nil || localVarHttpResponse == nil {
+		  return successPayload, localVarHttpResponse, err
+	 }
+	 defer localVarHttpResponse.Body.Close()
+	 if localVarHttpResponse.StatusCode >= 300 {
+		return successPayload, localVarHttpResponse, reportError(localVarHttpResponse.Status)
+	 }
+	
+	if err = json.NewDecoder(localVarHttpResponse.Body).Decode(&successPayload); err != nil {
+	 	return successPayload, localVarHttpResponse, err
+	}
+
+
+	return successPayload, localVarHttpResponse, err
 }
 
-/**
- * 
- * Retrieve view details
- *
- * @param name Name of the view
- * @return *HudsonmodelListView
- */
-func (a RemoteAccessApi) GetView(name string) (*HudsonmodelListView, *APIResponse, error) {
+/* RemoteAccessApiService 
+ Retrieve view details
+ * @param ctx context.Context Authentication Context 
+ @param name Name of the view
+ @return ListView*/
+func (a *RemoteAccessApiService) GetView(ctx context.Context, name string) (ListView,  *http.Response, error) {
+	var (
+		localVarHttpMethod = strings.ToUpper("Get")
+		localVarPostBody interface{}
+		localVarFileName string
+		localVarFileBytes []byte
+	 	successPayload  ListView
+	)
 
-	var localVarHttpMethod = strings.ToUpper("Get")
 	// create path and map variables
-	localVarPath := a.Configuration.BasePath + "/view/{name}/api/json"
+	localVarPath := a.client.cfg.BasePath + "/view/{name}/api/json"
 	localVarPath = strings.Replace(localVarPath, "{"+"name"+"}", fmt.Sprintf("%v", name), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
-	localVarFormParams := make(map[string]string)
-	var localVarPostBody interface{}
-	var localVarFileName string
-	var localVarFileBytes []byte
-	// add default headers if any
-	for key := range a.Configuration.DefaultHeader {
-		localVarHeaderParams[key] = a.Configuration.DefaultHeader[key]
-	}
+	localVarFormParams := url.Values{}
+
 
 	// to determine the Content-Type header
 	localVarHttpContentTypes := []string{  }
 
 	// set Content-Type header
-	localVarHttpContentType := a.Configuration.APIClient.SelectHeaderContentType(localVarHttpContentTypes)
+	localVarHttpContentType := selectHeaderContentType(localVarHttpContentTypes)
 	if localVarHttpContentType != "" {
 		localVarHeaderParams["Content-Type"] = localVarHttpContentType
 	}
+
 	// to determine the Accept header
 	localVarHttpHeaderAccepts := []string{
 		"application/json",
 		}
 
 	// set Accept header
-	localVarHttpHeaderAccept := a.Configuration.APIClient.SelectHeaderAccept(localVarHttpHeaderAccepts)
+	localVarHttpHeaderAccept := selectHeaderAccept(localVarHttpHeaderAccepts)
 	if localVarHttpHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
 	}
-	var successPayload = new(HudsonmodelListView)
-	localVarHttpResponse, err := a.Configuration.APIClient.CallAPI(localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
-
-	var localVarURL, _ = url.Parse(localVarPath)
-	localVarURL.RawQuery = localVarQueryParams.Encode()
-	var localVarAPIResponse = &APIResponse{Operation: "GetView", Method: localVarHttpMethod, RequestURL: localVarURL.String()}
-	if localVarHttpResponse != nil {
-		localVarAPIResponse.Response = localVarHttpResponse.RawResponse
-		localVarAPIResponse.Payload = localVarHttpResponse.Body()
-	}
-
+	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
-		return successPayload, localVarAPIResponse, err
+		return successPayload, nil, err
 	}
-	err = json.Unmarshal(localVarHttpResponse.Body(), &successPayload)
-	return successPayload, localVarAPIResponse, err
+
+	 localVarHttpResponse, err := a.client.callAPI(r)
+	 if err != nil || localVarHttpResponse == nil {
+		  return successPayload, localVarHttpResponse, err
+	 }
+	 defer localVarHttpResponse.Body.Close()
+	 if localVarHttpResponse.StatusCode >= 300 {
+		return successPayload, localVarHttpResponse, reportError(localVarHttpResponse.Status)
+	 }
+	
+	if err = json.NewDecoder(localVarHttpResponse.Body).Decode(&successPayload); err != nil {
+	 	return successPayload, localVarHttpResponse, err
+	}
+
+
+	return successPayload, localVarHttpResponse, err
 }
 
-/**
- * 
- * Retrieve view configuration
- *
- * @param name Name of the view
- * @return *string
- */
-func (a RemoteAccessApi) GetViewConfig(name string) (*string, *APIResponse, error) {
+/* RemoteAccessApiService 
+ Retrieve view configuration
+ * @param ctx context.Context Authentication Context 
+ @param name Name of the view
+ @return string*/
+func (a *RemoteAccessApiService) GetViewConfig(ctx context.Context, name string) (string,  *http.Response, error) {
+	var (
+		localVarHttpMethod = strings.ToUpper("Get")
+		localVarPostBody interface{}
+		localVarFileName string
+		localVarFileBytes []byte
+	 	successPayload  string
+	)
 
-	var localVarHttpMethod = strings.ToUpper("Get")
 	// create path and map variables
-	localVarPath := a.Configuration.BasePath + "/view/{name}/config.xml"
+	localVarPath := a.client.cfg.BasePath + "/view/{name}/config.xml"
 	localVarPath = strings.Replace(localVarPath, "{"+"name"+"}", fmt.Sprintf("%v", name), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
-	localVarFormParams := make(map[string]string)
-	var localVarPostBody interface{}
-	var localVarFileName string
-	var localVarFileBytes []byte
-	// add default headers if any
-	for key := range a.Configuration.DefaultHeader {
-		localVarHeaderParams[key] = a.Configuration.DefaultHeader[key]
-	}
+	localVarFormParams := url.Values{}
+
 
 	// to determine the Content-Type header
 	localVarHttpContentTypes := []string{  }
 
 	// set Content-Type header
-	localVarHttpContentType := a.Configuration.APIClient.SelectHeaderContentType(localVarHttpContentTypes)
+	localVarHttpContentType := selectHeaderContentType(localVarHttpContentTypes)
 	if localVarHttpContentType != "" {
 		localVarHeaderParams["Content-Type"] = localVarHttpContentType
 	}
+
 	// to determine the Accept header
 	localVarHttpHeaderAccepts := []string{
 		"text/xml",
 		}
 
 	// set Accept header
-	localVarHttpHeaderAccept := a.Configuration.APIClient.SelectHeaderAccept(localVarHttpHeaderAccepts)
+	localVarHttpHeaderAccept := selectHeaderAccept(localVarHttpHeaderAccepts)
 	if localVarHttpHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
 	}
-	var successPayload = new(string)
-	localVarHttpResponse, err := a.Configuration.APIClient.CallAPI(localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
-
-	var localVarURL, _ = url.Parse(localVarPath)
-	localVarURL.RawQuery = localVarQueryParams.Encode()
-	var localVarAPIResponse = &APIResponse{Operation: "GetViewConfig", Method: localVarHttpMethod, RequestURL: localVarURL.String()}
-	if localVarHttpResponse != nil {
-		localVarAPIResponse.Response = localVarHttpResponse.RawResponse
-		localVarAPIResponse.Payload = localVarHttpResponse.Body()
-	}
-
+	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
-		return successPayload, localVarAPIResponse, err
+		return successPayload, nil, err
 	}
-	err = json.Unmarshal(localVarHttpResponse.Body(), &successPayload)
-	return successPayload, localVarAPIResponse, err
+
+	 localVarHttpResponse, err := a.client.callAPI(r)
+	 if err != nil || localVarHttpResponse == nil {
+		  return successPayload, localVarHttpResponse, err
+	 }
+	 defer localVarHttpResponse.Body.Close()
+	 if localVarHttpResponse.StatusCode >= 300 {
+		return successPayload, localVarHttpResponse, reportError(localVarHttpResponse.Status)
+	 }
+	
+	if err = json.NewDecoder(localVarHttpResponse.Body).Decode(&successPayload); err != nil {
+	 	return successPayload, localVarHttpResponse, err
+	}
+
+
+	return successPayload, localVarHttpResponse, err
 }
 
-/**
- * 
- * Retrieve Jenkins headers
- *
- * @return void
- */
-func (a RemoteAccessApi) HeadJenkins() (*APIResponse, error) {
+/* RemoteAccessApiService 
+ Retrieve Jenkins headers
+ * @param ctx context.Context Authentication Context 
+ @return */
+func (a *RemoteAccessApiService) HeadJenkins(ctx context.Context, ) ( *http.Response, error) {
+	var (
+		localVarHttpMethod = strings.ToUpper("Head")
+		localVarPostBody interface{}
+		localVarFileName string
+		localVarFileBytes []byte
+	)
 
-	var localVarHttpMethod = strings.ToUpper("Head")
 	// create path and map variables
-	localVarPath := a.Configuration.BasePath + "/api/json"
+	localVarPath := a.client.cfg.BasePath + "/api/json"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
-	localVarFormParams := make(map[string]string)
-	var localVarPostBody interface{}
-	var localVarFileName string
-	var localVarFileBytes []byte
-	// add default headers if any
-	for key := range a.Configuration.DefaultHeader {
-		localVarHeaderParams[key] = a.Configuration.DefaultHeader[key]
-	}
+	localVarFormParams := url.Values{}
+
 
 	// to determine the Content-Type header
 	localVarHttpContentTypes := []string{  }
 
 	// set Content-Type header
-	localVarHttpContentType := a.Configuration.APIClient.SelectHeaderContentType(localVarHttpContentTypes)
+	localVarHttpContentType := selectHeaderContentType(localVarHttpContentTypes)
 	if localVarHttpContentType != "" {
 		localVarHeaderParams["Content-Type"] = localVarHttpContentType
 	}
+
 	// to determine the Accept header
 	localVarHttpHeaderAccepts := []string{
 		}
 
 	// set Accept header
-	localVarHttpHeaderAccept := a.Configuration.APIClient.SelectHeaderAccept(localVarHttpHeaderAccepts)
+	localVarHttpHeaderAccept := selectHeaderAccept(localVarHttpHeaderAccepts)
 	if localVarHttpHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
 	}
-	localVarHttpResponse, err := a.Configuration.APIClient.CallAPI(localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
-
-	var localVarURL, _ = url.Parse(localVarPath)
-	localVarURL.RawQuery = localVarQueryParams.Encode()
-	var localVarAPIResponse = &APIResponse{Operation: "HeadJenkins", Method: localVarHttpMethod, RequestURL: localVarURL.String()}
-	if localVarHttpResponse != nil {
-		localVarAPIResponse.Response = localVarHttpResponse.RawResponse
-		localVarAPIResponse.Payload = localVarHttpResponse.Body()
-	}
-
+	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
-		return localVarAPIResponse, err
+		return nil, err
 	}
-	return localVarAPIResponse, err
+
+	 localVarHttpResponse, err := a.client.callAPI(r)
+	 if err != nil || localVarHttpResponse == nil {
+		  return localVarHttpResponse, err
+	 }
+	 defer localVarHttpResponse.Body.Close()
+	 if localVarHttpResponse.StatusCode >= 300 {
+		return localVarHttpResponse, reportError(localVarHttpResponse.Status)
+	 }
+
+	return localVarHttpResponse, err
 }
 
-/**
- * 
- * Create a new job using job configuration, or copied from an existing job
- *
- * @param name Name of the new job
- * @param from Existing job to copy from
- * @param mode Set to &#39;copy&#39; for copying an existing job
- * @param body Job configuration in config.xml format
- * @param jenkinsCrumb CSRF protection token
- * @param contentType Content type header application/xml
- * @return void
- */
-func (a RemoteAccessApi) PostCreateItem(name string, from string, mode string, body string, jenkinsCrumb string, contentType string) (*APIResponse, error) {
+/* RemoteAccessApiService 
+ Create a new job using job configuration, or copied from an existing job
+ * @param ctx context.Context Authentication Context 
+ @param name Name of the new job
+ @param optional (nil or map[string]interface{}) with one or more of:
+     @param "from" (string) Existing job to copy from
+     @param "mode" (string) Set to &#39;copy&#39; for copying an existing job
+     @param "body" (string) Job configuration in config.xml format
+     @param "jenkinsCrumb" (string) CSRF protection token
+     @param "contentType" (string) Content type header application/xml
+ @return */
+func (a *RemoteAccessApiService) PostCreateItem(ctx context.Context, name string, localVarOptionals map[string]interface{}) ( *http.Response, error) {
+	var (
+		localVarHttpMethod = strings.ToUpper("Post")
+		localVarPostBody interface{}
+		localVarFileName string
+		localVarFileBytes []byte
+	)
 
-	var localVarHttpMethod = strings.ToUpper("Post")
 	// create path and map variables
-	localVarPath := a.Configuration.BasePath + "/createItem"
+	localVarPath := a.client.cfg.BasePath + "/createItem"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
-	localVarFormParams := make(map[string]string)
-	var localVarPostBody interface{}
-	var localVarFileName string
-	var localVarFileBytes []byte
-	// add default headers if any
-	for key := range a.Configuration.DefaultHeader {
-		localVarHeaderParams[key] = a.Configuration.DefaultHeader[key]
-	}
-	localVarQueryParams.Add("name", a.Configuration.APIClient.ParameterToString(name, ""))
-	localVarQueryParams.Add("from", a.Configuration.APIClient.ParameterToString(from, ""))
-	localVarQueryParams.Add("mode", a.Configuration.APIClient.ParameterToString(mode, ""))
+	localVarFormParams := url.Values{}
 
+	if err := typeCheckParameter(localVarOptionals["from"], "string", "from"); err != nil {
+		return nil, err
+	}
+	if err := typeCheckParameter(localVarOptionals["mode"], "string", "mode"); err != nil {
+		return nil, err
+	}
+	if err := typeCheckParameter(localVarOptionals["body"], "string", "body"); err != nil {
+		return nil, err
+	}
+	if err := typeCheckParameter(localVarOptionals["jenkinsCrumb"], "string", "jenkinsCrumb"); err != nil {
+		return nil, err
+	}
+	if err := typeCheckParameter(localVarOptionals["contentType"], "string", "contentType"); err != nil {
+		return nil, err
+	}
+
+	localVarQueryParams.Add("name", parameterToString(name, ""))
+	if localVarTempParam, localVarOk := localVarOptionals["from"].(string); localVarOk {
+		localVarQueryParams.Add("from", parameterToString(localVarTempParam, ""))
+	}
+	if localVarTempParam, localVarOk := localVarOptionals["mode"].(string); localVarOk {
+		localVarQueryParams.Add("mode", parameterToString(localVarTempParam, ""))
+	}
 	// to determine the Content-Type header
 	localVarHttpContentTypes := []string{  }
 
 	// set Content-Type header
-	localVarHttpContentType := a.Configuration.APIClient.SelectHeaderContentType(localVarHttpContentTypes)
+	localVarHttpContentType := selectHeaderContentType(localVarHttpContentTypes)
 	if localVarHttpContentType != "" {
 		localVarHeaderParams["Content-Type"] = localVarHttpContentType
 	}
+
 	// to determine the Accept header
 	localVarHttpHeaderAccepts := []string{
 		"text/html",
 		}
 
 	// set Accept header
-	localVarHttpHeaderAccept := a.Configuration.APIClient.SelectHeaderAccept(localVarHttpHeaderAccepts)
+	localVarHttpHeaderAccept := selectHeaderAccept(localVarHttpHeaderAccepts)
 	if localVarHttpHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
 	}
-	// header params "Jenkins-Crumb"
-	localVarHeaderParams["Jenkins-Crumb"] = a.Configuration.APIClient.ParameterToString(jenkinsCrumb, "")
-	// header params "Content-Type"
-	localVarHeaderParams["Content-Type"] = a.Configuration.APIClient.ParameterToString(contentType, "")
+	if localVarTempParam, localVarOk := localVarOptionals["jenkinsCrumb"].(string); localVarOk {
+		localVarHeaderParams["Jenkins-Crumb"] = parameterToString(localVarTempParam, "")
+	}
+	if localVarTempParam, localVarOk := localVarOptionals["contentType"].(string); localVarOk {
+		localVarHeaderParams["Content-Type"] = parameterToString(localVarTempParam, "")
+	}
 	// body params
-	localVarPostBody = &body
-	localVarHttpResponse, err := a.Configuration.APIClient.CallAPI(localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
-
-	var localVarURL, _ = url.Parse(localVarPath)
-	localVarURL.RawQuery = localVarQueryParams.Encode()
-	var localVarAPIResponse = &APIResponse{Operation: "PostCreateItem", Method: localVarHttpMethod, RequestURL: localVarURL.String()}
-	if localVarHttpResponse != nil {
-		localVarAPIResponse.Response = localVarHttpResponse.RawResponse
-		localVarAPIResponse.Payload = localVarHttpResponse.Body()
+	if localVarTempParam, localVarOk := localVarOptionals["body"].(string); localVarOk {
+		localVarPostBody = &localVarTempParam
 	}
-
+	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
-		return localVarAPIResponse, err
+		return nil, err
 	}
-	return localVarAPIResponse, err
+
+	 localVarHttpResponse, err := a.client.callAPI(r)
+	 if err != nil || localVarHttpResponse == nil {
+		  return localVarHttpResponse, err
+	 }
+	 defer localVarHttpResponse.Body.Close()
+	 if localVarHttpResponse.StatusCode >= 300 {
+		return localVarHttpResponse, reportError(localVarHttpResponse.Status)
+	 }
+
+	return localVarHttpResponse, err
 }
 
-/**
- * 
- * Create a new view using view configuration
- *
- * @param name Name of the new view
- * @param body View configuration in config.xml format
- * @param jenkinsCrumb CSRF protection token
- * @param contentType Content type header application/xml
- * @return void
- */
-func (a RemoteAccessApi) PostCreateView(name string, body string, jenkinsCrumb string, contentType string) (*APIResponse, error) {
+/* RemoteAccessApiService 
+ Create a new view using view configuration
+ * @param ctx context.Context Authentication Context 
+ @param name Name of the new view
+ @param optional (nil or map[string]interface{}) with one or more of:
+     @param "body" (string) View configuration in config.xml format
+     @param "jenkinsCrumb" (string) CSRF protection token
+     @param "contentType" (string) Content type header application/xml
+ @return */
+func (a *RemoteAccessApiService) PostCreateView(ctx context.Context, name string, localVarOptionals map[string]interface{}) ( *http.Response, error) {
+	var (
+		localVarHttpMethod = strings.ToUpper("Post")
+		localVarPostBody interface{}
+		localVarFileName string
+		localVarFileBytes []byte
+	)
 
-	var localVarHttpMethod = strings.ToUpper("Post")
 	// create path and map variables
-	localVarPath := a.Configuration.BasePath + "/createView"
+	localVarPath := a.client.cfg.BasePath + "/createView"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
-	localVarFormParams := make(map[string]string)
-	var localVarPostBody interface{}
-	var localVarFileName string
-	var localVarFileBytes []byte
-	// add default headers if any
-	for key := range a.Configuration.DefaultHeader {
-		localVarHeaderParams[key] = a.Configuration.DefaultHeader[key]
-	}
-	localVarQueryParams.Add("name", a.Configuration.APIClient.ParameterToString(name, ""))
+	localVarFormParams := url.Values{}
 
+	if err := typeCheckParameter(localVarOptionals["body"], "string", "body"); err != nil {
+		return nil, err
+	}
+	if err := typeCheckParameter(localVarOptionals["jenkinsCrumb"], "string", "jenkinsCrumb"); err != nil {
+		return nil, err
+	}
+	if err := typeCheckParameter(localVarOptionals["contentType"], "string", "contentType"); err != nil {
+		return nil, err
+	}
+
+	localVarQueryParams.Add("name", parameterToString(name, ""))
 	// to determine the Content-Type header
 	localVarHttpContentTypes := []string{  }
 
 	// set Content-Type header
-	localVarHttpContentType := a.Configuration.APIClient.SelectHeaderContentType(localVarHttpContentTypes)
+	localVarHttpContentType := selectHeaderContentType(localVarHttpContentTypes)
 	if localVarHttpContentType != "" {
 		localVarHeaderParams["Content-Type"] = localVarHttpContentType
 	}
+
 	// to determine the Accept header
 	localVarHttpHeaderAccepts := []string{
 		"text/html",
 		}
 
 	// set Accept header
-	localVarHttpHeaderAccept := a.Configuration.APIClient.SelectHeaderAccept(localVarHttpHeaderAccepts)
+	localVarHttpHeaderAccept := selectHeaderAccept(localVarHttpHeaderAccepts)
 	if localVarHttpHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
 	}
-	// header params "Jenkins-Crumb"
-	localVarHeaderParams["Jenkins-Crumb"] = a.Configuration.APIClient.ParameterToString(jenkinsCrumb, "")
-	// header params "Content-Type"
-	localVarHeaderParams["Content-Type"] = a.Configuration.APIClient.ParameterToString(contentType, "")
+	if localVarTempParam, localVarOk := localVarOptionals["jenkinsCrumb"].(string); localVarOk {
+		localVarHeaderParams["Jenkins-Crumb"] = parameterToString(localVarTempParam, "")
+	}
+	if localVarTempParam, localVarOk := localVarOptionals["contentType"].(string); localVarOk {
+		localVarHeaderParams["Content-Type"] = parameterToString(localVarTempParam, "")
+	}
 	// body params
-	localVarPostBody = &body
-	localVarHttpResponse, err := a.Configuration.APIClient.CallAPI(localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
-
-	var localVarURL, _ = url.Parse(localVarPath)
-	localVarURL.RawQuery = localVarQueryParams.Encode()
-	var localVarAPIResponse = &APIResponse{Operation: "PostCreateView", Method: localVarHttpMethod, RequestURL: localVarURL.String()}
-	if localVarHttpResponse != nil {
-		localVarAPIResponse.Response = localVarHttpResponse.RawResponse
-		localVarAPIResponse.Payload = localVarHttpResponse.Body()
+	if localVarTempParam, localVarOk := localVarOptionals["body"].(string); localVarOk {
+		localVarPostBody = &localVarTempParam
 	}
-
+	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
-		return localVarAPIResponse, err
+		return nil, err
 	}
-	return localVarAPIResponse, err
+
+	 localVarHttpResponse, err := a.client.callAPI(r)
+	 if err != nil || localVarHttpResponse == nil {
+		  return localVarHttpResponse, err
+	 }
+	 defer localVarHttpResponse.Body.Close()
+	 if localVarHttpResponse.StatusCode >= 300 {
+		return localVarHttpResponse, reportError(localVarHttpResponse.Status)
+	 }
+
+	return localVarHttpResponse, err
 }
 
-/**
- * 
- * Build a job
- *
- * @param name Name of the job
- * @param json 
- * @param token 
- * @param jenkinsCrumb CSRF protection token
- * @return void
- */
-func (a RemoteAccessApi) PostJobBuild(name string, json string, token string, jenkinsCrumb string) (*APIResponse, error) {
+/* RemoteAccessApiService 
+ Build a job
+ * @param ctx context.Context Authentication Context 
+ @param name Name of the job
+ @param json 
+ @param optional (nil or map[string]interface{}) with one or more of:
+     @param "token" (string) 
+     @param "jenkinsCrumb" (string) CSRF protection token
+ @return */
+func (a *RemoteAccessApiService) PostJobBuild(ctx context.Context, name string, json string, localVarOptionals map[string]interface{}) ( *http.Response, error) {
+	var (
+		localVarHttpMethod = strings.ToUpper("Post")
+		localVarPostBody interface{}
+		localVarFileName string
+		localVarFileBytes []byte
+	)
 
-	var localVarHttpMethod = strings.ToUpper("Post")
 	// create path and map variables
-	localVarPath := a.Configuration.BasePath + "/job/{name}/build"
+	localVarPath := a.client.cfg.BasePath + "/job/{name}/build"
 	localVarPath = strings.Replace(localVarPath, "{"+"name"+"}", fmt.Sprintf("%v", name), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
-	localVarFormParams := make(map[string]string)
-	var localVarPostBody interface{}
-	var localVarFileName string
-	var localVarFileBytes []byte
-	// add default headers if any
-	for key := range a.Configuration.DefaultHeader {
-		localVarHeaderParams[key] = a.Configuration.DefaultHeader[key]
-	}
-	localVarQueryParams.Add("json", a.Configuration.APIClient.ParameterToString(json, ""))
-	localVarQueryParams.Add("token", a.Configuration.APIClient.ParameterToString(token, ""))
+	localVarFormParams := url.Values{}
 
+	if err := typeCheckParameter(localVarOptionals["token"], "string", "token"); err != nil {
+		return nil, err
+	}
+	if err := typeCheckParameter(localVarOptionals["jenkinsCrumb"], "string", "jenkinsCrumb"); err != nil {
+		return nil, err
+	}
+
+	localVarQueryParams.Add("json", parameterToString(json, ""))
+	if localVarTempParam, localVarOk := localVarOptionals["token"].(string); localVarOk {
+		localVarQueryParams.Add("token", parameterToString(localVarTempParam, ""))
+	}
 	// to determine the Content-Type header
 	localVarHttpContentTypes := []string{  }
 
 	// set Content-Type header
-	localVarHttpContentType := a.Configuration.APIClient.SelectHeaderContentType(localVarHttpContentTypes)
+	localVarHttpContentType := selectHeaderContentType(localVarHttpContentTypes)
 	if localVarHttpContentType != "" {
 		localVarHeaderParams["Content-Type"] = localVarHttpContentType
 	}
+
 	// to determine the Accept header
 	localVarHttpHeaderAccepts := []string{
 		}
 
 	// set Accept header
-	localVarHttpHeaderAccept := a.Configuration.APIClient.SelectHeaderAccept(localVarHttpHeaderAccepts)
+	localVarHttpHeaderAccept := selectHeaderAccept(localVarHttpHeaderAccepts)
 	if localVarHttpHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
 	}
-	// header params "Jenkins-Crumb"
-	localVarHeaderParams["Jenkins-Crumb"] = a.Configuration.APIClient.ParameterToString(jenkinsCrumb, "")
-	localVarHttpResponse, err := a.Configuration.APIClient.CallAPI(localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
-
-	var localVarURL, _ = url.Parse(localVarPath)
-	localVarURL.RawQuery = localVarQueryParams.Encode()
-	var localVarAPIResponse = &APIResponse{Operation: "PostJobBuild", Method: localVarHttpMethod, RequestURL: localVarURL.String()}
-	if localVarHttpResponse != nil {
-		localVarAPIResponse.Response = localVarHttpResponse.RawResponse
-		localVarAPIResponse.Payload = localVarHttpResponse.Body()
+	if localVarTempParam, localVarOk := localVarOptionals["jenkinsCrumb"].(string); localVarOk {
+		localVarHeaderParams["Jenkins-Crumb"] = parameterToString(localVarTempParam, "")
 	}
-
+	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
-		return localVarAPIResponse, err
+		return nil, err
 	}
-	return localVarAPIResponse, err
+
+	 localVarHttpResponse, err := a.client.callAPI(r)
+	 if err != nil || localVarHttpResponse == nil {
+		  return localVarHttpResponse, err
+	 }
+	 defer localVarHttpResponse.Body.Close()
+	 if localVarHttpResponse.StatusCode >= 300 {
+		return localVarHttpResponse, reportError(localVarHttpResponse.Status)
+	 }
+
+	return localVarHttpResponse, err
 }
 
-/**
- * 
- * Update job configuration
- *
- * @param name Name of the job
- * @param body Job configuration in config.xml format
- * @param jenkinsCrumb CSRF protection token
- * @return void
- */
-func (a RemoteAccessApi) PostJobConfig(name string, body string, jenkinsCrumb string) (*APIResponse, error) {
+/* RemoteAccessApiService 
+ Update job configuration
+ * @param ctx context.Context Authentication Context 
+ @param name Name of the job
+ @param body Job configuration in config.xml format
+ @param optional (nil or map[string]interface{}) with one or more of:
+     @param "jenkinsCrumb" (string) CSRF protection token
+ @return */
+func (a *RemoteAccessApiService) PostJobConfig(ctx context.Context, name string, body string, localVarOptionals map[string]interface{}) ( *http.Response, error) {
+	var (
+		localVarHttpMethod = strings.ToUpper("Post")
+		localVarPostBody interface{}
+		localVarFileName string
+		localVarFileBytes []byte
+	)
 
-	var localVarHttpMethod = strings.ToUpper("Post")
 	// create path and map variables
-	localVarPath := a.Configuration.BasePath + "/job/{name}/config.xml"
+	localVarPath := a.client.cfg.BasePath + "/job/{name}/config.xml"
 	localVarPath = strings.Replace(localVarPath, "{"+"name"+"}", fmt.Sprintf("%v", name), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
-	localVarFormParams := make(map[string]string)
-	var localVarPostBody interface{}
-	var localVarFileName string
-	var localVarFileBytes []byte
-	// add default headers if any
-	for key := range a.Configuration.DefaultHeader {
-		localVarHeaderParams[key] = a.Configuration.DefaultHeader[key]
+	localVarFormParams := url.Values{}
+
+	if err := typeCheckParameter(localVarOptionals["jenkinsCrumb"], "string", "jenkinsCrumb"); err != nil {
+		return nil, err
 	}
 
 	// to determine the Content-Type header
 	localVarHttpContentTypes := []string{  }
 
 	// set Content-Type header
-	localVarHttpContentType := a.Configuration.APIClient.SelectHeaderContentType(localVarHttpContentTypes)
+	localVarHttpContentType := selectHeaderContentType(localVarHttpContentTypes)
 	if localVarHttpContentType != "" {
 		localVarHeaderParams["Content-Type"] = localVarHttpContentType
 	}
+
 	// to determine the Accept header
 	localVarHttpHeaderAccepts := []string{
 		"text/xml",
 		}
 
 	// set Accept header
-	localVarHttpHeaderAccept := a.Configuration.APIClient.SelectHeaderAccept(localVarHttpHeaderAccepts)
+	localVarHttpHeaderAccept := selectHeaderAccept(localVarHttpHeaderAccepts)
 	if localVarHttpHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
 	}
-	// header params "Jenkins-Crumb"
-	localVarHeaderParams["Jenkins-Crumb"] = a.Configuration.APIClient.ParameterToString(jenkinsCrumb, "")
+	if localVarTempParam, localVarOk := localVarOptionals["jenkinsCrumb"].(string); localVarOk {
+		localVarHeaderParams["Jenkins-Crumb"] = parameterToString(localVarTempParam, "")
+	}
 	// body params
 	localVarPostBody = &body
-	localVarHttpResponse, err := a.Configuration.APIClient.CallAPI(localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
-
-	var localVarURL, _ = url.Parse(localVarPath)
-	localVarURL.RawQuery = localVarQueryParams.Encode()
-	var localVarAPIResponse = &APIResponse{Operation: "PostJobConfig", Method: localVarHttpMethod, RequestURL: localVarURL.String()}
-	if localVarHttpResponse != nil {
-		localVarAPIResponse.Response = localVarHttpResponse.RawResponse
-		localVarAPIResponse.Payload = localVarHttpResponse.Body()
-	}
-
+	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
-		return localVarAPIResponse, err
+		return nil, err
 	}
-	return localVarAPIResponse, err
+
+	 localVarHttpResponse, err := a.client.callAPI(r)
+	 if err != nil || localVarHttpResponse == nil {
+		  return localVarHttpResponse, err
+	 }
+	 defer localVarHttpResponse.Body.Close()
+	 if localVarHttpResponse.StatusCode >= 300 {
+		return localVarHttpResponse, reportError(localVarHttpResponse.Status)
+	 }
+
+	return localVarHttpResponse, err
 }
 
-/**
- * 
- * Delete a job
- *
- * @param name Name of the job
- * @param jenkinsCrumb CSRF protection token
- * @return void
- */
-func (a RemoteAccessApi) PostJobDelete(name string, jenkinsCrumb string) (*APIResponse, error) {
+/* RemoteAccessApiService 
+ Delete a job
+ * @param ctx context.Context Authentication Context 
+ @param name Name of the job
+ @param optional (nil or map[string]interface{}) with one or more of:
+     @param "jenkinsCrumb" (string) CSRF protection token
+ @return */
+func (a *RemoteAccessApiService) PostJobDelete(ctx context.Context, name string, localVarOptionals map[string]interface{}) ( *http.Response, error) {
+	var (
+		localVarHttpMethod = strings.ToUpper("Post")
+		localVarPostBody interface{}
+		localVarFileName string
+		localVarFileBytes []byte
+	)
 
-	var localVarHttpMethod = strings.ToUpper("Post")
 	// create path and map variables
-	localVarPath := a.Configuration.BasePath + "/job/{name}/doDelete"
+	localVarPath := a.client.cfg.BasePath + "/job/{name}/doDelete"
 	localVarPath = strings.Replace(localVarPath, "{"+"name"+"}", fmt.Sprintf("%v", name), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
-	localVarFormParams := make(map[string]string)
-	var localVarPostBody interface{}
-	var localVarFileName string
-	var localVarFileBytes []byte
-	// add default headers if any
-	for key := range a.Configuration.DefaultHeader {
-		localVarHeaderParams[key] = a.Configuration.DefaultHeader[key]
+	localVarFormParams := url.Values{}
+
+	if err := typeCheckParameter(localVarOptionals["jenkinsCrumb"], "string", "jenkinsCrumb"); err != nil {
+		return nil, err
 	}
 
 	// to determine the Content-Type header
 	localVarHttpContentTypes := []string{  }
 
 	// set Content-Type header
-	localVarHttpContentType := a.Configuration.APIClient.SelectHeaderContentType(localVarHttpContentTypes)
+	localVarHttpContentType := selectHeaderContentType(localVarHttpContentTypes)
 	if localVarHttpContentType != "" {
 		localVarHeaderParams["Content-Type"] = localVarHttpContentType
 	}
+
 	// to determine the Accept header
 	localVarHttpHeaderAccepts := []string{
 		}
 
 	// set Accept header
-	localVarHttpHeaderAccept := a.Configuration.APIClient.SelectHeaderAccept(localVarHttpHeaderAccepts)
+	localVarHttpHeaderAccept := selectHeaderAccept(localVarHttpHeaderAccepts)
 	if localVarHttpHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
 	}
-	// header params "Jenkins-Crumb"
-	localVarHeaderParams["Jenkins-Crumb"] = a.Configuration.APIClient.ParameterToString(jenkinsCrumb, "")
-	localVarHttpResponse, err := a.Configuration.APIClient.CallAPI(localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
-
-	var localVarURL, _ = url.Parse(localVarPath)
-	localVarURL.RawQuery = localVarQueryParams.Encode()
-	var localVarAPIResponse = &APIResponse{Operation: "PostJobDelete", Method: localVarHttpMethod, RequestURL: localVarURL.String()}
-	if localVarHttpResponse != nil {
-		localVarAPIResponse.Response = localVarHttpResponse.RawResponse
-		localVarAPIResponse.Payload = localVarHttpResponse.Body()
+	if localVarTempParam, localVarOk := localVarOptionals["jenkinsCrumb"].(string); localVarOk {
+		localVarHeaderParams["Jenkins-Crumb"] = parameterToString(localVarTempParam, "")
 	}
-
+	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
-		return localVarAPIResponse, err
+		return nil, err
 	}
-	return localVarAPIResponse, err
+
+	 localVarHttpResponse, err := a.client.callAPI(r)
+	 if err != nil || localVarHttpResponse == nil {
+		  return localVarHttpResponse, err
+	 }
+	 defer localVarHttpResponse.Body.Close()
+	 if localVarHttpResponse.StatusCode >= 300 {
+		return localVarHttpResponse, reportError(localVarHttpResponse.Status)
+	 }
+
+	return localVarHttpResponse, err
 }
 
-/**
- * 
- * Disable a job
- *
- * @param name Name of the job
- * @param jenkinsCrumb CSRF protection token
- * @return void
- */
-func (a RemoteAccessApi) PostJobDisable(name string, jenkinsCrumb string) (*APIResponse, error) {
+/* RemoteAccessApiService 
+ Disable a job
+ * @param ctx context.Context Authentication Context 
+ @param name Name of the job
+ @param optional (nil or map[string]interface{}) with one or more of:
+     @param "jenkinsCrumb" (string) CSRF protection token
+ @return */
+func (a *RemoteAccessApiService) PostJobDisable(ctx context.Context, name string, localVarOptionals map[string]interface{}) ( *http.Response, error) {
+	var (
+		localVarHttpMethod = strings.ToUpper("Post")
+		localVarPostBody interface{}
+		localVarFileName string
+		localVarFileBytes []byte
+	)
 
-	var localVarHttpMethod = strings.ToUpper("Post")
 	// create path and map variables
-	localVarPath := a.Configuration.BasePath + "/job/{name}/disable"
+	localVarPath := a.client.cfg.BasePath + "/job/{name}/disable"
 	localVarPath = strings.Replace(localVarPath, "{"+"name"+"}", fmt.Sprintf("%v", name), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
-	localVarFormParams := make(map[string]string)
-	var localVarPostBody interface{}
-	var localVarFileName string
-	var localVarFileBytes []byte
-	// add default headers if any
-	for key := range a.Configuration.DefaultHeader {
-		localVarHeaderParams[key] = a.Configuration.DefaultHeader[key]
+	localVarFormParams := url.Values{}
+
+	if err := typeCheckParameter(localVarOptionals["jenkinsCrumb"], "string", "jenkinsCrumb"); err != nil {
+		return nil, err
 	}
 
 	// to determine the Content-Type header
 	localVarHttpContentTypes := []string{  }
 
 	// set Content-Type header
-	localVarHttpContentType := a.Configuration.APIClient.SelectHeaderContentType(localVarHttpContentTypes)
+	localVarHttpContentType := selectHeaderContentType(localVarHttpContentTypes)
 	if localVarHttpContentType != "" {
 		localVarHeaderParams["Content-Type"] = localVarHttpContentType
 	}
+
 	// to determine the Accept header
 	localVarHttpHeaderAccepts := []string{
 		}
 
 	// set Accept header
-	localVarHttpHeaderAccept := a.Configuration.APIClient.SelectHeaderAccept(localVarHttpHeaderAccepts)
+	localVarHttpHeaderAccept := selectHeaderAccept(localVarHttpHeaderAccepts)
 	if localVarHttpHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
 	}
-	// header params "Jenkins-Crumb"
-	localVarHeaderParams["Jenkins-Crumb"] = a.Configuration.APIClient.ParameterToString(jenkinsCrumb, "")
-	localVarHttpResponse, err := a.Configuration.APIClient.CallAPI(localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
-
-	var localVarURL, _ = url.Parse(localVarPath)
-	localVarURL.RawQuery = localVarQueryParams.Encode()
-	var localVarAPIResponse = &APIResponse{Operation: "PostJobDisable", Method: localVarHttpMethod, RequestURL: localVarURL.String()}
-	if localVarHttpResponse != nil {
-		localVarAPIResponse.Response = localVarHttpResponse.RawResponse
-		localVarAPIResponse.Payload = localVarHttpResponse.Body()
+	if localVarTempParam, localVarOk := localVarOptionals["jenkinsCrumb"].(string); localVarOk {
+		localVarHeaderParams["Jenkins-Crumb"] = parameterToString(localVarTempParam, "")
 	}
-
+	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
-		return localVarAPIResponse, err
+		return nil, err
 	}
-	return localVarAPIResponse, err
+
+	 localVarHttpResponse, err := a.client.callAPI(r)
+	 if err != nil || localVarHttpResponse == nil {
+		  return localVarHttpResponse, err
+	 }
+	 defer localVarHttpResponse.Body.Close()
+	 if localVarHttpResponse.StatusCode >= 300 {
+		return localVarHttpResponse, reportError(localVarHttpResponse.Status)
+	 }
+
+	return localVarHttpResponse, err
 }
 
-/**
- * 
- * Enable a job
- *
- * @param name Name of the job
- * @param jenkinsCrumb CSRF protection token
- * @return void
- */
-func (a RemoteAccessApi) PostJobEnable(name string, jenkinsCrumb string) (*APIResponse, error) {
+/* RemoteAccessApiService 
+ Enable a job
+ * @param ctx context.Context Authentication Context 
+ @param name Name of the job
+ @param optional (nil or map[string]interface{}) with one or more of:
+     @param "jenkinsCrumb" (string) CSRF protection token
+ @return */
+func (a *RemoteAccessApiService) PostJobEnable(ctx context.Context, name string, localVarOptionals map[string]interface{}) ( *http.Response, error) {
+	var (
+		localVarHttpMethod = strings.ToUpper("Post")
+		localVarPostBody interface{}
+		localVarFileName string
+		localVarFileBytes []byte
+	)
 
-	var localVarHttpMethod = strings.ToUpper("Post")
 	// create path and map variables
-	localVarPath := a.Configuration.BasePath + "/job/{name}/enable"
+	localVarPath := a.client.cfg.BasePath + "/job/{name}/enable"
 	localVarPath = strings.Replace(localVarPath, "{"+"name"+"}", fmt.Sprintf("%v", name), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
-	localVarFormParams := make(map[string]string)
-	var localVarPostBody interface{}
-	var localVarFileName string
-	var localVarFileBytes []byte
-	// add default headers if any
-	for key := range a.Configuration.DefaultHeader {
-		localVarHeaderParams[key] = a.Configuration.DefaultHeader[key]
+	localVarFormParams := url.Values{}
+
+	if err := typeCheckParameter(localVarOptionals["jenkinsCrumb"], "string", "jenkinsCrumb"); err != nil {
+		return nil, err
 	}
 
 	// to determine the Content-Type header
 	localVarHttpContentTypes := []string{  }
 
 	// set Content-Type header
-	localVarHttpContentType := a.Configuration.APIClient.SelectHeaderContentType(localVarHttpContentTypes)
+	localVarHttpContentType := selectHeaderContentType(localVarHttpContentTypes)
 	if localVarHttpContentType != "" {
 		localVarHeaderParams["Content-Type"] = localVarHttpContentType
 	}
+
 	// to determine the Accept header
 	localVarHttpHeaderAccepts := []string{
 		}
 
 	// set Accept header
-	localVarHttpHeaderAccept := a.Configuration.APIClient.SelectHeaderAccept(localVarHttpHeaderAccepts)
+	localVarHttpHeaderAccept := selectHeaderAccept(localVarHttpHeaderAccepts)
 	if localVarHttpHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
 	}
-	// header params "Jenkins-Crumb"
-	localVarHeaderParams["Jenkins-Crumb"] = a.Configuration.APIClient.ParameterToString(jenkinsCrumb, "")
-	localVarHttpResponse, err := a.Configuration.APIClient.CallAPI(localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
-
-	var localVarURL, _ = url.Parse(localVarPath)
-	localVarURL.RawQuery = localVarQueryParams.Encode()
-	var localVarAPIResponse = &APIResponse{Operation: "PostJobEnable", Method: localVarHttpMethod, RequestURL: localVarURL.String()}
-	if localVarHttpResponse != nil {
-		localVarAPIResponse.Response = localVarHttpResponse.RawResponse
-		localVarAPIResponse.Payload = localVarHttpResponse.Body()
+	if localVarTempParam, localVarOk := localVarOptionals["jenkinsCrumb"].(string); localVarOk {
+		localVarHeaderParams["Jenkins-Crumb"] = parameterToString(localVarTempParam, "")
 	}
-
+	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
-		return localVarAPIResponse, err
+		return nil, err
 	}
-	return localVarAPIResponse, err
+
+	 localVarHttpResponse, err := a.client.callAPI(r)
+	 if err != nil || localVarHttpResponse == nil {
+		  return localVarHttpResponse, err
+	 }
+	 defer localVarHttpResponse.Body.Close()
+	 if localVarHttpResponse.StatusCode >= 300 {
+		return localVarHttpResponse, reportError(localVarHttpResponse.Status)
+	 }
+
+	return localVarHttpResponse, err
 }
 
-/**
- * 
- * Stop a job
- *
- * @param name Name of the job
- * @param jenkinsCrumb CSRF protection token
- * @return void
- */
-func (a RemoteAccessApi) PostJobLastBuildStop(name string, jenkinsCrumb string) (*APIResponse, error) {
+/* RemoteAccessApiService 
+ Stop a job
+ * @param ctx context.Context Authentication Context 
+ @param name Name of the job
+ @param optional (nil or map[string]interface{}) with one or more of:
+     @param "jenkinsCrumb" (string) CSRF protection token
+ @return */
+func (a *RemoteAccessApiService) PostJobLastBuildStop(ctx context.Context, name string, localVarOptionals map[string]interface{}) ( *http.Response, error) {
+	var (
+		localVarHttpMethod = strings.ToUpper("Post")
+		localVarPostBody interface{}
+		localVarFileName string
+		localVarFileBytes []byte
+	)
 
-	var localVarHttpMethod = strings.ToUpper("Post")
 	// create path and map variables
-	localVarPath := a.Configuration.BasePath + "/job/{name}/lastBuild/stop"
+	localVarPath := a.client.cfg.BasePath + "/job/{name}/lastBuild/stop"
 	localVarPath = strings.Replace(localVarPath, "{"+"name"+"}", fmt.Sprintf("%v", name), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
-	localVarFormParams := make(map[string]string)
-	var localVarPostBody interface{}
-	var localVarFileName string
-	var localVarFileBytes []byte
-	// add default headers if any
-	for key := range a.Configuration.DefaultHeader {
-		localVarHeaderParams[key] = a.Configuration.DefaultHeader[key]
+	localVarFormParams := url.Values{}
+
+	if err := typeCheckParameter(localVarOptionals["jenkinsCrumb"], "string", "jenkinsCrumb"); err != nil {
+		return nil, err
 	}
 
 	// to determine the Content-Type header
 	localVarHttpContentTypes := []string{  }
 
 	// set Content-Type header
-	localVarHttpContentType := a.Configuration.APIClient.SelectHeaderContentType(localVarHttpContentTypes)
+	localVarHttpContentType := selectHeaderContentType(localVarHttpContentTypes)
 	if localVarHttpContentType != "" {
 		localVarHeaderParams["Content-Type"] = localVarHttpContentType
 	}
+
 	// to determine the Accept header
 	localVarHttpHeaderAccepts := []string{
 		}
 
 	// set Accept header
-	localVarHttpHeaderAccept := a.Configuration.APIClient.SelectHeaderAccept(localVarHttpHeaderAccepts)
+	localVarHttpHeaderAccept := selectHeaderAccept(localVarHttpHeaderAccepts)
 	if localVarHttpHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
 	}
-	// header params "Jenkins-Crumb"
-	localVarHeaderParams["Jenkins-Crumb"] = a.Configuration.APIClient.ParameterToString(jenkinsCrumb, "")
-	localVarHttpResponse, err := a.Configuration.APIClient.CallAPI(localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
-
-	var localVarURL, _ = url.Parse(localVarPath)
-	localVarURL.RawQuery = localVarQueryParams.Encode()
-	var localVarAPIResponse = &APIResponse{Operation: "PostJobLastBuildStop", Method: localVarHttpMethod, RequestURL: localVarURL.String()}
-	if localVarHttpResponse != nil {
-		localVarAPIResponse.Response = localVarHttpResponse.RawResponse
-		localVarAPIResponse.Payload = localVarHttpResponse.Body()
+	if localVarTempParam, localVarOk := localVarOptionals["jenkinsCrumb"].(string); localVarOk {
+		localVarHeaderParams["Jenkins-Crumb"] = parameterToString(localVarTempParam, "")
 	}
-
+	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
-		return localVarAPIResponse, err
+		return nil, err
 	}
-	return localVarAPIResponse, err
+
+	 localVarHttpResponse, err := a.client.callAPI(r)
+	 if err != nil || localVarHttpResponse == nil {
+		  return localVarHttpResponse, err
+	 }
+	 defer localVarHttpResponse.Body.Close()
+	 if localVarHttpResponse.StatusCode >= 300 {
+		return localVarHttpResponse, reportError(localVarHttpResponse.Status)
+	 }
+
+	return localVarHttpResponse, err
 }
 
-/**
- * 
- * Update view configuration
- *
- * @param name Name of the view
- * @param body View configuration in config.xml format
- * @param jenkinsCrumb CSRF protection token
- * @return void
- */
-func (a RemoteAccessApi) PostViewConfig(name string, body string, jenkinsCrumb string) (*APIResponse, error) {
+/* RemoteAccessApiService 
+ Update view configuration
+ * @param ctx context.Context Authentication Context 
+ @param name Name of the view
+ @param body View configuration in config.xml format
+ @param optional (nil or map[string]interface{}) with one or more of:
+     @param "jenkinsCrumb" (string) CSRF protection token
+ @return */
+func (a *RemoteAccessApiService) PostViewConfig(ctx context.Context, name string, body string, localVarOptionals map[string]interface{}) ( *http.Response, error) {
+	var (
+		localVarHttpMethod = strings.ToUpper("Post")
+		localVarPostBody interface{}
+		localVarFileName string
+		localVarFileBytes []byte
+	)
 
-	var localVarHttpMethod = strings.ToUpper("Post")
 	// create path and map variables
-	localVarPath := a.Configuration.BasePath + "/view/{name}/config.xml"
+	localVarPath := a.client.cfg.BasePath + "/view/{name}/config.xml"
 	localVarPath = strings.Replace(localVarPath, "{"+"name"+"}", fmt.Sprintf("%v", name), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
-	localVarFormParams := make(map[string]string)
-	var localVarPostBody interface{}
-	var localVarFileName string
-	var localVarFileBytes []byte
-	// add default headers if any
-	for key := range a.Configuration.DefaultHeader {
-		localVarHeaderParams[key] = a.Configuration.DefaultHeader[key]
+	localVarFormParams := url.Values{}
+
+	if err := typeCheckParameter(localVarOptionals["jenkinsCrumb"], "string", "jenkinsCrumb"); err != nil {
+		return nil, err
 	}
 
 	// to determine the Content-Type header
 	localVarHttpContentTypes := []string{  }
 
 	// set Content-Type header
-	localVarHttpContentType := a.Configuration.APIClient.SelectHeaderContentType(localVarHttpContentTypes)
+	localVarHttpContentType := selectHeaderContentType(localVarHttpContentTypes)
 	if localVarHttpContentType != "" {
 		localVarHeaderParams["Content-Type"] = localVarHttpContentType
 	}
+
 	// to determine the Accept header
 	localVarHttpHeaderAccepts := []string{
 		}
 
 	// set Accept header
-	localVarHttpHeaderAccept := a.Configuration.APIClient.SelectHeaderAccept(localVarHttpHeaderAccepts)
+	localVarHttpHeaderAccept := selectHeaderAccept(localVarHttpHeaderAccepts)
 	if localVarHttpHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
 	}
-	// header params "Jenkins-Crumb"
-	localVarHeaderParams["Jenkins-Crumb"] = a.Configuration.APIClient.ParameterToString(jenkinsCrumb, "")
+	if localVarTempParam, localVarOk := localVarOptionals["jenkinsCrumb"].(string); localVarOk {
+		localVarHeaderParams["Jenkins-Crumb"] = parameterToString(localVarTempParam, "")
+	}
 	// body params
 	localVarPostBody = &body
-	localVarHttpResponse, err := a.Configuration.APIClient.CallAPI(localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
-
-	var localVarURL, _ = url.Parse(localVarPath)
-	localVarURL.RawQuery = localVarQueryParams.Encode()
-	var localVarAPIResponse = &APIResponse{Operation: "PostViewConfig", Method: localVarHttpMethod, RequestURL: localVarURL.String()}
-	if localVarHttpResponse != nil {
-		localVarAPIResponse.Response = localVarHttpResponse.RawResponse
-		localVarAPIResponse.Payload = localVarHttpResponse.Body()
-	}
-
+	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
-		return localVarAPIResponse, err
+		return nil, err
 	}
-	return localVarAPIResponse, err
+
+	 localVarHttpResponse, err := a.client.callAPI(r)
+	 if err != nil || localVarHttpResponse == nil {
+		  return localVarHttpResponse, err
+	 }
+	 defer localVarHttpResponse.Body.Close()
+	 if localVarHttpResponse.StatusCode >= 300 {
+		return localVarHttpResponse, reportError(localVarHttpResponse.Status)
+	 }
+
+	return localVarHttpResponse, err
 }
 

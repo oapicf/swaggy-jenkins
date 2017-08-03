@@ -4,7 +4,7 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**getComputer**](RemoteAccessApi.md#getComputer) | **GET** /computer/api/json?depth&#x3D;1 | 
+[**getComputer**](RemoteAccessApi.md#getComputer) | **GET** /computer/api/json | 
 [**getCrumb**](RemoteAccessApi.md#getCrumb) | **GET** /crumbIssuer/api/json | 
 [**getJenkins**](RemoteAccessApi.md#getJenkins) | **GET** /api/json | 
 [**getJob**](RemoteAccessApi.md#getJob) | **GET** /job/{name}/api/json | 
@@ -29,7 +29,7 @@ Method | HTTP request | Description
 
 <a name="getComputer"></a>
 # **getComputer**
-> HudsonmodelComputerSet getComputer()
+> ComputerSet getComputer(depth)
 
 
 
@@ -41,8 +41,9 @@ Retrieve computer details
 //import io.swagger.client.api.RemoteAccessApi;
 
 RemoteAccessApi apiInstance = new RemoteAccessApi();
+Integer depth = 56; // Integer | Recursion depth in response model
 try {
-    HudsonmodelComputerSet result = apiInstance.getComputer();
+    ComputerSet result = apiInstance.getComputer(depth);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling RemoteAccessApi#getComputer");
@@ -51,15 +52,18 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **depth** | **Integer**| Recursion depth in response model |
 
 ### Return type
 
-[**HudsonmodelComputerSet**](HudsonmodelComputerSet.md)
+[**ComputerSet**](ComputerSet.md)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -68,7 +72,7 @@ No authorization required
 
 <a name="getCrumb"></a>
 # **getCrumb**
-> HudsonsecuritycsrfDefaultCrumbIssuer getCrumb()
+> DefaultCrumbIssuer getCrumb()
 
 
 
@@ -81,7 +85,7 @@ Retrieve CSRF protection token
 
 RemoteAccessApi apiInstance = new RemoteAccessApi();
 try {
-    HudsonsecuritycsrfDefaultCrumbIssuer result = apiInstance.getCrumb();
+    DefaultCrumbIssuer result = apiInstance.getCrumb();
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling RemoteAccessApi#getCrumb");
@@ -94,11 +98,11 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**HudsonsecuritycsrfDefaultCrumbIssuer**](HudsonsecuritycsrfDefaultCrumbIssuer.md)
+[**DefaultCrumbIssuer**](DefaultCrumbIssuer.md)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -107,7 +111,7 @@ No authorization required
 
 <a name="getJenkins"></a>
 # **getJenkins**
-> HudsonmodelHudson getJenkins()
+> Hudson getJenkins()
 
 
 
@@ -120,7 +124,7 @@ Retrieve Jenkins details
 
 RemoteAccessApi apiInstance = new RemoteAccessApi();
 try {
-    HudsonmodelHudson result = apiInstance.getJenkins();
+    Hudson result = apiInstance.getJenkins();
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling RemoteAccessApi#getJenkins");
@@ -133,11 +137,11 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**HudsonmodelHudson**](HudsonmodelHudson.md)
+[**Hudson**](Hudson.md)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -146,7 +150,7 @@ No authorization required
 
 <a name="getJob"></a>
 # **getJob**
-> HudsonmodelFreeStyleProject getJob(name)
+> FreeStyleProject getJob(name)
 
 
 
@@ -160,7 +164,7 @@ Retrieve job details
 RemoteAccessApi apiInstance = new RemoteAccessApi();
 String name = "name_example"; // String | Name of the job
 try {
-    HudsonmodelFreeStyleProject result = apiInstance.getJob(name);
+    FreeStyleProject result = apiInstance.getJob(name);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling RemoteAccessApi#getJob");
@@ -176,11 +180,11 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**HudsonmodelFreeStyleProject**](HudsonmodelFreeStyleProject.md)
+[**FreeStyleProject**](FreeStyleProject.md)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -223,7 +227,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -232,7 +236,7 @@ No authorization required
 
 <a name="getJobLastBuild"></a>
 # **getJobLastBuild**
-> HudsonmodelFreeStyleBuild getJobLastBuild(name)
+> FreeStyleBuild getJobLastBuild(name)
 
 
 
@@ -246,7 +250,7 @@ Retrieve job&#39;s last build details
 RemoteAccessApi apiInstance = new RemoteAccessApi();
 String name = "name_example"; // String | Name of the job
 try {
-    HudsonmodelFreeStyleBuild result = apiInstance.getJobLastBuild(name);
+    FreeStyleBuild result = apiInstance.getJobLastBuild(name);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling RemoteAccessApi#getJobLastBuild");
@@ -262,11 +266,11 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**HudsonmodelFreeStyleBuild**](HudsonmodelFreeStyleBuild.md)
+[**FreeStyleBuild**](FreeStyleBuild.md)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -312,7 +316,7 @@ null (empty response body)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -321,7 +325,7 @@ No authorization required
 
 <a name="getQueue"></a>
 # **getQueue**
-> HudsonmodelQueue getQueue()
+> Queue getQueue()
 
 
 
@@ -334,7 +338,7 @@ Retrieve queue details
 
 RemoteAccessApi apiInstance = new RemoteAccessApi();
 try {
-    HudsonmodelQueue result = apiInstance.getQueue();
+    Queue result = apiInstance.getQueue();
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling RemoteAccessApi#getQueue");
@@ -347,11 +351,11 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**HudsonmodelQueue**](HudsonmodelQueue.md)
+[**Queue**](Queue.md)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -360,7 +364,7 @@ No authorization required
 
 <a name="getQueueItem"></a>
 # **getQueueItem**
-> HudsonmodelQueue getQueueItem(number)
+> Queue getQueueItem(number)
 
 
 
@@ -374,7 +378,7 @@ Retrieve queued item details
 RemoteAccessApi apiInstance = new RemoteAccessApi();
 String number = "number_example"; // String | Queue number
 try {
-    HudsonmodelQueue result = apiInstance.getQueueItem(number);
+    Queue result = apiInstance.getQueueItem(number);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling RemoteAccessApi#getQueueItem");
@@ -390,11 +394,11 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**HudsonmodelQueue**](HudsonmodelQueue.md)
+[**Queue**](Queue.md)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -403,7 +407,7 @@ No authorization required
 
 <a name="getView"></a>
 # **getView**
-> HudsonmodelListView getView(name)
+> ListView getView(name)
 
 
 
@@ -417,7 +421,7 @@ Retrieve view details
 RemoteAccessApi apiInstance = new RemoteAccessApi();
 String name = "name_example"; // String | Name of the view
 try {
-    HudsonmodelListView result = apiInstance.getView(name);
+    ListView result = apiInstance.getView(name);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling RemoteAccessApi#getView");
@@ -433,11 +437,11 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**HudsonmodelListView**](HudsonmodelListView.md)
+[**ListView**](ListView.md)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -480,7 +484,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -518,7 +522,7 @@ null (empty response body)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -570,7 +574,7 @@ null (empty response body)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -618,7 +622,7 @@ null (empty response body)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -666,7 +670,7 @@ null (empty response body)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -712,7 +716,7 @@ null (empty response body)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -756,7 +760,7 @@ null (empty response body)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -800,7 +804,7 @@ null (empty response body)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -844,7 +848,7 @@ null (empty response body)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -888,7 +892,7 @@ null (empty response body)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -934,7 +938,7 @@ null (empty response body)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 

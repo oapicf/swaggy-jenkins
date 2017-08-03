@@ -5,13 +5,13 @@
  */
 package io.swagger.client.api
 
-import io.swagger.client.model.HudsonmodelComputerSet
-import io.swagger.client.model.HudsonmodelFreeStyleBuild
-import io.swagger.client.model.HudsonmodelFreeStyleProject
-import io.swagger.client.model.HudsonmodelHudson
-import io.swagger.client.model.HudsonmodelListView
-import io.swagger.client.model.HudsonmodelQueue
-import io.swagger.client.model.HudsonsecuritycsrfDefaultCrumbIssuer
+import io.swagger.client.model.ComputerSet
+import io.swagger.client.model.DefaultCrumbIssuer
+import io.swagger.client.model.FreeStyleBuild
+import io.swagger.client.model.FreeStyleProject
+import io.swagger.client.model.Hudson
+import io.swagger.client.model.ListView
+import io.swagger.client.model.Queue
 import io.swagger.client.core._
 import io.swagger.client.core.CollectionFormats._
 import io.swagger.client.core.ApiKeyLocations._
@@ -22,56 +22,75 @@ object RemoteAccessApi {
    * Retrieve computer details
    * 
    * Expected answers:
-   *   code 200 : HudsonmodelComputerSet (Successfully retrieved computer details)
+   *   code 200 : ComputerSet (Successfully retrieved computer details)
    *   code 401 :  (Authentication failed - incorrect username and/or password)
    *   code 403 :  (Jenkins requires authentication - please set username and password)
+   * 
+   * Available security schemes:
+   *   jenkins_auth (basic)
+   * 
+   * @param depth Recursion depth in response model
    */
-  def getComputer(): ApiRequest[HudsonmodelComputerSet] =
-    ApiRequest[HudsonmodelComputerSet](ApiMethods.GET, "http://localhost", "/computer/api/json?depth=1", "application/json")
-      .withSuccessResponse[HudsonmodelComputerSet](200)
+  def getComputer(depth: Int)(implicit basicAuth: BasicCredentials): ApiRequest[ComputerSet] =
+    ApiRequest[ComputerSet](ApiMethods.GET, "http://localhost", "/computer/api/json", "application/json")
+      .withCredentials(basicAuth)
+      .withQueryParam("depth", depth)
+      .withSuccessResponse[ComputerSet](200)
       .withErrorResponse[Unit](401)
       .withErrorResponse[Unit](403)
         /**
    * Retrieve CSRF protection token
    * 
    * Expected answers:
-   *   code 200 : HudsonsecuritycsrfDefaultCrumbIssuer (Successfully retrieved CSRF protection token)
+   *   code 200 : DefaultCrumbIssuer (Successfully retrieved CSRF protection token)
    *   code 401 :  (Authentication failed - incorrect username and/or password)
    *   code 403 :  (Jenkins requires authentication - please set username and password)
+   * 
+   * Available security schemes:
+   *   jenkins_auth (basic)
    */
-  def getCrumb(): ApiRequest[HudsonsecuritycsrfDefaultCrumbIssuer] =
-    ApiRequest[HudsonsecuritycsrfDefaultCrumbIssuer](ApiMethods.GET, "http://localhost", "/crumbIssuer/api/json", "application/json")
-      .withSuccessResponse[HudsonsecuritycsrfDefaultCrumbIssuer](200)
+  def getCrumb()(implicit basicAuth: BasicCredentials): ApiRequest[DefaultCrumbIssuer] =
+    ApiRequest[DefaultCrumbIssuer](ApiMethods.GET, "http://localhost", "/crumbIssuer/api/json", "application/json")
+      .withCredentials(basicAuth)
+      .withSuccessResponse[DefaultCrumbIssuer](200)
       .withErrorResponse[Unit](401)
       .withErrorResponse[Unit](403)
         /**
    * Retrieve Jenkins details
    * 
    * Expected answers:
-   *   code 200 : HudsonmodelHudson (Successfully retrieved Jenkins details)
+   *   code 200 : Hudson (Successfully retrieved Jenkins details)
    *   code 401 :  (Authentication failed - incorrect username and/or password)
    *   code 403 :  (Jenkins requires authentication - please set username and password)
+   * 
+   * Available security schemes:
+   *   jenkins_auth (basic)
    */
-  def getJenkins(): ApiRequest[HudsonmodelHudson] =
-    ApiRequest[HudsonmodelHudson](ApiMethods.GET, "http://localhost", "/api/json", "application/json")
-      .withSuccessResponse[HudsonmodelHudson](200)
+  def getJenkins()(implicit basicAuth: BasicCredentials): ApiRequest[Hudson] =
+    ApiRequest[Hudson](ApiMethods.GET, "http://localhost", "/api/json", "application/json")
+      .withCredentials(basicAuth)
+      .withSuccessResponse[Hudson](200)
       .withErrorResponse[Unit](401)
       .withErrorResponse[Unit](403)
         /**
    * Retrieve job details
    * 
    * Expected answers:
-   *   code 200 : HudsonmodelFreeStyleProject (Successfully retrieved job details)
+   *   code 200 : FreeStyleProject (Successfully retrieved job details)
    *   code 401 :  (Authentication failed - incorrect username and/or password)
    *   code 403 :  (Jenkins requires authentication - please set username and password)
    *   code 404 :  (Job cannot be found on Jenkins instance)
    * 
+   * Available security schemes:
+   *   jenkins_auth (basic)
+   * 
    * @param name Name of the job
    */
-  def getJob(name: String): ApiRequest[HudsonmodelFreeStyleProject] =
-    ApiRequest[HudsonmodelFreeStyleProject](ApiMethods.GET, "http://localhost", "/job/{name}/api/json", "application/json")
+  def getJob(name: String)(implicit basicAuth: BasicCredentials): ApiRequest[FreeStyleProject] =
+    ApiRequest[FreeStyleProject](ApiMethods.GET, "http://localhost", "/job/{name}/api/json", "application/json")
+      .withCredentials(basicAuth)
       .withPathParam("name", name)
-      .withSuccessResponse[HudsonmodelFreeStyleProject](200)
+      .withSuccessResponse[FreeStyleProject](200)
       .withErrorResponse[Unit](401)
       .withErrorResponse[Unit](403)
       .withErrorResponse[Unit](404)
@@ -84,10 +103,14 @@ object RemoteAccessApi {
    *   code 403 :  (Jenkins requires authentication - please set username and password)
    *   code 404 :  (Job cannot be found on Jenkins instance)
    * 
+   * Available security schemes:
+   *   jenkins_auth (basic)
+   * 
    * @param name Name of the job
    */
-  def getJobConfig(name: String): ApiRequest[String] =
+  def getJobConfig(name: String)(implicit basicAuth: BasicCredentials): ApiRequest[String] =
     ApiRequest[String](ApiMethods.GET, "http://localhost", "/job/{name}/config.xml", "application/json")
+      .withCredentials(basicAuth)
       .withPathParam("name", name)
       .withSuccessResponse[String](200)
       .withErrorResponse[Unit](401)
@@ -97,17 +120,21 @@ object RemoteAccessApi {
    * Retrieve job&#39;s last build details
    * 
    * Expected answers:
-   *   code 200 : HudsonmodelFreeStyleBuild (Successfully retrieved job&#39;s last build details)
+   *   code 200 : FreeStyleBuild (Successfully retrieved job&#39;s last build details)
    *   code 401 :  (Authentication failed - incorrect username and/or password)
    *   code 403 :  (Jenkins requires authentication - please set username and password)
    *   code 404 :  (Job cannot be found on Jenkins instance)
    * 
+   * Available security schemes:
+   *   jenkins_auth (basic)
+   * 
    * @param name Name of the job
    */
-  def getJobLastBuild(name: String): ApiRequest[HudsonmodelFreeStyleBuild] =
-    ApiRequest[HudsonmodelFreeStyleBuild](ApiMethods.GET, "http://localhost", "/job/{name}/lastBuild/api/json", "application/json")
+  def getJobLastBuild(name: String)(implicit basicAuth: BasicCredentials): ApiRequest[FreeStyleBuild] =
+    ApiRequest[FreeStyleBuild](ApiMethods.GET, "http://localhost", "/job/{name}/lastBuild/api/json", "application/json")
+      .withCredentials(basicAuth)
       .withPathParam("name", name)
-      .withSuccessResponse[HudsonmodelFreeStyleBuild](200)
+      .withSuccessResponse[FreeStyleBuild](200)
       .withErrorResponse[Unit](401)
       .withErrorResponse[Unit](403)
       .withErrorResponse[Unit](404)
@@ -120,12 +147,16 @@ object RemoteAccessApi {
    *   code 403 :  (Jenkins requires authentication - please set username and password)
    *   code 404 :  (Job cannot be found on Jenkins instance)
    * 
+   * Available security schemes:
+   *   jenkins_auth (basic)
+   * 
    * @param name Name of the job
    * @param number Build number
    * @param start Starting point of progressive text output
    */
-  def getJobProgressiveText(name: String, number: String, start: String): ApiRequest[Unit] =
+  def getJobProgressiveText(name: String, number: String, start: String)(implicit basicAuth: BasicCredentials): ApiRequest[Unit] =
     ApiRequest[Unit](ApiMethods.GET, "http://localhost", "/job/{name}/{number}/logText/progressiveText", "application/json")
+      .withCredentials(basicAuth)
       .withQueryParam("start", start)
       .withPathParam("name", name)
       .withPathParam("number", number)
@@ -137,46 +168,58 @@ object RemoteAccessApi {
    * Retrieve queue details
    * 
    * Expected answers:
-   *   code 200 : HudsonmodelQueue (Successfully retrieved queue details)
+   *   code 200 : Queue (Successfully retrieved queue details)
    *   code 401 :  (Authentication failed - incorrect username and/or password)
    *   code 403 :  (Jenkins requires authentication - please set username and password)
+   * 
+   * Available security schemes:
+   *   jenkins_auth (basic)
    */
-  def getQueue(): ApiRequest[HudsonmodelQueue] =
-    ApiRequest[HudsonmodelQueue](ApiMethods.GET, "http://localhost", "/queue/api/json", "application/json")
-      .withSuccessResponse[HudsonmodelQueue](200)
+  def getQueue()(implicit basicAuth: BasicCredentials): ApiRequest[Queue] =
+    ApiRequest[Queue](ApiMethods.GET, "http://localhost", "/queue/api/json", "application/json")
+      .withCredentials(basicAuth)
+      .withSuccessResponse[Queue](200)
       .withErrorResponse[Unit](401)
       .withErrorResponse[Unit](403)
         /**
    * Retrieve queued item details
    * 
    * Expected answers:
-   *   code 200 : HudsonmodelQueue (Successfully retrieved queued item details)
+   *   code 200 : Queue (Successfully retrieved queued item details)
    *   code 401 :  (Authentication failed - incorrect username and/or password)
    *   code 403 :  (Jenkins requires authentication - please set username and password)
    * 
+   * Available security schemes:
+   *   jenkins_auth (basic)
+   * 
    * @param number Queue number
    */
-  def getQueueItem(number: String): ApiRequest[HudsonmodelQueue] =
-    ApiRequest[HudsonmodelQueue](ApiMethods.GET, "http://localhost", "/queue/item/{number}/api/json", "application/json")
+  def getQueueItem(number: String)(implicit basicAuth: BasicCredentials): ApiRequest[Queue] =
+    ApiRequest[Queue](ApiMethods.GET, "http://localhost", "/queue/item/{number}/api/json", "application/json")
+      .withCredentials(basicAuth)
       .withPathParam("number", number)
-      .withSuccessResponse[HudsonmodelQueue](200)
+      .withSuccessResponse[Queue](200)
       .withErrorResponse[Unit](401)
       .withErrorResponse[Unit](403)
         /**
    * Retrieve view details
    * 
    * Expected answers:
-   *   code 200 : HudsonmodelListView (Successfully retrieved view details)
+   *   code 200 : ListView (Successfully retrieved view details)
    *   code 401 :  (Authentication failed - incorrect username and/or password)
    *   code 403 :  (Jenkins requires authentication - please set username and password)
    *   code 404 :  (View cannot be found on Jenkins instance)
    * 
+   * Available security schemes:
+   *   jenkins_auth (basic)
+   * 
    * @param name Name of the view
    */
-  def getView(name: String): ApiRequest[HudsonmodelListView] =
-    ApiRequest[HudsonmodelListView](ApiMethods.GET, "http://localhost", "/view/{name}/api/json", "application/json")
+  def getView(name: String)(implicit basicAuth: BasicCredentials): ApiRequest[ListView] =
+    ApiRequest[ListView](ApiMethods.GET, "http://localhost", "/view/{name}/api/json", "application/json")
+      .withCredentials(basicAuth)
       .withPathParam("name", name)
-      .withSuccessResponse[HudsonmodelListView](200)
+      .withSuccessResponse[ListView](200)
       .withErrorResponse[Unit](401)
       .withErrorResponse[Unit](403)
       .withErrorResponse[Unit](404)
@@ -189,10 +232,14 @@ object RemoteAccessApi {
    *   code 403 :  (Jenkins requires authentication - please set username and password)
    *   code 404 :  (View cannot be found on Jenkins instance)
    * 
+   * Available security schemes:
+   *   jenkins_auth (basic)
+   * 
    * @param name Name of the view
    */
-  def getViewConfig(name: String): ApiRequest[String] =
+  def getViewConfig(name: String)(implicit basicAuth: BasicCredentials): ApiRequest[String] =
     ApiRequest[String](ApiMethods.GET, "http://localhost", "/view/{name}/config.xml", "application/json")
+      .withCredentials(basicAuth)
       .withPathParam("name", name)
       .withSuccessResponse[String](200)
       .withErrorResponse[Unit](401)
@@ -207,9 +254,13 @@ object RemoteAccessApi {
    *                x-jenkins - Jenkins version number
    *   code 401 :  (Authentication failed - incorrect username and/or password)
    *   code 403 :  (Jenkins requires authentication - please set username and password)
+   * 
+   * Available security schemes:
+   *   jenkins_auth (basic)
    */
-  def headJenkins(): ApiRequest[Unit] =
+  def headJenkins()(implicit basicAuth: BasicCredentials): ApiRequest[Unit] =
     ApiRequest[Unit](ApiMethods.HEAD, "http://localhost", "/api/json", "application/json")
+      .withCredentials(basicAuth)
       .withSuccessResponse[Unit](200)
       .withErrorResponse[Unit](401)
       .withErrorResponse[Unit](403)
@@ -226,6 +277,9 @@ object RemoteAccessApi {
    *   code 401 :  (Authentication failed - incorrect username and/or password)
    *   code 403 :  (Jenkins requires authentication - please set username and password)
    * 
+   * Available security schemes:
+   *   jenkins_auth (basic)
+   * 
    * @param name Name of the new job
    * @param from Existing job to copy from
    * @param mode Set to &#39;copy&#39; for copying an existing job
@@ -233,8 +287,9 @@ object RemoteAccessApi {
    * @param jenkinsCrumb CSRF protection token
    * @param contentType Content type header application/xml
    */
-  def postCreateItem(name: String, from: Option[String] = None, mode: Option[String] = None, body: Option[String] = None, jenkinsCrumb: Option[String] = None, contentType: Option[String] = None): ApiRequest[Unit] =
+  def postCreateItem(name: String, from: Option[String] = None, mode: Option[String] = None, body: Option[String] = None, jenkinsCrumb: Option[String] = None, contentType: Option[String] = None)(implicit basicAuth: BasicCredentials): ApiRequest[Unit] =
     ApiRequest[Unit](ApiMethods.POST, "http://localhost", "/createItem", "application/json")
+      .withCredentials(basicAuth)
       .withBody(body)
       .withQueryParam("name", name)
       .withQueryParam("from", from)
@@ -254,13 +309,17 @@ object RemoteAccessApi {
    *   code 401 :  (Authentication failed - incorrect username and/or password)
    *   code 403 :  (Jenkins requires authentication - please set username and password)
    * 
+   * Available security schemes:
+   *   jenkins_auth (basic)
+   * 
    * @param name Name of the new view
    * @param body View configuration in config.xml format
    * @param jenkinsCrumb CSRF protection token
    * @param contentType Content type header application/xml
    */
-  def postCreateView(name: String, body: Option[String] = None, jenkinsCrumb: Option[String] = None, contentType: Option[String] = None): ApiRequest[Unit] =
+  def postCreateView(name: String, body: Option[String] = None, jenkinsCrumb: Option[String] = None, contentType: Option[String] = None)(implicit basicAuth: BasicCredentials): ApiRequest[Unit] =
     ApiRequest[Unit](ApiMethods.POST, "http://localhost", "/createView", "application/json")
+      .withCredentials(basicAuth)
       .withBody(body)
       .withQueryParam("name", name)
       .withHeaderParam("Jenkins-Crumb", jenkinsCrumb)
@@ -279,13 +338,17 @@ object RemoteAccessApi {
    *   code 403 :  (Jenkins requires authentication - please set username and password)
    *   code 404 :  (Job cannot be found on Jenkins instance)
    * 
+   * Available security schemes:
+   *   jenkins_auth (basic)
+   * 
    * @param name Name of the job
    * @param json 
    * @param token 
    * @param jenkinsCrumb CSRF protection token
    */
-  def postJobBuild(name: String, json: String, token: Option[String] = None, jenkinsCrumb: Option[String] = None): ApiRequest[Unit] =
+  def postJobBuild(name: String, json: String, token: Option[String] = None, jenkinsCrumb: Option[String] = None)(implicit basicAuth: BasicCredentials): ApiRequest[Unit] =
     ApiRequest[Unit](ApiMethods.POST, "http://localhost", "/job/{name}/build", "application/json")
+      .withCredentials(basicAuth)
       .withQueryParam("json", json)
       .withQueryParam("token", token)
       .withPathParam("name", name)
@@ -305,12 +368,16 @@ object RemoteAccessApi {
    *   code 403 :  (Jenkins requires authentication - please set username and password)
    *   code 404 :  (Job cannot be found on Jenkins instance)
    * 
+   * Available security schemes:
+   *   jenkins_auth (basic)
+   * 
    * @param name Name of the job
    * @param body Job configuration in config.xml format
    * @param jenkinsCrumb CSRF protection token
    */
-  def postJobConfig(name: String, body: String, jenkinsCrumb: Option[String] = None): ApiRequest[Unit] =
+  def postJobConfig(name: String, body: String, jenkinsCrumb: Option[String] = None)(implicit basicAuth: BasicCredentials): ApiRequest[Unit] =
     ApiRequest[Unit](ApiMethods.POST, "http://localhost", "/job/{name}/config.xml", "application/json")
+      .withCredentials(basicAuth)
       .withBody(body)
       .withPathParam("name", name)
       .withHeaderParam("Jenkins-Crumb", jenkinsCrumb)
@@ -328,11 +395,15 @@ object RemoteAccessApi {
    *   code 403 :  (Jenkins requires authentication - please set username and password)
    *   code 404 :  (Job cannot be found on Jenkins instance)
    * 
+   * Available security schemes:
+   *   jenkins_auth (basic)
+   * 
    * @param name Name of the job
    * @param jenkinsCrumb CSRF protection token
    */
-  def postJobDelete(name: String, jenkinsCrumb: Option[String] = None): ApiRequest[Unit] =
+  def postJobDelete(name: String, jenkinsCrumb: Option[String] = None)(implicit basicAuth: BasicCredentials): ApiRequest[Unit] =
     ApiRequest[Unit](ApiMethods.POST, "http://localhost", "/job/{name}/doDelete", "application/json")
+      .withCredentials(basicAuth)
       .withPathParam("name", name)
       .withHeaderParam("Jenkins-Crumb", jenkinsCrumb)
       .withSuccessResponse[Unit](200)
@@ -348,11 +419,15 @@ object RemoteAccessApi {
    *   code 403 :  (Jenkins requires authentication - please set username and password)
    *   code 404 :  (Job cannot be found on Jenkins instance)
    * 
+   * Available security schemes:
+   *   jenkins_auth (basic)
+   * 
    * @param name Name of the job
    * @param jenkinsCrumb CSRF protection token
    */
-  def postJobDisable(name: String, jenkinsCrumb: Option[String] = None): ApiRequest[Unit] =
+  def postJobDisable(name: String, jenkinsCrumb: Option[String] = None)(implicit basicAuth: BasicCredentials): ApiRequest[Unit] =
     ApiRequest[Unit](ApiMethods.POST, "http://localhost", "/job/{name}/disable", "application/json")
+      .withCredentials(basicAuth)
       .withPathParam("name", name)
       .withHeaderParam("Jenkins-Crumb", jenkinsCrumb)
       .withSuccessResponse[Unit](200)
@@ -368,11 +443,15 @@ object RemoteAccessApi {
    *   code 403 :  (Jenkins requires authentication - please set username and password)
    *   code 404 :  (Job cannot be found on Jenkins instance)
    * 
+   * Available security schemes:
+   *   jenkins_auth (basic)
+   * 
    * @param name Name of the job
    * @param jenkinsCrumb CSRF protection token
    */
-  def postJobEnable(name: String, jenkinsCrumb: Option[String] = None): ApiRequest[Unit] =
+  def postJobEnable(name: String, jenkinsCrumb: Option[String] = None)(implicit basicAuth: BasicCredentials): ApiRequest[Unit] =
     ApiRequest[Unit](ApiMethods.POST, "http://localhost", "/job/{name}/enable", "application/json")
+      .withCredentials(basicAuth)
       .withPathParam("name", name)
       .withHeaderParam("Jenkins-Crumb", jenkinsCrumb)
       .withSuccessResponse[Unit](200)
@@ -388,11 +467,15 @@ object RemoteAccessApi {
    *   code 403 :  (Jenkins requires authentication - please set username and password)
    *   code 404 :  (Job cannot be found on Jenkins instance)
    * 
+   * Available security schemes:
+   *   jenkins_auth (basic)
+   * 
    * @param name Name of the job
    * @param jenkinsCrumb CSRF protection token
    */
-  def postJobLastBuildStop(name: String, jenkinsCrumb: Option[String] = None): ApiRequest[Unit] =
+  def postJobLastBuildStop(name: String, jenkinsCrumb: Option[String] = None)(implicit basicAuth: BasicCredentials): ApiRequest[Unit] =
     ApiRequest[Unit](ApiMethods.POST, "http://localhost", "/job/{name}/lastBuild/stop", "application/json")
+      .withCredentials(basicAuth)
       .withPathParam("name", name)
       .withHeaderParam("Jenkins-Crumb", jenkinsCrumb)
       .withSuccessResponse[Unit](200)
@@ -409,12 +492,16 @@ object RemoteAccessApi {
    *   code 403 :  (Jenkins requires authentication - please set username and password)
    *   code 404 :  (View cannot be found on Jenkins instance)
    * 
+   * Available security schemes:
+   *   jenkins_auth (basic)
+   * 
    * @param name Name of the view
    * @param body View configuration in config.xml format
    * @param jenkinsCrumb CSRF protection token
    */
-  def postViewConfig(name: String, body: String, jenkinsCrumb: Option[String] = None): ApiRequest[Unit] =
+  def postViewConfig(name: String, body: String, jenkinsCrumb: Option[String] = None)(implicit basicAuth: BasicCredentials): ApiRequest[Unit] =
     ApiRequest[Unit](ApiMethods.POST, "http://localhost", "/view/{name}/config.xml", "application/json")
+      .withCredentials(basicAuth)
       .withBody(body)
       .withPathParam("name", name)
       .withHeaderParam("Jenkins-Crumb", jenkinsCrumb)

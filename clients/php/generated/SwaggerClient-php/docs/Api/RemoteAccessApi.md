@@ -4,7 +4,7 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**getComputer**](RemoteAccessApi.md#getComputer) | **GET** /computer/api/json?depth&#x3D;1 | 
+[**getComputer**](RemoteAccessApi.md#getComputer) | **GET** /computer/api/json | 
 [**getCrumb**](RemoteAccessApi.md#getCrumb) | **GET** /crumbIssuer/api/json | 
 [**getJenkins**](RemoteAccessApi.md#getJenkins) | **GET** /api/json | 
 [**getJob**](RemoteAccessApi.md#getJob) | **GET** /job/{name}/api/json | 
@@ -28,7 +28,7 @@ Method | HTTP request | Description
 
 
 # **getComputer**
-> \Swagger\Client\Model\HudsonmodelComputerSet getComputer()
+> \Swagger\Client\Model\ComputerSet getComputer($depth)
 
 
 
@@ -39,10 +39,15 @@ Retrieve computer details
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$api_instance = new Swagger\Client\Api\RemoteAccessApi();
+// Configure HTTP basic authorization: jenkins_auth
+Swagger\Client\Configuration::getDefaultConfiguration()->setUsername('YOUR_USERNAME');
+Swagger\Client\Configuration::getDefaultConfiguration()->setPassword('YOUR_PASSWORD');
+
+$api_instance = new Swagger\Client\Api\RemoteAccessApi(new \Http\Adapter\Guzzle6\Client());
+$depth = 56; // int | Recursion depth in response model
 
 try {
-    $result = $api_instance->getComputer();
+    $result = $api_instance->getComputer($depth);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling RemoteAccessApi->getComputer: ', $e->getMessage(), PHP_EOL;
@@ -51,15 +56,18 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **depth** | **int**| Recursion depth in response model |
 
 ### Return type
 
-[**\Swagger\Client\Model\HudsonmodelComputerSet**](../Model/HudsonmodelComputerSet.md)
+[**\Swagger\Client\Model\ComputerSet**](../Model/ComputerSet.md)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -69,7 +77,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **getCrumb**
-> \Swagger\Client\Model\HudsonsecuritycsrfDefaultCrumbIssuer getCrumb()
+> \Swagger\Client\Model\DefaultCrumbIssuer getCrumb()
 
 
 
@@ -80,7 +88,11 @@ Retrieve CSRF protection token
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$api_instance = new Swagger\Client\Api\RemoteAccessApi();
+// Configure HTTP basic authorization: jenkins_auth
+Swagger\Client\Configuration::getDefaultConfiguration()->setUsername('YOUR_USERNAME');
+Swagger\Client\Configuration::getDefaultConfiguration()->setPassword('YOUR_PASSWORD');
+
+$api_instance = new Swagger\Client\Api\RemoteAccessApi(new \Http\Adapter\Guzzle6\Client());
 
 try {
     $result = $api_instance->getCrumb();
@@ -96,11 +108,11 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**\Swagger\Client\Model\HudsonsecuritycsrfDefaultCrumbIssuer**](../Model/HudsonsecuritycsrfDefaultCrumbIssuer.md)
+[**\Swagger\Client\Model\DefaultCrumbIssuer**](../Model/DefaultCrumbIssuer.md)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -110,7 +122,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **getJenkins**
-> \Swagger\Client\Model\HudsonmodelHudson getJenkins()
+> \Swagger\Client\Model\Hudson getJenkins()
 
 
 
@@ -121,7 +133,11 @@ Retrieve Jenkins details
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$api_instance = new Swagger\Client\Api\RemoteAccessApi();
+// Configure HTTP basic authorization: jenkins_auth
+Swagger\Client\Configuration::getDefaultConfiguration()->setUsername('YOUR_USERNAME');
+Swagger\Client\Configuration::getDefaultConfiguration()->setPassword('YOUR_PASSWORD');
+
+$api_instance = new Swagger\Client\Api\RemoteAccessApi(new \Http\Adapter\Guzzle6\Client());
 
 try {
     $result = $api_instance->getJenkins();
@@ -137,11 +153,11 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**\Swagger\Client\Model\HudsonmodelHudson**](../Model/HudsonmodelHudson.md)
+[**\Swagger\Client\Model\Hudson**](../Model/Hudson.md)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -151,7 +167,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **getJob**
-> \Swagger\Client\Model\HudsonmodelFreeStyleProject getJob($name)
+> \Swagger\Client\Model\FreeStyleProject getJob($name)
 
 
 
@@ -162,7 +178,11 @@ Retrieve job details
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$api_instance = new Swagger\Client\Api\RemoteAccessApi();
+// Configure HTTP basic authorization: jenkins_auth
+Swagger\Client\Configuration::getDefaultConfiguration()->setUsername('YOUR_USERNAME');
+Swagger\Client\Configuration::getDefaultConfiguration()->setPassword('YOUR_PASSWORD');
+
+$api_instance = new Swagger\Client\Api\RemoteAccessApi(new \Http\Adapter\Guzzle6\Client());
 $name = "name_example"; // string | Name of the job
 
 try {
@@ -182,11 +202,11 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\Swagger\Client\Model\HudsonmodelFreeStyleProject**](../Model/HudsonmodelFreeStyleProject.md)
+[**\Swagger\Client\Model\FreeStyleProject**](../Model/FreeStyleProject.md)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -207,7 +227,11 @@ Retrieve job configuration
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$api_instance = new Swagger\Client\Api\RemoteAccessApi();
+// Configure HTTP basic authorization: jenkins_auth
+Swagger\Client\Configuration::getDefaultConfiguration()->setUsername('YOUR_USERNAME');
+Swagger\Client\Configuration::getDefaultConfiguration()->setPassword('YOUR_PASSWORD');
+
+$api_instance = new Swagger\Client\Api\RemoteAccessApi(new \Http\Adapter\Guzzle6\Client());
 $name = "name_example"; // string | Name of the job
 
 try {
@@ -231,7 +255,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -241,7 +265,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **getJobLastBuild**
-> \Swagger\Client\Model\HudsonmodelFreeStyleBuild getJobLastBuild($name)
+> \Swagger\Client\Model\FreeStyleBuild getJobLastBuild($name)
 
 
 
@@ -252,7 +276,11 @@ Retrieve job's last build details
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$api_instance = new Swagger\Client\Api\RemoteAccessApi();
+// Configure HTTP basic authorization: jenkins_auth
+Swagger\Client\Configuration::getDefaultConfiguration()->setUsername('YOUR_USERNAME');
+Swagger\Client\Configuration::getDefaultConfiguration()->setPassword('YOUR_PASSWORD');
+
+$api_instance = new Swagger\Client\Api\RemoteAccessApi(new \Http\Adapter\Guzzle6\Client());
 $name = "name_example"; // string | Name of the job
 
 try {
@@ -272,11 +300,11 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\Swagger\Client\Model\HudsonmodelFreeStyleBuild**](../Model/HudsonmodelFreeStyleBuild.md)
+[**\Swagger\Client\Model\FreeStyleBuild**](../Model/FreeStyleBuild.md)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -297,7 +325,11 @@ Retrieve job's build progressive text output
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$api_instance = new Swagger\Client\Api\RemoteAccessApi();
+// Configure HTTP basic authorization: jenkins_auth
+Swagger\Client\Configuration::getDefaultConfiguration()->setUsername('YOUR_USERNAME');
+Swagger\Client\Configuration::getDefaultConfiguration()->setPassword('YOUR_PASSWORD');
+
+$api_instance = new Swagger\Client\Api\RemoteAccessApi(new \Http\Adapter\Guzzle6\Client());
 $name = "name_example"; // string | Name of the job
 $number = "number_example"; // string | Build number
 $start = "start_example"; // string | Starting point of progressive text output
@@ -324,7 +356,7 @@ void (empty response body)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -334,7 +366,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **getQueue**
-> \Swagger\Client\Model\HudsonmodelQueue getQueue()
+> \Swagger\Client\Model\Queue getQueue()
 
 
 
@@ -345,7 +377,11 @@ Retrieve queue details
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$api_instance = new Swagger\Client\Api\RemoteAccessApi();
+// Configure HTTP basic authorization: jenkins_auth
+Swagger\Client\Configuration::getDefaultConfiguration()->setUsername('YOUR_USERNAME');
+Swagger\Client\Configuration::getDefaultConfiguration()->setPassword('YOUR_PASSWORD');
+
+$api_instance = new Swagger\Client\Api\RemoteAccessApi(new \Http\Adapter\Guzzle6\Client());
 
 try {
     $result = $api_instance->getQueue();
@@ -361,11 +397,11 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**\Swagger\Client\Model\HudsonmodelQueue**](../Model/HudsonmodelQueue.md)
+[**\Swagger\Client\Model\Queue**](../Model/Queue.md)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -375,7 +411,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **getQueueItem**
-> \Swagger\Client\Model\HudsonmodelQueue getQueueItem($number)
+> \Swagger\Client\Model\Queue getQueueItem($number)
 
 
 
@@ -386,7 +422,11 @@ Retrieve queued item details
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$api_instance = new Swagger\Client\Api\RemoteAccessApi();
+// Configure HTTP basic authorization: jenkins_auth
+Swagger\Client\Configuration::getDefaultConfiguration()->setUsername('YOUR_USERNAME');
+Swagger\Client\Configuration::getDefaultConfiguration()->setPassword('YOUR_PASSWORD');
+
+$api_instance = new Swagger\Client\Api\RemoteAccessApi(new \Http\Adapter\Guzzle6\Client());
 $number = "number_example"; // string | Queue number
 
 try {
@@ -406,11 +446,11 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\Swagger\Client\Model\HudsonmodelQueue**](../Model/HudsonmodelQueue.md)
+[**\Swagger\Client\Model\Queue**](../Model/Queue.md)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -420,7 +460,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **getView**
-> \Swagger\Client\Model\HudsonmodelListView getView($name)
+> \Swagger\Client\Model\ListView getView($name)
 
 
 
@@ -431,7 +471,11 @@ Retrieve view details
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$api_instance = new Swagger\Client\Api\RemoteAccessApi();
+// Configure HTTP basic authorization: jenkins_auth
+Swagger\Client\Configuration::getDefaultConfiguration()->setUsername('YOUR_USERNAME');
+Swagger\Client\Configuration::getDefaultConfiguration()->setPassword('YOUR_PASSWORD');
+
+$api_instance = new Swagger\Client\Api\RemoteAccessApi(new \Http\Adapter\Guzzle6\Client());
 $name = "name_example"; // string | Name of the view
 
 try {
@@ -451,11 +495,11 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\Swagger\Client\Model\HudsonmodelListView**](../Model/HudsonmodelListView.md)
+[**\Swagger\Client\Model\ListView**](../Model/ListView.md)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -476,7 +520,11 @@ Retrieve view configuration
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$api_instance = new Swagger\Client\Api\RemoteAccessApi();
+// Configure HTTP basic authorization: jenkins_auth
+Swagger\Client\Configuration::getDefaultConfiguration()->setUsername('YOUR_USERNAME');
+Swagger\Client\Configuration::getDefaultConfiguration()->setPassword('YOUR_PASSWORD');
+
+$api_instance = new Swagger\Client\Api\RemoteAccessApi(new \Http\Adapter\Guzzle6\Client());
 $name = "name_example"; // string | Name of the view
 
 try {
@@ -500,7 +548,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -521,7 +569,11 @@ Retrieve Jenkins headers
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$api_instance = new Swagger\Client\Api\RemoteAccessApi();
+// Configure HTTP basic authorization: jenkins_auth
+Swagger\Client\Configuration::getDefaultConfiguration()->setUsername('YOUR_USERNAME');
+Swagger\Client\Configuration::getDefaultConfiguration()->setPassword('YOUR_PASSWORD');
+
+$api_instance = new Swagger\Client\Api\RemoteAccessApi(new \Http\Adapter\Guzzle6\Client());
 
 try {
     $api_instance->headJenkins();
@@ -540,7 +592,7 @@ void (empty response body)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -561,7 +613,11 @@ Create a new job using job configuration, or copied from an existing job
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$api_instance = new Swagger\Client\Api\RemoteAccessApi();
+// Configure HTTP basic authorization: jenkins_auth
+Swagger\Client\Configuration::getDefaultConfiguration()->setUsername('YOUR_USERNAME');
+Swagger\Client\Configuration::getDefaultConfiguration()->setPassword('YOUR_PASSWORD');
+
+$api_instance = new Swagger\Client\Api\RemoteAccessApi(new \Http\Adapter\Guzzle6\Client());
 $name = "name_example"; // string | Name of the new job
 $from = "from_example"; // string | Existing job to copy from
 $mode = "mode_example"; // string | Set to 'copy' for copying an existing job
@@ -594,7 +650,7 @@ void (empty response body)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -615,7 +671,11 @@ Create a new view using view configuration
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$api_instance = new Swagger\Client\Api\RemoteAccessApi();
+// Configure HTTP basic authorization: jenkins_auth
+Swagger\Client\Configuration::getDefaultConfiguration()->setUsername('YOUR_USERNAME');
+Swagger\Client\Configuration::getDefaultConfiguration()->setPassword('YOUR_PASSWORD');
+
+$api_instance = new Swagger\Client\Api\RemoteAccessApi(new \Http\Adapter\Guzzle6\Client());
 $name = "name_example"; // string | Name of the new view
 $body = "body_example"; // string | View configuration in config.xml format
 $jenkins_crumb = "jenkins_crumb_example"; // string | CSRF protection token
@@ -644,7 +704,7 @@ void (empty response body)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -665,7 +725,11 @@ Build a job
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$api_instance = new Swagger\Client\Api\RemoteAccessApi();
+// Configure HTTP basic authorization: jenkins_auth
+Swagger\Client\Configuration::getDefaultConfiguration()->setUsername('YOUR_USERNAME');
+Swagger\Client\Configuration::getDefaultConfiguration()->setPassword('YOUR_PASSWORD');
+
+$api_instance = new Swagger\Client\Api\RemoteAccessApi(new \Http\Adapter\Guzzle6\Client());
 $name = "name_example"; // string | Name of the job
 $json = "json_example"; // string | 
 $token = "token_example"; // string | 
@@ -694,7 +758,7 @@ void (empty response body)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -715,7 +779,11 @@ Update job configuration
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$api_instance = new Swagger\Client\Api\RemoteAccessApi();
+// Configure HTTP basic authorization: jenkins_auth
+Swagger\Client\Configuration::getDefaultConfiguration()->setUsername('YOUR_USERNAME');
+Swagger\Client\Configuration::getDefaultConfiguration()->setPassword('YOUR_PASSWORD');
+
+$api_instance = new Swagger\Client\Api\RemoteAccessApi(new \Http\Adapter\Guzzle6\Client());
 $name = "name_example"; // string | Name of the job
 $body = "body_example"; // string | Job configuration in config.xml format
 $jenkins_crumb = "jenkins_crumb_example"; // string | CSRF protection token
@@ -742,7 +810,7 @@ void (empty response body)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -763,7 +831,11 @@ Delete a job
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$api_instance = new Swagger\Client\Api\RemoteAccessApi();
+// Configure HTTP basic authorization: jenkins_auth
+Swagger\Client\Configuration::getDefaultConfiguration()->setUsername('YOUR_USERNAME');
+Swagger\Client\Configuration::getDefaultConfiguration()->setPassword('YOUR_PASSWORD');
+
+$api_instance = new Swagger\Client\Api\RemoteAccessApi(new \Http\Adapter\Guzzle6\Client());
 $name = "name_example"; // string | Name of the job
 $jenkins_crumb = "jenkins_crumb_example"; // string | CSRF protection token
 
@@ -788,7 +860,7 @@ void (empty response body)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -809,7 +881,11 @@ Disable a job
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$api_instance = new Swagger\Client\Api\RemoteAccessApi();
+// Configure HTTP basic authorization: jenkins_auth
+Swagger\Client\Configuration::getDefaultConfiguration()->setUsername('YOUR_USERNAME');
+Swagger\Client\Configuration::getDefaultConfiguration()->setPassword('YOUR_PASSWORD');
+
+$api_instance = new Swagger\Client\Api\RemoteAccessApi(new \Http\Adapter\Guzzle6\Client());
 $name = "name_example"; // string | Name of the job
 $jenkins_crumb = "jenkins_crumb_example"; // string | CSRF protection token
 
@@ -834,7 +910,7 @@ void (empty response body)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -855,7 +931,11 @@ Enable a job
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$api_instance = new Swagger\Client\Api\RemoteAccessApi();
+// Configure HTTP basic authorization: jenkins_auth
+Swagger\Client\Configuration::getDefaultConfiguration()->setUsername('YOUR_USERNAME');
+Swagger\Client\Configuration::getDefaultConfiguration()->setPassword('YOUR_PASSWORD');
+
+$api_instance = new Swagger\Client\Api\RemoteAccessApi(new \Http\Adapter\Guzzle6\Client());
 $name = "name_example"; // string | Name of the job
 $jenkins_crumb = "jenkins_crumb_example"; // string | CSRF protection token
 
@@ -880,7 +960,7 @@ void (empty response body)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -901,7 +981,11 @@ Stop a job
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$api_instance = new Swagger\Client\Api\RemoteAccessApi();
+// Configure HTTP basic authorization: jenkins_auth
+Swagger\Client\Configuration::getDefaultConfiguration()->setUsername('YOUR_USERNAME');
+Swagger\Client\Configuration::getDefaultConfiguration()->setPassword('YOUR_PASSWORD');
+
+$api_instance = new Swagger\Client\Api\RemoteAccessApi(new \Http\Adapter\Guzzle6\Client());
 $name = "name_example"; // string | Name of the job
 $jenkins_crumb = "jenkins_crumb_example"; // string | CSRF protection token
 
@@ -926,7 +1010,7 @@ void (empty response body)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -947,7 +1031,11 @@ Update view configuration
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$api_instance = new Swagger\Client\Api\RemoteAccessApi();
+// Configure HTTP basic authorization: jenkins_auth
+Swagger\Client\Configuration::getDefaultConfiguration()->setUsername('YOUR_USERNAME');
+Swagger\Client\Configuration::getDefaultConfiguration()->setPassword('YOUR_PASSWORD');
+
+$api_instance = new Swagger\Client\Api\RemoteAccessApi(new \Http\Adapter\Guzzle6\Client());
 $name = "name_example"; // string | Name of the view
 $body = "body_example"; // string | View configuration in config.xml format
 $jenkins_crumb = "jenkins_crumb_example"; // string | CSRF protection token
@@ -974,7 +1062,7 @@ void (empty response body)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../../README.md#jenkins_auth)
 
 ### HTTP request headers
 

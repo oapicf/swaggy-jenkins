@@ -4,7 +4,7 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**GetComputer**](RemoteAccessApi.md#GetComputer) | **Get** /computer/api/json?depth&#x3D;1 | 
+[**GetComputer**](RemoteAccessApi.md#GetComputer) | **Get** /computer/api/json | 
 [**GetCrumb**](RemoteAccessApi.md#GetCrumb) | **Get** /crumbIssuer/api/json | 
 [**GetJenkins**](RemoteAccessApi.md#GetJenkins) | **Get** /api/json | 
 [**GetJob**](RemoteAccessApi.md#GetJob) | **Get** /job/{name}/api/json | 
@@ -28,23 +28,25 @@ Method | HTTP request | Description
 
 
 # **GetComputer**
-> HudsonmodelComputerSet GetComputer()
-
+> ComputerSet GetComputer(ctx, depth)
 
 
 Retrieve computer details
 
+### Required Parameters
 
-### Parameters
-This endpoint does not need any parameter.
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **ctx** | **context.Context** | context containing the authentication | nil if no authentication
+  **depth** | **int32**| Recursion depth in response model | 
 
 ### Return type
 
-[**HudsonmodelComputerSet**](hudsonmodelComputerSet.md)
+[**ComputerSet**](ComputerSet.md)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -54,23 +56,21 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **GetCrumb**
-> HudsonsecuritycsrfDefaultCrumbIssuer GetCrumb()
-
+> DefaultCrumbIssuer GetCrumb(ctx, )
 
 
 Retrieve CSRF protection token
 
-
-### Parameters
+### Required Parameters
 This endpoint does not need any parameter.
 
 ### Return type
 
-[**HudsonsecuritycsrfDefaultCrumbIssuer**](hudsonsecuritycsrfDefaultCrumbIssuer.md)
+[**DefaultCrumbIssuer**](DefaultCrumbIssuer.md)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -80,23 +80,21 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **GetJenkins**
-> HudsonmodelHudson GetJenkins()
-
+> Hudson GetJenkins(ctx, )
 
 
 Retrieve Jenkins details
 
-
-### Parameters
+### Required Parameters
 This endpoint does not need any parameter.
 
 ### Return type
 
-[**HudsonmodelHudson**](hudsonmodelHudson.md)
+[**Hudson**](Hudson.md)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -106,26 +104,25 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **GetJob**
-> HudsonmodelFreeStyleProject GetJob($name)
-
+> FreeStyleProject GetJob(ctx, name)
 
 
 Retrieve job details
 
-
-### Parameters
+### Required Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **name** | **string**| Name of the job | 
+ **ctx** | **context.Context** | context containing the authentication | nil if no authentication
+  **name** | **string**| Name of the job | 
 
 ### Return type
 
-[**HudsonmodelFreeStyleProject**](hudsonmodelFreeStyleProject.md)
+[**FreeStyleProject**](FreeStyleProject.md)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -135,18 +132,17 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **GetJobConfig**
-> string GetJobConfig($name)
-
+> string GetJobConfig(ctx, name)
 
 
 Retrieve job configuration
 
-
-### Parameters
+### Required Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **name** | **string**| Name of the job | 
+ **ctx** | **context.Context** | context containing the authentication | nil if no authentication
+  **name** | **string**| Name of the job | 
 
 ### Return type
 
@@ -154,7 +150,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -164,26 +160,25 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **GetJobLastBuild**
-> HudsonmodelFreeStyleBuild GetJobLastBuild($name)
-
+> FreeStyleBuild GetJobLastBuild(ctx, name)
 
 
 Retrieve job's last build details
 
-
-### Parameters
+### Required Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **name** | **string**| Name of the job | 
+ **ctx** | **context.Context** | context containing the authentication | nil if no authentication
+  **name** | **string**| Name of the job | 
 
 ### Return type
 
-[**HudsonmodelFreeStyleBuild**](hudsonmodelFreeStyleBuild.md)
+[**FreeStyleBuild**](FreeStyleBuild.md)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -193,28 +188,27 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **GetJobProgressiveText**
-> GetJobProgressiveText($name, $number, $start)
-
+> GetJobProgressiveText(ctx, name, number, start)
 
 
 Retrieve job's build progressive text output
 
-
-### Parameters
+### Required Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **name** | **string**| Name of the job | 
- **number** | **string**| Build number | 
- **start** | **string**| Starting point of progressive text output | 
+ **ctx** | **context.Context** | context containing the authentication | nil if no authentication
+  **name** | **string**| Name of the job | 
+  **number** | **string**| Build number | 
+  **start** | **string**| Starting point of progressive text output | 
 
 ### Return type
 
-void (empty response body)
+ (empty response body)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -224,23 +218,21 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **GetQueue**
-> HudsonmodelQueue GetQueue()
-
+> Queue GetQueue(ctx, )
 
 
 Retrieve queue details
 
-
-### Parameters
+### Required Parameters
 This endpoint does not need any parameter.
 
 ### Return type
 
-[**HudsonmodelQueue**](hudsonmodelQueue.md)
+[**Queue**](Queue.md)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -250,26 +242,25 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **GetQueueItem**
-> HudsonmodelQueue GetQueueItem($number)
-
+> Queue GetQueueItem(ctx, number)
 
 
 Retrieve queued item details
 
-
-### Parameters
+### Required Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **number** | **string**| Queue number | 
+ **ctx** | **context.Context** | context containing the authentication | nil if no authentication
+  **number** | **string**| Queue number | 
 
 ### Return type
 
-[**HudsonmodelQueue**](hudsonmodelQueue.md)
+[**Queue**](Queue.md)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -279,26 +270,25 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **GetView**
-> HudsonmodelListView GetView($name)
-
+> ListView GetView(ctx, name)
 
 
 Retrieve view details
 
-
-### Parameters
+### Required Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **name** | **string**| Name of the view | 
+ **ctx** | **context.Context** | context containing the authentication | nil if no authentication
+  **name** | **string**| Name of the view | 
 
 ### Return type
 
-[**HudsonmodelListView**](hudsonmodelListView.md)
+[**ListView**](ListView.md)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -308,18 +298,17 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **GetViewConfig**
-> string GetViewConfig($name)
-
+> string GetViewConfig(ctx, name)
 
 
 Retrieve view configuration
 
-
-### Parameters
+### Required Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **name** | **string**| Name of the view | 
+ **ctx** | **context.Context** | context containing the authentication | nil if no authentication
+  **name** | **string**| Name of the view | 
 
 ### Return type
 
@@ -327,7 +316,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -337,23 +326,21 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **HeadJenkins**
-> HeadJenkins()
-
+> HeadJenkins(ctx, )
 
 
 Retrieve Jenkins headers
 
-
-### Parameters
+### Required Parameters
 This endpoint does not need any parameter.
 
 ### Return type
 
-void (empty response body)
+ (empty response body)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -363,31 +350,38 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **PostCreateItem**
-> PostCreateItem($name, $from, $mode, $body, $jenkinsCrumb, $contentType)
-
+> PostCreateItem(ctx, name, optional)
 
 
 Create a new job using job configuration, or copied from an existing job
 
+### Required Parameters
 
-### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **ctx** | **context.Context** | context containing the authentication | nil if no authentication
+  **name** | **string**| Name of the new job | 
+ **optional** | **map[string]interface{}** | optional parameters | nil if no parameters
+
+### Optional Parameters
+Optional parameters are passed through a map[string]interface{}.
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **name** | **string**| Name of the new job | 
- **from** | **string**| Existing job to copy from | [optional] 
- **mode** | **string**| Set to &#39;copy&#39; for copying an existing job | [optional] 
- **body** | **string**| Job configuration in config.xml format | [optional] 
- **jenkinsCrumb** | **string**| CSRF protection token | [optional] 
- **contentType** | **string**| Content type header application/xml | [optional] 
+ **from** | **string**| Existing job to copy from | 
+ **mode** | **string**| Set to &#39;copy&#39; for copying an existing job | 
+ **body** | **string**| Job configuration in config.xml format | 
+ **jenkinsCrumb** | **string**| CSRF protection token | 
+ **contentType** | **string**| Content type header application/xml | 
 
 ### Return type
 
-void (empty response body)
+ (empty response body)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -397,29 +391,36 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **PostCreateView**
-> PostCreateView($name, $body, $jenkinsCrumb, $contentType)
-
+> PostCreateView(ctx, name, optional)
 
 
 Create a new view using view configuration
 
+### Required Parameters
 
-### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **ctx** | **context.Context** | context containing the authentication | nil if no authentication
+  **name** | **string**| Name of the new view | 
+ **optional** | **map[string]interface{}** | optional parameters | nil if no parameters
+
+### Optional Parameters
+Optional parameters are passed through a map[string]interface{}.
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **name** | **string**| Name of the new view | 
- **body** | **string**| View configuration in config.xml format | [optional] 
- **jenkinsCrumb** | **string**| CSRF protection token | [optional] 
- **contentType** | **string**| Content type header application/xml | [optional] 
+ **body** | **string**| View configuration in config.xml format | 
+ **jenkinsCrumb** | **string**| CSRF protection token | 
+ **contentType** | **string**| Content type header application/xml | 
 
 ### Return type
 
-void (empty response body)
+ (empty response body)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -429,29 +430,37 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **PostJobBuild**
-> PostJobBuild($name, $json, $token, $jenkinsCrumb)
-
+> PostJobBuild(ctx, name, json, optional)
 
 
 Build a job
 
+### Required Parameters
 
-### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **ctx** | **context.Context** | context containing the authentication | nil if no authentication
+  **name** | **string**| Name of the job | 
+  **json** | **string**|  | 
+ **optional** | **map[string]interface{}** | optional parameters | nil if no parameters
+
+### Optional Parameters
+Optional parameters are passed through a map[string]interface{}.
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **name** | **string**| Name of the job | 
  **json** | **string**|  | 
- **token** | **string**|  | [optional] 
- **jenkinsCrumb** | **string**| CSRF protection token | [optional] 
+ **token** | **string**|  | 
+ **jenkinsCrumb** | **string**| CSRF protection token | 
 
 ### Return type
 
-void (empty response body)
+ (empty response body)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -461,28 +470,36 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **PostJobConfig**
-> PostJobConfig($name, $body, $jenkinsCrumb)
-
+> PostJobConfig(ctx, name, body, optional)
 
 
 Update job configuration
 
+### Required Parameters
 
-### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **ctx** | **context.Context** | context containing the authentication | nil if no authentication
+  **name** | **string**| Name of the job | 
+  **body** | **string**| Job configuration in config.xml format | 
+ **optional** | **map[string]interface{}** | optional parameters | nil if no parameters
+
+### Optional Parameters
+Optional parameters are passed through a map[string]interface{}.
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **name** | **string**| Name of the job | 
  **body** | **string**| Job configuration in config.xml format | 
- **jenkinsCrumb** | **string**| CSRF protection token | [optional] 
+ **jenkinsCrumb** | **string**| CSRF protection token | 
 
 ### Return type
 
-void (empty response body)
+ (empty response body)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -492,27 +509,34 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **PostJobDelete**
-> PostJobDelete($name, $jenkinsCrumb)
-
+> PostJobDelete(ctx, name, optional)
 
 
 Delete a job
 
+### Required Parameters
 
-### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **ctx** | **context.Context** | context containing the authentication | nil if no authentication
+  **name** | **string**| Name of the job | 
+ **optional** | **map[string]interface{}** | optional parameters | nil if no parameters
+
+### Optional Parameters
+Optional parameters are passed through a map[string]interface{}.
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **name** | **string**| Name of the job | 
- **jenkinsCrumb** | **string**| CSRF protection token | [optional] 
+ **jenkinsCrumb** | **string**| CSRF protection token | 
 
 ### Return type
 
-void (empty response body)
+ (empty response body)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -522,27 +546,34 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **PostJobDisable**
-> PostJobDisable($name, $jenkinsCrumb)
-
+> PostJobDisable(ctx, name, optional)
 
 
 Disable a job
 
+### Required Parameters
 
-### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **ctx** | **context.Context** | context containing the authentication | nil if no authentication
+  **name** | **string**| Name of the job | 
+ **optional** | **map[string]interface{}** | optional parameters | nil if no parameters
+
+### Optional Parameters
+Optional parameters are passed through a map[string]interface{}.
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **name** | **string**| Name of the job | 
- **jenkinsCrumb** | **string**| CSRF protection token | [optional] 
+ **jenkinsCrumb** | **string**| CSRF protection token | 
 
 ### Return type
 
-void (empty response body)
+ (empty response body)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -552,27 +583,34 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **PostJobEnable**
-> PostJobEnable($name, $jenkinsCrumb)
-
+> PostJobEnable(ctx, name, optional)
 
 
 Enable a job
 
+### Required Parameters
 
-### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **ctx** | **context.Context** | context containing the authentication | nil if no authentication
+  **name** | **string**| Name of the job | 
+ **optional** | **map[string]interface{}** | optional parameters | nil if no parameters
+
+### Optional Parameters
+Optional parameters are passed through a map[string]interface{}.
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **name** | **string**| Name of the job | 
- **jenkinsCrumb** | **string**| CSRF protection token | [optional] 
+ **jenkinsCrumb** | **string**| CSRF protection token | 
 
 ### Return type
 
-void (empty response body)
+ (empty response body)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -582,27 +620,34 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **PostJobLastBuildStop**
-> PostJobLastBuildStop($name, $jenkinsCrumb)
-
+> PostJobLastBuildStop(ctx, name, optional)
 
 
 Stop a job
 
+### Required Parameters
 
-### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **ctx** | **context.Context** | context containing the authentication | nil if no authentication
+  **name** | **string**| Name of the job | 
+ **optional** | **map[string]interface{}** | optional parameters | nil if no parameters
+
+### Optional Parameters
+Optional parameters are passed through a map[string]interface{}.
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **name** | **string**| Name of the job | 
- **jenkinsCrumb** | **string**| CSRF protection token | [optional] 
+ **jenkinsCrumb** | **string**| CSRF protection token | 
 
 ### Return type
 
-void (empty response body)
+ (empty response body)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -612,28 +657,36 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **PostViewConfig**
-> PostViewConfig($name, $body, $jenkinsCrumb)
-
+> PostViewConfig(ctx, name, body, optional)
 
 
 Update view configuration
 
+### Required Parameters
 
-### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **ctx** | **context.Context** | context containing the authentication | nil if no authentication
+  **name** | **string**| Name of the view | 
+  **body** | **string**| View configuration in config.xml format | 
+ **optional** | **map[string]interface{}** | optional parameters | nil if no parameters
+
+### Optional Parameters
+Optional parameters are passed through a map[string]interface{}.
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **name** | **string**| Name of the view | 
  **body** | **string**| View configuration in config.xml format | 
- **jenkinsCrumb** | **string**| CSRF protection token | [optional] 
+ **jenkinsCrumb** | **string**| CSRF protection token | 
 
 ### Return type
 
-void (empty response body)
+ (empty response body)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 

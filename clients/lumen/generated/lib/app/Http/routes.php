@@ -22,12 +22,12 @@ $app->get('/', function () use ($app) {
 });
 
 /**
- * GET search
+ * GET searchClasses
  * Summary: 
  * Notes: Get classes details
  * Output-Formats: [application/json]
  */
-$app->GET('//blue/rest/classes/', 'BlueOceanApi@search');
+$app->GET('//blue/rest/classes/', 'BlueOceanApi@searchClasses');
 /**
  * GET getClasses
  * Summary: 
@@ -38,87 +38,234 @@ $app->GET('//blue/rest/classes/{class}', 'BlueOceanApi@getClasses');
 /**
  * GET getOrganisations
  * Summary: 
- * Notes: Retrieve all organisations details
+ * Notes: Retrieve all organizations details
  * Output-Formats: [application/json]
  */
 $app->GET('//blue/rest/organizations/', 'BlueOceanApi@getOrganisations');
 /**
  * GET getOrganisation
  * Summary: 
- * Notes: Retrieve organisation details
+ * Notes: Retrieve organization details
  * Output-Formats: [application/json]
  */
-$app->GET('//blue/rest/organizations/{organisation}', 'BlueOceanApi@getOrganisation');
+$app->GET('//blue/rest/organizations/{organization}', 'BlueOceanApi@getOrganisation');
 /**
- * GET getPipelinesByOrg
+ * GET getPipelines
  * Summary: 
- * Notes: Retrieve all pipelines details for an organisation
+ * Notes: Retrieve all pipelines details for an organization
  * Output-Formats: [application/json]
  */
-$app->GET('//blue/rest/organizations/{organisation}/pipelines/', 'BlueOceanApi@getPipelinesByOrg');
+$app->GET('//blue/rest/organizations/{organization}/pipelines/', 'BlueOceanApi@getPipelines');
 /**
- * GET getPipelineFolderByOrg
+ * GET getPipelineFolder
  * Summary: 
- * Notes: Retrieve pipeline folder for an organisation
+ * Notes: Retrieve pipeline folder for an organization
  * Output-Formats: [application/json]
  */
-$app->GET('//blue/rest/organizations/{organisation}/pipelines/{folder}/', 'BlueOceanApi@getPipelineFolderByOrg');
+$app->GET('//blue/rest/organizations/{organization}/pipelines/{folder}/', 'BlueOceanApi@getPipelineFolder');
 /**
- * GET getPipelineFolderByOrg_0
+ * GET getPipelineFolderPipeline
  * Summary: 
- * Notes: Retrieve pipeline details for an organisation folder
+ * Notes: Retrieve pipeline details for an organization folder
  * Output-Formats: [application/json]
  */
-$app->GET('//blue/rest/organizations/{organisation}/pipelines/{folder}/pipelines/{pipeline}', 'BlueOceanApi@getPipelineFolderByOrg_0');
+$app->GET('//blue/rest/organizations/{organization}/pipelines/{folder}/pipelines/{pipeline}', 'BlueOceanApi@getPipelineFolderPipeline');
 /**
- * GET getPipelineByOrg
+ * GET getPipeline
  * Summary: 
- * Notes: Retrieve pipeline details for an organisation
+ * Notes: Retrieve pipeline details for an organization
  * Output-Formats: [application/json]
  */
-$app->GET('//blue/rest/organizations/{organisation}/pipelines/{pipeline}', 'BlueOceanApi@getPipelineByOrg');
+$app->GET('//blue/rest/organizations/{organization}/pipelines/{pipeline}', 'BlueOceanApi@getPipeline');
 /**
- * GET getPipelineBranchesByOrg
+ * GET getPipelineActivities
  * Summary: 
- * Notes: Retrieve all branches details for an organisation pipeline
+ * Notes: Retrieve all activities details for an organization pipeline
  * Output-Formats: [application/json]
  */
-$app->GET('//blue/rest/organizations/{organisation}/pipelines/{pipeline}/branches', 'BlueOceanApi@getPipelineBranchesByOrg');
+$app->GET('//blue/rest/organizations/{organization}/pipelines/{pipeline}/activities', 'BlueOceanApi@getPipelineActivities');
 /**
- * GET getPipelineBranchByOrg
+ * GET getPipelineBranches
  * Summary: 
- * Notes: Retrieve branch details for an organisation pipeline
+ * Notes: Retrieve all branches details for an organization pipeline
  * Output-Formats: [application/json]
  */
-$app->GET('//blue/rest/organizations/{organisation}/pipelines/{pipeline}/branches/{branch}/', 'BlueOceanApi@getPipelineBranchByOrg');
+$app->GET('//blue/rest/organizations/{organization}/pipelines/{pipeline}/branches', 'BlueOceanApi@getPipelineBranches');
+/**
+ * GET getPipelineBranch
+ * Summary: 
+ * Notes: Retrieve branch details for an organization pipeline
+ * Output-Formats: [application/json]
+ */
+$app->GET('//blue/rest/organizations/{organization}/pipelines/{pipeline}/branches/{branch}/', 'BlueOceanApi@getPipelineBranch');
+/**
+ * GET getPipelineBranchRun
+ * Summary: 
+ * Notes: Retrieve branch run details for an organization pipeline
+ * Output-Formats: [application/json]
+ */
+$app->GET('//blue/rest/organizations/{organization}/pipelines/{pipeline}/branches/{branch}/runs/{run}', 'BlueOceanApi@getPipelineBranchRun');
+/**
+ * PUT putPipelineFavorite
+ * Summary: 
+ * Notes: Favorite/unfavorite a pipeline
+ * Output-Formats: [application/json]
+ */
+$app->PUT('//blue/rest/organizations/{organization}/pipelines/{pipeline}/favorite', 'BlueOceanApi@putPipelineFavorite');
+/**
+ * GET getPipelineQueue
+ * Summary: 
+ * Notes: Retrieve queue details for an organization pipeline
+ * Output-Formats: [application/json]
+ */
+$app->GET('//blue/rest/organizations/{organization}/pipelines/{pipeline}/queue', 'BlueOceanApi@getPipelineQueue');
+/**
+ * DELETE deletePipelineQueueItem
+ * Summary: 
+ * Notes: Delete queue item from an organization pipeline queue
+ * Output-Formats: [application/json]
+ */
+$app->DELETE('//blue/rest/organizations/{organization}/pipelines/{pipeline}/queue/{queue}', 'BlueOceanApi@deletePipelineQueueItem');
+/**
+ * GET getPipelineRuns
+ * Summary: 
+ * Notes: Retrieve all runs details for an organization pipeline
+ * Output-Formats: [application/json]
+ */
+$app->GET('//blue/rest/organizations/{organization}/pipelines/{pipeline}/runs', 'BlueOceanApi@getPipelineRuns');
+/**
+ * POST postPipelineRuns
+ * Summary: 
+ * Notes: Start a build for an organization pipeline
+ * Output-Formats: [application/json]
+ */
+$app->POST('//blue/rest/organizations/{organization}/pipelines/{pipeline}/runs', 'BlueOceanApi@postPipelineRuns');
+/**
+ * GET getPipelineRun
+ * Summary: 
+ * Notes: Retrieve run details for an organization pipeline
+ * Output-Formats: [application/json]
+ */
+$app->GET('//blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}', 'BlueOceanApi@getPipelineRun');
+/**
+ * GET getPipelineRunLog
+ * Summary: 
+ * Notes: Get log for a pipeline run
+ * Output-Formats: [application/json]
+ */
+$app->GET('//blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/log', 'BlueOceanApi@getPipelineRunLog');
+/**
+ * GET getPipelineRunNodes
+ * Summary: 
+ * Notes: Retrieve run nodes details for an organization pipeline
+ * Output-Formats: [application/json]
+ */
+$app->GET('//blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes', 'BlueOceanApi@getPipelineRunNodes');
+/**
+ * GET getPipelineRunNode
+ * Summary: 
+ * Notes: Retrieve run node details for an organization pipeline
+ * Output-Formats: [application/json]
+ */
+$app->GET('//blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}', 'BlueOceanApi@getPipelineRunNode');
+/**
+ * GET getPipelineRunNodeSteps
+ * Summary: 
+ * Notes: Retrieve run node steps details for an organization pipeline
+ * Output-Formats: [application/json]
+ */
+$app->GET('//blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps', 'BlueOceanApi@getPipelineRunNodeSteps');
+/**
+ * GET getPipelineRunNodeStep
+ * Summary: 
+ * Notes: Retrieve run node details for an organization pipeline
+ * Output-Formats: [application/json]
+ */
+$app->GET('//blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps/{step}', 'BlueOceanApi@getPipelineRunNodeStep');
+/**
+ * GET getPipelineRunNodeStepLog
+ * Summary: 
+ * Notes: Get log for a pipeline run node step
+ * Output-Formats: [application/json]
+ */
+$app->GET('//blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps/{step}/log', 'BlueOceanApi@getPipelineRunNodeStepLog');
+/**
+ * POST postPipelineRun
+ * Summary: 
+ * Notes: Replay an organization pipeline run
+ * Output-Formats: [application/json]
+ */
+$app->POST('//blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/replay', 'BlueOceanApi@postPipelineRun');
+/**
+ * PUT putPipelineRun
+ * Summary: 
+ * Notes: Stop a build of an organization pipeline
+ * Output-Formats: [application/json]
+ */
+$app->PUT('//blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/stop', 'BlueOceanApi@putPipelineRun');
+/**
+ * GET getSCM
+ * Summary: 
+ * Notes: Retrieve SCM details for an organization
+ * Output-Formats: [application/json]
+ */
+$app->GET('//blue/rest/organizations/{organization}/scm/{scm}', 'BlueOceanApi@getSCM');
+/**
+ * GET getSCMOrganisations
+ * Summary: 
+ * Notes: Retrieve SCM organizations details for an organization
+ * Output-Formats: [application/json]
+ */
+$app->GET('//blue/rest/organizations/{organization}/scm/{scm}/organizations', 'BlueOceanApi@getSCMOrganisations');
+/**
+ * GET getSCMOrganisationRepositories
+ * Summary: 
+ * Notes: Retrieve SCM organization repositories details for an organization
+ * Output-Formats: [application/json]
+ */
+$app->GET('//blue/rest/organizations/{organization}/scm/{scm}/organizations/{scmOrganisation}/repositories', 'BlueOceanApi@getSCMOrganisationRepositories');
+/**
+ * GET getSCMOrganisationRepository
+ * Summary: 
+ * Notes: Retrieve SCM organization repository details for an organization
+ * Output-Formats: [application/json]
+ */
+$app->GET('//blue/rest/organizations/{organization}/scm/{scm}/organizations/{scmOrganisation}/repositories/{repository}', 'BlueOceanApi@getSCMOrganisationRepository');
 /**
  * GET getAuthenticatedUser
  * Summary: 
- * Notes: Retrieve authenticated user details for an organisation
+ * Notes: Retrieve authenticated user details for an organization
  * Output-Formats: [application/json]
  */
-$app->GET('//blue/rest/organizations/{organisation}/user/', 'BlueOceanApi@getAuthenticatedUser');
+$app->GET('//blue/rest/organizations/{organization}/user/', 'BlueOceanApi@getAuthenticatedUser');
 /**
  * GET getUsers
  * Summary: 
- * Notes: Retrieve users details for an organisation
+ * Notes: Retrieve users details for an organization
  * Output-Formats: [application/json]
  */
-$app->GET('//blue/rest/organizations/{organisation}/users/', 'BlueOceanApi@getUsers');
+$app->GET('//blue/rest/organizations/{organization}/users/', 'BlueOceanApi@getUsers');
 /**
  * GET getUser
  * Summary: 
- * Notes: Retrieve user details for an organisation
+ * Notes: Retrieve user details for an organization
  * Output-Formats: [application/json]
  */
-$app->GET('//blue/rest/organizations/{organisation}/users/{user}', 'BlueOceanApi@getUser');
+$app->GET('//blue/rest/organizations/{organization}/users/{user}', 'BlueOceanApi@getUser');
 /**
- * GET search_0
+ * GET search
  * Summary: 
  * Notes: Search for any resource details
  * Output-Formats: [application/json]
  */
-$app->GET('//blue/rest/search/', 'BlueOceanApi@search_0');
+$app->GET('//blue/rest/search/', 'BlueOceanApi@search');
+/**
+ * GET getUserFavorites
+ * Summary: 
+ * Notes: Retrieve user favorites details for an organization
+ * Output-Formats: [application/json]
+ */
+$app->GET('//blue/rest/users/{user}/favorites', 'BlueOceanApi@getUserFavorites');
 /**
  * GET getJenkins
  * Summary: 
@@ -139,7 +286,7 @@ $app->HEAD('//api/json', 'RemoteAccessApi@headJenkins');
  * Notes: Retrieve computer details
  * Output-Formats: [application/json]
  */
-$app->GET('//computer/api/json?depth=1', 'RemoteAccessApi@getComputer');
+$app->GET('//computer/api/json', 'RemoteAccessApi@getComputer');
 /**
  * POST postCreateItem
  * Summary: 

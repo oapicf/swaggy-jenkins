@@ -35,43 +35,47 @@ class BlueOceanApi(object):
             api_client = ApiClient()
         self.api_client = api_client
 
-    def get_authenticated_user(self, organisation, **kwargs):
+    def delete_pipeline_queue_item(self, organization, pipeline, queue, **kwargs):
         """
-        Retrieve authenticated user details for an organisation
+        Delete queue item from an organization pipeline queue
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async=True
-        >>> thread = api.get_authenticated_user(organisation, async=True)
+        >>> thread = api.delete_pipeline_queue_item(organization, pipeline, queue, async=True)
         >>> result = thread.get()
 
         :param async bool
-        :param str organisation: Name of the organisation (required)
-        :return: SwaggyjenkinsUser
+        :param str organization: Name of the organization (required)
+        :param str pipeline: Name of the pipeline (required)
+        :param str queue: Name of the queue item (required)
+        :return: None
                  If the method is called asynchronously,
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
         if kwargs.get('async'):
-            return self.get_authenticated_user_with_http_info(organisation, **kwargs)
+            return self.delete_pipeline_queue_item_with_http_info(organization, pipeline, queue, **kwargs)
         else:
-            (data) = self.get_authenticated_user_with_http_info(organisation, **kwargs)
+            (data) = self.delete_pipeline_queue_item_with_http_info(organization, pipeline, queue, **kwargs)
             return data
 
-    def get_authenticated_user_with_http_info(self, organisation, **kwargs):
+    def delete_pipeline_queue_item_with_http_info(self, organization, pipeline, queue, **kwargs):
         """
-        Retrieve authenticated user details for an organisation
+        Delete queue item from an organization pipeline queue
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async=True
-        >>> thread = api.get_authenticated_user_with_http_info(organisation, async=True)
+        >>> thread = api.delete_pipeline_queue_item_with_http_info(organization, pipeline, queue, async=True)
         >>> result = thread.get()
 
         :param async bool
-        :param str organisation: Name of the organisation (required)
-        :return: SwaggyjenkinsUser
+        :param str organization: Name of the organization (required)
+        :param str pipeline: Name of the pipeline (required)
+        :param str queue: Name of the queue item (required)
+        :return: None
                  If the method is called asynchronously,
                  returns the request thread.
         """
 
-        all_params = ['organisation']
+        all_params = ['organization', 'pipeline', 'queue']
         all_params.append('async')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -82,20 +86,30 @@ class BlueOceanApi(object):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
-                    " to method get_authenticated_user" % key
+                    " to method delete_pipeline_queue_item" % key
                 )
             params[key] = val
         del params['kwargs']
-        # verify the required parameter 'organisation' is set
-        if ('organisation' not in params) or (params['organisation'] is None):
-            raise ValueError("Missing the required parameter `organisation` when calling `get_authenticated_user`")
+        # verify the required parameter 'organization' is set
+        if ('organization' not in params) or (params['organization'] is None):
+            raise ValueError("Missing the required parameter `organization` when calling `delete_pipeline_queue_item`")
+        # verify the required parameter 'pipeline' is set
+        if ('pipeline' not in params) or (params['pipeline'] is None):
+            raise ValueError("Missing the required parameter `pipeline` when calling `delete_pipeline_queue_item`")
+        # verify the required parameter 'queue' is set
+        if ('queue' not in params) or (params['queue'] is None):
+            raise ValueError("Missing the required parameter `queue` when calling `delete_pipeline_queue_item`")
 
 
         collection_formats = {}
 
         path_params = {}
-        if 'organisation' in params:
-            path_params['organisation'] = params['organisation']
+        if 'organization' in params:
+            path_params['organization'] = params['organization']
+        if 'pipeline' in params:
+            path_params['pipeline'] = params['pipeline']
+        if 'queue' in params:
+            path_params['queue'] = params['queue']
 
         query_params = []
 
@@ -112,14 +126,106 @@ class BlueOceanApi(object):
         # Authentication setting
         auth_settings = ['jenkins_auth']
 
-        return self.api_client.call_api('/blue/rest/organizations/{organisation}/user/', 'GET',
+        return self.api_client.call_api('/blue/rest/organizations/{organization}/pipelines/{pipeline}/queue/{queue}', 'DELETE',
                                         path_params,
                                         query_params,
                                         header_params,
                                         body=body_params,
                                         post_params=form_params,
                                         files=local_var_files,
-                                        response_type='SwaggyjenkinsUser',
+                                        response_type=None,
+                                        auth_settings=auth_settings,
+                                        async=params.get('async'),
+                                        _return_http_data_only=params.get('_return_http_data_only'),
+                                        _preload_content=params.get('_preload_content', True),
+                                        _request_timeout=params.get('_request_timeout'),
+                                        collection_formats=collection_formats)
+
+    def get_authenticated_user(self, organization, **kwargs):
+        """
+        Retrieve authenticated user details for an organization
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async=True
+        >>> thread = api.get_authenticated_user(organization, async=True)
+        >>> result = thread.get()
+
+        :param async bool
+        :param str organization: Name of the organization (required)
+        :return: User
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+        kwargs['_return_http_data_only'] = True
+        if kwargs.get('async'):
+            return self.get_authenticated_user_with_http_info(organization, **kwargs)
+        else:
+            (data) = self.get_authenticated_user_with_http_info(organization, **kwargs)
+            return data
+
+    def get_authenticated_user_with_http_info(self, organization, **kwargs):
+        """
+        Retrieve authenticated user details for an organization
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async=True
+        >>> thread = api.get_authenticated_user_with_http_info(organization, async=True)
+        >>> result = thread.get()
+
+        :param async bool
+        :param str organization: Name of the organization (required)
+        :return: User
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+
+        all_params = ['organization']
+        all_params.append('async')
+        all_params.append('_return_http_data_only')
+        all_params.append('_preload_content')
+        all_params.append('_request_timeout')
+
+        params = locals()
+        for key, val in iteritems(params['kwargs']):
+            if key not in all_params:
+                raise TypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method get_authenticated_user" % key
+                )
+            params[key] = val
+        del params['kwargs']
+        # verify the required parameter 'organization' is set
+        if ('organization' not in params) or (params['organization'] is None):
+            raise ValueError("Missing the required parameter `organization` when calling `get_authenticated_user`")
+
+
+        collection_formats = {}
+
+        path_params = {}
+        if 'organization' in params:
+            path_params['organization'] = params['organization']
+
+        query_params = []
+
+        header_params = {}
+
+        form_params = []
+        local_var_files = {}
+
+        body_params = None
+        # HTTP header `Accept`
+        header_params['Accept'] = self.api_client.\
+            select_header_accept(['application/json'])
+
+        # Authentication setting
+        auth_settings = ['jenkins_auth']
+
+        return self.api_client.call_api('/blue/rest/organizations/{organization}/user/', 'GET',
+                                        path_params,
+                                        query_params,
+                                        header_params,
+                                        body=body_params,
+                                        post_params=form_params,
+                                        files=local_var_files,
+                                        response_type='User',
                                         auth_settings=auth_settings,
                                         async=params.get('async'),
                                         _return_http_data_only=params.get('_return_http_data_only'),
@@ -219,43 +325,43 @@ class BlueOceanApi(object):
                                         _request_timeout=params.get('_request_timeout'),
                                         collection_formats=collection_formats)
 
-    def get_organisation(self, organisation, **kwargs):
+    def get_organisation(self, organization, **kwargs):
         """
-        Retrieve organisation details
+        Retrieve organization details
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async=True
-        >>> thread = api.get_organisation(organisation, async=True)
+        >>> thread = api.get_organisation(organization, async=True)
         >>> result = thread.get()
 
         :param async bool
-        :param str organisation: Name of the organisation (required)
-        :return: SwaggyjenkinsOrganisation
+        :param str organization: Name of the organization (required)
+        :return: Organisation
                  If the method is called asynchronously,
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
         if kwargs.get('async'):
-            return self.get_organisation_with_http_info(organisation, **kwargs)
+            return self.get_organisation_with_http_info(organization, **kwargs)
         else:
-            (data) = self.get_organisation_with_http_info(organisation, **kwargs)
+            (data) = self.get_organisation_with_http_info(organization, **kwargs)
             return data
 
-    def get_organisation_with_http_info(self, organisation, **kwargs):
+    def get_organisation_with_http_info(self, organization, **kwargs):
         """
-        Retrieve organisation details
+        Retrieve organization details
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async=True
-        >>> thread = api.get_organisation_with_http_info(organisation, async=True)
+        >>> thread = api.get_organisation_with_http_info(organization, async=True)
         >>> result = thread.get()
 
         :param async bool
-        :param str organisation: Name of the organisation (required)
-        :return: SwaggyjenkinsOrganisation
+        :param str organization: Name of the organization (required)
+        :return: Organisation
                  If the method is called asynchronously,
                  returns the request thread.
         """
 
-        all_params = ['organisation']
+        all_params = ['organization']
         all_params.append('async')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -270,16 +376,16 @@ class BlueOceanApi(object):
                 )
             params[key] = val
         del params['kwargs']
-        # verify the required parameter 'organisation' is set
-        if ('organisation' not in params) or (params['organisation'] is None):
-            raise ValueError("Missing the required parameter `organisation` when calling `get_organisation`")
+        # verify the required parameter 'organization' is set
+        if ('organization' not in params) or (params['organization'] is None):
+            raise ValueError("Missing the required parameter `organization` when calling `get_organisation`")
 
 
         collection_formats = {}
 
         path_params = {}
-        if 'organisation' in params:
-            path_params['organisation'] = params['organisation']
+        if 'organization' in params:
+            path_params['organization'] = params['organization']
 
         query_params = []
 
@@ -296,14 +402,14 @@ class BlueOceanApi(object):
         # Authentication setting
         auth_settings = ['jenkins_auth']
 
-        return self.api_client.call_api('/blue/rest/organizations/{organisation}', 'GET',
+        return self.api_client.call_api('/blue/rest/organizations/{organization}', 'GET',
                                         path_params,
                                         query_params,
                                         header_params,
                                         body=body_params,
                                         post_params=form_params,
                                         files=local_var_files,
-                                        response_type='SwaggyjenkinsOrganisation',
+                                        response_type='Organisation',
                                         auth_settings=auth_settings,
                                         async=params.get('async'),
                                         _return_http_data_only=params.get('_return_http_data_only'),
@@ -313,14 +419,14 @@ class BlueOceanApi(object):
 
     def get_organisations(self, **kwargs):
         """
-        Retrieve all organisations details
+        Retrieve all organizations details
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async=True
         >>> thread = api.get_organisations(async=True)
         >>> result = thread.get()
 
         :param async bool
-        :return: GetOrganisations
+        :return: Organisations
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -333,14 +439,14 @@ class BlueOceanApi(object):
 
     def get_organisations_with_http_info(self, **kwargs):
         """
-        Retrieve all organisations details
+        Retrieve all organizations details
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async=True
         >>> thread = api.get_organisations_with_http_info(async=True)
         >>> result = thread.get()
 
         :param async bool
-        :return: GetOrganisations
+        :return: Organisations
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -387,7 +493,7 @@ class BlueOceanApi(object):
                                         body=body_params,
                                         post_params=form_params,
                                         files=local_var_files,
-                                        response_type='GetOrganisations',
+                                        response_type='Organisations',
                                         auth_settings=auth_settings,
                                         async=params.get('async'),
                                         _return_http_data_only=params.get('_return_http_data_only'),
@@ -395,47 +501,45 @@ class BlueOceanApi(object):
                                         _request_timeout=params.get('_request_timeout'),
                                         collection_formats=collection_formats)
 
-    def get_pipeline_branch_by_org(self, organisation, pipeline, branch, **kwargs):
+    def get_pipeline(self, organization, pipeline, **kwargs):
         """
-        Retrieve branch details for an organisation pipeline
+        Retrieve pipeline details for an organization
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async=True
-        >>> thread = api.get_pipeline_branch_by_org(organisation, pipeline, branch, async=True)
+        >>> thread = api.get_pipeline(organization, pipeline, async=True)
         >>> result = thread.get()
 
         :param async bool
-        :param str organisation: Name of the organisation (required)
+        :param str organization: Name of the organization (required)
         :param str pipeline: Name of the pipeline (required)
-        :param str branch: Name of the branch (required)
-        :return: IojenkinsblueoceanrestimplpipelineBranchImpl
+        :return: Pipeline
                  If the method is called asynchronously,
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
         if kwargs.get('async'):
-            return self.get_pipeline_branch_by_org_with_http_info(organisation, pipeline, branch, **kwargs)
+            return self.get_pipeline_with_http_info(organization, pipeline, **kwargs)
         else:
-            (data) = self.get_pipeline_branch_by_org_with_http_info(organisation, pipeline, branch, **kwargs)
+            (data) = self.get_pipeline_with_http_info(organization, pipeline, **kwargs)
             return data
 
-    def get_pipeline_branch_by_org_with_http_info(self, organisation, pipeline, branch, **kwargs):
+    def get_pipeline_with_http_info(self, organization, pipeline, **kwargs):
         """
-        Retrieve branch details for an organisation pipeline
+        Retrieve pipeline details for an organization
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async=True
-        >>> thread = api.get_pipeline_branch_by_org_with_http_info(organisation, pipeline, branch, async=True)
+        >>> thread = api.get_pipeline_with_http_info(organization, pipeline, async=True)
         >>> result = thread.get()
 
         :param async bool
-        :param str organisation: Name of the organisation (required)
+        :param str organization: Name of the organization (required)
         :param str pipeline: Name of the pipeline (required)
-        :param str branch: Name of the branch (required)
-        :return: IojenkinsblueoceanrestimplpipelineBranchImpl
+        :return: Pipeline
                  If the method is called asynchronously,
                  returns the request thread.
         """
 
-        all_params = ['organisation', 'pipeline', 'branch']
+        all_params = ['organization', 'pipeline']
         all_params.append('async')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -446,26 +550,226 @@ class BlueOceanApi(object):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
-                    " to method get_pipeline_branch_by_org" % key
+                    " to method get_pipeline" % key
                 )
             params[key] = val
         del params['kwargs']
-        # verify the required parameter 'organisation' is set
-        if ('organisation' not in params) or (params['organisation'] is None):
-            raise ValueError("Missing the required parameter `organisation` when calling `get_pipeline_branch_by_org`")
+        # verify the required parameter 'organization' is set
+        if ('organization' not in params) or (params['organization'] is None):
+            raise ValueError("Missing the required parameter `organization` when calling `get_pipeline`")
         # verify the required parameter 'pipeline' is set
         if ('pipeline' not in params) or (params['pipeline'] is None):
-            raise ValueError("Missing the required parameter `pipeline` when calling `get_pipeline_branch_by_org`")
-        # verify the required parameter 'branch' is set
-        if ('branch' not in params) or (params['branch'] is None):
-            raise ValueError("Missing the required parameter `branch` when calling `get_pipeline_branch_by_org`")
+            raise ValueError("Missing the required parameter `pipeline` when calling `get_pipeline`")
 
 
         collection_formats = {}
 
         path_params = {}
-        if 'organisation' in params:
-            path_params['organisation'] = params['organisation']
+        if 'organization' in params:
+            path_params['organization'] = params['organization']
+        if 'pipeline' in params:
+            path_params['pipeline'] = params['pipeline']
+
+        query_params = []
+
+        header_params = {}
+
+        form_params = []
+        local_var_files = {}
+
+        body_params = None
+        # HTTP header `Accept`
+        header_params['Accept'] = self.api_client.\
+            select_header_accept(['application/json'])
+
+        # Authentication setting
+        auth_settings = ['jenkins_auth']
+
+        return self.api_client.call_api('/blue/rest/organizations/{organization}/pipelines/{pipeline}', 'GET',
+                                        path_params,
+                                        query_params,
+                                        header_params,
+                                        body=body_params,
+                                        post_params=form_params,
+                                        files=local_var_files,
+                                        response_type='Pipeline',
+                                        auth_settings=auth_settings,
+                                        async=params.get('async'),
+                                        _return_http_data_only=params.get('_return_http_data_only'),
+                                        _preload_content=params.get('_preload_content', True),
+                                        _request_timeout=params.get('_request_timeout'),
+                                        collection_formats=collection_formats)
+
+    def get_pipeline_activities(self, organization, pipeline, **kwargs):
+        """
+        Retrieve all activities details for an organization pipeline
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async=True
+        >>> thread = api.get_pipeline_activities(organization, pipeline, async=True)
+        >>> result = thread.get()
+
+        :param async bool
+        :param str organization: Name of the organization (required)
+        :param str pipeline: Name of the pipeline (required)
+        :return: PipelineActivities
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+        kwargs['_return_http_data_only'] = True
+        if kwargs.get('async'):
+            return self.get_pipeline_activities_with_http_info(organization, pipeline, **kwargs)
+        else:
+            (data) = self.get_pipeline_activities_with_http_info(organization, pipeline, **kwargs)
+            return data
+
+    def get_pipeline_activities_with_http_info(self, organization, pipeline, **kwargs):
+        """
+        Retrieve all activities details for an organization pipeline
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async=True
+        >>> thread = api.get_pipeline_activities_with_http_info(organization, pipeline, async=True)
+        >>> result = thread.get()
+
+        :param async bool
+        :param str organization: Name of the organization (required)
+        :param str pipeline: Name of the pipeline (required)
+        :return: PipelineActivities
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+
+        all_params = ['organization', 'pipeline']
+        all_params.append('async')
+        all_params.append('_return_http_data_only')
+        all_params.append('_preload_content')
+        all_params.append('_request_timeout')
+
+        params = locals()
+        for key, val in iteritems(params['kwargs']):
+            if key not in all_params:
+                raise TypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method get_pipeline_activities" % key
+                )
+            params[key] = val
+        del params['kwargs']
+        # verify the required parameter 'organization' is set
+        if ('organization' not in params) or (params['organization'] is None):
+            raise ValueError("Missing the required parameter `organization` when calling `get_pipeline_activities`")
+        # verify the required parameter 'pipeline' is set
+        if ('pipeline' not in params) or (params['pipeline'] is None):
+            raise ValueError("Missing the required parameter `pipeline` when calling `get_pipeline_activities`")
+
+
+        collection_formats = {}
+
+        path_params = {}
+        if 'organization' in params:
+            path_params['organization'] = params['organization']
+        if 'pipeline' in params:
+            path_params['pipeline'] = params['pipeline']
+
+        query_params = []
+
+        header_params = {}
+
+        form_params = []
+        local_var_files = {}
+
+        body_params = None
+        # HTTP header `Accept`
+        header_params['Accept'] = self.api_client.\
+            select_header_accept(['application/json'])
+
+        # Authentication setting
+        auth_settings = ['jenkins_auth']
+
+        return self.api_client.call_api('/blue/rest/organizations/{organization}/pipelines/{pipeline}/activities', 'GET',
+                                        path_params,
+                                        query_params,
+                                        header_params,
+                                        body=body_params,
+                                        post_params=form_params,
+                                        files=local_var_files,
+                                        response_type='PipelineActivities',
+                                        auth_settings=auth_settings,
+                                        async=params.get('async'),
+                                        _return_http_data_only=params.get('_return_http_data_only'),
+                                        _preload_content=params.get('_preload_content', True),
+                                        _request_timeout=params.get('_request_timeout'),
+                                        collection_formats=collection_formats)
+
+    def get_pipeline_branch(self, organization, pipeline, branch, **kwargs):
+        """
+        Retrieve branch details for an organization pipeline
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async=True
+        >>> thread = api.get_pipeline_branch(organization, pipeline, branch, async=True)
+        >>> result = thread.get()
+
+        :param async bool
+        :param str organization: Name of the organization (required)
+        :param str pipeline: Name of the pipeline (required)
+        :param str branch: Name of the branch (required)
+        :return: BranchImpl
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+        kwargs['_return_http_data_only'] = True
+        if kwargs.get('async'):
+            return self.get_pipeline_branch_with_http_info(organization, pipeline, branch, **kwargs)
+        else:
+            (data) = self.get_pipeline_branch_with_http_info(organization, pipeline, branch, **kwargs)
+            return data
+
+    def get_pipeline_branch_with_http_info(self, organization, pipeline, branch, **kwargs):
+        """
+        Retrieve branch details for an organization pipeline
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async=True
+        >>> thread = api.get_pipeline_branch_with_http_info(organization, pipeline, branch, async=True)
+        >>> result = thread.get()
+
+        :param async bool
+        :param str organization: Name of the organization (required)
+        :param str pipeline: Name of the pipeline (required)
+        :param str branch: Name of the branch (required)
+        :return: BranchImpl
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+
+        all_params = ['organization', 'pipeline', 'branch']
+        all_params.append('async')
+        all_params.append('_return_http_data_only')
+        all_params.append('_preload_content')
+        all_params.append('_request_timeout')
+
+        params = locals()
+        for key, val in iteritems(params['kwargs']):
+            if key not in all_params:
+                raise TypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method get_pipeline_branch" % key
+                )
+            params[key] = val
+        del params['kwargs']
+        # verify the required parameter 'organization' is set
+        if ('organization' not in params) or (params['organization'] is None):
+            raise ValueError("Missing the required parameter `organization` when calling `get_pipeline_branch`")
+        # verify the required parameter 'pipeline' is set
+        if ('pipeline' not in params) or (params['pipeline'] is None):
+            raise ValueError("Missing the required parameter `pipeline` when calling `get_pipeline_branch`")
+        # verify the required parameter 'branch' is set
+        if ('branch' not in params) or (params['branch'] is None):
+            raise ValueError("Missing the required parameter `branch` when calling `get_pipeline_branch`")
+
+
+        collection_formats = {}
+
+        path_params = {}
+        if 'organization' in params:
+            path_params['organization'] = params['organization']
         if 'pipeline' in params:
             path_params['pipeline'] = params['pipeline']
         if 'branch' in params:
@@ -486,14 +790,14 @@ class BlueOceanApi(object):
         # Authentication setting
         auth_settings = ['jenkins_auth']
 
-        return self.api_client.call_api('/blue/rest/organizations/{organisation}/pipelines/{pipeline}/branches/{branch}/', 'GET',
+        return self.api_client.call_api('/blue/rest/organizations/{organization}/pipelines/{pipeline}/branches/{branch}/', 'GET',
                                         path_params,
                                         query_params,
                                         header_params,
                                         body=body_params,
                                         post_params=form_params,
                                         files=local_var_files,
-                                        response_type='IojenkinsblueoceanrestimplpipelineBranchImpl',
+                                        response_type='BranchImpl',
                                         auth_settings=auth_settings,
                                         async=params.get('async'),
                                         _return_http_data_only=params.get('_return_http_data_only'),
@@ -501,45 +805,49 @@ class BlueOceanApi(object):
                                         _request_timeout=params.get('_request_timeout'),
                                         collection_formats=collection_formats)
 
-    def get_pipeline_branches_by_org(self, organisation, pipeline, **kwargs):
+    def get_pipeline_branch_run(self, organization, pipeline, branch, run, **kwargs):
         """
-        Retrieve all branches details for an organisation pipeline
+        Retrieve branch run details for an organization pipeline
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async=True
-        >>> thread = api.get_pipeline_branches_by_org(organisation, pipeline, async=True)
+        >>> thread = api.get_pipeline_branch_run(organization, pipeline, branch, run, async=True)
         >>> result = thread.get()
 
         :param async bool
-        :param str organisation: Name of the organisation (required)
+        :param str organization: Name of the organization (required)
         :param str pipeline: Name of the pipeline (required)
-        :return: GetMultibranchPipeline
+        :param str branch: Name of the branch (required)
+        :param str run: Name of the run (required)
+        :return: PipelineRun
                  If the method is called asynchronously,
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
         if kwargs.get('async'):
-            return self.get_pipeline_branches_by_org_with_http_info(organisation, pipeline, **kwargs)
+            return self.get_pipeline_branch_run_with_http_info(organization, pipeline, branch, run, **kwargs)
         else:
-            (data) = self.get_pipeline_branches_by_org_with_http_info(organisation, pipeline, **kwargs)
+            (data) = self.get_pipeline_branch_run_with_http_info(organization, pipeline, branch, run, **kwargs)
             return data
 
-    def get_pipeline_branches_by_org_with_http_info(self, organisation, pipeline, **kwargs):
+    def get_pipeline_branch_run_with_http_info(self, organization, pipeline, branch, run, **kwargs):
         """
-        Retrieve all branches details for an organisation pipeline
+        Retrieve branch run details for an organization pipeline
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async=True
-        >>> thread = api.get_pipeline_branches_by_org_with_http_info(organisation, pipeline, async=True)
+        >>> thread = api.get_pipeline_branch_run_with_http_info(organization, pipeline, branch, run, async=True)
         >>> result = thread.get()
 
         :param async bool
-        :param str organisation: Name of the organisation (required)
+        :param str organization: Name of the organization (required)
         :param str pipeline: Name of the pipeline (required)
-        :return: GetMultibranchPipeline
+        :param str branch: Name of the branch (required)
+        :param str run: Name of the run (required)
+        :return: PipelineRun
                  If the method is called asynchronously,
                  returns the request thread.
         """
 
-        all_params = ['organisation', 'pipeline']
+        all_params = ['organization', 'pipeline', 'branch', 'run']
         all_params.append('async')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -550,23 +858,132 @@ class BlueOceanApi(object):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
-                    " to method get_pipeline_branches_by_org" % key
+                    " to method get_pipeline_branch_run" % key
                 )
             params[key] = val
         del params['kwargs']
-        # verify the required parameter 'organisation' is set
-        if ('organisation' not in params) or (params['organisation'] is None):
-            raise ValueError("Missing the required parameter `organisation` when calling `get_pipeline_branches_by_org`")
+        # verify the required parameter 'organization' is set
+        if ('organization' not in params) or (params['organization'] is None):
+            raise ValueError("Missing the required parameter `organization` when calling `get_pipeline_branch_run`")
         # verify the required parameter 'pipeline' is set
         if ('pipeline' not in params) or (params['pipeline'] is None):
-            raise ValueError("Missing the required parameter `pipeline` when calling `get_pipeline_branches_by_org`")
+            raise ValueError("Missing the required parameter `pipeline` when calling `get_pipeline_branch_run`")
+        # verify the required parameter 'branch' is set
+        if ('branch' not in params) or (params['branch'] is None):
+            raise ValueError("Missing the required parameter `branch` when calling `get_pipeline_branch_run`")
+        # verify the required parameter 'run' is set
+        if ('run' not in params) or (params['run'] is None):
+            raise ValueError("Missing the required parameter `run` when calling `get_pipeline_branch_run`")
 
 
         collection_formats = {}
 
         path_params = {}
-        if 'organisation' in params:
-            path_params['organisation'] = params['organisation']
+        if 'organization' in params:
+            path_params['organization'] = params['organization']
+        if 'pipeline' in params:
+            path_params['pipeline'] = params['pipeline']
+        if 'branch' in params:
+            path_params['branch'] = params['branch']
+        if 'run' in params:
+            path_params['run'] = params['run']
+
+        query_params = []
+
+        header_params = {}
+
+        form_params = []
+        local_var_files = {}
+
+        body_params = None
+        # HTTP header `Accept`
+        header_params['Accept'] = self.api_client.\
+            select_header_accept(['application/json'])
+
+        # Authentication setting
+        auth_settings = ['jenkins_auth']
+
+        return self.api_client.call_api('/blue/rest/organizations/{organization}/pipelines/{pipeline}/branches/{branch}/runs/{run}', 'GET',
+                                        path_params,
+                                        query_params,
+                                        header_params,
+                                        body=body_params,
+                                        post_params=form_params,
+                                        files=local_var_files,
+                                        response_type='PipelineRun',
+                                        auth_settings=auth_settings,
+                                        async=params.get('async'),
+                                        _return_http_data_only=params.get('_return_http_data_only'),
+                                        _preload_content=params.get('_preload_content', True),
+                                        _request_timeout=params.get('_request_timeout'),
+                                        collection_formats=collection_formats)
+
+    def get_pipeline_branches(self, organization, pipeline, **kwargs):
+        """
+        Retrieve all branches details for an organization pipeline
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async=True
+        >>> thread = api.get_pipeline_branches(organization, pipeline, async=True)
+        >>> result = thread.get()
+
+        :param async bool
+        :param str organization: Name of the organization (required)
+        :param str pipeline: Name of the pipeline (required)
+        :return: MultibranchPipeline
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+        kwargs['_return_http_data_only'] = True
+        if kwargs.get('async'):
+            return self.get_pipeline_branches_with_http_info(organization, pipeline, **kwargs)
+        else:
+            (data) = self.get_pipeline_branches_with_http_info(organization, pipeline, **kwargs)
+            return data
+
+    def get_pipeline_branches_with_http_info(self, organization, pipeline, **kwargs):
+        """
+        Retrieve all branches details for an organization pipeline
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async=True
+        >>> thread = api.get_pipeline_branches_with_http_info(organization, pipeline, async=True)
+        >>> result = thread.get()
+
+        :param async bool
+        :param str organization: Name of the organization (required)
+        :param str pipeline: Name of the pipeline (required)
+        :return: MultibranchPipeline
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+
+        all_params = ['organization', 'pipeline']
+        all_params.append('async')
+        all_params.append('_return_http_data_only')
+        all_params.append('_preload_content')
+        all_params.append('_request_timeout')
+
+        params = locals()
+        for key, val in iteritems(params['kwargs']):
+            if key not in all_params:
+                raise TypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method get_pipeline_branches" % key
+                )
+            params[key] = val
+        del params['kwargs']
+        # verify the required parameter 'organization' is set
+        if ('organization' not in params) or (params['organization'] is None):
+            raise ValueError("Missing the required parameter `organization` when calling `get_pipeline_branches`")
+        # verify the required parameter 'pipeline' is set
+        if ('pipeline' not in params) or (params['pipeline'] is None):
+            raise ValueError("Missing the required parameter `pipeline` when calling `get_pipeline_branches`")
+
+
+        collection_formats = {}
+
+        path_params = {}
+        if 'organization' in params:
+            path_params['organization'] = params['organization']
         if 'pipeline' in params:
             path_params['pipeline'] = params['pipeline']
 
@@ -585,14 +1002,14 @@ class BlueOceanApi(object):
         # Authentication setting
         auth_settings = ['jenkins_auth']
 
-        return self.api_client.call_api('/blue/rest/organizations/{organisation}/pipelines/{pipeline}/branches', 'GET',
+        return self.api_client.call_api('/blue/rest/organizations/{organization}/pipelines/{pipeline}/branches', 'GET',
                                         path_params,
                                         query_params,
                                         header_params,
                                         body=body_params,
                                         post_params=form_params,
                                         files=local_var_files,
-                                        response_type='GetMultibranchPipeline',
+                                        response_type='MultibranchPipeline',
                                         auth_settings=auth_settings,
                                         async=params.get('async'),
                                         _return_http_data_only=params.get('_return_http_data_only'),
@@ -600,45 +1017,45 @@ class BlueOceanApi(object):
                                         _request_timeout=params.get('_request_timeout'),
                                         collection_formats=collection_formats)
 
-    def get_pipeline_by_org(self, organisation, pipeline, **kwargs):
+    def get_pipeline_folder(self, organization, folder, **kwargs):
         """
-        Retrieve pipeline details for an organisation
+        Retrieve pipeline folder for an organization
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async=True
-        >>> thread = api.get_pipeline_by_org(organisation, pipeline, async=True)
+        >>> thread = api.get_pipeline_folder(organization, folder, async=True)
         >>> result = thread.get()
 
         :param async bool
-        :param str organisation: Name of the organisation (required)
-        :param str pipeline: Name of the pipeline (required)
-        :return: SwaggyjenkinsPipeline
+        :param str organization: Name of the organization (required)
+        :param str folder: Name of the folder (required)
+        :return: PipelineFolderImpl
                  If the method is called asynchronously,
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
         if kwargs.get('async'):
-            return self.get_pipeline_by_org_with_http_info(organisation, pipeline, **kwargs)
+            return self.get_pipeline_folder_with_http_info(organization, folder, **kwargs)
         else:
-            (data) = self.get_pipeline_by_org_with_http_info(organisation, pipeline, **kwargs)
+            (data) = self.get_pipeline_folder_with_http_info(organization, folder, **kwargs)
             return data
 
-    def get_pipeline_by_org_with_http_info(self, organisation, pipeline, **kwargs):
+    def get_pipeline_folder_with_http_info(self, organization, folder, **kwargs):
         """
-        Retrieve pipeline details for an organisation
+        Retrieve pipeline folder for an organization
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async=True
-        >>> thread = api.get_pipeline_by_org_with_http_info(organisation, pipeline, async=True)
+        >>> thread = api.get_pipeline_folder_with_http_info(organization, folder, async=True)
         >>> result = thread.get()
 
         :param async bool
-        :param str organisation: Name of the organisation (required)
-        :param str pipeline: Name of the pipeline (required)
-        :return: SwaggyjenkinsPipeline
+        :param str organization: Name of the organization (required)
+        :param str folder: Name of the folder (required)
+        :return: PipelineFolderImpl
                  If the method is called asynchronously,
                  returns the request thread.
         """
 
-        all_params = ['organisation', 'pipeline']
+        all_params = ['organization', 'folder']
         all_params.append('async')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -649,122 +1066,23 @@ class BlueOceanApi(object):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
-                    " to method get_pipeline_by_org" % key
+                    " to method get_pipeline_folder" % key
                 )
             params[key] = val
         del params['kwargs']
-        # verify the required parameter 'organisation' is set
-        if ('organisation' not in params) or (params['organisation'] is None):
-            raise ValueError("Missing the required parameter `organisation` when calling `get_pipeline_by_org`")
-        # verify the required parameter 'pipeline' is set
-        if ('pipeline' not in params) or (params['pipeline'] is None):
-            raise ValueError("Missing the required parameter `pipeline` when calling `get_pipeline_by_org`")
-
-
-        collection_formats = {}
-
-        path_params = {}
-        if 'organisation' in params:
-            path_params['organisation'] = params['organisation']
-        if 'pipeline' in params:
-            path_params['pipeline'] = params['pipeline']
-
-        query_params = []
-
-        header_params = {}
-
-        form_params = []
-        local_var_files = {}
-
-        body_params = None
-        # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.\
-            select_header_accept(['application/json'])
-
-        # Authentication setting
-        auth_settings = ['jenkins_auth']
-
-        return self.api_client.call_api('/blue/rest/organizations/{organisation}/pipelines/{pipeline}', 'GET',
-                                        path_params,
-                                        query_params,
-                                        header_params,
-                                        body=body_params,
-                                        post_params=form_params,
-                                        files=local_var_files,
-                                        response_type='SwaggyjenkinsPipeline',
-                                        auth_settings=auth_settings,
-                                        async=params.get('async'),
-                                        _return_http_data_only=params.get('_return_http_data_only'),
-                                        _preload_content=params.get('_preload_content', True),
-                                        _request_timeout=params.get('_request_timeout'),
-                                        collection_formats=collection_formats)
-
-    def get_pipeline_folder_by_org(self, organisation, folder, **kwargs):
-        """
-        Retrieve pipeline folder for an organisation
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.get_pipeline_folder_by_org(organisation, folder, async=True)
-        >>> result = thread.get()
-
-        :param async bool
-        :param str organisation: Name of the organisation (required)
-        :param str folder: Name of the folder (required)
-        :return: IojenkinsblueoceanserviceembeddedrestPipelineFolderImpl
-                 If the method is called asynchronously,
-                 returns the request thread.
-        """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
-            return self.get_pipeline_folder_by_org_with_http_info(organisation, folder, **kwargs)
-        else:
-            (data) = self.get_pipeline_folder_by_org_with_http_info(organisation, folder, **kwargs)
-            return data
-
-    def get_pipeline_folder_by_org_with_http_info(self, organisation, folder, **kwargs):
-        """
-        Retrieve pipeline folder for an organisation
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.get_pipeline_folder_by_org_with_http_info(organisation, folder, async=True)
-        >>> result = thread.get()
-
-        :param async bool
-        :param str organisation: Name of the organisation (required)
-        :param str folder: Name of the folder (required)
-        :return: IojenkinsblueoceanserviceembeddedrestPipelineFolderImpl
-                 If the method is called asynchronously,
-                 returns the request thread.
-        """
-
-        all_params = ['organisation', 'folder']
-        all_params.append('async')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
-
-        params = locals()
-        for key, val in iteritems(params['kwargs']):
-            if key not in all_params:
-                raise TypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method get_pipeline_folder_by_org" % key
-                )
-            params[key] = val
-        del params['kwargs']
-        # verify the required parameter 'organisation' is set
-        if ('organisation' not in params) or (params['organisation'] is None):
-            raise ValueError("Missing the required parameter `organisation` when calling `get_pipeline_folder_by_org`")
+        # verify the required parameter 'organization' is set
+        if ('organization' not in params) or (params['organization'] is None):
+            raise ValueError("Missing the required parameter `organization` when calling `get_pipeline_folder`")
         # verify the required parameter 'folder' is set
         if ('folder' not in params) or (params['folder'] is None):
-            raise ValueError("Missing the required parameter `folder` when calling `get_pipeline_folder_by_org`")
+            raise ValueError("Missing the required parameter `folder` when calling `get_pipeline_folder`")
 
 
         collection_formats = {}
 
         path_params = {}
-        if 'organisation' in params:
-            path_params['organisation'] = params['organisation']
+        if 'organization' in params:
+            path_params['organization'] = params['organization']
         if 'folder' in params:
             path_params['folder'] = params['folder']
 
@@ -783,14 +1101,14 @@ class BlueOceanApi(object):
         # Authentication setting
         auth_settings = ['jenkins_auth']
 
-        return self.api_client.call_api('/blue/rest/organizations/{organisation}/pipelines/{folder}/', 'GET',
+        return self.api_client.call_api('/blue/rest/organizations/{organization}/pipelines/{folder}/', 'GET',
                                         path_params,
                                         query_params,
                                         header_params,
                                         body=body_params,
                                         post_params=form_params,
                                         files=local_var_files,
-                                        response_type='IojenkinsblueoceanserviceembeddedrestPipelineFolderImpl',
+                                        response_type='PipelineFolderImpl',
                                         auth_settings=auth_settings,
                                         async=params.get('async'),
                                         _return_http_data_only=params.get('_return_http_data_only'),
@@ -798,47 +1116,47 @@ class BlueOceanApi(object):
                                         _request_timeout=params.get('_request_timeout'),
                                         collection_formats=collection_formats)
 
-    def get_pipeline_folder_by_org_0(self, organisation, pipeline, folder, **kwargs):
+    def get_pipeline_folder_pipeline(self, organization, pipeline, folder, **kwargs):
         """
-        Retrieve pipeline details for an organisation folder
+        Retrieve pipeline details for an organization folder
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async=True
-        >>> thread = api.get_pipeline_folder_by_org_0(organisation, pipeline, folder, async=True)
+        >>> thread = api.get_pipeline_folder_pipeline(organization, pipeline, folder, async=True)
         >>> result = thread.get()
 
         :param async bool
-        :param str organisation: Name of the organisation (required)
+        :param str organization: Name of the organization (required)
         :param str pipeline: Name of the pipeline (required)
         :param str folder: Name of the folder (required)
-        :return: IojenkinsblueoceanserviceembeddedrestPipelineImpl
+        :return: PipelineImpl
                  If the method is called asynchronously,
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
         if kwargs.get('async'):
-            return self.get_pipeline_folder_by_org_0_with_http_info(organisation, pipeline, folder, **kwargs)
+            return self.get_pipeline_folder_pipeline_with_http_info(organization, pipeline, folder, **kwargs)
         else:
-            (data) = self.get_pipeline_folder_by_org_0_with_http_info(organisation, pipeline, folder, **kwargs)
+            (data) = self.get_pipeline_folder_pipeline_with_http_info(organization, pipeline, folder, **kwargs)
             return data
 
-    def get_pipeline_folder_by_org_0_with_http_info(self, organisation, pipeline, folder, **kwargs):
+    def get_pipeline_folder_pipeline_with_http_info(self, organization, pipeline, folder, **kwargs):
         """
-        Retrieve pipeline details for an organisation folder
+        Retrieve pipeline details for an organization folder
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async=True
-        >>> thread = api.get_pipeline_folder_by_org_0_with_http_info(organisation, pipeline, folder, async=True)
+        >>> thread = api.get_pipeline_folder_pipeline_with_http_info(organization, pipeline, folder, async=True)
         >>> result = thread.get()
 
         :param async bool
-        :param str organisation: Name of the organisation (required)
+        :param str organization: Name of the organization (required)
         :param str pipeline: Name of the pipeline (required)
         :param str folder: Name of the folder (required)
-        :return: IojenkinsblueoceanserviceembeddedrestPipelineImpl
+        :return: PipelineImpl
                  If the method is called asynchronously,
                  returns the request thread.
         """
 
-        all_params = ['organisation', 'pipeline', 'folder']
+        all_params = ['organization', 'pipeline', 'folder']
         all_params.append('async')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -849,26 +1167,26 @@ class BlueOceanApi(object):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
-                    " to method get_pipeline_folder_by_org_0" % key
+                    " to method get_pipeline_folder_pipeline" % key
                 )
             params[key] = val
         del params['kwargs']
-        # verify the required parameter 'organisation' is set
-        if ('organisation' not in params) or (params['organisation'] is None):
-            raise ValueError("Missing the required parameter `organisation` when calling `get_pipeline_folder_by_org_0`")
+        # verify the required parameter 'organization' is set
+        if ('organization' not in params) or (params['organization'] is None):
+            raise ValueError("Missing the required parameter `organization` when calling `get_pipeline_folder_pipeline`")
         # verify the required parameter 'pipeline' is set
         if ('pipeline' not in params) or (params['pipeline'] is None):
-            raise ValueError("Missing the required parameter `pipeline` when calling `get_pipeline_folder_by_org_0`")
+            raise ValueError("Missing the required parameter `pipeline` when calling `get_pipeline_folder_pipeline`")
         # verify the required parameter 'folder' is set
         if ('folder' not in params) or (params['folder'] is None):
-            raise ValueError("Missing the required parameter `folder` when calling `get_pipeline_folder_by_org_0`")
+            raise ValueError("Missing the required parameter `folder` when calling `get_pipeline_folder_pipeline`")
 
 
         collection_formats = {}
 
         path_params = {}
-        if 'organisation' in params:
-            path_params['organisation'] = params['organisation']
+        if 'organization' in params:
+            path_params['organization'] = params['organization']
         if 'pipeline' in params:
             path_params['pipeline'] = params['pipeline']
         if 'folder' in params:
@@ -889,14 +1207,14 @@ class BlueOceanApi(object):
         # Authentication setting
         auth_settings = ['jenkins_auth']
 
-        return self.api_client.call_api('/blue/rest/organizations/{organisation}/pipelines/{folder}/pipelines/{pipeline}', 'GET',
+        return self.api_client.call_api('/blue/rest/organizations/{organization}/pipelines/{folder}/pipelines/{pipeline}', 'GET',
                                         path_params,
                                         query_params,
                                         header_params,
                                         body=body_params,
                                         post_params=form_params,
                                         files=local_var_files,
-                                        response_type='IojenkinsblueoceanserviceembeddedrestPipelineImpl',
+                                        response_type='PipelineImpl',
                                         auth_settings=auth_settings,
                                         async=params.get('async'),
                                         _return_http_data_only=params.get('_return_http_data_only'),
@@ -904,43 +1222,45 @@ class BlueOceanApi(object):
                                         _request_timeout=params.get('_request_timeout'),
                                         collection_formats=collection_formats)
 
-    def get_pipelines_by_org(self, organisation, **kwargs):
+    def get_pipeline_queue(self, organization, pipeline, **kwargs):
         """
-        Retrieve all pipelines details for an organisation
+        Retrieve queue details for an organization pipeline
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async=True
-        >>> thread = api.get_pipelines_by_org(organisation, async=True)
+        >>> thread = api.get_pipeline_queue(organization, pipeline, async=True)
         >>> result = thread.get()
 
         :param async bool
-        :param str organisation: Name of the organisation (required)
-        :return: GetPipelines
+        :param str organization: Name of the organization (required)
+        :param str pipeline: Name of the pipeline (required)
+        :return: PipelineQueue
                  If the method is called asynchronously,
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
         if kwargs.get('async'):
-            return self.get_pipelines_by_org_with_http_info(organisation, **kwargs)
+            return self.get_pipeline_queue_with_http_info(organization, pipeline, **kwargs)
         else:
-            (data) = self.get_pipelines_by_org_with_http_info(organisation, **kwargs)
+            (data) = self.get_pipeline_queue_with_http_info(organization, pipeline, **kwargs)
             return data
 
-    def get_pipelines_by_org_with_http_info(self, organisation, **kwargs):
+    def get_pipeline_queue_with_http_info(self, organization, pipeline, **kwargs):
         """
-        Retrieve all pipelines details for an organisation
+        Retrieve queue details for an organization pipeline
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async=True
-        >>> thread = api.get_pipelines_by_org_with_http_info(organisation, async=True)
+        >>> thread = api.get_pipeline_queue_with_http_info(organization, pipeline, async=True)
         >>> result = thread.get()
 
         :param async bool
-        :param str organisation: Name of the organisation (required)
-        :return: GetPipelines
+        :param str organization: Name of the organization (required)
+        :param str pipeline: Name of the pipeline (required)
+        :return: PipelineQueue
                  If the method is called asynchronously,
                  returns the request thread.
         """
 
-        all_params = ['organisation']
+        all_params = ['organization', 'pipeline']
         all_params.append('async')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -951,20 +1271,25 @@ class BlueOceanApi(object):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
-                    " to method get_pipelines_by_org" % key
+                    " to method get_pipeline_queue" % key
                 )
             params[key] = val
         del params['kwargs']
-        # verify the required parameter 'organisation' is set
-        if ('organisation' not in params) or (params['organisation'] is None):
-            raise ValueError("Missing the required parameter `organisation` when calling `get_pipelines_by_org`")
+        # verify the required parameter 'organization' is set
+        if ('organization' not in params) or (params['organization'] is None):
+            raise ValueError("Missing the required parameter `organization` when calling `get_pipeline_queue`")
+        # verify the required parameter 'pipeline' is set
+        if ('pipeline' not in params) or (params['pipeline'] is None):
+            raise ValueError("Missing the required parameter `pipeline` when calling `get_pipeline_queue`")
 
 
         collection_formats = {}
 
         path_params = {}
-        if 'organisation' in params:
-            path_params['organisation'] = params['organisation']
+        if 'organization' in params:
+            path_params['organization'] = params['organization']
+        if 'pipeline' in params:
+            path_params['pipeline'] = params['pipeline']
 
         query_params = []
 
@@ -981,14 +1306,14 @@ class BlueOceanApi(object):
         # Authentication setting
         auth_settings = ['jenkins_auth']
 
-        return self.api_client.call_api('/blue/rest/organizations/{organisation}/pipelines/', 'GET',
+        return self.api_client.call_api('/blue/rest/organizations/{organization}/pipelines/{pipeline}/queue', 'GET',
                                         path_params,
                                         query_params,
                                         header_params,
                                         body=body_params,
                                         post_params=form_params,
                                         files=local_var_files,
-                                        response_type='GetPipelines',
+                                        response_type='PipelineQueue',
                                         auth_settings=auth_settings,
                                         async=params.get('async'),
                                         _return_http_data_only=params.get('_return_http_data_only'),
@@ -996,45 +1321,1465 @@ class BlueOceanApi(object):
                                         _request_timeout=params.get('_request_timeout'),
                                         collection_formats=collection_formats)
 
-    def get_user(self, organisation, user, **kwargs):
+    def get_pipeline_run(self, organization, pipeline, run, **kwargs):
         """
-        Retrieve user details for an organisation
+        Retrieve run details for an organization pipeline
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async=True
-        >>> thread = api.get_user(organisation, user, async=True)
+        >>> thread = api.get_pipeline_run(organization, pipeline, run, async=True)
         >>> result = thread.get()
 
         :param async bool
-        :param str organisation: Name of the organisation (required)
-        :param str user: Name of the user (required)
-        :return: SwaggyjenkinsUser
+        :param str organization: Name of the organization (required)
+        :param str pipeline: Name of the pipeline (required)
+        :param str run: Name of the run (required)
+        :return: PipelineRun
                  If the method is called asynchronously,
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
         if kwargs.get('async'):
-            return self.get_user_with_http_info(organisation, user, **kwargs)
+            return self.get_pipeline_run_with_http_info(organization, pipeline, run, **kwargs)
         else:
-            (data) = self.get_user_with_http_info(organisation, user, **kwargs)
+            (data) = self.get_pipeline_run_with_http_info(organization, pipeline, run, **kwargs)
             return data
 
-    def get_user_with_http_info(self, organisation, user, **kwargs):
+    def get_pipeline_run_with_http_info(self, organization, pipeline, run, **kwargs):
         """
-        Retrieve user details for an organisation
+        Retrieve run details for an organization pipeline
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async=True
-        >>> thread = api.get_user_with_http_info(organisation, user, async=True)
+        >>> thread = api.get_pipeline_run_with_http_info(organization, pipeline, run, async=True)
         >>> result = thread.get()
 
         :param async bool
-        :param str organisation: Name of the organisation (required)
-        :param str user: Name of the user (required)
-        :return: SwaggyjenkinsUser
+        :param str organization: Name of the organization (required)
+        :param str pipeline: Name of the pipeline (required)
+        :param str run: Name of the run (required)
+        :return: PipelineRun
                  If the method is called asynchronously,
                  returns the request thread.
         """
 
-        all_params = ['organisation', 'user']
+        all_params = ['organization', 'pipeline', 'run']
+        all_params.append('async')
+        all_params.append('_return_http_data_only')
+        all_params.append('_preload_content')
+        all_params.append('_request_timeout')
+
+        params = locals()
+        for key, val in iteritems(params['kwargs']):
+            if key not in all_params:
+                raise TypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method get_pipeline_run" % key
+                )
+            params[key] = val
+        del params['kwargs']
+        # verify the required parameter 'organization' is set
+        if ('organization' not in params) or (params['organization'] is None):
+            raise ValueError("Missing the required parameter `organization` when calling `get_pipeline_run`")
+        # verify the required parameter 'pipeline' is set
+        if ('pipeline' not in params) or (params['pipeline'] is None):
+            raise ValueError("Missing the required parameter `pipeline` when calling `get_pipeline_run`")
+        # verify the required parameter 'run' is set
+        if ('run' not in params) or (params['run'] is None):
+            raise ValueError("Missing the required parameter `run` when calling `get_pipeline_run`")
+
+
+        collection_formats = {}
+
+        path_params = {}
+        if 'organization' in params:
+            path_params['organization'] = params['organization']
+        if 'pipeline' in params:
+            path_params['pipeline'] = params['pipeline']
+        if 'run' in params:
+            path_params['run'] = params['run']
+
+        query_params = []
+
+        header_params = {}
+
+        form_params = []
+        local_var_files = {}
+
+        body_params = None
+        # HTTP header `Accept`
+        header_params['Accept'] = self.api_client.\
+            select_header_accept(['application/json'])
+
+        # Authentication setting
+        auth_settings = ['jenkins_auth']
+
+        return self.api_client.call_api('/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}', 'GET',
+                                        path_params,
+                                        query_params,
+                                        header_params,
+                                        body=body_params,
+                                        post_params=form_params,
+                                        files=local_var_files,
+                                        response_type='PipelineRun',
+                                        auth_settings=auth_settings,
+                                        async=params.get('async'),
+                                        _return_http_data_only=params.get('_return_http_data_only'),
+                                        _preload_content=params.get('_preload_content', True),
+                                        _request_timeout=params.get('_request_timeout'),
+                                        collection_formats=collection_formats)
+
+    def get_pipeline_run_log(self, organization, pipeline, run, **kwargs):
+        """
+        Get log for a pipeline run
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async=True
+        >>> thread = api.get_pipeline_run_log(organization, pipeline, run, async=True)
+        >>> result = thread.get()
+
+        :param async bool
+        :param str organization: Name of the organization (required)
+        :param str pipeline: Name of the pipeline (required)
+        :param str run: Name of the run (required)
+        :param int start: Start position of the log
+        :param bool download: Set to true in order to download the file, otherwise it's passed as a response body
+        :return: str
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+        kwargs['_return_http_data_only'] = True
+        if kwargs.get('async'):
+            return self.get_pipeline_run_log_with_http_info(organization, pipeline, run, **kwargs)
+        else:
+            (data) = self.get_pipeline_run_log_with_http_info(organization, pipeline, run, **kwargs)
+            return data
+
+    def get_pipeline_run_log_with_http_info(self, organization, pipeline, run, **kwargs):
+        """
+        Get log for a pipeline run
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async=True
+        >>> thread = api.get_pipeline_run_log_with_http_info(organization, pipeline, run, async=True)
+        >>> result = thread.get()
+
+        :param async bool
+        :param str organization: Name of the organization (required)
+        :param str pipeline: Name of the pipeline (required)
+        :param str run: Name of the run (required)
+        :param int start: Start position of the log
+        :param bool download: Set to true in order to download the file, otherwise it's passed as a response body
+        :return: str
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+
+        all_params = ['organization', 'pipeline', 'run', 'start', 'download']
+        all_params.append('async')
+        all_params.append('_return_http_data_only')
+        all_params.append('_preload_content')
+        all_params.append('_request_timeout')
+
+        params = locals()
+        for key, val in iteritems(params['kwargs']):
+            if key not in all_params:
+                raise TypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method get_pipeline_run_log" % key
+                )
+            params[key] = val
+        del params['kwargs']
+        # verify the required parameter 'organization' is set
+        if ('organization' not in params) or (params['organization'] is None):
+            raise ValueError("Missing the required parameter `organization` when calling `get_pipeline_run_log`")
+        # verify the required parameter 'pipeline' is set
+        if ('pipeline' not in params) or (params['pipeline'] is None):
+            raise ValueError("Missing the required parameter `pipeline` when calling `get_pipeline_run_log`")
+        # verify the required parameter 'run' is set
+        if ('run' not in params) or (params['run'] is None):
+            raise ValueError("Missing the required parameter `run` when calling `get_pipeline_run_log`")
+
+
+        collection_formats = {}
+
+        path_params = {}
+        if 'organization' in params:
+            path_params['organization'] = params['organization']
+        if 'pipeline' in params:
+            path_params['pipeline'] = params['pipeline']
+        if 'run' in params:
+            path_params['run'] = params['run']
+
+        query_params = []
+        if 'start' in params:
+            query_params.append(('start', params['start']))
+        if 'download' in params:
+            query_params.append(('download', params['download']))
+
+        header_params = {}
+
+        form_params = []
+        local_var_files = {}
+
+        body_params = None
+        # HTTP header `Accept`
+        header_params['Accept'] = self.api_client.\
+            select_header_accept(['application/json'])
+
+        # Authentication setting
+        auth_settings = ['jenkins_auth']
+
+        return self.api_client.call_api('/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/log', 'GET',
+                                        path_params,
+                                        query_params,
+                                        header_params,
+                                        body=body_params,
+                                        post_params=form_params,
+                                        files=local_var_files,
+                                        response_type='str',
+                                        auth_settings=auth_settings,
+                                        async=params.get('async'),
+                                        _return_http_data_only=params.get('_return_http_data_only'),
+                                        _preload_content=params.get('_preload_content', True),
+                                        _request_timeout=params.get('_request_timeout'),
+                                        collection_formats=collection_formats)
+
+    def get_pipeline_run_node(self, organization, pipeline, run, node, **kwargs):
+        """
+        Retrieve run node details for an organization pipeline
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async=True
+        >>> thread = api.get_pipeline_run_node(organization, pipeline, run, node, async=True)
+        >>> result = thread.get()
+
+        :param async bool
+        :param str organization: Name of the organization (required)
+        :param str pipeline: Name of the pipeline (required)
+        :param str run: Name of the run (required)
+        :param str node: Name of the node (required)
+        :return: PipelineRunNode
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+        kwargs['_return_http_data_only'] = True
+        if kwargs.get('async'):
+            return self.get_pipeline_run_node_with_http_info(organization, pipeline, run, node, **kwargs)
+        else:
+            (data) = self.get_pipeline_run_node_with_http_info(organization, pipeline, run, node, **kwargs)
+            return data
+
+    def get_pipeline_run_node_with_http_info(self, organization, pipeline, run, node, **kwargs):
+        """
+        Retrieve run node details for an organization pipeline
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async=True
+        >>> thread = api.get_pipeline_run_node_with_http_info(organization, pipeline, run, node, async=True)
+        >>> result = thread.get()
+
+        :param async bool
+        :param str organization: Name of the organization (required)
+        :param str pipeline: Name of the pipeline (required)
+        :param str run: Name of the run (required)
+        :param str node: Name of the node (required)
+        :return: PipelineRunNode
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+
+        all_params = ['organization', 'pipeline', 'run', 'node']
+        all_params.append('async')
+        all_params.append('_return_http_data_only')
+        all_params.append('_preload_content')
+        all_params.append('_request_timeout')
+
+        params = locals()
+        for key, val in iteritems(params['kwargs']):
+            if key not in all_params:
+                raise TypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method get_pipeline_run_node" % key
+                )
+            params[key] = val
+        del params['kwargs']
+        # verify the required parameter 'organization' is set
+        if ('organization' not in params) or (params['organization'] is None):
+            raise ValueError("Missing the required parameter `organization` when calling `get_pipeline_run_node`")
+        # verify the required parameter 'pipeline' is set
+        if ('pipeline' not in params) or (params['pipeline'] is None):
+            raise ValueError("Missing the required parameter `pipeline` when calling `get_pipeline_run_node`")
+        # verify the required parameter 'run' is set
+        if ('run' not in params) or (params['run'] is None):
+            raise ValueError("Missing the required parameter `run` when calling `get_pipeline_run_node`")
+        # verify the required parameter 'node' is set
+        if ('node' not in params) or (params['node'] is None):
+            raise ValueError("Missing the required parameter `node` when calling `get_pipeline_run_node`")
+
+
+        collection_formats = {}
+
+        path_params = {}
+        if 'organization' in params:
+            path_params['organization'] = params['organization']
+        if 'pipeline' in params:
+            path_params['pipeline'] = params['pipeline']
+        if 'run' in params:
+            path_params['run'] = params['run']
+        if 'node' in params:
+            path_params['node'] = params['node']
+
+        query_params = []
+
+        header_params = {}
+
+        form_params = []
+        local_var_files = {}
+
+        body_params = None
+        # HTTP header `Accept`
+        header_params['Accept'] = self.api_client.\
+            select_header_accept(['application/json'])
+
+        # Authentication setting
+        auth_settings = ['jenkins_auth']
+
+        return self.api_client.call_api('/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}', 'GET',
+                                        path_params,
+                                        query_params,
+                                        header_params,
+                                        body=body_params,
+                                        post_params=form_params,
+                                        files=local_var_files,
+                                        response_type='PipelineRunNode',
+                                        auth_settings=auth_settings,
+                                        async=params.get('async'),
+                                        _return_http_data_only=params.get('_return_http_data_only'),
+                                        _preload_content=params.get('_preload_content', True),
+                                        _request_timeout=params.get('_request_timeout'),
+                                        collection_formats=collection_formats)
+
+    def get_pipeline_run_node_step(self, organization, pipeline, run, node, step, **kwargs):
+        """
+        Retrieve run node details for an organization pipeline
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async=True
+        >>> thread = api.get_pipeline_run_node_step(organization, pipeline, run, node, step, async=True)
+        >>> result = thread.get()
+
+        :param async bool
+        :param str organization: Name of the organization (required)
+        :param str pipeline: Name of the pipeline (required)
+        :param str run: Name of the run (required)
+        :param str node: Name of the node (required)
+        :param str step: Name of the step (required)
+        :return: PipelineStepImpl
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+        kwargs['_return_http_data_only'] = True
+        if kwargs.get('async'):
+            return self.get_pipeline_run_node_step_with_http_info(organization, pipeline, run, node, step, **kwargs)
+        else:
+            (data) = self.get_pipeline_run_node_step_with_http_info(organization, pipeline, run, node, step, **kwargs)
+            return data
+
+    def get_pipeline_run_node_step_with_http_info(self, organization, pipeline, run, node, step, **kwargs):
+        """
+        Retrieve run node details for an organization pipeline
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async=True
+        >>> thread = api.get_pipeline_run_node_step_with_http_info(organization, pipeline, run, node, step, async=True)
+        >>> result = thread.get()
+
+        :param async bool
+        :param str organization: Name of the organization (required)
+        :param str pipeline: Name of the pipeline (required)
+        :param str run: Name of the run (required)
+        :param str node: Name of the node (required)
+        :param str step: Name of the step (required)
+        :return: PipelineStepImpl
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+
+        all_params = ['organization', 'pipeline', 'run', 'node', 'step']
+        all_params.append('async')
+        all_params.append('_return_http_data_only')
+        all_params.append('_preload_content')
+        all_params.append('_request_timeout')
+
+        params = locals()
+        for key, val in iteritems(params['kwargs']):
+            if key not in all_params:
+                raise TypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method get_pipeline_run_node_step" % key
+                )
+            params[key] = val
+        del params['kwargs']
+        # verify the required parameter 'organization' is set
+        if ('organization' not in params) or (params['organization'] is None):
+            raise ValueError("Missing the required parameter `organization` when calling `get_pipeline_run_node_step`")
+        # verify the required parameter 'pipeline' is set
+        if ('pipeline' not in params) or (params['pipeline'] is None):
+            raise ValueError("Missing the required parameter `pipeline` when calling `get_pipeline_run_node_step`")
+        # verify the required parameter 'run' is set
+        if ('run' not in params) or (params['run'] is None):
+            raise ValueError("Missing the required parameter `run` when calling `get_pipeline_run_node_step`")
+        # verify the required parameter 'node' is set
+        if ('node' not in params) or (params['node'] is None):
+            raise ValueError("Missing the required parameter `node` when calling `get_pipeline_run_node_step`")
+        # verify the required parameter 'step' is set
+        if ('step' not in params) or (params['step'] is None):
+            raise ValueError("Missing the required parameter `step` when calling `get_pipeline_run_node_step`")
+
+
+        collection_formats = {}
+
+        path_params = {}
+        if 'organization' in params:
+            path_params['organization'] = params['organization']
+        if 'pipeline' in params:
+            path_params['pipeline'] = params['pipeline']
+        if 'run' in params:
+            path_params['run'] = params['run']
+        if 'node' in params:
+            path_params['node'] = params['node']
+        if 'step' in params:
+            path_params['step'] = params['step']
+
+        query_params = []
+
+        header_params = {}
+
+        form_params = []
+        local_var_files = {}
+
+        body_params = None
+        # HTTP header `Accept`
+        header_params['Accept'] = self.api_client.\
+            select_header_accept(['application/json'])
+
+        # Authentication setting
+        auth_settings = ['jenkins_auth']
+
+        return self.api_client.call_api('/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps/{step}', 'GET',
+                                        path_params,
+                                        query_params,
+                                        header_params,
+                                        body=body_params,
+                                        post_params=form_params,
+                                        files=local_var_files,
+                                        response_type='PipelineStepImpl',
+                                        auth_settings=auth_settings,
+                                        async=params.get('async'),
+                                        _return_http_data_only=params.get('_return_http_data_only'),
+                                        _preload_content=params.get('_preload_content', True),
+                                        _request_timeout=params.get('_request_timeout'),
+                                        collection_formats=collection_formats)
+
+    def get_pipeline_run_node_step_log(self, organization, pipeline, run, node, step, **kwargs):
+        """
+        Get log for a pipeline run node step
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async=True
+        >>> thread = api.get_pipeline_run_node_step_log(organization, pipeline, run, node, step, async=True)
+        >>> result = thread.get()
+
+        :param async bool
+        :param str organization: Name of the organization (required)
+        :param str pipeline: Name of the pipeline (required)
+        :param str run: Name of the run (required)
+        :param str node: Name of the node (required)
+        :param str step: Name of the step (required)
+        :return: str
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+        kwargs['_return_http_data_only'] = True
+        if kwargs.get('async'):
+            return self.get_pipeline_run_node_step_log_with_http_info(organization, pipeline, run, node, step, **kwargs)
+        else:
+            (data) = self.get_pipeline_run_node_step_log_with_http_info(organization, pipeline, run, node, step, **kwargs)
+            return data
+
+    def get_pipeline_run_node_step_log_with_http_info(self, organization, pipeline, run, node, step, **kwargs):
+        """
+        Get log for a pipeline run node step
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async=True
+        >>> thread = api.get_pipeline_run_node_step_log_with_http_info(organization, pipeline, run, node, step, async=True)
+        >>> result = thread.get()
+
+        :param async bool
+        :param str organization: Name of the organization (required)
+        :param str pipeline: Name of the pipeline (required)
+        :param str run: Name of the run (required)
+        :param str node: Name of the node (required)
+        :param str step: Name of the step (required)
+        :return: str
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+
+        all_params = ['organization', 'pipeline', 'run', 'node', 'step']
+        all_params.append('async')
+        all_params.append('_return_http_data_only')
+        all_params.append('_preload_content')
+        all_params.append('_request_timeout')
+
+        params = locals()
+        for key, val in iteritems(params['kwargs']):
+            if key not in all_params:
+                raise TypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method get_pipeline_run_node_step_log" % key
+                )
+            params[key] = val
+        del params['kwargs']
+        # verify the required parameter 'organization' is set
+        if ('organization' not in params) or (params['organization'] is None):
+            raise ValueError("Missing the required parameter `organization` when calling `get_pipeline_run_node_step_log`")
+        # verify the required parameter 'pipeline' is set
+        if ('pipeline' not in params) or (params['pipeline'] is None):
+            raise ValueError("Missing the required parameter `pipeline` when calling `get_pipeline_run_node_step_log`")
+        # verify the required parameter 'run' is set
+        if ('run' not in params) or (params['run'] is None):
+            raise ValueError("Missing the required parameter `run` when calling `get_pipeline_run_node_step_log`")
+        # verify the required parameter 'node' is set
+        if ('node' not in params) or (params['node'] is None):
+            raise ValueError("Missing the required parameter `node` when calling `get_pipeline_run_node_step_log`")
+        # verify the required parameter 'step' is set
+        if ('step' not in params) or (params['step'] is None):
+            raise ValueError("Missing the required parameter `step` when calling `get_pipeline_run_node_step_log`")
+
+
+        collection_formats = {}
+
+        path_params = {}
+        if 'organization' in params:
+            path_params['organization'] = params['organization']
+        if 'pipeline' in params:
+            path_params['pipeline'] = params['pipeline']
+        if 'run' in params:
+            path_params['run'] = params['run']
+        if 'node' in params:
+            path_params['node'] = params['node']
+        if 'step' in params:
+            path_params['step'] = params['step']
+
+        query_params = []
+
+        header_params = {}
+
+        form_params = []
+        local_var_files = {}
+
+        body_params = None
+        # HTTP header `Accept`
+        header_params['Accept'] = self.api_client.\
+            select_header_accept(['application/json'])
+
+        # Authentication setting
+        auth_settings = ['jenkins_auth']
+
+        return self.api_client.call_api('/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps/{step}/log', 'GET',
+                                        path_params,
+                                        query_params,
+                                        header_params,
+                                        body=body_params,
+                                        post_params=form_params,
+                                        files=local_var_files,
+                                        response_type='str',
+                                        auth_settings=auth_settings,
+                                        async=params.get('async'),
+                                        _return_http_data_only=params.get('_return_http_data_only'),
+                                        _preload_content=params.get('_preload_content', True),
+                                        _request_timeout=params.get('_request_timeout'),
+                                        collection_formats=collection_formats)
+
+    def get_pipeline_run_node_steps(self, organization, pipeline, run, node, **kwargs):
+        """
+        Retrieve run node steps details for an organization pipeline
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async=True
+        >>> thread = api.get_pipeline_run_node_steps(organization, pipeline, run, node, async=True)
+        >>> result = thread.get()
+
+        :param async bool
+        :param str organization: Name of the organization (required)
+        :param str pipeline: Name of the pipeline (required)
+        :param str run: Name of the run (required)
+        :param str node: Name of the node (required)
+        :return: PipelineRunNodeSteps
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+        kwargs['_return_http_data_only'] = True
+        if kwargs.get('async'):
+            return self.get_pipeline_run_node_steps_with_http_info(organization, pipeline, run, node, **kwargs)
+        else:
+            (data) = self.get_pipeline_run_node_steps_with_http_info(organization, pipeline, run, node, **kwargs)
+            return data
+
+    def get_pipeline_run_node_steps_with_http_info(self, organization, pipeline, run, node, **kwargs):
+        """
+        Retrieve run node steps details for an organization pipeline
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async=True
+        >>> thread = api.get_pipeline_run_node_steps_with_http_info(organization, pipeline, run, node, async=True)
+        >>> result = thread.get()
+
+        :param async bool
+        :param str organization: Name of the organization (required)
+        :param str pipeline: Name of the pipeline (required)
+        :param str run: Name of the run (required)
+        :param str node: Name of the node (required)
+        :return: PipelineRunNodeSteps
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+
+        all_params = ['organization', 'pipeline', 'run', 'node']
+        all_params.append('async')
+        all_params.append('_return_http_data_only')
+        all_params.append('_preload_content')
+        all_params.append('_request_timeout')
+
+        params = locals()
+        for key, val in iteritems(params['kwargs']):
+            if key not in all_params:
+                raise TypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method get_pipeline_run_node_steps" % key
+                )
+            params[key] = val
+        del params['kwargs']
+        # verify the required parameter 'organization' is set
+        if ('organization' not in params) or (params['organization'] is None):
+            raise ValueError("Missing the required parameter `organization` when calling `get_pipeline_run_node_steps`")
+        # verify the required parameter 'pipeline' is set
+        if ('pipeline' not in params) or (params['pipeline'] is None):
+            raise ValueError("Missing the required parameter `pipeline` when calling `get_pipeline_run_node_steps`")
+        # verify the required parameter 'run' is set
+        if ('run' not in params) or (params['run'] is None):
+            raise ValueError("Missing the required parameter `run` when calling `get_pipeline_run_node_steps`")
+        # verify the required parameter 'node' is set
+        if ('node' not in params) or (params['node'] is None):
+            raise ValueError("Missing the required parameter `node` when calling `get_pipeline_run_node_steps`")
+
+
+        collection_formats = {}
+
+        path_params = {}
+        if 'organization' in params:
+            path_params['organization'] = params['organization']
+        if 'pipeline' in params:
+            path_params['pipeline'] = params['pipeline']
+        if 'run' in params:
+            path_params['run'] = params['run']
+        if 'node' in params:
+            path_params['node'] = params['node']
+
+        query_params = []
+
+        header_params = {}
+
+        form_params = []
+        local_var_files = {}
+
+        body_params = None
+        # HTTP header `Accept`
+        header_params['Accept'] = self.api_client.\
+            select_header_accept(['application/json'])
+
+        # Authentication setting
+        auth_settings = ['jenkins_auth']
+
+        return self.api_client.call_api('/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps', 'GET',
+                                        path_params,
+                                        query_params,
+                                        header_params,
+                                        body=body_params,
+                                        post_params=form_params,
+                                        files=local_var_files,
+                                        response_type='PipelineRunNodeSteps',
+                                        auth_settings=auth_settings,
+                                        async=params.get('async'),
+                                        _return_http_data_only=params.get('_return_http_data_only'),
+                                        _preload_content=params.get('_preload_content', True),
+                                        _request_timeout=params.get('_request_timeout'),
+                                        collection_formats=collection_formats)
+
+    def get_pipeline_run_nodes(self, organization, pipeline, run, **kwargs):
+        """
+        Retrieve run nodes details for an organization pipeline
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async=True
+        >>> thread = api.get_pipeline_run_nodes(organization, pipeline, run, async=True)
+        >>> result = thread.get()
+
+        :param async bool
+        :param str organization: Name of the organization (required)
+        :param str pipeline: Name of the pipeline (required)
+        :param str run: Name of the run (required)
+        :return: PipelineRunNodes
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+        kwargs['_return_http_data_only'] = True
+        if kwargs.get('async'):
+            return self.get_pipeline_run_nodes_with_http_info(organization, pipeline, run, **kwargs)
+        else:
+            (data) = self.get_pipeline_run_nodes_with_http_info(organization, pipeline, run, **kwargs)
+            return data
+
+    def get_pipeline_run_nodes_with_http_info(self, organization, pipeline, run, **kwargs):
+        """
+        Retrieve run nodes details for an organization pipeline
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async=True
+        >>> thread = api.get_pipeline_run_nodes_with_http_info(organization, pipeline, run, async=True)
+        >>> result = thread.get()
+
+        :param async bool
+        :param str organization: Name of the organization (required)
+        :param str pipeline: Name of the pipeline (required)
+        :param str run: Name of the run (required)
+        :return: PipelineRunNodes
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+
+        all_params = ['organization', 'pipeline', 'run']
+        all_params.append('async')
+        all_params.append('_return_http_data_only')
+        all_params.append('_preload_content')
+        all_params.append('_request_timeout')
+
+        params = locals()
+        for key, val in iteritems(params['kwargs']):
+            if key not in all_params:
+                raise TypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method get_pipeline_run_nodes" % key
+                )
+            params[key] = val
+        del params['kwargs']
+        # verify the required parameter 'organization' is set
+        if ('organization' not in params) or (params['organization'] is None):
+            raise ValueError("Missing the required parameter `organization` when calling `get_pipeline_run_nodes`")
+        # verify the required parameter 'pipeline' is set
+        if ('pipeline' not in params) or (params['pipeline'] is None):
+            raise ValueError("Missing the required parameter `pipeline` when calling `get_pipeline_run_nodes`")
+        # verify the required parameter 'run' is set
+        if ('run' not in params) or (params['run'] is None):
+            raise ValueError("Missing the required parameter `run` when calling `get_pipeline_run_nodes`")
+
+
+        collection_formats = {}
+
+        path_params = {}
+        if 'organization' in params:
+            path_params['organization'] = params['organization']
+        if 'pipeline' in params:
+            path_params['pipeline'] = params['pipeline']
+        if 'run' in params:
+            path_params['run'] = params['run']
+
+        query_params = []
+
+        header_params = {}
+
+        form_params = []
+        local_var_files = {}
+
+        body_params = None
+        # HTTP header `Accept`
+        header_params['Accept'] = self.api_client.\
+            select_header_accept(['application/json'])
+
+        # Authentication setting
+        auth_settings = ['jenkins_auth']
+
+        return self.api_client.call_api('/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes', 'GET',
+                                        path_params,
+                                        query_params,
+                                        header_params,
+                                        body=body_params,
+                                        post_params=form_params,
+                                        files=local_var_files,
+                                        response_type='PipelineRunNodes',
+                                        auth_settings=auth_settings,
+                                        async=params.get('async'),
+                                        _return_http_data_only=params.get('_return_http_data_only'),
+                                        _preload_content=params.get('_preload_content', True),
+                                        _request_timeout=params.get('_request_timeout'),
+                                        collection_formats=collection_formats)
+
+    def get_pipeline_runs(self, organization, pipeline, **kwargs):
+        """
+        Retrieve all runs details for an organization pipeline
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async=True
+        >>> thread = api.get_pipeline_runs(organization, pipeline, async=True)
+        >>> result = thread.get()
+
+        :param async bool
+        :param str organization: Name of the organization (required)
+        :param str pipeline: Name of the pipeline (required)
+        :return: PipelineRuns
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+        kwargs['_return_http_data_only'] = True
+        if kwargs.get('async'):
+            return self.get_pipeline_runs_with_http_info(organization, pipeline, **kwargs)
+        else:
+            (data) = self.get_pipeline_runs_with_http_info(organization, pipeline, **kwargs)
+            return data
+
+    def get_pipeline_runs_with_http_info(self, organization, pipeline, **kwargs):
+        """
+        Retrieve all runs details for an organization pipeline
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async=True
+        >>> thread = api.get_pipeline_runs_with_http_info(organization, pipeline, async=True)
+        >>> result = thread.get()
+
+        :param async bool
+        :param str organization: Name of the organization (required)
+        :param str pipeline: Name of the pipeline (required)
+        :return: PipelineRuns
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+
+        all_params = ['organization', 'pipeline']
+        all_params.append('async')
+        all_params.append('_return_http_data_only')
+        all_params.append('_preload_content')
+        all_params.append('_request_timeout')
+
+        params = locals()
+        for key, val in iteritems(params['kwargs']):
+            if key not in all_params:
+                raise TypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method get_pipeline_runs" % key
+                )
+            params[key] = val
+        del params['kwargs']
+        # verify the required parameter 'organization' is set
+        if ('organization' not in params) or (params['organization'] is None):
+            raise ValueError("Missing the required parameter `organization` when calling `get_pipeline_runs`")
+        # verify the required parameter 'pipeline' is set
+        if ('pipeline' not in params) or (params['pipeline'] is None):
+            raise ValueError("Missing the required parameter `pipeline` when calling `get_pipeline_runs`")
+
+
+        collection_formats = {}
+
+        path_params = {}
+        if 'organization' in params:
+            path_params['organization'] = params['organization']
+        if 'pipeline' in params:
+            path_params['pipeline'] = params['pipeline']
+
+        query_params = []
+
+        header_params = {}
+
+        form_params = []
+        local_var_files = {}
+
+        body_params = None
+        # HTTP header `Accept`
+        header_params['Accept'] = self.api_client.\
+            select_header_accept(['application/json'])
+
+        # Authentication setting
+        auth_settings = ['jenkins_auth']
+
+        return self.api_client.call_api('/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs', 'GET',
+                                        path_params,
+                                        query_params,
+                                        header_params,
+                                        body=body_params,
+                                        post_params=form_params,
+                                        files=local_var_files,
+                                        response_type='PipelineRuns',
+                                        auth_settings=auth_settings,
+                                        async=params.get('async'),
+                                        _return_http_data_only=params.get('_return_http_data_only'),
+                                        _preload_content=params.get('_preload_content', True),
+                                        _request_timeout=params.get('_request_timeout'),
+                                        collection_formats=collection_formats)
+
+    def get_pipelines(self, organization, **kwargs):
+        """
+        Retrieve all pipelines details for an organization
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async=True
+        >>> thread = api.get_pipelines(organization, async=True)
+        >>> result = thread.get()
+
+        :param async bool
+        :param str organization: Name of the organization (required)
+        :return: Pipelines
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+        kwargs['_return_http_data_only'] = True
+        if kwargs.get('async'):
+            return self.get_pipelines_with_http_info(organization, **kwargs)
+        else:
+            (data) = self.get_pipelines_with_http_info(organization, **kwargs)
+            return data
+
+    def get_pipelines_with_http_info(self, organization, **kwargs):
+        """
+        Retrieve all pipelines details for an organization
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async=True
+        >>> thread = api.get_pipelines_with_http_info(organization, async=True)
+        >>> result = thread.get()
+
+        :param async bool
+        :param str organization: Name of the organization (required)
+        :return: Pipelines
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+
+        all_params = ['organization']
+        all_params.append('async')
+        all_params.append('_return_http_data_only')
+        all_params.append('_preload_content')
+        all_params.append('_request_timeout')
+
+        params = locals()
+        for key, val in iteritems(params['kwargs']):
+            if key not in all_params:
+                raise TypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method get_pipelines" % key
+                )
+            params[key] = val
+        del params['kwargs']
+        # verify the required parameter 'organization' is set
+        if ('organization' not in params) or (params['organization'] is None):
+            raise ValueError("Missing the required parameter `organization` when calling `get_pipelines`")
+
+
+        collection_formats = {}
+
+        path_params = {}
+        if 'organization' in params:
+            path_params['organization'] = params['organization']
+
+        query_params = []
+
+        header_params = {}
+
+        form_params = []
+        local_var_files = {}
+
+        body_params = None
+        # HTTP header `Accept`
+        header_params['Accept'] = self.api_client.\
+            select_header_accept(['application/json'])
+
+        # Authentication setting
+        auth_settings = ['jenkins_auth']
+
+        return self.api_client.call_api('/blue/rest/organizations/{organization}/pipelines/', 'GET',
+                                        path_params,
+                                        query_params,
+                                        header_params,
+                                        body=body_params,
+                                        post_params=form_params,
+                                        files=local_var_files,
+                                        response_type='Pipelines',
+                                        auth_settings=auth_settings,
+                                        async=params.get('async'),
+                                        _return_http_data_only=params.get('_return_http_data_only'),
+                                        _preload_content=params.get('_preload_content', True),
+                                        _request_timeout=params.get('_request_timeout'),
+                                        collection_formats=collection_formats)
+
+    def get_scm(self, organization, scm, **kwargs):
+        """
+        Retrieve SCM details for an organization
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async=True
+        >>> thread = api.get_scm(organization, scm, async=True)
+        >>> result = thread.get()
+
+        :param async bool
+        :param str organization: Name of the organization (required)
+        :param str scm: Name of SCM (required)
+        :return: GithubScm
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+        kwargs['_return_http_data_only'] = True
+        if kwargs.get('async'):
+            return self.get_scm_with_http_info(organization, scm, **kwargs)
+        else:
+            (data) = self.get_scm_with_http_info(organization, scm, **kwargs)
+            return data
+
+    def get_scm_with_http_info(self, organization, scm, **kwargs):
+        """
+        Retrieve SCM details for an organization
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async=True
+        >>> thread = api.get_scm_with_http_info(organization, scm, async=True)
+        >>> result = thread.get()
+
+        :param async bool
+        :param str organization: Name of the organization (required)
+        :param str scm: Name of SCM (required)
+        :return: GithubScm
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+
+        all_params = ['organization', 'scm']
+        all_params.append('async')
+        all_params.append('_return_http_data_only')
+        all_params.append('_preload_content')
+        all_params.append('_request_timeout')
+
+        params = locals()
+        for key, val in iteritems(params['kwargs']):
+            if key not in all_params:
+                raise TypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method get_scm" % key
+                )
+            params[key] = val
+        del params['kwargs']
+        # verify the required parameter 'organization' is set
+        if ('organization' not in params) or (params['organization'] is None):
+            raise ValueError("Missing the required parameter `organization` when calling `get_scm`")
+        # verify the required parameter 'scm' is set
+        if ('scm' not in params) or (params['scm'] is None):
+            raise ValueError("Missing the required parameter `scm` when calling `get_scm`")
+
+
+        collection_formats = {}
+
+        path_params = {}
+        if 'organization' in params:
+            path_params['organization'] = params['organization']
+        if 'scm' in params:
+            path_params['scm'] = params['scm']
+
+        query_params = []
+
+        header_params = {}
+
+        form_params = []
+        local_var_files = {}
+
+        body_params = None
+        # HTTP header `Accept`
+        header_params['Accept'] = self.api_client.\
+            select_header_accept(['application/json'])
+
+        # Authentication setting
+        auth_settings = ['jenkins_auth']
+
+        return self.api_client.call_api('/blue/rest/organizations/{organization}/scm/{scm}', 'GET',
+                                        path_params,
+                                        query_params,
+                                        header_params,
+                                        body=body_params,
+                                        post_params=form_params,
+                                        files=local_var_files,
+                                        response_type='GithubScm',
+                                        auth_settings=auth_settings,
+                                        async=params.get('async'),
+                                        _return_http_data_only=params.get('_return_http_data_only'),
+                                        _preload_content=params.get('_preload_content', True),
+                                        _request_timeout=params.get('_request_timeout'),
+                                        collection_formats=collection_formats)
+
+    def get_scm_organisation_repositories(self, organization, scm, scm_organisation, **kwargs):
+        """
+        Retrieve SCM organization repositories details for an organization
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async=True
+        >>> thread = api.get_scm_organisation_repositories(organization, scm, scm_organisation, async=True)
+        >>> result = thread.get()
+
+        :param async bool
+        :param str organization: Name of the organization (required)
+        :param str scm: Name of SCM (required)
+        :param str scm_organisation: Name of the SCM organization (required)
+        :param str credential_id: Credential ID
+        :param int page_size: Number of items in a page
+        :param int page_number: Page number
+        :return: ScmOrganisations
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+        kwargs['_return_http_data_only'] = True
+        if kwargs.get('async'):
+            return self.get_scm_organisation_repositories_with_http_info(organization, scm, scm_organisation, **kwargs)
+        else:
+            (data) = self.get_scm_organisation_repositories_with_http_info(organization, scm, scm_organisation, **kwargs)
+            return data
+
+    def get_scm_organisation_repositories_with_http_info(self, organization, scm, scm_organisation, **kwargs):
+        """
+        Retrieve SCM organization repositories details for an organization
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async=True
+        >>> thread = api.get_scm_organisation_repositories_with_http_info(organization, scm, scm_organisation, async=True)
+        >>> result = thread.get()
+
+        :param async bool
+        :param str organization: Name of the organization (required)
+        :param str scm: Name of SCM (required)
+        :param str scm_organisation: Name of the SCM organization (required)
+        :param str credential_id: Credential ID
+        :param int page_size: Number of items in a page
+        :param int page_number: Page number
+        :return: ScmOrganisations
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+
+        all_params = ['organization', 'scm', 'scm_organisation', 'credential_id', 'page_size', 'page_number']
+        all_params.append('async')
+        all_params.append('_return_http_data_only')
+        all_params.append('_preload_content')
+        all_params.append('_request_timeout')
+
+        params = locals()
+        for key, val in iteritems(params['kwargs']):
+            if key not in all_params:
+                raise TypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method get_scm_organisation_repositories" % key
+                )
+            params[key] = val
+        del params['kwargs']
+        # verify the required parameter 'organization' is set
+        if ('organization' not in params) or (params['organization'] is None):
+            raise ValueError("Missing the required parameter `organization` when calling `get_scm_organisation_repositories`")
+        # verify the required parameter 'scm' is set
+        if ('scm' not in params) or (params['scm'] is None):
+            raise ValueError("Missing the required parameter `scm` when calling `get_scm_organisation_repositories`")
+        # verify the required parameter 'scm_organisation' is set
+        if ('scm_organisation' not in params) or (params['scm_organisation'] is None):
+            raise ValueError("Missing the required parameter `scm_organisation` when calling `get_scm_organisation_repositories`")
+
+
+        collection_formats = {}
+
+        path_params = {}
+        if 'organization' in params:
+            path_params['organization'] = params['organization']
+        if 'scm' in params:
+            path_params['scm'] = params['scm']
+        if 'scm_organisation' in params:
+            path_params['scmOrganisation'] = params['scm_organisation']
+
+        query_params = []
+        if 'credential_id' in params:
+            query_params.append(('credentialId', params['credential_id']))
+        if 'page_size' in params:
+            query_params.append(('pageSize', params['page_size']))
+        if 'page_number' in params:
+            query_params.append(('pageNumber', params['page_number']))
+
+        header_params = {}
+
+        form_params = []
+        local_var_files = {}
+
+        body_params = None
+        # HTTP header `Accept`
+        header_params['Accept'] = self.api_client.\
+            select_header_accept(['application/json'])
+
+        # Authentication setting
+        auth_settings = ['jenkins_auth']
+
+        return self.api_client.call_api('/blue/rest/organizations/{organization}/scm/{scm}/organizations/{scmOrganisation}/repositories', 'GET',
+                                        path_params,
+                                        query_params,
+                                        header_params,
+                                        body=body_params,
+                                        post_params=form_params,
+                                        files=local_var_files,
+                                        response_type='ScmOrganisations',
+                                        auth_settings=auth_settings,
+                                        async=params.get('async'),
+                                        _return_http_data_only=params.get('_return_http_data_only'),
+                                        _preload_content=params.get('_preload_content', True),
+                                        _request_timeout=params.get('_request_timeout'),
+                                        collection_formats=collection_formats)
+
+    def get_scm_organisation_repository(self, organization, scm, scm_organisation, repository, **kwargs):
+        """
+        Retrieve SCM organization repository details for an organization
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async=True
+        >>> thread = api.get_scm_organisation_repository(organization, scm, scm_organisation, repository, async=True)
+        >>> result = thread.get()
+
+        :param async bool
+        :param str organization: Name of the organization (required)
+        :param str scm: Name of SCM (required)
+        :param str scm_organisation: Name of the SCM organization (required)
+        :param str repository: Name of the SCM repository (required)
+        :param str credential_id: Credential ID
+        :return: ScmOrganisations
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+        kwargs['_return_http_data_only'] = True
+        if kwargs.get('async'):
+            return self.get_scm_organisation_repository_with_http_info(organization, scm, scm_organisation, repository, **kwargs)
+        else:
+            (data) = self.get_scm_organisation_repository_with_http_info(organization, scm, scm_organisation, repository, **kwargs)
+            return data
+
+    def get_scm_organisation_repository_with_http_info(self, organization, scm, scm_organisation, repository, **kwargs):
+        """
+        Retrieve SCM organization repository details for an organization
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async=True
+        >>> thread = api.get_scm_organisation_repository_with_http_info(organization, scm, scm_organisation, repository, async=True)
+        >>> result = thread.get()
+
+        :param async bool
+        :param str organization: Name of the organization (required)
+        :param str scm: Name of SCM (required)
+        :param str scm_organisation: Name of the SCM organization (required)
+        :param str repository: Name of the SCM repository (required)
+        :param str credential_id: Credential ID
+        :return: ScmOrganisations
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+
+        all_params = ['organization', 'scm', 'scm_organisation', 'repository', 'credential_id']
+        all_params.append('async')
+        all_params.append('_return_http_data_only')
+        all_params.append('_preload_content')
+        all_params.append('_request_timeout')
+
+        params = locals()
+        for key, val in iteritems(params['kwargs']):
+            if key not in all_params:
+                raise TypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method get_scm_organisation_repository" % key
+                )
+            params[key] = val
+        del params['kwargs']
+        # verify the required parameter 'organization' is set
+        if ('organization' not in params) or (params['organization'] is None):
+            raise ValueError("Missing the required parameter `organization` when calling `get_scm_organisation_repository`")
+        # verify the required parameter 'scm' is set
+        if ('scm' not in params) or (params['scm'] is None):
+            raise ValueError("Missing the required parameter `scm` when calling `get_scm_organisation_repository`")
+        # verify the required parameter 'scm_organisation' is set
+        if ('scm_organisation' not in params) or (params['scm_organisation'] is None):
+            raise ValueError("Missing the required parameter `scm_organisation` when calling `get_scm_organisation_repository`")
+        # verify the required parameter 'repository' is set
+        if ('repository' not in params) or (params['repository'] is None):
+            raise ValueError("Missing the required parameter `repository` when calling `get_scm_organisation_repository`")
+
+
+        collection_formats = {}
+
+        path_params = {}
+        if 'organization' in params:
+            path_params['organization'] = params['organization']
+        if 'scm' in params:
+            path_params['scm'] = params['scm']
+        if 'scm_organisation' in params:
+            path_params['scmOrganisation'] = params['scm_organisation']
+        if 'repository' in params:
+            path_params['repository'] = params['repository']
+
+        query_params = []
+        if 'credential_id' in params:
+            query_params.append(('credentialId', params['credential_id']))
+
+        header_params = {}
+
+        form_params = []
+        local_var_files = {}
+
+        body_params = None
+        # HTTP header `Accept`
+        header_params['Accept'] = self.api_client.\
+            select_header_accept(['application/json'])
+
+        # Authentication setting
+        auth_settings = ['jenkins_auth']
+
+        return self.api_client.call_api('/blue/rest/organizations/{organization}/scm/{scm}/organizations/{scmOrganisation}/repositories/{repository}', 'GET',
+                                        path_params,
+                                        query_params,
+                                        header_params,
+                                        body=body_params,
+                                        post_params=form_params,
+                                        files=local_var_files,
+                                        response_type='ScmOrganisations',
+                                        auth_settings=auth_settings,
+                                        async=params.get('async'),
+                                        _return_http_data_only=params.get('_return_http_data_only'),
+                                        _preload_content=params.get('_preload_content', True),
+                                        _request_timeout=params.get('_request_timeout'),
+                                        collection_formats=collection_formats)
+
+    def get_scm_organisations(self, organization, scm, **kwargs):
+        """
+        Retrieve SCM organizations details for an organization
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async=True
+        >>> thread = api.get_scm_organisations(organization, scm, async=True)
+        >>> result = thread.get()
+
+        :param async bool
+        :param str organization: Name of the organization (required)
+        :param str scm: Name of SCM (required)
+        :param str credential_id: Credential ID
+        :return: ScmOrganisations
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+        kwargs['_return_http_data_only'] = True
+        if kwargs.get('async'):
+            return self.get_scm_organisations_with_http_info(organization, scm, **kwargs)
+        else:
+            (data) = self.get_scm_organisations_with_http_info(organization, scm, **kwargs)
+            return data
+
+    def get_scm_organisations_with_http_info(self, organization, scm, **kwargs):
+        """
+        Retrieve SCM organizations details for an organization
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async=True
+        >>> thread = api.get_scm_organisations_with_http_info(organization, scm, async=True)
+        >>> result = thread.get()
+
+        :param async bool
+        :param str organization: Name of the organization (required)
+        :param str scm: Name of SCM (required)
+        :param str credential_id: Credential ID
+        :return: ScmOrganisations
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+
+        all_params = ['organization', 'scm', 'credential_id']
+        all_params.append('async')
+        all_params.append('_return_http_data_only')
+        all_params.append('_preload_content')
+        all_params.append('_request_timeout')
+
+        params = locals()
+        for key, val in iteritems(params['kwargs']):
+            if key not in all_params:
+                raise TypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method get_scm_organisations" % key
+                )
+            params[key] = val
+        del params['kwargs']
+        # verify the required parameter 'organization' is set
+        if ('organization' not in params) or (params['organization'] is None):
+            raise ValueError("Missing the required parameter `organization` when calling `get_scm_organisations`")
+        # verify the required parameter 'scm' is set
+        if ('scm' not in params) or (params['scm'] is None):
+            raise ValueError("Missing the required parameter `scm` when calling `get_scm_organisations`")
+
+
+        collection_formats = {}
+
+        path_params = {}
+        if 'organization' in params:
+            path_params['organization'] = params['organization']
+        if 'scm' in params:
+            path_params['scm'] = params['scm']
+
+        query_params = []
+        if 'credential_id' in params:
+            query_params.append(('credentialId', params['credential_id']))
+
+        header_params = {}
+
+        form_params = []
+        local_var_files = {}
+
+        body_params = None
+        # HTTP header `Accept`
+        header_params['Accept'] = self.api_client.\
+            select_header_accept(['application/json'])
+
+        # Authentication setting
+        auth_settings = ['jenkins_auth']
+
+        return self.api_client.call_api('/blue/rest/organizations/{organization}/scm/{scm}/organizations', 'GET',
+                                        path_params,
+                                        query_params,
+                                        header_params,
+                                        body=body_params,
+                                        post_params=form_params,
+                                        files=local_var_files,
+                                        response_type='ScmOrganisations',
+                                        auth_settings=auth_settings,
+                                        async=params.get('async'),
+                                        _return_http_data_only=params.get('_return_http_data_only'),
+                                        _preload_content=params.get('_preload_content', True),
+                                        _request_timeout=params.get('_request_timeout'),
+                                        collection_formats=collection_formats)
+
+    def get_user(self, organization, user, **kwargs):
+        """
+        Retrieve user details for an organization
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async=True
+        >>> thread = api.get_user(organization, user, async=True)
+        >>> result = thread.get()
+
+        :param async bool
+        :param str organization: Name of the organization (required)
+        :param str user: Name of the user (required)
+        :return: User
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+        kwargs['_return_http_data_only'] = True
+        if kwargs.get('async'):
+            return self.get_user_with_http_info(organization, user, **kwargs)
+        else:
+            (data) = self.get_user_with_http_info(organization, user, **kwargs)
+            return data
+
+    def get_user_with_http_info(self, organization, user, **kwargs):
+        """
+        Retrieve user details for an organization
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async=True
+        >>> thread = api.get_user_with_http_info(organization, user, async=True)
+        >>> result = thread.get()
+
+        :param async bool
+        :param str organization: Name of the organization (required)
+        :param str user: Name of the user (required)
+        :return: User
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+
+        all_params = ['organization', 'user']
         all_params.append('async')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -1049,9 +2794,9 @@ class BlueOceanApi(object):
                 )
             params[key] = val
         del params['kwargs']
-        # verify the required parameter 'organisation' is set
-        if ('organisation' not in params) or (params['organisation'] is None):
-            raise ValueError("Missing the required parameter `organisation` when calling `get_user`")
+        # verify the required parameter 'organization' is set
+        if ('organization' not in params) or (params['organization'] is None):
+            raise ValueError("Missing the required parameter `organization` when calling `get_user`")
         # verify the required parameter 'user' is set
         if ('user' not in params) or (params['user'] is None):
             raise ValueError("Missing the required parameter `user` when calling `get_user`")
@@ -1060,8 +2805,8 @@ class BlueOceanApi(object):
         collection_formats = {}
 
         path_params = {}
-        if 'organisation' in params:
-            path_params['organisation'] = params['organisation']
+        if 'organization' in params:
+            path_params['organization'] = params['organization']
         if 'user' in params:
             path_params['user'] = params['user']
 
@@ -1080,14 +2825,14 @@ class BlueOceanApi(object):
         # Authentication setting
         auth_settings = ['jenkins_auth']
 
-        return self.api_client.call_api('/blue/rest/organizations/{organisation}/users/{user}', 'GET',
+        return self.api_client.call_api('/blue/rest/organizations/{organization}/users/{user}', 'GET',
                                         path_params,
                                         query_params,
                                         header_params,
                                         body=body_params,
                                         post_params=form_params,
                                         files=local_var_files,
-                                        response_type='SwaggyjenkinsUser',
+                                        response_type='User',
                                         auth_settings=auth_settings,
                                         async=params.get('async'),
                                         _return_http_data_only=params.get('_return_http_data_only'),
@@ -1095,43 +2840,43 @@ class BlueOceanApi(object):
                                         _request_timeout=params.get('_request_timeout'),
                                         collection_formats=collection_formats)
 
-    def get_users(self, organisation, **kwargs):
+    def get_user_favorites(self, user, **kwargs):
         """
-        Retrieve users details for an organisation
+        Retrieve user favorites details for an organization
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async=True
-        >>> thread = api.get_users(organisation, async=True)
+        >>> thread = api.get_user_favorites(user, async=True)
         >>> result = thread.get()
 
         :param async bool
-        :param str organisation: Name of the organisation (required)
-        :return: SwaggyjenkinsUser
+        :param str user: Name of the user (required)
+        :return: UserFavorites
                  If the method is called asynchronously,
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
         if kwargs.get('async'):
-            return self.get_users_with_http_info(organisation, **kwargs)
+            return self.get_user_favorites_with_http_info(user, **kwargs)
         else:
-            (data) = self.get_users_with_http_info(organisation, **kwargs)
+            (data) = self.get_user_favorites_with_http_info(user, **kwargs)
             return data
 
-    def get_users_with_http_info(self, organisation, **kwargs):
+    def get_user_favorites_with_http_info(self, user, **kwargs):
         """
-        Retrieve users details for an organisation
+        Retrieve user favorites details for an organization
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async=True
-        >>> thread = api.get_users_with_http_info(organisation, async=True)
+        >>> thread = api.get_user_favorites_with_http_info(user, async=True)
         >>> result = thread.get()
 
         :param async bool
-        :param str organisation: Name of the organisation (required)
-        :return: SwaggyjenkinsUser
+        :param str user: Name of the user (required)
+        :return: UserFavorites
                  If the method is called asynchronously,
                  returns the request thread.
         """
 
-        all_params = ['organisation']
+        all_params = ['user']
         all_params.append('async')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -1142,20 +2887,20 @@ class BlueOceanApi(object):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
-                    " to method get_users" % key
+                    " to method get_user_favorites" % key
                 )
             params[key] = val
         del params['kwargs']
-        # verify the required parameter 'organisation' is set
-        if ('organisation' not in params) or (params['organisation'] is None):
-            raise ValueError("Missing the required parameter `organisation` when calling `get_users`")
+        # verify the required parameter 'user' is set
+        if ('user' not in params) or (params['user'] is None):
+            raise ValueError("Missing the required parameter `user` when calling `get_user_favorites`")
 
 
         collection_formats = {}
 
         path_params = {}
-        if 'organisation' in params:
-            path_params['organisation'] = params['organisation']
+        if 'user' in params:
+            path_params['user'] = params['user']
 
         query_params = []
 
@@ -1172,14 +2917,531 @@ class BlueOceanApi(object):
         # Authentication setting
         auth_settings = ['jenkins_auth']
 
-        return self.api_client.call_api('/blue/rest/organizations/{organisation}/users/', 'GET',
+        return self.api_client.call_api('/blue/rest/users/{user}/favorites', 'GET',
                                         path_params,
                                         query_params,
                                         header_params,
                                         body=body_params,
                                         post_params=form_params,
                                         files=local_var_files,
-                                        response_type='SwaggyjenkinsUser',
+                                        response_type='UserFavorites',
+                                        auth_settings=auth_settings,
+                                        async=params.get('async'),
+                                        _return_http_data_only=params.get('_return_http_data_only'),
+                                        _preload_content=params.get('_preload_content', True),
+                                        _request_timeout=params.get('_request_timeout'),
+                                        collection_formats=collection_formats)
+
+    def get_users(self, organization, **kwargs):
+        """
+        Retrieve users details for an organization
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async=True
+        >>> thread = api.get_users(organization, async=True)
+        >>> result = thread.get()
+
+        :param async bool
+        :param str organization: Name of the organization (required)
+        :return: User
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+        kwargs['_return_http_data_only'] = True
+        if kwargs.get('async'):
+            return self.get_users_with_http_info(organization, **kwargs)
+        else:
+            (data) = self.get_users_with_http_info(organization, **kwargs)
+            return data
+
+    def get_users_with_http_info(self, organization, **kwargs):
+        """
+        Retrieve users details for an organization
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async=True
+        >>> thread = api.get_users_with_http_info(organization, async=True)
+        >>> result = thread.get()
+
+        :param async bool
+        :param str organization: Name of the organization (required)
+        :return: User
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+
+        all_params = ['organization']
+        all_params.append('async')
+        all_params.append('_return_http_data_only')
+        all_params.append('_preload_content')
+        all_params.append('_request_timeout')
+
+        params = locals()
+        for key, val in iteritems(params['kwargs']):
+            if key not in all_params:
+                raise TypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method get_users" % key
+                )
+            params[key] = val
+        del params['kwargs']
+        # verify the required parameter 'organization' is set
+        if ('organization' not in params) or (params['organization'] is None):
+            raise ValueError("Missing the required parameter `organization` when calling `get_users`")
+
+
+        collection_formats = {}
+
+        path_params = {}
+        if 'organization' in params:
+            path_params['organization'] = params['organization']
+
+        query_params = []
+
+        header_params = {}
+
+        form_params = []
+        local_var_files = {}
+
+        body_params = None
+        # HTTP header `Accept`
+        header_params['Accept'] = self.api_client.\
+            select_header_accept(['application/json'])
+
+        # Authentication setting
+        auth_settings = ['jenkins_auth']
+
+        return self.api_client.call_api('/blue/rest/organizations/{organization}/users/', 'GET',
+                                        path_params,
+                                        query_params,
+                                        header_params,
+                                        body=body_params,
+                                        post_params=form_params,
+                                        files=local_var_files,
+                                        response_type='User',
+                                        auth_settings=auth_settings,
+                                        async=params.get('async'),
+                                        _return_http_data_only=params.get('_return_http_data_only'),
+                                        _preload_content=params.get('_preload_content', True),
+                                        _request_timeout=params.get('_request_timeout'),
+                                        collection_formats=collection_formats)
+
+    def post_pipeline_run(self, organization, pipeline, run, **kwargs):
+        """
+        Replay an organization pipeline run
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async=True
+        >>> thread = api.post_pipeline_run(organization, pipeline, run, async=True)
+        >>> result = thread.get()
+
+        :param async bool
+        :param str organization: Name of the organization (required)
+        :param str pipeline: Name of the pipeline (required)
+        :param str run: Name of the run (required)
+        :return: QueueItemImpl
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+        kwargs['_return_http_data_only'] = True
+        if kwargs.get('async'):
+            return self.post_pipeline_run_with_http_info(organization, pipeline, run, **kwargs)
+        else:
+            (data) = self.post_pipeline_run_with_http_info(organization, pipeline, run, **kwargs)
+            return data
+
+    def post_pipeline_run_with_http_info(self, organization, pipeline, run, **kwargs):
+        """
+        Replay an organization pipeline run
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async=True
+        >>> thread = api.post_pipeline_run_with_http_info(organization, pipeline, run, async=True)
+        >>> result = thread.get()
+
+        :param async bool
+        :param str organization: Name of the organization (required)
+        :param str pipeline: Name of the pipeline (required)
+        :param str run: Name of the run (required)
+        :return: QueueItemImpl
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+
+        all_params = ['organization', 'pipeline', 'run']
+        all_params.append('async')
+        all_params.append('_return_http_data_only')
+        all_params.append('_preload_content')
+        all_params.append('_request_timeout')
+
+        params = locals()
+        for key, val in iteritems(params['kwargs']):
+            if key not in all_params:
+                raise TypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method post_pipeline_run" % key
+                )
+            params[key] = val
+        del params['kwargs']
+        # verify the required parameter 'organization' is set
+        if ('organization' not in params) or (params['organization'] is None):
+            raise ValueError("Missing the required parameter `organization` when calling `post_pipeline_run`")
+        # verify the required parameter 'pipeline' is set
+        if ('pipeline' not in params) or (params['pipeline'] is None):
+            raise ValueError("Missing the required parameter `pipeline` when calling `post_pipeline_run`")
+        # verify the required parameter 'run' is set
+        if ('run' not in params) or (params['run'] is None):
+            raise ValueError("Missing the required parameter `run` when calling `post_pipeline_run`")
+
+
+        collection_formats = {}
+
+        path_params = {}
+        if 'organization' in params:
+            path_params['organization'] = params['organization']
+        if 'pipeline' in params:
+            path_params['pipeline'] = params['pipeline']
+        if 'run' in params:
+            path_params['run'] = params['run']
+
+        query_params = []
+
+        header_params = {}
+
+        form_params = []
+        local_var_files = {}
+
+        body_params = None
+        # HTTP header `Accept`
+        header_params['Accept'] = self.api_client.\
+            select_header_accept(['application/json'])
+
+        # Authentication setting
+        auth_settings = ['jenkins_auth']
+
+        return self.api_client.call_api('/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/replay', 'POST',
+                                        path_params,
+                                        query_params,
+                                        header_params,
+                                        body=body_params,
+                                        post_params=form_params,
+                                        files=local_var_files,
+                                        response_type='QueueItemImpl',
+                                        auth_settings=auth_settings,
+                                        async=params.get('async'),
+                                        _return_http_data_only=params.get('_return_http_data_only'),
+                                        _preload_content=params.get('_preload_content', True),
+                                        _request_timeout=params.get('_request_timeout'),
+                                        collection_formats=collection_formats)
+
+    def post_pipeline_runs(self, organization, pipeline, **kwargs):
+        """
+        Start a build for an organization pipeline
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async=True
+        >>> thread = api.post_pipeline_runs(organization, pipeline, async=True)
+        >>> result = thread.get()
+
+        :param async bool
+        :param str organization: Name of the organization (required)
+        :param str pipeline: Name of the pipeline (required)
+        :return: QueueItemImpl
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+        kwargs['_return_http_data_only'] = True
+        if kwargs.get('async'):
+            return self.post_pipeline_runs_with_http_info(organization, pipeline, **kwargs)
+        else:
+            (data) = self.post_pipeline_runs_with_http_info(organization, pipeline, **kwargs)
+            return data
+
+    def post_pipeline_runs_with_http_info(self, organization, pipeline, **kwargs):
+        """
+        Start a build for an organization pipeline
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async=True
+        >>> thread = api.post_pipeline_runs_with_http_info(organization, pipeline, async=True)
+        >>> result = thread.get()
+
+        :param async bool
+        :param str organization: Name of the organization (required)
+        :param str pipeline: Name of the pipeline (required)
+        :return: QueueItemImpl
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+
+        all_params = ['organization', 'pipeline']
+        all_params.append('async')
+        all_params.append('_return_http_data_only')
+        all_params.append('_preload_content')
+        all_params.append('_request_timeout')
+
+        params = locals()
+        for key, val in iteritems(params['kwargs']):
+            if key not in all_params:
+                raise TypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method post_pipeline_runs" % key
+                )
+            params[key] = val
+        del params['kwargs']
+        # verify the required parameter 'organization' is set
+        if ('organization' not in params) or (params['organization'] is None):
+            raise ValueError("Missing the required parameter `organization` when calling `post_pipeline_runs`")
+        # verify the required parameter 'pipeline' is set
+        if ('pipeline' not in params) or (params['pipeline'] is None):
+            raise ValueError("Missing the required parameter `pipeline` when calling `post_pipeline_runs`")
+
+
+        collection_formats = {}
+
+        path_params = {}
+        if 'organization' in params:
+            path_params['organization'] = params['organization']
+        if 'pipeline' in params:
+            path_params['pipeline'] = params['pipeline']
+
+        query_params = []
+
+        header_params = {}
+
+        form_params = []
+        local_var_files = {}
+
+        body_params = None
+        # HTTP header `Accept`
+        header_params['Accept'] = self.api_client.\
+            select_header_accept(['application/json'])
+
+        # Authentication setting
+        auth_settings = ['jenkins_auth']
+
+        return self.api_client.call_api('/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs', 'POST',
+                                        path_params,
+                                        query_params,
+                                        header_params,
+                                        body=body_params,
+                                        post_params=form_params,
+                                        files=local_var_files,
+                                        response_type='QueueItemImpl',
+                                        auth_settings=auth_settings,
+                                        async=params.get('async'),
+                                        _return_http_data_only=params.get('_return_http_data_only'),
+                                        _preload_content=params.get('_preload_content', True),
+                                        _request_timeout=params.get('_request_timeout'),
+                                        collection_formats=collection_formats)
+
+    def put_pipeline_favorite(self, organization, pipeline, body, **kwargs):
+        """
+        Favorite/unfavorite a pipeline
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async=True
+        >>> thread = api.put_pipeline_favorite(organization, pipeline, body, async=True)
+        >>> result = thread.get()
+
+        :param async bool
+        :param str organization: Name of the organization (required)
+        :param str pipeline: Name of the pipeline (required)
+        :param Body body: Set JSON string body to {\"favorite\": true} to favorite, set value to false to unfavorite (required)
+        :return: FavoriteImpl
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+        kwargs['_return_http_data_only'] = True
+        if kwargs.get('async'):
+            return self.put_pipeline_favorite_with_http_info(organization, pipeline, body, **kwargs)
+        else:
+            (data) = self.put_pipeline_favorite_with_http_info(organization, pipeline, body, **kwargs)
+            return data
+
+    def put_pipeline_favorite_with_http_info(self, organization, pipeline, body, **kwargs):
+        """
+        Favorite/unfavorite a pipeline
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async=True
+        >>> thread = api.put_pipeline_favorite_with_http_info(organization, pipeline, body, async=True)
+        >>> result = thread.get()
+
+        :param async bool
+        :param str organization: Name of the organization (required)
+        :param str pipeline: Name of the pipeline (required)
+        :param Body body: Set JSON string body to {\"favorite\": true} to favorite, set value to false to unfavorite (required)
+        :return: FavoriteImpl
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+
+        all_params = ['organization', 'pipeline', 'body']
+        all_params.append('async')
+        all_params.append('_return_http_data_only')
+        all_params.append('_preload_content')
+        all_params.append('_request_timeout')
+
+        params = locals()
+        for key, val in iteritems(params['kwargs']):
+            if key not in all_params:
+                raise TypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method put_pipeline_favorite" % key
+                )
+            params[key] = val
+        del params['kwargs']
+        # verify the required parameter 'organization' is set
+        if ('organization' not in params) or (params['organization'] is None):
+            raise ValueError("Missing the required parameter `organization` when calling `put_pipeline_favorite`")
+        # verify the required parameter 'pipeline' is set
+        if ('pipeline' not in params) or (params['pipeline'] is None):
+            raise ValueError("Missing the required parameter `pipeline` when calling `put_pipeline_favorite`")
+        # verify the required parameter 'body' is set
+        if ('body' not in params) or (params['body'] is None):
+            raise ValueError("Missing the required parameter `body` when calling `put_pipeline_favorite`")
+
+
+        collection_formats = {}
+
+        path_params = {}
+        if 'organization' in params:
+            path_params['organization'] = params['organization']
+        if 'pipeline' in params:
+            path_params['pipeline'] = params['pipeline']
+
+        query_params = []
+
+        header_params = {}
+
+        form_params = []
+        local_var_files = {}
+
+        body_params = None
+        if 'body' in params:
+            body_params = params['body']
+        # HTTP header `Accept`
+        header_params['Accept'] = self.api_client.\
+            select_header_accept(['application/json'])
+
+        # Authentication setting
+        auth_settings = ['jenkins_auth']
+
+        return self.api_client.call_api('/blue/rest/organizations/{organization}/pipelines/{pipeline}/favorite', 'PUT',
+                                        path_params,
+                                        query_params,
+                                        header_params,
+                                        body=body_params,
+                                        post_params=form_params,
+                                        files=local_var_files,
+                                        response_type='FavoriteImpl',
+                                        auth_settings=auth_settings,
+                                        async=params.get('async'),
+                                        _return_http_data_only=params.get('_return_http_data_only'),
+                                        _preload_content=params.get('_preload_content', True),
+                                        _request_timeout=params.get('_request_timeout'),
+                                        collection_formats=collection_formats)
+
+    def put_pipeline_run(self, organization, pipeline, run, **kwargs):
+        """
+        Stop a build of an organization pipeline
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async=True
+        >>> thread = api.put_pipeline_run(organization, pipeline, run, async=True)
+        >>> result = thread.get()
+
+        :param async bool
+        :param str organization: Name of the organization (required)
+        :param str pipeline: Name of the pipeline (required)
+        :param str run: Name of the run (required)
+        :param str blocking: Set to true to make blocking stop, default: false
+        :param int time_out_in_secs: Timeout in seconds, default: 10 seconds
+        :return: PipelineRun
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+        kwargs['_return_http_data_only'] = True
+        if kwargs.get('async'):
+            return self.put_pipeline_run_with_http_info(organization, pipeline, run, **kwargs)
+        else:
+            (data) = self.put_pipeline_run_with_http_info(organization, pipeline, run, **kwargs)
+            return data
+
+    def put_pipeline_run_with_http_info(self, organization, pipeline, run, **kwargs):
+        """
+        Stop a build of an organization pipeline
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async=True
+        >>> thread = api.put_pipeline_run_with_http_info(organization, pipeline, run, async=True)
+        >>> result = thread.get()
+
+        :param async bool
+        :param str organization: Name of the organization (required)
+        :param str pipeline: Name of the pipeline (required)
+        :param str run: Name of the run (required)
+        :param str blocking: Set to true to make blocking stop, default: false
+        :param int time_out_in_secs: Timeout in seconds, default: 10 seconds
+        :return: PipelineRun
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+
+        all_params = ['organization', 'pipeline', 'run', 'blocking', 'time_out_in_secs']
+        all_params.append('async')
+        all_params.append('_return_http_data_only')
+        all_params.append('_preload_content')
+        all_params.append('_request_timeout')
+
+        params = locals()
+        for key, val in iteritems(params['kwargs']):
+            if key not in all_params:
+                raise TypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method put_pipeline_run" % key
+                )
+            params[key] = val
+        del params['kwargs']
+        # verify the required parameter 'organization' is set
+        if ('organization' not in params) or (params['organization'] is None):
+            raise ValueError("Missing the required parameter `organization` when calling `put_pipeline_run`")
+        # verify the required parameter 'pipeline' is set
+        if ('pipeline' not in params) or (params['pipeline'] is None):
+            raise ValueError("Missing the required parameter `pipeline` when calling `put_pipeline_run`")
+        # verify the required parameter 'run' is set
+        if ('run' not in params) or (params['run'] is None):
+            raise ValueError("Missing the required parameter `run` when calling `put_pipeline_run`")
+
+
+        collection_formats = {}
+
+        path_params = {}
+        if 'organization' in params:
+            path_params['organization'] = params['organization']
+        if 'pipeline' in params:
+            path_params['pipeline'] = params['pipeline']
+        if 'run' in params:
+            path_params['run'] = params['run']
+
+        query_params = []
+        if 'blocking' in params:
+            query_params.append(('blocking', params['blocking']))
+        if 'time_out_in_secs' in params:
+            query_params.append(('timeOutInSecs', params['time_out_in_secs']))
+
+        header_params = {}
+
+        form_params = []
+        local_var_files = {}
+
+        body_params = None
+        # HTTP header `Accept`
+        header_params['Accept'] = self.api_client.\
+            select_header_accept(['application/json'])
+
+        # Authentication setting
+        auth_settings = ['jenkins_auth']
+
+        return self.api_client.call_api('/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/stop', 'PUT',
+                                        path_params,
+                                        query_params,
+                                        header_params,
+                                        body=body_params,
+                                        post_params=form_params,
+                                        files=local_var_files,
+                                        response_type='PipelineRun',
                                         auth_settings=auth_settings,
                                         async=params.get('async'),
                                         _return_http_data_only=params.get('_return_http_data_only'),
@@ -1189,14 +3451,14 @@ class BlueOceanApi(object):
 
     def search(self, q, **kwargs):
         """
-        Get classes details
+        Search for any resource details
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async=True
         >>> thread = api.search(q, async=True)
         >>> result = thread.get()
 
         :param async bool
-        :param str q: Query string containing an array of class names (required)
+        :param str q: Query string (required)
         :return: str
                  If the method is called asynchronously,
                  returns the request thread.
@@ -1210,14 +3472,14 @@ class BlueOceanApi(object):
 
     def search_with_http_info(self, q, **kwargs):
         """
-        Get classes details
+        Search for any resource details
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async=True
         >>> thread = api.search_with_http_info(q, async=True)
         >>> result = thread.get()
 
         :param async bool
-        :param str q: Query string containing an array of class names (required)
+        :param str q: Query string (required)
         :return: str
                  If the method is called asynchronously,
                  returns the request thread.
@@ -1264,7 +3526,7 @@ class BlueOceanApi(object):
         # Authentication setting
         auth_settings = ['jenkins_auth']
 
-        return self.api_client.call_api('/blue/rest/classes/', 'GET',
+        return self.api_client.call_api('/blue/rest/search/', 'GET',
                                         path_params,
                                         query_params,
                                         header_params,
@@ -1279,37 +3541,37 @@ class BlueOceanApi(object):
                                         _request_timeout=params.get('_request_timeout'),
                                         collection_formats=collection_formats)
 
-    def search_0(self, q, **kwargs):
+    def search_classes(self, q, **kwargs):
         """
-        Search for any resource details
+        Get classes details
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async=True
-        >>> thread = api.search_0(q, async=True)
+        >>> thread = api.search_classes(q, async=True)
         >>> result = thread.get()
 
         :param async bool
-        :param str q: Query string (required)
+        :param str q: Query string containing an array of class names (required)
         :return: str
                  If the method is called asynchronously,
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
         if kwargs.get('async'):
-            return self.search_0_with_http_info(q, **kwargs)
+            return self.search_classes_with_http_info(q, **kwargs)
         else:
-            (data) = self.search_0_with_http_info(q, **kwargs)
+            (data) = self.search_classes_with_http_info(q, **kwargs)
             return data
 
-    def search_0_with_http_info(self, q, **kwargs):
+    def search_classes_with_http_info(self, q, **kwargs):
         """
-        Search for any resource details
+        Get classes details
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async=True
-        >>> thread = api.search_0_with_http_info(q, async=True)
+        >>> thread = api.search_classes_with_http_info(q, async=True)
         >>> result = thread.get()
 
         :param async bool
-        :param str q: Query string (required)
+        :param str q: Query string containing an array of class names (required)
         :return: str
                  If the method is called asynchronously,
                  returns the request thread.
@@ -1326,13 +3588,13 @@ class BlueOceanApi(object):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
-                    " to method search_0" % key
+                    " to method search_classes" % key
                 )
             params[key] = val
         del params['kwargs']
         # verify the required parameter 'q' is set
         if ('q' not in params) or (params['q'] is None):
-            raise ValueError("Missing the required parameter `q` when calling `search_0`")
+            raise ValueError("Missing the required parameter `q` when calling `search_classes`")
 
 
         collection_formats = {}
@@ -1356,7 +3618,7 @@ class BlueOceanApi(object):
         # Authentication setting
         auth_settings = ['jenkins_auth']
 
-        return self.api_client.call_api('/blue/rest/search/', 'GET',
+        return self.api_client.call_api('/blue/rest/classes/', 'GET',
                                         path_params,
                                         query_params,
                                         header_params,

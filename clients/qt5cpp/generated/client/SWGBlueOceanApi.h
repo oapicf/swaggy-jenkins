@@ -15,16 +15,30 @@
 
 #include "SWGHttpRequest.h"
 
+#include "Body.h"
+#include "BranchImpl.h"
+#include "FavoriteImpl.h"
+#include "GithubScm.h"
+#include "MultibranchPipeline.h"
+#include "Organisation.h"
+#include "Organisations.h"
+#include "Pipeline.h"
+#include "PipelineActivities.h"
+#include "PipelineFolderImpl.h"
+#include "PipelineImpl.h"
+#include "PipelineQueue.h"
+#include "PipelineRun.h"
+#include "PipelineRunNode.h"
+#include "PipelineRunNodeSteps.h"
+#include "PipelineRunNodes.h"
+#include "PipelineRuns.h"
+#include "PipelineStepImpl.h"
+#include "Pipelines.h"
 #include <QString>
-#include "SWGGetMultibranchPipeline.h"
-#include "SWGGetOrganisations.h"
-#include "SWGGetPipelines.h"
-#include "SWGIojenkinsblueoceanrestimplpipelineBranchImpl.h"
-#include "SWGIojenkinsblueoceanserviceembeddedrestPipelineFolderImpl.h"
-#include "SWGIojenkinsblueoceanserviceembeddedrestPipelineImpl.h"
-#include "SWGSwaggyjenkinsOrganisation.h"
-#include "SWGSwaggyjenkinsPipeline.h"
-#include "SWGSwaggyjenkinsUser.h"
+#include "QueueItemImpl.h"
+#include "ScmOrganisations.h"
+#include "User.h"
+#include "UserFavorites.h"
 
 #include <QObject>
 
@@ -40,68 +54,153 @@ public:
 
     QString host;
     QString basePath;
+    QMap<QString, QString> defaultHeaders;
 
-    void getAuthenticatedUser(QString* organisation);
+    void deletePipelineQueueItem(QString* organization, QString* pipeline, QString* queue);
+    void getAuthenticatedUser(QString* organization);
     void getClasses(QString* class);
-    void getOrganisation(QString* organisation);
+    void getOrganisation(QString* organization);
     void getOrganisations();
-    void getPipelineBranchByOrg(QString* organisation, QString* pipeline, QString* branch);
-    void getPipelineBranchesByOrg(QString* organisation, QString* pipeline);
-    void getPipelineByOrg(QString* organisation, QString* pipeline);
-    void getPipelineFolderByOrg(QString* organisation, QString* folder);
-    void getPipelineFolderByOrg_1(QString* organisation, QString* pipeline, QString* folder);
-    void getPipelinesByOrg(QString* organisation);
-    void getUser(QString* organisation, QString* user);
-    void getUsers(QString* organisation);
+    void getPipeline(QString* organization, QString* pipeline);
+    void getPipelineActivities(QString* organization, QString* pipeline);
+    void getPipelineBranch(QString* organization, QString* pipeline, QString* branch);
+    void getPipelineBranchRun(QString* organization, QString* pipeline, QString* branch, QString* run);
+    void getPipelineBranches(QString* organization, QString* pipeline);
+    void getPipelineFolder(QString* organization, QString* folder);
+    void getPipelineFolderPipeline(QString* organization, QString* pipeline, QString* folder);
+    void getPipelineQueue(QString* organization, QString* pipeline);
+    void getPipelineRun(QString* organization, QString* pipeline, QString* run);
+    void getPipelineRunLog(QString* organization, QString* pipeline, QString* run, qint32 start, bool download);
+    void getPipelineRunNode(QString* organization, QString* pipeline, QString* run, QString* node);
+    void getPipelineRunNodeStep(QString* organization, QString* pipeline, QString* run, QString* node, QString* step);
+    void getPipelineRunNodeStepLog(QString* organization, QString* pipeline, QString* run, QString* node, QString* step);
+    void getPipelineRunNodeSteps(QString* organization, QString* pipeline, QString* run, QString* node);
+    void getPipelineRunNodes(QString* organization, QString* pipeline, QString* run);
+    void getPipelineRuns(QString* organization, QString* pipeline);
+    void getPipelines(QString* organization);
+    void getSCM(QString* organization, QString* scm);
+    void getSCMOrganisationRepositories(QString* organization, QString* scm, QString* scm_organisation, QString* credential_id, qint32 page_size, qint32 page_number);
+    void getSCMOrganisationRepository(QString* organization, QString* scm, QString* scm_organisation, QString* repository, QString* credential_id);
+    void getSCMOrganisations(QString* organization, QString* scm, QString* credential_id);
+    void getUser(QString* organization, QString* user);
+    void getUserFavorites(QString* user);
+    void getUsers(QString* organization);
+    void postPipelineRun(QString* organization, QString* pipeline, QString* run);
+    void postPipelineRuns(QString* organization, QString* pipeline);
+    void putPipelineFavorite(QString* organization, QString* pipeline, Body body);
+    void putPipelineRun(QString* organization, QString* pipeline, QString* run, QString* blocking, qint32 time_out_in_secs);
     void search(QString* q);
-    void search_2(QString* q);
+    void searchClasses(QString* q);
     
 private:
+    void deletePipelineQueueItemCallback (HttpRequestWorker * worker);
     void getAuthenticatedUserCallback (HttpRequestWorker * worker);
     void getClassesCallback (HttpRequestWorker * worker);
     void getOrganisationCallback (HttpRequestWorker * worker);
     void getOrganisationsCallback (HttpRequestWorker * worker);
-    void getPipelineBranchByOrgCallback (HttpRequestWorker * worker);
-    void getPipelineBranchesByOrgCallback (HttpRequestWorker * worker);
-    void getPipelineByOrgCallback (HttpRequestWorker * worker);
-    void getPipelineFolderByOrgCallback (HttpRequestWorker * worker);
-    void getPipelineFolderByOrg_1Callback (HttpRequestWorker * worker);
-    void getPipelinesByOrgCallback (HttpRequestWorker * worker);
+    void getPipelineCallback (HttpRequestWorker * worker);
+    void getPipelineActivitiesCallback (HttpRequestWorker * worker);
+    void getPipelineBranchCallback (HttpRequestWorker * worker);
+    void getPipelineBranchRunCallback (HttpRequestWorker * worker);
+    void getPipelineBranchesCallback (HttpRequestWorker * worker);
+    void getPipelineFolderCallback (HttpRequestWorker * worker);
+    void getPipelineFolderPipelineCallback (HttpRequestWorker * worker);
+    void getPipelineQueueCallback (HttpRequestWorker * worker);
+    void getPipelineRunCallback (HttpRequestWorker * worker);
+    void getPipelineRunLogCallback (HttpRequestWorker * worker);
+    void getPipelineRunNodeCallback (HttpRequestWorker * worker);
+    void getPipelineRunNodeStepCallback (HttpRequestWorker * worker);
+    void getPipelineRunNodeStepLogCallback (HttpRequestWorker * worker);
+    void getPipelineRunNodeStepsCallback (HttpRequestWorker * worker);
+    void getPipelineRunNodesCallback (HttpRequestWorker * worker);
+    void getPipelineRunsCallback (HttpRequestWorker * worker);
+    void getPipelinesCallback (HttpRequestWorker * worker);
+    void getSCMCallback (HttpRequestWorker * worker);
+    void getSCMOrganisationRepositoriesCallback (HttpRequestWorker * worker);
+    void getSCMOrganisationRepositoryCallback (HttpRequestWorker * worker);
+    void getSCMOrganisationsCallback (HttpRequestWorker * worker);
     void getUserCallback (HttpRequestWorker * worker);
+    void getUserFavoritesCallback (HttpRequestWorker * worker);
     void getUsersCallback (HttpRequestWorker * worker);
+    void postPipelineRunCallback (HttpRequestWorker * worker);
+    void postPipelineRunsCallback (HttpRequestWorker * worker);
+    void putPipelineFavoriteCallback (HttpRequestWorker * worker);
+    void putPipelineRunCallback (HttpRequestWorker * worker);
     void searchCallback (HttpRequestWorker * worker);
-    void search_2Callback (HttpRequestWorker * worker);
+    void searchClassesCallback (HttpRequestWorker * worker);
     
 signals:
-    void getAuthenticatedUserSignal(SWGSwaggyjenkinsUser* summary);
+    void deletePipelineQueueItemSignal();
+    void getAuthenticatedUserSignal(User* summary);
     void getClassesSignal(QString* summary);
-    void getOrganisationSignal(SWGSwaggyjenkinsOrganisation* summary);
-    void getOrganisationsSignal(SWGGetOrganisations* summary);
-    void getPipelineBranchByOrgSignal(SWGIojenkinsblueoceanrestimplpipelineBranchImpl* summary);
-    void getPipelineBranchesByOrgSignal(SWGGetMultibranchPipeline* summary);
-    void getPipelineByOrgSignal(SWGSwaggyjenkinsPipeline* summary);
-    void getPipelineFolderByOrgSignal(SWGIojenkinsblueoceanserviceembeddedrestPipelineFolderImpl* summary);
-    void getPipelineFolderByOrg_1Signal(SWGIojenkinsblueoceanserviceembeddedrestPipelineImpl* summary);
-    void getPipelinesByOrgSignal(SWGGetPipelines* summary);
-    void getUserSignal(SWGSwaggyjenkinsUser* summary);
-    void getUsersSignal(SWGSwaggyjenkinsUser* summary);
+    void getOrganisationSignal(Organisation* summary);
+    void getOrganisationsSignal(Organisations* summary);
+    void getPipelineSignal(Pipeline* summary);
+    void getPipelineActivitiesSignal(PipelineActivities* summary);
+    void getPipelineBranchSignal(BranchImpl* summary);
+    void getPipelineBranchRunSignal(PipelineRun* summary);
+    void getPipelineBranchesSignal(MultibranchPipeline* summary);
+    void getPipelineFolderSignal(PipelineFolderImpl* summary);
+    void getPipelineFolderPipelineSignal(PipelineImpl* summary);
+    void getPipelineQueueSignal(PipelineQueue* summary);
+    void getPipelineRunSignal(PipelineRun* summary);
+    void getPipelineRunLogSignal(QString* summary);
+    void getPipelineRunNodeSignal(PipelineRunNode* summary);
+    void getPipelineRunNodeStepSignal(PipelineStepImpl* summary);
+    void getPipelineRunNodeStepLogSignal(QString* summary);
+    void getPipelineRunNodeStepsSignal(PipelineRunNodeSteps* summary);
+    void getPipelineRunNodesSignal(PipelineRunNodes* summary);
+    void getPipelineRunsSignal(PipelineRuns* summary);
+    void getPipelinesSignal(Pipelines* summary);
+    void getSCMSignal(GithubScm* summary);
+    void getSCMOrganisationRepositoriesSignal(ScmOrganisations* summary);
+    void getSCMOrganisationRepositorySignal(ScmOrganisations* summary);
+    void getSCMOrganisationsSignal(ScmOrganisations* summary);
+    void getUserSignal(User* summary);
+    void getUserFavoritesSignal(UserFavorites* summary);
+    void getUsersSignal(User* summary);
+    void postPipelineRunSignal(QueueItemImpl* summary);
+    void postPipelineRunsSignal(QueueItemImpl* summary);
+    void putPipelineFavoriteSignal(FavoriteImpl* summary);
+    void putPipelineRunSignal(PipelineRun* summary);
     void searchSignal(QString* summary);
-    void search_2Signal(QString* summary);
+    void searchClassesSignal(QString* summary);
     
-    void getAuthenticatedUserSignalE(SWGSwaggyjenkinsUser* summary, QNetworkReply::NetworkError error_type, QString& error_str);
+    void deletePipelineQueueItemSignalE(QNetworkReply::NetworkError error_type, QString& error_str);
+    void getAuthenticatedUserSignalE(User* summary, QNetworkReply::NetworkError error_type, QString& error_str);
     void getClassesSignalE(QString* summary, QNetworkReply::NetworkError error_type, QString& error_str);
-    void getOrganisationSignalE(SWGSwaggyjenkinsOrganisation* summary, QNetworkReply::NetworkError error_type, QString& error_str);
-    void getOrganisationsSignalE(SWGGetOrganisations* summary, QNetworkReply::NetworkError error_type, QString& error_str);
-    void getPipelineBranchByOrgSignalE(SWGIojenkinsblueoceanrestimplpipelineBranchImpl* summary, QNetworkReply::NetworkError error_type, QString& error_str);
-    void getPipelineBranchesByOrgSignalE(SWGGetMultibranchPipeline* summary, QNetworkReply::NetworkError error_type, QString& error_str);
-    void getPipelineByOrgSignalE(SWGSwaggyjenkinsPipeline* summary, QNetworkReply::NetworkError error_type, QString& error_str);
-    void getPipelineFolderByOrgSignalE(SWGIojenkinsblueoceanserviceembeddedrestPipelineFolderImpl* summary, QNetworkReply::NetworkError error_type, QString& error_str);
-    void getPipelineFolderByOrg_1SignalE(SWGIojenkinsblueoceanserviceembeddedrestPipelineImpl* summary, QNetworkReply::NetworkError error_type, QString& error_str);
-    void getPipelinesByOrgSignalE(SWGGetPipelines* summary, QNetworkReply::NetworkError error_type, QString& error_str);
-    void getUserSignalE(SWGSwaggyjenkinsUser* summary, QNetworkReply::NetworkError error_type, QString& error_str);
-    void getUsersSignalE(SWGSwaggyjenkinsUser* summary, QNetworkReply::NetworkError error_type, QString& error_str);
+    void getOrganisationSignalE(Organisation* summary, QNetworkReply::NetworkError error_type, QString& error_str);
+    void getOrganisationsSignalE(Organisations* summary, QNetworkReply::NetworkError error_type, QString& error_str);
+    void getPipelineSignalE(Pipeline* summary, QNetworkReply::NetworkError error_type, QString& error_str);
+    void getPipelineActivitiesSignalE(PipelineActivities* summary, QNetworkReply::NetworkError error_type, QString& error_str);
+    void getPipelineBranchSignalE(BranchImpl* summary, QNetworkReply::NetworkError error_type, QString& error_str);
+    void getPipelineBranchRunSignalE(PipelineRun* summary, QNetworkReply::NetworkError error_type, QString& error_str);
+    void getPipelineBranchesSignalE(MultibranchPipeline* summary, QNetworkReply::NetworkError error_type, QString& error_str);
+    void getPipelineFolderSignalE(PipelineFolderImpl* summary, QNetworkReply::NetworkError error_type, QString& error_str);
+    void getPipelineFolderPipelineSignalE(PipelineImpl* summary, QNetworkReply::NetworkError error_type, QString& error_str);
+    void getPipelineQueueSignalE(PipelineQueue* summary, QNetworkReply::NetworkError error_type, QString& error_str);
+    void getPipelineRunSignalE(PipelineRun* summary, QNetworkReply::NetworkError error_type, QString& error_str);
+    void getPipelineRunLogSignalE(QString* summary, QNetworkReply::NetworkError error_type, QString& error_str);
+    void getPipelineRunNodeSignalE(PipelineRunNode* summary, QNetworkReply::NetworkError error_type, QString& error_str);
+    void getPipelineRunNodeStepSignalE(PipelineStepImpl* summary, QNetworkReply::NetworkError error_type, QString& error_str);
+    void getPipelineRunNodeStepLogSignalE(QString* summary, QNetworkReply::NetworkError error_type, QString& error_str);
+    void getPipelineRunNodeStepsSignalE(PipelineRunNodeSteps* summary, QNetworkReply::NetworkError error_type, QString& error_str);
+    void getPipelineRunNodesSignalE(PipelineRunNodes* summary, QNetworkReply::NetworkError error_type, QString& error_str);
+    void getPipelineRunsSignalE(PipelineRuns* summary, QNetworkReply::NetworkError error_type, QString& error_str);
+    void getPipelinesSignalE(Pipelines* summary, QNetworkReply::NetworkError error_type, QString& error_str);
+    void getSCMSignalE(GithubScm* summary, QNetworkReply::NetworkError error_type, QString& error_str);
+    void getSCMOrganisationRepositoriesSignalE(ScmOrganisations* summary, QNetworkReply::NetworkError error_type, QString& error_str);
+    void getSCMOrganisationRepositorySignalE(ScmOrganisations* summary, QNetworkReply::NetworkError error_type, QString& error_str);
+    void getSCMOrganisationsSignalE(ScmOrganisations* summary, QNetworkReply::NetworkError error_type, QString& error_str);
+    void getUserSignalE(User* summary, QNetworkReply::NetworkError error_type, QString& error_str);
+    void getUserFavoritesSignalE(UserFavorites* summary, QNetworkReply::NetworkError error_type, QString& error_str);
+    void getUsersSignalE(User* summary, QNetworkReply::NetworkError error_type, QString& error_str);
+    void postPipelineRunSignalE(QueueItemImpl* summary, QNetworkReply::NetworkError error_type, QString& error_str);
+    void postPipelineRunsSignalE(QueueItemImpl* summary, QNetworkReply::NetworkError error_type, QString& error_str);
+    void putPipelineFavoriteSignalE(FavoriteImpl* summary, QNetworkReply::NetworkError error_type, QString& error_str);
+    void putPipelineRunSignalE(PipelineRun* summary, QNetworkReply::NetworkError error_type, QString& error_str);
     void searchSignalE(QString* summary, QNetworkReply::NetworkError error_type, QString& error_str);
-    void search_2SignalE(QString* summary, QNetworkReply::NetworkError error_type, QString& error_str);
+    void searchClassesSignalE(QString* summary, QNetworkReply::NetworkError error_type, QString& error_str);
     
 };
 

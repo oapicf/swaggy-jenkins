@@ -23,15 +23,29 @@ import java.util.*;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 
-import io.swagger.client.model.GetMultibranchPipeline;
-import io.swagger.client.model.GetOrganisations;
-import io.swagger.client.model.GetPipelines;
-import io.swagger.client.model.IojenkinsblueoceanrestimplpipelineBranchImpl;
-import io.swagger.client.model.IojenkinsblueoceanserviceembeddedrestPipelineFolderImpl;
-import io.swagger.client.model.IojenkinsblueoceanserviceembeddedrestPipelineImpl;
-import io.swagger.client.model.SwaggyjenkinsOrganisation;
-import io.swagger.client.model.SwaggyjenkinsPipeline;
-import io.swagger.client.model.SwaggyjenkinsUser;
+import io.swagger.client.model.Body;
+import io.swagger.client.model.BranchImpl;
+import io.swagger.client.model.FavoriteImpl;
+import io.swagger.client.model.GithubScm;
+import io.swagger.client.model.MultibranchPipeline;
+import io.swagger.client.model.Organisation;
+import io.swagger.client.model.Organisations;
+import io.swagger.client.model.Pipeline;
+import io.swagger.client.model.PipelineActivities;
+import io.swagger.client.model.PipelineFolderImpl;
+import io.swagger.client.model.PipelineImpl;
+import io.swagger.client.model.PipelineQueue;
+import io.swagger.client.model.PipelineRun;
+import io.swagger.client.model.PipelineRunNode;
+import io.swagger.client.model.PipelineRunNodeSteps;
+import io.swagger.client.model.PipelineRunNodes;
+import io.swagger.client.model.PipelineRuns;
+import io.swagger.client.model.PipelineStepImpl;
+import io.swagger.client.model.Pipelines;
+import io.swagger.client.model.QueueItemImpl;
+import io.swagger.client.model.ScmOrganisations;
+import io.swagger.client.model.User;
+import io.swagger.client.model.UserFavorites;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.entity.mime.MultipartEntityBuilder;
@@ -65,20 +79,32 @@ public class BlueOceanApi {
 
   /**
   * 
-  * Retrieve authenticated user details for an organisation
-   * @param organisation Name of the organisation
-   * @return SwaggyjenkinsUser
+  * Delete queue item from an organization pipeline queue
+   * @param organization Name of the organization
+   * @param pipeline Name of the pipeline
+   * @param queue Name of the queue item
+   * @return void
   */
-  public SwaggyjenkinsUser getAuthenticatedUser (String organisation) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
+  public void deletePipelineQueueItem (String organization, String pipeline, String queue) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
     Object postBody = null;
-    // verify the required parameter 'organisation' is set
-    if (organisation == null) {
-      VolleyError error = new VolleyError("Missing the required parameter 'organisation' when calling getAuthenticatedUser",
-        new ApiException(400, "Missing the required parameter 'organisation' when calling getAuthenticatedUser"));
+    // verify the required parameter 'organization' is set
+    if (organization == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'organization' when calling deletePipelineQueueItem",
+        new ApiException(400, "Missing the required parameter 'organization' when calling deletePipelineQueueItem"));
+    }
+    // verify the required parameter 'pipeline' is set
+    if (pipeline == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'pipeline' when calling deletePipelineQueueItem",
+        new ApiException(400, "Missing the required parameter 'pipeline' when calling deletePipelineQueueItem"));
+    }
+    // verify the required parameter 'queue' is set
+    if (queue == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'queue' when calling deletePipelineQueueItem",
+        new ApiException(400, "Missing the required parameter 'queue' when calling deletePipelineQueueItem"));
     }
 
     // create path and map variables
-    String path = "/blue/rest/organizations/{organisation}/user/".replaceAll("\\{" + "organisation" + "\\}", apiInvoker.escapeString(organisation.toString()));
+    String path = "/blue/rest/organizations/{organization}/pipelines/{pipeline}/queue/{queue}".replaceAll("\\{" + "organization" + "\\}", apiInvoker.escapeString(organization.toString())).replaceAll("\\{" + "pipeline" + "\\}", apiInvoker.escapeString(pipeline.toString())).replaceAll("\\{" + "queue" + "\\}", apiInvoker.escapeString(queue.toString()));
 
     // query params
     List<Pair> queryParams = new ArrayList<Pair>();
@@ -99,14 +125,14 @@ public class BlueOceanApi {
       // normal form params
     }
 
-    String[] authNames = new String[] {  };
+    String[] authNames = new String[] { "jenkins_auth" };
 
     try {
-      String localVarResponse = apiInvoker.invokeAPI (basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames);
+      String localVarResponse = apiInvoker.invokeAPI (basePath, path, "DELETE", queryParams, postBody, headerParams, formParams, contentType, authNames);
       if (localVarResponse != null) {
-         return (SwaggyjenkinsUser) ApiInvoker.deserialize(localVarResponse, "", SwaggyjenkinsUser.class);
+         return ;
       } else {
-         return null;
+         return ;
       }
     } catch (ApiException ex) {
        throw ex;
@@ -127,20 +153,30 @@ public class BlueOceanApi {
 
       /**
    * 
-   * Retrieve authenticated user details for an organisation
-   * @param organisation Name of the organisation
+   * Delete queue item from an organization pipeline queue
+   * @param organization Name of the organization   * @param pipeline Name of the pipeline   * @param queue Name of the queue item
   */
-  public void getAuthenticatedUser (String organisation, final Response.Listener<SwaggyjenkinsUser> responseListener, final Response.ErrorListener errorListener) {
+  public void deletePipelineQueueItem (String organization, String pipeline, String queue, final Response.Listener<String> responseListener, final Response.ErrorListener errorListener) {
     Object postBody = null;
 
-    // verify the required parameter 'organisation' is set
-    if (organisation == null) {
-      VolleyError error = new VolleyError("Missing the required parameter 'organisation' when calling getAuthenticatedUser",
-        new ApiException(400, "Missing the required parameter 'organisation' when calling getAuthenticatedUser"));
+    // verify the required parameter 'organization' is set
+    if (organization == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'organization' when calling deletePipelineQueueItem",
+        new ApiException(400, "Missing the required parameter 'organization' when calling deletePipelineQueueItem"));
+    }
+    // verify the required parameter 'pipeline' is set
+    if (pipeline == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'pipeline' when calling deletePipelineQueueItem",
+        new ApiException(400, "Missing the required parameter 'pipeline' when calling deletePipelineQueueItem"));
+    }
+    // verify the required parameter 'queue' is set
+    if (queue == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'queue' when calling deletePipelineQueueItem",
+        new ApiException(400, "Missing the required parameter 'queue' when calling deletePipelineQueueItem"));
     }
 
     // create path and map variables
-    String path = "/blue/rest/organizations/{organisation}/user/".replaceAll("\\{format\\}","json").replaceAll("\\{" + "organisation" + "\\}", apiInvoker.escapeString(organisation.toString()));
+    String path = "/blue/rest/organizations/{organization}/pipelines/{pipeline}/queue/{queue}".replaceAll("\\{format\\}","json").replaceAll("\\{" + "organization" + "\\}", apiInvoker.escapeString(organization.toString())).replaceAll("\\{" + "pipeline" + "\\}", apiInvoker.escapeString(pipeline.toString())).replaceAll("\\{" + "queue" + "\\}", apiInvoker.escapeString(queue.toString()));
 
     // query params
     List<Pair> queryParams = new ArrayList<Pair>();
@@ -167,7 +203,130 @@ public class BlueOceanApi {
       // normal form params
           }
 
-    String[] authNames = new String[] {  };
+    String[] authNames = new String[] { "jenkins_auth" };
+
+    try {
+      apiInvoker.invokeAPI(basePath, path, "DELETE", queryParams, postBody, headerParams, formParams, contentType, authNames,
+        new Response.Listener<String>() {
+          @Override
+          public void onResponse(String localVarResponse) {
+              responseListener.onResponse(localVarResponse);
+          }
+      }, new Response.ErrorListener() {
+          @Override
+          public void onErrorResponse(VolleyError error) {
+            errorListener.onErrorResponse(error);
+          }
+      });
+    } catch (ApiException ex) {
+      errorListener.onErrorResponse(new VolleyError(ex));
+    }
+  }
+  /**
+  * 
+  * Retrieve authenticated user details for an organization
+   * @param organization Name of the organization
+   * @return User
+  */
+  public User getAuthenticatedUser (String organization) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
+    Object postBody = null;
+    // verify the required parameter 'organization' is set
+    if (organization == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'organization' when calling getAuthenticatedUser",
+        new ApiException(400, "Missing the required parameter 'organization' when calling getAuthenticatedUser"));
+    }
+
+    // create path and map variables
+    String path = "/blue/rest/organizations/{organization}/user/".replaceAll("\\{" + "organization" + "\\}", apiInvoker.escapeString(organization.toString()));
+
+    // query params
+    List<Pair> queryParams = new ArrayList<Pair>();
+    // header params
+    Map<String, String> headerParams = new HashMap<String, String>();
+    // form params
+    Map<String, String> formParams = new HashMap<String, String>();
+    String[] contentTypes = {
+    };
+    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+
+    if (contentType.startsWith("multipart/form-data")) {
+      // file uploading
+      MultipartEntityBuilder localVarBuilder = MultipartEntityBuilder.create();
+      HttpEntity httpEntity = localVarBuilder.build();
+      postBody = httpEntity;
+    } else {
+      // normal form params
+    }
+
+    String[] authNames = new String[] { "jenkins_auth" };
+
+    try {
+      String localVarResponse = apiInvoker.invokeAPI (basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames);
+      if (localVarResponse != null) {
+         return (User) ApiInvoker.deserialize(localVarResponse, "", User.class);
+      } else {
+         return null;
+      }
+    } catch (ApiException ex) {
+       throw ex;
+    } catch (InterruptedException ex) {
+       throw ex;
+    } catch (ExecutionException ex) {
+      if (ex.getCause() instanceof VolleyError) {
+        VolleyError volleyError = (VolleyError)ex.getCause();
+        if (volleyError.networkResponse != null) {
+          throw new ApiException(volleyError.networkResponse.statusCode, volleyError.getMessage());
+        }
+      }
+      throw ex;
+    } catch (TimeoutException ex) {
+      throw ex;
+    }
+  }
+
+      /**
+   * 
+   * Retrieve authenticated user details for an organization
+   * @param organization Name of the organization
+  */
+  public void getAuthenticatedUser (String organization, final Response.Listener<User> responseListener, final Response.ErrorListener errorListener) {
+    Object postBody = null;
+
+    // verify the required parameter 'organization' is set
+    if (organization == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'organization' when calling getAuthenticatedUser",
+        new ApiException(400, "Missing the required parameter 'organization' when calling getAuthenticatedUser"));
+    }
+
+    // create path and map variables
+    String path = "/blue/rest/organizations/{organization}/user/".replaceAll("\\{format\\}","json").replaceAll("\\{" + "organization" + "\\}", apiInvoker.escapeString(organization.toString()));
+
+    // query params
+    List<Pair> queryParams = new ArrayList<Pair>();
+    // header params
+    Map<String, String> headerParams = new HashMap<String, String>();
+    // form params
+    Map<String, String> formParams = new HashMap<String, String>();
+
+
+
+    String[] contentTypes = {
+      
+    };
+    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+
+    if (contentType.startsWith("multipart/form-data")) {
+      // file uploading
+      MultipartEntityBuilder localVarBuilder = MultipartEntityBuilder.create();
+      
+
+      HttpEntity httpEntity = localVarBuilder.build();
+      postBody = httpEntity;
+    } else {
+      // normal form params
+          }
+
+    String[] authNames = new String[] { "jenkins_auth" };
 
     try {
       apiInvoker.invokeAPI(basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames,
@@ -175,7 +334,7 @@ public class BlueOceanApi {
           @Override
           public void onResponse(String localVarResponse) {
             try {
-              responseListener.onResponse((SwaggyjenkinsUser) ApiInvoker.deserialize(localVarResponse,  "", SwaggyjenkinsUser.class));
+              responseListener.onResponse((User) ApiInvoker.deserialize(localVarResponse,  "", User.class));
             } catch (ApiException exception) {
                errorListener.onErrorResponse(new VolleyError(exception));
             }
@@ -226,7 +385,7 @@ public class BlueOceanApi {
       // normal form params
     }
 
-    String[] authNames = new String[] {  };
+    String[] authNames = new String[] { "jenkins_auth" };
 
     try {
       String localVarResponse = apiInvoker.invokeAPI (basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames);
@@ -294,7 +453,7 @@ public class BlueOceanApi {
       // normal form params
           }
 
-    String[] authNames = new String[] {  };
+    String[] authNames = new String[] { "jenkins_auth" };
 
     try {
       apiInvoker.invokeAPI(basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames,
@@ -319,20 +478,20 @@ public class BlueOceanApi {
   }
   /**
   * 
-  * Retrieve organisation details
-   * @param organisation Name of the organisation
-   * @return SwaggyjenkinsOrganisation
+  * Retrieve organization details
+   * @param organization Name of the organization
+   * @return Organisation
   */
-  public SwaggyjenkinsOrganisation getOrganisation (String organisation) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
+  public Organisation getOrganisation (String organization) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
     Object postBody = null;
-    // verify the required parameter 'organisation' is set
-    if (organisation == null) {
-      VolleyError error = new VolleyError("Missing the required parameter 'organisation' when calling getOrganisation",
-        new ApiException(400, "Missing the required parameter 'organisation' when calling getOrganisation"));
+    // verify the required parameter 'organization' is set
+    if (organization == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'organization' when calling getOrganisation",
+        new ApiException(400, "Missing the required parameter 'organization' when calling getOrganisation"));
     }
 
     // create path and map variables
-    String path = "/blue/rest/organizations/{organisation}".replaceAll("\\{" + "organisation" + "\\}", apiInvoker.escapeString(organisation.toString()));
+    String path = "/blue/rest/organizations/{organization}".replaceAll("\\{" + "organization" + "\\}", apiInvoker.escapeString(organization.toString()));
 
     // query params
     List<Pair> queryParams = new ArrayList<Pair>();
@@ -353,12 +512,12 @@ public class BlueOceanApi {
       // normal form params
     }
 
-    String[] authNames = new String[] {  };
+    String[] authNames = new String[] { "jenkins_auth" };
 
     try {
       String localVarResponse = apiInvoker.invokeAPI (basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames);
       if (localVarResponse != null) {
-         return (SwaggyjenkinsOrganisation) ApiInvoker.deserialize(localVarResponse, "", SwaggyjenkinsOrganisation.class);
+         return (Organisation) ApiInvoker.deserialize(localVarResponse, "", Organisation.class);
       } else {
          return null;
       }
@@ -381,20 +540,20 @@ public class BlueOceanApi {
 
       /**
    * 
-   * Retrieve organisation details
-   * @param organisation Name of the organisation
+   * Retrieve organization details
+   * @param organization Name of the organization
   */
-  public void getOrganisation (String organisation, final Response.Listener<SwaggyjenkinsOrganisation> responseListener, final Response.ErrorListener errorListener) {
+  public void getOrganisation (String organization, final Response.Listener<Organisation> responseListener, final Response.ErrorListener errorListener) {
     Object postBody = null;
 
-    // verify the required parameter 'organisation' is set
-    if (organisation == null) {
-      VolleyError error = new VolleyError("Missing the required parameter 'organisation' when calling getOrganisation",
-        new ApiException(400, "Missing the required parameter 'organisation' when calling getOrganisation"));
+    // verify the required parameter 'organization' is set
+    if (organization == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'organization' when calling getOrganisation",
+        new ApiException(400, "Missing the required parameter 'organization' when calling getOrganisation"));
     }
 
     // create path and map variables
-    String path = "/blue/rest/organizations/{organisation}".replaceAll("\\{format\\}","json").replaceAll("\\{" + "organisation" + "\\}", apiInvoker.escapeString(organisation.toString()));
+    String path = "/blue/rest/organizations/{organization}".replaceAll("\\{format\\}","json").replaceAll("\\{" + "organization" + "\\}", apiInvoker.escapeString(organization.toString()));
 
     // query params
     List<Pair> queryParams = new ArrayList<Pair>();
@@ -421,7 +580,7 @@ public class BlueOceanApi {
       // normal form params
           }
 
-    String[] authNames = new String[] {  };
+    String[] authNames = new String[] { "jenkins_auth" };
 
     try {
       apiInvoker.invokeAPI(basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames,
@@ -429,7 +588,7 @@ public class BlueOceanApi {
           @Override
           public void onResponse(String localVarResponse) {
             try {
-              responseListener.onResponse((SwaggyjenkinsOrganisation) ApiInvoker.deserialize(localVarResponse,  "", SwaggyjenkinsOrganisation.class));
+              responseListener.onResponse((Organisation) ApiInvoker.deserialize(localVarResponse,  "", Organisation.class));
             } catch (ApiException exception) {
                errorListener.onErrorResponse(new VolleyError(exception));
             }
@@ -446,10 +605,10 @@ public class BlueOceanApi {
   }
   /**
   * 
-  * Retrieve all organisations details
-   * @return GetOrganisations
+  * Retrieve all organizations details
+   * @return Organisations
   */
-  public GetOrganisations getOrganisations () throws TimeoutException, ExecutionException, InterruptedException, ApiException {
+  public Organisations getOrganisations () throws TimeoutException, ExecutionException, InterruptedException, ApiException {
     Object postBody = null;
 
     // create path and map variables
@@ -474,12 +633,12 @@ public class BlueOceanApi {
       // normal form params
     }
 
-    String[] authNames = new String[] {  };
+    String[] authNames = new String[] { "jenkins_auth" };
 
     try {
       String localVarResponse = apiInvoker.invokeAPI (basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames);
       if (localVarResponse != null) {
-         return (GetOrganisations) ApiInvoker.deserialize(localVarResponse, "", GetOrganisations.class);
+         return (Organisations) ApiInvoker.deserialize(localVarResponse, "", Organisations.class);
       } else {
          return null;
       }
@@ -502,10 +661,10 @@ public class BlueOceanApi {
 
       /**
    * 
-   * Retrieve all organisations details
+   * Retrieve all organizations details
 
   */
-  public void getOrganisations (final Response.Listener<GetOrganisations> responseListener, final Response.ErrorListener errorListener) {
+  public void getOrganisations (final Response.Listener<Organisations> responseListener, final Response.ErrorListener errorListener) {
     Object postBody = null;
 
 
@@ -537,7 +696,7 @@ public class BlueOceanApi {
       // normal form params
           }
 
-    String[] authNames = new String[] {  };
+    String[] authNames = new String[] { "jenkins_auth" };
 
     try {
       apiInvoker.invokeAPI(basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames,
@@ -545,7 +704,7 @@ public class BlueOceanApi {
           @Override
           public void onResponse(String localVarResponse) {
             try {
-              responseListener.onResponse((GetOrganisations) ApiInvoker.deserialize(localVarResponse,  "", GetOrganisations.class));
+              responseListener.onResponse((Organisations) ApiInvoker.deserialize(localVarResponse,  "", Organisations.class));
             } catch (ApiException exception) {
                errorListener.onErrorResponse(new VolleyError(exception));
             }
@@ -562,32 +721,308 @@ public class BlueOceanApi {
   }
   /**
   * 
-  * Retrieve branch details for an organisation pipeline
-   * @param organisation Name of the organisation
+  * Retrieve pipeline details for an organization
+   * @param organization Name of the organization
+   * @param pipeline Name of the pipeline
+   * @return Pipeline
+  */
+  public Pipeline getPipeline (String organization, String pipeline) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
+    Object postBody = null;
+    // verify the required parameter 'organization' is set
+    if (organization == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'organization' when calling getPipeline",
+        new ApiException(400, "Missing the required parameter 'organization' when calling getPipeline"));
+    }
+    // verify the required parameter 'pipeline' is set
+    if (pipeline == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'pipeline' when calling getPipeline",
+        new ApiException(400, "Missing the required parameter 'pipeline' when calling getPipeline"));
+    }
+
+    // create path and map variables
+    String path = "/blue/rest/organizations/{organization}/pipelines/{pipeline}".replaceAll("\\{" + "organization" + "\\}", apiInvoker.escapeString(organization.toString())).replaceAll("\\{" + "pipeline" + "\\}", apiInvoker.escapeString(pipeline.toString()));
+
+    // query params
+    List<Pair> queryParams = new ArrayList<Pair>();
+    // header params
+    Map<String, String> headerParams = new HashMap<String, String>();
+    // form params
+    Map<String, String> formParams = new HashMap<String, String>();
+    String[] contentTypes = {
+    };
+    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+
+    if (contentType.startsWith("multipart/form-data")) {
+      // file uploading
+      MultipartEntityBuilder localVarBuilder = MultipartEntityBuilder.create();
+      HttpEntity httpEntity = localVarBuilder.build();
+      postBody = httpEntity;
+    } else {
+      // normal form params
+    }
+
+    String[] authNames = new String[] { "jenkins_auth" };
+
+    try {
+      String localVarResponse = apiInvoker.invokeAPI (basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames);
+      if (localVarResponse != null) {
+         return (Pipeline) ApiInvoker.deserialize(localVarResponse, "", Pipeline.class);
+      } else {
+         return null;
+      }
+    } catch (ApiException ex) {
+       throw ex;
+    } catch (InterruptedException ex) {
+       throw ex;
+    } catch (ExecutionException ex) {
+      if (ex.getCause() instanceof VolleyError) {
+        VolleyError volleyError = (VolleyError)ex.getCause();
+        if (volleyError.networkResponse != null) {
+          throw new ApiException(volleyError.networkResponse.statusCode, volleyError.getMessage());
+        }
+      }
+      throw ex;
+    } catch (TimeoutException ex) {
+      throw ex;
+    }
+  }
+
+      /**
+   * 
+   * Retrieve pipeline details for an organization
+   * @param organization Name of the organization   * @param pipeline Name of the pipeline
+  */
+  public void getPipeline (String organization, String pipeline, final Response.Listener<Pipeline> responseListener, final Response.ErrorListener errorListener) {
+    Object postBody = null;
+
+    // verify the required parameter 'organization' is set
+    if (organization == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'organization' when calling getPipeline",
+        new ApiException(400, "Missing the required parameter 'organization' when calling getPipeline"));
+    }
+    // verify the required parameter 'pipeline' is set
+    if (pipeline == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'pipeline' when calling getPipeline",
+        new ApiException(400, "Missing the required parameter 'pipeline' when calling getPipeline"));
+    }
+
+    // create path and map variables
+    String path = "/blue/rest/organizations/{organization}/pipelines/{pipeline}".replaceAll("\\{format\\}","json").replaceAll("\\{" + "organization" + "\\}", apiInvoker.escapeString(organization.toString())).replaceAll("\\{" + "pipeline" + "\\}", apiInvoker.escapeString(pipeline.toString()));
+
+    // query params
+    List<Pair> queryParams = new ArrayList<Pair>();
+    // header params
+    Map<String, String> headerParams = new HashMap<String, String>();
+    // form params
+    Map<String, String> formParams = new HashMap<String, String>();
+
+
+
+    String[] contentTypes = {
+      
+    };
+    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+
+    if (contentType.startsWith("multipart/form-data")) {
+      // file uploading
+      MultipartEntityBuilder localVarBuilder = MultipartEntityBuilder.create();
+      
+
+      HttpEntity httpEntity = localVarBuilder.build();
+      postBody = httpEntity;
+    } else {
+      // normal form params
+          }
+
+    String[] authNames = new String[] { "jenkins_auth" };
+
+    try {
+      apiInvoker.invokeAPI(basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames,
+        new Response.Listener<String>() {
+          @Override
+          public void onResponse(String localVarResponse) {
+            try {
+              responseListener.onResponse((Pipeline) ApiInvoker.deserialize(localVarResponse,  "", Pipeline.class));
+            } catch (ApiException exception) {
+               errorListener.onErrorResponse(new VolleyError(exception));
+            }
+          }
+      }, new Response.ErrorListener() {
+          @Override
+          public void onErrorResponse(VolleyError error) {
+            errorListener.onErrorResponse(error);
+          }
+      });
+    } catch (ApiException ex) {
+      errorListener.onErrorResponse(new VolleyError(ex));
+    }
+  }
+  /**
+  * 
+  * Retrieve all activities details for an organization pipeline
+   * @param organization Name of the organization
+   * @param pipeline Name of the pipeline
+   * @return PipelineActivities
+  */
+  public PipelineActivities getPipelineActivities (String organization, String pipeline) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
+    Object postBody = null;
+    // verify the required parameter 'organization' is set
+    if (organization == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'organization' when calling getPipelineActivities",
+        new ApiException(400, "Missing the required parameter 'organization' when calling getPipelineActivities"));
+    }
+    // verify the required parameter 'pipeline' is set
+    if (pipeline == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'pipeline' when calling getPipelineActivities",
+        new ApiException(400, "Missing the required parameter 'pipeline' when calling getPipelineActivities"));
+    }
+
+    // create path and map variables
+    String path = "/blue/rest/organizations/{organization}/pipelines/{pipeline}/activities".replaceAll("\\{" + "organization" + "\\}", apiInvoker.escapeString(organization.toString())).replaceAll("\\{" + "pipeline" + "\\}", apiInvoker.escapeString(pipeline.toString()));
+
+    // query params
+    List<Pair> queryParams = new ArrayList<Pair>();
+    // header params
+    Map<String, String> headerParams = new HashMap<String, String>();
+    // form params
+    Map<String, String> formParams = new HashMap<String, String>();
+    String[] contentTypes = {
+    };
+    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+
+    if (contentType.startsWith("multipart/form-data")) {
+      // file uploading
+      MultipartEntityBuilder localVarBuilder = MultipartEntityBuilder.create();
+      HttpEntity httpEntity = localVarBuilder.build();
+      postBody = httpEntity;
+    } else {
+      // normal form params
+    }
+
+    String[] authNames = new String[] { "jenkins_auth" };
+
+    try {
+      String localVarResponse = apiInvoker.invokeAPI (basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames);
+      if (localVarResponse != null) {
+         return (PipelineActivities) ApiInvoker.deserialize(localVarResponse, "", PipelineActivities.class);
+      } else {
+         return null;
+      }
+    } catch (ApiException ex) {
+       throw ex;
+    } catch (InterruptedException ex) {
+       throw ex;
+    } catch (ExecutionException ex) {
+      if (ex.getCause() instanceof VolleyError) {
+        VolleyError volleyError = (VolleyError)ex.getCause();
+        if (volleyError.networkResponse != null) {
+          throw new ApiException(volleyError.networkResponse.statusCode, volleyError.getMessage());
+        }
+      }
+      throw ex;
+    } catch (TimeoutException ex) {
+      throw ex;
+    }
+  }
+
+      /**
+   * 
+   * Retrieve all activities details for an organization pipeline
+   * @param organization Name of the organization   * @param pipeline Name of the pipeline
+  */
+  public void getPipelineActivities (String organization, String pipeline, final Response.Listener<PipelineActivities> responseListener, final Response.ErrorListener errorListener) {
+    Object postBody = null;
+
+    // verify the required parameter 'organization' is set
+    if (organization == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'organization' when calling getPipelineActivities",
+        new ApiException(400, "Missing the required parameter 'organization' when calling getPipelineActivities"));
+    }
+    // verify the required parameter 'pipeline' is set
+    if (pipeline == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'pipeline' when calling getPipelineActivities",
+        new ApiException(400, "Missing the required parameter 'pipeline' when calling getPipelineActivities"));
+    }
+
+    // create path and map variables
+    String path = "/blue/rest/organizations/{organization}/pipelines/{pipeline}/activities".replaceAll("\\{format\\}","json").replaceAll("\\{" + "organization" + "\\}", apiInvoker.escapeString(organization.toString())).replaceAll("\\{" + "pipeline" + "\\}", apiInvoker.escapeString(pipeline.toString()));
+
+    // query params
+    List<Pair> queryParams = new ArrayList<Pair>();
+    // header params
+    Map<String, String> headerParams = new HashMap<String, String>();
+    // form params
+    Map<String, String> formParams = new HashMap<String, String>();
+
+
+
+    String[] contentTypes = {
+      
+    };
+    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+
+    if (contentType.startsWith("multipart/form-data")) {
+      // file uploading
+      MultipartEntityBuilder localVarBuilder = MultipartEntityBuilder.create();
+      
+
+      HttpEntity httpEntity = localVarBuilder.build();
+      postBody = httpEntity;
+    } else {
+      // normal form params
+          }
+
+    String[] authNames = new String[] { "jenkins_auth" };
+
+    try {
+      apiInvoker.invokeAPI(basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames,
+        new Response.Listener<String>() {
+          @Override
+          public void onResponse(String localVarResponse) {
+            try {
+              responseListener.onResponse((PipelineActivities) ApiInvoker.deserialize(localVarResponse,  "", PipelineActivities.class));
+            } catch (ApiException exception) {
+               errorListener.onErrorResponse(new VolleyError(exception));
+            }
+          }
+      }, new Response.ErrorListener() {
+          @Override
+          public void onErrorResponse(VolleyError error) {
+            errorListener.onErrorResponse(error);
+          }
+      });
+    } catch (ApiException ex) {
+      errorListener.onErrorResponse(new VolleyError(ex));
+    }
+  }
+  /**
+  * 
+  * Retrieve branch details for an organization pipeline
+   * @param organization Name of the organization
    * @param pipeline Name of the pipeline
    * @param branch Name of the branch
-   * @return IojenkinsblueoceanrestimplpipelineBranchImpl
+   * @return BranchImpl
   */
-  public IojenkinsblueoceanrestimplpipelineBranchImpl getPipelineBranchByOrg (String organisation, String pipeline, String branch) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
+  public BranchImpl getPipelineBranch (String organization, String pipeline, String branch) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
     Object postBody = null;
-    // verify the required parameter 'organisation' is set
-    if (organisation == null) {
-      VolleyError error = new VolleyError("Missing the required parameter 'organisation' when calling getPipelineBranchByOrg",
-        new ApiException(400, "Missing the required parameter 'organisation' when calling getPipelineBranchByOrg"));
+    // verify the required parameter 'organization' is set
+    if (organization == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'organization' when calling getPipelineBranch",
+        new ApiException(400, "Missing the required parameter 'organization' when calling getPipelineBranch"));
     }
     // verify the required parameter 'pipeline' is set
     if (pipeline == null) {
-      VolleyError error = new VolleyError("Missing the required parameter 'pipeline' when calling getPipelineBranchByOrg",
-        new ApiException(400, "Missing the required parameter 'pipeline' when calling getPipelineBranchByOrg"));
+      VolleyError error = new VolleyError("Missing the required parameter 'pipeline' when calling getPipelineBranch",
+        new ApiException(400, "Missing the required parameter 'pipeline' when calling getPipelineBranch"));
     }
     // verify the required parameter 'branch' is set
     if (branch == null) {
-      VolleyError error = new VolleyError("Missing the required parameter 'branch' when calling getPipelineBranchByOrg",
-        new ApiException(400, "Missing the required parameter 'branch' when calling getPipelineBranchByOrg"));
+      VolleyError error = new VolleyError("Missing the required parameter 'branch' when calling getPipelineBranch",
+        new ApiException(400, "Missing the required parameter 'branch' when calling getPipelineBranch"));
     }
 
     // create path and map variables
-    String path = "/blue/rest/organizations/{organisation}/pipelines/{pipeline}/branches/{branch}/".replaceAll("\\{" + "organisation" + "\\}", apiInvoker.escapeString(organisation.toString())).replaceAll("\\{" + "pipeline" + "\\}", apiInvoker.escapeString(pipeline.toString())).replaceAll("\\{" + "branch" + "\\}", apiInvoker.escapeString(branch.toString()));
+    String path = "/blue/rest/organizations/{organization}/pipelines/{pipeline}/branches/{branch}/".replaceAll("\\{" + "organization" + "\\}", apiInvoker.escapeString(organization.toString())).replaceAll("\\{" + "pipeline" + "\\}", apiInvoker.escapeString(pipeline.toString())).replaceAll("\\{" + "branch" + "\\}", apiInvoker.escapeString(branch.toString()));
 
     // query params
     List<Pair> queryParams = new ArrayList<Pair>();
@@ -608,12 +1043,12 @@ public class BlueOceanApi {
       // normal form params
     }
 
-    String[] authNames = new String[] {  };
+    String[] authNames = new String[] { "jenkins_auth" };
 
     try {
       String localVarResponse = apiInvoker.invokeAPI (basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames);
       if (localVarResponse != null) {
-         return (IojenkinsblueoceanrestimplpipelineBranchImpl) ApiInvoker.deserialize(localVarResponse, "", IojenkinsblueoceanrestimplpipelineBranchImpl.class);
+         return (BranchImpl) ApiInvoker.deserialize(localVarResponse, "", BranchImpl.class);
       } else {
          return null;
       }
@@ -636,30 +1071,30 @@ public class BlueOceanApi {
 
       /**
    * 
-   * Retrieve branch details for an organisation pipeline
-   * @param organisation Name of the organisation   * @param pipeline Name of the pipeline   * @param branch Name of the branch
+   * Retrieve branch details for an organization pipeline
+   * @param organization Name of the organization   * @param pipeline Name of the pipeline   * @param branch Name of the branch
   */
-  public void getPipelineBranchByOrg (String organisation, String pipeline, String branch, final Response.Listener<IojenkinsblueoceanrestimplpipelineBranchImpl> responseListener, final Response.ErrorListener errorListener) {
+  public void getPipelineBranch (String organization, String pipeline, String branch, final Response.Listener<BranchImpl> responseListener, final Response.ErrorListener errorListener) {
     Object postBody = null;
 
-    // verify the required parameter 'organisation' is set
-    if (organisation == null) {
-      VolleyError error = new VolleyError("Missing the required parameter 'organisation' when calling getPipelineBranchByOrg",
-        new ApiException(400, "Missing the required parameter 'organisation' when calling getPipelineBranchByOrg"));
+    // verify the required parameter 'organization' is set
+    if (organization == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'organization' when calling getPipelineBranch",
+        new ApiException(400, "Missing the required parameter 'organization' when calling getPipelineBranch"));
     }
     // verify the required parameter 'pipeline' is set
     if (pipeline == null) {
-      VolleyError error = new VolleyError("Missing the required parameter 'pipeline' when calling getPipelineBranchByOrg",
-        new ApiException(400, "Missing the required parameter 'pipeline' when calling getPipelineBranchByOrg"));
+      VolleyError error = new VolleyError("Missing the required parameter 'pipeline' when calling getPipelineBranch",
+        new ApiException(400, "Missing the required parameter 'pipeline' when calling getPipelineBranch"));
     }
     // verify the required parameter 'branch' is set
     if (branch == null) {
-      VolleyError error = new VolleyError("Missing the required parameter 'branch' when calling getPipelineBranchByOrg",
-        new ApiException(400, "Missing the required parameter 'branch' when calling getPipelineBranchByOrg"));
+      VolleyError error = new VolleyError("Missing the required parameter 'branch' when calling getPipelineBranch",
+        new ApiException(400, "Missing the required parameter 'branch' when calling getPipelineBranch"));
     }
 
     // create path and map variables
-    String path = "/blue/rest/organizations/{organisation}/pipelines/{pipeline}/branches/{branch}/".replaceAll("\\{format\\}","json").replaceAll("\\{" + "organisation" + "\\}", apiInvoker.escapeString(organisation.toString())).replaceAll("\\{" + "pipeline" + "\\}", apiInvoker.escapeString(pipeline.toString())).replaceAll("\\{" + "branch" + "\\}", apiInvoker.escapeString(branch.toString()));
+    String path = "/blue/rest/organizations/{organization}/pipelines/{pipeline}/branches/{branch}/".replaceAll("\\{format\\}","json").replaceAll("\\{" + "organization" + "\\}", apiInvoker.escapeString(organization.toString())).replaceAll("\\{" + "pipeline" + "\\}", apiInvoker.escapeString(pipeline.toString())).replaceAll("\\{" + "branch" + "\\}", apiInvoker.escapeString(branch.toString()));
 
     // query params
     List<Pair> queryParams = new ArrayList<Pair>();
@@ -686,7 +1121,7 @@ public class BlueOceanApi {
       // normal form params
           }
 
-    String[] authNames = new String[] {  };
+    String[] authNames = new String[] { "jenkins_auth" };
 
     try {
       apiInvoker.invokeAPI(basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames,
@@ -694,7 +1129,7 @@ public class BlueOceanApi {
           @Override
           public void onResponse(String localVarResponse) {
             try {
-              responseListener.onResponse((IojenkinsblueoceanrestimplpipelineBranchImpl) ApiInvoker.deserialize(localVarResponse,  "", IojenkinsblueoceanrestimplpipelineBranchImpl.class));
+              responseListener.onResponse((BranchImpl) ApiInvoker.deserialize(localVarResponse,  "", BranchImpl.class));
             } catch (ApiException exception) {
                errorListener.onErrorResponse(new VolleyError(exception));
             }
@@ -711,26 +1146,38 @@ public class BlueOceanApi {
   }
   /**
   * 
-  * Retrieve all branches details for an organisation pipeline
-   * @param organisation Name of the organisation
+  * Retrieve branch run details for an organization pipeline
+   * @param organization Name of the organization
    * @param pipeline Name of the pipeline
-   * @return GetMultibranchPipeline
+   * @param branch Name of the branch
+   * @param run Name of the run
+   * @return PipelineRun
   */
-  public GetMultibranchPipeline getPipelineBranchesByOrg (String organisation, String pipeline) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
+  public PipelineRun getPipelineBranchRun (String organization, String pipeline, String branch, String run) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
     Object postBody = null;
-    // verify the required parameter 'organisation' is set
-    if (organisation == null) {
-      VolleyError error = new VolleyError("Missing the required parameter 'organisation' when calling getPipelineBranchesByOrg",
-        new ApiException(400, "Missing the required parameter 'organisation' when calling getPipelineBranchesByOrg"));
+    // verify the required parameter 'organization' is set
+    if (organization == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'organization' when calling getPipelineBranchRun",
+        new ApiException(400, "Missing the required parameter 'organization' when calling getPipelineBranchRun"));
     }
     // verify the required parameter 'pipeline' is set
     if (pipeline == null) {
-      VolleyError error = new VolleyError("Missing the required parameter 'pipeline' when calling getPipelineBranchesByOrg",
-        new ApiException(400, "Missing the required parameter 'pipeline' when calling getPipelineBranchesByOrg"));
+      VolleyError error = new VolleyError("Missing the required parameter 'pipeline' when calling getPipelineBranchRun",
+        new ApiException(400, "Missing the required parameter 'pipeline' when calling getPipelineBranchRun"));
+    }
+    // verify the required parameter 'branch' is set
+    if (branch == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'branch' when calling getPipelineBranchRun",
+        new ApiException(400, "Missing the required parameter 'branch' when calling getPipelineBranchRun"));
+    }
+    // verify the required parameter 'run' is set
+    if (run == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'run' when calling getPipelineBranchRun",
+        new ApiException(400, "Missing the required parameter 'run' when calling getPipelineBranchRun"));
     }
 
     // create path and map variables
-    String path = "/blue/rest/organizations/{organisation}/pipelines/{pipeline}/branches".replaceAll("\\{" + "organisation" + "\\}", apiInvoker.escapeString(organisation.toString())).replaceAll("\\{" + "pipeline" + "\\}", apiInvoker.escapeString(pipeline.toString()));
+    String path = "/blue/rest/organizations/{organization}/pipelines/{pipeline}/branches/{branch}/runs/{run}".replaceAll("\\{" + "organization" + "\\}", apiInvoker.escapeString(organization.toString())).replaceAll("\\{" + "pipeline" + "\\}", apiInvoker.escapeString(pipeline.toString())).replaceAll("\\{" + "branch" + "\\}", apiInvoker.escapeString(branch.toString())).replaceAll("\\{" + "run" + "\\}", apiInvoker.escapeString(run.toString()));
 
     // query params
     List<Pair> queryParams = new ArrayList<Pair>();
@@ -751,12 +1198,12 @@ public class BlueOceanApi {
       // normal form params
     }
 
-    String[] authNames = new String[] {  };
+    String[] authNames = new String[] { "jenkins_auth" };
 
     try {
       String localVarResponse = apiInvoker.invokeAPI (basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames);
       if (localVarResponse != null) {
-         return (GetMultibranchPipeline) ApiInvoker.deserialize(localVarResponse, "", GetMultibranchPipeline.class);
+         return (PipelineRun) ApiInvoker.deserialize(localVarResponse, "", PipelineRun.class);
       } else {
          return null;
       }
@@ -779,25 +1226,35 @@ public class BlueOceanApi {
 
       /**
    * 
-   * Retrieve all branches details for an organisation pipeline
-   * @param organisation Name of the organisation   * @param pipeline Name of the pipeline
+   * Retrieve branch run details for an organization pipeline
+   * @param organization Name of the organization   * @param pipeline Name of the pipeline   * @param branch Name of the branch   * @param run Name of the run
   */
-  public void getPipelineBranchesByOrg (String organisation, String pipeline, final Response.Listener<GetMultibranchPipeline> responseListener, final Response.ErrorListener errorListener) {
+  public void getPipelineBranchRun (String organization, String pipeline, String branch, String run, final Response.Listener<PipelineRun> responseListener, final Response.ErrorListener errorListener) {
     Object postBody = null;
 
-    // verify the required parameter 'organisation' is set
-    if (organisation == null) {
-      VolleyError error = new VolleyError("Missing the required parameter 'organisation' when calling getPipelineBranchesByOrg",
-        new ApiException(400, "Missing the required parameter 'organisation' when calling getPipelineBranchesByOrg"));
+    // verify the required parameter 'organization' is set
+    if (organization == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'organization' when calling getPipelineBranchRun",
+        new ApiException(400, "Missing the required parameter 'organization' when calling getPipelineBranchRun"));
     }
     // verify the required parameter 'pipeline' is set
     if (pipeline == null) {
-      VolleyError error = new VolleyError("Missing the required parameter 'pipeline' when calling getPipelineBranchesByOrg",
-        new ApiException(400, "Missing the required parameter 'pipeline' when calling getPipelineBranchesByOrg"));
+      VolleyError error = new VolleyError("Missing the required parameter 'pipeline' when calling getPipelineBranchRun",
+        new ApiException(400, "Missing the required parameter 'pipeline' when calling getPipelineBranchRun"));
+    }
+    // verify the required parameter 'branch' is set
+    if (branch == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'branch' when calling getPipelineBranchRun",
+        new ApiException(400, "Missing the required parameter 'branch' when calling getPipelineBranchRun"));
+    }
+    // verify the required parameter 'run' is set
+    if (run == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'run' when calling getPipelineBranchRun",
+        new ApiException(400, "Missing the required parameter 'run' when calling getPipelineBranchRun"));
     }
 
     // create path and map variables
-    String path = "/blue/rest/organizations/{organisation}/pipelines/{pipeline}/branches".replaceAll("\\{format\\}","json").replaceAll("\\{" + "organisation" + "\\}", apiInvoker.escapeString(organisation.toString())).replaceAll("\\{" + "pipeline" + "\\}", apiInvoker.escapeString(pipeline.toString()));
+    String path = "/blue/rest/organizations/{organization}/pipelines/{pipeline}/branches/{branch}/runs/{run}".replaceAll("\\{format\\}","json").replaceAll("\\{" + "organization" + "\\}", apiInvoker.escapeString(organization.toString())).replaceAll("\\{" + "pipeline" + "\\}", apiInvoker.escapeString(pipeline.toString())).replaceAll("\\{" + "branch" + "\\}", apiInvoker.escapeString(branch.toString())).replaceAll("\\{" + "run" + "\\}", apiInvoker.escapeString(run.toString()));
 
     // query params
     List<Pair> queryParams = new ArrayList<Pair>();
@@ -824,7 +1281,7 @@ public class BlueOceanApi {
       // normal form params
           }
 
-    String[] authNames = new String[] {  };
+    String[] authNames = new String[] { "jenkins_auth" };
 
     try {
       apiInvoker.invokeAPI(basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames,
@@ -832,7 +1289,7 @@ public class BlueOceanApi {
           @Override
           public void onResponse(String localVarResponse) {
             try {
-              responseListener.onResponse((GetMultibranchPipeline) ApiInvoker.deserialize(localVarResponse,  "", GetMultibranchPipeline.class));
+              responseListener.onResponse((PipelineRun) ApiInvoker.deserialize(localVarResponse,  "", PipelineRun.class));
             } catch (ApiException exception) {
                errorListener.onErrorResponse(new VolleyError(exception));
             }
@@ -849,26 +1306,26 @@ public class BlueOceanApi {
   }
   /**
   * 
-  * Retrieve pipeline details for an organisation
-   * @param organisation Name of the organisation
+  * Retrieve all branches details for an organization pipeline
+   * @param organization Name of the organization
    * @param pipeline Name of the pipeline
-   * @return SwaggyjenkinsPipeline
+   * @return MultibranchPipeline
   */
-  public SwaggyjenkinsPipeline getPipelineByOrg (String organisation, String pipeline) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
+  public MultibranchPipeline getPipelineBranches (String organization, String pipeline) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
     Object postBody = null;
-    // verify the required parameter 'organisation' is set
-    if (organisation == null) {
-      VolleyError error = new VolleyError("Missing the required parameter 'organisation' when calling getPipelineByOrg",
-        new ApiException(400, "Missing the required parameter 'organisation' when calling getPipelineByOrg"));
+    // verify the required parameter 'organization' is set
+    if (organization == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'organization' when calling getPipelineBranches",
+        new ApiException(400, "Missing the required parameter 'organization' when calling getPipelineBranches"));
     }
     // verify the required parameter 'pipeline' is set
     if (pipeline == null) {
-      VolleyError error = new VolleyError("Missing the required parameter 'pipeline' when calling getPipelineByOrg",
-        new ApiException(400, "Missing the required parameter 'pipeline' when calling getPipelineByOrg"));
+      VolleyError error = new VolleyError("Missing the required parameter 'pipeline' when calling getPipelineBranches",
+        new ApiException(400, "Missing the required parameter 'pipeline' when calling getPipelineBranches"));
     }
 
     // create path and map variables
-    String path = "/blue/rest/organizations/{organisation}/pipelines/{pipeline}".replaceAll("\\{" + "organisation" + "\\}", apiInvoker.escapeString(organisation.toString())).replaceAll("\\{" + "pipeline" + "\\}", apiInvoker.escapeString(pipeline.toString()));
+    String path = "/blue/rest/organizations/{organization}/pipelines/{pipeline}/branches".replaceAll("\\{" + "organization" + "\\}", apiInvoker.escapeString(organization.toString())).replaceAll("\\{" + "pipeline" + "\\}", apiInvoker.escapeString(pipeline.toString()));
 
     // query params
     List<Pair> queryParams = new ArrayList<Pair>();
@@ -889,12 +1346,12 @@ public class BlueOceanApi {
       // normal form params
     }
 
-    String[] authNames = new String[] {  };
+    String[] authNames = new String[] { "jenkins_auth" };
 
     try {
       String localVarResponse = apiInvoker.invokeAPI (basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames);
       if (localVarResponse != null) {
-         return (SwaggyjenkinsPipeline) ApiInvoker.deserialize(localVarResponse, "", SwaggyjenkinsPipeline.class);
+         return (MultibranchPipeline) ApiInvoker.deserialize(localVarResponse, "", MultibranchPipeline.class);
       } else {
          return null;
       }
@@ -917,25 +1374,25 @@ public class BlueOceanApi {
 
       /**
    * 
-   * Retrieve pipeline details for an organisation
-   * @param organisation Name of the organisation   * @param pipeline Name of the pipeline
+   * Retrieve all branches details for an organization pipeline
+   * @param organization Name of the organization   * @param pipeline Name of the pipeline
   */
-  public void getPipelineByOrg (String organisation, String pipeline, final Response.Listener<SwaggyjenkinsPipeline> responseListener, final Response.ErrorListener errorListener) {
+  public void getPipelineBranches (String organization, String pipeline, final Response.Listener<MultibranchPipeline> responseListener, final Response.ErrorListener errorListener) {
     Object postBody = null;
 
-    // verify the required parameter 'organisation' is set
-    if (organisation == null) {
-      VolleyError error = new VolleyError("Missing the required parameter 'organisation' when calling getPipelineByOrg",
-        new ApiException(400, "Missing the required parameter 'organisation' when calling getPipelineByOrg"));
+    // verify the required parameter 'organization' is set
+    if (organization == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'organization' when calling getPipelineBranches",
+        new ApiException(400, "Missing the required parameter 'organization' when calling getPipelineBranches"));
     }
     // verify the required parameter 'pipeline' is set
     if (pipeline == null) {
-      VolleyError error = new VolleyError("Missing the required parameter 'pipeline' when calling getPipelineByOrg",
-        new ApiException(400, "Missing the required parameter 'pipeline' when calling getPipelineByOrg"));
+      VolleyError error = new VolleyError("Missing the required parameter 'pipeline' when calling getPipelineBranches",
+        new ApiException(400, "Missing the required parameter 'pipeline' when calling getPipelineBranches"));
     }
 
     // create path and map variables
-    String path = "/blue/rest/organizations/{organisation}/pipelines/{pipeline}".replaceAll("\\{format\\}","json").replaceAll("\\{" + "organisation" + "\\}", apiInvoker.escapeString(organisation.toString())).replaceAll("\\{" + "pipeline" + "\\}", apiInvoker.escapeString(pipeline.toString()));
+    String path = "/blue/rest/organizations/{organization}/pipelines/{pipeline}/branches".replaceAll("\\{format\\}","json").replaceAll("\\{" + "organization" + "\\}", apiInvoker.escapeString(organization.toString())).replaceAll("\\{" + "pipeline" + "\\}", apiInvoker.escapeString(pipeline.toString()));
 
     // query params
     List<Pair> queryParams = new ArrayList<Pair>();
@@ -962,7 +1419,7 @@ public class BlueOceanApi {
       // normal form params
           }
 
-    String[] authNames = new String[] {  };
+    String[] authNames = new String[] { "jenkins_auth" };
 
     try {
       apiInvoker.invokeAPI(basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames,
@@ -970,7 +1427,7 @@ public class BlueOceanApi {
           @Override
           public void onResponse(String localVarResponse) {
             try {
-              responseListener.onResponse((SwaggyjenkinsPipeline) ApiInvoker.deserialize(localVarResponse,  "", SwaggyjenkinsPipeline.class));
+              responseListener.onResponse((MultibranchPipeline) ApiInvoker.deserialize(localVarResponse,  "", MultibranchPipeline.class));
             } catch (ApiException exception) {
                errorListener.onErrorResponse(new VolleyError(exception));
             }
@@ -987,26 +1444,26 @@ public class BlueOceanApi {
   }
   /**
   * 
-  * Retrieve pipeline folder for an organisation
-   * @param organisation Name of the organisation
+  * Retrieve pipeline folder for an organization
+   * @param organization Name of the organization
    * @param folder Name of the folder
-   * @return IojenkinsblueoceanserviceembeddedrestPipelineFolderImpl
+   * @return PipelineFolderImpl
   */
-  public IojenkinsblueoceanserviceembeddedrestPipelineFolderImpl getPipelineFolderByOrg (String organisation, String folder) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
+  public PipelineFolderImpl getPipelineFolder (String organization, String folder) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
     Object postBody = null;
-    // verify the required parameter 'organisation' is set
-    if (organisation == null) {
-      VolleyError error = new VolleyError("Missing the required parameter 'organisation' when calling getPipelineFolderByOrg",
-        new ApiException(400, "Missing the required parameter 'organisation' when calling getPipelineFolderByOrg"));
+    // verify the required parameter 'organization' is set
+    if (organization == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'organization' when calling getPipelineFolder",
+        new ApiException(400, "Missing the required parameter 'organization' when calling getPipelineFolder"));
     }
     // verify the required parameter 'folder' is set
     if (folder == null) {
-      VolleyError error = new VolleyError("Missing the required parameter 'folder' when calling getPipelineFolderByOrg",
-        new ApiException(400, "Missing the required parameter 'folder' when calling getPipelineFolderByOrg"));
+      VolleyError error = new VolleyError("Missing the required parameter 'folder' when calling getPipelineFolder",
+        new ApiException(400, "Missing the required parameter 'folder' when calling getPipelineFolder"));
     }
 
     // create path and map variables
-    String path = "/blue/rest/organizations/{organisation}/pipelines/{folder}/".replaceAll("\\{" + "organisation" + "\\}", apiInvoker.escapeString(organisation.toString())).replaceAll("\\{" + "folder" + "\\}", apiInvoker.escapeString(folder.toString()));
+    String path = "/blue/rest/organizations/{organization}/pipelines/{folder}/".replaceAll("\\{" + "organization" + "\\}", apiInvoker.escapeString(organization.toString())).replaceAll("\\{" + "folder" + "\\}", apiInvoker.escapeString(folder.toString()));
 
     // query params
     List<Pair> queryParams = new ArrayList<Pair>();
@@ -1027,12 +1484,12 @@ public class BlueOceanApi {
       // normal form params
     }
 
-    String[] authNames = new String[] {  };
+    String[] authNames = new String[] { "jenkins_auth" };
 
     try {
       String localVarResponse = apiInvoker.invokeAPI (basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames);
       if (localVarResponse != null) {
-         return (IojenkinsblueoceanserviceembeddedrestPipelineFolderImpl) ApiInvoker.deserialize(localVarResponse, "", IojenkinsblueoceanserviceembeddedrestPipelineFolderImpl.class);
+         return (PipelineFolderImpl) ApiInvoker.deserialize(localVarResponse, "", PipelineFolderImpl.class);
       } else {
          return null;
       }
@@ -1055,25 +1512,25 @@ public class BlueOceanApi {
 
       /**
    * 
-   * Retrieve pipeline folder for an organisation
-   * @param organisation Name of the organisation   * @param folder Name of the folder
+   * Retrieve pipeline folder for an organization
+   * @param organization Name of the organization   * @param folder Name of the folder
   */
-  public void getPipelineFolderByOrg (String organisation, String folder, final Response.Listener<IojenkinsblueoceanserviceembeddedrestPipelineFolderImpl> responseListener, final Response.ErrorListener errorListener) {
+  public void getPipelineFolder (String organization, String folder, final Response.Listener<PipelineFolderImpl> responseListener, final Response.ErrorListener errorListener) {
     Object postBody = null;
 
-    // verify the required parameter 'organisation' is set
-    if (organisation == null) {
-      VolleyError error = new VolleyError("Missing the required parameter 'organisation' when calling getPipelineFolderByOrg",
-        new ApiException(400, "Missing the required parameter 'organisation' when calling getPipelineFolderByOrg"));
+    // verify the required parameter 'organization' is set
+    if (organization == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'organization' when calling getPipelineFolder",
+        new ApiException(400, "Missing the required parameter 'organization' when calling getPipelineFolder"));
     }
     // verify the required parameter 'folder' is set
     if (folder == null) {
-      VolleyError error = new VolleyError("Missing the required parameter 'folder' when calling getPipelineFolderByOrg",
-        new ApiException(400, "Missing the required parameter 'folder' when calling getPipelineFolderByOrg"));
+      VolleyError error = new VolleyError("Missing the required parameter 'folder' when calling getPipelineFolder",
+        new ApiException(400, "Missing the required parameter 'folder' when calling getPipelineFolder"));
     }
 
     // create path and map variables
-    String path = "/blue/rest/organizations/{organisation}/pipelines/{folder}/".replaceAll("\\{format\\}","json").replaceAll("\\{" + "organisation" + "\\}", apiInvoker.escapeString(organisation.toString())).replaceAll("\\{" + "folder" + "\\}", apiInvoker.escapeString(folder.toString()));
+    String path = "/blue/rest/organizations/{organization}/pipelines/{folder}/".replaceAll("\\{format\\}","json").replaceAll("\\{" + "organization" + "\\}", apiInvoker.escapeString(organization.toString())).replaceAll("\\{" + "folder" + "\\}", apiInvoker.escapeString(folder.toString()));
 
     // query params
     List<Pair> queryParams = new ArrayList<Pair>();
@@ -1100,7 +1557,7 @@ public class BlueOceanApi {
       // normal form params
           }
 
-    String[] authNames = new String[] {  };
+    String[] authNames = new String[] { "jenkins_auth" };
 
     try {
       apiInvoker.invokeAPI(basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames,
@@ -1108,7 +1565,7 @@ public class BlueOceanApi {
           @Override
           public void onResponse(String localVarResponse) {
             try {
-              responseListener.onResponse((IojenkinsblueoceanserviceembeddedrestPipelineFolderImpl) ApiInvoker.deserialize(localVarResponse,  "", IojenkinsblueoceanserviceembeddedrestPipelineFolderImpl.class));
+              responseListener.onResponse((PipelineFolderImpl) ApiInvoker.deserialize(localVarResponse,  "", PipelineFolderImpl.class));
             } catch (ApiException exception) {
                errorListener.onErrorResponse(new VolleyError(exception));
             }
@@ -1125,32 +1582,32 @@ public class BlueOceanApi {
   }
   /**
   * 
-  * Retrieve pipeline details for an organisation folder
-   * @param organisation Name of the organisation
+  * Retrieve pipeline details for an organization folder
+   * @param organization Name of the organization
    * @param pipeline Name of the pipeline
    * @param folder Name of the folder
-   * @return IojenkinsblueoceanserviceembeddedrestPipelineImpl
+   * @return PipelineImpl
   */
-  public IojenkinsblueoceanserviceembeddedrestPipelineImpl getPipelineFolderByOrg_1 (String organisation, String pipeline, String folder) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
+  public PipelineImpl getPipelineFolderPipeline (String organization, String pipeline, String folder) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
     Object postBody = null;
-    // verify the required parameter 'organisation' is set
-    if (organisation == null) {
-      VolleyError error = new VolleyError("Missing the required parameter 'organisation' when calling getPipelineFolderByOrg_1",
-        new ApiException(400, "Missing the required parameter 'organisation' when calling getPipelineFolderByOrg_1"));
+    // verify the required parameter 'organization' is set
+    if (organization == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'organization' when calling getPipelineFolderPipeline",
+        new ApiException(400, "Missing the required parameter 'organization' when calling getPipelineFolderPipeline"));
     }
     // verify the required parameter 'pipeline' is set
     if (pipeline == null) {
-      VolleyError error = new VolleyError("Missing the required parameter 'pipeline' when calling getPipelineFolderByOrg_1",
-        new ApiException(400, "Missing the required parameter 'pipeline' when calling getPipelineFolderByOrg_1"));
+      VolleyError error = new VolleyError("Missing the required parameter 'pipeline' when calling getPipelineFolderPipeline",
+        new ApiException(400, "Missing the required parameter 'pipeline' when calling getPipelineFolderPipeline"));
     }
     // verify the required parameter 'folder' is set
     if (folder == null) {
-      VolleyError error = new VolleyError("Missing the required parameter 'folder' when calling getPipelineFolderByOrg_1",
-        new ApiException(400, "Missing the required parameter 'folder' when calling getPipelineFolderByOrg_1"));
+      VolleyError error = new VolleyError("Missing the required parameter 'folder' when calling getPipelineFolderPipeline",
+        new ApiException(400, "Missing the required parameter 'folder' when calling getPipelineFolderPipeline"));
     }
 
     // create path and map variables
-    String path = "/blue/rest/organizations/{organisation}/pipelines/{folder}/pipelines/{pipeline}".replaceAll("\\{" + "organisation" + "\\}", apiInvoker.escapeString(organisation.toString())).replaceAll("\\{" + "pipeline" + "\\}", apiInvoker.escapeString(pipeline.toString())).replaceAll("\\{" + "folder" + "\\}", apiInvoker.escapeString(folder.toString()));
+    String path = "/blue/rest/organizations/{organization}/pipelines/{folder}/pipelines/{pipeline}".replaceAll("\\{" + "organization" + "\\}", apiInvoker.escapeString(organization.toString())).replaceAll("\\{" + "pipeline" + "\\}", apiInvoker.escapeString(pipeline.toString())).replaceAll("\\{" + "folder" + "\\}", apiInvoker.escapeString(folder.toString()));
 
     // query params
     List<Pair> queryParams = new ArrayList<Pair>();
@@ -1171,12 +1628,12 @@ public class BlueOceanApi {
       // normal form params
     }
 
-    String[] authNames = new String[] {  };
+    String[] authNames = new String[] { "jenkins_auth" };
 
     try {
       String localVarResponse = apiInvoker.invokeAPI (basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames);
       if (localVarResponse != null) {
-         return (IojenkinsblueoceanserviceembeddedrestPipelineImpl) ApiInvoker.deserialize(localVarResponse, "", IojenkinsblueoceanserviceembeddedrestPipelineImpl.class);
+         return (PipelineImpl) ApiInvoker.deserialize(localVarResponse, "", PipelineImpl.class);
       } else {
          return null;
       }
@@ -1199,30 +1656,30 @@ public class BlueOceanApi {
 
       /**
    * 
-   * Retrieve pipeline details for an organisation folder
-   * @param organisation Name of the organisation   * @param pipeline Name of the pipeline   * @param folder Name of the folder
+   * Retrieve pipeline details for an organization folder
+   * @param organization Name of the organization   * @param pipeline Name of the pipeline   * @param folder Name of the folder
   */
-  public void getPipelineFolderByOrg_1 (String organisation, String pipeline, String folder, final Response.Listener<IojenkinsblueoceanserviceembeddedrestPipelineImpl> responseListener, final Response.ErrorListener errorListener) {
+  public void getPipelineFolderPipeline (String organization, String pipeline, String folder, final Response.Listener<PipelineImpl> responseListener, final Response.ErrorListener errorListener) {
     Object postBody = null;
 
-    // verify the required parameter 'organisation' is set
-    if (organisation == null) {
-      VolleyError error = new VolleyError("Missing the required parameter 'organisation' when calling getPipelineFolderByOrg_1",
-        new ApiException(400, "Missing the required parameter 'organisation' when calling getPipelineFolderByOrg_1"));
+    // verify the required parameter 'organization' is set
+    if (organization == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'organization' when calling getPipelineFolderPipeline",
+        new ApiException(400, "Missing the required parameter 'organization' when calling getPipelineFolderPipeline"));
     }
     // verify the required parameter 'pipeline' is set
     if (pipeline == null) {
-      VolleyError error = new VolleyError("Missing the required parameter 'pipeline' when calling getPipelineFolderByOrg_1",
-        new ApiException(400, "Missing the required parameter 'pipeline' when calling getPipelineFolderByOrg_1"));
+      VolleyError error = new VolleyError("Missing the required parameter 'pipeline' when calling getPipelineFolderPipeline",
+        new ApiException(400, "Missing the required parameter 'pipeline' when calling getPipelineFolderPipeline"));
     }
     // verify the required parameter 'folder' is set
     if (folder == null) {
-      VolleyError error = new VolleyError("Missing the required parameter 'folder' when calling getPipelineFolderByOrg_1",
-        new ApiException(400, "Missing the required parameter 'folder' when calling getPipelineFolderByOrg_1"));
+      VolleyError error = new VolleyError("Missing the required parameter 'folder' when calling getPipelineFolderPipeline",
+        new ApiException(400, "Missing the required parameter 'folder' when calling getPipelineFolderPipeline"));
     }
 
     // create path and map variables
-    String path = "/blue/rest/organizations/{organisation}/pipelines/{folder}/pipelines/{pipeline}".replaceAll("\\{format\\}","json").replaceAll("\\{" + "organisation" + "\\}", apiInvoker.escapeString(organisation.toString())).replaceAll("\\{" + "pipeline" + "\\}", apiInvoker.escapeString(pipeline.toString())).replaceAll("\\{" + "folder" + "\\}", apiInvoker.escapeString(folder.toString()));
+    String path = "/blue/rest/organizations/{organization}/pipelines/{folder}/pipelines/{pipeline}".replaceAll("\\{format\\}","json").replaceAll("\\{" + "organization" + "\\}", apiInvoker.escapeString(organization.toString())).replaceAll("\\{" + "pipeline" + "\\}", apiInvoker.escapeString(pipeline.toString())).replaceAll("\\{" + "folder" + "\\}", apiInvoker.escapeString(folder.toString()));
 
     // query params
     List<Pair> queryParams = new ArrayList<Pair>();
@@ -1249,7 +1706,7 @@ public class BlueOceanApi {
       // normal form params
           }
 
-    String[] authNames = new String[] {  };
+    String[] authNames = new String[] { "jenkins_auth" };
 
     try {
       apiInvoker.invokeAPI(basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames,
@@ -1257,7 +1714,7 @@ public class BlueOceanApi {
           @Override
           public void onResponse(String localVarResponse) {
             try {
-              responseListener.onResponse((IojenkinsblueoceanserviceembeddedrestPipelineImpl) ApiInvoker.deserialize(localVarResponse,  "", IojenkinsblueoceanserviceembeddedrestPipelineImpl.class));
+              responseListener.onResponse((PipelineImpl) ApiInvoker.deserialize(localVarResponse,  "", PipelineImpl.class));
             } catch (ApiException exception) {
                errorListener.onErrorResponse(new VolleyError(exception));
             }
@@ -1274,20 +1731,26 @@ public class BlueOceanApi {
   }
   /**
   * 
-  * Retrieve all pipelines details for an organisation
-   * @param organisation Name of the organisation
-   * @return GetPipelines
+  * Retrieve queue details for an organization pipeline
+   * @param organization Name of the organization
+   * @param pipeline Name of the pipeline
+   * @return PipelineQueue
   */
-  public GetPipelines getPipelinesByOrg (String organisation) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
+  public PipelineQueue getPipelineQueue (String organization, String pipeline) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
     Object postBody = null;
-    // verify the required parameter 'organisation' is set
-    if (organisation == null) {
-      VolleyError error = new VolleyError("Missing the required parameter 'organisation' when calling getPipelinesByOrg",
-        new ApiException(400, "Missing the required parameter 'organisation' when calling getPipelinesByOrg"));
+    // verify the required parameter 'organization' is set
+    if (organization == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'organization' when calling getPipelineQueue",
+        new ApiException(400, "Missing the required parameter 'organization' when calling getPipelineQueue"));
+    }
+    // verify the required parameter 'pipeline' is set
+    if (pipeline == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'pipeline' when calling getPipelineQueue",
+        new ApiException(400, "Missing the required parameter 'pipeline' when calling getPipelineQueue"));
     }
 
     // create path and map variables
-    String path = "/blue/rest/organizations/{organisation}/pipelines/".replaceAll("\\{" + "organisation" + "\\}", apiInvoker.escapeString(organisation.toString()));
+    String path = "/blue/rest/organizations/{organization}/pipelines/{pipeline}/queue".replaceAll("\\{" + "organization" + "\\}", apiInvoker.escapeString(organization.toString())).replaceAll("\\{" + "pipeline" + "\\}", apiInvoker.escapeString(pipeline.toString()));
 
     // query params
     List<Pair> queryParams = new ArrayList<Pair>();
@@ -1308,12 +1771,12 @@ public class BlueOceanApi {
       // normal form params
     }
 
-    String[] authNames = new String[] {  };
+    String[] authNames = new String[] { "jenkins_auth" };
 
     try {
       String localVarResponse = apiInvoker.invokeAPI (basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames);
       if (localVarResponse != null) {
-         return (GetPipelines) ApiInvoker.deserialize(localVarResponse, "", GetPipelines.class);
+         return (PipelineQueue) ApiInvoker.deserialize(localVarResponse, "", PipelineQueue.class);
       } else {
          return null;
       }
@@ -1336,20 +1799,25 @@ public class BlueOceanApi {
 
       /**
    * 
-   * Retrieve all pipelines details for an organisation
-   * @param organisation Name of the organisation
+   * Retrieve queue details for an organization pipeline
+   * @param organization Name of the organization   * @param pipeline Name of the pipeline
   */
-  public void getPipelinesByOrg (String organisation, final Response.Listener<GetPipelines> responseListener, final Response.ErrorListener errorListener) {
+  public void getPipelineQueue (String organization, String pipeline, final Response.Listener<PipelineQueue> responseListener, final Response.ErrorListener errorListener) {
     Object postBody = null;
 
-    // verify the required parameter 'organisation' is set
-    if (organisation == null) {
-      VolleyError error = new VolleyError("Missing the required parameter 'organisation' when calling getPipelinesByOrg",
-        new ApiException(400, "Missing the required parameter 'organisation' when calling getPipelinesByOrg"));
+    // verify the required parameter 'organization' is set
+    if (organization == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'organization' when calling getPipelineQueue",
+        new ApiException(400, "Missing the required parameter 'organization' when calling getPipelineQueue"));
+    }
+    // verify the required parameter 'pipeline' is set
+    if (pipeline == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'pipeline' when calling getPipelineQueue",
+        new ApiException(400, "Missing the required parameter 'pipeline' when calling getPipelineQueue"));
     }
 
     // create path and map variables
-    String path = "/blue/rest/organizations/{organisation}/pipelines/".replaceAll("\\{format\\}","json").replaceAll("\\{" + "organisation" + "\\}", apiInvoker.escapeString(organisation.toString()));
+    String path = "/blue/rest/organizations/{organization}/pipelines/{pipeline}/queue".replaceAll("\\{format\\}","json").replaceAll("\\{" + "organization" + "\\}", apiInvoker.escapeString(organization.toString())).replaceAll("\\{" + "pipeline" + "\\}", apiInvoker.escapeString(pipeline.toString()));
 
     // query params
     List<Pair> queryParams = new ArrayList<Pair>();
@@ -1376,7 +1844,7 @@ public class BlueOceanApi {
       // normal form params
           }
 
-    String[] authNames = new String[] {  };
+    String[] authNames = new String[] { "jenkins_auth" };
 
     try {
       apiInvoker.invokeAPI(basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames,
@@ -1384,7 +1852,7 @@ public class BlueOceanApi {
           @Override
           public void onResponse(String localVarResponse) {
             try {
-              responseListener.onResponse((GetPipelines) ApiInvoker.deserialize(localVarResponse,  "", GetPipelines.class));
+              responseListener.onResponse((PipelineQueue) ApiInvoker.deserialize(localVarResponse,  "", PipelineQueue.class));
             } catch (ApiException exception) {
                errorListener.onErrorResponse(new VolleyError(exception));
             }
@@ -1401,26 +1869,32 @@ public class BlueOceanApi {
   }
   /**
   * 
-  * Retrieve user details for an organisation
-   * @param organisation Name of the organisation
-   * @param user Name of the user
-   * @return SwaggyjenkinsUser
+  * Retrieve run details for an organization pipeline
+   * @param organization Name of the organization
+   * @param pipeline Name of the pipeline
+   * @param run Name of the run
+   * @return PipelineRun
   */
-  public SwaggyjenkinsUser getUser (String organisation, String user) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
+  public PipelineRun getPipelineRun (String organization, String pipeline, String run) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
     Object postBody = null;
-    // verify the required parameter 'organisation' is set
-    if (organisation == null) {
-      VolleyError error = new VolleyError("Missing the required parameter 'organisation' when calling getUser",
-        new ApiException(400, "Missing the required parameter 'organisation' when calling getUser"));
+    // verify the required parameter 'organization' is set
+    if (organization == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'organization' when calling getPipelineRun",
+        new ApiException(400, "Missing the required parameter 'organization' when calling getPipelineRun"));
     }
-    // verify the required parameter 'user' is set
-    if (user == null) {
-      VolleyError error = new VolleyError("Missing the required parameter 'user' when calling getUser",
-        new ApiException(400, "Missing the required parameter 'user' when calling getUser"));
+    // verify the required parameter 'pipeline' is set
+    if (pipeline == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'pipeline' when calling getPipelineRun",
+        new ApiException(400, "Missing the required parameter 'pipeline' when calling getPipelineRun"));
+    }
+    // verify the required parameter 'run' is set
+    if (run == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'run' when calling getPipelineRun",
+        new ApiException(400, "Missing the required parameter 'run' when calling getPipelineRun"));
     }
 
     // create path and map variables
-    String path = "/blue/rest/organizations/{organisation}/users/{user}".replaceAll("\\{" + "organisation" + "\\}", apiInvoker.escapeString(organisation.toString())).replaceAll("\\{" + "user" + "\\}", apiInvoker.escapeString(user.toString()));
+    String path = "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}".replaceAll("\\{" + "organization" + "\\}", apiInvoker.escapeString(organization.toString())).replaceAll("\\{" + "pipeline" + "\\}", apiInvoker.escapeString(pipeline.toString())).replaceAll("\\{" + "run" + "\\}", apiInvoker.escapeString(run.toString()));
 
     // query params
     List<Pair> queryParams = new ArrayList<Pair>();
@@ -1441,12 +1915,12 @@ public class BlueOceanApi {
       // normal form params
     }
 
-    String[] authNames = new String[] {  };
+    String[] authNames = new String[] { "jenkins_auth" };
 
     try {
       String localVarResponse = apiInvoker.invokeAPI (basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames);
       if (localVarResponse != null) {
-         return (SwaggyjenkinsUser) ApiInvoker.deserialize(localVarResponse, "", SwaggyjenkinsUser.class);
+         return (PipelineRun) ApiInvoker.deserialize(localVarResponse, "", PipelineRun.class);
       } else {
          return null;
       }
@@ -1469,25 +1943,30 @@ public class BlueOceanApi {
 
       /**
    * 
-   * Retrieve user details for an organisation
-   * @param organisation Name of the organisation   * @param user Name of the user
+   * Retrieve run details for an organization pipeline
+   * @param organization Name of the organization   * @param pipeline Name of the pipeline   * @param run Name of the run
   */
-  public void getUser (String organisation, String user, final Response.Listener<SwaggyjenkinsUser> responseListener, final Response.ErrorListener errorListener) {
+  public void getPipelineRun (String organization, String pipeline, String run, final Response.Listener<PipelineRun> responseListener, final Response.ErrorListener errorListener) {
     Object postBody = null;
 
-    // verify the required parameter 'organisation' is set
-    if (organisation == null) {
-      VolleyError error = new VolleyError("Missing the required parameter 'organisation' when calling getUser",
-        new ApiException(400, "Missing the required parameter 'organisation' when calling getUser"));
+    // verify the required parameter 'organization' is set
+    if (organization == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'organization' when calling getPipelineRun",
+        new ApiException(400, "Missing the required parameter 'organization' when calling getPipelineRun"));
     }
-    // verify the required parameter 'user' is set
-    if (user == null) {
-      VolleyError error = new VolleyError("Missing the required parameter 'user' when calling getUser",
-        new ApiException(400, "Missing the required parameter 'user' when calling getUser"));
+    // verify the required parameter 'pipeline' is set
+    if (pipeline == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'pipeline' when calling getPipelineRun",
+        new ApiException(400, "Missing the required parameter 'pipeline' when calling getPipelineRun"));
+    }
+    // verify the required parameter 'run' is set
+    if (run == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'run' when calling getPipelineRun",
+        new ApiException(400, "Missing the required parameter 'run' when calling getPipelineRun"));
     }
 
     // create path and map variables
-    String path = "/blue/rest/organizations/{organisation}/users/{user}".replaceAll("\\{format\\}","json").replaceAll("\\{" + "organisation" + "\\}", apiInvoker.escapeString(organisation.toString())).replaceAll("\\{" + "user" + "\\}", apiInvoker.escapeString(user.toString()));
+    String path = "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}".replaceAll("\\{format\\}","json").replaceAll("\\{" + "organization" + "\\}", apiInvoker.escapeString(organization.toString())).replaceAll("\\{" + "pipeline" + "\\}", apiInvoker.escapeString(pipeline.toString())).replaceAll("\\{" + "run" + "\\}", apiInvoker.escapeString(run.toString()));
 
     // query params
     List<Pair> queryParams = new ArrayList<Pair>();
@@ -1514,7 +1993,7 @@ public class BlueOceanApi {
       // normal form params
           }
 
-    String[] authNames = new String[] {  };
+    String[] authNames = new String[] { "jenkins_auth" };
 
     try {
       apiInvoker.invokeAPI(basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames,
@@ -1522,7 +2001,7 @@ public class BlueOceanApi {
           @Override
           public void onResponse(String localVarResponse) {
             try {
-              responseListener.onResponse((SwaggyjenkinsUser) ApiInvoker.deserialize(localVarResponse,  "", SwaggyjenkinsUser.class));
+              responseListener.onResponse((PipelineRun) ApiInvoker.deserialize(localVarResponse,  "", PipelineRun.class));
             } catch (ApiException exception) {
                errorListener.onErrorResponse(new VolleyError(exception));
             }
@@ -1539,147 +2018,34 @@ public class BlueOceanApi {
   }
   /**
   * 
-  * Retrieve users details for an organisation
-   * @param organisation Name of the organisation
-   * @return SwaggyjenkinsUser
-  */
-  public SwaggyjenkinsUser getUsers (String organisation) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
-    Object postBody = null;
-    // verify the required parameter 'organisation' is set
-    if (organisation == null) {
-      VolleyError error = new VolleyError("Missing the required parameter 'organisation' when calling getUsers",
-        new ApiException(400, "Missing the required parameter 'organisation' when calling getUsers"));
-    }
-
-    // create path and map variables
-    String path = "/blue/rest/organizations/{organisation}/users/".replaceAll("\\{" + "organisation" + "\\}", apiInvoker.escapeString(organisation.toString()));
-
-    // query params
-    List<Pair> queryParams = new ArrayList<Pair>();
-    // header params
-    Map<String, String> headerParams = new HashMap<String, String>();
-    // form params
-    Map<String, String> formParams = new HashMap<String, String>();
-    String[] contentTypes = {
-    };
-    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
-
-    if (contentType.startsWith("multipart/form-data")) {
-      // file uploading
-      MultipartEntityBuilder localVarBuilder = MultipartEntityBuilder.create();
-      HttpEntity httpEntity = localVarBuilder.build();
-      postBody = httpEntity;
-    } else {
-      // normal form params
-    }
-
-    String[] authNames = new String[] {  };
-
-    try {
-      String localVarResponse = apiInvoker.invokeAPI (basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames);
-      if (localVarResponse != null) {
-         return (SwaggyjenkinsUser) ApiInvoker.deserialize(localVarResponse, "", SwaggyjenkinsUser.class);
-      } else {
-         return null;
-      }
-    } catch (ApiException ex) {
-       throw ex;
-    } catch (InterruptedException ex) {
-       throw ex;
-    } catch (ExecutionException ex) {
-      if (ex.getCause() instanceof VolleyError) {
-        VolleyError volleyError = (VolleyError)ex.getCause();
-        if (volleyError.networkResponse != null) {
-          throw new ApiException(volleyError.networkResponse.statusCode, volleyError.getMessage());
-        }
-      }
-      throw ex;
-    } catch (TimeoutException ex) {
-      throw ex;
-    }
-  }
-
-      /**
-   * 
-   * Retrieve users details for an organisation
-   * @param organisation Name of the organisation
-  */
-  public void getUsers (String organisation, final Response.Listener<SwaggyjenkinsUser> responseListener, final Response.ErrorListener errorListener) {
-    Object postBody = null;
-
-    // verify the required parameter 'organisation' is set
-    if (organisation == null) {
-      VolleyError error = new VolleyError("Missing the required parameter 'organisation' when calling getUsers",
-        new ApiException(400, "Missing the required parameter 'organisation' when calling getUsers"));
-    }
-
-    // create path and map variables
-    String path = "/blue/rest/organizations/{organisation}/users/".replaceAll("\\{format\\}","json").replaceAll("\\{" + "organisation" + "\\}", apiInvoker.escapeString(organisation.toString()));
-
-    // query params
-    List<Pair> queryParams = new ArrayList<Pair>();
-    // header params
-    Map<String, String> headerParams = new HashMap<String, String>();
-    // form params
-    Map<String, String> formParams = new HashMap<String, String>();
-
-
-
-    String[] contentTypes = {
-      
-    };
-    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
-
-    if (contentType.startsWith("multipart/form-data")) {
-      // file uploading
-      MultipartEntityBuilder localVarBuilder = MultipartEntityBuilder.create();
-      
-
-      HttpEntity httpEntity = localVarBuilder.build();
-      postBody = httpEntity;
-    } else {
-      // normal form params
-          }
-
-    String[] authNames = new String[] {  };
-
-    try {
-      apiInvoker.invokeAPI(basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames,
-        new Response.Listener<String>() {
-          @Override
-          public void onResponse(String localVarResponse) {
-            try {
-              responseListener.onResponse((SwaggyjenkinsUser) ApiInvoker.deserialize(localVarResponse,  "", SwaggyjenkinsUser.class));
-            } catch (ApiException exception) {
-               errorListener.onErrorResponse(new VolleyError(exception));
-            }
-          }
-      }, new Response.ErrorListener() {
-          @Override
-          public void onErrorResponse(VolleyError error) {
-            errorListener.onErrorResponse(error);
-          }
-      });
-    } catch (ApiException ex) {
-      errorListener.onErrorResponse(new VolleyError(ex));
-    }
-  }
-  /**
-  * 
-  * Get classes details
-   * @param q Query string containing an array of class names
+  * Get log for a pipeline run
+   * @param organization Name of the organization
+   * @param pipeline Name of the pipeline
+   * @param run Name of the run
+   * @param start Start position of the log
+   * @param download Set to true in order to download the file, otherwise it&#39;s passed as a response body
    * @return String
   */
-  public String search (String q) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
+  public String getPipelineRunLog (String organization, String pipeline, String run, Integer start, Boolean download) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
     Object postBody = null;
-    // verify the required parameter 'q' is set
-    if (q == null) {
-      VolleyError error = new VolleyError("Missing the required parameter 'q' when calling search",
-        new ApiException(400, "Missing the required parameter 'q' when calling search"));
+    // verify the required parameter 'organization' is set
+    if (organization == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'organization' when calling getPipelineRunLog",
+        new ApiException(400, "Missing the required parameter 'organization' when calling getPipelineRunLog"));
+    }
+    // verify the required parameter 'pipeline' is set
+    if (pipeline == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'pipeline' when calling getPipelineRunLog",
+        new ApiException(400, "Missing the required parameter 'pipeline' when calling getPipelineRunLog"));
+    }
+    // verify the required parameter 'run' is set
+    if (run == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'run' when calling getPipelineRunLog",
+        new ApiException(400, "Missing the required parameter 'run' when calling getPipelineRunLog"));
     }
 
     // create path and map variables
-    String path = "/blue/rest/classes/";
+    String path = "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/log".replaceAll("\\{" + "organization" + "\\}", apiInvoker.escapeString(organization.toString())).replaceAll("\\{" + "pipeline" + "\\}", apiInvoker.escapeString(pipeline.toString())).replaceAll("\\{" + "run" + "\\}", apiInvoker.escapeString(run.toString()));
 
     // query params
     List<Pair> queryParams = new ArrayList<Pair>();
@@ -1687,7 +2053,8 @@ public class BlueOceanApi {
     Map<String, String> headerParams = new HashMap<String, String>();
     // form params
     Map<String, String> formParams = new HashMap<String, String>();
-    queryParams.addAll(ApiInvoker.parameterToPairs("", "q", q));
+    queryParams.addAll(ApiInvoker.parameterToPairs("", "start", start));
+    queryParams.addAll(ApiInvoker.parameterToPairs("", "download", download));
     String[] contentTypes = {
     };
     String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
@@ -1701,7 +2068,7 @@ public class BlueOceanApi {
       // normal form params
     }
 
-    String[] authNames = new String[] {  };
+    String[] authNames = new String[] { "jenkins_auth" };
 
     try {
       String localVarResponse = apiInvoker.invokeAPI (basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames);
@@ -1729,20 +2096,30 @@ public class BlueOceanApi {
 
       /**
    * 
-   * Get classes details
-   * @param q Query string containing an array of class names
+   * Get log for a pipeline run
+   * @param organization Name of the organization   * @param pipeline Name of the pipeline   * @param run Name of the run   * @param start Start position of the log   * @param download Set to true in order to download the file, otherwise it&#39;s passed as a response body
   */
-  public void search (String q, final Response.Listener<String> responseListener, final Response.ErrorListener errorListener) {
+  public void getPipelineRunLog (String organization, String pipeline, String run, Integer start, Boolean download, final Response.Listener<String> responseListener, final Response.ErrorListener errorListener) {
     Object postBody = null;
 
-    // verify the required parameter 'q' is set
-    if (q == null) {
-      VolleyError error = new VolleyError("Missing the required parameter 'q' when calling search",
-        new ApiException(400, "Missing the required parameter 'q' when calling search"));
+    // verify the required parameter 'organization' is set
+    if (organization == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'organization' when calling getPipelineRunLog",
+        new ApiException(400, "Missing the required parameter 'organization' when calling getPipelineRunLog"));
+    }
+    // verify the required parameter 'pipeline' is set
+    if (pipeline == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'pipeline' when calling getPipelineRunLog",
+        new ApiException(400, "Missing the required parameter 'pipeline' when calling getPipelineRunLog"));
+    }
+    // verify the required parameter 'run' is set
+    if (run == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'run' when calling getPipelineRunLog",
+        new ApiException(400, "Missing the required parameter 'run' when calling getPipelineRunLog"));
     }
 
     // create path and map variables
-    String path = "/blue/rest/classes/".replaceAll("\\{format\\}","json");
+    String path = "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/log".replaceAll("\\{format\\}","json").replaceAll("\\{" + "organization" + "\\}", apiInvoker.escapeString(organization.toString())).replaceAll("\\{" + "pipeline" + "\\}", apiInvoker.escapeString(pipeline.toString())).replaceAll("\\{" + "run" + "\\}", apiInvoker.escapeString(run.toString()));
 
     // query params
     List<Pair> queryParams = new ArrayList<Pair>();
@@ -1751,7 +2128,8 @@ public class BlueOceanApi {
     // form params
     Map<String, String> formParams = new HashMap<String, String>();
 
-    queryParams.addAll(ApiInvoker.parameterToPairs("", "q", q));
+    queryParams.addAll(ApiInvoker.parameterToPairs("", "start", start));
+    queryParams.addAll(ApiInvoker.parameterToPairs("", "download", download));
 
 
     String[] contentTypes = {
@@ -1770,7 +2148,7 @@ public class BlueOceanApi {
       // normal form params
           }
 
-    String[] authNames = new String[] {  };
+    String[] authNames = new String[] { "jenkins_auth" };
 
     try {
       apiInvoker.invokeAPI(basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames,
@@ -1795,16 +2173,2675 @@ public class BlueOceanApi {
   }
   /**
   * 
+  * Retrieve run node details for an organization pipeline
+   * @param organization Name of the organization
+   * @param pipeline Name of the pipeline
+   * @param run Name of the run
+   * @param node Name of the node
+   * @return PipelineRunNode
+  */
+  public PipelineRunNode getPipelineRunNode (String organization, String pipeline, String run, String node) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
+    Object postBody = null;
+    // verify the required parameter 'organization' is set
+    if (organization == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'organization' when calling getPipelineRunNode",
+        new ApiException(400, "Missing the required parameter 'organization' when calling getPipelineRunNode"));
+    }
+    // verify the required parameter 'pipeline' is set
+    if (pipeline == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'pipeline' when calling getPipelineRunNode",
+        new ApiException(400, "Missing the required parameter 'pipeline' when calling getPipelineRunNode"));
+    }
+    // verify the required parameter 'run' is set
+    if (run == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'run' when calling getPipelineRunNode",
+        new ApiException(400, "Missing the required parameter 'run' when calling getPipelineRunNode"));
+    }
+    // verify the required parameter 'node' is set
+    if (node == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'node' when calling getPipelineRunNode",
+        new ApiException(400, "Missing the required parameter 'node' when calling getPipelineRunNode"));
+    }
+
+    // create path and map variables
+    String path = "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}".replaceAll("\\{" + "organization" + "\\}", apiInvoker.escapeString(organization.toString())).replaceAll("\\{" + "pipeline" + "\\}", apiInvoker.escapeString(pipeline.toString())).replaceAll("\\{" + "run" + "\\}", apiInvoker.escapeString(run.toString())).replaceAll("\\{" + "node" + "\\}", apiInvoker.escapeString(node.toString()));
+
+    // query params
+    List<Pair> queryParams = new ArrayList<Pair>();
+    // header params
+    Map<String, String> headerParams = new HashMap<String, String>();
+    // form params
+    Map<String, String> formParams = new HashMap<String, String>();
+    String[] contentTypes = {
+    };
+    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+
+    if (contentType.startsWith("multipart/form-data")) {
+      // file uploading
+      MultipartEntityBuilder localVarBuilder = MultipartEntityBuilder.create();
+      HttpEntity httpEntity = localVarBuilder.build();
+      postBody = httpEntity;
+    } else {
+      // normal form params
+    }
+
+    String[] authNames = new String[] { "jenkins_auth" };
+
+    try {
+      String localVarResponse = apiInvoker.invokeAPI (basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames);
+      if (localVarResponse != null) {
+         return (PipelineRunNode) ApiInvoker.deserialize(localVarResponse, "", PipelineRunNode.class);
+      } else {
+         return null;
+      }
+    } catch (ApiException ex) {
+       throw ex;
+    } catch (InterruptedException ex) {
+       throw ex;
+    } catch (ExecutionException ex) {
+      if (ex.getCause() instanceof VolleyError) {
+        VolleyError volleyError = (VolleyError)ex.getCause();
+        if (volleyError.networkResponse != null) {
+          throw new ApiException(volleyError.networkResponse.statusCode, volleyError.getMessage());
+        }
+      }
+      throw ex;
+    } catch (TimeoutException ex) {
+      throw ex;
+    }
+  }
+
+      /**
+   * 
+   * Retrieve run node details for an organization pipeline
+   * @param organization Name of the organization   * @param pipeline Name of the pipeline   * @param run Name of the run   * @param node Name of the node
+  */
+  public void getPipelineRunNode (String organization, String pipeline, String run, String node, final Response.Listener<PipelineRunNode> responseListener, final Response.ErrorListener errorListener) {
+    Object postBody = null;
+
+    // verify the required parameter 'organization' is set
+    if (organization == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'organization' when calling getPipelineRunNode",
+        new ApiException(400, "Missing the required parameter 'organization' when calling getPipelineRunNode"));
+    }
+    // verify the required parameter 'pipeline' is set
+    if (pipeline == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'pipeline' when calling getPipelineRunNode",
+        new ApiException(400, "Missing the required parameter 'pipeline' when calling getPipelineRunNode"));
+    }
+    // verify the required parameter 'run' is set
+    if (run == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'run' when calling getPipelineRunNode",
+        new ApiException(400, "Missing the required parameter 'run' when calling getPipelineRunNode"));
+    }
+    // verify the required parameter 'node' is set
+    if (node == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'node' when calling getPipelineRunNode",
+        new ApiException(400, "Missing the required parameter 'node' when calling getPipelineRunNode"));
+    }
+
+    // create path and map variables
+    String path = "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}".replaceAll("\\{format\\}","json").replaceAll("\\{" + "organization" + "\\}", apiInvoker.escapeString(organization.toString())).replaceAll("\\{" + "pipeline" + "\\}", apiInvoker.escapeString(pipeline.toString())).replaceAll("\\{" + "run" + "\\}", apiInvoker.escapeString(run.toString())).replaceAll("\\{" + "node" + "\\}", apiInvoker.escapeString(node.toString()));
+
+    // query params
+    List<Pair> queryParams = new ArrayList<Pair>();
+    // header params
+    Map<String, String> headerParams = new HashMap<String, String>();
+    // form params
+    Map<String, String> formParams = new HashMap<String, String>();
+
+
+
+    String[] contentTypes = {
+      
+    };
+    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+
+    if (contentType.startsWith("multipart/form-data")) {
+      // file uploading
+      MultipartEntityBuilder localVarBuilder = MultipartEntityBuilder.create();
+      
+
+      HttpEntity httpEntity = localVarBuilder.build();
+      postBody = httpEntity;
+    } else {
+      // normal form params
+          }
+
+    String[] authNames = new String[] { "jenkins_auth" };
+
+    try {
+      apiInvoker.invokeAPI(basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames,
+        new Response.Listener<String>() {
+          @Override
+          public void onResponse(String localVarResponse) {
+            try {
+              responseListener.onResponse((PipelineRunNode) ApiInvoker.deserialize(localVarResponse,  "", PipelineRunNode.class));
+            } catch (ApiException exception) {
+               errorListener.onErrorResponse(new VolleyError(exception));
+            }
+          }
+      }, new Response.ErrorListener() {
+          @Override
+          public void onErrorResponse(VolleyError error) {
+            errorListener.onErrorResponse(error);
+          }
+      });
+    } catch (ApiException ex) {
+      errorListener.onErrorResponse(new VolleyError(ex));
+    }
+  }
+  /**
+  * 
+  * Retrieve run node details for an organization pipeline
+   * @param organization Name of the organization
+   * @param pipeline Name of the pipeline
+   * @param run Name of the run
+   * @param node Name of the node
+   * @param step Name of the step
+   * @return PipelineStepImpl
+  */
+  public PipelineStepImpl getPipelineRunNodeStep (String organization, String pipeline, String run, String node, String step) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
+    Object postBody = null;
+    // verify the required parameter 'organization' is set
+    if (organization == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'organization' when calling getPipelineRunNodeStep",
+        new ApiException(400, "Missing the required parameter 'organization' when calling getPipelineRunNodeStep"));
+    }
+    // verify the required parameter 'pipeline' is set
+    if (pipeline == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'pipeline' when calling getPipelineRunNodeStep",
+        new ApiException(400, "Missing the required parameter 'pipeline' when calling getPipelineRunNodeStep"));
+    }
+    // verify the required parameter 'run' is set
+    if (run == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'run' when calling getPipelineRunNodeStep",
+        new ApiException(400, "Missing the required parameter 'run' when calling getPipelineRunNodeStep"));
+    }
+    // verify the required parameter 'node' is set
+    if (node == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'node' when calling getPipelineRunNodeStep",
+        new ApiException(400, "Missing the required parameter 'node' when calling getPipelineRunNodeStep"));
+    }
+    // verify the required parameter 'step' is set
+    if (step == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'step' when calling getPipelineRunNodeStep",
+        new ApiException(400, "Missing the required parameter 'step' when calling getPipelineRunNodeStep"));
+    }
+
+    // create path and map variables
+    String path = "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps/{step}".replaceAll("\\{" + "organization" + "\\}", apiInvoker.escapeString(organization.toString())).replaceAll("\\{" + "pipeline" + "\\}", apiInvoker.escapeString(pipeline.toString())).replaceAll("\\{" + "run" + "\\}", apiInvoker.escapeString(run.toString())).replaceAll("\\{" + "node" + "\\}", apiInvoker.escapeString(node.toString())).replaceAll("\\{" + "step" + "\\}", apiInvoker.escapeString(step.toString()));
+
+    // query params
+    List<Pair> queryParams = new ArrayList<Pair>();
+    // header params
+    Map<String, String> headerParams = new HashMap<String, String>();
+    // form params
+    Map<String, String> formParams = new HashMap<String, String>();
+    String[] contentTypes = {
+    };
+    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+
+    if (contentType.startsWith("multipart/form-data")) {
+      // file uploading
+      MultipartEntityBuilder localVarBuilder = MultipartEntityBuilder.create();
+      HttpEntity httpEntity = localVarBuilder.build();
+      postBody = httpEntity;
+    } else {
+      // normal form params
+    }
+
+    String[] authNames = new String[] { "jenkins_auth" };
+
+    try {
+      String localVarResponse = apiInvoker.invokeAPI (basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames);
+      if (localVarResponse != null) {
+         return (PipelineStepImpl) ApiInvoker.deserialize(localVarResponse, "", PipelineStepImpl.class);
+      } else {
+         return null;
+      }
+    } catch (ApiException ex) {
+       throw ex;
+    } catch (InterruptedException ex) {
+       throw ex;
+    } catch (ExecutionException ex) {
+      if (ex.getCause() instanceof VolleyError) {
+        VolleyError volleyError = (VolleyError)ex.getCause();
+        if (volleyError.networkResponse != null) {
+          throw new ApiException(volleyError.networkResponse.statusCode, volleyError.getMessage());
+        }
+      }
+      throw ex;
+    } catch (TimeoutException ex) {
+      throw ex;
+    }
+  }
+
+      /**
+   * 
+   * Retrieve run node details for an organization pipeline
+   * @param organization Name of the organization   * @param pipeline Name of the pipeline   * @param run Name of the run   * @param node Name of the node   * @param step Name of the step
+  */
+  public void getPipelineRunNodeStep (String organization, String pipeline, String run, String node, String step, final Response.Listener<PipelineStepImpl> responseListener, final Response.ErrorListener errorListener) {
+    Object postBody = null;
+
+    // verify the required parameter 'organization' is set
+    if (organization == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'organization' when calling getPipelineRunNodeStep",
+        new ApiException(400, "Missing the required parameter 'organization' when calling getPipelineRunNodeStep"));
+    }
+    // verify the required parameter 'pipeline' is set
+    if (pipeline == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'pipeline' when calling getPipelineRunNodeStep",
+        new ApiException(400, "Missing the required parameter 'pipeline' when calling getPipelineRunNodeStep"));
+    }
+    // verify the required parameter 'run' is set
+    if (run == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'run' when calling getPipelineRunNodeStep",
+        new ApiException(400, "Missing the required parameter 'run' when calling getPipelineRunNodeStep"));
+    }
+    // verify the required parameter 'node' is set
+    if (node == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'node' when calling getPipelineRunNodeStep",
+        new ApiException(400, "Missing the required parameter 'node' when calling getPipelineRunNodeStep"));
+    }
+    // verify the required parameter 'step' is set
+    if (step == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'step' when calling getPipelineRunNodeStep",
+        new ApiException(400, "Missing the required parameter 'step' when calling getPipelineRunNodeStep"));
+    }
+
+    // create path and map variables
+    String path = "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps/{step}".replaceAll("\\{format\\}","json").replaceAll("\\{" + "organization" + "\\}", apiInvoker.escapeString(organization.toString())).replaceAll("\\{" + "pipeline" + "\\}", apiInvoker.escapeString(pipeline.toString())).replaceAll("\\{" + "run" + "\\}", apiInvoker.escapeString(run.toString())).replaceAll("\\{" + "node" + "\\}", apiInvoker.escapeString(node.toString())).replaceAll("\\{" + "step" + "\\}", apiInvoker.escapeString(step.toString()));
+
+    // query params
+    List<Pair> queryParams = new ArrayList<Pair>();
+    // header params
+    Map<String, String> headerParams = new HashMap<String, String>();
+    // form params
+    Map<String, String> formParams = new HashMap<String, String>();
+
+
+
+    String[] contentTypes = {
+      
+    };
+    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+
+    if (contentType.startsWith("multipart/form-data")) {
+      // file uploading
+      MultipartEntityBuilder localVarBuilder = MultipartEntityBuilder.create();
+      
+
+      HttpEntity httpEntity = localVarBuilder.build();
+      postBody = httpEntity;
+    } else {
+      // normal form params
+          }
+
+    String[] authNames = new String[] { "jenkins_auth" };
+
+    try {
+      apiInvoker.invokeAPI(basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames,
+        new Response.Listener<String>() {
+          @Override
+          public void onResponse(String localVarResponse) {
+            try {
+              responseListener.onResponse((PipelineStepImpl) ApiInvoker.deserialize(localVarResponse,  "", PipelineStepImpl.class));
+            } catch (ApiException exception) {
+               errorListener.onErrorResponse(new VolleyError(exception));
+            }
+          }
+      }, new Response.ErrorListener() {
+          @Override
+          public void onErrorResponse(VolleyError error) {
+            errorListener.onErrorResponse(error);
+          }
+      });
+    } catch (ApiException ex) {
+      errorListener.onErrorResponse(new VolleyError(ex));
+    }
+  }
+  /**
+  * 
+  * Get log for a pipeline run node step
+   * @param organization Name of the organization
+   * @param pipeline Name of the pipeline
+   * @param run Name of the run
+   * @param node Name of the node
+   * @param step Name of the step
+   * @return String
+  */
+  public String getPipelineRunNodeStepLog (String organization, String pipeline, String run, String node, String step) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
+    Object postBody = null;
+    // verify the required parameter 'organization' is set
+    if (organization == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'organization' when calling getPipelineRunNodeStepLog",
+        new ApiException(400, "Missing the required parameter 'organization' when calling getPipelineRunNodeStepLog"));
+    }
+    // verify the required parameter 'pipeline' is set
+    if (pipeline == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'pipeline' when calling getPipelineRunNodeStepLog",
+        new ApiException(400, "Missing the required parameter 'pipeline' when calling getPipelineRunNodeStepLog"));
+    }
+    // verify the required parameter 'run' is set
+    if (run == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'run' when calling getPipelineRunNodeStepLog",
+        new ApiException(400, "Missing the required parameter 'run' when calling getPipelineRunNodeStepLog"));
+    }
+    // verify the required parameter 'node' is set
+    if (node == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'node' when calling getPipelineRunNodeStepLog",
+        new ApiException(400, "Missing the required parameter 'node' when calling getPipelineRunNodeStepLog"));
+    }
+    // verify the required parameter 'step' is set
+    if (step == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'step' when calling getPipelineRunNodeStepLog",
+        new ApiException(400, "Missing the required parameter 'step' when calling getPipelineRunNodeStepLog"));
+    }
+
+    // create path and map variables
+    String path = "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps/{step}/log".replaceAll("\\{" + "organization" + "\\}", apiInvoker.escapeString(organization.toString())).replaceAll("\\{" + "pipeline" + "\\}", apiInvoker.escapeString(pipeline.toString())).replaceAll("\\{" + "run" + "\\}", apiInvoker.escapeString(run.toString())).replaceAll("\\{" + "node" + "\\}", apiInvoker.escapeString(node.toString())).replaceAll("\\{" + "step" + "\\}", apiInvoker.escapeString(step.toString()));
+
+    // query params
+    List<Pair> queryParams = new ArrayList<Pair>();
+    // header params
+    Map<String, String> headerParams = new HashMap<String, String>();
+    // form params
+    Map<String, String> formParams = new HashMap<String, String>();
+    String[] contentTypes = {
+    };
+    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+
+    if (contentType.startsWith("multipart/form-data")) {
+      // file uploading
+      MultipartEntityBuilder localVarBuilder = MultipartEntityBuilder.create();
+      HttpEntity httpEntity = localVarBuilder.build();
+      postBody = httpEntity;
+    } else {
+      // normal form params
+    }
+
+    String[] authNames = new String[] { "jenkins_auth" };
+
+    try {
+      String localVarResponse = apiInvoker.invokeAPI (basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames);
+      if (localVarResponse != null) {
+         return (String) ApiInvoker.deserialize(localVarResponse, "", String.class);
+      } else {
+         return null;
+      }
+    } catch (ApiException ex) {
+       throw ex;
+    } catch (InterruptedException ex) {
+       throw ex;
+    } catch (ExecutionException ex) {
+      if (ex.getCause() instanceof VolleyError) {
+        VolleyError volleyError = (VolleyError)ex.getCause();
+        if (volleyError.networkResponse != null) {
+          throw new ApiException(volleyError.networkResponse.statusCode, volleyError.getMessage());
+        }
+      }
+      throw ex;
+    } catch (TimeoutException ex) {
+      throw ex;
+    }
+  }
+
+      /**
+   * 
+   * Get log for a pipeline run node step
+   * @param organization Name of the organization   * @param pipeline Name of the pipeline   * @param run Name of the run   * @param node Name of the node   * @param step Name of the step
+  */
+  public void getPipelineRunNodeStepLog (String organization, String pipeline, String run, String node, String step, final Response.Listener<String> responseListener, final Response.ErrorListener errorListener) {
+    Object postBody = null;
+
+    // verify the required parameter 'organization' is set
+    if (organization == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'organization' when calling getPipelineRunNodeStepLog",
+        new ApiException(400, "Missing the required parameter 'organization' when calling getPipelineRunNodeStepLog"));
+    }
+    // verify the required parameter 'pipeline' is set
+    if (pipeline == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'pipeline' when calling getPipelineRunNodeStepLog",
+        new ApiException(400, "Missing the required parameter 'pipeline' when calling getPipelineRunNodeStepLog"));
+    }
+    // verify the required parameter 'run' is set
+    if (run == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'run' when calling getPipelineRunNodeStepLog",
+        new ApiException(400, "Missing the required parameter 'run' when calling getPipelineRunNodeStepLog"));
+    }
+    // verify the required parameter 'node' is set
+    if (node == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'node' when calling getPipelineRunNodeStepLog",
+        new ApiException(400, "Missing the required parameter 'node' when calling getPipelineRunNodeStepLog"));
+    }
+    // verify the required parameter 'step' is set
+    if (step == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'step' when calling getPipelineRunNodeStepLog",
+        new ApiException(400, "Missing the required parameter 'step' when calling getPipelineRunNodeStepLog"));
+    }
+
+    // create path and map variables
+    String path = "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps/{step}/log".replaceAll("\\{format\\}","json").replaceAll("\\{" + "organization" + "\\}", apiInvoker.escapeString(organization.toString())).replaceAll("\\{" + "pipeline" + "\\}", apiInvoker.escapeString(pipeline.toString())).replaceAll("\\{" + "run" + "\\}", apiInvoker.escapeString(run.toString())).replaceAll("\\{" + "node" + "\\}", apiInvoker.escapeString(node.toString())).replaceAll("\\{" + "step" + "\\}", apiInvoker.escapeString(step.toString()));
+
+    // query params
+    List<Pair> queryParams = new ArrayList<Pair>();
+    // header params
+    Map<String, String> headerParams = new HashMap<String, String>();
+    // form params
+    Map<String, String> formParams = new HashMap<String, String>();
+
+
+
+    String[] contentTypes = {
+      
+    };
+    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+
+    if (contentType.startsWith("multipart/form-data")) {
+      // file uploading
+      MultipartEntityBuilder localVarBuilder = MultipartEntityBuilder.create();
+      
+
+      HttpEntity httpEntity = localVarBuilder.build();
+      postBody = httpEntity;
+    } else {
+      // normal form params
+          }
+
+    String[] authNames = new String[] { "jenkins_auth" };
+
+    try {
+      apiInvoker.invokeAPI(basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames,
+        new Response.Listener<String>() {
+          @Override
+          public void onResponse(String localVarResponse) {
+            try {
+              responseListener.onResponse((String) ApiInvoker.deserialize(localVarResponse,  "", String.class));
+            } catch (ApiException exception) {
+               errorListener.onErrorResponse(new VolleyError(exception));
+            }
+          }
+      }, new Response.ErrorListener() {
+          @Override
+          public void onErrorResponse(VolleyError error) {
+            errorListener.onErrorResponse(error);
+          }
+      });
+    } catch (ApiException ex) {
+      errorListener.onErrorResponse(new VolleyError(ex));
+    }
+  }
+  /**
+  * 
+  * Retrieve run node steps details for an organization pipeline
+   * @param organization Name of the organization
+   * @param pipeline Name of the pipeline
+   * @param run Name of the run
+   * @param node Name of the node
+   * @return PipelineRunNodeSteps
+  */
+  public PipelineRunNodeSteps getPipelineRunNodeSteps (String organization, String pipeline, String run, String node) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
+    Object postBody = null;
+    // verify the required parameter 'organization' is set
+    if (organization == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'organization' when calling getPipelineRunNodeSteps",
+        new ApiException(400, "Missing the required parameter 'organization' when calling getPipelineRunNodeSteps"));
+    }
+    // verify the required parameter 'pipeline' is set
+    if (pipeline == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'pipeline' when calling getPipelineRunNodeSteps",
+        new ApiException(400, "Missing the required parameter 'pipeline' when calling getPipelineRunNodeSteps"));
+    }
+    // verify the required parameter 'run' is set
+    if (run == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'run' when calling getPipelineRunNodeSteps",
+        new ApiException(400, "Missing the required parameter 'run' when calling getPipelineRunNodeSteps"));
+    }
+    // verify the required parameter 'node' is set
+    if (node == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'node' when calling getPipelineRunNodeSteps",
+        new ApiException(400, "Missing the required parameter 'node' when calling getPipelineRunNodeSteps"));
+    }
+
+    // create path and map variables
+    String path = "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps".replaceAll("\\{" + "organization" + "\\}", apiInvoker.escapeString(organization.toString())).replaceAll("\\{" + "pipeline" + "\\}", apiInvoker.escapeString(pipeline.toString())).replaceAll("\\{" + "run" + "\\}", apiInvoker.escapeString(run.toString())).replaceAll("\\{" + "node" + "\\}", apiInvoker.escapeString(node.toString()));
+
+    // query params
+    List<Pair> queryParams = new ArrayList<Pair>();
+    // header params
+    Map<String, String> headerParams = new HashMap<String, String>();
+    // form params
+    Map<String, String> formParams = new HashMap<String, String>();
+    String[] contentTypes = {
+    };
+    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+
+    if (contentType.startsWith("multipart/form-data")) {
+      // file uploading
+      MultipartEntityBuilder localVarBuilder = MultipartEntityBuilder.create();
+      HttpEntity httpEntity = localVarBuilder.build();
+      postBody = httpEntity;
+    } else {
+      // normal form params
+    }
+
+    String[] authNames = new String[] { "jenkins_auth" };
+
+    try {
+      String localVarResponse = apiInvoker.invokeAPI (basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames);
+      if (localVarResponse != null) {
+         return (PipelineRunNodeSteps) ApiInvoker.deserialize(localVarResponse, "", PipelineRunNodeSteps.class);
+      } else {
+         return null;
+      }
+    } catch (ApiException ex) {
+       throw ex;
+    } catch (InterruptedException ex) {
+       throw ex;
+    } catch (ExecutionException ex) {
+      if (ex.getCause() instanceof VolleyError) {
+        VolleyError volleyError = (VolleyError)ex.getCause();
+        if (volleyError.networkResponse != null) {
+          throw new ApiException(volleyError.networkResponse.statusCode, volleyError.getMessage());
+        }
+      }
+      throw ex;
+    } catch (TimeoutException ex) {
+      throw ex;
+    }
+  }
+
+      /**
+   * 
+   * Retrieve run node steps details for an organization pipeline
+   * @param organization Name of the organization   * @param pipeline Name of the pipeline   * @param run Name of the run   * @param node Name of the node
+  */
+  public void getPipelineRunNodeSteps (String organization, String pipeline, String run, String node, final Response.Listener<PipelineRunNodeSteps> responseListener, final Response.ErrorListener errorListener) {
+    Object postBody = null;
+
+    // verify the required parameter 'organization' is set
+    if (organization == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'organization' when calling getPipelineRunNodeSteps",
+        new ApiException(400, "Missing the required parameter 'organization' when calling getPipelineRunNodeSteps"));
+    }
+    // verify the required parameter 'pipeline' is set
+    if (pipeline == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'pipeline' when calling getPipelineRunNodeSteps",
+        new ApiException(400, "Missing the required parameter 'pipeline' when calling getPipelineRunNodeSteps"));
+    }
+    // verify the required parameter 'run' is set
+    if (run == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'run' when calling getPipelineRunNodeSteps",
+        new ApiException(400, "Missing the required parameter 'run' when calling getPipelineRunNodeSteps"));
+    }
+    // verify the required parameter 'node' is set
+    if (node == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'node' when calling getPipelineRunNodeSteps",
+        new ApiException(400, "Missing the required parameter 'node' when calling getPipelineRunNodeSteps"));
+    }
+
+    // create path and map variables
+    String path = "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps".replaceAll("\\{format\\}","json").replaceAll("\\{" + "organization" + "\\}", apiInvoker.escapeString(organization.toString())).replaceAll("\\{" + "pipeline" + "\\}", apiInvoker.escapeString(pipeline.toString())).replaceAll("\\{" + "run" + "\\}", apiInvoker.escapeString(run.toString())).replaceAll("\\{" + "node" + "\\}", apiInvoker.escapeString(node.toString()));
+
+    // query params
+    List<Pair> queryParams = new ArrayList<Pair>();
+    // header params
+    Map<String, String> headerParams = new HashMap<String, String>();
+    // form params
+    Map<String, String> formParams = new HashMap<String, String>();
+
+
+
+    String[] contentTypes = {
+      
+    };
+    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+
+    if (contentType.startsWith("multipart/form-data")) {
+      // file uploading
+      MultipartEntityBuilder localVarBuilder = MultipartEntityBuilder.create();
+      
+
+      HttpEntity httpEntity = localVarBuilder.build();
+      postBody = httpEntity;
+    } else {
+      // normal form params
+          }
+
+    String[] authNames = new String[] { "jenkins_auth" };
+
+    try {
+      apiInvoker.invokeAPI(basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames,
+        new Response.Listener<String>() {
+          @Override
+          public void onResponse(String localVarResponse) {
+            try {
+              responseListener.onResponse((PipelineRunNodeSteps) ApiInvoker.deserialize(localVarResponse,  "", PipelineRunNodeSteps.class));
+            } catch (ApiException exception) {
+               errorListener.onErrorResponse(new VolleyError(exception));
+            }
+          }
+      }, new Response.ErrorListener() {
+          @Override
+          public void onErrorResponse(VolleyError error) {
+            errorListener.onErrorResponse(error);
+          }
+      });
+    } catch (ApiException ex) {
+      errorListener.onErrorResponse(new VolleyError(ex));
+    }
+  }
+  /**
+  * 
+  * Retrieve run nodes details for an organization pipeline
+   * @param organization Name of the organization
+   * @param pipeline Name of the pipeline
+   * @param run Name of the run
+   * @return PipelineRunNodes
+  */
+  public PipelineRunNodes getPipelineRunNodes (String organization, String pipeline, String run) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
+    Object postBody = null;
+    // verify the required parameter 'organization' is set
+    if (organization == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'organization' when calling getPipelineRunNodes",
+        new ApiException(400, "Missing the required parameter 'organization' when calling getPipelineRunNodes"));
+    }
+    // verify the required parameter 'pipeline' is set
+    if (pipeline == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'pipeline' when calling getPipelineRunNodes",
+        new ApiException(400, "Missing the required parameter 'pipeline' when calling getPipelineRunNodes"));
+    }
+    // verify the required parameter 'run' is set
+    if (run == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'run' when calling getPipelineRunNodes",
+        new ApiException(400, "Missing the required parameter 'run' when calling getPipelineRunNodes"));
+    }
+
+    // create path and map variables
+    String path = "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes".replaceAll("\\{" + "organization" + "\\}", apiInvoker.escapeString(organization.toString())).replaceAll("\\{" + "pipeline" + "\\}", apiInvoker.escapeString(pipeline.toString())).replaceAll("\\{" + "run" + "\\}", apiInvoker.escapeString(run.toString()));
+
+    // query params
+    List<Pair> queryParams = new ArrayList<Pair>();
+    // header params
+    Map<String, String> headerParams = new HashMap<String, String>();
+    // form params
+    Map<String, String> formParams = new HashMap<String, String>();
+    String[] contentTypes = {
+    };
+    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+
+    if (contentType.startsWith("multipart/form-data")) {
+      // file uploading
+      MultipartEntityBuilder localVarBuilder = MultipartEntityBuilder.create();
+      HttpEntity httpEntity = localVarBuilder.build();
+      postBody = httpEntity;
+    } else {
+      // normal form params
+    }
+
+    String[] authNames = new String[] { "jenkins_auth" };
+
+    try {
+      String localVarResponse = apiInvoker.invokeAPI (basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames);
+      if (localVarResponse != null) {
+         return (PipelineRunNodes) ApiInvoker.deserialize(localVarResponse, "", PipelineRunNodes.class);
+      } else {
+         return null;
+      }
+    } catch (ApiException ex) {
+       throw ex;
+    } catch (InterruptedException ex) {
+       throw ex;
+    } catch (ExecutionException ex) {
+      if (ex.getCause() instanceof VolleyError) {
+        VolleyError volleyError = (VolleyError)ex.getCause();
+        if (volleyError.networkResponse != null) {
+          throw new ApiException(volleyError.networkResponse.statusCode, volleyError.getMessage());
+        }
+      }
+      throw ex;
+    } catch (TimeoutException ex) {
+      throw ex;
+    }
+  }
+
+      /**
+   * 
+   * Retrieve run nodes details for an organization pipeline
+   * @param organization Name of the organization   * @param pipeline Name of the pipeline   * @param run Name of the run
+  */
+  public void getPipelineRunNodes (String organization, String pipeline, String run, final Response.Listener<PipelineRunNodes> responseListener, final Response.ErrorListener errorListener) {
+    Object postBody = null;
+
+    // verify the required parameter 'organization' is set
+    if (organization == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'organization' when calling getPipelineRunNodes",
+        new ApiException(400, "Missing the required parameter 'organization' when calling getPipelineRunNodes"));
+    }
+    // verify the required parameter 'pipeline' is set
+    if (pipeline == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'pipeline' when calling getPipelineRunNodes",
+        new ApiException(400, "Missing the required parameter 'pipeline' when calling getPipelineRunNodes"));
+    }
+    // verify the required parameter 'run' is set
+    if (run == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'run' when calling getPipelineRunNodes",
+        new ApiException(400, "Missing the required parameter 'run' when calling getPipelineRunNodes"));
+    }
+
+    // create path and map variables
+    String path = "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes".replaceAll("\\{format\\}","json").replaceAll("\\{" + "organization" + "\\}", apiInvoker.escapeString(organization.toString())).replaceAll("\\{" + "pipeline" + "\\}", apiInvoker.escapeString(pipeline.toString())).replaceAll("\\{" + "run" + "\\}", apiInvoker.escapeString(run.toString()));
+
+    // query params
+    List<Pair> queryParams = new ArrayList<Pair>();
+    // header params
+    Map<String, String> headerParams = new HashMap<String, String>();
+    // form params
+    Map<String, String> formParams = new HashMap<String, String>();
+
+
+
+    String[] contentTypes = {
+      
+    };
+    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+
+    if (contentType.startsWith("multipart/form-data")) {
+      // file uploading
+      MultipartEntityBuilder localVarBuilder = MultipartEntityBuilder.create();
+      
+
+      HttpEntity httpEntity = localVarBuilder.build();
+      postBody = httpEntity;
+    } else {
+      // normal form params
+          }
+
+    String[] authNames = new String[] { "jenkins_auth" };
+
+    try {
+      apiInvoker.invokeAPI(basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames,
+        new Response.Listener<String>() {
+          @Override
+          public void onResponse(String localVarResponse) {
+            try {
+              responseListener.onResponse((PipelineRunNodes) ApiInvoker.deserialize(localVarResponse,  "", PipelineRunNodes.class));
+            } catch (ApiException exception) {
+               errorListener.onErrorResponse(new VolleyError(exception));
+            }
+          }
+      }, new Response.ErrorListener() {
+          @Override
+          public void onErrorResponse(VolleyError error) {
+            errorListener.onErrorResponse(error);
+          }
+      });
+    } catch (ApiException ex) {
+      errorListener.onErrorResponse(new VolleyError(ex));
+    }
+  }
+  /**
+  * 
+  * Retrieve all runs details for an organization pipeline
+   * @param organization Name of the organization
+   * @param pipeline Name of the pipeline
+   * @return PipelineRuns
+  */
+  public PipelineRuns getPipelineRuns (String organization, String pipeline) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
+    Object postBody = null;
+    // verify the required parameter 'organization' is set
+    if (organization == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'organization' when calling getPipelineRuns",
+        new ApiException(400, "Missing the required parameter 'organization' when calling getPipelineRuns"));
+    }
+    // verify the required parameter 'pipeline' is set
+    if (pipeline == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'pipeline' when calling getPipelineRuns",
+        new ApiException(400, "Missing the required parameter 'pipeline' when calling getPipelineRuns"));
+    }
+
+    // create path and map variables
+    String path = "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs".replaceAll("\\{" + "organization" + "\\}", apiInvoker.escapeString(organization.toString())).replaceAll("\\{" + "pipeline" + "\\}", apiInvoker.escapeString(pipeline.toString()));
+
+    // query params
+    List<Pair> queryParams = new ArrayList<Pair>();
+    // header params
+    Map<String, String> headerParams = new HashMap<String, String>();
+    // form params
+    Map<String, String> formParams = new HashMap<String, String>();
+    String[] contentTypes = {
+    };
+    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+
+    if (contentType.startsWith("multipart/form-data")) {
+      // file uploading
+      MultipartEntityBuilder localVarBuilder = MultipartEntityBuilder.create();
+      HttpEntity httpEntity = localVarBuilder.build();
+      postBody = httpEntity;
+    } else {
+      // normal form params
+    }
+
+    String[] authNames = new String[] { "jenkins_auth" };
+
+    try {
+      String localVarResponse = apiInvoker.invokeAPI (basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames);
+      if (localVarResponse != null) {
+         return (PipelineRuns) ApiInvoker.deserialize(localVarResponse, "", PipelineRuns.class);
+      } else {
+         return null;
+      }
+    } catch (ApiException ex) {
+       throw ex;
+    } catch (InterruptedException ex) {
+       throw ex;
+    } catch (ExecutionException ex) {
+      if (ex.getCause() instanceof VolleyError) {
+        VolleyError volleyError = (VolleyError)ex.getCause();
+        if (volleyError.networkResponse != null) {
+          throw new ApiException(volleyError.networkResponse.statusCode, volleyError.getMessage());
+        }
+      }
+      throw ex;
+    } catch (TimeoutException ex) {
+      throw ex;
+    }
+  }
+
+      /**
+   * 
+   * Retrieve all runs details for an organization pipeline
+   * @param organization Name of the organization   * @param pipeline Name of the pipeline
+  */
+  public void getPipelineRuns (String organization, String pipeline, final Response.Listener<PipelineRuns> responseListener, final Response.ErrorListener errorListener) {
+    Object postBody = null;
+
+    // verify the required parameter 'organization' is set
+    if (organization == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'organization' when calling getPipelineRuns",
+        new ApiException(400, "Missing the required parameter 'organization' when calling getPipelineRuns"));
+    }
+    // verify the required parameter 'pipeline' is set
+    if (pipeline == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'pipeline' when calling getPipelineRuns",
+        new ApiException(400, "Missing the required parameter 'pipeline' when calling getPipelineRuns"));
+    }
+
+    // create path and map variables
+    String path = "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs".replaceAll("\\{format\\}","json").replaceAll("\\{" + "organization" + "\\}", apiInvoker.escapeString(organization.toString())).replaceAll("\\{" + "pipeline" + "\\}", apiInvoker.escapeString(pipeline.toString()));
+
+    // query params
+    List<Pair> queryParams = new ArrayList<Pair>();
+    // header params
+    Map<String, String> headerParams = new HashMap<String, String>();
+    // form params
+    Map<String, String> formParams = new HashMap<String, String>();
+
+
+
+    String[] contentTypes = {
+      
+    };
+    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+
+    if (contentType.startsWith("multipart/form-data")) {
+      // file uploading
+      MultipartEntityBuilder localVarBuilder = MultipartEntityBuilder.create();
+      
+
+      HttpEntity httpEntity = localVarBuilder.build();
+      postBody = httpEntity;
+    } else {
+      // normal form params
+          }
+
+    String[] authNames = new String[] { "jenkins_auth" };
+
+    try {
+      apiInvoker.invokeAPI(basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames,
+        new Response.Listener<String>() {
+          @Override
+          public void onResponse(String localVarResponse) {
+            try {
+              responseListener.onResponse((PipelineRuns) ApiInvoker.deserialize(localVarResponse,  "", PipelineRuns.class));
+            } catch (ApiException exception) {
+               errorListener.onErrorResponse(new VolleyError(exception));
+            }
+          }
+      }, new Response.ErrorListener() {
+          @Override
+          public void onErrorResponse(VolleyError error) {
+            errorListener.onErrorResponse(error);
+          }
+      });
+    } catch (ApiException ex) {
+      errorListener.onErrorResponse(new VolleyError(ex));
+    }
+  }
+  /**
+  * 
+  * Retrieve all pipelines details for an organization
+   * @param organization Name of the organization
+   * @return Pipelines
+  */
+  public Pipelines getPipelines (String organization) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
+    Object postBody = null;
+    // verify the required parameter 'organization' is set
+    if (organization == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'organization' when calling getPipelines",
+        new ApiException(400, "Missing the required parameter 'organization' when calling getPipelines"));
+    }
+
+    // create path and map variables
+    String path = "/blue/rest/organizations/{organization}/pipelines/".replaceAll("\\{" + "organization" + "\\}", apiInvoker.escapeString(organization.toString()));
+
+    // query params
+    List<Pair> queryParams = new ArrayList<Pair>();
+    // header params
+    Map<String, String> headerParams = new HashMap<String, String>();
+    // form params
+    Map<String, String> formParams = new HashMap<String, String>();
+    String[] contentTypes = {
+    };
+    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+
+    if (contentType.startsWith("multipart/form-data")) {
+      // file uploading
+      MultipartEntityBuilder localVarBuilder = MultipartEntityBuilder.create();
+      HttpEntity httpEntity = localVarBuilder.build();
+      postBody = httpEntity;
+    } else {
+      // normal form params
+    }
+
+    String[] authNames = new String[] { "jenkins_auth" };
+
+    try {
+      String localVarResponse = apiInvoker.invokeAPI (basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames);
+      if (localVarResponse != null) {
+         return (Pipelines) ApiInvoker.deserialize(localVarResponse, "", Pipelines.class);
+      } else {
+         return null;
+      }
+    } catch (ApiException ex) {
+       throw ex;
+    } catch (InterruptedException ex) {
+       throw ex;
+    } catch (ExecutionException ex) {
+      if (ex.getCause() instanceof VolleyError) {
+        VolleyError volleyError = (VolleyError)ex.getCause();
+        if (volleyError.networkResponse != null) {
+          throw new ApiException(volleyError.networkResponse.statusCode, volleyError.getMessage());
+        }
+      }
+      throw ex;
+    } catch (TimeoutException ex) {
+      throw ex;
+    }
+  }
+
+      /**
+   * 
+   * Retrieve all pipelines details for an organization
+   * @param organization Name of the organization
+  */
+  public void getPipelines (String organization, final Response.Listener<Pipelines> responseListener, final Response.ErrorListener errorListener) {
+    Object postBody = null;
+
+    // verify the required parameter 'organization' is set
+    if (organization == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'organization' when calling getPipelines",
+        new ApiException(400, "Missing the required parameter 'organization' when calling getPipelines"));
+    }
+
+    // create path and map variables
+    String path = "/blue/rest/organizations/{organization}/pipelines/".replaceAll("\\{format\\}","json").replaceAll("\\{" + "organization" + "\\}", apiInvoker.escapeString(organization.toString()));
+
+    // query params
+    List<Pair> queryParams = new ArrayList<Pair>();
+    // header params
+    Map<String, String> headerParams = new HashMap<String, String>();
+    // form params
+    Map<String, String> formParams = new HashMap<String, String>();
+
+
+
+    String[] contentTypes = {
+      
+    };
+    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+
+    if (contentType.startsWith("multipart/form-data")) {
+      // file uploading
+      MultipartEntityBuilder localVarBuilder = MultipartEntityBuilder.create();
+      
+
+      HttpEntity httpEntity = localVarBuilder.build();
+      postBody = httpEntity;
+    } else {
+      // normal form params
+          }
+
+    String[] authNames = new String[] { "jenkins_auth" };
+
+    try {
+      apiInvoker.invokeAPI(basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames,
+        new Response.Listener<String>() {
+          @Override
+          public void onResponse(String localVarResponse) {
+            try {
+              responseListener.onResponse((Pipelines) ApiInvoker.deserialize(localVarResponse,  "", Pipelines.class));
+            } catch (ApiException exception) {
+               errorListener.onErrorResponse(new VolleyError(exception));
+            }
+          }
+      }, new Response.ErrorListener() {
+          @Override
+          public void onErrorResponse(VolleyError error) {
+            errorListener.onErrorResponse(error);
+          }
+      });
+    } catch (ApiException ex) {
+      errorListener.onErrorResponse(new VolleyError(ex));
+    }
+  }
+  /**
+  * 
+  * Retrieve SCM details for an organization
+   * @param organization Name of the organization
+   * @param scm Name of SCM
+   * @return GithubScm
+  */
+  public GithubScm getSCM (String organization, String scm) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
+    Object postBody = null;
+    // verify the required parameter 'organization' is set
+    if (organization == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'organization' when calling getSCM",
+        new ApiException(400, "Missing the required parameter 'organization' when calling getSCM"));
+    }
+    // verify the required parameter 'scm' is set
+    if (scm == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'scm' when calling getSCM",
+        new ApiException(400, "Missing the required parameter 'scm' when calling getSCM"));
+    }
+
+    // create path and map variables
+    String path = "/blue/rest/organizations/{organization}/scm/{scm}".replaceAll("\\{" + "organization" + "\\}", apiInvoker.escapeString(organization.toString())).replaceAll("\\{" + "scm" + "\\}", apiInvoker.escapeString(scm.toString()));
+
+    // query params
+    List<Pair> queryParams = new ArrayList<Pair>();
+    // header params
+    Map<String, String> headerParams = new HashMap<String, String>();
+    // form params
+    Map<String, String> formParams = new HashMap<String, String>();
+    String[] contentTypes = {
+    };
+    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+
+    if (contentType.startsWith("multipart/form-data")) {
+      // file uploading
+      MultipartEntityBuilder localVarBuilder = MultipartEntityBuilder.create();
+      HttpEntity httpEntity = localVarBuilder.build();
+      postBody = httpEntity;
+    } else {
+      // normal form params
+    }
+
+    String[] authNames = new String[] { "jenkins_auth" };
+
+    try {
+      String localVarResponse = apiInvoker.invokeAPI (basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames);
+      if (localVarResponse != null) {
+         return (GithubScm) ApiInvoker.deserialize(localVarResponse, "", GithubScm.class);
+      } else {
+         return null;
+      }
+    } catch (ApiException ex) {
+       throw ex;
+    } catch (InterruptedException ex) {
+       throw ex;
+    } catch (ExecutionException ex) {
+      if (ex.getCause() instanceof VolleyError) {
+        VolleyError volleyError = (VolleyError)ex.getCause();
+        if (volleyError.networkResponse != null) {
+          throw new ApiException(volleyError.networkResponse.statusCode, volleyError.getMessage());
+        }
+      }
+      throw ex;
+    } catch (TimeoutException ex) {
+      throw ex;
+    }
+  }
+
+      /**
+   * 
+   * Retrieve SCM details for an organization
+   * @param organization Name of the organization   * @param scm Name of SCM
+  */
+  public void getSCM (String organization, String scm, final Response.Listener<GithubScm> responseListener, final Response.ErrorListener errorListener) {
+    Object postBody = null;
+
+    // verify the required parameter 'organization' is set
+    if (organization == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'organization' when calling getSCM",
+        new ApiException(400, "Missing the required parameter 'organization' when calling getSCM"));
+    }
+    // verify the required parameter 'scm' is set
+    if (scm == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'scm' when calling getSCM",
+        new ApiException(400, "Missing the required parameter 'scm' when calling getSCM"));
+    }
+
+    // create path and map variables
+    String path = "/blue/rest/organizations/{organization}/scm/{scm}".replaceAll("\\{format\\}","json").replaceAll("\\{" + "organization" + "\\}", apiInvoker.escapeString(organization.toString())).replaceAll("\\{" + "scm" + "\\}", apiInvoker.escapeString(scm.toString()));
+
+    // query params
+    List<Pair> queryParams = new ArrayList<Pair>();
+    // header params
+    Map<String, String> headerParams = new HashMap<String, String>();
+    // form params
+    Map<String, String> formParams = new HashMap<String, String>();
+
+
+
+    String[] contentTypes = {
+      
+    };
+    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+
+    if (contentType.startsWith("multipart/form-data")) {
+      // file uploading
+      MultipartEntityBuilder localVarBuilder = MultipartEntityBuilder.create();
+      
+
+      HttpEntity httpEntity = localVarBuilder.build();
+      postBody = httpEntity;
+    } else {
+      // normal form params
+          }
+
+    String[] authNames = new String[] { "jenkins_auth" };
+
+    try {
+      apiInvoker.invokeAPI(basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames,
+        new Response.Listener<String>() {
+          @Override
+          public void onResponse(String localVarResponse) {
+            try {
+              responseListener.onResponse((GithubScm) ApiInvoker.deserialize(localVarResponse,  "", GithubScm.class));
+            } catch (ApiException exception) {
+               errorListener.onErrorResponse(new VolleyError(exception));
+            }
+          }
+      }, new Response.ErrorListener() {
+          @Override
+          public void onErrorResponse(VolleyError error) {
+            errorListener.onErrorResponse(error);
+          }
+      });
+    } catch (ApiException ex) {
+      errorListener.onErrorResponse(new VolleyError(ex));
+    }
+  }
+  /**
+  * 
+  * Retrieve SCM organization repositories details for an organization
+   * @param organization Name of the organization
+   * @param scm Name of SCM
+   * @param scmOrganisation Name of the SCM organization
+   * @param credentialId Credential ID
+   * @param pageSize Number of items in a page
+   * @param pageNumber Page number
+   * @return ScmOrganisations
+  */
+  public ScmOrganisations getSCMOrganisationRepositories (String organization, String scm, String scmOrganisation, String credentialId, Integer pageSize, Integer pageNumber) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
+    Object postBody = null;
+    // verify the required parameter 'organization' is set
+    if (organization == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'organization' when calling getSCMOrganisationRepositories",
+        new ApiException(400, "Missing the required parameter 'organization' when calling getSCMOrganisationRepositories"));
+    }
+    // verify the required parameter 'scm' is set
+    if (scm == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'scm' when calling getSCMOrganisationRepositories",
+        new ApiException(400, "Missing the required parameter 'scm' when calling getSCMOrganisationRepositories"));
+    }
+    // verify the required parameter 'scmOrganisation' is set
+    if (scmOrganisation == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'scmOrganisation' when calling getSCMOrganisationRepositories",
+        new ApiException(400, "Missing the required parameter 'scmOrganisation' when calling getSCMOrganisationRepositories"));
+    }
+
+    // create path and map variables
+    String path = "/blue/rest/organizations/{organization}/scm/{scm}/organizations/{scmOrganisation}/repositories".replaceAll("\\{" + "organization" + "\\}", apiInvoker.escapeString(organization.toString())).replaceAll("\\{" + "scm" + "\\}", apiInvoker.escapeString(scm.toString())).replaceAll("\\{" + "scmOrganisation" + "\\}", apiInvoker.escapeString(scmOrganisation.toString()));
+
+    // query params
+    List<Pair> queryParams = new ArrayList<Pair>();
+    // header params
+    Map<String, String> headerParams = new HashMap<String, String>();
+    // form params
+    Map<String, String> formParams = new HashMap<String, String>();
+    queryParams.addAll(ApiInvoker.parameterToPairs("", "credentialId", credentialId));
+    queryParams.addAll(ApiInvoker.parameterToPairs("", "pageSize", pageSize));
+    queryParams.addAll(ApiInvoker.parameterToPairs("", "pageNumber", pageNumber));
+    String[] contentTypes = {
+    };
+    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+
+    if (contentType.startsWith("multipart/form-data")) {
+      // file uploading
+      MultipartEntityBuilder localVarBuilder = MultipartEntityBuilder.create();
+      HttpEntity httpEntity = localVarBuilder.build();
+      postBody = httpEntity;
+    } else {
+      // normal form params
+    }
+
+    String[] authNames = new String[] { "jenkins_auth" };
+
+    try {
+      String localVarResponse = apiInvoker.invokeAPI (basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames);
+      if (localVarResponse != null) {
+         return (ScmOrganisations) ApiInvoker.deserialize(localVarResponse, "", ScmOrganisations.class);
+      } else {
+         return null;
+      }
+    } catch (ApiException ex) {
+       throw ex;
+    } catch (InterruptedException ex) {
+       throw ex;
+    } catch (ExecutionException ex) {
+      if (ex.getCause() instanceof VolleyError) {
+        VolleyError volleyError = (VolleyError)ex.getCause();
+        if (volleyError.networkResponse != null) {
+          throw new ApiException(volleyError.networkResponse.statusCode, volleyError.getMessage());
+        }
+      }
+      throw ex;
+    } catch (TimeoutException ex) {
+      throw ex;
+    }
+  }
+
+      /**
+   * 
+   * Retrieve SCM organization repositories details for an organization
+   * @param organization Name of the organization   * @param scm Name of SCM   * @param scmOrganisation Name of the SCM organization   * @param credentialId Credential ID   * @param pageSize Number of items in a page   * @param pageNumber Page number
+  */
+  public void getSCMOrganisationRepositories (String organization, String scm, String scmOrganisation, String credentialId, Integer pageSize, Integer pageNumber, final Response.Listener<ScmOrganisations> responseListener, final Response.ErrorListener errorListener) {
+    Object postBody = null;
+
+    // verify the required parameter 'organization' is set
+    if (organization == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'organization' when calling getSCMOrganisationRepositories",
+        new ApiException(400, "Missing the required parameter 'organization' when calling getSCMOrganisationRepositories"));
+    }
+    // verify the required parameter 'scm' is set
+    if (scm == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'scm' when calling getSCMOrganisationRepositories",
+        new ApiException(400, "Missing the required parameter 'scm' when calling getSCMOrganisationRepositories"));
+    }
+    // verify the required parameter 'scmOrganisation' is set
+    if (scmOrganisation == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'scmOrganisation' when calling getSCMOrganisationRepositories",
+        new ApiException(400, "Missing the required parameter 'scmOrganisation' when calling getSCMOrganisationRepositories"));
+    }
+
+    // create path and map variables
+    String path = "/blue/rest/organizations/{organization}/scm/{scm}/organizations/{scmOrganisation}/repositories".replaceAll("\\{format\\}","json").replaceAll("\\{" + "organization" + "\\}", apiInvoker.escapeString(organization.toString())).replaceAll("\\{" + "scm" + "\\}", apiInvoker.escapeString(scm.toString())).replaceAll("\\{" + "scmOrganisation" + "\\}", apiInvoker.escapeString(scmOrganisation.toString()));
+
+    // query params
+    List<Pair> queryParams = new ArrayList<Pair>();
+    // header params
+    Map<String, String> headerParams = new HashMap<String, String>();
+    // form params
+    Map<String, String> formParams = new HashMap<String, String>();
+
+    queryParams.addAll(ApiInvoker.parameterToPairs("", "credentialId", credentialId));
+    queryParams.addAll(ApiInvoker.parameterToPairs("", "pageSize", pageSize));
+    queryParams.addAll(ApiInvoker.parameterToPairs("", "pageNumber", pageNumber));
+
+
+    String[] contentTypes = {
+      
+    };
+    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+
+    if (contentType.startsWith("multipart/form-data")) {
+      // file uploading
+      MultipartEntityBuilder localVarBuilder = MultipartEntityBuilder.create();
+      
+
+      HttpEntity httpEntity = localVarBuilder.build();
+      postBody = httpEntity;
+    } else {
+      // normal form params
+          }
+
+    String[] authNames = new String[] { "jenkins_auth" };
+
+    try {
+      apiInvoker.invokeAPI(basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames,
+        new Response.Listener<String>() {
+          @Override
+          public void onResponse(String localVarResponse) {
+            try {
+              responseListener.onResponse((ScmOrganisations) ApiInvoker.deserialize(localVarResponse,  "", ScmOrganisations.class));
+            } catch (ApiException exception) {
+               errorListener.onErrorResponse(new VolleyError(exception));
+            }
+          }
+      }, new Response.ErrorListener() {
+          @Override
+          public void onErrorResponse(VolleyError error) {
+            errorListener.onErrorResponse(error);
+          }
+      });
+    } catch (ApiException ex) {
+      errorListener.onErrorResponse(new VolleyError(ex));
+    }
+  }
+  /**
+  * 
+  * Retrieve SCM organization repository details for an organization
+   * @param organization Name of the organization
+   * @param scm Name of SCM
+   * @param scmOrganisation Name of the SCM organization
+   * @param repository Name of the SCM repository
+   * @param credentialId Credential ID
+   * @return ScmOrganisations
+  */
+  public ScmOrganisations getSCMOrganisationRepository (String organization, String scm, String scmOrganisation, String repository, String credentialId) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
+    Object postBody = null;
+    // verify the required parameter 'organization' is set
+    if (organization == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'organization' when calling getSCMOrganisationRepository",
+        new ApiException(400, "Missing the required parameter 'organization' when calling getSCMOrganisationRepository"));
+    }
+    // verify the required parameter 'scm' is set
+    if (scm == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'scm' when calling getSCMOrganisationRepository",
+        new ApiException(400, "Missing the required parameter 'scm' when calling getSCMOrganisationRepository"));
+    }
+    // verify the required parameter 'scmOrganisation' is set
+    if (scmOrganisation == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'scmOrganisation' when calling getSCMOrganisationRepository",
+        new ApiException(400, "Missing the required parameter 'scmOrganisation' when calling getSCMOrganisationRepository"));
+    }
+    // verify the required parameter 'repository' is set
+    if (repository == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'repository' when calling getSCMOrganisationRepository",
+        new ApiException(400, "Missing the required parameter 'repository' when calling getSCMOrganisationRepository"));
+    }
+
+    // create path and map variables
+    String path = "/blue/rest/organizations/{organization}/scm/{scm}/organizations/{scmOrganisation}/repositories/{repository}".replaceAll("\\{" + "organization" + "\\}", apiInvoker.escapeString(organization.toString())).replaceAll("\\{" + "scm" + "\\}", apiInvoker.escapeString(scm.toString())).replaceAll("\\{" + "scmOrganisation" + "\\}", apiInvoker.escapeString(scmOrganisation.toString())).replaceAll("\\{" + "repository" + "\\}", apiInvoker.escapeString(repository.toString()));
+
+    // query params
+    List<Pair> queryParams = new ArrayList<Pair>();
+    // header params
+    Map<String, String> headerParams = new HashMap<String, String>();
+    // form params
+    Map<String, String> formParams = new HashMap<String, String>();
+    queryParams.addAll(ApiInvoker.parameterToPairs("", "credentialId", credentialId));
+    String[] contentTypes = {
+    };
+    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+
+    if (contentType.startsWith("multipart/form-data")) {
+      // file uploading
+      MultipartEntityBuilder localVarBuilder = MultipartEntityBuilder.create();
+      HttpEntity httpEntity = localVarBuilder.build();
+      postBody = httpEntity;
+    } else {
+      // normal form params
+    }
+
+    String[] authNames = new String[] { "jenkins_auth" };
+
+    try {
+      String localVarResponse = apiInvoker.invokeAPI (basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames);
+      if (localVarResponse != null) {
+         return (ScmOrganisations) ApiInvoker.deserialize(localVarResponse, "", ScmOrganisations.class);
+      } else {
+         return null;
+      }
+    } catch (ApiException ex) {
+       throw ex;
+    } catch (InterruptedException ex) {
+       throw ex;
+    } catch (ExecutionException ex) {
+      if (ex.getCause() instanceof VolleyError) {
+        VolleyError volleyError = (VolleyError)ex.getCause();
+        if (volleyError.networkResponse != null) {
+          throw new ApiException(volleyError.networkResponse.statusCode, volleyError.getMessage());
+        }
+      }
+      throw ex;
+    } catch (TimeoutException ex) {
+      throw ex;
+    }
+  }
+
+      /**
+   * 
+   * Retrieve SCM organization repository details for an organization
+   * @param organization Name of the organization   * @param scm Name of SCM   * @param scmOrganisation Name of the SCM organization   * @param repository Name of the SCM repository   * @param credentialId Credential ID
+  */
+  public void getSCMOrganisationRepository (String organization, String scm, String scmOrganisation, String repository, String credentialId, final Response.Listener<ScmOrganisations> responseListener, final Response.ErrorListener errorListener) {
+    Object postBody = null;
+
+    // verify the required parameter 'organization' is set
+    if (organization == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'organization' when calling getSCMOrganisationRepository",
+        new ApiException(400, "Missing the required parameter 'organization' when calling getSCMOrganisationRepository"));
+    }
+    // verify the required parameter 'scm' is set
+    if (scm == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'scm' when calling getSCMOrganisationRepository",
+        new ApiException(400, "Missing the required parameter 'scm' when calling getSCMOrganisationRepository"));
+    }
+    // verify the required parameter 'scmOrganisation' is set
+    if (scmOrganisation == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'scmOrganisation' when calling getSCMOrganisationRepository",
+        new ApiException(400, "Missing the required parameter 'scmOrganisation' when calling getSCMOrganisationRepository"));
+    }
+    // verify the required parameter 'repository' is set
+    if (repository == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'repository' when calling getSCMOrganisationRepository",
+        new ApiException(400, "Missing the required parameter 'repository' when calling getSCMOrganisationRepository"));
+    }
+
+    // create path and map variables
+    String path = "/blue/rest/organizations/{organization}/scm/{scm}/organizations/{scmOrganisation}/repositories/{repository}".replaceAll("\\{format\\}","json").replaceAll("\\{" + "organization" + "\\}", apiInvoker.escapeString(organization.toString())).replaceAll("\\{" + "scm" + "\\}", apiInvoker.escapeString(scm.toString())).replaceAll("\\{" + "scmOrganisation" + "\\}", apiInvoker.escapeString(scmOrganisation.toString())).replaceAll("\\{" + "repository" + "\\}", apiInvoker.escapeString(repository.toString()));
+
+    // query params
+    List<Pair> queryParams = new ArrayList<Pair>();
+    // header params
+    Map<String, String> headerParams = new HashMap<String, String>();
+    // form params
+    Map<String, String> formParams = new HashMap<String, String>();
+
+    queryParams.addAll(ApiInvoker.parameterToPairs("", "credentialId", credentialId));
+
+
+    String[] contentTypes = {
+      
+    };
+    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+
+    if (contentType.startsWith("multipart/form-data")) {
+      // file uploading
+      MultipartEntityBuilder localVarBuilder = MultipartEntityBuilder.create();
+      
+
+      HttpEntity httpEntity = localVarBuilder.build();
+      postBody = httpEntity;
+    } else {
+      // normal form params
+          }
+
+    String[] authNames = new String[] { "jenkins_auth" };
+
+    try {
+      apiInvoker.invokeAPI(basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames,
+        new Response.Listener<String>() {
+          @Override
+          public void onResponse(String localVarResponse) {
+            try {
+              responseListener.onResponse((ScmOrganisations) ApiInvoker.deserialize(localVarResponse,  "", ScmOrganisations.class));
+            } catch (ApiException exception) {
+               errorListener.onErrorResponse(new VolleyError(exception));
+            }
+          }
+      }, new Response.ErrorListener() {
+          @Override
+          public void onErrorResponse(VolleyError error) {
+            errorListener.onErrorResponse(error);
+          }
+      });
+    } catch (ApiException ex) {
+      errorListener.onErrorResponse(new VolleyError(ex));
+    }
+  }
+  /**
+  * 
+  * Retrieve SCM organizations details for an organization
+   * @param organization Name of the organization
+   * @param scm Name of SCM
+   * @param credentialId Credential ID
+   * @return ScmOrganisations
+  */
+  public ScmOrganisations getSCMOrganisations (String organization, String scm, String credentialId) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
+    Object postBody = null;
+    // verify the required parameter 'organization' is set
+    if (organization == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'organization' when calling getSCMOrganisations",
+        new ApiException(400, "Missing the required parameter 'organization' when calling getSCMOrganisations"));
+    }
+    // verify the required parameter 'scm' is set
+    if (scm == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'scm' when calling getSCMOrganisations",
+        new ApiException(400, "Missing the required parameter 'scm' when calling getSCMOrganisations"));
+    }
+
+    // create path and map variables
+    String path = "/blue/rest/organizations/{organization}/scm/{scm}/organizations".replaceAll("\\{" + "organization" + "\\}", apiInvoker.escapeString(organization.toString())).replaceAll("\\{" + "scm" + "\\}", apiInvoker.escapeString(scm.toString()));
+
+    // query params
+    List<Pair> queryParams = new ArrayList<Pair>();
+    // header params
+    Map<String, String> headerParams = new HashMap<String, String>();
+    // form params
+    Map<String, String> formParams = new HashMap<String, String>();
+    queryParams.addAll(ApiInvoker.parameterToPairs("", "credentialId", credentialId));
+    String[] contentTypes = {
+    };
+    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+
+    if (contentType.startsWith("multipart/form-data")) {
+      // file uploading
+      MultipartEntityBuilder localVarBuilder = MultipartEntityBuilder.create();
+      HttpEntity httpEntity = localVarBuilder.build();
+      postBody = httpEntity;
+    } else {
+      // normal form params
+    }
+
+    String[] authNames = new String[] { "jenkins_auth" };
+
+    try {
+      String localVarResponse = apiInvoker.invokeAPI (basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames);
+      if (localVarResponse != null) {
+         return (ScmOrganisations) ApiInvoker.deserialize(localVarResponse, "", ScmOrganisations.class);
+      } else {
+         return null;
+      }
+    } catch (ApiException ex) {
+       throw ex;
+    } catch (InterruptedException ex) {
+       throw ex;
+    } catch (ExecutionException ex) {
+      if (ex.getCause() instanceof VolleyError) {
+        VolleyError volleyError = (VolleyError)ex.getCause();
+        if (volleyError.networkResponse != null) {
+          throw new ApiException(volleyError.networkResponse.statusCode, volleyError.getMessage());
+        }
+      }
+      throw ex;
+    } catch (TimeoutException ex) {
+      throw ex;
+    }
+  }
+
+      /**
+   * 
+   * Retrieve SCM organizations details for an organization
+   * @param organization Name of the organization   * @param scm Name of SCM   * @param credentialId Credential ID
+  */
+  public void getSCMOrganisations (String organization, String scm, String credentialId, final Response.Listener<ScmOrganisations> responseListener, final Response.ErrorListener errorListener) {
+    Object postBody = null;
+
+    // verify the required parameter 'organization' is set
+    if (organization == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'organization' when calling getSCMOrganisations",
+        new ApiException(400, "Missing the required parameter 'organization' when calling getSCMOrganisations"));
+    }
+    // verify the required parameter 'scm' is set
+    if (scm == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'scm' when calling getSCMOrganisations",
+        new ApiException(400, "Missing the required parameter 'scm' when calling getSCMOrganisations"));
+    }
+
+    // create path and map variables
+    String path = "/blue/rest/organizations/{organization}/scm/{scm}/organizations".replaceAll("\\{format\\}","json").replaceAll("\\{" + "organization" + "\\}", apiInvoker.escapeString(organization.toString())).replaceAll("\\{" + "scm" + "\\}", apiInvoker.escapeString(scm.toString()));
+
+    // query params
+    List<Pair> queryParams = new ArrayList<Pair>();
+    // header params
+    Map<String, String> headerParams = new HashMap<String, String>();
+    // form params
+    Map<String, String> formParams = new HashMap<String, String>();
+
+    queryParams.addAll(ApiInvoker.parameterToPairs("", "credentialId", credentialId));
+
+
+    String[] contentTypes = {
+      
+    };
+    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+
+    if (contentType.startsWith("multipart/form-data")) {
+      // file uploading
+      MultipartEntityBuilder localVarBuilder = MultipartEntityBuilder.create();
+      
+
+      HttpEntity httpEntity = localVarBuilder.build();
+      postBody = httpEntity;
+    } else {
+      // normal form params
+          }
+
+    String[] authNames = new String[] { "jenkins_auth" };
+
+    try {
+      apiInvoker.invokeAPI(basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames,
+        new Response.Listener<String>() {
+          @Override
+          public void onResponse(String localVarResponse) {
+            try {
+              responseListener.onResponse((ScmOrganisations) ApiInvoker.deserialize(localVarResponse,  "", ScmOrganisations.class));
+            } catch (ApiException exception) {
+               errorListener.onErrorResponse(new VolleyError(exception));
+            }
+          }
+      }, new Response.ErrorListener() {
+          @Override
+          public void onErrorResponse(VolleyError error) {
+            errorListener.onErrorResponse(error);
+          }
+      });
+    } catch (ApiException ex) {
+      errorListener.onErrorResponse(new VolleyError(ex));
+    }
+  }
+  /**
+  * 
+  * Retrieve user details for an organization
+   * @param organization Name of the organization
+   * @param user Name of the user
+   * @return User
+  */
+  public User getUser (String organization, String user) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
+    Object postBody = null;
+    // verify the required parameter 'organization' is set
+    if (organization == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'organization' when calling getUser",
+        new ApiException(400, "Missing the required parameter 'organization' when calling getUser"));
+    }
+    // verify the required parameter 'user' is set
+    if (user == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'user' when calling getUser",
+        new ApiException(400, "Missing the required parameter 'user' when calling getUser"));
+    }
+
+    // create path and map variables
+    String path = "/blue/rest/organizations/{organization}/users/{user}".replaceAll("\\{" + "organization" + "\\}", apiInvoker.escapeString(organization.toString())).replaceAll("\\{" + "user" + "\\}", apiInvoker.escapeString(user.toString()));
+
+    // query params
+    List<Pair> queryParams = new ArrayList<Pair>();
+    // header params
+    Map<String, String> headerParams = new HashMap<String, String>();
+    // form params
+    Map<String, String> formParams = new HashMap<String, String>();
+    String[] contentTypes = {
+    };
+    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+
+    if (contentType.startsWith("multipart/form-data")) {
+      // file uploading
+      MultipartEntityBuilder localVarBuilder = MultipartEntityBuilder.create();
+      HttpEntity httpEntity = localVarBuilder.build();
+      postBody = httpEntity;
+    } else {
+      // normal form params
+    }
+
+    String[] authNames = new String[] { "jenkins_auth" };
+
+    try {
+      String localVarResponse = apiInvoker.invokeAPI (basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames);
+      if (localVarResponse != null) {
+         return (User) ApiInvoker.deserialize(localVarResponse, "", User.class);
+      } else {
+         return null;
+      }
+    } catch (ApiException ex) {
+       throw ex;
+    } catch (InterruptedException ex) {
+       throw ex;
+    } catch (ExecutionException ex) {
+      if (ex.getCause() instanceof VolleyError) {
+        VolleyError volleyError = (VolleyError)ex.getCause();
+        if (volleyError.networkResponse != null) {
+          throw new ApiException(volleyError.networkResponse.statusCode, volleyError.getMessage());
+        }
+      }
+      throw ex;
+    } catch (TimeoutException ex) {
+      throw ex;
+    }
+  }
+
+      /**
+   * 
+   * Retrieve user details for an organization
+   * @param organization Name of the organization   * @param user Name of the user
+  */
+  public void getUser (String organization, String user, final Response.Listener<User> responseListener, final Response.ErrorListener errorListener) {
+    Object postBody = null;
+
+    // verify the required parameter 'organization' is set
+    if (organization == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'organization' when calling getUser",
+        new ApiException(400, "Missing the required parameter 'organization' when calling getUser"));
+    }
+    // verify the required parameter 'user' is set
+    if (user == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'user' when calling getUser",
+        new ApiException(400, "Missing the required parameter 'user' when calling getUser"));
+    }
+
+    // create path and map variables
+    String path = "/blue/rest/organizations/{organization}/users/{user}".replaceAll("\\{format\\}","json").replaceAll("\\{" + "organization" + "\\}", apiInvoker.escapeString(organization.toString())).replaceAll("\\{" + "user" + "\\}", apiInvoker.escapeString(user.toString()));
+
+    // query params
+    List<Pair> queryParams = new ArrayList<Pair>();
+    // header params
+    Map<String, String> headerParams = new HashMap<String, String>();
+    // form params
+    Map<String, String> formParams = new HashMap<String, String>();
+
+
+
+    String[] contentTypes = {
+      
+    };
+    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+
+    if (contentType.startsWith("multipart/form-data")) {
+      // file uploading
+      MultipartEntityBuilder localVarBuilder = MultipartEntityBuilder.create();
+      
+
+      HttpEntity httpEntity = localVarBuilder.build();
+      postBody = httpEntity;
+    } else {
+      // normal form params
+          }
+
+    String[] authNames = new String[] { "jenkins_auth" };
+
+    try {
+      apiInvoker.invokeAPI(basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames,
+        new Response.Listener<String>() {
+          @Override
+          public void onResponse(String localVarResponse) {
+            try {
+              responseListener.onResponse((User) ApiInvoker.deserialize(localVarResponse,  "", User.class));
+            } catch (ApiException exception) {
+               errorListener.onErrorResponse(new VolleyError(exception));
+            }
+          }
+      }, new Response.ErrorListener() {
+          @Override
+          public void onErrorResponse(VolleyError error) {
+            errorListener.onErrorResponse(error);
+          }
+      });
+    } catch (ApiException ex) {
+      errorListener.onErrorResponse(new VolleyError(ex));
+    }
+  }
+  /**
+  * 
+  * Retrieve user favorites details for an organization
+   * @param user Name of the user
+   * @return UserFavorites
+  */
+  public UserFavorites getUserFavorites (String user) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
+    Object postBody = null;
+    // verify the required parameter 'user' is set
+    if (user == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'user' when calling getUserFavorites",
+        new ApiException(400, "Missing the required parameter 'user' when calling getUserFavorites"));
+    }
+
+    // create path and map variables
+    String path = "/blue/rest/users/{user}/favorites".replaceAll("\\{" + "user" + "\\}", apiInvoker.escapeString(user.toString()));
+
+    // query params
+    List<Pair> queryParams = new ArrayList<Pair>();
+    // header params
+    Map<String, String> headerParams = new HashMap<String, String>();
+    // form params
+    Map<String, String> formParams = new HashMap<String, String>();
+    String[] contentTypes = {
+    };
+    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+
+    if (contentType.startsWith("multipart/form-data")) {
+      // file uploading
+      MultipartEntityBuilder localVarBuilder = MultipartEntityBuilder.create();
+      HttpEntity httpEntity = localVarBuilder.build();
+      postBody = httpEntity;
+    } else {
+      // normal form params
+    }
+
+    String[] authNames = new String[] { "jenkins_auth" };
+
+    try {
+      String localVarResponse = apiInvoker.invokeAPI (basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames);
+      if (localVarResponse != null) {
+         return (UserFavorites) ApiInvoker.deserialize(localVarResponse, "", UserFavorites.class);
+      } else {
+         return null;
+      }
+    } catch (ApiException ex) {
+       throw ex;
+    } catch (InterruptedException ex) {
+       throw ex;
+    } catch (ExecutionException ex) {
+      if (ex.getCause() instanceof VolleyError) {
+        VolleyError volleyError = (VolleyError)ex.getCause();
+        if (volleyError.networkResponse != null) {
+          throw new ApiException(volleyError.networkResponse.statusCode, volleyError.getMessage());
+        }
+      }
+      throw ex;
+    } catch (TimeoutException ex) {
+      throw ex;
+    }
+  }
+
+      /**
+   * 
+   * Retrieve user favorites details for an organization
+   * @param user Name of the user
+  */
+  public void getUserFavorites (String user, final Response.Listener<UserFavorites> responseListener, final Response.ErrorListener errorListener) {
+    Object postBody = null;
+
+    // verify the required parameter 'user' is set
+    if (user == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'user' when calling getUserFavorites",
+        new ApiException(400, "Missing the required parameter 'user' when calling getUserFavorites"));
+    }
+
+    // create path and map variables
+    String path = "/blue/rest/users/{user}/favorites".replaceAll("\\{format\\}","json").replaceAll("\\{" + "user" + "\\}", apiInvoker.escapeString(user.toString()));
+
+    // query params
+    List<Pair> queryParams = new ArrayList<Pair>();
+    // header params
+    Map<String, String> headerParams = new HashMap<String, String>();
+    // form params
+    Map<String, String> formParams = new HashMap<String, String>();
+
+
+
+    String[] contentTypes = {
+      
+    };
+    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+
+    if (contentType.startsWith("multipart/form-data")) {
+      // file uploading
+      MultipartEntityBuilder localVarBuilder = MultipartEntityBuilder.create();
+      
+
+      HttpEntity httpEntity = localVarBuilder.build();
+      postBody = httpEntity;
+    } else {
+      // normal form params
+          }
+
+    String[] authNames = new String[] { "jenkins_auth" };
+
+    try {
+      apiInvoker.invokeAPI(basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames,
+        new Response.Listener<String>() {
+          @Override
+          public void onResponse(String localVarResponse) {
+            try {
+              responseListener.onResponse((UserFavorites) ApiInvoker.deserialize(localVarResponse,  "", UserFavorites.class));
+            } catch (ApiException exception) {
+               errorListener.onErrorResponse(new VolleyError(exception));
+            }
+          }
+      }, new Response.ErrorListener() {
+          @Override
+          public void onErrorResponse(VolleyError error) {
+            errorListener.onErrorResponse(error);
+          }
+      });
+    } catch (ApiException ex) {
+      errorListener.onErrorResponse(new VolleyError(ex));
+    }
+  }
+  /**
+  * 
+  * Retrieve users details for an organization
+   * @param organization Name of the organization
+   * @return User
+  */
+  public User getUsers (String organization) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
+    Object postBody = null;
+    // verify the required parameter 'organization' is set
+    if (organization == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'organization' when calling getUsers",
+        new ApiException(400, "Missing the required parameter 'organization' when calling getUsers"));
+    }
+
+    // create path and map variables
+    String path = "/blue/rest/organizations/{organization}/users/".replaceAll("\\{" + "organization" + "\\}", apiInvoker.escapeString(organization.toString()));
+
+    // query params
+    List<Pair> queryParams = new ArrayList<Pair>();
+    // header params
+    Map<String, String> headerParams = new HashMap<String, String>();
+    // form params
+    Map<String, String> formParams = new HashMap<String, String>();
+    String[] contentTypes = {
+    };
+    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+
+    if (contentType.startsWith("multipart/form-data")) {
+      // file uploading
+      MultipartEntityBuilder localVarBuilder = MultipartEntityBuilder.create();
+      HttpEntity httpEntity = localVarBuilder.build();
+      postBody = httpEntity;
+    } else {
+      // normal form params
+    }
+
+    String[] authNames = new String[] { "jenkins_auth" };
+
+    try {
+      String localVarResponse = apiInvoker.invokeAPI (basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames);
+      if (localVarResponse != null) {
+         return (User) ApiInvoker.deserialize(localVarResponse, "", User.class);
+      } else {
+         return null;
+      }
+    } catch (ApiException ex) {
+       throw ex;
+    } catch (InterruptedException ex) {
+       throw ex;
+    } catch (ExecutionException ex) {
+      if (ex.getCause() instanceof VolleyError) {
+        VolleyError volleyError = (VolleyError)ex.getCause();
+        if (volleyError.networkResponse != null) {
+          throw new ApiException(volleyError.networkResponse.statusCode, volleyError.getMessage());
+        }
+      }
+      throw ex;
+    } catch (TimeoutException ex) {
+      throw ex;
+    }
+  }
+
+      /**
+   * 
+   * Retrieve users details for an organization
+   * @param organization Name of the organization
+  */
+  public void getUsers (String organization, final Response.Listener<User> responseListener, final Response.ErrorListener errorListener) {
+    Object postBody = null;
+
+    // verify the required parameter 'organization' is set
+    if (organization == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'organization' when calling getUsers",
+        new ApiException(400, "Missing the required parameter 'organization' when calling getUsers"));
+    }
+
+    // create path and map variables
+    String path = "/blue/rest/organizations/{organization}/users/".replaceAll("\\{format\\}","json").replaceAll("\\{" + "organization" + "\\}", apiInvoker.escapeString(organization.toString()));
+
+    // query params
+    List<Pair> queryParams = new ArrayList<Pair>();
+    // header params
+    Map<String, String> headerParams = new HashMap<String, String>();
+    // form params
+    Map<String, String> formParams = new HashMap<String, String>();
+
+
+
+    String[] contentTypes = {
+      
+    };
+    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+
+    if (contentType.startsWith("multipart/form-data")) {
+      // file uploading
+      MultipartEntityBuilder localVarBuilder = MultipartEntityBuilder.create();
+      
+
+      HttpEntity httpEntity = localVarBuilder.build();
+      postBody = httpEntity;
+    } else {
+      // normal form params
+          }
+
+    String[] authNames = new String[] { "jenkins_auth" };
+
+    try {
+      apiInvoker.invokeAPI(basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames,
+        new Response.Listener<String>() {
+          @Override
+          public void onResponse(String localVarResponse) {
+            try {
+              responseListener.onResponse((User) ApiInvoker.deserialize(localVarResponse,  "", User.class));
+            } catch (ApiException exception) {
+               errorListener.onErrorResponse(new VolleyError(exception));
+            }
+          }
+      }, new Response.ErrorListener() {
+          @Override
+          public void onErrorResponse(VolleyError error) {
+            errorListener.onErrorResponse(error);
+          }
+      });
+    } catch (ApiException ex) {
+      errorListener.onErrorResponse(new VolleyError(ex));
+    }
+  }
+  /**
+  * 
+  * Replay an organization pipeline run
+   * @param organization Name of the organization
+   * @param pipeline Name of the pipeline
+   * @param run Name of the run
+   * @return QueueItemImpl
+  */
+  public QueueItemImpl postPipelineRun (String organization, String pipeline, String run) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
+    Object postBody = null;
+    // verify the required parameter 'organization' is set
+    if (organization == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'organization' when calling postPipelineRun",
+        new ApiException(400, "Missing the required parameter 'organization' when calling postPipelineRun"));
+    }
+    // verify the required parameter 'pipeline' is set
+    if (pipeline == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'pipeline' when calling postPipelineRun",
+        new ApiException(400, "Missing the required parameter 'pipeline' when calling postPipelineRun"));
+    }
+    // verify the required parameter 'run' is set
+    if (run == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'run' when calling postPipelineRun",
+        new ApiException(400, "Missing the required parameter 'run' when calling postPipelineRun"));
+    }
+
+    // create path and map variables
+    String path = "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/replay".replaceAll("\\{" + "organization" + "\\}", apiInvoker.escapeString(organization.toString())).replaceAll("\\{" + "pipeline" + "\\}", apiInvoker.escapeString(pipeline.toString())).replaceAll("\\{" + "run" + "\\}", apiInvoker.escapeString(run.toString()));
+
+    // query params
+    List<Pair> queryParams = new ArrayList<Pair>();
+    // header params
+    Map<String, String> headerParams = new HashMap<String, String>();
+    // form params
+    Map<String, String> formParams = new HashMap<String, String>();
+    String[] contentTypes = {
+    };
+    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+
+    if (contentType.startsWith("multipart/form-data")) {
+      // file uploading
+      MultipartEntityBuilder localVarBuilder = MultipartEntityBuilder.create();
+      HttpEntity httpEntity = localVarBuilder.build();
+      postBody = httpEntity;
+    } else {
+      // normal form params
+    }
+
+    String[] authNames = new String[] { "jenkins_auth" };
+
+    try {
+      String localVarResponse = apiInvoker.invokeAPI (basePath, path, "POST", queryParams, postBody, headerParams, formParams, contentType, authNames);
+      if (localVarResponse != null) {
+         return (QueueItemImpl) ApiInvoker.deserialize(localVarResponse, "", QueueItemImpl.class);
+      } else {
+         return null;
+      }
+    } catch (ApiException ex) {
+       throw ex;
+    } catch (InterruptedException ex) {
+       throw ex;
+    } catch (ExecutionException ex) {
+      if (ex.getCause() instanceof VolleyError) {
+        VolleyError volleyError = (VolleyError)ex.getCause();
+        if (volleyError.networkResponse != null) {
+          throw new ApiException(volleyError.networkResponse.statusCode, volleyError.getMessage());
+        }
+      }
+      throw ex;
+    } catch (TimeoutException ex) {
+      throw ex;
+    }
+  }
+
+      /**
+   * 
+   * Replay an organization pipeline run
+   * @param organization Name of the organization   * @param pipeline Name of the pipeline   * @param run Name of the run
+  */
+  public void postPipelineRun (String organization, String pipeline, String run, final Response.Listener<QueueItemImpl> responseListener, final Response.ErrorListener errorListener) {
+    Object postBody = null;
+
+    // verify the required parameter 'organization' is set
+    if (organization == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'organization' when calling postPipelineRun",
+        new ApiException(400, "Missing the required parameter 'organization' when calling postPipelineRun"));
+    }
+    // verify the required parameter 'pipeline' is set
+    if (pipeline == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'pipeline' when calling postPipelineRun",
+        new ApiException(400, "Missing the required parameter 'pipeline' when calling postPipelineRun"));
+    }
+    // verify the required parameter 'run' is set
+    if (run == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'run' when calling postPipelineRun",
+        new ApiException(400, "Missing the required parameter 'run' when calling postPipelineRun"));
+    }
+
+    // create path and map variables
+    String path = "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/replay".replaceAll("\\{format\\}","json").replaceAll("\\{" + "organization" + "\\}", apiInvoker.escapeString(organization.toString())).replaceAll("\\{" + "pipeline" + "\\}", apiInvoker.escapeString(pipeline.toString())).replaceAll("\\{" + "run" + "\\}", apiInvoker.escapeString(run.toString()));
+
+    // query params
+    List<Pair> queryParams = new ArrayList<Pair>();
+    // header params
+    Map<String, String> headerParams = new HashMap<String, String>();
+    // form params
+    Map<String, String> formParams = new HashMap<String, String>();
+
+
+
+    String[] contentTypes = {
+      
+    };
+    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+
+    if (contentType.startsWith("multipart/form-data")) {
+      // file uploading
+      MultipartEntityBuilder localVarBuilder = MultipartEntityBuilder.create();
+      
+
+      HttpEntity httpEntity = localVarBuilder.build();
+      postBody = httpEntity;
+    } else {
+      // normal form params
+          }
+
+    String[] authNames = new String[] { "jenkins_auth" };
+
+    try {
+      apiInvoker.invokeAPI(basePath, path, "POST", queryParams, postBody, headerParams, formParams, contentType, authNames,
+        new Response.Listener<String>() {
+          @Override
+          public void onResponse(String localVarResponse) {
+            try {
+              responseListener.onResponse((QueueItemImpl) ApiInvoker.deserialize(localVarResponse,  "", QueueItemImpl.class));
+            } catch (ApiException exception) {
+               errorListener.onErrorResponse(new VolleyError(exception));
+            }
+          }
+      }, new Response.ErrorListener() {
+          @Override
+          public void onErrorResponse(VolleyError error) {
+            errorListener.onErrorResponse(error);
+          }
+      });
+    } catch (ApiException ex) {
+      errorListener.onErrorResponse(new VolleyError(ex));
+    }
+  }
+  /**
+  * 
+  * Start a build for an organization pipeline
+   * @param organization Name of the organization
+   * @param pipeline Name of the pipeline
+   * @return QueueItemImpl
+  */
+  public QueueItemImpl postPipelineRuns (String organization, String pipeline) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
+    Object postBody = null;
+    // verify the required parameter 'organization' is set
+    if (organization == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'organization' when calling postPipelineRuns",
+        new ApiException(400, "Missing the required parameter 'organization' when calling postPipelineRuns"));
+    }
+    // verify the required parameter 'pipeline' is set
+    if (pipeline == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'pipeline' when calling postPipelineRuns",
+        new ApiException(400, "Missing the required parameter 'pipeline' when calling postPipelineRuns"));
+    }
+
+    // create path and map variables
+    String path = "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs".replaceAll("\\{" + "organization" + "\\}", apiInvoker.escapeString(organization.toString())).replaceAll("\\{" + "pipeline" + "\\}", apiInvoker.escapeString(pipeline.toString()));
+
+    // query params
+    List<Pair> queryParams = new ArrayList<Pair>();
+    // header params
+    Map<String, String> headerParams = new HashMap<String, String>();
+    // form params
+    Map<String, String> formParams = new HashMap<String, String>();
+    String[] contentTypes = {
+    };
+    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+
+    if (contentType.startsWith("multipart/form-data")) {
+      // file uploading
+      MultipartEntityBuilder localVarBuilder = MultipartEntityBuilder.create();
+      HttpEntity httpEntity = localVarBuilder.build();
+      postBody = httpEntity;
+    } else {
+      // normal form params
+    }
+
+    String[] authNames = new String[] { "jenkins_auth" };
+
+    try {
+      String localVarResponse = apiInvoker.invokeAPI (basePath, path, "POST", queryParams, postBody, headerParams, formParams, contentType, authNames);
+      if (localVarResponse != null) {
+         return (QueueItemImpl) ApiInvoker.deserialize(localVarResponse, "", QueueItemImpl.class);
+      } else {
+         return null;
+      }
+    } catch (ApiException ex) {
+       throw ex;
+    } catch (InterruptedException ex) {
+       throw ex;
+    } catch (ExecutionException ex) {
+      if (ex.getCause() instanceof VolleyError) {
+        VolleyError volleyError = (VolleyError)ex.getCause();
+        if (volleyError.networkResponse != null) {
+          throw new ApiException(volleyError.networkResponse.statusCode, volleyError.getMessage());
+        }
+      }
+      throw ex;
+    } catch (TimeoutException ex) {
+      throw ex;
+    }
+  }
+
+      /**
+   * 
+   * Start a build for an organization pipeline
+   * @param organization Name of the organization   * @param pipeline Name of the pipeline
+  */
+  public void postPipelineRuns (String organization, String pipeline, final Response.Listener<QueueItemImpl> responseListener, final Response.ErrorListener errorListener) {
+    Object postBody = null;
+
+    // verify the required parameter 'organization' is set
+    if (organization == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'organization' when calling postPipelineRuns",
+        new ApiException(400, "Missing the required parameter 'organization' when calling postPipelineRuns"));
+    }
+    // verify the required parameter 'pipeline' is set
+    if (pipeline == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'pipeline' when calling postPipelineRuns",
+        new ApiException(400, "Missing the required parameter 'pipeline' when calling postPipelineRuns"));
+    }
+
+    // create path and map variables
+    String path = "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs".replaceAll("\\{format\\}","json").replaceAll("\\{" + "organization" + "\\}", apiInvoker.escapeString(organization.toString())).replaceAll("\\{" + "pipeline" + "\\}", apiInvoker.escapeString(pipeline.toString()));
+
+    // query params
+    List<Pair> queryParams = new ArrayList<Pair>();
+    // header params
+    Map<String, String> headerParams = new HashMap<String, String>();
+    // form params
+    Map<String, String> formParams = new HashMap<String, String>();
+
+
+
+    String[] contentTypes = {
+      
+    };
+    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+
+    if (contentType.startsWith("multipart/form-data")) {
+      // file uploading
+      MultipartEntityBuilder localVarBuilder = MultipartEntityBuilder.create();
+      
+
+      HttpEntity httpEntity = localVarBuilder.build();
+      postBody = httpEntity;
+    } else {
+      // normal form params
+          }
+
+    String[] authNames = new String[] { "jenkins_auth" };
+
+    try {
+      apiInvoker.invokeAPI(basePath, path, "POST", queryParams, postBody, headerParams, formParams, contentType, authNames,
+        new Response.Listener<String>() {
+          @Override
+          public void onResponse(String localVarResponse) {
+            try {
+              responseListener.onResponse((QueueItemImpl) ApiInvoker.deserialize(localVarResponse,  "", QueueItemImpl.class));
+            } catch (ApiException exception) {
+               errorListener.onErrorResponse(new VolleyError(exception));
+            }
+          }
+      }, new Response.ErrorListener() {
+          @Override
+          public void onErrorResponse(VolleyError error) {
+            errorListener.onErrorResponse(error);
+          }
+      });
+    } catch (ApiException ex) {
+      errorListener.onErrorResponse(new VolleyError(ex));
+    }
+  }
+  /**
+  * 
+  * Favorite/unfavorite a pipeline
+   * @param organization Name of the organization
+   * @param pipeline Name of the pipeline
+   * @param body Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite
+   * @return FavoriteImpl
+  */
+  public FavoriteImpl putPipelineFavorite (String organization, String pipeline, Body body) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
+    Object postBody = body;
+    // verify the required parameter 'organization' is set
+    if (organization == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'organization' when calling putPipelineFavorite",
+        new ApiException(400, "Missing the required parameter 'organization' when calling putPipelineFavorite"));
+    }
+    // verify the required parameter 'pipeline' is set
+    if (pipeline == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'pipeline' when calling putPipelineFavorite",
+        new ApiException(400, "Missing the required parameter 'pipeline' when calling putPipelineFavorite"));
+    }
+    // verify the required parameter 'body' is set
+    if (body == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'body' when calling putPipelineFavorite",
+        new ApiException(400, "Missing the required parameter 'body' when calling putPipelineFavorite"));
+    }
+
+    // create path and map variables
+    String path = "/blue/rest/organizations/{organization}/pipelines/{pipeline}/favorite".replaceAll("\\{" + "organization" + "\\}", apiInvoker.escapeString(organization.toString())).replaceAll("\\{" + "pipeline" + "\\}", apiInvoker.escapeString(pipeline.toString()));
+
+    // query params
+    List<Pair> queryParams = new ArrayList<Pair>();
+    // header params
+    Map<String, String> headerParams = new HashMap<String, String>();
+    // form params
+    Map<String, String> formParams = new HashMap<String, String>();
+    String[] contentTypes = {
+    };
+    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+
+    if (contentType.startsWith("multipart/form-data")) {
+      // file uploading
+      MultipartEntityBuilder localVarBuilder = MultipartEntityBuilder.create();
+      HttpEntity httpEntity = localVarBuilder.build();
+      postBody = httpEntity;
+    } else {
+      // normal form params
+    }
+
+    String[] authNames = new String[] { "jenkins_auth" };
+
+    try {
+      String localVarResponse = apiInvoker.invokeAPI (basePath, path, "PUT", queryParams, postBody, headerParams, formParams, contentType, authNames);
+      if (localVarResponse != null) {
+         return (FavoriteImpl) ApiInvoker.deserialize(localVarResponse, "", FavoriteImpl.class);
+      } else {
+         return null;
+      }
+    } catch (ApiException ex) {
+       throw ex;
+    } catch (InterruptedException ex) {
+       throw ex;
+    } catch (ExecutionException ex) {
+      if (ex.getCause() instanceof VolleyError) {
+        VolleyError volleyError = (VolleyError)ex.getCause();
+        if (volleyError.networkResponse != null) {
+          throw new ApiException(volleyError.networkResponse.statusCode, volleyError.getMessage());
+        }
+      }
+      throw ex;
+    } catch (TimeoutException ex) {
+      throw ex;
+    }
+  }
+
+      /**
+   * 
+   * Favorite/unfavorite a pipeline
+   * @param organization Name of the organization   * @param pipeline Name of the pipeline   * @param body Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite
+  */
+  public void putPipelineFavorite (String organization, String pipeline, Body body, final Response.Listener<FavoriteImpl> responseListener, final Response.ErrorListener errorListener) {
+    Object postBody = body;
+
+    // verify the required parameter 'organization' is set
+    if (organization == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'organization' when calling putPipelineFavorite",
+        new ApiException(400, "Missing the required parameter 'organization' when calling putPipelineFavorite"));
+    }
+    // verify the required parameter 'pipeline' is set
+    if (pipeline == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'pipeline' when calling putPipelineFavorite",
+        new ApiException(400, "Missing the required parameter 'pipeline' when calling putPipelineFavorite"));
+    }
+    // verify the required parameter 'body' is set
+    if (body == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'body' when calling putPipelineFavorite",
+        new ApiException(400, "Missing the required parameter 'body' when calling putPipelineFavorite"));
+    }
+
+    // create path and map variables
+    String path = "/blue/rest/organizations/{organization}/pipelines/{pipeline}/favorite".replaceAll("\\{format\\}","json").replaceAll("\\{" + "organization" + "\\}", apiInvoker.escapeString(organization.toString())).replaceAll("\\{" + "pipeline" + "\\}", apiInvoker.escapeString(pipeline.toString()));
+
+    // query params
+    List<Pair> queryParams = new ArrayList<Pair>();
+    // header params
+    Map<String, String> headerParams = new HashMap<String, String>();
+    // form params
+    Map<String, String> formParams = new HashMap<String, String>();
+
+
+
+    String[] contentTypes = {
+      
+    };
+    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+
+    if (contentType.startsWith("multipart/form-data")) {
+      // file uploading
+      MultipartEntityBuilder localVarBuilder = MultipartEntityBuilder.create();
+      
+
+      HttpEntity httpEntity = localVarBuilder.build();
+      postBody = httpEntity;
+    } else {
+      // normal form params
+          }
+
+    String[] authNames = new String[] { "jenkins_auth" };
+
+    try {
+      apiInvoker.invokeAPI(basePath, path, "PUT", queryParams, postBody, headerParams, formParams, contentType, authNames,
+        new Response.Listener<String>() {
+          @Override
+          public void onResponse(String localVarResponse) {
+            try {
+              responseListener.onResponse((FavoriteImpl) ApiInvoker.deserialize(localVarResponse,  "", FavoriteImpl.class));
+            } catch (ApiException exception) {
+               errorListener.onErrorResponse(new VolleyError(exception));
+            }
+          }
+      }, new Response.ErrorListener() {
+          @Override
+          public void onErrorResponse(VolleyError error) {
+            errorListener.onErrorResponse(error);
+          }
+      });
+    } catch (ApiException ex) {
+      errorListener.onErrorResponse(new VolleyError(ex));
+    }
+  }
+  /**
+  * 
+  * Stop a build of an organization pipeline
+   * @param organization Name of the organization
+   * @param pipeline Name of the pipeline
+   * @param run Name of the run
+   * @param blocking Set to true to make blocking stop, default: false
+   * @param timeOutInSecs Timeout in seconds, default: 10 seconds
+   * @return PipelineRun
+  */
+  public PipelineRun putPipelineRun (String organization, String pipeline, String run, String blocking, Integer timeOutInSecs) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
+    Object postBody = null;
+    // verify the required parameter 'organization' is set
+    if (organization == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'organization' when calling putPipelineRun",
+        new ApiException(400, "Missing the required parameter 'organization' when calling putPipelineRun"));
+    }
+    // verify the required parameter 'pipeline' is set
+    if (pipeline == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'pipeline' when calling putPipelineRun",
+        new ApiException(400, "Missing the required parameter 'pipeline' when calling putPipelineRun"));
+    }
+    // verify the required parameter 'run' is set
+    if (run == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'run' when calling putPipelineRun",
+        new ApiException(400, "Missing the required parameter 'run' when calling putPipelineRun"));
+    }
+
+    // create path and map variables
+    String path = "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/stop".replaceAll("\\{" + "organization" + "\\}", apiInvoker.escapeString(organization.toString())).replaceAll("\\{" + "pipeline" + "\\}", apiInvoker.escapeString(pipeline.toString())).replaceAll("\\{" + "run" + "\\}", apiInvoker.escapeString(run.toString()));
+
+    // query params
+    List<Pair> queryParams = new ArrayList<Pair>();
+    // header params
+    Map<String, String> headerParams = new HashMap<String, String>();
+    // form params
+    Map<String, String> formParams = new HashMap<String, String>();
+    queryParams.addAll(ApiInvoker.parameterToPairs("", "blocking", blocking));
+    queryParams.addAll(ApiInvoker.parameterToPairs("", "timeOutInSecs", timeOutInSecs));
+    String[] contentTypes = {
+    };
+    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+
+    if (contentType.startsWith("multipart/form-data")) {
+      // file uploading
+      MultipartEntityBuilder localVarBuilder = MultipartEntityBuilder.create();
+      HttpEntity httpEntity = localVarBuilder.build();
+      postBody = httpEntity;
+    } else {
+      // normal form params
+    }
+
+    String[] authNames = new String[] { "jenkins_auth" };
+
+    try {
+      String localVarResponse = apiInvoker.invokeAPI (basePath, path, "PUT", queryParams, postBody, headerParams, formParams, contentType, authNames);
+      if (localVarResponse != null) {
+         return (PipelineRun) ApiInvoker.deserialize(localVarResponse, "", PipelineRun.class);
+      } else {
+         return null;
+      }
+    } catch (ApiException ex) {
+       throw ex;
+    } catch (InterruptedException ex) {
+       throw ex;
+    } catch (ExecutionException ex) {
+      if (ex.getCause() instanceof VolleyError) {
+        VolleyError volleyError = (VolleyError)ex.getCause();
+        if (volleyError.networkResponse != null) {
+          throw new ApiException(volleyError.networkResponse.statusCode, volleyError.getMessage());
+        }
+      }
+      throw ex;
+    } catch (TimeoutException ex) {
+      throw ex;
+    }
+  }
+
+      /**
+   * 
+   * Stop a build of an organization pipeline
+   * @param organization Name of the organization   * @param pipeline Name of the pipeline   * @param run Name of the run   * @param blocking Set to true to make blocking stop, default: false   * @param timeOutInSecs Timeout in seconds, default: 10 seconds
+  */
+  public void putPipelineRun (String organization, String pipeline, String run, String blocking, Integer timeOutInSecs, final Response.Listener<PipelineRun> responseListener, final Response.ErrorListener errorListener) {
+    Object postBody = null;
+
+    // verify the required parameter 'organization' is set
+    if (organization == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'organization' when calling putPipelineRun",
+        new ApiException(400, "Missing the required parameter 'organization' when calling putPipelineRun"));
+    }
+    // verify the required parameter 'pipeline' is set
+    if (pipeline == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'pipeline' when calling putPipelineRun",
+        new ApiException(400, "Missing the required parameter 'pipeline' when calling putPipelineRun"));
+    }
+    // verify the required parameter 'run' is set
+    if (run == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'run' when calling putPipelineRun",
+        new ApiException(400, "Missing the required parameter 'run' when calling putPipelineRun"));
+    }
+
+    // create path and map variables
+    String path = "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/stop".replaceAll("\\{format\\}","json").replaceAll("\\{" + "organization" + "\\}", apiInvoker.escapeString(organization.toString())).replaceAll("\\{" + "pipeline" + "\\}", apiInvoker.escapeString(pipeline.toString())).replaceAll("\\{" + "run" + "\\}", apiInvoker.escapeString(run.toString()));
+
+    // query params
+    List<Pair> queryParams = new ArrayList<Pair>();
+    // header params
+    Map<String, String> headerParams = new HashMap<String, String>();
+    // form params
+    Map<String, String> formParams = new HashMap<String, String>();
+
+    queryParams.addAll(ApiInvoker.parameterToPairs("", "blocking", blocking));
+    queryParams.addAll(ApiInvoker.parameterToPairs("", "timeOutInSecs", timeOutInSecs));
+
+
+    String[] contentTypes = {
+      
+    };
+    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+
+    if (contentType.startsWith("multipart/form-data")) {
+      // file uploading
+      MultipartEntityBuilder localVarBuilder = MultipartEntityBuilder.create();
+      
+
+      HttpEntity httpEntity = localVarBuilder.build();
+      postBody = httpEntity;
+    } else {
+      // normal form params
+          }
+
+    String[] authNames = new String[] { "jenkins_auth" };
+
+    try {
+      apiInvoker.invokeAPI(basePath, path, "PUT", queryParams, postBody, headerParams, formParams, contentType, authNames,
+        new Response.Listener<String>() {
+          @Override
+          public void onResponse(String localVarResponse) {
+            try {
+              responseListener.onResponse((PipelineRun) ApiInvoker.deserialize(localVarResponse,  "", PipelineRun.class));
+            } catch (ApiException exception) {
+               errorListener.onErrorResponse(new VolleyError(exception));
+            }
+          }
+      }, new Response.ErrorListener() {
+          @Override
+          public void onErrorResponse(VolleyError error) {
+            errorListener.onErrorResponse(error);
+          }
+      });
+    } catch (ApiException ex) {
+      errorListener.onErrorResponse(new VolleyError(ex));
+    }
+  }
+  /**
+  * 
   * Search for any resource details
    * @param q Query string
    * @return String
   */
-  public String search_2 (String q) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
+  public String search (String q) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
     Object postBody = null;
     // verify the required parameter 'q' is set
     if (q == null) {
-      VolleyError error = new VolleyError("Missing the required parameter 'q' when calling search_2",
-        new ApiException(400, "Missing the required parameter 'q' when calling search_2"));
+      VolleyError error = new VolleyError("Missing the required parameter 'q' when calling search",
+        new ApiException(400, "Missing the required parameter 'q' when calling search"));
     }
 
     // create path and map variables
@@ -1830,7 +4867,7 @@ public class BlueOceanApi {
       // normal form params
     }
 
-    String[] authNames = new String[] {  };
+    String[] authNames = new String[] { "jenkins_auth" };
 
     try {
       String localVarResponse = apiInvoker.invokeAPI (basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames);
@@ -1861,13 +4898,13 @@ public class BlueOceanApi {
    * Search for any resource details
    * @param q Query string
   */
-  public void search_2 (String q, final Response.Listener<String> responseListener, final Response.ErrorListener errorListener) {
+  public void search (String q, final Response.Listener<String> responseListener, final Response.ErrorListener errorListener) {
     Object postBody = null;
 
     // verify the required parameter 'q' is set
     if (q == null) {
-      VolleyError error = new VolleyError("Missing the required parameter 'q' when calling search_2",
-        new ApiException(400, "Missing the required parameter 'q' when calling search_2"));
+      VolleyError error = new VolleyError("Missing the required parameter 'q' when calling search",
+        new ApiException(400, "Missing the required parameter 'q' when calling search"));
     }
 
     // create path and map variables
@@ -1899,7 +4936,136 @@ public class BlueOceanApi {
       // normal form params
           }
 
-    String[] authNames = new String[] {  };
+    String[] authNames = new String[] { "jenkins_auth" };
+
+    try {
+      apiInvoker.invokeAPI(basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames,
+        new Response.Listener<String>() {
+          @Override
+          public void onResponse(String localVarResponse) {
+            try {
+              responseListener.onResponse((String) ApiInvoker.deserialize(localVarResponse,  "", String.class));
+            } catch (ApiException exception) {
+               errorListener.onErrorResponse(new VolleyError(exception));
+            }
+          }
+      }, new Response.ErrorListener() {
+          @Override
+          public void onErrorResponse(VolleyError error) {
+            errorListener.onErrorResponse(error);
+          }
+      });
+    } catch (ApiException ex) {
+      errorListener.onErrorResponse(new VolleyError(ex));
+    }
+  }
+  /**
+  * 
+  * Get classes details
+   * @param q Query string containing an array of class names
+   * @return String
+  */
+  public String searchClasses (String q) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
+    Object postBody = null;
+    // verify the required parameter 'q' is set
+    if (q == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'q' when calling searchClasses",
+        new ApiException(400, "Missing the required parameter 'q' when calling searchClasses"));
+    }
+
+    // create path and map variables
+    String path = "/blue/rest/classes/";
+
+    // query params
+    List<Pair> queryParams = new ArrayList<Pair>();
+    // header params
+    Map<String, String> headerParams = new HashMap<String, String>();
+    // form params
+    Map<String, String> formParams = new HashMap<String, String>();
+    queryParams.addAll(ApiInvoker.parameterToPairs("", "q", q));
+    String[] contentTypes = {
+    };
+    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+
+    if (contentType.startsWith("multipart/form-data")) {
+      // file uploading
+      MultipartEntityBuilder localVarBuilder = MultipartEntityBuilder.create();
+      HttpEntity httpEntity = localVarBuilder.build();
+      postBody = httpEntity;
+    } else {
+      // normal form params
+    }
+
+    String[] authNames = new String[] { "jenkins_auth" };
+
+    try {
+      String localVarResponse = apiInvoker.invokeAPI (basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames);
+      if (localVarResponse != null) {
+         return (String) ApiInvoker.deserialize(localVarResponse, "", String.class);
+      } else {
+         return null;
+      }
+    } catch (ApiException ex) {
+       throw ex;
+    } catch (InterruptedException ex) {
+       throw ex;
+    } catch (ExecutionException ex) {
+      if (ex.getCause() instanceof VolleyError) {
+        VolleyError volleyError = (VolleyError)ex.getCause();
+        if (volleyError.networkResponse != null) {
+          throw new ApiException(volleyError.networkResponse.statusCode, volleyError.getMessage());
+        }
+      }
+      throw ex;
+    } catch (TimeoutException ex) {
+      throw ex;
+    }
+  }
+
+      /**
+   * 
+   * Get classes details
+   * @param q Query string containing an array of class names
+  */
+  public void searchClasses (String q, final Response.Listener<String> responseListener, final Response.ErrorListener errorListener) {
+    Object postBody = null;
+
+    // verify the required parameter 'q' is set
+    if (q == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'q' when calling searchClasses",
+        new ApiException(400, "Missing the required parameter 'q' when calling searchClasses"));
+    }
+
+    // create path and map variables
+    String path = "/blue/rest/classes/".replaceAll("\\{format\\}","json");
+
+    // query params
+    List<Pair> queryParams = new ArrayList<Pair>();
+    // header params
+    Map<String, String> headerParams = new HashMap<String, String>();
+    // form params
+    Map<String, String> formParams = new HashMap<String, String>();
+
+    queryParams.addAll(ApiInvoker.parameterToPairs("", "q", q));
+
+
+    String[] contentTypes = {
+      
+    };
+    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+
+    if (contentType.startsWith("multipart/form-data")) {
+      // file uploading
+      MultipartEntityBuilder localVarBuilder = MultipartEntityBuilder.create();
+      
+
+      HttpEntity httpEntity = localVarBuilder.build();
+      postBody = httpEntity;
+    } else {
+      // normal form params
+          }
+
+    String[] authNames = new String[] { "jenkins_auth" };
 
     try {
       apiInvoker.invokeAPI(basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames,

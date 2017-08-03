@@ -4,7 +4,7 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**getComputer**](SWGRemoteAccessApi.md#getcomputer) | **GET** /computer/api/json?depth&#x3D;1 | 
+[**getComputer**](SWGRemoteAccessApi.md#getcomputer) | **GET** /computer/api/json | 
 [**getCrumb**](SWGRemoteAccessApi.md#getcrumb) | **GET** /crumbIssuer/api/json | 
 [**getJenkins**](SWGRemoteAccessApi.md#getjenkins) | **GET** /api/json | 
 [**getJob**](SWGRemoteAccessApi.md#getjob) | **GET** /job/{name}/api/json | 
@@ -29,8 +29,8 @@ Method | HTTP request | Description
 
 # **getComputer**
 ```objc
--(NSURLSessionTask*) getComputerWithCompletionHandler: 
-        (void (^)(SWGHudsonmodelComputerSet* output, NSError* error)) handler;
+-(NSURLSessionTask*) getComputerWithDepth: (NSNumber*) depth
+        completionHandler: (void (^)(SWGComputerSet* output, NSError* error)) handler;
 ```
 
 
@@ -39,12 +39,18 @@ Retrieve computer details
 
 ### Example 
 ```objc
+SWGDefaultConfiguration *apiConfig = [SWGDefaultConfiguration sharedConfig];
+// Configure HTTP basic authorization (authentication scheme: jenkins_auth)
+[apiConfig setUsername:@"YOUR_USERNAME"];
+[apiConfig setPassword:@"YOUR_PASSWORD"];
 
+
+NSNumber* depth = @56; // Recursion depth in response model
 
 SWGRemoteAccessApi*apiInstance = [[SWGRemoteAccessApi alloc] init];
 
-[apiInstance getComputerWithCompletionHandler: 
-          ^(SWGHudsonmodelComputerSet* output, NSError* error) {
+[apiInstance getComputerWithDepth:depth
+          completionHandler: ^(SWGComputerSet* output, NSError* error) {
                         if (output) {
                             NSLog(@"%@", output);
                         }
@@ -55,15 +61,18 @@ SWGRemoteAccessApi*apiInstance = [[SWGRemoteAccessApi alloc] init];
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **depth** | **NSNumber***| Recursion depth in response model | 
 
 ### Return type
 
-[**SWGHudsonmodelComputerSet***](SWGHudsonmodelComputerSet.md)
+[**SWGComputerSet***](SWGComputerSet.md)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -75,7 +84,7 @@ No authorization required
 # **getCrumb**
 ```objc
 -(NSURLSessionTask*) getCrumbWithCompletionHandler: 
-        (void (^)(SWGHudsonsecuritycsrfDefaultCrumbIssuer* output, NSError* error)) handler;
+        (void (^)(SWGDefaultCrumbIssuer* output, NSError* error)) handler;
 ```
 
 
@@ -84,12 +93,17 @@ Retrieve CSRF protection token
 
 ### Example 
 ```objc
+SWGDefaultConfiguration *apiConfig = [SWGDefaultConfiguration sharedConfig];
+// Configure HTTP basic authorization (authentication scheme: jenkins_auth)
+[apiConfig setUsername:@"YOUR_USERNAME"];
+[apiConfig setPassword:@"YOUR_PASSWORD"];
+
 
 
 SWGRemoteAccessApi*apiInstance = [[SWGRemoteAccessApi alloc] init];
 
 [apiInstance getCrumbWithCompletionHandler: 
-          ^(SWGHudsonsecuritycsrfDefaultCrumbIssuer* output, NSError* error) {
+          ^(SWGDefaultCrumbIssuer* output, NSError* error) {
                         if (output) {
                             NSLog(@"%@", output);
                         }
@@ -104,11 +118,11 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**SWGHudsonsecuritycsrfDefaultCrumbIssuer***](SWGHudsonsecuritycsrfDefaultCrumbIssuer.md)
+[**SWGDefaultCrumbIssuer***](SWGDefaultCrumbIssuer.md)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -120,7 +134,7 @@ No authorization required
 # **getJenkins**
 ```objc
 -(NSURLSessionTask*) getJenkinsWithCompletionHandler: 
-        (void (^)(SWGHudsonmodelHudson* output, NSError* error)) handler;
+        (void (^)(SWGHudson* output, NSError* error)) handler;
 ```
 
 
@@ -129,12 +143,17 @@ Retrieve Jenkins details
 
 ### Example 
 ```objc
+SWGDefaultConfiguration *apiConfig = [SWGDefaultConfiguration sharedConfig];
+// Configure HTTP basic authorization (authentication scheme: jenkins_auth)
+[apiConfig setUsername:@"YOUR_USERNAME"];
+[apiConfig setPassword:@"YOUR_PASSWORD"];
+
 
 
 SWGRemoteAccessApi*apiInstance = [[SWGRemoteAccessApi alloc] init];
 
 [apiInstance getJenkinsWithCompletionHandler: 
-          ^(SWGHudsonmodelHudson* output, NSError* error) {
+          ^(SWGHudson* output, NSError* error) {
                         if (output) {
                             NSLog(@"%@", output);
                         }
@@ -149,11 +168,11 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**SWGHudsonmodelHudson***](SWGHudsonmodelHudson.md)
+[**SWGHudson***](SWGHudson.md)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -165,7 +184,7 @@ No authorization required
 # **getJob**
 ```objc
 -(NSURLSessionTask*) getJobWithName: (NSString*) name
-        completionHandler: (void (^)(SWGHudsonmodelFreeStyleProject* output, NSError* error)) handler;
+        completionHandler: (void (^)(SWGFreeStyleProject* output, NSError* error)) handler;
 ```
 
 
@@ -174,13 +193,18 @@ Retrieve job details
 
 ### Example 
 ```objc
+SWGDefaultConfiguration *apiConfig = [SWGDefaultConfiguration sharedConfig];
+// Configure HTTP basic authorization (authentication scheme: jenkins_auth)
+[apiConfig setUsername:@"YOUR_USERNAME"];
+[apiConfig setPassword:@"YOUR_PASSWORD"];
+
 
 NSString* name = @"name_example"; // Name of the job
 
 SWGRemoteAccessApi*apiInstance = [[SWGRemoteAccessApi alloc] init];
 
 [apiInstance getJobWithName:name
-          completionHandler: ^(SWGHudsonmodelFreeStyleProject* output, NSError* error) {
+          completionHandler: ^(SWGFreeStyleProject* output, NSError* error) {
                         if (output) {
                             NSLog(@"%@", output);
                         }
@@ -198,11 +222,11 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**SWGHudsonmodelFreeStyleProject***](SWGHudsonmodelFreeStyleProject.md)
+[**SWGFreeStyleProject***](SWGFreeStyleProject.md)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -223,6 +247,11 @@ Retrieve job configuration
 
 ### Example 
 ```objc
+SWGDefaultConfiguration *apiConfig = [SWGDefaultConfiguration sharedConfig];
+// Configure HTTP basic authorization (authentication scheme: jenkins_auth)
+[apiConfig setUsername:@"YOUR_USERNAME"];
+[apiConfig setPassword:@"YOUR_PASSWORD"];
+
 
 NSString* name = @"name_example"; // Name of the job
 
@@ -251,7 +280,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -263,7 +292,7 @@ No authorization required
 # **getJobLastBuild**
 ```objc
 -(NSURLSessionTask*) getJobLastBuildWithName: (NSString*) name
-        completionHandler: (void (^)(SWGHudsonmodelFreeStyleBuild* output, NSError* error)) handler;
+        completionHandler: (void (^)(SWGFreeStyleBuild* output, NSError* error)) handler;
 ```
 
 
@@ -272,13 +301,18 @@ Retrieve job's last build details
 
 ### Example 
 ```objc
+SWGDefaultConfiguration *apiConfig = [SWGDefaultConfiguration sharedConfig];
+// Configure HTTP basic authorization (authentication scheme: jenkins_auth)
+[apiConfig setUsername:@"YOUR_USERNAME"];
+[apiConfig setPassword:@"YOUR_PASSWORD"];
+
 
 NSString* name = @"name_example"; // Name of the job
 
 SWGRemoteAccessApi*apiInstance = [[SWGRemoteAccessApi alloc] init];
 
 [apiInstance getJobLastBuildWithName:name
-          completionHandler: ^(SWGHudsonmodelFreeStyleBuild* output, NSError* error) {
+          completionHandler: ^(SWGFreeStyleBuild* output, NSError* error) {
                         if (output) {
                             NSLog(@"%@", output);
                         }
@@ -296,11 +330,11 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**SWGHudsonmodelFreeStyleBuild***](SWGHudsonmodelFreeStyleBuild.md)
+[**SWGFreeStyleBuild***](SWGFreeStyleBuild.md)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -323,6 +357,11 @@ Retrieve job's build progressive text output
 
 ### Example 
 ```objc
+SWGDefaultConfiguration *apiConfig = [SWGDefaultConfiguration sharedConfig];
+// Configure HTTP basic authorization (authentication scheme: jenkins_auth)
+[apiConfig setUsername:@"YOUR_USERNAME"];
+[apiConfig setPassword:@"YOUR_PASSWORD"];
+
 
 NSString* name = @"name_example"; // Name of the job
 NSString* number = @"number_example"; // Build number
@@ -354,7 +393,7 @@ void (empty response body)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -366,7 +405,7 @@ No authorization required
 # **getQueue**
 ```objc
 -(NSURLSessionTask*) getQueueWithCompletionHandler: 
-        (void (^)(SWGHudsonmodelQueue* output, NSError* error)) handler;
+        (void (^)(SWGQueue* output, NSError* error)) handler;
 ```
 
 
@@ -375,12 +414,17 @@ Retrieve queue details
 
 ### Example 
 ```objc
+SWGDefaultConfiguration *apiConfig = [SWGDefaultConfiguration sharedConfig];
+// Configure HTTP basic authorization (authentication scheme: jenkins_auth)
+[apiConfig setUsername:@"YOUR_USERNAME"];
+[apiConfig setPassword:@"YOUR_PASSWORD"];
+
 
 
 SWGRemoteAccessApi*apiInstance = [[SWGRemoteAccessApi alloc] init];
 
 [apiInstance getQueueWithCompletionHandler: 
-          ^(SWGHudsonmodelQueue* output, NSError* error) {
+          ^(SWGQueue* output, NSError* error) {
                         if (output) {
                             NSLog(@"%@", output);
                         }
@@ -395,11 +439,11 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**SWGHudsonmodelQueue***](SWGHudsonmodelQueue.md)
+[**SWGQueue***](SWGQueue.md)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -411,7 +455,7 @@ No authorization required
 # **getQueueItem**
 ```objc
 -(NSURLSessionTask*) getQueueItemWithNumber: (NSString*) number
-        completionHandler: (void (^)(SWGHudsonmodelQueue* output, NSError* error)) handler;
+        completionHandler: (void (^)(SWGQueue* output, NSError* error)) handler;
 ```
 
 
@@ -420,13 +464,18 @@ Retrieve queued item details
 
 ### Example 
 ```objc
+SWGDefaultConfiguration *apiConfig = [SWGDefaultConfiguration sharedConfig];
+// Configure HTTP basic authorization (authentication scheme: jenkins_auth)
+[apiConfig setUsername:@"YOUR_USERNAME"];
+[apiConfig setPassword:@"YOUR_PASSWORD"];
+
 
 NSString* number = @"number_example"; // Queue number
 
 SWGRemoteAccessApi*apiInstance = [[SWGRemoteAccessApi alloc] init];
 
 [apiInstance getQueueItemWithNumber:number
-          completionHandler: ^(SWGHudsonmodelQueue* output, NSError* error) {
+          completionHandler: ^(SWGQueue* output, NSError* error) {
                         if (output) {
                             NSLog(@"%@", output);
                         }
@@ -444,11 +493,11 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**SWGHudsonmodelQueue***](SWGHudsonmodelQueue.md)
+[**SWGQueue***](SWGQueue.md)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -460,7 +509,7 @@ No authorization required
 # **getView**
 ```objc
 -(NSURLSessionTask*) getViewWithName: (NSString*) name
-        completionHandler: (void (^)(SWGHudsonmodelListView* output, NSError* error)) handler;
+        completionHandler: (void (^)(SWGListView* output, NSError* error)) handler;
 ```
 
 
@@ -469,13 +518,18 @@ Retrieve view details
 
 ### Example 
 ```objc
+SWGDefaultConfiguration *apiConfig = [SWGDefaultConfiguration sharedConfig];
+// Configure HTTP basic authorization (authentication scheme: jenkins_auth)
+[apiConfig setUsername:@"YOUR_USERNAME"];
+[apiConfig setPassword:@"YOUR_PASSWORD"];
+
 
 NSString* name = @"name_example"; // Name of the view
 
 SWGRemoteAccessApi*apiInstance = [[SWGRemoteAccessApi alloc] init];
 
 [apiInstance getViewWithName:name
-          completionHandler: ^(SWGHudsonmodelListView* output, NSError* error) {
+          completionHandler: ^(SWGListView* output, NSError* error) {
                         if (output) {
                             NSLog(@"%@", output);
                         }
@@ -493,11 +547,11 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**SWGHudsonmodelListView***](SWGHudsonmodelListView.md)
+[**SWGListView***](SWGListView.md)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -518,6 +572,11 @@ Retrieve view configuration
 
 ### Example 
 ```objc
+SWGDefaultConfiguration *apiConfig = [SWGDefaultConfiguration sharedConfig];
+// Configure HTTP basic authorization (authentication scheme: jenkins_auth)
+[apiConfig setUsername:@"YOUR_USERNAME"];
+[apiConfig setPassword:@"YOUR_PASSWORD"];
+
 
 NSString* name = @"name_example"; // Name of the view
 
@@ -546,7 +605,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -567,6 +626,11 @@ Retrieve Jenkins headers
 
 ### Example 
 ```objc
+SWGDefaultConfiguration *apiConfig = [SWGDefaultConfiguration sharedConfig];
+// Configure HTTP basic authorization (authentication scheme: jenkins_auth)
+[apiConfig setUsername:@"YOUR_USERNAME"];
+[apiConfig setPassword:@"YOUR_PASSWORD"];
+
 
 
 SWGRemoteAccessApi*apiInstance = [[SWGRemoteAccessApi alloc] init];
@@ -588,7 +652,7 @@ void (empty response body)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -614,6 +678,11 @@ Create a new job using job configuration, or copied from an existing job
 
 ### Example 
 ```objc
+SWGDefaultConfiguration *apiConfig = [SWGDefaultConfiguration sharedConfig];
+// Configure HTTP basic authorization (authentication scheme: jenkins_auth)
+[apiConfig setUsername:@"YOUR_USERNAME"];
+[apiConfig setPassword:@"YOUR_PASSWORD"];
+
 
 NSString* name = @"name_example"; // Name of the new job
 NSString* from = @"from_example"; // Existing job to copy from (optional)
@@ -654,7 +723,7 @@ void (empty response body)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -678,6 +747,11 @@ Create a new view using view configuration
 
 ### Example 
 ```objc
+SWGDefaultConfiguration *apiConfig = [SWGDefaultConfiguration sharedConfig];
+// Configure HTTP basic authorization (authentication scheme: jenkins_auth)
+[apiConfig setUsername:@"YOUR_USERNAME"];
+[apiConfig setPassword:@"YOUR_PASSWORD"];
+
 
 NSString* name = @"name_example"; // Name of the new view
 NSString* body = body_example; // View configuration in config.xml format (optional)
@@ -712,7 +786,7 @@ void (empty response body)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -736,6 +810,11 @@ Build a job
 
 ### Example 
 ```objc
+SWGDefaultConfiguration *apiConfig = [SWGDefaultConfiguration sharedConfig];
+// Configure HTTP basic authorization (authentication scheme: jenkins_auth)
+[apiConfig setUsername:@"YOUR_USERNAME"];
+[apiConfig setPassword:@"YOUR_PASSWORD"];
+
 
 NSString* name = @"name_example"; // Name of the job
 NSString* json = @"json_example"; // 
@@ -770,7 +849,7 @@ void (empty response body)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -793,6 +872,11 @@ Update job configuration
 
 ### Example 
 ```objc
+SWGDefaultConfiguration *apiConfig = [SWGDefaultConfiguration sharedConfig];
+// Configure HTTP basic authorization (authentication scheme: jenkins_auth)
+[apiConfig setUsername:@"YOUR_USERNAME"];
+[apiConfig setPassword:@"YOUR_PASSWORD"];
+
 
 NSString* name = @"name_example"; // Name of the job
 NSString* body = body_example; // Job configuration in config.xml format
@@ -824,7 +908,7 @@ void (empty response body)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -846,6 +930,11 @@ Delete a job
 
 ### Example 
 ```objc
+SWGDefaultConfiguration *apiConfig = [SWGDefaultConfiguration sharedConfig];
+// Configure HTTP basic authorization (authentication scheme: jenkins_auth)
+[apiConfig setUsername:@"YOUR_USERNAME"];
+[apiConfig setPassword:@"YOUR_PASSWORD"];
+
 
 NSString* name = @"name_example"; // Name of the job
 NSString* jenkinsCrumb = @"jenkinsCrumb_example"; // CSRF protection token (optional)
@@ -874,7 +963,7 @@ void (empty response body)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -896,6 +985,11 @@ Disable a job
 
 ### Example 
 ```objc
+SWGDefaultConfiguration *apiConfig = [SWGDefaultConfiguration sharedConfig];
+// Configure HTTP basic authorization (authentication scheme: jenkins_auth)
+[apiConfig setUsername:@"YOUR_USERNAME"];
+[apiConfig setPassword:@"YOUR_PASSWORD"];
+
 
 NSString* name = @"name_example"; // Name of the job
 NSString* jenkinsCrumb = @"jenkinsCrumb_example"; // CSRF protection token (optional)
@@ -924,7 +1018,7 @@ void (empty response body)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -946,6 +1040,11 @@ Enable a job
 
 ### Example 
 ```objc
+SWGDefaultConfiguration *apiConfig = [SWGDefaultConfiguration sharedConfig];
+// Configure HTTP basic authorization (authentication scheme: jenkins_auth)
+[apiConfig setUsername:@"YOUR_USERNAME"];
+[apiConfig setPassword:@"YOUR_PASSWORD"];
+
 
 NSString* name = @"name_example"; // Name of the job
 NSString* jenkinsCrumb = @"jenkinsCrumb_example"; // CSRF protection token (optional)
@@ -974,7 +1073,7 @@ void (empty response body)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -996,6 +1095,11 @@ Stop a job
 
 ### Example 
 ```objc
+SWGDefaultConfiguration *apiConfig = [SWGDefaultConfiguration sharedConfig];
+// Configure HTTP basic authorization (authentication scheme: jenkins_auth)
+[apiConfig setUsername:@"YOUR_USERNAME"];
+[apiConfig setPassword:@"YOUR_PASSWORD"];
+
 
 NSString* name = @"name_example"; // Name of the job
 NSString* jenkinsCrumb = @"jenkinsCrumb_example"; // CSRF protection token (optional)
@@ -1024,7 +1128,7 @@ void (empty response body)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -1047,6 +1151,11 @@ Update view configuration
 
 ### Example 
 ```objc
+SWGDefaultConfiguration *apiConfig = [SWGDefaultConfiguration sharedConfig];
+// Configure HTTP basic authorization (authentication scheme: jenkins_auth)
+[apiConfig setUsername:@"YOUR_USERNAME"];
+[apiConfig setPassword:@"YOUR_PASSWORD"];
+
 
 NSString* name = @"name_example"; // Name of the view
 NSString* body = body_example; // View configuration in config.xml format
@@ -1078,7 +1187,7 @@ void (empty response body)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 

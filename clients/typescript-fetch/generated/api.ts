@@ -16,6 +16,8 @@ import * as url from "url";
 import * as isomorphicFetch from "isomorphic-fetch";
 import * as assign from "core-js/library/fn/object/assign";
 
+import { Configuration } from "./configuration";
+
 interface Dictionary<T> { [index: string]: T; }
 export interface FetchAPI { (url: string, init?: any): Promise<any>; }
 
@@ -29,19 +31,399 @@ export interface FetchArgs {
 export class BaseAPI {
     basePath: string;
     fetch: FetchAPI;
+    public configuration: Configuration;
 
-    constructor(fetch: FetchAPI = isomorphicFetch, basePath: string = BASE_PATH) {
+    constructor(fetch: FetchAPI = isomorphicFetch, basePath: string = BASE_PATH, configuration: Configuration = new Configuration()) {
         this.basePath = basePath;
         this.fetch = fetch;
+        this.configuration = configuration;
     }
 };
 
-export interface GetClassesByClass {
+export interface AllView {
+    "class"?: string;
+    "name"?: string;
+    "url"?: string;
+}
+
+export interface Body {
+    "favorite": boolean;
+}
+
+export interface BranchImpl {
+    "class"?: string;
+    "displayName"?: string;
+    "estimatedDurationInMillis"?: number;
+    "fullDisplayName"?: string;
+    "fullName"?: string;
+    "name"?: string;
+    "organization"?: string;
+    "parameters"?: Array<StringParameterDefinition>;
+    "permissions"?: BranchImplpermissions;
+    "weatherScore"?: number;
+    "pullRequest"?: string;
+    "links"?: BranchImpllinks;
+    "latestRun"?: PipelineRunImpl;
+}
+
+export interface BranchImpllinks {
+    "self"?: Link;
+    "actions"?: Link;
+    "runs"?: Link;
+    "queue"?: Link;
+    "class"?: string;
+}
+
+export interface BranchImplpermissions {
+    "create"?: boolean;
+    "read"?: boolean;
+    "start"?: boolean;
+    "stop"?: boolean;
+    "class"?: string;
+}
+
+export interface CauseAction {
+    "class"?: string;
+    "causes"?: Array<CauseUserIdCause>;
+}
+
+export interface CauseUserIdCause {
+    "class"?: string;
+    "shortDescription"?: string;
+    "userId"?: string;
+    "userName"?: string;
+}
+
+export interface ClassesByClass {
     "classes"?: Array<string>;
     "class"?: string;
 }
 
-export interface GetMultibranchPipeline {
+export interface ClockDifference {
+    "class"?: string;
+    "diff"?: number;
+}
+
+export interface ComputerSet {
+    "class"?: string;
+    "busyExecutors"?: number;
+    "computer"?: Array<HudsonMasterComputer>;
+    "displayName"?: string;
+    "totalExecutors"?: number;
+}
+
+export interface DefaultCrumbIssuer {
+    "class"?: string;
+    "crumb"?: string;
+    "crumbRequestField"?: string;
+}
+
+export interface DiskSpaceMonitorDescriptorDiskSpace {
+    "class"?: string;
+    "timestamp"?: number;
+    "path"?: string;
+    "size"?: number;
+}
+
+export interface EmptyChangeLogSet {
+    "class"?: string;
+    "kind"?: string;
+}
+
+export interface ExtensionClassContainerImpl1 {
+    "class"?: string;
+    "links"?: ExtensionClassContainerImpl1links;
+    "map"?: ExtensionClassContainerImpl1map;
+}
+
+export interface ExtensionClassContainerImpl1links {
+    "self"?: Link;
+    "class"?: string;
+}
+
+export interface ExtensionClassContainerImpl1map {
+    "ioJenkinsBlueoceanServiceEmbeddedRestPipelineImpl"?: ExtensionClassImpl;
+    "ioJenkinsBlueoceanServiceEmbeddedRestMultiBranchPipelineImpl"?: ExtensionClassImpl;
+    "class"?: string;
+}
+
+export interface ExtensionClassImpl {
+    "class"?: string;
+    "links"?: ExtensionClassImpllinks;
+    "classes"?: Array<string>;
+}
+
+export interface ExtensionClassImpllinks {
+    "self"?: Link;
+    "class"?: string;
+}
+
+export interface FavoriteImpl {
+    "class"?: string;
+    "links"?: FavoriteImpllinks;
+    "item"?: PipelineImpl;
+}
+
+export interface FavoriteImpllinks {
+    "self"?: Link;
+    "class"?: string;
+}
+
+export interface FreeStyleBuild {
+    "class"?: string;
+    "number"?: number;
+    "url"?: string;
+    "actions"?: Array<CauseAction>;
+    "building"?: boolean;
+    "description"?: string;
+    "displayName"?: string;
+    "duration"?: number;
+    "estimatedDuration"?: number;
+    "executor"?: string;
+    "fullDisplayName"?: string;
+    "id"?: string;
+    "keepLog"?: boolean;
+    "queueId"?: number;
+    "result"?: string;
+    "timestamp"?: number;
+    "builtOn"?: string;
+    "changeSet"?: EmptyChangeLogSet;
+}
+
+export interface FreeStyleProject {
+    "class"?: string;
+    "name"?: string;
+    "url"?: string;
+    "color"?: string;
+    "actions"?: Array<FreeStyleProjectactions>;
+    "description"?: string;
+    "displayName"?: string;
+    "displayNameOrNull"?: string;
+    "fullDisplayName"?: string;
+    "fullName"?: string;
+    "buildable"?: boolean;
+    "builds"?: Array<FreeStyleBuild>;
+    "firstBuild"?: FreeStyleBuild;
+    "healthReport"?: Array<FreeStyleProjecthealthReport>;
+    "inQueue"?: boolean;
+    "keepDependencies"?: boolean;
+    "lastBuild"?: FreeStyleBuild;
+    "lastCompletedBuild"?: FreeStyleBuild;
+    "lastFailedBuild"?: string;
+    "lastStableBuild"?: FreeStyleBuild;
+    "lastSuccessfulBuild"?: FreeStyleBuild;
+    "lastUnstableBuild"?: string;
+    "lastUnsuccessfulBuild"?: string;
+    "nextBuildNumber"?: number;
+    "queueItem"?: string;
+    "concurrentBuild"?: boolean;
+    "scm"?: NullSCM;
+}
+
+export interface FreeStyleProjectactions {
+    "class"?: string;
+}
+
+export interface FreeStyleProjecthealthReport {
+    "description"?: string;
+    "iconClassName"?: string;
+    "iconUrl"?: string;
+    "score"?: number;
+    "class"?: string;
+}
+
+export interface GenericResource {
+    "class"?: string;
+    "displayName"?: string;
+    "durationInMillis"?: number;
+    "id"?: string;
+    "result"?: string;
+    "startTime"?: string;
+}
+
+export interface GithubContent {
+    "name"?: string;
+    "sha"?: string;
+    "class"?: string;
+    "repo"?: string;
+    "size"?: number;
+    "owner"?: string;
+    "path"?: string;
+    "base64Data"?: string;
+}
+
+export interface GithubFile {
+    "content"?: GithubContent;
+    "class"?: string;
+}
+
+export interface GithubOrganization {
+    "class"?: string;
+    "links"?: GithubOrganizationlinks;
+    "jenkinsOrganizationPipeline"?: boolean;
+    "name"?: string;
+}
+
+export interface GithubOrganizationlinks {
+    "repositories"?: Link;
+    "self"?: Link;
+    "class"?: string;
+}
+
+export interface GithubRepositories {
+    "class"?: string;
+    "links"?: GithubRepositorieslinks;
+    "items"?: Array<GithubRepository>;
+    "lastPage"?: number;
+    "nextPage"?: number;
+    "pageSize"?: number;
+}
+
+export interface GithubRepositorieslinks {
+    "self"?: Link;
+    "class"?: string;
+}
+
+export interface GithubRepository {
+    "class"?: string;
+    "links"?: GithubRepositorylinks;
+    "defaultBranch"?: string;
+    "description"?: string;
+    "name"?: string;
+    "permissions"?: GithubRepositorypermissions;
+    "private"?: boolean;
+    "fullName"?: string;
+}
+
+export interface GithubRepositorylinks {
+    "self"?: Link;
+    "class"?: string;
+}
+
+export interface GithubRepositorypermissions {
+    "admin"?: boolean;
+    "push"?: boolean;
+    "pull"?: boolean;
+    "class"?: string;
+}
+
+export interface GithubRespositoryContainer {
+    "class"?: string;
+    "links"?: GithubRespositoryContainerlinks;
+    "repositories"?: GithubRepositories;
+}
+
+export interface GithubRespositoryContainerlinks {
+    "self"?: Link;
+    "class"?: string;
+}
+
+export interface GithubScm {
+    "class"?: string;
+    "links"?: GithubScmlinks;
+    "credentialId"?: string;
+    "id"?: string;
+    "uri"?: string;
+}
+
+export interface GithubScmlinks {
+    "self"?: Link;
+    "class"?: string;
+}
+
+export interface Hudson {
+    "class"?: string;
+    "assignedLabels"?: Array<HudsonassignedLabels>;
+    "mode"?: string;
+    "nodeDescription"?: string;
+    "nodeName"?: string;
+    "numExecutors"?: number;
+    "description"?: string;
+    "jobs"?: Array<FreeStyleProject>;
+    "primaryView"?: AllView;
+    "quietingDown"?: boolean;
+    "slaveAgentPort"?: number;
+    "unlabeledLoad"?: UnlabeledLoadStatistics;
+    "useCrumbs"?: boolean;
+    "useSecurity"?: boolean;
+    "views"?: Array<AllView>;
+}
+
+export interface HudsonMasterComputer {
+    "class"?: string;
+    "displayName"?: string;
+    "executors"?: Array<HudsonMasterComputerexecutors>;
+    "icon"?: string;
+    "iconClassName"?: string;
+    "idle"?: boolean;
+    "jnlpAgent"?: boolean;
+    "launchSupported"?: boolean;
+    "loadStatistics"?: Label1;
+    "manualLaunchAllowed"?: boolean;
+    "monitorData"?: HudsonMasterComputermonitorData;
+    "numExecutors"?: number;
+    "offline"?: boolean;
+    "offlineCause"?: string;
+    "offlineCauseReason"?: string;
+    "temporarilyOffline"?: boolean;
+}
+
+export interface HudsonMasterComputerexecutors {
+    "currentExecutable"?: FreeStyleBuild;
+    "idle"?: boolean;
+    "likelyStuck"?: boolean;
+    "number"?: number;
+    "progress"?: number;
+    "class"?: string;
+}
+
+export interface HudsonMasterComputermonitorData {
+    "hudsonNodeMonitorsSwapSpaceMonitor"?: SwapSpaceMonitorMemoryUsage2;
+    "hudsonNodeMonitorsTemporarySpaceMonitor"?: DiskSpaceMonitorDescriptorDiskSpace;
+    "hudsonNodeMonitorsDiskSpaceMonitor"?: DiskSpaceMonitorDescriptorDiskSpace;
+    "hudsonNodeMonitorsArchitectureMonitor"?: string;
+    "hudsonNodeMonitorsResponseTimeMonitor"?: ResponseTimeMonitorData;
+    "hudsonNodeMonitorsClockMonitor"?: ClockDifference;
+    "class"?: string;
+}
+
+export interface HudsonassignedLabels {
+    "class"?: string;
+}
+
+export interface InputStepImpl {
+    "class"?: string;
+    "links"?: InputStepImpllinks;
+    "id"?: string;
+    "message"?: string;
+    "ok"?: string;
+    "parameters"?: Array<StringParameterDefinition>;
+    "submitter"?: string;
+}
+
+export interface InputStepImpllinks {
+    "self"?: Link;
+    "class"?: string;
+}
+
+export interface Label1 {
+    "class"?: string;
+}
+
+export interface Link {
+    "class"?: string;
+    "href"?: string;
+}
+
+export interface ListView {
+    "class"?: string;
+    "description"?: string;
+    "jobs"?: Array<FreeStyleProject>;
+    "name"?: string;
+    "url"?: string;
+}
+
+export interface MultibranchPipeline {
     "displayName"?: string;
     "estimatedDurationInMillis"?: number;
     "latestRun"?: string;
@@ -58,25 +440,73 @@ export interface GetMultibranchPipeline {
     "class"?: string;
 }
 
-export interface GetOrganisations extends Array<SwaggyjenkinsOrganisation> {
+export interface NullSCM {
+    "class"?: string;
 }
 
-export interface GetPipelineBranches extends Array<GetPipelineBranchesitem> {
+export interface Organisation {
+    "class"?: string;
+    "name"?: string;
 }
 
-export interface GetPipelineBranchesitem {
+export interface Organisations extends Array<Organisation> {
+}
+
+export interface Pipeline {
+    "class"?: string;
+    "organization"?: string;
+    "name"?: string;
+    "displayName"?: string;
+    "fullName"?: string;
+    "weatherScore"?: number;
+    "estimatedDurationInMillis"?: number;
+    "latestRun"?: PipelinelatestRun;
+}
+
+export interface PipelineActivities extends Array<PipelineActivity> {
+}
+
+export interface PipelineActivity {
+    "class"?: string;
+    "artifacts"?: Array<PipelineActivityartifacts>;
+    "durationInMillis"?: number;
+    "estimatedDurationInMillis"?: number;
+    "enQueueTime"?: string;
+    "endTime"?: string;
+    "id"?: string;
+    "organization"?: string;
+    "pipeline"?: string;
+    "result"?: string;
+    "runSummary"?: string;
+    "startTime"?: string;
+    "state"?: string;
+    "type"?: string;
+    "commitId"?: string;
+}
+
+export interface PipelineActivityartifacts {
+    "name"?: string;
+    "size"?: number;
+    "url"?: string;
+    "class"?: string;
+}
+
+export interface PipelineBranches extends Array<PipelineBranchesitem> {
+}
+
+export interface PipelineBranchesitem {
     "displayName"?: string;
     "estimatedDurationInMillis"?: number;
     "name"?: string;
     "weatherScore"?: number;
-    "latestRun"?: GetPipelineBranchesitemLatestRun;
+    "latestRun"?: PipelineBranchesitemlatestRun;
     "organization"?: string;
-    "pullRequest"?: GetPipelineBranchesitemPullRequest;
+    "pullRequest"?: PipelineBranchesitempullRequest;
     "totalNumberOfPullRequests"?: number;
     "class"?: string;
 }
 
-export interface GetPipelineBranchesitemLatestRun {
+export interface PipelineBranchesitemlatestRun {
     "durationInMillis"?: number;
     "estimatedDurationInMillis"?: number;
     "enQueueTime"?: string;
@@ -93,8 +523,8 @@ export interface GetPipelineBranchesitemLatestRun {
     "class"?: string;
 }
 
-export interface GetPipelineBranchesitemPullRequest {
-    "links"?: GetPipelineBranchesitemPullRequestLinks;
+export interface PipelineBranchesitempullRequest {
+    "links"?: PipelineBranchesitempullRequestlinks;
     "author"?: string;
     "id"?: string;
     "title"?: string;
@@ -102,325 +532,12 @@ export interface GetPipelineBranchesitemPullRequest {
     "class"?: string;
 }
 
-export interface GetPipelineBranchesitemPullRequestLinks {
+export interface PipelineBranchesitempullRequestlinks {
     "self"?: string;
     "class"?: string;
 }
 
-export interface GetPipelines extends Array<SwaggyjenkinsPipeline> {
-}
-
-export interface GetUsers extends Array<SwaggyjenkinsUser> {
-}
-
-export interface HudsonmodelAllView {
-    "class"?: string;
-    "name"?: string;
-    "url"?: string;
-}
-
-export interface HudsonmodelCauseAction {
-    "class"?: string;
-    "causes"?: Array<HudsonmodelCauseUserIdCause>;
-}
-
-export interface HudsonmodelCauseUserIdCause {
-    "class"?: string;
-    "shortDescription"?: string;
-    "userId"?: string;
-    "userName"?: string;
-}
-
-export interface HudsonmodelComputerSet {
-    "class"?: string;
-    "busyExecutors"?: number;
-    "computer"?: Array<HudsonmodelHudsonMasterComputer>;
-    "displayName"?: string;
-    "totalExecutors"?: number;
-}
-
-export interface HudsonmodelFreeStyleBuild {
-    "class"?: string;
-    "number"?: number;
-    "url"?: string;
-    "actions"?: Array<HudsonmodelCauseAction>;
-    "building"?: boolean;
-    "description"?: string;
-    "displayName"?: string;
-    "duration"?: number;
-    "estimatedDuration"?: number;
-    "executor"?: string;
-    "fullDisplayName"?: string;
-    "id"?: string;
-    "keepLog"?: boolean;
-    "queueId"?: number;
-    "result"?: string;
-    "timestamp"?: number;
-    "builtOn"?: string;
-    "changeSet"?: HudsonscmEmptyChangeLogSet;
-}
-
-export interface HudsonmodelFreeStyleProject {
-    "class"?: string;
-    "name"?: string;
-    "url"?: string;
-    "color"?: string;
-    "actions"?: Array<HudsonmodelFreeStyleProjectactions>;
-    "description"?: string;
-    "displayName"?: string;
-    "displayNameOrNull"?: string;
-    "fullDisplayName"?: string;
-    "fullName"?: string;
-    "buildable"?: boolean;
-    "builds"?: Array<HudsonmodelFreeStyleBuild>;
-    "firstBuild"?: HudsonmodelFreeStyleBuild;
-    "healthReport"?: Array<HudsonmodelFreeStyleProjecthealthReport>;
-    "inQueue"?: boolean;
-    "keepDependencies"?: boolean;
-    "lastBuild"?: HudsonmodelFreeStyleBuild;
-    "lastCompletedBuild"?: HudsonmodelFreeStyleBuild;
-    "lastFailedBuild"?: string;
-    "lastStableBuild"?: HudsonmodelFreeStyleBuild;
-    "lastSuccessfulBuild"?: HudsonmodelFreeStyleBuild;
-    "lastUnstableBuild"?: string;
-    "lastUnsuccessfulBuild"?: string;
-    "nextBuildNumber"?: number;
-    "queueItem"?: string;
-    "concurrentBuild"?: boolean;
-    "scm"?: HudsonscmNullSCM;
-}
-
-export interface HudsonmodelFreeStyleProjectactions {
-    "class"?: string;
-}
-
-export interface HudsonmodelFreeStyleProjecthealthReport {
-    "description"?: string;
-    "iconClassName"?: string;
-    "iconUrl"?: string;
-    "score"?: number;
-    "class"?: string;
-}
-
-export interface HudsonmodelHudson {
-    "class"?: string;
-    "assignedLabels"?: Array<HudsonmodelHudsonassignedLabels>;
-    "mode"?: string;
-    "nodeDescription"?: string;
-    "nodeName"?: string;
-    "numExecutors"?: number;
-    "description"?: string;
-    "jobs"?: Array<HudsonmodelFreeStyleProject>;
-    "primaryView"?: HudsonmodelAllView;
-    "quietingDown"?: boolean;
-    "slaveAgentPort"?: number;
-    "unlabeledLoad"?: JenkinsmodelUnlabeledLoadStatistics;
-    "useCrumbs"?: boolean;
-    "useSecurity"?: boolean;
-    "views"?: Array<HudsonmodelAllView>;
-}
-
-export interface HudsonmodelHudsonMasterComputer {
-    "class"?: string;
-    "displayName"?: string;
-    "executors"?: Array<HudsonmodelHudsonMasterComputerexecutors>;
-    "icon"?: string;
-    "iconClassName"?: string;
-    "idle"?: boolean;
-    "jnlpAgent"?: boolean;
-    "launchSupported"?: boolean;
-    "loadStatistics"?: HudsonmodelLabel1;
-    "manualLaunchAllowed"?: boolean;
-    "monitorData"?: HudsonmodelHudsonMasterComputerMonitorData;
-    "numExecutors"?: number;
-    "offline"?: boolean;
-    "offlineCause"?: string;
-    "offlineCauseReason"?: string;
-    "temporarilyOffline"?: boolean;
-}
-
-export interface HudsonmodelHudsonMasterComputerMonitorData {
-    "hudsonNodeMonitorsSwapSpaceMonitor"?: HudsonnodeMonitorsSwapSpaceMonitorMemoryUsage2;
-    "hudsonNodeMonitorsTemporarySpaceMonitor"?: HudsonnodeMonitorsDiskSpaceMonitorDescriptorDiskSpace;
-    "hudsonNodeMonitorsDiskSpaceMonitor"?: HudsonnodeMonitorsDiskSpaceMonitorDescriptorDiskSpace;
-    "hudsonNodeMonitorsArchitectureMonitor"?: string;
-    "hudsonNodeMonitorsResponseTimeMonitor"?: HudsonnodeMonitorsResponseTimeMonitorData;
-    "hudsonNodeMonitorsClockMonitor"?: HudsonutilClockDifference;
-    "class"?: string;
-}
-
-export interface HudsonmodelHudsonMasterComputerexecutors {
-    "currentExecutable"?: HudsonmodelFreeStyleBuild;
-    "idle"?: boolean;
-    "likelyStuck"?: boolean;
-    "number"?: number;
-    "progress"?: number;
-    "class"?: string;
-}
-
-export interface HudsonmodelHudsonassignedLabels {
-    "class"?: string;
-}
-
-export interface HudsonmodelLabel1 {
-    "class"?: string;
-}
-
-export interface HudsonmodelListView {
-    "class"?: string;
-    "description"?: string;
-    "jobs"?: Array<HudsonmodelFreeStyleProject>;
-    "name"?: string;
-    "url"?: string;
-}
-
-export interface HudsonmodelQueue {
-    "class"?: string;
-    "items"?: Array<HudsonmodelQueueBlockedItem>;
-}
-
-export interface HudsonmodelQueueBlockedItem {
-    "class"?: string;
-    "actions"?: Array<HudsonmodelCauseAction>;
-    "blocked"?: boolean;
-    "buildable"?: boolean;
-    "id"?: number;
-    "inQueueSince"?: number;
-    "params"?: string;
-    "stuck"?: boolean;
-    "task"?: HudsonmodelFreeStyleProject;
-    "url"?: string;
-    "why"?: string;
-    "buildableStartMilliseconds"?: number;
-}
-
-export interface HudsonmodelQueueLeftItem {
-    "class"?: string;
-    "actions"?: Array<HudsonmodelCauseAction>;
-    "blocked"?: boolean;
-    "buildable"?: boolean;
-    "id"?: number;
-    "inQueueSince"?: number;
-    "params"?: string;
-    "stuck"?: boolean;
-    "task"?: HudsonmodelFreeStyleProject;
-    "url"?: string;
-    "why"?: string;
-    "cancelled"?: boolean;
-    "executable"?: HudsonmodelFreeStyleBuild;
-}
-
-export interface HudsonmodelStringParameterDefinition {
-    "class"?: string;
-    "defaultParameterValue"?: HudsonmodelStringParameterValue;
-    "description"?: string;
-    "name"?: string;
-    "type"?: string;
-}
-
-export interface HudsonmodelStringParameterValue {
-    "class"?: string;
-    "name"?: string;
-    "value"?: string;
-}
-
-export interface HudsonnodeMonitorsDiskSpaceMonitorDescriptorDiskSpace {
-    "class"?: string;
-    "timestamp"?: number;
-    "path"?: string;
-    "size"?: number;
-}
-
-export interface HudsonnodeMonitorsResponseTimeMonitorData {
-    "class"?: string;
-    "timestamp"?: number;
-    "average"?: number;
-}
-
-export interface HudsonnodeMonitorsSwapSpaceMonitorMemoryUsage2 {
-    "class"?: string;
-    "availablePhysicalMemory"?: number;
-    "availableSwapSpace"?: number;
-    "totalPhysicalMemory"?: number;
-    "totalSwapSpace"?: number;
-}
-
-export interface HudsonscmEmptyChangeLogSet {
-    "class"?: string;
-    "kind"?: string;
-}
-
-export interface HudsonscmNullSCM {
-    "class"?: string;
-}
-
-export interface HudsonsecuritycsrfDefaultCrumbIssuer {
-    "class"?: string;
-    "crumb"?: string;
-    "crumbRequestField"?: string;
-}
-
-export interface HudsonutilClockDifference {
-    "class"?: string;
-    "diff"?: number;
-}
-
-export interface IojenkinsblueoceanresthalLink {
-    "class"?: string;
-    "href"?: string;
-}
-
-export interface IojenkinsblueoceanrestimplpipelineBranchImpl {
-    "class"?: string;
-    "displayName"?: string;
-    "estimatedDurationInMillis"?: number;
-    "fullDisplayName"?: string;
-    "fullName"?: string;
-    "name"?: string;
-    "organization"?: string;
-    "parameters"?: Array<HudsonmodelStringParameterDefinition>;
-    "permissions"?: IojenkinsblueoceanrestimplpipelineBranchImplPermissions;
-    "weatherScore"?: number;
-    "pullRequest"?: string;
-}
-
-export interface IojenkinsblueoceanrestimplpipelineBranchImplPermissions {
-    "create"?: boolean;
-    "read"?: boolean;
-    "start"?: boolean;
-    "stop"?: boolean;
-    "class"?: string;
-}
-
-export interface IojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1 {
-    "class"?: string;
-    "links"?: IojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1Links;
-    "map"?: IojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1Map;
-}
-
-export interface IojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1Links {
-    "self"?: IojenkinsblueoceanresthalLink;
-    "class"?: string;
-}
-
-export interface IojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1Map {
-    "ioJenkinsBlueoceanServiceEmbeddedRestPipelineImpl"?: IojenkinsblueoceanserviceembeddedrestExtensionClassImpl;
-    "ioJenkinsBlueoceanServiceEmbeddedRestMultiBranchPipelineImpl"?: IojenkinsblueoceanserviceembeddedrestExtensionClassImpl;
-    "class"?: string;
-}
-
-export interface IojenkinsblueoceanserviceembeddedrestExtensionClassImpl {
-    "class"?: string;
-    "links"?: IojenkinsblueoceanserviceembeddedrestExtensionClassImplLinks;
-    "classes"?: Array<string>;
-}
-
-export interface IojenkinsblueoceanserviceembeddedrestExtensionClassImplLinks {
-    "self"?: IojenkinsblueoceanresthalLink;
-    "class"?: string;
-}
-
-export interface IojenkinsblueoceanserviceembeddedrestPipelineFolderImpl {
+export interface PipelineFolderImpl {
     "class"?: string;
     "displayName"?: string;
     "fullName"?: string;
@@ -430,7 +547,7 @@ export interface IojenkinsblueoceanserviceembeddedrestPipelineFolderImpl {
     "numberOfPipelines"?: number;
 }
 
-export interface IojenkinsblueoceanserviceembeddedrestPipelineImpl {
+export interface PipelineImpl {
     "class"?: string;
     "displayName"?: string;
     "estimatedDurationInMillis"?: number;
@@ -439,30 +556,120 @@ export interface IojenkinsblueoceanserviceembeddedrestPipelineImpl {
     "name"?: string;
     "organization"?: string;
     "weatherScore"?: number;
+    "links"?: PipelineImpllinks;
 }
 
-export interface JenkinsmodelUnlabeledLoadStatistics {
+export interface PipelineImpllinks {
+    "runs"?: Link;
+    "self"?: Link;
+    "queue"?: Link;
+    "actions"?: Link;
     "class"?: string;
 }
 
-export interface SwaggyjenkinsOrganisation {
-    "class"?: string;
-    "name"?: string;
+export interface PipelineQueue extends Array<QueueItemImpl> {
 }
 
-export interface SwaggyjenkinsPipeline {
+export interface PipelineRun {
     "class"?: string;
-    "organization"?: string;
-    "name"?: string;
-    "displayName"?: string;
-    "fullName"?: string;
-    "weatherScore"?: number;
+    "artifacts"?: Array<PipelineRunartifacts>;
+    "durationInMillis"?: number;
     "estimatedDurationInMillis"?: number;
-    "latestRun"?: SwaggyjenkinsPipelineLatestRun;
+    "enQueueTime"?: string;
+    "endTime"?: string;
+    "id"?: string;
+    "organization"?: string;
+    "pipeline"?: string;
+    "result"?: string;
+    "runSummary"?: string;
+    "startTime"?: string;
+    "state"?: string;
+    "type"?: string;
+    "commitId"?: string;
 }
 
-export interface SwaggyjenkinsPipelineLatestRun {
-    "artifacts"?: Array<SwaggyjenkinsPipelineLatestRunartifacts>;
+export interface PipelineRunImpl {
+    "class"?: string;
+    "links"?: PipelineRunImpllinks;
+    "durationInMillis"?: number;
+    "enQueueTime"?: string;
+    "endTime"?: string;
+    "estimatedDurationInMillis"?: number;
+    "id"?: string;
+    "organization"?: string;
+    "pipeline"?: string;
+    "result"?: string;
+    "runSummary"?: string;
+    "startTime"?: string;
+    "state"?: string;
+    "type"?: string;
+    "commitId"?: string;
+}
+
+export interface PipelineRunImpllinks {
+    "nodes"?: Link;
+    "log"?: Link;
+    "self"?: Link;
+    "actions"?: Link;
+    "steps"?: Link;
+    "class"?: string;
+}
+
+export interface PipelineRunNode {
+    "class"?: string;
+    "displayName"?: string;
+    "durationInMillis"?: number;
+    "edges"?: Array<PipelineRunNodeedges>;
+    "id"?: string;
+    "result"?: string;
+    "startTime"?: string;
+    "state"?: string;
+}
+
+export interface PipelineRunNodeSteps extends Array<PipelineStepImpl> {
+}
+
+export interface PipelineRunNodeedges {
+    "id"?: string;
+    "class"?: string;
+}
+
+export interface PipelineRunNodes extends Array<PipelineRunNode> {
+}
+
+export interface PipelineRunSteps extends Array<GenericResource> {
+}
+
+export interface PipelineRunartifacts {
+    "name"?: string;
+    "size"?: number;
+    "url"?: string;
+    "class"?: string;
+}
+
+export interface PipelineRuns extends Array<PipelineRun> {
+}
+
+export interface PipelineStepImpl {
+    "class"?: string;
+    "links"?: PipelineStepImpllinks;
+    "displayName"?: string;
+    "durationInMillis"?: number;
+    "id"?: string;
+    "input"?: InputStepImpl;
+    "result"?: string;
+    "startTime"?: string;
+    "state"?: string;
+}
+
+export interface PipelineStepImpllinks {
+    "self"?: Link;
+    "actions"?: Link;
+    "class"?: string;
+}
+
+export interface PipelinelatestRun {
+    "artifacts"?: Array<PipelinelatestRunartifacts>;
     "durationInMillis"?: number;
     "estimatedDurationInMillis"?: number;
     "enQueueTime"?: string;
@@ -479,19 +686,107 @@ export interface SwaggyjenkinsPipelineLatestRun {
     "class"?: string;
 }
 
-export interface SwaggyjenkinsPipelineLatestRunartifacts {
+export interface PipelinelatestRunartifacts {
     "name"?: string;
     "size"?: number;
     "url"?: string;
     "class"?: string;
 }
 
-export interface SwaggyjenkinsUser {
+export interface Pipelines extends Array<Pipeline> {
+}
+
+export interface Queue {
+    "class"?: string;
+    "items"?: Array<QueueBlockedItem>;
+}
+
+export interface QueueBlockedItem {
+    "class"?: string;
+    "actions"?: Array<CauseAction>;
+    "blocked"?: boolean;
+    "buildable"?: boolean;
+    "id"?: number;
+    "inQueueSince"?: number;
+    "params"?: string;
+    "stuck"?: boolean;
+    "task"?: FreeStyleProject;
+    "url"?: string;
+    "why"?: string;
+    "buildableStartMilliseconds"?: number;
+}
+
+export interface QueueItemImpl {
+    "class"?: string;
+    "expectedBuildNumber"?: number;
+    "id"?: string;
+    "pipeline"?: string;
+    "queuedTime"?: number;
+}
+
+export interface QueueLeftItem {
+    "class"?: string;
+    "actions"?: Array<CauseAction>;
+    "blocked"?: boolean;
+    "buildable"?: boolean;
+    "id"?: number;
+    "inQueueSince"?: number;
+    "params"?: string;
+    "stuck"?: boolean;
+    "task"?: FreeStyleProject;
+    "url"?: string;
+    "why"?: string;
+    "cancelled"?: boolean;
+    "executable"?: FreeStyleBuild;
+}
+
+export interface ResponseTimeMonitorData {
+    "class"?: string;
+    "timestamp"?: number;
+    "average"?: number;
+}
+
+export interface ScmOrganisations extends Array<GithubOrganization> {
+}
+
+export interface StringParameterDefinition {
+    "class"?: string;
+    "defaultParameterValue"?: StringParameterValue;
+    "description"?: string;
+    "name"?: string;
+    "type"?: string;
+}
+
+export interface StringParameterValue {
+    "class"?: string;
+    "name"?: string;
+    "value"?: string;
+}
+
+export interface SwapSpaceMonitorMemoryUsage2 {
+    "class"?: string;
+    "availablePhysicalMemory"?: number;
+    "availableSwapSpace"?: number;
+    "totalPhysicalMemory"?: number;
+    "totalSwapSpace"?: number;
+}
+
+export interface UnlabeledLoadStatistics {
+    "class"?: string;
+}
+
+export interface User {
     "class"?: string;
     "id"?: string;
     "fullName"?: string;
     "email"?: string;
     "name"?: string;
+}
+
+export interface UserFavorites extends Array<FavoriteImpl> {
+}
+
+export interface Users extends Array<User> {
 }
 
 
@@ -500,34 +795,85 @@ export interface SwaggyjenkinsUser {
  * BlueOceanApi - fetch parameter creator
  */
 export const BlueOceanApiFetchParamCreator = {
-    /** 
-     * Retrieve authenticated user details for an organisation
-     * @param organisation Name of the organisation
+    /**
+     * Delete queue item from an organization pipeline queue
+     * @param organization Name of the organization
+     * @param pipeline Name of the pipeline
+     * @param queue Name of the queue item
      */
-    getAuthenticatedUser(params: {  "organisation": string; }, options?: any): FetchArgs {
-        // verify required parameter "organisation" is set
-        if (params["organisation"] == null) {
-            throw new Error("Missing required parameter organisation when calling getAuthenticatedUser");
+    deletePipelineQueueItem(params: {  organization: string; pipeline: string; queue: string; }, configuration: Configuration, options: any = {}): FetchArgs {
+        // verify required parameter "organization" is set
+        if (params["organization"] == null) {
+            throw new Error("Missing required parameter organization when calling deletePipelineQueueItem");
         }
-        const baseUrl = `/blue/rest/organizations/{organisation}/user/`
-            .replace(`{${"organisation"}}`, `${ params["organisation"] }`);
+        // verify required parameter "pipeline" is set
+        if (params["pipeline"] == null) {
+            throw new Error("Missing required parameter pipeline when calling deletePipelineQueueItem");
+        }
+        // verify required parameter "queue" is set
+        if (params["queue"] == null) {
+            throw new Error("Missing required parameter queue when calling deletePipelineQueueItem");
+        }
+        const baseUrl = `/blue/rest/organizations/{organization}/pipelines/{pipeline}/queue/{queue}`
+            .replace(`{${"organization"}}`, `${ params["organization"] }`)
+            .replace(`{${"pipeline"}}`, `${ params["pipeline"] }`)
+            .replace(`{${"queue"}}`, `${ params["queue"] }`);
         let urlObj = url.parse(baseUrl, true);
-        let fetchOptions: RequestInit = assign({}, { method: "GET" }, options);
+        let fetchOptions: RequestInit = assign({}, { method: "DELETE" }, options);
 
         let contentTypeHeader: Dictionary<string> = {};
         if (contentTypeHeader) {
-            fetchOptions.headers = contentTypeHeader;
+            fetchOptions.headers = assign({}, contentTypeHeader, fetchOptions.headers);
         }
+        // authentication (jenkins_auth) required
+        // http basic authentication required
+        if (configuration.username || configuration.password) {
+            fetchOptions.headers = assign({
+                    "Authorization": "Basic " + btoa(configuration.username + ":" + configuration.password),
+                    }, contentTypeHeader);
+        }
+
         return {
             url: url.format(urlObj),
             options: fetchOptions,
         };
     },
-    /** 
+    /**
+     * Retrieve authenticated user details for an organization
+     * @param organization Name of the organization
+     */
+    getAuthenticatedUser(params: {  organization: string; }, configuration: Configuration, options: any = {}): FetchArgs {
+        // verify required parameter "organization" is set
+        if (params["organization"] == null) {
+            throw new Error("Missing required parameter organization when calling getAuthenticatedUser");
+        }
+        const baseUrl = `/blue/rest/organizations/{organization}/user/`
+            .replace(`{${"organization"}}`, `${ params["organization"] }`);
+        let urlObj = url.parse(baseUrl, true);
+        let fetchOptions: RequestInit = assign({}, { method: "GET" }, options);
+
+        let contentTypeHeader: Dictionary<string> = {};
+        if (contentTypeHeader) {
+            fetchOptions.headers = assign({}, contentTypeHeader, fetchOptions.headers);
+        }
+        // authentication (jenkins_auth) required
+        // http basic authentication required
+        if (configuration.username || configuration.password) {
+            fetchOptions.headers = assign({
+                    "Authorization": "Basic " + btoa(configuration.username + ":" + configuration.password),
+                    }, contentTypeHeader);
+        }
+
+        return {
+            url: url.format(urlObj),
+            options: fetchOptions,
+        };
+    },
+    /**
      * Get a list of class names supported by a given class
      * @param _class Name of the class
      */
-    getClasses(params: {  "_class": string; }, options?: any): FetchArgs {
+    getClasses(params: {  _class: string; }, configuration: Configuration, options: any = {}): FetchArgs {
         // verify required parameter "_class" is set
         if (params["_class"] == null) {
             throw new Error("Missing required parameter _class when calling getClasses");
@@ -539,74 +885,172 @@ export const BlueOceanApiFetchParamCreator = {
 
         let contentTypeHeader: Dictionary<string> = {};
         if (contentTypeHeader) {
-            fetchOptions.headers = contentTypeHeader;
+            fetchOptions.headers = assign({}, contentTypeHeader, fetchOptions.headers);
         }
+        // authentication (jenkins_auth) required
+        // http basic authentication required
+        if (configuration.username || configuration.password) {
+            fetchOptions.headers = assign({
+                    "Authorization": "Basic " + btoa(configuration.username + ":" + configuration.password),
+                    }, contentTypeHeader);
+        }
+
         return {
             url: url.format(urlObj),
             options: fetchOptions,
         };
     },
-    /** 
-     * Retrieve organisation details
-     * @param organisation Name of the organisation
+    /**
+     * Retrieve organization details
+     * @param organization Name of the organization
      */
-    getOrganisation(params: {  "organisation": string; }, options?: any): FetchArgs {
-        // verify required parameter "organisation" is set
-        if (params["organisation"] == null) {
-            throw new Error("Missing required parameter organisation when calling getOrganisation");
+    getOrganisation(params: {  organization: string; }, configuration: Configuration, options: any = {}): FetchArgs {
+        // verify required parameter "organization" is set
+        if (params["organization"] == null) {
+            throw new Error("Missing required parameter organization when calling getOrganisation");
         }
-        const baseUrl = `/blue/rest/organizations/{organisation}`
-            .replace(`{${"organisation"}}`, `${ params["organisation"] }`);
+        const baseUrl = `/blue/rest/organizations/{organization}`
+            .replace(`{${"organization"}}`, `${ params["organization"] }`);
         let urlObj = url.parse(baseUrl, true);
         let fetchOptions: RequestInit = assign({}, { method: "GET" }, options);
 
         let contentTypeHeader: Dictionary<string> = {};
         if (contentTypeHeader) {
-            fetchOptions.headers = contentTypeHeader;
+            fetchOptions.headers = assign({}, contentTypeHeader, fetchOptions.headers);
         }
+        // authentication (jenkins_auth) required
+        // http basic authentication required
+        if (configuration.username || configuration.password) {
+            fetchOptions.headers = assign({
+                    "Authorization": "Basic " + btoa(configuration.username + ":" + configuration.password),
+                    }, contentTypeHeader);
+        }
+
         return {
             url: url.format(urlObj),
             options: fetchOptions,
         };
     },
-    /** 
-     * Retrieve all organisations details
+    /**
+     * Retrieve all organizations details
      */
-    getOrganisations(options?: any): FetchArgs {
+    getOrganisations(configuration: Configuration, options: any = {}): FetchArgs {
         const baseUrl = `/blue/rest/organizations/`;
         let urlObj = url.parse(baseUrl, true);
         let fetchOptions: RequestInit = assign({}, { method: "GET" }, options);
 
         let contentTypeHeader: Dictionary<string> = {};
         if (contentTypeHeader) {
-            fetchOptions.headers = contentTypeHeader;
+            fetchOptions.headers = assign({}, contentTypeHeader, fetchOptions.headers);
         }
+        // authentication (jenkins_auth) required
+        // http basic authentication required
+        if (configuration.username || configuration.password) {
+            fetchOptions.headers = assign({
+                    "Authorization": "Basic " + btoa(configuration.username + ":" + configuration.password),
+                    }, contentTypeHeader);
+        }
+
         return {
             url: url.format(urlObj),
             options: fetchOptions,
         };
     },
-    /** 
-     * Retrieve branch details for an organisation pipeline
-     * @param organisation Name of the organisation
+    /**
+     * Retrieve pipeline details for an organization
+     * @param organization Name of the organization
      * @param pipeline Name of the pipeline
-     * @param branch Name of the branch
      */
-    getPipelineBranchByOrg(params: {  "organisation": string; "pipeline": string; "branch": string; }, options?: any): FetchArgs {
-        // verify required parameter "organisation" is set
-        if (params["organisation"] == null) {
-            throw new Error("Missing required parameter organisation when calling getPipelineBranchByOrg");
+    getPipeline(params: {  organization: string; pipeline: string; }, configuration: Configuration, options: any = {}): FetchArgs {
+        // verify required parameter "organization" is set
+        if (params["organization"] == null) {
+            throw new Error("Missing required parameter organization when calling getPipeline");
         }
         // verify required parameter "pipeline" is set
         if (params["pipeline"] == null) {
-            throw new Error("Missing required parameter pipeline when calling getPipelineBranchByOrg");
+            throw new Error("Missing required parameter pipeline when calling getPipeline");
+        }
+        const baseUrl = `/blue/rest/organizations/{organization}/pipelines/{pipeline}`
+            .replace(`{${"organization"}}`, `${ params["organization"] }`)
+            .replace(`{${"pipeline"}}`, `${ params["pipeline"] }`);
+        let urlObj = url.parse(baseUrl, true);
+        let fetchOptions: RequestInit = assign({}, { method: "GET" }, options);
+
+        let contentTypeHeader: Dictionary<string> = {};
+        if (contentTypeHeader) {
+            fetchOptions.headers = assign({}, contentTypeHeader, fetchOptions.headers);
+        }
+        // authentication (jenkins_auth) required
+        // http basic authentication required
+        if (configuration.username || configuration.password) {
+            fetchOptions.headers = assign({
+                    "Authorization": "Basic " + btoa(configuration.username + ":" + configuration.password),
+                    }, contentTypeHeader);
+        }
+
+        return {
+            url: url.format(urlObj),
+            options: fetchOptions,
+        };
+    },
+    /**
+     * Retrieve all activities details for an organization pipeline
+     * @param organization Name of the organization
+     * @param pipeline Name of the pipeline
+     */
+    getPipelineActivities(params: {  organization: string; pipeline: string; }, configuration: Configuration, options: any = {}): FetchArgs {
+        // verify required parameter "organization" is set
+        if (params["organization"] == null) {
+            throw new Error("Missing required parameter organization when calling getPipelineActivities");
+        }
+        // verify required parameter "pipeline" is set
+        if (params["pipeline"] == null) {
+            throw new Error("Missing required parameter pipeline when calling getPipelineActivities");
+        }
+        const baseUrl = `/blue/rest/organizations/{organization}/pipelines/{pipeline}/activities`
+            .replace(`{${"organization"}}`, `${ params["organization"] }`)
+            .replace(`{${"pipeline"}}`, `${ params["pipeline"] }`);
+        let urlObj = url.parse(baseUrl, true);
+        let fetchOptions: RequestInit = assign({}, { method: "GET" }, options);
+
+        let contentTypeHeader: Dictionary<string> = {};
+        if (contentTypeHeader) {
+            fetchOptions.headers = assign({}, contentTypeHeader, fetchOptions.headers);
+        }
+        // authentication (jenkins_auth) required
+        // http basic authentication required
+        if (configuration.username || configuration.password) {
+            fetchOptions.headers = assign({
+                    "Authorization": "Basic " + btoa(configuration.username + ":" + configuration.password),
+                    }, contentTypeHeader);
+        }
+
+        return {
+            url: url.format(urlObj),
+            options: fetchOptions,
+        };
+    },
+    /**
+     * Retrieve branch details for an organization pipeline
+     * @param organization Name of the organization
+     * @param pipeline Name of the pipeline
+     * @param branch Name of the branch
+     */
+    getPipelineBranch(params: {  organization: string; pipeline: string; branch: string; }, configuration: Configuration, options: any = {}): FetchArgs {
+        // verify required parameter "organization" is set
+        if (params["organization"] == null) {
+            throw new Error("Missing required parameter organization when calling getPipelineBranch");
+        }
+        // verify required parameter "pipeline" is set
+        if (params["pipeline"] == null) {
+            throw new Error("Missing required parameter pipeline when calling getPipelineBranch");
         }
         // verify required parameter "branch" is set
         if (params["branch"] == null) {
-            throw new Error("Missing required parameter branch when calling getPipelineBranchByOrg");
+            throw new Error("Missing required parameter branch when calling getPipelineBranch");
         }
-        const baseUrl = `/blue/rest/organizations/{organisation}/pipelines/{pipeline}/branches/{branch}/`
-            .replace(`{${"organisation"}}`, `${ params["organisation"] }`)
+        const baseUrl = `/blue/rest/organizations/{organization}/pipelines/{pipeline}/branches/{branch}/`
+            .replace(`{${"organization"}}`, `${ params["organization"] }`)
             .replace(`{${"pipeline"}}`, `${ params["pipeline"] }`)
             .replace(`{${"branch"}}`, `${ params["branch"] }`);
         let urlObj = url.parse(baseUrl, true);
@@ -614,121 +1058,165 @@ export const BlueOceanApiFetchParamCreator = {
 
         let contentTypeHeader: Dictionary<string> = {};
         if (contentTypeHeader) {
-            fetchOptions.headers = contentTypeHeader;
+            fetchOptions.headers = assign({}, contentTypeHeader, fetchOptions.headers);
         }
+        // authentication (jenkins_auth) required
+        // http basic authentication required
+        if (configuration.username || configuration.password) {
+            fetchOptions.headers = assign({
+                    "Authorization": "Basic " + btoa(configuration.username + ":" + configuration.password),
+                    }, contentTypeHeader);
+        }
+
         return {
             url: url.format(urlObj),
             options: fetchOptions,
         };
     },
-    /** 
-     * Retrieve all branches details for an organisation pipeline
-     * @param organisation Name of the organisation
+    /**
+     * Retrieve branch run details for an organization pipeline
+     * @param organization Name of the organization
      * @param pipeline Name of the pipeline
+     * @param branch Name of the branch
+     * @param run Name of the run
      */
-    getPipelineBranchesByOrg(params: {  "organisation": string; "pipeline": string; }, options?: any): FetchArgs {
-        // verify required parameter "organisation" is set
-        if (params["organisation"] == null) {
-            throw new Error("Missing required parameter organisation when calling getPipelineBranchesByOrg");
+    getPipelineBranchRun(params: {  organization: string; pipeline: string; branch: string; run: string; }, configuration: Configuration, options: any = {}): FetchArgs {
+        // verify required parameter "organization" is set
+        if (params["organization"] == null) {
+            throw new Error("Missing required parameter organization when calling getPipelineBranchRun");
         }
         // verify required parameter "pipeline" is set
         if (params["pipeline"] == null) {
-            throw new Error("Missing required parameter pipeline when calling getPipelineBranchesByOrg");
+            throw new Error("Missing required parameter pipeline when calling getPipelineBranchRun");
         }
-        const baseUrl = `/blue/rest/organizations/{organisation}/pipelines/{pipeline}/branches`
-            .replace(`{${"organisation"}}`, `${ params["organisation"] }`)
+        // verify required parameter "branch" is set
+        if (params["branch"] == null) {
+            throw new Error("Missing required parameter branch when calling getPipelineBranchRun");
+        }
+        // verify required parameter "run" is set
+        if (params["run"] == null) {
+            throw new Error("Missing required parameter run when calling getPipelineBranchRun");
+        }
+        const baseUrl = `/blue/rest/organizations/{organization}/pipelines/{pipeline}/branches/{branch}/runs/{run}`
+            .replace(`{${"organization"}}`, `${ params["organization"] }`)
+            .replace(`{${"pipeline"}}`, `${ params["pipeline"] }`)
+            .replace(`{${"branch"}}`, `${ params["branch"] }`)
+            .replace(`{${"run"}}`, `${ params["run"] }`);
+        let urlObj = url.parse(baseUrl, true);
+        let fetchOptions: RequestInit = assign({}, { method: "GET" }, options);
+
+        let contentTypeHeader: Dictionary<string> = {};
+        if (contentTypeHeader) {
+            fetchOptions.headers = assign({}, contentTypeHeader, fetchOptions.headers);
+        }
+        // authentication (jenkins_auth) required
+        // http basic authentication required
+        if (configuration.username || configuration.password) {
+            fetchOptions.headers = assign({
+                    "Authorization": "Basic " + btoa(configuration.username + ":" + configuration.password),
+                    }, contentTypeHeader);
+        }
+
+        return {
+            url: url.format(urlObj),
+            options: fetchOptions,
+        };
+    },
+    /**
+     * Retrieve all branches details for an organization pipeline
+     * @param organization Name of the organization
+     * @param pipeline Name of the pipeline
+     */
+    getPipelineBranches(params: {  organization: string; pipeline: string; }, configuration: Configuration, options: any = {}): FetchArgs {
+        // verify required parameter "organization" is set
+        if (params["organization"] == null) {
+            throw new Error("Missing required parameter organization when calling getPipelineBranches");
+        }
+        // verify required parameter "pipeline" is set
+        if (params["pipeline"] == null) {
+            throw new Error("Missing required parameter pipeline when calling getPipelineBranches");
+        }
+        const baseUrl = `/blue/rest/organizations/{organization}/pipelines/{pipeline}/branches`
+            .replace(`{${"organization"}}`, `${ params["organization"] }`)
             .replace(`{${"pipeline"}}`, `${ params["pipeline"] }`);
         let urlObj = url.parse(baseUrl, true);
         let fetchOptions: RequestInit = assign({}, { method: "GET" }, options);
 
         let contentTypeHeader: Dictionary<string> = {};
         if (contentTypeHeader) {
-            fetchOptions.headers = contentTypeHeader;
+            fetchOptions.headers = assign({}, contentTypeHeader, fetchOptions.headers);
         }
-        return {
-            url: url.format(urlObj),
-            options: fetchOptions,
-        };
-    },
-    /** 
-     * Retrieve pipeline details for an organisation
-     * @param organisation Name of the organisation
-     * @param pipeline Name of the pipeline
-     */
-    getPipelineByOrg(params: {  "organisation": string; "pipeline": string; }, options?: any): FetchArgs {
-        // verify required parameter "organisation" is set
-        if (params["organisation"] == null) {
-            throw new Error("Missing required parameter organisation when calling getPipelineByOrg");
+        // authentication (jenkins_auth) required
+        // http basic authentication required
+        if (configuration.username || configuration.password) {
+            fetchOptions.headers = assign({
+                    "Authorization": "Basic " + btoa(configuration.username + ":" + configuration.password),
+                    }, contentTypeHeader);
         }
-        // verify required parameter "pipeline" is set
-        if (params["pipeline"] == null) {
-            throw new Error("Missing required parameter pipeline when calling getPipelineByOrg");
-        }
-        const baseUrl = `/blue/rest/organizations/{organisation}/pipelines/{pipeline}`
-            .replace(`{${"organisation"}}`, `${ params["organisation"] }`)
-            .replace(`{${"pipeline"}}`, `${ params["pipeline"] }`);
-        let urlObj = url.parse(baseUrl, true);
-        let fetchOptions: RequestInit = assign({}, { method: "GET" }, options);
 
-        let contentTypeHeader: Dictionary<string> = {};
-        if (contentTypeHeader) {
-            fetchOptions.headers = contentTypeHeader;
-        }
         return {
             url: url.format(urlObj),
             options: fetchOptions,
         };
     },
-    /** 
-     * Retrieve pipeline folder for an organisation
-     * @param organisation Name of the organisation
+    /**
+     * Retrieve pipeline folder for an organization
+     * @param organization Name of the organization
      * @param folder Name of the folder
      */
-    getPipelineFolderByOrg(params: {  "organisation": string; "folder": string; }, options?: any): FetchArgs {
-        // verify required parameter "organisation" is set
-        if (params["organisation"] == null) {
-            throw new Error("Missing required parameter organisation when calling getPipelineFolderByOrg");
+    getPipelineFolder(params: {  organization: string; folder: string; }, configuration: Configuration, options: any = {}): FetchArgs {
+        // verify required parameter "organization" is set
+        if (params["organization"] == null) {
+            throw new Error("Missing required parameter organization when calling getPipelineFolder");
         }
         // verify required parameter "folder" is set
         if (params["folder"] == null) {
-            throw new Error("Missing required parameter folder when calling getPipelineFolderByOrg");
+            throw new Error("Missing required parameter folder when calling getPipelineFolder");
         }
-        const baseUrl = `/blue/rest/organizations/{organisation}/pipelines/{folder}/`
-            .replace(`{${"organisation"}}`, `${ params["organisation"] }`)
+        const baseUrl = `/blue/rest/organizations/{organization}/pipelines/{folder}/`
+            .replace(`{${"organization"}}`, `${ params["organization"] }`)
             .replace(`{${"folder"}}`, `${ params["folder"] }`);
         let urlObj = url.parse(baseUrl, true);
         let fetchOptions: RequestInit = assign({}, { method: "GET" }, options);
 
         let contentTypeHeader: Dictionary<string> = {};
         if (contentTypeHeader) {
-            fetchOptions.headers = contentTypeHeader;
+            fetchOptions.headers = assign({}, contentTypeHeader, fetchOptions.headers);
         }
+        // authentication (jenkins_auth) required
+        // http basic authentication required
+        if (configuration.username || configuration.password) {
+            fetchOptions.headers = assign({
+                    "Authorization": "Basic " + btoa(configuration.username + ":" + configuration.password),
+                    }, contentTypeHeader);
+        }
+
         return {
             url: url.format(urlObj),
             options: fetchOptions,
         };
     },
-    /** 
-     * Retrieve pipeline details for an organisation folder
-     * @param organisation Name of the organisation
+    /**
+     * Retrieve pipeline details for an organization folder
+     * @param organization Name of the organization
      * @param pipeline Name of the pipeline
      * @param folder Name of the folder
      */
-    getPipelineFolderByOrg_1(params: {  "organisation": string; "pipeline": string; "folder": string; }, options?: any): FetchArgs {
-        // verify required parameter "organisation" is set
-        if (params["organisation"] == null) {
-            throw new Error("Missing required parameter organisation when calling getPipelineFolderByOrg_1");
+    getPipelineFolderPipeline(params: {  organization: string; pipeline: string; folder: string; }, configuration: Configuration, options: any = {}): FetchArgs {
+        // verify required parameter "organization" is set
+        if (params["organization"] == null) {
+            throw new Error("Missing required parameter organization when calling getPipelineFolderPipeline");
         }
         // verify required parameter "pipeline" is set
         if (params["pipeline"] == null) {
-            throw new Error("Missing required parameter pipeline when calling getPipelineFolderByOrg_1");
+            throw new Error("Missing required parameter pipeline when calling getPipelineFolderPipeline");
         }
         // verify required parameter "folder" is set
         if (params["folder"] == null) {
-            throw new Error("Missing required parameter folder when calling getPipelineFolderByOrg_1");
+            throw new Error("Missing required parameter folder when calling getPipelineFolderPipeline");
         }
-        const baseUrl = `/blue/rest/organizations/{organisation}/pipelines/{folder}/pipelines/{pipeline}`
-            .replace(`{${"organisation"}}`, `${ params["organisation"] }`)
+        const baseUrl = `/blue/rest/organizations/{organization}/pipelines/{folder}/pipelines/{pipeline}`
+            .replace(`{${"organization"}}`, `${ params["organization"] }`)
             .replace(`{${"pipeline"}}`, `${ params["pipeline"] }`)
             .replace(`{${"folder"}}`, `${ params["folder"] }`);
         let urlObj = url.parse(baseUrl, true);
@@ -736,133 +1224,1001 @@ export const BlueOceanApiFetchParamCreator = {
 
         let contentTypeHeader: Dictionary<string> = {};
         if (contentTypeHeader) {
-            fetchOptions.headers = contentTypeHeader;
+            fetchOptions.headers = assign({}, contentTypeHeader, fetchOptions.headers);
         }
+        // authentication (jenkins_auth) required
+        // http basic authentication required
+        if (configuration.username || configuration.password) {
+            fetchOptions.headers = assign({
+                    "Authorization": "Basic " + btoa(configuration.username + ":" + configuration.password),
+                    }, contentTypeHeader);
+        }
+
         return {
             url: url.format(urlObj),
             options: fetchOptions,
         };
     },
-    /** 
-     * Retrieve all pipelines details for an organisation
-     * @param organisation Name of the organisation
+    /**
+     * Retrieve queue details for an organization pipeline
+     * @param organization Name of the organization
+     * @param pipeline Name of the pipeline
      */
-    getPipelinesByOrg(params: {  "organisation": string; }, options?: any): FetchArgs {
-        // verify required parameter "organisation" is set
-        if (params["organisation"] == null) {
-            throw new Error("Missing required parameter organisation when calling getPipelinesByOrg");
+    getPipelineQueue(params: {  organization: string; pipeline: string; }, configuration: Configuration, options: any = {}): FetchArgs {
+        // verify required parameter "organization" is set
+        if (params["organization"] == null) {
+            throw new Error("Missing required parameter organization when calling getPipelineQueue");
         }
-        const baseUrl = `/blue/rest/organizations/{organisation}/pipelines/`
-            .replace(`{${"organisation"}}`, `${ params["organisation"] }`);
+        // verify required parameter "pipeline" is set
+        if (params["pipeline"] == null) {
+            throw new Error("Missing required parameter pipeline when calling getPipelineQueue");
+        }
+        const baseUrl = `/blue/rest/organizations/{organization}/pipelines/{pipeline}/queue`
+            .replace(`{${"organization"}}`, `${ params["organization"] }`)
+            .replace(`{${"pipeline"}}`, `${ params["pipeline"] }`);
         let urlObj = url.parse(baseUrl, true);
         let fetchOptions: RequestInit = assign({}, { method: "GET" }, options);
 
         let contentTypeHeader: Dictionary<string> = {};
         if (contentTypeHeader) {
-            fetchOptions.headers = contentTypeHeader;
+            fetchOptions.headers = assign({}, contentTypeHeader, fetchOptions.headers);
         }
+        // authentication (jenkins_auth) required
+        // http basic authentication required
+        if (configuration.username || configuration.password) {
+            fetchOptions.headers = assign({
+                    "Authorization": "Basic " + btoa(configuration.username + ":" + configuration.password),
+                    }, contentTypeHeader);
+        }
+
         return {
             url: url.format(urlObj),
             options: fetchOptions,
         };
     },
-    /** 
-     * Retrieve user details for an organisation
-     * @param organisation Name of the organisation
+    /**
+     * Retrieve run details for an organization pipeline
+     * @param organization Name of the organization
+     * @param pipeline Name of the pipeline
+     * @param run Name of the run
+     */
+    getPipelineRun(params: {  organization: string; pipeline: string; run: string; }, configuration: Configuration, options: any = {}): FetchArgs {
+        // verify required parameter "organization" is set
+        if (params["organization"] == null) {
+            throw new Error("Missing required parameter organization when calling getPipelineRun");
+        }
+        // verify required parameter "pipeline" is set
+        if (params["pipeline"] == null) {
+            throw new Error("Missing required parameter pipeline when calling getPipelineRun");
+        }
+        // verify required parameter "run" is set
+        if (params["run"] == null) {
+            throw new Error("Missing required parameter run when calling getPipelineRun");
+        }
+        const baseUrl = `/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}`
+            .replace(`{${"organization"}}`, `${ params["organization"] }`)
+            .replace(`{${"pipeline"}}`, `${ params["pipeline"] }`)
+            .replace(`{${"run"}}`, `${ params["run"] }`);
+        let urlObj = url.parse(baseUrl, true);
+        let fetchOptions: RequestInit = assign({}, { method: "GET" }, options);
+
+        let contentTypeHeader: Dictionary<string> = {};
+        if (contentTypeHeader) {
+            fetchOptions.headers = assign({}, contentTypeHeader, fetchOptions.headers);
+        }
+        // authentication (jenkins_auth) required
+        // http basic authentication required
+        if (configuration.username || configuration.password) {
+            fetchOptions.headers = assign({
+                    "Authorization": "Basic " + btoa(configuration.username + ":" + configuration.password),
+                    }, contentTypeHeader);
+        }
+
+        return {
+            url: url.format(urlObj),
+            options: fetchOptions,
+        };
+    },
+    /**
+     * Get log for a pipeline run
+     * @param organization Name of the organization
+     * @param pipeline Name of the pipeline
+     * @param run Name of the run
+     * @param start Start position of the log
+     * @param download Set to true in order to download the file, otherwise it&#39;s passed as a response body
+     */
+    getPipelineRunLog(params: {  organization: string; pipeline: string; run: string; start?: number; download?: boolean; }, configuration: Configuration, options: any = {}): FetchArgs {
+        // verify required parameter "organization" is set
+        if (params["organization"] == null) {
+            throw new Error("Missing required parameter organization when calling getPipelineRunLog");
+        }
+        // verify required parameter "pipeline" is set
+        if (params["pipeline"] == null) {
+            throw new Error("Missing required parameter pipeline when calling getPipelineRunLog");
+        }
+        // verify required parameter "run" is set
+        if (params["run"] == null) {
+            throw new Error("Missing required parameter run when calling getPipelineRunLog");
+        }
+        const baseUrl = `/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/log`
+            .replace(`{${"organization"}}`, `${ params["organization"] }`)
+            .replace(`{${"pipeline"}}`, `${ params["pipeline"] }`)
+            .replace(`{${"run"}}`, `${ params["run"] }`);
+        let urlObj = url.parse(baseUrl, true);
+        urlObj.query =  assign({}, urlObj.query);
+        if (params["start"] !== undefined) {
+            urlObj.query["start"] = params["start"];
+        }
+        if (params["download"] !== undefined) {
+            urlObj.query["download"] = params["download"];
+        }
+        let fetchOptions: RequestInit = assign({}, { method: "GET" }, options);
+
+        let contentTypeHeader: Dictionary<string> = {};
+        if (contentTypeHeader) {
+            fetchOptions.headers = assign({}, contentTypeHeader, fetchOptions.headers);
+        }
+        // authentication (jenkins_auth) required
+        // http basic authentication required
+        if (configuration.username || configuration.password) {
+            fetchOptions.headers = assign({
+                    "Authorization": "Basic " + btoa(configuration.username + ":" + configuration.password),
+                    }, contentTypeHeader);
+        }
+
+        return {
+            url: url.format(urlObj),
+            options: fetchOptions,
+        };
+    },
+    /**
+     * Retrieve run node details for an organization pipeline
+     * @param organization Name of the organization
+     * @param pipeline Name of the pipeline
+     * @param run Name of the run
+     * @param node Name of the node
+     */
+    getPipelineRunNode(params: {  organization: string; pipeline: string; run: string; node: string; }, configuration: Configuration, options: any = {}): FetchArgs {
+        // verify required parameter "organization" is set
+        if (params["organization"] == null) {
+            throw new Error("Missing required parameter organization when calling getPipelineRunNode");
+        }
+        // verify required parameter "pipeline" is set
+        if (params["pipeline"] == null) {
+            throw new Error("Missing required parameter pipeline when calling getPipelineRunNode");
+        }
+        // verify required parameter "run" is set
+        if (params["run"] == null) {
+            throw new Error("Missing required parameter run when calling getPipelineRunNode");
+        }
+        // verify required parameter "node" is set
+        if (params["node"] == null) {
+            throw new Error("Missing required parameter node when calling getPipelineRunNode");
+        }
+        const baseUrl = `/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}`
+            .replace(`{${"organization"}}`, `${ params["organization"] }`)
+            .replace(`{${"pipeline"}}`, `${ params["pipeline"] }`)
+            .replace(`{${"run"}}`, `${ params["run"] }`)
+            .replace(`{${"node"}}`, `${ params["node"] }`);
+        let urlObj = url.parse(baseUrl, true);
+        let fetchOptions: RequestInit = assign({}, { method: "GET" }, options);
+
+        let contentTypeHeader: Dictionary<string> = {};
+        if (contentTypeHeader) {
+            fetchOptions.headers = assign({}, contentTypeHeader, fetchOptions.headers);
+        }
+        // authentication (jenkins_auth) required
+        // http basic authentication required
+        if (configuration.username || configuration.password) {
+            fetchOptions.headers = assign({
+                    "Authorization": "Basic " + btoa(configuration.username + ":" + configuration.password),
+                    }, contentTypeHeader);
+        }
+
+        return {
+            url: url.format(urlObj),
+            options: fetchOptions,
+        };
+    },
+    /**
+     * Retrieve run node details for an organization pipeline
+     * @param organization Name of the organization
+     * @param pipeline Name of the pipeline
+     * @param run Name of the run
+     * @param node Name of the node
+     * @param step Name of the step
+     */
+    getPipelineRunNodeStep(params: {  organization: string; pipeline: string; run: string; node: string; step: string; }, configuration: Configuration, options: any = {}): FetchArgs {
+        // verify required parameter "organization" is set
+        if (params["organization"] == null) {
+            throw new Error("Missing required parameter organization when calling getPipelineRunNodeStep");
+        }
+        // verify required parameter "pipeline" is set
+        if (params["pipeline"] == null) {
+            throw new Error("Missing required parameter pipeline when calling getPipelineRunNodeStep");
+        }
+        // verify required parameter "run" is set
+        if (params["run"] == null) {
+            throw new Error("Missing required parameter run when calling getPipelineRunNodeStep");
+        }
+        // verify required parameter "node" is set
+        if (params["node"] == null) {
+            throw new Error("Missing required parameter node when calling getPipelineRunNodeStep");
+        }
+        // verify required parameter "step" is set
+        if (params["step"] == null) {
+            throw new Error("Missing required parameter step when calling getPipelineRunNodeStep");
+        }
+        const baseUrl = `/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps/{step}`
+            .replace(`{${"organization"}}`, `${ params["organization"] }`)
+            .replace(`{${"pipeline"}}`, `${ params["pipeline"] }`)
+            .replace(`{${"run"}}`, `${ params["run"] }`)
+            .replace(`{${"node"}}`, `${ params["node"] }`)
+            .replace(`{${"step"}}`, `${ params["step"] }`);
+        let urlObj = url.parse(baseUrl, true);
+        let fetchOptions: RequestInit = assign({}, { method: "GET" }, options);
+
+        let contentTypeHeader: Dictionary<string> = {};
+        if (contentTypeHeader) {
+            fetchOptions.headers = assign({}, contentTypeHeader, fetchOptions.headers);
+        }
+        // authentication (jenkins_auth) required
+        // http basic authentication required
+        if (configuration.username || configuration.password) {
+            fetchOptions.headers = assign({
+                    "Authorization": "Basic " + btoa(configuration.username + ":" + configuration.password),
+                    }, contentTypeHeader);
+        }
+
+        return {
+            url: url.format(urlObj),
+            options: fetchOptions,
+        };
+    },
+    /**
+     * Get log for a pipeline run node step
+     * @param organization Name of the organization
+     * @param pipeline Name of the pipeline
+     * @param run Name of the run
+     * @param node Name of the node
+     * @param step Name of the step
+     */
+    getPipelineRunNodeStepLog(params: {  organization: string; pipeline: string; run: string; node: string; step: string; }, configuration: Configuration, options: any = {}): FetchArgs {
+        // verify required parameter "organization" is set
+        if (params["organization"] == null) {
+            throw new Error("Missing required parameter organization when calling getPipelineRunNodeStepLog");
+        }
+        // verify required parameter "pipeline" is set
+        if (params["pipeline"] == null) {
+            throw new Error("Missing required parameter pipeline when calling getPipelineRunNodeStepLog");
+        }
+        // verify required parameter "run" is set
+        if (params["run"] == null) {
+            throw new Error("Missing required parameter run when calling getPipelineRunNodeStepLog");
+        }
+        // verify required parameter "node" is set
+        if (params["node"] == null) {
+            throw new Error("Missing required parameter node when calling getPipelineRunNodeStepLog");
+        }
+        // verify required parameter "step" is set
+        if (params["step"] == null) {
+            throw new Error("Missing required parameter step when calling getPipelineRunNodeStepLog");
+        }
+        const baseUrl = `/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps/{step}/log`
+            .replace(`{${"organization"}}`, `${ params["organization"] }`)
+            .replace(`{${"pipeline"}}`, `${ params["pipeline"] }`)
+            .replace(`{${"run"}}`, `${ params["run"] }`)
+            .replace(`{${"node"}}`, `${ params["node"] }`)
+            .replace(`{${"step"}}`, `${ params["step"] }`);
+        let urlObj = url.parse(baseUrl, true);
+        let fetchOptions: RequestInit = assign({}, { method: "GET" }, options);
+
+        let contentTypeHeader: Dictionary<string> = {};
+        if (contentTypeHeader) {
+            fetchOptions.headers = assign({}, contentTypeHeader, fetchOptions.headers);
+        }
+        // authentication (jenkins_auth) required
+        // http basic authentication required
+        if (configuration.username || configuration.password) {
+            fetchOptions.headers = assign({
+                    "Authorization": "Basic " + btoa(configuration.username + ":" + configuration.password),
+                    }, contentTypeHeader);
+        }
+
+        return {
+            url: url.format(urlObj),
+            options: fetchOptions,
+        };
+    },
+    /**
+     * Retrieve run node steps details for an organization pipeline
+     * @param organization Name of the organization
+     * @param pipeline Name of the pipeline
+     * @param run Name of the run
+     * @param node Name of the node
+     */
+    getPipelineRunNodeSteps(params: {  organization: string; pipeline: string; run: string; node: string; }, configuration: Configuration, options: any = {}): FetchArgs {
+        // verify required parameter "organization" is set
+        if (params["organization"] == null) {
+            throw new Error("Missing required parameter organization when calling getPipelineRunNodeSteps");
+        }
+        // verify required parameter "pipeline" is set
+        if (params["pipeline"] == null) {
+            throw new Error("Missing required parameter pipeline when calling getPipelineRunNodeSteps");
+        }
+        // verify required parameter "run" is set
+        if (params["run"] == null) {
+            throw new Error("Missing required parameter run when calling getPipelineRunNodeSteps");
+        }
+        // verify required parameter "node" is set
+        if (params["node"] == null) {
+            throw new Error("Missing required parameter node when calling getPipelineRunNodeSteps");
+        }
+        const baseUrl = `/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps`
+            .replace(`{${"organization"}}`, `${ params["organization"] }`)
+            .replace(`{${"pipeline"}}`, `${ params["pipeline"] }`)
+            .replace(`{${"run"}}`, `${ params["run"] }`)
+            .replace(`{${"node"}}`, `${ params["node"] }`);
+        let urlObj = url.parse(baseUrl, true);
+        let fetchOptions: RequestInit = assign({}, { method: "GET" }, options);
+
+        let contentTypeHeader: Dictionary<string> = {};
+        if (contentTypeHeader) {
+            fetchOptions.headers = assign({}, contentTypeHeader, fetchOptions.headers);
+        }
+        // authentication (jenkins_auth) required
+        // http basic authentication required
+        if (configuration.username || configuration.password) {
+            fetchOptions.headers = assign({
+                    "Authorization": "Basic " + btoa(configuration.username + ":" + configuration.password),
+                    }, contentTypeHeader);
+        }
+
+        return {
+            url: url.format(urlObj),
+            options: fetchOptions,
+        };
+    },
+    /**
+     * Retrieve run nodes details for an organization pipeline
+     * @param organization Name of the organization
+     * @param pipeline Name of the pipeline
+     * @param run Name of the run
+     */
+    getPipelineRunNodes(params: {  organization: string; pipeline: string; run: string; }, configuration: Configuration, options: any = {}): FetchArgs {
+        // verify required parameter "organization" is set
+        if (params["organization"] == null) {
+            throw new Error("Missing required parameter organization when calling getPipelineRunNodes");
+        }
+        // verify required parameter "pipeline" is set
+        if (params["pipeline"] == null) {
+            throw new Error("Missing required parameter pipeline when calling getPipelineRunNodes");
+        }
+        // verify required parameter "run" is set
+        if (params["run"] == null) {
+            throw new Error("Missing required parameter run when calling getPipelineRunNodes");
+        }
+        const baseUrl = `/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes`
+            .replace(`{${"organization"}}`, `${ params["organization"] }`)
+            .replace(`{${"pipeline"}}`, `${ params["pipeline"] }`)
+            .replace(`{${"run"}}`, `${ params["run"] }`);
+        let urlObj = url.parse(baseUrl, true);
+        let fetchOptions: RequestInit = assign({}, { method: "GET" }, options);
+
+        let contentTypeHeader: Dictionary<string> = {};
+        if (contentTypeHeader) {
+            fetchOptions.headers = assign({}, contentTypeHeader, fetchOptions.headers);
+        }
+        // authentication (jenkins_auth) required
+        // http basic authentication required
+        if (configuration.username || configuration.password) {
+            fetchOptions.headers = assign({
+                    "Authorization": "Basic " + btoa(configuration.username + ":" + configuration.password),
+                    }, contentTypeHeader);
+        }
+
+        return {
+            url: url.format(urlObj),
+            options: fetchOptions,
+        };
+    },
+    /**
+     * Retrieve all runs details for an organization pipeline
+     * @param organization Name of the organization
+     * @param pipeline Name of the pipeline
+     */
+    getPipelineRuns(params: {  organization: string; pipeline: string; }, configuration: Configuration, options: any = {}): FetchArgs {
+        // verify required parameter "organization" is set
+        if (params["organization"] == null) {
+            throw new Error("Missing required parameter organization when calling getPipelineRuns");
+        }
+        // verify required parameter "pipeline" is set
+        if (params["pipeline"] == null) {
+            throw new Error("Missing required parameter pipeline when calling getPipelineRuns");
+        }
+        const baseUrl = `/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs`
+            .replace(`{${"organization"}}`, `${ params["organization"] }`)
+            .replace(`{${"pipeline"}}`, `${ params["pipeline"] }`);
+        let urlObj = url.parse(baseUrl, true);
+        let fetchOptions: RequestInit = assign({}, { method: "GET" }, options);
+
+        let contentTypeHeader: Dictionary<string> = {};
+        if (contentTypeHeader) {
+            fetchOptions.headers = assign({}, contentTypeHeader, fetchOptions.headers);
+        }
+        // authentication (jenkins_auth) required
+        // http basic authentication required
+        if (configuration.username || configuration.password) {
+            fetchOptions.headers = assign({
+                    "Authorization": "Basic " + btoa(configuration.username + ":" + configuration.password),
+                    }, contentTypeHeader);
+        }
+
+        return {
+            url: url.format(urlObj),
+            options: fetchOptions,
+        };
+    },
+    /**
+     * Retrieve all pipelines details for an organization
+     * @param organization Name of the organization
+     */
+    getPipelines(params: {  organization: string; }, configuration: Configuration, options: any = {}): FetchArgs {
+        // verify required parameter "organization" is set
+        if (params["organization"] == null) {
+            throw new Error("Missing required parameter organization when calling getPipelines");
+        }
+        const baseUrl = `/blue/rest/organizations/{organization}/pipelines/`
+            .replace(`{${"organization"}}`, `${ params["organization"] }`);
+        let urlObj = url.parse(baseUrl, true);
+        let fetchOptions: RequestInit = assign({}, { method: "GET" }, options);
+
+        let contentTypeHeader: Dictionary<string> = {};
+        if (contentTypeHeader) {
+            fetchOptions.headers = assign({}, contentTypeHeader, fetchOptions.headers);
+        }
+        // authentication (jenkins_auth) required
+        // http basic authentication required
+        if (configuration.username || configuration.password) {
+            fetchOptions.headers = assign({
+                    "Authorization": "Basic " + btoa(configuration.username + ":" + configuration.password),
+                    }, contentTypeHeader);
+        }
+
+        return {
+            url: url.format(urlObj),
+            options: fetchOptions,
+        };
+    },
+    /**
+     * Retrieve SCM details for an organization
+     * @param organization Name of the organization
+     * @param scm Name of SCM
+     */
+    getSCM(params: {  organization: string; scm: string; }, configuration: Configuration, options: any = {}): FetchArgs {
+        // verify required parameter "organization" is set
+        if (params["organization"] == null) {
+            throw new Error("Missing required parameter organization when calling getSCM");
+        }
+        // verify required parameter "scm" is set
+        if (params["scm"] == null) {
+            throw new Error("Missing required parameter scm when calling getSCM");
+        }
+        const baseUrl = `/blue/rest/organizations/{organization}/scm/{scm}`
+            .replace(`{${"organization"}}`, `${ params["organization"] }`)
+            .replace(`{${"scm"}}`, `${ params["scm"] }`);
+        let urlObj = url.parse(baseUrl, true);
+        let fetchOptions: RequestInit = assign({}, { method: "GET" }, options);
+
+        let contentTypeHeader: Dictionary<string> = {};
+        if (contentTypeHeader) {
+            fetchOptions.headers = assign({}, contentTypeHeader, fetchOptions.headers);
+        }
+        // authentication (jenkins_auth) required
+        // http basic authentication required
+        if (configuration.username || configuration.password) {
+            fetchOptions.headers = assign({
+                    "Authorization": "Basic " + btoa(configuration.username + ":" + configuration.password),
+                    }, contentTypeHeader);
+        }
+
+        return {
+            url: url.format(urlObj),
+            options: fetchOptions,
+        };
+    },
+    /**
+     * Retrieve SCM organization repositories details for an organization
+     * @param organization Name of the organization
+     * @param scm Name of SCM
+     * @param scmOrganisation Name of the SCM organization
+     * @param credentialId Credential ID
+     * @param pageSize Number of items in a page
+     * @param pageNumber Page number
+     */
+    getSCMOrganisationRepositories(params: {  organization: string; scm: string; scmOrganisation: string; credentialId?: string; pageSize?: number; pageNumber?: number; }, configuration: Configuration, options: any = {}): FetchArgs {
+        // verify required parameter "organization" is set
+        if (params["organization"] == null) {
+            throw new Error("Missing required parameter organization when calling getSCMOrganisationRepositories");
+        }
+        // verify required parameter "scm" is set
+        if (params["scm"] == null) {
+            throw new Error("Missing required parameter scm when calling getSCMOrganisationRepositories");
+        }
+        // verify required parameter "scmOrganisation" is set
+        if (params["scmOrganisation"] == null) {
+            throw new Error("Missing required parameter scmOrganisation when calling getSCMOrganisationRepositories");
+        }
+        const baseUrl = `/blue/rest/organizations/{organization}/scm/{scm}/organizations/{scmOrganisation}/repositories`
+            .replace(`{${"organization"}}`, `${ params["organization"] }`)
+            .replace(`{${"scm"}}`, `${ params["scm"] }`)
+            .replace(`{${"scmOrganisation"}}`, `${ params["scmOrganisation"] }`);
+        let urlObj = url.parse(baseUrl, true);
+        urlObj.query =  assign({}, urlObj.query);
+        if (params["credentialId"] !== undefined) {
+            urlObj.query["credentialId"] = params["credentialId"];
+        }
+        if (params["pageSize"] !== undefined) {
+            urlObj.query["pageSize"] = params["pageSize"];
+        }
+        if (params["pageNumber"] !== undefined) {
+            urlObj.query["pageNumber"] = params["pageNumber"];
+        }
+        let fetchOptions: RequestInit = assign({}, { method: "GET" }, options);
+
+        let contentTypeHeader: Dictionary<string> = {};
+        if (contentTypeHeader) {
+            fetchOptions.headers = assign({}, contentTypeHeader, fetchOptions.headers);
+        }
+        // authentication (jenkins_auth) required
+        // http basic authentication required
+        if (configuration.username || configuration.password) {
+            fetchOptions.headers = assign({
+                    "Authorization": "Basic " + btoa(configuration.username + ":" + configuration.password),
+                    }, contentTypeHeader);
+        }
+
+        return {
+            url: url.format(urlObj),
+            options: fetchOptions,
+        };
+    },
+    /**
+     * Retrieve SCM organization repository details for an organization
+     * @param organization Name of the organization
+     * @param scm Name of SCM
+     * @param scmOrganisation Name of the SCM organization
+     * @param repository Name of the SCM repository
+     * @param credentialId Credential ID
+     */
+    getSCMOrganisationRepository(params: {  organization: string; scm: string; scmOrganisation: string; repository: string; credentialId?: string; }, configuration: Configuration, options: any = {}): FetchArgs {
+        // verify required parameter "organization" is set
+        if (params["organization"] == null) {
+            throw new Error("Missing required parameter organization when calling getSCMOrganisationRepository");
+        }
+        // verify required parameter "scm" is set
+        if (params["scm"] == null) {
+            throw new Error("Missing required parameter scm when calling getSCMOrganisationRepository");
+        }
+        // verify required parameter "scmOrganisation" is set
+        if (params["scmOrganisation"] == null) {
+            throw new Error("Missing required parameter scmOrganisation when calling getSCMOrganisationRepository");
+        }
+        // verify required parameter "repository" is set
+        if (params["repository"] == null) {
+            throw new Error("Missing required parameter repository when calling getSCMOrganisationRepository");
+        }
+        const baseUrl = `/blue/rest/organizations/{organization}/scm/{scm}/organizations/{scmOrganisation}/repositories/{repository}`
+            .replace(`{${"organization"}}`, `${ params["organization"] }`)
+            .replace(`{${"scm"}}`, `${ params["scm"] }`)
+            .replace(`{${"scmOrganisation"}}`, `${ params["scmOrganisation"] }`)
+            .replace(`{${"repository"}}`, `${ params["repository"] }`);
+        let urlObj = url.parse(baseUrl, true);
+        urlObj.query =  assign({}, urlObj.query);
+        if (params["credentialId"] !== undefined) {
+            urlObj.query["credentialId"] = params["credentialId"];
+        }
+        let fetchOptions: RequestInit = assign({}, { method: "GET" }, options);
+
+        let contentTypeHeader: Dictionary<string> = {};
+        if (contentTypeHeader) {
+            fetchOptions.headers = assign({}, contentTypeHeader, fetchOptions.headers);
+        }
+        // authentication (jenkins_auth) required
+        // http basic authentication required
+        if (configuration.username || configuration.password) {
+            fetchOptions.headers = assign({
+                    "Authorization": "Basic " + btoa(configuration.username + ":" + configuration.password),
+                    }, contentTypeHeader);
+        }
+
+        return {
+            url: url.format(urlObj),
+            options: fetchOptions,
+        };
+    },
+    /**
+     * Retrieve SCM organizations details for an organization
+     * @param organization Name of the organization
+     * @param scm Name of SCM
+     * @param credentialId Credential ID
+     */
+    getSCMOrganisations(params: {  organization: string; scm: string; credentialId?: string; }, configuration: Configuration, options: any = {}): FetchArgs {
+        // verify required parameter "organization" is set
+        if (params["organization"] == null) {
+            throw new Error("Missing required parameter organization when calling getSCMOrganisations");
+        }
+        // verify required parameter "scm" is set
+        if (params["scm"] == null) {
+            throw new Error("Missing required parameter scm when calling getSCMOrganisations");
+        }
+        const baseUrl = `/blue/rest/organizations/{organization}/scm/{scm}/organizations`
+            .replace(`{${"organization"}}`, `${ params["organization"] }`)
+            .replace(`{${"scm"}}`, `${ params["scm"] }`);
+        let urlObj = url.parse(baseUrl, true);
+        urlObj.query =  assign({}, urlObj.query);
+        if (params["credentialId"] !== undefined) {
+            urlObj.query["credentialId"] = params["credentialId"];
+        }
+        let fetchOptions: RequestInit = assign({}, { method: "GET" }, options);
+
+        let contentTypeHeader: Dictionary<string> = {};
+        if (contentTypeHeader) {
+            fetchOptions.headers = assign({}, contentTypeHeader, fetchOptions.headers);
+        }
+        // authentication (jenkins_auth) required
+        // http basic authentication required
+        if (configuration.username || configuration.password) {
+            fetchOptions.headers = assign({
+                    "Authorization": "Basic " + btoa(configuration.username + ":" + configuration.password),
+                    }, contentTypeHeader);
+        }
+
+        return {
+            url: url.format(urlObj),
+            options: fetchOptions,
+        };
+    },
+    /**
+     * Retrieve user details for an organization
+     * @param organization Name of the organization
      * @param user Name of the user
      */
-    getUser(params: {  "organisation": string; "user": string; }, options?: any): FetchArgs {
-        // verify required parameter "organisation" is set
-        if (params["organisation"] == null) {
-            throw new Error("Missing required parameter organisation when calling getUser");
+    getUser(params: {  organization: string; user: string; }, configuration: Configuration, options: any = {}): FetchArgs {
+        // verify required parameter "organization" is set
+        if (params["organization"] == null) {
+            throw new Error("Missing required parameter organization when calling getUser");
         }
         // verify required parameter "user" is set
         if (params["user"] == null) {
             throw new Error("Missing required parameter user when calling getUser");
         }
-        const baseUrl = `/blue/rest/organizations/{organisation}/users/{user}`
-            .replace(`{${"organisation"}}`, `${ params["organisation"] }`)
+        const baseUrl = `/blue/rest/organizations/{organization}/users/{user}`
+            .replace(`{${"organization"}}`, `${ params["organization"] }`)
             .replace(`{${"user"}}`, `${ params["user"] }`);
         let urlObj = url.parse(baseUrl, true);
         let fetchOptions: RequestInit = assign({}, { method: "GET" }, options);
 
         let contentTypeHeader: Dictionary<string> = {};
         if (contentTypeHeader) {
-            fetchOptions.headers = contentTypeHeader;
+            fetchOptions.headers = assign({}, contentTypeHeader, fetchOptions.headers);
         }
+        // authentication (jenkins_auth) required
+        // http basic authentication required
+        if (configuration.username || configuration.password) {
+            fetchOptions.headers = assign({
+                    "Authorization": "Basic " + btoa(configuration.username + ":" + configuration.password),
+                    }, contentTypeHeader);
+        }
+
         return {
             url: url.format(urlObj),
             options: fetchOptions,
         };
     },
-    /** 
-     * Retrieve users details for an organisation
-     * @param organisation Name of the organisation
+    /**
+     * Retrieve user favorites details for an organization
+     * @param user Name of the user
      */
-    getUsers(params: {  "organisation": string; }, options?: any): FetchArgs {
-        // verify required parameter "organisation" is set
-        if (params["organisation"] == null) {
-            throw new Error("Missing required parameter organisation when calling getUsers");
+    getUserFavorites(params: {  user: string; }, configuration: Configuration, options: any = {}): FetchArgs {
+        // verify required parameter "user" is set
+        if (params["user"] == null) {
+            throw new Error("Missing required parameter user when calling getUserFavorites");
         }
-        const baseUrl = `/blue/rest/organizations/{organisation}/users/`
-            .replace(`{${"organisation"}}`, `${ params["organisation"] }`);
+        const baseUrl = `/blue/rest/users/{user}/favorites`
+            .replace(`{${"user"}}`, `${ params["user"] }`);
         let urlObj = url.parse(baseUrl, true);
         let fetchOptions: RequestInit = assign({}, { method: "GET" }, options);
 
         let contentTypeHeader: Dictionary<string> = {};
         if (contentTypeHeader) {
-            fetchOptions.headers = contentTypeHeader;
+            fetchOptions.headers = assign({}, contentTypeHeader, fetchOptions.headers);
         }
+        // authentication (jenkins_auth) required
+        // http basic authentication required
+        if (configuration.username || configuration.password) {
+            fetchOptions.headers = assign({
+                    "Authorization": "Basic " + btoa(configuration.username + ":" + configuration.password),
+                    }, contentTypeHeader);
+        }
+
         return {
             url: url.format(urlObj),
             options: fetchOptions,
         };
     },
-    /** 
-     * Get classes details
-     * @param q Query string containing an array of class names
+    /**
+     * Retrieve users details for an organization
+     * @param organization Name of the organization
      */
-    search(params: {  "q": string; }, options?: any): FetchArgs {
+    getUsers(params: {  organization: string; }, configuration: Configuration, options: any = {}): FetchArgs {
+        // verify required parameter "organization" is set
+        if (params["organization"] == null) {
+            throw new Error("Missing required parameter organization when calling getUsers");
+        }
+        const baseUrl = `/blue/rest/organizations/{organization}/users/`
+            .replace(`{${"organization"}}`, `${ params["organization"] }`);
+        let urlObj = url.parse(baseUrl, true);
+        let fetchOptions: RequestInit = assign({}, { method: "GET" }, options);
+
+        let contentTypeHeader: Dictionary<string> = {};
+        if (contentTypeHeader) {
+            fetchOptions.headers = assign({}, contentTypeHeader, fetchOptions.headers);
+        }
+        // authentication (jenkins_auth) required
+        // http basic authentication required
+        if (configuration.username || configuration.password) {
+            fetchOptions.headers = assign({
+                    "Authorization": "Basic " + btoa(configuration.username + ":" + configuration.password),
+                    }, contentTypeHeader);
+        }
+
+        return {
+            url: url.format(urlObj),
+            options: fetchOptions,
+        };
+    },
+    /**
+     * Replay an organization pipeline run
+     * @param organization Name of the organization
+     * @param pipeline Name of the pipeline
+     * @param run Name of the run
+     */
+    postPipelineRun(params: {  organization: string; pipeline: string; run: string; }, configuration: Configuration, options: any = {}): FetchArgs {
+        // verify required parameter "organization" is set
+        if (params["organization"] == null) {
+            throw new Error("Missing required parameter organization when calling postPipelineRun");
+        }
+        // verify required parameter "pipeline" is set
+        if (params["pipeline"] == null) {
+            throw new Error("Missing required parameter pipeline when calling postPipelineRun");
+        }
+        // verify required parameter "run" is set
+        if (params["run"] == null) {
+            throw new Error("Missing required parameter run when calling postPipelineRun");
+        }
+        const baseUrl = `/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/replay`
+            .replace(`{${"organization"}}`, `${ params["organization"] }`)
+            .replace(`{${"pipeline"}}`, `${ params["pipeline"] }`)
+            .replace(`{${"run"}}`, `${ params["run"] }`);
+        let urlObj = url.parse(baseUrl, true);
+        let fetchOptions: RequestInit = assign({}, { method: "POST" }, options);
+
+        let contentTypeHeader: Dictionary<string> = {};
+        if (contentTypeHeader) {
+            fetchOptions.headers = assign({}, contentTypeHeader, fetchOptions.headers);
+        }
+        // authentication (jenkins_auth) required
+        // http basic authentication required
+        if (configuration.username || configuration.password) {
+            fetchOptions.headers = assign({
+                    "Authorization": "Basic " + btoa(configuration.username + ":" + configuration.password),
+                    }, contentTypeHeader);
+        }
+
+        return {
+            url: url.format(urlObj),
+            options: fetchOptions,
+        };
+    },
+    /**
+     * Start a build for an organization pipeline
+     * @param organization Name of the organization
+     * @param pipeline Name of the pipeline
+     */
+    postPipelineRuns(params: {  organization: string; pipeline: string; }, configuration: Configuration, options: any = {}): FetchArgs {
+        // verify required parameter "organization" is set
+        if (params["organization"] == null) {
+            throw new Error("Missing required parameter organization when calling postPipelineRuns");
+        }
+        // verify required parameter "pipeline" is set
+        if (params["pipeline"] == null) {
+            throw new Error("Missing required parameter pipeline when calling postPipelineRuns");
+        }
+        const baseUrl = `/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs`
+            .replace(`{${"organization"}}`, `${ params["organization"] }`)
+            .replace(`{${"pipeline"}}`, `${ params["pipeline"] }`);
+        let urlObj = url.parse(baseUrl, true);
+        let fetchOptions: RequestInit = assign({}, { method: "POST" }, options);
+
+        let contentTypeHeader: Dictionary<string> = {};
+        if (contentTypeHeader) {
+            fetchOptions.headers = assign({}, contentTypeHeader, fetchOptions.headers);
+        }
+        // authentication (jenkins_auth) required
+        // http basic authentication required
+        if (configuration.username || configuration.password) {
+            fetchOptions.headers = assign({
+                    "Authorization": "Basic " + btoa(configuration.username + ":" + configuration.password),
+                    }, contentTypeHeader);
+        }
+
+        return {
+            url: url.format(urlObj),
+            options: fetchOptions,
+        };
+    },
+    /**
+     * Favorite/unfavorite a pipeline
+     * @param organization Name of the organization
+     * @param pipeline Name of the pipeline
+     * @param body Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite
+     */
+    putPipelineFavorite(params: {  organization: string; pipeline: string; body: Body; }, configuration: Configuration, options: any = {}): FetchArgs {
+        // verify required parameter "organization" is set
+        if (params["organization"] == null) {
+            throw new Error("Missing required parameter organization when calling putPipelineFavorite");
+        }
+        // verify required parameter "pipeline" is set
+        if (params["pipeline"] == null) {
+            throw new Error("Missing required parameter pipeline when calling putPipelineFavorite");
+        }
+        // verify required parameter "body" is set
+        if (params["body"] == null) {
+            throw new Error("Missing required parameter body when calling putPipelineFavorite");
+        }
+        const baseUrl = `/blue/rest/organizations/{organization}/pipelines/{pipeline}/favorite`
+            .replace(`{${"organization"}}`, `${ params["organization"] }`)
+            .replace(`{${"pipeline"}}`, `${ params["pipeline"] }`);
+        let urlObj = url.parse(baseUrl, true);
+        let fetchOptions: RequestInit = assign({}, { method: "PUT" }, options);
+
+        let contentTypeHeader: Dictionary<string> = {};
+        contentTypeHeader = { "Content-Type": "application/json" };
+        if (params["body"]) {
+            fetchOptions.body = JSON.stringify(params["body"] || {});
+        }
+        if (contentTypeHeader) {
+            fetchOptions.headers = assign({}, contentTypeHeader, fetchOptions.headers);
+        }
+        // authentication (jenkins_auth) required
+        // http basic authentication required
+        if (configuration.username || configuration.password) {
+            fetchOptions.headers = assign({
+                    "Authorization": "Basic " + btoa(configuration.username + ":" + configuration.password),
+                    }, contentTypeHeader);
+        }
+
+        return {
+            url: url.format(urlObj),
+            options: fetchOptions,
+        };
+    },
+    /**
+     * Stop a build of an organization pipeline
+     * @param organization Name of the organization
+     * @param pipeline Name of the pipeline
+     * @param run Name of the run
+     * @param blocking Set to true to make blocking stop, default: false
+     * @param timeOutInSecs Timeout in seconds, default: 10 seconds
+     */
+    putPipelineRun(params: {  organization: string; pipeline: string; run: string; blocking?: string; timeOutInSecs?: number; }, configuration: Configuration, options: any = {}): FetchArgs {
+        // verify required parameter "organization" is set
+        if (params["organization"] == null) {
+            throw new Error("Missing required parameter organization when calling putPipelineRun");
+        }
+        // verify required parameter "pipeline" is set
+        if (params["pipeline"] == null) {
+            throw new Error("Missing required parameter pipeline when calling putPipelineRun");
+        }
+        // verify required parameter "run" is set
+        if (params["run"] == null) {
+            throw new Error("Missing required parameter run when calling putPipelineRun");
+        }
+        const baseUrl = `/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/stop`
+            .replace(`{${"organization"}}`, `${ params["organization"] }`)
+            .replace(`{${"pipeline"}}`, `${ params["pipeline"] }`)
+            .replace(`{${"run"}}`, `${ params["run"] }`);
+        let urlObj = url.parse(baseUrl, true);
+        urlObj.query =  assign({}, urlObj.query);
+        if (params["blocking"] !== undefined) {
+            urlObj.query["blocking"] = params["blocking"];
+        }
+        if (params["timeOutInSecs"] !== undefined) {
+            urlObj.query["timeOutInSecs"] = params["timeOutInSecs"];
+        }
+        let fetchOptions: RequestInit = assign({}, { method: "PUT" }, options);
+
+        let contentTypeHeader: Dictionary<string> = {};
+        if (contentTypeHeader) {
+            fetchOptions.headers = assign({}, contentTypeHeader, fetchOptions.headers);
+        }
+        // authentication (jenkins_auth) required
+        // http basic authentication required
+        if (configuration.username || configuration.password) {
+            fetchOptions.headers = assign({
+                    "Authorization": "Basic " + btoa(configuration.username + ":" + configuration.password),
+                    }, contentTypeHeader);
+        }
+
+        return {
+            url: url.format(urlObj),
+            options: fetchOptions,
+        };
+    },
+    /**
+     * Search for any resource details
+     * @param q Query string
+     */
+    search(params: {  q: string; }, configuration: Configuration, options: any = {}): FetchArgs {
         // verify required parameter "q" is set
         if (params["q"] == null) {
             throw new Error("Missing required parameter q when calling search");
         }
-        const baseUrl = `/blue/rest/classes/`;
+        const baseUrl = `/blue/rest/search/`;
         let urlObj = url.parse(baseUrl, true);
-        urlObj.query = assign({}, urlObj.query, {
-            "q": params["q"],
-        });
+        urlObj.query =  assign({}, urlObj.query);
+        if (params["q"] !== undefined) {
+            urlObj.query["q"] = params["q"];
+        }
         let fetchOptions: RequestInit = assign({}, { method: "GET" }, options);
 
         let contentTypeHeader: Dictionary<string> = {};
         if (contentTypeHeader) {
-            fetchOptions.headers = contentTypeHeader;
+            fetchOptions.headers = assign({}, contentTypeHeader, fetchOptions.headers);
         }
+        // authentication (jenkins_auth) required
+        // http basic authentication required
+        if (configuration.username || configuration.password) {
+            fetchOptions.headers = assign({
+                    "Authorization": "Basic " + btoa(configuration.username + ":" + configuration.password),
+                    }, contentTypeHeader);
+        }
+
         return {
             url: url.format(urlObj),
             options: fetchOptions,
         };
     },
-    /** 
-     * Search for any resource details
-     * @param q Query string
+    /**
+     * Get classes details
+     * @param q Query string containing an array of class names
      */
-    search_2(params: {  "q": string; }, options?: any): FetchArgs {
+    searchClasses(params: {  q: string; }, configuration: Configuration, options: any = {}): FetchArgs {
         // verify required parameter "q" is set
         if (params["q"] == null) {
-            throw new Error("Missing required parameter q when calling search_2");
+            throw new Error("Missing required parameter q when calling searchClasses");
         }
-        const baseUrl = `/blue/rest/search/`;
+        const baseUrl = `/blue/rest/classes/`;
         let urlObj = url.parse(baseUrl, true);
-        urlObj.query = assign({}, urlObj.query, {
-            "q": params["q"],
-        });
+        urlObj.query =  assign({}, urlObj.query);
+        if (params["q"] !== undefined) {
+            urlObj.query["q"] = params["q"];
+        }
         let fetchOptions: RequestInit = assign({}, { method: "GET" }, options);
 
         let contentTypeHeader: Dictionary<string> = {};
         if (contentTypeHeader) {
-            fetchOptions.headers = contentTypeHeader;
+            fetchOptions.headers = assign({}, contentTypeHeader, fetchOptions.headers);
         }
+        // authentication (jenkins_auth) required
+        // http basic authentication required
+        if (configuration.username || configuration.password) {
+            fetchOptions.headers = assign({
+                    "Authorization": "Basic " + btoa(configuration.username + ":" + configuration.password),
+                    }, contentTypeHeader);
+        }
+
         return {
             url: url.format(urlObj),
             options: fetchOptions,
@@ -874,12 +2230,30 @@ export const BlueOceanApiFetchParamCreator = {
  * BlueOceanApi - functional programming interface
  */
 export const BlueOceanApiFp = {
-    /** 
-     * Retrieve authenticated user details for an organisation
-     * @param organisation Name of the organisation
+    /**
+     * Delete queue item from an organization pipeline queue
+     * @param organization Name of the organization
+     * @param pipeline Name of the pipeline
+     * @param queue Name of the queue item
      */
-    getAuthenticatedUser(params: { "organisation": string;  }, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<SwaggyjenkinsUser> {
-        const fetchArgs = BlueOceanApiFetchParamCreator.getAuthenticatedUser(params, options);
+    deletePipelineQueueItem(params: { organization: string; pipeline: string; queue: string;  }, configuration: Configuration, options: any = {}): (fetch: FetchAPI, basePath?: string) => Promise<any> {
+        const fetchArgs = BlueOceanApiFetchParamCreator.deletePipelineQueueItem(params, configuration, options);
+        return (fetch: FetchAPI = isomorphicFetch, basePath: string = BASE_PATH) => {
+            return fetch(basePath + fetchArgs.url, fetchArgs.options).then((response) => {
+                if (response.status >= 200 && response.status < 300) {
+                    return response;
+                } else {
+                    throw response;
+                }
+            });
+        };
+    },
+    /**
+     * Retrieve authenticated user details for an organization
+     * @param organization Name of the organization
+     */
+    getAuthenticatedUser(params: { organization: string;  }, configuration: Configuration, options: any = {}): (fetch: FetchAPI, basePath?: string) => Promise<User> {
+        const fetchArgs = BlueOceanApiFetchParamCreator.getAuthenticatedUser(params, configuration, options);
         return (fetch: FetchAPI = isomorphicFetch, basePath: string = BASE_PATH) => {
             return fetch(basePath + fetchArgs.url, fetchArgs.options).then((response) => {
                 if (response.status >= 200 && response.status < 300) {
@@ -890,12 +2264,12 @@ export const BlueOceanApiFp = {
             });
         };
     },
-    /** 
+    /**
      * Get a list of class names supported by a given class
      * @param _class Name of the class
      */
-    getClasses(params: { "_class": string;  }, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<string> {
-        const fetchArgs = BlueOceanApiFetchParamCreator.getClasses(params, options);
+    getClasses(params: { _class: string;  }, configuration: Configuration, options: any = {}): (fetch: FetchAPI, basePath?: string) => Promise<string> {
+        const fetchArgs = BlueOceanApiFetchParamCreator.getClasses(params, configuration, options);
         return (fetch: FetchAPI = isomorphicFetch, basePath: string = BASE_PATH) => {
             return fetch(basePath + fetchArgs.url, fetchArgs.options).then((response) => {
                 if (response.status >= 200 && response.status < 300) {
@@ -906,12 +2280,12 @@ export const BlueOceanApiFp = {
             });
         };
     },
-    /** 
-     * Retrieve organisation details
-     * @param organisation Name of the organisation
+    /**
+     * Retrieve organization details
+     * @param organization Name of the organization
      */
-    getOrganisation(params: { "organisation": string;  }, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<SwaggyjenkinsOrganisation> {
-        const fetchArgs = BlueOceanApiFetchParamCreator.getOrganisation(params, options);
+    getOrganisation(params: { organization: string;  }, configuration: Configuration, options: any = {}): (fetch: FetchAPI, basePath?: string) => Promise<Organisation> {
+        const fetchArgs = BlueOceanApiFetchParamCreator.getOrganisation(params, configuration, options);
         return (fetch: FetchAPI = isomorphicFetch, basePath: string = BASE_PATH) => {
             return fetch(basePath + fetchArgs.url, fetchArgs.options).then((response) => {
                 if (response.status >= 200 && response.status < 300) {
@@ -922,11 +2296,11 @@ export const BlueOceanApiFp = {
             });
         };
     },
-    /** 
-     * Retrieve all organisations details
+    /**
+     * Retrieve all organizations details
      */
-    getOrganisations(options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<GetOrganisations> {
-        const fetchArgs = BlueOceanApiFetchParamCreator.getOrganisations(options);
+    getOrganisations(configuration: Configuration, options: any = {}): (fetch: FetchAPI, basePath?: string) => Promise<Organisations> {
+        const fetchArgs = BlueOceanApiFetchParamCreator.getOrganisations(configuration, options);
         return (fetch: FetchAPI = isomorphicFetch, basePath: string = BASE_PATH) => {
             return fetch(basePath + fetchArgs.url, fetchArgs.options).then((response) => {
                 if (response.status >= 200 && response.status < 300) {
@@ -937,14 +2311,48 @@ export const BlueOceanApiFp = {
             });
         };
     },
-    /** 
-     * Retrieve branch details for an organisation pipeline
-     * @param organisation Name of the organisation
+    /**
+     * Retrieve pipeline details for an organization
+     * @param organization Name of the organization
+     * @param pipeline Name of the pipeline
+     */
+    getPipeline(params: { organization: string; pipeline: string;  }, configuration: Configuration, options: any = {}): (fetch: FetchAPI, basePath?: string) => Promise<Pipeline> {
+        const fetchArgs = BlueOceanApiFetchParamCreator.getPipeline(params, configuration, options);
+        return (fetch: FetchAPI = isomorphicFetch, basePath: string = BASE_PATH) => {
+            return fetch(basePath + fetchArgs.url, fetchArgs.options).then((response) => {
+                if (response.status >= 200 && response.status < 300) {
+                    return response.json();
+                } else {
+                    throw response;
+                }
+            });
+        };
+    },
+    /**
+     * Retrieve all activities details for an organization pipeline
+     * @param organization Name of the organization
+     * @param pipeline Name of the pipeline
+     */
+    getPipelineActivities(params: { organization: string; pipeline: string;  }, configuration: Configuration, options: any = {}): (fetch: FetchAPI, basePath?: string) => Promise<PipelineActivities> {
+        const fetchArgs = BlueOceanApiFetchParamCreator.getPipelineActivities(params, configuration, options);
+        return (fetch: FetchAPI = isomorphicFetch, basePath: string = BASE_PATH) => {
+            return fetch(basePath + fetchArgs.url, fetchArgs.options).then((response) => {
+                if (response.status >= 200 && response.status < 300) {
+                    return response.json();
+                } else {
+                    throw response;
+                }
+            });
+        };
+    },
+    /**
+     * Retrieve branch details for an organization pipeline
+     * @param organization Name of the organization
      * @param pipeline Name of the pipeline
      * @param branch Name of the branch
      */
-    getPipelineBranchByOrg(params: { "organisation": string; "pipeline": string; "branch": string;  }, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<IojenkinsblueoceanrestimplpipelineBranchImpl> {
-        const fetchArgs = BlueOceanApiFetchParamCreator.getPipelineBranchByOrg(params, options);
+    getPipelineBranch(params: { organization: string; pipeline: string; branch: string;  }, configuration: Configuration, options: any = {}): (fetch: FetchAPI, basePath?: string) => Promise<BranchImpl> {
+        const fetchArgs = BlueOceanApiFetchParamCreator.getPipelineBranch(params, configuration, options);
         return (fetch: FetchAPI = isomorphicFetch, basePath: string = BASE_PATH) => {
             return fetch(basePath + fetchArgs.url, fetchArgs.options).then((response) => {
                 if (response.status >= 200 && response.status < 300) {
@@ -955,13 +2363,32 @@ export const BlueOceanApiFp = {
             });
         };
     },
-    /** 
-     * Retrieve all branches details for an organisation pipeline
-     * @param organisation Name of the organisation
+    /**
+     * Retrieve branch run details for an organization pipeline
+     * @param organization Name of the organization
+     * @param pipeline Name of the pipeline
+     * @param branch Name of the branch
+     * @param run Name of the run
+     */
+    getPipelineBranchRun(params: { organization: string; pipeline: string; branch: string; run: string;  }, configuration: Configuration, options: any = {}): (fetch: FetchAPI, basePath?: string) => Promise<PipelineRun> {
+        const fetchArgs = BlueOceanApiFetchParamCreator.getPipelineBranchRun(params, configuration, options);
+        return (fetch: FetchAPI = isomorphicFetch, basePath: string = BASE_PATH) => {
+            return fetch(basePath + fetchArgs.url, fetchArgs.options).then((response) => {
+                if (response.status >= 200 && response.status < 300) {
+                    return response.json();
+                } else {
+                    throw response;
+                }
+            });
+        };
+    },
+    /**
+     * Retrieve all branches details for an organization pipeline
+     * @param organization Name of the organization
      * @param pipeline Name of the pipeline
      */
-    getPipelineBranchesByOrg(params: { "organisation": string; "pipeline": string;  }, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<GetMultibranchPipeline> {
-        const fetchArgs = BlueOceanApiFetchParamCreator.getPipelineBranchesByOrg(params, options);
+    getPipelineBranches(params: { organization: string; pipeline: string;  }, configuration: Configuration, options: any = {}): (fetch: FetchAPI, basePath?: string) => Promise<MultibranchPipeline> {
+        const fetchArgs = BlueOceanApiFetchParamCreator.getPipelineBranches(params, configuration, options);
         return (fetch: FetchAPI = isomorphicFetch, basePath: string = BASE_PATH) => {
             return fetch(basePath + fetchArgs.url, fetchArgs.options).then((response) => {
                 if (response.status >= 200 && response.status < 300) {
@@ -972,30 +2399,13 @@ export const BlueOceanApiFp = {
             });
         };
     },
-    /** 
-     * Retrieve pipeline details for an organisation
-     * @param organisation Name of the organisation
-     * @param pipeline Name of the pipeline
-     */
-    getPipelineByOrg(params: { "organisation": string; "pipeline": string;  }, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<SwaggyjenkinsPipeline> {
-        const fetchArgs = BlueOceanApiFetchParamCreator.getPipelineByOrg(params, options);
-        return (fetch: FetchAPI = isomorphicFetch, basePath: string = BASE_PATH) => {
-            return fetch(basePath + fetchArgs.url, fetchArgs.options).then((response) => {
-                if (response.status >= 200 && response.status < 300) {
-                    return response.json();
-                } else {
-                    throw response;
-                }
-            });
-        };
-    },
-    /** 
-     * Retrieve pipeline folder for an organisation
-     * @param organisation Name of the organisation
+    /**
+     * Retrieve pipeline folder for an organization
+     * @param organization Name of the organization
      * @param folder Name of the folder
      */
-    getPipelineFolderByOrg(params: { "organisation": string; "folder": string;  }, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<IojenkinsblueoceanserviceembeddedrestPipelineFolderImpl> {
-        const fetchArgs = BlueOceanApiFetchParamCreator.getPipelineFolderByOrg(params, options);
+    getPipelineFolder(params: { organization: string; folder: string;  }, configuration: Configuration, options: any = {}): (fetch: FetchAPI, basePath?: string) => Promise<PipelineFolderImpl> {
+        const fetchArgs = BlueOceanApiFetchParamCreator.getPipelineFolder(params, configuration, options);
         return (fetch: FetchAPI = isomorphicFetch, basePath: string = BASE_PATH) => {
             return fetch(basePath + fetchArgs.url, fetchArgs.options).then((response) => {
                 if (response.status >= 200 && response.status < 300) {
@@ -1006,14 +2416,14 @@ export const BlueOceanApiFp = {
             });
         };
     },
-    /** 
-     * Retrieve pipeline details for an organisation folder
-     * @param organisation Name of the organisation
+    /**
+     * Retrieve pipeline details for an organization folder
+     * @param organization Name of the organization
      * @param pipeline Name of the pipeline
      * @param folder Name of the folder
      */
-    getPipelineFolderByOrg_1(params: { "organisation": string; "pipeline": string; "folder": string;  }, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<IojenkinsblueoceanserviceembeddedrestPipelineImpl> {
-        const fetchArgs = BlueOceanApiFetchParamCreator.getPipelineFolderByOrg_1(params, options);
+    getPipelineFolderPipeline(params: { organization: string; pipeline: string; folder: string;  }, configuration: Configuration, options: any = {}): (fetch: FetchAPI, basePath?: string) => Promise<PipelineImpl> {
+        const fetchArgs = BlueOceanApiFetchParamCreator.getPipelineFolderPipeline(params, configuration, options);
         return (fetch: FetchAPI = isomorphicFetch, basePath: string = BASE_PATH) => {
             return fetch(basePath + fetchArgs.url, fetchArgs.options).then((response) => {
                 if (response.status >= 200 && response.status < 300) {
@@ -1024,12 +2434,13 @@ export const BlueOceanApiFp = {
             });
         };
     },
-    /** 
-     * Retrieve all pipelines details for an organisation
-     * @param organisation Name of the organisation
+    /**
+     * Retrieve queue details for an organization pipeline
+     * @param organization Name of the organization
+     * @param pipeline Name of the pipeline
      */
-    getPipelinesByOrg(params: { "organisation": string;  }, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<GetPipelines> {
-        const fetchArgs = BlueOceanApiFetchParamCreator.getPipelinesByOrg(params, options);
+    getPipelineQueue(params: { organization: string; pipeline: string;  }, configuration: Configuration, options: any = {}): (fetch: FetchAPI, basePath?: string) => Promise<PipelineQueue> {
+        const fetchArgs = BlueOceanApiFetchParamCreator.getPipelineQueue(params, configuration, options);
         return (fetch: FetchAPI = isomorphicFetch, basePath: string = BASE_PATH) => {
             return fetch(basePath + fetchArgs.url, fetchArgs.options).then((response) => {
                 if (response.status >= 200 && response.status < 300) {
@@ -1040,13 +2451,256 @@ export const BlueOceanApiFp = {
             });
         };
     },
-    /** 
-     * Retrieve user details for an organisation
-     * @param organisation Name of the organisation
+    /**
+     * Retrieve run details for an organization pipeline
+     * @param organization Name of the organization
+     * @param pipeline Name of the pipeline
+     * @param run Name of the run
+     */
+    getPipelineRun(params: { organization: string; pipeline: string; run: string;  }, configuration: Configuration, options: any = {}): (fetch: FetchAPI, basePath?: string) => Promise<PipelineRun> {
+        const fetchArgs = BlueOceanApiFetchParamCreator.getPipelineRun(params, configuration, options);
+        return (fetch: FetchAPI = isomorphicFetch, basePath: string = BASE_PATH) => {
+            return fetch(basePath + fetchArgs.url, fetchArgs.options).then((response) => {
+                if (response.status >= 200 && response.status < 300) {
+                    return response.json();
+                } else {
+                    throw response;
+                }
+            });
+        };
+    },
+    /**
+     * Get log for a pipeline run
+     * @param organization Name of the organization
+     * @param pipeline Name of the pipeline
+     * @param run Name of the run
+     * @param start Start position of the log
+     * @param download Set to true in order to download the file, otherwise it&#39;s passed as a response body
+     */
+    getPipelineRunLog(params: { organization: string; pipeline: string; run: string; start?: number; download?: boolean;  }, configuration: Configuration, options: any = {}): (fetch: FetchAPI, basePath?: string) => Promise<string> {
+        const fetchArgs = BlueOceanApiFetchParamCreator.getPipelineRunLog(params, configuration, options);
+        return (fetch: FetchAPI = isomorphicFetch, basePath: string = BASE_PATH) => {
+            return fetch(basePath + fetchArgs.url, fetchArgs.options).then((response) => {
+                if (response.status >= 200 && response.status < 300) {
+                    return response.json();
+                } else {
+                    throw response;
+                }
+            });
+        };
+    },
+    /**
+     * Retrieve run node details for an organization pipeline
+     * @param organization Name of the organization
+     * @param pipeline Name of the pipeline
+     * @param run Name of the run
+     * @param node Name of the node
+     */
+    getPipelineRunNode(params: { organization: string; pipeline: string; run: string; node: string;  }, configuration: Configuration, options: any = {}): (fetch: FetchAPI, basePath?: string) => Promise<PipelineRunNode> {
+        const fetchArgs = BlueOceanApiFetchParamCreator.getPipelineRunNode(params, configuration, options);
+        return (fetch: FetchAPI = isomorphicFetch, basePath: string = BASE_PATH) => {
+            return fetch(basePath + fetchArgs.url, fetchArgs.options).then((response) => {
+                if (response.status >= 200 && response.status < 300) {
+                    return response.json();
+                } else {
+                    throw response;
+                }
+            });
+        };
+    },
+    /**
+     * Retrieve run node details for an organization pipeline
+     * @param organization Name of the organization
+     * @param pipeline Name of the pipeline
+     * @param run Name of the run
+     * @param node Name of the node
+     * @param step Name of the step
+     */
+    getPipelineRunNodeStep(params: { organization: string; pipeline: string; run: string; node: string; step: string;  }, configuration: Configuration, options: any = {}): (fetch: FetchAPI, basePath?: string) => Promise<PipelineStepImpl> {
+        const fetchArgs = BlueOceanApiFetchParamCreator.getPipelineRunNodeStep(params, configuration, options);
+        return (fetch: FetchAPI = isomorphicFetch, basePath: string = BASE_PATH) => {
+            return fetch(basePath + fetchArgs.url, fetchArgs.options).then((response) => {
+                if (response.status >= 200 && response.status < 300) {
+                    return response.json();
+                } else {
+                    throw response;
+                }
+            });
+        };
+    },
+    /**
+     * Get log for a pipeline run node step
+     * @param organization Name of the organization
+     * @param pipeline Name of the pipeline
+     * @param run Name of the run
+     * @param node Name of the node
+     * @param step Name of the step
+     */
+    getPipelineRunNodeStepLog(params: { organization: string; pipeline: string; run: string; node: string; step: string;  }, configuration: Configuration, options: any = {}): (fetch: FetchAPI, basePath?: string) => Promise<string> {
+        const fetchArgs = BlueOceanApiFetchParamCreator.getPipelineRunNodeStepLog(params, configuration, options);
+        return (fetch: FetchAPI = isomorphicFetch, basePath: string = BASE_PATH) => {
+            return fetch(basePath + fetchArgs.url, fetchArgs.options).then((response) => {
+                if (response.status >= 200 && response.status < 300) {
+                    return response.json();
+                } else {
+                    throw response;
+                }
+            });
+        };
+    },
+    /**
+     * Retrieve run node steps details for an organization pipeline
+     * @param organization Name of the organization
+     * @param pipeline Name of the pipeline
+     * @param run Name of the run
+     * @param node Name of the node
+     */
+    getPipelineRunNodeSteps(params: { organization: string; pipeline: string; run: string; node: string;  }, configuration: Configuration, options: any = {}): (fetch: FetchAPI, basePath?: string) => Promise<PipelineRunNodeSteps> {
+        const fetchArgs = BlueOceanApiFetchParamCreator.getPipelineRunNodeSteps(params, configuration, options);
+        return (fetch: FetchAPI = isomorphicFetch, basePath: string = BASE_PATH) => {
+            return fetch(basePath + fetchArgs.url, fetchArgs.options).then((response) => {
+                if (response.status >= 200 && response.status < 300) {
+                    return response.json();
+                } else {
+                    throw response;
+                }
+            });
+        };
+    },
+    /**
+     * Retrieve run nodes details for an organization pipeline
+     * @param organization Name of the organization
+     * @param pipeline Name of the pipeline
+     * @param run Name of the run
+     */
+    getPipelineRunNodes(params: { organization: string; pipeline: string; run: string;  }, configuration: Configuration, options: any = {}): (fetch: FetchAPI, basePath?: string) => Promise<PipelineRunNodes> {
+        const fetchArgs = BlueOceanApiFetchParamCreator.getPipelineRunNodes(params, configuration, options);
+        return (fetch: FetchAPI = isomorphicFetch, basePath: string = BASE_PATH) => {
+            return fetch(basePath + fetchArgs.url, fetchArgs.options).then((response) => {
+                if (response.status >= 200 && response.status < 300) {
+                    return response.json();
+                } else {
+                    throw response;
+                }
+            });
+        };
+    },
+    /**
+     * Retrieve all runs details for an organization pipeline
+     * @param organization Name of the organization
+     * @param pipeline Name of the pipeline
+     */
+    getPipelineRuns(params: { organization: string; pipeline: string;  }, configuration: Configuration, options: any = {}): (fetch: FetchAPI, basePath?: string) => Promise<PipelineRuns> {
+        const fetchArgs = BlueOceanApiFetchParamCreator.getPipelineRuns(params, configuration, options);
+        return (fetch: FetchAPI = isomorphicFetch, basePath: string = BASE_PATH) => {
+            return fetch(basePath + fetchArgs.url, fetchArgs.options).then((response) => {
+                if (response.status >= 200 && response.status < 300) {
+                    return response.json();
+                } else {
+                    throw response;
+                }
+            });
+        };
+    },
+    /**
+     * Retrieve all pipelines details for an organization
+     * @param organization Name of the organization
+     */
+    getPipelines(params: { organization: string;  }, configuration: Configuration, options: any = {}): (fetch: FetchAPI, basePath?: string) => Promise<Pipelines> {
+        const fetchArgs = BlueOceanApiFetchParamCreator.getPipelines(params, configuration, options);
+        return (fetch: FetchAPI = isomorphicFetch, basePath: string = BASE_PATH) => {
+            return fetch(basePath + fetchArgs.url, fetchArgs.options).then((response) => {
+                if (response.status >= 200 && response.status < 300) {
+                    return response.json();
+                } else {
+                    throw response;
+                }
+            });
+        };
+    },
+    /**
+     * Retrieve SCM details for an organization
+     * @param organization Name of the organization
+     * @param scm Name of SCM
+     */
+    getSCM(params: { organization: string; scm: string;  }, configuration: Configuration, options: any = {}): (fetch: FetchAPI, basePath?: string) => Promise<GithubScm> {
+        const fetchArgs = BlueOceanApiFetchParamCreator.getSCM(params, configuration, options);
+        return (fetch: FetchAPI = isomorphicFetch, basePath: string = BASE_PATH) => {
+            return fetch(basePath + fetchArgs.url, fetchArgs.options).then((response) => {
+                if (response.status >= 200 && response.status < 300) {
+                    return response.json();
+                } else {
+                    throw response;
+                }
+            });
+        };
+    },
+    /**
+     * Retrieve SCM organization repositories details for an organization
+     * @param organization Name of the organization
+     * @param scm Name of SCM
+     * @param scmOrganisation Name of the SCM organization
+     * @param credentialId Credential ID
+     * @param pageSize Number of items in a page
+     * @param pageNumber Page number
+     */
+    getSCMOrganisationRepositories(params: { organization: string; scm: string; scmOrganisation: string; credentialId?: string; pageSize?: number; pageNumber?: number;  }, configuration: Configuration, options: any = {}): (fetch: FetchAPI, basePath?: string) => Promise<ScmOrganisations> {
+        const fetchArgs = BlueOceanApiFetchParamCreator.getSCMOrganisationRepositories(params, configuration, options);
+        return (fetch: FetchAPI = isomorphicFetch, basePath: string = BASE_PATH) => {
+            return fetch(basePath + fetchArgs.url, fetchArgs.options).then((response) => {
+                if (response.status >= 200 && response.status < 300) {
+                    return response.json();
+                } else {
+                    throw response;
+                }
+            });
+        };
+    },
+    /**
+     * Retrieve SCM organization repository details for an organization
+     * @param organization Name of the organization
+     * @param scm Name of SCM
+     * @param scmOrganisation Name of the SCM organization
+     * @param repository Name of the SCM repository
+     * @param credentialId Credential ID
+     */
+    getSCMOrganisationRepository(params: { organization: string; scm: string; scmOrganisation: string; repository: string; credentialId?: string;  }, configuration: Configuration, options: any = {}): (fetch: FetchAPI, basePath?: string) => Promise<ScmOrganisations> {
+        const fetchArgs = BlueOceanApiFetchParamCreator.getSCMOrganisationRepository(params, configuration, options);
+        return (fetch: FetchAPI = isomorphicFetch, basePath: string = BASE_PATH) => {
+            return fetch(basePath + fetchArgs.url, fetchArgs.options).then((response) => {
+                if (response.status >= 200 && response.status < 300) {
+                    return response.json();
+                } else {
+                    throw response;
+                }
+            });
+        };
+    },
+    /**
+     * Retrieve SCM organizations details for an organization
+     * @param organization Name of the organization
+     * @param scm Name of SCM
+     * @param credentialId Credential ID
+     */
+    getSCMOrganisations(params: { organization: string; scm: string; credentialId?: string;  }, configuration: Configuration, options: any = {}): (fetch: FetchAPI, basePath?: string) => Promise<ScmOrganisations> {
+        const fetchArgs = BlueOceanApiFetchParamCreator.getSCMOrganisations(params, configuration, options);
+        return (fetch: FetchAPI = isomorphicFetch, basePath: string = BASE_PATH) => {
+            return fetch(basePath + fetchArgs.url, fetchArgs.options).then((response) => {
+                if (response.status >= 200 && response.status < 300) {
+                    return response.json();
+                } else {
+                    throw response;
+                }
+            });
+        };
+    },
+    /**
+     * Retrieve user details for an organization
+     * @param organization Name of the organization
      * @param user Name of the user
      */
-    getUser(params: { "organisation": string; "user": string;  }, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<SwaggyjenkinsUser> {
-        const fetchArgs = BlueOceanApiFetchParamCreator.getUser(params, options);
+    getUser(params: { organization: string; user: string;  }, configuration: Configuration, options: any = {}): (fetch: FetchAPI, basePath?: string) => Promise<User> {
+        const fetchArgs = BlueOceanApiFetchParamCreator.getUser(params, configuration, options);
         return (fetch: FetchAPI = isomorphicFetch, basePath: string = BASE_PATH) => {
             return fetch(basePath + fetchArgs.url, fetchArgs.options).then((response) => {
                 if (response.status >= 200 && response.status < 300) {
@@ -1057,12 +2711,12 @@ export const BlueOceanApiFp = {
             });
         };
     },
-    /** 
-     * Retrieve users details for an organisation
-     * @param organisation Name of the organisation
+    /**
+     * Retrieve user favorites details for an organization
+     * @param user Name of the user
      */
-    getUsers(params: { "organisation": string;  }, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<SwaggyjenkinsUser> {
-        const fetchArgs = BlueOceanApiFetchParamCreator.getUsers(params, options);
+    getUserFavorites(params: { user: string;  }, configuration: Configuration, options: any = {}): (fetch: FetchAPI, basePath?: string) => Promise<UserFavorites> {
+        const fetchArgs = BlueOceanApiFetchParamCreator.getUserFavorites(params, configuration, options);
         return (fetch: FetchAPI = isomorphicFetch, basePath: string = BASE_PATH) => {
             return fetch(basePath + fetchArgs.url, fetchArgs.options).then((response) => {
                 if (response.status >= 200 && response.status < 300) {
@@ -1073,12 +2727,12 @@ export const BlueOceanApiFp = {
             });
         };
     },
-    /** 
-     * Get classes details
-     * @param q Query string containing an array of class names
+    /**
+     * Retrieve users details for an organization
+     * @param organization Name of the organization
      */
-    search(params: { "q": string;  }, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<string> {
-        const fetchArgs = BlueOceanApiFetchParamCreator.search(params, options);
+    getUsers(params: { organization: string;  }, configuration: Configuration, options: any = {}): (fetch: FetchAPI, basePath?: string) => Promise<User> {
+        const fetchArgs = BlueOceanApiFetchParamCreator.getUsers(params, configuration, options);
         return (fetch: FetchAPI = isomorphicFetch, basePath: string = BASE_PATH) => {
             return fetch(basePath + fetchArgs.url, fetchArgs.options).then((response) => {
                 if (response.status >= 200 && response.status < 300) {
@@ -1089,12 +2743,101 @@ export const BlueOceanApiFp = {
             });
         };
     },
-    /** 
+    /**
+     * Replay an organization pipeline run
+     * @param organization Name of the organization
+     * @param pipeline Name of the pipeline
+     * @param run Name of the run
+     */
+    postPipelineRun(params: { organization: string; pipeline: string; run: string;  }, configuration: Configuration, options: any = {}): (fetch: FetchAPI, basePath?: string) => Promise<QueueItemImpl> {
+        const fetchArgs = BlueOceanApiFetchParamCreator.postPipelineRun(params, configuration, options);
+        return (fetch: FetchAPI = isomorphicFetch, basePath: string = BASE_PATH) => {
+            return fetch(basePath + fetchArgs.url, fetchArgs.options).then((response) => {
+                if (response.status >= 200 && response.status < 300) {
+                    return response.json();
+                } else {
+                    throw response;
+                }
+            });
+        };
+    },
+    /**
+     * Start a build for an organization pipeline
+     * @param organization Name of the organization
+     * @param pipeline Name of the pipeline
+     */
+    postPipelineRuns(params: { organization: string; pipeline: string;  }, configuration: Configuration, options: any = {}): (fetch: FetchAPI, basePath?: string) => Promise<QueueItemImpl> {
+        const fetchArgs = BlueOceanApiFetchParamCreator.postPipelineRuns(params, configuration, options);
+        return (fetch: FetchAPI = isomorphicFetch, basePath: string = BASE_PATH) => {
+            return fetch(basePath + fetchArgs.url, fetchArgs.options).then((response) => {
+                if (response.status >= 200 && response.status < 300) {
+                    return response.json();
+                } else {
+                    throw response;
+                }
+            });
+        };
+    },
+    /**
+     * Favorite/unfavorite a pipeline
+     * @param organization Name of the organization
+     * @param pipeline Name of the pipeline
+     * @param body Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite
+     */
+    putPipelineFavorite(params: { organization: string; pipeline: string; body: Body;  }, configuration: Configuration, options: any = {}): (fetch: FetchAPI, basePath?: string) => Promise<FavoriteImpl> {
+        const fetchArgs = BlueOceanApiFetchParamCreator.putPipelineFavorite(params, configuration, options);
+        return (fetch: FetchAPI = isomorphicFetch, basePath: string = BASE_PATH) => {
+            return fetch(basePath + fetchArgs.url, fetchArgs.options).then((response) => {
+                if (response.status >= 200 && response.status < 300) {
+                    return response.json();
+                } else {
+                    throw response;
+                }
+            });
+        };
+    },
+    /**
+     * Stop a build of an organization pipeline
+     * @param organization Name of the organization
+     * @param pipeline Name of the pipeline
+     * @param run Name of the run
+     * @param blocking Set to true to make blocking stop, default: false
+     * @param timeOutInSecs Timeout in seconds, default: 10 seconds
+     */
+    putPipelineRun(params: { organization: string; pipeline: string; run: string; blocking?: string; timeOutInSecs?: number;  }, configuration: Configuration, options: any = {}): (fetch: FetchAPI, basePath?: string) => Promise<PipelineRun> {
+        const fetchArgs = BlueOceanApiFetchParamCreator.putPipelineRun(params, configuration, options);
+        return (fetch: FetchAPI = isomorphicFetch, basePath: string = BASE_PATH) => {
+            return fetch(basePath + fetchArgs.url, fetchArgs.options).then((response) => {
+                if (response.status >= 200 && response.status < 300) {
+                    return response.json();
+                } else {
+                    throw response;
+                }
+            });
+        };
+    },
+    /**
      * Search for any resource details
      * @param q Query string
      */
-    search_2(params: { "q": string;  }, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<string> {
-        const fetchArgs = BlueOceanApiFetchParamCreator.search_2(params, options);
+    search(params: { q: string;  }, configuration: Configuration, options: any = {}): (fetch: FetchAPI, basePath?: string) => Promise<string> {
+        const fetchArgs = BlueOceanApiFetchParamCreator.search(params, configuration, options);
+        return (fetch: FetchAPI = isomorphicFetch, basePath: string = BASE_PATH) => {
+            return fetch(basePath + fetchArgs.url, fetchArgs.options).then((response) => {
+                if (response.status >= 200 && response.status < 300) {
+                    return response.json();
+                } else {
+                    throw response;
+                }
+            });
+        };
+    },
+    /**
+     * Get classes details
+     * @param q Query string containing an array of class names
+     */
+    searchClasses(params: { q: string;  }, configuration: Configuration, options: any = {}): (fetch: FetchAPI, basePath?: string) => Promise<string> {
+        const fetchArgs = BlueOceanApiFetchParamCreator.searchClasses(params, configuration, options);
         return (fetch: FetchAPI = isomorphicFetch, basePath: string = BASE_PATH) => {
             return fetch(basePath + fetchArgs.url, fetchArgs.options).then((response) => {
                 if (response.status >= 200 && response.status < 300) {
@@ -1111,110 +2854,308 @@ export const BlueOceanApiFp = {
  * BlueOceanApi - object-oriented interface
  */
 export class BlueOceanApi extends BaseAPI {
-    /** 
-     * Retrieve authenticated user details for an organisation
-     * @param organisation Name of the organisation
+    /**
+     * Delete queue item from an organization pipeline queue
+     * @param organization Name of the organization
+     * @param pipeline Name of the pipeline
+     * @param queue Name of the queue item
      */
-    getAuthenticatedUser(params: {  "organisation": string; }, options?: any) {
-        return BlueOceanApiFp.getAuthenticatedUser(params, options)(this.fetch, this.basePath);
+    deletePipelineQueueItem(params: {  organization: string; pipeline: string; queue: string; }, options: any = {}) {
+        return BlueOceanApiFp.deletePipelineQueueItem(params, this.configuration, options)(this.fetch, this.basePath);
     }
-    /** 
+    /**
+     * Retrieve authenticated user details for an organization
+     * @param organization Name of the organization
+     */
+    getAuthenticatedUser(params: {  organization: string; }, options: any = {}) {
+        return BlueOceanApiFp.getAuthenticatedUser(params, this.configuration, options)(this.fetch, this.basePath);
+    }
+    /**
      * Get a list of class names supported by a given class
      * @param _class Name of the class
      */
-    getClasses(params: {  "_class": string; }, options?: any) {
-        return BlueOceanApiFp.getClasses(params, options)(this.fetch, this.basePath);
+    getClasses(params: {  _class: string; }, options: any = {}) {
+        return BlueOceanApiFp.getClasses(params, this.configuration, options)(this.fetch, this.basePath);
     }
-    /** 
-     * Retrieve organisation details
-     * @param organisation Name of the organisation
+    /**
+     * Retrieve organization details
+     * @param organization Name of the organization
      */
-    getOrganisation(params: {  "organisation": string; }, options?: any) {
-        return BlueOceanApiFp.getOrganisation(params, options)(this.fetch, this.basePath);
+    getOrganisation(params: {  organization: string; }, options: any = {}) {
+        return BlueOceanApiFp.getOrganisation(params, this.configuration, options)(this.fetch, this.basePath);
     }
-    /** 
-     * Retrieve all organisations details
+    /**
+     * Retrieve all organizations details
      */
-    getOrganisations(options?: any) {
-        return BlueOceanApiFp.getOrganisations(options)(this.fetch, this.basePath);
+    getOrganisations(options: any = {}) {
+        return BlueOceanApiFp.getOrganisations(this.configuration, options)(this.fetch, this.basePath);
     }
-    /** 
-     * Retrieve branch details for an organisation pipeline
-     * @param organisation Name of the organisation
+    /**
+     * Retrieve pipeline details for an organization
+     * @param organization Name of the organization
+     * @param pipeline Name of the pipeline
+     */
+    getPipeline(params: {  organization: string; pipeline: string; }, options: any = {}) {
+        return BlueOceanApiFp.getPipeline(params, this.configuration, options)(this.fetch, this.basePath);
+    }
+    /**
+     * Retrieve all activities details for an organization pipeline
+     * @param organization Name of the organization
+     * @param pipeline Name of the pipeline
+     */
+    getPipelineActivities(params: {  organization: string; pipeline: string; }, options: any = {}) {
+        return BlueOceanApiFp.getPipelineActivities(params, this.configuration, options)(this.fetch, this.basePath);
+    }
+    /**
+     * Retrieve branch details for an organization pipeline
+     * @param organization Name of the organization
      * @param pipeline Name of the pipeline
      * @param branch Name of the branch
      */
-    getPipelineBranchByOrg(params: {  "organisation": string; "pipeline": string; "branch": string; }, options?: any) {
-        return BlueOceanApiFp.getPipelineBranchByOrg(params, options)(this.fetch, this.basePath);
+    getPipelineBranch(params: {  organization: string; pipeline: string; branch: string; }, options: any = {}) {
+        return BlueOceanApiFp.getPipelineBranch(params, this.configuration, options)(this.fetch, this.basePath);
     }
-    /** 
-     * Retrieve all branches details for an organisation pipeline
-     * @param organisation Name of the organisation
+    /**
+     * Retrieve branch run details for an organization pipeline
+     * @param organization Name of the organization
+     * @param pipeline Name of the pipeline
+     * @param branch Name of the branch
+     * @param run Name of the run
+     */
+    getPipelineBranchRun(params: {  organization: string; pipeline: string; branch: string; run: string; }, options: any = {}) {
+        return BlueOceanApiFp.getPipelineBranchRun(params, this.configuration, options)(this.fetch, this.basePath);
+    }
+    /**
+     * Retrieve all branches details for an organization pipeline
+     * @param organization Name of the organization
      * @param pipeline Name of the pipeline
      */
-    getPipelineBranchesByOrg(params: {  "organisation": string; "pipeline": string; }, options?: any) {
-        return BlueOceanApiFp.getPipelineBranchesByOrg(params, options)(this.fetch, this.basePath);
+    getPipelineBranches(params: {  organization: string; pipeline: string; }, options: any = {}) {
+        return BlueOceanApiFp.getPipelineBranches(params, this.configuration, options)(this.fetch, this.basePath);
     }
-    /** 
-     * Retrieve pipeline details for an organisation
-     * @param organisation Name of the organisation
-     * @param pipeline Name of the pipeline
-     */
-    getPipelineByOrg(params: {  "organisation": string; "pipeline": string; }, options?: any) {
-        return BlueOceanApiFp.getPipelineByOrg(params, options)(this.fetch, this.basePath);
-    }
-    /** 
-     * Retrieve pipeline folder for an organisation
-     * @param organisation Name of the organisation
+    /**
+     * Retrieve pipeline folder for an organization
+     * @param organization Name of the organization
      * @param folder Name of the folder
      */
-    getPipelineFolderByOrg(params: {  "organisation": string; "folder": string; }, options?: any) {
-        return BlueOceanApiFp.getPipelineFolderByOrg(params, options)(this.fetch, this.basePath);
+    getPipelineFolder(params: {  organization: string; folder: string; }, options: any = {}) {
+        return BlueOceanApiFp.getPipelineFolder(params, this.configuration, options)(this.fetch, this.basePath);
     }
-    /** 
-     * Retrieve pipeline details for an organisation folder
-     * @param organisation Name of the organisation
+    /**
+     * Retrieve pipeline details for an organization folder
+     * @param organization Name of the organization
      * @param pipeline Name of the pipeline
      * @param folder Name of the folder
      */
-    getPipelineFolderByOrg_1(params: {  "organisation": string; "pipeline": string; "folder": string; }, options?: any) {
-        return BlueOceanApiFp.getPipelineFolderByOrg_1(params, options)(this.fetch, this.basePath);
+    getPipelineFolderPipeline(params: {  organization: string; pipeline: string; folder: string; }, options: any = {}) {
+        return BlueOceanApiFp.getPipelineFolderPipeline(params, this.configuration, options)(this.fetch, this.basePath);
     }
-    /** 
-     * Retrieve all pipelines details for an organisation
-     * @param organisation Name of the organisation
+    /**
+     * Retrieve queue details for an organization pipeline
+     * @param organization Name of the organization
+     * @param pipeline Name of the pipeline
      */
-    getPipelinesByOrg(params: {  "organisation": string; }, options?: any) {
-        return BlueOceanApiFp.getPipelinesByOrg(params, options)(this.fetch, this.basePath);
+    getPipelineQueue(params: {  organization: string; pipeline: string; }, options: any = {}) {
+        return BlueOceanApiFp.getPipelineQueue(params, this.configuration, options)(this.fetch, this.basePath);
     }
-    /** 
-     * Retrieve user details for an organisation
-     * @param organisation Name of the organisation
+    /**
+     * Retrieve run details for an organization pipeline
+     * @param organization Name of the organization
+     * @param pipeline Name of the pipeline
+     * @param run Name of the run
+     */
+    getPipelineRun(params: {  organization: string; pipeline: string; run: string; }, options: any = {}) {
+        return BlueOceanApiFp.getPipelineRun(params, this.configuration, options)(this.fetch, this.basePath);
+    }
+    /**
+     * Get log for a pipeline run
+     * @param organization Name of the organization
+     * @param pipeline Name of the pipeline
+     * @param run Name of the run
+     * @param start Start position of the log
+     * @param download Set to true in order to download the file, otherwise it&#39;s passed as a response body
+     */
+    getPipelineRunLog(params: {  organization: string; pipeline: string; run: string; start?: number; download?: boolean; }, options: any = {}) {
+        return BlueOceanApiFp.getPipelineRunLog(params, this.configuration, options)(this.fetch, this.basePath);
+    }
+    /**
+     * Retrieve run node details for an organization pipeline
+     * @param organization Name of the organization
+     * @param pipeline Name of the pipeline
+     * @param run Name of the run
+     * @param node Name of the node
+     */
+    getPipelineRunNode(params: {  organization: string; pipeline: string; run: string; node: string; }, options: any = {}) {
+        return BlueOceanApiFp.getPipelineRunNode(params, this.configuration, options)(this.fetch, this.basePath);
+    }
+    /**
+     * Retrieve run node details for an organization pipeline
+     * @param organization Name of the organization
+     * @param pipeline Name of the pipeline
+     * @param run Name of the run
+     * @param node Name of the node
+     * @param step Name of the step
+     */
+    getPipelineRunNodeStep(params: {  organization: string; pipeline: string; run: string; node: string; step: string; }, options: any = {}) {
+        return BlueOceanApiFp.getPipelineRunNodeStep(params, this.configuration, options)(this.fetch, this.basePath);
+    }
+    /**
+     * Get log for a pipeline run node step
+     * @param organization Name of the organization
+     * @param pipeline Name of the pipeline
+     * @param run Name of the run
+     * @param node Name of the node
+     * @param step Name of the step
+     */
+    getPipelineRunNodeStepLog(params: {  organization: string; pipeline: string; run: string; node: string; step: string; }, options: any = {}) {
+        return BlueOceanApiFp.getPipelineRunNodeStepLog(params, this.configuration, options)(this.fetch, this.basePath);
+    }
+    /**
+     * Retrieve run node steps details for an organization pipeline
+     * @param organization Name of the organization
+     * @param pipeline Name of the pipeline
+     * @param run Name of the run
+     * @param node Name of the node
+     */
+    getPipelineRunNodeSteps(params: {  organization: string; pipeline: string; run: string; node: string; }, options: any = {}) {
+        return BlueOceanApiFp.getPipelineRunNodeSteps(params, this.configuration, options)(this.fetch, this.basePath);
+    }
+    /**
+     * Retrieve run nodes details for an organization pipeline
+     * @param organization Name of the organization
+     * @param pipeline Name of the pipeline
+     * @param run Name of the run
+     */
+    getPipelineRunNodes(params: {  organization: string; pipeline: string; run: string; }, options: any = {}) {
+        return BlueOceanApiFp.getPipelineRunNodes(params, this.configuration, options)(this.fetch, this.basePath);
+    }
+    /**
+     * Retrieve all runs details for an organization pipeline
+     * @param organization Name of the organization
+     * @param pipeline Name of the pipeline
+     */
+    getPipelineRuns(params: {  organization: string; pipeline: string; }, options: any = {}) {
+        return BlueOceanApiFp.getPipelineRuns(params, this.configuration, options)(this.fetch, this.basePath);
+    }
+    /**
+     * Retrieve all pipelines details for an organization
+     * @param organization Name of the organization
+     */
+    getPipelines(params: {  organization: string; }, options: any = {}) {
+        return BlueOceanApiFp.getPipelines(params, this.configuration, options)(this.fetch, this.basePath);
+    }
+    /**
+     * Retrieve SCM details for an organization
+     * @param organization Name of the organization
+     * @param scm Name of SCM
+     */
+    getSCM(params: {  organization: string; scm: string; }, options: any = {}) {
+        return BlueOceanApiFp.getSCM(params, this.configuration, options)(this.fetch, this.basePath);
+    }
+    /**
+     * Retrieve SCM organization repositories details for an organization
+     * @param organization Name of the organization
+     * @param scm Name of SCM
+     * @param scmOrganisation Name of the SCM organization
+     * @param credentialId Credential ID
+     * @param pageSize Number of items in a page
+     * @param pageNumber Page number
+     */
+    getSCMOrganisationRepositories(params: {  organization: string; scm: string; scmOrganisation: string; credentialId?: string; pageSize?: number; pageNumber?: number; }, options: any = {}) {
+        return BlueOceanApiFp.getSCMOrganisationRepositories(params, this.configuration, options)(this.fetch, this.basePath);
+    }
+    /**
+     * Retrieve SCM organization repository details for an organization
+     * @param organization Name of the organization
+     * @param scm Name of SCM
+     * @param scmOrganisation Name of the SCM organization
+     * @param repository Name of the SCM repository
+     * @param credentialId Credential ID
+     */
+    getSCMOrganisationRepository(params: {  organization: string; scm: string; scmOrganisation: string; repository: string; credentialId?: string; }, options: any = {}) {
+        return BlueOceanApiFp.getSCMOrganisationRepository(params, this.configuration, options)(this.fetch, this.basePath);
+    }
+    /**
+     * Retrieve SCM organizations details for an organization
+     * @param organization Name of the organization
+     * @param scm Name of SCM
+     * @param credentialId Credential ID
+     */
+    getSCMOrganisations(params: {  organization: string; scm: string; credentialId?: string; }, options: any = {}) {
+        return BlueOceanApiFp.getSCMOrganisations(params, this.configuration, options)(this.fetch, this.basePath);
+    }
+    /**
+     * Retrieve user details for an organization
+     * @param organization Name of the organization
      * @param user Name of the user
      */
-    getUser(params: {  "organisation": string; "user": string; }, options?: any) {
-        return BlueOceanApiFp.getUser(params, options)(this.fetch, this.basePath);
+    getUser(params: {  organization: string; user: string; }, options: any = {}) {
+        return BlueOceanApiFp.getUser(params, this.configuration, options)(this.fetch, this.basePath);
     }
-    /** 
-     * Retrieve users details for an organisation
-     * @param organisation Name of the organisation
+    /**
+     * Retrieve user favorites details for an organization
+     * @param user Name of the user
      */
-    getUsers(params: {  "organisation": string; }, options?: any) {
-        return BlueOceanApiFp.getUsers(params, options)(this.fetch, this.basePath);
+    getUserFavorites(params: {  user: string; }, options: any = {}) {
+        return BlueOceanApiFp.getUserFavorites(params, this.configuration, options)(this.fetch, this.basePath);
     }
-    /** 
-     * Get classes details
-     * @param q Query string containing an array of class names
+    /**
+     * Retrieve users details for an organization
+     * @param organization Name of the organization
      */
-    search(params: {  "q": string; }, options?: any) {
-        return BlueOceanApiFp.search(params, options)(this.fetch, this.basePath);
+    getUsers(params: {  organization: string; }, options: any = {}) {
+        return BlueOceanApiFp.getUsers(params, this.configuration, options)(this.fetch, this.basePath);
     }
-    /** 
+    /**
+     * Replay an organization pipeline run
+     * @param organization Name of the organization
+     * @param pipeline Name of the pipeline
+     * @param run Name of the run
+     */
+    postPipelineRun(params: {  organization: string; pipeline: string; run: string; }, options: any = {}) {
+        return BlueOceanApiFp.postPipelineRun(params, this.configuration, options)(this.fetch, this.basePath);
+    }
+    /**
+     * Start a build for an organization pipeline
+     * @param organization Name of the organization
+     * @param pipeline Name of the pipeline
+     */
+    postPipelineRuns(params: {  organization: string; pipeline: string; }, options: any = {}) {
+        return BlueOceanApiFp.postPipelineRuns(params, this.configuration, options)(this.fetch, this.basePath);
+    }
+    /**
+     * Favorite/unfavorite a pipeline
+     * @param organization Name of the organization
+     * @param pipeline Name of the pipeline
+     * @param body Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite
+     */
+    putPipelineFavorite(params: {  organization: string; pipeline: string; body: Body; }, options: any = {}) {
+        return BlueOceanApiFp.putPipelineFavorite(params, this.configuration, options)(this.fetch, this.basePath);
+    }
+    /**
+     * Stop a build of an organization pipeline
+     * @param organization Name of the organization
+     * @param pipeline Name of the pipeline
+     * @param run Name of the run
+     * @param blocking Set to true to make blocking stop, default: false
+     * @param timeOutInSecs Timeout in seconds, default: 10 seconds
+     */
+    putPipelineRun(params: {  organization: string; pipeline: string; run: string; blocking?: string; timeOutInSecs?: number; }, options: any = {}) {
+        return BlueOceanApiFp.putPipelineRun(params, this.configuration, options)(this.fetch, this.basePath);
+    }
+    /**
      * Search for any resource details
      * @param q Query string
      */
-    search_2(params: {  "q": string; }, options?: any) {
-        return BlueOceanApiFp.search_2(params, options)(this.fetch, this.basePath);
+    search(params: {  q: string; }, options: any = {}) {
+        return BlueOceanApiFp.search(params, this.configuration, options)(this.fetch, this.basePath);
+    }
+    /**
+     * Get classes details
+     * @param q Query string containing an array of class names
+     */
+    searchClasses(params: {  q: string; }, options: any = {}) {
+        return BlueOceanApiFp.searchClasses(params, this.configuration, options)(this.fetch, this.basePath);
     }
 };
 
@@ -1223,110 +3164,308 @@ export class BlueOceanApi extends BaseAPI {
  */
 export const BlueOceanApiFactory = function (fetch?: FetchAPI, basePath?: string) {
     return {
-        /** 
-         * Retrieve authenticated user details for an organisation
-         * @param organisation Name of the organisation
+        /**
+         * Delete queue item from an organization pipeline queue
+         * @param organization Name of the organization
+         * @param pipeline Name of the pipeline
+         * @param queue Name of the queue item
          */
-        getAuthenticatedUser(params: {  "organisation": string; }, options?: any) {
-            return BlueOceanApiFp.getAuthenticatedUser(params, options)(fetch, basePath);
+        deletePipelineQueueItem(params: {  organization: string; pipeline: string; queue: string; }, configuration: Configuration, options: any = {}) {
+            return BlueOceanApiFp.deletePipelineQueueItem(params, configuration, options)(fetch, basePath);
         },
-        /** 
+        /**
+         * Retrieve authenticated user details for an organization
+         * @param organization Name of the organization
+         */
+        getAuthenticatedUser(params: {  organization: string; }, configuration: Configuration, options: any = {}) {
+            return BlueOceanApiFp.getAuthenticatedUser(params, configuration, options)(fetch, basePath);
+        },
+        /**
          * Get a list of class names supported by a given class
          * @param _class Name of the class
          */
-        getClasses(params: {  "_class": string; }, options?: any) {
-            return BlueOceanApiFp.getClasses(params, options)(fetch, basePath);
+        getClasses(params: {  _class: string; }, configuration: Configuration, options: any = {}) {
+            return BlueOceanApiFp.getClasses(params, configuration, options)(fetch, basePath);
         },
-        /** 
-         * Retrieve organisation details
-         * @param organisation Name of the organisation
+        /**
+         * Retrieve organization details
+         * @param organization Name of the organization
          */
-        getOrganisation(params: {  "organisation": string; }, options?: any) {
-            return BlueOceanApiFp.getOrganisation(params, options)(fetch, basePath);
+        getOrganisation(params: {  organization: string; }, configuration: Configuration, options: any = {}) {
+            return BlueOceanApiFp.getOrganisation(params, configuration, options)(fetch, basePath);
         },
-        /** 
-         * Retrieve all organisations details
+        /**
+         * Retrieve all organizations details
          */
-        getOrganisations(options?: any) {
-            return BlueOceanApiFp.getOrganisations(options)(fetch, basePath);
+        getOrganisations(configuration: Configuration, options: any = {}) {
+            return BlueOceanApiFp.getOrganisations(configuration, options)(fetch, basePath);
         },
-        /** 
-         * Retrieve branch details for an organisation pipeline
-         * @param organisation Name of the organisation
+        /**
+         * Retrieve pipeline details for an organization
+         * @param organization Name of the organization
+         * @param pipeline Name of the pipeline
+         */
+        getPipeline(params: {  organization: string; pipeline: string; }, configuration: Configuration, options: any = {}) {
+            return BlueOceanApiFp.getPipeline(params, configuration, options)(fetch, basePath);
+        },
+        /**
+         * Retrieve all activities details for an organization pipeline
+         * @param organization Name of the organization
+         * @param pipeline Name of the pipeline
+         */
+        getPipelineActivities(params: {  organization: string; pipeline: string; }, configuration: Configuration, options: any = {}) {
+            return BlueOceanApiFp.getPipelineActivities(params, configuration, options)(fetch, basePath);
+        },
+        /**
+         * Retrieve branch details for an organization pipeline
+         * @param organization Name of the organization
          * @param pipeline Name of the pipeline
          * @param branch Name of the branch
          */
-        getPipelineBranchByOrg(params: {  "organisation": string; "pipeline": string; "branch": string; }, options?: any) {
-            return BlueOceanApiFp.getPipelineBranchByOrg(params, options)(fetch, basePath);
+        getPipelineBranch(params: {  organization: string; pipeline: string; branch: string; }, configuration: Configuration, options: any = {}) {
+            return BlueOceanApiFp.getPipelineBranch(params, configuration, options)(fetch, basePath);
         },
-        /** 
-         * Retrieve all branches details for an organisation pipeline
-         * @param organisation Name of the organisation
+        /**
+         * Retrieve branch run details for an organization pipeline
+         * @param organization Name of the organization
+         * @param pipeline Name of the pipeline
+         * @param branch Name of the branch
+         * @param run Name of the run
+         */
+        getPipelineBranchRun(params: {  organization: string; pipeline: string; branch: string; run: string; }, configuration: Configuration, options: any = {}) {
+            return BlueOceanApiFp.getPipelineBranchRun(params, configuration, options)(fetch, basePath);
+        },
+        /**
+         * Retrieve all branches details for an organization pipeline
+         * @param organization Name of the organization
          * @param pipeline Name of the pipeline
          */
-        getPipelineBranchesByOrg(params: {  "organisation": string; "pipeline": string; }, options?: any) {
-            return BlueOceanApiFp.getPipelineBranchesByOrg(params, options)(fetch, basePath);
+        getPipelineBranches(params: {  organization: string; pipeline: string; }, configuration: Configuration, options: any = {}) {
+            return BlueOceanApiFp.getPipelineBranches(params, configuration, options)(fetch, basePath);
         },
-        /** 
-         * Retrieve pipeline details for an organisation
-         * @param organisation Name of the organisation
-         * @param pipeline Name of the pipeline
-         */
-        getPipelineByOrg(params: {  "organisation": string; "pipeline": string; }, options?: any) {
-            return BlueOceanApiFp.getPipelineByOrg(params, options)(fetch, basePath);
-        },
-        /** 
-         * Retrieve pipeline folder for an organisation
-         * @param organisation Name of the organisation
+        /**
+         * Retrieve pipeline folder for an organization
+         * @param organization Name of the organization
          * @param folder Name of the folder
          */
-        getPipelineFolderByOrg(params: {  "organisation": string; "folder": string; }, options?: any) {
-            return BlueOceanApiFp.getPipelineFolderByOrg(params, options)(fetch, basePath);
+        getPipelineFolder(params: {  organization: string; folder: string; }, configuration: Configuration, options: any = {}) {
+            return BlueOceanApiFp.getPipelineFolder(params, configuration, options)(fetch, basePath);
         },
-        /** 
-         * Retrieve pipeline details for an organisation folder
-         * @param organisation Name of the organisation
+        /**
+         * Retrieve pipeline details for an organization folder
+         * @param organization Name of the organization
          * @param pipeline Name of the pipeline
          * @param folder Name of the folder
          */
-        getPipelineFolderByOrg_1(params: {  "organisation": string; "pipeline": string; "folder": string; }, options?: any) {
-            return BlueOceanApiFp.getPipelineFolderByOrg_1(params, options)(fetch, basePath);
+        getPipelineFolderPipeline(params: {  organization: string; pipeline: string; folder: string; }, configuration: Configuration, options: any = {}) {
+            return BlueOceanApiFp.getPipelineFolderPipeline(params, configuration, options)(fetch, basePath);
         },
-        /** 
-         * Retrieve all pipelines details for an organisation
-         * @param organisation Name of the organisation
+        /**
+         * Retrieve queue details for an organization pipeline
+         * @param organization Name of the organization
+         * @param pipeline Name of the pipeline
          */
-        getPipelinesByOrg(params: {  "organisation": string; }, options?: any) {
-            return BlueOceanApiFp.getPipelinesByOrg(params, options)(fetch, basePath);
+        getPipelineQueue(params: {  organization: string; pipeline: string; }, configuration: Configuration, options: any = {}) {
+            return BlueOceanApiFp.getPipelineQueue(params, configuration, options)(fetch, basePath);
         },
-        /** 
-         * Retrieve user details for an organisation
-         * @param organisation Name of the organisation
+        /**
+         * Retrieve run details for an organization pipeline
+         * @param organization Name of the organization
+         * @param pipeline Name of the pipeline
+         * @param run Name of the run
+         */
+        getPipelineRun(params: {  organization: string; pipeline: string; run: string; }, configuration: Configuration, options: any = {}) {
+            return BlueOceanApiFp.getPipelineRun(params, configuration, options)(fetch, basePath);
+        },
+        /**
+         * Get log for a pipeline run
+         * @param organization Name of the organization
+         * @param pipeline Name of the pipeline
+         * @param run Name of the run
+         * @param start Start position of the log
+         * @param download Set to true in order to download the file, otherwise it&#39;s passed as a response body
+         */
+        getPipelineRunLog(params: {  organization: string; pipeline: string; run: string; start?: number; download?: boolean; }, configuration: Configuration, options: any = {}) {
+            return BlueOceanApiFp.getPipelineRunLog(params, configuration, options)(fetch, basePath);
+        },
+        /**
+         * Retrieve run node details for an organization pipeline
+         * @param organization Name of the organization
+         * @param pipeline Name of the pipeline
+         * @param run Name of the run
+         * @param node Name of the node
+         */
+        getPipelineRunNode(params: {  organization: string; pipeline: string; run: string; node: string; }, configuration: Configuration, options: any = {}) {
+            return BlueOceanApiFp.getPipelineRunNode(params, configuration, options)(fetch, basePath);
+        },
+        /**
+         * Retrieve run node details for an organization pipeline
+         * @param organization Name of the organization
+         * @param pipeline Name of the pipeline
+         * @param run Name of the run
+         * @param node Name of the node
+         * @param step Name of the step
+         */
+        getPipelineRunNodeStep(params: {  organization: string; pipeline: string; run: string; node: string; step: string; }, configuration: Configuration, options: any = {}) {
+            return BlueOceanApiFp.getPipelineRunNodeStep(params, configuration, options)(fetch, basePath);
+        },
+        /**
+         * Get log for a pipeline run node step
+         * @param organization Name of the organization
+         * @param pipeline Name of the pipeline
+         * @param run Name of the run
+         * @param node Name of the node
+         * @param step Name of the step
+         */
+        getPipelineRunNodeStepLog(params: {  organization: string; pipeline: string; run: string; node: string; step: string; }, configuration: Configuration, options: any = {}) {
+            return BlueOceanApiFp.getPipelineRunNodeStepLog(params, configuration, options)(fetch, basePath);
+        },
+        /**
+         * Retrieve run node steps details for an organization pipeline
+         * @param organization Name of the organization
+         * @param pipeline Name of the pipeline
+         * @param run Name of the run
+         * @param node Name of the node
+         */
+        getPipelineRunNodeSteps(params: {  organization: string; pipeline: string; run: string; node: string; }, configuration: Configuration, options: any = {}) {
+            return BlueOceanApiFp.getPipelineRunNodeSteps(params, configuration, options)(fetch, basePath);
+        },
+        /**
+         * Retrieve run nodes details for an organization pipeline
+         * @param organization Name of the organization
+         * @param pipeline Name of the pipeline
+         * @param run Name of the run
+         */
+        getPipelineRunNodes(params: {  organization: string; pipeline: string; run: string; }, configuration: Configuration, options: any = {}) {
+            return BlueOceanApiFp.getPipelineRunNodes(params, configuration, options)(fetch, basePath);
+        },
+        /**
+         * Retrieve all runs details for an organization pipeline
+         * @param organization Name of the organization
+         * @param pipeline Name of the pipeline
+         */
+        getPipelineRuns(params: {  organization: string; pipeline: string; }, configuration: Configuration, options: any = {}) {
+            return BlueOceanApiFp.getPipelineRuns(params, configuration, options)(fetch, basePath);
+        },
+        /**
+         * Retrieve all pipelines details for an organization
+         * @param organization Name of the organization
+         */
+        getPipelines(params: {  organization: string; }, configuration: Configuration, options: any = {}) {
+            return BlueOceanApiFp.getPipelines(params, configuration, options)(fetch, basePath);
+        },
+        /**
+         * Retrieve SCM details for an organization
+         * @param organization Name of the organization
+         * @param scm Name of SCM
+         */
+        getSCM(params: {  organization: string; scm: string; }, configuration: Configuration, options: any = {}) {
+            return BlueOceanApiFp.getSCM(params, configuration, options)(fetch, basePath);
+        },
+        /**
+         * Retrieve SCM organization repositories details for an organization
+         * @param organization Name of the organization
+         * @param scm Name of SCM
+         * @param scmOrganisation Name of the SCM organization
+         * @param credentialId Credential ID
+         * @param pageSize Number of items in a page
+         * @param pageNumber Page number
+         */
+        getSCMOrganisationRepositories(params: {  organization: string; scm: string; scmOrganisation: string; credentialId?: string; pageSize?: number; pageNumber?: number; }, configuration: Configuration, options: any = {}) {
+            return BlueOceanApiFp.getSCMOrganisationRepositories(params, configuration, options)(fetch, basePath);
+        },
+        /**
+         * Retrieve SCM organization repository details for an organization
+         * @param organization Name of the organization
+         * @param scm Name of SCM
+         * @param scmOrganisation Name of the SCM organization
+         * @param repository Name of the SCM repository
+         * @param credentialId Credential ID
+         */
+        getSCMOrganisationRepository(params: {  organization: string; scm: string; scmOrganisation: string; repository: string; credentialId?: string; }, configuration: Configuration, options: any = {}) {
+            return BlueOceanApiFp.getSCMOrganisationRepository(params, configuration, options)(fetch, basePath);
+        },
+        /**
+         * Retrieve SCM organizations details for an organization
+         * @param organization Name of the organization
+         * @param scm Name of SCM
+         * @param credentialId Credential ID
+         */
+        getSCMOrganisations(params: {  organization: string; scm: string; credentialId?: string; }, configuration: Configuration, options: any = {}) {
+            return BlueOceanApiFp.getSCMOrganisations(params, configuration, options)(fetch, basePath);
+        },
+        /**
+         * Retrieve user details for an organization
+         * @param organization Name of the organization
          * @param user Name of the user
          */
-        getUser(params: {  "organisation": string; "user": string; }, options?: any) {
-            return BlueOceanApiFp.getUser(params, options)(fetch, basePath);
+        getUser(params: {  organization: string; user: string; }, configuration: Configuration, options: any = {}) {
+            return BlueOceanApiFp.getUser(params, configuration, options)(fetch, basePath);
         },
-        /** 
-         * Retrieve users details for an organisation
-         * @param organisation Name of the organisation
+        /**
+         * Retrieve user favorites details for an organization
+         * @param user Name of the user
          */
-        getUsers(params: {  "organisation": string; }, options?: any) {
-            return BlueOceanApiFp.getUsers(params, options)(fetch, basePath);
+        getUserFavorites(params: {  user: string; }, configuration: Configuration, options: any = {}) {
+            return BlueOceanApiFp.getUserFavorites(params, configuration, options)(fetch, basePath);
         },
-        /** 
-         * Get classes details
-         * @param q Query string containing an array of class names
+        /**
+         * Retrieve users details for an organization
+         * @param organization Name of the organization
          */
-        search(params: {  "q": string; }, options?: any) {
-            return BlueOceanApiFp.search(params, options)(fetch, basePath);
+        getUsers(params: {  organization: string; }, configuration: Configuration, options: any = {}) {
+            return BlueOceanApiFp.getUsers(params, configuration, options)(fetch, basePath);
         },
-        /** 
+        /**
+         * Replay an organization pipeline run
+         * @param organization Name of the organization
+         * @param pipeline Name of the pipeline
+         * @param run Name of the run
+         */
+        postPipelineRun(params: {  organization: string; pipeline: string; run: string; }, configuration: Configuration, options: any = {}) {
+            return BlueOceanApiFp.postPipelineRun(params, configuration, options)(fetch, basePath);
+        },
+        /**
+         * Start a build for an organization pipeline
+         * @param organization Name of the organization
+         * @param pipeline Name of the pipeline
+         */
+        postPipelineRuns(params: {  organization: string; pipeline: string; }, configuration: Configuration, options: any = {}) {
+            return BlueOceanApiFp.postPipelineRuns(params, configuration, options)(fetch, basePath);
+        },
+        /**
+         * Favorite/unfavorite a pipeline
+         * @param organization Name of the organization
+         * @param pipeline Name of the pipeline
+         * @param body Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite
+         */
+        putPipelineFavorite(params: {  organization: string; pipeline: string; body: Body; }, configuration: Configuration, options: any = {}) {
+            return BlueOceanApiFp.putPipelineFavorite(params, configuration, options)(fetch, basePath);
+        },
+        /**
+         * Stop a build of an organization pipeline
+         * @param organization Name of the organization
+         * @param pipeline Name of the pipeline
+         * @param run Name of the run
+         * @param blocking Set to true to make blocking stop, default: false
+         * @param timeOutInSecs Timeout in seconds, default: 10 seconds
+         */
+        putPipelineRun(params: {  organization: string; pipeline: string; run: string; blocking?: string; timeOutInSecs?: number; }, configuration: Configuration, options: any = {}) {
+            return BlueOceanApiFp.putPipelineRun(params, configuration, options)(fetch, basePath);
+        },
+        /**
          * Search for any resource details
          * @param q Query string
          */
-        search_2(params: {  "q": string; }, options?: any) {
-            return BlueOceanApiFp.search_2(params, options)(fetch, basePath);
+        search(params: {  q: string; }, configuration: Configuration, options: any = {}) {
+            return BlueOceanApiFp.search(params, configuration, options)(fetch, basePath);
+        },
+        /**
+         * Get classes details
+         * @param q Query string containing an array of class names
+         */
+        searchClasses(params: {  q: string; }, configuration: Configuration, options: any = {}) {
+            return BlueOceanApiFp.searchClasses(params, configuration, options)(fetch, basePath);
         },
     };
 };
@@ -1336,62 +3475,95 @@ export const BlueOceanApiFactory = function (fetch?: FetchAPI, basePath?: string
  * RemoteAccessApi - fetch parameter creator
  */
 export const RemoteAccessApiFetchParamCreator = {
-    /** 
+    /**
      * Retrieve computer details
+     * @param depth Recursion depth in response model
      */
-    getComputer(options?: any): FetchArgs {
-        const baseUrl = `/computer/api/json?depth=1`;
+    getComputer(params: {  depth: number; }, configuration: Configuration, options: any = {}): FetchArgs {
+        // verify required parameter "depth" is set
+        if (params["depth"] == null) {
+            throw new Error("Missing required parameter depth when calling getComputer");
+        }
+        const baseUrl = `/computer/api/json`;
         let urlObj = url.parse(baseUrl, true);
+        urlObj.query =  assign({}, urlObj.query);
+        if (params["depth"] !== undefined) {
+            urlObj.query["depth"] = params["depth"];
+        }
         let fetchOptions: RequestInit = assign({}, { method: "GET" }, options);
 
         let contentTypeHeader: Dictionary<string> = {};
         if (contentTypeHeader) {
-            fetchOptions.headers = contentTypeHeader;
+            fetchOptions.headers = assign({}, contentTypeHeader, fetchOptions.headers);
         }
+        // authentication (jenkins_auth) required
+        // http basic authentication required
+        if (configuration.username || configuration.password) {
+            fetchOptions.headers = assign({
+                    "Authorization": "Basic " + btoa(configuration.username + ":" + configuration.password),
+                    }, contentTypeHeader);
+        }
+
         return {
             url: url.format(urlObj),
             options: fetchOptions,
         };
     },
-    /** 
+    /**
      * Retrieve CSRF protection token
      */
-    getCrumb(options?: any): FetchArgs {
+    getCrumb(configuration: Configuration, options: any = {}): FetchArgs {
         const baseUrl = `/crumbIssuer/api/json`;
         let urlObj = url.parse(baseUrl, true);
         let fetchOptions: RequestInit = assign({}, { method: "GET" }, options);
 
         let contentTypeHeader: Dictionary<string> = {};
         if (contentTypeHeader) {
-            fetchOptions.headers = contentTypeHeader;
+            fetchOptions.headers = assign({}, contentTypeHeader, fetchOptions.headers);
         }
+        // authentication (jenkins_auth) required
+        // http basic authentication required
+        if (configuration.username || configuration.password) {
+            fetchOptions.headers = assign({
+                    "Authorization": "Basic " + btoa(configuration.username + ":" + configuration.password),
+                    }, contentTypeHeader);
+        }
+
         return {
             url: url.format(urlObj),
             options: fetchOptions,
         };
     },
-    /** 
+    /**
      * Retrieve Jenkins details
      */
-    getJenkins(options?: any): FetchArgs {
+    getJenkins(configuration: Configuration, options: any = {}): FetchArgs {
         const baseUrl = `/api/json`;
         let urlObj = url.parse(baseUrl, true);
         let fetchOptions: RequestInit = assign({}, { method: "GET" }, options);
 
         let contentTypeHeader: Dictionary<string> = {};
         if (contentTypeHeader) {
-            fetchOptions.headers = contentTypeHeader;
+            fetchOptions.headers = assign({}, contentTypeHeader, fetchOptions.headers);
         }
+        // authentication (jenkins_auth) required
+        // http basic authentication required
+        if (configuration.username || configuration.password) {
+            fetchOptions.headers = assign({
+                    "Authorization": "Basic " + btoa(configuration.username + ":" + configuration.password),
+                    }, contentTypeHeader);
+        }
+
         return {
             url: url.format(urlObj),
             options: fetchOptions,
         };
     },
-    /** 
+    /**
      * Retrieve job details
      * @param name Name of the job
      */
-    getJob(params: {  "name": string; }, options?: any): FetchArgs {
+    getJob(params: {  name: string; }, configuration: Configuration, options: any = {}): FetchArgs {
         // verify required parameter "name" is set
         if (params["name"] == null) {
             throw new Error("Missing required parameter name when calling getJob");
@@ -1403,18 +3575,26 @@ export const RemoteAccessApiFetchParamCreator = {
 
         let contentTypeHeader: Dictionary<string> = {};
         if (contentTypeHeader) {
-            fetchOptions.headers = contentTypeHeader;
+            fetchOptions.headers = assign({}, contentTypeHeader, fetchOptions.headers);
         }
+        // authentication (jenkins_auth) required
+        // http basic authentication required
+        if (configuration.username || configuration.password) {
+            fetchOptions.headers = assign({
+                    "Authorization": "Basic " + btoa(configuration.username + ":" + configuration.password),
+                    }, contentTypeHeader);
+        }
+
         return {
             url: url.format(urlObj),
             options: fetchOptions,
         };
     },
-    /** 
+    /**
      * Retrieve job configuration
      * @param name Name of the job
      */
-    getJobConfig(params: {  "name": string; }, options?: any): FetchArgs {
+    getJobConfig(params: {  name: string; }, configuration: Configuration, options: any = {}): FetchArgs {
         // verify required parameter "name" is set
         if (params["name"] == null) {
             throw new Error("Missing required parameter name when calling getJobConfig");
@@ -1426,18 +3606,26 @@ export const RemoteAccessApiFetchParamCreator = {
 
         let contentTypeHeader: Dictionary<string> = {};
         if (contentTypeHeader) {
-            fetchOptions.headers = contentTypeHeader;
+            fetchOptions.headers = assign({}, contentTypeHeader, fetchOptions.headers);
         }
+        // authentication (jenkins_auth) required
+        // http basic authentication required
+        if (configuration.username || configuration.password) {
+            fetchOptions.headers = assign({
+                    "Authorization": "Basic " + btoa(configuration.username + ":" + configuration.password),
+                    }, contentTypeHeader);
+        }
+
         return {
             url: url.format(urlObj),
             options: fetchOptions,
         };
     },
-    /** 
-     * Retrieve job&#39;s last build details
+    /**
+     * Retrieve job's last build details
      * @param name Name of the job
      */
-    getJobLastBuild(params: {  "name": string; }, options?: any): FetchArgs {
+    getJobLastBuild(params: {  name: string; }, configuration: Configuration, options: any = {}): FetchArgs {
         // verify required parameter "name" is set
         if (params["name"] == null) {
             throw new Error("Missing required parameter name when calling getJobLastBuild");
@@ -1449,20 +3637,28 @@ export const RemoteAccessApiFetchParamCreator = {
 
         let contentTypeHeader: Dictionary<string> = {};
         if (contentTypeHeader) {
-            fetchOptions.headers = contentTypeHeader;
+            fetchOptions.headers = assign({}, contentTypeHeader, fetchOptions.headers);
         }
+        // authentication (jenkins_auth) required
+        // http basic authentication required
+        if (configuration.username || configuration.password) {
+            fetchOptions.headers = assign({
+                    "Authorization": "Basic " + btoa(configuration.username + ":" + configuration.password),
+                    }, contentTypeHeader);
+        }
+
         return {
             url: url.format(urlObj),
             options: fetchOptions,
         };
     },
-    /** 
-     * Retrieve job&#39;s build progressive text output
+    /**
+     * Retrieve job's build progressive text output
      * @param name Name of the job
      * @param number Build number
      * @param start Starting point of progressive text output
      */
-    getJobProgressiveText(params: {  "name": string; "number": string; "start": string; }, options?: any): FetchArgs {
+    getJobProgressiveText(params: {  name: string; number: string; start: string; }, configuration: Configuration, options: any = {}): FetchArgs {
         // verify required parameter "name" is set
         if (params["name"] == null) {
             throw new Error("Missing required parameter name when calling getJobProgressiveText");
@@ -1479,42 +3675,59 @@ export const RemoteAccessApiFetchParamCreator = {
             .replace(`{${"name"}}`, `${ params["name"] }`)
             .replace(`{${"number"}}`, `${ params["number"] }`);
         let urlObj = url.parse(baseUrl, true);
-        urlObj.query = assign({}, urlObj.query, {
-            "start": params["start"],
-        });
+        urlObj.query =  assign({}, urlObj.query);
+        if (params["start"] !== undefined) {
+            urlObj.query["start"] = params["start"];
+        }
         let fetchOptions: RequestInit = assign({}, { method: "GET" }, options);
 
         let contentTypeHeader: Dictionary<string> = {};
         if (contentTypeHeader) {
-            fetchOptions.headers = contentTypeHeader;
+            fetchOptions.headers = assign({}, contentTypeHeader, fetchOptions.headers);
         }
+        // authentication (jenkins_auth) required
+        // http basic authentication required
+        if (configuration.username || configuration.password) {
+            fetchOptions.headers = assign({
+                    "Authorization": "Basic " + btoa(configuration.username + ":" + configuration.password),
+                    }, contentTypeHeader);
+        }
+
         return {
             url: url.format(urlObj),
             options: fetchOptions,
         };
     },
-    /** 
+    /**
      * Retrieve queue details
      */
-    getQueue(options?: any): FetchArgs {
+    getQueue(configuration: Configuration, options: any = {}): FetchArgs {
         const baseUrl = `/queue/api/json`;
         let urlObj = url.parse(baseUrl, true);
         let fetchOptions: RequestInit = assign({}, { method: "GET" }, options);
 
         let contentTypeHeader: Dictionary<string> = {};
         if (contentTypeHeader) {
-            fetchOptions.headers = contentTypeHeader;
+            fetchOptions.headers = assign({}, contentTypeHeader, fetchOptions.headers);
         }
+        // authentication (jenkins_auth) required
+        // http basic authentication required
+        if (configuration.username || configuration.password) {
+            fetchOptions.headers = assign({
+                    "Authorization": "Basic " + btoa(configuration.username + ":" + configuration.password),
+                    }, contentTypeHeader);
+        }
+
         return {
             url: url.format(urlObj),
             options: fetchOptions,
         };
     },
-    /** 
+    /**
      * Retrieve queued item details
      * @param number Queue number
      */
-    getQueueItem(params: {  "number": string; }, options?: any): FetchArgs {
+    getQueueItem(params: {  number: string; }, configuration: Configuration, options: any = {}): FetchArgs {
         // verify required parameter "number" is set
         if (params["number"] == null) {
             throw new Error("Missing required parameter number when calling getQueueItem");
@@ -1526,18 +3739,26 @@ export const RemoteAccessApiFetchParamCreator = {
 
         let contentTypeHeader: Dictionary<string> = {};
         if (contentTypeHeader) {
-            fetchOptions.headers = contentTypeHeader;
+            fetchOptions.headers = assign({}, contentTypeHeader, fetchOptions.headers);
         }
+        // authentication (jenkins_auth) required
+        // http basic authentication required
+        if (configuration.username || configuration.password) {
+            fetchOptions.headers = assign({
+                    "Authorization": "Basic " + btoa(configuration.username + ":" + configuration.password),
+                    }, contentTypeHeader);
+        }
+
         return {
             url: url.format(urlObj),
             options: fetchOptions,
         };
     },
-    /** 
+    /**
      * Retrieve view details
      * @param name Name of the view
      */
-    getView(params: {  "name": string; }, options?: any): FetchArgs {
+    getView(params: {  name: string; }, configuration: Configuration, options: any = {}): FetchArgs {
         // verify required parameter "name" is set
         if (params["name"] == null) {
             throw new Error("Missing required parameter name when calling getView");
@@ -1549,18 +3770,26 @@ export const RemoteAccessApiFetchParamCreator = {
 
         let contentTypeHeader: Dictionary<string> = {};
         if (contentTypeHeader) {
-            fetchOptions.headers = contentTypeHeader;
+            fetchOptions.headers = assign({}, contentTypeHeader, fetchOptions.headers);
         }
+        // authentication (jenkins_auth) required
+        // http basic authentication required
+        if (configuration.username || configuration.password) {
+            fetchOptions.headers = assign({
+                    "Authorization": "Basic " + btoa(configuration.username + ":" + configuration.password),
+                    }, contentTypeHeader);
+        }
+
         return {
             url: url.format(urlObj),
             options: fetchOptions,
         };
     },
-    /** 
+    /**
      * Retrieve view configuration
      * @param name Name of the view
      */
-    getViewConfig(params: {  "name": string; }, options?: any): FetchArgs {
+    getViewConfig(params: {  name: string; }, configuration: Configuration, options: any = {}): FetchArgs {
         // verify required parameter "name" is set
         if (params["name"] == null) {
             throw new Error("Missing required parameter name when calling getViewConfig");
@@ -1572,31 +3801,47 @@ export const RemoteAccessApiFetchParamCreator = {
 
         let contentTypeHeader: Dictionary<string> = {};
         if (contentTypeHeader) {
-            fetchOptions.headers = contentTypeHeader;
+            fetchOptions.headers = assign({}, contentTypeHeader, fetchOptions.headers);
         }
+        // authentication (jenkins_auth) required
+        // http basic authentication required
+        if (configuration.username || configuration.password) {
+            fetchOptions.headers = assign({
+                    "Authorization": "Basic " + btoa(configuration.username + ":" + configuration.password),
+                    }, contentTypeHeader);
+        }
+
         return {
             url: url.format(urlObj),
             options: fetchOptions,
         };
     },
-    /** 
+    /**
      * Retrieve Jenkins headers
      */
-    headJenkins(options?: any): FetchArgs {
+    headJenkins(configuration: Configuration, options: any = {}): FetchArgs {
         const baseUrl = `/api/json`;
         let urlObj = url.parse(baseUrl, true);
         let fetchOptions: RequestInit = assign({}, { method: "HEAD" }, options);
 
         let contentTypeHeader: Dictionary<string> = {};
         if (contentTypeHeader) {
-            fetchOptions.headers = contentTypeHeader;
+            fetchOptions.headers = assign({}, contentTypeHeader, fetchOptions.headers);
         }
+        // authentication (jenkins_auth) required
+        // http basic authentication required
+        if (configuration.username || configuration.password) {
+            fetchOptions.headers = assign({
+                    "Authorization": "Basic " + btoa(configuration.username + ":" + configuration.password),
+                    }, contentTypeHeader);
+        }
+
         return {
             url: url.format(urlObj),
             options: fetchOptions,
         };
     },
-    /** 
+    /**
      * Create a new job using job configuration, or copied from an existing job
      * @param name Name of the new job
      * @param from Existing job to copy from
@@ -1605,18 +3850,23 @@ export const RemoteAccessApiFetchParamCreator = {
      * @param jenkinsCrumb CSRF protection token
      * @param contentType Content type header application/xml
      */
-    postCreateItem(params: {  "name": string; "from"?: string; "mode"?: string; "body"?: string; "jenkinsCrumb"?: string; "contentType"?: string; }, options?: any): FetchArgs {
+    postCreateItem(params: {  name: string; from?: string; mode?: string; body?: string; jenkinsCrumb?: string; contentType?: string; }, configuration: Configuration, options: any = {}): FetchArgs {
         // verify required parameter "name" is set
         if (params["name"] == null) {
             throw new Error("Missing required parameter name when calling postCreateItem");
         }
         const baseUrl = `/createItem`;
         let urlObj = url.parse(baseUrl, true);
-        urlObj.query = assign({}, urlObj.query, {
-            "name": params["name"],
-            "from": params["from"],
-            "mode": params["mode"],
-        });
+        urlObj.query =  assign({}, urlObj.query);
+        if (params["name"] !== undefined) {
+            urlObj.query["name"] = params["name"];
+        }
+        if (params["from"] !== undefined) {
+            urlObj.query["from"] = params["from"];
+        }
+        if (params["mode"] !== undefined) {
+            urlObj.query["mode"] = params["mode"];
+        }
         let fetchOptions: RequestInit = assign({}, { method: "POST" }, options);
 
         let contentTypeHeader: Dictionary<string> = {};
@@ -1626,29 +3876,38 @@ export const RemoteAccessApiFetchParamCreator = {
         }
         fetchOptions.headers = assign({
             "Jenkins-Crumb": params["jenkinsCrumb"],"Content-Type": params["contentType"],
-        }, contentTypeHeader);
+        }, contentTypeHeader, fetchOptions.headers);
+        // authentication (jenkins_auth) required
+        // http basic authentication required
+        if (configuration.username || configuration.password) {
+            fetchOptions.headers = assign({
+                    "Authorization": "Basic " + btoa(configuration.username + ":" + configuration.password),
+                    }, contentTypeHeader);
+        }
+
         return {
             url: url.format(urlObj),
             options: fetchOptions,
         };
     },
-    /** 
+    /**
      * Create a new view using view configuration
      * @param name Name of the new view
      * @param body View configuration in config.xml format
      * @param jenkinsCrumb CSRF protection token
      * @param contentType Content type header application/xml
      */
-    postCreateView(params: {  "name": string; "body"?: string; "jenkinsCrumb"?: string; "contentType"?: string; }, options?: any): FetchArgs {
+    postCreateView(params: {  name: string; body?: string; jenkinsCrumb?: string; contentType?: string; }, configuration: Configuration, options: any = {}): FetchArgs {
         // verify required parameter "name" is set
         if (params["name"] == null) {
             throw new Error("Missing required parameter name when calling postCreateView");
         }
         const baseUrl = `/createView`;
         let urlObj = url.parse(baseUrl, true);
-        urlObj.query = assign({}, urlObj.query, {
-            "name": params["name"],
-        });
+        urlObj.query =  assign({}, urlObj.query);
+        if (params["name"] !== undefined) {
+            urlObj.query["name"] = params["name"];
+        }
         let fetchOptions: RequestInit = assign({}, { method: "POST" }, options);
 
         let contentTypeHeader: Dictionary<string> = {};
@@ -1658,20 +3917,28 @@ export const RemoteAccessApiFetchParamCreator = {
         }
         fetchOptions.headers = assign({
             "Jenkins-Crumb": params["jenkinsCrumb"],"Content-Type": params["contentType"],
-        }, contentTypeHeader);
+        }, contentTypeHeader, fetchOptions.headers);
+        // authentication (jenkins_auth) required
+        // http basic authentication required
+        if (configuration.username || configuration.password) {
+            fetchOptions.headers = assign({
+                    "Authorization": "Basic " + btoa(configuration.username + ":" + configuration.password),
+                    }, contentTypeHeader);
+        }
+
         return {
             url: url.format(urlObj),
             options: fetchOptions,
         };
     },
-    /** 
+    /**
      * Build a job
      * @param name Name of the job
      * @param json 
      * @param token 
      * @param jenkinsCrumb CSRF protection token
      */
-    postJobBuild(params: {  "name": string; "json": string; "token"?: string; "jenkinsCrumb"?: string; }, options?: any): FetchArgs {
+    postJobBuild(params: {  name: string; json: string; token?: string; jenkinsCrumb?: string; }, configuration: Configuration, options: any = {}): FetchArgs {
         // verify required parameter "name" is set
         if (params["name"] == null) {
             throw new Error("Missing required parameter name when calling postJobBuild");
@@ -1683,28 +3950,39 @@ export const RemoteAccessApiFetchParamCreator = {
         const baseUrl = `/job/{name}/build`
             .replace(`{${"name"}}`, `${ params["name"] }`);
         let urlObj = url.parse(baseUrl, true);
-        urlObj.query = assign({}, urlObj.query, {
-            "json": params["json"],
-            "token": params["token"],
-        });
+        urlObj.query =  assign({}, urlObj.query);
+        if (params["json"] !== undefined) {
+            urlObj.query["json"] = params["json"];
+        }
+        if (params["token"] !== undefined) {
+            urlObj.query["token"] = params["token"];
+        }
         let fetchOptions: RequestInit = assign({}, { method: "POST" }, options);
 
         let contentTypeHeader: Dictionary<string> = {};
         fetchOptions.headers = assign({
             "Jenkins-Crumb": params["jenkinsCrumb"],
-        }, contentTypeHeader);
+        }, contentTypeHeader, fetchOptions.headers);
+        // authentication (jenkins_auth) required
+        // http basic authentication required
+        if (configuration.username || configuration.password) {
+            fetchOptions.headers = assign({
+                    "Authorization": "Basic " + btoa(configuration.username + ":" + configuration.password),
+                    }, contentTypeHeader);
+        }
+
         return {
             url: url.format(urlObj),
             options: fetchOptions,
         };
     },
-    /** 
+    /**
      * Update job configuration
      * @param name Name of the job
      * @param body Job configuration in config.xml format
      * @param jenkinsCrumb CSRF protection token
      */
-    postJobConfig(params: {  "name": string; "body": string; "jenkinsCrumb"?: string; }, options?: any): FetchArgs {
+    postJobConfig(params: {  name: string; body: string; jenkinsCrumb?: string; }, configuration: Configuration, options: any = {}): FetchArgs {
         // verify required parameter "name" is set
         if (params["name"] == null) {
             throw new Error("Missing required parameter name when calling postJobConfig");
@@ -1725,18 +4003,26 @@ export const RemoteAccessApiFetchParamCreator = {
         }
         fetchOptions.headers = assign({
             "Jenkins-Crumb": params["jenkinsCrumb"],
-        }, contentTypeHeader);
+        }, contentTypeHeader, fetchOptions.headers);
+        // authentication (jenkins_auth) required
+        // http basic authentication required
+        if (configuration.username || configuration.password) {
+            fetchOptions.headers = assign({
+                    "Authorization": "Basic " + btoa(configuration.username + ":" + configuration.password),
+                    }, contentTypeHeader);
+        }
+
         return {
             url: url.format(urlObj),
             options: fetchOptions,
         };
     },
-    /** 
+    /**
      * Delete a job
      * @param name Name of the job
      * @param jenkinsCrumb CSRF protection token
      */
-    postJobDelete(params: {  "name": string; "jenkinsCrumb"?: string; }, options?: any): FetchArgs {
+    postJobDelete(params: {  name: string; jenkinsCrumb?: string; }, configuration: Configuration, options: any = {}): FetchArgs {
         // verify required parameter "name" is set
         if (params["name"] == null) {
             throw new Error("Missing required parameter name when calling postJobDelete");
@@ -1749,18 +4035,26 @@ export const RemoteAccessApiFetchParamCreator = {
         let contentTypeHeader: Dictionary<string> = {};
         fetchOptions.headers = assign({
             "Jenkins-Crumb": params["jenkinsCrumb"],
-        }, contentTypeHeader);
+        }, contentTypeHeader, fetchOptions.headers);
+        // authentication (jenkins_auth) required
+        // http basic authentication required
+        if (configuration.username || configuration.password) {
+            fetchOptions.headers = assign({
+                    "Authorization": "Basic " + btoa(configuration.username + ":" + configuration.password),
+                    }, contentTypeHeader);
+        }
+
         return {
             url: url.format(urlObj),
             options: fetchOptions,
         };
     },
-    /** 
+    /**
      * Disable a job
      * @param name Name of the job
      * @param jenkinsCrumb CSRF protection token
      */
-    postJobDisable(params: {  "name": string; "jenkinsCrumb"?: string; }, options?: any): FetchArgs {
+    postJobDisable(params: {  name: string; jenkinsCrumb?: string; }, configuration: Configuration, options: any = {}): FetchArgs {
         // verify required parameter "name" is set
         if (params["name"] == null) {
             throw new Error("Missing required parameter name when calling postJobDisable");
@@ -1773,18 +4067,26 @@ export const RemoteAccessApiFetchParamCreator = {
         let contentTypeHeader: Dictionary<string> = {};
         fetchOptions.headers = assign({
             "Jenkins-Crumb": params["jenkinsCrumb"],
-        }, contentTypeHeader);
+        }, contentTypeHeader, fetchOptions.headers);
+        // authentication (jenkins_auth) required
+        // http basic authentication required
+        if (configuration.username || configuration.password) {
+            fetchOptions.headers = assign({
+                    "Authorization": "Basic " + btoa(configuration.username + ":" + configuration.password),
+                    }, contentTypeHeader);
+        }
+
         return {
             url: url.format(urlObj),
             options: fetchOptions,
         };
     },
-    /** 
+    /**
      * Enable a job
      * @param name Name of the job
      * @param jenkinsCrumb CSRF protection token
      */
-    postJobEnable(params: {  "name": string; "jenkinsCrumb"?: string; }, options?: any): FetchArgs {
+    postJobEnable(params: {  name: string; jenkinsCrumb?: string; }, configuration: Configuration, options: any = {}): FetchArgs {
         // verify required parameter "name" is set
         if (params["name"] == null) {
             throw new Error("Missing required parameter name when calling postJobEnable");
@@ -1797,18 +4099,26 @@ export const RemoteAccessApiFetchParamCreator = {
         let contentTypeHeader: Dictionary<string> = {};
         fetchOptions.headers = assign({
             "Jenkins-Crumb": params["jenkinsCrumb"],
-        }, contentTypeHeader);
+        }, contentTypeHeader, fetchOptions.headers);
+        // authentication (jenkins_auth) required
+        // http basic authentication required
+        if (configuration.username || configuration.password) {
+            fetchOptions.headers = assign({
+                    "Authorization": "Basic " + btoa(configuration.username + ":" + configuration.password),
+                    }, contentTypeHeader);
+        }
+
         return {
             url: url.format(urlObj),
             options: fetchOptions,
         };
     },
-    /** 
+    /**
      * Stop a job
      * @param name Name of the job
      * @param jenkinsCrumb CSRF protection token
      */
-    postJobLastBuildStop(params: {  "name": string; "jenkinsCrumb"?: string; }, options?: any): FetchArgs {
+    postJobLastBuildStop(params: {  name: string; jenkinsCrumb?: string; }, configuration: Configuration, options: any = {}): FetchArgs {
         // verify required parameter "name" is set
         if (params["name"] == null) {
             throw new Error("Missing required parameter name when calling postJobLastBuildStop");
@@ -1821,19 +4131,27 @@ export const RemoteAccessApiFetchParamCreator = {
         let contentTypeHeader: Dictionary<string> = {};
         fetchOptions.headers = assign({
             "Jenkins-Crumb": params["jenkinsCrumb"],
-        }, contentTypeHeader);
+        }, contentTypeHeader, fetchOptions.headers);
+        // authentication (jenkins_auth) required
+        // http basic authentication required
+        if (configuration.username || configuration.password) {
+            fetchOptions.headers = assign({
+                    "Authorization": "Basic " + btoa(configuration.username + ":" + configuration.password),
+                    }, contentTypeHeader);
+        }
+
         return {
             url: url.format(urlObj),
             options: fetchOptions,
         };
     },
-    /** 
+    /**
      * Update view configuration
      * @param name Name of the view
      * @param body View configuration in config.xml format
      * @param jenkinsCrumb CSRF protection token
      */
-    postViewConfig(params: {  "name": string; "body": string; "jenkinsCrumb"?: string; }, options?: any): FetchArgs {
+    postViewConfig(params: {  name: string; body: string; jenkinsCrumb?: string; }, configuration: Configuration, options: any = {}): FetchArgs {
         // verify required parameter "name" is set
         if (params["name"] == null) {
             throw new Error("Missing required parameter name when calling postViewConfig");
@@ -1854,7 +4172,15 @@ export const RemoteAccessApiFetchParamCreator = {
         }
         fetchOptions.headers = assign({
             "Jenkins-Crumb": params["jenkinsCrumb"],
-        }, contentTypeHeader);
+        }, contentTypeHeader, fetchOptions.headers);
+        // authentication (jenkins_auth) required
+        // http basic authentication required
+        if (configuration.username || configuration.password) {
+            fetchOptions.headers = assign({
+                    "Authorization": "Basic " + btoa(configuration.username + ":" + configuration.password),
+                    }, contentTypeHeader);
+        }
+
         return {
             url: url.format(urlObj),
             options: fetchOptions,
@@ -1866,11 +4192,12 @@ export const RemoteAccessApiFetchParamCreator = {
  * RemoteAccessApi - functional programming interface
  */
 export const RemoteAccessApiFp = {
-    /** 
+    /**
      * Retrieve computer details
+     * @param depth Recursion depth in response model
      */
-    getComputer(options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<HudsonmodelComputerSet> {
-        const fetchArgs = RemoteAccessApiFetchParamCreator.getComputer(options);
+    getComputer(params: { depth: number;  }, configuration: Configuration, options: any = {}): (fetch: FetchAPI, basePath?: string) => Promise<ComputerSet> {
+        const fetchArgs = RemoteAccessApiFetchParamCreator.getComputer(params, configuration, options);
         return (fetch: FetchAPI = isomorphicFetch, basePath: string = BASE_PATH) => {
             return fetch(basePath + fetchArgs.url, fetchArgs.options).then((response) => {
                 if (response.status >= 200 && response.status < 300) {
@@ -1881,11 +4208,11 @@ export const RemoteAccessApiFp = {
             });
         };
     },
-    /** 
+    /**
      * Retrieve CSRF protection token
      */
-    getCrumb(options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<HudsonsecuritycsrfDefaultCrumbIssuer> {
-        const fetchArgs = RemoteAccessApiFetchParamCreator.getCrumb(options);
+    getCrumb(configuration: Configuration, options: any = {}): (fetch: FetchAPI, basePath?: string) => Promise<DefaultCrumbIssuer> {
+        const fetchArgs = RemoteAccessApiFetchParamCreator.getCrumb(configuration, options);
         return (fetch: FetchAPI = isomorphicFetch, basePath: string = BASE_PATH) => {
             return fetch(basePath + fetchArgs.url, fetchArgs.options).then((response) => {
                 if (response.status >= 200 && response.status < 300) {
@@ -1896,11 +4223,11 @@ export const RemoteAccessApiFp = {
             });
         };
     },
-    /** 
+    /**
      * Retrieve Jenkins details
      */
-    getJenkins(options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<HudsonmodelHudson> {
-        const fetchArgs = RemoteAccessApiFetchParamCreator.getJenkins(options);
+    getJenkins(configuration: Configuration, options: any = {}): (fetch: FetchAPI, basePath?: string) => Promise<Hudson> {
+        const fetchArgs = RemoteAccessApiFetchParamCreator.getJenkins(configuration, options);
         return (fetch: FetchAPI = isomorphicFetch, basePath: string = BASE_PATH) => {
             return fetch(basePath + fetchArgs.url, fetchArgs.options).then((response) => {
                 if (response.status >= 200 && response.status < 300) {
@@ -1911,12 +4238,12 @@ export const RemoteAccessApiFp = {
             });
         };
     },
-    /** 
+    /**
      * Retrieve job details
      * @param name Name of the job
      */
-    getJob(params: { "name": string;  }, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<HudsonmodelFreeStyleProject> {
-        const fetchArgs = RemoteAccessApiFetchParamCreator.getJob(params, options);
+    getJob(params: { name: string;  }, configuration: Configuration, options: any = {}): (fetch: FetchAPI, basePath?: string) => Promise<FreeStyleProject> {
+        const fetchArgs = RemoteAccessApiFetchParamCreator.getJob(params, configuration, options);
         return (fetch: FetchAPI = isomorphicFetch, basePath: string = BASE_PATH) => {
             return fetch(basePath + fetchArgs.url, fetchArgs.options).then((response) => {
                 if (response.status >= 200 && response.status < 300) {
@@ -1927,12 +4254,12 @@ export const RemoteAccessApiFp = {
             });
         };
     },
-    /** 
+    /**
      * Retrieve job configuration
      * @param name Name of the job
      */
-    getJobConfig(params: { "name": string;  }, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<string> {
-        const fetchArgs = RemoteAccessApiFetchParamCreator.getJobConfig(params, options);
+    getJobConfig(params: { name: string;  }, configuration: Configuration, options: any = {}): (fetch: FetchAPI, basePath?: string) => Promise<string> {
+        const fetchArgs = RemoteAccessApiFetchParamCreator.getJobConfig(params, configuration, options);
         return (fetch: FetchAPI = isomorphicFetch, basePath: string = BASE_PATH) => {
             return fetch(basePath + fetchArgs.url, fetchArgs.options).then((response) => {
                 if (response.status >= 200 && response.status < 300) {
@@ -1943,12 +4270,12 @@ export const RemoteAccessApiFp = {
             });
         };
     },
-    /** 
-     * Retrieve job&#39;s last build details
+    /**
+     * Retrieve job's last build details
      * @param name Name of the job
      */
-    getJobLastBuild(params: { "name": string;  }, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<HudsonmodelFreeStyleBuild> {
-        const fetchArgs = RemoteAccessApiFetchParamCreator.getJobLastBuild(params, options);
+    getJobLastBuild(params: { name: string;  }, configuration: Configuration, options: any = {}): (fetch: FetchAPI, basePath?: string) => Promise<FreeStyleBuild> {
+        const fetchArgs = RemoteAccessApiFetchParamCreator.getJobLastBuild(params, configuration, options);
         return (fetch: FetchAPI = isomorphicFetch, basePath: string = BASE_PATH) => {
             return fetch(basePath + fetchArgs.url, fetchArgs.options).then((response) => {
                 if (response.status >= 200 && response.status < 300) {
@@ -1959,14 +4286,14 @@ export const RemoteAccessApiFp = {
             });
         };
     },
-    /** 
-     * Retrieve job&#39;s build progressive text output
+    /**
+     * Retrieve job's build progressive text output
      * @param name Name of the job
      * @param number Build number
      * @param start Starting point of progressive text output
      */
-    getJobProgressiveText(params: { "name": string; "number": string; "start": string;  }, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<any> {
-        const fetchArgs = RemoteAccessApiFetchParamCreator.getJobProgressiveText(params, options);
+    getJobProgressiveText(params: { name: string; number: string; start: string;  }, configuration: Configuration, options: any = {}): (fetch: FetchAPI, basePath?: string) => Promise<any> {
+        const fetchArgs = RemoteAccessApiFetchParamCreator.getJobProgressiveText(params, configuration, options);
         return (fetch: FetchAPI = isomorphicFetch, basePath: string = BASE_PATH) => {
             return fetch(basePath + fetchArgs.url, fetchArgs.options).then((response) => {
                 if (response.status >= 200 && response.status < 300) {
@@ -1977,11 +4304,11 @@ export const RemoteAccessApiFp = {
             });
         };
     },
-    /** 
+    /**
      * Retrieve queue details
      */
-    getQueue(options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<HudsonmodelQueue> {
-        const fetchArgs = RemoteAccessApiFetchParamCreator.getQueue(options);
+    getQueue(configuration: Configuration, options: any = {}): (fetch: FetchAPI, basePath?: string) => Promise<Queue> {
+        const fetchArgs = RemoteAccessApiFetchParamCreator.getQueue(configuration, options);
         return (fetch: FetchAPI = isomorphicFetch, basePath: string = BASE_PATH) => {
             return fetch(basePath + fetchArgs.url, fetchArgs.options).then((response) => {
                 if (response.status >= 200 && response.status < 300) {
@@ -1992,12 +4319,12 @@ export const RemoteAccessApiFp = {
             });
         };
     },
-    /** 
+    /**
      * Retrieve queued item details
      * @param number Queue number
      */
-    getQueueItem(params: { "number": string;  }, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<HudsonmodelQueue> {
-        const fetchArgs = RemoteAccessApiFetchParamCreator.getQueueItem(params, options);
+    getQueueItem(params: { number: string;  }, configuration: Configuration, options: any = {}): (fetch: FetchAPI, basePath?: string) => Promise<Queue> {
+        const fetchArgs = RemoteAccessApiFetchParamCreator.getQueueItem(params, configuration, options);
         return (fetch: FetchAPI = isomorphicFetch, basePath: string = BASE_PATH) => {
             return fetch(basePath + fetchArgs.url, fetchArgs.options).then((response) => {
                 if (response.status >= 200 && response.status < 300) {
@@ -2008,12 +4335,12 @@ export const RemoteAccessApiFp = {
             });
         };
     },
-    /** 
+    /**
      * Retrieve view details
      * @param name Name of the view
      */
-    getView(params: { "name": string;  }, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<HudsonmodelListView> {
-        const fetchArgs = RemoteAccessApiFetchParamCreator.getView(params, options);
+    getView(params: { name: string;  }, configuration: Configuration, options: any = {}): (fetch: FetchAPI, basePath?: string) => Promise<ListView> {
+        const fetchArgs = RemoteAccessApiFetchParamCreator.getView(params, configuration, options);
         return (fetch: FetchAPI = isomorphicFetch, basePath: string = BASE_PATH) => {
             return fetch(basePath + fetchArgs.url, fetchArgs.options).then((response) => {
                 if (response.status >= 200 && response.status < 300) {
@@ -2024,12 +4351,12 @@ export const RemoteAccessApiFp = {
             });
         };
     },
-    /** 
+    /**
      * Retrieve view configuration
      * @param name Name of the view
      */
-    getViewConfig(params: { "name": string;  }, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<string> {
-        const fetchArgs = RemoteAccessApiFetchParamCreator.getViewConfig(params, options);
+    getViewConfig(params: { name: string;  }, configuration: Configuration, options: any = {}): (fetch: FetchAPI, basePath?: string) => Promise<string> {
+        const fetchArgs = RemoteAccessApiFetchParamCreator.getViewConfig(params, configuration, options);
         return (fetch: FetchAPI = isomorphicFetch, basePath: string = BASE_PATH) => {
             return fetch(basePath + fetchArgs.url, fetchArgs.options).then((response) => {
                 if (response.status >= 200 && response.status < 300) {
@@ -2040,11 +4367,11 @@ export const RemoteAccessApiFp = {
             });
         };
     },
-    /** 
+    /**
      * Retrieve Jenkins headers
      */
-    headJenkins(options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<any> {
-        const fetchArgs = RemoteAccessApiFetchParamCreator.headJenkins(options);
+    headJenkins(configuration: Configuration, options: any = {}): (fetch: FetchAPI, basePath?: string) => Promise<any> {
+        const fetchArgs = RemoteAccessApiFetchParamCreator.headJenkins(configuration, options);
         return (fetch: FetchAPI = isomorphicFetch, basePath: string = BASE_PATH) => {
             return fetch(basePath + fetchArgs.url, fetchArgs.options).then((response) => {
                 if (response.status >= 200 && response.status < 300) {
@@ -2055,7 +4382,7 @@ export const RemoteAccessApiFp = {
             });
         };
     },
-    /** 
+    /**
      * Create a new job using job configuration, or copied from an existing job
      * @param name Name of the new job
      * @param from Existing job to copy from
@@ -2064,8 +4391,8 @@ export const RemoteAccessApiFp = {
      * @param jenkinsCrumb CSRF protection token
      * @param contentType Content type header application/xml
      */
-    postCreateItem(params: { "name": string; "from"?: string; "mode"?: string; "body"?: string; "jenkinsCrumb"?: string; "contentType"?: string;  }, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<any> {
-        const fetchArgs = RemoteAccessApiFetchParamCreator.postCreateItem(params, options);
+    postCreateItem(params: { name: string; from?: string; mode?: string; body?: string; jenkinsCrumb?: string; contentType?: string;  }, configuration: Configuration, options: any = {}): (fetch: FetchAPI, basePath?: string) => Promise<any> {
+        const fetchArgs = RemoteAccessApiFetchParamCreator.postCreateItem(params, configuration, options);
         return (fetch: FetchAPI = isomorphicFetch, basePath: string = BASE_PATH) => {
             return fetch(basePath + fetchArgs.url, fetchArgs.options).then((response) => {
                 if (response.status >= 200 && response.status < 300) {
@@ -2076,15 +4403,15 @@ export const RemoteAccessApiFp = {
             });
         };
     },
-    /** 
+    /**
      * Create a new view using view configuration
      * @param name Name of the new view
      * @param body View configuration in config.xml format
      * @param jenkinsCrumb CSRF protection token
      * @param contentType Content type header application/xml
      */
-    postCreateView(params: { "name": string; "body"?: string; "jenkinsCrumb"?: string; "contentType"?: string;  }, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<any> {
-        const fetchArgs = RemoteAccessApiFetchParamCreator.postCreateView(params, options);
+    postCreateView(params: { name: string; body?: string; jenkinsCrumb?: string; contentType?: string;  }, configuration: Configuration, options: any = {}): (fetch: FetchAPI, basePath?: string) => Promise<any> {
+        const fetchArgs = RemoteAccessApiFetchParamCreator.postCreateView(params, configuration, options);
         return (fetch: FetchAPI = isomorphicFetch, basePath: string = BASE_PATH) => {
             return fetch(basePath + fetchArgs.url, fetchArgs.options).then((response) => {
                 if (response.status >= 200 && response.status < 300) {
@@ -2095,15 +4422,15 @@ export const RemoteAccessApiFp = {
             });
         };
     },
-    /** 
+    /**
      * Build a job
      * @param name Name of the job
      * @param json 
      * @param token 
      * @param jenkinsCrumb CSRF protection token
      */
-    postJobBuild(params: { "name": string; "json": string; "token"?: string; "jenkinsCrumb"?: string;  }, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<any> {
-        const fetchArgs = RemoteAccessApiFetchParamCreator.postJobBuild(params, options);
+    postJobBuild(params: { name: string; json: string; token?: string; jenkinsCrumb?: string;  }, configuration: Configuration, options: any = {}): (fetch: FetchAPI, basePath?: string) => Promise<any> {
+        const fetchArgs = RemoteAccessApiFetchParamCreator.postJobBuild(params, configuration, options);
         return (fetch: FetchAPI = isomorphicFetch, basePath: string = BASE_PATH) => {
             return fetch(basePath + fetchArgs.url, fetchArgs.options).then((response) => {
                 if (response.status >= 200 && response.status < 300) {
@@ -2114,14 +4441,14 @@ export const RemoteAccessApiFp = {
             });
         };
     },
-    /** 
+    /**
      * Update job configuration
      * @param name Name of the job
      * @param body Job configuration in config.xml format
      * @param jenkinsCrumb CSRF protection token
      */
-    postJobConfig(params: { "name": string; "body": string; "jenkinsCrumb"?: string;  }, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<any> {
-        const fetchArgs = RemoteAccessApiFetchParamCreator.postJobConfig(params, options);
+    postJobConfig(params: { name: string; body: string; jenkinsCrumb?: string;  }, configuration: Configuration, options: any = {}): (fetch: FetchAPI, basePath?: string) => Promise<any> {
+        const fetchArgs = RemoteAccessApiFetchParamCreator.postJobConfig(params, configuration, options);
         return (fetch: FetchAPI = isomorphicFetch, basePath: string = BASE_PATH) => {
             return fetch(basePath + fetchArgs.url, fetchArgs.options).then((response) => {
                 if (response.status >= 200 && response.status < 300) {
@@ -2132,13 +4459,13 @@ export const RemoteAccessApiFp = {
             });
         };
     },
-    /** 
+    /**
      * Delete a job
      * @param name Name of the job
      * @param jenkinsCrumb CSRF protection token
      */
-    postJobDelete(params: { "name": string; "jenkinsCrumb"?: string;  }, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<any> {
-        const fetchArgs = RemoteAccessApiFetchParamCreator.postJobDelete(params, options);
+    postJobDelete(params: { name: string; jenkinsCrumb?: string;  }, configuration: Configuration, options: any = {}): (fetch: FetchAPI, basePath?: string) => Promise<any> {
+        const fetchArgs = RemoteAccessApiFetchParamCreator.postJobDelete(params, configuration, options);
         return (fetch: FetchAPI = isomorphicFetch, basePath: string = BASE_PATH) => {
             return fetch(basePath + fetchArgs.url, fetchArgs.options).then((response) => {
                 if (response.status >= 200 && response.status < 300) {
@@ -2149,13 +4476,13 @@ export const RemoteAccessApiFp = {
             });
         };
     },
-    /** 
+    /**
      * Disable a job
      * @param name Name of the job
      * @param jenkinsCrumb CSRF protection token
      */
-    postJobDisable(params: { "name": string; "jenkinsCrumb"?: string;  }, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<any> {
-        const fetchArgs = RemoteAccessApiFetchParamCreator.postJobDisable(params, options);
+    postJobDisable(params: { name: string; jenkinsCrumb?: string;  }, configuration: Configuration, options: any = {}): (fetch: FetchAPI, basePath?: string) => Promise<any> {
+        const fetchArgs = RemoteAccessApiFetchParamCreator.postJobDisable(params, configuration, options);
         return (fetch: FetchAPI = isomorphicFetch, basePath: string = BASE_PATH) => {
             return fetch(basePath + fetchArgs.url, fetchArgs.options).then((response) => {
                 if (response.status >= 200 && response.status < 300) {
@@ -2166,13 +4493,13 @@ export const RemoteAccessApiFp = {
             });
         };
     },
-    /** 
+    /**
      * Enable a job
      * @param name Name of the job
      * @param jenkinsCrumb CSRF protection token
      */
-    postJobEnable(params: { "name": string; "jenkinsCrumb"?: string;  }, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<any> {
-        const fetchArgs = RemoteAccessApiFetchParamCreator.postJobEnable(params, options);
+    postJobEnable(params: { name: string; jenkinsCrumb?: string;  }, configuration: Configuration, options: any = {}): (fetch: FetchAPI, basePath?: string) => Promise<any> {
+        const fetchArgs = RemoteAccessApiFetchParamCreator.postJobEnable(params, configuration, options);
         return (fetch: FetchAPI = isomorphicFetch, basePath: string = BASE_PATH) => {
             return fetch(basePath + fetchArgs.url, fetchArgs.options).then((response) => {
                 if (response.status >= 200 && response.status < 300) {
@@ -2183,13 +4510,13 @@ export const RemoteAccessApiFp = {
             });
         };
     },
-    /** 
+    /**
      * Stop a job
      * @param name Name of the job
      * @param jenkinsCrumb CSRF protection token
      */
-    postJobLastBuildStop(params: { "name": string; "jenkinsCrumb"?: string;  }, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<any> {
-        const fetchArgs = RemoteAccessApiFetchParamCreator.postJobLastBuildStop(params, options);
+    postJobLastBuildStop(params: { name: string; jenkinsCrumb?: string;  }, configuration: Configuration, options: any = {}): (fetch: FetchAPI, basePath?: string) => Promise<any> {
+        const fetchArgs = RemoteAccessApiFetchParamCreator.postJobLastBuildStop(params, configuration, options);
         return (fetch: FetchAPI = isomorphicFetch, basePath: string = BASE_PATH) => {
             return fetch(basePath + fetchArgs.url, fetchArgs.options).then((response) => {
                 if (response.status >= 200 && response.status < 300) {
@@ -2200,14 +4527,14 @@ export const RemoteAccessApiFp = {
             });
         };
     },
-    /** 
+    /**
      * Update view configuration
      * @param name Name of the view
      * @param body View configuration in config.xml format
      * @param jenkinsCrumb CSRF protection token
      */
-    postViewConfig(params: { "name": string; "body": string; "jenkinsCrumb"?: string;  }, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<any> {
-        const fetchArgs = RemoteAccessApiFetchParamCreator.postViewConfig(params, options);
+    postViewConfig(params: { name: string; body: string; jenkinsCrumb?: string;  }, configuration: Configuration, options: any = {}): (fetch: FetchAPI, basePath?: string) => Promise<any> {
+        const fetchArgs = RemoteAccessApiFetchParamCreator.postViewConfig(params, configuration, options);
         return (fetch: FetchAPI = isomorphicFetch, basePath: string = BASE_PATH) => {
             return fetch(basePath + fetchArgs.url, fetchArgs.options).then((response) => {
                 if (response.status >= 200 && response.status < 300) {
@@ -2224,88 +4551,89 @@ export const RemoteAccessApiFp = {
  * RemoteAccessApi - object-oriented interface
  */
 export class RemoteAccessApi extends BaseAPI {
-    /** 
+    /**
      * Retrieve computer details
+     * @param depth Recursion depth in response model
      */
-    getComputer(options?: any) {
-        return RemoteAccessApiFp.getComputer(options)(this.fetch, this.basePath);
+    getComputer(params: {  depth: number; }, options: any = {}) {
+        return RemoteAccessApiFp.getComputer(params, this.configuration, options)(this.fetch, this.basePath);
     }
-    /** 
+    /**
      * Retrieve CSRF protection token
      */
-    getCrumb(options?: any) {
-        return RemoteAccessApiFp.getCrumb(options)(this.fetch, this.basePath);
+    getCrumb(options: any = {}) {
+        return RemoteAccessApiFp.getCrumb(this.configuration, options)(this.fetch, this.basePath);
     }
-    /** 
+    /**
      * Retrieve Jenkins details
      */
-    getJenkins(options?: any) {
-        return RemoteAccessApiFp.getJenkins(options)(this.fetch, this.basePath);
+    getJenkins(options: any = {}) {
+        return RemoteAccessApiFp.getJenkins(this.configuration, options)(this.fetch, this.basePath);
     }
-    /** 
+    /**
      * Retrieve job details
      * @param name Name of the job
      */
-    getJob(params: {  "name": string; }, options?: any) {
-        return RemoteAccessApiFp.getJob(params, options)(this.fetch, this.basePath);
+    getJob(params: {  name: string; }, options: any = {}) {
+        return RemoteAccessApiFp.getJob(params, this.configuration, options)(this.fetch, this.basePath);
     }
-    /** 
+    /**
      * Retrieve job configuration
      * @param name Name of the job
      */
-    getJobConfig(params: {  "name": string; }, options?: any) {
-        return RemoteAccessApiFp.getJobConfig(params, options)(this.fetch, this.basePath);
+    getJobConfig(params: {  name: string; }, options: any = {}) {
+        return RemoteAccessApiFp.getJobConfig(params, this.configuration, options)(this.fetch, this.basePath);
     }
-    /** 
-     * Retrieve job&#39;s last build details
+    /**
+     * Retrieve job's last build details
      * @param name Name of the job
      */
-    getJobLastBuild(params: {  "name": string; }, options?: any) {
-        return RemoteAccessApiFp.getJobLastBuild(params, options)(this.fetch, this.basePath);
+    getJobLastBuild(params: {  name: string; }, options: any = {}) {
+        return RemoteAccessApiFp.getJobLastBuild(params, this.configuration, options)(this.fetch, this.basePath);
     }
-    /** 
-     * Retrieve job&#39;s build progressive text output
+    /**
+     * Retrieve job's build progressive text output
      * @param name Name of the job
      * @param number Build number
      * @param start Starting point of progressive text output
      */
-    getJobProgressiveText(params: {  "name": string; "number": string; "start": string; }, options?: any) {
-        return RemoteAccessApiFp.getJobProgressiveText(params, options)(this.fetch, this.basePath);
+    getJobProgressiveText(params: {  name: string; number: string; start: string; }, options: any = {}) {
+        return RemoteAccessApiFp.getJobProgressiveText(params, this.configuration, options)(this.fetch, this.basePath);
     }
-    /** 
+    /**
      * Retrieve queue details
      */
-    getQueue(options?: any) {
-        return RemoteAccessApiFp.getQueue(options)(this.fetch, this.basePath);
+    getQueue(options: any = {}) {
+        return RemoteAccessApiFp.getQueue(this.configuration, options)(this.fetch, this.basePath);
     }
-    /** 
+    /**
      * Retrieve queued item details
      * @param number Queue number
      */
-    getQueueItem(params: {  "number": string; }, options?: any) {
-        return RemoteAccessApiFp.getQueueItem(params, options)(this.fetch, this.basePath);
+    getQueueItem(params: {  number: string; }, options: any = {}) {
+        return RemoteAccessApiFp.getQueueItem(params, this.configuration, options)(this.fetch, this.basePath);
     }
-    /** 
+    /**
      * Retrieve view details
      * @param name Name of the view
      */
-    getView(params: {  "name": string; }, options?: any) {
-        return RemoteAccessApiFp.getView(params, options)(this.fetch, this.basePath);
+    getView(params: {  name: string; }, options: any = {}) {
+        return RemoteAccessApiFp.getView(params, this.configuration, options)(this.fetch, this.basePath);
     }
-    /** 
+    /**
      * Retrieve view configuration
      * @param name Name of the view
      */
-    getViewConfig(params: {  "name": string; }, options?: any) {
-        return RemoteAccessApiFp.getViewConfig(params, options)(this.fetch, this.basePath);
+    getViewConfig(params: {  name: string; }, options: any = {}) {
+        return RemoteAccessApiFp.getViewConfig(params, this.configuration, options)(this.fetch, this.basePath);
     }
-    /** 
+    /**
      * Retrieve Jenkins headers
      */
-    headJenkins(options?: any) {
-        return RemoteAccessApiFp.headJenkins(options)(this.fetch, this.basePath);
+    headJenkins(options: any = {}) {
+        return RemoteAccessApiFp.headJenkins(this.configuration, options)(this.fetch, this.basePath);
     }
-    /** 
+    /**
      * Create a new job using job configuration, or copied from an existing job
      * @param name Name of the new job
      * @param from Existing job to copy from
@@ -2314,78 +4642,78 @@ export class RemoteAccessApi extends BaseAPI {
      * @param jenkinsCrumb CSRF protection token
      * @param contentType Content type header application/xml
      */
-    postCreateItem(params: {  "name": string; "from"?: string; "mode"?: string; "body"?: string; "jenkinsCrumb"?: string; "contentType"?: string; }, options?: any) {
-        return RemoteAccessApiFp.postCreateItem(params, options)(this.fetch, this.basePath);
+    postCreateItem(params: {  name: string; from?: string; mode?: string; body?: string; jenkinsCrumb?: string; contentType?: string; }, options: any = {}) {
+        return RemoteAccessApiFp.postCreateItem(params, this.configuration, options)(this.fetch, this.basePath);
     }
-    /** 
+    /**
      * Create a new view using view configuration
      * @param name Name of the new view
      * @param body View configuration in config.xml format
      * @param jenkinsCrumb CSRF protection token
      * @param contentType Content type header application/xml
      */
-    postCreateView(params: {  "name": string; "body"?: string; "jenkinsCrumb"?: string; "contentType"?: string; }, options?: any) {
-        return RemoteAccessApiFp.postCreateView(params, options)(this.fetch, this.basePath);
+    postCreateView(params: {  name: string; body?: string; jenkinsCrumb?: string; contentType?: string; }, options: any = {}) {
+        return RemoteAccessApiFp.postCreateView(params, this.configuration, options)(this.fetch, this.basePath);
     }
-    /** 
+    /**
      * Build a job
      * @param name Name of the job
      * @param json 
      * @param token 
      * @param jenkinsCrumb CSRF protection token
      */
-    postJobBuild(params: {  "name": string; "json": string; "token"?: string; "jenkinsCrumb"?: string; }, options?: any) {
-        return RemoteAccessApiFp.postJobBuild(params, options)(this.fetch, this.basePath);
+    postJobBuild(params: {  name: string; json: string; token?: string; jenkinsCrumb?: string; }, options: any = {}) {
+        return RemoteAccessApiFp.postJobBuild(params, this.configuration, options)(this.fetch, this.basePath);
     }
-    /** 
+    /**
      * Update job configuration
      * @param name Name of the job
      * @param body Job configuration in config.xml format
      * @param jenkinsCrumb CSRF protection token
      */
-    postJobConfig(params: {  "name": string; "body": string; "jenkinsCrumb"?: string; }, options?: any) {
-        return RemoteAccessApiFp.postJobConfig(params, options)(this.fetch, this.basePath);
+    postJobConfig(params: {  name: string; body: string; jenkinsCrumb?: string; }, options: any = {}) {
+        return RemoteAccessApiFp.postJobConfig(params, this.configuration, options)(this.fetch, this.basePath);
     }
-    /** 
+    /**
      * Delete a job
      * @param name Name of the job
      * @param jenkinsCrumb CSRF protection token
      */
-    postJobDelete(params: {  "name": string; "jenkinsCrumb"?: string; }, options?: any) {
-        return RemoteAccessApiFp.postJobDelete(params, options)(this.fetch, this.basePath);
+    postJobDelete(params: {  name: string; jenkinsCrumb?: string; }, options: any = {}) {
+        return RemoteAccessApiFp.postJobDelete(params, this.configuration, options)(this.fetch, this.basePath);
     }
-    /** 
+    /**
      * Disable a job
      * @param name Name of the job
      * @param jenkinsCrumb CSRF protection token
      */
-    postJobDisable(params: {  "name": string; "jenkinsCrumb"?: string; }, options?: any) {
-        return RemoteAccessApiFp.postJobDisable(params, options)(this.fetch, this.basePath);
+    postJobDisable(params: {  name: string; jenkinsCrumb?: string; }, options: any = {}) {
+        return RemoteAccessApiFp.postJobDisable(params, this.configuration, options)(this.fetch, this.basePath);
     }
-    /** 
+    /**
      * Enable a job
      * @param name Name of the job
      * @param jenkinsCrumb CSRF protection token
      */
-    postJobEnable(params: {  "name": string; "jenkinsCrumb"?: string; }, options?: any) {
-        return RemoteAccessApiFp.postJobEnable(params, options)(this.fetch, this.basePath);
+    postJobEnable(params: {  name: string; jenkinsCrumb?: string; }, options: any = {}) {
+        return RemoteAccessApiFp.postJobEnable(params, this.configuration, options)(this.fetch, this.basePath);
     }
-    /** 
+    /**
      * Stop a job
      * @param name Name of the job
      * @param jenkinsCrumb CSRF protection token
      */
-    postJobLastBuildStop(params: {  "name": string; "jenkinsCrumb"?: string; }, options?: any) {
-        return RemoteAccessApiFp.postJobLastBuildStop(params, options)(this.fetch, this.basePath);
+    postJobLastBuildStop(params: {  name: string; jenkinsCrumb?: string; }, options: any = {}) {
+        return RemoteAccessApiFp.postJobLastBuildStop(params, this.configuration, options)(this.fetch, this.basePath);
     }
-    /** 
+    /**
      * Update view configuration
      * @param name Name of the view
      * @param body View configuration in config.xml format
      * @param jenkinsCrumb CSRF protection token
      */
-    postViewConfig(params: {  "name": string; "body": string; "jenkinsCrumb"?: string; }, options?: any) {
-        return RemoteAccessApiFp.postViewConfig(params, options)(this.fetch, this.basePath);
+    postViewConfig(params: {  name: string; body: string; jenkinsCrumb?: string; }, options: any = {}) {
+        return RemoteAccessApiFp.postViewConfig(params, this.configuration, options)(this.fetch, this.basePath);
     }
 };
 
@@ -2394,88 +4722,89 @@ export class RemoteAccessApi extends BaseAPI {
  */
 export const RemoteAccessApiFactory = function (fetch?: FetchAPI, basePath?: string) {
     return {
-        /** 
+        /**
          * Retrieve computer details
+         * @param depth Recursion depth in response model
          */
-        getComputer(options?: any) {
-            return RemoteAccessApiFp.getComputer(options)(fetch, basePath);
+        getComputer(params: {  depth: number; }, configuration: Configuration, options: any = {}) {
+            return RemoteAccessApiFp.getComputer(params, configuration, options)(fetch, basePath);
         },
-        /** 
+        /**
          * Retrieve CSRF protection token
          */
-        getCrumb(options?: any) {
-            return RemoteAccessApiFp.getCrumb(options)(fetch, basePath);
+        getCrumb(configuration: Configuration, options: any = {}) {
+            return RemoteAccessApiFp.getCrumb(configuration, options)(fetch, basePath);
         },
-        /** 
+        /**
          * Retrieve Jenkins details
          */
-        getJenkins(options?: any) {
-            return RemoteAccessApiFp.getJenkins(options)(fetch, basePath);
+        getJenkins(configuration: Configuration, options: any = {}) {
+            return RemoteAccessApiFp.getJenkins(configuration, options)(fetch, basePath);
         },
-        /** 
+        /**
          * Retrieve job details
          * @param name Name of the job
          */
-        getJob(params: {  "name": string; }, options?: any) {
-            return RemoteAccessApiFp.getJob(params, options)(fetch, basePath);
+        getJob(params: {  name: string; }, configuration: Configuration, options: any = {}) {
+            return RemoteAccessApiFp.getJob(params, configuration, options)(fetch, basePath);
         },
-        /** 
+        /**
          * Retrieve job configuration
          * @param name Name of the job
          */
-        getJobConfig(params: {  "name": string; }, options?: any) {
-            return RemoteAccessApiFp.getJobConfig(params, options)(fetch, basePath);
+        getJobConfig(params: {  name: string; }, configuration: Configuration, options: any = {}) {
+            return RemoteAccessApiFp.getJobConfig(params, configuration, options)(fetch, basePath);
         },
-        /** 
-         * Retrieve job&#39;s last build details
+        /**
+         * Retrieve job's last build details
          * @param name Name of the job
          */
-        getJobLastBuild(params: {  "name": string; }, options?: any) {
-            return RemoteAccessApiFp.getJobLastBuild(params, options)(fetch, basePath);
+        getJobLastBuild(params: {  name: string; }, configuration: Configuration, options: any = {}) {
+            return RemoteAccessApiFp.getJobLastBuild(params, configuration, options)(fetch, basePath);
         },
-        /** 
-         * Retrieve job&#39;s build progressive text output
+        /**
+         * Retrieve job's build progressive text output
          * @param name Name of the job
          * @param number Build number
          * @param start Starting point of progressive text output
          */
-        getJobProgressiveText(params: {  "name": string; "number": string; "start": string; }, options?: any) {
-            return RemoteAccessApiFp.getJobProgressiveText(params, options)(fetch, basePath);
+        getJobProgressiveText(params: {  name: string; number: string; start: string; }, configuration: Configuration, options: any = {}) {
+            return RemoteAccessApiFp.getJobProgressiveText(params, configuration, options)(fetch, basePath);
         },
-        /** 
+        /**
          * Retrieve queue details
          */
-        getQueue(options?: any) {
-            return RemoteAccessApiFp.getQueue(options)(fetch, basePath);
+        getQueue(configuration: Configuration, options: any = {}) {
+            return RemoteAccessApiFp.getQueue(configuration, options)(fetch, basePath);
         },
-        /** 
+        /**
          * Retrieve queued item details
          * @param number Queue number
          */
-        getQueueItem(params: {  "number": string; }, options?: any) {
-            return RemoteAccessApiFp.getQueueItem(params, options)(fetch, basePath);
+        getQueueItem(params: {  number: string; }, configuration: Configuration, options: any = {}) {
+            return RemoteAccessApiFp.getQueueItem(params, configuration, options)(fetch, basePath);
         },
-        /** 
+        /**
          * Retrieve view details
          * @param name Name of the view
          */
-        getView(params: {  "name": string; }, options?: any) {
-            return RemoteAccessApiFp.getView(params, options)(fetch, basePath);
+        getView(params: {  name: string; }, configuration: Configuration, options: any = {}) {
+            return RemoteAccessApiFp.getView(params, configuration, options)(fetch, basePath);
         },
-        /** 
+        /**
          * Retrieve view configuration
          * @param name Name of the view
          */
-        getViewConfig(params: {  "name": string; }, options?: any) {
-            return RemoteAccessApiFp.getViewConfig(params, options)(fetch, basePath);
+        getViewConfig(params: {  name: string; }, configuration: Configuration, options: any = {}) {
+            return RemoteAccessApiFp.getViewConfig(params, configuration, options)(fetch, basePath);
         },
-        /** 
+        /**
          * Retrieve Jenkins headers
          */
-        headJenkins(options?: any) {
-            return RemoteAccessApiFp.headJenkins(options)(fetch, basePath);
+        headJenkins(configuration: Configuration, options: any = {}) {
+            return RemoteAccessApiFp.headJenkins(configuration, options)(fetch, basePath);
         },
-        /** 
+        /**
          * Create a new job using job configuration, or copied from an existing job
          * @param name Name of the new job
          * @param from Existing job to copy from
@@ -2484,78 +4813,78 @@ export const RemoteAccessApiFactory = function (fetch?: FetchAPI, basePath?: str
          * @param jenkinsCrumb CSRF protection token
          * @param contentType Content type header application/xml
          */
-        postCreateItem(params: {  "name": string; "from"?: string; "mode"?: string; "body"?: string; "jenkinsCrumb"?: string; "contentType"?: string; }, options?: any) {
-            return RemoteAccessApiFp.postCreateItem(params, options)(fetch, basePath);
+        postCreateItem(params: {  name: string; from?: string; mode?: string; body?: string; jenkinsCrumb?: string; contentType?: string; }, configuration: Configuration, options: any = {}) {
+            return RemoteAccessApiFp.postCreateItem(params, configuration, options)(fetch, basePath);
         },
-        /** 
+        /**
          * Create a new view using view configuration
          * @param name Name of the new view
          * @param body View configuration in config.xml format
          * @param jenkinsCrumb CSRF protection token
          * @param contentType Content type header application/xml
          */
-        postCreateView(params: {  "name": string; "body"?: string; "jenkinsCrumb"?: string; "contentType"?: string; }, options?: any) {
-            return RemoteAccessApiFp.postCreateView(params, options)(fetch, basePath);
+        postCreateView(params: {  name: string; body?: string; jenkinsCrumb?: string; contentType?: string; }, configuration: Configuration, options: any = {}) {
+            return RemoteAccessApiFp.postCreateView(params, configuration, options)(fetch, basePath);
         },
-        /** 
+        /**
          * Build a job
          * @param name Name of the job
          * @param json 
          * @param token 
          * @param jenkinsCrumb CSRF protection token
          */
-        postJobBuild(params: {  "name": string; "json": string; "token"?: string; "jenkinsCrumb"?: string; }, options?: any) {
-            return RemoteAccessApiFp.postJobBuild(params, options)(fetch, basePath);
+        postJobBuild(params: {  name: string; json: string; token?: string; jenkinsCrumb?: string; }, configuration: Configuration, options: any = {}) {
+            return RemoteAccessApiFp.postJobBuild(params, configuration, options)(fetch, basePath);
         },
-        /** 
+        /**
          * Update job configuration
          * @param name Name of the job
          * @param body Job configuration in config.xml format
          * @param jenkinsCrumb CSRF protection token
          */
-        postJobConfig(params: {  "name": string; "body": string; "jenkinsCrumb"?: string; }, options?: any) {
-            return RemoteAccessApiFp.postJobConfig(params, options)(fetch, basePath);
+        postJobConfig(params: {  name: string; body: string; jenkinsCrumb?: string; }, configuration: Configuration, options: any = {}) {
+            return RemoteAccessApiFp.postJobConfig(params, configuration, options)(fetch, basePath);
         },
-        /** 
+        /**
          * Delete a job
          * @param name Name of the job
          * @param jenkinsCrumb CSRF protection token
          */
-        postJobDelete(params: {  "name": string; "jenkinsCrumb"?: string; }, options?: any) {
-            return RemoteAccessApiFp.postJobDelete(params, options)(fetch, basePath);
+        postJobDelete(params: {  name: string; jenkinsCrumb?: string; }, configuration: Configuration, options: any = {}) {
+            return RemoteAccessApiFp.postJobDelete(params, configuration, options)(fetch, basePath);
         },
-        /** 
+        /**
          * Disable a job
          * @param name Name of the job
          * @param jenkinsCrumb CSRF protection token
          */
-        postJobDisable(params: {  "name": string; "jenkinsCrumb"?: string; }, options?: any) {
-            return RemoteAccessApiFp.postJobDisable(params, options)(fetch, basePath);
+        postJobDisable(params: {  name: string; jenkinsCrumb?: string; }, configuration: Configuration, options: any = {}) {
+            return RemoteAccessApiFp.postJobDisable(params, configuration, options)(fetch, basePath);
         },
-        /** 
+        /**
          * Enable a job
          * @param name Name of the job
          * @param jenkinsCrumb CSRF protection token
          */
-        postJobEnable(params: {  "name": string; "jenkinsCrumb"?: string; }, options?: any) {
-            return RemoteAccessApiFp.postJobEnable(params, options)(fetch, basePath);
+        postJobEnable(params: {  name: string; jenkinsCrumb?: string; }, configuration: Configuration, options: any = {}) {
+            return RemoteAccessApiFp.postJobEnable(params, configuration, options)(fetch, basePath);
         },
-        /** 
+        /**
          * Stop a job
          * @param name Name of the job
          * @param jenkinsCrumb CSRF protection token
          */
-        postJobLastBuildStop(params: {  "name": string; "jenkinsCrumb"?: string; }, options?: any) {
-            return RemoteAccessApiFp.postJobLastBuildStop(params, options)(fetch, basePath);
+        postJobLastBuildStop(params: {  name: string; jenkinsCrumb?: string; }, configuration: Configuration, options: any = {}) {
+            return RemoteAccessApiFp.postJobLastBuildStop(params, configuration, options)(fetch, basePath);
         },
-        /** 
+        /**
          * Update view configuration
          * @param name Name of the view
          * @param body View configuration in config.xml format
          * @param jenkinsCrumb CSRF protection token
          */
-        postViewConfig(params: {  "name": string; "body": string; "jenkinsCrumb"?: string; }, options?: any) {
-            return RemoteAccessApiFp.postViewConfig(params, options)(fetch, basePath);
+        postViewConfig(params: {  name: string; body: string; jenkinsCrumb?: string; }, configuration: Configuration, options: any = {}) {
+            return RemoteAccessApiFp.postViewConfig(params, configuration, options)(fetch, basePath);
         },
     };
 };

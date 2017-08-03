@@ -5,21 +5,21 @@
 (defn get-computer-with-http-info
   "
   Retrieve computer details"
-  []
-  (call-api "/computer/api/json?depth&#x3D;1" :get
+  [depth ]
+  (call-api "/computer/api/json" :get
             {:path-params   {}
              :header-params {}
-             :query-params  {}
+             :query-params  {"depth" depth }
              :form-params   {}
              :content-types []
              :accepts       ["application/json"]
-             :auth-names    []}))
+             :auth-names    ["jenkins_auth"]}))
 
 (defn get-computer
   "
   Retrieve computer details"
-  []
-  (:data (get-computer-with-http-info)))
+  [depth ]
+  (:data (get-computer-with-http-info depth)))
 
 (defn get-crumb-with-http-info
   "
@@ -32,7 +32,7 @@
              :form-params   {}
              :content-types []
              :accepts       ["application/json"]
-             :auth-names    []}))
+             :auth-names    ["jenkins_auth"]}))
 
 (defn get-crumb
   "
@@ -51,7 +51,7 @@
              :form-params   {}
              :content-types []
              :accepts       ["application/json"]
-             :auth-names    []}))
+             :auth-names    ["jenkins_auth"]}))
 
 (defn get-jenkins
   "
@@ -70,7 +70,7 @@
              :form-params   {}
              :content-types []
              :accepts       ["application/json"]
-             :auth-names    []}))
+             :auth-names    ["jenkins_auth"]}))
 
 (defn get-job
   "
@@ -89,7 +89,7 @@
              :form-params   {}
              :content-types []
              :accepts       ["text/xml"]
-             :auth-names    []}))
+             :auth-names    ["jenkins_auth"]}))
 
 (defn get-job-config
   "
@@ -108,7 +108,7 @@
              :form-params   {}
              :content-types []
              :accepts       ["application/json"]
-             :auth-names    []}))
+             :auth-names    ["jenkins_auth"]}))
 
 (defn get-job-last-build
   "
@@ -127,7 +127,7 @@
              :form-params   {}
              :content-types []
              :accepts       []
-             :auth-names    []}))
+             :auth-names    ["jenkins_auth"]}))
 
 (defn get-job-progressive-text
   "
@@ -146,7 +146,7 @@
              :form-params   {}
              :content-types []
              :accepts       ["application/json"]
-             :auth-names    []}))
+             :auth-names    ["jenkins_auth"]}))
 
 (defn get-queue
   "
@@ -165,7 +165,7 @@
              :form-params   {}
              :content-types []
              :accepts       ["application/json"]
-             :auth-names    []}))
+             :auth-names    ["jenkins_auth"]}))
 
 (defn get-queue-item
   "
@@ -184,7 +184,7 @@
              :form-params   {}
              :content-types []
              :accepts       ["application/json"]
-             :auth-names    []}))
+             :auth-names    ["jenkins_auth"]}))
 
 (defn get-view
   "
@@ -203,7 +203,7 @@
              :form-params   {}
              :content-types []
              :accepts       ["text/xml"]
-             :auth-names    []}))
+             :auth-names    ["jenkins_auth"]}))
 
 (defn get-view-config
   "
@@ -222,7 +222,7 @@
              :form-params   {}
              :content-types []
              :accepts       []
-             :auth-names    []}))
+             :auth-names    ["jenkins_auth"]}))
 
 (defn head-jenkins
   "
@@ -243,7 +243,7 @@
               :body-param    body
               :content-types []
               :accepts       ["text/html"]
-              :auth-names    []})))
+              :auth-names    ["jenkins_auth"]})))
 
 (defn post-create-item
   "
@@ -265,7 +265,7 @@
               :body-param    body
               :content-types []
               :accepts       ["text/html"]
-              :auth-names    []})))
+              :auth-names    ["jenkins_auth"]})))
 
 (defn post-create-view
   "
@@ -286,7 +286,7 @@
               :form-params   {}
               :content-types []
               :accepts       []
-              :auth-names    []})))
+              :auth-names    ["jenkins_auth"]})))
 
 (defn post-job-build
   "
@@ -308,7 +308,7 @@
               :body-param    body
               :content-types []
               :accepts       ["text/xml"]
-              :auth-names    []})))
+              :auth-names    ["jenkins_auth"]})))
 
 (defn post-job-config
   "
@@ -329,7 +329,7 @@
               :form-params   {}
               :content-types []
               :accepts       []
-              :auth-names    []})))
+              :auth-names    ["jenkins_auth"]})))
 
 (defn post-job-delete
   "
@@ -350,7 +350,7 @@
               :form-params   {}
               :content-types []
               :accepts       []
-              :auth-names    []})))
+              :auth-names    ["jenkins_auth"]})))
 
 (defn post-job-disable
   "
@@ -371,7 +371,7 @@
               :form-params   {}
               :content-types []
               :accepts       []
-              :auth-names    []})))
+              :auth-names    ["jenkins_auth"]})))
 
 (defn post-job-enable
   "
@@ -392,7 +392,7 @@
               :form-params   {}
               :content-types []
               :accepts       []
-              :auth-names    []})))
+              :auth-names    ["jenkins_auth"]})))
 
 (defn post-job-last-build-stop
   "
@@ -414,7 +414,7 @@
               :body-param    body
               :content-types []
               :accepts       []
-              :auth-names    []})))
+              :auth-names    ["jenkins_auth"]})))
 
 (defn post-view-config
   "

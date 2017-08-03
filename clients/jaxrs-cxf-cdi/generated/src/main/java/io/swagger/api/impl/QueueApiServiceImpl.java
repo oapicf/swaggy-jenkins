@@ -5,7 +5,7 @@ import io.swagger.model.*;
 
 import org.apache.cxf.jaxrs.ext.multipart.Attachment;
 
-import io.swagger.model.HudsonmodelQueue;
+import io.swagger.model.Queue;
 
 import java.util.List;
 
@@ -16,7 +16,7 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
 
 @RequestScoped
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaJAXRSCXFCDIServerCodegen", date = "2017-07-25T10:45:05.448+10:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaJAXRSCXFCDIServerCodegen", date = "2017-08-03T23:34:47.267Z")
 public class QueueApiServiceImpl implements QueueApiService {
       @Override
       public Response getQueue(SecurityContext securityContext) {

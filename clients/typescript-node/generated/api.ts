@@ -21,13 +21,2084 @@ let defaultBasePath = 'http://localhost';
 // ===============================================
 
 /* tslint:disable:no-unused-variable */
+let primitives = [
+                    "string",
+                    "boolean",
+                    "double",
+                    "integer",
+                    "long",
+                    "float",
+                    "number",
+                    "any"
+                 ];
 
-export class GetClassesByClass {
-    'classes': Array<string>;
-    'class': string;
+class ObjectSerializer {
+
+    public static findCorrectType(data: any, expectedType: string) {
+        if (data == undefined) {
+            return expectedType;
+        } else if (primitives.indexOf(expectedType.toLowerCase()) !== -1) {
+            return expectedType;
+        } else if (expectedType === "Date") {
+            return expectedType;
+        } else {
+            if (enumsMap[expectedType]) {
+                return expectedType;
+            }
+
+            if (!typeMap[expectedType]) {
+                return expectedType; // w/e we don't know the type
+            }
+
+            // Check the discriminator
+            let discriminatorProperty = typeMap[expectedType].discriminator;
+            if (discriminatorProperty == null) {
+                return expectedType; // the type does not have a discriminator. use it.
+            } else {
+                if (data[discriminatorProperty]) {
+                    return data[discriminatorProperty]; // use the type given in the discriminator
+                } else {
+                    return expectedType; // discriminator was not present (or an empty string)
+                }
+            }
+        }
+    }
+
+    public static serialize(data: any, type: string) {
+        if (data == undefined) {
+            return data;
+        } else if (primitives.indexOf(type.toLowerCase()) !== -1) {
+            return data;
+        } else if (type.lastIndexOf("Array<", 0) === 0) { // string.startsWith pre es6
+            let subType: string = type.replace("Array<", ""); // Array<Type> => Type>
+            subType = subType.substring(0, subType.length - 1); // Type> => Type
+            let transformedData = [];
+            for (let index in data) {
+                let date = data[index];
+                transformedData.push(ObjectSerializer.serialize(date, subType));
+            }
+            return transformedData;
+        } else if (type === "Date") {
+            return data.toString();
+        } else {
+            if (enumsMap[type]) {
+                return data;
+            }
+            if (!typeMap[type]) { // in case we dont know the type
+                return data;
+            }
+
+            // get the map for the correct type.
+            let attributeTypes = typeMap[type].getAttributeTypeMap();
+            let instance = {};
+            for (let index in attributeTypes) {
+                let attributeType = attributeTypes[index];
+                instance[attributeType.baseName] = ObjectSerializer.serialize(data[attributeType.name], attributeType.type);
+            }
+            return instance;
+        }
+    }
+
+    public static deserialize(data: any, type: string) {
+        // polymorphism may change the actual type.
+        type = ObjectSerializer.findCorrectType(data, type);
+        if (data == undefined) {
+            return data;
+        } else if (primitives.indexOf(type.toLowerCase()) !== -1) {
+            return data;
+        } else if (type.lastIndexOf("Array<", 0) === 0) { // string.startsWith pre es6
+            let subType: string = type.replace("Array<", ""); // Array<Type> => Type>
+            subType = subType.substring(0, subType.length - 1); // Type> => Type
+            let transformedData = [];
+            for (let index in data) {
+                let date = data[index];
+                transformedData.push(ObjectSerializer.deserialize(date, subType));
+            }
+            return transformedData;
+        } else if (type === "Date") {
+            return new Date(data);
+        } else {
+            if (enumsMap[type]) {// is Enum
+                return data;
+            }
+
+            if (!typeMap[type]) { // dont know the type
+                return data;
+            }
+            let instance = new typeMap[type]();
+            let attributeTypes = typeMap[type].getAttributeTypeMap();
+            for (let index in attributeTypes) {
+                let attributeType = attributeTypes[index];
+                instance[attributeType.name] = ObjectSerializer.deserialize(data[attributeType.baseName], attributeType.type);
+            }
+            return instance;
+        }
+    }
 }
 
-export class GetMultibranchPipeline {
+export class AllView {
+    'class': string;
+    'name': string;
+    'url': string;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "class",
+            "baseName": "_class",
+            "type": "string"
+        },
+        {
+            "name": "name",
+            "baseName": "name",
+            "type": "string"
+        },
+        {
+            "name": "url",
+            "baseName": "url",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return AllView.attributeTypeMap;
+    }
+}
+
+export class Body {
+    'favorite': boolean;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "favorite",
+            "baseName": "favorite",
+            "type": "boolean"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return Body.attributeTypeMap;
+    }
+}
+
+export class BranchImpl {
+    'class': string;
+    'displayName': string;
+    'estimatedDurationInMillis': number;
+    'fullDisplayName': string;
+    'fullName': string;
+    'name': string;
+    'organization': string;
+    'parameters': Array<StringParameterDefinition>;
+    'permissions': BranchImplpermissions;
+    'weatherScore': number;
+    'pullRequest': string;
+    'links': BranchImpllinks;
+    'latestRun': PipelineRunImpl;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "class",
+            "baseName": "_class",
+            "type": "string"
+        },
+        {
+            "name": "displayName",
+            "baseName": "displayName",
+            "type": "string"
+        },
+        {
+            "name": "estimatedDurationInMillis",
+            "baseName": "estimatedDurationInMillis",
+            "type": "number"
+        },
+        {
+            "name": "fullDisplayName",
+            "baseName": "fullDisplayName",
+            "type": "string"
+        },
+        {
+            "name": "fullName",
+            "baseName": "fullName",
+            "type": "string"
+        },
+        {
+            "name": "name",
+            "baseName": "name",
+            "type": "string"
+        },
+        {
+            "name": "organization",
+            "baseName": "organization",
+            "type": "string"
+        },
+        {
+            "name": "parameters",
+            "baseName": "parameters",
+            "type": "Array<StringParameterDefinition>"
+        },
+        {
+            "name": "permissions",
+            "baseName": "permissions",
+            "type": "BranchImplpermissions"
+        },
+        {
+            "name": "weatherScore",
+            "baseName": "weatherScore",
+            "type": "number"
+        },
+        {
+            "name": "pullRequest",
+            "baseName": "pullRequest",
+            "type": "string"
+        },
+        {
+            "name": "links",
+            "baseName": "_links",
+            "type": "BranchImpllinks"
+        },
+        {
+            "name": "latestRun",
+            "baseName": "latestRun",
+            "type": "PipelineRunImpl"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return BranchImpl.attributeTypeMap;
+    }
+}
+
+export class BranchImpllinks {
+    'self': Link;
+    'actions': Link;
+    'runs': Link;
+    'queue': Link;
+    'class': string;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "self",
+            "baseName": "self",
+            "type": "Link"
+        },
+        {
+            "name": "actions",
+            "baseName": "actions",
+            "type": "Link"
+        },
+        {
+            "name": "runs",
+            "baseName": "runs",
+            "type": "Link"
+        },
+        {
+            "name": "queue",
+            "baseName": "queue",
+            "type": "Link"
+        },
+        {
+            "name": "class",
+            "baseName": "_class",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return BranchImpllinks.attributeTypeMap;
+    }
+}
+
+export class BranchImplpermissions {
+    'create': boolean;
+    'read': boolean;
+    'start': boolean;
+    'stop': boolean;
+    'class': string;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "create",
+            "baseName": "create",
+            "type": "boolean"
+        },
+        {
+            "name": "read",
+            "baseName": "read",
+            "type": "boolean"
+        },
+        {
+            "name": "start",
+            "baseName": "start",
+            "type": "boolean"
+        },
+        {
+            "name": "stop",
+            "baseName": "stop",
+            "type": "boolean"
+        },
+        {
+            "name": "class",
+            "baseName": "_class",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return BranchImplpermissions.attributeTypeMap;
+    }
+}
+
+export class CauseAction {
+    'class': string;
+    'causes': Array<CauseUserIdCause>;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "class",
+            "baseName": "_class",
+            "type": "string"
+        },
+        {
+            "name": "causes",
+            "baseName": "causes",
+            "type": "Array<CauseUserIdCause>"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return CauseAction.attributeTypeMap;
+    }
+}
+
+export class CauseUserIdCause {
+    'class': string;
+    'shortDescription': string;
+    'userId': string;
+    'userName': string;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "class",
+            "baseName": "_class",
+            "type": "string"
+        },
+        {
+            "name": "shortDescription",
+            "baseName": "shortDescription",
+            "type": "string"
+        },
+        {
+            "name": "userId",
+            "baseName": "userId",
+            "type": "string"
+        },
+        {
+            "name": "userName",
+            "baseName": "userName",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return CauseUserIdCause.attributeTypeMap;
+    }
+}
+
+export class ClassesByClass {
+    'classes': Array<string>;
+    'class': string;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "classes",
+            "baseName": "classes",
+            "type": "Array<string>"
+        },
+        {
+            "name": "class",
+            "baseName": "_class",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return ClassesByClass.attributeTypeMap;
+    }
+}
+
+export class ClockDifference {
+    'class': string;
+    'diff': number;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "class",
+            "baseName": "_class",
+            "type": "string"
+        },
+        {
+            "name": "diff",
+            "baseName": "diff",
+            "type": "number"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return ClockDifference.attributeTypeMap;
+    }
+}
+
+export class ComputerSet {
+    'class': string;
+    'busyExecutors': number;
+    'computer': Array<HudsonMasterComputer>;
+    'displayName': string;
+    'totalExecutors': number;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "class",
+            "baseName": "_class",
+            "type": "string"
+        },
+        {
+            "name": "busyExecutors",
+            "baseName": "busyExecutors",
+            "type": "number"
+        },
+        {
+            "name": "computer",
+            "baseName": "computer",
+            "type": "Array<HudsonMasterComputer>"
+        },
+        {
+            "name": "displayName",
+            "baseName": "displayName",
+            "type": "string"
+        },
+        {
+            "name": "totalExecutors",
+            "baseName": "totalExecutors",
+            "type": "number"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return ComputerSet.attributeTypeMap;
+    }
+}
+
+export class DefaultCrumbIssuer {
+    'class': string;
+    'crumb': string;
+    'crumbRequestField': string;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "class",
+            "baseName": "_class",
+            "type": "string"
+        },
+        {
+            "name": "crumb",
+            "baseName": "crumb",
+            "type": "string"
+        },
+        {
+            "name": "crumbRequestField",
+            "baseName": "crumbRequestField",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return DefaultCrumbIssuer.attributeTypeMap;
+    }
+}
+
+export class DiskSpaceMonitorDescriptorDiskSpace {
+    'class': string;
+    'timestamp': number;
+    'path': string;
+    'size': number;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "class",
+            "baseName": "_class",
+            "type": "string"
+        },
+        {
+            "name": "timestamp",
+            "baseName": "timestamp",
+            "type": "number"
+        },
+        {
+            "name": "path",
+            "baseName": "path",
+            "type": "string"
+        },
+        {
+            "name": "size",
+            "baseName": "size",
+            "type": "number"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return DiskSpaceMonitorDescriptorDiskSpace.attributeTypeMap;
+    }
+}
+
+export class EmptyChangeLogSet {
+    'class': string;
+    'kind': string;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "class",
+            "baseName": "_class",
+            "type": "string"
+        },
+        {
+            "name": "kind",
+            "baseName": "kind",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return EmptyChangeLogSet.attributeTypeMap;
+    }
+}
+
+export class ExtensionClassContainerImpl1 {
+    'class': string;
+    'links': ExtensionClassContainerImpl1links;
+    'map': ExtensionClassContainerImpl1map;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "class",
+            "baseName": "_class",
+            "type": "string"
+        },
+        {
+            "name": "links",
+            "baseName": "_links",
+            "type": "ExtensionClassContainerImpl1links"
+        },
+        {
+            "name": "map",
+            "baseName": "map",
+            "type": "ExtensionClassContainerImpl1map"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return ExtensionClassContainerImpl1.attributeTypeMap;
+    }
+}
+
+export class ExtensionClassContainerImpl1links {
+    'self': Link;
+    'class': string;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "self",
+            "baseName": "self",
+            "type": "Link"
+        },
+        {
+            "name": "class",
+            "baseName": "_class",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return ExtensionClassContainerImpl1links.attributeTypeMap;
+    }
+}
+
+export class ExtensionClassContainerImpl1map {
+    'ioJenkinsBlueoceanServiceEmbeddedRestPipelineImpl': ExtensionClassImpl;
+    'ioJenkinsBlueoceanServiceEmbeddedRestMultiBranchPipelineImpl': ExtensionClassImpl;
+    'class': string;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "ioJenkinsBlueoceanServiceEmbeddedRestPipelineImpl",
+            "baseName": "io.jenkins.blueocean.service.embedded.rest.PipelineImpl",
+            "type": "ExtensionClassImpl"
+        },
+        {
+            "name": "ioJenkinsBlueoceanServiceEmbeddedRestMultiBranchPipelineImpl",
+            "baseName": "io.jenkins.blueocean.service.embedded.rest.MultiBranchPipelineImpl",
+            "type": "ExtensionClassImpl"
+        },
+        {
+            "name": "class",
+            "baseName": "_class",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return ExtensionClassContainerImpl1map.attributeTypeMap;
+    }
+}
+
+export class ExtensionClassImpl {
+    'class': string;
+    'links': ExtensionClassImpllinks;
+    'classes': Array<string>;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "class",
+            "baseName": "_class",
+            "type": "string"
+        },
+        {
+            "name": "links",
+            "baseName": "_links",
+            "type": "ExtensionClassImpllinks"
+        },
+        {
+            "name": "classes",
+            "baseName": "classes",
+            "type": "Array<string>"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return ExtensionClassImpl.attributeTypeMap;
+    }
+}
+
+export class ExtensionClassImpllinks {
+    'self': Link;
+    'class': string;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "self",
+            "baseName": "self",
+            "type": "Link"
+        },
+        {
+            "name": "class",
+            "baseName": "_class",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return ExtensionClassImpllinks.attributeTypeMap;
+    }
+}
+
+export class FavoriteImpl {
+    'class': string;
+    'links': FavoriteImpllinks;
+    'item': PipelineImpl;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "class",
+            "baseName": "_class",
+            "type": "string"
+        },
+        {
+            "name": "links",
+            "baseName": "_links",
+            "type": "FavoriteImpllinks"
+        },
+        {
+            "name": "item",
+            "baseName": "item",
+            "type": "PipelineImpl"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return FavoriteImpl.attributeTypeMap;
+    }
+}
+
+export class FavoriteImpllinks {
+    'self': Link;
+    'class': string;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "self",
+            "baseName": "self",
+            "type": "Link"
+        },
+        {
+            "name": "class",
+            "baseName": "_class",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return FavoriteImpllinks.attributeTypeMap;
+    }
+}
+
+export class FreeStyleBuild {
+    'class': string;
+    'number': number;
+    'url': string;
+    'actions': Array<CauseAction>;
+    'building': boolean;
+    'description': string;
+    'displayName': string;
+    'duration': number;
+    'estimatedDuration': number;
+    'executor': string;
+    'fullDisplayName': string;
+    'id': string;
+    'keepLog': boolean;
+    'queueId': number;
+    'result': string;
+    'timestamp': number;
+    'builtOn': string;
+    'changeSet': EmptyChangeLogSet;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "class",
+            "baseName": "_class",
+            "type": "string"
+        },
+        {
+            "name": "number",
+            "baseName": "number",
+            "type": "number"
+        },
+        {
+            "name": "url",
+            "baseName": "url",
+            "type": "string"
+        },
+        {
+            "name": "actions",
+            "baseName": "actions",
+            "type": "Array<CauseAction>"
+        },
+        {
+            "name": "building",
+            "baseName": "building",
+            "type": "boolean"
+        },
+        {
+            "name": "description",
+            "baseName": "description",
+            "type": "string"
+        },
+        {
+            "name": "displayName",
+            "baseName": "displayName",
+            "type": "string"
+        },
+        {
+            "name": "duration",
+            "baseName": "duration",
+            "type": "number"
+        },
+        {
+            "name": "estimatedDuration",
+            "baseName": "estimatedDuration",
+            "type": "number"
+        },
+        {
+            "name": "executor",
+            "baseName": "executor",
+            "type": "string"
+        },
+        {
+            "name": "fullDisplayName",
+            "baseName": "fullDisplayName",
+            "type": "string"
+        },
+        {
+            "name": "id",
+            "baseName": "id",
+            "type": "string"
+        },
+        {
+            "name": "keepLog",
+            "baseName": "keepLog",
+            "type": "boolean"
+        },
+        {
+            "name": "queueId",
+            "baseName": "queueId",
+            "type": "number"
+        },
+        {
+            "name": "result",
+            "baseName": "result",
+            "type": "string"
+        },
+        {
+            "name": "timestamp",
+            "baseName": "timestamp",
+            "type": "number"
+        },
+        {
+            "name": "builtOn",
+            "baseName": "builtOn",
+            "type": "string"
+        },
+        {
+            "name": "changeSet",
+            "baseName": "changeSet",
+            "type": "EmptyChangeLogSet"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return FreeStyleBuild.attributeTypeMap;
+    }
+}
+
+export class FreeStyleProject {
+    'class': string;
+    'name': string;
+    'url': string;
+    'color': string;
+    'actions': Array<FreeStyleProjectactions>;
+    'description': string;
+    'displayName': string;
+    'displayNameOrNull': string;
+    'fullDisplayName': string;
+    'fullName': string;
+    'buildable': boolean;
+    'builds': Array<FreeStyleBuild>;
+    'firstBuild': FreeStyleBuild;
+    'healthReport': Array<FreeStyleProjecthealthReport>;
+    'inQueue': boolean;
+    'keepDependencies': boolean;
+    'lastBuild': FreeStyleBuild;
+    'lastCompletedBuild': FreeStyleBuild;
+    'lastFailedBuild': string;
+    'lastStableBuild': FreeStyleBuild;
+    'lastSuccessfulBuild': FreeStyleBuild;
+    'lastUnstableBuild': string;
+    'lastUnsuccessfulBuild': string;
+    'nextBuildNumber': number;
+    'queueItem': string;
+    'concurrentBuild': boolean;
+    'scm': NullSCM;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "class",
+            "baseName": "_class",
+            "type": "string"
+        },
+        {
+            "name": "name",
+            "baseName": "name",
+            "type": "string"
+        },
+        {
+            "name": "url",
+            "baseName": "url",
+            "type": "string"
+        },
+        {
+            "name": "color",
+            "baseName": "color",
+            "type": "string"
+        },
+        {
+            "name": "actions",
+            "baseName": "actions",
+            "type": "Array<FreeStyleProjectactions>"
+        },
+        {
+            "name": "description",
+            "baseName": "description",
+            "type": "string"
+        },
+        {
+            "name": "displayName",
+            "baseName": "displayName",
+            "type": "string"
+        },
+        {
+            "name": "displayNameOrNull",
+            "baseName": "displayNameOrNull",
+            "type": "string"
+        },
+        {
+            "name": "fullDisplayName",
+            "baseName": "fullDisplayName",
+            "type": "string"
+        },
+        {
+            "name": "fullName",
+            "baseName": "fullName",
+            "type": "string"
+        },
+        {
+            "name": "buildable",
+            "baseName": "buildable",
+            "type": "boolean"
+        },
+        {
+            "name": "builds",
+            "baseName": "builds",
+            "type": "Array<FreeStyleBuild>"
+        },
+        {
+            "name": "firstBuild",
+            "baseName": "firstBuild",
+            "type": "FreeStyleBuild"
+        },
+        {
+            "name": "healthReport",
+            "baseName": "healthReport",
+            "type": "Array<FreeStyleProjecthealthReport>"
+        },
+        {
+            "name": "inQueue",
+            "baseName": "inQueue",
+            "type": "boolean"
+        },
+        {
+            "name": "keepDependencies",
+            "baseName": "keepDependencies",
+            "type": "boolean"
+        },
+        {
+            "name": "lastBuild",
+            "baseName": "lastBuild",
+            "type": "FreeStyleBuild"
+        },
+        {
+            "name": "lastCompletedBuild",
+            "baseName": "lastCompletedBuild",
+            "type": "FreeStyleBuild"
+        },
+        {
+            "name": "lastFailedBuild",
+            "baseName": "lastFailedBuild",
+            "type": "string"
+        },
+        {
+            "name": "lastStableBuild",
+            "baseName": "lastStableBuild",
+            "type": "FreeStyleBuild"
+        },
+        {
+            "name": "lastSuccessfulBuild",
+            "baseName": "lastSuccessfulBuild",
+            "type": "FreeStyleBuild"
+        },
+        {
+            "name": "lastUnstableBuild",
+            "baseName": "lastUnstableBuild",
+            "type": "string"
+        },
+        {
+            "name": "lastUnsuccessfulBuild",
+            "baseName": "lastUnsuccessfulBuild",
+            "type": "string"
+        },
+        {
+            "name": "nextBuildNumber",
+            "baseName": "nextBuildNumber",
+            "type": "number"
+        },
+        {
+            "name": "queueItem",
+            "baseName": "queueItem",
+            "type": "string"
+        },
+        {
+            "name": "concurrentBuild",
+            "baseName": "concurrentBuild",
+            "type": "boolean"
+        },
+        {
+            "name": "scm",
+            "baseName": "scm",
+            "type": "NullSCM"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return FreeStyleProject.attributeTypeMap;
+    }
+}
+
+export class FreeStyleProjectactions {
+    'class': string;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "class",
+            "baseName": "_class",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return FreeStyleProjectactions.attributeTypeMap;
+    }
+}
+
+export class FreeStyleProjecthealthReport {
+    'description': string;
+    'iconClassName': string;
+    'iconUrl': string;
+    'score': number;
+    'class': string;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "description",
+            "baseName": "description",
+            "type": "string"
+        },
+        {
+            "name": "iconClassName",
+            "baseName": "iconClassName",
+            "type": "string"
+        },
+        {
+            "name": "iconUrl",
+            "baseName": "iconUrl",
+            "type": "string"
+        },
+        {
+            "name": "score",
+            "baseName": "score",
+            "type": "number"
+        },
+        {
+            "name": "class",
+            "baseName": "_class",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return FreeStyleProjecthealthReport.attributeTypeMap;
+    }
+}
+
+export class GenericResource {
+    'class': string;
+    'displayName': string;
+    'durationInMillis': number;
+    'id': string;
+    'result': string;
+    'startTime': string;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "class",
+            "baseName": "_class",
+            "type": "string"
+        },
+        {
+            "name": "displayName",
+            "baseName": "displayName",
+            "type": "string"
+        },
+        {
+            "name": "durationInMillis",
+            "baseName": "durationInMillis",
+            "type": "number"
+        },
+        {
+            "name": "id",
+            "baseName": "id",
+            "type": "string"
+        },
+        {
+            "name": "result",
+            "baseName": "result",
+            "type": "string"
+        },
+        {
+            "name": "startTime",
+            "baseName": "startTime",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return GenericResource.attributeTypeMap;
+    }
+}
+
+export class GithubContent {
+    'name': string;
+    'sha': string;
+    'class': string;
+    'repo': string;
+    'size': number;
+    'owner': string;
+    'path': string;
+    'base64Data': string;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "name",
+            "baseName": "name",
+            "type": "string"
+        },
+        {
+            "name": "sha",
+            "baseName": "sha",
+            "type": "string"
+        },
+        {
+            "name": "class",
+            "baseName": "_class",
+            "type": "string"
+        },
+        {
+            "name": "repo",
+            "baseName": "repo",
+            "type": "string"
+        },
+        {
+            "name": "size",
+            "baseName": "size",
+            "type": "number"
+        },
+        {
+            "name": "owner",
+            "baseName": "owner",
+            "type": "string"
+        },
+        {
+            "name": "path",
+            "baseName": "path",
+            "type": "string"
+        },
+        {
+            "name": "base64Data",
+            "baseName": "base64Data",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return GithubContent.attributeTypeMap;
+    }
+}
+
+export class GithubFile {
+    'content': GithubContent;
+    'class': string;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "content",
+            "baseName": "content",
+            "type": "GithubContent"
+        },
+        {
+            "name": "class",
+            "baseName": "_class",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return GithubFile.attributeTypeMap;
+    }
+}
+
+export class GithubOrganization {
+    'class': string;
+    'links': GithubOrganizationlinks;
+    'jenkinsOrganizationPipeline': boolean;
+    'name': string;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "class",
+            "baseName": "_class",
+            "type": "string"
+        },
+        {
+            "name": "links",
+            "baseName": "_links",
+            "type": "GithubOrganizationlinks"
+        },
+        {
+            "name": "jenkinsOrganizationPipeline",
+            "baseName": "jenkinsOrganizationPipeline",
+            "type": "boolean"
+        },
+        {
+            "name": "name",
+            "baseName": "name",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return GithubOrganization.attributeTypeMap;
+    }
+}
+
+export class GithubOrganizationlinks {
+    'repositories': Link;
+    'self': Link;
+    'class': string;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "repositories",
+            "baseName": "repositories",
+            "type": "Link"
+        },
+        {
+            "name": "self",
+            "baseName": "self",
+            "type": "Link"
+        },
+        {
+            "name": "class",
+            "baseName": "_class",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return GithubOrganizationlinks.attributeTypeMap;
+    }
+}
+
+export class GithubRepositories {
+    'class': string;
+    'links': GithubRepositorieslinks;
+    'items': Array<GithubRepository>;
+    'lastPage': number;
+    'nextPage': number;
+    'pageSize': number;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "class",
+            "baseName": "_class",
+            "type": "string"
+        },
+        {
+            "name": "links",
+            "baseName": "_links",
+            "type": "GithubRepositorieslinks"
+        },
+        {
+            "name": "items",
+            "baseName": "items",
+            "type": "Array<GithubRepository>"
+        },
+        {
+            "name": "lastPage",
+            "baseName": "lastPage",
+            "type": "number"
+        },
+        {
+            "name": "nextPage",
+            "baseName": "nextPage",
+            "type": "number"
+        },
+        {
+            "name": "pageSize",
+            "baseName": "pageSize",
+            "type": "number"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return GithubRepositories.attributeTypeMap;
+    }
+}
+
+export class GithubRepositorieslinks {
+    'self': Link;
+    'class': string;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "self",
+            "baseName": "self",
+            "type": "Link"
+        },
+        {
+            "name": "class",
+            "baseName": "_class",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return GithubRepositorieslinks.attributeTypeMap;
+    }
+}
+
+export class GithubRepository {
+    'class': string;
+    'links': GithubRepositorylinks;
+    'defaultBranch': string;
+    'description': string;
+    'name': string;
+    'permissions': GithubRepositorypermissions;
+    'private': boolean;
+    'fullName': string;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "class",
+            "baseName": "_class",
+            "type": "string"
+        },
+        {
+            "name": "links",
+            "baseName": "_links",
+            "type": "GithubRepositorylinks"
+        },
+        {
+            "name": "defaultBranch",
+            "baseName": "defaultBranch",
+            "type": "string"
+        },
+        {
+            "name": "description",
+            "baseName": "description",
+            "type": "string"
+        },
+        {
+            "name": "name",
+            "baseName": "name",
+            "type": "string"
+        },
+        {
+            "name": "permissions",
+            "baseName": "permissions",
+            "type": "GithubRepositorypermissions"
+        },
+        {
+            "name": "private",
+            "baseName": "private",
+            "type": "boolean"
+        },
+        {
+            "name": "fullName",
+            "baseName": "fullName",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return GithubRepository.attributeTypeMap;
+    }
+}
+
+export class GithubRepositorylinks {
+    'self': Link;
+    'class': string;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "self",
+            "baseName": "self",
+            "type": "Link"
+        },
+        {
+            "name": "class",
+            "baseName": "_class",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return GithubRepositorylinks.attributeTypeMap;
+    }
+}
+
+export class GithubRepositorypermissions {
+    'admin': boolean;
+    'push': boolean;
+    'pull': boolean;
+    'class': string;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "admin",
+            "baseName": "admin",
+            "type": "boolean"
+        },
+        {
+            "name": "push",
+            "baseName": "push",
+            "type": "boolean"
+        },
+        {
+            "name": "pull",
+            "baseName": "pull",
+            "type": "boolean"
+        },
+        {
+            "name": "class",
+            "baseName": "_class",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return GithubRepositorypermissions.attributeTypeMap;
+    }
+}
+
+export class GithubRespositoryContainer {
+    'class': string;
+    'links': GithubRespositoryContainerlinks;
+    'repositories': GithubRepositories;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "class",
+            "baseName": "_class",
+            "type": "string"
+        },
+        {
+            "name": "links",
+            "baseName": "_links",
+            "type": "GithubRespositoryContainerlinks"
+        },
+        {
+            "name": "repositories",
+            "baseName": "repositories",
+            "type": "GithubRepositories"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return GithubRespositoryContainer.attributeTypeMap;
+    }
+}
+
+export class GithubRespositoryContainerlinks {
+    'self': Link;
+    'class': string;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "self",
+            "baseName": "self",
+            "type": "Link"
+        },
+        {
+            "name": "class",
+            "baseName": "_class",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return GithubRespositoryContainerlinks.attributeTypeMap;
+    }
+}
+
+export class GithubScm {
+    'class': string;
+    'links': GithubScmlinks;
+    'credentialId': string;
+    'id': string;
+    'uri': string;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "class",
+            "baseName": "_class",
+            "type": "string"
+        },
+        {
+            "name": "links",
+            "baseName": "_links",
+            "type": "GithubScmlinks"
+        },
+        {
+            "name": "credentialId",
+            "baseName": "credentialId",
+            "type": "string"
+        },
+        {
+            "name": "id",
+            "baseName": "id",
+            "type": "string"
+        },
+        {
+            "name": "uri",
+            "baseName": "uri",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return GithubScm.attributeTypeMap;
+    }
+}
+
+export class GithubScmlinks {
+    'self': Link;
+    'class': string;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "self",
+            "baseName": "self",
+            "type": "Link"
+        },
+        {
+            "name": "class",
+            "baseName": "_class",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return GithubScmlinks.attributeTypeMap;
+    }
+}
+
+export class Hudson {
+    'class': string;
+    'assignedLabels': Array<HudsonassignedLabels>;
+    'mode': string;
+    'nodeDescription': string;
+    'nodeName': string;
+    'numExecutors': number;
+    'description': string;
+    'jobs': Array<FreeStyleProject>;
+    'primaryView': AllView;
+    'quietingDown': boolean;
+    'slaveAgentPort': number;
+    'unlabeledLoad': UnlabeledLoadStatistics;
+    'useCrumbs': boolean;
+    'useSecurity': boolean;
+    'views': Array<AllView>;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "class",
+            "baseName": "_class",
+            "type": "string"
+        },
+        {
+            "name": "assignedLabels",
+            "baseName": "assignedLabels",
+            "type": "Array<HudsonassignedLabels>"
+        },
+        {
+            "name": "mode",
+            "baseName": "mode",
+            "type": "string"
+        },
+        {
+            "name": "nodeDescription",
+            "baseName": "nodeDescription",
+            "type": "string"
+        },
+        {
+            "name": "nodeName",
+            "baseName": "nodeName",
+            "type": "string"
+        },
+        {
+            "name": "numExecutors",
+            "baseName": "numExecutors",
+            "type": "number"
+        },
+        {
+            "name": "description",
+            "baseName": "description",
+            "type": "string"
+        },
+        {
+            "name": "jobs",
+            "baseName": "jobs",
+            "type": "Array<FreeStyleProject>"
+        },
+        {
+            "name": "primaryView",
+            "baseName": "primaryView",
+            "type": "AllView"
+        },
+        {
+            "name": "quietingDown",
+            "baseName": "quietingDown",
+            "type": "boolean"
+        },
+        {
+            "name": "slaveAgentPort",
+            "baseName": "slaveAgentPort",
+            "type": "number"
+        },
+        {
+            "name": "unlabeledLoad",
+            "baseName": "unlabeledLoad",
+            "type": "UnlabeledLoadStatistics"
+        },
+        {
+            "name": "useCrumbs",
+            "baseName": "useCrumbs",
+            "type": "boolean"
+        },
+        {
+            "name": "useSecurity",
+            "baseName": "useSecurity",
+            "type": "boolean"
+        },
+        {
+            "name": "views",
+            "baseName": "views",
+            "type": "Array<AllView>"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return Hudson.attributeTypeMap;
+    }
+}
+
+export class HudsonMasterComputer {
+    'class': string;
+    'displayName': string;
+    'executors': Array<HudsonMasterComputerexecutors>;
+    'icon': string;
+    'iconClassName': string;
+    'idle': boolean;
+    'jnlpAgent': boolean;
+    'launchSupported': boolean;
+    'loadStatistics': Label1;
+    'manualLaunchAllowed': boolean;
+    'monitorData': HudsonMasterComputermonitorData;
+    'numExecutors': number;
+    'offline': boolean;
+    'offlineCause': string;
+    'offlineCauseReason': string;
+    'temporarilyOffline': boolean;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "class",
+            "baseName": "_class",
+            "type": "string"
+        },
+        {
+            "name": "displayName",
+            "baseName": "displayName",
+            "type": "string"
+        },
+        {
+            "name": "executors",
+            "baseName": "executors",
+            "type": "Array<HudsonMasterComputerexecutors>"
+        },
+        {
+            "name": "icon",
+            "baseName": "icon",
+            "type": "string"
+        },
+        {
+            "name": "iconClassName",
+            "baseName": "iconClassName",
+            "type": "string"
+        },
+        {
+            "name": "idle",
+            "baseName": "idle",
+            "type": "boolean"
+        },
+        {
+            "name": "jnlpAgent",
+            "baseName": "jnlpAgent",
+            "type": "boolean"
+        },
+        {
+            "name": "launchSupported",
+            "baseName": "launchSupported",
+            "type": "boolean"
+        },
+        {
+            "name": "loadStatistics",
+            "baseName": "loadStatistics",
+            "type": "Label1"
+        },
+        {
+            "name": "manualLaunchAllowed",
+            "baseName": "manualLaunchAllowed",
+            "type": "boolean"
+        },
+        {
+            "name": "monitorData",
+            "baseName": "monitorData",
+            "type": "HudsonMasterComputermonitorData"
+        },
+        {
+            "name": "numExecutors",
+            "baseName": "numExecutors",
+            "type": "number"
+        },
+        {
+            "name": "offline",
+            "baseName": "offline",
+            "type": "boolean"
+        },
+        {
+            "name": "offlineCause",
+            "baseName": "offlineCause",
+            "type": "string"
+        },
+        {
+            "name": "offlineCauseReason",
+            "baseName": "offlineCauseReason",
+            "type": "string"
+        },
+        {
+            "name": "temporarilyOffline",
+            "baseName": "temporarilyOffline",
+            "type": "boolean"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return HudsonMasterComputer.attributeTypeMap;
+    }
+}
+
+export class HudsonMasterComputerexecutors {
+    'currentExecutable': FreeStyleBuild;
+    'idle': boolean;
+    'likelyStuck': boolean;
+    'number': number;
+    'progress': number;
+    'class': string;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "currentExecutable",
+            "baseName": "currentExecutable",
+            "type": "FreeStyleBuild"
+        },
+        {
+            "name": "idle",
+            "baseName": "idle",
+            "type": "boolean"
+        },
+        {
+            "name": "likelyStuck",
+            "baseName": "likelyStuck",
+            "type": "boolean"
+        },
+        {
+            "name": "number",
+            "baseName": "number",
+            "type": "number"
+        },
+        {
+            "name": "progress",
+            "baseName": "progress",
+            "type": "number"
+        },
+        {
+            "name": "class",
+            "baseName": "_class",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return HudsonMasterComputerexecutors.attributeTypeMap;
+    }
+}
+
+export class HudsonMasterComputermonitorData {
+    'hudsonNodeMonitorsSwapSpaceMonitor': SwapSpaceMonitorMemoryUsage2;
+    'hudsonNodeMonitorsTemporarySpaceMonitor': DiskSpaceMonitorDescriptorDiskSpace;
+    'hudsonNodeMonitorsDiskSpaceMonitor': DiskSpaceMonitorDescriptorDiskSpace;
+    'hudsonNodeMonitorsArchitectureMonitor': string;
+    'hudsonNodeMonitorsResponseTimeMonitor': ResponseTimeMonitorData;
+    'hudsonNodeMonitorsClockMonitor': ClockDifference;
+    'class': string;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "hudsonNodeMonitorsSwapSpaceMonitor",
+            "baseName": "hudson.node_monitors.SwapSpaceMonitor",
+            "type": "SwapSpaceMonitorMemoryUsage2"
+        },
+        {
+            "name": "hudsonNodeMonitorsTemporarySpaceMonitor",
+            "baseName": "hudson.node_monitors.TemporarySpaceMonitor",
+            "type": "DiskSpaceMonitorDescriptorDiskSpace"
+        },
+        {
+            "name": "hudsonNodeMonitorsDiskSpaceMonitor",
+            "baseName": "hudson.node_monitors.DiskSpaceMonitor",
+            "type": "DiskSpaceMonitorDescriptorDiskSpace"
+        },
+        {
+            "name": "hudsonNodeMonitorsArchitectureMonitor",
+            "baseName": "hudson.node_monitors.ArchitectureMonitor",
+            "type": "string"
+        },
+        {
+            "name": "hudsonNodeMonitorsResponseTimeMonitor",
+            "baseName": "hudson.node_monitors.ResponseTimeMonitor",
+            "type": "ResponseTimeMonitorData"
+        },
+        {
+            "name": "hudsonNodeMonitorsClockMonitor",
+            "baseName": "hudson.node_monitors.ClockMonitor",
+            "type": "ClockDifference"
+        },
+        {
+            "name": "class",
+            "baseName": "_class",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return HudsonMasterComputermonitorData.attributeTypeMap;
+    }
+}
+
+export class HudsonassignedLabels {
+    'class': string;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "class",
+            "baseName": "_class",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return HudsonassignedLabels.attributeTypeMap;
+    }
+}
+
+export class InputStepImpl {
+    'class': string;
+    'links': InputStepImpllinks;
+    'id': string;
+    'message': string;
+    'ok': string;
+    'parameters': Array<StringParameterDefinition>;
+    'submitter': string;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "class",
+            "baseName": "_class",
+            "type": "string"
+        },
+        {
+            "name": "links",
+            "baseName": "_links",
+            "type": "InputStepImpllinks"
+        },
+        {
+            "name": "id",
+            "baseName": "id",
+            "type": "string"
+        },
+        {
+            "name": "message",
+            "baseName": "message",
+            "type": "string"
+        },
+        {
+            "name": "ok",
+            "baseName": "ok",
+            "type": "string"
+        },
+        {
+            "name": "parameters",
+            "baseName": "parameters",
+            "type": "Array<StringParameterDefinition>"
+        },
+        {
+            "name": "submitter",
+            "baseName": "submitter",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return InputStepImpl.attributeTypeMap;
+    }
+}
+
+export class InputStepImpllinks {
+    'self': Link;
+    'class': string;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "self",
+            "baseName": "self",
+            "type": "Link"
+        },
+        {
+            "name": "class",
+            "baseName": "_class",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return InputStepImpllinks.attributeTypeMap;
+    }
+}
+
+export class Label1 {
+    'class': string;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "class",
+            "baseName": "_class",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return Label1.attributeTypeMap;
+    }
+}
+
+export class Link {
+    'class': string;
+    'href': string;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "class",
+            "baseName": "_class",
+            "type": "string"
+        },
+        {
+            "name": "href",
+            "baseName": "href",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return Link.attributeTypeMap;
+    }
+}
+
+export class ListView {
+    'class': string;
+    'description': string;
+    'jobs': Array<FreeStyleProject>;
+    'name': string;
+    'url': string;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "class",
+            "baseName": "_class",
+            "type": "string"
+        },
+        {
+            "name": "description",
+            "baseName": "description",
+            "type": "string"
+        },
+        {
+            "name": "jobs",
+            "baseName": "jobs",
+            "type": "Array<FreeStyleProject>"
+        },
+        {
+            "name": "name",
+            "baseName": "name",
+            "type": "string"
+        },
+        {
+            "name": "url",
+            "baseName": "url",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return ListView.attributeTypeMap;
+    }
+}
+
+export class MultibranchPipeline {
     'displayName': string;
     'estimatedDurationInMillis': number;
     'latestRun': string;
@@ -42,27 +2113,423 @@ export class GetMultibranchPipeline {
     'totalNumberOfBranches': number;
     'totalNumberOfPullRequests': number;
     'class': string;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "displayName",
+            "baseName": "displayName",
+            "type": "string"
+        },
+        {
+            "name": "estimatedDurationInMillis",
+            "baseName": "estimatedDurationInMillis",
+            "type": "number"
+        },
+        {
+            "name": "latestRun",
+            "baseName": "latestRun",
+            "type": "string"
+        },
+        {
+            "name": "name",
+            "baseName": "name",
+            "type": "string"
+        },
+        {
+            "name": "organization",
+            "baseName": "organization",
+            "type": "string"
+        },
+        {
+            "name": "weatherScore",
+            "baseName": "weatherScore",
+            "type": "number"
+        },
+        {
+            "name": "branchNames",
+            "baseName": "branchNames",
+            "type": "Array<string>"
+        },
+        {
+            "name": "numberOfFailingBranches",
+            "baseName": "numberOfFailingBranches",
+            "type": "number"
+        },
+        {
+            "name": "numberOfFailingPullRequests",
+            "baseName": "numberOfFailingPullRequests",
+            "type": "number"
+        },
+        {
+            "name": "numberOfSuccessfulBranches",
+            "baseName": "numberOfSuccessfulBranches",
+            "type": "number"
+        },
+        {
+            "name": "numberOfSuccessfulPullRequests",
+            "baseName": "numberOfSuccessfulPullRequests",
+            "type": "number"
+        },
+        {
+            "name": "totalNumberOfBranches",
+            "baseName": "totalNumberOfBranches",
+            "type": "number"
+        },
+        {
+            "name": "totalNumberOfPullRequests",
+            "baseName": "totalNumberOfPullRequests",
+            "type": "number"
+        },
+        {
+            "name": "class",
+            "baseName": "_class",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return MultibranchPipeline.attributeTypeMap;
+    }
 }
 
-export class GetOrganisations extends Array<SwaggyjenkinsOrganisation> {
+export class NullSCM {
+    'class': string;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "class",
+            "baseName": "_class",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return NullSCM.attributeTypeMap;
+    }
 }
 
-export class GetPipelineBranches extends Array<GetPipelineBranchesitem> {
+export class Organisation {
+    'class': string;
+    'name': string;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "class",
+            "baseName": "_class",
+            "type": "string"
+        },
+        {
+            "name": "name",
+            "baseName": "name",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return Organisation.attributeTypeMap;
+    }
 }
 
-export class GetPipelineBranchesitem {
+export class Organisations extends Array<Organisation> {
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    ];
+
+    static getAttributeTypeMap() {
+        return super.getAttributeTypeMap().concat(Organisations.attributeTypeMap);
+    }
+}
+
+export class Pipeline {
+    'class': string;
+    'organization': string;
+    'name': string;
+    'displayName': string;
+    'fullName': string;
+    'weatherScore': number;
+    'estimatedDurationInMillis': number;
+    'latestRun': PipelinelatestRun;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "class",
+            "baseName": "_class",
+            "type": "string"
+        },
+        {
+            "name": "organization",
+            "baseName": "organization",
+            "type": "string"
+        },
+        {
+            "name": "name",
+            "baseName": "name",
+            "type": "string"
+        },
+        {
+            "name": "displayName",
+            "baseName": "displayName",
+            "type": "string"
+        },
+        {
+            "name": "fullName",
+            "baseName": "fullName",
+            "type": "string"
+        },
+        {
+            "name": "weatherScore",
+            "baseName": "weatherScore",
+            "type": "number"
+        },
+        {
+            "name": "estimatedDurationInMillis",
+            "baseName": "estimatedDurationInMillis",
+            "type": "number"
+        },
+        {
+            "name": "latestRun",
+            "baseName": "latestRun",
+            "type": "PipelinelatestRun"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return Pipeline.attributeTypeMap;
+    }
+}
+
+export class PipelineActivities extends Array<PipelineActivity> {
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    ];
+
+    static getAttributeTypeMap() {
+        return super.getAttributeTypeMap().concat(PipelineActivities.attributeTypeMap);
+    }
+}
+
+export class PipelineActivity {
+    'class': string;
+    'artifacts': Array<PipelineActivityartifacts>;
+    'durationInMillis': number;
+    'estimatedDurationInMillis': number;
+    'enQueueTime': string;
+    'endTime': string;
+    'id': string;
+    'organization': string;
+    'pipeline': string;
+    'result': string;
+    'runSummary': string;
+    'startTime': string;
+    'state': string;
+    'type': string;
+    'commitId': string;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "class",
+            "baseName": "_class",
+            "type": "string"
+        },
+        {
+            "name": "artifacts",
+            "baseName": "artifacts",
+            "type": "Array<PipelineActivityartifacts>"
+        },
+        {
+            "name": "durationInMillis",
+            "baseName": "durationInMillis",
+            "type": "number"
+        },
+        {
+            "name": "estimatedDurationInMillis",
+            "baseName": "estimatedDurationInMillis",
+            "type": "number"
+        },
+        {
+            "name": "enQueueTime",
+            "baseName": "enQueueTime",
+            "type": "string"
+        },
+        {
+            "name": "endTime",
+            "baseName": "endTime",
+            "type": "string"
+        },
+        {
+            "name": "id",
+            "baseName": "id",
+            "type": "string"
+        },
+        {
+            "name": "organization",
+            "baseName": "organization",
+            "type": "string"
+        },
+        {
+            "name": "pipeline",
+            "baseName": "pipeline",
+            "type": "string"
+        },
+        {
+            "name": "result",
+            "baseName": "result",
+            "type": "string"
+        },
+        {
+            "name": "runSummary",
+            "baseName": "runSummary",
+            "type": "string"
+        },
+        {
+            "name": "startTime",
+            "baseName": "startTime",
+            "type": "string"
+        },
+        {
+            "name": "state",
+            "baseName": "state",
+            "type": "string"
+        },
+        {
+            "name": "type",
+            "baseName": "type",
+            "type": "string"
+        },
+        {
+            "name": "commitId",
+            "baseName": "commitId",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return PipelineActivity.attributeTypeMap;
+    }
+}
+
+export class PipelineActivityartifacts {
+    'name': string;
+    'size': number;
+    'url': string;
+    'class': string;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "name",
+            "baseName": "name",
+            "type": "string"
+        },
+        {
+            "name": "size",
+            "baseName": "size",
+            "type": "number"
+        },
+        {
+            "name": "url",
+            "baseName": "url",
+            "type": "string"
+        },
+        {
+            "name": "class",
+            "baseName": "_class",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return PipelineActivityartifacts.attributeTypeMap;
+    }
+}
+
+export class PipelineBranches extends Array<PipelineBranchesitem> {
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    ];
+
+    static getAttributeTypeMap() {
+        return super.getAttributeTypeMap().concat(PipelineBranches.attributeTypeMap);
+    }
+}
+
+export class PipelineBranchesitem {
     'displayName': string;
     'estimatedDurationInMillis': number;
     'name': string;
     'weatherScore': number;
-    'latestRun': GetPipelineBranchesitemLatestRun;
+    'latestRun': PipelineBranchesitemlatestRun;
     'organization': string;
-    'pullRequest': GetPipelineBranchesitemPullRequest;
+    'pullRequest': PipelineBranchesitempullRequest;
     'totalNumberOfPullRequests': number;
     'class': string;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "displayName",
+            "baseName": "displayName",
+            "type": "string"
+        },
+        {
+            "name": "estimatedDurationInMillis",
+            "baseName": "estimatedDurationInMillis",
+            "type": "number"
+        },
+        {
+            "name": "name",
+            "baseName": "name",
+            "type": "string"
+        },
+        {
+            "name": "weatherScore",
+            "baseName": "weatherScore",
+            "type": "number"
+        },
+        {
+            "name": "latestRun",
+            "baseName": "latestRun",
+            "type": "PipelineBranchesitemlatestRun"
+        },
+        {
+            "name": "organization",
+            "baseName": "organization",
+            "type": "string"
+        },
+        {
+            "name": "pullRequest",
+            "baseName": "pullRequest",
+            "type": "PipelineBranchesitempullRequest"
+        },
+        {
+            "name": "totalNumberOfPullRequests",
+            "baseName": "totalNumberOfPullRequests",
+            "type": "number"
+        },
+        {
+            "name": "class",
+            "baseName": "_class",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return PipelineBranchesitem.attributeTypeMap;
+    }
 }
 
-export class GetPipelineBranchesitemLatestRun {
+export class PipelineBranchesitemlatestRun {
     'durationInMillis': number;
     'estimatedDurationInMillis': number;
     'enQueueTime': string;
@@ -77,336 +2544,157 @@ export class GetPipelineBranchesitemLatestRun {
     'type': string;
     'commitId': string;
     'class': string;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "durationInMillis",
+            "baseName": "durationInMillis",
+            "type": "number"
+        },
+        {
+            "name": "estimatedDurationInMillis",
+            "baseName": "estimatedDurationInMillis",
+            "type": "number"
+        },
+        {
+            "name": "enQueueTime",
+            "baseName": "enQueueTime",
+            "type": "string"
+        },
+        {
+            "name": "endTime",
+            "baseName": "endTime",
+            "type": "string"
+        },
+        {
+            "name": "id",
+            "baseName": "id",
+            "type": "string"
+        },
+        {
+            "name": "organization",
+            "baseName": "organization",
+            "type": "string"
+        },
+        {
+            "name": "pipeline",
+            "baseName": "pipeline",
+            "type": "string"
+        },
+        {
+            "name": "result",
+            "baseName": "result",
+            "type": "string"
+        },
+        {
+            "name": "runSummary",
+            "baseName": "runSummary",
+            "type": "string"
+        },
+        {
+            "name": "startTime",
+            "baseName": "startTime",
+            "type": "string"
+        },
+        {
+            "name": "state",
+            "baseName": "state",
+            "type": "string"
+        },
+        {
+            "name": "type",
+            "baseName": "type",
+            "type": "string"
+        },
+        {
+            "name": "commitId",
+            "baseName": "commitId",
+            "type": "string"
+        },
+        {
+            "name": "class",
+            "baseName": "_class",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return PipelineBranchesitemlatestRun.attributeTypeMap;
+    }
 }
 
-export class GetPipelineBranchesitemPullRequest {
-    'links': GetPipelineBranchesitemPullRequestLinks;
+export class PipelineBranchesitempullRequest {
+    'links': PipelineBranchesitempullRequestlinks;
     'author': string;
     'id': string;
     'title': string;
     'url': string;
     'class': string;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "links",
+            "baseName": "_links",
+            "type": "PipelineBranchesitempullRequestlinks"
+        },
+        {
+            "name": "author",
+            "baseName": "author",
+            "type": "string"
+        },
+        {
+            "name": "id",
+            "baseName": "id",
+            "type": "string"
+        },
+        {
+            "name": "title",
+            "baseName": "title",
+            "type": "string"
+        },
+        {
+            "name": "url",
+            "baseName": "url",
+            "type": "string"
+        },
+        {
+            "name": "class",
+            "baseName": "_class",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return PipelineBranchesitempullRequest.attributeTypeMap;
+    }
 }
 
-export class GetPipelineBranchesitemPullRequestLinks {
+export class PipelineBranchesitempullRequestlinks {
     'self': string;
     'class': string;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "self",
+            "baseName": "self",
+            "type": "string"
+        },
+        {
+            "name": "class",
+            "baseName": "_class",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return PipelineBranchesitempullRequestlinks.attributeTypeMap;
+    }
 }
 
-export class GetPipelines extends Array<SwaggyjenkinsPipeline> {
-}
-
-export class GetUsers extends Array<SwaggyjenkinsUser> {
-}
-
-export class HudsonmodelAllView {
-    'class': string;
-    'name': string;
-    'url': string;
-}
-
-export class HudsonmodelCauseAction {
-    'class': string;
-    'causes': Array<HudsonmodelCauseUserIdCause>;
-}
-
-export class HudsonmodelCauseUserIdCause {
-    'class': string;
-    'shortDescription': string;
-    'userId': string;
-    'userName': string;
-}
-
-export class HudsonmodelComputerSet {
-    'class': string;
-    'busyExecutors': number;
-    'computer': Array<HudsonmodelHudsonMasterComputer>;
-    'displayName': string;
-    'totalExecutors': number;
-}
-
-export class HudsonmodelFreeStyleBuild {
-    'class': string;
-    'number': number;
-    'url': string;
-    'actions': Array<HudsonmodelCauseAction>;
-    'building': boolean;
-    'description': string;
-    'displayName': string;
-    'duration': number;
-    'estimatedDuration': number;
-    'executor': string;
-    'fullDisplayName': string;
-    'id': string;
-    'keepLog': boolean;
-    'queueId': number;
-    'result': string;
-    'timestamp': number;
-    'builtOn': string;
-    'changeSet': HudsonscmEmptyChangeLogSet;
-}
-
-export class HudsonmodelFreeStyleProject {
-    'class': string;
-    'name': string;
-    'url': string;
-    'color': string;
-    'actions': Array<HudsonmodelFreeStyleProjectactions>;
-    'description': string;
-    'displayName': string;
-    'displayNameOrNull': string;
-    'fullDisplayName': string;
-    'fullName': string;
-    'buildable': boolean;
-    'builds': Array<HudsonmodelFreeStyleBuild>;
-    'firstBuild': HudsonmodelFreeStyleBuild;
-    'healthReport': Array<HudsonmodelFreeStyleProjecthealthReport>;
-    'inQueue': boolean;
-    'keepDependencies': boolean;
-    'lastBuild': HudsonmodelFreeStyleBuild;
-    'lastCompletedBuild': HudsonmodelFreeStyleBuild;
-    'lastFailedBuild': string;
-    'lastStableBuild': HudsonmodelFreeStyleBuild;
-    'lastSuccessfulBuild': HudsonmodelFreeStyleBuild;
-    'lastUnstableBuild': string;
-    'lastUnsuccessfulBuild': string;
-    'nextBuildNumber': number;
-    'queueItem': string;
-    'concurrentBuild': boolean;
-    'scm': HudsonscmNullSCM;
-}
-
-export class HudsonmodelFreeStyleProjectactions {
-    'class': string;
-}
-
-export class HudsonmodelFreeStyleProjecthealthReport {
-    'description': string;
-    'iconClassName': string;
-    'iconUrl': string;
-    'score': number;
-    'class': string;
-}
-
-export class HudsonmodelHudson {
-    'class': string;
-    'assignedLabels': Array<HudsonmodelHudsonassignedLabels>;
-    'mode': string;
-    'nodeDescription': string;
-    'nodeName': string;
-    'numExecutors': number;
-    'description': string;
-    'jobs': Array<HudsonmodelFreeStyleProject>;
-    'primaryView': HudsonmodelAllView;
-    'quietingDown': boolean;
-    'slaveAgentPort': number;
-    'unlabeledLoad': JenkinsmodelUnlabeledLoadStatistics;
-    'useCrumbs': boolean;
-    'useSecurity': boolean;
-    'views': Array<HudsonmodelAllView>;
-}
-
-export class HudsonmodelHudsonMasterComputer {
-    'class': string;
-    'displayName': string;
-    'executors': Array<HudsonmodelHudsonMasterComputerexecutors>;
-    'icon': string;
-    'iconClassName': string;
-    'idle': boolean;
-    'jnlpAgent': boolean;
-    'launchSupported': boolean;
-    'loadStatistics': HudsonmodelLabel1;
-    'manualLaunchAllowed': boolean;
-    'monitorData': HudsonmodelHudsonMasterComputerMonitorData;
-    'numExecutors': number;
-    'offline': boolean;
-    'offlineCause': string;
-    'offlineCauseReason': string;
-    'temporarilyOffline': boolean;
-}
-
-export class HudsonmodelHudsonMasterComputerMonitorData {
-    'hudsonNodeMonitorsSwapSpaceMonitor': HudsonnodeMonitorsSwapSpaceMonitorMemoryUsage2;
-    'hudsonNodeMonitorsTemporarySpaceMonitor': HudsonnodeMonitorsDiskSpaceMonitorDescriptorDiskSpace;
-    'hudsonNodeMonitorsDiskSpaceMonitor': HudsonnodeMonitorsDiskSpaceMonitorDescriptorDiskSpace;
-    'hudsonNodeMonitorsArchitectureMonitor': string;
-    'hudsonNodeMonitorsResponseTimeMonitor': HudsonnodeMonitorsResponseTimeMonitorData;
-    'hudsonNodeMonitorsClockMonitor': HudsonutilClockDifference;
-    'class': string;
-}
-
-export class HudsonmodelHudsonMasterComputerexecutors {
-    'currentExecutable': HudsonmodelFreeStyleBuild;
-    'idle': boolean;
-    'likelyStuck': boolean;
-    'number': number;
-    'progress': number;
-    'class': string;
-}
-
-export class HudsonmodelHudsonassignedLabels {
-    'class': string;
-}
-
-export class HudsonmodelLabel1 {
-    'class': string;
-}
-
-export class HudsonmodelListView {
-    'class': string;
-    'description': string;
-    'jobs': Array<HudsonmodelFreeStyleProject>;
-    'name': string;
-    'url': string;
-}
-
-export class HudsonmodelQueue {
-    'class': string;
-    'items': Array<HudsonmodelQueueBlockedItem>;
-}
-
-export class HudsonmodelQueueBlockedItem {
-    'class': string;
-    'actions': Array<HudsonmodelCauseAction>;
-    'blocked': boolean;
-    'buildable': boolean;
-    'id': number;
-    'inQueueSince': number;
-    'params': string;
-    'stuck': boolean;
-    'task': HudsonmodelFreeStyleProject;
-    'url': string;
-    'why': string;
-    'buildableStartMilliseconds': number;
-}
-
-export class HudsonmodelQueueLeftItem {
-    'class': string;
-    'actions': Array<HudsonmodelCauseAction>;
-    'blocked': boolean;
-    'buildable': boolean;
-    'id': number;
-    'inQueueSince': number;
-    'params': string;
-    'stuck': boolean;
-    'task': HudsonmodelFreeStyleProject;
-    'url': string;
-    'why': string;
-    'cancelled': boolean;
-    'executable': HudsonmodelFreeStyleBuild;
-}
-
-export class HudsonmodelStringParameterDefinition {
-    'class': string;
-    'defaultParameterValue': HudsonmodelStringParameterValue;
-    'description': string;
-    'name': string;
-    'type': string;
-}
-
-export class HudsonmodelStringParameterValue {
-    'class': string;
-    'name': string;
-    'value': string;
-}
-
-export class HudsonnodeMonitorsDiskSpaceMonitorDescriptorDiskSpace {
-    'class': string;
-    'timestamp': number;
-    'path': string;
-    'size': number;
-}
-
-export class HudsonnodeMonitorsResponseTimeMonitorData {
-    'class': string;
-    'timestamp': number;
-    'average': number;
-}
-
-export class HudsonnodeMonitorsSwapSpaceMonitorMemoryUsage2 {
-    'class': string;
-    'availablePhysicalMemory': number;
-    'availableSwapSpace': number;
-    'totalPhysicalMemory': number;
-    'totalSwapSpace': number;
-}
-
-export class HudsonscmEmptyChangeLogSet {
-    'class': string;
-    'kind': string;
-}
-
-export class HudsonscmNullSCM {
-    'class': string;
-}
-
-export class HudsonsecuritycsrfDefaultCrumbIssuer {
-    'class': string;
-    'crumb': string;
-    'crumbRequestField': string;
-}
-
-export class HudsonutilClockDifference {
-    'class': string;
-    'diff': number;
-}
-
-export class IojenkinsblueoceanresthalLink {
-    'class': string;
-    'href': string;
-}
-
-export class IojenkinsblueoceanrestimplpipelineBranchImpl {
-    'class': string;
-    'displayName': string;
-    'estimatedDurationInMillis': number;
-    'fullDisplayName': string;
-    'fullName': string;
-    'name': string;
-    'organization': string;
-    'parameters': Array<HudsonmodelStringParameterDefinition>;
-    'permissions': IojenkinsblueoceanrestimplpipelineBranchImplPermissions;
-    'weatherScore': number;
-    'pullRequest': string;
-}
-
-export class IojenkinsblueoceanrestimplpipelineBranchImplPermissions {
-    'create': boolean;
-    'read': boolean;
-    'start': boolean;
-    'stop': boolean;
-    'class': string;
-}
-
-export class IojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1 {
-    'class': string;
-    'links': IojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1Links;
-    'map': IojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1Map;
-}
-
-export class IojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1Links {
-    'self': IojenkinsblueoceanresthalLink;
-    'class': string;
-}
-
-export class IojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1Map {
-    'ioJenkinsBlueoceanServiceEmbeddedRestPipelineImpl': IojenkinsblueoceanserviceembeddedrestExtensionClassImpl;
-    'ioJenkinsBlueoceanServiceEmbeddedRestMultiBranchPipelineImpl': IojenkinsblueoceanserviceembeddedrestExtensionClassImpl;
-    'class': string;
-}
-
-export class IojenkinsblueoceanserviceembeddedrestExtensionClassImpl {
-    'class': string;
-    'links': IojenkinsblueoceanserviceembeddedrestExtensionClassImplLinks;
-    'classes': Array<string>;
-}
-
-export class IojenkinsblueoceanserviceembeddedrestExtensionClassImplLinks {
-    'self': IojenkinsblueoceanresthalLink;
-    'class': string;
-}
-
-export class IojenkinsblueoceanserviceembeddedrestPipelineFolderImpl {
+export class PipelineFolderImpl {
     'class': string;
     'displayName': string;
     'fullName': string;
@@ -414,9 +2702,52 @@ export class IojenkinsblueoceanserviceembeddedrestPipelineFolderImpl {
     'organization': string;
     'numberOfFolders': number;
     'numberOfPipelines': number;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "class",
+            "baseName": "_class",
+            "type": "string"
+        },
+        {
+            "name": "displayName",
+            "baseName": "displayName",
+            "type": "string"
+        },
+        {
+            "name": "fullName",
+            "baseName": "fullName",
+            "type": "string"
+        },
+        {
+            "name": "name",
+            "baseName": "name",
+            "type": "string"
+        },
+        {
+            "name": "organization",
+            "baseName": "organization",
+            "type": "string"
+        },
+        {
+            "name": "numberOfFolders",
+            "baseName": "numberOfFolders",
+            "type": "number"
+        },
+        {
+            "name": "numberOfPipelines",
+            "baseName": "numberOfPipelines",
+            "type": "number"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return PipelineFolderImpl.attributeTypeMap;
+    }
 }
 
-export class IojenkinsblueoceanserviceembeddedrestPipelineImpl {
+export class PipelineImpl {
     'class': string;
     'displayName': string;
     'estimatedDurationInMillis': number;
@@ -425,30 +2756,625 @@ export class IojenkinsblueoceanserviceembeddedrestPipelineImpl {
     'name': string;
     'organization': string;
     'weatherScore': number;
+    'links': PipelineImpllinks;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "class",
+            "baseName": "_class",
+            "type": "string"
+        },
+        {
+            "name": "displayName",
+            "baseName": "displayName",
+            "type": "string"
+        },
+        {
+            "name": "estimatedDurationInMillis",
+            "baseName": "estimatedDurationInMillis",
+            "type": "number"
+        },
+        {
+            "name": "fullName",
+            "baseName": "fullName",
+            "type": "string"
+        },
+        {
+            "name": "latestRun",
+            "baseName": "latestRun",
+            "type": "string"
+        },
+        {
+            "name": "name",
+            "baseName": "name",
+            "type": "string"
+        },
+        {
+            "name": "organization",
+            "baseName": "organization",
+            "type": "string"
+        },
+        {
+            "name": "weatherScore",
+            "baseName": "weatherScore",
+            "type": "number"
+        },
+        {
+            "name": "links",
+            "baseName": "_links",
+            "type": "PipelineImpllinks"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return PipelineImpl.attributeTypeMap;
+    }
 }
 
-export class JenkinsmodelUnlabeledLoadStatistics {
+export class PipelineImpllinks {
+    'runs': Link;
+    'self': Link;
+    'queue': Link;
+    'actions': Link;
     'class': string;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "runs",
+            "baseName": "runs",
+            "type": "Link"
+        },
+        {
+            "name": "self",
+            "baseName": "self",
+            "type": "Link"
+        },
+        {
+            "name": "queue",
+            "baseName": "queue",
+            "type": "Link"
+        },
+        {
+            "name": "actions",
+            "baseName": "actions",
+            "type": "Link"
+        },
+        {
+            "name": "class",
+            "baseName": "_class",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return PipelineImpllinks.attributeTypeMap;
+    }
 }
 
-export class SwaggyjenkinsOrganisation {
-    'class': string;
-    'name': string;
+export class PipelineQueue extends Array<QueueItemImpl> {
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    ];
+
+    static getAttributeTypeMap() {
+        return super.getAttributeTypeMap().concat(PipelineQueue.attributeTypeMap);
+    }
 }
 
-export class SwaggyjenkinsPipeline {
+export class PipelineRun {
     'class': string;
-    'organization': string;
-    'name': string;
-    'displayName': string;
-    'fullName': string;
-    'weatherScore': number;
+    'artifacts': Array<PipelineRunartifacts>;
+    'durationInMillis': number;
     'estimatedDurationInMillis': number;
-    'latestRun': SwaggyjenkinsPipelineLatestRun;
+    'enQueueTime': string;
+    'endTime': string;
+    'id': string;
+    'organization': string;
+    'pipeline': string;
+    'result': string;
+    'runSummary': string;
+    'startTime': string;
+    'state': string;
+    'type': string;
+    'commitId': string;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "class",
+            "baseName": "_class",
+            "type": "string"
+        },
+        {
+            "name": "artifacts",
+            "baseName": "artifacts",
+            "type": "Array<PipelineRunartifacts>"
+        },
+        {
+            "name": "durationInMillis",
+            "baseName": "durationInMillis",
+            "type": "number"
+        },
+        {
+            "name": "estimatedDurationInMillis",
+            "baseName": "estimatedDurationInMillis",
+            "type": "number"
+        },
+        {
+            "name": "enQueueTime",
+            "baseName": "enQueueTime",
+            "type": "string"
+        },
+        {
+            "name": "endTime",
+            "baseName": "endTime",
+            "type": "string"
+        },
+        {
+            "name": "id",
+            "baseName": "id",
+            "type": "string"
+        },
+        {
+            "name": "organization",
+            "baseName": "organization",
+            "type": "string"
+        },
+        {
+            "name": "pipeline",
+            "baseName": "pipeline",
+            "type": "string"
+        },
+        {
+            "name": "result",
+            "baseName": "result",
+            "type": "string"
+        },
+        {
+            "name": "runSummary",
+            "baseName": "runSummary",
+            "type": "string"
+        },
+        {
+            "name": "startTime",
+            "baseName": "startTime",
+            "type": "string"
+        },
+        {
+            "name": "state",
+            "baseName": "state",
+            "type": "string"
+        },
+        {
+            "name": "type",
+            "baseName": "type",
+            "type": "string"
+        },
+        {
+            "name": "commitId",
+            "baseName": "commitId",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return PipelineRun.attributeTypeMap;
+    }
 }
 
-export class SwaggyjenkinsPipelineLatestRun {
-    'artifacts': Array<SwaggyjenkinsPipelineLatestRunartifacts>;
+export class PipelineRunImpl {
+    'class': string;
+    'links': PipelineRunImpllinks;
+    'durationInMillis': number;
+    'enQueueTime': string;
+    'endTime': string;
+    'estimatedDurationInMillis': number;
+    'id': string;
+    'organization': string;
+    'pipeline': string;
+    'result': string;
+    'runSummary': string;
+    'startTime': string;
+    'state': string;
+    'type': string;
+    'commitId': string;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "class",
+            "baseName": "_class",
+            "type": "string"
+        },
+        {
+            "name": "links",
+            "baseName": "_links",
+            "type": "PipelineRunImpllinks"
+        },
+        {
+            "name": "durationInMillis",
+            "baseName": "durationInMillis",
+            "type": "number"
+        },
+        {
+            "name": "enQueueTime",
+            "baseName": "enQueueTime",
+            "type": "string"
+        },
+        {
+            "name": "endTime",
+            "baseName": "endTime",
+            "type": "string"
+        },
+        {
+            "name": "estimatedDurationInMillis",
+            "baseName": "estimatedDurationInMillis",
+            "type": "number"
+        },
+        {
+            "name": "id",
+            "baseName": "id",
+            "type": "string"
+        },
+        {
+            "name": "organization",
+            "baseName": "organization",
+            "type": "string"
+        },
+        {
+            "name": "pipeline",
+            "baseName": "pipeline",
+            "type": "string"
+        },
+        {
+            "name": "result",
+            "baseName": "result",
+            "type": "string"
+        },
+        {
+            "name": "runSummary",
+            "baseName": "runSummary",
+            "type": "string"
+        },
+        {
+            "name": "startTime",
+            "baseName": "startTime",
+            "type": "string"
+        },
+        {
+            "name": "state",
+            "baseName": "state",
+            "type": "string"
+        },
+        {
+            "name": "type",
+            "baseName": "type",
+            "type": "string"
+        },
+        {
+            "name": "commitId",
+            "baseName": "commitId",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return PipelineRunImpl.attributeTypeMap;
+    }
+}
+
+export class PipelineRunImpllinks {
+    'nodes': Link;
+    'log': Link;
+    'self': Link;
+    'actions': Link;
+    'steps': Link;
+    'class': string;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "nodes",
+            "baseName": "nodes",
+            "type": "Link"
+        },
+        {
+            "name": "log",
+            "baseName": "log",
+            "type": "Link"
+        },
+        {
+            "name": "self",
+            "baseName": "self",
+            "type": "Link"
+        },
+        {
+            "name": "actions",
+            "baseName": "actions",
+            "type": "Link"
+        },
+        {
+            "name": "steps",
+            "baseName": "steps",
+            "type": "Link"
+        },
+        {
+            "name": "class",
+            "baseName": "_class",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return PipelineRunImpllinks.attributeTypeMap;
+    }
+}
+
+export class PipelineRunNode {
+    'class': string;
+    'displayName': string;
+    'durationInMillis': number;
+    'edges': Array<PipelineRunNodeedges>;
+    'id': string;
+    'result': string;
+    'startTime': string;
+    'state': string;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "class",
+            "baseName": "_class",
+            "type": "string"
+        },
+        {
+            "name": "displayName",
+            "baseName": "displayName",
+            "type": "string"
+        },
+        {
+            "name": "durationInMillis",
+            "baseName": "durationInMillis",
+            "type": "number"
+        },
+        {
+            "name": "edges",
+            "baseName": "edges",
+            "type": "Array<PipelineRunNodeedges>"
+        },
+        {
+            "name": "id",
+            "baseName": "id",
+            "type": "string"
+        },
+        {
+            "name": "result",
+            "baseName": "result",
+            "type": "string"
+        },
+        {
+            "name": "startTime",
+            "baseName": "startTime",
+            "type": "string"
+        },
+        {
+            "name": "state",
+            "baseName": "state",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return PipelineRunNode.attributeTypeMap;
+    }
+}
+
+export class PipelineRunNodeSteps extends Array<PipelineStepImpl> {
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    ];
+
+    static getAttributeTypeMap() {
+        return super.getAttributeTypeMap().concat(PipelineRunNodeSteps.attributeTypeMap);
+    }
+}
+
+export class PipelineRunNodeedges {
+    'id': string;
+    'class': string;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "id",
+            "baseName": "id",
+            "type": "string"
+        },
+        {
+            "name": "class",
+            "baseName": "_class",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return PipelineRunNodeedges.attributeTypeMap;
+    }
+}
+
+export class PipelineRunNodes extends Array<PipelineRunNode> {
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    ];
+
+    static getAttributeTypeMap() {
+        return super.getAttributeTypeMap().concat(PipelineRunNodes.attributeTypeMap);
+    }
+}
+
+export class PipelineRunSteps extends Array<GenericResource> {
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    ];
+
+    static getAttributeTypeMap() {
+        return super.getAttributeTypeMap().concat(PipelineRunSteps.attributeTypeMap);
+    }
+}
+
+export class PipelineRunartifacts {
+    'name': string;
+    'size': number;
+    'url': string;
+    'class': string;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "name",
+            "baseName": "name",
+            "type": "string"
+        },
+        {
+            "name": "size",
+            "baseName": "size",
+            "type": "number"
+        },
+        {
+            "name": "url",
+            "baseName": "url",
+            "type": "string"
+        },
+        {
+            "name": "class",
+            "baseName": "_class",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return PipelineRunartifacts.attributeTypeMap;
+    }
+}
+
+export class PipelineRuns extends Array<PipelineRun> {
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    ];
+
+    static getAttributeTypeMap() {
+        return super.getAttributeTypeMap().concat(PipelineRuns.attributeTypeMap);
+    }
+}
+
+export class PipelineStepImpl {
+    'class': string;
+    'links': PipelineStepImpllinks;
+    'displayName': string;
+    'durationInMillis': number;
+    'id': string;
+    'input': InputStepImpl;
+    'result': string;
+    'startTime': string;
+    'state': string;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "class",
+            "baseName": "_class",
+            "type": "string"
+        },
+        {
+            "name": "links",
+            "baseName": "_links",
+            "type": "PipelineStepImpllinks"
+        },
+        {
+            "name": "displayName",
+            "baseName": "displayName",
+            "type": "string"
+        },
+        {
+            "name": "durationInMillis",
+            "baseName": "durationInMillis",
+            "type": "number"
+        },
+        {
+            "name": "id",
+            "baseName": "id",
+            "type": "string"
+        },
+        {
+            "name": "input",
+            "baseName": "input",
+            "type": "InputStepImpl"
+        },
+        {
+            "name": "result",
+            "baseName": "result",
+            "type": "string"
+        },
+        {
+            "name": "startTime",
+            "baseName": "startTime",
+            "type": "string"
+        },
+        {
+            "name": "state",
+            "baseName": "state",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return PipelineStepImpl.attributeTypeMap;
+    }
+}
+
+export class PipelineStepImpllinks {
+    'self': Link;
+    'actions': Link;
+    'class': string;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "self",
+            "baseName": "self",
+            "type": "Link"
+        },
+        {
+            "name": "actions",
+            "baseName": "actions",
+            "type": "Link"
+        },
+        {
+            "name": "class",
+            "baseName": "_class",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return PipelineStepImpllinks.attributeTypeMap;
+    }
+}
+
+export class PipelinelatestRun {
+    'artifacts': Array<PipelinelatestRunartifacts>;
     'durationInMillis': number;
     'estimatedDurationInMillis': number;
     'enQueueTime': string;
@@ -463,23 +3389,707 @@ export class SwaggyjenkinsPipelineLatestRun {
     'type': string;
     'commitId': string;
     'class': string;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "artifacts",
+            "baseName": "artifacts",
+            "type": "Array<PipelinelatestRunartifacts>"
+        },
+        {
+            "name": "durationInMillis",
+            "baseName": "durationInMillis",
+            "type": "number"
+        },
+        {
+            "name": "estimatedDurationInMillis",
+            "baseName": "estimatedDurationInMillis",
+            "type": "number"
+        },
+        {
+            "name": "enQueueTime",
+            "baseName": "enQueueTime",
+            "type": "string"
+        },
+        {
+            "name": "endTime",
+            "baseName": "endTime",
+            "type": "string"
+        },
+        {
+            "name": "id",
+            "baseName": "id",
+            "type": "string"
+        },
+        {
+            "name": "organization",
+            "baseName": "organization",
+            "type": "string"
+        },
+        {
+            "name": "pipeline",
+            "baseName": "pipeline",
+            "type": "string"
+        },
+        {
+            "name": "result",
+            "baseName": "result",
+            "type": "string"
+        },
+        {
+            "name": "runSummary",
+            "baseName": "runSummary",
+            "type": "string"
+        },
+        {
+            "name": "startTime",
+            "baseName": "startTime",
+            "type": "string"
+        },
+        {
+            "name": "state",
+            "baseName": "state",
+            "type": "string"
+        },
+        {
+            "name": "type",
+            "baseName": "type",
+            "type": "string"
+        },
+        {
+            "name": "commitId",
+            "baseName": "commitId",
+            "type": "string"
+        },
+        {
+            "name": "class",
+            "baseName": "_class",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return PipelinelatestRun.attributeTypeMap;
+    }
 }
 
-export class SwaggyjenkinsPipelineLatestRunartifacts {
+export class PipelinelatestRunartifacts {
     'name': string;
     'size': number;
     'url': string;
     'class': string;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "name",
+            "baseName": "name",
+            "type": "string"
+        },
+        {
+            "name": "size",
+            "baseName": "size",
+            "type": "number"
+        },
+        {
+            "name": "url",
+            "baseName": "url",
+            "type": "string"
+        },
+        {
+            "name": "class",
+            "baseName": "_class",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return PipelinelatestRunartifacts.attributeTypeMap;
+    }
 }
 
-export class SwaggyjenkinsUser {
+export class Pipelines extends Array<Pipeline> {
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    ];
+
+    static getAttributeTypeMap() {
+        return super.getAttributeTypeMap().concat(Pipelines.attributeTypeMap);
+    }
+}
+
+export class Queue {
+    'class': string;
+    'items': Array<QueueBlockedItem>;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "class",
+            "baseName": "_class",
+            "type": "string"
+        },
+        {
+            "name": "items",
+            "baseName": "items",
+            "type": "Array<QueueBlockedItem>"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return Queue.attributeTypeMap;
+    }
+}
+
+export class QueueBlockedItem {
+    'class': string;
+    'actions': Array<CauseAction>;
+    'blocked': boolean;
+    'buildable': boolean;
+    'id': number;
+    'inQueueSince': number;
+    'params': string;
+    'stuck': boolean;
+    'task': FreeStyleProject;
+    'url': string;
+    'why': string;
+    'buildableStartMilliseconds': number;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "class",
+            "baseName": "_class",
+            "type": "string"
+        },
+        {
+            "name": "actions",
+            "baseName": "actions",
+            "type": "Array<CauseAction>"
+        },
+        {
+            "name": "blocked",
+            "baseName": "blocked",
+            "type": "boolean"
+        },
+        {
+            "name": "buildable",
+            "baseName": "buildable",
+            "type": "boolean"
+        },
+        {
+            "name": "id",
+            "baseName": "id",
+            "type": "number"
+        },
+        {
+            "name": "inQueueSince",
+            "baseName": "inQueueSince",
+            "type": "number"
+        },
+        {
+            "name": "params",
+            "baseName": "params",
+            "type": "string"
+        },
+        {
+            "name": "stuck",
+            "baseName": "stuck",
+            "type": "boolean"
+        },
+        {
+            "name": "task",
+            "baseName": "task",
+            "type": "FreeStyleProject"
+        },
+        {
+            "name": "url",
+            "baseName": "url",
+            "type": "string"
+        },
+        {
+            "name": "why",
+            "baseName": "why",
+            "type": "string"
+        },
+        {
+            "name": "buildableStartMilliseconds",
+            "baseName": "buildableStartMilliseconds",
+            "type": "number"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return QueueBlockedItem.attributeTypeMap;
+    }
+}
+
+export class QueueItemImpl {
+    'class': string;
+    'expectedBuildNumber': number;
+    'id': string;
+    'pipeline': string;
+    'queuedTime': number;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "class",
+            "baseName": "_class",
+            "type": "string"
+        },
+        {
+            "name": "expectedBuildNumber",
+            "baseName": "expectedBuildNumber",
+            "type": "number"
+        },
+        {
+            "name": "id",
+            "baseName": "id",
+            "type": "string"
+        },
+        {
+            "name": "pipeline",
+            "baseName": "pipeline",
+            "type": "string"
+        },
+        {
+            "name": "queuedTime",
+            "baseName": "queuedTime",
+            "type": "number"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return QueueItemImpl.attributeTypeMap;
+    }
+}
+
+export class QueueLeftItem {
+    'class': string;
+    'actions': Array<CauseAction>;
+    'blocked': boolean;
+    'buildable': boolean;
+    'id': number;
+    'inQueueSince': number;
+    'params': string;
+    'stuck': boolean;
+    'task': FreeStyleProject;
+    'url': string;
+    'why': string;
+    'cancelled': boolean;
+    'executable': FreeStyleBuild;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "class",
+            "baseName": "_class",
+            "type": "string"
+        },
+        {
+            "name": "actions",
+            "baseName": "actions",
+            "type": "Array<CauseAction>"
+        },
+        {
+            "name": "blocked",
+            "baseName": "blocked",
+            "type": "boolean"
+        },
+        {
+            "name": "buildable",
+            "baseName": "buildable",
+            "type": "boolean"
+        },
+        {
+            "name": "id",
+            "baseName": "id",
+            "type": "number"
+        },
+        {
+            "name": "inQueueSince",
+            "baseName": "inQueueSince",
+            "type": "number"
+        },
+        {
+            "name": "params",
+            "baseName": "params",
+            "type": "string"
+        },
+        {
+            "name": "stuck",
+            "baseName": "stuck",
+            "type": "boolean"
+        },
+        {
+            "name": "task",
+            "baseName": "task",
+            "type": "FreeStyleProject"
+        },
+        {
+            "name": "url",
+            "baseName": "url",
+            "type": "string"
+        },
+        {
+            "name": "why",
+            "baseName": "why",
+            "type": "string"
+        },
+        {
+            "name": "cancelled",
+            "baseName": "cancelled",
+            "type": "boolean"
+        },
+        {
+            "name": "executable",
+            "baseName": "executable",
+            "type": "FreeStyleBuild"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return QueueLeftItem.attributeTypeMap;
+    }
+}
+
+export class ResponseTimeMonitorData {
+    'class': string;
+    'timestamp': number;
+    'average': number;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "class",
+            "baseName": "_class",
+            "type": "string"
+        },
+        {
+            "name": "timestamp",
+            "baseName": "timestamp",
+            "type": "number"
+        },
+        {
+            "name": "average",
+            "baseName": "average",
+            "type": "number"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return ResponseTimeMonitorData.attributeTypeMap;
+    }
+}
+
+export class ScmOrganisations extends Array<GithubOrganization> {
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    ];
+
+    static getAttributeTypeMap() {
+        return super.getAttributeTypeMap().concat(ScmOrganisations.attributeTypeMap);
+    }
+}
+
+export class StringParameterDefinition {
+    'class': string;
+    'defaultParameterValue': StringParameterValue;
+    'description': string;
+    'name': string;
+    'type': string;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "class",
+            "baseName": "_class",
+            "type": "string"
+        },
+        {
+            "name": "defaultParameterValue",
+            "baseName": "defaultParameterValue",
+            "type": "StringParameterValue"
+        },
+        {
+            "name": "description",
+            "baseName": "description",
+            "type": "string"
+        },
+        {
+            "name": "name",
+            "baseName": "name",
+            "type": "string"
+        },
+        {
+            "name": "type",
+            "baseName": "type",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return StringParameterDefinition.attributeTypeMap;
+    }
+}
+
+export class StringParameterValue {
+    'class': string;
+    'name': string;
+    'value': string;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "class",
+            "baseName": "_class",
+            "type": "string"
+        },
+        {
+            "name": "name",
+            "baseName": "name",
+            "type": "string"
+        },
+        {
+            "name": "value",
+            "baseName": "value",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return StringParameterValue.attributeTypeMap;
+    }
+}
+
+export class SwapSpaceMonitorMemoryUsage2 {
+    'class': string;
+    'availablePhysicalMemory': number;
+    'availableSwapSpace': number;
+    'totalPhysicalMemory': number;
+    'totalSwapSpace': number;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "class",
+            "baseName": "_class",
+            "type": "string"
+        },
+        {
+            "name": "availablePhysicalMemory",
+            "baseName": "availablePhysicalMemory",
+            "type": "number"
+        },
+        {
+            "name": "availableSwapSpace",
+            "baseName": "availableSwapSpace",
+            "type": "number"
+        },
+        {
+            "name": "totalPhysicalMemory",
+            "baseName": "totalPhysicalMemory",
+            "type": "number"
+        },
+        {
+            "name": "totalSwapSpace",
+            "baseName": "totalSwapSpace",
+            "type": "number"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return SwapSpaceMonitorMemoryUsage2.attributeTypeMap;
+    }
+}
+
+export class UnlabeledLoadStatistics {
+    'class': string;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "class",
+            "baseName": "_class",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return UnlabeledLoadStatistics.attributeTypeMap;
+    }
+}
+
+export class User {
     'class': string;
     'id': string;
     'fullName': string;
     'email': string;
     'name': string;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "class",
+            "baseName": "_class",
+            "type": "string"
+        },
+        {
+            "name": "id",
+            "baseName": "id",
+            "type": "string"
+        },
+        {
+            "name": "fullName",
+            "baseName": "fullName",
+            "type": "string"
+        },
+        {
+            "name": "email",
+            "baseName": "email",
+            "type": "string"
+        },
+        {
+            "name": "name",
+            "baseName": "name",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return User.attributeTypeMap;
+    }
 }
 
+export class UserFavorites extends Array<FavoriteImpl> {
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    ];
+
+    static getAttributeTypeMap() {
+        return super.getAttributeTypeMap().concat(UserFavorites.attributeTypeMap);
+    }
+}
+
+export class Users extends Array<User> {
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    ];
+
+    static getAttributeTypeMap() {
+        return super.getAttributeTypeMap().concat(Users.attributeTypeMap);
+    }
+}
+
+
+let enumsMap = {
+}
+
+let typeMap = {
+    "AllView": AllView,
+    "Body": Body,
+    "BranchImpl": BranchImpl,
+    "BranchImpllinks": BranchImpllinks,
+    "BranchImplpermissions": BranchImplpermissions,
+    "CauseAction": CauseAction,
+    "CauseUserIdCause": CauseUserIdCause,
+    "ClassesByClass": ClassesByClass,
+    "ClockDifference": ClockDifference,
+    "ComputerSet": ComputerSet,
+    "DefaultCrumbIssuer": DefaultCrumbIssuer,
+    "DiskSpaceMonitorDescriptorDiskSpace": DiskSpaceMonitorDescriptorDiskSpace,
+    "EmptyChangeLogSet": EmptyChangeLogSet,
+    "ExtensionClassContainerImpl1": ExtensionClassContainerImpl1,
+    "ExtensionClassContainerImpl1links": ExtensionClassContainerImpl1links,
+    "ExtensionClassContainerImpl1map": ExtensionClassContainerImpl1map,
+    "ExtensionClassImpl": ExtensionClassImpl,
+    "ExtensionClassImpllinks": ExtensionClassImpllinks,
+    "FavoriteImpl": FavoriteImpl,
+    "FavoriteImpllinks": FavoriteImpllinks,
+    "FreeStyleBuild": FreeStyleBuild,
+    "FreeStyleProject": FreeStyleProject,
+    "FreeStyleProjectactions": FreeStyleProjectactions,
+    "FreeStyleProjecthealthReport": FreeStyleProjecthealthReport,
+    "GenericResource": GenericResource,
+    "GithubContent": GithubContent,
+    "GithubFile": GithubFile,
+    "GithubOrganization": GithubOrganization,
+    "GithubOrganizationlinks": GithubOrganizationlinks,
+    "GithubRepositories": GithubRepositories,
+    "GithubRepositorieslinks": GithubRepositorieslinks,
+    "GithubRepository": GithubRepository,
+    "GithubRepositorylinks": GithubRepositorylinks,
+    "GithubRepositorypermissions": GithubRepositorypermissions,
+    "GithubRespositoryContainer": GithubRespositoryContainer,
+    "GithubRespositoryContainerlinks": GithubRespositoryContainerlinks,
+    "GithubScm": GithubScm,
+    "GithubScmlinks": GithubScmlinks,
+    "Hudson": Hudson,
+    "HudsonMasterComputer": HudsonMasterComputer,
+    "HudsonMasterComputerexecutors": HudsonMasterComputerexecutors,
+    "HudsonMasterComputermonitorData": HudsonMasterComputermonitorData,
+    "HudsonassignedLabels": HudsonassignedLabels,
+    "InputStepImpl": InputStepImpl,
+    "InputStepImpllinks": InputStepImpllinks,
+    "Label1": Label1,
+    "Link": Link,
+    "ListView": ListView,
+    "MultibranchPipeline": MultibranchPipeline,
+    "NullSCM": NullSCM,
+    "Organisation": Organisation,
+    "Organisations": Organisations,
+    "Pipeline": Pipeline,
+    "PipelineActivities": PipelineActivities,
+    "PipelineActivity": PipelineActivity,
+    "PipelineActivityartifacts": PipelineActivityartifacts,
+    "PipelineBranches": PipelineBranches,
+    "PipelineBranchesitem": PipelineBranchesitem,
+    "PipelineBranchesitemlatestRun": PipelineBranchesitemlatestRun,
+    "PipelineBranchesitempullRequest": PipelineBranchesitempullRequest,
+    "PipelineBranchesitempullRequestlinks": PipelineBranchesitempullRequestlinks,
+    "PipelineFolderImpl": PipelineFolderImpl,
+    "PipelineImpl": PipelineImpl,
+    "PipelineImpllinks": PipelineImpllinks,
+    "PipelineQueue": PipelineQueue,
+    "PipelineRun": PipelineRun,
+    "PipelineRunImpl": PipelineRunImpl,
+    "PipelineRunImpllinks": PipelineRunImpllinks,
+    "PipelineRunNode": PipelineRunNode,
+    "PipelineRunNodeSteps": PipelineRunNodeSteps,
+    "PipelineRunNodeedges": PipelineRunNodeedges,
+    "PipelineRunNodes": PipelineRunNodes,
+    "PipelineRunSteps": PipelineRunSteps,
+    "PipelineRunartifacts": PipelineRunartifacts,
+    "PipelineRuns": PipelineRuns,
+    "PipelineStepImpl": PipelineStepImpl,
+    "PipelineStepImpllinks": PipelineStepImpllinks,
+    "PipelinelatestRun": PipelinelatestRun,
+    "PipelinelatestRunartifacts": PipelinelatestRunartifacts,
+    "Pipelines": Pipelines,
+    "Queue": Queue,
+    "QueueBlockedItem": QueueBlockedItem,
+    "QueueItemImpl": QueueItemImpl,
+    "QueueLeftItem": QueueLeftItem,
+    "ResponseTimeMonitorData": ResponseTimeMonitorData,
+    "ScmOrganisations": ScmOrganisations,
+    "StringParameterDefinition": StringParameterDefinition,
+    "StringParameterValue": StringParameterValue,
+    "SwapSpaceMonitorMemoryUsage2": SwapSpaceMonitorMemoryUsage2,
+    "UnlabeledLoadStatistics": UnlabeledLoadStatistics,
+    "User": User,
+    "UserFavorites": UserFavorites,
+    "Users": Users,
+}
 
 export interface Authentication {
     /**
@@ -572,6 +4182,10 @@ export class BlueOceanApi {
         return this._basePath;
     }
 
+    public setDefaultAuthentication(auth: Authentication) {
+	this.authentications.default = auth;
+    }
+
     public setApiKey(key: BlueOceanApiApiKeys, value: string) {
         this.authentications[BlueOceanApiApiKeys[key]].apiKey = value;
     }
@@ -583,33 +4197,49 @@ export class BlueOceanApi {
         this.authentications.jenkins_auth.password = password;
     }
     /**
-     * 
-     * Retrieve authenticated user details for an organisation
-     * @param organisation Name of the organisation
+     * Delete queue item from an organization pipeline queue
+     * @param organization Name of the organization
+     * @param pipeline Name of the pipeline
+     * @param queue Name of the queue item
      */
-    public getAuthenticatedUser (organisation: string) : Promise<{ response: http.ClientResponse; body: SwaggyjenkinsUser;  }> {
-        const localVarPath = this.basePath + '/blue/rest/organizations/{organisation}/user/'
-            .replace('{' + 'organisation' + '}', String(organisation));
+    public deletePipelineQueueItem (organization: string, pipeline: string, queue: string) : Promise<{ response: http.ClientResponse; body?: any;  }> {
+        const localVarPath = this.basePath + '/blue/rest/organizations/{organization}/pipelines/{pipeline}/queue/{queue}'
+            .replace('{' + 'organization' + '}', String(organization))
+            .replace('{' + 'pipeline' + '}', String(pipeline))
+            .replace('{' + 'queue' + '}', String(queue));
         let queryParameters: any = {};
         let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let formParams: any = {};
 
 
-        // verify required parameter 'organisation' is not null or undefined
-        if (organisation === null || organisation === undefined) {
-            throw new Error('Required parameter organisation was null or undefined when calling getAuthenticatedUser.');
+        // verify required parameter 'organization' is not null or undefined
+        if (organization === null || organization === undefined) {
+            throw new Error('Required parameter organization was null or undefined when calling deletePipelineQueueItem.');
         }
+
+        // verify required parameter 'pipeline' is not null or undefined
+        if (pipeline === null || pipeline === undefined) {
+            throw new Error('Required parameter pipeline was null or undefined when calling deletePipelineQueueItem.');
+        }
+
+        // verify required parameter 'queue' is not null or undefined
+        if (queue === null || queue === undefined) {
+            throw new Error('Required parameter queue was null or undefined when calling deletePipelineQueueItem.');
+        }
+
 
         let useFormData = false;
 
         let requestOptions: request.Options = {
-            method: 'GET',
+            method: 'DELETE',
             qs: queryParameters,
             headers: headerParams,
             uri: localVarPath,
             useQuerystring: this._useQuerystring,
             json: true,
         };
+
+        this.authentications.jenkins_auth.applyToRequest(requestOptions);
 
         this.authentications.default.applyToRequest(requestOptions);
 
@@ -620,7 +4250,7 @@ export class BlueOceanApi {
                 requestOptions.form = formParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body: SwaggyjenkinsUser;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body?: any;  }>((resolve, reject) => {
             request(requestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -635,7 +4265,61 @@ export class BlueOceanApi {
         });
     }
     /**
-     * 
+     * Retrieve authenticated user details for an organization
+     * @param organization Name of the organization
+     */
+    public getAuthenticatedUser (organization: string) : Promise<{ response: http.ClientResponse; body: User;  }> {
+        const localVarPath = this.basePath + '/blue/rest/organizations/{organization}/user/'
+            .replace('{' + 'organization' + '}', String(organization));
+        let queryParameters: any = {};
+        let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let formParams: any = {};
+
+
+        // verify required parameter 'organization' is not null or undefined
+        if (organization === null || organization === undefined) {
+            throw new Error('Required parameter organization was null or undefined when calling getAuthenticatedUser.');
+        }
+
+
+        let useFormData = false;
+
+        let requestOptions: request.Options = {
+            method: 'GET',
+            qs: queryParameters,
+            headers: headerParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.jenkins_auth.applyToRequest(requestOptions);
+
+        this.authentications.default.applyToRequest(requestOptions);
+
+        if (Object.keys(formParams).length) {
+            if (useFormData) {
+                (<any>requestOptions).formData = formParams;
+            } else {
+                requestOptions.form = formParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: User;  }>((resolve, reject) => {
+            request(requestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "User");
+                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
      * Get a list of class names supported by a given class
      * @param _class Name of the class
      */
@@ -652,6 +4336,7 @@ export class BlueOceanApi {
             throw new Error('Required parameter _class was null or undefined when calling getClasses.');
         }
 
+
         let useFormData = false;
 
         let requestOptions: request.Options = {
@@ -662,6 +4347,8 @@ export class BlueOceanApi {
             useQuerystring: this._useQuerystring,
             json: true,
         };
+
+        this.authentications.jenkins_auth.applyToRequest(requestOptions);
 
         this.authentications.default.applyToRequest(requestOptions);
 
@@ -677,6 +4364,7 @@ export class BlueOceanApi {
                 if (error) {
                     reject(error);
                 } else {
+                    body = ObjectSerializer.deserialize(body, "string");
                     if (response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
@@ -687,22 +4375,22 @@ export class BlueOceanApi {
         });
     }
     /**
-     * 
-     * Retrieve organisation details
-     * @param organisation Name of the organisation
+     * Retrieve organization details
+     * @param organization Name of the organization
      */
-    public getOrganisation (organisation: string) : Promise<{ response: http.ClientResponse; body: SwaggyjenkinsOrganisation;  }> {
-        const localVarPath = this.basePath + '/blue/rest/organizations/{organisation}'
-            .replace('{' + 'organisation' + '}', String(organisation));
+    public getOrganisation (organization: string) : Promise<{ response: http.ClientResponse; body: Organisation;  }> {
+        const localVarPath = this.basePath + '/blue/rest/organizations/{organization}'
+            .replace('{' + 'organization' + '}', String(organization));
         let queryParameters: any = {};
         let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let formParams: any = {};
 
 
-        // verify required parameter 'organisation' is not null or undefined
-        if (organisation === null || organisation === undefined) {
-            throw new Error('Required parameter organisation was null or undefined when calling getOrganisation.');
+        // verify required parameter 'organization' is not null or undefined
+        if (organization === null || organization === undefined) {
+            throw new Error('Required parameter organization was null or undefined when calling getOrganisation.');
         }
+
 
         let useFormData = false;
 
@@ -715,6 +4403,8 @@ export class BlueOceanApi {
             json: true,
         };
 
+        this.authentications.jenkins_auth.applyToRequest(requestOptions);
+
         this.authentications.default.applyToRequest(requestOptions);
 
         if (Object.keys(formParams).length) {
@@ -724,11 +4414,12 @@ export class BlueOceanApi {
                 requestOptions.form = formParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body: SwaggyjenkinsOrganisation;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: Organisation;  }>((resolve, reject) => {
             request(requestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
+                    body = ObjectSerializer.deserialize(body, "Organisation");
                     if (response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
@@ -739,16 +4430,16 @@ export class BlueOceanApi {
         });
     }
     /**
-     * 
-     * Retrieve all organisations details
+     * Retrieve all organizations details
      */
-    public getOrganisations () : Promise<{ response: http.ClientResponse; body: GetOrganisations;  }> {
+    public getOrganisations () : Promise<{ response: http.ClientResponse; body: Organisations;  }> {
         const localVarPath = this.basePath + '/blue/rest/organizations/';
         let queryParameters: any = {};
         let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let formParams: any = {};
 
 
+
         let useFormData = false;
 
         let requestOptions: request.Options = {
@@ -760,6 +4451,8 @@ export class BlueOceanApi {
             json: true,
         };
 
+        this.authentications.jenkins_auth.applyToRequest(requestOptions);
+
         this.authentications.default.applyToRequest(requestOptions);
 
         if (Object.keys(formParams).length) {
@@ -769,11 +4462,12 @@ export class BlueOceanApi {
                 requestOptions.form = formParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body: GetOrganisations;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: Organisations;  }>((resolve, reject) => {
             request(requestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
+                    body = ObjectSerializer.deserialize(body, "Organisations");
                     if (response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
@@ -784,15 +4478,138 @@ export class BlueOceanApi {
         });
     }
     /**
-     * 
-     * Retrieve branch details for an organisation pipeline
-     * @param organisation Name of the organisation
+     * Retrieve pipeline details for an organization
+     * @param organization Name of the organization
+     * @param pipeline Name of the pipeline
+     */
+    public getPipeline (organization: string, pipeline: string) : Promise<{ response: http.ClientResponse; body: Pipeline;  }> {
+        const localVarPath = this.basePath + '/blue/rest/organizations/{organization}/pipelines/{pipeline}'
+            .replace('{' + 'organization' + '}', String(organization))
+            .replace('{' + 'pipeline' + '}', String(pipeline));
+        let queryParameters: any = {};
+        let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let formParams: any = {};
+
+
+        // verify required parameter 'organization' is not null or undefined
+        if (organization === null || organization === undefined) {
+            throw new Error('Required parameter organization was null or undefined when calling getPipeline.');
+        }
+
+        // verify required parameter 'pipeline' is not null or undefined
+        if (pipeline === null || pipeline === undefined) {
+            throw new Error('Required parameter pipeline was null or undefined when calling getPipeline.');
+        }
+
+
+        let useFormData = false;
+
+        let requestOptions: request.Options = {
+            method: 'GET',
+            qs: queryParameters,
+            headers: headerParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.jenkins_auth.applyToRequest(requestOptions);
+
+        this.authentications.default.applyToRequest(requestOptions);
+
+        if (Object.keys(formParams).length) {
+            if (useFormData) {
+                (<any>requestOptions).formData = formParams;
+            } else {
+                requestOptions.form = formParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: Pipeline;  }>((resolve, reject) => {
+            request(requestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "Pipeline");
+                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * Retrieve all activities details for an organization pipeline
+     * @param organization Name of the organization
+     * @param pipeline Name of the pipeline
+     */
+    public getPipelineActivities (organization: string, pipeline: string) : Promise<{ response: http.ClientResponse; body: PipelineActivities;  }> {
+        const localVarPath = this.basePath + '/blue/rest/organizations/{organization}/pipelines/{pipeline}/activities'
+            .replace('{' + 'organization' + '}', String(organization))
+            .replace('{' + 'pipeline' + '}', String(pipeline));
+        let queryParameters: any = {};
+        let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let formParams: any = {};
+
+
+        // verify required parameter 'organization' is not null or undefined
+        if (organization === null || organization === undefined) {
+            throw new Error('Required parameter organization was null or undefined when calling getPipelineActivities.');
+        }
+
+        // verify required parameter 'pipeline' is not null or undefined
+        if (pipeline === null || pipeline === undefined) {
+            throw new Error('Required parameter pipeline was null or undefined when calling getPipelineActivities.');
+        }
+
+
+        let useFormData = false;
+
+        let requestOptions: request.Options = {
+            method: 'GET',
+            qs: queryParameters,
+            headers: headerParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.jenkins_auth.applyToRequest(requestOptions);
+
+        this.authentications.default.applyToRequest(requestOptions);
+
+        if (Object.keys(formParams).length) {
+            if (useFormData) {
+                (<any>requestOptions).formData = formParams;
+            } else {
+                requestOptions.form = formParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: PipelineActivities;  }>((resolve, reject) => {
+            request(requestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "PipelineActivities");
+                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * Retrieve branch details for an organization pipeline
+     * @param organization Name of the organization
      * @param pipeline Name of the pipeline
      * @param branch Name of the branch
      */
-    public getPipelineBranchByOrg (organisation: string, pipeline: string, branch: string) : Promise<{ response: http.ClientResponse; body: IojenkinsblueoceanrestimplpipelineBranchImpl;  }> {
-        const localVarPath = this.basePath + '/blue/rest/organizations/{organisation}/pipelines/{pipeline}/branches/{branch}/'
-            .replace('{' + 'organisation' + '}', String(organisation))
+    public getPipelineBranch (organization: string, pipeline: string, branch: string) : Promise<{ response: http.ClientResponse; body: BranchImpl;  }> {
+        const localVarPath = this.basePath + '/blue/rest/organizations/{organization}/pipelines/{pipeline}/branches/{branch}/'
+            .replace('{' + 'organization' + '}', String(organization))
             .replace('{' + 'pipeline' + '}', String(pipeline))
             .replace('{' + 'branch' + '}', String(branch));
         let queryParameters: any = {};
@@ -800,20 +4617,21 @@ export class BlueOceanApi {
         let formParams: any = {};
 
 
-        // verify required parameter 'organisation' is not null or undefined
-        if (organisation === null || organisation === undefined) {
-            throw new Error('Required parameter organisation was null or undefined when calling getPipelineBranchByOrg.');
+        // verify required parameter 'organization' is not null or undefined
+        if (organization === null || organization === undefined) {
+            throw new Error('Required parameter organization was null or undefined when calling getPipelineBranch.');
         }
 
         // verify required parameter 'pipeline' is not null or undefined
         if (pipeline === null || pipeline === undefined) {
-            throw new Error('Required parameter pipeline was null or undefined when calling getPipelineBranchByOrg.');
+            throw new Error('Required parameter pipeline was null or undefined when calling getPipelineBranch.');
         }
 
         // verify required parameter 'branch' is not null or undefined
         if (branch === null || branch === undefined) {
-            throw new Error('Required parameter branch was null or undefined when calling getPipelineBranchByOrg.');
+            throw new Error('Required parameter branch was null or undefined when calling getPipelineBranch.');
         }
+
 
         let useFormData = false;
 
@@ -826,6 +4644,8 @@ export class BlueOceanApi {
             json: true,
         };
 
+        this.authentications.jenkins_auth.applyToRequest(requestOptions);
+
         this.authentications.default.applyToRequest(requestOptions);
 
         if (Object.keys(formParams).length) {
@@ -835,11 +4655,12 @@ export class BlueOceanApi {
                 requestOptions.form = formParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body: IojenkinsblueoceanrestimplpipelineBranchImpl;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: BranchImpl;  }>((resolve, reject) => {
             request(requestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
+                    body = ObjectSerializer.deserialize(body, "BranchImpl");
                     if (response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
@@ -850,29 +4671,105 @@ export class BlueOceanApi {
         });
     }
     /**
-     * 
-     * Retrieve all branches details for an organisation pipeline
-     * @param organisation Name of the organisation
+     * Retrieve branch run details for an organization pipeline
+     * @param organization Name of the organization
+     * @param pipeline Name of the pipeline
+     * @param branch Name of the branch
+     * @param run Name of the run
+     */
+    public getPipelineBranchRun (organization: string, pipeline: string, branch: string, run: string) : Promise<{ response: http.ClientResponse; body: PipelineRun;  }> {
+        const localVarPath = this.basePath + '/blue/rest/organizations/{organization}/pipelines/{pipeline}/branches/{branch}/runs/{run}'
+            .replace('{' + 'organization' + '}', String(organization))
+            .replace('{' + 'pipeline' + '}', String(pipeline))
+            .replace('{' + 'branch' + '}', String(branch))
+            .replace('{' + 'run' + '}', String(run));
+        let queryParameters: any = {};
+        let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let formParams: any = {};
+
+
+        // verify required parameter 'organization' is not null or undefined
+        if (organization === null || organization === undefined) {
+            throw new Error('Required parameter organization was null or undefined when calling getPipelineBranchRun.');
+        }
+
+        // verify required parameter 'pipeline' is not null or undefined
+        if (pipeline === null || pipeline === undefined) {
+            throw new Error('Required parameter pipeline was null or undefined when calling getPipelineBranchRun.');
+        }
+
+        // verify required parameter 'branch' is not null or undefined
+        if (branch === null || branch === undefined) {
+            throw new Error('Required parameter branch was null or undefined when calling getPipelineBranchRun.');
+        }
+
+        // verify required parameter 'run' is not null or undefined
+        if (run === null || run === undefined) {
+            throw new Error('Required parameter run was null or undefined when calling getPipelineBranchRun.');
+        }
+
+
+        let useFormData = false;
+
+        let requestOptions: request.Options = {
+            method: 'GET',
+            qs: queryParameters,
+            headers: headerParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.jenkins_auth.applyToRequest(requestOptions);
+
+        this.authentications.default.applyToRequest(requestOptions);
+
+        if (Object.keys(formParams).length) {
+            if (useFormData) {
+                (<any>requestOptions).formData = formParams;
+            } else {
+                requestOptions.form = formParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: PipelineRun;  }>((resolve, reject) => {
+            request(requestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "PipelineRun");
+                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * Retrieve all branches details for an organization pipeline
+     * @param organization Name of the organization
      * @param pipeline Name of the pipeline
      */
-    public getPipelineBranchesByOrg (organisation: string, pipeline: string) : Promise<{ response: http.ClientResponse; body: GetMultibranchPipeline;  }> {
-        const localVarPath = this.basePath + '/blue/rest/organizations/{organisation}/pipelines/{pipeline}/branches'
-            .replace('{' + 'organisation' + '}', String(organisation))
+    public getPipelineBranches (organization: string, pipeline: string) : Promise<{ response: http.ClientResponse; body: MultibranchPipeline;  }> {
+        const localVarPath = this.basePath + '/blue/rest/organizations/{organization}/pipelines/{pipeline}/branches'
+            .replace('{' + 'organization' + '}', String(organization))
             .replace('{' + 'pipeline' + '}', String(pipeline));
         let queryParameters: any = {};
         let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let formParams: any = {};
 
 
-        // verify required parameter 'organisation' is not null or undefined
-        if (organisation === null || organisation === undefined) {
-            throw new Error('Required parameter organisation was null or undefined when calling getPipelineBranchesByOrg.');
+        // verify required parameter 'organization' is not null or undefined
+        if (organization === null || organization === undefined) {
+            throw new Error('Required parameter organization was null or undefined when calling getPipelineBranches.');
         }
 
         // verify required parameter 'pipeline' is not null or undefined
         if (pipeline === null || pipeline === undefined) {
-            throw new Error('Required parameter pipeline was null or undefined when calling getPipelineBranchesByOrg.');
+            throw new Error('Required parameter pipeline was null or undefined when calling getPipelineBranches.');
         }
+
 
         let useFormData = false;
 
@@ -885,64 +4782,7 @@ export class BlueOceanApi {
             json: true,
         };
 
-        this.authentications.default.applyToRequest(requestOptions);
-
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (<any>requestOptions).formData = formParams;
-            } else {
-                requestOptions.form = formParams;
-            }
-        }
-        return new Promise<{ response: http.ClientResponse; body: GetMultibranchPipeline;  }>((resolve, reject) => {
-            request(requestOptions, (error, response, body) => {
-                if (error) {
-                    reject(error);
-                } else {
-                    if (response.statusCode >= 200 && response.statusCode <= 299) {
-                        resolve({ response: response, body: body });
-                    } else {
-                        reject({ response: response, body: body });
-                    }
-                }
-            });
-        });
-    }
-    /**
-     * 
-     * Retrieve pipeline details for an organisation
-     * @param organisation Name of the organisation
-     * @param pipeline Name of the pipeline
-     */
-    public getPipelineByOrg (organisation: string, pipeline: string) : Promise<{ response: http.ClientResponse; body: SwaggyjenkinsPipeline;  }> {
-        const localVarPath = this.basePath + '/blue/rest/organizations/{organisation}/pipelines/{pipeline}'
-            .replace('{' + 'organisation' + '}', String(organisation))
-            .replace('{' + 'pipeline' + '}', String(pipeline));
-        let queryParameters: any = {};
-        let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let formParams: any = {};
-
-
-        // verify required parameter 'organisation' is not null or undefined
-        if (organisation === null || organisation === undefined) {
-            throw new Error('Required parameter organisation was null or undefined when calling getPipelineByOrg.');
-        }
-
-        // verify required parameter 'pipeline' is not null or undefined
-        if (pipeline === null || pipeline === undefined) {
-            throw new Error('Required parameter pipeline was null or undefined when calling getPipelineByOrg.');
-        }
-
-        let useFormData = false;
-
-        let requestOptions: request.Options = {
-            method: 'GET',
-            qs: queryParameters,
-            headers: headerParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-        };
+        this.authentications.jenkins_auth.applyToRequest(requestOptions);
 
         this.authentications.default.applyToRequest(requestOptions);
 
@@ -953,11 +4793,12 @@ export class BlueOceanApi {
                 requestOptions.form = formParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body: SwaggyjenkinsPipeline;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: MultibranchPipeline;  }>((resolve, reject) => {
             request(requestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
+                    body = ObjectSerializer.deserialize(body, "MultibranchPipeline");
                     if (response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
@@ -968,29 +4809,29 @@ export class BlueOceanApi {
         });
     }
     /**
-     * 
-     * Retrieve pipeline folder for an organisation
-     * @param organisation Name of the organisation
+     * Retrieve pipeline folder for an organization
+     * @param organization Name of the organization
      * @param folder Name of the folder
      */
-    public getPipelineFolderByOrg (organisation: string, folder: string) : Promise<{ response: http.ClientResponse; body: IojenkinsblueoceanserviceembeddedrestPipelineFolderImpl;  }> {
-        const localVarPath = this.basePath + '/blue/rest/organizations/{organisation}/pipelines/{folder}/'
-            .replace('{' + 'organisation' + '}', String(organisation))
+    public getPipelineFolder (organization: string, folder: string) : Promise<{ response: http.ClientResponse; body: PipelineFolderImpl;  }> {
+        const localVarPath = this.basePath + '/blue/rest/organizations/{organization}/pipelines/{folder}/'
+            .replace('{' + 'organization' + '}', String(organization))
             .replace('{' + 'folder' + '}', String(folder));
         let queryParameters: any = {};
         let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let formParams: any = {};
 
 
-        // verify required parameter 'organisation' is not null or undefined
-        if (organisation === null || organisation === undefined) {
-            throw new Error('Required parameter organisation was null or undefined when calling getPipelineFolderByOrg.');
+        // verify required parameter 'organization' is not null or undefined
+        if (organization === null || organization === undefined) {
+            throw new Error('Required parameter organization was null or undefined when calling getPipelineFolder.');
         }
 
         // verify required parameter 'folder' is not null or undefined
         if (folder === null || folder === undefined) {
-            throw new Error('Required parameter folder was null or undefined when calling getPipelineFolderByOrg.');
+            throw new Error('Required parameter folder was null or undefined when calling getPipelineFolder.');
         }
+
 
         let useFormData = false;
 
@@ -1003,6 +4844,8 @@ export class BlueOceanApi {
             json: true,
         };
 
+        this.authentications.jenkins_auth.applyToRequest(requestOptions);
+
         this.authentications.default.applyToRequest(requestOptions);
 
         if (Object.keys(formParams).length) {
@@ -1012,11 +4855,12 @@ export class BlueOceanApi {
                 requestOptions.form = formParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body: IojenkinsblueoceanserviceembeddedrestPipelineFolderImpl;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: PipelineFolderImpl;  }>((resolve, reject) => {
             request(requestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
+                    body = ObjectSerializer.deserialize(body, "PipelineFolderImpl");
                     if (response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
@@ -1027,15 +4871,14 @@ export class BlueOceanApi {
         });
     }
     /**
-     * 
-     * Retrieve pipeline details for an organisation folder
-     * @param organisation Name of the organisation
+     * Retrieve pipeline details for an organization folder
+     * @param organization Name of the organization
      * @param pipeline Name of the pipeline
      * @param folder Name of the folder
      */
-    public getPipelineFolderByOrg_1 (organisation: string, pipeline: string, folder: string) : Promise<{ response: http.ClientResponse; body: IojenkinsblueoceanserviceembeddedrestPipelineImpl;  }> {
-        const localVarPath = this.basePath + '/blue/rest/organizations/{organisation}/pipelines/{folder}/pipelines/{pipeline}'
-            .replace('{' + 'organisation' + '}', String(organisation))
+    public getPipelineFolderPipeline (organization: string, pipeline: string, folder: string) : Promise<{ response: http.ClientResponse; body: PipelineImpl;  }> {
+        const localVarPath = this.basePath + '/blue/rest/organizations/{organization}/pipelines/{folder}/pipelines/{pipeline}'
+            .replace('{' + 'organization' + '}', String(organization))
             .replace('{' + 'pipeline' + '}', String(pipeline))
             .replace('{' + 'folder' + '}', String(folder));
         let queryParameters: any = {};
@@ -1043,20 +4886,21 @@ export class BlueOceanApi {
         let formParams: any = {};
 
 
-        // verify required parameter 'organisation' is not null or undefined
-        if (organisation === null || organisation === undefined) {
-            throw new Error('Required parameter organisation was null or undefined when calling getPipelineFolderByOrg_1.');
+        // verify required parameter 'organization' is not null or undefined
+        if (organization === null || organization === undefined) {
+            throw new Error('Required parameter organization was null or undefined when calling getPipelineFolderPipeline.');
         }
 
         // verify required parameter 'pipeline' is not null or undefined
         if (pipeline === null || pipeline === undefined) {
-            throw new Error('Required parameter pipeline was null or undefined when calling getPipelineFolderByOrg_1.');
+            throw new Error('Required parameter pipeline was null or undefined when calling getPipelineFolderPipeline.');
         }
 
         // verify required parameter 'folder' is not null or undefined
         if (folder === null || folder === undefined) {
-            throw new Error('Required parameter folder was null or undefined when calling getPipelineFolderByOrg_1.');
+            throw new Error('Required parameter folder was null or undefined when calling getPipelineFolderPipeline.');
         }
+
 
         let useFormData = false;
 
@@ -1069,6 +4913,8 @@ export class BlueOceanApi {
             json: true,
         };
 
+        this.authentications.jenkins_auth.applyToRequest(requestOptions);
+
         this.authentications.default.applyToRequest(requestOptions);
 
         if (Object.keys(formParams).length) {
@@ -1078,11 +4924,12 @@ export class BlueOceanApi {
                 requestOptions.form = formParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body: IojenkinsblueoceanserviceembeddedrestPipelineImpl;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: PipelineImpl;  }>((resolve, reject) => {
             request(requestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
+                    body = ObjectSerializer.deserialize(body, "PipelineImpl");
                     if (response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
@@ -1093,22 +4940,29 @@ export class BlueOceanApi {
         });
     }
     /**
-     * 
-     * Retrieve all pipelines details for an organisation
-     * @param organisation Name of the organisation
+     * Retrieve queue details for an organization pipeline
+     * @param organization Name of the organization
+     * @param pipeline Name of the pipeline
      */
-    public getPipelinesByOrg (organisation: string) : Promise<{ response: http.ClientResponse; body: GetPipelines;  }> {
-        const localVarPath = this.basePath + '/blue/rest/organizations/{organisation}/pipelines/'
-            .replace('{' + 'organisation' + '}', String(organisation));
+    public getPipelineQueue (organization: string, pipeline: string) : Promise<{ response: http.ClientResponse; body: PipelineQueue;  }> {
+        const localVarPath = this.basePath + '/blue/rest/organizations/{organization}/pipelines/{pipeline}/queue'
+            .replace('{' + 'organization' + '}', String(organization))
+            .replace('{' + 'pipeline' + '}', String(pipeline));
         let queryParameters: any = {};
         let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let formParams: any = {};
 
 
-        // verify required parameter 'organisation' is not null or undefined
-        if (organisation === null || organisation === undefined) {
-            throw new Error('Required parameter organisation was null or undefined when calling getPipelinesByOrg.');
+        // verify required parameter 'organization' is not null or undefined
+        if (organization === null || organization === undefined) {
+            throw new Error('Required parameter organization was null or undefined when calling getPipelineQueue.');
         }
+
+        // verify required parameter 'pipeline' is not null or undefined
+        if (pipeline === null || pipeline === undefined) {
+            throw new Error('Required parameter pipeline was null or undefined when calling getPipelineQueue.');
+        }
+
 
         let useFormData = false;
 
@@ -1121,6 +4975,8 @@ export class BlueOceanApi {
             json: true,
         };
 
+        this.authentications.jenkins_auth.applyToRequest(requestOptions);
+
         this.authentications.default.applyToRequest(requestOptions);
 
         if (Object.keys(formParams).length) {
@@ -1130,11 +4986,12 @@ export class BlueOceanApi {
                 requestOptions.form = formParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body: GetPipelines;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: PipelineQueue;  }>((resolve, reject) => {
             request(requestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
+                    body = ObjectSerializer.deserialize(body, "PipelineQueue");
                     if (response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
@@ -1145,23 +5002,968 @@ export class BlueOceanApi {
         });
     }
     /**
-     * 
-     * Retrieve user details for an organisation
-     * @param organisation Name of the organisation
+     * Retrieve run details for an organization pipeline
+     * @param organization Name of the organization
+     * @param pipeline Name of the pipeline
+     * @param run Name of the run
+     */
+    public getPipelineRun (organization: string, pipeline: string, run: string) : Promise<{ response: http.ClientResponse; body: PipelineRun;  }> {
+        const localVarPath = this.basePath + '/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}'
+            .replace('{' + 'organization' + '}', String(organization))
+            .replace('{' + 'pipeline' + '}', String(pipeline))
+            .replace('{' + 'run' + '}', String(run));
+        let queryParameters: any = {};
+        let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let formParams: any = {};
+
+
+        // verify required parameter 'organization' is not null or undefined
+        if (organization === null || organization === undefined) {
+            throw new Error('Required parameter organization was null or undefined when calling getPipelineRun.');
+        }
+
+        // verify required parameter 'pipeline' is not null or undefined
+        if (pipeline === null || pipeline === undefined) {
+            throw new Error('Required parameter pipeline was null or undefined when calling getPipelineRun.');
+        }
+
+        // verify required parameter 'run' is not null or undefined
+        if (run === null || run === undefined) {
+            throw new Error('Required parameter run was null or undefined when calling getPipelineRun.');
+        }
+
+
+        let useFormData = false;
+
+        let requestOptions: request.Options = {
+            method: 'GET',
+            qs: queryParameters,
+            headers: headerParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.jenkins_auth.applyToRequest(requestOptions);
+
+        this.authentications.default.applyToRequest(requestOptions);
+
+        if (Object.keys(formParams).length) {
+            if (useFormData) {
+                (<any>requestOptions).formData = formParams;
+            } else {
+                requestOptions.form = formParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: PipelineRun;  }>((resolve, reject) => {
+            request(requestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "PipelineRun");
+                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * Get log for a pipeline run
+     * @param organization Name of the organization
+     * @param pipeline Name of the pipeline
+     * @param run Name of the run
+     * @param start Start position of the log
+     * @param download Set to true in order to download the file, otherwise it&#39;s passed as a response body
+     */
+    public getPipelineRunLog (organization: string, pipeline: string, run: string, start?: number, download?: boolean) : Promise<{ response: http.ClientResponse; body: string;  }> {
+        const localVarPath = this.basePath + '/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/log'
+            .replace('{' + 'organization' + '}', String(organization))
+            .replace('{' + 'pipeline' + '}', String(pipeline))
+            .replace('{' + 'run' + '}', String(run));
+        let queryParameters: any = {};
+        let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let formParams: any = {};
+
+
+        // verify required parameter 'organization' is not null or undefined
+        if (organization === null || organization === undefined) {
+            throw new Error('Required parameter organization was null or undefined when calling getPipelineRunLog.');
+        }
+
+        // verify required parameter 'pipeline' is not null or undefined
+        if (pipeline === null || pipeline === undefined) {
+            throw new Error('Required parameter pipeline was null or undefined when calling getPipelineRunLog.');
+        }
+
+        // verify required parameter 'run' is not null or undefined
+        if (run === null || run === undefined) {
+            throw new Error('Required parameter run was null or undefined when calling getPipelineRunLog.');
+        }
+
+        if (start !== undefined) {
+            queryParameters['start'] = ObjectSerializer.serialize(start, "number");
+        }
+
+        if (download !== undefined) {
+            queryParameters['download'] = ObjectSerializer.serialize(download, "boolean");
+        }
+
+
+        let useFormData = false;
+
+        let requestOptions: request.Options = {
+            method: 'GET',
+            qs: queryParameters,
+            headers: headerParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.jenkins_auth.applyToRequest(requestOptions);
+
+        this.authentications.default.applyToRequest(requestOptions);
+
+        if (Object.keys(formParams).length) {
+            if (useFormData) {
+                (<any>requestOptions).formData = formParams;
+            } else {
+                requestOptions.form = formParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: string;  }>((resolve, reject) => {
+            request(requestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "string");
+                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * Retrieve run node details for an organization pipeline
+     * @param organization Name of the organization
+     * @param pipeline Name of the pipeline
+     * @param run Name of the run
+     * @param node Name of the node
+     */
+    public getPipelineRunNode (organization: string, pipeline: string, run: string, node: string) : Promise<{ response: http.ClientResponse; body: PipelineRunNode;  }> {
+        const localVarPath = this.basePath + '/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}'
+            .replace('{' + 'organization' + '}', String(organization))
+            .replace('{' + 'pipeline' + '}', String(pipeline))
+            .replace('{' + 'run' + '}', String(run))
+            .replace('{' + 'node' + '}', String(node));
+        let queryParameters: any = {};
+        let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let formParams: any = {};
+
+
+        // verify required parameter 'organization' is not null or undefined
+        if (organization === null || organization === undefined) {
+            throw new Error('Required parameter organization was null or undefined when calling getPipelineRunNode.');
+        }
+
+        // verify required parameter 'pipeline' is not null or undefined
+        if (pipeline === null || pipeline === undefined) {
+            throw new Error('Required parameter pipeline was null or undefined when calling getPipelineRunNode.');
+        }
+
+        // verify required parameter 'run' is not null or undefined
+        if (run === null || run === undefined) {
+            throw new Error('Required parameter run was null or undefined when calling getPipelineRunNode.');
+        }
+
+        // verify required parameter 'node' is not null or undefined
+        if (node === null || node === undefined) {
+            throw new Error('Required parameter node was null or undefined when calling getPipelineRunNode.');
+        }
+
+
+        let useFormData = false;
+
+        let requestOptions: request.Options = {
+            method: 'GET',
+            qs: queryParameters,
+            headers: headerParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.jenkins_auth.applyToRequest(requestOptions);
+
+        this.authentications.default.applyToRequest(requestOptions);
+
+        if (Object.keys(formParams).length) {
+            if (useFormData) {
+                (<any>requestOptions).formData = formParams;
+            } else {
+                requestOptions.form = formParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: PipelineRunNode;  }>((resolve, reject) => {
+            request(requestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "PipelineRunNode");
+                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * Retrieve run node details for an organization pipeline
+     * @param organization Name of the organization
+     * @param pipeline Name of the pipeline
+     * @param run Name of the run
+     * @param node Name of the node
+     * @param step Name of the step
+     */
+    public getPipelineRunNodeStep (organization: string, pipeline: string, run: string, node: string, step: string) : Promise<{ response: http.ClientResponse; body: PipelineStepImpl;  }> {
+        const localVarPath = this.basePath + '/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps/{step}'
+            .replace('{' + 'organization' + '}', String(organization))
+            .replace('{' + 'pipeline' + '}', String(pipeline))
+            .replace('{' + 'run' + '}', String(run))
+            .replace('{' + 'node' + '}', String(node))
+            .replace('{' + 'step' + '}', String(step));
+        let queryParameters: any = {};
+        let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let formParams: any = {};
+
+
+        // verify required parameter 'organization' is not null or undefined
+        if (organization === null || organization === undefined) {
+            throw new Error('Required parameter organization was null or undefined when calling getPipelineRunNodeStep.');
+        }
+
+        // verify required parameter 'pipeline' is not null or undefined
+        if (pipeline === null || pipeline === undefined) {
+            throw new Error('Required parameter pipeline was null or undefined when calling getPipelineRunNodeStep.');
+        }
+
+        // verify required parameter 'run' is not null or undefined
+        if (run === null || run === undefined) {
+            throw new Error('Required parameter run was null or undefined when calling getPipelineRunNodeStep.');
+        }
+
+        // verify required parameter 'node' is not null or undefined
+        if (node === null || node === undefined) {
+            throw new Error('Required parameter node was null or undefined when calling getPipelineRunNodeStep.');
+        }
+
+        // verify required parameter 'step' is not null or undefined
+        if (step === null || step === undefined) {
+            throw new Error('Required parameter step was null or undefined when calling getPipelineRunNodeStep.');
+        }
+
+
+        let useFormData = false;
+
+        let requestOptions: request.Options = {
+            method: 'GET',
+            qs: queryParameters,
+            headers: headerParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.jenkins_auth.applyToRequest(requestOptions);
+
+        this.authentications.default.applyToRequest(requestOptions);
+
+        if (Object.keys(formParams).length) {
+            if (useFormData) {
+                (<any>requestOptions).formData = formParams;
+            } else {
+                requestOptions.form = formParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: PipelineStepImpl;  }>((resolve, reject) => {
+            request(requestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "PipelineStepImpl");
+                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * Get log for a pipeline run node step
+     * @param organization Name of the organization
+     * @param pipeline Name of the pipeline
+     * @param run Name of the run
+     * @param node Name of the node
+     * @param step Name of the step
+     */
+    public getPipelineRunNodeStepLog (organization: string, pipeline: string, run: string, node: string, step: string) : Promise<{ response: http.ClientResponse; body: string;  }> {
+        const localVarPath = this.basePath + '/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps/{step}/log'
+            .replace('{' + 'organization' + '}', String(organization))
+            .replace('{' + 'pipeline' + '}', String(pipeline))
+            .replace('{' + 'run' + '}', String(run))
+            .replace('{' + 'node' + '}', String(node))
+            .replace('{' + 'step' + '}', String(step));
+        let queryParameters: any = {};
+        let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let formParams: any = {};
+
+
+        // verify required parameter 'organization' is not null or undefined
+        if (organization === null || organization === undefined) {
+            throw new Error('Required parameter organization was null or undefined when calling getPipelineRunNodeStepLog.');
+        }
+
+        // verify required parameter 'pipeline' is not null or undefined
+        if (pipeline === null || pipeline === undefined) {
+            throw new Error('Required parameter pipeline was null or undefined when calling getPipelineRunNodeStepLog.');
+        }
+
+        // verify required parameter 'run' is not null or undefined
+        if (run === null || run === undefined) {
+            throw new Error('Required parameter run was null or undefined when calling getPipelineRunNodeStepLog.');
+        }
+
+        // verify required parameter 'node' is not null or undefined
+        if (node === null || node === undefined) {
+            throw new Error('Required parameter node was null or undefined when calling getPipelineRunNodeStepLog.');
+        }
+
+        // verify required parameter 'step' is not null or undefined
+        if (step === null || step === undefined) {
+            throw new Error('Required parameter step was null or undefined when calling getPipelineRunNodeStepLog.');
+        }
+
+
+        let useFormData = false;
+
+        let requestOptions: request.Options = {
+            method: 'GET',
+            qs: queryParameters,
+            headers: headerParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.jenkins_auth.applyToRequest(requestOptions);
+
+        this.authentications.default.applyToRequest(requestOptions);
+
+        if (Object.keys(formParams).length) {
+            if (useFormData) {
+                (<any>requestOptions).formData = formParams;
+            } else {
+                requestOptions.form = formParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: string;  }>((resolve, reject) => {
+            request(requestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "string");
+                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * Retrieve run node steps details for an organization pipeline
+     * @param organization Name of the organization
+     * @param pipeline Name of the pipeline
+     * @param run Name of the run
+     * @param node Name of the node
+     */
+    public getPipelineRunNodeSteps (organization: string, pipeline: string, run: string, node: string) : Promise<{ response: http.ClientResponse; body: PipelineRunNodeSteps;  }> {
+        const localVarPath = this.basePath + '/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps'
+            .replace('{' + 'organization' + '}', String(organization))
+            .replace('{' + 'pipeline' + '}', String(pipeline))
+            .replace('{' + 'run' + '}', String(run))
+            .replace('{' + 'node' + '}', String(node));
+        let queryParameters: any = {};
+        let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let formParams: any = {};
+
+
+        // verify required parameter 'organization' is not null or undefined
+        if (organization === null || organization === undefined) {
+            throw new Error('Required parameter organization was null or undefined when calling getPipelineRunNodeSteps.');
+        }
+
+        // verify required parameter 'pipeline' is not null or undefined
+        if (pipeline === null || pipeline === undefined) {
+            throw new Error('Required parameter pipeline was null or undefined when calling getPipelineRunNodeSteps.');
+        }
+
+        // verify required parameter 'run' is not null or undefined
+        if (run === null || run === undefined) {
+            throw new Error('Required parameter run was null or undefined when calling getPipelineRunNodeSteps.');
+        }
+
+        // verify required parameter 'node' is not null or undefined
+        if (node === null || node === undefined) {
+            throw new Error('Required parameter node was null or undefined when calling getPipelineRunNodeSteps.');
+        }
+
+
+        let useFormData = false;
+
+        let requestOptions: request.Options = {
+            method: 'GET',
+            qs: queryParameters,
+            headers: headerParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.jenkins_auth.applyToRequest(requestOptions);
+
+        this.authentications.default.applyToRequest(requestOptions);
+
+        if (Object.keys(formParams).length) {
+            if (useFormData) {
+                (<any>requestOptions).formData = formParams;
+            } else {
+                requestOptions.form = formParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: PipelineRunNodeSteps;  }>((resolve, reject) => {
+            request(requestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "PipelineRunNodeSteps");
+                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * Retrieve run nodes details for an organization pipeline
+     * @param organization Name of the organization
+     * @param pipeline Name of the pipeline
+     * @param run Name of the run
+     */
+    public getPipelineRunNodes (organization: string, pipeline: string, run: string) : Promise<{ response: http.ClientResponse; body: PipelineRunNodes;  }> {
+        const localVarPath = this.basePath + '/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes'
+            .replace('{' + 'organization' + '}', String(organization))
+            .replace('{' + 'pipeline' + '}', String(pipeline))
+            .replace('{' + 'run' + '}', String(run));
+        let queryParameters: any = {};
+        let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let formParams: any = {};
+
+
+        // verify required parameter 'organization' is not null or undefined
+        if (organization === null || organization === undefined) {
+            throw new Error('Required parameter organization was null or undefined when calling getPipelineRunNodes.');
+        }
+
+        // verify required parameter 'pipeline' is not null or undefined
+        if (pipeline === null || pipeline === undefined) {
+            throw new Error('Required parameter pipeline was null or undefined when calling getPipelineRunNodes.');
+        }
+
+        // verify required parameter 'run' is not null or undefined
+        if (run === null || run === undefined) {
+            throw new Error('Required parameter run was null or undefined when calling getPipelineRunNodes.');
+        }
+
+
+        let useFormData = false;
+
+        let requestOptions: request.Options = {
+            method: 'GET',
+            qs: queryParameters,
+            headers: headerParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.jenkins_auth.applyToRequest(requestOptions);
+
+        this.authentications.default.applyToRequest(requestOptions);
+
+        if (Object.keys(formParams).length) {
+            if (useFormData) {
+                (<any>requestOptions).formData = formParams;
+            } else {
+                requestOptions.form = formParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: PipelineRunNodes;  }>((resolve, reject) => {
+            request(requestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "PipelineRunNodes");
+                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * Retrieve all runs details for an organization pipeline
+     * @param organization Name of the organization
+     * @param pipeline Name of the pipeline
+     */
+    public getPipelineRuns (organization: string, pipeline: string) : Promise<{ response: http.ClientResponse; body: PipelineRuns;  }> {
+        const localVarPath = this.basePath + '/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs'
+            .replace('{' + 'organization' + '}', String(organization))
+            .replace('{' + 'pipeline' + '}', String(pipeline));
+        let queryParameters: any = {};
+        let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let formParams: any = {};
+
+
+        // verify required parameter 'organization' is not null or undefined
+        if (organization === null || organization === undefined) {
+            throw new Error('Required parameter organization was null or undefined when calling getPipelineRuns.');
+        }
+
+        // verify required parameter 'pipeline' is not null or undefined
+        if (pipeline === null || pipeline === undefined) {
+            throw new Error('Required parameter pipeline was null or undefined when calling getPipelineRuns.');
+        }
+
+
+        let useFormData = false;
+
+        let requestOptions: request.Options = {
+            method: 'GET',
+            qs: queryParameters,
+            headers: headerParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.jenkins_auth.applyToRequest(requestOptions);
+
+        this.authentications.default.applyToRequest(requestOptions);
+
+        if (Object.keys(formParams).length) {
+            if (useFormData) {
+                (<any>requestOptions).formData = formParams;
+            } else {
+                requestOptions.form = formParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: PipelineRuns;  }>((resolve, reject) => {
+            request(requestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "PipelineRuns");
+                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * Retrieve all pipelines details for an organization
+     * @param organization Name of the organization
+     */
+    public getPipelines (organization: string) : Promise<{ response: http.ClientResponse; body: Pipelines;  }> {
+        const localVarPath = this.basePath + '/blue/rest/organizations/{organization}/pipelines/'
+            .replace('{' + 'organization' + '}', String(organization));
+        let queryParameters: any = {};
+        let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let formParams: any = {};
+
+
+        // verify required parameter 'organization' is not null or undefined
+        if (organization === null || organization === undefined) {
+            throw new Error('Required parameter organization was null or undefined when calling getPipelines.');
+        }
+
+
+        let useFormData = false;
+
+        let requestOptions: request.Options = {
+            method: 'GET',
+            qs: queryParameters,
+            headers: headerParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.jenkins_auth.applyToRequest(requestOptions);
+
+        this.authentications.default.applyToRequest(requestOptions);
+
+        if (Object.keys(formParams).length) {
+            if (useFormData) {
+                (<any>requestOptions).formData = formParams;
+            } else {
+                requestOptions.form = formParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: Pipelines;  }>((resolve, reject) => {
+            request(requestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "Pipelines");
+                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * Retrieve SCM details for an organization
+     * @param organization Name of the organization
+     * @param scm Name of SCM
+     */
+    public getSCM (organization: string, scm: string) : Promise<{ response: http.ClientResponse; body: GithubScm;  }> {
+        const localVarPath = this.basePath + '/blue/rest/organizations/{organization}/scm/{scm}'
+            .replace('{' + 'organization' + '}', String(organization))
+            .replace('{' + 'scm' + '}', String(scm));
+        let queryParameters: any = {};
+        let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let formParams: any = {};
+
+
+        // verify required parameter 'organization' is not null or undefined
+        if (organization === null || organization === undefined) {
+            throw new Error('Required parameter organization was null or undefined when calling getSCM.');
+        }
+
+        // verify required parameter 'scm' is not null or undefined
+        if (scm === null || scm === undefined) {
+            throw new Error('Required parameter scm was null or undefined when calling getSCM.');
+        }
+
+
+        let useFormData = false;
+
+        let requestOptions: request.Options = {
+            method: 'GET',
+            qs: queryParameters,
+            headers: headerParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.jenkins_auth.applyToRequest(requestOptions);
+
+        this.authentications.default.applyToRequest(requestOptions);
+
+        if (Object.keys(formParams).length) {
+            if (useFormData) {
+                (<any>requestOptions).formData = formParams;
+            } else {
+                requestOptions.form = formParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: GithubScm;  }>((resolve, reject) => {
+            request(requestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "GithubScm");
+                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * Retrieve SCM organization repositories details for an organization
+     * @param organization Name of the organization
+     * @param scm Name of SCM
+     * @param scmOrganisation Name of the SCM organization
+     * @param credentialId Credential ID
+     * @param pageSize Number of items in a page
+     * @param pageNumber Page number
+     */
+    public getSCMOrganisationRepositories (organization: string, scm: string, scmOrganisation: string, credentialId?: string, pageSize?: number, pageNumber?: number) : Promise<{ response: http.ClientResponse; body: ScmOrganisations;  }> {
+        const localVarPath = this.basePath + '/blue/rest/organizations/{organization}/scm/{scm}/organizations/{scmOrganisation}/repositories'
+            .replace('{' + 'organization' + '}', String(organization))
+            .replace('{' + 'scm' + '}', String(scm))
+            .replace('{' + 'scmOrganisation' + '}', String(scmOrganisation));
+        let queryParameters: any = {};
+        let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let formParams: any = {};
+
+
+        // verify required parameter 'organization' is not null or undefined
+        if (organization === null || organization === undefined) {
+            throw new Error('Required parameter organization was null or undefined when calling getSCMOrganisationRepositories.');
+        }
+
+        // verify required parameter 'scm' is not null or undefined
+        if (scm === null || scm === undefined) {
+            throw new Error('Required parameter scm was null or undefined when calling getSCMOrganisationRepositories.');
+        }
+
+        // verify required parameter 'scmOrganisation' is not null or undefined
+        if (scmOrganisation === null || scmOrganisation === undefined) {
+            throw new Error('Required parameter scmOrganisation was null or undefined when calling getSCMOrganisationRepositories.');
+        }
+
+        if (credentialId !== undefined) {
+            queryParameters['credentialId'] = ObjectSerializer.serialize(credentialId, "string");
+        }
+
+        if (pageSize !== undefined) {
+            queryParameters['pageSize'] = ObjectSerializer.serialize(pageSize, "number");
+        }
+
+        if (pageNumber !== undefined) {
+            queryParameters['pageNumber'] = ObjectSerializer.serialize(pageNumber, "number");
+        }
+
+
+        let useFormData = false;
+
+        let requestOptions: request.Options = {
+            method: 'GET',
+            qs: queryParameters,
+            headers: headerParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.jenkins_auth.applyToRequest(requestOptions);
+
+        this.authentications.default.applyToRequest(requestOptions);
+
+        if (Object.keys(formParams).length) {
+            if (useFormData) {
+                (<any>requestOptions).formData = formParams;
+            } else {
+                requestOptions.form = formParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: ScmOrganisations;  }>((resolve, reject) => {
+            request(requestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "ScmOrganisations");
+                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * Retrieve SCM organization repository details for an organization
+     * @param organization Name of the organization
+     * @param scm Name of SCM
+     * @param scmOrganisation Name of the SCM organization
+     * @param repository Name of the SCM repository
+     * @param credentialId Credential ID
+     */
+    public getSCMOrganisationRepository (organization: string, scm: string, scmOrganisation: string, repository: string, credentialId?: string) : Promise<{ response: http.ClientResponse; body: ScmOrganisations;  }> {
+        const localVarPath = this.basePath + '/blue/rest/organizations/{organization}/scm/{scm}/organizations/{scmOrganisation}/repositories/{repository}'
+            .replace('{' + 'organization' + '}', String(organization))
+            .replace('{' + 'scm' + '}', String(scm))
+            .replace('{' + 'scmOrganisation' + '}', String(scmOrganisation))
+            .replace('{' + 'repository' + '}', String(repository));
+        let queryParameters: any = {};
+        let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let formParams: any = {};
+
+
+        // verify required parameter 'organization' is not null or undefined
+        if (organization === null || organization === undefined) {
+            throw new Error('Required parameter organization was null or undefined when calling getSCMOrganisationRepository.');
+        }
+
+        // verify required parameter 'scm' is not null or undefined
+        if (scm === null || scm === undefined) {
+            throw new Error('Required parameter scm was null or undefined when calling getSCMOrganisationRepository.');
+        }
+
+        // verify required parameter 'scmOrganisation' is not null or undefined
+        if (scmOrganisation === null || scmOrganisation === undefined) {
+            throw new Error('Required parameter scmOrganisation was null or undefined when calling getSCMOrganisationRepository.');
+        }
+
+        // verify required parameter 'repository' is not null or undefined
+        if (repository === null || repository === undefined) {
+            throw new Error('Required parameter repository was null or undefined when calling getSCMOrganisationRepository.');
+        }
+
+        if (credentialId !== undefined) {
+            queryParameters['credentialId'] = ObjectSerializer.serialize(credentialId, "string");
+        }
+
+
+        let useFormData = false;
+
+        let requestOptions: request.Options = {
+            method: 'GET',
+            qs: queryParameters,
+            headers: headerParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.jenkins_auth.applyToRequest(requestOptions);
+
+        this.authentications.default.applyToRequest(requestOptions);
+
+        if (Object.keys(formParams).length) {
+            if (useFormData) {
+                (<any>requestOptions).formData = formParams;
+            } else {
+                requestOptions.form = formParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: ScmOrganisations;  }>((resolve, reject) => {
+            request(requestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "ScmOrganisations");
+                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * Retrieve SCM organizations details for an organization
+     * @param organization Name of the organization
+     * @param scm Name of SCM
+     * @param credentialId Credential ID
+     */
+    public getSCMOrganisations (organization: string, scm: string, credentialId?: string) : Promise<{ response: http.ClientResponse; body: ScmOrganisations;  }> {
+        const localVarPath = this.basePath + '/blue/rest/organizations/{organization}/scm/{scm}/organizations'
+            .replace('{' + 'organization' + '}', String(organization))
+            .replace('{' + 'scm' + '}', String(scm));
+        let queryParameters: any = {};
+        let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let formParams: any = {};
+
+
+        // verify required parameter 'organization' is not null or undefined
+        if (organization === null || organization === undefined) {
+            throw new Error('Required parameter organization was null or undefined when calling getSCMOrganisations.');
+        }
+
+        // verify required parameter 'scm' is not null or undefined
+        if (scm === null || scm === undefined) {
+            throw new Error('Required parameter scm was null or undefined when calling getSCMOrganisations.');
+        }
+
+        if (credentialId !== undefined) {
+            queryParameters['credentialId'] = ObjectSerializer.serialize(credentialId, "string");
+        }
+
+
+        let useFormData = false;
+
+        let requestOptions: request.Options = {
+            method: 'GET',
+            qs: queryParameters,
+            headers: headerParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.jenkins_auth.applyToRequest(requestOptions);
+
+        this.authentications.default.applyToRequest(requestOptions);
+
+        if (Object.keys(formParams).length) {
+            if (useFormData) {
+                (<any>requestOptions).formData = formParams;
+            } else {
+                requestOptions.form = formParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: ScmOrganisations;  }>((resolve, reject) => {
+            request(requestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "ScmOrganisations");
+                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * Retrieve user details for an organization
+     * @param organization Name of the organization
      * @param user Name of the user
      */
-    public getUser (organisation: string, user: string) : Promise<{ response: http.ClientResponse; body: SwaggyjenkinsUser;  }> {
-        const localVarPath = this.basePath + '/blue/rest/organizations/{organisation}/users/{user}'
-            .replace('{' + 'organisation' + '}', String(organisation))
+    public getUser (organization: string, user: string) : Promise<{ response: http.ClientResponse; body: User;  }> {
+        const localVarPath = this.basePath + '/blue/rest/organizations/{organization}/users/{user}'
+            .replace('{' + 'organization' + '}', String(organization))
             .replace('{' + 'user' + '}', String(user));
         let queryParameters: any = {};
         let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let formParams: any = {};
 
 
-        // verify required parameter 'organisation' is not null or undefined
-        if (organisation === null || organisation === undefined) {
-            throw new Error('Required parameter organisation was null or undefined when calling getUser.');
+        // verify required parameter 'organization' is not null or undefined
+        if (organization === null || organization === undefined) {
+            throw new Error('Required parameter organization was null or undefined when calling getUser.');
         }
 
         // verify required parameter 'user' is not null or undefined
@@ -1169,6 +5971,7 @@ export class BlueOceanApi {
             throw new Error('Required parameter user was null or undefined when calling getUser.');
         }
 
+
         let useFormData = false;
 
         let requestOptions: request.Options = {
@@ -1180,6 +5983,8 @@ export class BlueOceanApi {
             json: true,
         };
 
+        this.authentications.jenkins_auth.applyToRequest(requestOptions);
+
         this.authentications.default.applyToRequest(requestOptions);
 
         if (Object.keys(formParams).length) {
@@ -1189,11 +5994,12 @@ export class BlueOceanApi {
                 requestOptions.form = formParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body: SwaggyjenkinsUser;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: User;  }>((resolve, reject) => {
             request(requestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
+                    body = ObjectSerializer.deserialize(body, "User");
                     if (response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
@@ -1204,22 +6010,22 @@ export class BlueOceanApi {
         });
     }
     /**
-     * 
-     * Retrieve users details for an organisation
-     * @param organisation Name of the organisation
+     * Retrieve user favorites details for an organization
+     * @param user Name of the user
      */
-    public getUsers (organisation: string) : Promise<{ response: http.ClientResponse; body: SwaggyjenkinsUser;  }> {
-        const localVarPath = this.basePath + '/blue/rest/organizations/{organisation}/users/'
-            .replace('{' + 'organisation' + '}', String(organisation));
+    public getUserFavorites (user: string) : Promise<{ response: http.ClientResponse; body: UserFavorites;  }> {
+        const localVarPath = this.basePath + '/blue/rest/users/{user}/favorites'
+            .replace('{' + 'user' + '}', String(user));
         let queryParameters: any = {};
         let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let formParams: any = {};
 
 
-        // verify required parameter 'organisation' is not null or undefined
-        if (organisation === null || organisation === undefined) {
-            throw new Error('Required parameter organisation was null or undefined when calling getUsers.');
+        // verify required parameter 'user' is not null or undefined
+        if (user === null || user === undefined) {
+            throw new Error('Required parameter user was null or undefined when calling getUserFavorites.');
         }
+
 
         let useFormData = false;
 
@@ -1232,6 +6038,8 @@ export class BlueOceanApi {
             json: true,
         };
 
+        this.authentications.jenkins_auth.applyToRequest(requestOptions);
+
         this.authentications.default.applyToRequest(requestOptions);
 
         if (Object.keys(formParams).length) {
@@ -1241,11 +6049,12 @@ export class BlueOceanApi {
                 requestOptions.form = formParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body: SwaggyjenkinsUser;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: UserFavorites;  }>((resolve, reject) => {
             request(requestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
+                    body = ObjectSerializer.deserialize(body, "UserFavorites");
                     if (response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
@@ -1256,12 +6065,345 @@ export class BlueOceanApi {
         });
     }
     /**
-     * 
-     * Get classes details
-     * @param q Query string containing an array of class names
+     * Retrieve users details for an organization
+     * @param organization Name of the organization
+     */
+    public getUsers (organization: string) : Promise<{ response: http.ClientResponse; body: User;  }> {
+        const localVarPath = this.basePath + '/blue/rest/organizations/{organization}/users/'
+            .replace('{' + 'organization' + '}', String(organization));
+        let queryParameters: any = {};
+        let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let formParams: any = {};
+
+
+        // verify required parameter 'organization' is not null or undefined
+        if (organization === null || organization === undefined) {
+            throw new Error('Required parameter organization was null or undefined when calling getUsers.');
+        }
+
+
+        let useFormData = false;
+
+        let requestOptions: request.Options = {
+            method: 'GET',
+            qs: queryParameters,
+            headers: headerParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.jenkins_auth.applyToRequest(requestOptions);
+
+        this.authentications.default.applyToRequest(requestOptions);
+
+        if (Object.keys(formParams).length) {
+            if (useFormData) {
+                (<any>requestOptions).formData = formParams;
+            } else {
+                requestOptions.form = formParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: User;  }>((resolve, reject) => {
+            request(requestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "User");
+                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * Replay an organization pipeline run
+     * @param organization Name of the organization
+     * @param pipeline Name of the pipeline
+     * @param run Name of the run
+     */
+    public postPipelineRun (organization: string, pipeline: string, run: string) : Promise<{ response: http.ClientResponse; body: QueueItemImpl;  }> {
+        const localVarPath = this.basePath + '/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/replay'
+            .replace('{' + 'organization' + '}', String(organization))
+            .replace('{' + 'pipeline' + '}', String(pipeline))
+            .replace('{' + 'run' + '}', String(run));
+        let queryParameters: any = {};
+        let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let formParams: any = {};
+
+
+        // verify required parameter 'organization' is not null or undefined
+        if (organization === null || organization === undefined) {
+            throw new Error('Required parameter organization was null or undefined when calling postPipelineRun.');
+        }
+
+        // verify required parameter 'pipeline' is not null or undefined
+        if (pipeline === null || pipeline === undefined) {
+            throw new Error('Required parameter pipeline was null or undefined when calling postPipelineRun.');
+        }
+
+        // verify required parameter 'run' is not null or undefined
+        if (run === null || run === undefined) {
+            throw new Error('Required parameter run was null or undefined when calling postPipelineRun.');
+        }
+
+
+        let useFormData = false;
+
+        let requestOptions: request.Options = {
+            method: 'POST',
+            qs: queryParameters,
+            headers: headerParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.jenkins_auth.applyToRequest(requestOptions);
+
+        this.authentications.default.applyToRequest(requestOptions);
+
+        if (Object.keys(formParams).length) {
+            if (useFormData) {
+                (<any>requestOptions).formData = formParams;
+            } else {
+                requestOptions.form = formParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: QueueItemImpl;  }>((resolve, reject) => {
+            request(requestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "QueueItemImpl");
+                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * Start a build for an organization pipeline
+     * @param organization Name of the organization
+     * @param pipeline Name of the pipeline
+     */
+    public postPipelineRuns (organization: string, pipeline: string) : Promise<{ response: http.ClientResponse; body: QueueItemImpl;  }> {
+        const localVarPath = this.basePath + '/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs'
+            .replace('{' + 'organization' + '}', String(organization))
+            .replace('{' + 'pipeline' + '}', String(pipeline));
+        let queryParameters: any = {};
+        let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let formParams: any = {};
+
+
+        // verify required parameter 'organization' is not null or undefined
+        if (organization === null || organization === undefined) {
+            throw new Error('Required parameter organization was null or undefined when calling postPipelineRuns.');
+        }
+
+        // verify required parameter 'pipeline' is not null or undefined
+        if (pipeline === null || pipeline === undefined) {
+            throw new Error('Required parameter pipeline was null or undefined when calling postPipelineRuns.');
+        }
+
+
+        let useFormData = false;
+
+        let requestOptions: request.Options = {
+            method: 'POST',
+            qs: queryParameters,
+            headers: headerParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.jenkins_auth.applyToRequest(requestOptions);
+
+        this.authentications.default.applyToRequest(requestOptions);
+
+        if (Object.keys(formParams).length) {
+            if (useFormData) {
+                (<any>requestOptions).formData = formParams;
+            } else {
+                requestOptions.form = formParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: QueueItemImpl;  }>((resolve, reject) => {
+            request(requestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "QueueItemImpl");
+                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * Favorite/unfavorite a pipeline
+     * @param organization Name of the organization
+     * @param pipeline Name of the pipeline
+     * @param body Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite
+     */
+    public putPipelineFavorite (organization: string, pipeline: string, body: Body) : Promise<{ response: http.ClientResponse; body: FavoriteImpl;  }> {
+        const localVarPath = this.basePath + '/blue/rest/organizations/{organization}/pipelines/{pipeline}/favorite'
+            .replace('{' + 'organization' + '}', String(organization))
+            .replace('{' + 'pipeline' + '}', String(pipeline));
+        let queryParameters: any = {};
+        let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let formParams: any = {};
+
+
+        // verify required parameter 'organization' is not null or undefined
+        if (organization === null || organization === undefined) {
+            throw new Error('Required parameter organization was null or undefined when calling putPipelineFavorite.');
+        }
+
+        // verify required parameter 'pipeline' is not null or undefined
+        if (pipeline === null || pipeline === undefined) {
+            throw new Error('Required parameter pipeline was null or undefined when calling putPipelineFavorite.');
+        }
+
+        // verify required parameter 'body' is not null or undefined
+        if (body === null || body === undefined) {
+            throw new Error('Required parameter body was null or undefined when calling putPipelineFavorite.');
+        }
+
+
+        let useFormData = false;
+
+        let requestOptions: request.Options = {
+            method: 'PUT',
+            qs: queryParameters,
+            headers: headerParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(body, "Body")
+        };
+
+        this.authentications.jenkins_auth.applyToRequest(requestOptions);
+
+        this.authentications.default.applyToRequest(requestOptions);
+
+        if (Object.keys(formParams).length) {
+            if (useFormData) {
+                (<any>requestOptions).formData = formParams;
+            } else {
+                requestOptions.form = formParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: FavoriteImpl;  }>((resolve, reject) => {
+            request(requestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "FavoriteImpl");
+                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * Stop a build of an organization pipeline
+     * @param organization Name of the organization
+     * @param pipeline Name of the pipeline
+     * @param run Name of the run
+     * @param blocking Set to true to make blocking stop, default: false
+     * @param timeOutInSecs Timeout in seconds, default: 10 seconds
+     */
+    public putPipelineRun (organization: string, pipeline: string, run: string, blocking?: string, timeOutInSecs?: number) : Promise<{ response: http.ClientResponse; body: PipelineRun;  }> {
+        const localVarPath = this.basePath + '/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/stop'
+            .replace('{' + 'organization' + '}', String(organization))
+            .replace('{' + 'pipeline' + '}', String(pipeline))
+            .replace('{' + 'run' + '}', String(run));
+        let queryParameters: any = {};
+        let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let formParams: any = {};
+
+
+        // verify required parameter 'organization' is not null or undefined
+        if (organization === null || organization === undefined) {
+            throw new Error('Required parameter organization was null or undefined when calling putPipelineRun.');
+        }
+
+        // verify required parameter 'pipeline' is not null or undefined
+        if (pipeline === null || pipeline === undefined) {
+            throw new Error('Required parameter pipeline was null or undefined when calling putPipelineRun.');
+        }
+
+        // verify required parameter 'run' is not null or undefined
+        if (run === null || run === undefined) {
+            throw new Error('Required parameter run was null or undefined when calling putPipelineRun.');
+        }
+
+        if (blocking !== undefined) {
+            queryParameters['blocking'] = ObjectSerializer.serialize(blocking, "string");
+        }
+
+        if (timeOutInSecs !== undefined) {
+            queryParameters['timeOutInSecs'] = ObjectSerializer.serialize(timeOutInSecs, "number");
+        }
+
+
+        let useFormData = false;
+
+        let requestOptions: request.Options = {
+            method: 'PUT',
+            qs: queryParameters,
+            headers: headerParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.jenkins_auth.applyToRequest(requestOptions);
+
+        this.authentications.default.applyToRequest(requestOptions);
+
+        if (Object.keys(formParams).length) {
+            if (useFormData) {
+                (<any>requestOptions).formData = formParams;
+            } else {
+                requestOptions.form = formParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: PipelineRun;  }>((resolve, reject) => {
+            request(requestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "PipelineRun");
+                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * Search for any resource details
+     * @param q Query string
      */
     public search (q: string) : Promise<{ response: http.ClientResponse; body: string;  }> {
-        const localVarPath = this.basePath + '/blue/rest/classes/';
+        const localVarPath = this.basePath + '/blue/rest/search/';
         let queryParameters: any = {};
         let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let formParams: any = {};
@@ -1273,8 +6415,9 @@ export class BlueOceanApi {
         }
 
         if (q !== undefined) {
-            queryParameters['q'] = q;
+            queryParameters['q'] = ObjectSerializer.serialize(q, "string");
         }
+
 
         let useFormData = false;
 
@@ -1286,6 +6429,8 @@ export class BlueOceanApi {
             useQuerystring: this._useQuerystring,
             json: true,
         };
+
+        this.authentications.jenkins_auth.applyToRequest(requestOptions);
 
         this.authentications.default.applyToRequest(requestOptions);
 
@@ -1301,6 +6446,7 @@ export class BlueOceanApi {
                 if (error) {
                     reject(error);
                 } else {
+                    body = ObjectSerializer.deserialize(body, "string");
                     if (response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
@@ -1311,12 +6457,11 @@ export class BlueOceanApi {
         });
     }
     /**
-     * 
-     * Search for any resource details
-     * @param q Query string
+     * Get classes details
+     * @param q Query string containing an array of class names
      */
-    public search_2 (q: string) : Promise<{ response: http.ClientResponse; body: string;  }> {
-        const localVarPath = this.basePath + '/blue/rest/search/';
+    public searchClasses (q: string) : Promise<{ response: http.ClientResponse; body: string;  }> {
+        const localVarPath = this.basePath + '/blue/rest/classes/';
         let queryParameters: any = {};
         let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let formParams: any = {};
@@ -1324,12 +6469,13 @@ export class BlueOceanApi {
 
         // verify required parameter 'q' is not null or undefined
         if (q === null || q === undefined) {
-            throw new Error('Required parameter q was null or undefined when calling search_2.');
+            throw new Error('Required parameter q was null or undefined when calling searchClasses.');
         }
 
         if (q !== undefined) {
-            queryParameters['q'] = q;
+            queryParameters['q'] = ObjectSerializer.serialize(q, "string");
         }
+
 
         let useFormData = false;
 
@@ -1341,6 +6487,8 @@ export class BlueOceanApi {
             useQuerystring: this._useQuerystring,
             json: true,
         };
+
+        this.authentications.jenkins_auth.applyToRequest(requestOptions);
 
         this.authentications.default.applyToRequest(requestOptions);
 
@@ -1356,6 +6504,7 @@ export class BlueOceanApi {
                 if (error) {
                     reject(error);
                 } else {
+                    body = ObjectSerializer.deserialize(body, "string");
                     if (response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
@@ -1407,6 +6556,10 @@ export class RemoteAccessApi {
         return this._basePath;
     }
 
+    public setDefaultAuthentication(auth: Authentication) {
+	this.authentications.default = auth;
+    }
+
     public setApiKey(key: RemoteAccessApiApiKeys, value: string) {
         this.authentications[RemoteAccessApiApiKeys[key]].apiKey = value;
     }
@@ -1418,14 +6571,24 @@ export class RemoteAccessApi {
         this.authentications.jenkins_auth.password = password;
     }
     /**
-     * 
      * Retrieve computer details
+     * @param depth Recursion depth in response model
      */
-    public getComputer () : Promise<{ response: http.ClientResponse; body: HudsonmodelComputerSet;  }> {
-        const localVarPath = this.basePath + '/computer/api/json?depth=1';
+    public getComputer (depth: number) : Promise<{ response: http.ClientResponse; body: ComputerSet;  }> {
+        const localVarPath = this.basePath + '/computer/api/json';
         let queryParameters: any = {};
         let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let formParams: any = {};
+
+
+        // verify required parameter 'depth' is not null or undefined
+        if (depth === null || depth === undefined) {
+            throw new Error('Required parameter depth was null or undefined when calling getComputer.');
+        }
+
+        if (depth !== undefined) {
+            queryParameters['depth'] = ObjectSerializer.serialize(depth, "number");
+        }
 
 
         let useFormData = false;
@@ -1439,6 +6602,8 @@ export class RemoteAccessApi {
             json: true,
         };
 
+        this.authentications.jenkins_auth.applyToRequest(requestOptions);
+
         this.authentications.default.applyToRequest(requestOptions);
 
         if (Object.keys(formParams).length) {
@@ -1448,11 +6613,12 @@ export class RemoteAccessApi {
                 requestOptions.form = formParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body: HudsonmodelComputerSet;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: ComputerSet;  }>((resolve, reject) => {
             request(requestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
+                    body = ObjectSerializer.deserialize(body, "ComputerSet");
                     if (response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
@@ -1463,16 +6629,16 @@ export class RemoteAccessApi {
         });
     }
     /**
-     * 
      * Retrieve CSRF protection token
      */
-    public getCrumb () : Promise<{ response: http.ClientResponse; body: HudsonsecuritycsrfDefaultCrumbIssuer;  }> {
+    public getCrumb () : Promise<{ response: http.ClientResponse; body: DefaultCrumbIssuer;  }> {
         const localVarPath = this.basePath + '/crumbIssuer/api/json';
         let queryParameters: any = {};
         let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let formParams: any = {};
 
 
+
         let useFormData = false;
 
         let requestOptions: request.Options = {
@@ -1484,6 +6650,8 @@ export class RemoteAccessApi {
             json: true,
         };
 
+        this.authentications.jenkins_auth.applyToRequest(requestOptions);
+
         this.authentications.default.applyToRequest(requestOptions);
 
         if (Object.keys(formParams).length) {
@@ -1493,11 +6661,12 @@ export class RemoteAccessApi {
                 requestOptions.form = formParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body: HudsonsecuritycsrfDefaultCrumbIssuer;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: DefaultCrumbIssuer;  }>((resolve, reject) => {
             request(requestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
+                    body = ObjectSerializer.deserialize(body, "DefaultCrumbIssuer");
                     if (response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
@@ -1508,16 +6677,16 @@ export class RemoteAccessApi {
         });
     }
     /**
-     * 
      * Retrieve Jenkins details
      */
-    public getJenkins () : Promise<{ response: http.ClientResponse; body: HudsonmodelHudson;  }> {
+    public getJenkins () : Promise<{ response: http.ClientResponse; body: Hudson;  }> {
         const localVarPath = this.basePath + '/api/json';
         let queryParameters: any = {};
         let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let formParams: any = {};
 
 
+
         let useFormData = false;
 
         let requestOptions: request.Options = {
@@ -1529,6 +6698,8 @@ export class RemoteAccessApi {
             json: true,
         };
 
+        this.authentications.jenkins_auth.applyToRequest(requestOptions);
+
         this.authentications.default.applyToRequest(requestOptions);
 
         if (Object.keys(formParams).length) {
@@ -1538,11 +6709,12 @@ export class RemoteAccessApi {
                 requestOptions.form = formParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body: HudsonmodelHudson;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: Hudson;  }>((resolve, reject) => {
             request(requestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
+                    body = ObjectSerializer.deserialize(body, "Hudson");
                     if (response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
@@ -1553,11 +6725,10 @@ export class RemoteAccessApi {
         });
     }
     /**
-     * 
      * Retrieve job details
      * @param name Name of the job
      */
-    public getJob (name: string) : Promise<{ response: http.ClientResponse; body: HudsonmodelFreeStyleProject;  }> {
+    public getJob (name: string) : Promise<{ response: http.ClientResponse; body: FreeStyleProject;  }> {
         const localVarPath = this.basePath + '/job/{name}/api/json'
             .replace('{' + 'name' + '}', String(name));
         let queryParameters: any = {};
@@ -1570,6 +6741,7 @@ export class RemoteAccessApi {
             throw new Error('Required parameter name was null or undefined when calling getJob.');
         }
 
+
         let useFormData = false;
 
         let requestOptions: request.Options = {
@@ -1581,6 +6753,8 @@ export class RemoteAccessApi {
             json: true,
         };
 
+        this.authentications.jenkins_auth.applyToRequest(requestOptions);
+
         this.authentications.default.applyToRequest(requestOptions);
 
         if (Object.keys(formParams).length) {
@@ -1590,11 +6764,12 @@ export class RemoteAccessApi {
                 requestOptions.form = formParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body: HudsonmodelFreeStyleProject;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: FreeStyleProject;  }>((resolve, reject) => {
             request(requestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
+                    body = ObjectSerializer.deserialize(body, "FreeStyleProject");
                     if (response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
@@ -1605,7 +6780,6 @@ export class RemoteAccessApi {
         });
     }
     /**
-     * 
      * Retrieve job configuration
      * @param name Name of the job
      */
@@ -1622,6 +6796,7 @@ export class RemoteAccessApi {
             throw new Error('Required parameter name was null or undefined when calling getJobConfig.');
         }
 
+
         let useFormData = false;
 
         let requestOptions: request.Options = {
@@ -1632,6 +6807,8 @@ export class RemoteAccessApi {
             useQuerystring: this._useQuerystring,
             json: true,
         };
+
+        this.authentications.jenkins_auth.applyToRequest(requestOptions);
 
         this.authentications.default.applyToRequest(requestOptions);
 
@@ -1647,6 +6824,7 @@ export class RemoteAccessApi {
                 if (error) {
                     reject(error);
                 } else {
+                    body = ObjectSerializer.deserialize(body, "string");
                     if (response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
@@ -1657,11 +6835,10 @@ export class RemoteAccessApi {
         });
     }
     /**
-     * 
-     * Retrieve job&#39;s last build details
+     * Retrieve job's last build details
      * @param name Name of the job
      */
-    public getJobLastBuild (name: string) : Promise<{ response: http.ClientResponse; body: HudsonmodelFreeStyleBuild;  }> {
+    public getJobLastBuild (name: string) : Promise<{ response: http.ClientResponse; body: FreeStyleBuild;  }> {
         const localVarPath = this.basePath + '/job/{name}/lastBuild/api/json'
             .replace('{' + 'name' + '}', String(name));
         let queryParameters: any = {};
@@ -1674,6 +6851,7 @@ export class RemoteAccessApi {
             throw new Error('Required parameter name was null or undefined when calling getJobLastBuild.');
         }
 
+
         let useFormData = false;
 
         let requestOptions: request.Options = {
@@ -1685,6 +6863,8 @@ export class RemoteAccessApi {
             json: true,
         };
 
+        this.authentications.jenkins_auth.applyToRequest(requestOptions);
+
         this.authentications.default.applyToRequest(requestOptions);
 
         if (Object.keys(formParams).length) {
@@ -1694,11 +6874,12 @@ export class RemoteAccessApi {
                 requestOptions.form = formParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body: HudsonmodelFreeStyleBuild;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: FreeStyleBuild;  }>((resolve, reject) => {
             request(requestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
+                    body = ObjectSerializer.deserialize(body, "FreeStyleBuild");
                     if (response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
@@ -1709,8 +6890,7 @@ export class RemoteAccessApi {
         });
     }
     /**
-     * 
-     * Retrieve job&#39;s build progressive text output
+     * Retrieve job's build progressive text output
      * @param name Name of the job
      * @param number Build number
      * @param start Starting point of progressive text output
@@ -1740,8 +6920,9 @@ export class RemoteAccessApi {
         }
 
         if (start !== undefined) {
-            queryParameters['start'] = start;
+            queryParameters['start'] = ObjectSerializer.serialize(start, "string");
         }
+
 
         let useFormData = false;
 
@@ -1753,6 +6934,8 @@ export class RemoteAccessApi {
             useQuerystring: this._useQuerystring,
             json: true,
         };
+
+        this.authentications.jenkins_auth.applyToRequest(requestOptions);
 
         this.authentications.default.applyToRequest(requestOptions);
 
@@ -1778,14 +6961,14 @@ export class RemoteAccessApi {
         });
     }
     /**
-     * 
      * Retrieve queue details
      */
-    public getQueue () : Promise<{ response: http.ClientResponse; body: HudsonmodelQueue;  }> {
+    public getQueue () : Promise<{ response: http.ClientResponse; body: Queue;  }> {
         const localVarPath = this.basePath + '/queue/api/json';
         let queryParameters: any = {};
         let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let formParams: any = {};
+
 
 
         let useFormData = false;
@@ -1799,6 +6982,8 @@ export class RemoteAccessApi {
             json: true,
         };
 
+        this.authentications.jenkins_auth.applyToRequest(requestOptions);
+
         this.authentications.default.applyToRequest(requestOptions);
 
         if (Object.keys(formParams).length) {
@@ -1808,11 +6993,12 @@ export class RemoteAccessApi {
                 requestOptions.form = formParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body: HudsonmodelQueue;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: Queue;  }>((resolve, reject) => {
             request(requestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
+                    body = ObjectSerializer.deserialize(body, "Queue");
                     if (response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
@@ -1823,11 +7009,10 @@ export class RemoteAccessApi {
         });
     }
     /**
-     * 
      * Retrieve queued item details
      * @param number Queue number
      */
-    public getQueueItem (number: string) : Promise<{ response: http.ClientResponse; body: HudsonmodelQueue;  }> {
+    public getQueueItem (number: string) : Promise<{ response: http.ClientResponse; body: Queue;  }> {
         const localVarPath = this.basePath + '/queue/item/{number}/api/json'
             .replace('{' + 'number' + '}', String(number));
         let queryParameters: any = {};
@@ -1840,6 +7025,7 @@ export class RemoteAccessApi {
             throw new Error('Required parameter number was null or undefined when calling getQueueItem.');
         }
 
+
         let useFormData = false;
 
         let requestOptions: request.Options = {
@@ -1851,6 +7037,8 @@ export class RemoteAccessApi {
             json: true,
         };
 
+        this.authentications.jenkins_auth.applyToRequest(requestOptions);
+
         this.authentications.default.applyToRequest(requestOptions);
 
         if (Object.keys(formParams).length) {
@@ -1860,11 +7048,12 @@ export class RemoteAccessApi {
                 requestOptions.form = formParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body: HudsonmodelQueue;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: Queue;  }>((resolve, reject) => {
             request(requestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
+                    body = ObjectSerializer.deserialize(body, "Queue");
                     if (response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
@@ -1875,11 +7064,10 @@ export class RemoteAccessApi {
         });
     }
     /**
-     * 
      * Retrieve view details
      * @param name Name of the view
      */
-    public getView (name: string) : Promise<{ response: http.ClientResponse; body: HudsonmodelListView;  }> {
+    public getView (name: string) : Promise<{ response: http.ClientResponse; body: ListView;  }> {
         const localVarPath = this.basePath + '/view/{name}/api/json'
             .replace('{' + 'name' + '}', String(name));
         let queryParameters: any = {};
@@ -1892,6 +7080,7 @@ export class RemoteAccessApi {
             throw new Error('Required parameter name was null or undefined when calling getView.');
         }
 
+
         let useFormData = false;
 
         let requestOptions: request.Options = {
@@ -1903,6 +7092,8 @@ export class RemoteAccessApi {
             json: true,
         };
 
+        this.authentications.jenkins_auth.applyToRequest(requestOptions);
+
         this.authentications.default.applyToRequest(requestOptions);
 
         if (Object.keys(formParams).length) {
@@ -1912,11 +7103,12 @@ export class RemoteAccessApi {
                 requestOptions.form = formParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body: HudsonmodelListView;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: ListView;  }>((resolve, reject) => {
             request(requestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
+                    body = ObjectSerializer.deserialize(body, "ListView");
                     if (response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
@@ -1927,7 +7119,6 @@ export class RemoteAccessApi {
         });
     }
     /**
-     * 
      * Retrieve view configuration
      * @param name Name of the view
      */
@@ -1944,6 +7135,7 @@ export class RemoteAccessApi {
             throw new Error('Required parameter name was null or undefined when calling getViewConfig.');
         }
 
+
         let useFormData = false;
 
         let requestOptions: request.Options = {
@@ -1954,6 +7146,8 @@ export class RemoteAccessApi {
             useQuerystring: this._useQuerystring,
             json: true,
         };
+
+        this.authentications.jenkins_auth.applyToRequest(requestOptions);
 
         this.authentications.default.applyToRequest(requestOptions);
 
@@ -1969,6 +7163,7 @@ export class RemoteAccessApi {
                 if (error) {
                     reject(error);
                 } else {
+                    body = ObjectSerializer.deserialize(body, "string");
                     if (response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
@@ -1979,7 +7174,6 @@ export class RemoteAccessApi {
         });
     }
     /**
-     * 
      * Retrieve Jenkins headers
      */
     public headJenkins () : Promise<{ response: http.ClientResponse; body?: any;  }> {
@@ -1987,6 +7181,7 @@ export class RemoteAccessApi {
         let queryParameters: any = {};
         let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let formParams: any = {};
+
 
 
         let useFormData = false;
@@ -1999,6 +7194,8 @@ export class RemoteAccessApi {
             useQuerystring: this._useQuerystring,
             json: true,
         };
+
+        this.authentications.jenkins_auth.applyToRequest(requestOptions);
 
         this.authentications.default.applyToRequest(requestOptions);
 
@@ -2024,7 +7221,6 @@ export class RemoteAccessApi {
         });
     }
     /**
-     * 
      * Create a new job using job configuration, or copied from an existing job
      * @param name Name of the new job
      * @param from Existing job to copy from
@@ -2046,20 +7242,19 @@ export class RemoteAccessApi {
         }
 
         if (name !== undefined) {
-            queryParameters['name'] = name;
+            queryParameters['name'] = ObjectSerializer.serialize(name, "string");
         }
 
         if (from !== undefined) {
-            queryParameters['from'] = from;
+            queryParameters['from'] = ObjectSerializer.serialize(from, "string");
         }
 
         if (mode !== undefined) {
-            queryParameters['mode'] = mode;
+            queryParameters['mode'] = ObjectSerializer.serialize(mode, "string");
         }
 
-        headerParams['Jenkins-Crumb'] = jenkinsCrumb;
-
-        headerParams['Content-Type'] = contentType;
+        headerParams['Jenkins-Crumb'] = ObjectSerializer.serialize(jenkinsCrumb, "string");
+        headerParams['Content-Type'] = ObjectSerializer.serialize(contentType, "string");
 
         let useFormData = false;
 
@@ -2070,8 +7265,10 @@ export class RemoteAccessApi {
             uri: localVarPath,
             useQuerystring: this._useQuerystring,
             json: true,
-            body: body,
+            body: ObjectSerializer.serialize(body, "string")
         };
+
+        this.authentications.jenkins_auth.applyToRequest(requestOptions);
 
         this.authentications.default.applyToRequest(requestOptions);
 
@@ -2097,7 +7294,6 @@ export class RemoteAccessApi {
         });
     }
     /**
-     * 
      * Create a new view using view configuration
      * @param name Name of the new view
      * @param body View configuration in config.xml format
@@ -2117,12 +7313,11 @@ export class RemoteAccessApi {
         }
 
         if (name !== undefined) {
-            queryParameters['name'] = name;
+            queryParameters['name'] = ObjectSerializer.serialize(name, "string");
         }
 
-        headerParams['Jenkins-Crumb'] = jenkinsCrumb;
-
-        headerParams['Content-Type'] = contentType;
+        headerParams['Jenkins-Crumb'] = ObjectSerializer.serialize(jenkinsCrumb, "string");
+        headerParams['Content-Type'] = ObjectSerializer.serialize(contentType, "string");
 
         let useFormData = false;
 
@@ -2133,8 +7328,10 @@ export class RemoteAccessApi {
             uri: localVarPath,
             useQuerystring: this._useQuerystring,
             json: true,
-            body: body,
+            body: ObjectSerializer.serialize(body, "string")
         };
+
+        this.authentications.jenkins_auth.applyToRequest(requestOptions);
 
         this.authentications.default.applyToRequest(requestOptions);
 
@@ -2160,7 +7357,6 @@ export class RemoteAccessApi {
         });
     }
     /**
-     * 
      * Build a job
      * @param name Name of the job
      * @param json 
@@ -2186,14 +7382,14 @@ export class RemoteAccessApi {
         }
 
         if (json !== undefined) {
-            queryParameters['json'] = json;
+            queryParameters['json'] = ObjectSerializer.serialize(json, "string");
         }
 
         if (token !== undefined) {
-            queryParameters['token'] = token;
+            queryParameters['token'] = ObjectSerializer.serialize(token, "string");
         }
 
-        headerParams['Jenkins-Crumb'] = jenkinsCrumb;
+        headerParams['Jenkins-Crumb'] = ObjectSerializer.serialize(jenkinsCrumb, "string");
 
         let useFormData = false;
 
@@ -2205,6 +7401,8 @@ export class RemoteAccessApi {
             useQuerystring: this._useQuerystring,
             json: true,
         };
+
+        this.authentications.jenkins_auth.applyToRequest(requestOptions);
 
         this.authentications.default.applyToRequest(requestOptions);
 
@@ -2230,7 +7428,6 @@ export class RemoteAccessApi {
         });
     }
     /**
-     * 
      * Update job configuration
      * @param name Name of the job
      * @param body Job configuration in config.xml format
@@ -2254,7 +7451,7 @@ export class RemoteAccessApi {
             throw new Error('Required parameter body was null or undefined when calling postJobConfig.');
         }
 
-        headerParams['Jenkins-Crumb'] = jenkinsCrumb;
+        headerParams['Jenkins-Crumb'] = ObjectSerializer.serialize(jenkinsCrumb, "string");
 
         let useFormData = false;
 
@@ -2265,8 +7462,10 @@ export class RemoteAccessApi {
             uri: localVarPath,
             useQuerystring: this._useQuerystring,
             json: true,
-            body: body,
+            body: ObjectSerializer.serialize(body, "string")
         };
+
+        this.authentications.jenkins_auth.applyToRequest(requestOptions);
 
         this.authentications.default.applyToRequest(requestOptions);
 
@@ -2292,7 +7491,6 @@ export class RemoteAccessApi {
         });
     }
     /**
-     * 
      * Delete a job
      * @param name Name of the job
      * @param jenkinsCrumb CSRF protection token
@@ -2310,7 +7508,7 @@ export class RemoteAccessApi {
             throw new Error('Required parameter name was null or undefined when calling postJobDelete.');
         }
 
-        headerParams['Jenkins-Crumb'] = jenkinsCrumb;
+        headerParams['Jenkins-Crumb'] = ObjectSerializer.serialize(jenkinsCrumb, "string");
 
         let useFormData = false;
 
@@ -2322,6 +7520,8 @@ export class RemoteAccessApi {
             useQuerystring: this._useQuerystring,
             json: true,
         };
+
+        this.authentications.jenkins_auth.applyToRequest(requestOptions);
 
         this.authentications.default.applyToRequest(requestOptions);
 
@@ -2347,7 +7547,6 @@ export class RemoteAccessApi {
         });
     }
     /**
-     * 
      * Disable a job
      * @param name Name of the job
      * @param jenkinsCrumb CSRF protection token
@@ -2365,7 +7564,7 @@ export class RemoteAccessApi {
             throw new Error('Required parameter name was null or undefined when calling postJobDisable.');
         }
 
-        headerParams['Jenkins-Crumb'] = jenkinsCrumb;
+        headerParams['Jenkins-Crumb'] = ObjectSerializer.serialize(jenkinsCrumb, "string");
 
         let useFormData = false;
 
@@ -2377,6 +7576,8 @@ export class RemoteAccessApi {
             useQuerystring: this._useQuerystring,
             json: true,
         };
+
+        this.authentications.jenkins_auth.applyToRequest(requestOptions);
 
         this.authentications.default.applyToRequest(requestOptions);
 
@@ -2402,7 +7603,6 @@ export class RemoteAccessApi {
         });
     }
     /**
-     * 
      * Enable a job
      * @param name Name of the job
      * @param jenkinsCrumb CSRF protection token
@@ -2420,7 +7620,7 @@ export class RemoteAccessApi {
             throw new Error('Required parameter name was null or undefined when calling postJobEnable.');
         }
 
-        headerParams['Jenkins-Crumb'] = jenkinsCrumb;
+        headerParams['Jenkins-Crumb'] = ObjectSerializer.serialize(jenkinsCrumb, "string");
 
         let useFormData = false;
 
@@ -2432,6 +7632,8 @@ export class RemoteAccessApi {
             useQuerystring: this._useQuerystring,
             json: true,
         };
+
+        this.authentications.jenkins_auth.applyToRequest(requestOptions);
 
         this.authentications.default.applyToRequest(requestOptions);
 
@@ -2457,7 +7659,6 @@ export class RemoteAccessApi {
         });
     }
     /**
-     * 
      * Stop a job
      * @param name Name of the job
      * @param jenkinsCrumb CSRF protection token
@@ -2475,7 +7676,7 @@ export class RemoteAccessApi {
             throw new Error('Required parameter name was null or undefined when calling postJobLastBuildStop.');
         }
 
-        headerParams['Jenkins-Crumb'] = jenkinsCrumb;
+        headerParams['Jenkins-Crumb'] = ObjectSerializer.serialize(jenkinsCrumb, "string");
 
         let useFormData = false;
 
@@ -2487,6 +7688,8 @@ export class RemoteAccessApi {
             useQuerystring: this._useQuerystring,
             json: true,
         };
+
+        this.authentications.jenkins_auth.applyToRequest(requestOptions);
 
         this.authentications.default.applyToRequest(requestOptions);
 
@@ -2512,7 +7715,6 @@ export class RemoteAccessApi {
         });
     }
     /**
-     * 
      * Update view configuration
      * @param name Name of the view
      * @param body View configuration in config.xml format
@@ -2536,7 +7738,7 @@ export class RemoteAccessApi {
             throw new Error('Required parameter body was null or undefined when calling postViewConfig.');
         }
 
-        headerParams['Jenkins-Crumb'] = jenkinsCrumb;
+        headerParams['Jenkins-Crumb'] = ObjectSerializer.serialize(jenkinsCrumb, "string");
 
         let useFormData = false;
 
@@ -2547,8 +7749,10 @@ export class RemoteAccessApi {
             uri: localVarPath,
             useQuerystring: this._useQuerystring,
             json: true,
-            body: body,
+            body: ObjectSerializer.serialize(body, "string")
         };
+
+        this.authentications.jenkins_auth.applyToRequest(requestOptions);
 
         this.authentications.default.applyToRequest(requestOptions);
 

@@ -29,12 +29,63 @@ SWGBlueOceanApi::SWGBlueOceanApi(QString host, QString basePath) {
 }
 
 void
-SWGBlueOceanApi::getAuthenticatedUser(QString* organisation) {
+SWGBlueOceanApi::deletePipelineQueueItem(QString* organization, QString* pipeline, QString* queue) {
     QString fullPath;
-    fullPath.append(this->host).append(this->basePath).append("/blue/rest/organizations/{organisation}/user/");
+    fullPath.append(this->host).append(this->basePath).append("/blue/rest/organizations/{organization}/pipelines/{pipeline}/queue/{queue}");
 
-    QString organisationPathParam("{"); organisationPathParam.append("organisation").append("}");
-    fullPath.replace(organisationPathParam, stringValue(organisation));
+    QString organizationPathParam("{"); organizationPathParam.append("organization").append("}");
+    fullPath.replace(organizationPathParam, stringValue(organization));
+    QString pipelinePathParam("{"); pipelinePathParam.append("pipeline").append("}");
+    fullPath.replace(pipelinePathParam, stringValue(pipeline));
+    QString queuePathParam("{"); queuePathParam.append("queue").append("}");
+    fullPath.replace(queuePathParam, stringValue(queue));
+
+
+    HttpRequestWorker *worker = new HttpRequestWorker();
+    HttpRequestInput input(fullPath, "DELETE");
+
+
+
+
+
+    foreach(QString key, this->defaultHeaders.keys()) {
+        input.headers.insert(key, this->defaultHeaders.value(key));
+    }
+
+    connect(worker,
+            &HttpRequestWorker::on_execution_finished,
+            this,
+            &SWGBlueOceanApi::deletePipelineQueueItemCallback);
+
+    worker->execute(&input);
+}
+
+void
+SWGBlueOceanApi::deletePipelineQueueItemCallback(HttpRequestWorker * worker) {
+    QString msg;
+    QString error_str = worker->error_str;
+    QNetworkReply::NetworkError error_type = worker->error_type;
+
+    if (worker->error_type == QNetworkReply::NoError) {
+        msg = QString("Success! %1 bytes").arg(worker->response.length());
+    }
+    else {
+        msg = "Error: " + worker->error_str;
+    }
+
+    worker->deleteLater();
+
+    emit deletePipelineQueueItemSignal();
+    emit deletePipelineQueueItemSignalE(error_type, error_str);
+}
+
+void
+SWGBlueOceanApi::getAuthenticatedUser(QString* organization) {
+    QString fullPath;
+    fullPath.append(this->host).append(this->basePath).append("/blue/rest/organizations/{organization}/user/");
+
+    QString organizationPathParam("{"); organizationPathParam.append("organization").append("}");
+    fullPath.replace(organizationPathParam, stringValue(organization));
 
 
     HttpRequestWorker *worker = new HttpRequestWorker();
@@ -43,6 +94,10 @@ SWGBlueOceanApi::getAuthenticatedUser(QString* organisation) {
 
 
 
+
+    foreach(QString key, this->defaultHeaders.keys()) {
+        input.headers.insert(key, this->defaultHeaders.value(key));
+    }
 
     connect(worker,
             &HttpRequestWorker::on_execution_finished,
@@ -67,7 +122,7 @@ SWGBlueOceanApi::getAuthenticatedUserCallback(HttpRequestWorker * worker) {
 
 
     QString json(worker->response);
-    SWGSwaggyjenkinsUser* output = static_cast<SWGSwaggyjenkinsUser*>(create(json, QString("SWGSwaggyjenkinsUser")));
+    User* output = static_cast<User*>(create(json, QString("User")));
     worker->deleteLater();
 
     emit getAuthenticatedUserSignal(output);
@@ -89,6 +144,10 @@ SWGBlueOceanApi::getClasses(QString* class) {
 
 
 
+
+    foreach(QString key, this->defaultHeaders.keys()) {
+        input.headers.insert(key, this->defaultHeaders.value(key));
+    }
 
     connect(worker,
             &HttpRequestWorker::on_execution_finished,
@@ -121,12 +180,12 @@ SWGBlueOceanApi::getClassesCallback(HttpRequestWorker * worker) {
 }
 
 void
-SWGBlueOceanApi::getOrganisation(QString* organisation) {
+SWGBlueOceanApi::getOrganisation(QString* organization) {
     QString fullPath;
-    fullPath.append(this->host).append(this->basePath).append("/blue/rest/organizations/{organisation}");
+    fullPath.append(this->host).append(this->basePath).append("/blue/rest/organizations/{organization}");
 
-    QString organisationPathParam("{"); organisationPathParam.append("organisation").append("}");
-    fullPath.replace(organisationPathParam, stringValue(organisation));
+    QString organizationPathParam("{"); organizationPathParam.append("organization").append("}");
+    fullPath.replace(organizationPathParam, stringValue(organization));
 
 
     HttpRequestWorker *worker = new HttpRequestWorker();
@@ -135,6 +194,10 @@ SWGBlueOceanApi::getOrganisation(QString* organisation) {
 
 
 
+
+    foreach(QString key, this->defaultHeaders.keys()) {
+        input.headers.insert(key, this->defaultHeaders.value(key));
+    }
 
     connect(worker,
             &HttpRequestWorker::on_execution_finished,
@@ -159,7 +222,7 @@ SWGBlueOceanApi::getOrganisationCallback(HttpRequestWorker * worker) {
 
 
     QString json(worker->response);
-    SWGSwaggyjenkinsOrganisation* output = static_cast<SWGSwaggyjenkinsOrganisation*>(create(json, QString("SWGSwaggyjenkinsOrganisation")));
+    Organisation* output = static_cast<Organisation*>(create(json, QString("Organisation")));
     worker->deleteLater();
 
     emit getOrganisationSignal(output);
@@ -179,6 +242,10 @@ SWGBlueOceanApi::getOrganisations() {
 
 
 
+
+    foreach(QString key, this->defaultHeaders.keys()) {
+        input.headers.insert(key, this->defaultHeaders.value(key));
+    }
 
     connect(worker,
             &HttpRequestWorker::on_execution_finished,
@@ -203,7 +270,7 @@ SWGBlueOceanApi::getOrganisationsCallback(HttpRequestWorker * worker) {
 
 
     QString json(worker->response);
-    SWGGetOrganisations* output = static_cast<SWGGetOrganisations*>(create(json, QString("SWGGetOrganisations")));
+    Organisations* output = static_cast<Organisations*>(create(json, QString("Organisations")));
     worker->deleteLater();
 
     emit getOrganisationsSignal(output);
@@ -211,12 +278,116 @@ SWGBlueOceanApi::getOrganisationsCallback(HttpRequestWorker * worker) {
 }
 
 void
-SWGBlueOceanApi::getPipelineBranchByOrg(QString* organisation, QString* pipeline, QString* branch) {
+SWGBlueOceanApi::getPipeline(QString* organization, QString* pipeline) {
     QString fullPath;
-    fullPath.append(this->host).append(this->basePath).append("/blue/rest/organizations/{organisation}/pipelines/{pipeline}/branches/{branch}/");
+    fullPath.append(this->host).append(this->basePath).append("/blue/rest/organizations/{organization}/pipelines/{pipeline}");
 
-    QString organisationPathParam("{"); organisationPathParam.append("organisation").append("}");
-    fullPath.replace(organisationPathParam, stringValue(organisation));
+    QString organizationPathParam("{"); organizationPathParam.append("organization").append("}");
+    fullPath.replace(organizationPathParam, stringValue(organization));
+    QString pipelinePathParam("{"); pipelinePathParam.append("pipeline").append("}");
+    fullPath.replace(pipelinePathParam, stringValue(pipeline));
+
+
+    HttpRequestWorker *worker = new HttpRequestWorker();
+    HttpRequestInput input(fullPath, "GET");
+
+
+
+
+
+    foreach(QString key, this->defaultHeaders.keys()) {
+        input.headers.insert(key, this->defaultHeaders.value(key));
+    }
+
+    connect(worker,
+            &HttpRequestWorker::on_execution_finished,
+            this,
+            &SWGBlueOceanApi::getPipelineCallback);
+
+    worker->execute(&input);
+}
+
+void
+SWGBlueOceanApi::getPipelineCallback(HttpRequestWorker * worker) {
+    QString msg;
+    QString error_str = worker->error_str;
+    QNetworkReply::NetworkError error_type = worker->error_type;
+
+    if (worker->error_type == QNetworkReply::NoError) {
+        msg = QString("Success! %1 bytes").arg(worker->response.length());
+    }
+    else {
+        msg = "Error: " + worker->error_str;
+    }
+
+
+    QString json(worker->response);
+    Pipeline* output = static_cast<Pipeline*>(create(json, QString("Pipeline")));
+    worker->deleteLater();
+
+    emit getPipelineSignal(output);
+    emit getPipelineSignalE(output, error_type, error_str);
+}
+
+void
+SWGBlueOceanApi::getPipelineActivities(QString* organization, QString* pipeline) {
+    QString fullPath;
+    fullPath.append(this->host).append(this->basePath).append("/blue/rest/organizations/{organization}/pipelines/{pipeline}/activities");
+
+    QString organizationPathParam("{"); organizationPathParam.append("organization").append("}");
+    fullPath.replace(organizationPathParam, stringValue(organization));
+    QString pipelinePathParam("{"); pipelinePathParam.append("pipeline").append("}");
+    fullPath.replace(pipelinePathParam, stringValue(pipeline));
+
+
+    HttpRequestWorker *worker = new HttpRequestWorker();
+    HttpRequestInput input(fullPath, "GET");
+
+
+
+
+
+    foreach(QString key, this->defaultHeaders.keys()) {
+        input.headers.insert(key, this->defaultHeaders.value(key));
+    }
+
+    connect(worker,
+            &HttpRequestWorker::on_execution_finished,
+            this,
+            &SWGBlueOceanApi::getPipelineActivitiesCallback);
+
+    worker->execute(&input);
+}
+
+void
+SWGBlueOceanApi::getPipelineActivitiesCallback(HttpRequestWorker * worker) {
+    QString msg;
+    QString error_str = worker->error_str;
+    QNetworkReply::NetworkError error_type = worker->error_type;
+
+    if (worker->error_type == QNetworkReply::NoError) {
+        msg = QString("Success! %1 bytes").arg(worker->response.length());
+    }
+    else {
+        msg = "Error: " + worker->error_str;
+    }
+
+
+    QString json(worker->response);
+    PipelineActivities* output = static_cast<PipelineActivities*>(create(json, QString("PipelineActivities")));
+    worker->deleteLater();
+
+    emit getPipelineActivitiesSignal(output);
+    emit getPipelineActivitiesSignalE(output, error_type, error_str);
+}
+
+void
+SWGBlueOceanApi::getPipelineBranch(QString* organization, QString* pipeline, QString* branch) {
+    QString fullPath;
+    fullPath.append(this->host).append(this->basePath).append("/blue/rest/organizations/{organization}/pipelines/{pipeline}/branches/{branch}/");
+
+    QString organizationPathParam("{"); organizationPathParam.append("organization").append("}");
+    fullPath.replace(organizationPathParam, stringValue(organization));
     QString pipelinePathParam("{"); pipelinePathParam.append("pipeline").append("}");
     fullPath.replace(pipelinePathParam, stringValue(pipeline));
     QString branchPathParam("{"); branchPathParam.append("branch").append("}");
@@ -230,16 +401,20 @@ SWGBlueOceanApi::getPipelineBranchByOrg(QString* organisation, QString* pipeline
 
 
 
+    foreach(QString key, this->defaultHeaders.keys()) {
+        input.headers.insert(key, this->defaultHeaders.value(key));
+    }
+
     connect(worker,
             &HttpRequestWorker::on_execution_finished,
             this,
-            &SWGBlueOceanApi::getPipelineBranchByOrgCallback);
+            &SWGBlueOceanApi::getPipelineBranchCallback);
 
     worker->execute(&input);
 }
 
 void
-SWGBlueOceanApi::getPipelineBranchByOrgCallback(HttpRequestWorker * worker) {
+SWGBlueOceanApi::getPipelineBranchCallback(HttpRequestWorker * worker) {
     QString msg;
     QString error_str = worker->error_str;
     QNetworkReply::NetworkError error_type = worker->error_type;
@@ -253,20 +428,76 @@ SWGBlueOceanApi::getPipelineBranchByOrgCallback(HttpRequestWorker * worker) {
 
 
     QString json(worker->response);
-    SWGIojenkinsblueoceanrestimplpipelineBranchImpl* output = static_cast<SWGIojenkinsblueoceanrestimplpipelineBranchImpl*>(create(json, QString("SWGIojenkinsblueoceanrestimplpipelineBranchImpl")));
+    BranchImpl* output = static_cast<BranchImpl*>(create(json, QString("BranchImpl")));
     worker->deleteLater();
 
-    emit getPipelineBranchByOrgSignal(output);
-    emit getPipelineBranchByOrgSignalE(output, error_type, error_str);
+    emit getPipelineBranchSignal(output);
+    emit getPipelineBranchSignalE(output, error_type, error_str);
 }
 
 void
-SWGBlueOceanApi::getPipelineBranchesByOrg(QString* organisation, QString* pipeline) {
+SWGBlueOceanApi::getPipelineBranchRun(QString* organization, QString* pipeline, QString* branch, QString* run) {
     QString fullPath;
-    fullPath.append(this->host).append(this->basePath).append("/blue/rest/organizations/{organisation}/pipelines/{pipeline}/branches");
+    fullPath.append(this->host).append(this->basePath).append("/blue/rest/organizations/{organization}/pipelines/{pipeline}/branches/{branch}/runs/{run}");
 
-    QString organisationPathParam("{"); organisationPathParam.append("organisation").append("}");
-    fullPath.replace(organisationPathParam, stringValue(organisation));
+    QString organizationPathParam("{"); organizationPathParam.append("organization").append("}");
+    fullPath.replace(organizationPathParam, stringValue(organization));
+    QString pipelinePathParam("{"); pipelinePathParam.append("pipeline").append("}");
+    fullPath.replace(pipelinePathParam, stringValue(pipeline));
+    QString branchPathParam("{"); branchPathParam.append("branch").append("}");
+    fullPath.replace(branchPathParam, stringValue(branch));
+    QString runPathParam("{"); runPathParam.append("run").append("}");
+    fullPath.replace(runPathParam, stringValue(run));
+
+
+    HttpRequestWorker *worker = new HttpRequestWorker();
+    HttpRequestInput input(fullPath, "GET");
+
+
+
+
+
+    foreach(QString key, this->defaultHeaders.keys()) {
+        input.headers.insert(key, this->defaultHeaders.value(key));
+    }
+
+    connect(worker,
+            &HttpRequestWorker::on_execution_finished,
+            this,
+            &SWGBlueOceanApi::getPipelineBranchRunCallback);
+
+    worker->execute(&input);
+}
+
+void
+SWGBlueOceanApi::getPipelineBranchRunCallback(HttpRequestWorker * worker) {
+    QString msg;
+    QString error_str = worker->error_str;
+    QNetworkReply::NetworkError error_type = worker->error_type;
+
+    if (worker->error_type == QNetworkReply::NoError) {
+        msg = QString("Success! %1 bytes").arg(worker->response.length());
+    }
+    else {
+        msg = "Error: " + worker->error_str;
+    }
+
+
+    QString json(worker->response);
+    PipelineRun* output = static_cast<PipelineRun*>(create(json, QString("PipelineRun")));
+    worker->deleteLater();
+
+    emit getPipelineBranchRunSignal(output);
+    emit getPipelineBranchRunSignalE(output, error_type, error_str);
+}
+
+void
+SWGBlueOceanApi::getPipelineBranches(QString* organization, QString* pipeline) {
+    QString fullPath;
+    fullPath.append(this->host).append(this->basePath).append("/blue/rest/organizations/{organization}/pipelines/{pipeline}/branches");
+
+    QString organizationPathParam("{"); organizationPathParam.append("organization").append("}");
+    fullPath.replace(organizationPathParam, stringValue(organization));
     QString pipelinePathParam("{"); pipelinePathParam.append("pipeline").append("}");
     fullPath.replace(pipelinePathParam, stringValue(pipeline));
 
@@ -278,16 +509,20 @@ SWGBlueOceanApi::getPipelineBranchesByOrg(QString* organisation, QString* pipeli
 
 
 
+    foreach(QString key, this->defaultHeaders.keys()) {
+        input.headers.insert(key, this->defaultHeaders.value(key));
+    }
+
     connect(worker,
             &HttpRequestWorker::on_execution_finished,
             this,
-            &SWGBlueOceanApi::getPipelineBranchesByOrgCallback);
+            &SWGBlueOceanApi::getPipelineBranchesCallback);
 
     worker->execute(&input);
 }
 
 void
-SWGBlueOceanApi::getPipelineBranchesByOrgCallback(HttpRequestWorker * worker) {
+SWGBlueOceanApi::getPipelineBranchesCallback(HttpRequestWorker * worker) {
     QString msg;
     QString error_str = worker->error_str;
     QNetworkReply::NetworkError error_type = worker->error_type;
@@ -301,68 +536,20 @@ SWGBlueOceanApi::getPipelineBranchesByOrgCallback(HttpRequestWorker * worker) {
 
 
     QString json(worker->response);
-    SWGGetMultibranchPipeline* output = static_cast<SWGGetMultibranchPipeline*>(create(json, QString("SWGGetMultibranchPipeline")));
+    MultibranchPipeline* output = static_cast<MultibranchPipeline*>(create(json, QString("MultibranchPipeline")));
     worker->deleteLater();
 
-    emit getPipelineBranchesByOrgSignal(output);
-    emit getPipelineBranchesByOrgSignalE(output, error_type, error_str);
+    emit getPipelineBranchesSignal(output);
+    emit getPipelineBranchesSignalE(output, error_type, error_str);
 }
 
 void
-SWGBlueOceanApi::getPipelineByOrg(QString* organisation, QString* pipeline) {
+SWGBlueOceanApi::getPipelineFolder(QString* organization, QString* folder) {
     QString fullPath;
-    fullPath.append(this->host).append(this->basePath).append("/blue/rest/organizations/{organisation}/pipelines/{pipeline}");
+    fullPath.append(this->host).append(this->basePath).append("/blue/rest/organizations/{organization}/pipelines/{folder}/");
 
-    QString organisationPathParam("{"); organisationPathParam.append("organisation").append("}");
-    fullPath.replace(organisationPathParam, stringValue(organisation));
-    QString pipelinePathParam("{"); pipelinePathParam.append("pipeline").append("}");
-    fullPath.replace(pipelinePathParam, stringValue(pipeline));
-
-
-    HttpRequestWorker *worker = new HttpRequestWorker();
-    HttpRequestInput input(fullPath, "GET");
-
-
-
-
-
-    connect(worker,
-            &HttpRequestWorker::on_execution_finished,
-            this,
-            &SWGBlueOceanApi::getPipelineByOrgCallback);
-
-    worker->execute(&input);
-}
-
-void
-SWGBlueOceanApi::getPipelineByOrgCallback(HttpRequestWorker * worker) {
-    QString msg;
-    QString error_str = worker->error_str;
-    QNetworkReply::NetworkError error_type = worker->error_type;
-
-    if (worker->error_type == QNetworkReply::NoError) {
-        msg = QString("Success! %1 bytes").arg(worker->response.length());
-    }
-    else {
-        msg = "Error: " + worker->error_str;
-    }
-
-
-    QString json(worker->response);
-    SWGSwaggyjenkinsPipeline* output = static_cast<SWGSwaggyjenkinsPipeline*>(create(json, QString("SWGSwaggyjenkinsPipeline")));
-    worker->deleteLater();
-
-    emit getPipelineByOrgSignal(output);
-    emit getPipelineByOrgSignalE(output, error_type, error_str);
-}
-
-void
-SWGBlueOceanApi::getPipelineFolderByOrg(QString* organisation, QString* folder) {
-    QString fullPath;
-    fullPath.append(this->host).append(this->basePath).append("/blue/rest/organizations/{organisation}/pipelines/{folder}/");
-
-    QString organisationPathParam("{"); organisationPathParam.append("organisation").append("}");
-    fullPath.replace(organisationPathParam, stringValue(organisation));
+    QString organizationPathParam("{"); organizationPathParam.append("organization").append("}");
+    fullPath.replace(organizationPathParam, stringValue(organization));
     QString folderPathParam("{"); folderPathParam.append("folder").append("}");
     fullPath.replace(folderPathParam, stringValue(folder));
 
@@ -374,16 +561,20 @@ SWGBlueOceanApi::getPipelineFolderByOrg(QString* organisation, QString* folder) 
 
 
 
+    foreach(QString key, this->defaultHeaders.keys()) {
+        input.headers.insert(key, this->defaultHeaders.value(key));
+    }
+
     connect(worker,
             &HttpRequestWorker::on_execution_finished,
             this,
-            &SWGBlueOceanApi::getPipelineFolderByOrgCallback);
+            &SWGBlueOceanApi::getPipelineFolderCallback);
 
     worker->execute(&input);
 }
 
 void
-SWGBlueOceanApi::getPipelineFolderByOrgCallback(HttpRequestWorker * worker) {
+SWGBlueOceanApi::getPipelineFolderCallback(HttpRequestWorker * worker) {
     QString msg;
     QString error_str = worker->error_str;
     QNetworkReply::NetworkError error_type = worker->error_type;
@@ -397,20 +588,20 @@ SWGBlueOceanApi::getPipelineFolderByOrgCallback(HttpRequestWorker * worker) {
 
 
     QString json(worker->response);
-    SWGIojenkinsblueoceanserviceembeddedrestPipelineFolderImpl* output = static_cast<SWGIojenkinsblueoceanserviceembeddedrestPipelineFolderImpl*>(create(json, QString("SWGIojenkinsblueoceanserviceembeddedrestPipelineFolderImpl")));
+    PipelineFolderImpl* output = static_cast<PipelineFolderImpl*>(create(json, QString("PipelineFolderImpl")));
     worker->deleteLater();
 
-    emit getPipelineFolderByOrgSignal(output);
-    emit getPipelineFolderByOrgSignalE(output, error_type, error_str);
+    emit getPipelineFolderSignal(output);
+    emit getPipelineFolderSignalE(output, error_type, error_str);
 }
 
 void
-SWGBlueOceanApi::getPipelineFolderByOrg_1(QString* organisation, QString* pipeline, QString* folder) {
+SWGBlueOceanApi::getPipelineFolderPipeline(QString* organization, QString* pipeline, QString* folder) {
     QString fullPath;
-    fullPath.append(this->host).append(this->basePath).append("/blue/rest/organizations/{organisation}/pipelines/{folder}/pipelines/{pipeline}");
+    fullPath.append(this->host).append(this->basePath).append("/blue/rest/organizations/{organization}/pipelines/{folder}/pipelines/{pipeline}");
 
-    QString organisationPathParam("{"); organisationPathParam.append("organisation").append("}");
-    fullPath.replace(organisationPathParam, stringValue(organisation));
+    QString organizationPathParam("{"); organizationPathParam.append("organization").append("}");
+    fullPath.replace(organizationPathParam, stringValue(organization));
     QString pipelinePathParam("{"); pipelinePathParam.append("pipeline").append("}");
     fullPath.replace(pipelinePathParam, stringValue(pipeline));
     QString folderPathParam("{"); folderPathParam.append("folder").append("}");
@@ -424,16 +615,20 @@ SWGBlueOceanApi::getPipelineFolderByOrg_1(QString* organisation, QString* pipeli
 
 
 
+    foreach(QString key, this->defaultHeaders.keys()) {
+        input.headers.insert(key, this->defaultHeaders.value(key));
+    }
+
     connect(worker,
             &HttpRequestWorker::on_execution_finished,
             this,
-            &SWGBlueOceanApi::getPipelineFolderByOrg_1Callback);
+            &SWGBlueOceanApi::getPipelineFolderPipelineCallback);
 
     worker->execute(&input);
 }
 
 void
-SWGBlueOceanApi::getPipelineFolderByOrg_1Callback(HttpRequestWorker * worker) {
+SWGBlueOceanApi::getPipelineFolderPipelineCallback(HttpRequestWorker * worker) {
     QString msg;
     QString error_str = worker->error_str;
     QNetworkReply::NetworkError error_type = worker->error_type;
@@ -447,20 +642,22 @@ SWGBlueOceanApi::getPipelineFolderByOrg_1Callback(HttpRequestWorker * worker) {
 
 
     QString json(worker->response);
-    SWGIojenkinsblueoceanserviceembeddedrestPipelineImpl* output = static_cast<SWGIojenkinsblueoceanserviceembeddedrestPipelineImpl*>(create(json, QString("SWGIojenkinsblueoceanserviceembeddedrestPipelineImpl")));
+    PipelineImpl* output = static_cast<PipelineImpl*>(create(json, QString("PipelineImpl")));
     worker->deleteLater();
 
-    emit getPipelineFolderByOrg_1Signal(output);
-    emit getPipelineFolderByOrg_1SignalE(output, error_type, error_str);
+    emit getPipelineFolderPipelineSignal(output);
+    emit getPipelineFolderPipelineSignalE(output, error_type, error_str);
 }
 
 void
-SWGBlueOceanApi::getPipelinesByOrg(QString* organisation) {
+SWGBlueOceanApi::getPipelineQueue(QString* organization, QString* pipeline) {
     QString fullPath;
-    fullPath.append(this->host).append(this->basePath).append("/blue/rest/organizations/{organisation}/pipelines/");
+    fullPath.append(this->host).append(this->basePath).append("/blue/rest/organizations/{organization}/pipelines/{pipeline}/queue");
 
-    QString organisationPathParam("{"); organisationPathParam.append("organisation").append("}");
-    fullPath.replace(organisationPathParam, stringValue(organisation));
+    QString organizationPathParam("{"); organizationPathParam.append("organization").append("}");
+    fullPath.replace(organizationPathParam, stringValue(organization));
+    QString pipelinePathParam("{"); pipelinePathParam.append("pipeline").append("}");
+    fullPath.replace(pipelinePathParam, stringValue(pipeline));
 
 
     HttpRequestWorker *worker = new HttpRequestWorker();
@@ -470,16 +667,20 @@ SWGBlueOceanApi::getPipelinesByOrg(QString* organisation) {
 
 
 
+    foreach(QString key, this->defaultHeaders.keys()) {
+        input.headers.insert(key, this->defaultHeaders.value(key));
+    }
+
     connect(worker,
             &HttpRequestWorker::on_execution_finished,
             this,
-            &SWGBlueOceanApi::getPipelinesByOrgCallback);
+            &SWGBlueOceanApi::getPipelineQueueCallback);
 
     worker->execute(&input);
 }
 
 void
-SWGBlueOceanApi::getPipelinesByOrgCallback(HttpRequestWorker * worker) {
+SWGBlueOceanApi::getPipelineQueueCallback(HttpRequestWorker * worker) {
     QString msg;
     QString error_str = worker->error_str;
     QNetworkReply::NetworkError error_type = worker->error_type;
@@ -493,20 +694,782 @@ SWGBlueOceanApi::getPipelinesByOrgCallback(HttpRequestWorker * worker) {
 
 
     QString json(worker->response);
-    SWGGetPipelines* output = static_cast<SWGGetPipelines*>(create(json, QString("SWGGetPipelines")));
+    PipelineQueue* output = static_cast<PipelineQueue*>(create(json, QString("PipelineQueue")));
     worker->deleteLater();
 
-    emit getPipelinesByOrgSignal(output);
-    emit getPipelinesByOrgSignalE(output, error_type, error_str);
+    emit getPipelineQueueSignal(output);
+    emit getPipelineQueueSignalE(output, error_type, error_str);
 }
 
 void
-SWGBlueOceanApi::getUser(QString* organisation, QString* user) {
+SWGBlueOceanApi::getPipelineRun(QString* organization, QString* pipeline, QString* run) {
     QString fullPath;
-    fullPath.append(this->host).append(this->basePath).append("/blue/rest/organizations/{organisation}/users/{user}");
+    fullPath.append(this->host).append(this->basePath).append("/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}");
 
-    QString organisationPathParam("{"); organisationPathParam.append("organisation").append("}");
-    fullPath.replace(organisationPathParam, stringValue(organisation));
+    QString organizationPathParam("{"); organizationPathParam.append("organization").append("}");
+    fullPath.replace(organizationPathParam, stringValue(organization));
+    QString pipelinePathParam("{"); pipelinePathParam.append("pipeline").append("}");
+    fullPath.replace(pipelinePathParam, stringValue(pipeline));
+    QString runPathParam("{"); runPathParam.append("run").append("}");
+    fullPath.replace(runPathParam, stringValue(run));
+
+
+    HttpRequestWorker *worker = new HttpRequestWorker();
+    HttpRequestInput input(fullPath, "GET");
+
+
+
+
+
+    foreach(QString key, this->defaultHeaders.keys()) {
+        input.headers.insert(key, this->defaultHeaders.value(key));
+    }
+
+    connect(worker,
+            &HttpRequestWorker::on_execution_finished,
+            this,
+            &SWGBlueOceanApi::getPipelineRunCallback);
+
+    worker->execute(&input);
+}
+
+void
+SWGBlueOceanApi::getPipelineRunCallback(HttpRequestWorker * worker) {
+    QString msg;
+    QString error_str = worker->error_str;
+    QNetworkReply::NetworkError error_type = worker->error_type;
+
+    if (worker->error_type == QNetworkReply::NoError) {
+        msg = QString("Success! %1 bytes").arg(worker->response.length());
+    }
+    else {
+        msg = "Error: " + worker->error_str;
+    }
+
+
+    QString json(worker->response);
+    PipelineRun* output = static_cast<PipelineRun*>(create(json, QString("PipelineRun")));
+    worker->deleteLater();
+
+    emit getPipelineRunSignal(output);
+    emit getPipelineRunSignalE(output, error_type, error_str);
+}
+
+void
+SWGBlueOceanApi::getPipelineRunLog(QString* organization, QString* pipeline, QString* run, qint32 start, bool download) {
+    QString fullPath;
+    fullPath.append(this->host).append(this->basePath).append("/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/log");
+
+    QString organizationPathParam("{"); organizationPathParam.append("organization").append("}");
+    fullPath.replace(organizationPathParam, stringValue(organization));
+    QString pipelinePathParam("{"); pipelinePathParam.append("pipeline").append("}");
+    fullPath.replace(pipelinePathParam, stringValue(pipeline));
+    QString runPathParam("{"); runPathParam.append("run").append("}");
+    fullPath.replace(runPathParam, stringValue(run));
+
+    if (fullPath.indexOf("?") > 0) 
+      fullPath.append("&");
+    else 
+      fullPath.append("?");
+    fullPath.append(QUrl::toPercentEncoding("start"))
+        .append("=")
+        .append(QUrl::toPercentEncoding(stringValue(start)));
+
+    if (fullPath.indexOf("?") > 0) 
+      fullPath.append("&");
+    else 
+      fullPath.append("?");
+    fullPath.append(QUrl::toPercentEncoding("download"))
+        .append("=")
+        .append(QUrl::toPercentEncoding(stringValue(download)));
+
+
+    HttpRequestWorker *worker = new HttpRequestWorker();
+    HttpRequestInput input(fullPath, "GET");
+
+
+
+
+
+    foreach(QString key, this->defaultHeaders.keys()) {
+        input.headers.insert(key, this->defaultHeaders.value(key));
+    }
+
+    connect(worker,
+            &HttpRequestWorker::on_execution_finished,
+            this,
+            &SWGBlueOceanApi::getPipelineRunLogCallback);
+
+    worker->execute(&input);
+}
+
+void
+SWGBlueOceanApi::getPipelineRunLogCallback(HttpRequestWorker * worker) {
+    QString msg;
+    QString error_str = worker->error_str;
+    QNetworkReply::NetworkError error_type = worker->error_type;
+
+    if (worker->error_type == QNetworkReply::NoError) {
+        msg = QString("Success! %1 bytes").arg(worker->response.length());
+    }
+    else {
+        msg = "Error: " + worker->error_str;
+    }
+
+
+    QString json(worker->response);
+    QString* output = static_cast<QString*>(create(json, QString("QString")));
+    worker->deleteLater();
+
+    emit getPipelineRunLogSignal(output);
+    emit getPipelineRunLogSignalE(output, error_type, error_str);
+}
+
+void
+SWGBlueOceanApi::getPipelineRunNode(QString* organization, QString* pipeline, QString* run, QString* node) {
+    QString fullPath;
+    fullPath.append(this->host).append(this->basePath).append("/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}");
+
+    QString organizationPathParam("{"); organizationPathParam.append("organization").append("}");
+    fullPath.replace(organizationPathParam, stringValue(organization));
+    QString pipelinePathParam("{"); pipelinePathParam.append("pipeline").append("}");
+    fullPath.replace(pipelinePathParam, stringValue(pipeline));
+    QString runPathParam("{"); runPathParam.append("run").append("}");
+    fullPath.replace(runPathParam, stringValue(run));
+    QString nodePathParam("{"); nodePathParam.append("node").append("}");
+    fullPath.replace(nodePathParam, stringValue(node));
+
+
+    HttpRequestWorker *worker = new HttpRequestWorker();
+    HttpRequestInput input(fullPath, "GET");
+
+
+
+
+
+    foreach(QString key, this->defaultHeaders.keys()) {
+        input.headers.insert(key, this->defaultHeaders.value(key));
+    }
+
+    connect(worker,
+            &HttpRequestWorker::on_execution_finished,
+            this,
+            &SWGBlueOceanApi::getPipelineRunNodeCallback);
+
+    worker->execute(&input);
+}
+
+void
+SWGBlueOceanApi::getPipelineRunNodeCallback(HttpRequestWorker * worker) {
+    QString msg;
+    QString error_str = worker->error_str;
+    QNetworkReply::NetworkError error_type = worker->error_type;
+
+    if (worker->error_type == QNetworkReply::NoError) {
+        msg = QString("Success! %1 bytes").arg(worker->response.length());
+    }
+    else {
+        msg = "Error: " + worker->error_str;
+    }
+
+
+    QString json(worker->response);
+    PipelineRunNode* output = static_cast<PipelineRunNode*>(create(json, QString("PipelineRunNode")));
+    worker->deleteLater();
+
+    emit getPipelineRunNodeSignal(output);
+    emit getPipelineRunNodeSignalE(output, error_type, error_str);
+}
+
+void
+SWGBlueOceanApi::getPipelineRunNodeStep(QString* organization, QString* pipeline, QString* run, QString* node, QString* step) {
+    QString fullPath;
+    fullPath.append(this->host).append(this->basePath).append("/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps/{step}");
+
+    QString organizationPathParam("{"); organizationPathParam.append("organization").append("}");
+    fullPath.replace(organizationPathParam, stringValue(organization));
+    QString pipelinePathParam("{"); pipelinePathParam.append("pipeline").append("}");
+    fullPath.replace(pipelinePathParam, stringValue(pipeline));
+    QString runPathParam("{"); runPathParam.append("run").append("}");
+    fullPath.replace(runPathParam, stringValue(run));
+    QString nodePathParam("{"); nodePathParam.append("node").append("}");
+    fullPath.replace(nodePathParam, stringValue(node));
+    QString stepPathParam("{"); stepPathParam.append("step").append("}");
+    fullPath.replace(stepPathParam, stringValue(step));
+
+
+    HttpRequestWorker *worker = new HttpRequestWorker();
+    HttpRequestInput input(fullPath, "GET");
+
+
+
+
+
+    foreach(QString key, this->defaultHeaders.keys()) {
+        input.headers.insert(key, this->defaultHeaders.value(key));
+    }
+
+    connect(worker,
+            &HttpRequestWorker::on_execution_finished,
+            this,
+            &SWGBlueOceanApi::getPipelineRunNodeStepCallback);
+
+    worker->execute(&input);
+}
+
+void
+SWGBlueOceanApi::getPipelineRunNodeStepCallback(HttpRequestWorker * worker) {
+    QString msg;
+    QString error_str = worker->error_str;
+    QNetworkReply::NetworkError error_type = worker->error_type;
+
+    if (worker->error_type == QNetworkReply::NoError) {
+        msg = QString("Success! %1 bytes").arg(worker->response.length());
+    }
+    else {
+        msg = "Error: " + worker->error_str;
+    }
+
+
+    QString json(worker->response);
+    PipelineStepImpl* output = static_cast<PipelineStepImpl*>(create(json, QString("PipelineStepImpl")));
+    worker->deleteLater();
+
+    emit getPipelineRunNodeStepSignal(output);
+    emit getPipelineRunNodeStepSignalE(output, error_type, error_str);
+}
+
+void
+SWGBlueOceanApi::getPipelineRunNodeStepLog(QString* organization, QString* pipeline, QString* run, QString* node, QString* step) {
+    QString fullPath;
+    fullPath.append(this->host).append(this->basePath).append("/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps/{step}/log");
+
+    QString organizationPathParam("{"); organizationPathParam.append("organization").append("}");
+    fullPath.replace(organizationPathParam, stringValue(organization));
+    QString pipelinePathParam("{"); pipelinePathParam.append("pipeline").append("}");
+    fullPath.replace(pipelinePathParam, stringValue(pipeline));
+    QString runPathParam("{"); runPathParam.append("run").append("}");
+    fullPath.replace(runPathParam, stringValue(run));
+    QString nodePathParam("{"); nodePathParam.append("node").append("}");
+    fullPath.replace(nodePathParam, stringValue(node));
+    QString stepPathParam("{"); stepPathParam.append("step").append("}");
+    fullPath.replace(stepPathParam, stringValue(step));
+
+
+    HttpRequestWorker *worker = new HttpRequestWorker();
+    HttpRequestInput input(fullPath, "GET");
+
+
+
+
+
+    foreach(QString key, this->defaultHeaders.keys()) {
+        input.headers.insert(key, this->defaultHeaders.value(key));
+    }
+
+    connect(worker,
+            &HttpRequestWorker::on_execution_finished,
+            this,
+            &SWGBlueOceanApi::getPipelineRunNodeStepLogCallback);
+
+    worker->execute(&input);
+}
+
+void
+SWGBlueOceanApi::getPipelineRunNodeStepLogCallback(HttpRequestWorker * worker) {
+    QString msg;
+    QString error_str = worker->error_str;
+    QNetworkReply::NetworkError error_type = worker->error_type;
+
+    if (worker->error_type == QNetworkReply::NoError) {
+        msg = QString("Success! %1 bytes").arg(worker->response.length());
+    }
+    else {
+        msg = "Error: " + worker->error_str;
+    }
+
+
+    QString json(worker->response);
+    QString* output = static_cast<QString*>(create(json, QString("QString")));
+    worker->deleteLater();
+
+    emit getPipelineRunNodeStepLogSignal(output);
+    emit getPipelineRunNodeStepLogSignalE(output, error_type, error_str);
+}
+
+void
+SWGBlueOceanApi::getPipelineRunNodeSteps(QString* organization, QString* pipeline, QString* run, QString* node) {
+    QString fullPath;
+    fullPath.append(this->host).append(this->basePath).append("/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps");
+
+    QString organizationPathParam("{"); organizationPathParam.append("organization").append("}");
+    fullPath.replace(organizationPathParam, stringValue(organization));
+    QString pipelinePathParam("{"); pipelinePathParam.append("pipeline").append("}");
+    fullPath.replace(pipelinePathParam, stringValue(pipeline));
+    QString runPathParam("{"); runPathParam.append("run").append("}");
+    fullPath.replace(runPathParam, stringValue(run));
+    QString nodePathParam("{"); nodePathParam.append("node").append("}");
+    fullPath.replace(nodePathParam, stringValue(node));
+
+
+    HttpRequestWorker *worker = new HttpRequestWorker();
+    HttpRequestInput input(fullPath, "GET");
+
+
+
+
+
+    foreach(QString key, this->defaultHeaders.keys()) {
+        input.headers.insert(key, this->defaultHeaders.value(key));
+    }
+
+    connect(worker,
+            &HttpRequestWorker::on_execution_finished,
+            this,
+            &SWGBlueOceanApi::getPipelineRunNodeStepsCallback);
+
+    worker->execute(&input);
+}
+
+void
+SWGBlueOceanApi::getPipelineRunNodeStepsCallback(HttpRequestWorker * worker) {
+    QString msg;
+    QString error_str = worker->error_str;
+    QNetworkReply::NetworkError error_type = worker->error_type;
+
+    if (worker->error_type == QNetworkReply::NoError) {
+        msg = QString("Success! %1 bytes").arg(worker->response.length());
+    }
+    else {
+        msg = "Error: " + worker->error_str;
+    }
+
+
+    QString json(worker->response);
+    PipelineRunNodeSteps* output = static_cast<PipelineRunNodeSteps*>(create(json, QString("PipelineRunNodeSteps")));
+    worker->deleteLater();
+
+    emit getPipelineRunNodeStepsSignal(output);
+    emit getPipelineRunNodeStepsSignalE(output, error_type, error_str);
+}
+
+void
+SWGBlueOceanApi::getPipelineRunNodes(QString* organization, QString* pipeline, QString* run) {
+    QString fullPath;
+    fullPath.append(this->host).append(this->basePath).append("/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes");
+
+    QString organizationPathParam("{"); organizationPathParam.append("organization").append("}");
+    fullPath.replace(organizationPathParam, stringValue(organization));
+    QString pipelinePathParam("{"); pipelinePathParam.append("pipeline").append("}");
+    fullPath.replace(pipelinePathParam, stringValue(pipeline));
+    QString runPathParam("{"); runPathParam.append("run").append("}");
+    fullPath.replace(runPathParam, stringValue(run));
+
+
+    HttpRequestWorker *worker = new HttpRequestWorker();
+    HttpRequestInput input(fullPath, "GET");
+
+
+
+
+
+    foreach(QString key, this->defaultHeaders.keys()) {
+        input.headers.insert(key, this->defaultHeaders.value(key));
+    }
+
+    connect(worker,
+            &HttpRequestWorker::on_execution_finished,
+            this,
+            &SWGBlueOceanApi::getPipelineRunNodesCallback);
+
+    worker->execute(&input);
+}
+
+void
+SWGBlueOceanApi::getPipelineRunNodesCallback(HttpRequestWorker * worker) {
+    QString msg;
+    QString error_str = worker->error_str;
+    QNetworkReply::NetworkError error_type = worker->error_type;
+
+    if (worker->error_type == QNetworkReply::NoError) {
+        msg = QString("Success! %1 bytes").arg(worker->response.length());
+    }
+    else {
+        msg = "Error: " + worker->error_str;
+    }
+
+
+    QString json(worker->response);
+    PipelineRunNodes* output = static_cast<PipelineRunNodes*>(create(json, QString("PipelineRunNodes")));
+    worker->deleteLater();
+
+    emit getPipelineRunNodesSignal(output);
+    emit getPipelineRunNodesSignalE(output, error_type, error_str);
+}
+
+void
+SWGBlueOceanApi::getPipelineRuns(QString* organization, QString* pipeline) {
+    QString fullPath;
+    fullPath.append(this->host).append(this->basePath).append("/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs");
+
+    QString organizationPathParam("{"); organizationPathParam.append("organization").append("}");
+    fullPath.replace(organizationPathParam, stringValue(organization));
+    QString pipelinePathParam("{"); pipelinePathParam.append("pipeline").append("}");
+    fullPath.replace(pipelinePathParam, stringValue(pipeline));
+
+
+    HttpRequestWorker *worker = new HttpRequestWorker();
+    HttpRequestInput input(fullPath, "GET");
+
+
+
+
+
+    foreach(QString key, this->defaultHeaders.keys()) {
+        input.headers.insert(key, this->defaultHeaders.value(key));
+    }
+
+    connect(worker,
+            &HttpRequestWorker::on_execution_finished,
+            this,
+            &SWGBlueOceanApi::getPipelineRunsCallback);
+
+    worker->execute(&input);
+}
+
+void
+SWGBlueOceanApi::getPipelineRunsCallback(HttpRequestWorker * worker) {
+    QString msg;
+    QString error_str = worker->error_str;
+    QNetworkReply::NetworkError error_type = worker->error_type;
+
+    if (worker->error_type == QNetworkReply::NoError) {
+        msg = QString("Success! %1 bytes").arg(worker->response.length());
+    }
+    else {
+        msg = "Error: " + worker->error_str;
+    }
+
+
+    QString json(worker->response);
+    PipelineRuns* output = static_cast<PipelineRuns*>(create(json, QString("PipelineRuns")));
+    worker->deleteLater();
+
+    emit getPipelineRunsSignal(output);
+    emit getPipelineRunsSignalE(output, error_type, error_str);
+}
+
+void
+SWGBlueOceanApi::getPipelines(QString* organization) {
+    QString fullPath;
+    fullPath.append(this->host).append(this->basePath).append("/blue/rest/organizations/{organization}/pipelines/");
+
+    QString organizationPathParam("{"); organizationPathParam.append("organization").append("}");
+    fullPath.replace(organizationPathParam, stringValue(organization));
+
+
+    HttpRequestWorker *worker = new HttpRequestWorker();
+    HttpRequestInput input(fullPath, "GET");
+
+
+
+
+
+    foreach(QString key, this->defaultHeaders.keys()) {
+        input.headers.insert(key, this->defaultHeaders.value(key));
+    }
+
+    connect(worker,
+            &HttpRequestWorker::on_execution_finished,
+            this,
+            &SWGBlueOceanApi::getPipelinesCallback);
+
+    worker->execute(&input);
+}
+
+void
+SWGBlueOceanApi::getPipelinesCallback(HttpRequestWorker * worker) {
+    QString msg;
+    QString error_str = worker->error_str;
+    QNetworkReply::NetworkError error_type = worker->error_type;
+
+    if (worker->error_type == QNetworkReply::NoError) {
+        msg = QString("Success! %1 bytes").arg(worker->response.length());
+    }
+    else {
+        msg = "Error: " + worker->error_str;
+    }
+
+
+    QString json(worker->response);
+    Pipelines* output = static_cast<Pipelines*>(create(json, QString("Pipelines")));
+    worker->deleteLater();
+
+    emit getPipelinesSignal(output);
+    emit getPipelinesSignalE(output, error_type, error_str);
+}
+
+void
+SWGBlueOceanApi::getSCM(QString* organization, QString* scm) {
+    QString fullPath;
+    fullPath.append(this->host).append(this->basePath).append("/blue/rest/organizations/{organization}/scm/{scm}");
+
+    QString organizationPathParam("{"); organizationPathParam.append("organization").append("}");
+    fullPath.replace(organizationPathParam, stringValue(organization));
+    QString scmPathParam("{"); scmPathParam.append("scm").append("}");
+    fullPath.replace(scmPathParam, stringValue(scm));
+
+
+    HttpRequestWorker *worker = new HttpRequestWorker();
+    HttpRequestInput input(fullPath, "GET");
+
+
+
+
+
+    foreach(QString key, this->defaultHeaders.keys()) {
+        input.headers.insert(key, this->defaultHeaders.value(key));
+    }
+
+    connect(worker,
+            &HttpRequestWorker::on_execution_finished,
+            this,
+            &SWGBlueOceanApi::getSCMCallback);
+
+    worker->execute(&input);
+}
+
+void
+SWGBlueOceanApi::getSCMCallback(HttpRequestWorker * worker) {
+    QString msg;
+    QString error_str = worker->error_str;
+    QNetworkReply::NetworkError error_type = worker->error_type;
+
+    if (worker->error_type == QNetworkReply::NoError) {
+        msg = QString("Success! %1 bytes").arg(worker->response.length());
+    }
+    else {
+        msg = "Error: " + worker->error_str;
+    }
+
+
+    QString json(worker->response);
+    GithubScm* output = static_cast<GithubScm*>(create(json, QString("GithubScm")));
+    worker->deleteLater();
+
+    emit getSCMSignal(output);
+    emit getSCMSignalE(output, error_type, error_str);
+}
+
+void
+SWGBlueOceanApi::getSCMOrganisationRepositories(QString* organization, QString* scm, QString* scm_organisation, QString* credential_id, qint32 page_size, qint32 page_number) {
+    QString fullPath;
+    fullPath.append(this->host).append(this->basePath).append("/blue/rest/organizations/{organization}/scm/{scm}/organizations/{scmOrganisation}/repositories");
+
+    QString organizationPathParam("{"); organizationPathParam.append("organization").append("}");
+    fullPath.replace(organizationPathParam, stringValue(organization));
+    QString scmPathParam("{"); scmPathParam.append("scm").append("}");
+    fullPath.replace(scmPathParam, stringValue(scm));
+    QString scm_organisationPathParam("{"); scm_organisationPathParam.append("scmOrganisation").append("}");
+    fullPath.replace(scm_organisationPathParam, stringValue(scm_organisation));
+
+    if (fullPath.indexOf("?") > 0) 
+      fullPath.append("&");
+    else 
+      fullPath.append("?");
+    fullPath.append(QUrl::toPercentEncoding("credentialId"))
+        .append("=")
+        .append(QUrl::toPercentEncoding(stringValue(credential_id)));
+
+    if (fullPath.indexOf("?") > 0) 
+      fullPath.append("&");
+    else 
+      fullPath.append("?");
+    fullPath.append(QUrl::toPercentEncoding("pageSize"))
+        .append("=")
+        .append(QUrl::toPercentEncoding(stringValue(page_size)));
+
+    if (fullPath.indexOf("?") > 0) 
+      fullPath.append("&");
+    else 
+      fullPath.append("?");
+    fullPath.append(QUrl::toPercentEncoding("pageNumber"))
+        .append("=")
+        .append(QUrl::toPercentEncoding(stringValue(page_number)));
+
+
+    HttpRequestWorker *worker = new HttpRequestWorker();
+    HttpRequestInput input(fullPath, "GET");
+
+
+
+
+
+    foreach(QString key, this->defaultHeaders.keys()) {
+        input.headers.insert(key, this->defaultHeaders.value(key));
+    }
+
+    connect(worker,
+            &HttpRequestWorker::on_execution_finished,
+            this,
+            &SWGBlueOceanApi::getSCMOrganisationRepositoriesCallback);
+
+    worker->execute(&input);
+}
+
+void
+SWGBlueOceanApi::getSCMOrganisationRepositoriesCallback(HttpRequestWorker * worker) {
+    QString msg;
+    QString error_str = worker->error_str;
+    QNetworkReply::NetworkError error_type = worker->error_type;
+
+    if (worker->error_type == QNetworkReply::NoError) {
+        msg = QString("Success! %1 bytes").arg(worker->response.length());
+    }
+    else {
+        msg = "Error: " + worker->error_str;
+    }
+
+
+    QString json(worker->response);
+    ScmOrganisations* output = static_cast<ScmOrganisations*>(create(json, QString("ScmOrganisations")));
+    worker->deleteLater();
+
+    emit getSCMOrganisationRepositoriesSignal(output);
+    emit getSCMOrganisationRepositoriesSignalE(output, error_type, error_str);
+}
+
+void
+SWGBlueOceanApi::getSCMOrganisationRepository(QString* organization, QString* scm, QString* scm_organisation, QString* repository, QString* credential_id) {
+    QString fullPath;
+    fullPath.append(this->host).append(this->basePath).append("/blue/rest/organizations/{organization}/scm/{scm}/organizations/{scmOrganisation}/repositories/{repository}");
+
+    QString organizationPathParam("{"); organizationPathParam.append("organization").append("}");
+    fullPath.replace(organizationPathParam, stringValue(organization));
+    QString scmPathParam("{"); scmPathParam.append("scm").append("}");
+    fullPath.replace(scmPathParam, stringValue(scm));
+    QString scm_organisationPathParam("{"); scm_organisationPathParam.append("scmOrganisation").append("}");
+    fullPath.replace(scm_organisationPathParam, stringValue(scm_organisation));
+    QString repositoryPathParam("{"); repositoryPathParam.append("repository").append("}");
+    fullPath.replace(repositoryPathParam, stringValue(repository));
+
+    if (fullPath.indexOf("?") > 0) 
+      fullPath.append("&");
+    else 
+      fullPath.append("?");
+    fullPath.append(QUrl::toPercentEncoding("credentialId"))
+        .append("=")
+        .append(QUrl::toPercentEncoding(stringValue(credential_id)));
+
+
+    HttpRequestWorker *worker = new HttpRequestWorker();
+    HttpRequestInput input(fullPath, "GET");
+
+
+
+
+
+    foreach(QString key, this->defaultHeaders.keys()) {
+        input.headers.insert(key, this->defaultHeaders.value(key));
+    }
+
+    connect(worker,
+            &HttpRequestWorker::on_execution_finished,
+            this,
+            &SWGBlueOceanApi::getSCMOrganisationRepositoryCallback);
+
+    worker->execute(&input);
+}
+
+void
+SWGBlueOceanApi::getSCMOrganisationRepositoryCallback(HttpRequestWorker * worker) {
+    QString msg;
+    QString error_str = worker->error_str;
+    QNetworkReply::NetworkError error_type = worker->error_type;
+
+    if (worker->error_type == QNetworkReply::NoError) {
+        msg = QString("Success! %1 bytes").arg(worker->response.length());
+    }
+    else {
+        msg = "Error: " + worker->error_str;
+    }
+
+
+    QString json(worker->response);
+    ScmOrganisations* output = static_cast<ScmOrganisations*>(create(json, QString("ScmOrganisations")));
+    worker->deleteLater();
+
+    emit getSCMOrganisationRepositorySignal(output);
+    emit getSCMOrganisationRepositorySignalE(output, error_type, error_str);
+}
+
+void
+SWGBlueOceanApi::getSCMOrganisations(QString* organization, QString* scm, QString* credential_id) {
+    QString fullPath;
+    fullPath.append(this->host).append(this->basePath).append("/blue/rest/organizations/{organization}/scm/{scm}/organizations");
+
+    QString organizationPathParam("{"); organizationPathParam.append("organization").append("}");
+    fullPath.replace(organizationPathParam, stringValue(organization));
+    QString scmPathParam("{"); scmPathParam.append("scm").append("}");
+    fullPath.replace(scmPathParam, stringValue(scm));
+
+    if (fullPath.indexOf("?") > 0) 
+      fullPath.append("&");
+    else 
+      fullPath.append("?");
+    fullPath.append(QUrl::toPercentEncoding("credentialId"))
+        .append("=")
+        .append(QUrl::toPercentEncoding(stringValue(credential_id)));
+
+
+    HttpRequestWorker *worker = new HttpRequestWorker();
+    HttpRequestInput input(fullPath, "GET");
+
+
+
+
+
+    foreach(QString key, this->defaultHeaders.keys()) {
+        input.headers.insert(key, this->defaultHeaders.value(key));
+    }
+
+    connect(worker,
+            &HttpRequestWorker::on_execution_finished,
+            this,
+            &SWGBlueOceanApi::getSCMOrganisationsCallback);
+
+    worker->execute(&input);
+}
+
+void
+SWGBlueOceanApi::getSCMOrganisationsCallback(HttpRequestWorker * worker) {
+    QString msg;
+    QString error_str = worker->error_str;
+    QNetworkReply::NetworkError error_type = worker->error_type;
+
+    if (worker->error_type == QNetworkReply::NoError) {
+        msg = QString("Success! %1 bytes").arg(worker->response.length());
+    }
+    else {
+        msg = "Error: " + worker->error_str;
+    }
+
+
+    QString json(worker->response);
+    ScmOrganisations* output = static_cast<ScmOrganisations*>(create(json, QString("ScmOrganisations")));
+    worker->deleteLater();
+
+    emit getSCMOrganisationsSignal(output);
+    emit getSCMOrganisationsSignalE(output, error_type, error_str);
+}
+
+void
+SWGBlueOceanApi::getUser(QString* organization, QString* user) {
+    QString fullPath;
+    fullPath.append(this->host).append(this->basePath).append("/blue/rest/organizations/{organization}/users/{user}");
+
+    QString organizationPathParam("{"); organizationPathParam.append("organization").append("}");
+    fullPath.replace(organizationPathParam, stringValue(organization));
     QString userPathParam("{"); userPathParam.append("user").append("}");
     fullPath.replace(userPathParam, stringValue(user));
 
@@ -517,6 +1480,10 @@ SWGBlueOceanApi::getUser(QString* organisation, QString* user) {
 
 
 
+
+    foreach(QString key, this->defaultHeaders.keys()) {
+        input.headers.insert(key, this->defaultHeaders.value(key));
+    }
 
     connect(worker,
             &HttpRequestWorker::on_execution_finished,
@@ -541,7 +1508,7 @@ SWGBlueOceanApi::getUserCallback(HttpRequestWorker * worker) {
 
 
     QString json(worker->response);
-    SWGSwaggyjenkinsUser* output = static_cast<SWGSwaggyjenkinsUser*>(create(json, QString("SWGSwaggyjenkinsUser")));
+    User* output = static_cast<User*>(create(json, QString("User")));
     worker->deleteLater();
 
     emit getUserSignal(output);
@@ -549,12 +1516,12 @@ SWGBlueOceanApi::getUserCallback(HttpRequestWorker * worker) {
 }
 
 void
-SWGBlueOceanApi::getUsers(QString* organisation) {
+SWGBlueOceanApi::getUserFavorites(QString* user) {
     QString fullPath;
-    fullPath.append(this->host).append(this->basePath).append("/blue/rest/organizations/{organisation}/users/");
+    fullPath.append(this->host).append(this->basePath).append("/blue/rest/users/{user}/favorites");
 
-    QString organisationPathParam("{"); organisationPathParam.append("organisation").append("}");
-    fullPath.replace(organisationPathParam, stringValue(organisation));
+    QString userPathParam("{"); userPathParam.append("user").append("}");
+    fullPath.replace(userPathParam, stringValue(user));
 
 
     HttpRequestWorker *worker = new HttpRequestWorker();
@@ -563,6 +1530,60 @@ SWGBlueOceanApi::getUsers(QString* organisation) {
 
 
 
+
+    foreach(QString key, this->defaultHeaders.keys()) {
+        input.headers.insert(key, this->defaultHeaders.value(key));
+    }
+
+    connect(worker,
+            &HttpRequestWorker::on_execution_finished,
+            this,
+            &SWGBlueOceanApi::getUserFavoritesCallback);
+
+    worker->execute(&input);
+}
+
+void
+SWGBlueOceanApi::getUserFavoritesCallback(HttpRequestWorker * worker) {
+    QString msg;
+    QString error_str = worker->error_str;
+    QNetworkReply::NetworkError error_type = worker->error_type;
+
+    if (worker->error_type == QNetworkReply::NoError) {
+        msg = QString("Success! %1 bytes").arg(worker->response.length());
+    }
+    else {
+        msg = "Error: " + worker->error_str;
+    }
+
+
+    QString json(worker->response);
+    UserFavorites* output = static_cast<UserFavorites*>(create(json, QString("UserFavorites")));
+    worker->deleteLater();
+
+    emit getUserFavoritesSignal(output);
+    emit getUserFavoritesSignalE(output, error_type, error_str);
+}
+
+void
+SWGBlueOceanApi::getUsers(QString* organization) {
+    QString fullPath;
+    fullPath.append(this->host).append(this->basePath).append("/blue/rest/organizations/{organization}/users/");
+
+    QString organizationPathParam("{"); organizationPathParam.append("organization").append("}");
+    fullPath.replace(organizationPathParam, stringValue(organization));
+
+
+    HttpRequestWorker *worker = new HttpRequestWorker();
+    HttpRequestInput input(fullPath, "GET");
+
+
+
+
+
+    foreach(QString key, this->defaultHeaders.keys()) {
+        input.headers.insert(key, this->defaultHeaders.value(key));
+    }
 
     connect(worker,
             &HttpRequestWorker::on_execution_finished,
@@ -587,7 +1608,7 @@ SWGBlueOceanApi::getUsersCallback(HttpRequestWorker * worker) {
 
 
     QString json(worker->response);
-    SWGSwaggyjenkinsUser* output = static_cast<SWGSwaggyjenkinsUser*>(create(json, QString("SWGSwaggyjenkinsUser")));
+    User* output = static_cast<User*>(create(json, QString("User")));
     worker->deleteLater();
 
     emit getUsersSignal(output);
@@ -595,9 +1616,239 @@ SWGBlueOceanApi::getUsersCallback(HttpRequestWorker * worker) {
 }
 
 void
+SWGBlueOceanApi::postPipelineRun(QString* organization, QString* pipeline, QString* run) {
+    QString fullPath;
+    fullPath.append(this->host).append(this->basePath).append("/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/replay");
+
+    QString organizationPathParam("{"); organizationPathParam.append("organization").append("}");
+    fullPath.replace(organizationPathParam, stringValue(organization));
+    QString pipelinePathParam("{"); pipelinePathParam.append("pipeline").append("}");
+    fullPath.replace(pipelinePathParam, stringValue(pipeline));
+    QString runPathParam("{"); runPathParam.append("run").append("}");
+    fullPath.replace(runPathParam, stringValue(run));
+
+
+    HttpRequestWorker *worker = new HttpRequestWorker();
+    HttpRequestInput input(fullPath, "POST");
+
+
+
+
+
+    foreach(QString key, this->defaultHeaders.keys()) {
+        input.headers.insert(key, this->defaultHeaders.value(key));
+    }
+
+    connect(worker,
+            &HttpRequestWorker::on_execution_finished,
+            this,
+            &SWGBlueOceanApi::postPipelineRunCallback);
+
+    worker->execute(&input);
+}
+
+void
+SWGBlueOceanApi::postPipelineRunCallback(HttpRequestWorker * worker) {
+    QString msg;
+    QString error_str = worker->error_str;
+    QNetworkReply::NetworkError error_type = worker->error_type;
+
+    if (worker->error_type == QNetworkReply::NoError) {
+        msg = QString("Success! %1 bytes").arg(worker->response.length());
+    }
+    else {
+        msg = "Error: " + worker->error_str;
+    }
+
+
+    QString json(worker->response);
+    QueueItemImpl* output = static_cast<QueueItemImpl*>(create(json, QString("QueueItemImpl")));
+    worker->deleteLater();
+
+    emit postPipelineRunSignal(output);
+    emit postPipelineRunSignalE(output, error_type, error_str);
+}
+
+void
+SWGBlueOceanApi::postPipelineRuns(QString* organization, QString* pipeline) {
+    QString fullPath;
+    fullPath.append(this->host).append(this->basePath).append("/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs");
+
+    QString organizationPathParam("{"); organizationPathParam.append("organization").append("}");
+    fullPath.replace(organizationPathParam, stringValue(organization));
+    QString pipelinePathParam("{"); pipelinePathParam.append("pipeline").append("}");
+    fullPath.replace(pipelinePathParam, stringValue(pipeline));
+
+
+    HttpRequestWorker *worker = new HttpRequestWorker();
+    HttpRequestInput input(fullPath, "POST");
+
+
+
+
+
+    foreach(QString key, this->defaultHeaders.keys()) {
+        input.headers.insert(key, this->defaultHeaders.value(key));
+    }
+
+    connect(worker,
+            &HttpRequestWorker::on_execution_finished,
+            this,
+            &SWGBlueOceanApi::postPipelineRunsCallback);
+
+    worker->execute(&input);
+}
+
+void
+SWGBlueOceanApi::postPipelineRunsCallback(HttpRequestWorker * worker) {
+    QString msg;
+    QString error_str = worker->error_str;
+    QNetworkReply::NetworkError error_type = worker->error_type;
+
+    if (worker->error_type == QNetworkReply::NoError) {
+        msg = QString("Success! %1 bytes").arg(worker->response.length());
+    }
+    else {
+        msg = "Error: " + worker->error_str;
+    }
+
+
+    QString json(worker->response);
+    QueueItemImpl* output = static_cast<QueueItemImpl*>(create(json, QString("QueueItemImpl")));
+    worker->deleteLater();
+
+    emit postPipelineRunsSignal(output);
+    emit postPipelineRunsSignalE(output, error_type, error_str);
+}
+
+void
+SWGBlueOceanApi::putPipelineFavorite(QString* organization, QString* pipeline, Body body) {
+    QString fullPath;
+    fullPath.append(this->host).append(this->basePath).append("/blue/rest/organizations/{organization}/pipelines/{pipeline}/favorite");
+
+    QString organizationPathParam("{"); organizationPathParam.append("organization").append("}");
+    fullPath.replace(organizationPathParam, stringValue(organization));
+    QString pipelinePathParam("{"); pipelinePathParam.append("pipeline").append("}");
+    fullPath.replace(pipelinePathParam, stringValue(pipeline));
+
+
+    HttpRequestWorker *worker = new HttpRequestWorker();
+    HttpRequestInput input(fullPath, "PUT");
+
+
+    QString output = body.asJson();
+    input.request_body.append(output);
+    
+
+
+    foreach(QString key, this->defaultHeaders.keys()) {
+        input.headers.insert(key, this->defaultHeaders.value(key));
+    }
+
+    connect(worker,
+            &HttpRequestWorker::on_execution_finished,
+            this,
+            &SWGBlueOceanApi::putPipelineFavoriteCallback);
+
+    worker->execute(&input);
+}
+
+void
+SWGBlueOceanApi::putPipelineFavoriteCallback(HttpRequestWorker * worker) {
+    QString msg;
+    QString error_str = worker->error_str;
+    QNetworkReply::NetworkError error_type = worker->error_type;
+
+    if (worker->error_type == QNetworkReply::NoError) {
+        msg = QString("Success! %1 bytes").arg(worker->response.length());
+    }
+    else {
+        msg = "Error: " + worker->error_str;
+    }
+
+
+    QString json(worker->response);
+    FavoriteImpl* output = static_cast<FavoriteImpl*>(create(json, QString("FavoriteImpl")));
+    worker->deleteLater();
+
+    emit putPipelineFavoriteSignal(output);
+    emit putPipelineFavoriteSignalE(output, error_type, error_str);
+}
+
+void
+SWGBlueOceanApi::putPipelineRun(QString* organization, QString* pipeline, QString* run, QString* blocking, qint32 time_out_in_secs) {
+    QString fullPath;
+    fullPath.append(this->host).append(this->basePath).append("/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/stop");
+
+    QString organizationPathParam("{"); organizationPathParam.append("organization").append("}");
+    fullPath.replace(organizationPathParam, stringValue(organization));
+    QString pipelinePathParam("{"); pipelinePathParam.append("pipeline").append("}");
+    fullPath.replace(pipelinePathParam, stringValue(pipeline));
+    QString runPathParam("{"); runPathParam.append("run").append("}");
+    fullPath.replace(runPathParam, stringValue(run));
+
+    if (fullPath.indexOf("?") > 0) 
+      fullPath.append("&");
+    else 
+      fullPath.append("?");
+    fullPath.append(QUrl::toPercentEncoding("blocking"))
+        .append("=")
+        .append(QUrl::toPercentEncoding(stringValue(blocking)));
+
+    if (fullPath.indexOf("?") > 0) 
+      fullPath.append("&");
+    else 
+      fullPath.append("?");
+    fullPath.append(QUrl::toPercentEncoding("timeOutInSecs"))
+        .append("=")
+        .append(QUrl::toPercentEncoding(stringValue(time_out_in_secs)));
+
+
+    HttpRequestWorker *worker = new HttpRequestWorker();
+    HttpRequestInput input(fullPath, "PUT");
+
+
+
+
+
+    foreach(QString key, this->defaultHeaders.keys()) {
+        input.headers.insert(key, this->defaultHeaders.value(key));
+    }
+
+    connect(worker,
+            &HttpRequestWorker::on_execution_finished,
+            this,
+            &SWGBlueOceanApi::putPipelineRunCallback);
+
+    worker->execute(&input);
+}
+
+void
+SWGBlueOceanApi::putPipelineRunCallback(HttpRequestWorker * worker) {
+    QString msg;
+    QString error_str = worker->error_str;
+    QNetworkReply::NetworkError error_type = worker->error_type;
+
+    if (worker->error_type == QNetworkReply::NoError) {
+        msg = QString("Success! %1 bytes").arg(worker->response.length());
+    }
+    else {
+        msg = "Error: " + worker->error_str;
+    }
+
+
+    QString json(worker->response);
+    PipelineRun* output = static_cast<PipelineRun*>(create(json, QString("PipelineRun")));
+    worker->deleteLater();
+
+    emit putPipelineRunSignal(output);
+    emit putPipelineRunSignalE(output, error_type, error_str);
+}
+
+void
 SWGBlueOceanApi::search(QString* q) {
     QString fullPath;
-    fullPath.append(this->host).append(this->basePath).append("/blue/rest/classes/");
+    fullPath.append(this->host).append(this->basePath).append("/blue/rest/search/");
 
 
     if (fullPath.indexOf("?") > 0) 
@@ -615,6 +1866,10 @@ SWGBlueOceanApi::search(QString* q) {
 
 
 
+
+    foreach(QString key, this->defaultHeaders.keys()) {
+        input.headers.insert(key, this->defaultHeaders.value(key));
+    }
 
     connect(worker,
             &HttpRequestWorker::on_execution_finished,
@@ -647,9 +1902,9 @@ SWGBlueOceanApi::searchCallback(HttpRequestWorker * worker) {
 }
 
 void
-SWGBlueOceanApi::search_2(QString* q) {
+SWGBlueOceanApi::searchClasses(QString* q) {
     QString fullPath;
-    fullPath.append(this->host).append(this->basePath).append("/blue/rest/search/");
+    fullPath.append(this->host).append(this->basePath).append("/blue/rest/classes/");
 
 
     if (fullPath.indexOf("?") > 0) 
@@ -668,16 +1923,20 @@ SWGBlueOceanApi::search_2(QString* q) {
 
 
 
+    foreach(QString key, this->defaultHeaders.keys()) {
+        input.headers.insert(key, this->defaultHeaders.value(key));
+    }
+
     connect(worker,
             &HttpRequestWorker::on_execution_finished,
             this,
-            &SWGBlueOceanApi::search_2Callback);
+            &SWGBlueOceanApi::searchClassesCallback);
 
     worker->execute(&input);
 }
 
 void
-SWGBlueOceanApi::search_2Callback(HttpRequestWorker * worker) {
+SWGBlueOceanApi::searchClassesCallback(HttpRequestWorker * worker) {
     QString msg;
     QString error_str = worker->error_str;
     QNetworkReply::NetworkError error_type = worker->error_type;
@@ -694,8 +1953,8 @@ SWGBlueOceanApi::search_2Callback(HttpRequestWorker * worker) {
     QString* output = static_cast<QString*>(create(json, QString("QString")));
     worker->deleteLater();
 
-    emit search_2Signal(output);
-    emit search_2SignalE(output, error_type, error_str);
+    emit searchClassesSignal(output);
+    emit searchClassesSignalE(output, error_type, error_str);
 }
 
 

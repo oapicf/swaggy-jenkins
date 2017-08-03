@@ -23,7 +23,7 @@ import javax.validation.constraints.*;
 
 
 @io.swagger.annotations.Api(description = "the createView API")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaResteasyServerCodegen", date = "2017-07-25T10:45:08.057+10:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaResteasyServerCodegen", date = "2017-08-03T23:34:55.006Z")
 public class CreateViewApi  {
    private final CreateViewApiService delegate = CreateViewApiServiceFactory.getCreateViewApi();
 
@@ -31,7 +31,9 @@ public class CreateViewApi  {
     
     
     @Produces({ "text/html" })
-    @io.swagger.annotations.ApiOperation(value = "", notes = "Create a new view using view configuration", response = Void.class, tags={ "remoteAccess", })
+    @io.swagger.annotations.ApiOperation(value = "", notes = "Create a new view using view configuration", response = Void.class, authorizations = {
+        @io.swagger.annotations.Authorization(value = "jenkins_auth")
+    }, tags={ "remoteAccess", })
     @io.swagger.annotations.ApiResponses(value = { 
         @io.swagger.annotations.ApiResponse(code = 200, message = "Successfully created the view", response = Void.class),
         

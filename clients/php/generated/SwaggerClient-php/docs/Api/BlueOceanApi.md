@@ -4,39 +4,116 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**getAuthenticatedUser**](BlueOceanApi.md#getAuthenticatedUser) | **GET** /blue/rest/organizations/{organisation}/user/ | 
+[**deletePipelineQueueItem**](BlueOceanApi.md#deletePipelineQueueItem) | **DELETE** /blue/rest/organizations/{organization}/pipelines/{pipeline}/queue/{queue} | 
+[**getAuthenticatedUser**](BlueOceanApi.md#getAuthenticatedUser) | **GET** /blue/rest/organizations/{organization}/user/ | 
 [**getClasses**](BlueOceanApi.md#getClasses) | **GET** /blue/rest/classes/{class} | 
-[**getOrganisation**](BlueOceanApi.md#getOrganisation) | **GET** /blue/rest/organizations/{organisation} | 
+[**getOrganisation**](BlueOceanApi.md#getOrganisation) | **GET** /blue/rest/organizations/{organization} | 
 [**getOrganisations**](BlueOceanApi.md#getOrganisations) | **GET** /blue/rest/organizations/ | 
-[**getPipelineBranchByOrg**](BlueOceanApi.md#getPipelineBranchByOrg) | **GET** /blue/rest/organizations/{organisation}/pipelines/{pipeline}/branches/{branch}/ | 
-[**getPipelineBranchesByOrg**](BlueOceanApi.md#getPipelineBranchesByOrg) | **GET** /blue/rest/organizations/{organisation}/pipelines/{pipeline}/branches | 
-[**getPipelineByOrg**](BlueOceanApi.md#getPipelineByOrg) | **GET** /blue/rest/organizations/{organisation}/pipelines/{pipeline} | 
-[**getPipelineFolderByOrg**](BlueOceanApi.md#getPipelineFolderByOrg) | **GET** /blue/rest/organizations/{organisation}/pipelines/{folder}/ | 
-[**getPipelineFolderByOrg_0**](BlueOceanApi.md#getPipelineFolderByOrg_0) | **GET** /blue/rest/organizations/{organisation}/pipelines/{folder}/pipelines/{pipeline} | 
-[**getPipelinesByOrg**](BlueOceanApi.md#getPipelinesByOrg) | **GET** /blue/rest/organizations/{organisation}/pipelines/ | 
-[**getUser**](BlueOceanApi.md#getUser) | **GET** /blue/rest/organizations/{organisation}/users/{user} | 
-[**getUsers**](BlueOceanApi.md#getUsers) | **GET** /blue/rest/organizations/{organisation}/users/ | 
-[**search**](BlueOceanApi.md#search) | **GET** /blue/rest/classes/ | 
-[**search_0**](BlueOceanApi.md#search_0) | **GET** /blue/rest/search/ | 
+[**getPipeline**](BlueOceanApi.md#getPipeline) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline} | 
+[**getPipelineActivities**](BlueOceanApi.md#getPipelineActivities) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/activities | 
+[**getPipelineBranch**](BlueOceanApi.md#getPipelineBranch) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/branches/{branch}/ | 
+[**getPipelineBranchRun**](BlueOceanApi.md#getPipelineBranchRun) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/branches/{branch}/runs/{run} | 
+[**getPipelineBranches**](BlueOceanApi.md#getPipelineBranches) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/branches | 
+[**getPipelineFolder**](BlueOceanApi.md#getPipelineFolder) | **GET** /blue/rest/organizations/{organization}/pipelines/{folder}/ | 
+[**getPipelineFolderPipeline**](BlueOceanApi.md#getPipelineFolderPipeline) | **GET** /blue/rest/organizations/{organization}/pipelines/{folder}/pipelines/{pipeline} | 
+[**getPipelineQueue**](BlueOceanApi.md#getPipelineQueue) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/queue | 
+[**getPipelineRun**](BlueOceanApi.md#getPipelineRun) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run} | 
+[**getPipelineRunLog**](BlueOceanApi.md#getPipelineRunLog) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/log | 
+[**getPipelineRunNode**](BlueOceanApi.md#getPipelineRunNode) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node} | 
+[**getPipelineRunNodeStep**](BlueOceanApi.md#getPipelineRunNodeStep) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps/{step} | 
+[**getPipelineRunNodeStepLog**](BlueOceanApi.md#getPipelineRunNodeStepLog) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps/{step}/log | 
+[**getPipelineRunNodeSteps**](BlueOceanApi.md#getPipelineRunNodeSteps) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps | 
+[**getPipelineRunNodes**](BlueOceanApi.md#getPipelineRunNodes) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes | 
+[**getPipelineRuns**](BlueOceanApi.md#getPipelineRuns) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs | 
+[**getPipelines**](BlueOceanApi.md#getPipelines) | **GET** /blue/rest/organizations/{organization}/pipelines/ | 
+[**getSCM**](BlueOceanApi.md#getSCM) | **GET** /blue/rest/organizations/{organization}/scm/{scm} | 
+[**getSCMOrganisationRepositories**](BlueOceanApi.md#getSCMOrganisationRepositories) | **GET** /blue/rest/organizations/{organization}/scm/{scm}/organizations/{scmOrganisation}/repositories | 
+[**getSCMOrganisationRepository**](BlueOceanApi.md#getSCMOrganisationRepository) | **GET** /blue/rest/organizations/{organization}/scm/{scm}/organizations/{scmOrganisation}/repositories/{repository} | 
+[**getSCMOrganisations**](BlueOceanApi.md#getSCMOrganisations) | **GET** /blue/rest/organizations/{organization}/scm/{scm}/organizations | 
+[**getUser**](BlueOceanApi.md#getUser) | **GET** /blue/rest/organizations/{organization}/users/{user} | 
+[**getUserFavorites**](BlueOceanApi.md#getUserFavorites) | **GET** /blue/rest/users/{user}/favorites | 
+[**getUsers**](BlueOceanApi.md#getUsers) | **GET** /blue/rest/organizations/{organization}/users/ | 
+[**postPipelineRun**](BlueOceanApi.md#postPipelineRun) | **POST** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/replay | 
+[**postPipelineRuns**](BlueOceanApi.md#postPipelineRuns) | **POST** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs | 
+[**putPipelineFavorite**](BlueOceanApi.md#putPipelineFavorite) | **PUT** /blue/rest/organizations/{organization}/pipelines/{pipeline}/favorite | 
+[**putPipelineRun**](BlueOceanApi.md#putPipelineRun) | **PUT** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/stop | 
+[**search**](BlueOceanApi.md#search) | **GET** /blue/rest/search/ | 
+[**searchClasses**](BlueOceanApi.md#searchClasses) | **GET** /blue/rest/classes/ | 
 
 
-# **getAuthenticatedUser**
-> \Swagger\Client\Model\SwaggyjenkinsUser getAuthenticatedUser($organisation)
+# **deletePipelineQueueItem**
+> deletePipelineQueueItem($organization, $pipeline, $queue)
 
 
 
-Retrieve authenticated user details for an organisation
+Delete queue item from an organization pipeline queue
 
 ### Example
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$api_instance = new Swagger\Client\Api\BlueOceanApi();
-$organisation = "organisation_example"; // string | Name of the organisation
+// Configure HTTP basic authorization: jenkins_auth
+Swagger\Client\Configuration::getDefaultConfiguration()->setUsername('YOUR_USERNAME');
+Swagger\Client\Configuration::getDefaultConfiguration()->setPassword('YOUR_PASSWORD');
+
+$api_instance = new Swagger\Client\Api\BlueOceanApi(new \Http\Adapter\Guzzle6\Client());
+$organization = "organization_example"; // string | Name of the organization
+$pipeline = "pipeline_example"; // string | Name of the pipeline
+$queue = "queue_example"; // string | Name of the queue item
 
 try {
-    $result = $api_instance->getAuthenticatedUser($organisation);
+    $api_instance->deletePipelineQueueItem($organization, $pipeline, $queue);
+} catch (Exception $e) {
+    echo 'Exception when calling BlueOceanApi->deletePipelineQueueItem: ', $e->getMessage(), PHP_EOL;
+}
+?>
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **organization** | **string**| Name of the organization |
+ **pipeline** | **string**| Name of the pipeline |
+ **queue** | **string**| Name of the queue item |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[jenkins_auth](../../README.md#jenkins_auth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+
+# **getAuthenticatedUser**
+> \Swagger\Client\Model\User getAuthenticatedUser($organization)
+
+
+
+Retrieve authenticated user details for an organization
+
+### Example
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+// Configure HTTP basic authorization: jenkins_auth
+Swagger\Client\Configuration::getDefaultConfiguration()->setUsername('YOUR_USERNAME');
+Swagger\Client\Configuration::getDefaultConfiguration()->setPassword('YOUR_PASSWORD');
+
+$api_instance = new Swagger\Client\Api\BlueOceanApi(new \Http\Adapter\Guzzle6\Client());
+$organization = "organization_example"; // string | Name of the organization
+
+try {
+    $result = $api_instance->getAuthenticatedUser($organization);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling BlueOceanApi->getAuthenticatedUser: ', $e->getMessage(), PHP_EOL;
@@ -48,15 +125,15 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **organisation** | **string**| Name of the organisation |
+ **organization** | **string**| Name of the organization |
 
 ### Return type
 
-[**\Swagger\Client\Model\SwaggyjenkinsUser**](../Model/SwaggyjenkinsUser.md)
+[**\Swagger\Client\Model\User**](../Model/User.md)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -77,7 +154,11 @@ Get a list of class names supported by a given class
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$api_instance = new Swagger\Client\Api\BlueOceanApi();
+// Configure HTTP basic authorization: jenkins_auth
+Swagger\Client\Configuration::getDefaultConfiguration()->setUsername('YOUR_USERNAME');
+Swagger\Client\Configuration::getDefaultConfiguration()->setPassword('YOUR_PASSWORD');
+
+$api_instance = new Swagger\Client\Api\BlueOceanApi(new \Http\Adapter\Guzzle6\Client());
 $class = "class_example"; // string | Name of the class
 
 try {
@@ -101,7 +182,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -111,22 +192,26 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **getOrganisation**
-> \Swagger\Client\Model\SwaggyjenkinsOrganisation getOrganisation($organisation)
+> \Swagger\Client\Model\Organisation getOrganisation($organization)
 
 
 
-Retrieve organisation details
+Retrieve organization details
 
 ### Example
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$api_instance = new Swagger\Client\Api\BlueOceanApi();
-$organisation = "organisation_example"; // string | Name of the organisation
+// Configure HTTP basic authorization: jenkins_auth
+Swagger\Client\Configuration::getDefaultConfiguration()->setUsername('YOUR_USERNAME');
+Swagger\Client\Configuration::getDefaultConfiguration()->setPassword('YOUR_PASSWORD');
+
+$api_instance = new Swagger\Client\Api\BlueOceanApi(new \Http\Adapter\Guzzle6\Client());
+$organization = "organization_example"; // string | Name of the organization
 
 try {
-    $result = $api_instance->getOrganisation($organisation);
+    $result = $api_instance->getOrganisation($organization);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling BlueOceanApi->getOrganisation: ', $e->getMessage(), PHP_EOL;
@@ -138,15 +223,15 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **organisation** | **string**| Name of the organisation |
+ **organization** | **string**| Name of the organization |
 
 ### Return type
 
-[**\Swagger\Client\Model\SwaggyjenkinsOrganisation**](../Model/SwaggyjenkinsOrganisation.md)
+[**\Swagger\Client\Model\Organisation**](../Model/Organisation.md)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -156,18 +241,22 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **getOrganisations**
-> \Swagger\Client\Model\GetOrganisations getOrganisations()
+> \Swagger\Client\Model\Organisations getOrganisations()
 
 
 
-Retrieve all organisations details
+Retrieve all organizations details
 
 ### Example
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$api_instance = new Swagger\Client\Api\BlueOceanApi();
+// Configure HTTP basic authorization: jenkins_auth
+Swagger\Client\Configuration::getDefaultConfiguration()->setUsername('YOUR_USERNAME');
+Swagger\Client\Configuration::getDefaultConfiguration()->setPassword('YOUR_PASSWORD');
+
+$api_instance = new Swagger\Client\Api\BlueOceanApi(new \Http\Adapter\Guzzle6\Client());
 
 try {
     $result = $api_instance->getOrganisations();
@@ -183,11 +272,11 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**\Swagger\Client\Model\GetOrganisations**](../Model/GetOrganisations.md)
+[**\Swagger\Client\Model\Organisations**](../Model/Organisations.md)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -196,28 +285,31 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
-# **getPipelineBranchByOrg**
-> \Swagger\Client\Model\IojenkinsblueoceanrestimplpipelineBranchImpl getPipelineBranchByOrg($organisation, $pipeline, $branch)
+# **getPipeline**
+> \Swagger\Client\Model\Pipeline getPipeline($organization, $pipeline)
 
 
 
-Retrieve branch details for an organisation pipeline
+Retrieve pipeline details for an organization
 
 ### Example
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$api_instance = new Swagger\Client\Api\BlueOceanApi();
-$organisation = "organisation_example"; // string | Name of the organisation
+// Configure HTTP basic authorization: jenkins_auth
+Swagger\Client\Configuration::getDefaultConfiguration()->setUsername('YOUR_USERNAME');
+Swagger\Client\Configuration::getDefaultConfiguration()->setPassword('YOUR_PASSWORD');
+
+$api_instance = new Swagger\Client\Api\BlueOceanApi(new \Http\Adapter\Guzzle6\Client());
+$organization = "organization_example"; // string | Name of the organization
 $pipeline = "pipeline_example"; // string | Name of the pipeline
-$branch = "branch_example"; // string | Name of the branch
 
 try {
-    $result = $api_instance->getPipelineBranchByOrg($organisation, $pipeline, $branch);
+    $result = $api_instance->getPipeline($organization, $pipeline);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling BlueOceanApi->getPipelineBranchByOrg: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling BlueOceanApi->getPipeline: ', $e->getMessage(), PHP_EOL;
 }
 ?>
 ```
@@ -226,17 +318,120 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **organisation** | **string**| Name of the organisation |
+ **organization** | **string**| Name of the organization |
+ **pipeline** | **string**| Name of the pipeline |
+
+### Return type
+
+[**\Swagger\Client\Model\Pipeline**](../Model/Pipeline.md)
+
+### Authorization
+
+[jenkins_auth](../../README.md#jenkins_auth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+
+# **getPipelineActivities**
+> \Swagger\Client\Model\PipelineActivities getPipelineActivities($organization, $pipeline)
+
+
+
+Retrieve all activities details for an organization pipeline
+
+### Example
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+// Configure HTTP basic authorization: jenkins_auth
+Swagger\Client\Configuration::getDefaultConfiguration()->setUsername('YOUR_USERNAME');
+Swagger\Client\Configuration::getDefaultConfiguration()->setPassword('YOUR_PASSWORD');
+
+$api_instance = new Swagger\Client\Api\BlueOceanApi(new \Http\Adapter\Guzzle6\Client());
+$organization = "organization_example"; // string | Name of the organization
+$pipeline = "pipeline_example"; // string | Name of the pipeline
+
+try {
+    $result = $api_instance->getPipelineActivities($organization, $pipeline);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling BlueOceanApi->getPipelineActivities: ', $e->getMessage(), PHP_EOL;
+}
+?>
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **organization** | **string**| Name of the organization |
+ **pipeline** | **string**| Name of the pipeline |
+
+### Return type
+
+[**\Swagger\Client\Model\PipelineActivities**](../Model/PipelineActivities.md)
+
+### Authorization
+
+[jenkins_auth](../../README.md#jenkins_auth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+
+# **getPipelineBranch**
+> \Swagger\Client\Model\BranchImpl getPipelineBranch($organization, $pipeline, $branch)
+
+
+
+Retrieve branch details for an organization pipeline
+
+### Example
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+// Configure HTTP basic authorization: jenkins_auth
+Swagger\Client\Configuration::getDefaultConfiguration()->setUsername('YOUR_USERNAME');
+Swagger\Client\Configuration::getDefaultConfiguration()->setPassword('YOUR_PASSWORD');
+
+$api_instance = new Swagger\Client\Api\BlueOceanApi(new \Http\Adapter\Guzzle6\Client());
+$organization = "organization_example"; // string | Name of the organization
+$pipeline = "pipeline_example"; // string | Name of the pipeline
+$branch = "branch_example"; // string | Name of the branch
+
+try {
+    $result = $api_instance->getPipelineBranch($organization, $pipeline, $branch);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling BlueOceanApi->getPipelineBranch: ', $e->getMessage(), PHP_EOL;
+}
+?>
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **organization** | **string**| Name of the organization |
  **pipeline** | **string**| Name of the pipeline |
  **branch** | **string**| Name of the branch |
 
 ### Return type
 
-[**\Swagger\Client\Model\IojenkinsblueoceanrestimplpipelineBranchImpl**](../Model/IojenkinsblueoceanrestimplpipelineBranchImpl.md)
+[**\Swagger\Client\Model\BranchImpl**](../Model/BranchImpl.md)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -245,27 +440,33 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
-# **getPipelineBranchesByOrg**
-> \Swagger\Client\Model\GetMultibranchPipeline getPipelineBranchesByOrg($organisation, $pipeline)
+# **getPipelineBranchRun**
+> \Swagger\Client\Model\PipelineRun getPipelineBranchRun($organization, $pipeline, $branch, $run)
 
 
 
-Retrieve all branches details for an organisation pipeline
+Retrieve branch run details for an organization pipeline
 
 ### Example
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$api_instance = new Swagger\Client\Api\BlueOceanApi();
-$organisation = "organisation_example"; // string | Name of the organisation
+// Configure HTTP basic authorization: jenkins_auth
+Swagger\Client\Configuration::getDefaultConfiguration()->setUsername('YOUR_USERNAME');
+Swagger\Client\Configuration::getDefaultConfiguration()->setPassword('YOUR_PASSWORD');
+
+$api_instance = new Swagger\Client\Api\BlueOceanApi(new \Http\Adapter\Guzzle6\Client());
+$organization = "organization_example"; // string | Name of the organization
 $pipeline = "pipeline_example"; // string | Name of the pipeline
+$branch = "branch_example"; // string | Name of the branch
+$run = "run_example"; // string | Name of the run
 
 try {
-    $result = $api_instance->getPipelineBranchesByOrg($organisation, $pipeline);
+    $result = $api_instance->getPipelineBranchRun($organization, $pipeline, $branch, $run);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling BlueOceanApi->getPipelineBranchesByOrg: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling BlueOceanApi->getPipelineBranchRun: ', $e->getMessage(), PHP_EOL;
 }
 ?>
 ```
@@ -274,16 +475,18 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **organisation** | **string**| Name of the organisation |
+ **organization** | **string**| Name of the organization |
  **pipeline** | **string**| Name of the pipeline |
+ **branch** | **string**| Name of the branch |
+ **run** | **string**| Name of the run |
 
 ### Return type
 
-[**\Swagger\Client\Model\GetMultibranchPipeline**](../Model/GetMultibranchPipeline.md)
+[**\Swagger\Client\Model\PipelineRun**](../Model/PipelineRun.md)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -292,27 +495,31 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
-# **getPipelineByOrg**
-> \Swagger\Client\Model\SwaggyjenkinsPipeline getPipelineByOrg($organisation, $pipeline)
+# **getPipelineBranches**
+> \Swagger\Client\Model\MultibranchPipeline getPipelineBranches($organization, $pipeline)
 
 
 
-Retrieve pipeline details for an organisation
+Retrieve all branches details for an organization pipeline
 
 ### Example
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$api_instance = new Swagger\Client\Api\BlueOceanApi();
-$organisation = "organisation_example"; // string | Name of the organisation
+// Configure HTTP basic authorization: jenkins_auth
+Swagger\Client\Configuration::getDefaultConfiguration()->setUsername('YOUR_USERNAME');
+Swagger\Client\Configuration::getDefaultConfiguration()->setPassword('YOUR_PASSWORD');
+
+$api_instance = new Swagger\Client\Api\BlueOceanApi(new \Http\Adapter\Guzzle6\Client());
+$organization = "organization_example"; // string | Name of the organization
 $pipeline = "pipeline_example"; // string | Name of the pipeline
 
 try {
-    $result = $api_instance->getPipelineByOrg($organisation, $pipeline);
+    $result = $api_instance->getPipelineBranches($organization, $pipeline);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling BlueOceanApi->getPipelineByOrg: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling BlueOceanApi->getPipelineBranches: ', $e->getMessage(), PHP_EOL;
 }
 ?>
 ```
@@ -321,16 +528,16 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **organisation** | **string**| Name of the organisation |
+ **organization** | **string**| Name of the organization |
  **pipeline** | **string**| Name of the pipeline |
 
 ### Return type
 
-[**\Swagger\Client\Model\SwaggyjenkinsPipeline**](../Model/SwaggyjenkinsPipeline.md)
+[**\Swagger\Client\Model\MultibranchPipeline**](../Model/MultibranchPipeline.md)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -339,27 +546,31 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
-# **getPipelineFolderByOrg**
-> \Swagger\Client\Model\IojenkinsblueoceanserviceembeddedrestPipelineFolderImpl getPipelineFolderByOrg($organisation, $folder)
+# **getPipelineFolder**
+> \Swagger\Client\Model\PipelineFolderImpl getPipelineFolder($organization, $folder)
 
 
 
-Retrieve pipeline folder for an organisation
+Retrieve pipeline folder for an organization
 
 ### Example
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$api_instance = new Swagger\Client\Api\BlueOceanApi();
-$organisation = "organisation_example"; // string | Name of the organisation
+// Configure HTTP basic authorization: jenkins_auth
+Swagger\Client\Configuration::getDefaultConfiguration()->setUsername('YOUR_USERNAME');
+Swagger\Client\Configuration::getDefaultConfiguration()->setPassword('YOUR_PASSWORD');
+
+$api_instance = new Swagger\Client\Api\BlueOceanApi(new \Http\Adapter\Guzzle6\Client());
+$organization = "organization_example"; // string | Name of the organization
 $folder = "folder_example"; // string | Name of the folder
 
 try {
-    $result = $api_instance->getPipelineFolderByOrg($organisation, $folder);
+    $result = $api_instance->getPipelineFolder($organization, $folder);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling BlueOceanApi->getPipelineFolderByOrg: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling BlueOceanApi->getPipelineFolder: ', $e->getMessage(), PHP_EOL;
 }
 ?>
 ```
@@ -368,16 +579,16 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **organisation** | **string**| Name of the organisation |
+ **organization** | **string**| Name of the organization |
  **folder** | **string**| Name of the folder |
 
 ### Return type
 
-[**\Swagger\Client\Model\IojenkinsblueoceanserviceembeddedrestPipelineFolderImpl**](../Model/IojenkinsblueoceanserviceembeddedrestPipelineFolderImpl.md)
+[**\Swagger\Client\Model\PipelineFolderImpl**](../Model/PipelineFolderImpl.md)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -386,28 +597,32 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
-# **getPipelineFolderByOrg_0**
-> \Swagger\Client\Model\IojenkinsblueoceanserviceembeddedrestPipelineImpl getPipelineFolderByOrg_0($organisation, $pipeline, $folder)
+# **getPipelineFolderPipeline**
+> \Swagger\Client\Model\PipelineImpl getPipelineFolderPipeline($organization, $pipeline, $folder)
 
 
 
-Retrieve pipeline details for an organisation folder
+Retrieve pipeline details for an organization folder
 
 ### Example
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$api_instance = new Swagger\Client\Api\BlueOceanApi();
-$organisation = "organisation_example"; // string | Name of the organisation
+// Configure HTTP basic authorization: jenkins_auth
+Swagger\Client\Configuration::getDefaultConfiguration()->setUsername('YOUR_USERNAME');
+Swagger\Client\Configuration::getDefaultConfiguration()->setPassword('YOUR_PASSWORD');
+
+$api_instance = new Swagger\Client\Api\BlueOceanApi(new \Http\Adapter\Guzzle6\Client());
+$organization = "organization_example"; // string | Name of the organization
 $pipeline = "pipeline_example"; // string | Name of the pipeline
 $folder = "folder_example"; // string | Name of the folder
 
 try {
-    $result = $api_instance->getPipelineFolderByOrg_0($organisation, $pipeline, $folder);
+    $result = $api_instance->getPipelineFolderPipeline($organization, $pipeline, $folder);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling BlueOceanApi->getPipelineFolderByOrg_0: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling BlueOceanApi->getPipelineFolderPipeline: ', $e->getMessage(), PHP_EOL;
 }
 ?>
 ```
@@ -416,17 +631,17 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **organisation** | **string**| Name of the organisation |
+ **organization** | **string**| Name of the organization |
  **pipeline** | **string**| Name of the pipeline |
  **folder** | **string**| Name of the folder |
 
 ### Return type
 
-[**\Swagger\Client\Model\IojenkinsblueoceanserviceembeddedrestPipelineImpl**](../Model/IojenkinsblueoceanserviceembeddedrestPipelineImpl.md)
+[**\Swagger\Client\Model\PipelineImpl**](../Model/PipelineImpl.md)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -435,26 +650,31 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
-# **getPipelinesByOrg**
-> \Swagger\Client\Model\GetPipelines getPipelinesByOrg($organisation)
+# **getPipelineQueue**
+> \Swagger\Client\Model\PipelineQueue getPipelineQueue($organization, $pipeline)
 
 
 
-Retrieve all pipelines details for an organisation
+Retrieve queue details for an organization pipeline
 
 ### Example
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$api_instance = new Swagger\Client\Api\BlueOceanApi();
-$organisation = "organisation_example"; // string | Name of the organisation
+// Configure HTTP basic authorization: jenkins_auth
+Swagger\Client\Configuration::getDefaultConfiguration()->setUsername('YOUR_USERNAME');
+Swagger\Client\Configuration::getDefaultConfiguration()->setPassword('YOUR_PASSWORD');
+
+$api_instance = new Swagger\Client\Api\BlueOceanApi(new \Http\Adapter\Guzzle6\Client());
+$organization = "organization_example"; // string | Name of the organization
+$pipeline = "pipeline_example"; // string | Name of the pipeline
 
 try {
-    $result = $api_instance->getPipelinesByOrg($organisation);
+    $result = $api_instance->getPipelineQueue($organization, $pipeline);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling BlueOceanApi->getPipelinesByOrg: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling BlueOceanApi->getPipelineQueue: ', $e->getMessage(), PHP_EOL;
 }
 ?>
 ```
@@ -463,15 +683,723 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **organisation** | **string**| Name of the organisation |
+ **organization** | **string**| Name of the organization |
+ **pipeline** | **string**| Name of the pipeline |
 
 ### Return type
 
-[**\Swagger\Client\Model\GetPipelines**](../Model/GetPipelines.md)
+[**\Swagger\Client\Model\PipelineQueue**](../Model/PipelineQueue.md)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../../README.md#jenkins_auth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+
+# **getPipelineRun**
+> \Swagger\Client\Model\PipelineRun getPipelineRun($organization, $pipeline, $run)
+
+
+
+Retrieve run details for an organization pipeline
+
+### Example
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+// Configure HTTP basic authorization: jenkins_auth
+Swagger\Client\Configuration::getDefaultConfiguration()->setUsername('YOUR_USERNAME');
+Swagger\Client\Configuration::getDefaultConfiguration()->setPassword('YOUR_PASSWORD');
+
+$api_instance = new Swagger\Client\Api\BlueOceanApi(new \Http\Adapter\Guzzle6\Client());
+$organization = "organization_example"; // string | Name of the organization
+$pipeline = "pipeline_example"; // string | Name of the pipeline
+$run = "run_example"; // string | Name of the run
+
+try {
+    $result = $api_instance->getPipelineRun($organization, $pipeline, $run);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling BlueOceanApi->getPipelineRun: ', $e->getMessage(), PHP_EOL;
+}
+?>
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **organization** | **string**| Name of the organization |
+ **pipeline** | **string**| Name of the pipeline |
+ **run** | **string**| Name of the run |
+
+### Return type
+
+[**\Swagger\Client\Model\PipelineRun**](../Model/PipelineRun.md)
+
+### Authorization
+
+[jenkins_auth](../../README.md#jenkins_auth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+
+# **getPipelineRunLog**
+> string getPipelineRunLog($organization, $pipeline, $run, $start, $download)
+
+
+
+Get log for a pipeline run
+
+### Example
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+// Configure HTTP basic authorization: jenkins_auth
+Swagger\Client\Configuration::getDefaultConfiguration()->setUsername('YOUR_USERNAME');
+Swagger\Client\Configuration::getDefaultConfiguration()->setPassword('YOUR_PASSWORD');
+
+$api_instance = new Swagger\Client\Api\BlueOceanApi(new \Http\Adapter\Guzzle6\Client());
+$organization = "organization_example"; // string | Name of the organization
+$pipeline = "pipeline_example"; // string | Name of the pipeline
+$run = "run_example"; // string | Name of the run
+$start = 56; // int | Start position of the log
+$download = true; // bool | Set to true in order to download the file, otherwise it's passed as a response body
+
+try {
+    $result = $api_instance->getPipelineRunLog($organization, $pipeline, $run, $start, $download);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling BlueOceanApi->getPipelineRunLog: ', $e->getMessage(), PHP_EOL;
+}
+?>
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **organization** | **string**| Name of the organization |
+ **pipeline** | **string**| Name of the pipeline |
+ **run** | **string**| Name of the run |
+ **start** | **int**| Start position of the log | [optional]
+ **download** | **bool**| Set to true in order to download the file, otherwise it&#39;s passed as a response body | [optional]
+
+### Return type
+
+**string**
+
+### Authorization
+
+[jenkins_auth](../../README.md#jenkins_auth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+
+# **getPipelineRunNode**
+> \Swagger\Client\Model\PipelineRunNode getPipelineRunNode($organization, $pipeline, $run, $node)
+
+
+
+Retrieve run node details for an organization pipeline
+
+### Example
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+// Configure HTTP basic authorization: jenkins_auth
+Swagger\Client\Configuration::getDefaultConfiguration()->setUsername('YOUR_USERNAME');
+Swagger\Client\Configuration::getDefaultConfiguration()->setPassword('YOUR_PASSWORD');
+
+$api_instance = new Swagger\Client\Api\BlueOceanApi(new \Http\Adapter\Guzzle6\Client());
+$organization = "organization_example"; // string | Name of the organization
+$pipeline = "pipeline_example"; // string | Name of the pipeline
+$run = "run_example"; // string | Name of the run
+$node = "node_example"; // string | Name of the node
+
+try {
+    $result = $api_instance->getPipelineRunNode($organization, $pipeline, $run, $node);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling BlueOceanApi->getPipelineRunNode: ', $e->getMessage(), PHP_EOL;
+}
+?>
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **organization** | **string**| Name of the organization |
+ **pipeline** | **string**| Name of the pipeline |
+ **run** | **string**| Name of the run |
+ **node** | **string**| Name of the node |
+
+### Return type
+
+[**\Swagger\Client\Model\PipelineRunNode**](../Model/PipelineRunNode.md)
+
+### Authorization
+
+[jenkins_auth](../../README.md#jenkins_auth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+
+# **getPipelineRunNodeStep**
+> \Swagger\Client\Model\PipelineStepImpl getPipelineRunNodeStep($organization, $pipeline, $run, $node, $step)
+
+
+
+Retrieve run node details for an organization pipeline
+
+### Example
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+// Configure HTTP basic authorization: jenkins_auth
+Swagger\Client\Configuration::getDefaultConfiguration()->setUsername('YOUR_USERNAME');
+Swagger\Client\Configuration::getDefaultConfiguration()->setPassword('YOUR_PASSWORD');
+
+$api_instance = new Swagger\Client\Api\BlueOceanApi(new \Http\Adapter\Guzzle6\Client());
+$organization = "organization_example"; // string | Name of the organization
+$pipeline = "pipeline_example"; // string | Name of the pipeline
+$run = "run_example"; // string | Name of the run
+$node = "node_example"; // string | Name of the node
+$step = "step_example"; // string | Name of the step
+
+try {
+    $result = $api_instance->getPipelineRunNodeStep($organization, $pipeline, $run, $node, $step);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling BlueOceanApi->getPipelineRunNodeStep: ', $e->getMessage(), PHP_EOL;
+}
+?>
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **organization** | **string**| Name of the organization |
+ **pipeline** | **string**| Name of the pipeline |
+ **run** | **string**| Name of the run |
+ **node** | **string**| Name of the node |
+ **step** | **string**| Name of the step |
+
+### Return type
+
+[**\Swagger\Client\Model\PipelineStepImpl**](../Model/PipelineStepImpl.md)
+
+### Authorization
+
+[jenkins_auth](../../README.md#jenkins_auth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+
+# **getPipelineRunNodeStepLog**
+> string getPipelineRunNodeStepLog($organization, $pipeline, $run, $node, $step)
+
+
+
+Get log for a pipeline run node step
+
+### Example
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+// Configure HTTP basic authorization: jenkins_auth
+Swagger\Client\Configuration::getDefaultConfiguration()->setUsername('YOUR_USERNAME');
+Swagger\Client\Configuration::getDefaultConfiguration()->setPassword('YOUR_PASSWORD');
+
+$api_instance = new Swagger\Client\Api\BlueOceanApi(new \Http\Adapter\Guzzle6\Client());
+$organization = "organization_example"; // string | Name of the organization
+$pipeline = "pipeline_example"; // string | Name of the pipeline
+$run = "run_example"; // string | Name of the run
+$node = "node_example"; // string | Name of the node
+$step = "step_example"; // string | Name of the step
+
+try {
+    $result = $api_instance->getPipelineRunNodeStepLog($organization, $pipeline, $run, $node, $step);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling BlueOceanApi->getPipelineRunNodeStepLog: ', $e->getMessage(), PHP_EOL;
+}
+?>
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **organization** | **string**| Name of the organization |
+ **pipeline** | **string**| Name of the pipeline |
+ **run** | **string**| Name of the run |
+ **node** | **string**| Name of the node |
+ **step** | **string**| Name of the step |
+
+### Return type
+
+**string**
+
+### Authorization
+
+[jenkins_auth](../../README.md#jenkins_auth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+
+# **getPipelineRunNodeSteps**
+> \Swagger\Client\Model\PipelineRunNodeSteps getPipelineRunNodeSteps($organization, $pipeline, $run, $node)
+
+
+
+Retrieve run node steps details for an organization pipeline
+
+### Example
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+// Configure HTTP basic authorization: jenkins_auth
+Swagger\Client\Configuration::getDefaultConfiguration()->setUsername('YOUR_USERNAME');
+Swagger\Client\Configuration::getDefaultConfiguration()->setPassword('YOUR_PASSWORD');
+
+$api_instance = new Swagger\Client\Api\BlueOceanApi(new \Http\Adapter\Guzzle6\Client());
+$organization = "organization_example"; // string | Name of the organization
+$pipeline = "pipeline_example"; // string | Name of the pipeline
+$run = "run_example"; // string | Name of the run
+$node = "node_example"; // string | Name of the node
+
+try {
+    $result = $api_instance->getPipelineRunNodeSteps($organization, $pipeline, $run, $node);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling BlueOceanApi->getPipelineRunNodeSteps: ', $e->getMessage(), PHP_EOL;
+}
+?>
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **organization** | **string**| Name of the organization |
+ **pipeline** | **string**| Name of the pipeline |
+ **run** | **string**| Name of the run |
+ **node** | **string**| Name of the node |
+
+### Return type
+
+[**\Swagger\Client\Model\PipelineRunNodeSteps**](../Model/PipelineRunNodeSteps.md)
+
+### Authorization
+
+[jenkins_auth](../../README.md#jenkins_auth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+
+# **getPipelineRunNodes**
+> \Swagger\Client\Model\PipelineRunNodes getPipelineRunNodes($organization, $pipeline, $run)
+
+
+
+Retrieve run nodes details for an organization pipeline
+
+### Example
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+// Configure HTTP basic authorization: jenkins_auth
+Swagger\Client\Configuration::getDefaultConfiguration()->setUsername('YOUR_USERNAME');
+Swagger\Client\Configuration::getDefaultConfiguration()->setPassword('YOUR_PASSWORD');
+
+$api_instance = new Swagger\Client\Api\BlueOceanApi(new \Http\Adapter\Guzzle6\Client());
+$organization = "organization_example"; // string | Name of the organization
+$pipeline = "pipeline_example"; // string | Name of the pipeline
+$run = "run_example"; // string | Name of the run
+
+try {
+    $result = $api_instance->getPipelineRunNodes($organization, $pipeline, $run);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling BlueOceanApi->getPipelineRunNodes: ', $e->getMessage(), PHP_EOL;
+}
+?>
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **organization** | **string**| Name of the organization |
+ **pipeline** | **string**| Name of the pipeline |
+ **run** | **string**| Name of the run |
+
+### Return type
+
+[**\Swagger\Client\Model\PipelineRunNodes**](../Model/PipelineRunNodes.md)
+
+### Authorization
+
+[jenkins_auth](../../README.md#jenkins_auth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+
+# **getPipelineRuns**
+> \Swagger\Client\Model\PipelineRuns getPipelineRuns($organization, $pipeline)
+
+
+
+Retrieve all runs details for an organization pipeline
+
+### Example
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+// Configure HTTP basic authorization: jenkins_auth
+Swagger\Client\Configuration::getDefaultConfiguration()->setUsername('YOUR_USERNAME');
+Swagger\Client\Configuration::getDefaultConfiguration()->setPassword('YOUR_PASSWORD');
+
+$api_instance = new Swagger\Client\Api\BlueOceanApi(new \Http\Adapter\Guzzle6\Client());
+$organization = "organization_example"; // string | Name of the organization
+$pipeline = "pipeline_example"; // string | Name of the pipeline
+
+try {
+    $result = $api_instance->getPipelineRuns($organization, $pipeline);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling BlueOceanApi->getPipelineRuns: ', $e->getMessage(), PHP_EOL;
+}
+?>
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **organization** | **string**| Name of the organization |
+ **pipeline** | **string**| Name of the pipeline |
+
+### Return type
+
+[**\Swagger\Client\Model\PipelineRuns**](../Model/PipelineRuns.md)
+
+### Authorization
+
+[jenkins_auth](../../README.md#jenkins_auth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+
+# **getPipelines**
+> \Swagger\Client\Model\Pipelines getPipelines($organization)
+
+
+
+Retrieve all pipelines details for an organization
+
+### Example
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+// Configure HTTP basic authorization: jenkins_auth
+Swagger\Client\Configuration::getDefaultConfiguration()->setUsername('YOUR_USERNAME');
+Swagger\Client\Configuration::getDefaultConfiguration()->setPassword('YOUR_PASSWORD');
+
+$api_instance = new Swagger\Client\Api\BlueOceanApi(new \Http\Adapter\Guzzle6\Client());
+$organization = "organization_example"; // string | Name of the organization
+
+try {
+    $result = $api_instance->getPipelines($organization);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling BlueOceanApi->getPipelines: ', $e->getMessage(), PHP_EOL;
+}
+?>
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **organization** | **string**| Name of the organization |
+
+### Return type
+
+[**\Swagger\Client\Model\Pipelines**](../Model/Pipelines.md)
+
+### Authorization
+
+[jenkins_auth](../../README.md#jenkins_auth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+
+# **getSCM**
+> \Swagger\Client\Model\GithubScm getSCM($organization, $scm)
+
+
+
+Retrieve SCM details for an organization
+
+### Example
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+// Configure HTTP basic authorization: jenkins_auth
+Swagger\Client\Configuration::getDefaultConfiguration()->setUsername('YOUR_USERNAME');
+Swagger\Client\Configuration::getDefaultConfiguration()->setPassword('YOUR_PASSWORD');
+
+$api_instance = new Swagger\Client\Api\BlueOceanApi(new \Http\Adapter\Guzzle6\Client());
+$organization = "organization_example"; // string | Name of the organization
+$scm = "scm_example"; // string | Name of SCM
+
+try {
+    $result = $api_instance->getSCM($organization, $scm);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling BlueOceanApi->getSCM: ', $e->getMessage(), PHP_EOL;
+}
+?>
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **organization** | **string**| Name of the organization |
+ **scm** | **string**| Name of SCM |
+
+### Return type
+
+[**\Swagger\Client\Model\GithubScm**](../Model/GithubScm.md)
+
+### Authorization
+
+[jenkins_auth](../../README.md#jenkins_auth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+
+# **getSCMOrganisationRepositories**
+> \Swagger\Client\Model\ScmOrganisations getSCMOrganisationRepositories($organization, $scm, $scm_organisation, $credential_id, $page_size, $page_number)
+
+
+
+Retrieve SCM organization repositories details for an organization
+
+### Example
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+// Configure HTTP basic authorization: jenkins_auth
+Swagger\Client\Configuration::getDefaultConfiguration()->setUsername('YOUR_USERNAME');
+Swagger\Client\Configuration::getDefaultConfiguration()->setPassword('YOUR_PASSWORD');
+
+$api_instance = new Swagger\Client\Api\BlueOceanApi(new \Http\Adapter\Guzzle6\Client());
+$organization = "organization_example"; // string | Name of the organization
+$scm = "scm_example"; // string | Name of SCM
+$scm_organisation = "scm_organisation_example"; // string | Name of the SCM organization
+$credential_id = "credential_id_example"; // string | Credential ID
+$page_size = 56; // int | Number of items in a page
+$page_number = 56; // int | Page number
+
+try {
+    $result = $api_instance->getSCMOrganisationRepositories($organization, $scm, $scm_organisation, $credential_id, $page_size, $page_number);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling BlueOceanApi->getSCMOrganisationRepositories: ', $e->getMessage(), PHP_EOL;
+}
+?>
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **organization** | **string**| Name of the organization |
+ **scm** | **string**| Name of SCM |
+ **scm_organisation** | **string**| Name of the SCM organization |
+ **credential_id** | **string**| Credential ID | [optional]
+ **page_size** | **int**| Number of items in a page | [optional]
+ **page_number** | **int**| Page number | [optional]
+
+### Return type
+
+[**\Swagger\Client\Model\ScmOrganisations**](../Model/ScmOrganisations.md)
+
+### Authorization
+
+[jenkins_auth](../../README.md#jenkins_auth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+
+# **getSCMOrganisationRepository**
+> \Swagger\Client\Model\ScmOrganisations getSCMOrganisationRepository($organization, $scm, $scm_organisation, $repository, $credential_id)
+
+
+
+Retrieve SCM organization repository details for an organization
+
+### Example
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+// Configure HTTP basic authorization: jenkins_auth
+Swagger\Client\Configuration::getDefaultConfiguration()->setUsername('YOUR_USERNAME');
+Swagger\Client\Configuration::getDefaultConfiguration()->setPassword('YOUR_PASSWORD');
+
+$api_instance = new Swagger\Client\Api\BlueOceanApi(new \Http\Adapter\Guzzle6\Client());
+$organization = "organization_example"; // string | Name of the organization
+$scm = "scm_example"; // string | Name of SCM
+$scm_organisation = "scm_organisation_example"; // string | Name of the SCM organization
+$repository = "repository_example"; // string | Name of the SCM repository
+$credential_id = "credential_id_example"; // string | Credential ID
+
+try {
+    $result = $api_instance->getSCMOrganisationRepository($organization, $scm, $scm_organisation, $repository, $credential_id);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling BlueOceanApi->getSCMOrganisationRepository: ', $e->getMessage(), PHP_EOL;
+}
+?>
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **organization** | **string**| Name of the organization |
+ **scm** | **string**| Name of SCM |
+ **scm_organisation** | **string**| Name of the SCM organization |
+ **repository** | **string**| Name of the SCM repository |
+ **credential_id** | **string**| Credential ID | [optional]
+
+### Return type
+
+[**\Swagger\Client\Model\ScmOrganisations**](../Model/ScmOrganisations.md)
+
+### Authorization
+
+[jenkins_auth](../../README.md#jenkins_auth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+
+# **getSCMOrganisations**
+> \Swagger\Client\Model\ScmOrganisations getSCMOrganisations($organization, $scm, $credential_id)
+
+
+
+Retrieve SCM organizations details for an organization
+
+### Example
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+// Configure HTTP basic authorization: jenkins_auth
+Swagger\Client\Configuration::getDefaultConfiguration()->setUsername('YOUR_USERNAME');
+Swagger\Client\Configuration::getDefaultConfiguration()->setPassword('YOUR_PASSWORD');
+
+$api_instance = new Swagger\Client\Api\BlueOceanApi(new \Http\Adapter\Guzzle6\Client());
+$organization = "organization_example"; // string | Name of the organization
+$scm = "scm_example"; // string | Name of SCM
+$credential_id = "credential_id_example"; // string | Credential ID
+
+try {
+    $result = $api_instance->getSCMOrganisations($organization, $scm, $credential_id);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling BlueOceanApi->getSCMOrganisations: ', $e->getMessage(), PHP_EOL;
+}
+?>
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **organization** | **string**| Name of the organization |
+ **scm** | **string**| Name of SCM |
+ **credential_id** | **string**| Credential ID | [optional]
+
+### Return type
+
+[**\Swagger\Client\Model\ScmOrganisations**](../Model/ScmOrganisations.md)
+
+### Authorization
+
+[jenkins_auth](../../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -481,23 +1409,27 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **getUser**
-> \Swagger\Client\Model\SwaggyjenkinsUser getUser($organisation, $user)
+> \Swagger\Client\Model\User getUser($organization, $user)
 
 
 
-Retrieve user details for an organisation
+Retrieve user details for an organization
 
 ### Example
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$api_instance = new Swagger\Client\Api\BlueOceanApi();
-$organisation = "organisation_example"; // string | Name of the organisation
+// Configure HTTP basic authorization: jenkins_auth
+Swagger\Client\Configuration::getDefaultConfiguration()->setUsername('YOUR_USERNAME');
+Swagger\Client\Configuration::getDefaultConfiguration()->setPassword('YOUR_PASSWORD');
+
+$api_instance = new Swagger\Client\Api\BlueOceanApi(new \Http\Adapter\Guzzle6\Client());
+$organization = "organization_example"; // string | Name of the organization
 $user = "user_example"; // string | Name of the user
 
 try {
-    $result = $api_instance->getUser($organisation, $user);
+    $result = $api_instance->getUser($organization, $user);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling BlueOceanApi->getUser: ', $e->getMessage(), PHP_EOL;
@@ -509,16 +1441,65 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **organisation** | **string**| Name of the organisation |
+ **organization** | **string**| Name of the organization |
  **user** | **string**| Name of the user |
 
 ### Return type
 
-[**\Swagger\Client\Model\SwaggyjenkinsUser**](../Model/SwaggyjenkinsUser.md)
+[**\Swagger\Client\Model\User**](../Model/User.md)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../../README.md#jenkins_auth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+
+# **getUserFavorites**
+> \Swagger\Client\Model\UserFavorites getUserFavorites($user)
+
+
+
+Retrieve user favorites details for an organization
+
+### Example
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+// Configure HTTP basic authorization: jenkins_auth
+Swagger\Client\Configuration::getDefaultConfiguration()->setUsername('YOUR_USERNAME');
+Swagger\Client\Configuration::getDefaultConfiguration()->setPassword('YOUR_PASSWORD');
+
+$api_instance = new Swagger\Client\Api\BlueOceanApi(new \Http\Adapter\Guzzle6\Client());
+$user = "user_example"; // string | Name of the user
+
+try {
+    $result = $api_instance->getUserFavorites($user);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling BlueOceanApi->getUserFavorites: ', $e->getMessage(), PHP_EOL;
+}
+?>
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **user** | **string**| Name of the user |
+
+### Return type
+
+[**\Swagger\Client\Model\UserFavorites**](../Model/UserFavorites.md)
+
+### Authorization
+
+[jenkins_auth](../../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -528,22 +1509,26 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **getUsers**
-> \Swagger\Client\Model\SwaggyjenkinsUser getUsers($organisation)
+> \Swagger\Client\Model\User getUsers($organization)
 
 
 
-Retrieve users details for an organisation
+Retrieve users details for an organization
 
 ### Example
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$api_instance = new Swagger\Client\Api\BlueOceanApi();
-$organisation = "organisation_example"; // string | Name of the organisation
+// Configure HTTP basic authorization: jenkins_auth
+Swagger\Client\Configuration::getDefaultConfiguration()->setUsername('YOUR_USERNAME');
+Swagger\Client\Configuration::getDefaultConfiguration()->setPassword('YOUR_PASSWORD');
+
+$api_instance = new Swagger\Client\Api\BlueOceanApi(new \Http\Adapter\Guzzle6\Client());
+$organization = "organization_example"; // string | Name of the organization
 
 try {
-    $result = $api_instance->getUsers($organisation);
+    $result = $api_instance->getUsers($organization);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling BlueOceanApi->getUsers: ', $e->getMessage(), PHP_EOL;
@@ -555,15 +1540,229 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **organisation** | **string**| Name of the organisation |
+ **organization** | **string**| Name of the organization |
 
 ### Return type
 
-[**\Swagger\Client\Model\SwaggyjenkinsUser**](../Model/SwaggyjenkinsUser.md)
+[**\Swagger\Client\Model\User**](../Model/User.md)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../../README.md#jenkins_auth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+
+# **postPipelineRun**
+> \Swagger\Client\Model\QueueItemImpl postPipelineRun($organization, $pipeline, $run)
+
+
+
+Replay an organization pipeline run
+
+### Example
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+// Configure HTTP basic authorization: jenkins_auth
+Swagger\Client\Configuration::getDefaultConfiguration()->setUsername('YOUR_USERNAME');
+Swagger\Client\Configuration::getDefaultConfiguration()->setPassword('YOUR_PASSWORD');
+
+$api_instance = new Swagger\Client\Api\BlueOceanApi(new \Http\Adapter\Guzzle6\Client());
+$organization = "organization_example"; // string | Name of the organization
+$pipeline = "pipeline_example"; // string | Name of the pipeline
+$run = "run_example"; // string | Name of the run
+
+try {
+    $result = $api_instance->postPipelineRun($organization, $pipeline, $run);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling BlueOceanApi->postPipelineRun: ', $e->getMessage(), PHP_EOL;
+}
+?>
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **organization** | **string**| Name of the organization |
+ **pipeline** | **string**| Name of the pipeline |
+ **run** | **string**| Name of the run |
+
+### Return type
+
+[**\Swagger\Client\Model\QueueItemImpl**](../Model/QueueItemImpl.md)
+
+### Authorization
+
+[jenkins_auth](../../README.md#jenkins_auth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+
+# **postPipelineRuns**
+> \Swagger\Client\Model\QueueItemImpl postPipelineRuns($organization, $pipeline)
+
+
+
+Start a build for an organization pipeline
+
+### Example
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+// Configure HTTP basic authorization: jenkins_auth
+Swagger\Client\Configuration::getDefaultConfiguration()->setUsername('YOUR_USERNAME');
+Swagger\Client\Configuration::getDefaultConfiguration()->setPassword('YOUR_PASSWORD');
+
+$api_instance = new Swagger\Client\Api\BlueOceanApi(new \Http\Adapter\Guzzle6\Client());
+$organization = "organization_example"; // string | Name of the organization
+$pipeline = "pipeline_example"; // string | Name of the pipeline
+
+try {
+    $result = $api_instance->postPipelineRuns($organization, $pipeline);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling BlueOceanApi->postPipelineRuns: ', $e->getMessage(), PHP_EOL;
+}
+?>
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **organization** | **string**| Name of the organization |
+ **pipeline** | **string**| Name of the pipeline |
+
+### Return type
+
+[**\Swagger\Client\Model\QueueItemImpl**](../Model/QueueItemImpl.md)
+
+### Authorization
+
+[jenkins_auth](../../README.md#jenkins_auth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+
+# **putPipelineFavorite**
+> \Swagger\Client\Model\FavoriteImpl putPipelineFavorite($organization, $pipeline, $body)
+
+
+
+Favorite/unfavorite a pipeline
+
+### Example
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+// Configure HTTP basic authorization: jenkins_auth
+Swagger\Client\Configuration::getDefaultConfiguration()->setUsername('YOUR_USERNAME');
+Swagger\Client\Configuration::getDefaultConfiguration()->setPassword('YOUR_PASSWORD');
+
+$api_instance = new Swagger\Client\Api\BlueOceanApi(new \Http\Adapter\Guzzle6\Client());
+$organization = "organization_example"; // string | Name of the organization
+$pipeline = "pipeline_example"; // string | Name of the pipeline
+$body = new \Swagger\Client\Model\Body(); // \Swagger\Client\Model\Body | Set JSON string body to {\"favorite\": true} to favorite, set value to false to unfavorite
+
+try {
+    $result = $api_instance->putPipelineFavorite($organization, $pipeline, $body);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling BlueOceanApi->putPipelineFavorite: ', $e->getMessage(), PHP_EOL;
+}
+?>
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **organization** | **string**| Name of the organization |
+ **pipeline** | **string**| Name of the pipeline |
+ **body** | [**\Swagger\Client\Model\Body**](../Model/Body.md)| Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite |
+
+### Return type
+
+[**\Swagger\Client\Model\FavoriteImpl**](../Model/FavoriteImpl.md)
+
+### Authorization
+
+[jenkins_auth](../../README.md#jenkins_auth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+
+# **putPipelineRun**
+> \Swagger\Client\Model\PipelineRun putPipelineRun($organization, $pipeline, $run, $blocking, $time_out_in_secs)
+
+
+
+Stop a build of an organization pipeline
+
+### Example
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+// Configure HTTP basic authorization: jenkins_auth
+Swagger\Client\Configuration::getDefaultConfiguration()->setUsername('YOUR_USERNAME');
+Swagger\Client\Configuration::getDefaultConfiguration()->setPassword('YOUR_PASSWORD');
+
+$api_instance = new Swagger\Client\Api\BlueOceanApi(new \Http\Adapter\Guzzle6\Client());
+$organization = "organization_example"; // string | Name of the organization
+$pipeline = "pipeline_example"; // string | Name of the pipeline
+$run = "run_example"; // string | Name of the run
+$blocking = "blocking_example"; // string | Set to true to make blocking stop, default: false
+$time_out_in_secs = 56; // int | Timeout in seconds, default: 10 seconds
+
+try {
+    $result = $api_instance->putPipelineRun($organization, $pipeline, $run, $blocking, $time_out_in_secs);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling BlueOceanApi->putPipelineRun: ', $e->getMessage(), PHP_EOL;
+}
+?>
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **organization** | **string**| Name of the organization |
+ **pipeline** | **string**| Name of the pipeline |
+ **run** | **string**| Name of the run |
+ **blocking** | **string**| Set to true to make blocking stop, default: false | [optional]
+ **time_out_in_secs** | **int**| Timeout in seconds, default: 10 seconds | [optional]
+
+### Return type
+
+[**\Swagger\Client\Model\PipelineRun**](../Model/PipelineRun.md)
+
+### Authorization
+
+[jenkins_auth](../../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -577,51 +1776,6 @@ No authorization required
 
 
 
-Get classes details
-
-### Example
-```php
-<?php
-require_once(__DIR__ . '/vendor/autoload.php');
-
-$api_instance = new Swagger\Client\Api\BlueOceanApi();
-$q = "q_example"; // string | Query string containing an array of class names
-
-try {
-    $result = $api_instance->search($q);
-    print_r($result);
-} catch (Exception $e) {
-    echo 'Exception when calling BlueOceanApi->search: ', $e->getMessage(), PHP_EOL;
-}
-?>
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **q** | **string**| Query string containing an array of class names |
-
-### Return type
-
-**string**
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
-
-# **search_0**
-> string search_0($q)
-
-
-
 Search for any resource details
 
 ### Example
@@ -629,14 +1783,18 @@ Search for any resource details
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$api_instance = new Swagger\Client\Api\BlueOceanApi();
+// Configure HTTP basic authorization: jenkins_auth
+Swagger\Client\Configuration::getDefaultConfiguration()->setUsername('YOUR_USERNAME');
+Swagger\Client\Configuration::getDefaultConfiguration()->setPassword('YOUR_PASSWORD');
+
+$api_instance = new Swagger\Client\Api\BlueOceanApi(new \Http\Adapter\Guzzle6\Client());
 $q = "q_example"; // string | Query string
 
 try {
-    $result = $api_instance->search_0($q);
+    $result = $api_instance->search($q);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling BlueOceanApi->search_0: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling BlueOceanApi->search: ', $e->getMessage(), PHP_EOL;
 }
 ?>
 ```
@@ -653,7 +1811,56 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../../README.md#jenkins_auth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+
+# **searchClasses**
+> string searchClasses($q)
+
+
+
+Get classes details
+
+### Example
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+// Configure HTTP basic authorization: jenkins_auth
+Swagger\Client\Configuration::getDefaultConfiguration()->setUsername('YOUR_USERNAME');
+Swagger\Client\Configuration::getDefaultConfiguration()->setPassword('YOUR_PASSWORD');
+
+$api_instance = new Swagger\Client\Api\BlueOceanApi(new \Http\Adapter\Guzzle6\Client());
+$q = "q_example"; // string | Query string containing an array of class names
+
+try {
+    $result = $api_instance->searchClasses($q);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling BlueOceanApi->searchClasses: ', $e->getMessage(), PHP_EOL;
+}
+?>
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **q** | **string**| Query string containing an array of class names |
+
+### Return type
+
+**string**
+
+### Authorization
+
+[jenkins_auth](../../README.md#jenkins_auth)
 
 ### HTTP request headers
 

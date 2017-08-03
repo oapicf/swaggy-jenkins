@@ -10,15 +10,17 @@
 
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.IO;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.WebUtilities;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Primitives;
+using Swashbuckle.AspNetCore.SwaggerGen;
 using Newtonsoft.Json;
-using Swashbuckle.SwaggerGen.Annotations;
+using IO.Swagger.Attributes;
 using IO.Swagger.Models;
 
 namespace IO.Swagger.Controllers
@@ -28,28 +30,30 @@ namespace IO.Swagger.Controllers
     /// </summary>
     public class RemoteAccessApiController : Controller
     { 
-
         /// <summary>
         /// 
         /// </summary>
         /// <remarks>Retrieve computer details</remarks>
+        /// <param name="depth">Recursion depth in response model</param>
         /// <response code="200">Successfully retrieved computer details</response>
         /// <response code="401">Authentication failed - incorrect username and/or password</response>
         /// <response code="403">Jenkins requires authentication - please set username and password</response>
         [HttpGet]
-        [Route("//computer/api/json/depth=1")]
+        [Route("//computer/api/json")]
+        [ValidateModelState]
         [SwaggerOperation("GetComputer")]
-        [SwaggerResponse(200, type: typeof(HudsonmodelComputerSet))]
-        public virtual IActionResult GetComputer()
+        [SwaggerResponse(200, typeof(ComputerSet), "Successfully retrieved computer details")]
+        [SwaggerResponse(401, typeof(ComputerSet), "Authentication failed - incorrect username and/or password")]
+        [SwaggerResponse(403, typeof(ComputerSet), "Jenkins requires authentication - please set username and password")]
+        public virtual IActionResult GetComputer([FromQuery]int? depth)
         { 
             string exampleJson = null;
             
             var example = exampleJson != null
-            ? JsonConvert.DeserializeObject<HudsonmodelComputerSet>(exampleJson)
-            : default(HudsonmodelComputerSet);
+            ? JsonConvert.DeserializeObject<ComputerSet>(exampleJson)
+            : default(ComputerSet);
             return new ObjectResult(example);
         }
-
 
         /// <summary>
         /// 
@@ -60,18 +64,20 @@ namespace IO.Swagger.Controllers
         /// <response code="403">Jenkins requires authentication - please set username and password</response>
         [HttpGet]
         [Route("//crumbIssuer/api/json")]
+        [ValidateModelState]
         [SwaggerOperation("GetCrumb")]
-        [SwaggerResponse(200, type: typeof(HudsonsecuritycsrfDefaultCrumbIssuer))]
+        [SwaggerResponse(200, typeof(DefaultCrumbIssuer), "Successfully retrieved CSRF protection token")]
+        [SwaggerResponse(401, typeof(DefaultCrumbIssuer), "Authentication failed - incorrect username and/or password")]
+        [SwaggerResponse(403, typeof(DefaultCrumbIssuer), "Jenkins requires authentication - please set username and password")]
         public virtual IActionResult GetCrumb()
         { 
             string exampleJson = null;
             
             var example = exampleJson != null
-            ? JsonConvert.DeserializeObject<HudsonsecuritycsrfDefaultCrumbIssuer>(exampleJson)
-            : default(HudsonsecuritycsrfDefaultCrumbIssuer);
+            ? JsonConvert.DeserializeObject<DefaultCrumbIssuer>(exampleJson)
+            : default(DefaultCrumbIssuer);
             return new ObjectResult(example);
         }
-
 
         /// <summary>
         /// 
@@ -82,18 +88,20 @@ namespace IO.Swagger.Controllers
         /// <response code="403">Jenkins requires authentication - please set username and password</response>
         [HttpGet]
         [Route("//api/json")]
+        [ValidateModelState]
         [SwaggerOperation("GetJenkins")]
-        [SwaggerResponse(200, type: typeof(HudsonmodelHudson))]
+        [SwaggerResponse(200, typeof(Hudson), "Successfully retrieved Jenkins details")]
+        [SwaggerResponse(401, typeof(Hudson), "Authentication failed - incorrect username and/or password")]
+        [SwaggerResponse(403, typeof(Hudson), "Jenkins requires authentication - please set username and password")]
         public virtual IActionResult GetJenkins()
         { 
             string exampleJson = null;
             
             var example = exampleJson != null
-            ? JsonConvert.DeserializeObject<HudsonmodelHudson>(exampleJson)
-            : default(HudsonmodelHudson);
+            ? JsonConvert.DeserializeObject<Hudson>(exampleJson)
+            : default(Hudson);
             return new ObjectResult(example);
         }
-
 
         /// <summary>
         /// 
@@ -106,18 +114,21 @@ namespace IO.Swagger.Controllers
         /// <response code="404">Job cannot be found on Jenkins instance</response>
         [HttpGet]
         [Route("//job/{name}/api/json")]
+        [ValidateModelState]
         [SwaggerOperation("GetJob")]
-        [SwaggerResponse(200, type: typeof(HudsonmodelFreeStyleProject))]
+        [SwaggerResponse(200, typeof(FreeStyleProject), "Successfully retrieved job details")]
+        [SwaggerResponse(401, typeof(FreeStyleProject), "Authentication failed - incorrect username and/or password")]
+        [SwaggerResponse(403, typeof(FreeStyleProject), "Jenkins requires authentication - please set username and password")]
+        [SwaggerResponse(404, typeof(FreeStyleProject), "Job cannot be found on Jenkins instance")]
         public virtual IActionResult GetJob([FromRoute]string name)
         { 
             string exampleJson = null;
             
             var example = exampleJson != null
-            ? JsonConvert.DeserializeObject<HudsonmodelFreeStyleProject>(exampleJson)
-            : default(HudsonmodelFreeStyleProject);
+            ? JsonConvert.DeserializeObject<FreeStyleProject>(exampleJson)
+            : default(FreeStyleProject);
             return new ObjectResult(example);
         }
-
 
         /// <summary>
         /// 
@@ -130,8 +141,12 @@ namespace IO.Swagger.Controllers
         /// <response code="404">Job cannot be found on Jenkins instance</response>
         [HttpGet]
         [Route("//job/{name}/config.xml")]
+        [ValidateModelState]
         [SwaggerOperation("GetJobConfig")]
-        [SwaggerResponse(200, type: typeof(string))]
+        [SwaggerResponse(200, typeof(string), "Successfully retrieved job configuration in config.xml format")]
+        [SwaggerResponse(401, typeof(string), "Authentication failed - incorrect username and/or password")]
+        [SwaggerResponse(403, typeof(string), "Jenkins requires authentication - please set username and password")]
+        [SwaggerResponse(404, typeof(string), "Job cannot be found on Jenkins instance")]
         public virtual IActionResult GetJobConfig([FromRoute]string name)
         { 
             string exampleJson = null;
@@ -141,7 +156,6 @@ namespace IO.Swagger.Controllers
             : default(string);
             return new ObjectResult(example);
         }
-
 
         /// <summary>
         /// 
@@ -154,18 +168,21 @@ namespace IO.Swagger.Controllers
         /// <response code="404">Job cannot be found on Jenkins instance</response>
         [HttpGet]
         [Route("//job/{name}/lastBuild/api/json")]
+        [ValidateModelState]
         [SwaggerOperation("GetJobLastBuild")]
-        [SwaggerResponse(200, type: typeof(HudsonmodelFreeStyleBuild))]
+        [SwaggerResponse(200, typeof(FreeStyleBuild), "Successfully retrieved job&#39;s last build details")]
+        [SwaggerResponse(401, typeof(FreeStyleBuild), "Authentication failed - incorrect username and/or password")]
+        [SwaggerResponse(403, typeof(FreeStyleBuild), "Jenkins requires authentication - please set username and password")]
+        [SwaggerResponse(404, typeof(FreeStyleBuild), "Job cannot be found on Jenkins instance")]
         public virtual IActionResult GetJobLastBuild([FromRoute]string name)
         { 
             string exampleJson = null;
             
             var example = exampleJson != null
-            ? JsonConvert.DeserializeObject<HudsonmodelFreeStyleBuild>(exampleJson)
-            : default(HudsonmodelFreeStyleBuild);
+            ? JsonConvert.DeserializeObject<FreeStyleBuild>(exampleJson)
+            : default(FreeStyleBuild);
             return new ObjectResult(example);
         }
-
 
         /// <summary>
         /// 
@@ -180,12 +197,12 @@ namespace IO.Swagger.Controllers
         /// <response code="404">Job cannot be found on Jenkins instance</response>
         [HttpGet]
         [Route("//job/{name}/{number}/logText/progressiveText")]
+        [ValidateModelState]
         [SwaggerOperation("GetJobProgressiveText")]
         public virtual void GetJobProgressiveText([FromRoute]string name, [FromRoute]string number, [FromQuery]string start)
         { 
             throw new NotImplementedException();
         }
-
 
         /// <summary>
         /// 
@@ -196,18 +213,20 @@ namespace IO.Swagger.Controllers
         /// <response code="403">Jenkins requires authentication - please set username and password</response>
         [HttpGet]
         [Route("//queue/api/json")]
+        [ValidateModelState]
         [SwaggerOperation("GetQueue")]
-        [SwaggerResponse(200, type: typeof(HudsonmodelQueue))]
+        [SwaggerResponse(200, typeof(Queue), "Successfully retrieved queue details")]
+        [SwaggerResponse(401, typeof(Queue), "Authentication failed - incorrect username and/or password")]
+        [SwaggerResponse(403, typeof(Queue), "Jenkins requires authentication - please set username and password")]
         public virtual IActionResult GetQueue()
         { 
             string exampleJson = null;
             
             var example = exampleJson != null
-            ? JsonConvert.DeserializeObject<HudsonmodelQueue>(exampleJson)
-            : default(HudsonmodelQueue);
+            ? JsonConvert.DeserializeObject<Queue>(exampleJson)
+            : default(Queue);
             return new ObjectResult(example);
         }
-
 
         /// <summary>
         /// 
@@ -219,18 +238,20 @@ namespace IO.Swagger.Controllers
         /// <response code="403">Jenkins requires authentication - please set username and password</response>
         [HttpGet]
         [Route("//queue/item/{number}/api/json")]
+        [ValidateModelState]
         [SwaggerOperation("GetQueueItem")]
-        [SwaggerResponse(200, type: typeof(HudsonmodelQueue))]
+        [SwaggerResponse(200, typeof(Queue), "Successfully retrieved queued item details")]
+        [SwaggerResponse(401, typeof(Queue), "Authentication failed - incorrect username and/or password")]
+        [SwaggerResponse(403, typeof(Queue), "Jenkins requires authentication - please set username and password")]
         public virtual IActionResult GetQueueItem([FromRoute]string number)
         { 
             string exampleJson = null;
             
             var example = exampleJson != null
-            ? JsonConvert.DeserializeObject<HudsonmodelQueue>(exampleJson)
-            : default(HudsonmodelQueue);
+            ? JsonConvert.DeserializeObject<Queue>(exampleJson)
+            : default(Queue);
             return new ObjectResult(example);
         }
-
 
         /// <summary>
         /// 
@@ -243,18 +264,21 @@ namespace IO.Swagger.Controllers
         /// <response code="404">View cannot be found on Jenkins instance</response>
         [HttpGet]
         [Route("//view/{name}/api/json")]
+        [ValidateModelState]
         [SwaggerOperation("GetView")]
-        [SwaggerResponse(200, type: typeof(HudsonmodelListView))]
+        [SwaggerResponse(200, typeof(ListView), "Successfully retrieved view details")]
+        [SwaggerResponse(401, typeof(ListView), "Authentication failed - incorrect username and/or password")]
+        [SwaggerResponse(403, typeof(ListView), "Jenkins requires authentication - please set username and password")]
+        [SwaggerResponse(404, typeof(ListView), "View cannot be found on Jenkins instance")]
         public virtual IActionResult GetView([FromRoute]string name)
         { 
             string exampleJson = null;
             
             var example = exampleJson != null
-            ? JsonConvert.DeserializeObject<HudsonmodelListView>(exampleJson)
-            : default(HudsonmodelListView);
+            ? JsonConvert.DeserializeObject<ListView>(exampleJson)
+            : default(ListView);
             return new ObjectResult(example);
         }
-
 
         /// <summary>
         /// 
@@ -267,8 +291,12 @@ namespace IO.Swagger.Controllers
         /// <response code="404">View cannot be found on Jenkins instance</response>
         [HttpGet]
         [Route("//view/{name}/config.xml")]
+        [ValidateModelState]
         [SwaggerOperation("GetViewConfig")]
-        [SwaggerResponse(200, type: typeof(string))]
+        [SwaggerResponse(200, typeof(string), "Successfully retrieved view configuration in config.xml format")]
+        [SwaggerResponse(401, typeof(string), "Authentication failed - incorrect username and/or password")]
+        [SwaggerResponse(403, typeof(string), "Jenkins requires authentication - please set username and password")]
+        [SwaggerResponse(404, typeof(string), "View cannot be found on Jenkins instance")]
         public virtual IActionResult GetViewConfig([FromRoute]string name)
         { 
             string exampleJson = null;
@@ -279,7 +307,6 @@ namespace IO.Swagger.Controllers
             return new ObjectResult(example);
         }
 
-
         /// <summary>
         /// 
         /// </summary>
@@ -289,12 +316,12 @@ namespace IO.Swagger.Controllers
         /// <response code="403">Jenkins requires authentication - please set username and password</response>
         [HttpHead]
         [Route("//api/json")]
+        [ValidateModelState]
         [SwaggerOperation("HeadJenkins")]
         public virtual void HeadJenkins()
         { 
             throw new NotImplementedException();
         }
-
 
         /// <summary>
         /// 
@@ -312,12 +339,12 @@ namespace IO.Swagger.Controllers
         /// <response code="403">Jenkins requires authentication - please set username and password</response>
         [HttpPost]
         [Route("//createItem")]
+        [ValidateModelState]
         [SwaggerOperation("PostCreateItem")]
         public virtual void PostCreateItem([FromQuery]string name, [FromQuery]string from, [FromQuery]string mode, [FromBody]string body, [FromHeader]string jenkinsCrumb, [FromHeader]string contentType)
         { 
             throw new NotImplementedException();
         }
-
 
         /// <summary>
         /// 
@@ -333,12 +360,12 @@ namespace IO.Swagger.Controllers
         /// <response code="403">Jenkins requires authentication - please set username and password</response>
         [HttpPost]
         [Route("//createView")]
+        [ValidateModelState]
         [SwaggerOperation("PostCreateView")]
         public virtual void PostCreateView([FromQuery]string name, [FromBody]string body, [FromHeader]string jenkinsCrumb, [FromHeader]string contentType)
         { 
             throw new NotImplementedException();
         }
-
 
         /// <summary>
         /// 
@@ -355,12 +382,12 @@ namespace IO.Swagger.Controllers
         /// <response code="404">Job cannot be found on Jenkins instance</response>
         [HttpPost]
         [Route("//job/{name}/build")]
+        [ValidateModelState]
         [SwaggerOperation("PostJobBuild")]
         public virtual void PostJobBuild([FromRoute]string name, [FromQuery]string json, [FromQuery]string token, [FromHeader]string jenkinsCrumb)
         { 
             throw new NotImplementedException();
         }
-
 
         /// <summary>
         /// 
@@ -376,12 +403,12 @@ namespace IO.Swagger.Controllers
         /// <response code="404">Job cannot be found on Jenkins instance</response>
         [HttpPost]
         [Route("//job/{name}/config.xml")]
+        [ValidateModelState]
         [SwaggerOperation("PostJobConfig")]
         public virtual void PostJobConfig([FromRoute]string name, [FromBody]string body, [FromHeader]string jenkinsCrumb)
         { 
             throw new NotImplementedException();
         }
-
 
         /// <summary>
         /// 
@@ -395,12 +422,12 @@ namespace IO.Swagger.Controllers
         /// <response code="404">Job cannot be found on Jenkins instance</response>
         [HttpPost]
         [Route("//job/{name}/doDelete")]
+        [ValidateModelState]
         [SwaggerOperation("PostJobDelete")]
         public virtual void PostJobDelete([FromRoute]string name, [FromHeader]string jenkinsCrumb)
         { 
             throw new NotImplementedException();
         }
-
 
         /// <summary>
         /// 
@@ -414,12 +441,12 @@ namespace IO.Swagger.Controllers
         /// <response code="404">Job cannot be found on Jenkins instance</response>
         [HttpPost]
         [Route("//job/{name}/disable")]
+        [ValidateModelState]
         [SwaggerOperation("PostJobDisable")]
         public virtual void PostJobDisable([FromRoute]string name, [FromHeader]string jenkinsCrumb)
         { 
             throw new NotImplementedException();
         }
-
 
         /// <summary>
         /// 
@@ -433,12 +460,12 @@ namespace IO.Swagger.Controllers
         /// <response code="404">Job cannot be found on Jenkins instance</response>
         [HttpPost]
         [Route("//job/{name}/enable")]
+        [ValidateModelState]
         [SwaggerOperation("PostJobEnable")]
         public virtual void PostJobEnable([FromRoute]string name, [FromHeader]string jenkinsCrumb)
         { 
             throw new NotImplementedException();
         }
-
 
         /// <summary>
         /// 
@@ -452,12 +479,12 @@ namespace IO.Swagger.Controllers
         /// <response code="404">Job cannot be found on Jenkins instance</response>
         [HttpPost]
         [Route("//job/{name}/lastBuild/stop")]
+        [ValidateModelState]
         [SwaggerOperation("PostJobLastBuildStop")]
         public virtual void PostJobLastBuildStop([FromRoute]string name, [FromHeader]string jenkinsCrumb)
         { 
             throw new NotImplementedException();
         }
-
 
         /// <summary>
         /// 
@@ -473,6 +500,7 @@ namespace IO.Swagger.Controllers
         /// <response code="404">View cannot be found on Jenkins instance</response>
         [HttpPost]
         [Route("//view/{name}/config.xml")]
+        [ValidateModelState]
         [SwaggerOperation("PostViewConfig")]
         public virtual void PostViewConfig([FromRoute]string name, [FromBody]string body, [FromHeader]string jenkinsCrumb)
         { 

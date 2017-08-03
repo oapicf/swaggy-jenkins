@@ -8,7 +8,7 @@
 # ! swagger-codegen (https://github.com/swagger-api/swagger-codegen)
 # ! FROM SWAGGER SPECIFICATION IN JSON.
 # !
-# ! Generated on: 2017-07-25T10:43:38.343+10:00
+# ! Generated on: 2017-08-03T23:30:07.663Z
 # !
 # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
@@ -24,6 +24,9 @@
 # MORE INFORMATION:
 # 
 #
+
+# For improved pattern matching in case statemets
+shopt -s extglob
 
 ###############################################################################
 #
@@ -63,31 +66,130 @@ declare -A header_arguments
 declare -A operation_parameters
 
 ##
+# Declare colors with autodection if output is terminal
+if [ -t 1 ]; then
+    RED="$(tput setaf 1)"
+    GREEN="$(tput setaf 2)"
+    YELLOW="$(tput setaf 3)"
+    BLUE="$(tput setaf 4)"
+    MAGENTA="$(tput setaf 5)"
+    CYAN="$(tput setaf 6)"
+    WHITE="$(tput setaf 7)"
+    BOLD="$(tput bold)"
+    OFF="$(tput sgr0)"
+else
+    RED=""
+    GREEN=""
+    YELLOW=""
+    BLUE=""
+    MAGENTA=""
+    CYAN=""
+    WHITE=""
+    BOLD=""
+    OFF=""
+fi
+
+declare -a result_color_table=( "$WHITE" "$WHITE" "$GREEN" "$YELLOW" "$WHITE" "$MAGENTA" "$WHITE" )
+
+##
 # This array stores the minimum number of required occurences for parameter
 # 0 - optional
 # 1 - required
 declare -A operation_parameters_minimum_occurences
-operation_parameters_minimum_occurences["getAuthenticatedUser:::organisation"]=1
+operation_parameters_minimum_occurences["deletePipelineQueueItem:::organization"]=1
+operation_parameters_minimum_occurences["deletePipelineQueueItem:::pipeline"]=1
+operation_parameters_minimum_occurences["deletePipelineQueueItem:::queue"]=1
+operation_parameters_minimum_occurences["getAuthenticatedUser:::organization"]=1
 operation_parameters_minimum_occurences["getClasses:::class"]=1
-operation_parameters_minimum_occurences["getOrganisation:::organisation"]=1
-operation_parameters_minimum_occurences["getPipelineBranchByOrg:::organisation"]=1
-operation_parameters_minimum_occurences["getPipelineBranchByOrg:::pipeline"]=1
-operation_parameters_minimum_occurences["getPipelineBranchByOrg:::branch"]=1
-operation_parameters_minimum_occurences["getPipelineBranchesByOrg:::organisation"]=1
-operation_parameters_minimum_occurences["getPipelineBranchesByOrg:::pipeline"]=1
-operation_parameters_minimum_occurences["getPipelineByOrg:::organisation"]=1
-operation_parameters_minimum_occurences["getPipelineByOrg:::pipeline"]=1
-operation_parameters_minimum_occurences["getPipelineFolderByOrg:::organisation"]=1
-operation_parameters_minimum_occurences["getPipelineFolderByOrg:::folder"]=1
-operation_parameters_minimum_occurences["getPipelineFolderByOrg_0:::organisation"]=1
-operation_parameters_minimum_occurences["getPipelineFolderByOrg_0:::pipeline"]=1
-operation_parameters_minimum_occurences["getPipelineFolderByOrg_0:::folder"]=1
-operation_parameters_minimum_occurences["getPipelinesByOrg:::organisation"]=1
-operation_parameters_minimum_occurences["getUser:::organisation"]=1
+operation_parameters_minimum_occurences["getOrganisation:::organization"]=1
+operation_parameters_minimum_occurences["getPipeline:::organization"]=1
+operation_parameters_minimum_occurences["getPipeline:::pipeline"]=1
+operation_parameters_minimum_occurences["getPipelineActivities:::organization"]=1
+operation_parameters_minimum_occurences["getPipelineActivities:::pipeline"]=1
+operation_parameters_minimum_occurences["getPipelineBranch:::organization"]=1
+operation_parameters_minimum_occurences["getPipelineBranch:::pipeline"]=1
+operation_parameters_minimum_occurences["getPipelineBranch:::branch"]=1
+operation_parameters_minimum_occurences["getPipelineBranchRun:::organization"]=1
+operation_parameters_minimum_occurences["getPipelineBranchRun:::pipeline"]=1
+operation_parameters_minimum_occurences["getPipelineBranchRun:::branch"]=1
+operation_parameters_minimum_occurences["getPipelineBranchRun:::run"]=1
+operation_parameters_minimum_occurences["getPipelineBranches:::organization"]=1
+operation_parameters_minimum_occurences["getPipelineBranches:::pipeline"]=1
+operation_parameters_minimum_occurences["getPipelineFolder:::organization"]=1
+operation_parameters_minimum_occurences["getPipelineFolder:::folder"]=1
+operation_parameters_minimum_occurences["getPipelineFolderPipeline:::organization"]=1
+operation_parameters_minimum_occurences["getPipelineFolderPipeline:::pipeline"]=1
+operation_parameters_minimum_occurences["getPipelineFolderPipeline:::folder"]=1
+operation_parameters_minimum_occurences["getPipelineQueue:::organization"]=1
+operation_parameters_minimum_occurences["getPipelineQueue:::pipeline"]=1
+operation_parameters_minimum_occurences["getPipelineRun:::organization"]=1
+operation_parameters_minimum_occurences["getPipelineRun:::pipeline"]=1
+operation_parameters_minimum_occurences["getPipelineRun:::run"]=1
+operation_parameters_minimum_occurences["getPipelineRunLog:::organization"]=1
+operation_parameters_minimum_occurences["getPipelineRunLog:::pipeline"]=1
+operation_parameters_minimum_occurences["getPipelineRunLog:::run"]=1
+operation_parameters_minimum_occurences["getPipelineRunLog:::start"]=0
+operation_parameters_minimum_occurences["getPipelineRunLog:::download"]=0
+operation_parameters_minimum_occurences["getPipelineRunNode:::organization"]=1
+operation_parameters_minimum_occurences["getPipelineRunNode:::pipeline"]=1
+operation_parameters_minimum_occurences["getPipelineRunNode:::run"]=1
+operation_parameters_minimum_occurences["getPipelineRunNode:::node"]=1
+operation_parameters_minimum_occurences["getPipelineRunNodeStep:::organization"]=1
+operation_parameters_minimum_occurences["getPipelineRunNodeStep:::pipeline"]=1
+operation_parameters_minimum_occurences["getPipelineRunNodeStep:::run"]=1
+operation_parameters_minimum_occurences["getPipelineRunNodeStep:::node"]=1
+operation_parameters_minimum_occurences["getPipelineRunNodeStep:::step"]=1
+operation_parameters_minimum_occurences["getPipelineRunNodeStepLog:::organization"]=1
+operation_parameters_minimum_occurences["getPipelineRunNodeStepLog:::pipeline"]=1
+operation_parameters_minimum_occurences["getPipelineRunNodeStepLog:::run"]=1
+operation_parameters_minimum_occurences["getPipelineRunNodeStepLog:::node"]=1
+operation_parameters_minimum_occurences["getPipelineRunNodeStepLog:::step"]=1
+operation_parameters_minimum_occurences["getPipelineRunNodeSteps:::organization"]=1
+operation_parameters_minimum_occurences["getPipelineRunNodeSteps:::pipeline"]=1
+operation_parameters_minimum_occurences["getPipelineRunNodeSteps:::run"]=1
+operation_parameters_minimum_occurences["getPipelineRunNodeSteps:::node"]=1
+operation_parameters_minimum_occurences["getPipelineRunNodes:::organization"]=1
+operation_parameters_minimum_occurences["getPipelineRunNodes:::pipeline"]=1
+operation_parameters_minimum_occurences["getPipelineRunNodes:::run"]=1
+operation_parameters_minimum_occurences["getPipelineRuns:::organization"]=1
+operation_parameters_minimum_occurences["getPipelineRuns:::pipeline"]=1
+operation_parameters_minimum_occurences["getPipelines:::organization"]=1
+operation_parameters_minimum_occurences["getSCM:::organization"]=1
+operation_parameters_minimum_occurences["getSCM:::scm"]=1
+operation_parameters_minimum_occurences["getSCMOrganisationRepositories:::organization"]=1
+operation_parameters_minimum_occurences["getSCMOrganisationRepositories:::scm"]=1
+operation_parameters_minimum_occurences["getSCMOrganisationRepositories:::scmOrganisation"]=1
+operation_parameters_minimum_occurences["getSCMOrganisationRepositories:::credentialId"]=0
+operation_parameters_minimum_occurences["getSCMOrganisationRepositories:::pageSize"]=0
+operation_parameters_minimum_occurences["getSCMOrganisationRepositories:::pageNumber"]=0
+operation_parameters_minimum_occurences["getSCMOrganisationRepository:::organization"]=1
+operation_parameters_minimum_occurences["getSCMOrganisationRepository:::scm"]=1
+operation_parameters_minimum_occurences["getSCMOrganisationRepository:::scmOrganisation"]=1
+operation_parameters_minimum_occurences["getSCMOrganisationRepository:::repository"]=1
+operation_parameters_minimum_occurences["getSCMOrganisationRepository:::credentialId"]=0
+operation_parameters_minimum_occurences["getSCMOrganisations:::organization"]=1
+operation_parameters_minimum_occurences["getSCMOrganisations:::scm"]=1
+operation_parameters_minimum_occurences["getSCMOrganisations:::credentialId"]=0
+operation_parameters_minimum_occurences["getUser:::organization"]=1
 operation_parameters_minimum_occurences["getUser:::user"]=1
-operation_parameters_minimum_occurences["getUsers:::organisation"]=1
+operation_parameters_minimum_occurences["getUserFavorites:::user"]=1
+operation_parameters_minimum_occurences["getUsers:::organization"]=1
+operation_parameters_minimum_occurences["postPipelineRun:::organization"]=1
+operation_parameters_minimum_occurences["postPipelineRun:::pipeline"]=1
+operation_parameters_minimum_occurences["postPipelineRun:::run"]=1
+operation_parameters_minimum_occurences["postPipelineRuns:::organization"]=1
+operation_parameters_minimum_occurences["postPipelineRuns:::pipeline"]=1
+operation_parameters_minimum_occurences["putPipelineFavorite:::organization"]=1
+operation_parameters_minimum_occurences["putPipelineFavorite:::pipeline"]=1
+operation_parameters_minimum_occurences["putPipelineFavorite:::body"]=1
+operation_parameters_minimum_occurences["putPipelineRun:::organization"]=1
+operation_parameters_minimum_occurences["putPipelineRun:::pipeline"]=1
+operation_parameters_minimum_occurences["putPipelineRun:::run"]=1
+operation_parameters_minimum_occurences["putPipelineRun:::blocking"]=0
+operation_parameters_minimum_occurences["putPipelineRun:::timeOutInSecs"]=0
 operation_parameters_minimum_occurences["search:::q"]=1
-operation_parameters_minimum_occurences["search_0:::q"]=1
+operation_parameters_minimum_occurences["searchClasses:::q"]=1
+operation_parameters_minimum_occurences["getComputer:::depth"]=1
 operation_parameters_minimum_occurences["getJob:::name"]=1
 operation_parameters_minimum_occurences["getJobConfig:::name"]=1
 operation_parameters_minimum_occurences["getJobLastBuild:::name"]=1
@@ -133,27 +235,100 @@ operation_parameters_minimum_occurences["postViewConfig:::Jenkins-Crumb"]=0
 # N - N values
 # 0 - unlimited
 declare -A operation_parameters_maximum_occurences
-operation_parameters_maximum_occurences["getAuthenticatedUser:::organisation"]=0
+operation_parameters_maximum_occurences["deletePipelineQueueItem:::organization"]=0
+operation_parameters_maximum_occurences["deletePipelineQueueItem:::pipeline"]=0
+operation_parameters_maximum_occurences["deletePipelineQueueItem:::queue"]=0
+operation_parameters_maximum_occurences["getAuthenticatedUser:::organization"]=0
 operation_parameters_maximum_occurences["getClasses:::class"]=0
-operation_parameters_maximum_occurences["getOrganisation:::organisation"]=0
-operation_parameters_maximum_occurences["getPipelineBranchByOrg:::organisation"]=0
-operation_parameters_maximum_occurences["getPipelineBranchByOrg:::pipeline"]=0
-operation_parameters_maximum_occurences["getPipelineBranchByOrg:::branch"]=0
-operation_parameters_maximum_occurences["getPipelineBranchesByOrg:::organisation"]=0
-operation_parameters_maximum_occurences["getPipelineBranchesByOrg:::pipeline"]=0
-operation_parameters_maximum_occurences["getPipelineByOrg:::organisation"]=0
-operation_parameters_maximum_occurences["getPipelineByOrg:::pipeline"]=0
-operation_parameters_maximum_occurences["getPipelineFolderByOrg:::organisation"]=0
-operation_parameters_maximum_occurences["getPipelineFolderByOrg:::folder"]=0
-operation_parameters_maximum_occurences["getPipelineFolderByOrg_0:::organisation"]=0
-operation_parameters_maximum_occurences["getPipelineFolderByOrg_0:::pipeline"]=0
-operation_parameters_maximum_occurences["getPipelineFolderByOrg_0:::folder"]=0
-operation_parameters_maximum_occurences["getPipelinesByOrg:::organisation"]=0
-operation_parameters_maximum_occurences["getUser:::organisation"]=0
+operation_parameters_maximum_occurences["getOrganisation:::organization"]=0
+operation_parameters_maximum_occurences["getPipeline:::organization"]=0
+operation_parameters_maximum_occurences["getPipeline:::pipeline"]=0
+operation_parameters_maximum_occurences["getPipelineActivities:::organization"]=0
+operation_parameters_maximum_occurences["getPipelineActivities:::pipeline"]=0
+operation_parameters_maximum_occurences["getPipelineBranch:::organization"]=0
+operation_parameters_maximum_occurences["getPipelineBranch:::pipeline"]=0
+operation_parameters_maximum_occurences["getPipelineBranch:::branch"]=0
+operation_parameters_maximum_occurences["getPipelineBranchRun:::organization"]=0
+operation_parameters_maximum_occurences["getPipelineBranchRun:::pipeline"]=0
+operation_parameters_maximum_occurences["getPipelineBranchRun:::branch"]=0
+operation_parameters_maximum_occurences["getPipelineBranchRun:::run"]=0
+operation_parameters_maximum_occurences["getPipelineBranches:::organization"]=0
+operation_parameters_maximum_occurences["getPipelineBranches:::pipeline"]=0
+operation_parameters_maximum_occurences["getPipelineFolder:::organization"]=0
+operation_parameters_maximum_occurences["getPipelineFolder:::folder"]=0
+operation_parameters_maximum_occurences["getPipelineFolderPipeline:::organization"]=0
+operation_parameters_maximum_occurences["getPipelineFolderPipeline:::pipeline"]=0
+operation_parameters_maximum_occurences["getPipelineFolderPipeline:::folder"]=0
+operation_parameters_maximum_occurences["getPipelineQueue:::organization"]=0
+operation_parameters_maximum_occurences["getPipelineQueue:::pipeline"]=0
+operation_parameters_maximum_occurences["getPipelineRun:::organization"]=0
+operation_parameters_maximum_occurences["getPipelineRun:::pipeline"]=0
+operation_parameters_maximum_occurences["getPipelineRun:::run"]=0
+operation_parameters_maximum_occurences["getPipelineRunLog:::organization"]=0
+operation_parameters_maximum_occurences["getPipelineRunLog:::pipeline"]=0
+operation_parameters_maximum_occurences["getPipelineRunLog:::run"]=0
+operation_parameters_maximum_occurences["getPipelineRunLog:::start"]=0
+operation_parameters_maximum_occurences["getPipelineRunLog:::download"]=0
+operation_parameters_maximum_occurences["getPipelineRunNode:::organization"]=0
+operation_parameters_maximum_occurences["getPipelineRunNode:::pipeline"]=0
+operation_parameters_maximum_occurences["getPipelineRunNode:::run"]=0
+operation_parameters_maximum_occurences["getPipelineRunNode:::node"]=0
+operation_parameters_maximum_occurences["getPipelineRunNodeStep:::organization"]=0
+operation_parameters_maximum_occurences["getPipelineRunNodeStep:::pipeline"]=0
+operation_parameters_maximum_occurences["getPipelineRunNodeStep:::run"]=0
+operation_parameters_maximum_occurences["getPipelineRunNodeStep:::node"]=0
+operation_parameters_maximum_occurences["getPipelineRunNodeStep:::step"]=0
+operation_parameters_maximum_occurences["getPipelineRunNodeStepLog:::organization"]=0
+operation_parameters_maximum_occurences["getPipelineRunNodeStepLog:::pipeline"]=0
+operation_parameters_maximum_occurences["getPipelineRunNodeStepLog:::run"]=0
+operation_parameters_maximum_occurences["getPipelineRunNodeStepLog:::node"]=0
+operation_parameters_maximum_occurences["getPipelineRunNodeStepLog:::step"]=0
+operation_parameters_maximum_occurences["getPipelineRunNodeSteps:::organization"]=0
+operation_parameters_maximum_occurences["getPipelineRunNodeSteps:::pipeline"]=0
+operation_parameters_maximum_occurences["getPipelineRunNodeSteps:::run"]=0
+operation_parameters_maximum_occurences["getPipelineRunNodeSteps:::node"]=0
+operation_parameters_maximum_occurences["getPipelineRunNodes:::organization"]=0
+operation_parameters_maximum_occurences["getPipelineRunNodes:::pipeline"]=0
+operation_parameters_maximum_occurences["getPipelineRunNodes:::run"]=0
+operation_parameters_maximum_occurences["getPipelineRuns:::organization"]=0
+operation_parameters_maximum_occurences["getPipelineRuns:::pipeline"]=0
+operation_parameters_maximum_occurences["getPipelines:::organization"]=0
+operation_parameters_maximum_occurences["getSCM:::organization"]=0
+operation_parameters_maximum_occurences["getSCM:::scm"]=0
+operation_parameters_maximum_occurences["getSCMOrganisationRepositories:::organization"]=0
+operation_parameters_maximum_occurences["getSCMOrganisationRepositories:::scm"]=0
+operation_parameters_maximum_occurences["getSCMOrganisationRepositories:::scmOrganisation"]=0
+operation_parameters_maximum_occurences["getSCMOrganisationRepositories:::credentialId"]=0
+operation_parameters_maximum_occurences["getSCMOrganisationRepositories:::pageSize"]=0
+operation_parameters_maximum_occurences["getSCMOrganisationRepositories:::pageNumber"]=0
+operation_parameters_maximum_occurences["getSCMOrganisationRepository:::organization"]=0
+operation_parameters_maximum_occurences["getSCMOrganisationRepository:::scm"]=0
+operation_parameters_maximum_occurences["getSCMOrganisationRepository:::scmOrganisation"]=0
+operation_parameters_maximum_occurences["getSCMOrganisationRepository:::repository"]=0
+operation_parameters_maximum_occurences["getSCMOrganisationRepository:::credentialId"]=0
+operation_parameters_maximum_occurences["getSCMOrganisations:::organization"]=0
+operation_parameters_maximum_occurences["getSCMOrganisations:::scm"]=0
+operation_parameters_maximum_occurences["getSCMOrganisations:::credentialId"]=0
+operation_parameters_maximum_occurences["getUser:::organization"]=0
 operation_parameters_maximum_occurences["getUser:::user"]=0
-operation_parameters_maximum_occurences["getUsers:::organisation"]=0
+operation_parameters_maximum_occurences["getUserFavorites:::user"]=0
+operation_parameters_maximum_occurences["getUsers:::organization"]=0
+operation_parameters_maximum_occurences["postPipelineRun:::organization"]=0
+operation_parameters_maximum_occurences["postPipelineRun:::pipeline"]=0
+operation_parameters_maximum_occurences["postPipelineRun:::run"]=0
+operation_parameters_maximum_occurences["postPipelineRuns:::organization"]=0
+operation_parameters_maximum_occurences["postPipelineRuns:::pipeline"]=0
+operation_parameters_maximum_occurences["putPipelineFavorite:::organization"]=0
+operation_parameters_maximum_occurences["putPipelineFavorite:::pipeline"]=0
+operation_parameters_maximum_occurences["putPipelineFavorite:::body"]=0
+operation_parameters_maximum_occurences["putPipelineRun:::organization"]=0
+operation_parameters_maximum_occurences["putPipelineRun:::pipeline"]=0
+operation_parameters_maximum_occurences["putPipelineRun:::run"]=0
+operation_parameters_maximum_occurences["putPipelineRun:::blocking"]=0
+operation_parameters_maximum_occurences["putPipelineRun:::timeOutInSecs"]=0
 operation_parameters_maximum_occurences["search:::q"]=0
-operation_parameters_maximum_occurences["search_0:::q"]=0
+operation_parameters_maximum_occurences["searchClasses:::q"]=0
+operation_parameters_maximum_occurences["getComputer:::depth"]=0
 operation_parameters_maximum_occurences["getJob:::name"]=0
 operation_parameters_maximum_occurences["getJobConfig:::name"]=0
 operation_parameters_maximum_occurences["getJobLastBuild:::name"]=0
@@ -196,27 +371,100 @@ operation_parameters_maximum_occurences["postViewConfig:::Jenkins-Crumb"]=0
 # The type of collection for specifying multiple values for parameter:
 # - multi, csv, ssv, tsv
 declare -A operation_parameters_collection_type
-operation_parameters_collection_type["getAuthenticatedUser:::organisation"]=""
+operation_parameters_collection_type["deletePipelineQueueItem:::organization"]=""
+operation_parameters_collection_type["deletePipelineQueueItem:::pipeline"]=""
+operation_parameters_collection_type["deletePipelineQueueItem:::queue"]=""
+operation_parameters_collection_type["getAuthenticatedUser:::organization"]=""
 operation_parameters_collection_type["getClasses:::class"]=""
-operation_parameters_collection_type["getOrganisation:::organisation"]=""
-operation_parameters_collection_type["getPipelineBranchByOrg:::organisation"]=""
-operation_parameters_collection_type["getPipelineBranchByOrg:::pipeline"]=""
-operation_parameters_collection_type["getPipelineBranchByOrg:::branch"]=""
-operation_parameters_collection_type["getPipelineBranchesByOrg:::organisation"]=""
-operation_parameters_collection_type["getPipelineBranchesByOrg:::pipeline"]=""
-operation_parameters_collection_type["getPipelineByOrg:::organisation"]=""
-operation_parameters_collection_type["getPipelineByOrg:::pipeline"]=""
-operation_parameters_collection_type["getPipelineFolderByOrg:::organisation"]=""
-operation_parameters_collection_type["getPipelineFolderByOrg:::folder"]=""
-operation_parameters_collection_type["getPipelineFolderByOrg_0:::organisation"]=""
-operation_parameters_collection_type["getPipelineFolderByOrg_0:::pipeline"]=""
-operation_parameters_collection_type["getPipelineFolderByOrg_0:::folder"]=""
-operation_parameters_collection_type["getPipelinesByOrg:::organisation"]=""
-operation_parameters_collection_type["getUser:::organisation"]=""
+operation_parameters_collection_type["getOrganisation:::organization"]=""
+operation_parameters_collection_type["getPipeline:::organization"]=""
+operation_parameters_collection_type["getPipeline:::pipeline"]=""
+operation_parameters_collection_type["getPipelineActivities:::organization"]=""
+operation_parameters_collection_type["getPipelineActivities:::pipeline"]=""
+operation_parameters_collection_type["getPipelineBranch:::organization"]=""
+operation_parameters_collection_type["getPipelineBranch:::pipeline"]=""
+operation_parameters_collection_type["getPipelineBranch:::branch"]=""
+operation_parameters_collection_type["getPipelineBranchRun:::organization"]=""
+operation_parameters_collection_type["getPipelineBranchRun:::pipeline"]=""
+operation_parameters_collection_type["getPipelineBranchRun:::branch"]=""
+operation_parameters_collection_type["getPipelineBranchRun:::run"]=""
+operation_parameters_collection_type["getPipelineBranches:::organization"]=""
+operation_parameters_collection_type["getPipelineBranches:::pipeline"]=""
+operation_parameters_collection_type["getPipelineFolder:::organization"]=""
+operation_parameters_collection_type["getPipelineFolder:::folder"]=""
+operation_parameters_collection_type["getPipelineFolderPipeline:::organization"]=""
+operation_parameters_collection_type["getPipelineFolderPipeline:::pipeline"]=""
+operation_parameters_collection_type["getPipelineFolderPipeline:::folder"]=""
+operation_parameters_collection_type["getPipelineQueue:::organization"]=""
+operation_parameters_collection_type["getPipelineQueue:::pipeline"]=""
+operation_parameters_collection_type["getPipelineRun:::organization"]=""
+operation_parameters_collection_type["getPipelineRun:::pipeline"]=""
+operation_parameters_collection_type["getPipelineRun:::run"]=""
+operation_parameters_collection_type["getPipelineRunLog:::organization"]=""
+operation_parameters_collection_type["getPipelineRunLog:::pipeline"]=""
+operation_parameters_collection_type["getPipelineRunLog:::run"]=""
+operation_parameters_collection_type["getPipelineRunLog:::start"]=""
+operation_parameters_collection_type["getPipelineRunLog:::download"]=""
+operation_parameters_collection_type["getPipelineRunNode:::organization"]=""
+operation_parameters_collection_type["getPipelineRunNode:::pipeline"]=""
+operation_parameters_collection_type["getPipelineRunNode:::run"]=""
+operation_parameters_collection_type["getPipelineRunNode:::node"]=""
+operation_parameters_collection_type["getPipelineRunNodeStep:::organization"]=""
+operation_parameters_collection_type["getPipelineRunNodeStep:::pipeline"]=""
+operation_parameters_collection_type["getPipelineRunNodeStep:::run"]=""
+operation_parameters_collection_type["getPipelineRunNodeStep:::node"]=""
+operation_parameters_collection_type["getPipelineRunNodeStep:::step"]=""
+operation_parameters_collection_type["getPipelineRunNodeStepLog:::organization"]=""
+operation_parameters_collection_type["getPipelineRunNodeStepLog:::pipeline"]=""
+operation_parameters_collection_type["getPipelineRunNodeStepLog:::run"]=""
+operation_parameters_collection_type["getPipelineRunNodeStepLog:::node"]=""
+operation_parameters_collection_type["getPipelineRunNodeStepLog:::step"]=""
+operation_parameters_collection_type["getPipelineRunNodeSteps:::organization"]=""
+operation_parameters_collection_type["getPipelineRunNodeSteps:::pipeline"]=""
+operation_parameters_collection_type["getPipelineRunNodeSteps:::run"]=""
+operation_parameters_collection_type["getPipelineRunNodeSteps:::node"]=""
+operation_parameters_collection_type["getPipelineRunNodes:::organization"]=""
+operation_parameters_collection_type["getPipelineRunNodes:::pipeline"]=""
+operation_parameters_collection_type["getPipelineRunNodes:::run"]=""
+operation_parameters_collection_type["getPipelineRuns:::organization"]=""
+operation_parameters_collection_type["getPipelineRuns:::pipeline"]=""
+operation_parameters_collection_type["getPipelines:::organization"]=""
+operation_parameters_collection_type["getSCM:::organization"]=""
+operation_parameters_collection_type["getSCM:::scm"]=""
+operation_parameters_collection_type["getSCMOrganisationRepositories:::organization"]=""
+operation_parameters_collection_type["getSCMOrganisationRepositories:::scm"]=""
+operation_parameters_collection_type["getSCMOrganisationRepositories:::scmOrganisation"]=""
+operation_parameters_collection_type["getSCMOrganisationRepositories:::credentialId"]=""
+operation_parameters_collection_type["getSCMOrganisationRepositories:::pageSize"]=""
+operation_parameters_collection_type["getSCMOrganisationRepositories:::pageNumber"]=""
+operation_parameters_collection_type["getSCMOrganisationRepository:::organization"]=""
+operation_parameters_collection_type["getSCMOrganisationRepository:::scm"]=""
+operation_parameters_collection_type["getSCMOrganisationRepository:::scmOrganisation"]=""
+operation_parameters_collection_type["getSCMOrganisationRepository:::repository"]=""
+operation_parameters_collection_type["getSCMOrganisationRepository:::credentialId"]=""
+operation_parameters_collection_type["getSCMOrganisations:::organization"]=""
+operation_parameters_collection_type["getSCMOrganisations:::scm"]=""
+operation_parameters_collection_type["getSCMOrganisations:::credentialId"]=""
+operation_parameters_collection_type["getUser:::organization"]=""
 operation_parameters_collection_type["getUser:::user"]=""
-operation_parameters_collection_type["getUsers:::organisation"]=""
+operation_parameters_collection_type["getUserFavorites:::user"]=""
+operation_parameters_collection_type["getUsers:::organization"]=""
+operation_parameters_collection_type["postPipelineRun:::organization"]=""
+operation_parameters_collection_type["postPipelineRun:::pipeline"]=""
+operation_parameters_collection_type["postPipelineRun:::run"]=""
+operation_parameters_collection_type["postPipelineRuns:::organization"]=""
+operation_parameters_collection_type["postPipelineRuns:::pipeline"]=""
+operation_parameters_collection_type["putPipelineFavorite:::organization"]=""
+operation_parameters_collection_type["putPipelineFavorite:::pipeline"]=""
+operation_parameters_collection_type["putPipelineFavorite:::body"]=""
+operation_parameters_collection_type["putPipelineRun:::organization"]=""
+operation_parameters_collection_type["putPipelineRun:::pipeline"]=""
+operation_parameters_collection_type["putPipelineRun:::run"]=""
+operation_parameters_collection_type["putPipelineRun:::blocking"]=""
+operation_parameters_collection_type["putPipelineRun:::timeOutInSecs"]=""
 operation_parameters_collection_type["search:::q"]=""
-operation_parameters_collection_type["search_0:::q"]=""
+operation_parameters_collection_type["searchClasses:::q"]=""
+operation_parameters_collection_type["getComputer:::depth"]=""
 operation_parameters_collection_type["getJob:::name"]=""
 operation_parameters_collection_type["getJobConfig:::name"]=""
 operation_parameters_collection_type["getJobLastBuild:::name"]=""
@@ -349,6 +597,7 @@ url_escape() {
        -e 's/(/%28/g' \
        -e 's/)/%29/g' \
        -e 's/:/%3A/g' \
+       -e 's/\t/%09/g' \
        -e 's/?/%3F/g' <<<$raw_url);
 
     echo $value
@@ -405,11 +654,10 @@ body_parameters_to_json() {
     local body_parameter_count=${#body_parameters[@]}
     local count=0
     for key in "${!body_parameters[@]}"; do
-        body_json+="\"${key}\": ${body_parameters[${key}]}"
-        if [[ $count -lt $body_parameter_count-1 ]]; then
+        if [[ $((count++)) -gt 0 ]]; then
             body_json+=", "
         fi
-        ((count+=1))
+        body_json+="\"${key}\": ${body_parameters[${key}]}"
     done
     body_json+="}'"
 
@@ -422,127 +670,24 @@ body_parameters_to_json() {
 
 ##############################################################################
 #
-# Check if provided parameters match specification requirements
+# Helper method for showing error because for example echo in
+# build_request_path() is evaluated as part of command line not printed on
+# output. Anyway better idea for resource clean up ;-).
 #
 ##############################################################################
-validate_request_parameters() {
-    local path_template=$1
-    local -n path_params=$2
-    local -n query_params=$3
-
-    # First replace all path parameters in the path
-    for pparam in "${path_params[@]}"; do
-        regexp="(.*)(\{$pparam\})(.*)"
-        if [[ $path_template =~ $regexp ]]; then
-            path_template=${BASH_REMATCH[1]}${operation_parameters[$pparam]}${BASH_REMATCH[3]}
-        fi
-    done
-
-    # Now append query parameters - if any
-    if [[ ${#query_params[@]} -gt 0 ]]; then
-        path_template+="?"
+ERROR_MSG=""
+function finish {
+    if [[ -n "$ERROR_MSG" ]]; then
+        echo >&2 "${OFF}${RED}$ERROR_MSG"
+        echo >&2 "${OFF}Check usage: '${script_name} --help'"
     fi
-
-    local query_parameter_count=${#query_params[@]}
-    local count=0
-    for qparam in "${query_params[@]}"; do
-        # Get the array of parameter values
-        local parameter_values=($(echo "${operation_parameters[$qparam]}" | sed -e 's/'":::"'/\n/g' | while read line; do echo $line | sed 's/[\t ]/'":::"'/g'; done))
-
-        #
-        # Check if the number of provided values is not less than minimum
-        # required
-        #
-        if [[ "$force" = false ]]; then
-            if [[ ${#parameter_values[@]} -lt ${operation_parameters_minimum_occurences["${operation}:::${qparam}"]} ]]; then
-                echo "Error: Too few values provided for '${qparam}' parameter"
-                exit 1
-            fi
-
-            #
-            # Check if the number of provided values is not more than maximum
-            #
-            if [[ ${operation_parameters_maximum_occurences["${operation}:::${qparam}"]} -gt 0 \
-                  && ${#parameter_values[@]} -gt ${operation_parameters_maximum_occurences["${operation}:::${qparam}"]} ]]; then
-                if [[ "$force" = false ]]; then
-                    echo "Error: Too many values provided for '${qparam}' parameter"
-                    exit 1
-                fi
-            fi
-        fi
-
-        if [[ "${operation_parameters_collection_type[${operation}:::${qparam}]}" == "" ]]; then
-            local vcount=0
-            for qvalue in "${parameter_values[@]}"; do
-                path_template+="${qparam}=${qvalue}"
-
-                if [[ $vcount -lt ${#parameter_values[@]}-1 ]]; then
-                    path_template+="&"
-                fi
-                ((vcount+=1))
-            done
-        elif [[ "${operation_parameters_collection_type["${operation}:::${qparam}"]}" == "multi" ]]; then
-            local vcount=0
-            for qvalue in "${parameter_values[@]}"; do
-                path_template+="${qparam}=${qvalue}"
-
-                if [[ $vcount -lt ${#parameter_values[@]}-1 ]]; then
-                    path_template+="&"
-                fi
-                ((vcount+=1))
-            done
-        elif [[ "${operation_parameters_collection_type["${operation}:::${qparam}"]}" == "csv" ]]; then
-            path_template+="${qparam}="
-            local vcount=0
-            for qvalue in "${parameter_values[@]}"; do
-                path_template+="${qvalue}"
-
-                if [[ $vcount -lt ${#parameter_values[@]}-1 ]]; then
-                    path_template+=","
-                fi
-                ((vcount+=1))
-            done
-        elif [[ "${operation_parameters_collection_type["${operation}:::${qparam}"]}" == "ssv" ]]; then
-            path_template+="${qparam}="
-            for qvalue in "${parameter_values[@]}"; do
-                path_template+="${qvalue}"
-
-                if [[ $vcount -lt ${#parameter_values[@]}-1 ]]; then
-                    path_template+=" "
-                fi
-                ((vcount+=1))
-            done
-        elif [[ "${operation_parameters_collection_type["${operation}:::${qparam}"]}" == "tsv" ]]; then
-            path_template+="${qparam}="
-            for qvalue in "${parameter_values[@]}"; do
-                path_template+="${qvalue}"
-
-                if [[ $vcount -lt ${#parameter_values[@]}-1 ]]; then
-                    path_template+="\t"
-                fi
-                ((vcount+=1))
-            done
-        else
-            echo -e ""
-            echo -e "Error: Unsupported collection format "
-            echo -e ""
-            exit 1
-        fi
-
-
-        if [[ $count -lt $query_parameter_count-1 ]]; then
-            path_template+="&"
-        fi
-        ((count+=1))
-    done
-
 }
-
+trap finish EXIT
 
 
 ##############################################################################
 #
-# Build request path including query parameters
+# Validate and build request path including query parameters
 #
 ##############################################################################
 build_request_path() {
@@ -551,10 +696,39 @@ build_request_path() {
     local -n query_params=$3
 
 
+    #
+    # Check input paramaters count against minimum and maximum required
+    #
+    if [[ "$force" = false ]]; then
+        local was_error=""
+        for qparam in "${query_params[@]}" "${path_params[@]}"; do
+            local parameter_values=($(sed -e 's/'":::"'/\n/g' <<<"${operation_parameters[$qparam]}"))
+
+            #
+            # Check if the number of provided values is not less than minimum required
+            #
+            if [[ ${#parameter_values[@]} -lt ${operation_parameters_minimum_occurences["${operation}:::${qparam}"]} ]]; then
+                echo "ERROR: Too few values provided for '${qparam}' parameter."
+                was_error=true
+            fi
+
+            #
+            # Check if the number of provided values is not more than maximum
+            #
+            if [[ ${operation_parameters_maximum_occurences["${operation}:::${qparam}"]} -gt 0 \
+                  && ${#parameter_values[@]} -gt ${operation_parameters_maximum_occurences["${operation}:::${qparam}"]} ]]; then
+                echo "ERROR: Too many values provided for '${qparam}' parameter"
+                was_error=true
+            fi
+        done
+        if [[ -n "$was_error" ]]; then
+            exit 1
+        fi
+    fi
+
     # First replace all path parameters in the path
     for pparam in "${path_params[@]}"; do
-        regexp="(.*)(\{$pparam\})(.*)"
-        if [[ $path_template =~ $regexp ]]; then
+        if [[ $path_template =~ (.*)(\{$pparam\})(.*) ]]; then
             path_template=${BASH_REMATCH[1]}${operation_parameters[$pparam]}${BASH_REMATCH[3]}
         fi
     done
@@ -565,116 +739,89 @@ build_request_path() {
     local count=0
     for qparam in "${query_params[@]}"; do
         # Get the array of parameter values
-        local parameter_values=($(echo "${operation_parameters[$qparam]}" | sed -e 's/'":::"'/\n/g' | while read line; do echo $line | sed 's/[\t ]/'":::"'/g'; done))
+        local parameter_values=($(sed -e 's/'":::"'/\n/g' <<<"${operation_parameters[$qparam]}"))
         local parameter_value=""
 
-        #
-        # Check if the number of provided values is not less than minimum
-        # required
-        #
-        if [[ "$force" = false ]]; then
-            if [[ ${#parameter_values[@]} -lt ${operation_parameters_minimum_occurences["${operation}:::${qparam}"]} ]]; then
-                echo "Error: Too few values provided for '${qparam}' parameter"
-                exit 1
-            fi
-
-            #
-            # Check if the number of provided values is not more than maximum
-            #
-            if [[ ${operation_parameters_maximum_occurences["${operation}:::${qparam}"]} -gt 0 \
-                  && ${#parameter_values[@]} -gt ${operation_parameters_maximum_occurences["${operation}:::${qparam}"]} ]]; then
-                if [[ "$force" = false ]]; then
-                    echo "Error: Too many values provided for '${qparam}' parameter"
-                    exit 1
-                fi
+        if [[ -n "${parameter_values[@]}" ]]; then
+            if [[ $((count++)) -gt 0 ]]; then
+                query_request_part+="&"
             fi
         fi
 
         #
         # Append parameters without specific cardinality
         #
-        if [[ "${operation_parameters_collection_type["${operation}:::${qparam}"]}" == "" ]]; then
+        local collection_type="${operation_parameters_collection_type["${operation}:::${qparam}"]}"
+ [[ "${collection_type}" == "" ]]; then
             local vcount=0
             for qvalue in "${parameter_values[@]}"; do
-                parameter_value+="${qparam}=${qvalue}"
-
-                if [[ $vcount -lt ${#parameter_values[@]}-1 ]]; then
+                if [[ $((vcount++)) -gt 0 ]]; then
                     parameter_value+="&"
                 fi
-                ((vcount+=1))
+                parameter_value+="${qparam}=${qvalue}"
             done
         #
         # Append parameters specified as 'mutli' collections i.e. param=value1&param=value2&...
         #
-        elif [[ "${operation_parameters_collection_type["${operation}:::${qparam}"]}" == "multi" ]]; then
+        elif [[ "${collection_type}" == "multi" ]]; then
             local vcount=0
             for qvalue in "${parameter_values[@]}"; do
-                parameter_value+="${qparam}=${qvalue}"
-
-                if [[ $vcount -lt ${#parameter_values[@]}-1 ]]; then
+                if [[ $((vcount++)) -gt 0 ]]; then
                     parameter_value+="&"
                 fi
-                ((vcount+=1))
+                parameter_value+="${qparam}=${qvalue}"
             done
         #
         # Append parameters specified as 'csv' collections i.e. param=value1,value2,...
         #
-        elif [[ "${operation_parameters_collection_type["${operation}:::${qparam}"]}" == "csv" ]]; then
+        elif [[ "${collection_type}" == "csv" ]]; then
             parameter_value+="${qparam}="
             local vcount=0
             for qvalue in "${parameter_values[@]}"; do
-                parameter_value+="${qvalue}"
-
-                if [[ $vcount -lt ${#parameter_values[@]}-1 ]]; then
+                if [[ $((vcount++)) -gt 0 ]]; then
                     parameter_value+=","
                 fi
-                ((vcount+=1))
+                parameter_value+="${qvalue}"
             done
         #
         # Append parameters specified as 'ssv' collections i.e. param="value1 value2 ..."
         #
-        elif [[ "${operation_parameters_collection_type["${operation}:::${qparam}"]}" == "ssv" ]]; then
+        elif [[ "${collection_type}" == "ssv" ]]; then
             parameter_value+="${qparam}="
             local vcount=0
             for qvalue in "${parameter_values[@]}"; do
-                parameter_value+="${qvalue}"
-
-                if [[ $vcount -lt ${#parameter_values[@]}-1 ]]; then
+                if [[ $((vcount++)) -gt 0 ]]; then
                     parameter_value+=" "
                 fi
-                ((vcount+=1))
+                parameter_value+="${qvalue}"
             done
         #
         # Append parameters specified as 'tsv' collections i.e. param="value1\tvalue2\t..."
         #
-        elif [[ "${operation_parameters_collection_type["${operation}:::${qparam}"]}" == "tsv" ]]; then
+        elif [[ "${collection_type}" == "tsv" ]]; then
             parameter_value+="${qparam}="
             local vcount=0
             for qvalue in "${parameter_values[@]}"; do
-                parameter_value+="${qvalue}"
-
-                if [[ $vcount -lt ${#parameter_values[@]}-1 ]]; then
+                if [[ $((vcount++)) -gt 0 ]]; then
                     parameter_value+="\t"
                 fi
-                ((vcount+=1))
+                parameter_value+="${qvalue}"
             done
+        else
+            echo "Unsupported collection format \"${collection_type}\""
+            exit 1
         fi
 
         if [[ -n "${parameter_value}" ]]; then
             query_request_part+="${parameter_value}"
         fi
 
-        if [[ $count -lt $query_parameter_count-1 && -n "${parameter_value}" ]]; then
-            query_request_part+="&"
-        fi
-
-        ((count+=1))
     done
 
 
     # Now append query parameters - if any
     if [[ -n "${query_request_part}" ]]; then
-        path_template+="?$(echo ${query_request_part} | sed s'/&$//')"
+        path_template+="?${query_request_part}"
     fi
 
     echo $path_template
@@ -690,98 +837,120 @@ build_request_path() {
 print_help() {
 cat <<EOF
 
-$(tput bold)$(tput setaf 7)Swaggy Jenkins command line client (API version 0.1.0)$(tput sgr0)
+${BOLD}${WHITE}Swaggy Jenkins command line client (API version 0.1.0)${OFF}
 
-$(tput bold)$(tput setaf 7)Usage$(tput sgr0)
+${BOLD}${WHITE}Usage${OFF}
 
-  $(tput setaf 2)${script_name}$(tput sgr0) [-h|--help] [-V|--version] [--about] [$(tput setaf 1)<curl-options>$(tput sgr0)]
-           [-ac|--accept $(tput setaf 2)<mime-type>$(tput sgr0)] [-ct,--content-type $(tput setaf 2)<mime-type>$(tput sgr0)]
-           [--host $(tput setaf 6)<url>$(tput sgr0)] [--dry-run] $(tput setaf 3)<operation>$(tput sgr0) [-h|--help] [$(tput setaf 4)<headers>$(tput sgr0)]
-           [$(tput setaf 5)<parameters>$(tput sgr0)] [$(tput setaf 5)<body-parameters>$(tput sgr0)]
+  ${GREEN}${script_name}${OFF} [-h|--help] [-V|--version] [--about] [${RED}<curl-options>${OFF}]
+           [-ac|--accept ${GREEN}<mime-type>${OFF}] [-ct,--content-type ${GREEN}<mime-type>${OFF}]
+           [--host ${CYAN}<url>${OFF}] [--dry-run] [-nc|--no-colors] ${YELLOW}<operation>${OFF} [-h|--help]
+           [${BLUE}<headers>${OFF}] [${MAGENTA}<parameters>${OFF}] [${MAGENTA}<body-parameters>${OFF}]
 
-  - $(tput setaf 6)<url>$(tput sgr0) - endpoint of the REST service without basepath
+  - ${CYAN}<url>${OFF} - endpoint of the REST service without basepath
 
-  - $(tput setaf 1)<curl-options>$(tput sgr0) - any valid cURL options can be passed before $(tput setaf 3)<operation>$(tput sgr0)
-  - $(tput setaf 2)<mime-type>$(tput sgr0) - either full mime-type or one of supported abbreviations:
+  - ${RED}<curl-options>${OFF} - any valid cURL options can be passed before ${YELLOW}<operation>${OFF}
+  - ${GREEN}<mime-type>${OFF} - either full mime-type or one of supported abbreviations:
                    (text, html, md, csv, css, rtf, json, xml, yaml, js, bin,
                     rdf, jpg, png, gif, bmp, tiff)
-  - $(tput setaf 4)<headers>$(tput sgr0) - HTTP headers can be passed in the form $(tput setaf 3)HEADER$(tput sgr0):$(tput setaf 4)VALUE$(tput sgr0)
-  - $(tput setaf 5)<parameters>$(tput sgr0) - REST operation parameters can be passed in the following
+  - ${BLUE}<headers>${OFF} - HTTP headers can be passed in the form ${YELLOW}HEADER${OFF}:${BLUE}VALUE${OFF}
+  - ${MAGENTA}<parameters>${OFF} - REST operation parameters can be passed in the following
                    forms:
-                   * $(tput setaf 3)KEY$(tput sgr0)=$(tput setaf 4)VALUE$(tput sgr0) - path or query parameters
-  - $(tput setaf 5)<body-parameters>$(tput sgr0) - simple JSON body content (first level only) can be build
+                   * ${YELLOW}KEY${OFF}=${BLUE}VALUE${OFF} - path or query parameters
+  - ${MAGENTA}<body-parameters>${OFF} - simple JSON body content (first level only) can be build
                         using the following arguments:
-                        * $(tput setaf 3)KEY$(tput sgr0)==$(tput setaf 4)VALUE$(tput sgr0) - body parameters which will be added to body
-                                      JSON as '{ ..., "$(tput setaf 3)KEY$(tput sgr0)": "$(tput setaf 4)VALUE$(tput sgr0)", ... }'
-                        * $(tput setaf 3)KEY$(tput sgr0):=$(tput setaf 4)VALUE$(tput sgr0) - body parameters which will be added to body
-                                      JSON as '{ ..., "$(tput setaf 3)KEY$(tput sgr0)": $(tput setaf 4)VALUE$(tput sgr0), ... }'
+                        * ${YELLOW}KEY${OFF}==${BLUE}VALUE${OFF} - body parameters which will be added to body
+                                      JSON as '{ ..., "${YELLOW}KEY${OFF}": "${BLUE}VALUE${OFF}", ... }'
+                        * ${YELLOW}KEY${OFF}:=${BLUE}VALUE${OFF} - body parameters which will be added to body
+                                      JSON as '{ ..., "${YELLOW}KEY${OFF}": ${BLUE}VALUE${OFF}, ... }'
 
 EOF
-    echo -e "$(tput bold)$(tput setaf 7)Authentication methods$(tput sgr0)"
+    echo -e "${BOLD}${WHITE}Authentication methods${OFF}"
     echo -e ""
-    echo -e "  - $(tput setaf 4)Basic AUTH$(tput sgr0) - add '-u <username>:<password>' before $(tput setaf 3)<operation>$(tput sgr0)"
+    echo -e "  - ${BLUE}Basic AUTH${OFF} - add '-u <username>:<password>' before ${YELLOW}<operation>${OFF}"
     
     echo ""
-    echo -e "$(tput bold)$(tput setaf 7)Operations (grouped by tags)$(tput sgr0)"
+    echo -e "${BOLD}${WHITE}Operations (grouped by tags)${OFF}"
     echo ""
-    echo -e "$(tput bold)$(tput setaf 7)[blueOcean]$(tput sgr0)"
+    echo -e "${BOLD}${WHITE}[blueOcean]${OFF}"
 read -d '' ops <<EOF
-  $(tput setaf 6)getAuthenticatedUser$(tput sgr0);
-  $(tput setaf 6)getClasses$(tput sgr0);
-  $(tput setaf 6)getOrganisation$(tput sgr0);
-  $(tput setaf 6)getOrganisations$(tput sgr0);
-  $(tput setaf 6)getPipelineBranchByOrg$(tput sgr0);
-  $(tput setaf 6)getPipelineBranchesByOrg$(tput sgr0);
-  $(tput setaf 6)getPipelineByOrg$(tput sgr0);
-  $(tput setaf 6)getPipelineFolderByOrg$(tput sgr0);
-  $(tput setaf 6)getPipelineFolderByOrg_0$(tput sgr0);
-  $(tput setaf 6)getPipelinesByOrg$(tput sgr0);
-  $(tput setaf 6)getUser$(tput sgr0);
-  $(tput setaf 6)getUsers$(tput sgr0);
-  $(tput setaf 6)search$(tput sgr0);
-  $(tput setaf 6)search_0$(tput sgr0);
+  ${CYAN}deletePipelineQueueItem${OFF}; (AUTH)
+  ${CYAN}getAuthenticatedUser${OFF}; (AUTH)
+  ${CYAN}getClasses${OFF}; (AUTH)
+  ${CYAN}getOrganisation${OFF}; (AUTH)
+  ${CYAN}getOrganisations${OFF}; (AUTH)
+  ${CYAN}getPipeline${OFF}; (AUTH)
+  ${CYAN}getPipelineActivities${OFF}; (AUTH)
+  ${CYAN}getPipelineBranch${OFF}; (AUTH)
+  ${CYAN}getPipelineBranchRun${OFF}; (AUTH)
+  ${CYAN}getPipelineBranches${OFF}; (AUTH)
+  ${CYAN}getPipelineFolder${OFF}; (AUTH)
+  ${CYAN}getPipelineFolderPipeline${OFF}; (AUTH)
+  ${CYAN}getPipelineQueue${OFF}; (AUTH)
+  ${CYAN}getPipelineRun${OFF}; (AUTH)
+  ${CYAN}getPipelineRunLog${OFF}; (AUTH)
+  ${CYAN}getPipelineRunNode${OFF}; (AUTH)
+  ${CYAN}getPipelineRunNodeStep${OFF}; (AUTH)
+  ${CYAN}getPipelineRunNodeStepLog${OFF}; (AUTH)
+  ${CYAN}getPipelineRunNodeSteps${OFF}; (AUTH)
+  ${CYAN}getPipelineRunNodes${OFF}; (AUTH)
+  ${CYAN}getPipelineRuns${OFF}; (AUTH)
+  ${CYAN}getPipelines${OFF}; (AUTH)
+  ${CYAN}getSCM${OFF}; (AUTH)
+  ${CYAN}getSCMOrganisationRepositories${OFF}; (AUTH)
+  ${CYAN}getSCMOrganisationRepository${OFF}; (AUTH)
+  ${CYAN}getSCMOrganisations${OFF}; (AUTH)
+  ${CYAN}getUser${OFF}; (AUTH)
+  ${CYAN}getUserFavorites${OFF}; (AUTH)
+  ${CYAN}getUsers${OFF}; (AUTH)
+  ${CYAN}postPipelineRun${OFF}; (AUTH)
+  ${CYAN}postPipelineRuns${OFF}; (AUTH)
+  ${CYAN}putPipelineFavorite${OFF}; (AUTH)
+  ${CYAN}putPipelineRun${OFF}; (AUTH)
+  ${CYAN}search${OFF}; (AUTH)
+  ${CYAN}searchClasses${OFF}; (AUTH)
 EOF
 echo "  $ops" | column -t -s ';'
     echo ""
-    echo -e "$(tput bold)$(tput setaf 7)[remoteAccess]$(tput sgr0)"
+    echo -e "${BOLD}${WHITE}[remoteAccess]${OFF}"
 read -d '' ops <<EOF
-  $(tput setaf 6)getComputer$(tput sgr0);
-  $(tput setaf 6)getCrumb$(tput sgr0);
-  $(tput setaf 6)getJenkins$(tput sgr0);
-  $(tput setaf 6)getJob$(tput sgr0);
-  $(tput setaf 6)getJobConfig$(tput sgr0);
-  $(tput setaf 6)getJobLastBuild$(tput sgr0);
-  $(tput setaf 6)getJobProgressiveText$(tput sgr0);
-  $(tput setaf 6)getQueue$(tput sgr0);
-  $(tput setaf 6)getQueueItem$(tput sgr0);
-  $(tput setaf 6)getView$(tput sgr0);
-  $(tput setaf 6)getViewConfig$(tput sgr0);
-  $(tput setaf 6)headJenkins$(tput sgr0);
-  $(tput setaf 6)postCreateItem$(tput sgr0);
-  $(tput setaf 6)postCreateView$(tput sgr0);
-  $(tput setaf 6)postJobBuild$(tput sgr0);
-  $(tput setaf 6)postJobConfig$(tput sgr0);
-  $(tput setaf 6)postJobDelete$(tput sgr0);
-  $(tput setaf 6)postJobDisable$(tput sgr0);
-  $(tput setaf 6)postJobEnable$(tput sgr0);
-  $(tput setaf 6)postJobLastBuildStop$(tput sgr0);
-  $(tput setaf 6)postViewConfig$(tput sgr0);
+  ${CYAN}getComputer${OFF}; (AUTH)
+  ${CYAN}getCrumb${OFF}; (AUTH)
+  ${CYAN}getJenkins${OFF}; (AUTH)
+  ${CYAN}getJob${OFF}; (AUTH)
+  ${CYAN}getJobConfig${OFF}; (AUTH)
+  ${CYAN}getJobLastBuild${OFF}; (AUTH)
+  ${CYAN}getJobProgressiveText${OFF}; (AUTH)
+  ${CYAN}getQueue${OFF}; (AUTH)
+  ${CYAN}getQueueItem${OFF}; (AUTH)
+  ${CYAN}getView${OFF}; (AUTH)
+  ${CYAN}getViewConfig${OFF}; (AUTH)
+  ${CYAN}headJenkins${OFF}; (AUTH)
+  ${CYAN}postCreateItem${OFF}; (AUTH)
+  ${CYAN}postCreateView${OFF}; (AUTH)
+  ${CYAN}postJobBuild${OFF}; (AUTH)
+  ${CYAN}postJobConfig${OFF}; (AUTH)
+  ${CYAN}postJobDelete${OFF}; (AUTH)
+  ${CYAN}postJobDisable${OFF}; (AUTH)
+  ${CYAN}postJobEnable${OFF}; (AUTH)
+  ${CYAN}postJobLastBuildStop${OFF}; (AUTH)
+  ${CYAN}postViewConfig${OFF}; (AUTH)
 EOF
 echo "  $ops" | column -t -s ';'
     echo ""
-    echo -e "$(tput bold)$(tput setaf 7)Options$(tput sgr0)"
+    echo -e "${BOLD}${WHITE}Options${OFF}"
     echo -e "  -h,--help\t\t\t\tPrint this help"
     echo -e "  -V,--version\t\t\t\tPrint API version"
     echo -e "  --about\t\t\t\tPrint the information about service"
-    echo -e "  --host $(tput setaf 6)<url>$(tput sgr0)\t\t\t\tSpecify the host URL "
+    echo -e "  --host ${CYAN}<url>${OFF}\t\t\t\tSpecify the host URL "
 
 echo -e "              \t\t\t\t(e.g. 'https://127.0.0.1:8080')"
     echo -e "  --force\t\t\t\tForce command invocation in spite of missing"
     echo -e "         \t\t\t\trequired parameters or wrong content type"
     echo -e "  --dry-run\t\t\t\tPrint out the cURL command without"
     echo -e "           \t\t\t\texecuting it"
-    echo -e "  -ac,--accept $(tput setaf 3)<mime-type>$(tput sgr0)\t\tSet the 'Accept' header in the request"
-    echo -e "  -ct,--content-type $(tput setaf 3)<mime-type>$(tput sgr0)\tSet the 'Content-type' header in "
+    echo -e "  -nc,--no-colors\t\t\tEnforce print without colors, otherwise autodected"
+    echo -e "  -ac,--accept ${YELLOW}<mime-type>${OFF}\t\tSet the 'Accept' header in the request"
+    echo -e "  -ct,--content-type ${YELLOW}<mime-type>${OFF}\tSet the 'Content-type' header in "
     echo -e "                                \tthe request"
     echo ""
 }
@@ -794,7 +963,7 @@ echo -e "              \t\t\t\t(e.g. 'https://127.0.0.1:8080')"
 ##############################################################################
 print_about() {
     echo ""
-    echo -e "$(tput bold)$(tput setaf 7)Swaggy Jenkins command line client (API version 0.1.0)$(tput sgr0)"
+    echo -e "${BOLD}${WHITE}Swaggy Jenkins command line client (API version 0.1.0)${OFF}"
     echo ""
     echo -e "License: "
     echo -e "Contact: blah@cliffano.com"
@@ -803,7 +972,7 @@ read -d '' appdescription <<EOF
 
 Jenkins API clients generated from Swagger / Open API specification
 EOF
-echo "$appdescription" | fold -sw 80
+echo "$appdescription" | paste -sd' ' | fold -sw 80
 }
 
 
@@ -814,10 +983,34 @@ echo "$appdescription" | fold -sw 80
 ##############################################################################
 print_version() {
     echo ""
-    echo -e "$(tput bold)Swaggy Jenkins command line client (API version 0.1.0)$(tput sgr0)"
+    echo -e "${BOLD}Swaggy Jenkins command line client (API version 0.1.0)${OFF}"
     echo ""
 }
 
+##############################################################################
+#
+# Print help for deletePipelineQueueItem operation
+#
+##############################################################################
+print_deletePipelineQueueItem_help() {
+    echo ""
+    echo -e "${BOLD}${WHITE}deletePipelineQueueItem - ${OFF}${BLUE}(AUTH - BASIC)${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e ""
+    echo -e "Delete queue item from an organization pipeline queue" | paste -sd' ' | fold -sw 80
+    echo -e ""
+    echo -e "${BOLD}${WHITE}Parameters${OFF}"
+    echo -e "  * ${GREEN}organization${OFF} ${BLUE}[String]${OFF} ${RED}(required)${OFF}${OFF} - Name of the organization ${YELLOW}Specify as: organization=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}pipeline${OFF} ${BLUE}[String]${OFF} ${RED}(required)${OFF}${OFF} - Name of the pipeline ${YELLOW}Specify as: pipeline=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}queue${OFF} ${BLUE}[String]${OFF} ${RED}(required)${OFF}${OFF} - Name of the queue item ${YELLOW}Specify as: queue=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo ""
+    echo -e "${BOLD}${WHITE}Responses${OFF}"
+    code=200
+    echo -e "${result_color_table[${code:0:1}]}  200;Successfully deleted queue item${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    code=401
+    echo -e "${result_color_table[${code:0:1}]}  401;Authentication failed - incorrect username and/or password${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    code=403
+    echo -e "${result_color_table[${code:0:1}]}  403;Jenkins requires authentication - please set username and password${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+}
 ##############################################################################
 #
 # Print help for getAuthenticatedUser operation
@@ -825,74 +1018,20 @@ print_version() {
 ##############################################################################
 print_getAuthenticatedUser_help() {
     echo ""
-    echo -e "$(tput bold)$(tput setaf 7)getAuthenticatedUser - $(tput sgr0)"
+    echo -e "${BOLD}${WHITE}getAuthenticatedUser - ${OFF}${BLUE}(AUTH - BASIC)${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo -e ""
-    echo -e "Retrieve authenticated user details for an organisation" | fold -sw 80
+    echo -e "Retrieve authenticated user details for an organization" | paste -sd' ' | fold -sw 80
     echo -e ""
-    echo -e "$(tput bold)$(tput setaf 7)Parameters$(tput sgr0)"
-    echo -e "  * $(tput setaf 2)organisation$(tput sgr0) $(tput setaf 4)[String]$(tput sgr0) $(tput setaf 1)(required)$(tput sgr0)$(tput sgr0) - Name of the organisation $(tput setaf 3)Specify as: organisation=value$(tput sgr0)" | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "${BOLD}${WHITE}Parameters${OFF}"
+    echo -e "  * ${GREEN}organization${OFF} ${BLUE}[String]${OFF} ${RED}(required)${OFF}${OFF} - Name of the organization ${YELLOW}Specify as: organization=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo ""
-    echo -e "$(tput bold)$(tput setaf 7)Responses$(tput sgr0)"
-    case 200 in
-        1*)
-        echo -e "$(tput setaf 7)  200;Successfully retrieved authenticated user details$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        2*)
-        echo -e "$(tput setaf 2)  200;Successfully retrieved authenticated user details$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        3*)
-        echo -e "$(tput setaf 3)  200;Successfully retrieved authenticated user details$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        4*)
-        echo -e "$(tput setaf 1)  200;Successfully retrieved authenticated user details$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        5*)
-        echo -e "$(tput setaf 5)  200;Successfully retrieved authenticated user details$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        *)
-        echo -e "$(tput setaf 7)  200;Successfully retrieved authenticated user details$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-    esac
-    case 401 in
-        1*)
-        echo -e "$(tput setaf 7)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        2*)
-        echo -e "$(tput setaf 2)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        3*)
-        echo -e "$(tput setaf 3)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        4*)
-        echo -e "$(tput setaf 1)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        5*)
-        echo -e "$(tput setaf 5)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        *)
-        echo -e "$(tput setaf 7)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-    esac
-    case 403 in
-        1*)
-        echo -e "$(tput setaf 7)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        2*)
-        echo -e "$(tput setaf 2)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        3*)
-        echo -e "$(tput setaf 3)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        4*)
-        echo -e "$(tput setaf 1)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        5*)
-        echo -e "$(tput setaf 5)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        *)
-        echo -e "$(tput setaf 7)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-    esac
+    echo -e "${BOLD}${WHITE}Responses${OFF}"
+    code=200
+    echo -e "${result_color_table[${code:0:1}]}  200;Successfully retrieved authenticated user details${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    code=401
+    echo -e "${result_color_table[${code:0:1}]}  401;Authentication failed - incorrect username and/or password${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    code=403
+    echo -e "${result_color_table[${code:0:1}]}  403;Jenkins requires authentication - please set username and password${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
 }
 ##############################################################################
 #
@@ -901,74 +1040,20 @@ print_getAuthenticatedUser_help() {
 ##############################################################################
 print_getClasses_help() {
     echo ""
-    echo -e "$(tput bold)$(tput setaf 7)getClasses - $(tput sgr0)"
+    echo -e "${BOLD}${WHITE}getClasses - ${OFF}${BLUE}(AUTH - BASIC)${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo -e ""
-    echo -e "Get a list of class names supported by a given class" | fold -sw 80
+    echo -e "Get a list of class names supported by a given class" | paste -sd' ' | fold -sw 80
     echo -e ""
-    echo -e "$(tput bold)$(tput setaf 7)Parameters$(tput sgr0)"
-    echo -e "  * $(tput setaf 2)class$(tput sgr0) $(tput setaf 4)[String]$(tput sgr0) $(tput setaf 1)(required)$(tput sgr0)$(tput sgr0) - Name of the class $(tput setaf 3)Specify as: class=value$(tput sgr0)" | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "${BOLD}${WHITE}Parameters${OFF}"
+    echo -e "  * ${GREEN}class${OFF} ${BLUE}[String]${OFF} ${RED}(required)${OFF}${OFF} - Name of the class ${YELLOW}Specify as: class=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo ""
-    echo -e "$(tput bold)$(tput setaf 7)Responses$(tput sgr0)"
-    case 200 in
-        1*)
-        echo -e "$(tput setaf 7)  200;Successfully retrieved class names$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        2*)
-        echo -e "$(tput setaf 2)  200;Successfully retrieved class names$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        3*)
-        echo -e "$(tput setaf 3)  200;Successfully retrieved class names$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        4*)
-        echo -e "$(tput setaf 1)  200;Successfully retrieved class names$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        5*)
-        echo -e "$(tput setaf 5)  200;Successfully retrieved class names$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        *)
-        echo -e "$(tput setaf 7)  200;Successfully retrieved class names$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-    esac
-    case 401 in
-        1*)
-        echo -e "$(tput setaf 7)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        2*)
-        echo -e "$(tput setaf 2)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        3*)
-        echo -e "$(tput setaf 3)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        4*)
-        echo -e "$(tput setaf 1)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        5*)
-        echo -e "$(tput setaf 5)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        *)
-        echo -e "$(tput setaf 7)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-    esac
-    case 403 in
-        1*)
-        echo -e "$(tput setaf 7)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        2*)
-        echo -e "$(tput setaf 2)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        3*)
-        echo -e "$(tput setaf 3)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        4*)
-        echo -e "$(tput setaf 1)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        5*)
-        echo -e "$(tput setaf 5)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        *)
-        echo -e "$(tput setaf 7)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-    esac
+    echo -e "${BOLD}${WHITE}Responses${OFF}"
+    code=200
+    echo -e "${result_color_table[${code:0:1}]}  200;Successfully retrieved class names${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    code=401
+    echo -e "${result_color_table[${code:0:1}]}  401;Authentication failed - incorrect username and/or password${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    code=403
+    echo -e "${result_color_table[${code:0:1}]}  403;Jenkins requires authentication - please set username and password${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
 }
 ##############################################################################
 #
@@ -977,94 +1062,22 @@ print_getClasses_help() {
 ##############################################################################
 print_getOrganisation_help() {
     echo ""
-    echo -e "$(tput bold)$(tput setaf 7)getOrganisation - $(tput sgr0)"
+    echo -e "${BOLD}${WHITE}getOrganisation - ${OFF}${BLUE}(AUTH - BASIC)${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo -e ""
-    echo -e "Retrieve organisation details" | fold -sw 80
+    echo -e "Retrieve organization details" | paste -sd' ' | fold -sw 80
     echo -e ""
-    echo -e "$(tput bold)$(tput setaf 7)Parameters$(tput sgr0)"
-    echo -e "  * $(tput setaf 2)organisation$(tput sgr0) $(tput setaf 4)[String]$(tput sgr0) $(tput setaf 1)(required)$(tput sgr0)$(tput sgr0) - Name of the organisation $(tput setaf 3)Specify as: organisation=value$(tput sgr0)" | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "${BOLD}${WHITE}Parameters${OFF}"
+    echo -e "  * ${GREEN}organization${OFF} ${BLUE}[String]${OFF} ${RED}(required)${OFF}${OFF} - Name of the organization ${YELLOW}Specify as: organization=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo ""
-    echo -e "$(tput bold)$(tput setaf 7)Responses$(tput sgr0)"
-    case 200 in
-        1*)
-        echo -e "$(tput setaf 7)  200;Successfully retrieved pipeline details$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        2*)
-        echo -e "$(tput setaf 2)  200;Successfully retrieved pipeline details$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        3*)
-        echo -e "$(tput setaf 3)  200;Successfully retrieved pipeline details$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        4*)
-        echo -e "$(tput setaf 1)  200;Successfully retrieved pipeline details$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        5*)
-        echo -e "$(tput setaf 5)  200;Successfully retrieved pipeline details$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        *)
-        echo -e "$(tput setaf 7)  200;Successfully retrieved pipeline details$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-    esac
-    case 401 in
-        1*)
-        echo -e "$(tput setaf 7)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        2*)
-        echo -e "$(tput setaf 2)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        3*)
-        echo -e "$(tput setaf 3)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        4*)
-        echo -e "$(tput setaf 1)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        5*)
-        echo -e "$(tput setaf 5)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        *)
-        echo -e "$(tput setaf 7)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-    esac
-    case 403 in
-        1*)
-        echo -e "$(tput setaf 7)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        2*)
-        echo -e "$(tput setaf 2)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        3*)
-        echo -e "$(tput setaf 3)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        4*)
-        echo -e "$(tput setaf 1)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        5*)
-        echo -e "$(tput setaf 5)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        *)
-        echo -e "$(tput setaf 7)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-    esac
-    case 404 in
-        1*)
-        echo -e "$(tput setaf 7)  404;Pipeline cannot be found on Jenkins instance$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        2*)
-        echo -e "$(tput setaf 2)  404;Pipeline cannot be found on Jenkins instance$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        3*)
-        echo -e "$(tput setaf 3)  404;Pipeline cannot be found on Jenkins instance$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        4*)
-        echo -e "$(tput setaf 1)  404;Pipeline cannot be found on Jenkins instance$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        5*)
-        echo -e "$(tput setaf 5)  404;Pipeline cannot be found on Jenkins instance$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        *)
-        echo -e "$(tput setaf 7)  404;Pipeline cannot be found on Jenkins instance$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-    esac
+    echo -e "${BOLD}${WHITE}Responses${OFF}"
+    code=200
+    echo -e "${result_color_table[${code:0:1}]}  200;Successfully retrieved pipeline details${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    code=401
+    echo -e "${result_color_table[${code:0:1}]}  401;Authentication failed - incorrect username and/or password${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    code=403
+    echo -e "${result_color_table[${code:0:1}]}  403;Jenkins requires authentication - please set username and password${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    code=404
+    echo -e "${result_color_table[${code:0:1}]}  404;Pipeline cannot be found on Jenkins instance${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
 }
 ##############################################################################
 #
@@ -1073,555 +1086,536 @@ print_getOrganisation_help() {
 ##############################################################################
 print_getOrganisations_help() {
     echo ""
-    echo -e "$(tput bold)$(tput setaf 7)getOrganisations - $(tput sgr0)"
+    echo -e "${BOLD}${WHITE}getOrganisations - ${OFF}${BLUE}(AUTH - BASIC)${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo -e ""
-    echo -e "Retrieve all organisations details" | fold -sw 80
+    echo -e "Retrieve all organizations details" | paste -sd' ' | fold -sw 80
     echo -e ""
     echo ""
-    echo -e "$(tput bold)$(tput setaf 7)Responses$(tput sgr0)"
-    case 200 in
-        1*)
-        echo -e "$(tput setaf 7)  200;Successfully retrieved pipelines details$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        2*)
-        echo -e "$(tput setaf 2)  200;Successfully retrieved pipelines details$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        3*)
-        echo -e "$(tput setaf 3)  200;Successfully retrieved pipelines details$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        4*)
-        echo -e "$(tput setaf 1)  200;Successfully retrieved pipelines details$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        5*)
-        echo -e "$(tput setaf 5)  200;Successfully retrieved pipelines details$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        *)
-        echo -e "$(tput setaf 7)  200;Successfully retrieved pipelines details$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-    esac
-    case 401 in
-        1*)
-        echo -e "$(tput setaf 7)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        2*)
-        echo -e "$(tput setaf 2)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        3*)
-        echo -e "$(tput setaf 3)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        4*)
-        echo -e "$(tput setaf 1)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        5*)
-        echo -e "$(tput setaf 5)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        *)
-        echo -e "$(tput setaf 7)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-    esac
-    case 403 in
-        1*)
-        echo -e "$(tput setaf 7)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        2*)
-        echo -e "$(tput setaf 2)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        3*)
-        echo -e "$(tput setaf 3)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        4*)
-        echo -e "$(tput setaf 1)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        5*)
-        echo -e "$(tput setaf 5)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        *)
-        echo -e "$(tput setaf 7)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-    esac
+    echo -e "${BOLD}${WHITE}Responses${OFF}"
+    code=200
+    echo -e "${result_color_table[${code:0:1}]}  200;Successfully retrieved pipelines details${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    code=401
+    echo -e "${result_color_table[${code:0:1}]}  401;Authentication failed - incorrect username and/or password${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    code=403
+    echo -e "${result_color_table[${code:0:1}]}  403;Jenkins requires authentication - please set username and password${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
 }
 ##############################################################################
 #
-# Print help for getPipelineBranchByOrg operation
+# Print help for getPipeline operation
 #
 ##############################################################################
-print_getPipelineBranchByOrg_help() {
+print_getPipeline_help() {
     echo ""
-    echo -e "$(tput bold)$(tput setaf 7)getPipelineBranchByOrg - $(tput sgr0)"
+    echo -e "${BOLD}${WHITE}getPipeline - ${OFF}${BLUE}(AUTH - BASIC)${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo -e ""
-    echo -e "Retrieve branch details for an organisation pipeline" | fold -sw 80
+    echo -e "Retrieve pipeline details for an organization" | paste -sd' ' | fold -sw 80
     echo -e ""
-    echo -e "$(tput bold)$(tput setaf 7)Parameters$(tput sgr0)"
-    echo -e "  * $(tput setaf 2)organisation$(tput sgr0) $(tput setaf 4)[String]$(tput sgr0) $(tput setaf 1)(required)$(tput sgr0)$(tput sgr0) - Name of the organisation $(tput setaf 3)Specify as: organisation=value$(tput sgr0)" | fold -sw 80 | sed '2,$s/^/    /'
-    echo -e "  * $(tput setaf 2)pipeline$(tput sgr0) $(tput setaf 4)[String]$(tput sgr0) $(tput setaf 1)(required)$(tput sgr0)$(tput sgr0) - Name of the pipeline $(tput setaf 3)Specify as: pipeline=value$(tput sgr0)" | fold -sw 80 | sed '2,$s/^/    /'
-    echo -e "  * $(tput setaf 2)branch$(tput sgr0) $(tput setaf 4)[String]$(tput sgr0) $(tput setaf 1)(required)$(tput sgr0)$(tput sgr0) - Name of the branch $(tput setaf 3)Specify as: branch=value$(tput sgr0)" | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "${BOLD}${WHITE}Parameters${OFF}"
+    echo -e "  * ${GREEN}organization${OFF} ${BLUE}[String]${OFF} ${RED}(required)${OFF}${OFF} - Name of the organization ${YELLOW}Specify as: organization=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}pipeline${OFF} ${BLUE}[String]${OFF} ${RED}(required)${OFF}${OFF} - Name of the pipeline ${YELLOW}Specify as: pipeline=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo ""
-    echo -e "$(tput bold)$(tput setaf 7)Responses$(tput sgr0)"
-    case 200 in
-        1*)
-        echo -e "$(tput setaf 7)  200;Successfully retrieved branch details$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        2*)
-        echo -e "$(tput setaf 2)  200;Successfully retrieved branch details$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        3*)
-        echo -e "$(tput setaf 3)  200;Successfully retrieved branch details$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        4*)
-        echo -e "$(tput setaf 1)  200;Successfully retrieved branch details$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        5*)
-        echo -e "$(tput setaf 5)  200;Successfully retrieved branch details$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        *)
-        echo -e "$(tput setaf 7)  200;Successfully retrieved branch details$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-    esac
-    case 401 in
-        1*)
-        echo -e "$(tput setaf 7)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        2*)
-        echo -e "$(tput setaf 2)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        3*)
-        echo -e "$(tput setaf 3)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        4*)
-        echo -e "$(tput setaf 1)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        5*)
-        echo -e "$(tput setaf 5)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        *)
-        echo -e "$(tput setaf 7)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-    esac
-    case 403 in
-        1*)
-        echo -e "$(tput setaf 7)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        2*)
-        echo -e "$(tput setaf 2)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        3*)
-        echo -e "$(tput setaf 3)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        4*)
-        echo -e "$(tput setaf 1)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        5*)
-        echo -e "$(tput setaf 5)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        *)
-        echo -e "$(tput setaf 7)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-    esac
+    echo -e "${BOLD}${WHITE}Responses${OFF}"
+    code=200
+    echo -e "${result_color_table[${code:0:1}]}  200;Successfully retrieved pipeline details${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    code=401
+    echo -e "${result_color_table[${code:0:1}]}  401;Authentication failed - incorrect username and/or password${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    code=403
+    echo -e "${result_color_table[${code:0:1}]}  403;Jenkins requires authentication - please set username and password${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    code=404
+    echo -e "${result_color_table[${code:0:1}]}  404;Pipeline cannot be found on Jenkins instance${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
 }
 ##############################################################################
 #
-# Print help for getPipelineBranchesByOrg operation
+# Print help for getPipelineActivities operation
 #
 ##############################################################################
-print_getPipelineBranchesByOrg_help() {
+print_getPipelineActivities_help() {
     echo ""
-    echo -e "$(tput bold)$(tput setaf 7)getPipelineBranchesByOrg - $(tput sgr0)"
+    echo -e "${BOLD}${WHITE}getPipelineActivities - ${OFF}${BLUE}(AUTH - BASIC)${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo -e ""
-    echo -e "Retrieve all branches details for an organisation pipeline" | fold -sw 80
+    echo -e "Retrieve all activities details for an organization pipeline" | paste -sd' ' | fold -sw 80
     echo -e ""
-    echo -e "$(tput bold)$(tput setaf 7)Parameters$(tput sgr0)"
-    echo -e "  * $(tput setaf 2)organisation$(tput sgr0) $(tput setaf 4)[String]$(tput sgr0) $(tput setaf 1)(required)$(tput sgr0)$(tput sgr0) - Name of the organisation $(tput setaf 3)Specify as: organisation=value$(tput sgr0)" | fold -sw 80 | sed '2,$s/^/    /'
-    echo -e "  * $(tput setaf 2)pipeline$(tput sgr0) $(tput setaf 4)[String]$(tput sgr0) $(tput setaf 1)(required)$(tput sgr0)$(tput sgr0) - Name of the pipeline $(tput setaf 3)Specify as: pipeline=value$(tput sgr0)" | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "${BOLD}${WHITE}Parameters${OFF}"
+    echo -e "  * ${GREEN}organization${OFF} ${BLUE}[String]${OFF} ${RED}(required)${OFF}${OFF} - Name of the organization ${YELLOW}Specify as: organization=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}pipeline${OFF} ${BLUE}[String]${OFF} ${RED}(required)${OFF}${OFF} - Name of the pipeline ${YELLOW}Specify as: pipeline=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo ""
-    echo -e "$(tput bold)$(tput setaf 7)Responses$(tput sgr0)"
-    case 200 in
-        1*)
-        echo -e "$(tput setaf 7)  200;Successfully retrieved all branches details$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        2*)
-        echo -e "$(tput setaf 2)  200;Successfully retrieved all branches details$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        3*)
-        echo -e "$(tput setaf 3)  200;Successfully retrieved all branches details$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        4*)
-        echo -e "$(tput setaf 1)  200;Successfully retrieved all branches details$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        5*)
-        echo -e "$(tput setaf 5)  200;Successfully retrieved all branches details$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        *)
-        echo -e "$(tput setaf 7)  200;Successfully retrieved all branches details$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-    esac
-    case 401 in
-        1*)
-        echo -e "$(tput setaf 7)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        2*)
-        echo -e "$(tput setaf 2)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        3*)
-        echo -e "$(tput setaf 3)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        4*)
-        echo -e "$(tput setaf 1)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        5*)
-        echo -e "$(tput setaf 5)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        *)
-        echo -e "$(tput setaf 7)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-    esac
-    case 403 in
-        1*)
-        echo -e "$(tput setaf 7)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        2*)
-        echo -e "$(tput setaf 2)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        3*)
-        echo -e "$(tput setaf 3)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        4*)
-        echo -e "$(tput setaf 1)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        5*)
-        echo -e "$(tput setaf 5)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        *)
-        echo -e "$(tput setaf 7)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-    esac
+    echo -e "${BOLD}${WHITE}Responses${OFF}"
+    code=200
+    echo -e "${result_color_table[${code:0:1}]}  200;Successfully retrieved all activities details${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    code=401
+    echo -e "${result_color_table[${code:0:1}]}  401;Authentication failed - incorrect username and/or password${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    code=403
+    echo -e "${result_color_table[${code:0:1}]}  403;Jenkins requires authentication - please set username and password${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
 }
 ##############################################################################
 #
-# Print help for getPipelineByOrg operation
+# Print help for getPipelineBranch operation
 #
 ##############################################################################
-print_getPipelineByOrg_help() {
+print_getPipelineBranch_help() {
     echo ""
-    echo -e "$(tput bold)$(tput setaf 7)getPipelineByOrg - $(tput sgr0)"
+    echo -e "${BOLD}${WHITE}getPipelineBranch - ${OFF}${BLUE}(AUTH - BASIC)${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo -e ""
-    echo -e "Retrieve pipeline details for an organisation" | fold -sw 80
+    echo -e "Retrieve branch details for an organization pipeline" | paste -sd' ' | fold -sw 80
     echo -e ""
-    echo -e "$(tput bold)$(tput setaf 7)Parameters$(tput sgr0)"
-    echo -e "  * $(tput setaf 2)organisation$(tput sgr0) $(tput setaf 4)[String]$(tput sgr0) $(tput setaf 1)(required)$(tput sgr0)$(tput sgr0) - Name of the organisation $(tput setaf 3)Specify as: organisation=value$(tput sgr0)" | fold -sw 80 | sed '2,$s/^/    /'
-    echo -e "  * $(tput setaf 2)pipeline$(tput sgr0) $(tput setaf 4)[String]$(tput sgr0) $(tput setaf 1)(required)$(tput sgr0)$(tput sgr0) - Name of the pipeline $(tput setaf 3)Specify as: pipeline=value$(tput sgr0)" | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "${BOLD}${WHITE}Parameters${OFF}"
+    echo -e "  * ${GREEN}organization${OFF} ${BLUE}[String]${OFF} ${RED}(required)${OFF}${OFF} - Name of the organization ${YELLOW}Specify as: organization=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}pipeline${OFF} ${BLUE}[String]${OFF} ${RED}(required)${OFF}${OFF} - Name of the pipeline ${YELLOW}Specify as: pipeline=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}branch${OFF} ${BLUE}[String]${OFF} ${RED}(required)${OFF}${OFF} - Name of the branch ${YELLOW}Specify as: branch=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo ""
-    echo -e "$(tput bold)$(tput setaf 7)Responses$(tput sgr0)"
-    case 200 in
-        1*)
-        echo -e "$(tput setaf 7)  200;Successfully retrieved pipeline details$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        2*)
-        echo -e "$(tput setaf 2)  200;Successfully retrieved pipeline details$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        3*)
-        echo -e "$(tput setaf 3)  200;Successfully retrieved pipeline details$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        4*)
-        echo -e "$(tput setaf 1)  200;Successfully retrieved pipeline details$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        5*)
-        echo -e "$(tput setaf 5)  200;Successfully retrieved pipeline details$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        *)
-        echo -e "$(tput setaf 7)  200;Successfully retrieved pipeline details$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-    esac
-    case 401 in
-        1*)
-        echo -e "$(tput setaf 7)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        2*)
-        echo -e "$(tput setaf 2)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        3*)
-        echo -e "$(tput setaf 3)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        4*)
-        echo -e "$(tput setaf 1)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        5*)
-        echo -e "$(tput setaf 5)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        *)
-        echo -e "$(tput setaf 7)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-    esac
-    case 403 in
-        1*)
-        echo -e "$(tput setaf 7)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        2*)
-        echo -e "$(tput setaf 2)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        3*)
-        echo -e "$(tput setaf 3)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        4*)
-        echo -e "$(tput setaf 1)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        5*)
-        echo -e "$(tput setaf 5)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        *)
-        echo -e "$(tput setaf 7)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-    esac
-    case 404 in
-        1*)
-        echo -e "$(tput setaf 7)  404;Pipeline cannot be found on Jenkins instance$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        2*)
-        echo -e "$(tput setaf 2)  404;Pipeline cannot be found on Jenkins instance$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        3*)
-        echo -e "$(tput setaf 3)  404;Pipeline cannot be found on Jenkins instance$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        4*)
-        echo -e "$(tput setaf 1)  404;Pipeline cannot be found on Jenkins instance$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        5*)
-        echo -e "$(tput setaf 5)  404;Pipeline cannot be found on Jenkins instance$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        *)
-        echo -e "$(tput setaf 7)  404;Pipeline cannot be found on Jenkins instance$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-    esac
+    echo -e "${BOLD}${WHITE}Responses${OFF}"
+    code=200
+    echo -e "${result_color_table[${code:0:1}]}  200;Successfully retrieved branch details${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    code=401
+    echo -e "${result_color_table[${code:0:1}]}  401;Authentication failed - incorrect username and/or password${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    code=403
+    echo -e "${result_color_table[${code:0:1}]}  403;Jenkins requires authentication - please set username and password${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
 }
 ##############################################################################
 #
-# Print help for getPipelineFolderByOrg operation
+# Print help for getPipelineBranchRun operation
 #
 ##############################################################################
-print_getPipelineFolderByOrg_help() {
+print_getPipelineBranchRun_help() {
     echo ""
-    echo -e "$(tput bold)$(tput setaf 7)getPipelineFolderByOrg - $(tput sgr0)"
+    echo -e "${BOLD}${WHITE}getPipelineBranchRun - ${OFF}${BLUE}(AUTH - BASIC)${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo -e ""
-    echo -e "Retrieve pipeline folder for an organisation" | fold -sw 80
+    echo -e "Retrieve branch run details for an organization pipeline" | paste -sd' ' | fold -sw 80
     echo -e ""
-    echo -e "$(tput bold)$(tput setaf 7)Parameters$(tput sgr0)"
-    echo -e "  * $(tput setaf 2)organisation$(tput sgr0) $(tput setaf 4)[String]$(tput sgr0) $(tput setaf 1)(required)$(tput sgr0)$(tput sgr0) - Name of the organisation $(tput setaf 3)Specify as: organisation=value$(tput sgr0)" | fold -sw 80 | sed '2,$s/^/    /'
-    echo -e "  * $(tput setaf 2)folder$(tput sgr0) $(tput setaf 4)[String]$(tput sgr0) $(tput setaf 1)(required)$(tput sgr0)$(tput sgr0) - Name of the folder $(tput setaf 3)Specify as: folder=value$(tput sgr0)" | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "${BOLD}${WHITE}Parameters${OFF}"
+    echo -e "  * ${GREEN}organization${OFF} ${BLUE}[String]${OFF} ${RED}(required)${OFF}${OFF} - Name of the organization ${YELLOW}Specify as: organization=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}pipeline${OFF} ${BLUE}[String]${OFF} ${RED}(required)${OFF}${OFF} - Name of the pipeline ${YELLOW}Specify as: pipeline=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}branch${OFF} ${BLUE}[String]${OFF} ${RED}(required)${OFF}${OFF} - Name of the branch ${YELLOW}Specify as: branch=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}run${OFF} ${BLUE}[String]${OFF} ${RED}(required)${OFF}${OFF} - Name of the run ${YELLOW}Specify as: run=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo ""
-    echo -e "$(tput bold)$(tput setaf 7)Responses$(tput sgr0)"
-    case 200 in
-        1*)
-        echo -e "$(tput setaf 7)  200;Successfully retrieved folder details$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        2*)
-        echo -e "$(tput setaf 2)  200;Successfully retrieved folder details$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        3*)
-        echo -e "$(tput setaf 3)  200;Successfully retrieved folder details$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        4*)
-        echo -e "$(tput setaf 1)  200;Successfully retrieved folder details$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        5*)
-        echo -e "$(tput setaf 5)  200;Successfully retrieved folder details$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        *)
-        echo -e "$(tput setaf 7)  200;Successfully retrieved folder details$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-    esac
-    case 401 in
-        1*)
-        echo -e "$(tput setaf 7)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        2*)
-        echo -e "$(tput setaf 2)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        3*)
-        echo -e "$(tput setaf 3)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        4*)
-        echo -e "$(tput setaf 1)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        5*)
-        echo -e "$(tput setaf 5)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        *)
-        echo -e "$(tput setaf 7)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-    esac
-    case 403 in
-        1*)
-        echo -e "$(tput setaf 7)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        2*)
-        echo -e "$(tput setaf 2)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        3*)
-        echo -e "$(tput setaf 3)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        4*)
-        echo -e "$(tput setaf 1)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        5*)
-        echo -e "$(tput setaf 5)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        *)
-        echo -e "$(tput setaf 7)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-    esac
+    echo -e "${BOLD}${WHITE}Responses${OFF}"
+    code=200
+    echo -e "${result_color_table[${code:0:1}]}  200;Successfully retrieved run details${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    code=401
+    echo -e "${result_color_table[${code:0:1}]}  401;Authentication failed - incorrect username and/or password${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    code=403
+    echo -e "${result_color_table[${code:0:1}]}  403;Jenkins requires authentication - please set username and password${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
 }
 ##############################################################################
 #
-# Print help for getPipelineFolderByOrg_0 operation
+# Print help for getPipelineBranches operation
 #
 ##############################################################################
-print_getPipelineFolderByOrg_0_help() {
+print_getPipelineBranches_help() {
     echo ""
-    echo -e "$(tput bold)$(tput setaf 7)getPipelineFolderByOrg_0 - $(tput sgr0)"
+    echo -e "${BOLD}${WHITE}getPipelineBranches - ${OFF}${BLUE}(AUTH - BASIC)${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo -e ""
-    echo -e "Retrieve pipeline details for an organisation folder" | fold -sw 80
+    echo -e "Retrieve all branches details for an organization pipeline" | paste -sd' ' | fold -sw 80
     echo -e ""
-    echo -e "$(tput bold)$(tput setaf 7)Parameters$(tput sgr0)"
-    echo -e "  * $(tput setaf 2)organisation$(tput sgr0) $(tput setaf 4)[String]$(tput sgr0) $(tput setaf 1)(required)$(tput sgr0)$(tput sgr0) - Name of the organisation $(tput setaf 3)Specify as: organisation=value$(tput sgr0)" | fold -sw 80 | sed '2,$s/^/    /'
-    echo -e "  * $(tput setaf 2)pipeline$(tput sgr0) $(tput setaf 4)[String]$(tput sgr0) $(tput setaf 1)(required)$(tput sgr0)$(tput sgr0) - Name of the pipeline $(tput setaf 3)Specify as: pipeline=value$(tput sgr0)" | fold -sw 80 | sed '2,$s/^/    /'
-    echo -e "  * $(tput setaf 2)folder$(tput sgr0) $(tput setaf 4)[String]$(tput sgr0) $(tput setaf 1)(required)$(tput sgr0)$(tput sgr0) - Name of the folder $(tput setaf 3)Specify as: folder=value$(tput sgr0)" | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "${BOLD}${WHITE}Parameters${OFF}"
+    echo -e "  * ${GREEN}organization${OFF} ${BLUE}[String]${OFF} ${RED}(required)${OFF}${OFF} - Name of the organization ${YELLOW}Specify as: organization=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}pipeline${OFF} ${BLUE}[String]${OFF} ${RED}(required)${OFF}${OFF} - Name of the pipeline ${YELLOW}Specify as: pipeline=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo ""
-    echo -e "$(tput bold)$(tput setaf 7)Responses$(tput sgr0)"
-    case 200 in
-        1*)
-        echo -e "$(tput setaf 7)  200;Successfully retrieved pipeline details$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        2*)
-        echo -e "$(tput setaf 2)  200;Successfully retrieved pipeline details$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        3*)
-        echo -e "$(tput setaf 3)  200;Successfully retrieved pipeline details$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        4*)
-        echo -e "$(tput setaf 1)  200;Successfully retrieved pipeline details$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        5*)
-        echo -e "$(tput setaf 5)  200;Successfully retrieved pipeline details$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        *)
-        echo -e "$(tput setaf 7)  200;Successfully retrieved pipeline details$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-    esac
-    case 401 in
-        1*)
-        echo -e "$(tput setaf 7)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        2*)
-        echo -e "$(tput setaf 2)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        3*)
-        echo -e "$(tput setaf 3)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        4*)
-        echo -e "$(tput setaf 1)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        5*)
-        echo -e "$(tput setaf 5)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        *)
-        echo -e "$(tput setaf 7)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-    esac
-    case 403 in
-        1*)
-        echo -e "$(tput setaf 7)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        2*)
-        echo -e "$(tput setaf 2)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        3*)
-        echo -e "$(tput setaf 3)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        4*)
-        echo -e "$(tput setaf 1)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        5*)
-        echo -e "$(tput setaf 5)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        *)
-        echo -e "$(tput setaf 7)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-    esac
+    echo -e "${BOLD}${WHITE}Responses${OFF}"
+    code=200
+    echo -e "${result_color_table[${code:0:1}]}  200;Successfully retrieved all branches details${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    code=401
+    echo -e "${result_color_table[${code:0:1}]}  401;Authentication failed - incorrect username and/or password${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    code=403
+    echo -e "${result_color_table[${code:0:1}]}  403;Jenkins requires authentication - please set username and password${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
 }
 ##############################################################################
 #
-# Print help for getPipelinesByOrg operation
+# Print help for getPipelineFolder operation
 #
 ##############################################################################
-print_getPipelinesByOrg_help() {
+print_getPipelineFolder_help() {
     echo ""
-    echo -e "$(tput bold)$(tput setaf 7)getPipelinesByOrg - $(tput sgr0)"
+    echo -e "${BOLD}${WHITE}getPipelineFolder - ${OFF}${BLUE}(AUTH - BASIC)${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo -e ""
-    echo -e "Retrieve all pipelines details for an organisation" | fold -sw 80
+    echo -e "Retrieve pipeline folder for an organization" | paste -sd' ' | fold -sw 80
     echo -e ""
-    echo -e "$(tput bold)$(tput setaf 7)Parameters$(tput sgr0)"
-    echo -e "  * $(tput setaf 2)organisation$(tput sgr0) $(tput setaf 4)[String]$(tput sgr0) $(tput setaf 1)(required)$(tput sgr0)$(tput sgr0) - Name of the organisation $(tput setaf 3)Specify as: organisation=value$(tput sgr0)" | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "${BOLD}${WHITE}Parameters${OFF}"
+    echo -e "  * ${GREEN}organization${OFF} ${BLUE}[String]${OFF} ${RED}(required)${OFF}${OFF} - Name of the organization ${YELLOW}Specify as: organization=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}folder${OFF} ${BLUE}[String]${OFF} ${RED}(required)${OFF}${OFF} - Name of the folder ${YELLOW}Specify as: folder=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo ""
-    echo -e "$(tput bold)$(tput setaf 7)Responses$(tput sgr0)"
-    case 200 in
-        1*)
-        echo -e "$(tput setaf 7)  200;Successfully retrieved pipelines details$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        2*)
-        echo -e "$(tput setaf 2)  200;Successfully retrieved pipelines details$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        3*)
-        echo -e "$(tput setaf 3)  200;Successfully retrieved pipelines details$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        4*)
-        echo -e "$(tput setaf 1)  200;Successfully retrieved pipelines details$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        5*)
-        echo -e "$(tput setaf 5)  200;Successfully retrieved pipelines details$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        *)
-        echo -e "$(tput setaf 7)  200;Successfully retrieved pipelines details$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-    esac
-    case 401 in
-        1*)
-        echo -e "$(tput setaf 7)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        2*)
-        echo -e "$(tput setaf 2)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        3*)
-        echo -e "$(tput setaf 3)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        4*)
-        echo -e "$(tput setaf 1)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        5*)
-        echo -e "$(tput setaf 5)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        *)
-        echo -e "$(tput setaf 7)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-    esac
-    case 403 in
-        1*)
-        echo -e "$(tput setaf 7)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        2*)
-        echo -e "$(tput setaf 2)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        3*)
-        echo -e "$(tput setaf 3)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        4*)
-        echo -e "$(tput setaf 1)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        5*)
-        echo -e "$(tput setaf 5)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        *)
-        echo -e "$(tput setaf 7)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-    esac
+    echo -e "${BOLD}${WHITE}Responses${OFF}"
+    code=200
+    echo -e "${result_color_table[${code:0:1}]}  200;Successfully retrieved folder details${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    code=401
+    echo -e "${result_color_table[${code:0:1}]}  401;Authentication failed - incorrect username and/or password${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    code=403
+    echo -e "${result_color_table[${code:0:1}]}  403;Jenkins requires authentication - please set username and password${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+}
+##############################################################################
+#
+# Print help for getPipelineFolderPipeline operation
+#
+##############################################################################
+print_getPipelineFolderPipeline_help() {
+    echo ""
+    echo -e "${BOLD}${WHITE}getPipelineFolderPipeline - ${OFF}${BLUE}(AUTH - BASIC)${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e ""
+    echo -e "Retrieve pipeline details for an organization folder" | paste -sd' ' | fold -sw 80
+    echo -e ""
+    echo -e "${BOLD}${WHITE}Parameters${OFF}"
+    echo -e "  * ${GREEN}organization${OFF} ${BLUE}[String]${OFF} ${RED}(required)${OFF}${OFF} - Name of the organization ${YELLOW}Specify as: organization=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}pipeline${OFF} ${BLUE}[String]${OFF} ${RED}(required)${OFF}${OFF} - Name of the pipeline ${YELLOW}Specify as: pipeline=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}folder${OFF} ${BLUE}[String]${OFF} ${RED}(required)${OFF}${OFF} - Name of the folder ${YELLOW}Specify as: folder=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo ""
+    echo -e "${BOLD}${WHITE}Responses${OFF}"
+    code=200
+    echo -e "${result_color_table[${code:0:1}]}  200;Successfully retrieved pipeline details${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    code=401
+    echo -e "${result_color_table[${code:0:1}]}  401;Authentication failed - incorrect username and/or password${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    code=403
+    echo -e "${result_color_table[${code:0:1}]}  403;Jenkins requires authentication - please set username and password${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+}
+##############################################################################
+#
+# Print help for getPipelineQueue operation
+#
+##############################################################################
+print_getPipelineQueue_help() {
+    echo ""
+    echo -e "${BOLD}${WHITE}getPipelineQueue - ${OFF}${BLUE}(AUTH - BASIC)${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e ""
+    echo -e "Retrieve queue details for an organization pipeline" | paste -sd' ' | fold -sw 80
+    echo -e ""
+    echo -e "${BOLD}${WHITE}Parameters${OFF}"
+    echo -e "  * ${GREEN}organization${OFF} ${BLUE}[String]${OFF} ${RED}(required)${OFF}${OFF} - Name of the organization ${YELLOW}Specify as: organization=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}pipeline${OFF} ${BLUE}[String]${OFF} ${RED}(required)${OFF}${OFF} - Name of the pipeline ${YELLOW}Specify as: pipeline=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo ""
+    echo -e "${BOLD}${WHITE}Responses${OFF}"
+    code=200
+    echo -e "${result_color_table[${code:0:1}]}  200;Successfully retrieved queue details${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    code=401
+    echo -e "${result_color_table[${code:0:1}]}  401;Authentication failed - incorrect username and/or password${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    code=403
+    echo -e "${result_color_table[${code:0:1}]}  403;Jenkins requires authentication - please set username and password${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+}
+##############################################################################
+#
+# Print help for getPipelineRun operation
+#
+##############################################################################
+print_getPipelineRun_help() {
+    echo ""
+    echo -e "${BOLD}${WHITE}getPipelineRun - ${OFF}${BLUE}(AUTH - BASIC)${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e ""
+    echo -e "Retrieve run details for an organization pipeline" | paste -sd' ' | fold -sw 80
+    echo -e ""
+    echo -e "${BOLD}${WHITE}Parameters${OFF}"
+    echo -e "  * ${GREEN}organization${OFF} ${BLUE}[String]${OFF} ${RED}(required)${OFF}${OFF} - Name of the organization ${YELLOW}Specify as: organization=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}pipeline${OFF} ${BLUE}[String]${OFF} ${RED}(required)${OFF}${OFF} - Name of the pipeline ${YELLOW}Specify as: pipeline=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}run${OFF} ${BLUE}[String]${OFF} ${RED}(required)${OFF}${OFF} - Name of the run ${YELLOW}Specify as: run=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo ""
+    echo -e "${BOLD}${WHITE}Responses${OFF}"
+    code=200
+    echo -e "${result_color_table[${code:0:1}]}  200;Successfully retrieved run details${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    code=401
+    echo -e "${result_color_table[${code:0:1}]}  401;Authentication failed - incorrect username and/or password${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    code=403
+    echo -e "${result_color_table[${code:0:1}]}  403;Jenkins requires authentication - please set username and password${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+}
+##############################################################################
+#
+# Print help for getPipelineRunLog operation
+#
+##############################################################################
+print_getPipelineRunLog_help() {
+    echo ""
+    echo -e "${BOLD}${WHITE}getPipelineRunLog - ${OFF}${BLUE}(AUTH - BASIC)${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e ""
+    echo -e "Get log for a pipeline run" | paste -sd' ' | fold -sw 80
+    echo -e ""
+    echo -e "${BOLD}${WHITE}Parameters${OFF}"
+    echo -e "  * ${GREEN}organization${OFF} ${BLUE}[String]${OFF} ${RED}(required)${OFF}${OFF} - Name of the organization ${YELLOW}Specify as: organization=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}pipeline${OFF} ${BLUE}[String]${OFF} ${RED}(required)${OFF}${OFF} - Name of the pipeline ${YELLOW}Specify as: pipeline=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}run${OFF} ${BLUE}[String]${OFF} ${RED}(required)${OFF}${OFF} - Name of the run ${YELLOW}Specify as: run=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}start${OFF} ${BLUE}[Integer]${OFF}${OFF} - Start position of the log${YELLOW} Specify as: start=value${OFF}" \
+        | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}download${OFF} ${BLUE}[Boolean]${OFF}${OFF} - Set to true in order to download the file, otherwise it's passed as a response body${YELLOW} Specify as: download=value${OFF}" \
+        | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo ""
+    echo -e "${BOLD}${WHITE}Responses${OFF}"
+    code=200
+    echo -e "${result_color_table[${code:0:1}]}  200;Successfully retrieved pipeline run log${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    code=401
+    echo -e "${result_color_table[${code:0:1}]}  401;Authentication failed - incorrect username and/or password${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    code=403
+    echo -e "${result_color_table[${code:0:1}]}  403;Jenkins requires authentication - please set username and password${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+}
+##############################################################################
+#
+# Print help for getPipelineRunNode operation
+#
+##############################################################################
+print_getPipelineRunNode_help() {
+    echo ""
+    echo -e "${BOLD}${WHITE}getPipelineRunNode - ${OFF}${BLUE}(AUTH - BASIC)${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e ""
+    echo -e "Retrieve run node details for an organization pipeline" | paste -sd' ' | fold -sw 80
+    echo -e ""
+    echo -e "${BOLD}${WHITE}Parameters${OFF}"
+    echo -e "  * ${GREEN}organization${OFF} ${BLUE}[String]${OFF} ${RED}(required)${OFF}${OFF} - Name of the organization ${YELLOW}Specify as: organization=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}pipeline${OFF} ${BLUE}[String]${OFF} ${RED}(required)${OFF}${OFF} - Name of the pipeline ${YELLOW}Specify as: pipeline=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}run${OFF} ${BLUE}[String]${OFF} ${RED}(required)${OFF}${OFF} - Name of the run ${YELLOW}Specify as: run=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}node${OFF} ${BLUE}[String]${OFF} ${RED}(required)${OFF}${OFF} - Name of the node ${YELLOW}Specify as: node=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo ""
+    echo -e "${BOLD}${WHITE}Responses${OFF}"
+    code=200
+    echo -e "${result_color_table[${code:0:1}]}  200;Successfully retrieved run node details${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    code=401
+    echo -e "${result_color_table[${code:0:1}]}  401;Authentication failed - incorrect username and/or password${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    code=403
+    echo -e "${result_color_table[${code:0:1}]}  403;Jenkins requires authentication - please set username and password${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+}
+##############################################################################
+#
+# Print help for getPipelineRunNodeStep operation
+#
+##############################################################################
+print_getPipelineRunNodeStep_help() {
+    echo ""
+    echo -e "${BOLD}${WHITE}getPipelineRunNodeStep - ${OFF}${BLUE}(AUTH - BASIC)${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e ""
+    echo -e "Retrieve run node details for an organization pipeline" | paste -sd' ' | fold -sw 80
+    echo -e ""
+    echo -e "${BOLD}${WHITE}Parameters${OFF}"
+    echo -e "  * ${GREEN}organization${OFF} ${BLUE}[String]${OFF} ${RED}(required)${OFF}${OFF} - Name of the organization ${YELLOW}Specify as: organization=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}pipeline${OFF} ${BLUE}[String]${OFF} ${RED}(required)${OFF}${OFF} - Name of the pipeline ${YELLOW}Specify as: pipeline=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}run${OFF} ${BLUE}[String]${OFF} ${RED}(required)${OFF}${OFF} - Name of the run ${YELLOW}Specify as: run=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}node${OFF} ${BLUE}[String]${OFF} ${RED}(required)${OFF}${OFF} - Name of the node ${YELLOW}Specify as: node=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}step${OFF} ${BLUE}[String]${OFF} ${RED}(required)${OFF}${OFF} - Name of the step ${YELLOW}Specify as: step=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo ""
+    echo -e "${BOLD}${WHITE}Responses${OFF}"
+    code=200
+    echo -e "${result_color_table[${code:0:1}]}  200;Successfully retrieved run node step details${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    code=401
+    echo -e "${result_color_table[${code:0:1}]}  401;Authentication failed - incorrect username and/or password${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    code=403
+    echo -e "${result_color_table[${code:0:1}]}  403;Jenkins requires authentication - please set username and password${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+}
+##############################################################################
+#
+# Print help for getPipelineRunNodeStepLog operation
+#
+##############################################################################
+print_getPipelineRunNodeStepLog_help() {
+    echo ""
+    echo -e "${BOLD}${WHITE}getPipelineRunNodeStepLog - ${OFF}${BLUE}(AUTH - BASIC)${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e ""
+    echo -e "Get log for a pipeline run node step" | paste -sd' ' | fold -sw 80
+    echo -e ""
+    echo -e "${BOLD}${WHITE}Parameters${OFF}"
+    echo -e "  * ${GREEN}organization${OFF} ${BLUE}[String]${OFF} ${RED}(required)${OFF}${OFF} - Name of the organization ${YELLOW}Specify as: organization=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}pipeline${OFF} ${BLUE}[String]${OFF} ${RED}(required)${OFF}${OFF} - Name of the pipeline ${YELLOW}Specify as: pipeline=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}run${OFF} ${BLUE}[String]${OFF} ${RED}(required)${OFF}${OFF} - Name of the run ${YELLOW}Specify as: run=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}node${OFF} ${BLUE}[String]${OFF} ${RED}(required)${OFF}${OFF} - Name of the node ${YELLOW}Specify as: node=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}step${OFF} ${BLUE}[String]${OFF} ${RED}(required)${OFF}${OFF} - Name of the step ${YELLOW}Specify as: step=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo ""
+    echo -e "${BOLD}${WHITE}Responses${OFF}"
+    code=200
+    echo -e "${result_color_table[${code:0:1}]}  200;Successfully retrieved pipeline run node step log${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    code=401
+    echo -e "${result_color_table[${code:0:1}]}  401;Authentication failed - incorrect username and/or password${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    code=403
+    echo -e "${result_color_table[${code:0:1}]}  403;Jenkins requires authentication - please set username and password${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+}
+##############################################################################
+#
+# Print help for getPipelineRunNodeSteps operation
+#
+##############################################################################
+print_getPipelineRunNodeSteps_help() {
+    echo ""
+    echo -e "${BOLD}${WHITE}getPipelineRunNodeSteps - ${OFF}${BLUE}(AUTH - BASIC)${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e ""
+    echo -e "Retrieve run node steps details for an organization pipeline" | paste -sd' ' | fold -sw 80
+    echo -e ""
+    echo -e "${BOLD}${WHITE}Parameters${OFF}"
+    echo -e "  * ${GREEN}organization${OFF} ${BLUE}[String]${OFF} ${RED}(required)${OFF}${OFF} - Name of the organization ${YELLOW}Specify as: organization=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}pipeline${OFF} ${BLUE}[String]${OFF} ${RED}(required)${OFF}${OFF} - Name of the pipeline ${YELLOW}Specify as: pipeline=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}run${OFF} ${BLUE}[String]${OFF} ${RED}(required)${OFF}${OFF} - Name of the run ${YELLOW}Specify as: run=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}node${OFF} ${BLUE}[String]${OFF} ${RED}(required)${OFF}${OFF} - Name of the node ${YELLOW}Specify as: node=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo ""
+    echo -e "${BOLD}${WHITE}Responses${OFF}"
+    code=200
+    echo -e "${result_color_table[${code:0:1}]}  200;Successfully retrieved run node steps details${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    code=401
+    echo -e "${result_color_table[${code:0:1}]}  401;Authentication failed - incorrect username and/or password${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    code=403
+    echo -e "${result_color_table[${code:0:1}]}  403;Jenkins requires authentication - please set username and password${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+}
+##############################################################################
+#
+# Print help for getPipelineRunNodes operation
+#
+##############################################################################
+print_getPipelineRunNodes_help() {
+    echo ""
+    echo -e "${BOLD}${WHITE}getPipelineRunNodes - ${OFF}${BLUE}(AUTH - BASIC)${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e ""
+    echo -e "Retrieve run nodes details for an organization pipeline" | paste -sd' ' | fold -sw 80
+    echo -e ""
+    echo -e "${BOLD}${WHITE}Parameters${OFF}"
+    echo -e "  * ${GREEN}organization${OFF} ${BLUE}[String]${OFF} ${RED}(required)${OFF}${OFF} - Name of the organization ${YELLOW}Specify as: organization=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}pipeline${OFF} ${BLUE}[String]${OFF} ${RED}(required)${OFF}${OFF} - Name of the pipeline ${YELLOW}Specify as: pipeline=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}run${OFF} ${BLUE}[String]${OFF} ${RED}(required)${OFF}${OFF} - Name of the run ${YELLOW}Specify as: run=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo ""
+    echo -e "${BOLD}${WHITE}Responses${OFF}"
+    code=200
+    echo -e "${result_color_table[${code:0:1}]}  200;Successfully retrieved run nodes details${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    code=401
+    echo -e "${result_color_table[${code:0:1}]}  401;Authentication failed - incorrect username and/or password${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    code=403
+    echo -e "${result_color_table[${code:0:1}]}  403;Jenkins requires authentication - please set username and password${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+}
+##############################################################################
+#
+# Print help for getPipelineRuns operation
+#
+##############################################################################
+print_getPipelineRuns_help() {
+    echo ""
+    echo -e "${BOLD}${WHITE}getPipelineRuns - ${OFF}${BLUE}(AUTH - BASIC)${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e ""
+    echo -e "Retrieve all runs details for an organization pipeline" | paste -sd' ' | fold -sw 80
+    echo -e ""
+    echo -e "${BOLD}${WHITE}Parameters${OFF}"
+    echo -e "  * ${GREEN}organization${OFF} ${BLUE}[String]${OFF} ${RED}(required)${OFF}${OFF} - Name of the organization ${YELLOW}Specify as: organization=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}pipeline${OFF} ${BLUE}[String]${OFF} ${RED}(required)${OFF}${OFF} - Name of the pipeline ${YELLOW}Specify as: pipeline=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo ""
+    echo -e "${BOLD}${WHITE}Responses${OFF}"
+    code=200
+    echo -e "${result_color_table[${code:0:1}]}  200;Successfully retrieved runs details${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    code=401
+    echo -e "${result_color_table[${code:0:1}]}  401;Authentication failed - incorrect username and/or password${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    code=403
+    echo -e "${result_color_table[${code:0:1}]}  403;Jenkins requires authentication - please set username and password${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+}
+##############################################################################
+#
+# Print help for getPipelines operation
+#
+##############################################################################
+print_getPipelines_help() {
+    echo ""
+    echo -e "${BOLD}${WHITE}getPipelines - ${OFF}${BLUE}(AUTH - BASIC)${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e ""
+    echo -e "Retrieve all pipelines details for an organization" | paste -sd' ' | fold -sw 80
+    echo -e ""
+    echo -e "${BOLD}${WHITE}Parameters${OFF}"
+    echo -e "  * ${GREEN}organization${OFF} ${BLUE}[String]${OFF} ${RED}(required)${OFF}${OFF} - Name of the organization ${YELLOW}Specify as: organization=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo ""
+    echo -e "${BOLD}${WHITE}Responses${OFF}"
+    code=200
+    echo -e "${result_color_table[${code:0:1}]}  200;Successfully retrieved pipelines details${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    code=401
+    echo -e "${result_color_table[${code:0:1}]}  401;Authentication failed - incorrect username and/or password${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    code=403
+    echo -e "${result_color_table[${code:0:1}]}  403;Jenkins requires authentication - please set username and password${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+}
+##############################################################################
+#
+# Print help for getSCM operation
+#
+##############################################################################
+print_getSCM_help() {
+    echo ""
+    echo -e "${BOLD}${WHITE}getSCM - ${OFF}${BLUE}(AUTH - BASIC)${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e ""
+    echo -e "Retrieve SCM details for an organization" | paste -sd' ' | fold -sw 80
+    echo -e ""
+    echo -e "${BOLD}${WHITE}Parameters${OFF}"
+    echo -e "  * ${GREEN}organization${OFF} ${BLUE}[String]${OFF} ${RED}(required)${OFF}${OFF} - Name of the organization ${YELLOW}Specify as: organization=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}scm${OFF} ${BLUE}[String]${OFF} ${RED}(required)${OFF}${OFF} - Name of SCM ${YELLOW}Specify as: scm=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo ""
+    echo -e "${BOLD}${WHITE}Responses${OFF}"
+    code=200
+    echo -e "${result_color_table[${code:0:1}]}  200;Successfully retrieved SCM details${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    code=401
+    echo -e "${result_color_table[${code:0:1}]}  401;Authentication failed - incorrect username and/or password${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    code=403
+    echo -e "${result_color_table[${code:0:1}]}  403;Jenkins requires authentication - please set username and password${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+}
+##############################################################################
+#
+# Print help for getSCMOrganisationRepositories operation
+#
+##############################################################################
+print_getSCMOrganisationRepositories_help() {
+    echo ""
+    echo -e "${BOLD}${WHITE}getSCMOrganisationRepositories - ${OFF}${BLUE}(AUTH - BASIC)${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e ""
+    echo -e "Retrieve SCM organization repositories details for an organization" | paste -sd' ' | fold -sw 80
+    echo -e ""
+    echo -e "${BOLD}${WHITE}Parameters${OFF}"
+    echo -e "  * ${GREEN}organization${OFF} ${BLUE}[String]${OFF} ${RED}(required)${OFF}${OFF} - Name of the organization ${YELLOW}Specify as: organization=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}scm${OFF} ${BLUE}[String]${OFF} ${RED}(required)${OFF}${OFF} - Name of SCM ${YELLOW}Specify as: scm=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}scmOrganisation${OFF} ${BLUE}[String]${OFF} ${RED}(required)${OFF}${OFF} - Name of the SCM organization ${YELLOW}Specify as: scmOrganisation=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}credentialId${OFF} ${BLUE}[String]${OFF}${OFF} - Credential ID${YELLOW} Specify as: credentialId=value${OFF}" \
+        | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}pageSize${OFF} ${BLUE}[Integer]${OFF}${OFF} - Number of items in a page${YELLOW} Specify as: pageSize=value${OFF}" \
+        | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}pageNumber${OFF} ${BLUE}[Integer]${OFF}${OFF} - Page number${YELLOW} Specify as: pageNumber=value${OFF}" \
+        | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo ""
+    echo -e "${BOLD}${WHITE}Responses${OFF}"
+    code=200
+    echo -e "${result_color_table[${code:0:1}]}  200;Successfully retrieved SCM organization repositories details${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    code=401
+    echo -e "${result_color_table[${code:0:1}]}  401;Authentication failed - incorrect username and/or password${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    code=403
+    echo -e "${result_color_table[${code:0:1}]}  403;Jenkins requires authentication - please set username and password${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+}
+##############################################################################
+#
+# Print help for getSCMOrganisationRepository operation
+#
+##############################################################################
+print_getSCMOrganisationRepository_help() {
+    echo ""
+    echo -e "${BOLD}${WHITE}getSCMOrganisationRepository - ${OFF}${BLUE}(AUTH - BASIC)${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e ""
+    echo -e "Retrieve SCM organization repository details for an organization" | paste -sd' ' | fold -sw 80
+    echo -e ""
+    echo -e "${BOLD}${WHITE}Parameters${OFF}"
+    echo -e "  * ${GREEN}organization${OFF} ${BLUE}[String]${OFF} ${RED}(required)${OFF}${OFF} - Name of the organization ${YELLOW}Specify as: organization=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}scm${OFF} ${BLUE}[String]${OFF} ${RED}(required)${OFF}${OFF} - Name of SCM ${YELLOW}Specify as: scm=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}scmOrganisation${OFF} ${BLUE}[String]${OFF} ${RED}(required)${OFF}${OFF} - Name of the SCM organization ${YELLOW}Specify as: scmOrganisation=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}repository${OFF} ${BLUE}[String]${OFF} ${RED}(required)${OFF}${OFF} - Name of the SCM repository ${YELLOW}Specify as: repository=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}credentialId${OFF} ${BLUE}[String]${OFF}${OFF} - Credential ID${YELLOW} Specify as: credentialId=value${OFF}" \
+        | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo ""
+    echo -e "${BOLD}${WHITE}Responses${OFF}"
+    code=200
+    echo -e "${result_color_table[${code:0:1}]}  200;Successfully retrieved SCM organizations details${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    code=401
+    echo -e "${result_color_table[${code:0:1}]}  401;Authentication failed - incorrect username and/or password${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    code=403
+    echo -e "${result_color_table[${code:0:1}]}  403;Jenkins requires authentication - please set username and password${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+}
+##############################################################################
+#
+# Print help for getSCMOrganisations operation
+#
+##############################################################################
+print_getSCMOrganisations_help() {
+    echo ""
+    echo -e "${BOLD}${WHITE}getSCMOrganisations - ${OFF}${BLUE}(AUTH - BASIC)${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e ""
+    echo -e "Retrieve SCM organizations details for an organization" | paste -sd' ' | fold -sw 80
+    echo -e ""
+    echo -e "${BOLD}${WHITE}Parameters${OFF}"
+    echo -e "  * ${GREEN}organization${OFF} ${BLUE}[String]${OFF} ${RED}(required)${OFF}${OFF} - Name of the organization ${YELLOW}Specify as: organization=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}scm${OFF} ${BLUE}[String]${OFF} ${RED}(required)${OFF}${OFF} - Name of SCM ${YELLOW}Specify as: scm=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}credentialId${OFF} ${BLUE}[String]${OFF}${OFF} - Credential ID${YELLOW} Specify as: credentialId=value${OFF}" \
+        | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo ""
+    echo -e "${BOLD}${WHITE}Responses${OFF}"
+    code=200
+    echo -e "${result_color_table[${code:0:1}]}  200;Successfully retrieved SCM organizations details${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    code=401
+    echo -e "${result_color_table[${code:0:1}]}  401;Authentication failed - incorrect username and/or password${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    code=403
+    echo -e "${result_color_table[${code:0:1}]}  403;Jenkins requires authentication - please set username and password${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
 }
 ##############################################################################
 #
@@ -1630,75 +1624,43 @@ print_getPipelinesByOrg_help() {
 ##############################################################################
 print_getUser_help() {
     echo ""
-    echo -e "$(tput bold)$(tput setaf 7)getUser - $(tput sgr0)"
+    echo -e "${BOLD}${WHITE}getUser - ${OFF}${BLUE}(AUTH - BASIC)${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo -e ""
-    echo -e "Retrieve user details for an organisation" | fold -sw 80
+    echo -e "Retrieve user details for an organization" | paste -sd' ' | fold -sw 80
     echo -e ""
-    echo -e "$(tput bold)$(tput setaf 7)Parameters$(tput sgr0)"
-    echo -e "  * $(tput setaf 2)organisation$(tput sgr0) $(tput setaf 4)[String]$(tput sgr0) $(tput setaf 1)(required)$(tput sgr0)$(tput sgr0) - Name of the organisation $(tput setaf 3)Specify as: organisation=value$(tput sgr0)" | fold -sw 80 | sed '2,$s/^/    /'
-    echo -e "  * $(tput setaf 2)user$(tput sgr0) $(tput setaf 4)[String]$(tput sgr0) $(tput setaf 1)(required)$(tput sgr0)$(tput sgr0) - Name of the user $(tput setaf 3)Specify as: user=value$(tput sgr0)" | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "${BOLD}${WHITE}Parameters${OFF}"
+    echo -e "  * ${GREEN}organization${OFF} ${BLUE}[String]${OFF} ${RED}(required)${OFF}${OFF} - Name of the organization ${YELLOW}Specify as: organization=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}user${OFF} ${BLUE}[String]${OFF} ${RED}(required)${OFF}${OFF} - Name of the user ${YELLOW}Specify as: user=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo ""
-    echo -e "$(tput bold)$(tput setaf 7)Responses$(tput sgr0)"
-    case 200 in
-        1*)
-        echo -e "$(tput setaf 7)  200;Successfully retrieved users details$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        2*)
-        echo -e "$(tput setaf 2)  200;Successfully retrieved users details$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        3*)
-        echo -e "$(tput setaf 3)  200;Successfully retrieved users details$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        4*)
-        echo -e "$(tput setaf 1)  200;Successfully retrieved users details$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        5*)
-        echo -e "$(tput setaf 5)  200;Successfully retrieved users details$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        *)
-        echo -e "$(tput setaf 7)  200;Successfully retrieved users details$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-    esac
-    case 401 in
-        1*)
-        echo -e "$(tput setaf 7)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        2*)
-        echo -e "$(tput setaf 2)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        3*)
-        echo -e "$(tput setaf 3)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        4*)
-        echo -e "$(tput setaf 1)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        5*)
-        echo -e "$(tput setaf 5)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        *)
-        echo -e "$(tput setaf 7)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-    esac
-    case 403 in
-        1*)
-        echo -e "$(tput setaf 7)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        2*)
-        echo -e "$(tput setaf 2)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        3*)
-        echo -e "$(tput setaf 3)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        4*)
-        echo -e "$(tput setaf 1)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        5*)
-        echo -e "$(tput setaf 5)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        *)
-        echo -e "$(tput setaf 7)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-    esac
+    echo -e "${BOLD}${WHITE}Responses${OFF}"
+    code=200
+    echo -e "${result_color_table[${code:0:1}]}  200;Successfully retrieved users details${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    code=401
+    echo -e "${result_color_table[${code:0:1}]}  401;Authentication failed - incorrect username and/or password${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    code=403
+    echo -e "${result_color_table[${code:0:1}]}  403;Jenkins requires authentication - please set username and password${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+}
+##############################################################################
+#
+# Print help for getUserFavorites operation
+#
+##############################################################################
+print_getUserFavorites_help() {
+    echo ""
+    echo -e "${BOLD}${WHITE}getUserFavorites - ${OFF}${BLUE}(AUTH - BASIC)${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e ""
+    echo -e "Retrieve user favorites details for an organization" | paste -sd' ' | fold -sw 80
+    echo -e ""
+    echo -e "${BOLD}${WHITE}Parameters${OFF}"
+    echo -e "  * ${GREEN}user${OFF} ${BLUE}[String]${OFF} ${RED}(required)${OFF}${OFF} - Name of the user ${YELLOW}Specify as: user=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo ""
+    echo -e "${BOLD}${WHITE}Responses${OFF}"
+    code=200
+    echo -e "${result_color_table[${code:0:1}]}  200;Successfully retrieved users favorites details${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    code=401
+    echo -e "${result_color_table[${code:0:1}]}  401;Authentication failed - incorrect username and/or password${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    code=403
+    echo -e "${result_color_table[${code:0:1}]}  403;Jenkins requires authentication - please set username and password${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
 }
 ##############################################################################
 #
@@ -1707,74 +1669,120 @@ print_getUser_help() {
 ##############################################################################
 print_getUsers_help() {
     echo ""
-    echo -e "$(tput bold)$(tput setaf 7)getUsers - $(tput sgr0)"
+    echo -e "${BOLD}${WHITE}getUsers - ${OFF}${BLUE}(AUTH - BASIC)${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo -e ""
-    echo -e "Retrieve users details for an organisation" | fold -sw 80
+    echo -e "Retrieve users details for an organization" | paste -sd' ' | fold -sw 80
     echo -e ""
-    echo -e "$(tput bold)$(tput setaf 7)Parameters$(tput sgr0)"
-    echo -e "  * $(tput setaf 2)organisation$(tput sgr0) $(tput setaf 4)[String]$(tput sgr0) $(tput setaf 1)(required)$(tput sgr0)$(tput sgr0) - Name of the organisation $(tput setaf 3)Specify as: organisation=value$(tput sgr0)" | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "${BOLD}${WHITE}Parameters${OFF}"
+    echo -e "  * ${GREEN}organization${OFF} ${BLUE}[String]${OFF} ${RED}(required)${OFF}${OFF} - Name of the organization ${YELLOW}Specify as: organization=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo ""
-    echo -e "$(tput bold)$(tput setaf 7)Responses$(tput sgr0)"
-    case 200 in
-        1*)
-        echo -e "$(tput setaf 7)  200;Successfully retrieved users details$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        2*)
-        echo -e "$(tput setaf 2)  200;Successfully retrieved users details$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        3*)
-        echo -e "$(tput setaf 3)  200;Successfully retrieved users details$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        4*)
-        echo -e "$(tput setaf 1)  200;Successfully retrieved users details$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        5*)
-        echo -e "$(tput setaf 5)  200;Successfully retrieved users details$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        *)
-        echo -e "$(tput setaf 7)  200;Successfully retrieved users details$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-    esac
-    case 401 in
-        1*)
-        echo -e "$(tput setaf 7)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        2*)
-        echo -e "$(tput setaf 2)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        3*)
-        echo -e "$(tput setaf 3)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        4*)
-        echo -e "$(tput setaf 1)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        5*)
-        echo -e "$(tput setaf 5)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        *)
-        echo -e "$(tput setaf 7)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-    esac
-    case 403 in
-        1*)
-        echo -e "$(tput setaf 7)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        2*)
-        echo -e "$(tput setaf 2)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        3*)
-        echo -e "$(tput setaf 3)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        4*)
-        echo -e "$(tput setaf 1)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        5*)
-        echo -e "$(tput setaf 5)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        *)
-        echo -e "$(tput setaf 7)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-    esac
+    echo -e "${BOLD}${WHITE}Responses${OFF}"
+    code=200
+    echo -e "${result_color_table[${code:0:1}]}  200;Successfully retrieved users details${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    code=401
+    echo -e "${result_color_table[${code:0:1}]}  401;Authentication failed - incorrect username and/or password${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    code=403
+    echo -e "${result_color_table[${code:0:1}]}  403;Jenkins requires authentication - please set username and password${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+}
+##############################################################################
+#
+# Print help for postPipelineRun operation
+#
+##############################################################################
+print_postPipelineRun_help() {
+    echo ""
+    echo -e "${BOLD}${WHITE}postPipelineRun - ${OFF}${BLUE}(AUTH - BASIC)${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e ""
+    echo -e "Replay an organization pipeline run" | paste -sd' ' | fold -sw 80
+    echo -e ""
+    echo -e "${BOLD}${WHITE}Parameters${OFF}"
+    echo -e "  * ${GREEN}organization${OFF} ${BLUE}[String]${OFF} ${RED}(required)${OFF}${OFF} - Name of the organization ${YELLOW}Specify as: organization=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}pipeline${OFF} ${BLUE}[String]${OFF} ${RED}(required)${OFF}${OFF} - Name of the pipeline ${YELLOW}Specify as: pipeline=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}run${OFF} ${BLUE}[String]${OFF} ${RED}(required)${OFF}${OFF} - Name of the run ${YELLOW}Specify as: run=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo ""
+    echo -e "${BOLD}${WHITE}Responses${OFF}"
+    code=200
+    echo -e "${result_color_table[${code:0:1}]}  200;Successfully replayed a pipeline run${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    code=401
+    echo -e "${result_color_table[${code:0:1}]}  401;Authentication failed - incorrect username and/or password${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    code=403
+    echo -e "${result_color_table[${code:0:1}]}  403;Jenkins requires authentication - please set username and password${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+}
+##############################################################################
+#
+# Print help for postPipelineRuns operation
+#
+##############################################################################
+print_postPipelineRuns_help() {
+    echo ""
+    echo -e "${BOLD}${WHITE}postPipelineRuns - ${OFF}${BLUE}(AUTH - BASIC)${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e ""
+    echo -e "Start a build for an organization pipeline" | paste -sd' ' | fold -sw 80
+    echo -e ""
+    echo -e "${BOLD}${WHITE}Parameters${OFF}"
+    echo -e "  * ${GREEN}organization${OFF} ${BLUE}[String]${OFF} ${RED}(required)${OFF}${OFF} - Name of the organization ${YELLOW}Specify as: organization=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}pipeline${OFF} ${BLUE}[String]${OFF} ${RED}(required)${OFF}${OFF} - Name of the pipeline ${YELLOW}Specify as: pipeline=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo ""
+    echo -e "${BOLD}${WHITE}Responses${OFF}"
+    code=200
+    echo -e "${result_color_table[${code:0:1}]}  200;Successfully started a build${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    code=401
+    echo -e "${result_color_table[${code:0:1}]}  401;Authentication failed - incorrect username and/or password${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    code=403
+    echo -e "${result_color_table[${code:0:1}]}  403;Jenkins requires authentication - please set username and password${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+}
+##############################################################################
+#
+# Print help for putPipelineFavorite operation
+#
+##############################################################################
+print_putPipelineFavorite_help() {
+    echo ""
+    echo -e "${BOLD}${WHITE}putPipelineFavorite - ${OFF}${BLUE}(AUTH - BASIC)${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e ""
+    echo -e "Favorite/unfavorite a pipeline" | paste -sd' ' | fold -sw 80
+    echo -e ""
+    echo -e "${BOLD}${WHITE}Parameters${OFF}"
+    echo -e "  * ${GREEN}organization${OFF} ${BLUE}[String]${OFF} ${RED}(required)${OFF}${OFF} - Name of the organization ${YELLOW}Specify as: organization=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}pipeline${OFF} ${BLUE}[String]${OFF} ${RED}(required)${OFF}${OFF} - Name of the pipeline ${YELLOW}Specify as: pipeline=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}body${OFF} ${BLUE}[]${OFF} ${RED}(required)${OFF}${OFF} - Set JSON string body to {\"favorite\": true} to favorite, set value to false to unfavorite" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e ""
+    echo ""
+    echo -e "${BOLD}${WHITE}Responses${OFF}"
+    code=200
+    echo -e "${result_color_table[${code:0:1}]}  200;Successfully favorited/unfavorited a pipeline${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    code=401
+    echo -e "${result_color_table[${code:0:1}]}  401;Authentication failed - incorrect username and/or password${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    code=403
+    echo -e "${result_color_table[${code:0:1}]}  403;Jenkins requires authentication - please set username and password${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+}
+##############################################################################
+#
+# Print help for putPipelineRun operation
+#
+##############################################################################
+print_putPipelineRun_help() {
+    echo ""
+    echo -e "${BOLD}${WHITE}putPipelineRun - ${OFF}${BLUE}(AUTH - BASIC)${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e ""
+    echo -e "Stop a build of an organization pipeline" | paste -sd' ' | fold -sw 80
+    echo -e ""
+    echo -e "${BOLD}${WHITE}Parameters${OFF}"
+    echo -e "  * ${GREEN}organization${OFF} ${BLUE}[String]${OFF} ${RED}(required)${OFF}${OFF} - Name of the organization ${YELLOW}Specify as: organization=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}pipeline${OFF} ${BLUE}[String]${OFF} ${RED}(required)${OFF}${OFF} - Name of the pipeline ${YELLOW}Specify as: pipeline=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}run${OFF} ${BLUE}[String]${OFF} ${RED}(required)${OFF}${OFF} - Name of the run ${YELLOW}Specify as: run=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}blocking${OFF} ${BLUE}[String]${OFF}${OFF} - Set to true to make blocking stop, default: false${YELLOW} Specify as: blocking=value${OFF}" \
+        | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}timeOutInSecs${OFF} ${BLUE}[Integer]${OFF}${OFF} - Timeout in seconds, default: 10 seconds${YELLOW} Specify as: timeOutInSecs=value${OFF}" \
+        | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo ""
+    echo -e "${BOLD}${WHITE}Responses${OFF}"
+    code=200
+    echo -e "${result_color_table[${code:0:1}]}  200;Successfully stopped a build${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    code=401
+    echo -e "${result_color_table[${code:0:1}]}  401;Authentication failed - incorrect username and/or password${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    code=403
+    echo -e "${result_color_table[${code:0:1}]}  403;Jenkins requires authentication - please set username and password${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
 }
 ##############################################################################
 #
@@ -1783,152 +1791,44 @@ print_getUsers_help() {
 ##############################################################################
 print_search_help() {
     echo ""
-    echo -e "$(tput bold)$(tput setaf 7)search - $(tput sgr0)"
+    echo -e "${BOLD}${WHITE}search - ${OFF}${BLUE}(AUTH - BASIC)${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo -e ""
-    echo -e "Get classes details" | fold -sw 80
+    echo -e "Search for any resource details" | paste -sd' ' | fold -sw 80
     echo -e ""
-    echo -e "$(tput bold)$(tput setaf 7)Parameters$(tput sgr0)"
-    echo -e "  * $(tput setaf 2)q$(tput sgr0) $(tput setaf 4)[String]$(tput sgr0) $(tput setaf 1)(required)$(tput sgr0)$(tput sgr0) - Query string containing an array of class names$(tput setaf 3) Specify as: q=value$(tput sgr0)" \
-        | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "${BOLD}${WHITE}Parameters${OFF}"
+    echo -e "  * ${GREEN}q${OFF} ${BLUE}[String]${OFF} ${RED}(required)${OFF}${OFF} - Query string${YELLOW} Specify as: q=value${OFF}" \
+        | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo ""
-    echo -e "$(tput bold)$(tput setaf 7)Responses$(tput sgr0)"
-    case 200 in
-        1*)
-        echo -e "$(tput setaf 7)  200;Successfully retrieved search result$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        2*)
-        echo -e "$(tput setaf 2)  200;Successfully retrieved search result$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        3*)
-        echo -e "$(tput setaf 3)  200;Successfully retrieved search result$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        4*)
-        echo -e "$(tput setaf 1)  200;Successfully retrieved search result$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        5*)
-        echo -e "$(tput setaf 5)  200;Successfully retrieved search result$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        *)
-        echo -e "$(tput setaf 7)  200;Successfully retrieved search result$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-    esac
-    case 401 in
-        1*)
-        echo -e "$(tput setaf 7)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        2*)
-        echo -e "$(tput setaf 2)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        3*)
-        echo -e "$(tput setaf 3)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        4*)
-        echo -e "$(tput setaf 1)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        5*)
-        echo -e "$(tput setaf 5)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        *)
-        echo -e "$(tput setaf 7)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-    esac
-    case 403 in
-        1*)
-        echo -e "$(tput setaf 7)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        2*)
-        echo -e "$(tput setaf 2)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        3*)
-        echo -e "$(tput setaf 3)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        4*)
-        echo -e "$(tput setaf 1)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        5*)
-        echo -e "$(tput setaf 5)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        *)
-        echo -e "$(tput setaf 7)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-    esac
+    echo -e "${BOLD}${WHITE}Responses${OFF}"
+    code=200
+    echo -e "${result_color_table[${code:0:1}]}  200;Successfully retrieved search result${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    code=401
+    echo -e "${result_color_table[${code:0:1}]}  401;Authentication failed - incorrect username and/or password${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    code=403
+    echo -e "${result_color_table[${code:0:1}]}  403;Jenkins requires authentication - please set username and password${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
 }
 ##############################################################################
 #
-# Print help for search_0 operation
+# Print help for searchClasses operation
 #
 ##############################################################################
-print_search_0_help() {
+print_searchClasses_help() {
     echo ""
-    echo -e "$(tput bold)$(tput setaf 7)search_0 - $(tput sgr0)"
+    echo -e "${BOLD}${WHITE}searchClasses - ${OFF}${BLUE}(AUTH - BASIC)${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo -e ""
-    echo -e "Search for any resource details" | fold -sw 80
+    echo -e "Get classes details" | paste -sd' ' | fold -sw 80
     echo -e ""
-    echo -e "$(tput bold)$(tput setaf 7)Parameters$(tput sgr0)"
-    echo -e "  * $(tput setaf 2)q$(tput sgr0) $(tput setaf 4)[String]$(tput sgr0) $(tput setaf 1)(required)$(tput sgr0)$(tput sgr0) - Query string$(tput setaf 3) Specify as: q=value$(tput sgr0)" \
-        | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "${BOLD}${WHITE}Parameters${OFF}"
+    echo -e "  * ${GREEN}q${OFF} ${BLUE}[String]${OFF} ${RED}(required)${OFF}${OFF} - Query string containing an array of class names${YELLOW} Specify as: q=value${OFF}" \
+        | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo ""
-    echo -e "$(tput bold)$(tput setaf 7)Responses$(tput sgr0)"
-    case 200 in
-        1*)
-        echo -e "$(tput setaf 7)  200;Successfully retrieved search result$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        2*)
-        echo -e "$(tput setaf 2)  200;Successfully retrieved search result$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        3*)
-        echo -e "$(tput setaf 3)  200;Successfully retrieved search result$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        4*)
-        echo -e "$(tput setaf 1)  200;Successfully retrieved search result$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        5*)
-        echo -e "$(tput setaf 5)  200;Successfully retrieved search result$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        *)
-        echo -e "$(tput setaf 7)  200;Successfully retrieved search result$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-    esac
-    case 401 in
-        1*)
-        echo -e "$(tput setaf 7)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        2*)
-        echo -e "$(tput setaf 2)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        3*)
-        echo -e "$(tput setaf 3)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        4*)
-        echo -e "$(tput setaf 1)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        5*)
-        echo -e "$(tput setaf 5)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        *)
-        echo -e "$(tput setaf 7)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-    esac
-    case 403 in
-        1*)
-        echo -e "$(tput setaf 7)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        2*)
-        echo -e "$(tput setaf 2)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        3*)
-        echo -e "$(tput setaf 3)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        4*)
-        echo -e "$(tput setaf 1)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        5*)
-        echo -e "$(tput setaf 5)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        *)
-        echo -e "$(tput setaf 7)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-    esac
+    echo -e "${BOLD}${WHITE}Responses${OFF}"
+    code=200
+    echo -e "${result_color_table[${code:0:1}]}  200;Successfully retrieved search result${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    code=401
+    echo -e "${result_color_table[${code:0:1}]}  401;Authentication failed - incorrect username and/or password${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    code=403
+    echo -e "${result_color_table[${code:0:1}]}  403;Jenkins requires authentication - please set username and password${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
 }
 ##############################################################################
 #
@@ -1937,72 +1837,21 @@ print_search_0_help() {
 ##############################################################################
 print_getComputer_help() {
     echo ""
-    echo -e "$(tput bold)$(tput setaf 7)getComputer - $(tput sgr0)"
+    echo -e "${BOLD}${WHITE}getComputer - ${OFF}${BLUE}(AUTH - BASIC)${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo -e ""
-    echo -e "Retrieve computer details" | fold -sw 80
+    echo -e "Retrieve computer details" | paste -sd' ' | fold -sw 80
     echo -e ""
+    echo -e "${BOLD}${WHITE}Parameters${OFF}"
+    echo -e "  * ${GREEN}depth${OFF} ${BLUE}[Integer]${OFF} ${RED}(required)${OFF}${OFF} - Recursion depth in response model${YELLOW} Specify as: depth=value${OFF}" \
+        | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo ""
-    echo -e "$(tput bold)$(tput setaf 7)Responses$(tput sgr0)"
-    case 200 in
-        1*)
-        echo -e "$(tput setaf 7)  200;Successfully retrieved computer details$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        2*)
-        echo -e "$(tput setaf 2)  200;Successfully retrieved computer details$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        3*)
-        echo -e "$(tput setaf 3)  200;Successfully retrieved computer details$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        4*)
-        echo -e "$(tput setaf 1)  200;Successfully retrieved computer details$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        5*)
-        echo -e "$(tput setaf 5)  200;Successfully retrieved computer details$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        *)
-        echo -e "$(tput setaf 7)  200;Successfully retrieved computer details$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-    esac
-    case 401 in
-        1*)
-        echo -e "$(tput setaf 7)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        2*)
-        echo -e "$(tput setaf 2)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        3*)
-        echo -e "$(tput setaf 3)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        4*)
-        echo -e "$(tput setaf 1)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        5*)
-        echo -e "$(tput setaf 5)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        *)
-        echo -e "$(tput setaf 7)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-    esac
-    case 403 in
-        1*)
-        echo -e "$(tput setaf 7)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        2*)
-        echo -e "$(tput setaf 2)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        3*)
-        echo -e "$(tput setaf 3)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        4*)
-        echo -e "$(tput setaf 1)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        5*)
-        echo -e "$(tput setaf 5)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        *)
-        echo -e "$(tput setaf 7)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-    esac
+    echo -e "${BOLD}${WHITE}Responses${OFF}"
+    code=200
+    echo -e "${result_color_table[${code:0:1}]}  200;Successfully retrieved computer details${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    code=401
+    echo -e "${result_color_table[${code:0:1}]}  401;Authentication failed - incorrect username and/or password${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    code=403
+    echo -e "${result_color_table[${code:0:1}]}  403;Jenkins requires authentication - please set username and password${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
 }
 ##############################################################################
 #
@@ -2011,72 +1860,18 @@ print_getComputer_help() {
 ##############################################################################
 print_getCrumb_help() {
     echo ""
-    echo -e "$(tput bold)$(tput setaf 7)getCrumb - $(tput sgr0)"
+    echo -e "${BOLD}${WHITE}getCrumb - ${OFF}${BLUE}(AUTH - BASIC)${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo -e ""
-    echo -e "Retrieve CSRF protection token" | fold -sw 80
+    echo -e "Retrieve CSRF protection token" | paste -sd' ' | fold -sw 80
     echo -e ""
     echo ""
-    echo -e "$(tput bold)$(tput setaf 7)Responses$(tput sgr0)"
-    case 200 in
-        1*)
-        echo -e "$(tput setaf 7)  200;Successfully retrieved CSRF protection token$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        2*)
-        echo -e "$(tput setaf 2)  200;Successfully retrieved CSRF protection token$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        3*)
-        echo -e "$(tput setaf 3)  200;Successfully retrieved CSRF protection token$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        4*)
-        echo -e "$(tput setaf 1)  200;Successfully retrieved CSRF protection token$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        5*)
-        echo -e "$(tput setaf 5)  200;Successfully retrieved CSRF protection token$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        *)
-        echo -e "$(tput setaf 7)  200;Successfully retrieved CSRF protection token$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-    esac
-    case 401 in
-        1*)
-        echo -e "$(tput setaf 7)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        2*)
-        echo -e "$(tput setaf 2)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        3*)
-        echo -e "$(tput setaf 3)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        4*)
-        echo -e "$(tput setaf 1)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        5*)
-        echo -e "$(tput setaf 5)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        *)
-        echo -e "$(tput setaf 7)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-    esac
-    case 403 in
-        1*)
-        echo -e "$(tput setaf 7)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        2*)
-        echo -e "$(tput setaf 2)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        3*)
-        echo -e "$(tput setaf 3)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        4*)
-        echo -e "$(tput setaf 1)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        5*)
-        echo -e "$(tput setaf 5)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        *)
-        echo -e "$(tput setaf 7)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-    esac
+    echo -e "${BOLD}${WHITE}Responses${OFF}"
+    code=200
+    echo -e "${result_color_table[${code:0:1}]}  200;Successfully retrieved CSRF protection token${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    code=401
+    echo -e "${result_color_table[${code:0:1}]}  401;Authentication failed - incorrect username and/or password${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    code=403
+    echo -e "${result_color_table[${code:0:1}]}  403;Jenkins requires authentication - please set username and password${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
 }
 ##############################################################################
 #
@@ -2085,72 +1880,18 @@ print_getCrumb_help() {
 ##############################################################################
 print_getJenkins_help() {
     echo ""
-    echo -e "$(tput bold)$(tput setaf 7)getJenkins - $(tput sgr0)"
+    echo -e "${BOLD}${WHITE}getJenkins - ${OFF}${BLUE}(AUTH - BASIC)${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo -e ""
-    echo -e "Retrieve Jenkins details" | fold -sw 80
+    echo -e "Retrieve Jenkins details" | paste -sd' ' | fold -sw 80
     echo -e ""
     echo ""
-    echo -e "$(tput bold)$(tput setaf 7)Responses$(tput sgr0)"
-    case 200 in
-        1*)
-        echo -e "$(tput setaf 7)  200;Successfully retrieved Jenkins details$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        2*)
-        echo -e "$(tput setaf 2)  200;Successfully retrieved Jenkins details$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        3*)
-        echo -e "$(tput setaf 3)  200;Successfully retrieved Jenkins details$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        4*)
-        echo -e "$(tput setaf 1)  200;Successfully retrieved Jenkins details$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        5*)
-        echo -e "$(tput setaf 5)  200;Successfully retrieved Jenkins details$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        *)
-        echo -e "$(tput setaf 7)  200;Successfully retrieved Jenkins details$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-    esac
-    case 401 in
-        1*)
-        echo -e "$(tput setaf 7)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        2*)
-        echo -e "$(tput setaf 2)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        3*)
-        echo -e "$(tput setaf 3)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        4*)
-        echo -e "$(tput setaf 1)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        5*)
-        echo -e "$(tput setaf 5)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        *)
-        echo -e "$(tput setaf 7)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-    esac
-    case 403 in
-        1*)
-        echo -e "$(tput setaf 7)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        2*)
-        echo -e "$(tput setaf 2)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        3*)
-        echo -e "$(tput setaf 3)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        4*)
-        echo -e "$(tput setaf 1)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        5*)
-        echo -e "$(tput setaf 5)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        *)
-        echo -e "$(tput setaf 7)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-    esac
+    echo -e "${BOLD}${WHITE}Responses${OFF}"
+    code=200
+    echo -e "${result_color_table[${code:0:1}]}  200;Successfully retrieved Jenkins details${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    code=401
+    echo -e "${result_color_table[${code:0:1}]}  401;Authentication failed - incorrect username and/or password${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    code=403
+    echo -e "${result_color_table[${code:0:1}]}  403;Jenkins requires authentication - please set username and password${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
 }
 ##############################################################################
 #
@@ -2159,94 +1900,22 @@ print_getJenkins_help() {
 ##############################################################################
 print_getJob_help() {
     echo ""
-    echo -e "$(tput bold)$(tput setaf 7)getJob - $(tput sgr0)"
+    echo -e "${BOLD}${WHITE}getJob - ${OFF}${BLUE}(AUTH - BASIC)${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo -e ""
-    echo -e "Retrieve job details" | fold -sw 80
+    echo -e "Retrieve job details" | paste -sd' ' | fold -sw 80
     echo -e ""
-    echo -e "$(tput bold)$(tput setaf 7)Parameters$(tput sgr0)"
-    echo -e "  * $(tput setaf 2)name$(tput sgr0) $(tput setaf 4)[String]$(tput sgr0) $(tput setaf 1)(required)$(tput sgr0)$(tput sgr0) - Name of the job $(tput setaf 3)Specify as: name=value$(tput sgr0)" | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "${BOLD}${WHITE}Parameters${OFF}"
+    echo -e "  * ${GREEN}name${OFF} ${BLUE}[String]${OFF} ${RED}(required)${OFF}${OFF} - Name of the job ${YELLOW}Specify as: name=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo ""
-    echo -e "$(tput bold)$(tput setaf 7)Responses$(tput sgr0)"
-    case 200 in
-        1*)
-        echo -e "$(tput setaf 7)  200;Successfully retrieved job details$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        2*)
-        echo -e "$(tput setaf 2)  200;Successfully retrieved job details$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        3*)
-        echo -e "$(tput setaf 3)  200;Successfully retrieved job details$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        4*)
-        echo -e "$(tput setaf 1)  200;Successfully retrieved job details$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        5*)
-        echo -e "$(tput setaf 5)  200;Successfully retrieved job details$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        *)
-        echo -e "$(tput setaf 7)  200;Successfully retrieved job details$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-    esac
-    case 401 in
-        1*)
-        echo -e "$(tput setaf 7)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        2*)
-        echo -e "$(tput setaf 2)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        3*)
-        echo -e "$(tput setaf 3)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        4*)
-        echo -e "$(tput setaf 1)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        5*)
-        echo -e "$(tput setaf 5)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        *)
-        echo -e "$(tput setaf 7)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-    esac
-    case 403 in
-        1*)
-        echo -e "$(tput setaf 7)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        2*)
-        echo -e "$(tput setaf 2)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        3*)
-        echo -e "$(tput setaf 3)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        4*)
-        echo -e "$(tput setaf 1)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        5*)
-        echo -e "$(tput setaf 5)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        *)
-        echo -e "$(tput setaf 7)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-    esac
-    case 404 in
-        1*)
-        echo -e "$(tput setaf 7)  404;Job cannot be found on Jenkins instance$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        2*)
-        echo -e "$(tput setaf 2)  404;Job cannot be found on Jenkins instance$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        3*)
-        echo -e "$(tput setaf 3)  404;Job cannot be found on Jenkins instance$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        4*)
-        echo -e "$(tput setaf 1)  404;Job cannot be found on Jenkins instance$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        5*)
-        echo -e "$(tput setaf 5)  404;Job cannot be found on Jenkins instance$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        *)
-        echo -e "$(tput setaf 7)  404;Job cannot be found on Jenkins instance$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-    esac
+    echo -e "${BOLD}${WHITE}Responses${OFF}"
+    code=200
+    echo -e "${result_color_table[${code:0:1}]}  200;Successfully retrieved job details${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    code=401
+    echo -e "${result_color_table[${code:0:1}]}  401;Authentication failed - incorrect username and/or password${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    code=403
+    echo -e "${result_color_table[${code:0:1}]}  403;Jenkins requires authentication - please set username and password${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    code=404
+    echo -e "${result_color_table[${code:0:1}]}  404;Job cannot be found on Jenkins instance${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
 }
 ##############################################################################
 #
@@ -2255,94 +1924,22 @@ print_getJob_help() {
 ##############################################################################
 print_getJobConfig_help() {
     echo ""
-    echo -e "$(tput bold)$(tput setaf 7)getJobConfig - $(tput sgr0)"
+    echo -e "${BOLD}${WHITE}getJobConfig - ${OFF}${BLUE}(AUTH - BASIC)${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo -e ""
-    echo -e "Retrieve job configuration" | fold -sw 80
+    echo -e "Retrieve job configuration" | paste -sd' ' | fold -sw 80
     echo -e ""
-    echo -e "$(tput bold)$(tput setaf 7)Parameters$(tput sgr0)"
-    echo -e "  * $(tput setaf 2)name$(tput sgr0) $(tput setaf 4)[String]$(tput sgr0) $(tput setaf 1)(required)$(tput sgr0)$(tput sgr0) - Name of the job $(tput setaf 3)Specify as: name=value$(tput sgr0)" | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "${BOLD}${WHITE}Parameters${OFF}"
+    echo -e "  * ${GREEN}name${OFF} ${BLUE}[String]${OFF} ${RED}(required)${OFF}${OFF} - Name of the job ${YELLOW}Specify as: name=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo ""
-    echo -e "$(tput bold)$(tput setaf 7)Responses$(tput sgr0)"
-    case 200 in
-        1*)
-        echo -e "$(tput setaf 7)  200;Successfully retrieved job configuration in config.xml format$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        2*)
-        echo -e "$(tput setaf 2)  200;Successfully retrieved job configuration in config.xml format$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        3*)
-        echo -e "$(tput setaf 3)  200;Successfully retrieved job configuration in config.xml format$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        4*)
-        echo -e "$(tput setaf 1)  200;Successfully retrieved job configuration in config.xml format$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        5*)
-        echo -e "$(tput setaf 5)  200;Successfully retrieved job configuration in config.xml format$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        *)
-        echo -e "$(tput setaf 7)  200;Successfully retrieved job configuration in config.xml format$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-    esac
-    case 401 in
-        1*)
-        echo -e "$(tput setaf 7)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        2*)
-        echo -e "$(tput setaf 2)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        3*)
-        echo -e "$(tput setaf 3)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        4*)
-        echo -e "$(tput setaf 1)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        5*)
-        echo -e "$(tput setaf 5)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        *)
-        echo -e "$(tput setaf 7)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-    esac
-    case 403 in
-        1*)
-        echo -e "$(tput setaf 7)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        2*)
-        echo -e "$(tput setaf 2)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        3*)
-        echo -e "$(tput setaf 3)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        4*)
-        echo -e "$(tput setaf 1)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        5*)
-        echo -e "$(tput setaf 5)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        *)
-        echo -e "$(tput setaf 7)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-    esac
-    case 404 in
-        1*)
-        echo -e "$(tput setaf 7)  404;Job cannot be found on Jenkins instance$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        2*)
-        echo -e "$(tput setaf 2)  404;Job cannot be found on Jenkins instance$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        3*)
-        echo -e "$(tput setaf 3)  404;Job cannot be found on Jenkins instance$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        4*)
-        echo -e "$(tput setaf 1)  404;Job cannot be found on Jenkins instance$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        5*)
-        echo -e "$(tput setaf 5)  404;Job cannot be found on Jenkins instance$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        *)
-        echo -e "$(tput setaf 7)  404;Job cannot be found on Jenkins instance$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-    esac
+    echo -e "${BOLD}${WHITE}Responses${OFF}"
+    code=200
+    echo -e "${result_color_table[${code:0:1}]}  200;Successfully retrieved job configuration in config.xml format${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    code=401
+    echo -e "${result_color_table[${code:0:1}]}  401;Authentication failed - incorrect username and/or password${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    code=403
+    echo -e "${result_color_table[${code:0:1}]}  403;Jenkins requires authentication - please set username and password${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    code=404
+    echo -e "${result_color_table[${code:0:1}]}  404;Job cannot be found on Jenkins instance${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
 }
 ##############################################################################
 #
@@ -2351,94 +1948,22 @@ print_getJobConfig_help() {
 ##############################################################################
 print_getJobLastBuild_help() {
     echo ""
-    echo -e "$(tput bold)$(tput setaf 7)getJobLastBuild - $(tput sgr0)"
+    echo -e "${BOLD}${WHITE}getJobLastBuild - ${OFF}${BLUE}(AUTH - BASIC)${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo -e ""
-    echo -e "Retrieve job's last build details" | fold -sw 80
+    echo -e "Retrieve job's last build details" | paste -sd' ' | fold -sw 80
     echo -e ""
-    echo -e "$(tput bold)$(tput setaf 7)Parameters$(tput sgr0)"
-    echo -e "  * $(tput setaf 2)name$(tput sgr0) $(tput setaf 4)[String]$(tput sgr0) $(tput setaf 1)(required)$(tput sgr0)$(tput sgr0) - Name of the job $(tput setaf 3)Specify as: name=value$(tput sgr0)" | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "${BOLD}${WHITE}Parameters${OFF}"
+    echo -e "  * ${GREEN}name${OFF} ${BLUE}[String]${OFF} ${RED}(required)${OFF}${OFF} - Name of the job ${YELLOW}Specify as: name=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo ""
-    echo -e "$(tput bold)$(tput setaf 7)Responses$(tput sgr0)"
-    case 200 in
-        1*)
-        echo -e "$(tput setaf 7)  200;Successfully retrieved job's last build details$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        2*)
-        echo -e "$(tput setaf 2)  200;Successfully retrieved job's last build details$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        3*)
-        echo -e "$(tput setaf 3)  200;Successfully retrieved job's last build details$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        4*)
-        echo -e "$(tput setaf 1)  200;Successfully retrieved job's last build details$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        5*)
-        echo -e "$(tput setaf 5)  200;Successfully retrieved job's last build details$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        *)
-        echo -e "$(tput setaf 7)  200;Successfully retrieved job's last build details$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-    esac
-    case 401 in
-        1*)
-        echo -e "$(tput setaf 7)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        2*)
-        echo -e "$(tput setaf 2)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        3*)
-        echo -e "$(tput setaf 3)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        4*)
-        echo -e "$(tput setaf 1)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        5*)
-        echo -e "$(tput setaf 5)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        *)
-        echo -e "$(tput setaf 7)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-    esac
-    case 403 in
-        1*)
-        echo -e "$(tput setaf 7)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        2*)
-        echo -e "$(tput setaf 2)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        3*)
-        echo -e "$(tput setaf 3)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        4*)
-        echo -e "$(tput setaf 1)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        5*)
-        echo -e "$(tput setaf 5)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        *)
-        echo -e "$(tput setaf 7)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-    esac
-    case 404 in
-        1*)
-        echo -e "$(tput setaf 7)  404;Job cannot be found on Jenkins instance$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        2*)
-        echo -e "$(tput setaf 2)  404;Job cannot be found on Jenkins instance$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        3*)
-        echo -e "$(tput setaf 3)  404;Job cannot be found on Jenkins instance$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        4*)
-        echo -e "$(tput setaf 1)  404;Job cannot be found on Jenkins instance$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        5*)
-        echo -e "$(tput setaf 5)  404;Job cannot be found on Jenkins instance$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        *)
-        echo -e "$(tput setaf 7)  404;Job cannot be found on Jenkins instance$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-    esac
+    echo -e "${BOLD}${WHITE}Responses${OFF}"
+    code=200
+    echo -e "${result_color_table[${code:0:1}]}  200;Successfully retrieved job's last build details${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    code=401
+    echo -e "${result_color_table[${code:0:1}]}  401;Authentication failed - incorrect username and/or password${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    code=403
+    echo -e "${result_color_table[${code:0:1}]}  403;Jenkins requires authentication - please set username and password${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    code=404
+    echo -e "${result_color_table[${code:0:1}]}  404;Job cannot be found on Jenkins instance${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
 }
 ##############################################################################
 #
@@ -2447,97 +1972,25 @@ print_getJobLastBuild_help() {
 ##############################################################################
 print_getJobProgressiveText_help() {
     echo ""
-    echo -e "$(tput bold)$(tput setaf 7)getJobProgressiveText - $(tput sgr0)"
+    echo -e "${BOLD}${WHITE}getJobProgressiveText - ${OFF}${BLUE}(AUTH - BASIC)${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo -e ""
-    echo -e "Retrieve job's build progressive text output" | fold -sw 80
+    echo -e "Retrieve job's build progressive text output" | paste -sd' ' | fold -sw 80
     echo -e ""
-    echo -e "$(tput bold)$(tput setaf 7)Parameters$(tput sgr0)"
-    echo -e "  * $(tput setaf 2)name$(tput sgr0) $(tput setaf 4)[String]$(tput sgr0) $(tput setaf 1)(required)$(tput sgr0)$(tput sgr0) - Name of the job $(tput setaf 3)Specify as: name=value$(tput sgr0)" | fold -sw 80 | sed '2,$s/^/    /'
-    echo -e "  * $(tput setaf 2)number$(tput sgr0) $(tput setaf 4)[String]$(tput sgr0) $(tput setaf 1)(required)$(tput sgr0)$(tput sgr0) - Build number $(tput setaf 3)Specify as: number=value$(tput sgr0)" | fold -sw 80 | sed '2,$s/^/    /'
-    echo -e "  * $(tput setaf 2)start$(tput sgr0) $(tput setaf 4)[String]$(tput sgr0) $(tput setaf 1)(required)$(tput sgr0)$(tput sgr0) - Starting point of progressive text output$(tput setaf 3) Specify as: start=value$(tput sgr0)" \
-        | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "${BOLD}${WHITE}Parameters${OFF}"
+    echo -e "  * ${GREEN}name${OFF} ${BLUE}[String]${OFF} ${RED}(required)${OFF}${OFF} - Name of the job ${YELLOW}Specify as: name=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}number${OFF} ${BLUE}[String]${OFF} ${RED}(required)${OFF}${OFF} - Build number ${YELLOW}Specify as: number=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}start${OFF} ${BLUE}[String]${OFF} ${RED}(required)${OFF}${OFF} - Starting point of progressive text output${YELLOW} Specify as: start=value${OFF}" \
+        | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo ""
-    echo -e "$(tput bold)$(tput setaf 7)Responses$(tput sgr0)"
-    case 200 in
-        1*)
-        echo -e "$(tput setaf 7)  200;Successfully retrieved job's build progressive text output$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        2*)
-        echo -e "$(tput setaf 2)  200;Successfully retrieved job's build progressive text output$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        3*)
-        echo -e "$(tput setaf 3)  200;Successfully retrieved job's build progressive text output$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        4*)
-        echo -e "$(tput setaf 1)  200;Successfully retrieved job's build progressive text output$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        5*)
-        echo -e "$(tput setaf 5)  200;Successfully retrieved job's build progressive text output$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        *)
-        echo -e "$(tput setaf 7)  200;Successfully retrieved job's build progressive text output$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-    esac
-    case 401 in
-        1*)
-        echo -e "$(tput setaf 7)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        2*)
-        echo -e "$(tput setaf 2)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        3*)
-        echo -e "$(tput setaf 3)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        4*)
-        echo -e "$(tput setaf 1)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        5*)
-        echo -e "$(tput setaf 5)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        *)
-        echo -e "$(tput setaf 7)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-    esac
-    case 403 in
-        1*)
-        echo -e "$(tput setaf 7)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        2*)
-        echo -e "$(tput setaf 2)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        3*)
-        echo -e "$(tput setaf 3)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        4*)
-        echo -e "$(tput setaf 1)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        5*)
-        echo -e "$(tput setaf 5)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        *)
-        echo -e "$(tput setaf 7)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-    esac
-    case 404 in
-        1*)
-        echo -e "$(tput setaf 7)  404;Job cannot be found on Jenkins instance$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        2*)
-        echo -e "$(tput setaf 2)  404;Job cannot be found on Jenkins instance$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        3*)
-        echo -e "$(tput setaf 3)  404;Job cannot be found on Jenkins instance$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        4*)
-        echo -e "$(tput setaf 1)  404;Job cannot be found on Jenkins instance$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        5*)
-        echo -e "$(tput setaf 5)  404;Job cannot be found on Jenkins instance$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        *)
-        echo -e "$(tput setaf 7)  404;Job cannot be found on Jenkins instance$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-    esac
+    echo -e "${BOLD}${WHITE}Responses${OFF}"
+    code=200
+    echo -e "${result_color_table[${code:0:1}]}  200;Successfully retrieved job's build progressive text output${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    code=401
+    echo -e "${result_color_table[${code:0:1}]}  401;Authentication failed - incorrect username and/or password${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    code=403
+    echo -e "${result_color_table[${code:0:1}]}  403;Jenkins requires authentication - please set username and password${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    code=404
+    echo -e "${result_color_table[${code:0:1}]}  404;Job cannot be found on Jenkins instance${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
 }
 ##############################################################################
 #
@@ -2546,72 +1999,18 @@ print_getJobProgressiveText_help() {
 ##############################################################################
 print_getQueue_help() {
     echo ""
-    echo -e "$(tput bold)$(tput setaf 7)getQueue - $(tput sgr0)"
+    echo -e "${BOLD}${WHITE}getQueue - ${OFF}${BLUE}(AUTH - BASIC)${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo -e ""
-    echo -e "Retrieve queue details" | fold -sw 80
+    echo -e "Retrieve queue details" | paste -sd' ' | fold -sw 80
     echo -e ""
     echo ""
-    echo -e "$(tput bold)$(tput setaf 7)Responses$(tput sgr0)"
-    case 200 in
-        1*)
-        echo -e "$(tput setaf 7)  200;Successfully retrieved queue details$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        2*)
-        echo -e "$(tput setaf 2)  200;Successfully retrieved queue details$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        3*)
-        echo -e "$(tput setaf 3)  200;Successfully retrieved queue details$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        4*)
-        echo -e "$(tput setaf 1)  200;Successfully retrieved queue details$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        5*)
-        echo -e "$(tput setaf 5)  200;Successfully retrieved queue details$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        *)
-        echo -e "$(tput setaf 7)  200;Successfully retrieved queue details$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-    esac
-    case 401 in
-        1*)
-        echo -e "$(tput setaf 7)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        2*)
-        echo -e "$(tput setaf 2)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        3*)
-        echo -e "$(tput setaf 3)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        4*)
-        echo -e "$(tput setaf 1)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        5*)
-        echo -e "$(tput setaf 5)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        *)
-        echo -e "$(tput setaf 7)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-    esac
-    case 403 in
-        1*)
-        echo -e "$(tput setaf 7)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        2*)
-        echo -e "$(tput setaf 2)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        3*)
-        echo -e "$(tput setaf 3)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        4*)
-        echo -e "$(tput setaf 1)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        5*)
-        echo -e "$(tput setaf 5)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        *)
-        echo -e "$(tput setaf 7)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-    esac
+    echo -e "${BOLD}${WHITE}Responses${OFF}"
+    code=200
+    echo -e "${result_color_table[${code:0:1}]}  200;Successfully retrieved queue details${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    code=401
+    echo -e "${result_color_table[${code:0:1}]}  401;Authentication failed - incorrect username and/or password${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    code=403
+    echo -e "${result_color_table[${code:0:1}]}  403;Jenkins requires authentication - please set username and password${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
 }
 ##############################################################################
 #
@@ -2620,74 +2019,20 @@ print_getQueue_help() {
 ##############################################################################
 print_getQueueItem_help() {
     echo ""
-    echo -e "$(tput bold)$(tput setaf 7)getQueueItem - $(tput sgr0)"
+    echo -e "${BOLD}${WHITE}getQueueItem - ${OFF}${BLUE}(AUTH - BASIC)${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo -e ""
-    echo -e "Retrieve queued item details" | fold -sw 80
+    echo -e "Retrieve queued item details" | paste -sd' ' | fold -sw 80
     echo -e ""
-    echo -e "$(tput bold)$(tput setaf 7)Parameters$(tput sgr0)"
-    echo -e "  * $(tput setaf 2)number$(tput sgr0) $(tput setaf 4)[String]$(tput sgr0) $(tput setaf 1)(required)$(tput sgr0)$(tput sgr0) - Queue number $(tput setaf 3)Specify as: number=value$(tput sgr0)" | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "${BOLD}${WHITE}Parameters${OFF}"
+    echo -e "  * ${GREEN}number${OFF} ${BLUE}[String]${OFF} ${RED}(required)${OFF}${OFF} - Queue number ${YELLOW}Specify as: number=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo ""
-    echo -e "$(tput bold)$(tput setaf 7)Responses$(tput sgr0)"
-    case 200 in
-        1*)
-        echo -e "$(tput setaf 7)  200;Successfully retrieved queued item details$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        2*)
-        echo -e "$(tput setaf 2)  200;Successfully retrieved queued item details$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        3*)
-        echo -e "$(tput setaf 3)  200;Successfully retrieved queued item details$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        4*)
-        echo -e "$(tput setaf 1)  200;Successfully retrieved queued item details$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        5*)
-        echo -e "$(tput setaf 5)  200;Successfully retrieved queued item details$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        *)
-        echo -e "$(tput setaf 7)  200;Successfully retrieved queued item details$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-    esac
-    case 401 in
-        1*)
-        echo -e "$(tput setaf 7)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        2*)
-        echo -e "$(tput setaf 2)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        3*)
-        echo -e "$(tput setaf 3)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        4*)
-        echo -e "$(tput setaf 1)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        5*)
-        echo -e "$(tput setaf 5)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        *)
-        echo -e "$(tput setaf 7)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-    esac
-    case 403 in
-        1*)
-        echo -e "$(tput setaf 7)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        2*)
-        echo -e "$(tput setaf 2)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        3*)
-        echo -e "$(tput setaf 3)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        4*)
-        echo -e "$(tput setaf 1)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        5*)
-        echo -e "$(tput setaf 5)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        *)
-        echo -e "$(tput setaf 7)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-    esac
+    echo -e "${BOLD}${WHITE}Responses${OFF}"
+    code=200
+    echo -e "${result_color_table[${code:0:1}]}  200;Successfully retrieved queued item details${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    code=401
+    echo -e "${result_color_table[${code:0:1}]}  401;Authentication failed - incorrect username and/or password${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    code=403
+    echo -e "${result_color_table[${code:0:1}]}  403;Jenkins requires authentication - please set username and password${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
 }
 ##############################################################################
 #
@@ -2696,94 +2041,22 @@ print_getQueueItem_help() {
 ##############################################################################
 print_getView_help() {
     echo ""
-    echo -e "$(tput bold)$(tput setaf 7)getView - $(tput sgr0)"
+    echo -e "${BOLD}${WHITE}getView - ${OFF}${BLUE}(AUTH - BASIC)${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo -e ""
-    echo -e "Retrieve view details" | fold -sw 80
+    echo -e "Retrieve view details" | paste -sd' ' | fold -sw 80
     echo -e ""
-    echo -e "$(tput bold)$(tput setaf 7)Parameters$(tput sgr0)"
-    echo -e "  * $(tput setaf 2)name$(tput sgr0) $(tput setaf 4)[String]$(tput sgr0) $(tput setaf 1)(required)$(tput sgr0)$(tput sgr0) - Name of the view $(tput setaf 3)Specify as: name=value$(tput sgr0)" | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "${BOLD}${WHITE}Parameters${OFF}"
+    echo -e "  * ${GREEN}name${OFF} ${BLUE}[String]${OFF} ${RED}(required)${OFF}${OFF} - Name of the view ${YELLOW}Specify as: name=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo ""
-    echo -e "$(tput bold)$(tput setaf 7)Responses$(tput sgr0)"
-    case 200 in
-        1*)
-        echo -e "$(tput setaf 7)  200;Successfully retrieved view details$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        2*)
-        echo -e "$(tput setaf 2)  200;Successfully retrieved view details$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        3*)
-        echo -e "$(tput setaf 3)  200;Successfully retrieved view details$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        4*)
-        echo -e "$(tput setaf 1)  200;Successfully retrieved view details$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        5*)
-        echo -e "$(tput setaf 5)  200;Successfully retrieved view details$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        *)
-        echo -e "$(tput setaf 7)  200;Successfully retrieved view details$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-    esac
-    case 401 in
-        1*)
-        echo -e "$(tput setaf 7)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        2*)
-        echo -e "$(tput setaf 2)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        3*)
-        echo -e "$(tput setaf 3)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        4*)
-        echo -e "$(tput setaf 1)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        5*)
-        echo -e "$(tput setaf 5)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        *)
-        echo -e "$(tput setaf 7)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-    esac
-    case 403 in
-        1*)
-        echo -e "$(tput setaf 7)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        2*)
-        echo -e "$(tput setaf 2)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        3*)
-        echo -e "$(tput setaf 3)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        4*)
-        echo -e "$(tput setaf 1)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        5*)
-        echo -e "$(tput setaf 5)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        *)
-        echo -e "$(tput setaf 7)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-    esac
-    case 404 in
-        1*)
-        echo -e "$(tput setaf 7)  404;View cannot be found on Jenkins instance$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        2*)
-        echo -e "$(tput setaf 2)  404;View cannot be found on Jenkins instance$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        3*)
-        echo -e "$(tput setaf 3)  404;View cannot be found on Jenkins instance$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        4*)
-        echo -e "$(tput setaf 1)  404;View cannot be found on Jenkins instance$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        5*)
-        echo -e "$(tput setaf 5)  404;View cannot be found on Jenkins instance$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        *)
-        echo -e "$(tput setaf 7)  404;View cannot be found on Jenkins instance$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-    esac
+    echo -e "${BOLD}${WHITE}Responses${OFF}"
+    code=200
+    echo -e "${result_color_table[${code:0:1}]}  200;Successfully retrieved view details${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    code=401
+    echo -e "${result_color_table[${code:0:1}]}  401;Authentication failed - incorrect username and/or password${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    code=403
+    echo -e "${result_color_table[${code:0:1}]}  403;Jenkins requires authentication - please set username and password${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    code=404
+    echo -e "${result_color_table[${code:0:1}]}  404;View cannot be found on Jenkins instance${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
 }
 ##############################################################################
 #
@@ -2792,94 +2065,22 @@ print_getView_help() {
 ##############################################################################
 print_getViewConfig_help() {
     echo ""
-    echo -e "$(tput bold)$(tput setaf 7)getViewConfig - $(tput sgr0)"
+    echo -e "${BOLD}${WHITE}getViewConfig - ${OFF}${BLUE}(AUTH - BASIC)${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo -e ""
-    echo -e "Retrieve view configuration" | fold -sw 80
+    echo -e "Retrieve view configuration" | paste -sd' ' | fold -sw 80
     echo -e ""
-    echo -e "$(tput bold)$(tput setaf 7)Parameters$(tput sgr0)"
-    echo -e "  * $(tput setaf 2)name$(tput sgr0) $(tput setaf 4)[String]$(tput sgr0) $(tput setaf 1)(required)$(tput sgr0)$(tput sgr0) - Name of the view $(tput setaf 3)Specify as: name=value$(tput sgr0)" | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "${BOLD}${WHITE}Parameters${OFF}"
+    echo -e "  * ${GREEN}name${OFF} ${BLUE}[String]${OFF} ${RED}(required)${OFF}${OFF} - Name of the view ${YELLOW}Specify as: name=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo ""
-    echo -e "$(tput bold)$(tput setaf 7)Responses$(tput sgr0)"
-    case 200 in
-        1*)
-        echo -e "$(tput setaf 7)  200;Successfully retrieved view configuration in config.xml format$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        2*)
-        echo -e "$(tput setaf 2)  200;Successfully retrieved view configuration in config.xml format$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        3*)
-        echo -e "$(tput setaf 3)  200;Successfully retrieved view configuration in config.xml format$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        4*)
-        echo -e "$(tput setaf 1)  200;Successfully retrieved view configuration in config.xml format$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        5*)
-        echo -e "$(tput setaf 5)  200;Successfully retrieved view configuration in config.xml format$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        *)
-        echo -e "$(tput setaf 7)  200;Successfully retrieved view configuration in config.xml format$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-    esac
-    case 401 in
-        1*)
-        echo -e "$(tput setaf 7)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        2*)
-        echo -e "$(tput setaf 2)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        3*)
-        echo -e "$(tput setaf 3)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        4*)
-        echo -e "$(tput setaf 1)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        5*)
-        echo -e "$(tput setaf 5)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        *)
-        echo -e "$(tput setaf 7)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-    esac
-    case 403 in
-        1*)
-        echo -e "$(tput setaf 7)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        2*)
-        echo -e "$(tput setaf 2)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        3*)
-        echo -e "$(tput setaf 3)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        4*)
-        echo -e "$(tput setaf 1)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        5*)
-        echo -e "$(tput setaf 5)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        *)
-        echo -e "$(tput setaf 7)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-    esac
-    case 404 in
-        1*)
-        echo -e "$(tput setaf 7)  404;View cannot be found on Jenkins instance$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        2*)
-        echo -e "$(tput setaf 2)  404;View cannot be found on Jenkins instance$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        3*)
-        echo -e "$(tput setaf 3)  404;View cannot be found on Jenkins instance$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        4*)
-        echo -e "$(tput setaf 1)  404;View cannot be found on Jenkins instance$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        5*)
-        echo -e "$(tput setaf 5)  404;View cannot be found on Jenkins instance$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        *)
-        echo -e "$(tput setaf 7)  404;View cannot be found on Jenkins instance$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-    esac
+    echo -e "${BOLD}${WHITE}Responses${OFF}"
+    code=200
+    echo -e "${result_color_table[${code:0:1}]}  200;Successfully retrieved view configuration in config.xml format${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    code=401
+    echo -e "${result_color_table[${code:0:1}]}  401;Authentication failed - incorrect username and/or password${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    code=403
+    echo -e "${result_color_table[${code:0:1}]}  403;Jenkins requires authentication - please set username and password${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    code=404
+    echo -e "${result_color_table[${code:0:1}]}  404;View cannot be found on Jenkins instance${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
 }
 ##############################################################################
 #
@@ -2888,74 +2089,20 @@ print_getViewConfig_help() {
 ##############################################################################
 print_headJenkins_help() {
     echo ""
-    echo -e "$(tput bold)$(tput setaf 7)headJenkins - $(tput sgr0)"
+    echo -e "${BOLD}${WHITE}headJenkins - ${OFF}${BLUE}(AUTH - BASIC)${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo -e ""
-    echo -e "Retrieve Jenkins headers" | fold -sw 80
+    echo -e "Retrieve Jenkins headers" | paste -sd' ' | fold -sw 80
     echo -e ""
     echo ""
-    echo -e "$(tput bold)$(tput setaf 7)Responses$(tput sgr0)"
-    case 200 in
-        1*)
-        echo -e "$(tput setaf 7)  200;Successfully retrieved Jenkins headers$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        2*)
-        echo -e "$(tput setaf 2)  200;Successfully retrieved Jenkins headers$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        3*)
-        echo -e "$(tput setaf 3)  200;Successfully retrieved Jenkins headers$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        4*)
-        echo -e "$(tput setaf 1)  200;Successfully retrieved Jenkins headers$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        5*)
-        echo -e "$(tput setaf 5)  200;Successfully retrieved Jenkins headers$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        *)
-        echo -e "$(tput setaf 7)  200;Successfully retrieved Jenkins headers$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-    esac
-        echo -e "       $(tput bold)$(tput setaf 7)Response headers$(tput sgr0)"
-        echo -e "       $(tput setaf 4)x-jenkins$(tput sgr0) - Jenkins version number" | fold -sw 80 | sed '2,$s/^/        /'
-    case 401 in
-        1*)
-        echo -e "$(tput setaf 7)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        2*)
-        echo -e "$(tput setaf 2)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        3*)
-        echo -e "$(tput setaf 3)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        4*)
-        echo -e "$(tput setaf 1)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        5*)
-        echo -e "$(tput setaf 5)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        *)
-        echo -e "$(tput setaf 7)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-    esac
-    case 403 in
-        1*)
-        echo -e "$(tput setaf 7)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        2*)
-        echo -e "$(tput setaf 2)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        3*)
-        echo -e "$(tput setaf 3)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        4*)
-        echo -e "$(tput setaf 1)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        5*)
-        echo -e "$(tput setaf 5)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        *)
-        echo -e "$(tput setaf 7)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-    esac
+    echo -e "${BOLD}${WHITE}Responses${OFF}"
+    code=200
+    echo -e "${result_color_table[${code:0:1}]}  200;Successfully retrieved Jenkins headers${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+        echo -e "       ${BOLD}${WHITE}Response headers${OFF}"
+        echo -e "       ${BLUE}x-jenkins${OFF} - Jenkins version number" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/        /'
+    code=401
+    echo -e "${result_color_table[${code:0:1}]}  401;Authentication failed - incorrect username and/or password${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    code=403
+    echo -e "${result_color_table[${code:0:1}]}  403;Jenkins requires authentication - please set username and password${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
 }
 ##############################################################################
 #
@@ -2964,103 +2111,31 @@ print_headJenkins_help() {
 ##############################################################################
 print_postCreateItem_help() {
     echo ""
-    echo -e "$(tput bold)$(tput setaf 7)postCreateItem - $(tput sgr0)"
+    echo -e "${BOLD}${WHITE}postCreateItem - ${OFF}${BLUE}(AUTH - BASIC)${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo -e ""
-    echo -e "Create a new job using job configuration, or copied from an existing job" | fold -sw 80
+    echo -e "Create a new job using job configuration, or copied from an existing job" | paste -sd' ' | fold -sw 80
     echo -e ""
-    echo -e "$(tput bold)$(tput setaf 7)Parameters$(tput sgr0)"
-    echo -e "  * $(tput setaf 2)name$(tput sgr0) $(tput setaf 4)[String]$(tput sgr0) $(tput setaf 1)(required)$(tput sgr0)$(tput sgr0) - Name of the new job$(tput setaf 3) Specify as: name=value$(tput sgr0)" \
-        | fold -sw 80 | sed '2,$s/^/    /'
-    echo -e "  * $(tput setaf 2)from$(tput sgr0) $(tput setaf 4)[String]$(tput sgr0)$(tput sgr0) - Existing job to copy from$(tput setaf 3) Specify as: from=value$(tput sgr0)" \
-        | fold -sw 80 | sed '2,$s/^/    /'
-    echo -e "  * $(tput setaf 2)mode$(tput sgr0) $(tput setaf 4)[String]$(tput sgr0)$(tput sgr0) - Set to 'copy' for copying an existing job$(tput setaf 3) Specify as: mode=value$(tput sgr0)" \
-        | fold -sw 80 | sed '2,$s/^/    /'
-    echo -e "  * $(tput setaf 2)Jenkins-Crumb$(tput sgr0) $(tput setaf 4)[String]$(tput sgr0)$(tput sgr0) - CSRF protection token $(tput setaf 3)Specify as: Jenkins-Crumb:value$(tput sgr0)" | fold -sw 80 | sed '2,$s/^/    /'
-    echo -e "  * $(tput setaf 2)Content-Type$(tput sgr0) $(tput setaf 4)[String]$(tput sgr0)$(tput sgr0) - Content type header application/xml $(tput setaf 3)Specify as: Content-Type:value$(tput sgr0)" | fold -sw 80 | sed '2,$s/^/    /'
-    echo -e "  * $(tput setaf 2)body$(tput sgr0) $(tput setaf 4)[]$(tput sgr0)$(tput sgr0) - Job configuration in config.xml format" | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "${BOLD}${WHITE}Parameters${OFF}"
+    echo -e "  * ${GREEN}name${OFF} ${BLUE}[String]${OFF} ${RED}(required)${OFF}${OFF} - Name of the new job${YELLOW} Specify as: name=value${OFF}" \
+        | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}from${OFF} ${BLUE}[String]${OFF}${OFF} - Existing job to copy from${YELLOW} Specify as: from=value${OFF}" \
+        | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}mode${OFF} ${BLUE}[String]${OFF}${OFF} - Set to 'copy' for copying an existing job${YELLOW} Specify as: mode=value${OFF}" \
+        | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}Jenkins-Crumb${OFF} ${BLUE}[String]${OFF}${OFF} - CSRF protection token ${YELLOW}Specify as: Jenkins-Crumb:value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}Content-Type${OFF} ${BLUE}[String]${OFF}${OFF} - Content type header application/xml ${YELLOW}Specify as: Content-Type:value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}body${OFF} ${BLUE}[]${OFF}${OFF} - Job configuration in config.xml format" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo -e ""
     echo ""
-    echo -e "$(tput bold)$(tput setaf 7)Responses$(tput sgr0)"
-    case 200 in
-        1*)
-        echo -e "$(tput setaf 7)  200;Successfully created a new job$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        2*)
-        echo -e "$(tput setaf 2)  200;Successfully created a new job$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        3*)
-        echo -e "$(tput setaf 3)  200;Successfully created a new job$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        4*)
-        echo -e "$(tput setaf 1)  200;Successfully created a new job$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        5*)
-        echo -e "$(tput setaf 5)  200;Successfully created a new job$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        *)
-        echo -e "$(tput setaf 7)  200;Successfully created a new job$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-    esac
-    case 400 in
-        1*)
-        echo -e "$(tput setaf 7)  400;An error has occurred - error message is embedded inside the HTML response$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        2*)
-        echo -e "$(tput setaf 2)  400;An error has occurred - error message is embedded inside the HTML response$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        3*)
-        echo -e "$(tput setaf 3)  400;An error has occurred - error message is embedded inside the HTML response$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        4*)
-        echo -e "$(tput setaf 1)  400;An error has occurred - error message is embedded inside the HTML response$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        5*)
-        echo -e "$(tput setaf 5)  400;An error has occurred - error message is embedded inside the HTML response$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        *)
-        echo -e "$(tput setaf 7)  400;An error has occurred - error message is embedded inside the HTML response$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-    esac
-    case 401 in
-        1*)
-        echo -e "$(tput setaf 7)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        2*)
-        echo -e "$(tput setaf 2)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        3*)
-        echo -e "$(tput setaf 3)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        4*)
-        echo -e "$(tput setaf 1)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        5*)
-        echo -e "$(tput setaf 5)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        *)
-        echo -e "$(tput setaf 7)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-    esac
-    case 403 in
-        1*)
-        echo -e "$(tput setaf 7)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        2*)
-        echo -e "$(tput setaf 2)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        3*)
-        echo -e "$(tput setaf 3)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        4*)
-        echo -e "$(tput setaf 1)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        5*)
-        echo -e "$(tput setaf 5)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        *)
-        echo -e "$(tput setaf 7)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-    esac
+    echo -e "${BOLD}${WHITE}Responses${OFF}"
+    code=200
+    echo -e "${result_color_table[${code:0:1}]}  200;Successfully created a new job${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    code=400
+    echo -e "${result_color_table[${code:0:1}]}  400;An error has occurred - error message is embedded inside the HTML response${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    code=401
+    echo -e "${result_color_table[${code:0:1}]}  401;Authentication failed - incorrect username and/or password${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    code=403
+    echo -e "${result_color_table[${code:0:1}]}  403;Jenkins requires authentication - please set username and password${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
 }
 ##############################################################################
 #
@@ -3069,99 +2144,27 @@ print_postCreateItem_help() {
 ##############################################################################
 print_postCreateView_help() {
     echo ""
-    echo -e "$(tput bold)$(tput setaf 7)postCreateView - $(tput sgr0)"
+    echo -e "${BOLD}${WHITE}postCreateView - ${OFF}${BLUE}(AUTH - BASIC)${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo -e ""
-    echo -e "Create a new view using view configuration" | fold -sw 80
+    echo -e "Create a new view using view configuration" | paste -sd' ' | fold -sw 80
     echo -e ""
-    echo -e "$(tput bold)$(tput setaf 7)Parameters$(tput sgr0)"
-    echo -e "  * $(tput setaf 2)name$(tput sgr0) $(tput setaf 4)[String]$(tput sgr0) $(tput setaf 1)(required)$(tput sgr0)$(tput sgr0) - Name of the new view$(tput setaf 3) Specify as: name=value$(tput sgr0)" \
-        | fold -sw 80 | sed '2,$s/^/    /'
-    echo -e "  * $(tput setaf 2)Jenkins-Crumb$(tput sgr0) $(tput setaf 4)[String]$(tput sgr0)$(tput sgr0) - CSRF protection token $(tput setaf 3)Specify as: Jenkins-Crumb:value$(tput sgr0)" | fold -sw 80 | sed '2,$s/^/    /'
-    echo -e "  * $(tput setaf 2)Content-Type$(tput sgr0) $(tput setaf 4)[String]$(tput sgr0)$(tput sgr0) - Content type header application/xml $(tput setaf 3)Specify as: Content-Type:value$(tput sgr0)" | fold -sw 80 | sed '2,$s/^/    /'
-    echo -e "  * $(tput setaf 2)body$(tput sgr0) $(tput setaf 4)[]$(tput sgr0)$(tput sgr0) - View configuration in config.xml format" | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "${BOLD}${WHITE}Parameters${OFF}"
+    echo -e "  * ${GREEN}name${OFF} ${BLUE}[String]${OFF} ${RED}(required)${OFF}${OFF} - Name of the new view${YELLOW} Specify as: name=value${OFF}" \
+        | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}Jenkins-Crumb${OFF} ${BLUE}[String]${OFF}${OFF} - CSRF protection token ${YELLOW}Specify as: Jenkins-Crumb:value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}Content-Type${OFF} ${BLUE}[String]${OFF}${OFF} - Content type header application/xml ${YELLOW}Specify as: Content-Type:value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}body${OFF} ${BLUE}[]${OFF}${OFF} - View configuration in config.xml format" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo -e ""
     echo ""
-    echo -e "$(tput bold)$(tput setaf 7)Responses$(tput sgr0)"
-    case 200 in
-        1*)
-        echo -e "$(tput setaf 7)  200;Successfully created the view$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        2*)
-        echo -e "$(tput setaf 2)  200;Successfully created the view$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        3*)
-        echo -e "$(tput setaf 3)  200;Successfully created the view$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        4*)
-        echo -e "$(tput setaf 1)  200;Successfully created the view$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        5*)
-        echo -e "$(tput setaf 5)  200;Successfully created the view$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        *)
-        echo -e "$(tput setaf 7)  200;Successfully created the view$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-    esac
-    case 400 in
-        1*)
-        echo -e "$(tput setaf 7)  400;An error has occurred - error message is embedded inside the HTML response$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        2*)
-        echo -e "$(tput setaf 2)  400;An error has occurred - error message is embedded inside the HTML response$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        3*)
-        echo -e "$(tput setaf 3)  400;An error has occurred - error message is embedded inside the HTML response$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        4*)
-        echo -e "$(tput setaf 1)  400;An error has occurred - error message is embedded inside the HTML response$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        5*)
-        echo -e "$(tput setaf 5)  400;An error has occurred - error message is embedded inside the HTML response$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        *)
-        echo -e "$(tput setaf 7)  400;An error has occurred - error message is embedded inside the HTML response$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-    esac
-    case 401 in
-        1*)
-        echo -e "$(tput setaf 7)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        2*)
-        echo -e "$(tput setaf 2)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        3*)
-        echo -e "$(tput setaf 3)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        4*)
-        echo -e "$(tput setaf 1)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        5*)
-        echo -e "$(tput setaf 5)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        *)
-        echo -e "$(tput setaf 7)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-    esac
-    case 403 in
-        1*)
-        echo -e "$(tput setaf 7)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        2*)
-        echo -e "$(tput setaf 2)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        3*)
-        echo -e "$(tput setaf 3)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        4*)
-        echo -e "$(tput setaf 1)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        5*)
-        echo -e "$(tput setaf 5)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        *)
-        echo -e "$(tput setaf 7)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-    esac
+    echo -e "${BOLD}${WHITE}Responses${OFF}"
+    code=200
+    echo -e "${result_color_table[${code:0:1}]}  200;Successfully created the view${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    code=400
+    echo -e "${result_color_table[${code:0:1}]}  400;An error has occurred - error message is embedded inside the HTML response${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    code=401
+    echo -e "${result_color_table[${code:0:1}]}  401;Authentication failed - incorrect username and/or password${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    code=403
+    echo -e "${result_color_table[${code:0:1}]}  403;Jenkins requires authentication - please set username and password${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
 }
 ##############################################################################
 #
@@ -3170,119 +2173,29 @@ print_postCreateView_help() {
 ##############################################################################
 print_postJobBuild_help() {
     echo ""
-    echo -e "$(tput bold)$(tput setaf 7)postJobBuild - $(tput sgr0)"
+    echo -e "${BOLD}${WHITE}postJobBuild - ${OFF}${BLUE}(AUTH - BASIC)${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo -e ""
-    echo -e "Build a job" | fold -sw 80
+    echo -e "Build a job" | paste -sd' ' | fold -sw 80
     echo -e ""
-    echo -e "$(tput bold)$(tput setaf 7)Parameters$(tput sgr0)"
-    echo -e "  * $(tput setaf 2)name$(tput sgr0) $(tput setaf 4)[String]$(tput sgr0) $(tput setaf 1)(required)$(tput sgr0)$(tput sgr0) - Name of the job $(tput setaf 3)Specify as: name=value$(tput sgr0)" | fold -sw 80 | sed '2,$s/^/    /'
-    echo -e "  * $(tput setaf 2)json$(tput sgr0) $(tput setaf 4)[String]$(tput sgr0) $(tput setaf 1)(required)$(tput sgr0)$(tput sgr0) - $(tput setaf 3) Specify as: json=value$(tput sgr0)" \
-        | fold -sw 80 | sed '2,$s/^/    /'
-    echo -e "  * $(tput setaf 2)token$(tput sgr0) $(tput setaf 4)[String]$(tput sgr0)$(tput sgr0) - $(tput setaf 3) Specify as: token=value$(tput sgr0)" \
-        | fold -sw 80 | sed '2,$s/^/    /'
-    echo -e "  * $(tput setaf 2)Jenkins-Crumb$(tput sgr0) $(tput setaf 4)[String]$(tput sgr0)$(tput sgr0) - CSRF protection token $(tput setaf 3)Specify as: Jenkins-Crumb:value$(tput sgr0)" | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "${BOLD}${WHITE}Parameters${OFF}"
+    echo -e "  * ${GREEN}name${OFF} ${BLUE}[String]${OFF} ${RED}(required)${OFF}${OFF} - Name of the job ${YELLOW}Specify as: name=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}json${OFF} ${BLUE}[String]${OFF} ${RED}(required)${OFF}${OFF} - ${YELLOW} Specify as: json=value${OFF}" \
+        | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}token${OFF} ${BLUE}[String]${OFF}${OFF} - ${YELLOW} Specify as: token=value${OFF}" \
+        | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}Jenkins-Crumb${OFF} ${BLUE}[String]${OFF}${OFF} - CSRF protection token ${YELLOW}Specify as: Jenkins-Crumb:value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo ""
-    echo -e "$(tput bold)$(tput setaf 7)Responses$(tput sgr0)"
-    case 200 in
-        1*)
-        echo -e "$(tput setaf 7)  200;Successfully built the job (backward compatibility for older versions of Jenkins)$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        2*)
-        echo -e "$(tput setaf 2)  200;Successfully built the job (backward compatibility for older versions of Jenkins)$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        3*)
-        echo -e "$(tput setaf 3)  200;Successfully built the job (backward compatibility for older versions of Jenkins)$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        4*)
-        echo -e "$(tput setaf 1)  200;Successfully built the job (backward compatibility for older versions of Jenkins)$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        5*)
-        echo -e "$(tput setaf 5)  200;Successfully built the job (backward compatibility for older versions of Jenkins)$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        *)
-        echo -e "$(tput setaf 7)  200;Successfully built the job (backward compatibility for older versions of Jenkins)$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-    esac
-    case 201 in
-        1*)
-        echo -e "$(tput setaf 7)  201;Successfully built the job$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        2*)
-        echo -e "$(tput setaf 2)  201;Successfully built the job$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        3*)
-        echo -e "$(tput setaf 3)  201;Successfully built the job$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        4*)
-        echo -e "$(tput setaf 1)  201;Successfully built the job$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        5*)
-        echo -e "$(tput setaf 5)  201;Successfully built the job$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        *)
-        echo -e "$(tput setaf 7)  201;Successfully built the job$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-    esac
-    case 401 in
-        1*)
-        echo -e "$(tput setaf 7)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        2*)
-        echo -e "$(tput setaf 2)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        3*)
-        echo -e "$(tput setaf 3)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        4*)
-        echo -e "$(tput setaf 1)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        5*)
-        echo -e "$(tput setaf 5)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        *)
-        echo -e "$(tput setaf 7)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-    esac
-    case 403 in
-        1*)
-        echo -e "$(tput setaf 7)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        2*)
-        echo -e "$(tput setaf 2)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        3*)
-        echo -e "$(tput setaf 3)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        4*)
-        echo -e "$(tput setaf 1)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        5*)
-        echo -e "$(tput setaf 5)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        *)
-        echo -e "$(tput setaf 7)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-    esac
-    case 404 in
-        1*)
-        echo -e "$(tput setaf 7)  404;Job cannot be found on Jenkins instance$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        2*)
-        echo -e "$(tput setaf 2)  404;Job cannot be found on Jenkins instance$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        3*)
-        echo -e "$(tput setaf 3)  404;Job cannot be found on Jenkins instance$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        4*)
-        echo -e "$(tput setaf 1)  404;Job cannot be found on Jenkins instance$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        5*)
-        echo -e "$(tput setaf 5)  404;Job cannot be found on Jenkins instance$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        *)
-        echo -e "$(tput setaf 7)  404;Job cannot be found on Jenkins instance$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-    esac
+    echo -e "${BOLD}${WHITE}Responses${OFF}"
+    code=200
+    echo -e "${result_color_table[${code:0:1}]}  200;Successfully built the job (backward compatibility for older versions of Jenkins)${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    code=201
+    echo -e "${result_color_table[${code:0:1}]}  201;Successfully built the job${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    code=401
+    echo -e "${result_color_table[${code:0:1}]}  401;Authentication failed - incorrect username and/or password${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    code=403
+    echo -e "${result_color_table[${code:0:1}]}  403;Jenkins requires authentication - please set username and password${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    code=404
+    echo -e "${result_color_table[${code:0:1}]}  404;Job cannot be found on Jenkins instance${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
 }
 ##############################################################################
 #
@@ -3291,117 +2204,27 @@ print_postJobBuild_help() {
 ##############################################################################
 print_postJobConfig_help() {
     echo ""
-    echo -e "$(tput bold)$(tput setaf 7)postJobConfig - $(tput sgr0)"
+    echo -e "${BOLD}${WHITE}postJobConfig - ${OFF}${BLUE}(AUTH - BASIC)${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo -e ""
-    echo -e "Update job configuration" | fold -sw 80
+    echo -e "Update job configuration" | paste -sd' ' | fold -sw 80
     echo -e ""
-    echo -e "$(tput bold)$(tput setaf 7)Parameters$(tput sgr0)"
-    echo -e "  * $(tput setaf 2)name$(tput sgr0) $(tput setaf 4)[String]$(tput sgr0) $(tput setaf 1)(required)$(tput sgr0)$(tput sgr0) - Name of the job $(tput setaf 3)Specify as: name=value$(tput sgr0)" | fold -sw 80 | sed '2,$s/^/    /'
-    echo -e "  * $(tput setaf 2)Jenkins-Crumb$(tput sgr0) $(tput setaf 4)[String]$(tput sgr0)$(tput sgr0) - CSRF protection token $(tput setaf 3)Specify as: Jenkins-Crumb:value$(tput sgr0)" | fold -sw 80 | sed '2,$s/^/    /'
-    echo -e "  * $(tput setaf 2)body$(tput sgr0) $(tput setaf 4)[]$(tput sgr0) $(tput setaf 1)(required)$(tput sgr0)$(tput sgr0) - Job configuration in config.xml format" | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "${BOLD}${WHITE}Parameters${OFF}"
+    echo -e "  * ${GREEN}name${OFF} ${BLUE}[String]${OFF} ${RED}(required)${OFF}${OFF} - Name of the job ${YELLOW}Specify as: name=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}Jenkins-Crumb${OFF} ${BLUE}[String]${OFF}${OFF} - CSRF protection token ${YELLOW}Specify as: Jenkins-Crumb:value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}body${OFF} ${BLUE}[]${OFF} ${RED}(required)${OFF}${OFF} - Job configuration in config.xml format" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo -e ""
     echo ""
-    echo -e "$(tput bold)$(tput setaf 7)Responses$(tput sgr0)"
-    case 200 in
-        1*)
-        echo -e "$(tput setaf 7)  200;Successfully retrieved job configuration in config.xml format$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        2*)
-        echo -e "$(tput setaf 2)  200;Successfully retrieved job configuration in config.xml format$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        3*)
-        echo -e "$(tput setaf 3)  200;Successfully retrieved job configuration in config.xml format$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        4*)
-        echo -e "$(tput setaf 1)  200;Successfully retrieved job configuration in config.xml format$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        5*)
-        echo -e "$(tput setaf 5)  200;Successfully retrieved job configuration in config.xml format$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        *)
-        echo -e "$(tput setaf 7)  200;Successfully retrieved job configuration in config.xml format$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-    esac
-    case 400 in
-        1*)
-        echo -e "$(tput setaf 7)  400;An error has occurred - error message is embedded inside the HTML response$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        2*)
-        echo -e "$(tput setaf 2)  400;An error has occurred - error message is embedded inside the HTML response$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        3*)
-        echo -e "$(tput setaf 3)  400;An error has occurred - error message is embedded inside the HTML response$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        4*)
-        echo -e "$(tput setaf 1)  400;An error has occurred - error message is embedded inside the HTML response$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        5*)
-        echo -e "$(tput setaf 5)  400;An error has occurred - error message is embedded inside the HTML response$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        *)
-        echo -e "$(tput setaf 7)  400;An error has occurred - error message is embedded inside the HTML response$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-    esac
-    case 401 in
-        1*)
-        echo -e "$(tput setaf 7)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        2*)
-        echo -e "$(tput setaf 2)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        3*)
-        echo -e "$(tput setaf 3)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        4*)
-        echo -e "$(tput setaf 1)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        5*)
-        echo -e "$(tput setaf 5)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        *)
-        echo -e "$(tput setaf 7)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-    esac
-    case 403 in
-        1*)
-        echo -e "$(tput setaf 7)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        2*)
-        echo -e "$(tput setaf 2)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        3*)
-        echo -e "$(tput setaf 3)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        4*)
-        echo -e "$(tput setaf 1)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        5*)
-        echo -e "$(tput setaf 5)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        *)
-        echo -e "$(tput setaf 7)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-    esac
-    case 404 in
-        1*)
-        echo -e "$(tput setaf 7)  404;Job cannot be found on Jenkins instance$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        2*)
-        echo -e "$(tput setaf 2)  404;Job cannot be found on Jenkins instance$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        3*)
-        echo -e "$(tput setaf 3)  404;Job cannot be found on Jenkins instance$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        4*)
-        echo -e "$(tput setaf 1)  404;Job cannot be found on Jenkins instance$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        5*)
-        echo -e "$(tput setaf 5)  404;Job cannot be found on Jenkins instance$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        *)
-        echo -e "$(tput setaf 7)  404;Job cannot be found on Jenkins instance$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-    esac
+    echo -e "${BOLD}${WHITE}Responses${OFF}"
+    code=200
+    echo -e "${result_color_table[${code:0:1}]}  200;Successfully retrieved job configuration in config.xml format${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    code=400
+    echo -e "${result_color_table[${code:0:1}]}  400;An error has occurred - error message is embedded inside the HTML response${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    code=401
+    echo -e "${result_color_table[${code:0:1}]}  401;Authentication failed - incorrect username and/or password${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    code=403
+    echo -e "${result_color_table[${code:0:1}]}  403;Jenkins requires authentication - please set username and password${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    code=404
+    echo -e "${result_color_table[${code:0:1}]}  404;Job cannot be found on Jenkins instance${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
 }
 ##############################################################################
 #
@@ -3410,95 +2233,23 @@ print_postJobConfig_help() {
 ##############################################################################
 print_postJobDelete_help() {
     echo ""
-    echo -e "$(tput bold)$(tput setaf 7)postJobDelete - $(tput sgr0)"
+    echo -e "${BOLD}${WHITE}postJobDelete - ${OFF}${BLUE}(AUTH - BASIC)${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo -e ""
-    echo -e "Delete a job" | fold -sw 80
+    echo -e "Delete a job" | paste -sd' ' | fold -sw 80
     echo -e ""
-    echo -e "$(tput bold)$(tput setaf 7)Parameters$(tput sgr0)"
-    echo -e "  * $(tput setaf 2)name$(tput sgr0) $(tput setaf 4)[String]$(tput sgr0) $(tput setaf 1)(required)$(tput sgr0)$(tput sgr0) - Name of the job $(tput setaf 3)Specify as: name=value$(tput sgr0)" | fold -sw 80 | sed '2,$s/^/    /'
-    echo -e "  * $(tput setaf 2)Jenkins-Crumb$(tput sgr0) $(tput setaf 4)[String]$(tput sgr0)$(tput sgr0) - CSRF protection token $(tput setaf 3)Specify as: Jenkins-Crumb:value$(tput sgr0)" | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "${BOLD}${WHITE}Parameters${OFF}"
+    echo -e "  * ${GREEN}name${OFF} ${BLUE}[String]${OFF} ${RED}(required)${OFF}${OFF} - Name of the job ${YELLOW}Specify as: name=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}Jenkins-Crumb${OFF} ${BLUE}[String]${OFF}${OFF} - CSRF protection token ${YELLOW}Specify as: Jenkins-Crumb:value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo ""
-    echo -e "$(tput bold)$(tput setaf 7)Responses$(tput sgr0)"
-    case 200 in
-        1*)
-        echo -e "$(tput setaf 7)  200;Successfully deleted the job$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        2*)
-        echo -e "$(tput setaf 2)  200;Successfully deleted the job$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        3*)
-        echo -e "$(tput setaf 3)  200;Successfully deleted the job$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        4*)
-        echo -e "$(tput setaf 1)  200;Successfully deleted the job$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        5*)
-        echo -e "$(tput setaf 5)  200;Successfully deleted the job$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        *)
-        echo -e "$(tput setaf 7)  200;Successfully deleted the job$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-    esac
-    case 401 in
-        1*)
-        echo -e "$(tput setaf 7)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        2*)
-        echo -e "$(tput setaf 2)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        3*)
-        echo -e "$(tput setaf 3)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        4*)
-        echo -e "$(tput setaf 1)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        5*)
-        echo -e "$(tput setaf 5)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        *)
-        echo -e "$(tput setaf 7)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-    esac
-    case 403 in
-        1*)
-        echo -e "$(tput setaf 7)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        2*)
-        echo -e "$(tput setaf 2)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        3*)
-        echo -e "$(tput setaf 3)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        4*)
-        echo -e "$(tput setaf 1)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        5*)
-        echo -e "$(tput setaf 5)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        *)
-        echo -e "$(tput setaf 7)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-    esac
-    case 404 in
-        1*)
-        echo -e "$(tput setaf 7)  404;Job cannot be found on Jenkins instance$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        2*)
-        echo -e "$(tput setaf 2)  404;Job cannot be found on Jenkins instance$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        3*)
-        echo -e "$(tput setaf 3)  404;Job cannot be found on Jenkins instance$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        4*)
-        echo -e "$(tput setaf 1)  404;Job cannot be found on Jenkins instance$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        5*)
-        echo -e "$(tput setaf 5)  404;Job cannot be found on Jenkins instance$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        *)
-        echo -e "$(tput setaf 7)  404;Job cannot be found on Jenkins instance$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-    esac
+    echo -e "${BOLD}${WHITE}Responses${OFF}"
+    code=200
+    echo -e "${result_color_table[${code:0:1}]}  200;Successfully deleted the job${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    code=401
+    echo -e "${result_color_table[${code:0:1}]}  401;Authentication failed - incorrect username and/or password${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    code=403
+    echo -e "${result_color_table[${code:0:1}]}  403;Jenkins requires authentication - please set username and password${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    code=404
+    echo -e "${result_color_table[${code:0:1}]}  404;Job cannot be found on Jenkins instance${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
 }
 ##############################################################################
 #
@@ -3507,95 +2258,23 @@ print_postJobDelete_help() {
 ##############################################################################
 print_postJobDisable_help() {
     echo ""
-    echo -e "$(tput bold)$(tput setaf 7)postJobDisable - $(tput sgr0)"
+    echo -e "${BOLD}${WHITE}postJobDisable - ${OFF}${BLUE}(AUTH - BASIC)${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo -e ""
-    echo -e "Disable a job" | fold -sw 80
+    echo -e "Disable a job" | paste -sd' ' | fold -sw 80
     echo -e ""
-    echo -e "$(tput bold)$(tput setaf 7)Parameters$(tput sgr0)"
-    echo -e "  * $(tput setaf 2)name$(tput sgr0) $(tput setaf 4)[String]$(tput sgr0) $(tput setaf 1)(required)$(tput sgr0)$(tput sgr0) - Name of the job $(tput setaf 3)Specify as: name=value$(tput sgr0)" | fold -sw 80 | sed '2,$s/^/    /'
-    echo -e "  * $(tput setaf 2)Jenkins-Crumb$(tput sgr0) $(tput setaf 4)[String]$(tput sgr0)$(tput sgr0) - CSRF protection token $(tput setaf 3)Specify as: Jenkins-Crumb:value$(tput sgr0)" | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "${BOLD}${WHITE}Parameters${OFF}"
+    echo -e "  * ${GREEN}name${OFF} ${BLUE}[String]${OFF} ${RED}(required)${OFF}${OFF} - Name of the job ${YELLOW}Specify as: name=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}Jenkins-Crumb${OFF} ${BLUE}[String]${OFF}${OFF} - CSRF protection token ${YELLOW}Specify as: Jenkins-Crumb:value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo ""
-    echo -e "$(tput bold)$(tput setaf 7)Responses$(tput sgr0)"
-    case 200 in
-        1*)
-        echo -e "$(tput setaf 7)  200;Successfully disabled the job$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        2*)
-        echo -e "$(tput setaf 2)  200;Successfully disabled the job$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        3*)
-        echo -e "$(tput setaf 3)  200;Successfully disabled the job$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        4*)
-        echo -e "$(tput setaf 1)  200;Successfully disabled the job$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        5*)
-        echo -e "$(tput setaf 5)  200;Successfully disabled the job$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        *)
-        echo -e "$(tput setaf 7)  200;Successfully disabled the job$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-    esac
-    case 401 in
-        1*)
-        echo -e "$(tput setaf 7)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        2*)
-        echo -e "$(tput setaf 2)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        3*)
-        echo -e "$(tput setaf 3)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        4*)
-        echo -e "$(tput setaf 1)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        5*)
-        echo -e "$(tput setaf 5)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        *)
-        echo -e "$(tput setaf 7)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-    esac
-    case 403 in
-        1*)
-        echo -e "$(tput setaf 7)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        2*)
-        echo -e "$(tput setaf 2)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        3*)
-        echo -e "$(tput setaf 3)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        4*)
-        echo -e "$(tput setaf 1)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        5*)
-        echo -e "$(tput setaf 5)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        *)
-        echo -e "$(tput setaf 7)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-    esac
-    case 404 in
-        1*)
-        echo -e "$(tput setaf 7)  404;Job cannot be found on Jenkins instance$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        2*)
-        echo -e "$(tput setaf 2)  404;Job cannot be found on Jenkins instance$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        3*)
-        echo -e "$(tput setaf 3)  404;Job cannot be found on Jenkins instance$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        4*)
-        echo -e "$(tput setaf 1)  404;Job cannot be found on Jenkins instance$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        5*)
-        echo -e "$(tput setaf 5)  404;Job cannot be found on Jenkins instance$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        *)
-        echo -e "$(tput setaf 7)  404;Job cannot be found on Jenkins instance$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-    esac
+    echo -e "${BOLD}${WHITE}Responses${OFF}"
+    code=200
+    echo -e "${result_color_table[${code:0:1}]}  200;Successfully disabled the job${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    code=401
+    echo -e "${result_color_table[${code:0:1}]}  401;Authentication failed - incorrect username and/or password${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    code=403
+    echo -e "${result_color_table[${code:0:1}]}  403;Jenkins requires authentication - please set username and password${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    code=404
+    echo -e "${result_color_table[${code:0:1}]}  404;Job cannot be found on Jenkins instance${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
 }
 ##############################################################################
 #
@@ -3604,95 +2283,23 @@ print_postJobDisable_help() {
 ##############################################################################
 print_postJobEnable_help() {
     echo ""
-    echo -e "$(tput bold)$(tput setaf 7)postJobEnable - $(tput sgr0)"
+    echo -e "${BOLD}${WHITE}postJobEnable - ${OFF}${BLUE}(AUTH - BASIC)${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo -e ""
-    echo -e "Enable a job" | fold -sw 80
+    echo -e "Enable a job" | paste -sd' ' | fold -sw 80
     echo -e ""
-    echo -e "$(tput bold)$(tput setaf 7)Parameters$(tput sgr0)"
-    echo -e "  * $(tput setaf 2)name$(tput sgr0) $(tput setaf 4)[String]$(tput sgr0) $(tput setaf 1)(required)$(tput sgr0)$(tput sgr0) - Name of the job $(tput setaf 3)Specify as: name=value$(tput sgr0)" | fold -sw 80 | sed '2,$s/^/    /'
-    echo -e "  * $(tput setaf 2)Jenkins-Crumb$(tput sgr0) $(tput setaf 4)[String]$(tput sgr0)$(tput sgr0) - CSRF protection token $(tput setaf 3)Specify as: Jenkins-Crumb:value$(tput sgr0)" | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "${BOLD}${WHITE}Parameters${OFF}"
+    echo -e "  * ${GREEN}name${OFF} ${BLUE}[String]${OFF} ${RED}(required)${OFF}${OFF} - Name of the job ${YELLOW}Specify as: name=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}Jenkins-Crumb${OFF} ${BLUE}[String]${OFF}${OFF} - CSRF protection token ${YELLOW}Specify as: Jenkins-Crumb:value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo ""
-    echo -e "$(tput bold)$(tput setaf 7)Responses$(tput sgr0)"
-    case 200 in
-        1*)
-        echo -e "$(tput setaf 7)  200;Successfully enabled the job$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        2*)
-        echo -e "$(tput setaf 2)  200;Successfully enabled the job$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        3*)
-        echo -e "$(tput setaf 3)  200;Successfully enabled the job$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        4*)
-        echo -e "$(tput setaf 1)  200;Successfully enabled the job$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        5*)
-        echo -e "$(tput setaf 5)  200;Successfully enabled the job$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        *)
-        echo -e "$(tput setaf 7)  200;Successfully enabled the job$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-    esac
-    case 401 in
-        1*)
-        echo -e "$(tput setaf 7)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        2*)
-        echo -e "$(tput setaf 2)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        3*)
-        echo -e "$(tput setaf 3)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        4*)
-        echo -e "$(tput setaf 1)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        5*)
-        echo -e "$(tput setaf 5)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        *)
-        echo -e "$(tput setaf 7)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-    esac
-    case 403 in
-        1*)
-        echo -e "$(tput setaf 7)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        2*)
-        echo -e "$(tput setaf 2)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        3*)
-        echo -e "$(tput setaf 3)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        4*)
-        echo -e "$(tput setaf 1)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        5*)
-        echo -e "$(tput setaf 5)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        *)
-        echo -e "$(tput setaf 7)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-    esac
-    case 404 in
-        1*)
-        echo -e "$(tput setaf 7)  404;Job cannot be found on Jenkins instance$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        2*)
-        echo -e "$(tput setaf 2)  404;Job cannot be found on Jenkins instance$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        3*)
-        echo -e "$(tput setaf 3)  404;Job cannot be found on Jenkins instance$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        4*)
-        echo -e "$(tput setaf 1)  404;Job cannot be found on Jenkins instance$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        5*)
-        echo -e "$(tput setaf 5)  404;Job cannot be found on Jenkins instance$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        *)
-        echo -e "$(tput setaf 7)  404;Job cannot be found on Jenkins instance$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-    esac
+    echo -e "${BOLD}${WHITE}Responses${OFF}"
+    code=200
+    echo -e "${result_color_table[${code:0:1}]}  200;Successfully enabled the job${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    code=401
+    echo -e "${result_color_table[${code:0:1}]}  401;Authentication failed - incorrect username and/or password${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    code=403
+    echo -e "${result_color_table[${code:0:1}]}  403;Jenkins requires authentication - please set username and password${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    code=404
+    echo -e "${result_color_table[${code:0:1}]}  404;Job cannot be found on Jenkins instance${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
 }
 ##############################################################################
 #
@@ -3701,95 +2308,23 @@ print_postJobEnable_help() {
 ##############################################################################
 print_postJobLastBuildStop_help() {
     echo ""
-    echo -e "$(tput bold)$(tput setaf 7)postJobLastBuildStop - $(tput sgr0)"
+    echo -e "${BOLD}${WHITE}postJobLastBuildStop - ${OFF}${BLUE}(AUTH - BASIC)${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo -e ""
-    echo -e "Stop a job" | fold -sw 80
+    echo -e "Stop a job" | paste -sd' ' | fold -sw 80
     echo -e ""
-    echo -e "$(tput bold)$(tput setaf 7)Parameters$(tput sgr0)"
-    echo -e "  * $(tput setaf 2)name$(tput sgr0) $(tput setaf 4)[String]$(tput sgr0) $(tput setaf 1)(required)$(tput sgr0)$(tput sgr0) - Name of the job $(tput setaf 3)Specify as: name=value$(tput sgr0)" | fold -sw 80 | sed '2,$s/^/    /'
-    echo -e "  * $(tput setaf 2)Jenkins-Crumb$(tput sgr0) $(tput setaf 4)[String]$(tput sgr0)$(tput sgr0) - CSRF protection token $(tput setaf 3)Specify as: Jenkins-Crumb:value$(tput sgr0)" | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "${BOLD}${WHITE}Parameters${OFF}"
+    echo -e "  * ${GREEN}name${OFF} ${BLUE}[String]${OFF} ${RED}(required)${OFF}${OFF} - Name of the job ${YELLOW}Specify as: name=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}Jenkins-Crumb${OFF} ${BLUE}[String]${OFF}${OFF} - CSRF protection token ${YELLOW}Specify as: Jenkins-Crumb:value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo ""
-    echo -e "$(tput bold)$(tput setaf 7)Responses$(tput sgr0)"
-    case 200 in
-        1*)
-        echo -e "$(tput setaf 7)  200;Successfully stopped the job$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        2*)
-        echo -e "$(tput setaf 2)  200;Successfully stopped the job$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        3*)
-        echo -e "$(tput setaf 3)  200;Successfully stopped the job$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        4*)
-        echo -e "$(tput setaf 1)  200;Successfully stopped the job$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        5*)
-        echo -e "$(tput setaf 5)  200;Successfully stopped the job$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        *)
-        echo -e "$(tput setaf 7)  200;Successfully stopped the job$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-    esac
-    case 401 in
-        1*)
-        echo -e "$(tput setaf 7)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        2*)
-        echo -e "$(tput setaf 2)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        3*)
-        echo -e "$(tput setaf 3)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        4*)
-        echo -e "$(tput setaf 1)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        5*)
-        echo -e "$(tput setaf 5)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        *)
-        echo -e "$(tput setaf 7)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-    esac
-    case 403 in
-        1*)
-        echo -e "$(tput setaf 7)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        2*)
-        echo -e "$(tput setaf 2)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        3*)
-        echo -e "$(tput setaf 3)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        4*)
-        echo -e "$(tput setaf 1)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        5*)
-        echo -e "$(tput setaf 5)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        *)
-        echo -e "$(tput setaf 7)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-    esac
-    case 404 in
-        1*)
-        echo -e "$(tput setaf 7)  404;Job cannot be found on Jenkins instance$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        2*)
-        echo -e "$(tput setaf 2)  404;Job cannot be found on Jenkins instance$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        3*)
-        echo -e "$(tput setaf 3)  404;Job cannot be found on Jenkins instance$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        4*)
-        echo -e "$(tput setaf 1)  404;Job cannot be found on Jenkins instance$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        5*)
-        echo -e "$(tput setaf 5)  404;Job cannot be found on Jenkins instance$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        *)
-        echo -e "$(tput setaf 7)  404;Job cannot be found on Jenkins instance$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-    esac
+    echo -e "${BOLD}${WHITE}Responses${OFF}"
+    code=200
+    echo -e "${result_color_table[${code:0:1}]}  200;Successfully stopped the job${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    code=401
+    echo -e "${result_color_table[${code:0:1}]}  401;Authentication failed - incorrect username and/or password${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    code=403
+    echo -e "${result_color_table[${code:0:1}]}  403;Jenkins requires authentication - please set username and password${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    code=404
+    echo -e "${result_color_table[${code:0:1}]}  404;Job cannot be found on Jenkins instance${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
 }
 ##############################################################################
 #
@@ -3798,119 +2333,61 @@ print_postJobLastBuildStop_help() {
 ##############################################################################
 print_postViewConfig_help() {
     echo ""
-    echo -e "$(tput bold)$(tput setaf 7)postViewConfig - $(tput sgr0)"
+    echo -e "${BOLD}${WHITE}postViewConfig - ${OFF}${BLUE}(AUTH - BASIC)${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo -e ""
-    echo -e "Update view configuration" | fold -sw 80
+    echo -e "Update view configuration" | paste -sd' ' | fold -sw 80
     echo -e ""
-    echo -e "$(tput bold)$(tput setaf 7)Parameters$(tput sgr0)"
-    echo -e "  * $(tput setaf 2)name$(tput sgr0) $(tput setaf 4)[String]$(tput sgr0) $(tput setaf 1)(required)$(tput sgr0)$(tput sgr0) - Name of the view $(tput setaf 3)Specify as: name=value$(tput sgr0)" | fold -sw 80 | sed '2,$s/^/    /'
-    echo -e "  * $(tput setaf 2)Jenkins-Crumb$(tput sgr0) $(tput setaf 4)[String]$(tput sgr0)$(tput sgr0) - CSRF protection token $(tput setaf 3)Specify as: Jenkins-Crumb:value$(tput sgr0)" | fold -sw 80 | sed '2,$s/^/    /'
-    echo -e "  * $(tput setaf 2)body$(tput sgr0) $(tput setaf 4)[]$(tput sgr0) $(tput setaf 1)(required)$(tput sgr0)$(tput sgr0) - View configuration in config.xml format" | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "${BOLD}${WHITE}Parameters${OFF}"
+    echo -e "  * ${GREEN}name${OFF} ${BLUE}[String]${OFF} ${RED}(required)${OFF}${OFF} - Name of the view ${YELLOW}Specify as: name=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}Jenkins-Crumb${OFF} ${BLUE}[String]${OFF}${OFF} - CSRF protection token ${YELLOW}Specify as: Jenkins-Crumb:value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}body${OFF} ${BLUE}[]${OFF} ${RED}(required)${OFF}${OFF} - View configuration in config.xml format" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo -e ""
     echo ""
-    echo -e "$(tput bold)$(tput setaf 7)Responses$(tput sgr0)"
-    case 200 in
-        1*)
-        echo -e "$(tput setaf 7)  200;Successfully updated view configuration$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        2*)
-        echo -e "$(tput setaf 2)  200;Successfully updated view configuration$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        3*)
-        echo -e "$(tput setaf 3)  200;Successfully updated view configuration$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        4*)
-        echo -e "$(tput setaf 1)  200;Successfully updated view configuration$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        5*)
-        echo -e "$(tput setaf 5)  200;Successfully updated view configuration$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        *)
-        echo -e "$(tput setaf 7)  200;Successfully updated view configuration$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-    esac
-    case 400 in
-        1*)
-        echo -e "$(tput setaf 7)  400;An error has occurred - error message is embedded inside the HTML response$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        2*)
-        echo -e "$(tput setaf 2)  400;An error has occurred - error message is embedded inside the HTML response$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        3*)
-        echo -e "$(tput setaf 3)  400;An error has occurred - error message is embedded inside the HTML response$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        4*)
-        echo -e "$(tput setaf 1)  400;An error has occurred - error message is embedded inside the HTML response$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        5*)
-        echo -e "$(tput setaf 5)  400;An error has occurred - error message is embedded inside the HTML response$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        *)
-        echo -e "$(tput setaf 7)  400;An error has occurred - error message is embedded inside the HTML response$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-    esac
-    case 401 in
-        1*)
-        echo -e "$(tput setaf 7)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        2*)
-        echo -e "$(tput setaf 2)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        3*)
-        echo -e "$(tput setaf 3)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        4*)
-        echo -e "$(tput setaf 1)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        5*)
-        echo -e "$(tput setaf 5)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        *)
-        echo -e "$(tput setaf 7)  401;Authentication failed - incorrect username and/or password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-    esac
-    case 403 in
-        1*)
-        echo -e "$(tput setaf 7)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        2*)
-        echo -e "$(tput setaf 2)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        3*)
-        echo -e "$(tput setaf 3)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        4*)
-        echo -e "$(tput setaf 1)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        5*)
-        echo -e "$(tput setaf 5)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        *)
-        echo -e "$(tput setaf 7)  403;Jenkins requires authentication - please set username and password$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-    esac
-    case 404 in
-        1*)
-        echo -e "$(tput setaf 7)  404;View cannot be found on Jenkins instance$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        2*)
-        echo -e "$(tput setaf 2)  404;View cannot be found on Jenkins instance$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        3*)
-        echo -e "$(tput setaf 3)  404;View cannot be found on Jenkins instance$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        4*)
-        echo -e "$(tput setaf 1)  404;View cannot be found on Jenkins instance$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        5*)
-        echo -e "$(tput setaf 5)  404;View cannot be found on Jenkins instance$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-        *)
-        echo -e "$(tput setaf 7)  404;View cannot be found on Jenkins instance$(tput sgr0)" | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-        ;;
-    esac
+    echo -e "${BOLD}${WHITE}Responses${OFF}"
+    code=200
+    echo -e "${result_color_table[${code:0:1}]}  200;Successfully updated view configuration${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    code=400
+    echo -e "${result_color_table[${code:0:1}]}  400;An error has occurred - error message is embedded inside the HTML response${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    code=401
+    echo -e "${result_color_table[${code:0:1}]}  401;Authentication failed - incorrect username and/or password${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    code=403
+    echo -e "${result_color_table[${code:0:1}]}  403;Jenkins requires authentication - please set username and password${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    code=404
+    echo -e "${result_color_table[${code:0:1}]}  404;View cannot be found on Jenkins instance${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
 }
 
+
+##############################################################################
+#
+# Call deletePipelineQueueItem operation
+#
+##############################################################################
+call_deletePipelineQueueItem() {
+    local path_parameter_names=(organization pipeline queue)
+    local query_parameter_names=(  )
+    local path
+
+    path=$(build_request_path "/blue/rest/organizations/{organization}/pipelines/{pipeline}/queue/{queue}" path_parameter_names query_parameter_names)
+    if [ $? -ne 0 ]; then
+        ERROR_MSG=$path
+        exit 1
+    fi
+    local method="DELETE"
+    local headers_curl=$(header_arguments_to_curl)
+    if [[ -n $header_accept ]]; then
+        headers_curl="${headers_curl} -H 'Accept: ${header_accept}'"
+    fi
+
+    local basic_auth_option=""
+    if [[ -n $basic_auth_credential ]]; then
+        basic_auth_option="-u ${basic_auth_credential}"
+    fi
+    if [[ "$print_curl" = true ]]; then
+        echo "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+    else
+        eval "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+    fi
+}
 
 ##############################################################################
 #
@@ -3918,14 +2395,15 @@ print_postViewConfig_help() {
 #
 ##############################################################################
 call_getAuthenticatedUser() {
-    local path_parameter_names=(organisation)
-    local query_parameter_names=()
+    local path_parameter_names=(organization)
+    local query_parameter_names=(  )
+    local path
 
-    if [[ $force = false ]]; then
-        validate_request_parameters "/blue/rest/organizations/{organisation}/user/" path_parameter_names query_parameter_names
+    path=$(build_request_path "/blue/rest/organizations/{organization}/user/" path_parameter_names query_parameter_names)
+    if [ $? -ne 0 ]; then
+        ERROR_MSG=$path
+        exit 1
     fi
-
-    local path=$(build_request_path "/blue/rest/organizations/{organisation}/user/" path_parameter_names query_parameter_names)
     local method="GET"
     local headers_curl=$(header_arguments_to_curl)
     if [[ -n $header_accept ]]; then
@@ -3950,13 +2428,14 @@ call_getAuthenticatedUser() {
 ##############################################################################
 call_getClasses() {
     local path_parameter_names=(class)
-    local query_parameter_names=()
+    local query_parameter_names=(  )
+    local path
 
-    if [[ $force = false ]]; then
-        validate_request_parameters "/blue/rest/classes/{class}" path_parameter_names query_parameter_names
+    path=$(build_request_path "/blue/rest/classes/{class}" path_parameter_names query_parameter_names)
+    if [ $? -ne 0 ]; then
+        ERROR_MSG=$path
+        exit 1
     fi
-
-    local path=$(build_request_path "/blue/rest/classes/{class}" path_parameter_names query_parameter_names)
     local method="GET"
     local headers_curl=$(header_arguments_to_curl)
     if [[ -n $header_accept ]]; then
@@ -3980,14 +2459,15 @@ call_getClasses() {
 #
 ##############################################################################
 call_getOrganisation() {
-    local path_parameter_names=(organisation)
-    local query_parameter_names=()
+    local path_parameter_names=(organization)
+    local query_parameter_names=(  )
+    local path
 
-    if [[ $force = false ]]; then
-        validate_request_parameters "/blue/rest/organizations/{organisation}" path_parameter_names query_parameter_names
+    path=$(build_request_path "/blue/rest/organizations/{organization}" path_parameter_names query_parameter_names)
+    if [ $? -ne 0 ]; then
+        ERROR_MSG=$path
+        exit 1
     fi
-
-    local path=$(build_request_path "/blue/rest/organizations/{organisation}" path_parameter_names query_parameter_names)
     local method="GET"
     local headers_curl=$(header_arguments_to_curl)
     if [[ -n $header_accept ]]; then
@@ -4012,13 +2492,14 @@ call_getOrganisation() {
 ##############################################################################
 call_getOrganisations() {
     local path_parameter_names=()
-    local query_parameter_names=()
+    local query_parameter_names=(  )
+    local path
 
-    if [[ $force = false ]]; then
-        validate_request_parameters "/blue/rest/organizations/" path_parameter_names query_parameter_names
+    path=$(build_request_path "/blue/rest/organizations/" path_parameter_names query_parameter_names)
+    if [ $? -ne 0 ]; then
+        ERROR_MSG=$path
+        exit 1
     fi
-
-    local path=$(build_request_path "/blue/rest/organizations/" path_parameter_names query_parameter_names)
     local method="GET"
     local headers_curl=$(header_arguments_to_curl)
     if [[ -n $header_accept ]]; then
@@ -4038,18 +2519,19 @@ call_getOrganisations() {
 
 ##############################################################################
 #
-# Call getPipelineBranchByOrg operation
+# Call getPipeline operation
 #
 ##############################################################################
-call_getPipelineBranchByOrg() {
-    local path_parameter_names=(organisation pipeline branch)
-    local query_parameter_names=()
+call_getPipeline() {
+    local path_parameter_names=(organization pipeline)
+    local query_parameter_names=(  )
+    local path
 
-    if [[ $force = false ]]; then
-        validate_request_parameters "/blue/rest/organizations/{organisation}/pipelines/{pipeline}/branches/{branch}/" path_parameter_names query_parameter_names
+    path=$(build_request_path "/blue/rest/organizations/{organization}/pipelines/{pipeline}" path_parameter_names query_parameter_names)
+    if [ $? -ne 0 ]; then
+        ERROR_MSG=$path
+        exit 1
     fi
-
-    local path=$(build_request_path "/blue/rest/organizations/{organisation}/pipelines/{pipeline}/branches/{branch}/" path_parameter_names query_parameter_names)
     local method="GET"
     local headers_curl=$(header_arguments_to_curl)
     if [[ -n $header_accept ]]; then
@@ -4069,18 +2551,19 @@ call_getPipelineBranchByOrg() {
 
 ##############################################################################
 #
-# Call getPipelineBranchesByOrg operation
+# Call getPipelineActivities operation
 #
 ##############################################################################
-call_getPipelineBranchesByOrg() {
-    local path_parameter_names=(organisation pipeline)
-    local query_parameter_names=()
+call_getPipelineActivities() {
+    local path_parameter_names=(organization pipeline)
+    local query_parameter_names=(  )
+    local path
 
-    if [[ $force = false ]]; then
-        validate_request_parameters "/blue/rest/organizations/{organisation}/pipelines/{pipeline}/branches" path_parameter_names query_parameter_names
+    path=$(build_request_path "/blue/rest/organizations/{organization}/pipelines/{pipeline}/activities" path_parameter_names query_parameter_names)
+    if [ $? -ne 0 ]; then
+        ERROR_MSG=$path
+        exit 1
     fi
-
-    local path=$(build_request_path "/blue/rest/organizations/{organisation}/pipelines/{pipeline}/branches" path_parameter_names query_parameter_names)
     local method="GET"
     local headers_curl=$(header_arguments_to_curl)
     if [[ -n $header_accept ]]; then
@@ -4100,18 +2583,19 @@ call_getPipelineBranchesByOrg() {
 
 ##############################################################################
 #
-# Call getPipelineByOrg operation
+# Call getPipelineBranch operation
 #
 ##############################################################################
-call_getPipelineByOrg() {
-    local path_parameter_names=(organisation pipeline)
-    local query_parameter_names=()
+call_getPipelineBranch() {
+    local path_parameter_names=(organization pipeline branch)
+    local query_parameter_names=(  )
+    local path
 
-    if [[ $force = false ]]; then
-        validate_request_parameters "/blue/rest/organizations/{organisation}/pipelines/{pipeline}" path_parameter_names query_parameter_names
+    path=$(build_request_path "/blue/rest/organizations/{organization}/pipelines/{pipeline}/branches/{branch}/" path_parameter_names query_parameter_names)
+    if [ $? -ne 0 ]; then
+        ERROR_MSG=$path
+        exit 1
     fi
-
-    local path=$(build_request_path "/blue/rest/organizations/{organisation}/pipelines/{pipeline}" path_parameter_names query_parameter_names)
     local method="GET"
     local headers_curl=$(header_arguments_to_curl)
     if [[ -n $header_accept ]]; then
@@ -4131,18 +2615,19 @@ call_getPipelineByOrg() {
 
 ##############################################################################
 #
-# Call getPipelineFolderByOrg operation
+# Call getPipelineBranchRun operation
 #
 ##############################################################################
-call_getPipelineFolderByOrg() {
-    local path_parameter_names=(organisation folder)
-    local query_parameter_names=()
+call_getPipelineBranchRun() {
+    local path_parameter_names=(organization pipeline branch run)
+    local query_parameter_names=(  )
+    local path
 
-    if [[ $force = false ]]; then
-        validate_request_parameters "/blue/rest/organizations/{organisation}/pipelines/{folder}/" path_parameter_names query_parameter_names
+    path=$(build_request_path "/blue/rest/organizations/{organization}/pipelines/{pipeline}/branches/{branch}/runs/{run}" path_parameter_names query_parameter_names)
+    if [ $? -ne 0 ]; then
+        ERROR_MSG=$path
+        exit 1
     fi
-
-    local path=$(build_request_path "/blue/rest/organizations/{organisation}/pipelines/{folder}/" path_parameter_names query_parameter_names)
     local method="GET"
     local headers_curl=$(header_arguments_to_curl)
     if [[ -n $header_accept ]]; then
@@ -4162,18 +2647,19 @@ call_getPipelineFolderByOrg() {
 
 ##############################################################################
 #
-# Call getPipelineFolderByOrg_0 operation
+# Call getPipelineBranches operation
 #
 ##############################################################################
-call_getPipelineFolderByOrg_0() {
-    local path_parameter_names=(organisation pipeline folder)
-    local query_parameter_names=()
+call_getPipelineBranches() {
+    local path_parameter_names=(organization pipeline)
+    local query_parameter_names=(  )
+    local path
 
-    if [[ $force = false ]]; then
-        validate_request_parameters "/blue/rest/organizations/{organisation}/pipelines/{folder}/pipelines/{pipeline}" path_parameter_names query_parameter_names
+    path=$(build_request_path "/blue/rest/organizations/{organization}/pipelines/{pipeline}/branches" path_parameter_names query_parameter_names)
+    if [ $? -ne 0 ]; then
+        ERROR_MSG=$path
+        exit 1
     fi
-
-    local path=$(build_request_path "/blue/rest/organizations/{organisation}/pipelines/{folder}/pipelines/{pipeline}" path_parameter_names query_parameter_names)
     local method="GET"
     local headers_curl=$(header_arguments_to_curl)
     if [[ -n $header_accept ]]; then
@@ -4193,18 +2679,499 @@ call_getPipelineFolderByOrg_0() {
 
 ##############################################################################
 #
-# Call getPipelinesByOrg operation
+# Call getPipelineFolder operation
 #
 ##############################################################################
-call_getPipelinesByOrg() {
-    local path_parameter_names=(organisation)
-    local query_parameter_names=()
+call_getPipelineFolder() {
+    local path_parameter_names=(organization folder)
+    local query_parameter_names=(  )
+    local path
 
-    if [[ $force = false ]]; then
-        validate_request_parameters "/blue/rest/organizations/{organisation}/pipelines/" path_parameter_names query_parameter_names
+    path=$(build_request_path "/blue/rest/organizations/{organization}/pipelines/{folder}/" path_parameter_names query_parameter_names)
+    if [ $? -ne 0 ]; then
+        ERROR_MSG=$path
+        exit 1
+    fi
+    local method="GET"
+    local headers_curl=$(header_arguments_to_curl)
+    if [[ -n $header_accept ]]; then
+        headers_curl="${headers_curl} -H 'Accept: ${header_accept}'"
     fi
 
-    local path=$(build_request_path "/blue/rest/organizations/{organisation}/pipelines/" path_parameter_names query_parameter_names)
+    local basic_auth_option=""
+    if [[ -n $basic_auth_credential ]]; then
+        basic_auth_option="-u ${basic_auth_credential}"
+    fi
+    if [[ "$print_curl" = true ]]; then
+        echo "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+    else
+        eval "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+    fi
+}
+
+##############################################################################
+#
+# Call getPipelineFolderPipeline operation
+#
+##############################################################################
+call_getPipelineFolderPipeline() {
+    local path_parameter_names=(organization pipeline folder)
+    local query_parameter_names=(  )
+    local path
+
+    path=$(build_request_path "/blue/rest/organizations/{organization}/pipelines/{folder}/pipelines/{pipeline}" path_parameter_names query_parameter_names)
+    if [ $? -ne 0 ]; then
+        ERROR_MSG=$path
+        exit 1
+    fi
+    local method="GET"
+    local headers_curl=$(header_arguments_to_curl)
+    if [[ -n $header_accept ]]; then
+        headers_curl="${headers_curl} -H 'Accept: ${header_accept}'"
+    fi
+
+    local basic_auth_option=""
+    if [[ -n $basic_auth_credential ]]; then
+        basic_auth_option="-u ${basic_auth_credential}"
+    fi
+    if [[ "$print_curl" = true ]]; then
+        echo "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+    else
+        eval "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+    fi
+}
+
+##############################################################################
+#
+# Call getPipelineQueue operation
+#
+##############################################################################
+call_getPipelineQueue() {
+    local path_parameter_names=(organization pipeline)
+    local query_parameter_names=(  )
+    local path
+
+    path=$(build_request_path "/blue/rest/organizations/{organization}/pipelines/{pipeline}/queue" path_parameter_names query_parameter_names)
+    if [ $? -ne 0 ]; then
+        ERROR_MSG=$path
+        exit 1
+    fi
+    local method="GET"
+    local headers_curl=$(header_arguments_to_curl)
+    if [[ -n $header_accept ]]; then
+        headers_curl="${headers_curl} -H 'Accept: ${header_accept}'"
+    fi
+
+    local basic_auth_option=""
+    if [[ -n $basic_auth_credential ]]; then
+        basic_auth_option="-u ${basic_auth_credential}"
+    fi
+    if [[ "$print_curl" = true ]]; then
+        echo "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+    else
+        eval "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+    fi
+}
+
+##############################################################################
+#
+# Call getPipelineRun operation
+#
+##############################################################################
+call_getPipelineRun() {
+    local path_parameter_names=(organization pipeline run)
+    local query_parameter_names=(  )
+    local path
+
+    path=$(build_request_path "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}" path_parameter_names query_parameter_names)
+    if [ $? -ne 0 ]; then
+        ERROR_MSG=$path
+        exit 1
+    fi
+    local method="GET"
+    local headers_curl=$(header_arguments_to_curl)
+    if [[ -n $header_accept ]]; then
+        headers_curl="${headers_curl} -H 'Accept: ${header_accept}'"
+    fi
+
+    local basic_auth_option=""
+    if [[ -n $basic_auth_credential ]]; then
+        basic_auth_option="-u ${basic_auth_credential}"
+    fi
+    if [[ "$print_curl" = true ]]; then
+        echo "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+    else
+        eval "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+    fi
+}
+
+##############################################################################
+#
+# Call getPipelineRunLog operation
+#
+##############################################################################
+call_getPipelineRunLog() {
+    local path_parameter_names=(organization pipeline run)
+    local query_parameter_names=(start download  )
+    local path
+
+    path=$(build_request_path "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/log" path_parameter_names query_parameter_names)
+    if [ $? -ne 0 ]; then
+        ERROR_MSG=$path
+        exit 1
+    fi
+    local method="GET"
+    local headers_curl=$(header_arguments_to_curl)
+    if [[ -n $header_accept ]]; then
+        headers_curl="${headers_curl} -H 'Accept: ${header_accept}'"
+    fi
+
+    local basic_auth_option=""
+    if [[ -n $basic_auth_credential ]]; then
+        basic_auth_option="-u ${basic_auth_credential}"
+    fi
+    if [[ "$print_curl" = true ]]; then
+        echo "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+    else
+        eval "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+    fi
+}
+
+##############################################################################
+#
+# Call getPipelineRunNode operation
+#
+##############################################################################
+call_getPipelineRunNode() {
+    local path_parameter_names=(organization pipeline run node)
+    local query_parameter_names=(  )
+    local path
+
+    path=$(build_request_path "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}" path_parameter_names query_parameter_names)
+    if [ $? -ne 0 ]; then
+        ERROR_MSG=$path
+        exit 1
+    fi
+    local method="GET"
+    local headers_curl=$(header_arguments_to_curl)
+    if [[ -n $header_accept ]]; then
+        headers_curl="${headers_curl} -H 'Accept: ${header_accept}'"
+    fi
+
+    local basic_auth_option=""
+    if [[ -n $basic_auth_credential ]]; then
+        basic_auth_option="-u ${basic_auth_credential}"
+    fi
+    if [[ "$print_curl" = true ]]; then
+        echo "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+    else
+        eval "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+    fi
+}
+
+##############################################################################
+#
+# Call getPipelineRunNodeStep operation
+#
+##############################################################################
+call_getPipelineRunNodeStep() {
+    local path_parameter_names=(organization pipeline run node step)
+    local query_parameter_names=(  )
+    local path
+
+    path=$(build_request_path "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps/{step}" path_parameter_names query_parameter_names)
+    if [ $? -ne 0 ]; then
+        ERROR_MSG=$path
+        exit 1
+    fi
+    local method="GET"
+    local headers_curl=$(header_arguments_to_curl)
+    if [[ -n $header_accept ]]; then
+        headers_curl="${headers_curl} -H 'Accept: ${header_accept}'"
+    fi
+
+    local basic_auth_option=""
+    if [[ -n $basic_auth_credential ]]; then
+        basic_auth_option="-u ${basic_auth_credential}"
+    fi
+    if [[ "$print_curl" = true ]]; then
+        echo "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+    else
+        eval "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+    fi
+}
+
+##############################################################################
+#
+# Call getPipelineRunNodeStepLog operation
+#
+##############################################################################
+call_getPipelineRunNodeStepLog() {
+    local path_parameter_names=(organization pipeline run node step)
+    local query_parameter_names=(  )
+    local path
+
+    path=$(build_request_path "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps/{step}/log" path_parameter_names query_parameter_names)
+    if [ $? -ne 0 ]; then
+        ERROR_MSG=$path
+        exit 1
+    fi
+    local method="GET"
+    local headers_curl=$(header_arguments_to_curl)
+    if [[ -n $header_accept ]]; then
+        headers_curl="${headers_curl} -H 'Accept: ${header_accept}'"
+    fi
+
+    local basic_auth_option=""
+    if [[ -n $basic_auth_credential ]]; then
+        basic_auth_option="-u ${basic_auth_credential}"
+    fi
+    if [[ "$print_curl" = true ]]; then
+        echo "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+    else
+        eval "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+    fi
+}
+
+##############################################################################
+#
+# Call getPipelineRunNodeSteps operation
+#
+##############################################################################
+call_getPipelineRunNodeSteps() {
+    local path_parameter_names=(organization pipeline run node)
+    local query_parameter_names=(  )
+    local path
+
+    path=$(build_request_path "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps" path_parameter_names query_parameter_names)
+    if [ $? -ne 0 ]; then
+        ERROR_MSG=$path
+        exit 1
+    fi
+    local method="GET"
+    local headers_curl=$(header_arguments_to_curl)
+    if [[ -n $header_accept ]]; then
+        headers_curl="${headers_curl} -H 'Accept: ${header_accept}'"
+    fi
+
+    local basic_auth_option=""
+    if [[ -n $basic_auth_credential ]]; then
+        basic_auth_option="-u ${basic_auth_credential}"
+    fi
+    if [[ "$print_curl" = true ]]; then
+        echo "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+    else
+        eval "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+    fi
+}
+
+##############################################################################
+#
+# Call getPipelineRunNodes operation
+#
+##############################################################################
+call_getPipelineRunNodes() {
+    local path_parameter_names=(organization pipeline run)
+    local query_parameter_names=(  )
+    local path
+
+    path=$(build_request_path "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes" path_parameter_names query_parameter_names)
+    if [ $? -ne 0 ]; then
+        ERROR_MSG=$path
+        exit 1
+    fi
+    local method="GET"
+    local headers_curl=$(header_arguments_to_curl)
+    if [[ -n $header_accept ]]; then
+        headers_curl="${headers_curl} -H 'Accept: ${header_accept}'"
+    fi
+
+    local basic_auth_option=""
+    if [[ -n $basic_auth_credential ]]; then
+        basic_auth_option="-u ${basic_auth_credential}"
+    fi
+    if [[ "$print_curl" = true ]]; then
+        echo "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+    else
+        eval "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+    fi
+}
+
+##############################################################################
+#
+# Call getPipelineRuns operation
+#
+##############################################################################
+call_getPipelineRuns() {
+    local path_parameter_names=(organization pipeline)
+    local query_parameter_names=(  )
+    local path
+
+    path=$(build_request_path "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs" path_parameter_names query_parameter_names)
+    if [ $? -ne 0 ]; then
+        ERROR_MSG=$path
+        exit 1
+    fi
+    local method="GET"
+    local headers_curl=$(header_arguments_to_curl)
+    if [[ -n $header_accept ]]; then
+        headers_curl="${headers_curl} -H 'Accept: ${header_accept}'"
+    fi
+
+    local basic_auth_option=""
+    if [[ -n $basic_auth_credential ]]; then
+        basic_auth_option="-u ${basic_auth_credential}"
+    fi
+    if [[ "$print_curl" = true ]]; then
+        echo "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+    else
+        eval "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+    fi
+}
+
+##############################################################################
+#
+# Call getPipelines operation
+#
+##############################################################################
+call_getPipelines() {
+    local path_parameter_names=(organization)
+    local query_parameter_names=(  )
+    local path
+
+    path=$(build_request_path "/blue/rest/organizations/{organization}/pipelines/" path_parameter_names query_parameter_names)
+    if [ $? -ne 0 ]; then
+        ERROR_MSG=$path
+        exit 1
+    fi
+    local method="GET"
+    local headers_curl=$(header_arguments_to_curl)
+    if [[ -n $header_accept ]]; then
+        headers_curl="${headers_curl} -H 'Accept: ${header_accept}'"
+    fi
+
+    local basic_auth_option=""
+    if [[ -n $basic_auth_credential ]]; then
+        basic_auth_option="-u ${basic_auth_credential}"
+    fi
+    if [[ "$print_curl" = true ]]; then
+        echo "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+    else
+        eval "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+    fi
+}
+
+##############################################################################
+#
+# Call getSCM operation
+#
+##############################################################################
+call_getSCM() {
+    local path_parameter_names=(organization scm)
+    local query_parameter_names=(  )
+    local path
+
+    path=$(build_request_path "/blue/rest/organizations/{organization}/scm/{scm}" path_parameter_names query_parameter_names)
+    if [ $? -ne 0 ]; then
+        ERROR_MSG=$path
+        exit 1
+    fi
+    local method="GET"
+    local headers_curl=$(header_arguments_to_curl)
+    if [[ -n $header_accept ]]; then
+        headers_curl="${headers_curl} -H 'Accept: ${header_accept}'"
+    fi
+
+    local basic_auth_option=""
+    if [[ -n $basic_auth_credential ]]; then
+        basic_auth_option="-u ${basic_auth_credential}"
+    fi
+    if [[ "$print_curl" = true ]]; then
+        echo "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+    else
+        eval "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+    fi
+}
+
+##############################################################################
+#
+# Call getSCMOrganisationRepositories operation
+#
+##############################################################################
+call_getSCMOrganisationRepositories() {
+    local path_parameter_names=(organization scm scmOrganisation)
+    local query_parameter_names=(credentialId pageSize pageNumber  )
+    local path
+
+    path=$(build_request_path "/blue/rest/organizations/{organization}/scm/{scm}/organizations/{scmOrganisation}/repositories" path_parameter_names query_parameter_names)
+    if [ $? -ne 0 ]; then
+        ERROR_MSG=$path
+        exit 1
+    fi
+    local method="GET"
+    local headers_curl=$(header_arguments_to_curl)
+    if [[ -n $header_accept ]]; then
+        headers_curl="${headers_curl} -H 'Accept: ${header_accept}'"
+    fi
+
+    local basic_auth_option=""
+    if [[ -n $basic_auth_credential ]]; then
+        basic_auth_option="-u ${basic_auth_credential}"
+    fi
+    if [[ "$print_curl" = true ]]; then
+        echo "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+    else
+        eval "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+    fi
+}
+
+##############################################################################
+#
+# Call getSCMOrganisationRepository operation
+#
+##############################################################################
+call_getSCMOrganisationRepository() {
+    local path_parameter_names=(organization scm scmOrganisation repository)
+    local query_parameter_names=(credentialId  )
+    local path
+
+    path=$(build_request_path "/blue/rest/organizations/{organization}/scm/{scm}/organizations/{scmOrganisation}/repositories/{repository}" path_parameter_names query_parameter_names)
+    if [ $? -ne 0 ]; then
+        ERROR_MSG=$path
+        exit 1
+    fi
+    local method="GET"
+    local headers_curl=$(header_arguments_to_curl)
+    if [[ -n $header_accept ]]; then
+        headers_curl="${headers_curl} -H 'Accept: ${header_accept}'"
+    fi
+
+    local basic_auth_option=""
+    if [[ -n $basic_auth_credential ]]; then
+        basic_auth_option="-u ${basic_auth_credential}"
+    fi
+    if [[ "$print_curl" = true ]]; then
+        echo "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+    else
+        eval "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+    fi
+}
+
+##############################################################################
+#
+# Call getSCMOrganisations operation
+#
+##############################################################################
+call_getSCMOrganisations() {
+    local path_parameter_names=(organization scm)
+    local query_parameter_names=(credentialId  )
+    local path
+
+    path=$(build_request_path "/blue/rest/organizations/{organization}/scm/{scm}/organizations" path_parameter_names query_parameter_names)
+    if [ $? -ne 0 ]; then
+        ERROR_MSG=$path
+        exit 1
+    fi
     local method="GET"
     local headers_curl=$(header_arguments_to_curl)
     if [[ -n $header_accept ]]; then
@@ -4228,14 +3195,47 @@ call_getPipelinesByOrg() {
 #
 ##############################################################################
 call_getUser() {
-    local path_parameter_names=(organisation user)
-    local query_parameter_names=()
+    local path_parameter_names=(organization user)
+    local query_parameter_names=(  )
+    local path
 
-    if [[ $force = false ]]; then
-        validate_request_parameters "/blue/rest/organizations/{organisation}/users/{user}" path_parameter_names query_parameter_names
+    path=$(build_request_path "/blue/rest/organizations/{organization}/users/{user}" path_parameter_names query_parameter_names)
+    if [ $? -ne 0 ]; then
+        ERROR_MSG=$path
+        exit 1
+    fi
+    local method="GET"
+    local headers_curl=$(header_arguments_to_curl)
+    if [[ -n $header_accept ]]; then
+        headers_curl="${headers_curl} -H 'Accept: ${header_accept}'"
     fi
 
-    local path=$(build_request_path "/blue/rest/organizations/{organisation}/users/{user}" path_parameter_names query_parameter_names)
+    local basic_auth_option=""
+    if [[ -n $basic_auth_credential ]]; then
+        basic_auth_option="-u ${basic_auth_credential}"
+    fi
+    if [[ "$print_curl" = true ]]; then
+        echo "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+    else
+        eval "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+    fi
+}
+
+##############################################################################
+#
+# Call getUserFavorites operation
+#
+##############################################################################
+call_getUserFavorites() {
+    local path_parameter_names=(user)
+    local query_parameter_names=(  )
+    local path
+
+    path=$(build_request_path "/blue/rest/users/{user}/favorites" path_parameter_names query_parameter_names)
+    if [ $? -ne 0 ]; then
+        ERROR_MSG=$path
+        exit 1
+    fi
     local method="GET"
     local headers_curl=$(header_arguments_to_curl)
     if [[ -n $header_accept ]]; then
@@ -4259,15 +3259,177 @@ call_getUser() {
 #
 ##############################################################################
 call_getUsers() {
-    local path_parameter_names=(organisation)
-    local query_parameter_names=()
+    local path_parameter_names=(organization)
+    local query_parameter_names=(  )
+    local path
 
-    if [[ $force = false ]]; then
-        validate_request_parameters "/blue/rest/organizations/{organisation}/users/" path_parameter_names query_parameter_names
+    path=$(build_request_path "/blue/rest/organizations/{organization}/users/" path_parameter_names query_parameter_names)
+    if [ $? -ne 0 ]; then
+        ERROR_MSG=$path
+        exit 1
+    fi
+    local method="GET"
+    local headers_curl=$(header_arguments_to_curl)
+    if [[ -n $header_accept ]]; then
+        headers_curl="${headers_curl} -H 'Accept: ${header_accept}'"
     fi
 
-    local path=$(build_request_path "/blue/rest/organizations/{organisation}/users/" path_parameter_names query_parameter_names)
-    local method="GET"
+    local basic_auth_option=""
+    if [[ -n $basic_auth_credential ]]; then
+        basic_auth_option="-u ${basic_auth_credential}"
+    fi
+    if [[ "$print_curl" = true ]]; then
+        echo "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+    else
+        eval "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+    fi
+}
+
+##############################################################################
+#
+# Call postPipelineRun operation
+#
+##############################################################################
+call_postPipelineRun() {
+    local path_parameter_names=(organization pipeline run)
+    local query_parameter_names=(  )
+    local path
+
+    path=$(build_request_path "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/replay" path_parameter_names query_parameter_names)
+    if [ $? -ne 0 ]; then
+        ERROR_MSG=$path
+        exit 1
+    fi
+    local method="POST"
+    local headers_curl=$(header_arguments_to_curl)
+    if [[ -n $header_accept ]]; then
+        headers_curl="${headers_curl} -H 'Accept: ${header_accept}'"
+    fi
+
+    local basic_auth_option=""
+    if [[ -n $basic_auth_credential ]]; then
+        basic_auth_option="-u ${basic_auth_credential}"
+    fi
+    if [[ "$print_curl" = true ]]; then
+        echo "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+    else
+        eval "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+    fi
+}
+
+##############################################################################
+#
+# Call postPipelineRuns operation
+#
+##############################################################################
+call_postPipelineRuns() {
+    local path_parameter_names=(organization pipeline)
+    local query_parameter_names=(  )
+    local path
+
+    path=$(build_request_path "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs" path_parameter_names query_parameter_names)
+    if [ $? -ne 0 ]; then
+        ERROR_MSG=$path
+        exit 1
+    fi
+    local method="POST"
+    local headers_curl=$(header_arguments_to_curl)
+    if [[ -n $header_accept ]]; then
+        headers_curl="${headers_curl} -H 'Accept: ${header_accept}'"
+    fi
+
+    local basic_auth_option=""
+    if [[ -n $basic_auth_credential ]]; then
+        basic_auth_option="-u ${basic_auth_credential}"
+    fi
+    if [[ "$print_curl" = true ]]; then
+        echo "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+    else
+        eval "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+    fi
+}
+
+##############################################################################
+#
+# Call putPipelineFavorite operation
+#
+##############################################################################
+call_putPipelineFavorite() {
+    local path_parameter_names=(organization pipeline)
+    local query_parameter_names=(  )
+    local path
+
+    path=$(build_request_path "/blue/rest/organizations/{organization}/pipelines/{pipeline}/favorite" path_parameter_names query_parameter_names)
+    if [ $? -ne 0 ]; then
+        ERROR_MSG=$path
+        exit 1
+    fi
+    local method="PUT"
+    local headers_curl=$(header_arguments_to_curl)
+    if [[ -n $header_accept ]]; then
+        headers_curl="${headers_curl} -H 'Accept: ${header_accept}'"
+    fi
+
+    local basic_auth_option=""
+    if [[ -n $basic_auth_credential ]]; then
+        basic_auth_option="-u ${basic_auth_credential}"
+    fi
+    local body_json_curl=""
+
+    #
+    # Check if the user provided 'Content-type' headers in the
+    # command line. If not try to set them based on the Swagger specification
+    # if values produces and consumes are defined unambigously
+    #
+
+
+    if [[ -z $header_content_type && "$force" = false ]]; then
+        :
+    else
+        headers_curl="${headers_curl} -H 'Content-type: ${header_content_type}'"
+    fi
+
+
+    #
+    # If we have received some body content over pipe, pass it from the
+    # temporary file to cURL
+    #
+    if [[ -n $body_content_temp_file ]]; then
+        if [[ "$print_curl" = true ]]; then
+            echo "cat ${body_content_temp_file} | curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\" -d @-"
+        else
+            eval "cat ${body_content_temp_file} | curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\" -d @-"
+        fi
+        rm "${body_content_temp_file}"
+    #
+    # If not, try to build the content body from arguments KEY==VALUE and KEY:=VALUE
+    #
+    else
+        body_json_curl=$(body_parameters_to_json)
+        if [[ "$print_curl" = true ]]; then
+            echo "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} ${body_json_curl} \"${host}${path}\""
+        else
+            eval "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} ${body_json_curl} \"${host}${path}\""
+        fi
+    fi
+}
+
+##############################################################################
+#
+# Call putPipelineRun operation
+#
+##############################################################################
+call_putPipelineRun() {
+    local path_parameter_names=(organization pipeline run)
+    local query_parameter_names=(blocking timeOutInSecs  )
+    local path
+
+    path=$(build_request_path "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/stop" path_parameter_names query_parameter_names)
+    if [ $? -ne 0 ]; then
+        ERROR_MSG=$path
+        exit 1
+    fi
+    local method="PUT"
     local headers_curl=$(header_arguments_to_curl)
     if [[ -n $header_accept ]]; then
         headers_curl="${headers_curl} -H 'Accept: ${header_accept}'"
@@ -4291,13 +3453,14 @@ call_getUsers() {
 ##############################################################################
 call_search() {
     local path_parameter_names=()
-    local query_parameter_names=(q)
+    local query_parameter_names=(q  )
+    local path
 
-    if [[ $force = false ]]; then
-        validate_request_parameters "/blue/rest/classes/" path_parameter_names query_parameter_names
+    path=$(build_request_path "/blue/rest/search/" path_parameter_names query_parameter_names)
+    if [ $? -ne 0 ]; then
+        ERROR_MSG=$path
+        exit 1
     fi
-
-    local path=$(build_request_path "/blue/rest/classes/" path_parameter_names query_parameter_names)
     local method="GET"
     local headers_curl=$(header_arguments_to_curl)
     if [[ -n $header_accept ]]; then
@@ -4317,18 +3480,19 @@ call_search() {
 
 ##############################################################################
 #
-# Call search_0 operation
+# Call searchClasses operation
 #
 ##############################################################################
-call_search_0() {
+call_searchClasses() {
     local path_parameter_names=()
-    local query_parameter_names=(q)
+    local query_parameter_names=(q  )
+    local path
 
-    if [[ $force = false ]]; then
-        validate_request_parameters "/blue/rest/search/" path_parameter_names query_parameter_names
+    path=$(build_request_path "/blue/rest/classes/" path_parameter_names query_parameter_names)
+    if [ $? -ne 0 ]; then
+        ERROR_MSG=$path
+        exit 1
     fi
-
-    local path=$(build_request_path "/blue/rest/search/" path_parameter_names query_parameter_names)
     local method="GET"
     local headers_curl=$(header_arguments_to_curl)
     if [[ -n $header_accept ]]; then
@@ -4353,13 +3517,14 @@ call_search_0() {
 ##############################################################################
 call_getComputer() {
     local path_parameter_names=()
-    local query_parameter_names=()
+    local query_parameter_names=(depth  )
+    local path
 
-    if [[ $force = false ]]; then
-        validate_request_parameters "/computer/api/json?depth=1" path_parameter_names query_parameter_names
+    path=$(build_request_path "/computer/api/json" path_parameter_names query_parameter_names)
+    if [ $? -ne 0 ]; then
+        ERROR_MSG=$path
+        exit 1
     fi
-
-    local path=$(build_request_path "/computer/api/json?depth=1" path_parameter_names query_parameter_names)
     local method="GET"
     local headers_curl=$(header_arguments_to_curl)
     if [[ -n $header_accept ]]; then
@@ -4384,13 +3549,14 @@ call_getComputer() {
 ##############################################################################
 call_getCrumb() {
     local path_parameter_names=()
-    local query_parameter_names=()
+    local query_parameter_names=(  )
+    local path
 
-    if [[ $force = false ]]; then
-        validate_request_parameters "/crumbIssuer/api/json" path_parameter_names query_parameter_names
+    path=$(build_request_path "/crumbIssuer/api/json" path_parameter_names query_parameter_names)
+    if [ $? -ne 0 ]; then
+        ERROR_MSG=$path
+        exit 1
     fi
-
-    local path=$(build_request_path "/crumbIssuer/api/json" path_parameter_names query_parameter_names)
     local method="GET"
     local headers_curl=$(header_arguments_to_curl)
     if [[ -n $header_accept ]]; then
@@ -4415,13 +3581,14 @@ call_getCrumb() {
 ##############################################################################
 call_getJenkins() {
     local path_parameter_names=()
-    local query_parameter_names=()
+    local query_parameter_names=(  )
+    local path
 
-    if [[ $force = false ]]; then
-        validate_request_parameters "/api/json" path_parameter_names query_parameter_names
+    path=$(build_request_path "/api/json" path_parameter_names query_parameter_names)
+    if [ $? -ne 0 ]; then
+        ERROR_MSG=$path
+        exit 1
     fi
-
-    local path=$(build_request_path "/api/json" path_parameter_names query_parameter_names)
     local method="GET"
     local headers_curl=$(header_arguments_to_curl)
     if [[ -n $header_accept ]]; then
@@ -4446,13 +3613,14 @@ call_getJenkins() {
 ##############################################################################
 call_getJob() {
     local path_parameter_names=(name)
-    local query_parameter_names=()
+    local query_parameter_names=(  )
+    local path
 
-    if [[ $force = false ]]; then
-        validate_request_parameters "/job/{name}/api/json" path_parameter_names query_parameter_names
+    path=$(build_request_path "/job/{name}/api/json" path_parameter_names query_parameter_names)
+    if [ $? -ne 0 ]; then
+        ERROR_MSG=$path
+        exit 1
     fi
-
-    local path=$(build_request_path "/job/{name}/api/json" path_parameter_names query_parameter_names)
     local method="GET"
     local headers_curl=$(header_arguments_to_curl)
     if [[ -n $header_accept ]]; then
@@ -4477,13 +3645,14 @@ call_getJob() {
 ##############################################################################
 call_getJobConfig() {
     local path_parameter_names=(name)
-    local query_parameter_names=()
+    local query_parameter_names=(  )
+    local path
 
-    if [[ $force = false ]]; then
-        validate_request_parameters "/job/{name}/config.xml" path_parameter_names query_parameter_names
+    path=$(build_request_path "/job/{name}/config.xml" path_parameter_names query_parameter_names)
+    if [ $? -ne 0 ]; then
+        ERROR_MSG=$path
+        exit 1
     fi
-
-    local path=$(build_request_path "/job/{name}/config.xml" path_parameter_names query_parameter_names)
     local method="GET"
     local headers_curl=$(header_arguments_to_curl)
     if [[ -n $header_accept ]]; then
@@ -4508,13 +3677,14 @@ call_getJobConfig() {
 ##############################################################################
 call_getJobLastBuild() {
     local path_parameter_names=(name)
-    local query_parameter_names=()
+    local query_parameter_names=(  )
+    local path
 
-    if [[ $force = false ]]; then
-        validate_request_parameters "/job/{name}/lastBuild/api/json" path_parameter_names query_parameter_names
+    path=$(build_request_path "/job/{name}/lastBuild/api/json" path_parameter_names query_parameter_names)
+    if [ $? -ne 0 ]; then
+        ERROR_MSG=$path
+        exit 1
     fi
-
-    local path=$(build_request_path "/job/{name}/lastBuild/api/json" path_parameter_names query_parameter_names)
     local method="GET"
     local headers_curl=$(header_arguments_to_curl)
     if [[ -n $header_accept ]]; then
@@ -4539,13 +3709,14 @@ call_getJobLastBuild() {
 ##############################################################################
 call_getJobProgressiveText() {
     local path_parameter_names=(name number)
-    local query_parameter_names=(start)
+    local query_parameter_names=(start  )
+    local path
 
-    if [[ $force = false ]]; then
-        validate_request_parameters "/job/{name}/{number}/logText/progressiveText" path_parameter_names query_parameter_names
+    path=$(build_request_path "/job/{name}/{number}/logText/progressiveText" path_parameter_names query_parameter_names)
+    if [ $? -ne 0 ]; then
+        ERROR_MSG=$path
+        exit 1
     fi
-
-    local path=$(build_request_path "/job/{name}/{number}/logText/progressiveText" path_parameter_names query_parameter_names)
     local method="GET"
     local headers_curl=$(header_arguments_to_curl)
     if [[ -n $header_accept ]]; then
@@ -4570,13 +3741,14 @@ call_getJobProgressiveText() {
 ##############################################################################
 call_getQueue() {
     local path_parameter_names=()
-    local query_parameter_names=()
+    local query_parameter_names=(  )
+    local path
 
-    if [[ $force = false ]]; then
-        validate_request_parameters "/queue/api/json" path_parameter_names query_parameter_names
+    path=$(build_request_path "/queue/api/json" path_parameter_names query_parameter_names)
+    if [ $? -ne 0 ]; then
+        ERROR_MSG=$path
+        exit 1
     fi
-
-    local path=$(build_request_path "/queue/api/json" path_parameter_names query_parameter_names)
     local method="GET"
     local headers_curl=$(header_arguments_to_curl)
     if [[ -n $header_accept ]]; then
@@ -4601,13 +3773,14 @@ call_getQueue() {
 ##############################################################################
 call_getQueueItem() {
     local path_parameter_names=(number)
-    local query_parameter_names=()
+    local query_parameter_names=(  )
+    local path
 
-    if [[ $force = false ]]; then
-        validate_request_parameters "/queue/item/{number}/api/json" path_parameter_names query_parameter_names
+    path=$(build_request_path "/queue/item/{number}/api/json" path_parameter_names query_parameter_names)
+    if [ $? -ne 0 ]; then
+        ERROR_MSG=$path
+        exit 1
     fi
-
-    local path=$(build_request_path "/queue/item/{number}/api/json" path_parameter_names query_parameter_names)
     local method="GET"
     local headers_curl=$(header_arguments_to_curl)
     if [[ -n $header_accept ]]; then
@@ -4632,13 +3805,14 @@ call_getQueueItem() {
 ##############################################################################
 call_getView() {
     local path_parameter_names=(name)
-    local query_parameter_names=()
+    local query_parameter_names=(  )
+    local path
 
-    if [[ $force = false ]]; then
-        validate_request_parameters "/view/{name}/api/json" path_parameter_names query_parameter_names
+    path=$(build_request_path "/view/{name}/api/json" path_parameter_names query_parameter_names)
+    if [ $? -ne 0 ]; then
+        ERROR_MSG=$path
+        exit 1
     fi
-
-    local path=$(build_request_path "/view/{name}/api/json" path_parameter_names query_parameter_names)
     local method="GET"
     local headers_curl=$(header_arguments_to_curl)
     if [[ -n $header_accept ]]; then
@@ -4663,13 +3837,14 @@ call_getView() {
 ##############################################################################
 call_getViewConfig() {
     local path_parameter_names=(name)
-    local query_parameter_names=()
+    local query_parameter_names=(  )
+    local path
 
-    if [[ $force = false ]]; then
-        validate_request_parameters "/view/{name}/config.xml" path_parameter_names query_parameter_names
+    path=$(build_request_path "/view/{name}/config.xml" path_parameter_names query_parameter_names)
+    if [ $? -ne 0 ]; then
+        ERROR_MSG=$path
+        exit 1
     fi
-
-    local path=$(build_request_path "/view/{name}/config.xml" path_parameter_names query_parameter_names)
     local method="GET"
     local headers_curl=$(header_arguments_to_curl)
     if [[ -n $header_accept ]]; then
@@ -4694,13 +3869,14 @@ call_getViewConfig() {
 ##############################################################################
 call_headJenkins() {
     local path_parameter_names=()
-    local query_parameter_names=()
+    local query_parameter_names=(  )
+    local path
 
-    if [[ $force = false ]]; then
-        validate_request_parameters "/api/json" path_parameter_names query_parameter_names
+    path=$(build_request_path "/api/json" path_parameter_names query_parameter_names)
+    if [ $? -ne 0 ]; then
+        ERROR_MSG=$path
+        exit 1
     fi
-
-    local path=$(build_request_path "/api/json" path_parameter_names query_parameter_names)
     local method="HEAD"
     local headers_curl=$(header_arguments_to_curl)
     if [[ -n $header_accept ]]; then
@@ -4725,13 +3901,14 @@ call_headJenkins() {
 ##############################################################################
 call_postCreateItem() {
     local path_parameter_names=()
-    local query_parameter_names=(name from mode)
+    local query_parameter_names=(name from mode  )
+    local path
 
-    if [[ $force = false ]]; then
-        validate_request_parameters "/createItem" path_parameter_names query_parameter_names
+    path=$(build_request_path "/createItem" path_parameter_names query_parameter_names)
+    if [ $? -ne 0 ]; then
+        ERROR_MSG=$path
+        exit 1
     fi
-
-    local path=$(build_request_path "/createItem" path_parameter_names query_parameter_names)
     local method="POST"
     local headers_curl=$(header_arguments_to_curl)
     if [[ -n $header_accept ]]; then
@@ -4789,13 +3966,14 @@ call_postCreateItem() {
 ##############################################################################
 call_postCreateView() {
     local path_parameter_names=()
-    local query_parameter_names=(name)
+    local query_parameter_names=(name  )
+    local path
 
-    if [[ $force = false ]]; then
-        validate_request_parameters "/createView" path_parameter_names query_parameter_names
+    path=$(build_request_path "/createView" path_parameter_names query_parameter_names)
+    if [ $? -ne 0 ]; then
+        ERROR_MSG=$path
+        exit 1
     fi
-
-    local path=$(build_request_path "/createView" path_parameter_names query_parameter_names)
     local method="POST"
     local headers_curl=$(header_arguments_to_curl)
     if [[ -n $header_accept ]]; then
@@ -4853,13 +4031,14 @@ call_postCreateView() {
 ##############################################################################
 call_postJobBuild() {
     local path_parameter_names=(name)
-    local query_parameter_names=(json token)
+    local query_parameter_names=(json token  )
+    local path
 
-    if [[ $force = false ]]; then
-        validate_request_parameters "/job/{name}/build" path_parameter_names query_parameter_names
+    path=$(build_request_path "/job/{name}/build" path_parameter_names query_parameter_names)
+    if [ $? -ne 0 ]; then
+        ERROR_MSG=$path
+        exit 1
     fi
-
-    local path=$(build_request_path "/job/{name}/build" path_parameter_names query_parameter_names)
     local method="POST"
     local headers_curl=$(header_arguments_to_curl)
     if [[ -n $header_accept ]]; then
@@ -4884,13 +4063,14 @@ call_postJobBuild() {
 ##############################################################################
 call_postJobConfig() {
     local path_parameter_names=(name)
-    local query_parameter_names=()
+    local query_parameter_names=(  )
+    local path
 
-    if [[ $force = false ]]; then
-        validate_request_parameters "/job/{name}/config.xml" path_parameter_names query_parameter_names
+    path=$(build_request_path "/job/{name}/config.xml" path_parameter_names query_parameter_names)
+    if [ $? -ne 0 ]; then
+        ERROR_MSG=$path
+        exit 1
     fi
-
-    local path=$(build_request_path "/job/{name}/config.xml" path_parameter_names query_parameter_names)
     local method="POST"
     local headers_curl=$(header_arguments_to_curl)
     if [[ -n $header_accept ]]; then
@@ -4948,13 +4128,14 @@ call_postJobConfig() {
 ##############################################################################
 call_postJobDelete() {
     local path_parameter_names=(name)
-    local query_parameter_names=()
+    local query_parameter_names=(  )
+    local path
 
-    if [[ $force = false ]]; then
-        validate_request_parameters "/job/{name}/doDelete" path_parameter_names query_parameter_names
+    path=$(build_request_path "/job/{name}/doDelete" path_parameter_names query_parameter_names)
+    if [ $? -ne 0 ]; then
+        ERROR_MSG=$path
+        exit 1
     fi
-
-    local path=$(build_request_path "/job/{name}/doDelete" path_parameter_names query_parameter_names)
     local method="POST"
     local headers_curl=$(header_arguments_to_curl)
     if [[ -n $header_accept ]]; then
@@ -4979,13 +4160,14 @@ call_postJobDelete() {
 ##############################################################################
 call_postJobDisable() {
     local path_parameter_names=(name)
-    local query_parameter_names=()
+    local query_parameter_names=(  )
+    local path
 
-    if [[ $force = false ]]; then
-        validate_request_parameters "/job/{name}/disable" path_parameter_names query_parameter_names
+    path=$(build_request_path "/job/{name}/disable" path_parameter_names query_parameter_names)
+    if [ $? -ne 0 ]; then
+        ERROR_MSG=$path
+        exit 1
     fi
-
-    local path=$(build_request_path "/job/{name}/disable" path_parameter_names query_parameter_names)
     local method="POST"
     local headers_curl=$(header_arguments_to_curl)
     if [[ -n $header_accept ]]; then
@@ -5010,13 +4192,14 @@ call_postJobDisable() {
 ##############################################################################
 call_postJobEnable() {
     local path_parameter_names=(name)
-    local query_parameter_names=()
+    local query_parameter_names=(  )
+    local path
 
-    if [[ $force = false ]]; then
-        validate_request_parameters "/job/{name}/enable" path_parameter_names query_parameter_names
+    path=$(build_request_path "/job/{name}/enable" path_parameter_names query_parameter_names)
+    if [ $? -ne 0 ]; then
+        ERROR_MSG=$path
+        exit 1
     fi
-
-    local path=$(build_request_path "/job/{name}/enable" path_parameter_names query_parameter_names)
     local method="POST"
     local headers_curl=$(header_arguments_to_curl)
     if [[ -n $header_accept ]]; then
@@ -5041,13 +4224,14 @@ call_postJobEnable() {
 ##############################################################################
 call_postJobLastBuildStop() {
     local path_parameter_names=(name)
-    local query_parameter_names=()
+    local query_parameter_names=(  )
+    local path
 
-    if [[ $force = false ]]; then
-        validate_request_parameters "/job/{name}/lastBuild/stop" path_parameter_names query_parameter_names
+    path=$(build_request_path "/job/{name}/lastBuild/stop" path_parameter_names query_parameter_names)
+    if [ $? -ne 0 ]; then
+        ERROR_MSG=$path
+        exit 1
     fi
-
-    local path=$(build_request_path "/job/{name}/lastBuild/stop" path_parameter_names query_parameter_names)
     local method="POST"
     local headers_curl=$(header_arguments_to_curl)
     if [[ -n $header_accept ]]; then
@@ -5072,13 +4256,14 @@ call_postJobLastBuildStop() {
 ##############################################################################
 call_postViewConfig() {
     local path_parameter_names=(name)
-    local query_parameter_names=()
+    local query_parameter_names=(  )
+    local path
 
-    if [[ $force = false ]]; then
-        validate_request_parameters "/view/{name}/config.xml" path_parameter_names query_parameter_names
+    path=$(build_request_path "/view/{name}/config.xml" path_parameter_names query_parameter_names)
+    if [ $? -ne 0 ]; then
+        ERROR_MSG=$path
+        exit 1
     fi
-
-    local path=$(build_request_path "/view/{name}/config.xml" path_parameter_names query_parameter_names)
     local method="POST"
     local headers_curl=$(header_arguments_to_curl)
     if [[ -n $header_accept ]]; then
@@ -5139,9 +4324,9 @@ call_postViewConfig() {
 
 
 # Check dependencies
-type curl >/dev/null 2>&1 || { echo >&2 "Error: You do not have 'cURL' installed."; exit 1; }
-type sed >/dev/null 2>&1 || { echo >&2 "Error: You do not have 'sed' installed."; exit 1; }
-type column >/dev/null 2>&1 || { echo >&2 "Error: You do not have 'bsdmainutils' installed."; exit 1; }
+type curl >/dev/null 2>&1 || { echo >&2 "ERROR: You do not have 'cURL' installed."; exit 1; }
+type sed >/dev/null 2>&1 || { echo >&2 "ERROR: You do not have 'sed' installed."; exit 1; }
+type column >/dev/null 2>&1 || { echo >&2 "ERROR: You do not have 'bsdmainutils' installed."; exit 1; }
 
 #
 # Process command line
@@ -5214,6 +4399,21 @@ case $key in
     --dry-run)
     print_curl=true
     ;;
+    -nc|--no-colors)
+        RED=""
+        GREEN=""
+        YELLOW=""
+        BLUE=""
+        MAGENTA=""
+        CYAN=""
+        WHITE=""
+        BOLD=""
+        OFF=""
+        result_color_table=( "" "" "" "" "" "" "" )
+    ;;
+    deletePipelineQueueItem)
+    operation="deletePipelineQueueItem"
+    ;;
     getAuthenticatedUser)
     operation="getAuthenticatedUser"
     ;;
@@ -5226,35 +4426,95 @@ case $key in
     getOrganisations)
     operation="getOrganisations"
     ;;
-    getPipelineBranchByOrg)
-    operation="getPipelineBranchByOrg"
+    getPipeline)
+    operation="getPipeline"
     ;;
-    getPipelineBranchesByOrg)
-    operation="getPipelineBranchesByOrg"
+    getPipelineActivities)
+    operation="getPipelineActivities"
     ;;
-    getPipelineByOrg)
-    operation="getPipelineByOrg"
+    getPipelineBranch)
+    operation="getPipelineBranch"
     ;;
-    getPipelineFolderByOrg)
-    operation="getPipelineFolderByOrg"
+    getPipelineBranchRun)
+    operation="getPipelineBranchRun"
     ;;
-    getPipelineFolderByOrg_0)
-    operation="getPipelineFolderByOrg_0"
+    getPipelineBranches)
+    operation="getPipelineBranches"
     ;;
-    getPipelinesByOrg)
-    operation="getPipelinesByOrg"
+    getPipelineFolder)
+    operation="getPipelineFolder"
+    ;;
+    getPipelineFolderPipeline)
+    operation="getPipelineFolderPipeline"
+    ;;
+    getPipelineQueue)
+    operation="getPipelineQueue"
+    ;;
+    getPipelineRun)
+    operation="getPipelineRun"
+    ;;
+    getPipelineRunLog)
+    operation="getPipelineRunLog"
+    ;;
+    getPipelineRunNode)
+    operation="getPipelineRunNode"
+    ;;
+    getPipelineRunNodeStep)
+    operation="getPipelineRunNodeStep"
+    ;;
+    getPipelineRunNodeStepLog)
+    operation="getPipelineRunNodeStepLog"
+    ;;
+    getPipelineRunNodeSteps)
+    operation="getPipelineRunNodeSteps"
+    ;;
+    getPipelineRunNodes)
+    operation="getPipelineRunNodes"
+    ;;
+    getPipelineRuns)
+    operation="getPipelineRuns"
+    ;;
+    getPipelines)
+    operation="getPipelines"
+    ;;
+    getSCM)
+    operation="getSCM"
+    ;;
+    getSCMOrganisationRepositories)
+    operation="getSCMOrganisationRepositories"
+    ;;
+    getSCMOrganisationRepository)
+    operation="getSCMOrganisationRepository"
+    ;;
+    getSCMOrganisations)
+    operation="getSCMOrganisations"
     ;;
     getUser)
     operation="getUser"
     ;;
+    getUserFavorites)
+    operation="getUserFavorites"
+    ;;
     getUsers)
     operation="getUsers"
+    ;;
+    postPipelineRun)
+    operation="postPipelineRun"
+    ;;
+    postPipelineRuns)
+    operation="postPipelineRuns"
+    ;;
+    putPipelineFavorite)
+    operation="putPipelineFavorite"
+    ;;
+    putPipelineRun)
+    operation="putPipelineRun"
     ;;
     search)
     operation="search"
     ;;
-    search_0)
-    operation="search_0"
+    searchClasses)
+    operation="searchClasses"
     ;;
     getComputer)
     operation="getComputer"
@@ -5335,7 +4595,7 @@ case $key in
         body_parameters[${body_key}]=${body_value}
     fi
     ;;
-    *:*)
+    +([^=]):*)
     # Parse header arguments and convert them into curl
     # only after the operation argument
     if [[ "$operation" ]]; then
@@ -5381,21 +4641,22 @@ done
 
 # Check if user provided host name
 if [[ -z "$host" ]]; then
-    echo "Error: No hostname provided!!!"
-    echo "Check usage: '${script_name} --help'"
+    ERROR_MSG="ERROR: No hostname provided!!! You have to  provide on command line option '--host ...'"
     exit 1
 fi
 
 # Check if user specified operation ID
 if [[ -z "$operation" ]]; then
-    echo "Error: No operation specified!"
-    echo "Check available operations: '${script_name} --help'"
+    ERROR_MSG="ERROR: No operation specified!!!"
     exit 1
 fi
 
 
 # Run cURL command based on the operation ID
 case $operation in
+    deletePipelineQueueItem)
+    call_deletePipelineQueueItem
+    ;;
     getAuthenticatedUser)
     call_getAuthenticatedUser
     ;;
@@ -5408,35 +4669,95 @@ case $operation in
     getOrganisations)
     call_getOrganisations
     ;;
-    getPipelineBranchByOrg)
-    call_getPipelineBranchByOrg
+    getPipeline)
+    call_getPipeline
     ;;
-    getPipelineBranchesByOrg)
-    call_getPipelineBranchesByOrg
+    getPipelineActivities)
+    call_getPipelineActivities
     ;;
-    getPipelineByOrg)
-    call_getPipelineByOrg
+    getPipelineBranch)
+    call_getPipelineBranch
     ;;
-    getPipelineFolderByOrg)
-    call_getPipelineFolderByOrg
+    getPipelineBranchRun)
+    call_getPipelineBranchRun
     ;;
-    getPipelineFolderByOrg_0)
-    call_getPipelineFolderByOrg_0
+    getPipelineBranches)
+    call_getPipelineBranches
     ;;
-    getPipelinesByOrg)
-    call_getPipelinesByOrg
+    getPipelineFolder)
+    call_getPipelineFolder
+    ;;
+    getPipelineFolderPipeline)
+    call_getPipelineFolderPipeline
+    ;;
+    getPipelineQueue)
+    call_getPipelineQueue
+    ;;
+    getPipelineRun)
+    call_getPipelineRun
+    ;;
+    getPipelineRunLog)
+    call_getPipelineRunLog
+    ;;
+    getPipelineRunNode)
+    call_getPipelineRunNode
+    ;;
+    getPipelineRunNodeStep)
+    call_getPipelineRunNodeStep
+    ;;
+    getPipelineRunNodeStepLog)
+    call_getPipelineRunNodeStepLog
+    ;;
+    getPipelineRunNodeSteps)
+    call_getPipelineRunNodeSteps
+    ;;
+    getPipelineRunNodes)
+    call_getPipelineRunNodes
+    ;;
+    getPipelineRuns)
+    call_getPipelineRuns
+    ;;
+    getPipelines)
+    call_getPipelines
+    ;;
+    getSCM)
+    call_getSCM
+    ;;
+    getSCMOrganisationRepositories)
+    call_getSCMOrganisationRepositories
+    ;;
+    getSCMOrganisationRepository)
+    call_getSCMOrganisationRepository
+    ;;
+    getSCMOrganisations)
+    call_getSCMOrganisations
     ;;
     getUser)
     call_getUser
     ;;
+    getUserFavorites)
+    call_getUserFavorites
+    ;;
     getUsers)
     call_getUsers
+    ;;
+    postPipelineRun)
+    call_postPipelineRun
+    ;;
+    postPipelineRuns)
+    call_postPipelineRuns
+    ;;
+    putPipelineFavorite)
+    call_putPipelineFavorite
+    ;;
+    putPipelineRun)
+    call_putPipelineRun
     ;;
     search)
     call_search
     ;;
-    search_0)
-    call_search_0
+    searchClasses)
+    call_searchClasses
     ;;
     getComputer)
     call_getComputer
@@ -5502,8 +4823,6 @@ case $operation in
     call_postViewConfig
     ;;
     *)
-    echo "Error: Unknown operation: $operation"
-    echo ""
-    print_help
+    ERROR_MSG="ERROR: Unknown operation: $operation"
     exit 1
 esac

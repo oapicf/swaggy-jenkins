@@ -89,37 +89,37 @@ you are accessing. Usually `prefix` and `in` will be determined by the code gene
 the spec and you will not need to set them at run time. If not, `in` will
 default to 'head' and `prefix` to the empty string.
 
-The tokens will be placed in the `WWW::SwaggerClient::Configuration` namespace
+The tokens will be placed in a L<WWW::SwaggerClient::Configuration> instance
 as follows, but you don't need to know about this.
 
-- `$WWW::SwaggerClient::Configuration::username`
+- `$cfg->{username}`
 
     String. The username for basic auth.
 
-- `$WWW::SwaggerClient::Configuration::password`
+- `$cfg->{password}`
 
     String. The password for basic auth.
 
-- `$WWW::SwaggerClient::Configuration::api_key`
+- `$cfg->{api_key}`
 
     Hashref. Keyed on the name of each key (there can be multiple tokens).
 
-            $WWW::SwaggerClient::Configuration::api_key = {
+            $cfg->{api_key} = {
                     secretKey => 'aaaabbbbccccdddd',
                     anotherKey => '1111222233334444',
                     };
 
-- `$WWW::SwaggerClient::Configuration::api_key_prefix`
+- `$cfg->{api_key_prefix}`
 
     Hashref. Keyed on the name of each key (there can be multiple tokens). Note not
     all api keys require a prefix.
 
-            $WWW::SwaggerClient::Configuration::api_key_prefix = {
+            $cfg->{api_key_prefix} = {
                     secretKey => 'string',
                     anotherKey => 'same or some other string',
                     };
 
-- `$WWW::SwaggerClient::Configuration::access_token`
+- `$cfg->{access_token}`
 
     String. The OAuth access token.
 
@@ -128,8 +128,7 @@ as follows, but you don't need to know about this.
 ## `base_url`
 
 The generated code has the `base_url` already set as a default value. This method
-returns (and optionally sets, but only if the API client has not been
-created yet) the current value of `base_url`.
+returns the current value of `base_url`.
 
 ## `api_factory`
 
@@ -230,59 +229,99 @@ use WWW::SwaggerClient::RemoteAccessApi;
 
 To load the models:
 ```perl
-use WWW::SwaggerClient::Object::GetClassesByClass;
-use WWW::SwaggerClient::Object::GetMultibranchPipeline;
-use WWW::SwaggerClient::Object::GetOrganisations;
-use WWW::SwaggerClient::Object::GetPipelineBranches;
-use WWW::SwaggerClient::Object::GetPipelineBranchesitem;
-use WWW::SwaggerClient::Object::GetPipelineBranchesitemLatestRun;
-use WWW::SwaggerClient::Object::GetPipelineBranchesitemPullRequest;
-use WWW::SwaggerClient::Object::GetPipelineBranchesitemPullRequestLinks;
-use WWW::SwaggerClient::Object::GetPipelines;
-use WWW::SwaggerClient::Object::GetUsers;
-use WWW::SwaggerClient::Object::HudsonmodelAllView;
-use WWW::SwaggerClient::Object::HudsonmodelCauseAction;
-use WWW::SwaggerClient::Object::HudsonmodelCauseUserIdCause;
-use WWW::SwaggerClient::Object::HudsonmodelComputerSet;
-use WWW::SwaggerClient::Object::HudsonmodelFreeStyleBuild;
-use WWW::SwaggerClient::Object::HudsonmodelFreeStyleProject;
-use WWW::SwaggerClient::Object::HudsonmodelFreeStyleProjectactions;
-use WWW::SwaggerClient::Object::HudsonmodelFreeStyleProjecthealthReport;
-use WWW::SwaggerClient::Object::HudsonmodelHudson;
-use WWW::SwaggerClient::Object::HudsonmodelHudsonMasterComputer;
-use WWW::SwaggerClient::Object::HudsonmodelHudsonMasterComputerMonitorData;
-use WWW::SwaggerClient::Object::HudsonmodelHudsonMasterComputerexecutors;
-use WWW::SwaggerClient::Object::HudsonmodelHudsonassignedLabels;
-use WWW::SwaggerClient::Object::HudsonmodelLabel1;
-use WWW::SwaggerClient::Object::HudsonmodelListView;
-use WWW::SwaggerClient::Object::HudsonmodelQueue;
-use WWW::SwaggerClient::Object::HudsonmodelQueueBlockedItem;
-use WWW::SwaggerClient::Object::HudsonmodelQueueLeftItem;
-use WWW::SwaggerClient::Object::HudsonmodelStringParameterDefinition;
-use WWW::SwaggerClient::Object::HudsonmodelStringParameterValue;
-use WWW::SwaggerClient::Object::HudsonnodeMonitorsDiskSpaceMonitorDescriptorDiskSpace;
-use WWW::SwaggerClient::Object::HudsonnodeMonitorsResponseTimeMonitorData;
-use WWW::SwaggerClient::Object::HudsonnodeMonitorsSwapSpaceMonitorMemoryUsage2;
-use WWW::SwaggerClient::Object::HudsonscmEmptyChangeLogSet;
-use WWW::SwaggerClient::Object::HudsonscmNullSCM;
-use WWW::SwaggerClient::Object::HudsonsecuritycsrfDefaultCrumbIssuer;
-use WWW::SwaggerClient::Object::HudsonutilClockDifference;
-use WWW::SwaggerClient::Object::IojenkinsblueoceanresthalLink;
-use WWW::SwaggerClient::Object::IojenkinsblueoceanrestimplpipelineBranchImpl;
-use WWW::SwaggerClient::Object::IojenkinsblueoceanrestimplpipelineBranchImplPermissions;
-use WWW::SwaggerClient::Object::IojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1;
-use WWW::SwaggerClient::Object::IojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1Links;
-use WWW::SwaggerClient::Object::IojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1Map;
-use WWW::SwaggerClient::Object::IojenkinsblueoceanserviceembeddedrestExtensionClassImpl;
-use WWW::SwaggerClient::Object::IojenkinsblueoceanserviceembeddedrestExtensionClassImplLinks;
-use WWW::SwaggerClient::Object::IojenkinsblueoceanserviceembeddedrestPipelineFolderImpl;
-use WWW::SwaggerClient::Object::IojenkinsblueoceanserviceembeddedrestPipelineImpl;
-use WWW::SwaggerClient::Object::JenkinsmodelUnlabeledLoadStatistics;
-use WWW::SwaggerClient::Object::SwaggyjenkinsOrganisation;
-use WWW::SwaggerClient::Object::SwaggyjenkinsPipeline;
-use WWW::SwaggerClient::Object::SwaggyjenkinsPipelineLatestRun;
-use WWW::SwaggerClient::Object::SwaggyjenkinsPipelineLatestRunartifacts;
-use WWW::SwaggerClient::Object::SwaggyjenkinsUser;
+use WWW::SwaggerClient::Object::AllView;
+use WWW::SwaggerClient::Object::Body;
+use WWW::SwaggerClient::Object::BranchImpl;
+use WWW::SwaggerClient::Object::BranchImpllinks;
+use WWW::SwaggerClient::Object::BranchImplpermissions;
+use WWW::SwaggerClient::Object::CauseAction;
+use WWW::SwaggerClient::Object::CauseUserIdCause;
+use WWW::SwaggerClient::Object::ClassesByClass;
+use WWW::SwaggerClient::Object::ClockDifference;
+use WWW::SwaggerClient::Object::ComputerSet;
+use WWW::SwaggerClient::Object::DefaultCrumbIssuer;
+use WWW::SwaggerClient::Object::DiskSpaceMonitorDescriptorDiskSpace;
+use WWW::SwaggerClient::Object::EmptyChangeLogSet;
+use WWW::SwaggerClient::Object::ExtensionClassContainerImpl1;
+use WWW::SwaggerClient::Object::ExtensionClassContainerImpl1links;
+use WWW::SwaggerClient::Object::ExtensionClassContainerImpl1map;
+use WWW::SwaggerClient::Object::ExtensionClassImpl;
+use WWW::SwaggerClient::Object::ExtensionClassImpllinks;
+use WWW::SwaggerClient::Object::FavoriteImpl;
+use WWW::SwaggerClient::Object::FavoriteImpllinks;
+use WWW::SwaggerClient::Object::FreeStyleBuild;
+use WWW::SwaggerClient::Object::FreeStyleProject;
+use WWW::SwaggerClient::Object::FreeStyleProjectactions;
+use WWW::SwaggerClient::Object::FreeStyleProjecthealthReport;
+use WWW::SwaggerClient::Object::GenericResource;
+use WWW::SwaggerClient::Object::GithubContent;
+use WWW::SwaggerClient::Object::GithubFile;
+use WWW::SwaggerClient::Object::GithubOrganization;
+use WWW::SwaggerClient::Object::GithubOrganizationlinks;
+use WWW::SwaggerClient::Object::GithubRepositories;
+use WWW::SwaggerClient::Object::GithubRepositorieslinks;
+use WWW::SwaggerClient::Object::GithubRepository;
+use WWW::SwaggerClient::Object::GithubRepositorylinks;
+use WWW::SwaggerClient::Object::GithubRepositorypermissions;
+use WWW::SwaggerClient::Object::GithubRespositoryContainer;
+use WWW::SwaggerClient::Object::GithubRespositoryContainerlinks;
+use WWW::SwaggerClient::Object::GithubScm;
+use WWW::SwaggerClient::Object::GithubScmlinks;
+use WWW::SwaggerClient::Object::Hudson;
+use WWW::SwaggerClient::Object::HudsonMasterComputer;
+use WWW::SwaggerClient::Object::HudsonMasterComputerexecutors;
+use WWW::SwaggerClient::Object::HudsonMasterComputermonitorData;
+use WWW::SwaggerClient::Object::HudsonassignedLabels;
+use WWW::SwaggerClient::Object::InputStepImpl;
+use WWW::SwaggerClient::Object::InputStepImpllinks;
+use WWW::SwaggerClient::Object::Label1;
+use WWW::SwaggerClient::Object::Link;
+use WWW::SwaggerClient::Object::ListView;
+use WWW::SwaggerClient::Object::MultibranchPipeline;
+use WWW::SwaggerClient::Object::NullSCM;
+use WWW::SwaggerClient::Object::Organisation;
+use WWW::SwaggerClient::Object::Organisations;
+use WWW::SwaggerClient::Object::Pipeline;
+use WWW::SwaggerClient::Object::PipelineActivities;
+use WWW::SwaggerClient::Object::PipelineActivity;
+use WWW::SwaggerClient::Object::PipelineActivityartifacts;
+use WWW::SwaggerClient::Object::PipelineBranches;
+use WWW::SwaggerClient::Object::PipelineBranchesitem;
+use WWW::SwaggerClient::Object::PipelineBranchesitemlatestRun;
+use WWW::SwaggerClient::Object::PipelineBranchesitempullRequest;
+use WWW::SwaggerClient::Object::PipelineBranchesitempullRequestlinks;
+use WWW::SwaggerClient::Object::PipelineFolderImpl;
+use WWW::SwaggerClient::Object::PipelineImpl;
+use WWW::SwaggerClient::Object::PipelineImpllinks;
+use WWW::SwaggerClient::Object::PipelineQueue;
+use WWW::SwaggerClient::Object::PipelineRun;
+use WWW::SwaggerClient::Object::PipelineRunImpl;
+use WWW::SwaggerClient::Object::PipelineRunImpllinks;
+use WWW::SwaggerClient::Object::PipelineRunNode;
+use WWW::SwaggerClient::Object::PipelineRunNodeSteps;
+use WWW::SwaggerClient::Object::PipelineRunNodeedges;
+use WWW::SwaggerClient::Object::PipelineRunNodes;
+use WWW::SwaggerClient::Object::PipelineRunSteps;
+use WWW::SwaggerClient::Object::PipelineRunartifacts;
+use WWW::SwaggerClient::Object::PipelineRuns;
+use WWW::SwaggerClient::Object::PipelineStepImpl;
+use WWW::SwaggerClient::Object::PipelineStepImpllinks;
+use WWW::SwaggerClient::Object::PipelinelatestRun;
+use WWW::SwaggerClient::Object::PipelinelatestRunartifacts;
+use WWW::SwaggerClient::Object::Pipelines;
+use WWW::SwaggerClient::Object::Queue;
+use WWW::SwaggerClient::Object::QueueBlockedItem;
+use WWW::SwaggerClient::Object::QueueItemImpl;
+use WWW::SwaggerClient::Object::QueueLeftItem;
+use WWW::SwaggerClient::Object::ResponseTimeMonitorData;
+use WWW::SwaggerClient::Object::ScmOrganisations;
+use WWW::SwaggerClient::Object::StringParameterDefinition;
+use WWW::SwaggerClient::Object::StringParameterValue;
+use WWW::SwaggerClient::Object::SwapSpaceMonitorMemoryUsage2;
+use WWW::SwaggerClient::Object::UnlabeledLoadStatistics;
+use WWW::SwaggerClient::Object::User;
+use WWW::SwaggerClient::Object::UserFavorites;
+use WWW::SwaggerClient::Object::Users;
 
 ````
 
@@ -298,74 +337,120 @@ use WWW::SwaggerClient::BlueOceanApi;
 use WWW::SwaggerClient::RemoteAccessApi;
 
 # load the models
-use WWW::SwaggerClient::Object::GetClassesByClass;
-use WWW::SwaggerClient::Object::GetMultibranchPipeline;
-use WWW::SwaggerClient::Object::GetOrganisations;
-use WWW::SwaggerClient::Object::GetPipelineBranches;
-use WWW::SwaggerClient::Object::GetPipelineBranchesitem;
-use WWW::SwaggerClient::Object::GetPipelineBranchesitemLatestRun;
-use WWW::SwaggerClient::Object::GetPipelineBranchesitemPullRequest;
-use WWW::SwaggerClient::Object::GetPipelineBranchesitemPullRequestLinks;
-use WWW::SwaggerClient::Object::GetPipelines;
-use WWW::SwaggerClient::Object::GetUsers;
-use WWW::SwaggerClient::Object::HudsonmodelAllView;
-use WWW::SwaggerClient::Object::HudsonmodelCauseAction;
-use WWW::SwaggerClient::Object::HudsonmodelCauseUserIdCause;
-use WWW::SwaggerClient::Object::HudsonmodelComputerSet;
-use WWW::SwaggerClient::Object::HudsonmodelFreeStyleBuild;
-use WWW::SwaggerClient::Object::HudsonmodelFreeStyleProject;
-use WWW::SwaggerClient::Object::HudsonmodelFreeStyleProjectactions;
-use WWW::SwaggerClient::Object::HudsonmodelFreeStyleProjecthealthReport;
-use WWW::SwaggerClient::Object::HudsonmodelHudson;
-use WWW::SwaggerClient::Object::HudsonmodelHudsonMasterComputer;
-use WWW::SwaggerClient::Object::HudsonmodelHudsonMasterComputerMonitorData;
-use WWW::SwaggerClient::Object::HudsonmodelHudsonMasterComputerexecutors;
-use WWW::SwaggerClient::Object::HudsonmodelHudsonassignedLabels;
-use WWW::SwaggerClient::Object::HudsonmodelLabel1;
-use WWW::SwaggerClient::Object::HudsonmodelListView;
-use WWW::SwaggerClient::Object::HudsonmodelQueue;
-use WWW::SwaggerClient::Object::HudsonmodelQueueBlockedItem;
-use WWW::SwaggerClient::Object::HudsonmodelQueueLeftItem;
-use WWW::SwaggerClient::Object::HudsonmodelStringParameterDefinition;
-use WWW::SwaggerClient::Object::HudsonmodelStringParameterValue;
-use WWW::SwaggerClient::Object::HudsonnodeMonitorsDiskSpaceMonitorDescriptorDiskSpace;
-use WWW::SwaggerClient::Object::HudsonnodeMonitorsResponseTimeMonitorData;
-use WWW::SwaggerClient::Object::HudsonnodeMonitorsSwapSpaceMonitorMemoryUsage2;
-use WWW::SwaggerClient::Object::HudsonscmEmptyChangeLogSet;
-use WWW::SwaggerClient::Object::HudsonscmNullSCM;
-use WWW::SwaggerClient::Object::HudsonsecuritycsrfDefaultCrumbIssuer;
-use WWW::SwaggerClient::Object::HudsonutilClockDifference;
-use WWW::SwaggerClient::Object::IojenkinsblueoceanresthalLink;
-use WWW::SwaggerClient::Object::IojenkinsblueoceanrestimplpipelineBranchImpl;
-use WWW::SwaggerClient::Object::IojenkinsblueoceanrestimplpipelineBranchImplPermissions;
-use WWW::SwaggerClient::Object::IojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1;
-use WWW::SwaggerClient::Object::IojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1Links;
-use WWW::SwaggerClient::Object::IojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1Map;
-use WWW::SwaggerClient::Object::IojenkinsblueoceanserviceembeddedrestExtensionClassImpl;
-use WWW::SwaggerClient::Object::IojenkinsblueoceanserviceembeddedrestExtensionClassImplLinks;
-use WWW::SwaggerClient::Object::IojenkinsblueoceanserviceembeddedrestPipelineFolderImpl;
-use WWW::SwaggerClient::Object::IojenkinsblueoceanserviceembeddedrestPipelineImpl;
-use WWW::SwaggerClient::Object::JenkinsmodelUnlabeledLoadStatistics;
-use WWW::SwaggerClient::Object::SwaggyjenkinsOrganisation;
-use WWW::SwaggerClient::Object::SwaggyjenkinsPipeline;
-use WWW::SwaggerClient::Object::SwaggyjenkinsPipelineLatestRun;
-use WWW::SwaggerClient::Object::SwaggyjenkinsPipelineLatestRunartifacts;
-use WWW::SwaggerClient::Object::SwaggyjenkinsUser;
+use WWW::SwaggerClient::Object::AllView;
+use WWW::SwaggerClient::Object::Body;
+use WWW::SwaggerClient::Object::BranchImpl;
+use WWW::SwaggerClient::Object::BranchImpllinks;
+use WWW::SwaggerClient::Object::BranchImplpermissions;
+use WWW::SwaggerClient::Object::CauseAction;
+use WWW::SwaggerClient::Object::CauseUserIdCause;
+use WWW::SwaggerClient::Object::ClassesByClass;
+use WWW::SwaggerClient::Object::ClockDifference;
+use WWW::SwaggerClient::Object::ComputerSet;
+use WWW::SwaggerClient::Object::DefaultCrumbIssuer;
+use WWW::SwaggerClient::Object::DiskSpaceMonitorDescriptorDiskSpace;
+use WWW::SwaggerClient::Object::EmptyChangeLogSet;
+use WWW::SwaggerClient::Object::ExtensionClassContainerImpl1;
+use WWW::SwaggerClient::Object::ExtensionClassContainerImpl1links;
+use WWW::SwaggerClient::Object::ExtensionClassContainerImpl1map;
+use WWW::SwaggerClient::Object::ExtensionClassImpl;
+use WWW::SwaggerClient::Object::ExtensionClassImpllinks;
+use WWW::SwaggerClient::Object::FavoriteImpl;
+use WWW::SwaggerClient::Object::FavoriteImpllinks;
+use WWW::SwaggerClient::Object::FreeStyleBuild;
+use WWW::SwaggerClient::Object::FreeStyleProject;
+use WWW::SwaggerClient::Object::FreeStyleProjectactions;
+use WWW::SwaggerClient::Object::FreeStyleProjecthealthReport;
+use WWW::SwaggerClient::Object::GenericResource;
+use WWW::SwaggerClient::Object::GithubContent;
+use WWW::SwaggerClient::Object::GithubFile;
+use WWW::SwaggerClient::Object::GithubOrganization;
+use WWW::SwaggerClient::Object::GithubOrganizationlinks;
+use WWW::SwaggerClient::Object::GithubRepositories;
+use WWW::SwaggerClient::Object::GithubRepositorieslinks;
+use WWW::SwaggerClient::Object::GithubRepository;
+use WWW::SwaggerClient::Object::GithubRepositorylinks;
+use WWW::SwaggerClient::Object::GithubRepositorypermissions;
+use WWW::SwaggerClient::Object::GithubRespositoryContainer;
+use WWW::SwaggerClient::Object::GithubRespositoryContainerlinks;
+use WWW::SwaggerClient::Object::GithubScm;
+use WWW::SwaggerClient::Object::GithubScmlinks;
+use WWW::SwaggerClient::Object::Hudson;
+use WWW::SwaggerClient::Object::HudsonMasterComputer;
+use WWW::SwaggerClient::Object::HudsonMasterComputerexecutors;
+use WWW::SwaggerClient::Object::HudsonMasterComputermonitorData;
+use WWW::SwaggerClient::Object::HudsonassignedLabels;
+use WWW::SwaggerClient::Object::InputStepImpl;
+use WWW::SwaggerClient::Object::InputStepImpllinks;
+use WWW::SwaggerClient::Object::Label1;
+use WWW::SwaggerClient::Object::Link;
+use WWW::SwaggerClient::Object::ListView;
+use WWW::SwaggerClient::Object::MultibranchPipeline;
+use WWW::SwaggerClient::Object::NullSCM;
+use WWW::SwaggerClient::Object::Organisation;
+use WWW::SwaggerClient::Object::Organisations;
+use WWW::SwaggerClient::Object::Pipeline;
+use WWW::SwaggerClient::Object::PipelineActivities;
+use WWW::SwaggerClient::Object::PipelineActivity;
+use WWW::SwaggerClient::Object::PipelineActivityartifacts;
+use WWW::SwaggerClient::Object::PipelineBranches;
+use WWW::SwaggerClient::Object::PipelineBranchesitem;
+use WWW::SwaggerClient::Object::PipelineBranchesitemlatestRun;
+use WWW::SwaggerClient::Object::PipelineBranchesitempullRequest;
+use WWW::SwaggerClient::Object::PipelineBranchesitempullRequestlinks;
+use WWW::SwaggerClient::Object::PipelineFolderImpl;
+use WWW::SwaggerClient::Object::PipelineImpl;
+use WWW::SwaggerClient::Object::PipelineImpllinks;
+use WWW::SwaggerClient::Object::PipelineQueue;
+use WWW::SwaggerClient::Object::PipelineRun;
+use WWW::SwaggerClient::Object::PipelineRunImpl;
+use WWW::SwaggerClient::Object::PipelineRunImpllinks;
+use WWW::SwaggerClient::Object::PipelineRunNode;
+use WWW::SwaggerClient::Object::PipelineRunNodeSteps;
+use WWW::SwaggerClient::Object::PipelineRunNodeedges;
+use WWW::SwaggerClient::Object::PipelineRunNodes;
+use WWW::SwaggerClient::Object::PipelineRunSteps;
+use WWW::SwaggerClient::Object::PipelineRunartifacts;
+use WWW::SwaggerClient::Object::PipelineRuns;
+use WWW::SwaggerClient::Object::PipelineStepImpl;
+use WWW::SwaggerClient::Object::PipelineStepImpllinks;
+use WWW::SwaggerClient::Object::PipelinelatestRun;
+use WWW::SwaggerClient::Object::PipelinelatestRunartifacts;
+use WWW::SwaggerClient::Object::Pipelines;
+use WWW::SwaggerClient::Object::Queue;
+use WWW::SwaggerClient::Object::QueueBlockedItem;
+use WWW::SwaggerClient::Object::QueueItemImpl;
+use WWW::SwaggerClient::Object::QueueLeftItem;
+use WWW::SwaggerClient::Object::ResponseTimeMonitorData;
+use WWW::SwaggerClient::Object::ScmOrganisations;
+use WWW::SwaggerClient::Object::StringParameterDefinition;
+use WWW::SwaggerClient::Object::StringParameterValue;
+use WWW::SwaggerClient::Object::SwapSpaceMonitorMemoryUsage2;
+use WWW::SwaggerClient::Object::UnlabeledLoadStatistics;
+use WWW::SwaggerClient::Object::User;
+use WWW::SwaggerClient::Object::UserFavorites;
+use WWW::SwaggerClient::Object::Users;
 
 # for displaying the API response data
 use Data::Dumper;
-use WWW::SwaggerClient::Configuration;
 use WWW::SwaggerClient::;
 
-my $api_instance = WWW::SwaggerClient::BlueOceanApi->new();
-my $organisation = 'organisation_example'; # string | Name of the organisation
+my $api_instance = WWW::SwaggerClient::->new(
+
+    # Configure HTTP basic authorization: jenkins_auth
+    username => 'YOUR_USERNAME',
+    password => 'YOUR_PASSWORD',
+);
+
+my $organization = 'organization_example'; # string | Name of the organization
+my $pipeline = 'pipeline_example'; # string | Name of the pipeline
+my $queue = 'queue_example'; # string | Name of the queue item
 
 eval {
-    my $result = $api_instance->get_authenticated_user(organisation => $organisation);
-    print Dumper($result);
+    $api_instance->delete_pipeline_queue_item(organization => $organization, pipeline => $pipeline, queue => $queue);
 };
 if ($@) {
-    warn "Exception when calling BlueOceanApi->get_authenticated_user: $@\n";
+    warn "Exception when calling BlueOceanApi->delete_pipeline_queue_item: $@\n";
 }
 
 ```
@@ -376,21 +461,42 @@ All URIs are relative to *http://localhost*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*BlueOceanApi* | [**get_authenticated_user**](docs/BlueOceanApi.md#get_authenticated_user) | **GET** /blue/rest/organizations/{organisation}/user/ | 
+*BlueOceanApi* | [**delete_pipeline_queue_item**](docs/BlueOceanApi.md#delete_pipeline_queue_item) | **DELETE** /blue/rest/organizations/{organization}/pipelines/{pipeline}/queue/{queue} | 
+*BlueOceanApi* | [**get_authenticated_user**](docs/BlueOceanApi.md#get_authenticated_user) | **GET** /blue/rest/organizations/{organization}/user/ | 
 *BlueOceanApi* | [**get_classes**](docs/BlueOceanApi.md#get_classes) | **GET** /blue/rest/classes/{class} | 
-*BlueOceanApi* | [**get_organisation**](docs/BlueOceanApi.md#get_organisation) | **GET** /blue/rest/organizations/{organisation} | 
+*BlueOceanApi* | [**get_organisation**](docs/BlueOceanApi.md#get_organisation) | **GET** /blue/rest/organizations/{organization} | 
 *BlueOceanApi* | [**get_organisations**](docs/BlueOceanApi.md#get_organisations) | **GET** /blue/rest/organizations/ | 
-*BlueOceanApi* | [**get_pipeline_branch_by_org**](docs/BlueOceanApi.md#get_pipeline_branch_by_org) | **GET** /blue/rest/organizations/{organisation}/pipelines/{pipeline}/branches/{branch}/ | 
-*BlueOceanApi* | [**get_pipeline_branches_by_org**](docs/BlueOceanApi.md#get_pipeline_branches_by_org) | **GET** /blue/rest/organizations/{organisation}/pipelines/{pipeline}/branches | 
-*BlueOceanApi* | [**get_pipeline_by_org**](docs/BlueOceanApi.md#get_pipeline_by_org) | **GET** /blue/rest/organizations/{organisation}/pipelines/{pipeline} | 
-*BlueOceanApi* | [**get_pipeline_folder_by_org**](docs/BlueOceanApi.md#get_pipeline_folder_by_org) | **GET** /blue/rest/organizations/{organisation}/pipelines/{folder}/ | 
-*BlueOceanApi* | [**get_pipeline_folder_by_org_1**](docs/BlueOceanApi.md#get_pipeline_folder_by_org_1) | **GET** /blue/rest/organizations/{organisation}/pipelines/{folder}/pipelines/{pipeline} | 
-*BlueOceanApi* | [**get_pipelines_by_org**](docs/BlueOceanApi.md#get_pipelines_by_org) | **GET** /blue/rest/organizations/{organisation}/pipelines/ | 
-*BlueOceanApi* | [**get_user**](docs/BlueOceanApi.md#get_user) | **GET** /blue/rest/organizations/{organisation}/users/{user} | 
-*BlueOceanApi* | [**get_users**](docs/BlueOceanApi.md#get_users) | **GET** /blue/rest/organizations/{organisation}/users/ | 
-*BlueOceanApi* | [**search**](docs/BlueOceanApi.md#search) | **GET** /blue/rest/classes/ | 
-*BlueOceanApi* | [**search_2**](docs/BlueOceanApi.md#search_2) | **GET** /blue/rest/search/ | 
-*RemoteAccessApi* | [**get_computer**](docs/RemoteAccessApi.md#get_computer) | **GET** /computer/api/json?depth&#x3D;1 | 
+*BlueOceanApi* | [**get_pipeline**](docs/BlueOceanApi.md#get_pipeline) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline} | 
+*BlueOceanApi* | [**get_pipeline_activities**](docs/BlueOceanApi.md#get_pipeline_activities) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/activities | 
+*BlueOceanApi* | [**get_pipeline_branch**](docs/BlueOceanApi.md#get_pipeline_branch) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/branches/{branch}/ | 
+*BlueOceanApi* | [**get_pipeline_branch_run**](docs/BlueOceanApi.md#get_pipeline_branch_run) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/branches/{branch}/runs/{run} | 
+*BlueOceanApi* | [**get_pipeline_branches**](docs/BlueOceanApi.md#get_pipeline_branches) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/branches | 
+*BlueOceanApi* | [**get_pipeline_folder**](docs/BlueOceanApi.md#get_pipeline_folder) | **GET** /blue/rest/organizations/{organization}/pipelines/{folder}/ | 
+*BlueOceanApi* | [**get_pipeline_folder_pipeline**](docs/BlueOceanApi.md#get_pipeline_folder_pipeline) | **GET** /blue/rest/organizations/{organization}/pipelines/{folder}/pipelines/{pipeline} | 
+*BlueOceanApi* | [**get_pipeline_queue**](docs/BlueOceanApi.md#get_pipeline_queue) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/queue | 
+*BlueOceanApi* | [**get_pipeline_run**](docs/BlueOceanApi.md#get_pipeline_run) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run} | 
+*BlueOceanApi* | [**get_pipeline_run_log**](docs/BlueOceanApi.md#get_pipeline_run_log) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/log | 
+*BlueOceanApi* | [**get_pipeline_run_node**](docs/BlueOceanApi.md#get_pipeline_run_node) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node} | 
+*BlueOceanApi* | [**get_pipeline_run_node_step**](docs/BlueOceanApi.md#get_pipeline_run_node_step) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps/{step} | 
+*BlueOceanApi* | [**get_pipeline_run_node_step_log**](docs/BlueOceanApi.md#get_pipeline_run_node_step_log) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps/{step}/log | 
+*BlueOceanApi* | [**get_pipeline_run_node_steps**](docs/BlueOceanApi.md#get_pipeline_run_node_steps) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps | 
+*BlueOceanApi* | [**get_pipeline_run_nodes**](docs/BlueOceanApi.md#get_pipeline_run_nodes) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes | 
+*BlueOceanApi* | [**get_pipeline_runs**](docs/BlueOceanApi.md#get_pipeline_runs) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs | 
+*BlueOceanApi* | [**get_pipelines**](docs/BlueOceanApi.md#get_pipelines) | **GET** /blue/rest/organizations/{organization}/pipelines/ | 
+*BlueOceanApi* | [**get_scm**](docs/BlueOceanApi.md#get_scm) | **GET** /blue/rest/organizations/{organization}/scm/{scm} | 
+*BlueOceanApi* | [**get_scm_organisation_repositories**](docs/BlueOceanApi.md#get_scm_organisation_repositories) | **GET** /blue/rest/organizations/{organization}/scm/{scm}/organizations/{scmOrganisation}/repositories | 
+*BlueOceanApi* | [**get_scm_organisation_repository**](docs/BlueOceanApi.md#get_scm_organisation_repository) | **GET** /blue/rest/organizations/{organization}/scm/{scm}/organizations/{scmOrganisation}/repositories/{repository} | 
+*BlueOceanApi* | [**get_scm_organisations**](docs/BlueOceanApi.md#get_scm_organisations) | **GET** /blue/rest/organizations/{organization}/scm/{scm}/organizations | 
+*BlueOceanApi* | [**get_user**](docs/BlueOceanApi.md#get_user) | **GET** /blue/rest/organizations/{organization}/users/{user} | 
+*BlueOceanApi* | [**get_user_favorites**](docs/BlueOceanApi.md#get_user_favorites) | **GET** /blue/rest/users/{user}/favorites | 
+*BlueOceanApi* | [**get_users**](docs/BlueOceanApi.md#get_users) | **GET** /blue/rest/organizations/{organization}/users/ | 
+*BlueOceanApi* | [**post_pipeline_run**](docs/BlueOceanApi.md#post_pipeline_run) | **POST** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/replay | 
+*BlueOceanApi* | [**post_pipeline_runs**](docs/BlueOceanApi.md#post_pipeline_runs) | **POST** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs | 
+*BlueOceanApi* | [**put_pipeline_favorite**](docs/BlueOceanApi.md#put_pipeline_favorite) | **PUT** /blue/rest/organizations/{organization}/pipelines/{pipeline}/favorite | 
+*BlueOceanApi* | [**put_pipeline_run**](docs/BlueOceanApi.md#put_pipeline_run) | **PUT** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/stop | 
+*BlueOceanApi* | [**search**](docs/BlueOceanApi.md#search) | **GET** /blue/rest/search/ | 
+*BlueOceanApi* | [**search_classes**](docs/BlueOceanApi.md#search_classes) | **GET** /blue/rest/classes/ | 
+*RemoteAccessApi* | [**get_computer**](docs/RemoteAccessApi.md#get_computer) | **GET** /computer/api/json | 
 *RemoteAccessApi* | [**get_crumb**](docs/RemoteAccessApi.md#get_crumb) | **GET** /crumbIssuer/api/json | 
 *RemoteAccessApi* | [**get_jenkins**](docs/RemoteAccessApi.md#get_jenkins) | **GET** /api/json | 
 *RemoteAccessApi* | [**get_job**](docs/RemoteAccessApi.md#get_job) | **GET** /job/{name}/api/json | 
@@ -414,59 +520,99 @@ Class | Method | HTTP request | Description
 
 
 # DOCUMENTATION FOR MODELS
- - [WWW::SwaggerClient::Object::GetClassesByClass](docs/GetClassesByClass.md)
- - [WWW::SwaggerClient::Object::GetMultibranchPipeline](docs/GetMultibranchPipeline.md)
- - [WWW::SwaggerClient::Object::GetOrganisations](docs/GetOrganisations.md)
- - [WWW::SwaggerClient::Object::GetPipelineBranches](docs/GetPipelineBranches.md)
- - [WWW::SwaggerClient::Object::GetPipelineBranchesitem](docs/GetPipelineBranchesitem.md)
- - [WWW::SwaggerClient::Object::GetPipelineBranchesitemLatestRun](docs/GetPipelineBranchesitemLatestRun.md)
- - [WWW::SwaggerClient::Object::GetPipelineBranchesitemPullRequest](docs/GetPipelineBranchesitemPullRequest.md)
- - [WWW::SwaggerClient::Object::GetPipelineBranchesitemPullRequestLinks](docs/GetPipelineBranchesitemPullRequestLinks.md)
- - [WWW::SwaggerClient::Object::GetPipelines](docs/GetPipelines.md)
- - [WWW::SwaggerClient::Object::GetUsers](docs/GetUsers.md)
- - [WWW::SwaggerClient::Object::HudsonmodelAllView](docs/HudsonmodelAllView.md)
- - [WWW::SwaggerClient::Object::HudsonmodelCauseAction](docs/HudsonmodelCauseAction.md)
- - [WWW::SwaggerClient::Object::HudsonmodelCauseUserIdCause](docs/HudsonmodelCauseUserIdCause.md)
- - [WWW::SwaggerClient::Object::HudsonmodelComputerSet](docs/HudsonmodelComputerSet.md)
- - [WWW::SwaggerClient::Object::HudsonmodelFreeStyleBuild](docs/HudsonmodelFreeStyleBuild.md)
- - [WWW::SwaggerClient::Object::HudsonmodelFreeStyleProject](docs/HudsonmodelFreeStyleProject.md)
- - [WWW::SwaggerClient::Object::HudsonmodelFreeStyleProjectactions](docs/HudsonmodelFreeStyleProjectactions.md)
- - [WWW::SwaggerClient::Object::HudsonmodelFreeStyleProjecthealthReport](docs/HudsonmodelFreeStyleProjecthealthReport.md)
- - [WWW::SwaggerClient::Object::HudsonmodelHudson](docs/HudsonmodelHudson.md)
- - [WWW::SwaggerClient::Object::HudsonmodelHudsonMasterComputer](docs/HudsonmodelHudsonMasterComputer.md)
- - [WWW::SwaggerClient::Object::HudsonmodelHudsonMasterComputerMonitorData](docs/HudsonmodelHudsonMasterComputerMonitorData.md)
- - [WWW::SwaggerClient::Object::HudsonmodelHudsonMasterComputerexecutors](docs/HudsonmodelHudsonMasterComputerexecutors.md)
- - [WWW::SwaggerClient::Object::HudsonmodelHudsonassignedLabels](docs/HudsonmodelHudsonassignedLabels.md)
- - [WWW::SwaggerClient::Object::HudsonmodelLabel1](docs/HudsonmodelLabel1.md)
- - [WWW::SwaggerClient::Object::HudsonmodelListView](docs/HudsonmodelListView.md)
- - [WWW::SwaggerClient::Object::HudsonmodelQueue](docs/HudsonmodelQueue.md)
- - [WWW::SwaggerClient::Object::HudsonmodelQueueBlockedItem](docs/HudsonmodelQueueBlockedItem.md)
- - [WWW::SwaggerClient::Object::HudsonmodelQueueLeftItem](docs/HudsonmodelQueueLeftItem.md)
- - [WWW::SwaggerClient::Object::HudsonmodelStringParameterDefinition](docs/HudsonmodelStringParameterDefinition.md)
- - [WWW::SwaggerClient::Object::HudsonmodelStringParameterValue](docs/HudsonmodelStringParameterValue.md)
- - [WWW::SwaggerClient::Object::HudsonnodeMonitorsDiskSpaceMonitorDescriptorDiskSpace](docs/HudsonnodeMonitorsDiskSpaceMonitorDescriptorDiskSpace.md)
- - [WWW::SwaggerClient::Object::HudsonnodeMonitorsResponseTimeMonitorData](docs/HudsonnodeMonitorsResponseTimeMonitorData.md)
- - [WWW::SwaggerClient::Object::HudsonnodeMonitorsSwapSpaceMonitorMemoryUsage2](docs/HudsonnodeMonitorsSwapSpaceMonitorMemoryUsage2.md)
- - [WWW::SwaggerClient::Object::HudsonscmEmptyChangeLogSet](docs/HudsonscmEmptyChangeLogSet.md)
- - [WWW::SwaggerClient::Object::HudsonscmNullSCM](docs/HudsonscmNullSCM.md)
- - [WWW::SwaggerClient::Object::HudsonsecuritycsrfDefaultCrumbIssuer](docs/HudsonsecuritycsrfDefaultCrumbIssuer.md)
- - [WWW::SwaggerClient::Object::HudsonutilClockDifference](docs/HudsonutilClockDifference.md)
- - [WWW::SwaggerClient::Object::IojenkinsblueoceanresthalLink](docs/IojenkinsblueoceanresthalLink.md)
- - [WWW::SwaggerClient::Object::IojenkinsblueoceanrestimplpipelineBranchImpl](docs/IojenkinsblueoceanrestimplpipelineBranchImpl.md)
- - [WWW::SwaggerClient::Object::IojenkinsblueoceanrestimplpipelineBranchImplPermissions](docs/IojenkinsblueoceanrestimplpipelineBranchImplPermissions.md)
- - [WWW::SwaggerClient::Object::IojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1](docs/IojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1.md)
- - [WWW::SwaggerClient::Object::IojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1Links](docs/IojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1Links.md)
- - [WWW::SwaggerClient::Object::IojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1Map](docs/IojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1Map.md)
- - [WWW::SwaggerClient::Object::IojenkinsblueoceanserviceembeddedrestExtensionClassImpl](docs/IojenkinsblueoceanserviceembeddedrestExtensionClassImpl.md)
- - [WWW::SwaggerClient::Object::IojenkinsblueoceanserviceembeddedrestExtensionClassImplLinks](docs/IojenkinsblueoceanserviceembeddedrestExtensionClassImplLinks.md)
- - [WWW::SwaggerClient::Object::IojenkinsblueoceanserviceembeddedrestPipelineFolderImpl](docs/IojenkinsblueoceanserviceembeddedrestPipelineFolderImpl.md)
- - [WWW::SwaggerClient::Object::IojenkinsblueoceanserviceembeddedrestPipelineImpl](docs/IojenkinsblueoceanserviceembeddedrestPipelineImpl.md)
- - [WWW::SwaggerClient::Object::JenkinsmodelUnlabeledLoadStatistics](docs/JenkinsmodelUnlabeledLoadStatistics.md)
- - [WWW::SwaggerClient::Object::SwaggyjenkinsOrganisation](docs/SwaggyjenkinsOrganisation.md)
- - [WWW::SwaggerClient::Object::SwaggyjenkinsPipeline](docs/SwaggyjenkinsPipeline.md)
- - [WWW::SwaggerClient::Object::SwaggyjenkinsPipelineLatestRun](docs/SwaggyjenkinsPipelineLatestRun.md)
- - [WWW::SwaggerClient::Object::SwaggyjenkinsPipelineLatestRunartifacts](docs/SwaggyjenkinsPipelineLatestRunartifacts.md)
- - [WWW::SwaggerClient::Object::SwaggyjenkinsUser](docs/SwaggyjenkinsUser.md)
+ - [WWW::SwaggerClient::Object::AllView](docs/AllView.md)
+ - [WWW::SwaggerClient::Object::Body](docs/Body.md)
+ - [WWW::SwaggerClient::Object::BranchImpl](docs/BranchImpl.md)
+ - [WWW::SwaggerClient::Object::BranchImpllinks](docs/BranchImpllinks.md)
+ - [WWW::SwaggerClient::Object::BranchImplpermissions](docs/BranchImplpermissions.md)
+ - [WWW::SwaggerClient::Object::CauseAction](docs/CauseAction.md)
+ - [WWW::SwaggerClient::Object::CauseUserIdCause](docs/CauseUserIdCause.md)
+ - [WWW::SwaggerClient::Object::ClassesByClass](docs/ClassesByClass.md)
+ - [WWW::SwaggerClient::Object::ClockDifference](docs/ClockDifference.md)
+ - [WWW::SwaggerClient::Object::ComputerSet](docs/ComputerSet.md)
+ - [WWW::SwaggerClient::Object::DefaultCrumbIssuer](docs/DefaultCrumbIssuer.md)
+ - [WWW::SwaggerClient::Object::DiskSpaceMonitorDescriptorDiskSpace](docs/DiskSpaceMonitorDescriptorDiskSpace.md)
+ - [WWW::SwaggerClient::Object::EmptyChangeLogSet](docs/EmptyChangeLogSet.md)
+ - [WWW::SwaggerClient::Object::ExtensionClassContainerImpl1](docs/ExtensionClassContainerImpl1.md)
+ - [WWW::SwaggerClient::Object::ExtensionClassContainerImpl1links](docs/ExtensionClassContainerImpl1links.md)
+ - [WWW::SwaggerClient::Object::ExtensionClassContainerImpl1map](docs/ExtensionClassContainerImpl1map.md)
+ - [WWW::SwaggerClient::Object::ExtensionClassImpl](docs/ExtensionClassImpl.md)
+ - [WWW::SwaggerClient::Object::ExtensionClassImpllinks](docs/ExtensionClassImpllinks.md)
+ - [WWW::SwaggerClient::Object::FavoriteImpl](docs/FavoriteImpl.md)
+ - [WWW::SwaggerClient::Object::FavoriteImpllinks](docs/FavoriteImpllinks.md)
+ - [WWW::SwaggerClient::Object::FreeStyleBuild](docs/FreeStyleBuild.md)
+ - [WWW::SwaggerClient::Object::FreeStyleProject](docs/FreeStyleProject.md)
+ - [WWW::SwaggerClient::Object::FreeStyleProjectactions](docs/FreeStyleProjectactions.md)
+ - [WWW::SwaggerClient::Object::FreeStyleProjecthealthReport](docs/FreeStyleProjecthealthReport.md)
+ - [WWW::SwaggerClient::Object::GenericResource](docs/GenericResource.md)
+ - [WWW::SwaggerClient::Object::GithubContent](docs/GithubContent.md)
+ - [WWW::SwaggerClient::Object::GithubFile](docs/GithubFile.md)
+ - [WWW::SwaggerClient::Object::GithubOrganization](docs/GithubOrganization.md)
+ - [WWW::SwaggerClient::Object::GithubOrganizationlinks](docs/GithubOrganizationlinks.md)
+ - [WWW::SwaggerClient::Object::GithubRepositories](docs/GithubRepositories.md)
+ - [WWW::SwaggerClient::Object::GithubRepositorieslinks](docs/GithubRepositorieslinks.md)
+ - [WWW::SwaggerClient::Object::GithubRepository](docs/GithubRepository.md)
+ - [WWW::SwaggerClient::Object::GithubRepositorylinks](docs/GithubRepositorylinks.md)
+ - [WWW::SwaggerClient::Object::GithubRepositorypermissions](docs/GithubRepositorypermissions.md)
+ - [WWW::SwaggerClient::Object::GithubRespositoryContainer](docs/GithubRespositoryContainer.md)
+ - [WWW::SwaggerClient::Object::GithubRespositoryContainerlinks](docs/GithubRespositoryContainerlinks.md)
+ - [WWW::SwaggerClient::Object::GithubScm](docs/GithubScm.md)
+ - [WWW::SwaggerClient::Object::GithubScmlinks](docs/GithubScmlinks.md)
+ - [WWW::SwaggerClient::Object::Hudson](docs/Hudson.md)
+ - [WWW::SwaggerClient::Object::HudsonMasterComputer](docs/HudsonMasterComputer.md)
+ - [WWW::SwaggerClient::Object::HudsonMasterComputerexecutors](docs/HudsonMasterComputerexecutors.md)
+ - [WWW::SwaggerClient::Object::HudsonMasterComputermonitorData](docs/HudsonMasterComputermonitorData.md)
+ - [WWW::SwaggerClient::Object::HudsonassignedLabels](docs/HudsonassignedLabels.md)
+ - [WWW::SwaggerClient::Object::InputStepImpl](docs/InputStepImpl.md)
+ - [WWW::SwaggerClient::Object::InputStepImpllinks](docs/InputStepImpllinks.md)
+ - [WWW::SwaggerClient::Object::Label1](docs/Label1.md)
+ - [WWW::SwaggerClient::Object::Link](docs/Link.md)
+ - [WWW::SwaggerClient::Object::ListView](docs/ListView.md)
+ - [WWW::SwaggerClient::Object::MultibranchPipeline](docs/MultibranchPipeline.md)
+ - [WWW::SwaggerClient::Object::NullSCM](docs/NullSCM.md)
+ - [WWW::SwaggerClient::Object::Organisation](docs/Organisation.md)
+ - [WWW::SwaggerClient::Object::Organisations](docs/Organisations.md)
+ - [WWW::SwaggerClient::Object::Pipeline](docs/Pipeline.md)
+ - [WWW::SwaggerClient::Object::PipelineActivities](docs/PipelineActivities.md)
+ - [WWW::SwaggerClient::Object::PipelineActivity](docs/PipelineActivity.md)
+ - [WWW::SwaggerClient::Object::PipelineActivityartifacts](docs/PipelineActivityartifacts.md)
+ - [WWW::SwaggerClient::Object::PipelineBranches](docs/PipelineBranches.md)
+ - [WWW::SwaggerClient::Object::PipelineBranchesitem](docs/PipelineBranchesitem.md)
+ - [WWW::SwaggerClient::Object::PipelineBranchesitemlatestRun](docs/PipelineBranchesitemlatestRun.md)
+ - [WWW::SwaggerClient::Object::PipelineBranchesitempullRequest](docs/PipelineBranchesitempullRequest.md)
+ - [WWW::SwaggerClient::Object::PipelineBranchesitempullRequestlinks](docs/PipelineBranchesitempullRequestlinks.md)
+ - [WWW::SwaggerClient::Object::PipelineFolderImpl](docs/PipelineFolderImpl.md)
+ - [WWW::SwaggerClient::Object::PipelineImpl](docs/PipelineImpl.md)
+ - [WWW::SwaggerClient::Object::PipelineImpllinks](docs/PipelineImpllinks.md)
+ - [WWW::SwaggerClient::Object::PipelineQueue](docs/PipelineQueue.md)
+ - [WWW::SwaggerClient::Object::PipelineRun](docs/PipelineRun.md)
+ - [WWW::SwaggerClient::Object::PipelineRunImpl](docs/PipelineRunImpl.md)
+ - [WWW::SwaggerClient::Object::PipelineRunImpllinks](docs/PipelineRunImpllinks.md)
+ - [WWW::SwaggerClient::Object::PipelineRunNode](docs/PipelineRunNode.md)
+ - [WWW::SwaggerClient::Object::PipelineRunNodeSteps](docs/PipelineRunNodeSteps.md)
+ - [WWW::SwaggerClient::Object::PipelineRunNodeedges](docs/PipelineRunNodeedges.md)
+ - [WWW::SwaggerClient::Object::PipelineRunNodes](docs/PipelineRunNodes.md)
+ - [WWW::SwaggerClient::Object::PipelineRunSteps](docs/PipelineRunSteps.md)
+ - [WWW::SwaggerClient::Object::PipelineRunartifacts](docs/PipelineRunartifacts.md)
+ - [WWW::SwaggerClient::Object::PipelineRuns](docs/PipelineRuns.md)
+ - [WWW::SwaggerClient::Object::PipelineStepImpl](docs/PipelineStepImpl.md)
+ - [WWW::SwaggerClient::Object::PipelineStepImpllinks](docs/PipelineStepImpllinks.md)
+ - [WWW::SwaggerClient::Object::PipelinelatestRun](docs/PipelinelatestRun.md)
+ - [WWW::SwaggerClient::Object::PipelinelatestRunartifacts](docs/PipelinelatestRunartifacts.md)
+ - [WWW::SwaggerClient::Object::Pipelines](docs/Pipelines.md)
+ - [WWW::SwaggerClient::Object::Queue](docs/Queue.md)
+ - [WWW::SwaggerClient::Object::QueueBlockedItem](docs/QueueBlockedItem.md)
+ - [WWW::SwaggerClient::Object::QueueItemImpl](docs/QueueItemImpl.md)
+ - [WWW::SwaggerClient::Object::QueueLeftItem](docs/QueueLeftItem.md)
+ - [WWW::SwaggerClient::Object::ResponseTimeMonitorData](docs/ResponseTimeMonitorData.md)
+ - [WWW::SwaggerClient::Object::ScmOrganisations](docs/ScmOrganisations.md)
+ - [WWW::SwaggerClient::Object::StringParameterDefinition](docs/StringParameterDefinition.md)
+ - [WWW::SwaggerClient::Object::StringParameterValue](docs/StringParameterValue.md)
+ - [WWW::SwaggerClient::Object::SwapSpaceMonitorMemoryUsage2](docs/SwapSpaceMonitorMemoryUsage2.md)
+ - [WWW::SwaggerClient::Object::UnlabeledLoadStatistics](docs/UnlabeledLoadStatistics.md)
+ - [WWW::SwaggerClient::Object::User](docs/User.md)
+ - [WWW::SwaggerClient::Object::UserFavorites](docs/UserFavorites.md)
+ - [WWW::SwaggerClient::Object::Users](docs/Users.md)
 
 
 # DOCUMENTATION FOR AUTHORIZATION

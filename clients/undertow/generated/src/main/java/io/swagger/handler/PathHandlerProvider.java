@@ -13,7 +13,14 @@ public class PathHandlerProvider implements HandlerProvider {
         HttpHandler handler = Handlers.routing()
 
 
-            .add(Methods.GET, "//blue/rest/organizations/{organisation}/user/", new HttpHandler() {
+            .add(Methods.DELETE, "//blue/rest/organizations/{organization}/pipelines/{pipeline}/queue/{queue}", new HttpHandler() {
+                        public void handleRequest(HttpServerExchange exchange) throws Exception {
+                            exchange.getResponseSender().send("deletePipelineQueueItem");
+                        }
+                    })
+
+
+            .add(Methods.GET, "//blue/rest/organizations/{organization}/user/", new HttpHandler() {
                         public void handleRequest(HttpServerExchange exchange) throws Exception {
                             exchange.getResponseSender().send("getAuthenticatedUser");
                         }
@@ -27,7 +34,7 @@ public class PathHandlerProvider implements HandlerProvider {
                     })
 
 
-            .add(Methods.GET, "//blue/rest/organizations/{organisation}", new HttpHandler() {
+            .add(Methods.GET, "//blue/rest/organizations/{organization}", new HttpHandler() {
                         public void handleRequest(HttpServerExchange exchange) throws Exception {
                             exchange.getResponseSender().send("getOrganisation");
                         }
@@ -41,77 +48,217 @@ public class PathHandlerProvider implements HandlerProvider {
                     })
 
 
-            .add(Methods.GET, "//blue/rest/organizations/{organisation}/pipelines/{pipeline}/branches/{branch}/", new HttpHandler() {
+            .add(Methods.GET, "//blue/rest/organizations/{organization}/pipelines/{pipeline}", new HttpHandler() {
                         public void handleRequest(HttpServerExchange exchange) throws Exception {
-                            exchange.getResponseSender().send("getPipelineBranchByOrg");
+                            exchange.getResponseSender().send("getPipeline");
                         }
                     })
 
 
-            .add(Methods.GET, "//blue/rest/organizations/{organisation}/pipelines/{pipeline}/branches", new HttpHandler() {
+            .add(Methods.GET, "//blue/rest/organizations/{organization}/pipelines/{pipeline}/activities", new HttpHandler() {
                         public void handleRequest(HttpServerExchange exchange) throws Exception {
-                            exchange.getResponseSender().send("getPipelineBranchesByOrg");
+                            exchange.getResponseSender().send("getPipelineActivities");
                         }
                     })
 
 
-            .add(Methods.GET, "//blue/rest/organizations/{organisation}/pipelines/{pipeline}", new HttpHandler() {
+            .add(Methods.GET, "//blue/rest/organizations/{organization}/pipelines/{pipeline}/branches/{branch}/", new HttpHandler() {
                         public void handleRequest(HttpServerExchange exchange) throws Exception {
-                            exchange.getResponseSender().send("getPipelineByOrg");
+                            exchange.getResponseSender().send("getPipelineBranch");
                         }
                     })
 
 
-            .add(Methods.GET, "//blue/rest/organizations/{organisation}/pipelines/{folder}/", new HttpHandler() {
+            .add(Methods.GET, "//blue/rest/organizations/{organization}/pipelines/{pipeline}/branches/{branch}/runs/{run}", new HttpHandler() {
                         public void handleRequest(HttpServerExchange exchange) throws Exception {
-                            exchange.getResponseSender().send("getPipelineFolderByOrg");
+                            exchange.getResponseSender().send("getPipelineBranchRun");
                         }
                     })
 
 
-            .add(Methods.GET, "//blue/rest/organizations/{organisation}/pipelines/{folder}/pipelines/{pipeline}", new HttpHandler() {
+            .add(Methods.GET, "//blue/rest/organizations/{organization}/pipelines/{pipeline}/branches", new HttpHandler() {
                         public void handleRequest(HttpServerExchange exchange) throws Exception {
-                            exchange.getResponseSender().send("getPipelineFolderByOrg_0");
+                            exchange.getResponseSender().send("getPipelineBranches");
                         }
                     })
 
 
-            .add(Methods.GET, "//blue/rest/organizations/{organisation}/pipelines/", new HttpHandler() {
+            .add(Methods.GET, "//blue/rest/organizations/{organization}/pipelines/{folder}/", new HttpHandler() {
                         public void handleRequest(HttpServerExchange exchange) throws Exception {
-                            exchange.getResponseSender().send("getPipelinesByOrg");
+                            exchange.getResponseSender().send("getPipelineFolder");
                         }
                     })
 
 
-            .add(Methods.GET, "//blue/rest/organizations/{organisation}/users/{user}", new HttpHandler() {
+            .add(Methods.GET, "//blue/rest/organizations/{organization}/pipelines/{folder}/pipelines/{pipeline}", new HttpHandler() {
+                        public void handleRequest(HttpServerExchange exchange) throws Exception {
+                            exchange.getResponseSender().send("getPipelineFolderPipeline");
+                        }
+                    })
+
+
+            .add(Methods.GET, "//blue/rest/organizations/{organization}/pipelines/{pipeline}/queue", new HttpHandler() {
+                        public void handleRequest(HttpServerExchange exchange) throws Exception {
+                            exchange.getResponseSender().send("getPipelineQueue");
+                        }
+                    })
+
+
+            .add(Methods.GET, "//blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}", new HttpHandler() {
+                        public void handleRequest(HttpServerExchange exchange) throws Exception {
+                            exchange.getResponseSender().send("getPipelineRun");
+                        }
+                    })
+
+
+            .add(Methods.GET, "//blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/log", new HttpHandler() {
+                        public void handleRequest(HttpServerExchange exchange) throws Exception {
+                            exchange.getResponseSender().send("getPipelineRunLog");
+                        }
+                    })
+
+
+            .add(Methods.GET, "//blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}", new HttpHandler() {
+                        public void handleRequest(HttpServerExchange exchange) throws Exception {
+                            exchange.getResponseSender().send("getPipelineRunNode");
+                        }
+                    })
+
+
+            .add(Methods.GET, "//blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps/{step}", new HttpHandler() {
+                        public void handleRequest(HttpServerExchange exchange) throws Exception {
+                            exchange.getResponseSender().send("getPipelineRunNodeStep");
+                        }
+                    })
+
+
+            .add(Methods.GET, "//blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps/{step}/log", new HttpHandler() {
+                        public void handleRequest(HttpServerExchange exchange) throws Exception {
+                            exchange.getResponseSender().send("getPipelineRunNodeStepLog");
+                        }
+                    })
+
+
+            .add(Methods.GET, "//blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps", new HttpHandler() {
+                        public void handleRequest(HttpServerExchange exchange) throws Exception {
+                            exchange.getResponseSender().send("getPipelineRunNodeSteps");
+                        }
+                    })
+
+
+            .add(Methods.GET, "//blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes", new HttpHandler() {
+                        public void handleRequest(HttpServerExchange exchange) throws Exception {
+                            exchange.getResponseSender().send("getPipelineRunNodes");
+                        }
+                    })
+
+
+            .add(Methods.GET, "//blue/rest/organizations/{organization}/pipelines/{pipeline}/runs", new HttpHandler() {
+                        public void handleRequest(HttpServerExchange exchange) throws Exception {
+                            exchange.getResponseSender().send("getPipelineRuns");
+                        }
+                    })
+
+
+            .add(Methods.GET, "//blue/rest/organizations/{organization}/pipelines/", new HttpHandler() {
+                        public void handleRequest(HttpServerExchange exchange) throws Exception {
+                            exchange.getResponseSender().send("getPipelines");
+                        }
+                    })
+
+
+            .add(Methods.GET, "//blue/rest/organizations/{organization}/scm/{scm}", new HttpHandler() {
+                        public void handleRequest(HttpServerExchange exchange) throws Exception {
+                            exchange.getResponseSender().send("getSCM");
+                        }
+                    })
+
+
+            .add(Methods.GET, "//blue/rest/organizations/{organization}/scm/{scm}/organizations/{scmOrganisation}/repositories", new HttpHandler() {
+                        public void handleRequest(HttpServerExchange exchange) throws Exception {
+                            exchange.getResponseSender().send("getSCMOrganisationRepositories");
+                        }
+                    })
+
+
+            .add(Methods.GET, "//blue/rest/organizations/{organization}/scm/{scm}/organizations/{scmOrganisation}/repositories/{repository}", new HttpHandler() {
+                        public void handleRequest(HttpServerExchange exchange) throws Exception {
+                            exchange.getResponseSender().send("getSCMOrganisationRepository");
+                        }
+                    })
+
+
+            .add(Methods.GET, "//blue/rest/organizations/{organization}/scm/{scm}/organizations", new HttpHandler() {
+                        public void handleRequest(HttpServerExchange exchange) throws Exception {
+                            exchange.getResponseSender().send("getSCMOrganisations");
+                        }
+                    })
+
+
+            .add(Methods.GET, "//blue/rest/organizations/{organization}/users/{user}", new HttpHandler() {
                         public void handleRequest(HttpServerExchange exchange) throws Exception {
                             exchange.getResponseSender().send("getUser");
                         }
                     })
 
 
-            .add(Methods.GET, "//blue/rest/organizations/{organisation}/users/", new HttpHandler() {
+            .add(Methods.GET, "//blue/rest/users/{user}/favorites", new HttpHandler() {
+                        public void handleRequest(HttpServerExchange exchange) throws Exception {
+                            exchange.getResponseSender().send("getUserFavorites");
+                        }
+                    })
+
+
+            .add(Methods.GET, "//blue/rest/organizations/{organization}/users/", new HttpHandler() {
                         public void handleRequest(HttpServerExchange exchange) throws Exception {
                             exchange.getResponseSender().send("getUsers");
                         }
                     })
 
 
-            .add(Methods.GET, "//blue/rest/classes/", new HttpHandler() {
+            .add(Methods.POST, "//blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/replay", new HttpHandler() {
                         public void handleRequest(HttpServerExchange exchange) throws Exception {
-                            exchange.getResponseSender().send("search");
+                            exchange.getResponseSender().send("postPipelineRun");
+                        }
+                    })
+
+
+            .add(Methods.POST, "//blue/rest/organizations/{organization}/pipelines/{pipeline}/runs", new HttpHandler() {
+                        public void handleRequest(HttpServerExchange exchange) throws Exception {
+                            exchange.getResponseSender().send("postPipelineRuns");
+                        }
+                    })
+
+
+            .add(Methods.PUT, "//blue/rest/organizations/{organization}/pipelines/{pipeline}/favorite", new HttpHandler() {
+                        public void handleRequest(HttpServerExchange exchange) throws Exception {
+                            exchange.getResponseSender().send("putPipelineFavorite");
+                        }
+                    })
+
+
+            .add(Methods.PUT, "//blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/stop", new HttpHandler() {
+                        public void handleRequest(HttpServerExchange exchange) throws Exception {
+                            exchange.getResponseSender().send("putPipelineRun");
                         }
                     })
 
 
             .add(Methods.GET, "//blue/rest/search/", new HttpHandler() {
                         public void handleRequest(HttpServerExchange exchange) throws Exception {
-                            exchange.getResponseSender().send("search_0");
+                            exchange.getResponseSender().send("search");
                         }
                     })
 
 
-            .add(Methods.GET, "//computer/api/json?depth=1", new HttpHandler() {
+            .add(Methods.GET, "//blue/rest/classes/", new HttpHandler() {
+                        public void handleRequest(HttpServerExchange exchange) throws Exception {
+                            exchange.getResponseSender().send("searchClasses");
+                        }
+                    })
+
+
+            .add(Methods.GET, "//computer/api/json", new HttpHandler() {
                         public void handleRequest(HttpServerExchange exchange) throws Exception {
                             exchange.getResponseSender().send("getComputer");
                         }

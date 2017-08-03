@@ -30,11 +30,21 @@ my $api = WWW::SwaggerClient::BlueOceanApi->new();
 isa_ok($api, 'WWW::SwaggerClient::BlueOceanApi');
 
 #
+# delete_pipeline_queue_item test
+#
+{
+    my $organization = undef; # replace NULL with a proper value
+    my $pipeline = undef; # replace NULL with a proper value
+    my $queue = undef; # replace NULL with a proper value
+    my $result = $api->delete_pipeline_queue_item(organization => $organization, pipeline => $pipeline, queue => $queue);
+}
+
+#
 # get_authenticated_user test
 #
 {
-    my $organisation = undef; # replace NULL with a proper value
-    my $result = $api->get_authenticated_user(organisation => $organisation);
+    my $organization = undef; # replace NULL with a proper value
+    my $result = $api->get_authenticated_user(organization => $organization);
 }
 
 #
@@ -49,8 +59,8 @@ isa_ok($api, 'WWW::SwaggerClient::BlueOceanApi');
 # get_organisation test
 #
 {
-    my $organisation = undef; # replace NULL with a proper value
-    my $result = $api->get_organisation(organisation => $organisation);
+    my $organization = undef; # replace NULL with a proper value
+    my $result = $api->get_organisation(organization => $organization);
 }
 
 #
@@ -61,75 +71,284 @@ isa_ok($api, 'WWW::SwaggerClient::BlueOceanApi');
 }
 
 #
-# get_pipeline_branch_by_org test
+# get_pipeline test
 #
 {
-    my $organisation = undef; # replace NULL with a proper value
+    my $organization = undef; # replace NULL with a proper value
+    my $pipeline = undef; # replace NULL with a proper value
+    my $result = $api->get_pipeline(organization => $organization, pipeline => $pipeline);
+}
+
+#
+# get_pipeline_activities test
+#
+{
+    my $organization = undef; # replace NULL with a proper value
+    my $pipeline = undef; # replace NULL with a proper value
+    my $result = $api->get_pipeline_activities(organization => $organization, pipeline => $pipeline);
+}
+
+#
+# get_pipeline_branch test
+#
+{
+    my $organization = undef; # replace NULL with a proper value
     my $pipeline = undef; # replace NULL with a proper value
     my $branch = undef; # replace NULL with a proper value
-    my $result = $api->get_pipeline_branch_by_org(organisation => $organisation, pipeline => $pipeline, branch => $branch);
+    my $result = $api->get_pipeline_branch(organization => $organization, pipeline => $pipeline, branch => $branch);
 }
 
 #
-# get_pipeline_branches_by_org test
+# get_pipeline_branch_run test
 #
 {
-    my $organisation = undef; # replace NULL with a proper value
+    my $organization = undef; # replace NULL with a proper value
     my $pipeline = undef; # replace NULL with a proper value
-    my $result = $api->get_pipeline_branches_by_org(organisation => $organisation, pipeline => $pipeline);
+    my $branch = undef; # replace NULL with a proper value
+    my $run = undef; # replace NULL with a proper value
+    my $result = $api->get_pipeline_branch_run(organization => $organization, pipeline => $pipeline, branch => $branch, run => $run);
 }
 
 #
-# get_pipeline_by_org test
+# get_pipeline_branches test
 #
 {
-    my $organisation = undef; # replace NULL with a proper value
+    my $organization = undef; # replace NULL with a proper value
     my $pipeline = undef; # replace NULL with a proper value
-    my $result = $api->get_pipeline_by_org(organisation => $organisation, pipeline => $pipeline);
+    my $result = $api->get_pipeline_branches(organization => $organization, pipeline => $pipeline);
 }
 
 #
-# get_pipeline_folder_by_org test
+# get_pipeline_folder test
 #
 {
-    my $organisation = undef; # replace NULL with a proper value
+    my $organization = undef; # replace NULL with a proper value
     my $folder = undef; # replace NULL with a proper value
-    my $result = $api->get_pipeline_folder_by_org(organisation => $organisation, folder => $folder);
+    my $result = $api->get_pipeline_folder(organization => $organization, folder => $folder);
 }
 
 #
-# get_pipeline_folder_by_org_1 test
+# get_pipeline_folder_pipeline test
 #
 {
-    my $organisation = undef; # replace NULL with a proper value
+    my $organization = undef; # replace NULL with a proper value
     my $pipeline = undef; # replace NULL with a proper value
     my $folder = undef; # replace NULL with a proper value
-    my $result = $api->get_pipeline_folder_by_org_1(organisation => $organisation, pipeline => $pipeline, folder => $folder);
+    my $result = $api->get_pipeline_folder_pipeline(organization => $organization, pipeline => $pipeline, folder => $folder);
 }
 
 #
-# get_pipelines_by_org test
+# get_pipeline_queue test
 #
 {
-    my $organisation = undef; # replace NULL with a proper value
-    my $result = $api->get_pipelines_by_org(organisation => $organisation);
+    my $organization = undef; # replace NULL with a proper value
+    my $pipeline = undef; # replace NULL with a proper value
+    my $result = $api->get_pipeline_queue(organization => $organization, pipeline => $pipeline);
+}
+
+#
+# get_pipeline_run test
+#
+{
+    my $organization = undef; # replace NULL with a proper value
+    my $pipeline = undef; # replace NULL with a proper value
+    my $run = undef; # replace NULL with a proper value
+    my $result = $api->get_pipeline_run(organization => $organization, pipeline => $pipeline, run => $run);
+}
+
+#
+# get_pipeline_run_log test
+#
+{
+    my $organization = undef; # replace NULL with a proper value
+    my $pipeline = undef; # replace NULL with a proper value
+    my $run = undef; # replace NULL with a proper value
+    my $start = undef; # replace NULL with a proper value
+    my $download = undef; # replace NULL with a proper value
+    my $result = $api->get_pipeline_run_log(organization => $organization, pipeline => $pipeline, run => $run, start => $start, download => $download);
+}
+
+#
+# get_pipeline_run_node test
+#
+{
+    my $organization = undef; # replace NULL with a proper value
+    my $pipeline = undef; # replace NULL with a proper value
+    my $run = undef; # replace NULL with a proper value
+    my $node = undef; # replace NULL with a proper value
+    my $result = $api->get_pipeline_run_node(organization => $organization, pipeline => $pipeline, run => $run, node => $node);
+}
+
+#
+# get_pipeline_run_node_step test
+#
+{
+    my $organization = undef; # replace NULL with a proper value
+    my $pipeline = undef; # replace NULL with a proper value
+    my $run = undef; # replace NULL with a proper value
+    my $node = undef; # replace NULL with a proper value
+    my $step = undef; # replace NULL with a proper value
+    my $result = $api->get_pipeline_run_node_step(organization => $organization, pipeline => $pipeline, run => $run, node => $node, step => $step);
+}
+
+#
+# get_pipeline_run_node_step_log test
+#
+{
+    my $organization = undef; # replace NULL with a proper value
+    my $pipeline = undef; # replace NULL with a proper value
+    my $run = undef; # replace NULL with a proper value
+    my $node = undef; # replace NULL with a proper value
+    my $step = undef; # replace NULL with a proper value
+    my $result = $api->get_pipeline_run_node_step_log(organization => $organization, pipeline => $pipeline, run => $run, node => $node, step => $step);
+}
+
+#
+# get_pipeline_run_node_steps test
+#
+{
+    my $organization = undef; # replace NULL with a proper value
+    my $pipeline = undef; # replace NULL with a proper value
+    my $run = undef; # replace NULL with a proper value
+    my $node = undef; # replace NULL with a proper value
+    my $result = $api->get_pipeline_run_node_steps(organization => $organization, pipeline => $pipeline, run => $run, node => $node);
+}
+
+#
+# get_pipeline_run_nodes test
+#
+{
+    my $organization = undef; # replace NULL with a proper value
+    my $pipeline = undef; # replace NULL with a proper value
+    my $run = undef; # replace NULL with a proper value
+    my $result = $api->get_pipeline_run_nodes(organization => $organization, pipeline => $pipeline, run => $run);
+}
+
+#
+# get_pipeline_runs test
+#
+{
+    my $organization = undef; # replace NULL with a proper value
+    my $pipeline = undef; # replace NULL with a proper value
+    my $result = $api->get_pipeline_runs(organization => $organization, pipeline => $pipeline);
+}
+
+#
+# get_pipelines test
+#
+{
+    my $organization = undef; # replace NULL with a proper value
+    my $result = $api->get_pipelines(organization => $organization);
+}
+
+#
+# get_scm test
+#
+{
+    my $organization = undef; # replace NULL with a proper value
+    my $scm = undef; # replace NULL with a proper value
+    my $result = $api->get_scm(organization => $organization, scm => $scm);
+}
+
+#
+# get_scm_organisation_repositories test
+#
+{
+    my $organization = undef; # replace NULL with a proper value
+    my $scm = undef; # replace NULL with a proper value
+    my $scm_organisation = undef; # replace NULL with a proper value
+    my $credential_id = undef; # replace NULL with a proper value
+    my $page_size = undef; # replace NULL with a proper value
+    my $page_number = undef; # replace NULL with a proper value
+    my $result = $api->get_scm_organisation_repositories(organization => $organization, scm => $scm, scm_organisation => $scm_organisation, credential_id => $credential_id, page_size => $page_size, page_number => $page_number);
+}
+
+#
+# get_scm_organisation_repository test
+#
+{
+    my $organization = undef; # replace NULL with a proper value
+    my $scm = undef; # replace NULL with a proper value
+    my $scm_organisation = undef; # replace NULL with a proper value
+    my $repository = undef; # replace NULL with a proper value
+    my $credential_id = undef; # replace NULL with a proper value
+    my $result = $api->get_scm_organisation_repository(organization => $organization, scm => $scm, scm_organisation => $scm_organisation, repository => $repository, credential_id => $credential_id);
+}
+
+#
+# get_scm_organisations test
+#
+{
+    my $organization = undef; # replace NULL with a proper value
+    my $scm = undef; # replace NULL with a proper value
+    my $credential_id = undef; # replace NULL with a proper value
+    my $result = $api->get_scm_organisations(organization => $organization, scm => $scm, credential_id => $credential_id);
 }
 
 #
 # get_user test
 #
 {
-    my $organisation = undef; # replace NULL with a proper value
+    my $organization = undef; # replace NULL with a proper value
     my $user = undef; # replace NULL with a proper value
-    my $result = $api->get_user(organisation => $organisation, user => $user);
+    my $result = $api->get_user(organization => $organization, user => $user);
+}
+
+#
+# get_user_favorites test
+#
+{
+    my $user = undef; # replace NULL with a proper value
+    my $result = $api->get_user_favorites(user => $user);
 }
 
 #
 # get_users test
 #
 {
-    my $organisation = undef; # replace NULL with a proper value
-    my $result = $api->get_users(organisation => $organisation);
+    my $organization = undef; # replace NULL with a proper value
+    my $result = $api->get_users(organization => $organization);
+}
+
+#
+# post_pipeline_run test
+#
+{
+    my $organization = undef; # replace NULL with a proper value
+    my $pipeline = undef; # replace NULL with a proper value
+    my $run = undef; # replace NULL with a proper value
+    my $result = $api->post_pipeline_run(organization => $organization, pipeline => $pipeline, run => $run);
+}
+
+#
+# post_pipeline_runs test
+#
+{
+    my $organization = undef; # replace NULL with a proper value
+    my $pipeline = undef; # replace NULL with a proper value
+    my $result = $api->post_pipeline_runs(organization => $organization, pipeline => $pipeline);
+}
+
+#
+# put_pipeline_favorite test
+#
+{
+    my $organization = undef; # replace NULL with a proper value
+    my $pipeline = undef; # replace NULL with a proper value
+    my $body = undef; # replace NULL with a proper value
+    my $result = $api->put_pipeline_favorite(organization => $organization, pipeline => $pipeline, body => $body);
+}
+
+#
+# put_pipeline_run test
+#
+{
+    my $organization = undef; # replace NULL with a proper value
+    my $pipeline = undef; # replace NULL with a proper value
+    my $run = undef; # replace NULL with a proper value
+    my $blocking = undef; # replace NULL with a proper value
+    my $time_out_in_secs = undef; # replace NULL with a proper value
+    my $result = $api->put_pipeline_run(organization => $organization, pipeline => $pipeline, run => $run, blocking => $blocking, time_out_in_secs => $time_out_in_secs);
 }
 
 #
@@ -141,11 +360,11 @@ isa_ok($api, 'WWW::SwaggerClient::BlueOceanApi');
 }
 
 #
-# search_2 test
+# search_classes test
 #
 {
     my $q = undef; # replace NULL with a proper value
-    my $result = $api->search_2(q => $q);
+    my $result = $api->search_classes(q => $q);
 }
 
 

@@ -9,15 +9,29 @@
  */
 goog.provide('API.Client.BlueOceanApi');
 
-goog.require('API.Client.getMultibranchPipeline');
-goog.require('API.Client.getOrganisations');
-goog.require('API.Client.getPipelines');
-goog.require('API.Client.iojenkinsblueoceanrestimplpipelineBranchImpl');
-goog.require('API.Client.iojenkinsblueoceanserviceembeddedrestPipelineFolderImpl');
-goog.require('API.Client.iojenkinsblueoceanserviceembeddedrestPipelineImpl');
-goog.require('API.Client.swaggyjenkinsOrganisation');
-goog.require('API.Client.swaggyjenkinsPipeline');
-goog.require('API.Client.swaggyjenkinsUser');
+goog.require('API.Client.Body');
+goog.require('API.Client.BranchImpl');
+goog.require('API.Client.FavoriteImpl');
+goog.require('API.Client.GithubScm');
+goog.require('API.Client.MultibranchPipeline');
+goog.require('API.Client.Organisation');
+goog.require('API.Client.Organisations');
+goog.require('API.Client.Pipeline');
+goog.require('API.Client.PipelineActivities');
+goog.require('API.Client.PipelineFolderImpl');
+goog.require('API.Client.PipelineImpl');
+goog.require('API.Client.PipelineQueue');
+goog.require('API.Client.PipelineRun');
+goog.require('API.Client.PipelineRunNode');
+goog.require('API.Client.PipelineRunNodeSteps');
+goog.require('API.Client.PipelineRunNodes');
+goog.require('API.Client.PipelineRuns');
+goog.require('API.Client.PipelineStepImpl');
+goog.require('API.Client.Pipelines');
+goog.require('API.Client.QueueItemImpl');
+goog.require('API.Client.ScmOrganisations');
+goog.require('API.Client.User');
+goog.require('API.Client.UserFavorites');
 
 /**
  * @constructor
@@ -48,24 +62,73 @@ API.Client.BlueOceanApi.$inject = ['$http', '$httpParamSerializer', '$injector']
 
 /**
  * 
- * Retrieve authenticated user details for an organisation
- * @param {!string} organisation Name of the organisation
+ * Delete queue item from an organization pipeline queue
+ * @param {!string} organization Name of the organization
+ * @param {!string} pipeline Name of the pipeline
+ * @param {!string} queue Name of the queue item
  * @param {!angular.$http.Config=} opt_extraHttpRequestParams Extra HTTP parameters to send.
- * @return {!angular.$q.Promise<!API.Client.swaggyjenkinsUser>}
+ * @return {!angular.$q.Promise}
  */
-API.Client.BlueOceanApi.prototype.getAuthenticatedUser = function(organisation, opt_extraHttpRequestParams) {
+API.Client.BlueOceanApi.prototype.deletePipelineQueueItem = function(organization, pipeline, queue, opt_extraHttpRequestParams) {
   /** @const {string} */
-  var path = this.basePath_ + '/blue/rest/organizations/{organisation}/user/'
-      .replace('{' + 'organisation' + '}', String(organisation));
+  var path = this.basePath_ + '/blue/rest/organizations/{organization}/pipelines/{pipeline}/queue/{queue}'
+      .replace('{' + 'organization' + '}', String(organization))
+      .replace('{' + 'pipeline' + '}', String(pipeline))
+      .replace('{' + 'queue' + '}', String(queue));
 
   /** @type {!Object} */
   var queryParameters = {};
 
   /** @type {!Object} */
   var headerParams = angular.extend({}, this.defaultHeaders_);
-  // verify required parameter 'organisation' is set
-  if (!organisation) {
-    throw new Error('Missing required parameter organisation when calling getAuthenticatedUser');
+  // verify required parameter 'organization' is set
+  if (!organization) {
+    throw new Error('Missing required parameter organization when calling deletePipelineQueueItem');
+  }
+  // verify required parameter 'pipeline' is set
+  if (!pipeline) {
+    throw new Error('Missing required parameter pipeline when calling deletePipelineQueueItem');
+  }
+  // verify required parameter 'queue' is set
+  if (!queue) {
+    throw new Error('Missing required parameter queue when calling deletePipelineQueueItem');
+  }
+  /** @type {!Object} */
+  var httpRequestParams = {
+    method: 'DELETE',
+    url: path,
+    json: true,
+            params: queryParameters,
+    headers: headerParams
+  };
+
+  if (opt_extraHttpRequestParams) {
+    httpRequestParams = angular.extend(httpRequestParams, opt_extraHttpRequestParams);
+  }
+
+  return (/** @type {?} */ (this.http_))(httpRequestParams);
+}
+
+/**
+ * 
+ * Retrieve authenticated user details for an organization
+ * @param {!string} organization Name of the organization
+ * @param {!angular.$http.Config=} opt_extraHttpRequestParams Extra HTTP parameters to send.
+ * @return {!angular.$q.Promise<!API.Client.User>}
+ */
+API.Client.BlueOceanApi.prototype.getAuthenticatedUser = function(organization, opt_extraHttpRequestParams) {
+  /** @const {string} */
+  var path = this.basePath_ + '/blue/rest/organizations/{organization}/user/'
+      .replace('{' + 'organization' + '}', String(organization));
+
+  /** @type {!Object} */
+  var queryParameters = {};
+
+  /** @type {!Object} */
+  var headerParams = angular.extend({}, this.defaultHeaders_);
+  // verify required parameter 'organization' is set
+  if (!organization) {
+    throw new Error('Missing required parameter organization when calling getAuthenticatedUser');
   }
   /** @type {!Object} */
   var httpRequestParams = {
@@ -122,24 +185,24 @@ API.Client.BlueOceanApi.prototype.getClasses = function(_class, opt_extraHttpReq
 
 /**
  * 
- * Retrieve organisation details
- * @param {!string} organisation Name of the organisation
+ * Retrieve organization details
+ * @param {!string} organization Name of the organization
  * @param {!angular.$http.Config=} opt_extraHttpRequestParams Extra HTTP parameters to send.
- * @return {!angular.$q.Promise<!API.Client.swaggyjenkinsOrganisation>}
+ * @return {!angular.$q.Promise<!API.Client.Organisation>}
  */
-API.Client.BlueOceanApi.prototype.getOrganisation = function(organisation, opt_extraHttpRequestParams) {
+API.Client.BlueOceanApi.prototype.getOrganisation = function(organization, opt_extraHttpRequestParams) {
   /** @const {string} */
-  var path = this.basePath_ + '/blue/rest/organizations/{organisation}'
-      .replace('{' + 'organisation' + '}', String(organisation));
+  var path = this.basePath_ + '/blue/rest/organizations/{organization}'
+      .replace('{' + 'organization' + '}', String(organization));
 
   /** @type {!Object} */
   var queryParameters = {};
 
   /** @type {!Object} */
   var headerParams = angular.extend({}, this.defaultHeaders_);
-  // verify required parameter 'organisation' is set
-  if (!organisation) {
-    throw new Error('Missing required parameter organisation when calling getOrganisation');
+  // verify required parameter 'organization' is set
+  if (!organization) {
+    throw new Error('Missing required parameter organization when calling getOrganisation');
   }
   /** @type {!Object} */
   var httpRequestParams = {
@@ -159,9 +222,9 @@ API.Client.BlueOceanApi.prototype.getOrganisation = function(organisation, opt_e
 
 /**
  * 
- * Retrieve all organisations details
+ * Retrieve all organizations details
  * @param {!angular.$http.Config=} opt_extraHttpRequestParams Extra HTTP parameters to send.
- * @return {!angular.$q.Promise<!API.Client.getOrganisations>}
+ * @return {!angular.$q.Promise<!API.Client.Organisations>}
  */
 API.Client.BlueOceanApi.prototype.getOrganisations = function(opt_extraHttpRequestParams) {
   /** @const {string} */
@@ -190,17 +253,103 @@ API.Client.BlueOceanApi.prototype.getOrganisations = function(opt_extraHttpReque
 
 /**
  * 
- * Retrieve branch details for an organisation pipeline
- * @param {!string} organisation Name of the organisation
+ * Retrieve pipeline details for an organization
+ * @param {!string} organization Name of the organization
+ * @param {!string} pipeline Name of the pipeline
+ * @param {!angular.$http.Config=} opt_extraHttpRequestParams Extra HTTP parameters to send.
+ * @return {!angular.$q.Promise<!API.Client.Pipeline>}
+ */
+API.Client.BlueOceanApi.prototype.getPipeline = function(organization, pipeline, opt_extraHttpRequestParams) {
+  /** @const {string} */
+  var path = this.basePath_ + '/blue/rest/organizations/{organization}/pipelines/{pipeline}'
+      .replace('{' + 'organization' + '}', String(organization))
+      .replace('{' + 'pipeline' + '}', String(pipeline));
+
+  /** @type {!Object} */
+  var queryParameters = {};
+
+  /** @type {!Object} */
+  var headerParams = angular.extend({}, this.defaultHeaders_);
+  // verify required parameter 'organization' is set
+  if (!organization) {
+    throw new Error('Missing required parameter organization when calling getPipeline');
+  }
+  // verify required parameter 'pipeline' is set
+  if (!pipeline) {
+    throw new Error('Missing required parameter pipeline when calling getPipeline');
+  }
+  /** @type {!Object} */
+  var httpRequestParams = {
+    method: 'GET',
+    url: path,
+    json: true,
+            params: queryParameters,
+    headers: headerParams
+  };
+
+  if (opt_extraHttpRequestParams) {
+    httpRequestParams = angular.extend(httpRequestParams, opt_extraHttpRequestParams);
+  }
+
+  return (/** @type {?} */ (this.http_))(httpRequestParams);
+}
+
+/**
+ * 
+ * Retrieve all activities details for an organization pipeline
+ * @param {!string} organization Name of the organization
+ * @param {!string} pipeline Name of the pipeline
+ * @param {!angular.$http.Config=} opt_extraHttpRequestParams Extra HTTP parameters to send.
+ * @return {!angular.$q.Promise<!API.Client.PipelineActivities>}
+ */
+API.Client.BlueOceanApi.prototype.getPipelineActivities = function(organization, pipeline, opt_extraHttpRequestParams) {
+  /** @const {string} */
+  var path = this.basePath_ + '/blue/rest/organizations/{organization}/pipelines/{pipeline}/activities'
+      .replace('{' + 'organization' + '}', String(organization))
+      .replace('{' + 'pipeline' + '}', String(pipeline));
+
+  /** @type {!Object} */
+  var queryParameters = {};
+
+  /** @type {!Object} */
+  var headerParams = angular.extend({}, this.defaultHeaders_);
+  // verify required parameter 'organization' is set
+  if (!organization) {
+    throw new Error('Missing required parameter organization when calling getPipelineActivities');
+  }
+  // verify required parameter 'pipeline' is set
+  if (!pipeline) {
+    throw new Error('Missing required parameter pipeline when calling getPipelineActivities');
+  }
+  /** @type {!Object} */
+  var httpRequestParams = {
+    method: 'GET',
+    url: path,
+    json: true,
+            params: queryParameters,
+    headers: headerParams
+  };
+
+  if (opt_extraHttpRequestParams) {
+    httpRequestParams = angular.extend(httpRequestParams, opt_extraHttpRequestParams);
+  }
+
+  return (/** @type {?} */ (this.http_))(httpRequestParams);
+}
+
+/**
+ * 
+ * Retrieve branch details for an organization pipeline
+ * @param {!string} organization Name of the organization
  * @param {!string} pipeline Name of the pipeline
  * @param {!string} branch Name of the branch
  * @param {!angular.$http.Config=} opt_extraHttpRequestParams Extra HTTP parameters to send.
- * @return {!angular.$q.Promise<!API.Client.iojenkinsblueoceanrestimplpipelineBranchImpl>}
+ * @return {!angular.$q.Promise<!API.Client.BranchImpl>}
  */
-API.Client.BlueOceanApi.prototype.getPipelineBranchByOrg = function(organisation, pipeline, branch, opt_extraHttpRequestParams) {
+API.Client.BlueOceanApi.prototype.getPipelineBranch = function(organization, pipeline, branch, opt_extraHttpRequestParams) {
   /** @const {string} */
-  var path = this.basePath_ + '/blue/rest/organizations/{organisation}/pipelines/{pipeline}/branches/{branch}/'
-      .replace('{' + 'organisation' + '}', String(organisation))
+  var path = this.basePath_ + '/blue/rest/organizations/{organization}/pipelines/{pipeline}/branches/{branch}/'
+      .replace('{' + 'organization' + '}', String(organization))
       .replace('{' + 'pipeline' + '}', String(pipeline))
       .replace('{' + 'branch' + '}', String(branch));
 
@@ -209,17 +358,17 @@ API.Client.BlueOceanApi.prototype.getPipelineBranchByOrg = function(organisation
 
   /** @type {!Object} */
   var headerParams = angular.extend({}, this.defaultHeaders_);
-  // verify required parameter 'organisation' is set
-  if (!organisation) {
-    throw new Error('Missing required parameter organisation when calling getPipelineBranchByOrg');
+  // verify required parameter 'organization' is set
+  if (!organization) {
+    throw new Error('Missing required parameter organization when calling getPipelineBranch');
   }
   // verify required parameter 'pipeline' is set
   if (!pipeline) {
-    throw new Error('Missing required parameter pipeline when calling getPipelineBranchByOrg');
+    throw new Error('Missing required parameter pipeline when calling getPipelineBranch');
   }
   // verify required parameter 'branch' is set
   if (!branch) {
-    throw new Error('Missing required parameter branch when calling getPipelineBranchByOrg');
+    throw new Error('Missing required parameter branch when calling getPipelineBranch');
   }
   /** @type {!Object} */
   var httpRequestParams = {
@@ -239,16 +388,71 @@ API.Client.BlueOceanApi.prototype.getPipelineBranchByOrg = function(organisation
 
 /**
  * 
- * Retrieve all branches details for an organisation pipeline
- * @param {!string} organisation Name of the organisation
+ * Retrieve branch run details for an organization pipeline
+ * @param {!string} organization Name of the organization
+ * @param {!string} pipeline Name of the pipeline
+ * @param {!string} branch Name of the branch
+ * @param {!string} run Name of the run
+ * @param {!angular.$http.Config=} opt_extraHttpRequestParams Extra HTTP parameters to send.
+ * @return {!angular.$q.Promise<!API.Client.PipelineRun>}
+ */
+API.Client.BlueOceanApi.prototype.getPipelineBranchRun = function(organization, pipeline, branch, run, opt_extraHttpRequestParams) {
+  /** @const {string} */
+  var path = this.basePath_ + '/blue/rest/organizations/{organization}/pipelines/{pipeline}/branches/{branch}/runs/{run}'
+      .replace('{' + 'organization' + '}', String(organization))
+      .replace('{' + 'pipeline' + '}', String(pipeline))
+      .replace('{' + 'branch' + '}', String(branch))
+      .replace('{' + 'run' + '}', String(run));
+
+  /** @type {!Object} */
+  var queryParameters = {};
+
+  /** @type {!Object} */
+  var headerParams = angular.extend({}, this.defaultHeaders_);
+  // verify required parameter 'organization' is set
+  if (!organization) {
+    throw new Error('Missing required parameter organization when calling getPipelineBranchRun');
+  }
+  // verify required parameter 'pipeline' is set
+  if (!pipeline) {
+    throw new Error('Missing required parameter pipeline when calling getPipelineBranchRun');
+  }
+  // verify required parameter 'branch' is set
+  if (!branch) {
+    throw new Error('Missing required parameter branch when calling getPipelineBranchRun');
+  }
+  // verify required parameter 'run' is set
+  if (!run) {
+    throw new Error('Missing required parameter run when calling getPipelineBranchRun');
+  }
+  /** @type {!Object} */
+  var httpRequestParams = {
+    method: 'GET',
+    url: path,
+    json: true,
+            params: queryParameters,
+    headers: headerParams
+  };
+
+  if (opt_extraHttpRequestParams) {
+    httpRequestParams = angular.extend(httpRequestParams, opt_extraHttpRequestParams);
+  }
+
+  return (/** @type {?} */ (this.http_))(httpRequestParams);
+}
+
+/**
+ * 
+ * Retrieve all branches details for an organization pipeline
+ * @param {!string} organization Name of the organization
  * @param {!string} pipeline Name of the pipeline
  * @param {!angular.$http.Config=} opt_extraHttpRequestParams Extra HTTP parameters to send.
- * @return {!angular.$q.Promise<!API.Client.getMultibranchPipeline>}
+ * @return {!angular.$q.Promise<!API.Client.MultibranchPipeline>}
  */
-API.Client.BlueOceanApi.prototype.getPipelineBranchesByOrg = function(organisation, pipeline, opt_extraHttpRequestParams) {
+API.Client.BlueOceanApi.prototype.getPipelineBranches = function(organization, pipeline, opt_extraHttpRequestParams) {
   /** @const {string} */
-  var path = this.basePath_ + '/blue/rest/organizations/{organisation}/pipelines/{pipeline}/branches'
-      .replace('{' + 'organisation' + '}', String(organisation))
+  var path = this.basePath_ + '/blue/rest/organizations/{organization}/pipelines/{pipeline}/branches'
+      .replace('{' + 'organization' + '}', String(organization))
       .replace('{' + 'pipeline' + '}', String(pipeline));
 
   /** @type {!Object} */
@@ -256,13 +460,13 @@ API.Client.BlueOceanApi.prototype.getPipelineBranchesByOrg = function(organisati
 
   /** @type {!Object} */
   var headerParams = angular.extend({}, this.defaultHeaders_);
-  // verify required parameter 'organisation' is set
-  if (!organisation) {
-    throw new Error('Missing required parameter organisation when calling getPipelineBranchesByOrg');
+  // verify required parameter 'organization' is set
+  if (!organization) {
+    throw new Error('Missing required parameter organization when calling getPipelineBranches');
   }
   // verify required parameter 'pipeline' is set
   if (!pipeline) {
-    throw new Error('Missing required parameter pipeline when calling getPipelineBranchesByOrg');
+    throw new Error('Missing required parameter pipeline when calling getPipelineBranches');
   }
   /** @type {!Object} */
   var httpRequestParams = {
@@ -282,59 +486,16 @@ API.Client.BlueOceanApi.prototype.getPipelineBranchesByOrg = function(organisati
 
 /**
  * 
- * Retrieve pipeline details for an organisation
- * @param {!string} organisation Name of the organisation
- * @param {!string} pipeline Name of the pipeline
- * @param {!angular.$http.Config=} opt_extraHttpRequestParams Extra HTTP parameters to send.
- * @return {!angular.$q.Promise<!API.Client.swaggyjenkinsPipeline>}
- */
-API.Client.BlueOceanApi.prototype.getPipelineByOrg = function(organisation, pipeline, opt_extraHttpRequestParams) {
-  /** @const {string} */
-  var path = this.basePath_ + '/blue/rest/organizations/{organisation}/pipelines/{pipeline}'
-      .replace('{' + 'organisation' + '}', String(organisation))
-      .replace('{' + 'pipeline' + '}', String(pipeline));
-
-  /** @type {!Object} */
-  var queryParameters = {};
-
-  /** @type {!Object} */
-  var headerParams = angular.extend({}, this.defaultHeaders_);
-  // verify required parameter 'organisation' is set
-  if (!organisation) {
-    throw new Error('Missing required parameter organisation when calling getPipelineByOrg');
-  }
-  // verify required parameter 'pipeline' is set
-  if (!pipeline) {
-    throw new Error('Missing required parameter pipeline when calling getPipelineByOrg');
-  }
-  /** @type {!Object} */
-  var httpRequestParams = {
-    method: 'GET',
-    url: path,
-    json: true,
-            params: queryParameters,
-    headers: headerParams
-  };
-
-  if (opt_extraHttpRequestParams) {
-    httpRequestParams = angular.extend(httpRequestParams, opt_extraHttpRequestParams);
-  }
-
-  return (/** @type {?} */ (this.http_))(httpRequestParams);
-}
-
-/**
- * 
- * Retrieve pipeline folder for an organisation
- * @param {!string} organisation Name of the organisation
+ * Retrieve pipeline folder for an organization
+ * @param {!string} organization Name of the organization
  * @param {!string} folder Name of the folder
  * @param {!angular.$http.Config=} opt_extraHttpRequestParams Extra HTTP parameters to send.
- * @return {!angular.$q.Promise<!API.Client.iojenkinsblueoceanserviceembeddedrestPipelineFolderImpl>}
+ * @return {!angular.$q.Promise<!API.Client.PipelineFolderImpl>}
  */
-API.Client.BlueOceanApi.prototype.getPipelineFolderByOrg = function(organisation, folder, opt_extraHttpRequestParams) {
+API.Client.BlueOceanApi.prototype.getPipelineFolder = function(organization, folder, opt_extraHttpRequestParams) {
   /** @const {string} */
-  var path = this.basePath_ + '/blue/rest/organizations/{organisation}/pipelines/{folder}/'
-      .replace('{' + 'organisation' + '}', String(organisation))
+  var path = this.basePath_ + '/blue/rest/organizations/{organization}/pipelines/{folder}/'
+      .replace('{' + 'organization' + '}', String(organization))
       .replace('{' + 'folder' + '}', String(folder));
 
   /** @type {!Object} */
@@ -342,13 +503,13 @@ API.Client.BlueOceanApi.prototype.getPipelineFolderByOrg = function(organisation
 
   /** @type {!Object} */
   var headerParams = angular.extend({}, this.defaultHeaders_);
-  // verify required parameter 'organisation' is set
-  if (!organisation) {
-    throw new Error('Missing required parameter organisation when calling getPipelineFolderByOrg');
+  // verify required parameter 'organization' is set
+  if (!organization) {
+    throw new Error('Missing required parameter organization when calling getPipelineFolder');
   }
   // verify required parameter 'folder' is set
   if (!folder) {
-    throw new Error('Missing required parameter folder when calling getPipelineFolderByOrg');
+    throw new Error('Missing required parameter folder when calling getPipelineFolder');
   }
   /** @type {!Object} */
   var httpRequestParams = {
@@ -368,17 +529,17 @@ API.Client.BlueOceanApi.prototype.getPipelineFolderByOrg = function(organisation
 
 /**
  * 
- * Retrieve pipeline details for an organisation folder
- * @param {!string} organisation Name of the organisation
+ * Retrieve pipeline details for an organization folder
+ * @param {!string} organization Name of the organization
  * @param {!string} pipeline Name of the pipeline
  * @param {!string} folder Name of the folder
  * @param {!angular.$http.Config=} opt_extraHttpRequestParams Extra HTTP parameters to send.
- * @return {!angular.$q.Promise<!API.Client.iojenkinsblueoceanserviceembeddedrestPipelineImpl>}
+ * @return {!angular.$q.Promise<!API.Client.PipelineImpl>}
  */
-API.Client.BlueOceanApi.prototype.getPipelineFolderByOrg_1 = function(organisation, pipeline, folder, opt_extraHttpRequestParams) {
+API.Client.BlueOceanApi.prototype.getPipelineFolderPipeline = function(organization, pipeline, folder, opt_extraHttpRequestParams) {
   /** @const {string} */
-  var path = this.basePath_ + '/blue/rest/organizations/{organisation}/pipelines/{folder}/pipelines/{pipeline}'
-      .replace('{' + 'organisation' + '}', String(organisation))
+  var path = this.basePath_ + '/blue/rest/organizations/{organization}/pipelines/{folder}/pipelines/{pipeline}'
+      .replace('{' + 'organization' + '}', String(organization))
       .replace('{' + 'pipeline' + '}', String(pipeline))
       .replace('{' + 'folder' + '}', String(folder));
 
@@ -387,17 +548,17 @@ API.Client.BlueOceanApi.prototype.getPipelineFolderByOrg_1 = function(organisati
 
   /** @type {!Object} */
   var headerParams = angular.extend({}, this.defaultHeaders_);
-  // verify required parameter 'organisation' is set
-  if (!organisation) {
-    throw new Error('Missing required parameter organisation when calling getPipelineFolderByOrg_1');
+  // verify required parameter 'organization' is set
+  if (!organization) {
+    throw new Error('Missing required parameter organization when calling getPipelineFolderPipeline');
   }
   // verify required parameter 'pipeline' is set
   if (!pipeline) {
-    throw new Error('Missing required parameter pipeline when calling getPipelineFolderByOrg_1');
+    throw new Error('Missing required parameter pipeline when calling getPipelineFolderPipeline');
   }
   // verify required parameter 'folder' is set
   if (!folder) {
-    throw new Error('Missing required parameter folder when calling getPipelineFolderByOrg_1');
+    throw new Error('Missing required parameter folder when calling getPipelineFolderPipeline');
   }
   /** @type {!Object} */
   var httpRequestParams = {
@@ -417,24 +578,30 @@ API.Client.BlueOceanApi.prototype.getPipelineFolderByOrg_1 = function(organisati
 
 /**
  * 
- * Retrieve all pipelines details for an organisation
- * @param {!string} organisation Name of the organisation
+ * Retrieve queue details for an organization pipeline
+ * @param {!string} organization Name of the organization
+ * @param {!string} pipeline Name of the pipeline
  * @param {!angular.$http.Config=} opt_extraHttpRequestParams Extra HTTP parameters to send.
- * @return {!angular.$q.Promise<!API.Client.getPipelines>}
+ * @return {!angular.$q.Promise<!API.Client.PipelineQueue>}
  */
-API.Client.BlueOceanApi.prototype.getPipelinesByOrg = function(organisation, opt_extraHttpRequestParams) {
+API.Client.BlueOceanApi.prototype.getPipelineQueue = function(organization, pipeline, opt_extraHttpRequestParams) {
   /** @const {string} */
-  var path = this.basePath_ + '/blue/rest/organizations/{organisation}/pipelines/'
-      .replace('{' + 'organisation' + '}', String(organisation));
+  var path = this.basePath_ + '/blue/rest/organizations/{organization}/pipelines/{pipeline}/queue'
+      .replace('{' + 'organization' + '}', String(organization))
+      .replace('{' + 'pipeline' + '}', String(pipeline));
 
   /** @type {!Object} */
   var queryParameters = {};
 
   /** @type {!Object} */
   var headerParams = angular.extend({}, this.defaultHeaders_);
-  // verify required parameter 'organisation' is set
-  if (!organisation) {
-    throw new Error('Missing required parameter organisation when calling getPipelinesByOrg');
+  // verify required parameter 'organization' is set
+  if (!organization) {
+    throw new Error('Missing required parameter organization when calling getPipelineQueue');
+  }
+  // verify required parameter 'pipeline' is set
+  if (!pipeline) {
+    throw new Error('Missing required parameter pipeline when calling getPipelineQueue');
   }
   /** @type {!Object} */
   var httpRequestParams = {
@@ -454,16 +621,700 @@ API.Client.BlueOceanApi.prototype.getPipelinesByOrg = function(organisation, opt
 
 /**
  * 
- * Retrieve user details for an organisation
- * @param {!string} organisation Name of the organisation
+ * Retrieve run details for an organization pipeline
+ * @param {!string} organization Name of the organization
+ * @param {!string} pipeline Name of the pipeline
+ * @param {!string} run Name of the run
+ * @param {!angular.$http.Config=} opt_extraHttpRequestParams Extra HTTP parameters to send.
+ * @return {!angular.$q.Promise<!API.Client.PipelineRun>}
+ */
+API.Client.BlueOceanApi.prototype.getPipelineRun = function(organization, pipeline, run, opt_extraHttpRequestParams) {
+  /** @const {string} */
+  var path = this.basePath_ + '/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}'
+      .replace('{' + 'organization' + '}', String(organization))
+      .replace('{' + 'pipeline' + '}', String(pipeline))
+      .replace('{' + 'run' + '}', String(run));
+
+  /** @type {!Object} */
+  var queryParameters = {};
+
+  /** @type {!Object} */
+  var headerParams = angular.extend({}, this.defaultHeaders_);
+  // verify required parameter 'organization' is set
+  if (!organization) {
+    throw new Error('Missing required parameter organization when calling getPipelineRun');
+  }
+  // verify required parameter 'pipeline' is set
+  if (!pipeline) {
+    throw new Error('Missing required parameter pipeline when calling getPipelineRun');
+  }
+  // verify required parameter 'run' is set
+  if (!run) {
+    throw new Error('Missing required parameter run when calling getPipelineRun');
+  }
+  /** @type {!Object} */
+  var httpRequestParams = {
+    method: 'GET',
+    url: path,
+    json: true,
+            params: queryParameters,
+    headers: headerParams
+  };
+
+  if (opt_extraHttpRequestParams) {
+    httpRequestParams = angular.extend(httpRequestParams, opt_extraHttpRequestParams);
+  }
+
+  return (/** @type {?} */ (this.http_))(httpRequestParams);
+}
+
+/**
+ * 
+ * Get log for a pipeline run
+ * @param {!string} organization Name of the organization
+ * @param {!string} pipeline Name of the pipeline
+ * @param {!string} run Name of the run
+ * @param {!number=} opt_start Start position of the log
+ * @param {!boolean=} opt_download Set to true in order to download the file, otherwise it&#39;s passed as a response body
+ * @param {!angular.$http.Config=} opt_extraHttpRequestParams Extra HTTP parameters to send.
+ * @return {!angular.$q.Promise<!string>}
+ */
+API.Client.BlueOceanApi.prototype.getPipelineRunLog = function(organization, pipeline, run, opt_start, opt_download, opt_extraHttpRequestParams) {
+  /** @const {string} */
+  var path = this.basePath_ + '/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/log'
+      .replace('{' + 'organization' + '}', String(organization))
+      .replace('{' + 'pipeline' + '}', String(pipeline))
+      .replace('{' + 'run' + '}', String(run));
+
+  /** @type {!Object} */
+  var queryParameters = {};
+
+  /** @type {!Object} */
+  var headerParams = angular.extend({}, this.defaultHeaders_);
+  // verify required parameter 'organization' is set
+  if (!organization) {
+    throw new Error('Missing required parameter organization when calling getPipelineRunLog');
+  }
+  // verify required parameter 'pipeline' is set
+  if (!pipeline) {
+    throw new Error('Missing required parameter pipeline when calling getPipelineRunLog');
+  }
+  // verify required parameter 'run' is set
+  if (!run) {
+    throw new Error('Missing required parameter run when calling getPipelineRunLog');
+  }
+  if (opt_start !== undefined) {
+    queryParameters['start'] = opt_start;
+  }
+
+  if (opt_download !== undefined) {
+    queryParameters['download'] = opt_download;
+  }
+
+  /** @type {!Object} */
+  var httpRequestParams = {
+    method: 'GET',
+    url: path,
+    json: true,
+            params: queryParameters,
+    headers: headerParams
+  };
+
+  if (opt_extraHttpRequestParams) {
+    httpRequestParams = angular.extend(httpRequestParams, opt_extraHttpRequestParams);
+  }
+
+  return (/** @type {?} */ (this.http_))(httpRequestParams);
+}
+
+/**
+ * 
+ * Retrieve run node details for an organization pipeline
+ * @param {!string} organization Name of the organization
+ * @param {!string} pipeline Name of the pipeline
+ * @param {!string} run Name of the run
+ * @param {!string} node Name of the node
+ * @param {!angular.$http.Config=} opt_extraHttpRequestParams Extra HTTP parameters to send.
+ * @return {!angular.$q.Promise<!API.Client.PipelineRunNode>}
+ */
+API.Client.BlueOceanApi.prototype.getPipelineRunNode = function(organization, pipeline, run, node, opt_extraHttpRequestParams) {
+  /** @const {string} */
+  var path = this.basePath_ + '/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}'
+      .replace('{' + 'organization' + '}', String(organization))
+      .replace('{' + 'pipeline' + '}', String(pipeline))
+      .replace('{' + 'run' + '}', String(run))
+      .replace('{' + 'node' + '}', String(node));
+
+  /** @type {!Object} */
+  var queryParameters = {};
+
+  /** @type {!Object} */
+  var headerParams = angular.extend({}, this.defaultHeaders_);
+  // verify required parameter 'organization' is set
+  if (!organization) {
+    throw new Error('Missing required parameter organization when calling getPipelineRunNode');
+  }
+  // verify required parameter 'pipeline' is set
+  if (!pipeline) {
+    throw new Error('Missing required parameter pipeline when calling getPipelineRunNode');
+  }
+  // verify required parameter 'run' is set
+  if (!run) {
+    throw new Error('Missing required parameter run when calling getPipelineRunNode');
+  }
+  // verify required parameter 'node' is set
+  if (!node) {
+    throw new Error('Missing required parameter node when calling getPipelineRunNode');
+  }
+  /** @type {!Object} */
+  var httpRequestParams = {
+    method: 'GET',
+    url: path,
+    json: true,
+            params: queryParameters,
+    headers: headerParams
+  };
+
+  if (opt_extraHttpRequestParams) {
+    httpRequestParams = angular.extend(httpRequestParams, opt_extraHttpRequestParams);
+  }
+
+  return (/** @type {?} */ (this.http_))(httpRequestParams);
+}
+
+/**
+ * 
+ * Retrieve run node details for an organization pipeline
+ * @param {!string} organization Name of the organization
+ * @param {!string} pipeline Name of the pipeline
+ * @param {!string} run Name of the run
+ * @param {!string} node Name of the node
+ * @param {!string} step Name of the step
+ * @param {!angular.$http.Config=} opt_extraHttpRequestParams Extra HTTP parameters to send.
+ * @return {!angular.$q.Promise<!API.Client.PipelineStepImpl>}
+ */
+API.Client.BlueOceanApi.prototype.getPipelineRunNodeStep = function(organization, pipeline, run, node, step, opt_extraHttpRequestParams) {
+  /** @const {string} */
+  var path = this.basePath_ + '/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps/{step}'
+      .replace('{' + 'organization' + '}', String(organization))
+      .replace('{' + 'pipeline' + '}', String(pipeline))
+      .replace('{' + 'run' + '}', String(run))
+      .replace('{' + 'node' + '}', String(node))
+      .replace('{' + 'step' + '}', String(step));
+
+  /** @type {!Object} */
+  var queryParameters = {};
+
+  /** @type {!Object} */
+  var headerParams = angular.extend({}, this.defaultHeaders_);
+  // verify required parameter 'organization' is set
+  if (!organization) {
+    throw new Error('Missing required parameter organization when calling getPipelineRunNodeStep');
+  }
+  // verify required parameter 'pipeline' is set
+  if (!pipeline) {
+    throw new Error('Missing required parameter pipeline when calling getPipelineRunNodeStep');
+  }
+  // verify required parameter 'run' is set
+  if (!run) {
+    throw new Error('Missing required parameter run when calling getPipelineRunNodeStep');
+  }
+  // verify required parameter 'node' is set
+  if (!node) {
+    throw new Error('Missing required parameter node when calling getPipelineRunNodeStep');
+  }
+  // verify required parameter 'step' is set
+  if (!step) {
+    throw new Error('Missing required parameter step when calling getPipelineRunNodeStep');
+  }
+  /** @type {!Object} */
+  var httpRequestParams = {
+    method: 'GET',
+    url: path,
+    json: true,
+            params: queryParameters,
+    headers: headerParams
+  };
+
+  if (opt_extraHttpRequestParams) {
+    httpRequestParams = angular.extend(httpRequestParams, opt_extraHttpRequestParams);
+  }
+
+  return (/** @type {?} */ (this.http_))(httpRequestParams);
+}
+
+/**
+ * 
+ * Get log for a pipeline run node step
+ * @param {!string} organization Name of the organization
+ * @param {!string} pipeline Name of the pipeline
+ * @param {!string} run Name of the run
+ * @param {!string} node Name of the node
+ * @param {!string} step Name of the step
+ * @param {!angular.$http.Config=} opt_extraHttpRequestParams Extra HTTP parameters to send.
+ * @return {!angular.$q.Promise<!string>}
+ */
+API.Client.BlueOceanApi.prototype.getPipelineRunNodeStepLog = function(organization, pipeline, run, node, step, opt_extraHttpRequestParams) {
+  /** @const {string} */
+  var path = this.basePath_ + '/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps/{step}/log'
+      .replace('{' + 'organization' + '}', String(organization))
+      .replace('{' + 'pipeline' + '}', String(pipeline))
+      .replace('{' + 'run' + '}', String(run))
+      .replace('{' + 'node' + '}', String(node))
+      .replace('{' + 'step' + '}', String(step));
+
+  /** @type {!Object} */
+  var queryParameters = {};
+
+  /** @type {!Object} */
+  var headerParams = angular.extend({}, this.defaultHeaders_);
+  // verify required parameter 'organization' is set
+  if (!organization) {
+    throw new Error('Missing required parameter organization when calling getPipelineRunNodeStepLog');
+  }
+  // verify required parameter 'pipeline' is set
+  if (!pipeline) {
+    throw new Error('Missing required parameter pipeline when calling getPipelineRunNodeStepLog');
+  }
+  // verify required parameter 'run' is set
+  if (!run) {
+    throw new Error('Missing required parameter run when calling getPipelineRunNodeStepLog');
+  }
+  // verify required parameter 'node' is set
+  if (!node) {
+    throw new Error('Missing required parameter node when calling getPipelineRunNodeStepLog');
+  }
+  // verify required parameter 'step' is set
+  if (!step) {
+    throw new Error('Missing required parameter step when calling getPipelineRunNodeStepLog');
+  }
+  /** @type {!Object} */
+  var httpRequestParams = {
+    method: 'GET',
+    url: path,
+    json: true,
+            params: queryParameters,
+    headers: headerParams
+  };
+
+  if (opt_extraHttpRequestParams) {
+    httpRequestParams = angular.extend(httpRequestParams, opt_extraHttpRequestParams);
+  }
+
+  return (/** @type {?} */ (this.http_))(httpRequestParams);
+}
+
+/**
+ * 
+ * Retrieve run node steps details for an organization pipeline
+ * @param {!string} organization Name of the organization
+ * @param {!string} pipeline Name of the pipeline
+ * @param {!string} run Name of the run
+ * @param {!string} node Name of the node
+ * @param {!angular.$http.Config=} opt_extraHttpRequestParams Extra HTTP parameters to send.
+ * @return {!angular.$q.Promise<!API.Client.PipelineRunNodeSteps>}
+ */
+API.Client.BlueOceanApi.prototype.getPipelineRunNodeSteps = function(organization, pipeline, run, node, opt_extraHttpRequestParams) {
+  /** @const {string} */
+  var path = this.basePath_ + '/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps'
+      .replace('{' + 'organization' + '}', String(organization))
+      .replace('{' + 'pipeline' + '}', String(pipeline))
+      .replace('{' + 'run' + '}', String(run))
+      .replace('{' + 'node' + '}', String(node));
+
+  /** @type {!Object} */
+  var queryParameters = {};
+
+  /** @type {!Object} */
+  var headerParams = angular.extend({}, this.defaultHeaders_);
+  // verify required parameter 'organization' is set
+  if (!organization) {
+    throw new Error('Missing required parameter organization when calling getPipelineRunNodeSteps');
+  }
+  // verify required parameter 'pipeline' is set
+  if (!pipeline) {
+    throw new Error('Missing required parameter pipeline when calling getPipelineRunNodeSteps');
+  }
+  // verify required parameter 'run' is set
+  if (!run) {
+    throw new Error('Missing required parameter run when calling getPipelineRunNodeSteps');
+  }
+  // verify required parameter 'node' is set
+  if (!node) {
+    throw new Error('Missing required parameter node when calling getPipelineRunNodeSteps');
+  }
+  /** @type {!Object} */
+  var httpRequestParams = {
+    method: 'GET',
+    url: path,
+    json: true,
+            params: queryParameters,
+    headers: headerParams
+  };
+
+  if (opt_extraHttpRequestParams) {
+    httpRequestParams = angular.extend(httpRequestParams, opt_extraHttpRequestParams);
+  }
+
+  return (/** @type {?} */ (this.http_))(httpRequestParams);
+}
+
+/**
+ * 
+ * Retrieve run nodes details for an organization pipeline
+ * @param {!string} organization Name of the organization
+ * @param {!string} pipeline Name of the pipeline
+ * @param {!string} run Name of the run
+ * @param {!angular.$http.Config=} opt_extraHttpRequestParams Extra HTTP parameters to send.
+ * @return {!angular.$q.Promise<!API.Client.PipelineRunNodes>}
+ */
+API.Client.BlueOceanApi.prototype.getPipelineRunNodes = function(organization, pipeline, run, opt_extraHttpRequestParams) {
+  /** @const {string} */
+  var path = this.basePath_ + '/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes'
+      .replace('{' + 'organization' + '}', String(organization))
+      .replace('{' + 'pipeline' + '}', String(pipeline))
+      .replace('{' + 'run' + '}', String(run));
+
+  /** @type {!Object} */
+  var queryParameters = {};
+
+  /** @type {!Object} */
+  var headerParams = angular.extend({}, this.defaultHeaders_);
+  // verify required parameter 'organization' is set
+  if (!organization) {
+    throw new Error('Missing required parameter organization when calling getPipelineRunNodes');
+  }
+  // verify required parameter 'pipeline' is set
+  if (!pipeline) {
+    throw new Error('Missing required parameter pipeline when calling getPipelineRunNodes');
+  }
+  // verify required parameter 'run' is set
+  if (!run) {
+    throw new Error('Missing required parameter run when calling getPipelineRunNodes');
+  }
+  /** @type {!Object} */
+  var httpRequestParams = {
+    method: 'GET',
+    url: path,
+    json: true,
+            params: queryParameters,
+    headers: headerParams
+  };
+
+  if (opt_extraHttpRequestParams) {
+    httpRequestParams = angular.extend(httpRequestParams, opt_extraHttpRequestParams);
+  }
+
+  return (/** @type {?} */ (this.http_))(httpRequestParams);
+}
+
+/**
+ * 
+ * Retrieve all runs details for an organization pipeline
+ * @param {!string} organization Name of the organization
+ * @param {!string} pipeline Name of the pipeline
+ * @param {!angular.$http.Config=} opt_extraHttpRequestParams Extra HTTP parameters to send.
+ * @return {!angular.$q.Promise<!API.Client.PipelineRuns>}
+ */
+API.Client.BlueOceanApi.prototype.getPipelineRuns = function(organization, pipeline, opt_extraHttpRequestParams) {
+  /** @const {string} */
+  var path = this.basePath_ + '/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs'
+      .replace('{' + 'organization' + '}', String(organization))
+      .replace('{' + 'pipeline' + '}', String(pipeline));
+
+  /** @type {!Object} */
+  var queryParameters = {};
+
+  /** @type {!Object} */
+  var headerParams = angular.extend({}, this.defaultHeaders_);
+  // verify required parameter 'organization' is set
+  if (!organization) {
+    throw new Error('Missing required parameter organization when calling getPipelineRuns');
+  }
+  // verify required parameter 'pipeline' is set
+  if (!pipeline) {
+    throw new Error('Missing required parameter pipeline when calling getPipelineRuns');
+  }
+  /** @type {!Object} */
+  var httpRequestParams = {
+    method: 'GET',
+    url: path,
+    json: true,
+            params: queryParameters,
+    headers: headerParams
+  };
+
+  if (opt_extraHttpRequestParams) {
+    httpRequestParams = angular.extend(httpRequestParams, opt_extraHttpRequestParams);
+  }
+
+  return (/** @type {?} */ (this.http_))(httpRequestParams);
+}
+
+/**
+ * 
+ * Retrieve all pipelines details for an organization
+ * @param {!string} organization Name of the organization
+ * @param {!angular.$http.Config=} opt_extraHttpRequestParams Extra HTTP parameters to send.
+ * @return {!angular.$q.Promise<!API.Client.Pipelines>}
+ */
+API.Client.BlueOceanApi.prototype.getPipelines = function(organization, opt_extraHttpRequestParams) {
+  /** @const {string} */
+  var path = this.basePath_ + '/blue/rest/organizations/{organization}/pipelines/'
+      .replace('{' + 'organization' + '}', String(organization));
+
+  /** @type {!Object} */
+  var queryParameters = {};
+
+  /** @type {!Object} */
+  var headerParams = angular.extend({}, this.defaultHeaders_);
+  // verify required parameter 'organization' is set
+  if (!organization) {
+    throw new Error('Missing required parameter organization when calling getPipelines');
+  }
+  /** @type {!Object} */
+  var httpRequestParams = {
+    method: 'GET',
+    url: path,
+    json: true,
+            params: queryParameters,
+    headers: headerParams
+  };
+
+  if (opt_extraHttpRequestParams) {
+    httpRequestParams = angular.extend(httpRequestParams, opt_extraHttpRequestParams);
+  }
+
+  return (/** @type {?} */ (this.http_))(httpRequestParams);
+}
+
+/**
+ * 
+ * Retrieve SCM details for an organization
+ * @param {!string} organization Name of the organization
+ * @param {!string} scm Name of SCM
+ * @param {!angular.$http.Config=} opt_extraHttpRequestParams Extra HTTP parameters to send.
+ * @return {!angular.$q.Promise<!API.Client.GithubScm>}
+ */
+API.Client.BlueOceanApi.prototype.getSCM = function(organization, scm, opt_extraHttpRequestParams) {
+  /** @const {string} */
+  var path = this.basePath_ + '/blue/rest/organizations/{organization}/scm/{scm}'
+      .replace('{' + 'organization' + '}', String(organization))
+      .replace('{' + 'scm' + '}', String(scm));
+
+  /** @type {!Object} */
+  var queryParameters = {};
+
+  /** @type {!Object} */
+  var headerParams = angular.extend({}, this.defaultHeaders_);
+  // verify required parameter 'organization' is set
+  if (!organization) {
+    throw new Error('Missing required parameter organization when calling getSCM');
+  }
+  // verify required parameter 'scm' is set
+  if (!scm) {
+    throw new Error('Missing required parameter scm when calling getSCM');
+  }
+  /** @type {!Object} */
+  var httpRequestParams = {
+    method: 'GET',
+    url: path,
+    json: true,
+            params: queryParameters,
+    headers: headerParams
+  };
+
+  if (opt_extraHttpRequestParams) {
+    httpRequestParams = angular.extend(httpRequestParams, opt_extraHttpRequestParams);
+  }
+
+  return (/** @type {?} */ (this.http_))(httpRequestParams);
+}
+
+/**
+ * 
+ * Retrieve SCM organization repositories details for an organization
+ * @param {!string} organization Name of the organization
+ * @param {!string} scm Name of SCM
+ * @param {!string} scmOrganisation Name of the SCM organization
+ * @param {!string=} opt_credentialId Credential ID
+ * @param {!number=} opt_pageSize Number of items in a page
+ * @param {!number=} opt_pageNumber Page number
+ * @param {!angular.$http.Config=} opt_extraHttpRequestParams Extra HTTP parameters to send.
+ * @return {!angular.$q.Promise<!API.Client.ScmOrganisations>}
+ */
+API.Client.BlueOceanApi.prototype.getSCMOrganisationRepositories = function(organization, scm, scmOrganisation, opt_credentialId, opt_pageSize, opt_pageNumber, opt_extraHttpRequestParams) {
+  /** @const {string} */
+  var path = this.basePath_ + '/blue/rest/organizations/{organization}/scm/{scm}/organizations/{scmOrganisation}/repositories'
+      .replace('{' + 'organization' + '}', String(organization))
+      .replace('{' + 'scm' + '}', String(scm))
+      .replace('{' + 'scmOrganisation' + '}', String(scmOrganisation));
+
+  /** @type {!Object} */
+  var queryParameters = {};
+
+  /** @type {!Object} */
+  var headerParams = angular.extend({}, this.defaultHeaders_);
+  // verify required parameter 'organization' is set
+  if (!organization) {
+    throw new Error('Missing required parameter organization when calling getSCMOrganisationRepositories');
+  }
+  // verify required parameter 'scm' is set
+  if (!scm) {
+    throw new Error('Missing required parameter scm when calling getSCMOrganisationRepositories');
+  }
+  // verify required parameter 'scmOrganisation' is set
+  if (!scmOrganisation) {
+    throw new Error('Missing required parameter scmOrganisation when calling getSCMOrganisationRepositories');
+  }
+  if (opt_credentialId !== undefined) {
+    queryParameters['credentialId'] = opt_credentialId;
+  }
+
+  if (opt_pageSize !== undefined) {
+    queryParameters['pageSize'] = opt_pageSize;
+  }
+
+  if (opt_pageNumber !== undefined) {
+    queryParameters['pageNumber'] = opt_pageNumber;
+  }
+
+  /** @type {!Object} */
+  var httpRequestParams = {
+    method: 'GET',
+    url: path,
+    json: true,
+            params: queryParameters,
+    headers: headerParams
+  };
+
+  if (opt_extraHttpRequestParams) {
+    httpRequestParams = angular.extend(httpRequestParams, opt_extraHttpRequestParams);
+  }
+
+  return (/** @type {?} */ (this.http_))(httpRequestParams);
+}
+
+/**
+ * 
+ * Retrieve SCM organization repository details for an organization
+ * @param {!string} organization Name of the organization
+ * @param {!string} scm Name of SCM
+ * @param {!string} scmOrganisation Name of the SCM organization
+ * @param {!string} repository Name of the SCM repository
+ * @param {!string=} opt_credentialId Credential ID
+ * @param {!angular.$http.Config=} opt_extraHttpRequestParams Extra HTTP parameters to send.
+ * @return {!angular.$q.Promise<!API.Client.ScmOrganisations>}
+ */
+API.Client.BlueOceanApi.prototype.getSCMOrganisationRepository = function(organization, scm, scmOrganisation, repository, opt_credentialId, opt_extraHttpRequestParams) {
+  /** @const {string} */
+  var path = this.basePath_ + '/blue/rest/organizations/{organization}/scm/{scm}/organizations/{scmOrganisation}/repositories/{repository}'
+      .replace('{' + 'organization' + '}', String(organization))
+      .replace('{' + 'scm' + '}', String(scm))
+      .replace('{' + 'scmOrganisation' + '}', String(scmOrganisation))
+      .replace('{' + 'repository' + '}', String(repository));
+
+  /** @type {!Object} */
+  var queryParameters = {};
+
+  /** @type {!Object} */
+  var headerParams = angular.extend({}, this.defaultHeaders_);
+  // verify required parameter 'organization' is set
+  if (!organization) {
+    throw new Error('Missing required parameter organization when calling getSCMOrganisationRepository');
+  }
+  // verify required parameter 'scm' is set
+  if (!scm) {
+    throw new Error('Missing required parameter scm when calling getSCMOrganisationRepository');
+  }
+  // verify required parameter 'scmOrganisation' is set
+  if (!scmOrganisation) {
+    throw new Error('Missing required parameter scmOrganisation when calling getSCMOrganisationRepository');
+  }
+  // verify required parameter 'repository' is set
+  if (!repository) {
+    throw new Error('Missing required parameter repository when calling getSCMOrganisationRepository');
+  }
+  if (opt_credentialId !== undefined) {
+    queryParameters['credentialId'] = opt_credentialId;
+  }
+
+  /** @type {!Object} */
+  var httpRequestParams = {
+    method: 'GET',
+    url: path,
+    json: true,
+            params: queryParameters,
+    headers: headerParams
+  };
+
+  if (opt_extraHttpRequestParams) {
+    httpRequestParams = angular.extend(httpRequestParams, opt_extraHttpRequestParams);
+  }
+
+  return (/** @type {?} */ (this.http_))(httpRequestParams);
+}
+
+/**
+ * 
+ * Retrieve SCM organizations details for an organization
+ * @param {!string} organization Name of the organization
+ * @param {!string} scm Name of SCM
+ * @param {!string=} opt_credentialId Credential ID
+ * @param {!angular.$http.Config=} opt_extraHttpRequestParams Extra HTTP parameters to send.
+ * @return {!angular.$q.Promise<!API.Client.ScmOrganisations>}
+ */
+API.Client.BlueOceanApi.prototype.getSCMOrganisations = function(organization, scm, opt_credentialId, opt_extraHttpRequestParams) {
+  /** @const {string} */
+  var path = this.basePath_ + '/blue/rest/organizations/{organization}/scm/{scm}/organizations'
+      .replace('{' + 'organization' + '}', String(organization))
+      .replace('{' + 'scm' + '}', String(scm));
+
+  /** @type {!Object} */
+  var queryParameters = {};
+
+  /** @type {!Object} */
+  var headerParams = angular.extend({}, this.defaultHeaders_);
+  // verify required parameter 'organization' is set
+  if (!organization) {
+    throw new Error('Missing required parameter organization when calling getSCMOrganisations');
+  }
+  // verify required parameter 'scm' is set
+  if (!scm) {
+    throw new Error('Missing required parameter scm when calling getSCMOrganisations');
+  }
+  if (opt_credentialId !== undefined) {
+    queryParameters['credentialId'] = opt_credentialId;
+  }
+
+  /** @type {!Object} */
+  var httpRequestParams = {
+    method: 'GET',
+    url: path,
+    json: true,
+            params: queryParameters,
+    headers: headerParams
+  };
+
+  if (opt_extraHttpRequestParams) {
+    httpRequestParams = angular.extend(httpRequestParams, opt_extraHttpRequestParams);
+  }
+
+  return (/** @type {?} */ (this.http_))(httpRequestParams);
+}
+
+/**
+ * 
+ * Retrieve user details for an organization
+ * @param {!string} organization Name of the organization
  * @param {!string} user Name of the user
  * @param {!angular.$http.Config=} opt_extraHttpRequestParams Extra HTTP parameters to send.
- * @return {!angular.$q.Promise<!API.Client.swaggyjenkinsUser>}
+ * @return {!angular.$q.Promise<!API.Client.User>}
  */
-API.Client.BlueOceanApi.prototype.getUser = function(organisation, user, opt_extraHttpRequestParams) {
+API.Client.BlueOceanApi.prototype.getUser = function(organization, user, opt_extraHttpRequestParams) {
   /** @const {string} */
-  var path = this.basePath_ + '/blue/rest/organizations/{organisation}/users/{user}'
-      .replace('{' + 'organisation' + '}', String(organisation))
+  var path = this.basePath_ + '/blue/rest/organizations/{organization}/users/{user}'
+      .replace('{' + 'organization' + '}', String(organization))
       .replace('{' + 'user' + '}', String(user));
 
   /** @type {!Object} */
@@ -471,9 +1322,9 @@ API.Client.BlueOceanApi.prototype.getUser = function(organisation, user, opt_ext
 
   /** @type {!Object} */
   var headerParams = angular.extend({}, this.defaultHeaders_);
-  // verify required parameter 'organisation' is set
-  if (!organisation) {
-    throw new Error('Missing required parameter organisation when calling getUser');
+  // verify required parameter 'organization' is set
+  if (!organization) {
+    throw new Error('Missing required parameter organization when calling getUser');
   }
   // verify required parameter 'user' is set
   if (!user) {
@@ -497,24 +1348,24 @@ API.Client.BlueOceanApi.prototype.getUser = function(organisation, user, opt_ext
 
 /**
  * 
- * Retrieve users details for an organisation
- * @param {!string} organisation Name of the organisation
+ * Retrieve user favorites details for an organization
+ * @param {!string} user Name of the user
  * @param {!angular.$http.Config=} opt_extraHttpRequestParams Extra HTTP parameters to send.
- * @return {!angular.$q.Promise<!API.Client.swaggyjenkinsUser>}
+ * @return {!angular.$q.Promise<!API.Client.UserFavorites>}
  */
-API.Client.BlueOceanApi.prototype.getUsers = function(organisation, opt_extraHttpRequestParams) {
+API.Client.BlueOceanApi.prototype.getUserFavorites = function(user, opt_extraHttpRequestParams) {
   /** @const {string} */
-  var path = this.basePath_ + '/blue/rest/organizations/{organisation}/users/'
-      .replace('{' + 'organisation' + '}', String(organisation));
+  var path = this.basePath_ + '/blue/rest/users/{user}/favorites'
+      .replace('{' + 'user' + '}', String(user));
 
   /** @type {!Object} */
   var queryParameters = {};
 
   /** @type {!Object} */
   var headerParams = angular.extend({}, this.defaultHeaders_);
-  // verify required parameter 'organisation' is set
-  if (!organisation) {
-    throw new Error('Missing required parameter organisation when calling getUsers');
+  // verify required parameter 'user' is set
+  if (!user) {
+    throw new Error('Missing required parameter user when calling getUserFavorites');
   }
   /** @type {!Object} */
   var httpRequestParams = {
@@ -534,14 +1385,251 @@ API.Client.BlueOceanApi.prototype.getUsers = function(organisation, opt_extraHtt
 
 /**
  * 
- * Get classes details
- * @param {!string} q Query string containing an array of class names
+ * Retrieve users details for an organization
+ * @param {!string} organization Name of the organization
+ * @param {!angular.$http.Config=} opt_extraHttpRequestParams Extra HTTP parameters to send.
+ * @return {!angular.$q.Promise<!API.Client.User>}
+ */
+API.Client.BlueOceanApi.prototype.getUsers = function(organization, opt_extraHttpRequestParams) {
+  /** @const {string} */
+  var path = this.basePath_ + '/blue/rest/organizations/{organization}/users/'
+      .replace('{' + 'organization' + '}', String(organization));
+
+  /** @type {!Object} */
+  var queryParameters = {};
+
+  /** @type {!Object} */
+  var headerParams = angular.extend({}, this.defaultHeaders_);
+  // verify required parameter 'organization' is set
+  if (!organization) {
+    throw new Error('Missing required parameter organization when calling getUsers');
+  }
+  /** @type {!Object} */
+  var httpRequestParams = {
+    method: 'GET',
+    url: path,
+    json: true,
+            params: queryParameters,
+    headers: headerParams
+  };
+
+  if (opt_extraHttpRequestParams) {
+    httpRequestParams = angular.extend(httpRequestParams, opt_extraHttpRequestParams);
+  }
+
+  return (/** @type {?} */ (this.http_))(httpRequestParams);
+}
+
+/**
+ * 
+ * Replay an organization pipeline run
+ * @param {!string} organization Name of the organization
+ * @param {!string} pipeline Name of the pipeline
+ * @param {!string} run Name of the run
+ * @param {!angular.$http.Config=} opt_extraHttpRequestParams Extra HTTP parameters to send.
+ * @return {!angular.$q.Promise<!API.Client.QueueItemImpl>}
+ */
+API.Client.BlueOceanApi.prototype.postPipelineRun = function(organization, pipeline, run, opt_extraHttpRequestParams) {
+  /** @const {string} */
+  var path = this.basePath_ + '/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/replay'
+      .replace('{' + 'organization' + '}', String(organization))
+      .replace('{' + 'pipeline' + '}', String(pipeline))
+      .replace('{' + 'run' + '}', String(run));
+
+  /** @type {!Object} */
+  var queryParameters = {};
+
+  /** @type {!Object} */
+  var headerParams = angular.extend({}, this.defaultHeaders_);
+  // verify required parameter 'organization' is set
+  if (!organization) {
+    throw new Error('Missing required parameter organization when calling postPipelineRun');
+  }
+  // verify required parameter 'pipeline' is set
+  if (!pipeline) {
+    throw new Error('Missing required parameter pipeline when calling postPipelineRun');
+  }
+  // verify required parameter 'run' is set
+  if (!run) {
+    throw new Error('Missing required parameter run when calling postPipelineRun');
+  }
+  /** @type {!Object} */
+  var httpRequestParams = {
+    method: 'POST',
+    url: path,
+    json: true,
+            params: queryParameters,
+    headers: headerParams
+  };
+
+  if (opt_extraHttpRequestParams) {
+    httpRequestParams = angular.extend(httpRequestParams, opt_extraHttpRequestParams);
+  }
+
+  return (/** @type {?} */ (this.http_))(httpRequestParams);
+}
+
+/**
+ * 
+ * Start a build for an organization pipeline
+ * @param {!string} organization Name of the organization
+ * @param {!string} pipeline Name of the pipeline
+ * @param {!angular.$http.Config=} opt_extraHttpRequestParams Extra HTTP parameters to send.
+ * @return {!angular.$q.Promise<!API.Client.QueueItemImpl>}
+ */
+API.Client.BlueOceanApi.prototype.postPipelineRuns = function(organization, pipeline, opt_extraHttpRequestParams) {
+  /** @const {string} */
+  var path = this.basePath_ + '/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs'
+      .replace('{' + 'organization' + '}', String(organization))
+      .replace('{' + 'pipeline' + '}', String(pipeline));
+
+  /** @type {!Object} */
+  var queryParameters = {};
+
+  /** @type {!Object} */
+  var headerParams = angular.extend({}, this.defaultHeaders_);
+  // verify required parameter 'organization' is set
+  if (!organization) {
+    throw new Error('Missing required parameter organization when calling postPipelineRuns');
+  }
+  // verify required parameter 'pipeline' is set
+  if (!pipeline) {
+    throw new Error('Missing required parameter pipeline when calling postPipelineRuns');
+  }
+  /** @type {!Object} */
+  var httpRequestParams = {
+    method: 'POST',
+    url: path,
+    json: true,
+            params: queryParameters,
+    headers: headerParams
+  };
+
+  if (opt_extraHttpRequestParams) {
+    httpRequestParams = angular.extend(httpRequestParams, opt_extraHttpRequestParams);
+  }
+
+  return (/** @type {?} */ (this.http_))(httpRequestParams);
+}
+
+/**
+ * 
+ * Favorite/unfavorite a pipeline
+ * @param {!string} organization Name of the organization
+ * @param {!string} pipeline Name of the pipeline
+ * @param {!Body} body Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite
+ * @param {!angular.$http.Config=} opt_extraHttpRequestParams Extra HTTP parameters to send.
+ * @return {!angular.$q.Promise<!API.Client.FavoriteImpl>}
+ */
+API.Client.BlueOceanApi.prototype.putPipelineFavorite = function(organization, pipeline, body, opt_extraHttpRequestParams) {
+  /** @const {string} */
+  var path = this.basePath_ + '/blue/rest/organizations/{organization}/pipelines/{pipeline}/favorite'
+      .replace('{' + 'organization' + '}', String(organization))
+      .replace('{' + 'pipeline' + '}', String(pipeline));
+
+  /** @type {!Object} */
+  var queryParameters = {};
+
+  /** @type {!Object} */
+  var headerParams = angular.extend({}, this.defaultHeaders_);
+  // verify required parameter 'organization' is set
+  if (!organization) {
+    throw new Error('Missing required parameter organization when calling putPipelineFavorite');
+  }
+  // verify required parameter 'pipeline' is set
+  if (!pipeline) {
+    throw new Error('Missing required parameter pipeline when calling putPipelineFavorite');
+  }
+  // verify required parameter 'body' is set
+  if (!body) {
+    throw new Error('Missing required parameter body when calling putPipelineFavorite');
+  }
+  /** @type {!Object} */
+  var httpRequestParams = {
+    method: 'PUT',
+    url: path,
+    json: true,
+    data: body,
+        params: queryParameters,
+    headers: headerParams
+  };
+
+  if (opt_extraHttpRequestParams) {
+    httpRequestParams = angular.extend(httpRequestParams, opt_extraHttpRequestParams);
+  }
+
+  return (/** @type {?} */ (this.http_))(httpRequestParams);
+}
+
+/**
+ * 
+ * Stop a build of an organization pipeline
+ * @param {!string} organization Name of the organization
+ * @param {!string} pipeline Name of the pipeline
+ * @param {!string} run Name of the run
+ * @param {!string=} opt_blocking Set to true to make blocking stop, default: false
+ * @param {!number=} opt_timeOutInSecs Timeout in seconds, default: 10 seconds
+ * @param {!angular.$http.Config=} opt_extraHttpRequestParams Extra HTTP parameters to send.
+ * @return {!angular.$q.Promise<!API.Client.PipelineRun>}
+ */
+API.Client.BlueOceanApi.prototype.putPipelineRun = function(organization, pipeline, run, opt_blocking, opt_timeOutInSecs, opt_extraHttpRequestParams) {
+  /** @const {string} */
+  var path = this.basePath_ + '/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/stop'
+      .replace('{' + 'organization' + '}', String(organization))
+      .replace('{' + 'pipeline' + '}', String(pipeline))
+      .replace('{' + 'run' + '}', String(run));
+
+  /** @type {!Object} */
+  var queryParameters = {};
+
+  /** @type {!Object} */
+  var headerParams = angular.extend({}, this.defaultHeaders_);
+  // verify required parameter 'organization' is set
+  if (!organization) {
+    throw new Error('Missing required parameter organization when calling putPipelineRun');
+  }
+  // verify required parameter 'pipeline' is set
+  if (!pipeline) {
+    throw new Error('Missing required parameter pipeline when calling putPipelineRun');
+  }
+  // verify required parameter 'run' is set
+  if (!run) {
+    throw new Error('Missing required parameter run when calling putPipelineRun');
+  }
+  if (opt_blocking !== undefined) {
+    queryParameters['blocking'] = opt_blocking;
+  }
+
+  if (opt_timeOutInSecs !== undefined) {
+    queryParameters['timeOutInSecs'] = opt_timeOutInSecs;
+  }
+
+  /** @type {!Object} */
+  var httpRequestParams = {
+    method: 'PUT',
+    url: path,
+    json: true,
+            params: queryParameters,
+    headers: headerParams
+  };
+
+  if (opt_extraHttpRequestParams) {
+    httpRequestParams = angular.extend(httpRequestParams, opt_extraHttpRequestParams);
+  }
+
+  return (/** @type {?} */ (this.http_))(httpRequestParams);
+}
+
+/**
+ * 
+ * Search for any resource details
+ * @param {!string} q Query string
  * @param {!angular.$http.Config=} opt_extraHttpRequestParams Extra HTTP parameters to send.
  * @return {!angular.$q.Promise<!string>}
  */
 API.Client.BlueOceanApi.prototype.search = function(q, opt_extraHttpRequestParams) {
   /** @const {string} */
-  var path = this.basePath_ + '/blue/rest/classes/';
+  var path = this.basePath_ + '/blue/rest/search/';
 
   /** @type {!Object} */
   var queryParameters = {};
@@ -574,14 +1662,14 @@ API.Client.BlueOceanApi.prototype.search = function(q, opt_extraHttpRequestParam
 
 /**
  * 
- * Search for any resource details
- * @param {!string} q Query string
+ * Get classes details
+ * @param {!string} q Query string containing an array of class names
  * @param {!angular.$http.Config=} opt_extraHttpRequestParams Extra HTTP parameters to send.
  * @return {!angular.$q.Promise<!string>}
  */
-API.Client.BlueOceanApi.prototype.search_2 = function(q, opt_extraHttpRequestParams) {
+API.Client.BlueOceanApi.prototype.searchClasses = function(q, opt_extraHttpRequestParams) {
   /** @const {string} */
-  var path = this.basePath_ + '/blue/rest/search/';
+  var path = this.basePath_ + '/blue/rest/classes/';
 
   /** @type {!Object} */
   var queryParameters = {};
@@ -590,7 +1678,7 @@ API.Client.BlueOceanApi.prototype.search_2 = function(q, opt_extraHttpRequestPar
   var headerParams = angular.extend({}, this.defaultHeaders_);
   // verify required parameter 'q' is set
   if (!q) {
-    throw new Error('Missing required parameter q when calling search_2');
+    throw new Error('Missing required parameter q when calling searchClasses');
   }
   if (q !== undefined) {
     queryParameters['q'] = q;

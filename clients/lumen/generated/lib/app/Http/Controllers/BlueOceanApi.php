@@ -27,14 +27,14 @@ class BlueOceanApi extends Controller
     }
 
     /**
-     * Operation search
+     * Operation searchClasses
      *
      * .
      *
      *
      * @return Http response
      */
-    public function search()
+    public function searchClasses()
     {
         $input = Request::all();
 
@@ -43,12 +43,12 @@ class BlueOceanApi extends Controller
 
         //not path params validation
         if (!isset($input['q'])) {
-            throw new \InvalidArgumentException('Missing the required parameter $q when calling search');
+            throw new \InvalidArgumentException('Missing the required parameter $q when calling searchClasses');
         }
         $q = $input['q'];
 
 
-        return response('How about implementing search as a GET method ?');
+        return response('How about implementing searchClasses as a GET method ?');
     }
     /**
      * Operation getClasses
@@ -94,11 +94,11 @@ class BlueOceanApi extends Controller
      *
      * .
      *
-     * @param string $organisation Name of the organisation (required)
+     * @param string $organization Name of the organization (required)
      *
      * @return Http response
      */
-    public function getOrganisation($organisation)
+    public function getOrganisation($organization)
     {
         $input = Request::all();
 
@@ -110,15 +110,15 @@ class BlueOceanApi extends Controller
         return response('How about implementing getOrganisation as a GET method ?');
     }
     /**
-     * Operation getPipelinesByOrg
+     * Operation getPipelines
      *
      * .
      *
-     * @param string $organisation Name of the organisation (required)
+     * @param string $organization Name of the organization (required)
      *
      * @return Http response
      */
-    public function getPipelinesByOrg($organisation)
+    public function getPipelines($organization)
     {
         $input = Request::all();
 
@@ -127,19 +127,19 @@ class BlueOceanApi extends Controller
 
         //not path params validation
 
-        return response('How about implementing getPipelinesByOrg as a GET method ?');
+        return response('How about implementing getPipelines as a GET method ?');
     }
     /**
-     * Operation getPipelineFolderByOrg
+     * Operation getPipelineFolder
      *
      * .
      *
-     * @param string $organisation Name of the organisation (required)
+     * @param string $organization Name of the organization (required)
      * @param string $folder Name of the folder (required)
      *
      * @return Http response
      */
-    public function getPipelineFolderByOrg($organisation, $folder)
+    public function getPipelineFolder($organization, $folder)
     {
         $input = Request::all();
 
@@ -148,20 +148,20 @@ class BlueOceanApi extends Controller
 
         //not path params validation
 
-        return response('How about implementing getPipelineFolderByOrg as a GET method ?');
+        return response('How about implementing getPipelineFolder as a GET method ?');
     }
     /**
-     * Operation getPipelineFolderByOrg_0
+     * Operation getPipelineFolderPipeline
      *
      * .
      *
-     * @param string $organisation Name of the organisation (required)
+     * @param string $organization Name of the organization (required)
      * @param string $pipeline Name of the pipeline (required)
      * @param string $folder Name of the folder (required)
      *
      * @return Http response
      */
-    public function getPipelineFolderByOrg_0($organisation, $pipeline, $folder)
+    public function getPipelineFolderPipeline($organization, $pipeline, $folder)
     {
         $input = Request::all();
 
@@ -170,19 +170,19 @@ class BlueOceanApi extends Controller
 
         //not path params validation
 
-        return response('How about implementing getPipelineFolderByOrg_1 as a GET method ?');
+        return response('How about implementing getPipelineFolderPipeline as a GET method ?');
     }
     /**
-     * Operation getPipelineByOrg
+     * Operation getPipeline
      *
      * .
      *
-     * @param string $organisation Name of the organisation (required)
+     * @param string $organization Name of the organization (required)
      * @param string $pipeline Name of the pipeline (required)
      *
      * @return Http response
      */
-    public function getPipelineByOrg($organisation, $pipeline)
+    public function getPipeline($organization, $pipeline)
     {
         $input = Request::all();
 
@@ -191,19 +191,19 @@ class BlueOceanApi extends Controller
 
         //not path params validation
 
-        return response('How about implementing getPipelineByOrg as a GET method ?');
+        return response('How about implementing getPipeline as a GET method ?');
     }
     /**
-     * Operation getPipelineBranchesByOrg
+     * Operation getPipelineActivities
      *
      * .
      *
-     * @param string $organisation Name of the organisation (required)
+     * @param string $organization Name of the organization (required)
      * @param string $pipeline Name of the pipeline (required)
      *
      * @return Http response
      */
-    public function getPipelineBranchesByOrg($organisation, $pipeline)
+    public function getPipelineActivities($organization, $pipeline)
     {
         $input = Request::all();
 
@@ -212,20 +212,41 @@ class BlueOceanApi extends Controller
 
         //not path params validation
 
-        return response('How about implementing getPipelineBranchesByOrg as a GET method ?');
+        return response('How about implementing getPipelineActivities as a GET method ?');
     }
     /**
-     * Operation getPipelineBranchByOrg
+     * Operation getPipelineBranches
      *
      * .
      *
-     * @param string $organisation Name of the organisation (required)
+     * @param string $organization Name of the organization (required)
+     * @param string $pipeline Name of the pipeline (required)
+     *
+     * @return Http response
+     */
+    public function getPipelineBranches($organization, $pipeline)
+    {
+        $input = Request::all();
+
+        //path params validation
+
+
+        //not path params validation
+
+        return response('How about implementing getPipelineBranches as a GET method ?');
+    }
+    /**
+     * Operation getPipelineBranch
+     *
+     * .
+     *
+     * @param string $organization Name of the organization (required)
      * @param string $pipeline Name of the pipeline (required)
      * @param string $branch Name of the branch (required)
      *
      * @return Http response
      */
-    public function getPipelineBranchByOrg($organisation, $pipeline, $branch)
+    public function getPipelineBranch($organization, $pipeline, $branch)
     {
         $input = Request::all();
 
@@ -234,18 +255,438 @@ class BlueOceanApi extends Controller
 
         //not path params validation
 
-        return response('How about implementing getPipelineBranchByOrg as a GET method ?');
+        return response('How about implementing getPipelineBranch as a GET method ?');
+    }
+    /**
+     * Operation getPipelineBranchRun
+     *
+     * .
+     *
+     * @param string $organization Name of the organization (required)
+     * @param string $pipeline Name of the pipeline (required)
+     * @param string $branch Name of the branch (required)
+     * @param string $run Name of the run (required)
+     *
+     * @return Http response
+     */
+    public function getPipelineBranchRun($organization, $pipeline, $branch, $run)
+    {
+        $input = Request::all();
+
+        //path params validation
+
+
+        //not path params validation
+
+        return response('How about implementing getPipelineBranchRun as a GET method ?');
+    }
+    /**
+     * Operation putPipelineFavorite
+     *
+     * .
+     *
+     * @param string $organization Name of the organization (required)
+     * @param string $pipeline Name of the pipeline (required)
+     *
+     * @return Http response
+     */
+    public function putPipelineFavorite($organization, $pipeline)
+    {
+        $input = Request::all();
+
+        //path params validation
+
+
+        //not path params validation
+
+        return response('How about implementing putPipelineFavorite as a PUT method ?');
+    }
+    /**
+     * Operation getPipelineQueue
+     *
+     * .
+     *
+     * @param string $organization Name of the organization (required)
+     * @param string $pipeline Name of the pipeline (required)
+     *
+     * @return Http response
+     */
+    public function getPipelineQueue($organization, $pipeline)
+    {
+        $input = Request::all();
+
+        //path params validation
+
+
+        //not path params validation
+
+        return response('How about implementing getPipelineQueue as a GET method ?');
+    }
+    /**
+     * Operation deletePipelineQueueItem
+     *
+     * .
+     *
+     * @param string $organization Name of the organization (required)
+     * @param string $pipeline Name of the pipeline (required)
+     * @param string $queue Name of the queue item (required)
+     *
+     * @return Http response
+     */
+    public function deletePipelineQueueItem($organization, $pipeline, $queue)
+    {
+        $input = Request::all();
+
+        //path params validation
+
+
+        //not path params validation
+
+        return response('How about implementing deletePipelineQueueItem as a DELETE method ?');
+    }
+    /**
+     * Operation getPipelineRuns
+     *
+     * .
+     *
+     * @param string $organization Name of the organization (required)
+     * @param string $pipeline Name of the pipeline (required)
+     *
+     * @return Http response
+     */
+    public function getPipelineRuns($organization, $pipeline)
+    {
+        $input = Request::all();
+
+        //path params validation
+
+
+        //not path params validation
+
+        return response('How about implementing getPipelineRuns as a GET method ?');
+    }
+    /**
+     * Operation postPipelineRuns
+     *
+     * .
+     *
+     * @param string $organization Name of the organization (required)
+     * @param string $pipeline Name of the pipeline (required)
+     *
+     * @return Http response
+     */
+    public function postPipelineRuns($organization, $pipeline)
+    {
+        $input = Request::all();
+
+        //path params validation
+
+
+        //not path params validation
+
+        return response('How about implementing postPipelineRuns as a POST method ?');
+    }
+    /**
+     * Operation getPipelineRun
+     *
+     * .
+     *
+     * @param string $organization Name of the organization (required)
+     * @param string $pipeline Name of the pipeline (required)
+     * @param string $run Name of the run (required)
+     *
+     * @return Http response
+     */
+    public function getPipelineRun($organization, $pipeline, $run)
+    {
+        $input = Request::all();
+
+        //path params validation
+
+
+        //not path params validation
+
+        return response('How about implementing getPipelineRun as a GET method ?');
+    }
+    /**
+     * Operation getPipelineRunLog
+     *
+     * .
+     *
+     * @param string $organization Name of the organization (required)
+     * @param string $pipeline Name of the pipeline (required)
+     * @param string $run Name of the run (required)
+     *
+     * @return Http response
+     */
+    public function getPipelineRunLog($organization, $pipeline, $run)
+    {
+        $input = Request::all();
+
+        //path params validation
+
+
+        //not path params validation
+
+        return response('How about implementing getPipelineRunLog as a GET method ?');
+    }
+    /**
+     * Operation getPipelineRunNodes
+     *
+     * .
+     *
+     * @param string $organization Name of the organization (required)
+     * @param string $pipeline Name of the pipeline (required)
+     * @param string $run Name of the run (required)
+     *
+     * @return Http response
+     */
+    public function getPipelineRunNodes($organization, $pipeline, $run)
+    {
+        $input = Request::all();
+
+        //path params validation
+
+
+        //not path params validation
+
+        return response('How about implementing getPipelineRunNodes as a GET method ?');
+    }
+    /**
+     * Operation getPipelineRunNode
+     *
+     * .
+     *
+     * @param string $organization Name of the organization (required)
+     * @param string $pipeline Name of the pipeline (required)
+     * @param string $run Name of the run (required)
+     * @param string $node Name of the node (required)
+     *
+     * @return Http response
+     */
+    public function getPipelineRunNode($organization, $pipeline, $run, $node)
+    {
+        $input = Request::all();
+
+        //path params validation
+
+
+        //not path params validation
+
+        return response('How about implementing getPipelineRunNode as a GET method ?');
+    }
+    /**
+     * Operation getPipelineRunNodeSteps
+     *
+     * .
+     *
+     * @param string $organization Name of the organization (required)
+     * @param string $pipeline Name of the pipeline (required)
+     * @param string $run Name of the run (required)
+     * @param string $node Name of the node (required)
+     *
+     * @return Http response
+     */
+    public function getPipelineRunNodeSteps($organization, $pipeline, $run, $node)
+    {
+        $input = Request::all();
+
+        //path params validation
+
+
+        //not path params validation
+
+        return response('How about implementing getPipelineRunNodeSteps as a GET method ?');
+    }
+    /**
+     * Operation getPipelineRunNodeStep
+     *
+     * .
+     *
+     * @param string $organization Name of the organization (required)
+     * @param string $pipeline Name of the pipeline (required)
+     * @param string $run Name of the run (required)
+     * @param string $node Name of the node (required)
+     * @param string $step Name of the step (required)
+     *
+     * @return Http response
+     */
+    public function getPipelineRunNodeStep($organization, $pipeline, $run, $node, $step)
+    {
+        $input = Request::all();
+
+        //path params validation
+
+
+        //not path params validation
+
+        return response('How about implementing getPipelineRunNodeStep as a GET method ?');
+    }
+    /**
+     * Operation getPipelineRunNodeStepLog
+     *
+     * .
+     *
+     * @param string $organization Name of the organization (required)
+     * @param string $pipeline Name of the pipeline (required)
+     * @param string $run Name of the run (required)
+     * @param string $node Name of the node (required)
+     * @param string $step Name of the step (required)
+     *
+     * @return Http response
+     */
+    public function getPipelineRunNodeStepLog($organization, $pipeline, $run, $node, $step)
+    {
+        $input = Request::all();
+
+        //path params validation
+
+
+        //not path params validation
+
+        return response('How about implementing getPipelineRunNodeStepLog as a GET method ?');
+    }
+    /**
+     * Operation postPipelineRun
+     *
+     * .
+     *
+     * @param string $organization Name of the organization (required)
+     * @param string $pipeline Name of the pipeline (required)
+     * @param string $run Name of the run (required)
+     *
+     * @return Http response
+     */
+    public function postPipelineRun($organization, $pipeline, $run)
+    {
+        $input = Request::all();
+
+        //path params validation
+
+
+        //not path params validation
+
+        return response('How about implementing postPipelineRun as a POST method ?');
+    }
+    /**
+     * Operation putPipelineRun
+     *
+     * .
+     *
+     * @param string $organization Name of the organization (required)
+     * @param string $pipeline Name of the pipeline (required)
+     * @param string $run Name of the run (required)
+     *
+     * @return Http response
+     */
+    public function putPipelineRun($organization, $pipeline, $run)
+    {
+        $input = Request::all();
+
+        //path params validation
+
+
+        //not path params validation
+
+        return response('How about implementing putPipelineRun as a PUT method ?');
+    }
+    /**
+     * Operation getSCM
+     *
+     * .
+     *
+     * @param string $organization Name of the organization (required)
+     * @param string $scm Name of SCM (required)
+     *
+     * @return Http response
+     */
+    public function getSCM($organization, $scm)
+    {
+        $input = Request::all();
+
+        //path params validation
+
+
+        //not path params validation
+
+        return response('How about implementing getSCM as a GET method ?');
+    }
+    /**
+     * Operation getSCMOrganisations
+     *
+     * .
+     *
+     * @param string $organization Name of the organization (required)
+     * @param string $scm Name of SCM (required)
+     *
+     * @return Http response
+     */
+    public function getSCMOrganisations($organization, $scm)
+    {
+        $input = Request::all();
+
+        //path params validation
+
+
+        //not path params validation
+
+        return response('How about implementing getSCMOrganisations as a GET method ?');
+    }
+    /**
+     * Operation getSCMOrganisationRepositories
+     *
+     * .
+     *
+     * @param string $organization Name of the organization (required)
+     * @param string $scm Name of SCM (required)
+     * @param string $scm_organisation Name of the SCM organization (required)
+     *
+     * @return Http response
+     */
+    public function getSCMOrganisationRepositories($organization, $scm, $scm_organisation)
+    {
+        $input = Request::all();
+
+        //path params validation
+
+
+        //not path params validation
+
+        return response('How about implementing getSCMOrganisationRepositories as a GET method ?');
+    }
+    /**
+     * Operation getSCMOrganisationRepository
+     *
+     * .
+     *
+     * @param string $organization Name of the organization (required)
+     * @param string $scm Name of SCM (required)
+     * @param string $scm_organisation Name of the SCM organization (required)
+     * @param string $repository Name of the SCM repository (required)
+     *
+     * @return Http response
+     */
+    public function getSCMOrganisationRepository($organization, $scm, $scm_organisation, $repository)
+    {
+        $input = Request::all();
+
+        //path params validation
+
+
+        //not path params validation
+
+        return response('How about implementing getSCMOrganisationRepository as a GET method ?');
     }
     /**
      * Operation getAuthenticatedUser
      *
      * .
      *
-     * @param string $organisation Name of the organisation (required)
+     * @param string $organization Name of the organization (required)
      *
      * @return Http response
      */
-    public function getAuthenticatedUser($organisation)
+    public function getAuthenticatedUser($organization)
     {
         $input = Request::all();
 
@@ -261,11 +702,11 @@ class BlueOceanApi extends Controller
      *
      * .
      *
-     * @param string $organisation Name of the organisation (required)
+     * @param string $organization Name of the organization (required)
      *
      * @return Http response
      */
-    public function getUsers($organisation)
+    public function getUsers($organization)
     {
         $input = Request::all();
 
@@ -281,12 +722,12 @@ class BlueOceanApi extends Controller
      *
      * .
      *
-     * @param string $organisation Name of the organisation (required)
+     * @param string $organization Name of the organization (required)
      * @param string $user Name of the user (required)
      *
      * @return Http response
      */
-    public function getUser($organisation, $user)
+    public function getUser($organization, $user)
     {
         $input = Request::all();
 
@@ -298,14 +739,14 @@ class BlueOceanApi extends Controller
         return response('How about implementing getUser as a GET method ?');
     }
     /**
-     * Operation search_0
+     * Operation search
      *
      * .
      *
      *
      * @return Http response
      */
-    public function search_0()
+    public function search()
     {
         $input = Request::all();
 
@@ -314,11 +755,31 @@ class BlueOceanApi extends Controller
 
         //not path params validation
         if (!isset($input['q'])) {
-            throw new \InvalidArgumentException('Missing the required parameter $q when calling search_0');
+            throw new \InvalidArgumentException('Missing the required parameter $q when calling search');
         }
         $q = $input['q'];
 
 
-        return response('How about implementing search_2 as a GET method ?');
+        return response('How about implementing search as a GET method ?');
+    }
+    /**
+     * Operation getUserFavorites
+     *
+     * .
+     *
+     * @param string $user Name of the user (required)
+     *
+     * @return Http response
+     */
+    public function getUserFavorites($user)
+    {
+        $input = Request::all();
+
+        //path params validation
+
+
+        //not path params validation
+
+        return response('How about implementing getUserFavorites as a GET method ?');
     }
 }

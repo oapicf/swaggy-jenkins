@@ -1,6 +1,6 @@
 package io.swagger.api;
 
-import io.swagger.model.HudsonsecuritycsrfDefaultCrumbIssuer;
+import io.swagger.model.DefaultCrumbIssuer;
 
 import io.swagger.annotations.*;
 
@@ -15,19 +15,28 @@ import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
-
+import com.fasterxml.jackson.databind.ObjectMapper;
+import java.io.IOException;
 import javax.validation.constraints.*;
 import javax.validation.Valid;
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2017-07-25T10:46:28.251+10:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2017-08-03T23:37:43.850Z")
 
 @Controller
 public class CrumbIssuerApiController implements CrumbIssuerApi {
+    private final ObjectMapper objectMapper;
 
+    public CrumbIssuerApiController(ObjectMapper objectMapper) {
+        this.objectMapper = objectMapper;
+    }
 
-
-    public ResponseEntity<HudsonsecuritycsrfDefaultCrumbIssuer> getCrumb() {
+    public ResponseEntity<DefaultCrumbIssuer> getCrumb(@RequestHeader(value = "Accept", required = false) String accept) throws Exception {
         // do some magic!
-        return new ResponseEntity<HudsonsecuritycsrfDefaultCrumbIssuer>(HttpStatus.OK);
+
+        if (accept != null && accept.contains("application/json")) {
+            return new ResponseEntity<DefaultCrumbIssuer>(objectMapper.readValue("{  \"crumb\" : \"crumb\",  \"_class\" : \"_class\",  \"crumbRequestField\" : \"crumbRequestField\"}", DefaultCrumbIssuer.class), HttpStatus.OK);
+        }
+
+        return new ResponseEntity<DefaultCrumbIssuer>(HttpStatus.OK);
     }
 
 }

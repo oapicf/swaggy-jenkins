@@ -28,25 +28,22 @@ use Carp qw( croak );
 use Log::Any qw($log);
 
 use WWW::SwaggerClient::ApiClient;
-use WWW::SwaggerClient::Configuration;
 
 use base "Class::Data::Inheritable";
 
 __PACKAGE__->mk_classdata('method_documentation' => {});
 
 sub new {
-    my $class   = shift;
-    my (%self) = (
-        'api_client' => WWW::SwaggerClient::ApiClient->instance,
-        @_
-    );
+    my $class = shift;
+    my $api_client;
 
-    #my $self = {
-    #    #api_client => $options->{api_client}
-    #    api_client => $default_api_client
-    #}; 
+    if ($_[0] && ref $_[0] && ref $_[0] eq 'WWW::SwaggerClient::ApiClient' ) {
+        $api_client = $_[0];
+    } else {
+        $api_client = WWW::SwaggerClient::ApiClient->new(@_);
+    }
 
-    bless \%self, $class;
+    bless { api_client => $api_client }, $class;
 
 }
 
@@ -56,22 +53,33 @@ sub new {
 #
 # 
 # 
+# @param int $depth Recursion depth in response model (required)
 {
     my $params = {
+    'depth' => {
+        data_type => 'int',
+        description => 'Recursion depth in response model',
+        required => '1',
+    },
     };
     __PACKAGE__->method_documentation->{ 'get_computer' } = { 
     	summary => '',
         params => $params,
-        returns => 'HudsonmodelComputerSet',
+        returns => 'ComputerSet',
         };
 }
-# @return HudsonmodelComputerSet
+# @return ComputerSet
 #
 sub get_computer {
     my ($self, %args) = @_;
 
+    # verify the required parameter 'depth' is set
+    unless (exists $args{'depth'}) {
+      croak("Missing the required parameter 'depth' when calling get_computer");
+    }
+
     # parse inputs
-    my $_resource_path = '/computer/api/json?depth=1';
+    my $_resource_path = '/computer/api/json';
 
     my $_method = 'GET';
     my $query_params = {};
@@ -85,9 +93,14 @@ sub get_computer {
     }
     $header_params->{'Content-Type'} = $self->{api_client}->select_header_content_type();
 
+    # query params
+    if ( exists $args{'depth'}) {
+        $query_params->{'depth'} = $self->{api_client}->to_query_value($args{'depth'});
+    }
+
     my $_body_data;
     # authentication setting, if any
-    my $auth_settings = [qw()];
+    my $auth_settings = [qw(jenkins_auth )];
 
     # make the API Call
     my $response = $self->{api_client}->call_api($_resource_path, $_method,
@@ -96,7 +109,7 @@ sub get_computer {
     if (!$response) {
         return;
     }
-    my $_response_object = $self->{api_client}->deserialize('HudsonmodelComputerSet', $response);
+    my $_response_object = $self->{api_client}->deserialize('ComputerSet', $response);
     return $_response_object;
 }
 
@@ -111,10 +124,10 @@ sub get_computer {
     __PACKAGE__->method_documentation->{ 'get_crumb' } = { 
     	summary => '',
         params => $params,
-        returns => 'HudsonsecuritycsrfDefaultCrumbIssuer',
+        returns => 'DefaultCrumbIssuer',
         };
 }
-# @return HudsonsecuritycsrfDefaultCrumbIssuer
+# @return DefaultCrumbIssuer
 #
 sub get_crumb {
     my ($self, %args) = @_;
@@ -136,7 +149,7 @@ sub get_crumb {
 
     my $_body_data;
     # authentication setting, if any
-    my $auth_settings = [qw()];
+    my $auth_settings = [qw(jenkins_auth )];
 
     # make the API Call
     my $response = $self->{api_client}->call_api($_resource_path, $_method,
@@ -145,7 +158,7 @@ sub get_crumb {
     if (!$response) {
         return;
     }
-    my $_response_object = $self->{api_client}->deserialize('HudsonsecuritycsrfDefaultCrumbIssuer', $response);
+    my $_response_object = $self->{api_client}->deserialize('DefaultCrumbIssuer', $response);
     return $_response_object;
 }
 
@@ -160,10 +173,10 @@ sub get_crumb {
     __PACKAGE__->method_documentation->{ 'get_jenkins' } = { 
     	summary => '',
         params => $params,
-        returns => 'HudsonmodelHudson',
+        returns => 'Hudson',
         };
 }
-# @return HudsonmodelHudson
+# @return Hudson
 #
 sub get_jenkins {
     my ($self, %args) = @_;
@@ -185,7 +198,7 @@ sub get_jenkins {
 
     my $_body_data;
     # authentication setting, if any
-    my $auth_settings = [qw()];
+    my $auth_settings = [qw(jenkins_auth )];
 
     # make the API Call
     my $response = $self->{api_client}->call_api($_resource_path, $_method,
@@ -194,7 +207,7 @@ sub get_jenkins {
     if (!$response) {
         return;
     }
-    my $_response_object = $self->{api_client}->deserialize('HudsonmodelHudson', $response);
+    my $_response_object = $self->{api_client}->deserialize('Hudson', $response);
     return $_response_object;
 }
 
@@ -215,10 +228,10 @@ sub get_jenkins {
     __PACKAGE__->method_documentation->{ 'get_job' } = { 
     	summary => '',
         params => $params,
-        returns => 'HudsonmodelFreeStyleProject',
+        returns => 'FreeStyleProject',
         };
 }
-# @return HudsonmodelFreeStyleProject
+# @return FreeStyleProject
 #
 sub get_job {
     my ($self, %args) = @_;
@@ -252,7 +265,7 @@ sub get_job {
 
     my $_body_data;
     # authentication setting, if any
-    my $auth_settings = [qw()];
+    my $auth_settings = [qw(jenkins_auth )];
 
     # make the API Call
     my $response = $self->{api_client}->call_api($_resource_path, $_method,
@@ -261,7 +274,7 @@ sub get_job {
     if (!$response) {
         return;
     }
-    my $_response_object = $self->{api_client}->deserialize('HudsonmodelFreeStyleProject', $response);
+    my $_response_object = $self->{api_client}->deserialize('FreeStyleProject', $response);
     return $_response_object;
 }
 
@@ -319,7 +332,7 @@ sub get_job_config {
 
     my $_body_data;
     # authentication setting, if any
-    my $auth_settings = [qw()];
+    my $auth_settings = [qw(jenkins_auth )];
 
     # make the API Call
     my $response = $self->{api_client}->call_api($_resource_path, $_method,
@@ -349,10 +362,10 @@ sub get_job_config {
     __PACKAGE__->method_documentation->{ 'get_job_last_build' } = { 
     	summary => '',
         params => $params,
-        returns => 'HudsonmodelFreeStyleBuild',
+        returns => 'FreeStyleBuild',
         };
 }
-# @return HudsonmodelFreeStyleBuild
+# @return FreeStyleBuild
 #
 sub get_job_last_build {
     my ($self, %args) = @_;
@@ -386,7 +399,7 @@ sub get_job_last_build {
 
     my $_body_data;
     # authentication setting, if any
-    my $auth_settings = [qw()];
+    my $auth_settings = [qw(jenkins_auth )];
 
     # make the API Call
     my $response = $self->{api_client}->call_api($_resource_path, $_method,
@@ -395,7 +408,7 @@ sub get_job_last_build {
     if (!$response) {
         return;
     }
-    my $_response_object = $self->{api_client}->deserialize('HudsonmodelFreeStyleBuild', $response);
+    my $_response_object = $self->{api_client}->deserialize('FreeStyleBuild', $response);
     return $_response_object;
 }
 
@@ -487,7 +500,7 @@ sub get_job_progressive_text {
 
     my $_body_data;
     # authentication setting, if any
-    my $auth_settings = [qw()];
+    my $auth_settings = [qw(jenkins_auth )];
 
     # make the API Call
     $self->{api_client}->call_api($_resource_path, $_method,
@@ -507,10 +520,10 @@ sub get_job_progressive_text {
     __PACKAGE__->method_documentation->{ 'get_queue' } = { 
     	summary => '',
         params => $params,
-        returns => 'HudsonmodelQueue',
+        returns => 'Queue',
         };
 }
-# @return HudsonmodelQueue
+# @return Queue
 #
 sub get_queue {
     my ($self, %args) = @_;
@@ -532,7 +545,7 @@ sub get_queue {
 
     my $_body_data;
     # authentication setting, if any
-    my $auth_settings = [qw()];
+    my $auth_settings = [qw(jenkins_auth )];
 
     # make the API Call
     my $response = $self->{api_client}->call_api($_resource_path, $_method,
@@ -541,7 +554,7 @@ sub get_queue {
     if (!$response) {
         return;
     }
-    my $_response_object = $self->{api_client}->deserialize('HudsonmodelQueue', $response);
+    my $_response_object = $self->{api_client}->deserialize('Queue', $response);
     return $_response_object;
 }
 
@@ -562,10 +575,10 @@ sub get_queue {
     __PACKAGE__->method_documentation->{ 'get_queue_item' } = { 
     	summary => '',
         params => $params,
-        returns => 'HudsonmodelQueue',
+        returns => 'Queue',
         };
 }
-# @return HudsonmodelQueue
+# @return Queue
 #
 sub get_queue_item {
     my ($self, %args) = @_;
@@ -599,7 +612,7 @@ sub get_queue_item {
 
     my $_body_data;
     # authentication setting, if any
-    my $auth_settings = [qw()];
+    my $auth_settings = [qw(jenkins_auth )];
 
     # make the API Call
     my $response = $self->{api_client}->call_api($_resource_path, $_method,
@@ -608,7 +621,7 @@ sub get_queue_item {
     if (!$response) {
         return;
     }
-    my $_response_object = $self->{api_client}->deserialize('HudsonmodelQueue', $response);
+    my $_response_object = $self->{api_client}->deserialize('Queue', $response);
     return $_response_object;
 }
 
@@ -629,10 +642,10 @@ sub get_queue_item {
     __PACKAGE__->method_documentation->{ 'get_view' } = { 
     	summary => '',
         params => $params,
-        returns => 'HudsonmodelListView',
+        returns => 'ListView',
         };
 }
-# @return HudsonmodelListView
+# @return ListView
 #
 sub get_view {
     my ($self, %args) = @_;
@@ -666,7 +679,7 @@ sub get_view {
 
     my $_body_data;
     # authentication setting, if any
-    my $auth_settings = [qw()];
+    my $auth_settings = [qw(jenkins_auth )];
 
     # make the API Call
     my $response = $self->{api_client}->call_api($_resource_path, $_method,
@@ -675,7 +688,7 @@ sub get_view {
     if (!$response) {
         return;
     }
-    my $_response_object = $self->{api_client}->deserialize('HudsonmodelListView', $response);
+    my $_response_object = $self->{api_client}->deserialize('ListView', $response);
     return $_response_object;
 }
 
@@ -733,7 +746,7 @@ sub get_view_config {
 
     my $_body_data;
     # authentication setting, if any
-    my $auth_settings = [qw()];
+    my $auth_settings = [qw(jenkins_auth )];
 
     # make the API Call
     my $response = $self->{api_client}->call_api($_resource_path, $_method,
@@ -782,7 +795,7 @@ sub head_jenkins {
 
     my $_body_data;
     # authentication setting, if any
-    my $auth_settings = [qw()];
+    my $auth_settings = [qw(jenkins_auth )];
 
     # make the API Call
     $self->{api_client}->call_api($_resource_path, $_method,
@@ -898,7 +911,7 @@ sub post_create_item {
     }
 
     # authentication setting, if any
-    my $auth_settings = [qw()];
+    my $auth_settings = [qw(jenkins_auth )];
 
     # make the API Call
     $self->{api_client}->call_api($_resource_path, $_method,
@@ -992,7 +1005,7 @@ sub post_create_view {
     }
 
     # authentication setting, if any
-    my $auth_settings = [qw()];
+    my $auth_settings = [qw(jenkins_auth )];
 
     # make the API Call
     $self->{api_client}->call_api($_resource_path, $_method,
@@ -1093,7 +1106,7 @@ sub post_job_build {
 
     my $_body_data;
     # authentication setting, if any
-    my $auth_settings = [qw()];
+    my $auth_settings = [qw(jenkins_auth )];
 
     # make the API Call
     $self->{api_client}->call_api($_resource_path, $_method,
@@ -1183,7 +1196,7 @@ sub post_job_config {
     }
 
     # authentication setting, if any
-    my $auth_settings = [qw()];
+    my $auth_settings = [qw(jenkins_auth )];
 
     # make the API Call
     $self->{api_client}->call_api($_resource_path, $_method,
@@ -1257,7 +1270,7 @@ sub post_job_delete {
 
     my $_body_data;
     # authentication setting, if any
-    my $auth_settings = [qw()];
+    my $auth_settings = [qw(jenkins_auth )];
 
     # make the API Call
     $self->{api_client}->call_api($_resource_path, $_method,
@@ -1331,7 +1344,7 @@ sub post_job_disable {
 
     my $_body_data;
     # authentication setting, if any
-    my $auth_settings = [qw()];
+    my $auth_settings = [qw(jenkins_auth )];
 
     # make the API Call
     $self->{api_client}->call_api($_resource_path, $_method,
@@ -1405,7 +1418,7 @@ sub post_job_enable {
 
     my $_body_data;
     # authentication setting, if any
-    my $auth_settings = [qw()];
+    my $auth_settings = [qw(jenkins_auth )];
 
     # make the API Call
     $self->{api_client}->call_api($_resource_path, $_method,
@@ -1479,7 +1492,7 @@ sub post_job_last_build_stop {
 
     my $_body_data;
     # authentication setting, if any
-    my $auth_settings = [qw()];
+    my $auth_settings = [qw(jenkins_auth )];
 
     # make the API Call
     $self->{api_client}->call_api($_resource_path, $_method,
@@ -1569,7 +1582,7 @@ sub post_view_config {
     }
 
     # authentication setting, if any
-    my $auth_settings = [qw()];
+    my $auth_settings = [qw(jenkins_auth )];
 
     # make the API Call
     $self->{api_client}->call_api($_resource_path, $_method,

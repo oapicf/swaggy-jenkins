@@ -35,21 +35,42 @@ All URIs are relative to *http://localhost*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*BlueOceanApi* | [**getAuthenticatedUser**](docs/BlueOceanApi.md#getauthenticateduser) | **GET** /blue/rest/organizations/{organisation}/user/ | 
+*BlueOceanApi* | [**deletePipelineQueueItem**](docs/BlueOceanApi.md#deletepipelinequeueitem) | **DELETE** /blue/rest/organizations/{organization}/pipelines/{pipeline}/queue/{queue} | 
+*BlueOceanApi* | [**getAuthenticatedUser**](docs/BlueOceanApi.md#getauthenticateduser) | **GET** /blue/rest/organizations/{organization}/user/ | 
 *BlueOceanApi* | [**getClasses**](docs/BlueOceanApi.md#getclasses) | **GET** /blue/rest/classes/{class} | 
-*BlueOceanApi* | [**getOrganisation**](docs/BlueOceanApi.md#getorganisation) | **GET** /blue/rest/organizations/{organisation} | 
+*BlueOceanApi* | [**getOrganisation**](docs/BlueOceanApi.md#getorganisation) | **GET** /blue/rest/organizations/{organization} | 
 *BlueOceanApi* | [**getOrganisations**](docs/BlueOceanApi.md#getorganisations) | **GET** /blue/rest/organizations/ | 
-*BlueOceanApi* | [**getPipelineBranchByOrg**](docs/BlueOceanApi.md#getpipelinebranchbyorg) | **GET** /blue/rest/organizations/{organisation}/pipelines/{pipeline}/branches/{branch}/ | 
-*BlueOceanApi* | [**getPipelineBranchesByOrg**](docs/BlueOceanApi.md#getpipelinebranchesbyorg) | **GET** /blue/rest/organizations/{organisation}/pipelines/{pipeline}/branches | 
-*BlueOceanApi* | [**getPipelineByOrg**](docs/BlueOceanApi.md#getpipelinebyorg) | **GET** /blue/rest/organizations/{organisation}/pipelines/{pipeline} | 
-*BlueOceanApi* | [**getPipelineFolderByOrg**](docs/BlueOceanApi.md#getpipelinefolderbyorg) | **GET** /blue/rest/organizations/{organisation}/pipelines/{folder}/ | 
-*BlueOceanApi* | [**getPipelineFolderByOrg_0**](docs/BlueOceanApi.md#getpipelinefolderbyorg_0) | **GET** /blue/rest/organizations/{organisation}/pipelines/{folder}/pipelines/{pipeline} | 
-*BlueOceanApi* | [**getPipelinesByOrg**](docs/BlueOceanApi.md#getpipelinesbyorg) | **GET** /blue/rest/organizations/{organisation}/pipelines/ | 
-*BlueOceanApi* | [**getUser**](docs/BlueOceanApi.md#getuser) | **GET** /blue/rest/organizations/{organisation}/users/{user} | 
-*BlueOceanApi* | [**getUsers**](docs/BlueOceanApi.md#getusers) | **GET** /blue/rest/organizations/{organisation}/users/ | 
-*BlueOceanApi* | [**search**](docs/BlueOceanApi.md#search) | **GET** /blue/rest/classes/ | 
-*BlueOceanApi* | [**search_0**](docs/BlueOceanApi.md#search_0) | **GET** /blue/rest/search/ | 
-*RemoteAccessApi* | [**getComputer**](docs/RemoteAccessApi.md#getcomputer) | **GET** /computer/api/json?depth&#x3D;1 | 
+*BlueOceanApi* | [**getPipeline**](docs/BlueOceanApi.md#getpipeline) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline} | 
+*BlueOceanApi* | [**getPipelineActivities**](docs/BlueOceanApi.md#getpipelineactivities) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/activities | 
+*BlueOceanApi* | [**getPipelineBranch**](docs/BlueOceanApi.md#getpipelinebranch) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/branches/{branch}/ | 
+*BlueOceanApi* | [**getPipelineBranchRun**](docs/BlueOceanApi.md#getpipelinebranchrun) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/branches/{branch}/runs/{run} | 
+*BlueOceanApi* | [**getPipelineBranches**](docs/BlueOceanApi.md#getpipelinebranches) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/branches | 
+*BlueOceanApi* | [**getPipelineFolder**](docs/BlueOceanApi.md#getpipelinefolder) | **GET** /blue/rest/organizations/{organization}/pipelines/{folder}/ | 
+*BlueOceanApi* | [**getPipelineFolderPipeline**](docs/BlueOceanApi.md#getpipelinefolderpipeline) | **GET** /blue/rest/organizations/{organization}/pipelines/{folder}/pipelines/{pipeline} | 
+*BlueOceanApi* | [**getPipelineQueue**](docs/BlueOceanApi.md#getpipelinequeue) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/queue | 
+*BlueOceanApi* | [**getPipelineRun**](docs/BlueOceanApi.md#getpipelinerun) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run} | 
+*BlueOceanApi* | [**getPipelineRunLog**](docs/BlueOceanApi.md#getpipelinerunlog) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/log | 
+*BlueOceanApi* | [**getPipelineRunNode**](docs/BlueOceanApi.md#getpipelinerunnode) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node} | 
+*BlueOceanApi* | [**getPipelineRunNodeStep**](docs/BlueOceanApi.md#getpipelinerunnodestep) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps/{step} | 
+*BlueOceanApi* | [**getPipelineRunNodeStepLog**](docs/BlueOceanApi.md#getpipelinerunnodesteplog) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps/{step}/log | 
+*BlueOceanApi* | [**getPipelineRunNodeSteps**](docs/BlueOceanApi.md#getpipelinerunnodesteps) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps | 
+*BlueOceanApi* | [**getPipelineRunNodes**](docs/BlueOceanApi.md#getpipelinerunnodes) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes | 
+*BlueOceanApi* | [**getPipelineRuns**](docs/BlueOceanApi.md#getpipelineruns) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs | 
+*BlueOceanApi* | [**getPipelines**](docs/BlueOceanApi.md#getpipelines) | **GET** /blue/rest/organizations/{organization}/pipelines/ | 
+*BlueOceanApi* | [**getSCM**](docs/BlueOceanApi.md#getscm) | **GET** /blue/rest/organizations/{organization}/scm/{scm} | 
+*BlueOceanApi* | [**getSCMOrganisationRepositories**](docs/BlueOceanApi.md#getscmorganisationrepositories) | **GET** /blue/rest/organizations/{organization}/scm/{scm}/organizations/{scmOrganisation}/repositories | 
+*BlueOceanApi* | [**getSCMOrganisationRepository**](docs/BlueOceanApi.md#getscmorganisationrepository) | **GET** /blue/rest/organizations/{organization}/scm/{scm}/organizations/{scmOrganisation}/repositories/{repository} | 
+*BlueOceanApi* | [**getSCMOrganisations**](docs/BlueOceanApi.md#getscmorganisations) | **GET** /blue/rest/organizations/{organization}/scm/{scm}/organizations | 
+*BlueOceanApi* | [**getUser**](docs/BlueOceanApi.md#getuser) | **GET** /blue/rest/organizations/{organization}/users/{user} | 
+*BlueOceanApi* | [**getUserFavorites**](docs/BlueOceanApi.md#getuserfavorites) | **GET** /blue/rest/users/{user}/favorites | 
+*BlueOceanApi* | [**getUsers**](docs/BlueOceanApi.md#getusers) | **GET** /blue/rest/organizations/{organization}/users/ | 
+*BlueOceanApi* | [**postPipelineRun**](docs/BlueOceanApi.md#postpipelinerun) | **POST** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/replay | 
+*BlueOceanApi* | [**postPipelineRuns**](docs/BlueOceanApi.md#postpipelineruns) | **POST** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs | 
+*BlueOceanApi* | [**putPipelineFavorite**](docs/BlueOceanApi.md#putpipelinefavorite) | **PUT** /blue/rest/organizations/{organization}/pipelines/{pipeline}/favorite | 
+*BlueOceanApi* | [**putPipelineRun**](docs/BlueOceanApi.md#putpipelinerun) | **PUT** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/stop | 
+*BlueOceanApi* | [**search**](docs/BlueOceanApi.md#search) | **GET** /blue/rest/search/ | 
+*BlueOceanApi* | [**searchClasses**](docs/BlueOceanApi.md#searchclasses) | **GET** /blue/rest/classes/ | 
+*RemoteAccessApi* | [**getComputer**](docs/RemoteAccessApi.md#getcomputer) | **GET** /computer/api/json | 
 *RemoteAccessApi* | [**getCrumb**](docs/RemoteAccessApi.md#getcrumb) | **GET** /crumbIssuer/api/json | 
 *RemoteAccessApi* | [**getJenkins**](docs/RemoteAccessApi.md#getjenkins) | **GET** /api/json | 
 *RemoteAccessApi* | [**getJob**](docs/RemoteAccessApi.md#getjob) | **GET** /job/{name}/api/json | 
@@ -75,59 +96,99 @@ Class | Method | HTTP request | Description
 <a name="documentation-for-models"></a>
 ## Documentation for Models
 
- - [io.swagger.client.models.GetClassesByClass](docs/GetClassesByClass.md)
- - [io.swagger.client.models.GetMultibranchPipeline](docs/GetMultibranchPipeline.md)
- - [io.swagger.client.models.GetOrganisations](docs/GetOrganisations.md)
- - [io.swagger.client.models.GetPipelineBranches](docs/GetPipelineBranches.md)
- - [io.swagger.client.models.GetPipelineBranchesitem](docs/GetPipelineBranchesitem.md)
- - [io.swagger.client.models.GetPipelineBranchesitem_latestRun](docs/GetPipelineBranchesitem_latestRun.md)
- - [io.swagger.client.models.GetPipelineBranchesitem_pullRequest](docs/GetPipelineBranchesitem_pullRequest.md)
- - [io.swagger.client.models.GetPipelineBranchesitem_pullRequest__links](docs/GetPipelineBranchesitem_pullRequest__links.md)
- - [io.swagger.client.models.GetPipelines](docs/GetPipelines.md)
- - [io.swagger.client.models.GetUsers](docs/GetUsers.md)
- - [io.swagger.client.models.HudsonmodelAllView](docs/HudsonmodelAllView.md)
- - [io.swagger.client.models.HudsonmodelCauseAction](docs/HudsonmodelCauseAction.md)
- - [io.swagger.client.models.HudsonmodelCauseUserIdCause](docs/HudsonmodelCauseUserIdCause.md)
- - [io.swagger.client.models.HudsonmodelComputerSet](docs/HudsonmodelComputerSet.md)
- - [io.swagger.client.models.HudsonmodelFreeStyleBuild](docs/HudsonmodelFreeStyleBuild.md)
- - [io.swagger.client.models.HudsonmodelFreeStyleProject](docs/HudsonmodelFreeStyleProject.md)
- - [io.swagger.client.models.HudsonmodelFreeStyleProjectactions](docs/HudsonmodelFreeStyleProjectactions.md)
- - [io.swagger.client.models.HudsonmodelFreeStyleProjecthealthReport](docs/HudsonmodelFreeStyleProjecthealthReport.md)
- - [io.swagger.client.models.HudsonmodelHudson](docs/HudsonmodelHudson.md)
- - [io.swagger.client.models.HudsonmodelHudsonMasterComputer](docs/HudsonmodelHudsonMasterComputer.md)
- - [io.swagger.client.models.HudsonmodelHudsonMasterComputer_monitorData](docs/HudsonmodelHudsonMasterComputer_monitorData.md)
- - [io.swagger.client.models.HudsonmodelHudsonMasterComputerexecutors](docs/HudsonmodelHudsonMasterComputerexecutors.md)
- - [io.swagger.client.models.HudsonmodelHudsonassignedLabels](docs/HudsonmodelHudsonassignedLabels.md)
- - [io.swagger.client.models.HudsonmodelLabel1](docs/HudsonmodelLabel1.md)
- - [io.swagger.client.models.HudsonmodelListView](docs/HudsonmodelListView.md)
- - [io.swagger.client.models.HudsonmodelQueue](docs/HudsonmodelQueue.md)
- - [io.swagger.client.models.HudsonmodelQueueBlockedItem](docs/HudsonmodelQueueBlockedItem.md)
- - [io.swagger.client.models.HudsonmodelQueueLeftItem](docs/HudsonmodelQueueLeftItem.md)
- - [io.swagger.client.models.HudsonmodelStringParameterDefinition](docs/HudsonmodelStringParameterDefinition.md)
- - [io.swagger.client.models.HudsonmodelStringParameterValue](docs/HudsonmodelStringParameterValue.md)
- - [io.swagger.client.models.Hudsonnode_monitorsDiskSpaceMonitorDescriptorDiskSpace](docs/Hudsonnode_monitorsDiskSpaceMonitorDescriptorDiskSpace.md)
- - [io.swagger.client.models.Hudsonnode_monitorsResponseTimeMonitorData](docs/Hudsonnode_monitorsResponseTimeMonitorData.md)
- - [io.swagger.client.models.Hudsonnode_monitorsSwapSpaceMonitorMemoryUsage2](docs/Hudsonnode_monitorsSwapSpaceMonitorMemoryUsage2.md)
- - [io.swagger.client.models.HudsonscmEmptyChangeLogSet](docs/HudsonscmEmptyChangeLogSet.md)
- - [io.swagger.client.models.HudsonscmNullSCM](docs/HudsonscmNullSCM.md)
- - [io.swagger.client.models.HudsonsecuritycsrfDefaultCrumbIssuer](docs/HudsonsecuritycsrfDefaultCrumbIssuer.md)
- - [io.swagger.client.models.HudsonutilClockDifference](docs/HudsonutilClockDifference.md)
- - [io.swagger.client.models.IojenkinsblueoceanresthalLink](docs/IojenkinsblueoceanresthalLink.md)
- - [io.swagger.client.models.IojenkinsblueoceanrestimplpipelineBranchImpl](docs/IojenkinsblueoceanrestimplpipelineBranchImpl.md)
- - [io.swagger.client.models.IojenkinsblueoceanrestimplpipelineBranchImpl_permissions](docs/IojenkinsblueoceanrestimplpipelineBranchImpl_permissions.md)
- - [io.swagger.client.models.IojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1](docs/IojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1.md)
- - [io.swagger.client.models.IojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1__links](docs/IojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1__links.md)
- - [io.swagger.client.models.IojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1_map](docs/IojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1_map.md)
- - [io.swagger.client.models.IojenkinsblueoceanserviceembeddedrestExtensionClassImpl](docs/IojenkinsblueoceanserviceembeddedrestExtensionClassImpl.md)
- - [io.swagger.client.models.IojenkinsblueoceanserviceembeddedrestExtensionClassImpl__links](docs/IojenkinsblueoceanserviceembeddedrestExtensionClassImpl__links.md)
- - [io.swagger.client.models.IojenkinsblueoceanserviceembeddedrestPipelineFolderImpl](docs/IojenkinsblueoceanserviceembeddedrestPipelineFolderImpl.md)
- - [io.swagger.client.models.IojenkinsblueoceanserviceembeddedrestPipelineImpl](docs/IojenkinsblueoceanserviceembeddedrestPipelineImpl.md)
- - [io.swagger.client.models.JenkinsmodelUnlabeledLoadStatistics](docs/JenkinsmodelUnlabeledLoadStatistics.md)
- - [io.swagger.client.models.SwaggyjenkinsOrganisation](docs/SwaggyjenkinsOrganisation.md)
- - [io.swagger.client.models.SwaggyjenkinsPipeline](docs/SwaggyjenkinsPipeline.md)
- - [io.swagger.client.models.SwaggyjenkinsPipeline_latestRun](docs/SwaggyjenkinsPipeline_latestRun.md)
- - [io.swagger.client.models.SwaggyjenkinsPipeline_latestRunartifacts](docs/SwaggyjenkinsPipeline_latestRunartifacts.md)
- - [io.swagger.client.models.SwaggyjenkinsUser](docs/SwaggyjenkinsUser.md)
+ - [io.swagger.client.models.AllView](docs/AllView.md)
+ - [io.swagger.client.models.Body](docs/Body.md)
+ - [io.swagger.client.models.BranchImpl](docs/BranchImpl.md)
+ - [io.swagger.client.models.BranchImpllinks](docs/BranchImpllinks.md)
+ - [io.swagger.client.models.BranchImplpermissions](docs/BranchImplpermissions.md)
+ - [io.swagger.client.models.CauseAction](docs/CauseAction.md)
+ - [io.swagger.client.models.CauseUserIdCause](docs/CauseUserIdCause.md)
+ - [io.swagger.client.models.ClassesByClass](docs/ClassesByClass.md)
+ - [io.swagger.client.models.ClockDifference](docs/ClockDifference.md)
+ - [io.swagger.client.models.ComputerSet](docs/ComputerSet.md)
+ - [io.swagger.client.models.DefaultCrumbIssuer](docs/DefaultCrumbIssuer.md)
+ - [io.swagger.client.models.DiskSpaceMonitorDescriptorDiskSpace](docs/DiskSpaceMonitorDescriptorDiskSpace.md)
+ - [io.swagger.client.models.EmptyChangeLogSet](docs/EmptyChangeLogSet.md)
+ - [io.swagger.client.models.ExtensionClassContainerImpl1](docs/ExtensionClassContainerImpl1.md)
+ - [io.swagger.client.models.ExtensionClassContainerImpl1links](docs/ExtensionClassContainerImpl1links.md)
+ - [io.swagger.client.models.ExtensionClassContainerImpl1map](docs/ExtensionClassContainerImpl1map.md)
+ - [io.swagger.client.models.ExtensionClassImpl](docs/ExtensionClassImpl.md)
+ - [io.swagger.client.models.ExtensionClassImpllinks](docs/ExtensionClassImpllinks.md)
+ - [io.swagger.client.models.FavoriteImpl](docs/FavoriteImpl.md)
+ - [io.swagger.client.models.FavoriteImpllinks](docs/FavoriteImpllinks.md)
+ - [io.swagger.client.models.FreeStyleBuild](docs/FreeStyleBuild.md)
+ - [io.swagger.client.models.FreeStyleProject](docs/FreeStyleProject.md)
+ - [io.swagger.client.models.FreeStyleProjectactions](docs/FreeStyleProjectactions.md)
+ - [io.swagger.client.models.FreeStyleProjecthealthReport](docs/FreeStyleProjecthealthReport.md)
+ - [io.swagger.client.models.GenericResource](docs/GenericResource.md)
+ - [io.swagger.client.models.GithubContent](docs/GithubContent.md)
+ - [io.swagger.client.models.GithubFile](docs/GithubFile.md)
+ - [io.swagger.client.models.GithubOrganization](docs/GithubOrganization.md)
+ - [io.swagger.client.models.GithubOrganizationlinks](docs/GithubOrganizationlinks.md)
+ - [io.swagger.client.models.GithubRepositories](docs/GithubRepositories.md)
+ - [io.swagger.client.models.GithubRepositorieslinks](docs/GithubRepositorieslinks.md)
+ - [io.swagger.client.models.GithubRepository](docs/GithubRepository.md)
+ - [io.swagger.client.models.GithubRepositorylinks](docs/GithubRepositorylinks.md)
+ - [io.swagger.client.models.GithubRepositorypermissions](docs/GithubRepositorypermissions.md)
+ - [io.swagger.client.models.GithubRespositoryContainer](docs/GithubRespositoryContainer.md)
+ - [io.swagger.client.models.GithubRespositoryContainerlinks](docs/GithubRespositoryContainerlinks.md)
+ - [io.swagger.client.models.GithubScm](docs/GithubScm.md)
+ - [io.swagger.client.models.GithubScmlinks](docs/GithubScmlinks.md)
+ - [io.swagger.client.models.Hudson](docs/Hudson.md)
+ - [io.swagger.client.models.HudsonMasterComputer](docs/HudsonMasterComputer.md)
+ - [io.swagger.client.models.HudsonMasterComputerexecutors](docs/HudsonMasterComputerexecutors.md)
+ - [io.swagger.client.models.HudsonMasterComputermonitorData](docs/HudsonMasterComputermonitorData.md)
+ - [io.swagger.client.models.HudsonassignedLabels](docs/HudsonassignedLabels.md)
+ - [io.swagger.client.models.InputStepImpl](docs/InputStepImpl.md)
+ - [io.swagger.client.models.InputStepImpllinks](docs/InputStepImpllinks.md)
+ - [io.swagger.client.models.Label1](docs/Label1.md)
+ - [io.swagger.client.models.Link](docs/Link.md)
+ - [io.swagger.client.models.ListView](docs/ListView.md)
+ - [io.swagger.client.models.MultibranchPipeline](docs/MultibranchPipeline.md)
+ - [io.swagger.client.models.NullSCM](docs/NullSCM.md)
+ - [io.swagger.client.models.Organisation](docs/Organisation.md)
+ - [io.swagger.client.models.Organisations](docs/Organisations.md)
+ - [io.swagger.client.models.Pipeline](docs/Pipeline.md)
+ - [io.swagger.client.models.PipelineActivities](docs/PipelineActivities.md)
+ - [io.swagger.client.models.PipelineActivity](docs/PipelineActivity.md)
+ - [io.swagger.client.models.PipelineActivityartifacts](docs/PipelineActivityartifacts.md)
+ - [io.swagger.client.models.PipelineBranches](docs/PipelineBranches.md)
+ - [io.swagger.client.models.PipelineBranchesitem](docs/PipelineBranchesitem.md)
+ - [io.swagger.client.models.PipelineBranchesitemlatestRun](docs/PipelineBranchesitemlatestRun.md)
+ - [io.swagger.client.models.PipelineBranchesitempullRequest](docs/PipelineBranchesitempullRequest.md)
+ - [io.swagger.client.models.PipelineBranchesitempullRequestlinks](docs/PipelineBranchesitempullRequestlinks.md)
+ - [io.swagger.client.models.PipelineFolderImpl](docs/PipelineFolderImpl.md)
+ - [io.swagger.client.models.PipelineImpl](docs/PipelineImpl.md)
+ - [io.swagger.client.models.PipelineImpllinks](docs/PipelineImpllinks.md)
+ - [io.swagger.client.models.PipelineQueue](docs/PipelineQueue.md)
+ - [io.swagger.client.models.PipelineRun](docs/PipelineRun.md)
+ - [io.swagger.client.models.PipelineRunImpl](docs/PipelineRunImpl.md)
+ - [io.swagger.client.models.PipelineRunImpllinks](docs/PipelineRunImpllinks.md)
+ - [io.swagger.client.models.PipelineRunNode](docs/PipelineRunNode.md)
+ - [io.swagger.client.models.PipelineRunNodeSteps](docs/PipelineRunNodeSteps.md)
+ - [io.swagger.client.models.PipelineRunNodeedges](docs/PipelineRunNodeedges.md)
+ - [io.swagger.client.models.PipelineRunNodes](docs/PipelineRunNodes.md)
+ - [io.swagger.client.models.PipelineRunSteps](docs/PipelineRunSteps.md)
+ - [io.swagger.client.models.PipelineRunartifacts](docs/PipelineRunartifacts.md)
+ - [io.swagger.client.models.PipelineRuns](docs/PipelineRuns.md)
+ - [io.swagger.client.models.PipelineStepImpl](docs/PipelineStepImpl.md)
+ - [io.swagger.client.models.PipelineStepImpllinks](docs/PipelineStepImpllinks.md)
+ - [io.swagger.client.models.PipelinelatestRun](docs/PipelinelatestRun.md)
+ - [io.swagger.client.models.PipelinelatestRunartifacts](docs/PipelinelatestRunartifacts.md)
+ - [io.swagger.client.models.Pipelines](docs/Pipelines.md)
+ - [io.swagger.client.models.Queue](docs/Queue.md)
+ - [io.swagger.client.models.QueueBlockedItem](docs/QueueBlockedItem.md)
+ - [io.swagger.client.models.QueueItemImpl](docs/QueueItemImpl.md)
+ - [io.swagger.client.models.QueueLeftItem](docs/QueueLeftItem.md)
+ - [io.swagger.client.models.ResponseTimeMonitorData](docs/ResponseTimeMonitorData.md)
+ - [io.swagger.client.models.ScmOrganisations](docs/ScmOrganisations.md)
+ - [io.swagger.client.models.StringParameterDefinition](docs/StringParameterDefinition.md)
+ - [io.swagger.client.models.StringParameterValue](docs/StringParameterValue.md)
+ - [io.swagger.client.models.SwapSpaceMonitorMemoryUsage2](docs/SwapSpaceMonitorMemoryUsage2.md)
+ - [io.swagger.client.models.UnlabeledLoadStatistics](docs/UnlabeledLoadStatistics.md)
+ - [io.swagger.client.models.User](docs/User.md)
+ - [io.swagger.client.models.UserFavorites](docs/UserFavorites.md)
+ - [io.swagger.client.models.Users](docs/Users.md)
 
 
 <a name="documentation-for-authorization"></a>

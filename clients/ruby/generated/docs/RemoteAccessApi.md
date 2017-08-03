@@ -4,7 +4,7 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**get_computer**](RemoteAccessApi.md#get_computer) | **GET** /computer/api/json?depth&#x3D;1 | 
+[**get_computer**](RemoteAccessApi.md#get_computer) | **GET** /computer/api/json | 
 [**get_crumb**](RemoteAccessApi.md#get_crumb) | **GET** /crumbIssuer/api/json | 
 [**get_jenkins**](RemoteAccessApi.md#get_jenkins) | **GET** /api/json | 
 [**get_job**](RemoteAccessApi.md#get_job) | **GET** /job/{name}/api/json | 
@@ -28,7 +28,7 @@ Method | HTTP request | Description
 
 
 # **get_computer**
-> HudsonmodelComputerSet get_computer
+> ComputerSet get_computer(depth)
 
 
 
@@ -38,11 +38,20 @@ Retrieve computer details
 ```ruby
 # load the gem
 require 'swaggy_jenkins'
+# setup authorization
+SwaggyJenkinsClient.configure do |config|
+  # Configure HTTP basic authorization: jenkins_auth
+  config.username = 'YOUR USERNAME'
+  config.password = 'YOUR PASSWORD'
+end
 
 api_instance = SwaggyJenkinsClient::RemoteAccessApi.new
 
+depth = 56 # Integer | Recursion depth in response model
+
+
 begin
-  result = api_instance.get_computer
+  result = api_instance.get_computer(depth)
   p result
 rescue SwaggyJenkinsClient::ApiError => e
   puts "Exception when calling RemoteAccessApi->get_computer: #{e}"
@@ -50,15 +59,18 @@ end
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **depth** | **Integer**| Recursion depth in response model | 
 
 ### Return type
 
-[**HudsonmodelComputerSet**](HudsonmodelComputerSet.md)
+[**ComputerSet**](ComputerSet.md)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -68,7 +80,7 @@ No authorization required
 
 
 # **get_crumb**
-> HudsonsecuritycsrfDefaultCrumbIssuer get_crumb
+> DefaultCrumbIssuer get_crumb
 
 
 
@@ -78,6 +90,12 @@ Retrieve CSRF protection token
 ```ruby
 # load the gem
 require 'swaggy_jenkins'
+# setup authorization
+SwaggyJenkinsClient.configure do |config|
+  # Configure HTTP basic authorization: jenkins_auth
+  config.username = 'YOUR USERNAME'
+  config.password = 'YOUR PASSWORD'
+end
 
 api_instance = SwaggyJenkinsClient::RemoteAccessApi.new
 
@@ -94,11 +112,11 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**HudsonsecuritycsrfDefaultCrumbIssuer**](HudsonsecuritycsrfDefaultCrumbIssuer.md)
+[**DefaultCrumbIssuer**](DefaultCrumbIssuer.md)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -108,7 +126,7 @@ No authorization required
 
 
 # **get_jenkins**
-> HudsonmodelHudson get_jenkins
+> Hudson get_jenkins
 
 
 
@@ -118,6 +136,12 @@ Retrieve Jenkins details
 ```ruby
 # load the gem
 require 'swaggy_jenkins'
+# setup authorization
+SwaggyJenkinsClient.configure do |config|
+  # Configure HTTP basic authorization: jenkins_auth
+  config.username = 'YOUR USERNAME'
+  config.password = 'YOUR PASSWORD'
+end
 
 api_instance = SwaggyJenkinsClient::RemoteAccessApi.new
 
@@ -134,11 +158,11 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**HudsonmodelHudson**](HudsonmodelHudson.md)
+[**Hudson**](Hudson.md)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -148,7 +172,7 @@ No authorization required
 
 
 # **get_job**
-> HudsonmodelFreeStyleProject get_job(name, )
+> FreeStyleProject get_job(name, )
 
 
 
@@ -158,6 +182,12 @@ Retrieve job details
 ```ruby
 # load the gem
 require 'swaggy_jenkins'
+# setup authorization
+SwaggyJenkinsClient.configure do |config|
+  # Configure HTTP basic authorization: jenkins_auth
+  config.username = 'YOUR USERNAME'
+  config.password = 'YOUR PASSWORD'
+end
 
 api_instance = SwaggyJenkinsClient::RemoteAccessApi.new
 
@@ -180,11 +210,11 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**HudsonmodelFreeStyleProject**](HudsonmodelFreeStyleProject.md)
+[**FreeStyleProject**](FreeStyleProject.md)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -204,6 +234,12 @@ Retrieve job configuration
 ```ruby
 # load the gem
 require 'swaggy_jenkins'
+# setup authorization
+SwaggyJenkinsClient.configure do |config|
+  # Configure HTTP basic authorization: jenkins_auth
+  config.username = 'YOUR USERNAME'
+  config.password = 'YOUR PASSWORD'
+end
 
 api_instance = SwaggyJenkinsClient::RemoteAccessApi.new
 
@@ -230,7 +266,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -240,7 +276,7 @@ No authorization required
 
 
 # **get_job_last_build**
-> HudsonmodelFreeStyleBuild get_job_last_build(name, )
+> FreeStyleBuild get_job_last_build(name, )
 
 
 
@@ -250,6 +286,12 @@ Retrieve job's last build details
 ```ruby
 # load the gem
 require 'swaggy_jenkins'
+# setup authorization
+SwaggyJenkinsClient.configure do |config|
+  # Configure HTTP basic authorization: jenkins_auth
+  config.username = 'YOUR USERNAME'
+  config.password = 'YOUR PASSWORD'
+end
 
 api_instance = SwaggyJenkinsClient::RemoteAccessApi.new
 
@@ -272,11 +314,11 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**HudsonmodelFreeStyleBuild**](HudsonmodelFreeStyleBuild.md)
+[**FreeStyleBuild**](FreeStyleBuild.md)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -296,6 +338,12 @@ Retrieve job's build progressive text output
 ```ruby
 # load the gem
 require 'swaggy_jenkins'
+# setup authorization
+SwaggyJenkinsClient.configure do |config|
+  # Configure HTTP basic authorization: jenkins_auth
+  config.username = 'YOUR USERNAME'
+  config.password = 'YOUR PASSWORD'
+end
 
 api_instance = SwaggyJenkinsClient::RemoteAccessApi.new
 
@@ -327,7 +375,7 @@ nil (empty response body)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -337,7 +385,7 @@ No authorization required
 
 
 # **get_queue**
-> HudsonmodelQueue get_queue
+> Queue get_queue
 
 
 
@@ -347,6 +395,12 @@ Retrieve queue details
 ```ruby
 # load the gem
 require 'swaggy_jenkins'
+# setup authorization
+SwaggyJenkinsClient.configure do |config|
+  # Configure HTTP basic authorization: jenkins_auth
+  config.username = 'YOUR USERNAME'
+  config.password = 'YOUR PASSWORD'
+end
 
 api_instance = SwaggyJenkinsClient::RemoteAccessApi.new
 
@@ -363,11 +417,11 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**HudsonmodelQueue**](HudsonmodelQueue.md)
+[**Queue**](Queue.md)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -377,7 +431,7 @@ No authorization required
 
 
 # **get_queue_item**
-> HudsonmodelQueue get_queue_item(number)
+> Queue get_queue_item(number)
 
 
 
@@ -387,6 +441,12 @@ Retrieve queued item details
 ```ruby
 # load the gem
 require 'swaggy_jenkins'
+# setup authorization
+SwaggyJenkinsClient.configure do |config|
+  # Configure HTTP basic authorization: jenkins_auth
+  config.username = 'YOUR USERNAME'
+  config.password = 'YOUR PASSWORD'
+end
 
 api_instance = SwaggyJenkinsClient::RemoteAccessApi.new
 
@@ -409,11 +469,11 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**HudsonmodelQueue**](HudsonmodelQueue.md)
+[**Queue**](Queue.md)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -423,7 +483,7 @@ No authorization required
 
 
 # **get_view**
-> HudsonmodelListView get_view(name, )
+> ListView get_view(name, )
 
 
 
@@ -433,6 +493,12 @@ Retrieve view details
 ```ruby
 # load the gem
 require 'swaggy_jenkins'
+# setup authorization
+SwaggyJenkinsClient.configure do |config|
+  # Configure HTTP basic authorization: jenkins_auth
+  config.username = 'YOUR USERNAME'
+  config.password = 'YOUR PASSWORD'
+end
 
 api_instance = SwaggyJenkinsClient::RemoteAccessApi.new
 
@@ -455,11 +521,11 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**HudsonmodelListView**](HudsonmodelListView.md)
+[**ListView**](ListView.md)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -479,6 +545,12 @@ Retrieve view configuration
 ```ruby
 # load the gem
 require 'swaggy_jenkins'
+# setup authorization
+SwaggyJenkinsClient.configure do |config|
+  # Configure HTTP basic authorization: jenkins_auth
+  config.username = 'YOUR USERNAME'
+  config.password = 'YOUR PASSWORD'
+end
 
 api_instance = SwaggyJenkinsClient::RemoteAccessApi.new
 
@@ -505,7 +577,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -525,6 +597,12 @@ Retrieve Jenkins headers
 ```ruby
 # load the gem
 require 'swaggy_jenkins'
+# setup authorization
+SwaggyJenkinsClient.configure do |config|
+  # Configure HTTP basic authorization: jenkins_auth
+  config.username = 'YOUR USERNAME'
+  config.password = 'YOUR PASSWORD'
+end
 
 api_instance = SwaggyJenkinsClient::RemoteAccessApi.new
 
@@ -544,7 +622,7 @@ nil (empty response body)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -564,6 +642,12 @@ Create a new job using job configuration, or copied from an existing job
 ```ruby
 # load the gem
 require 'swaggy_jenkins'
+# setup authorization
+SwaggyJenkinsClient.configure do |config|
+  # Configure HTTP basic authorization: jenkins_auth
+  config.username = 'YOUR USERNAME'
+  config.password = 'YOUR PASSWORD'
+end
 
 api_instance = SwaggyJenkinsClient::RemoteAccessApi.new
 
@@ -601,7 +685,7 @@ nil (empty response body)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -621,6 +705,12 @@ Create a new view using view configuration
 ```ruby
 # load the gem
 require 'swaggy_jenkins'
+# setup authorization
+SwaggyJenkinsClient.configure do |config|
+  # Configure HTTP basic authorization: jenkins_auth
+  config.username = 'YOUR USERNAME'
+  config.password = 'YOUR PASSWORD'
+end
 
 api_instance = SwaggyJenkinsClient::RemoteAccessApi.new
 
@@ -654,7 +744,7 @@ nil (empty response body)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -674,6 +764,12 @@ Build a job
 ```ruby
 # load the gem
 require 'swaggy_jenkins'
+# setup authorization
+SwaggyJenkinsClient.configure do |config|
+  # Configure HTTP basic authorization: jenkins_auth
+  config.username = 'YOUR USERNAME'
+  config.password = 'YOUR PASSWORD'
+end
 
 api_instance = SwaggyJenkinsClient::RemoteAccessApi.new
 
@@ -708,7 +804,7 @@ nil (empty response body)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -728,6 +824,12 @@ Update job configuration
 ```ruby
 # load the gem
 require 'swaggy_jenkins'
+# setup authorization
+SwaggyJenkinsClient.configure do |config|
+  # Configure HTTP basic authorization: jenkins_auth
+  config.username = 'YOUR USERNAME'
+  config.password = 'YOUR PASSWORD'
+end
 
 api_instance = SwaggyJenkinsClient::RemoteAccessApi.new
 
@@ -760,7 +862,7 @@ nil (empty response body)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -780,6 +882,12 @@ Delete a job
 ```ruby
 # load the gem
 require 'swaggy_jenkins'
+# setup authorization
+SwaggyJenkinsClient.configure do |config|
+  # Configure HTTP basic authorization: jenkins_auth
+  config.username = 'YOUR USERNAME'
+  config.password = 'YOUR PASSWORD'
+end
 
 api_instance = SwaggyJenkinsClient::RemoteAccessApi.new
 
@@ -809,7 +917,7 @@ nil (empty response body)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -829,6 +937,12 @@ Disable a job
 ```ruby
 # load the gem
 require 'swaggy_jenkins'
+# setup authorization
+SwaggyJenkinsClient.configure do |config|
+  # Configure HTTP basic authorization: jenkins_auth
+  config.username = 'YOUR USERNAME'
+  config.password = 'YOUR PASSWORD'
+end
 
 api_instance = SwaggyJenkinsClient::RemoteAccessApi.new
 
@@ -858,7 +972,7 @@ nil (empty response body)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -878,6 +992,12 @@ Enable a job
 ```ruby
 # load the gem
 require 'swaggy_jenkins'
+# setup authorization
+SwaggyJenkinsClient.configure do |config|
+  # Configure HTTP basic authorization: jenkins_auth
+  config.username = 'YOUR USERNAME'
+  config.password = 'YOUR PASSWORD'
+end
 
 api_instance = SwaggyJenkinsClient::RemoteAccessApi.new
 
@@ -907,7 +1027,7 @@ nil (empty response body)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -927,6 +1047,12 @@ Stop a job
 ```ruby
 # load the gem
 require 'swaggy_jenkins'
+# setup authorization
+SwaggyJenkinsClient.configure do |config|
+  # Configure HTTP basic authorization: jenkins_auth
+  config.username = 'YOUR USERNAME'
+  config.password = 'YOUR PASSWORD'
+end
 
 api_instance = SwaggyJenkinsClient::RemoteAccessApi.new
 
@@ -956,7 +1082,7 @@ nil (empty response body)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -976,6 +1102,12 @@ Update view configuration
 ```ruby
 # load the gem
 require 'swaggy_jenkins'
+# setup authorization
+SwaggyJenkinsClient.configure do |config|
+  # Configure HTTP basic authorization: jenkins_auth
+  config.username = 'YOUR USERNAME'
+  config.password = 'YOUR PASSWORD'
+end
 
 api_instance = SwaggyJenkinsClient::RemoteAccessApi.new
 
@@ -1008,7 +1140,7 @@ nil (empty response body)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 

@@ -5,8 +5,8 @@ import io.swagger.model.*;
 import io.swagger.annotations.ApiParam;
 import io.swagger.jaxrs.*;
 
-import io.swagger.model.HudsonmodelFreeStyleBuild;
-import io.swagger.model.HudsonmodelFreeStyleProject;
+import io.swagger.model.FreeStyleBuild;
+import io.swagger.model.FreeStyleProject;
 
 import java.util.List;
 
@@ -22,28 +22,32 @@ import javax.validation.constraints.*;
 
 
 @io.swagger.annotations.Api(description = "the job API")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaResteasyEapServerCodegen", date = "2017-07-25T10:45:10.773+10:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaResteasyEapServerCodegen", date = "2017-08-03T23:34:59.445Z")
 public interface JobApi  {
    
     @GET
     @Path("/{name}/api/json")
     
     @Produces({ "application/json" })
-    @io.swagger.annotations.ApiOperation(value = "", notes = "Retrieve job details", response = HudsonmodelFreeStyleProject.class, tags={ "remoteAccess", })
+    @io.swagger.annotations.ApiOperation(value = "", notes = "Retrieve job details", response = FreeStyleProject.class, authorizations = {
+        @io.swagger.annotations.Authorization(value = "jenkins_auth")
+    }, tags={ "remoteAccess", })
     @io.swagger.annotations.ApiResponses(value = { 
-        @io.swagger.annotations.ApiResponse(code = 200, message = "Successfully retrieved job details", response = HudsonmodelFreeStyleProject.class),
+        @io.swagger.annotations.ApiResponse(code = 200, message = "Successfully retrieved job details", response = FreeStyleProject.class),
         
-        @io.swagger.annotations.ApiResponse(code = 401, message = "Authentication failed - incorrect username and/or password", response = HudsonmodelFreeStyleProject.class),
+        @io.swagger.annotations.ApiResponse(code = 401, message = "Authentication failed - incorrect username and/or password", response = FreeStyleProject.class),
         
-        @io.swagger.annotations.ApiResponse(code = 403, message = "Jenkins requires authentication - please set username and password", response = HudsonmodelFreeStyleProject.class),
+        @io.swagger.annotations.ApiResponse(code = 403, message = "Jenkins requires authentication - please set username and password", response = FreeStyleProject.class),
         
-        @io.swagger.annotations.ApiResponse(code = 404, message = "Job cannot be found on Jenkins instance", response = HudsonmodelFreeStyleProject.class) })
+        @io.swagger.annotations.ApiResponse(code = 404, message = "Job cannot be found on Jenkins instance", response = FreeStyleProject.class) })
     public Response getJob( @PathParam("name") String name,@Context SecurityContext securityContext);
     @GET
     @Path("/{name}/config.xml")
     
     @Produces({ "text/xml" })
-    @io.swagger.annotations.ApiOperation(value = "", notes = "Retrieve job configuration", response = String.class, tags={ "remoteAccess", })
+    @io.swagger.annotations.ApiOperation(value = "", notes = "Retrieve job configuration", response = String.class, authorizations = {
+        @io.swagger.annotations.Authorization(value = "jenkins_auth")
+    }, tags={ "remoteAccess", })
     @io.swagger.annotations.ApiResponses(value = { 
         @io.swagger.annotations.ApiResponse(code = 200, message = "Successfully retrieved job configuration in config.xml format", response = String.class),
         
@@ -57,21 +61,25 @@ public interface JobApi  {
     @Path("/{name}/lastBuild/api/json")
     
     @Produces({ "application/json" })
-    @io.swagger.annotations.ApiOperation(value = "", notes = "Retrieve job's last build details", response = HudsonmodelFreeStyleBuild.class, tags={ "remoteAccess", })
+    @io.swagger.annotations.ApiOperation(value = "", notes = "Retrieve job's last build details", response = FreeStyleBuild.class, authorizations = {
+        @io.swagger.annotations.Authorization(value = "jenkins_auth")
+    }, tags={ "remoteAccess", })
     @io.swagger.annotations.ApiResponses(value = { 
-        @io.swagger.annotations.ApiResponse(code = 200, message = "Successfully retrieved job's last build details", response = HudsonmodelFreeStyleBuild.class),
+        @io.swagger.annotations.ApiResponse(code = 200, message = "Successfully retrieved job's last build details", response = FreeStyleBuild.class),
         
-        @io.swagger.annotations.ApiResponse(code = 401, message = "Authentication failed - incorrect username and/or password", response = HudsonmodelFreeStyleBuild.class),
+        @io.swagger.annotations.ApiResponse(code = 401, message = "Authentication failed - incorrect username and/or password", response = FreeStyleBuild.class),
         
-        @io.swagger.annotations.ApiResponse(code = 403, message = "Jenkins requires authentication - please set username and password", response = HudsonmodelFreeStyleBuild.class),
+        @io.swagger.annotations.ApiResponse(code = 403, message = "Jenkins requires authentication - please set username and password", response = FreeStyleBuild.class),
         
-        @io.swagger.annotations.ApiResponse(code = 404, message = "Job cannot be found on Jenkins instance", response = HudsonmodelFreeStyleBuild.class) })
+        @io.swagger.annotations.ApiResponse(code = 404, message = "Job cannot be found on Jenkins instance", response = FreeStyleBuild.class) })
     public Response getJobLastBuild( @PathParam("name") String name,@Context SecurityContext securityContext);
     @GET
     @Path("/{name}/{number}/logText/progressiveText")
     
     
-    @io.swagger.annotations.ApiOperation(value = "", notes = "Retrieve job's build progressive text output", response = Void.class, tags={ "remoteAccess", })
+    @io.swagger.annotations.ApiOperation(value = "", notes = "Retrieve job's build progressive text output", response = Void.class, authorizations = {
+        @io.swagger.annotations.Authorization(value = "jenkins_auth")
+    }, tags={ "remoteAccess", })
     @io.swagger.annotations.ApiResponses(value = { 
         @io.swagger.annotations.ApiResponse(code = 200, message = "Successfully retrieved job's build progressive text output", response = Void.class),
         
@@ -85,7 +93,9 @@ public interface JobApi  {
     @Path("/{name}/build")
     
     
-    @io.swagger.annotations.ApiOperation(value = "", notes = "Build a job", response = Void.class, tags={ "remoteAccess", })
+    @io.swagger.annotations.ApiOperation(value = "", notes = "Build a job", response = Void.class, authorizations = {
+        @io.swagger.annotations.Authorization(value = "jenkins_auth")
+    }, tags={ "remoteAccess", })
     @io.swagger.annotations.ApiResponses(value = { 
         @io.swagger.annotations.ApiResponse(code = 200, message = "Successfully built the job (backward compatibility for older versions of Jenkins)", response = Void.class),
         
@@ -101,7 +111,9 @@ public interface JobApi  {
     @Path("/{name}/config.xml")
     
     @Produces({ "text/xml" })
-    @io.swagger.annotations.ApiOperation(value = "", notes = "Update job configuration", response = Void.class, tags={ "remoteAccess", })
+    @io.swagger.annotations.ApiOperation(value = "", notes = "Update job configuration", response = Void.class, authorizations = {
+        @io.swagger.annotations.Authorization(value = "jenkins_auth")
+    }, tags={ "remoteAccess", })
     @io.swagger.annotations.ApiResponses(value = { 
         @io.swagger.annotations.ApiResponse(code = 200, message = "Successfully retrieved job configuration in config.xml format", response = Void.class),
         
@@ -117,7 +129,9 @@ public interface JobApi  {
     @Path("/{name}/doDelete")
     
     
-    @io.swagger.annotations.ApiOperation(value = "", notes = "Delete a job", response = Void.class, tags={ "remoteAccess", })
+    @io.swagger.annotations.ApiOperation(value = "", notes = "Delete a job", response = Void.class, authorizations = {
+        @io.swagger.annotations.Authorization(value = "jenkins_auth")
+    }, tags={ "remoteAccess", })
     @io.swagger.annotations.ApiResponses(value = { 
         @io.swagger.annotations.ApiResponse(code = 200, message = "Successfully deleted the job", response = Void.class),
         
@@ -131,7 +145,9 @@ public interface JobApi  {
     @Path("/{name}/disable")
     
     
-    @io.swagger.annotations.ApiOperation(value = "", notes = "Disable a job", response = Void.class, tags={ "remoteAccess", })
+    @io.swagger.annotations.ApiOperation(value = "", notes = "Disable a job", response = Void.class, authorizations = {
+        @io.swagger.annotations.Authorization(value = "jenkins_auth")
+    }, tags={ "remoteAccess", })
     @io.swagger.annotations.ApiResponses(value = { 
         @io.swagger.annotations.ApiResponse(code = 200, message = "Successfully disabled the job", response = Void.class),
         
@@ -145,7 +161,9 @@ public interface JobApi  {
     @Path("/{name}/enable")
     
     
-    @io.swagger.annotations.ApiOperation(value = "", notes = "Enable a job", response = Void.class, tags={ "remoteAccess", })
+    @io.swagger.annotations.ApiOperation(value = "", notes = "Enable a job", response = Void.class, authorizations = {
+        @io.swagger.annotations.Authorization(value = "jenkins_auth")
+    }, tags={ "remoteAccess", })
     @io.swagger.annotations.ApiResponses(value = { 
         @io.swagger.annotations.ApiResponse(code = 200, message = "Successfully enabled the job", response = Void.class),
         
@@ -159,7 +177,9 @@ public interface JobApi  {
     @Path("/{name}/lastBuild/stop")
     
     
-    @io.swagger.annotations.ApiOperation(value = "", notes = "Stop a job", response = Void.class, tags={ "remoteAccess", })
+    @io.swagger.annotations.ApiOperation(value = "", notes = "Stop a job", response = Void.class, authorizations = {
+        @io.swagger.annotations.Authorization(value = "jenkins_auth")
+    }, tags={ "remoteAccess", })
     @io.swagger.annotations.ApiResponses(value = { 
         @io.swagger.annotations.ApiResponse(code = 200, message = "Successfully stopped the job", response = Void.class),
         

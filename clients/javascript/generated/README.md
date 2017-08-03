@@ -46,6 +46,24 @@ browserify main.js > bundle.js
 
 Then include *bundle.js* in the HTML pages.
 
+### Webpack Configuration
+
+Using Webpack you may encounter the following error: "Module not found: Error:
+Cannot resolve module", most certainly you should disable AMD loader. Add/merge
+the following section to your webpack config:
+
+```javascript
+module: {
+  rules: [
+    {
+      parser: {
+        amd: false
+      }
+    }
+  ]
+}
+```
+
 ## Getting Started
 
 Please follow the [installation](#installation) instruction and execute the following JS code:
@@ -53,9 +71,16 @@ Please follow the [installation](#installation) instruction and execute the foll
 ```javascript
 var SwaggyJenkins = require('swaggy_jenkins');
 
+var defaultClient = SwaggyJenkins.ApiClient.instance;
+
+// Configure HTTP basic authorization: jenkins_auth
+var jenkins_auth = defaultClient.authentications['jenkins_auth'];
+jenkins_auth.username = 'YOUR USERNAME'
+jenkins_auth.password = 'YOUR PASSWORD'
+
 var api = new SwaggyJenkins.BlueOceanApi()
 
-var organisation = "organisation_example"; // {String} Name of the organisation
+var organization = "organization_example"; // {String} Name of the organization
 
 var pipeline = "pipeline_example"; // {String} Name of the pipeline
 
@@ -69,7 +94,7 @@ var callback = function(error, data, response) {
     console.log('API called successfully.');
   }
 };
-api.deletePipelineQueueItemByOrg(organisation, pipeline, queue, callback);
+api.deletePipelineQueueItem(organization, pipeline, queue, callback);
 
 ```
 
@@ -79,42 +104,42 @@ All URIs are relative to *http://localhost*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*SwaggyJenkins.BlueOceanApi* | [**deletePipelineQueueItemByOrg**](docs/BlueOceanApi.md#deletePipelineQueueItemByOrg) | **DELETE** /blue/rest/organizations/{organisation}/pipelines/{pipeline}/queue/{queue} | 
-*SwaggyJenkins.BlueOceanApi* | [**getAuthenticatedUser**](docs/BlueOceanApi.md#getAuthenticatedUser) | **GET** /blue/rest/organizations/{organisation}/user/ | 
+*SwaggyJenkins.BlueOceanApi* | [**deletePipelineQueueItem**](docs/BlueOceanApi.md#deletePipelineQueueItem) | **DELETE** /blue/rest/organizations/{organization}/pipelines/{pipeline}/queue/{queue} | 
+*SwaggyJenkins.BlueOceanApi* | [**getAuthenticatedUser**](docs/BlueOceanApi.md#getAuthenticatedUser) | **GET** /blue/rest/organizations/{organization}/user/ | 
 *SwaggyJenkins.BlueOceanApi* | [**getClasses**](docs/BlueOceanApi.md#getClasses) | **GET** /blue/rest/classes/{class} | 
-*SwaggyJenkins.BlueOceanApi* | [**getOrganisation**](docs/BlueOceanApi.md#getOrganisation) | **GET** /blue/rest/organizations/{organisation} | 
+*SwaggyJenkins.BlueOceanApi* | [**getOrganisation**](docs/BlueOceanApi.md#getOrganisation) | **GET** /blue/rest/organizations/{organization} | 
 *SwaggyJenkins.BlueOceanApi* | [**getOrganisations**](docs/BlueOceanApi.md#getOrganisations) | **GET** /blue/rest/organizations/ | 
-*SwaggyJenkins.BlueOceanApi* | [**getPipelineActivitiesByOrg**](docs/BlueOceanApi.md#getPipelineActivitiesByOrg) | **GET** /blue/rest/organizations/{organisation}/pipelines/{pipeline}/activities | 
-*SwaggyJenkins.BlueOceanApi* | [**getPipelineBranchByOrg**](docs/BlueOceanApi.md#getPipelineBranchByOrg) | **GET** /blue/rest/organizations/{organisation}/pipelines/{pipeline}/branches/{branch}/ | 
-*SwaggyJenkins.BlueOceanApi* | [**getPipelineBranchRunByOrg**](docs/BlueOceanApi.md#getPipelineBranchRunByOrg) | **GET** /blue/rest/organizations/{organisation}/pipelines/{pipeline}/branches/{branch}/runs/{run} | 
-*SwaggyJenkins.BlueOceanApi* | [**getPipelineBranchesByOrg**](docs/BlueOceanApi.md#getPipelineBranchesByOrg) | **GET** /blue/rest/organizations/{organisation}/pipelines/{pipeline}/branches | 
-*SwaggyJenkins.BlueOceanApi* | [**getPipelineByOrg**](docs/BlueOceanApi.md#getPipelineByOrg) | **GET** /blue/rest/organizations/{organisation}/pipelines/{pipeline} | 
-*SwaggyJenkins.BlueOceanApi* | [**getPipelineFolderByOrg**](docs/BlueOceanApi.md#getPipelineFolderByOrg) | **GET** /blue/rest/organizations/{organisation}/pipelines/{folder}/ | 
-*SwaggyJenkins.BlueOceanApi* | [**getPipelineFolderByOrg_0**](docs/BlueOceanApi.md#getPipelineFolderByOrg_0) | **GET** /blue/rest/organizations/{organisation}/pipelines/{folder}/pipelines/{pipeline} | 
-*SwaggyJenkins.BlueOceanApi* | [**getPipelineQueueByOrg**](docs/BlueOceanApi.md#getPipelineQueueByOrg) | **GET** /blue/rest/organizations/{organisation}/pipelines/{pipeline}/queue | 
-*SwaggyJenkins.BlueOceanApi* | [**getPipelineRunByOrg**](docs/BlueOceanApi.md#getPipelineRunByOrg) | **GET** /blue/rest/organizations/{organisation}/pipelines/{pipeline}/runs/{run} | 
-*SwaggyJenkins.BlueOceanApi* | [**getPipelineRunLogByOrg**](docs/BlueOceanApi.md#getPipelineRunLogByOrg) | **GET** /blue/rest/organizations/{organisation}/pipelines/{pipeline}/runs/{run}/log | 
-*SwaggyJenkins.BlueOceanApi* | [**getPipelineRunNodeByOrg**](docs/BlueOceanApi.md#getPipelineRunNodeByOrg) | **GET** /blue/rest/organizations/{organisation}/pipelines/{pipeline}/runs/{run}/nodes/{node} | 
-*SwaggyJenkins.BlueOceanApi* | [**getPipelineRunNodeStepByOrg**](docs/BlueOceanApi.md#getPipelineRunNodeStepByOrg) | **GET** /blue/rest/organizations/{organisation}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps/{step} | 
-*SwaggyJenkins.BlueOceanApi* | [**getPipelineRunNodeStepLogByOrg**](docs/BlueOceanApi.md#getPipelineRunNodeStepLogByOrg) | **GET** /blue/rest/organizations/{organisation}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps/{step}/log | 
-*SwaggyJenkins.BlueOceanApi* | [**getPipelineRunNodeStepsByOrg**](docs/BlueOceanApi.md#getPipelineRunNodeStepsByOrg) | **GET** /blue/rest/organizations/{organisation}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps | 
-*SwaggyJenkins.BlueOceanApi* | [**getPipelineRunNodesByOrg**](docs/BlueOceanApi.md#getPipelineRunNodesByOrg) | **GET** /blue/rest/organizations/{organisation}/pipelines/{pipeline}/runs/{run}/nodes | 
-*SwaggyJenkins.BlueOceanApi* | [**getPipelineRunsByOrg**](docs/BlueOceanApi.md#getPipelineRunsByOrg) | **GET** /blue/rest/organizations/{organisation}/pipelines/{pipeline}/runs | 
-*SwaggyJenkins.BlueOceanApi* | [**getPipelinesByOrg**](docs/BlueOceanApi.md#getPipelinesByOrg) | **GET** /blue/rest/organizations/{organisation}/pipelines/ | 
-*SwaggyJenkins.BlueOceanApi* | [**getSCM**](docs/BlueOceanApi.md#getSCM) | **GET** /blue/rest/organizations/{organisation}/scm/{scm} | 
-*SwaggyJenkins.BlueOceanApi* | [**getSCMOrganisationRepositories**](docs/BlueOceanApi.md#getSCMOrganisationRepositories) | **GET** /blue/rest/organizations/{organisation}/scm/{scm}/organizations/{scmOrganisation}/repositories | 
-*SwaggyJenkins.BlueOceanApi* | [**getSCMOrganisationRepository**](docs/BlueOceanApi.md#getSCMOrganisationRepository) | **GET** /blue/rest/organizations/{organisation}/scm/{scm}/organizations/{scmOrganisation}/repositories/{repository} | 
-*SwaggyJenkins.BlueOceanApi* | [**getSCMOrganisations**](docs/BlueOceanApi.md#getSCMOrganisations) | **GET** /blue/rest/organizations/{organisation}/scm/{scm}/organizations | 
-*SwaggyJenkins.BlueOceanApi* | [**getUser**](docs/BlueOceanApi.md#getUser) | **GET** /blue/rest/organizations/{organisation}/users/{user} | 
+*SwaggyJenkins.BlueOceanApi* | [**getPipeline**](docs/BlueOceanApi.md#getPipeline) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline} | 
+*SwaggyJenkins.BlueOceanApi* | [**getPipelineActivities**](docs/BlueOceanApi.md#getPipelineActivities) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/activities | 
+*SwaggyJenkins.BlueOceanApi* | [**getPipelineBranch**](docs/BlueOceanApi.md#getPipelineBranch) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/branches/{branch}/ | 
+*SwaggyJenkins.BlueOceanApi* | [**getPipelineBranchRun**](docs/BlueOceanApi.md#getPipelineBranchRun) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/branches/{branch}/runs/{run} | 
+*SwaggyJenkins.BlueOceanApi* | [**getPipelineBranches**](docs/BlueOceanApi.md#getPipelineBranches) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/branches | 
+*SwaggyJenkins.BlueOceanApi* | [**getPipelineFolder**](docs/BlueOceanApi.md#getPipelineFolder) | **GET** /blue/rest/organizations/{organization}/pipelines/{folder}/ | 
+*SwaggyJenkins.BlueOceanApi* | [**getPipelineFolderPipeline**](docs/BlueOceanApi.md#getPipelineFolderPipeline) | **GET** /blue/rest/organizations/{organization}/pipelines/{folder}/pipelines/{pipeline} | 
+*SwaggyJenkins.BlueOceanApi* | [**getPipelineQueue**](docs/BlueOceanApi.md#getPipelineQueue) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/queue | 
+*SwaggyJenkins.BlueOceanApi* | [**getPipelineRun**](docs/BlueOceanApi.md#getPipelineRun) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run} | 
+*SwaggyJenkins.BlueOceanApi* | [**getPipelineRunLog**](docs/BlueOceanApi.md#getPipelineRunLog) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/log | 
+*SwaggyJenkins.BlueOceanApi* | [**getPipelineRunNode**](docs/BlueOceanApi.md#getPipelineRunNode) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node} | 
+*SwaggyJenkins.BlueOceanApi* | [**getPipelineRunNodeStep**](docs/BlueOceanApi.md#getPipelineRunNodeStep) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps/{step} | 
+*SwaggyJenkins.BlueOceanApi* | [**getPipelineRunNodeStepLog**](docs/BlueOceanApi.md#getPipelineRunNodeStepLog) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps/{step}/log | 
+*SwaggyJenkins.BlueOceanApi* | [**getPipelineRunNodeSteps**](docs/BlueOceanApi.md#getPipelineRunNodeSteps) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps | 
+*SwaggyJenkins.BlueOceanApi* | [**getPipelineRunNodes**](docs/BlueOceanApi.md#getPipelineRunNodes) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes | 
+*SwaggyJenkins.BlueOceanApi* | [**getPipelineRuns**](docs/BlueOceanApi.md#getPipelineRuns) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs | 
+*SwaggyJenkins.BlueOceanApi* | [**getPipelines**](docs/BlueOceanApi.md#getPipelines) | **GET** /blue/rest/organizations/{organization}/pipelines/ | 
+*SwaggyJenkins.BlueOceanApi* | [**getSCM**](docs/BlueOceanApi.md#getSCM) | **GET** /blue/rest/organizations/{organization}/scm/{scm} | 
+*SwaggyJenkins.BlueOceanApi* | [**getSCMOrganisationRepositories**](docs/BlueOceanApi.md#getSCMOrganisationRepositories) | **GET** /blue/rest/organizations/{organization}/scm/{scm}/organizations/{scmOrganisation}/repositories | 
+*SwaggyJenkins.BlueOceanApi* | [**getSCMOrganisationRepository**](docs/BlueOceanApi.md#getSCMOrganisationRepository) | **GET** /blue/rest/organizations/{organization}/scm/{scm}/organizations/{scmOrganisation}/repositories/{repository} | 
+*SwaggyJenkins.BlueOceanApi* | [**getSCMOrganisations**](docs/BlueOceanApi.md#getSCMOrganisations) | **GET** /blue/rest/organizations/{organization}/scm/{scm}/organizations | 
+*SwaggyJenkins.BlueOceanApi* | [**getUser**](docs/BlueOceanApi.md#getUser) | **GET** /blue/rest/organizations/{organization}/users/{user} | 
 *SwaggyJenkins.BlueOceanApi* | [**getUserFavorites**](docs/BlueOceanApi.md#getUserFavorites) | **GET** /blue/rest/users/{user}/favorites | 
-*SwaggyJenkins.BlueOceanApi* | [**getUsers**](docs/BlueOceanApi.md#getUsers) | **GET** /blue/rest/organizations/{organisation}/users/ | 
-*SwaggyJenkins.BlueOceanApi* | [**postPipelineRunByOrg**](docs/BlueOceanApi.md#postPipelineRunByOrg) | **POST** /blue/rest/organizations/{organisation}/pipelines/{pipeline}/runs/{run}/replay | 
-*SwaggyJenkins.BlueOceanApi* | [**postPipelineRunsByOrg**](docs/BlueOceanApi.md#postPipelineRunsByOrg) | **POST** /blue/rest/organizations/{organisation}/pipelines/{pipeline}/runs | 
-*SwaggyJenkins.BlueOceanApi* | [**putPipelineFavoriteByOrg**](docs/BlueOceanApi.md#putPipelineFavoriteByOrg) | **PUT** /blue/rest/organizations/{organisation}/pipelines/{pipeline}/favorite | 
-*SwaggyJenkins.BlueOceanApi* | [**putPipelineRunByOrg**](docs/BlueOceanApi.md#putPipelineRunByOrg) | **PUT** /blue/rest/organizations/{organisation}/pipelines/{pipeline}/runs/{run}/stop | 
+*SwaggyJenkins.BlueOceanApi* | [**getUsers**](docs/BlueOceanApi.md#getUsers) | **GET** /blue/rest/organizations/{organization}/users/ | 
+*SwaggyJenkins.BlueOceanApi* | [**postPipelineRun**](docs/BlueOceanApi.md#postPipelineRun) | **POST** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/replay | 
+*SwaggyJenkins.BlueOceanApi* | [**postPipelineRuns**](docs/BlueOceanApi.md#postPipelineRuns) | **POST** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs | 
+*SwaggyJenkins.BlueOceanApi* | [**putPipelineFavorite**](docs/BlueOceanApi.md#putPipelineFavorite) | **PUT** /blue/rest/organizations/{organization}/pipelines/{pipeline}/favorite | 
+*SwaggyJenkins.BlueOceanApi* | [**putPipelineRun**](docs/BlueOceanApi.md#putPipelineRun) | **PUT** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/stop | 
 *SwaggyJenkins.BlueOceanApi* | [**search**](docs/BlueOceanApi.md#search) | **GET** /blue/rest/search/ | 
 *SwaggyJenkins.BlueOceanApi* | [**searchClasses**](docs/BlueOceanApi.md#searchClasses) | **GET** /blue/rest/classes/ | 
-*SwaggyJenkins.RemoteAccessApi* | [**getComputer**](docs/RemoteAccessApi.md#getComputer) | **GET** /computer/api/json?depth&#x3D;1 | 
+*SwaggyJenkins.RemoteAccessApi* | [**getComputer**](docs/RemoteAccessApi.md#getComputer) | **GET** /computer/api/json | 
 *SwaggyJenkins.RemoteAccessApi* | [**getCrumb**](docs/RemoteAccessApi.md#getCrumb) | **GET** /crumbIssuer/api/json | 
 *SwaggyJenkins.RemoteAccessApi* | [**getJenkins**](docs/RemoteAccessApi.md#getJenkins) | **GET** /api/json | 
 *SwaggyJenkins.RemoteAccessApi* | [**getJob**](docs/RemoteAccessApi.md#getJob) | **GET** /job/{name}/api/json | 
@@ -139,100 +164,99 @@ Class | Method | HTTP request | Description
 
 ## Documentation for Models
 
+ - [SwaggyJenkins.AllView](docs/AllView.md)
  - [SwaggyJenkins.Body](docs/Body.md)
- - [SwaggyJenkins.GetClassesByClass](docs/GetClassesByClass.md)
- - [SwaggyJenkins.GetMultibranchPipeline](docs/GetMultibranchPipeline.md)
- - [SwaggyJenkins.GetOrganisations](docs/GetOrganisations.md)
- - [SwaggyJenkins.GetPipelineActivities](docs/GetPipelineActivities.md)
- - [SwaggyJenkins.GetPipelineBranches](docs/GetPipelineBranches.md)
- - [SwaggyJenkins.GetPipelineBranchesitem](docs/GetPipelineBranchesitem.md)
- - [SwaggyJenkins.GetPipelineBranchesitemLatestRun](docs/GetPipelineBranchesitemLatestRun.md)
- - [SwaggyJenkins.GetPipelineBranchesitemPullRequest](docs/GetPipelineBranchesitemPullRequest.md)
- - [SwaggyJenkins.GetPipelineBranchesitemPullRequestLinks](docs/GetPipelineBranchesitemPullRequestLinks.md)
- - [SwaggyJenkins.GetPipelineQueue](docs/GetPipelineQueue.md)
- - [SwaggyJenkins.GetPipelineRunNodeSteps](docs/GetPipelineRunNodeSteps.md)
- - [SwaggyJenkins.GetPipelineRunNodes](docs/GetPipelineRunNodes.md)
- - [SwaggyJenkins.GetPipelineRunSteps](docs/GetPipelineRunSteps.md)
- - [SwaggyJenkins.GetPipelineRuns](docs/GetPipelineRuns.md)
- - [SwaggyJenkins.GetPipelines](docs/GetPipelines.md)
- - [SwaggyJenkins.GetScmOrganisations](docs/GetScmOrganisations.md)
- - [SwaggyJenkins.GetUserFavorites](docs/GetUserFavorites.md)
- - [SwaggyJenkins.GetUsers](docs/GetUsers.md)
- - [SwaggyJenkins.HudsonmodelAllView](docs/HudsonmodelAllView.md)
- - [SwaggyJenkins.HudsonmodelCauseAction](docs/HudsonmodelCauseAction.md)
- - [SwaggyJenkins.HudsonmodelCauseUserIdCause](docs/HudsonmodelCauseUserIdCause.md)
- - [SwaggyJenkins.HudsonmodelComputerSet](docs/HudsonmodelComputerSet.md)
- - [SwaggyJenkins.HudsonmodelFreeStyleBuild](docs/HudsonmodelFreeStyleBuild.md)
- - [SwaggyJenkins.HudsonmodelFreeStyleProject](docs/HudsonmodelFreeStyleProject.md)
- - [SwaggyJenkins.HudsonmodelFreeStyleProjectactions](docs/HudsonmodelFreeStyleProjectactions.md)
- - [SwaggyJenkins.HudsonmodelFreeStyleProjecthealthReport](docs/HudsonmodelFreeStyleProjecthealthReport.md)
- - [SwaggyJenkins.HudsonmodelHudson](docs/HudsonmodelHudson.md)
- - [SwaggyJenkins.HudsonmodelHudsonMasterComputer](docs/HudsonmodelHudsonMasterComputer.md)
- - [SwaggyJenkins.HudsonmodelHudsonMasterComputerMonitorData](docs/HudsonmodelHudsonMasterComputerMonitorData.md)
- - [SwaggyJenkins.HudsonmodelHudsonMasterComputerexecutors](docs/HudsonmodelHudsonMasterComputerexecutors.md)
- - [SwaggyJenkins.HudsonmodelHudsonassignedLabels](docs/HudsonmodelHudsonassignedLabels.md)
- - [SwaggyJenkins.HudsonmodelLabel1](docs/HudsonmodelLabel1.md)
- - [SwaggyJenkins.HudsonmodelListView](docs/HudsonmodelListView.md)
- - [SwaggyJenkins.HudsonmodelQueue](docs/HudsonmodelQueue.md)
- - [SwaggyJenkins.HudsonmodelQueueBlockedItem](docs/HudsonmodelQueueBlockedItem.md)
- - [SwaggyJenkins.HudsonmodelQueueLeftItem](docs/HudsonmodelQueueLeftItem.md)
- - [SwaggyJenkins.HudsonmodelStringParameterDefinition](docs/HudsonmodelStringParameterDefinition.md)
- - [SwaggyJenkins.HudsonmodelStringParameterValue](docs/HudsonmodelStringParameterValue.md)
- - [SwaggyJenkins.HudsonnodeMonitorsDiskSpaceMonitorDescriptorDiskSpace](docs/HudsonnodeMonitorsDiskSpaceMonitorDescriptorDiskSpace.md)
- - [SwaggyJenkins.HudsonnodeMonitorsResponseTimeMonitorData](docs/HudsonnodeMonitorsResponseTimeMonitorData.md)
- - [SwaggyJenkins.HudsonnodeMonitorsSwapSpaceMonitorMemoryUsage2](docs/HudsonnodeMonitorsSwapSpaceMonitorMemoryUsage2.md)
- - [SwaggyJenkins.HudsonscmEmptyChangeLogSet](docs/HudsonscmEmptyChangeLogSet.md)
- - [SwaggyJenkins.HudsonscmNullSCM](docs/HudsonscmNullSCM.md)
- - [SwaggyJenkins.HudsonsecuritycsrfDefaultCrumbIssuer](docs/HudsonsecuritycsrfDefaultCrumbIssuer.md)
- - [SwaggyJenkins.HudsonutilClockDifference](docs/HudsonutilClockDifference.md)
- - [SwaggyJenkins.IojenkinsblueoceanblueoceanGithubPipelineGithubContent](docs/IojenkinsblueoceanblueoceanGithubPipelineGithubContent.md)
- - [SwaggyJenkins.IojenkinsblueoceanblueoceanGithubPipelineGithubFile](docs/IojenkinsblueoceanblueoceanGithubPipelineGithubFile.md)
- - [SwaggyJenkins.IojenkinsblueoceanblueoceanGithubPipelineGithubOrganization](docs/IojenkinsblueoceanblueoceanGithubPipelineGithubOrganization.md)
- - [SwaggyJenkins.IojenkinsblueoceanblueoceanGithubPipelineGithubOrganizationLinks](docs/IojenkinsblueoceanblueoceanGithubPipelineGithubOrganizationLinks.md)
- - [SwaggyJenkins.IojenkinsblueoceanblueoceanGithubPipelineGithubRepositories](docs/IojenkinsblueoceanblueoceanGithubPipelineGithubRepositories.md)
- - [SwaggyJenkins.IojenkinsblueoceanblueoceanGithubPipelineGithubRepositoriesLinks](docs/IojenkinsblueoceanblueoceanGithubPipelineGithubRepositoriesLinks.md)
- - [SwaggyJenkins.IojenkinsblueoceanblueoceanGithubPipelineGithubRepository](docs/IojenkinsblueoceanblueoceanGithubPipelineGithubRepository.md)
- - [SwaggyJenkins.IojenkinsblueoceanblueoceanGithubPipelineGithubRepositoryLinks](docs/IojenkinsblueoceanblueoceanGithubPipelineGithubRepositoryLinks.md)
- - [SwaggyJenkins.IojenkinsblueoceanblueoceanGithubPipelineGithubRepositoryPermissions](docs/IojenkinsblueoceanblueoceanGithubPipelineGithubRepositoryPermissions.md)
- - [SwaggyJenkins.IojenkinsblueoceanblueoceanGithubPipelineGithubRespositoryContainer](docs/IojenkinsblueoceanblueoceanGithubPipelineGithubRespositoryContainer.md)
- - [SwaggyJenkins.IojenkinsblueoceanblueoceanGithubPipelineGithubRespositoryContainerLinks](docs/IojenkinsblueoceanblueoceanGithubPipelineGithubRespositoryContainerLinks.md)
- - [SwaggyJenkins.IojenkinsblueoceanblueoceanGithubPipelineGithubScm](docs/IojenkinsblueoceanblueoceanGithubPipelineGithubScm.md)
- - [SwaggyJenkins.IojenkinsblueoceanblueoceanGithubPipelineGithubScmLinks](docs/IojenkinsblueoceanblueoceanGithubPipelineGithubScmLinks.md)
- - [SwaggyJenkins.IojenkinsblueoceanresthalLink](docs/IojenkinsblueoceanresthalLink.md)
- - [SwaggyJenkins.IojenkinsblueoceanrestimplpipelineBranchImpl](docs/IojenkinsblueoceanrestimplpipelineBranchImpl.md)
- - [SwaggyJenkins.IojenkinsblueoceanrestimplpipelineBranchImplPermissions](docs/IojenkinsblueoceanrestimplpipelineBranchImplPermissions.md)
- - [SwaggyJenkins.IojenkinsblueoceanrestimplpipelineInputStepImpl](docs/IojenkinsblueoceanrestimplpipelineInputStepImpl.md)
- - [SwaggyJenkins.IojenkinsblueoceanrestimplpipelineInputStepImplLinks](docs/IojenkinsblueoceanrestimplpipelineInputStepImplLinks.md)
- - [SwaggyJenkins.IojenkinsblueoceanrestimplpipelinePipelineStepImpl](docs/IojenkinsblueoceanrestimplpipelinePipelineStepImpl.md)
- - [SwaggyJenkins.IojenkinsblueoceanrestimplpipelinePipelineStepImplLinks](docs/IojenkinsblueoceanrestimplpipelinePipelineStepImplLinks.md)
- - [SwaggyJenkins.IojenkinsblueoceanrestmodelGenericResource](docs/IojenkinsblueoceanrestmodelGenericResource.md)
- - [SwaggyJenkins.IojenkinsblueoceanserviceembeddedrestBranchImpl](docs/IojenkinsblueoceanserviceembeddedrestBranchImpl.md)
- - [SwaggyJenkins.IojenkinsblueoceanserviceembeddedrestBranchImplLinks](docs/IojenkinsblueoceanserviceembeddedrestBranchImplLinks.md)
- - [SwaggyJenkins.IojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1](docs/IojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1.md)
- - [SwaggyJenkins.IojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1Links](docs/IojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1Links.md)
- - [SwaggyJenkins.IojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1Map](docs/IojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1Map.md)
- - [SwaggyJenkins.IojenkinsblueoceanserviceembeddedrestExtensionClassImpl](docs/IojenkinsblueoceanserviceembeddedrestExtensionClassImpl.md)
- - [SwaggyJenkins.IojenkinsblueoceanserviceembeddedrestExtensionClassImplLinks](docs/IojenkinsblueoceanserviceembeddedrestExtensionClassImplLinks.md)
- - [SwaggyJenkins.IojenkinsblueoceanserviceembeddedrestFavoriteImpl](docs/IojenkinsblueoceanserviceembeddedrestFavoriteImpl.md)
- - [SwaggyJenkins.IojenkinsblueoceanserviceembeddedrestFavoriteImplLinks](docs/IojenkinsblueoceanserviceembeddedrestFavoriteImplLinks.md)
- - [SwaggyJenkins.IojenkinsblueoceanserviceembeddedrestPipelineFolderImpl](docs/IojenkinsblueoceanserviceembeddedrestPipelineFolderImpl.md)
- - [SwaggyJenkins.IojenkinsblueoceanserviceembeddedrestPipelineImpl](docs/IojenkinsblueoceanserviceembeddedrestPipelineImpl.md)
- - [SwaggyJenkins.IojenkinsblueoceanserviceembeddedrestPipelineImplLinks](docs/IojenkinsblueoceanserviceembeddedrestPipelineImplLinks.md)
- - [SwaggyJenkins.IojenkinsblueoceanserviceembeddedrestPipelineRunImpl](docs/IojenkinsblueoceanserviceembeddedrestPipelineRunImpl.md)
- - [SwaggyJenkins.IojenkinsblueoceanserviceembeddedrestPipelineRunImplLinks](docs/IojenkinsblueoceanserviceembeddedrestPipelineRunImplLinks.md)
- - [SwaggyJenkins.IojenkinsblueoceanserviceembeddedrestQueueItemImpl](docs/IojenkinsblueoceanserviceembeddedrestQueueItemImpl.md)
- - [SwaggyJenkins.JenkinsmodelUnlabeledLoadStatistics](docs/JenkinsmodelUnlabeledLoadStatistics.md)
- - [SwaggyJenkins.SwaggyjenkinsOrganisation](docs/SwaggyjenkinsOrganisation.md)
- - [SwaggyJenkins.SwaggyjenkinsPipeline](docs/SwaggyjenkinsPipeline.md)
- - [SwaggyJenkins.SwaggyjenkinsPipelineActivity](docs/SwaggyjenkinsPipelineActivity.md)
- - [SwaggyJenkins.SwaggyjenkinsPipelineActivityartifacts](docs/SwaggyjenkinsPipelineActivityartifacts.md)
- - [SwaggyJenkins.SwaggyjenkinsPipelineLatestRun](docs/SwaggyjenkinsPipelineLatestRun.md)
- - [SwaggyJenkins.SwaggyjenkinsPipelineLatestRunartifacts](docs/SwaggyjenkinsPipelineLatestRunartifacts.md)
- - [SwaggyJenkins.SwaggyjenkinsPipelineRun](docs/SwaggyjenkinsPipelineRun.md)
- - [SwaggyJenkins.SwaggyjenkinsPipelineRunNode](docs/SwaggyjenkinsPipelineRunNode.md)
- - [SwaggyJenkins.SwaggyjenkinsPipelineRunNodeedges](docs/SwaggyjenkinsPipelineRunNodeedges.md)
- - [SwaggyJenkins.SwaggyjenkinsPipelineRunartifacts](docs/SwaggyjenkinsPipelineRunartifacts.md)
- - [SwaggyJenkins.SwaggyjenkinsUser](docs/SwaggyjenkinsUser.md)
+ - [SwaggyJenkins.BranchImpl](docs/BranchImpl.md)
+ - [SwaggyJenkins.BranchImpllinks](docs/BranchImpllinks.md)
+ - [SwaggyJenkins.BranchImplpermissions](docs/BranchImplpermissions.md)
+ - [SwaggyJenkins.CauseAction](docs/CauseAction.md)
+ - [SwaggyJenkins.CauseUserIdCause](docs/CauseUserIdCause.md)
+ - [SwaggyJenkins.ClassesByClass](docs/ClassesByClass.md)
+ - [SwaggyJenkins.ClockDifference](docs/ClockDifference.md)
+ - [SwaggyJenkins.ComputerSet](docs/ComputerSet.md)
+ - [SwaggyJenkins.DefaultCrumbIssuer](docs/DefaultCrumbIssuer.md)
+ - [SwaggyJenkins.DiskSpaceMonitorDescriptorDiskSpace](docs/DiskSpaceMonitorDescriptorDiskSpace.md)
+ - [SwaggyJenkins.EmptyChangeLogSet](docs/EmptyChangeLogSet.md)
+ - [SwaggyJenkins.ExtensionClassContainerImpl1](docs/ExtensionClassContainerImpl1.md)
+ - [SwaggyJenkins.ExtensionClassContainerImpl1links](docs/ExtensionClassContainerImpl1links.md)
+ - [SwaggyJenkins.ExtensionClassContainerImpl1map](docs/ExtensionClassContainerImpl1map.md)
+ - [SwaggyJenkins.ExtensionClassImpl](docs/ExtensionClassImpl.md)
+ - [SwaggyJenkins.ExtensionClassImpllinks](docs/ExtensionClassImpllinks.md)
+ - [SwaggyJenkins.FavoriteImpl](docs/FavoriteImpl.md)
+ - [SwaggyJenkins.FavoriteImpllinks](docs/FavoriteImpllinks.md)
+ - [SwaggyJenkins.FreeStyleBuild](docs/FreeStyleBuild.md)
+ - [SwaggyJenkins.FreeStyleProject](docs/FreeStyleProject.md)
+ - [SwaggyJenkins.FreeStyleProjectactions](docs/FreeStyleProjectactions.md)
+ - [SwaggyJenkins.FreeStyleProjecthealthReport](docs/FreeStyleProjecthealthReport.md)
+ - [SwaggyJenkins.GenericResource](docs/GenericResource.md)
+ - [SwaggyJenkins.GithubContent](docs/GithubContent.md)
+ - [SwaggyJenkins.GithubFile](docs/GithubFile.md)
+ - [SwaggyJenkins.GithubOrganization](docs/GithubOrganization.md)
+ - [SwaggyJenkins.GithubOrganizationlinks](docs/GithubOrganizationlinks.md)
+ - [SwaggyJenkins.GithubRepositories](docs/GithubRepositories.md)
+ - [SwaggyJenkins.GithubRepositorieslinks](docs/GithubRepositorieslinks.md)
+ - [SwaggyJenkins.GithubRepository](docs/GithubRepository.md)
+ - [SwaggyJenkins.GithubRepositorylinks](docs/GithubRepositorylinks.md)
+ - [SwaggyJenkins.GithubRepositorypermissions](docs/GithubRepositorypermissions.md)
+ - [SwaggyJenkins.GithubRespositoryContainer](docs/GithubRespositoryContainer.md)
+ - [SwaggyJenkins.GithubRespositoryContainerlinks](docs/GithubRespositoryContainerlinks.md)
+ - [SwaggyJenkins.GithubScm](docs/GithubScm.md)
+ - [SwaggyJenkins.GithubScmlinks](docs/GithubScmlinks.md)
+ - [SwaggyJenkins.Hudson](docs/Hudson.md)
+ - [SwaggyJenkins.HudsonMasterComputer](docs/HudsonMasterComputer.md)
+ - [SwaggyJenkins.HudsonMasterComputerexecutors](docs/HudsonMasterComputerexecutors.md)
+ - [SwaggyJenkins.HudsonMasterComputermonitorData](docs/HudsonMasterComputermonitorData.md)
+ - [SwaggyJenkins.HudsonassignedLabels](docs/HudsonassignedLabels.md)
+ - [SwaggyJenkins.InputStepImpl](docs/InputStepImpl.md)
+ - [SwaggyJenkins.InputStepImpllinks](docs/InputStepImpllinks.md)
+ - [SwaggyJenkins.Label1](docs/Label1.md)
+ - [SwaggyJenkins.Link](docs/Link.md)
+ - [SwaggyJenkins.ListView](docs/ListView.md)
+ - [SwaggyJenkins.MultibranchPipeline](docs/MultibranchPipeline.md)
+ - [SwaggyJenkins.NullSCM](docs/NullSCM.md)
+ - [SwaggyJenkins.Organisation](docs/Organisation.md)
+ - [SwaggyJenkins.Organisations](docs/Organisations.md)
+ - [SwaggyJenkins.Pipeline](docs/Pipeline.md)
+ - [SwaggyJenkins.PipelineActivities](docs/PipelineActivities.md)
+ - [SwaggyJenkins.PipelineActivity](docs/PipelineActivity.md)
+ - [SwaggyJenkins.PipelineActivityartifacts](docs/PipelineActivityartifacts.md)
+ - [SwaggyJenkins.PipelineBranches](docs/PipelineBranches.md)
+ - [SwaggyJenkins.PipelineBranchesitem](docs/PipelineBranchesitem.md)
+ - [SwaggyJenkins.PipelineBranchesitemlatestRun](docs/PipelineBranchesitemlatestRun.md)
+ - [SwaggyJenkins.PipelineBranchesitempullRequest](docs/PipelineBranchesitempullRequest.md)
+ - [SwaggyJenkins.PipelineBranchesitempullRequestlinks](docs/PipelineBranchesitempullRequestlinks.md)
+ - [SwaggyJenkins.PipelineFolderImpl](docs/PipelineFolderImpl.md)
+ - [SwaggyJenkins.PipelineImpl](docs/PipelineImpl.md)
+ - [SwaggyJenkins.PipelineImpllinks](docs/PipelineImpllinks.md)
+ - [SwaggyJenkins.PipelineQueue](docs/PipelineQueue.md)
+ - [SwaggyJenkins.PipelineRun](docs/PipelineRun.md)
+ - [SwaggyJenkins.PipelineRunImpl](docs/PipelineRunImpl.md)
+ - [SwaggyJenkins.PipelineRunImpllinks](docs/PipelineRunImpllinks.md)
+ - [SwaggyJenkins.PipelineRunNode](docs/PipelineRunNode.md)
+ - [SwaggyJenkins.PipelineRunNodeSteps](docs/PipelineRunNodeSteps.md)
+ - [SwaggyJenkins.PipelineRunNodeedges](docs/PipelineRunNodeedges.md)
+ - [SwaggyJenkins.PipelineRunNodes](docs/PipelineRunNodes.md)
+ - [SwaggyJenkins.PipelineRunSteps](docs/PipelineRunSteps.md)
+ - [SwaggyJenkins.PipelineRunartifacts](docs/PipelineRunartifacts.md)
+ - [SwaggyJenkins.PipelineRuns](docs/PipelineRuns.md)
+ - [SwaggyJenkins.PipelineStepImpl](docs/PipelineStepImpl.md)
+ - [SwaggyJenkins.PipelineStepImpllinks](docs/PipelineStepImpllinks.md)
+ - [SwaggyJenkins.PipelinelatestRun](docs/PipelinelatestRun.md)
+ - [SwaggyJenkins.PipelinelatestRunartifacts](docs/PipelinelatestRunartifacts.md)
+ - [SwaggyJenkins.Pipelines](docs/Pipelines.md)
+ - [SwaggyJenkins.Queue](docs/Queue.md)
+ - [SwaggyJenkins.QueueBlockedItem](docs/QueueBlockedItem.md)
+ - [SwaggyJenkins.QueueItemImpl](docs/QueueItemImpl.md)
+ - [SwaggyJenkins.QueueLeftItem](docs/QueueLeftItem.md)
+ - [SwaggyJenkins.ResponseTimeMonitorData](docs/ResponseTimeMonitorData.md)
+ - [SwaggyJenkins.ScmOrganisations](docs/ScmOrganisations.md)
+ - [SwaggyJenkins.StringParameterDefinition](docs/StringParameterDefinition.md)
+ - [SwaggyJenkins.StringParameterValue](docs/StringParameterValue.md)
+ - [SwaggyJenkins.SwapSpaceMonitorMemoryUsage2](docs/SwapSpaceMonitorMemoryUsage2.md)
+ - [SwaggyJenkins.UnlabeledLoadStatistics](docs/UnlabeledLoadStatistics.md)
+ - [SwaggyJenkins.User](docs/User.md)
+ - [SwaggyJenkins.UserFavorites](docs/UserFavorites.md)
+ - [SwaggyJenkins.Users](docs/Users.md)
 
 
 ## Documentation for Authorization

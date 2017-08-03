@@ -1,17 +1,18 @@
 package controllers;
 
-import apimodels.HudsonmodelComputerSet;
-import apimodels.HudsonmodelFreeStyleBuild;
-import apimodels.HudsonmodelFreeStyleProject;
-import apimodels.HudsonmodelHudson;
-import apimodels.HudsonmodelListView;
-import apimodels.HudsonmodelQueue;
-import apimodels.HudsonsecuritycsrfDefaultCrumbIssuer;
+import apimodels.ComputerSet;
+import apimodels.DefaultCrumbIssuer;
+import apimodels.FreeStyleBuild;
+import apimodels.FreeStyleProject;
+import apimodels.Hudson;
+import apimodels.ListView;
+import apimodels.Queue;
 
 import play.mvc.Controller;
 import play.mvc.Result;
 import play.mvc.Http;
 import java.util.List;
+import java.util.Map;
 import java.util.ArrayList;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -24,7 +25,7 @@ import javax.validation.constraints.*;
 
 import swagger.SwaggerUtils.ApiAction;
 
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaPlayFrameworkCodegen", date = "2017-07-25T10:44:57.391+10:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaPlayFrameworkCodegen", date = "2017-08-03T23:33:33.060Z")
 
 public class RemoteAccessApiController extends Controller {
 
@@ -40,33 +41,46 @@ public class RemoteAccessApiController extends Controller {
 
     @ApiAction
     public Result getComputer() throws Exception {
-        HudsonmodelComputerSet obj = imp.getComputer();
+        String valuedepth = request().getQueryString("depth");
+        Integer depth;
+
+        depth = Integer.parseInt(valuedepth);
+
+        ComputerSet obj = imp.getComputer(depth);
+        obj.validate();
         JsonNode result = mapper.valueToTree(obj);
         return ok(result);
+        
         
     }
 
     @ApiAction
     public Result getCrumb() throws Exception {
-        HudsonsecuritycsrfDefaultCrumbIssuer obj = imp.getCrumb();
+        DefaultCrumbIssuer obj = imp.getCrumb();
+        obj.validate();
         JsonNode result = mapper.valueToTree(obj);
         return ok(result);
+        
         
     }
 
     @ApiAction
     public Result getJenkins() throws Exception {
-        HudsonmodelHudson obj = imp.getJenkins();
+        Hudson obj = imp.getJenkins();
+        obj.validate();
         JsonNode result = mapper.valueToTree(obj);
         return ok(result);
+        
         
     }
 
     @ApiAction
     public Result getJob(String name) throws Exception {
-        HudsonmodelFreeStyleProject obj = imp.getJob(name);
+        FreeStyleProject obj = imp.getJob(name);
+        obj.validate();
         JsonNode result = mapper.valueToTree(obj);
         return ok(result);
+        
         
     }
 
@@ -76,13 +90,16 @@ public class RemoteAccessApiController extends Controller {
         JsonNode result = mapper.valueToTree(obj);
         return ok(result);
         
+        
     }
 
     @ApiAction
     public Result getJobLastBuild(String name) throws Exception {
-        HudsonmodelFreeStyleBuild obj = imp.getJobLastBuild(name);
+        FreeStyleBuild obj = imp.getJobLastBuild(name);
+        obj.validate();
         JsonNode result = mapper.valueToTree(obj);
         return ok(result);
+        
         
     }
 
@@ -96,29 +113,36 @@ public class RemoteAccessApiController extends Controller {
         imp.getJobProgressiveText(name, number, start);
         
         return ok();
+        
     }
 
     @ApiAction
     public Result getQueue() throws Exception {
-        HudsonmodelQueue obj = imp.getQueue();
+        Queue obj = imp.getQueue();
+        obj.validate();
         JsonNode result = mapper.valueToTree(obj);
         return ok(result);
+        
         
     }
 
     @ApiAction
     public Result getQueueItem(String number) throws Exception {
-        HudsonmodelQueue obj = imp.getQueueItem(number);
+        Queue obj = imp.getQueueItem(number);
+        obj.validate();
         JsonNode result = mapper.valueToTree(obj);
         return ok(result);
+        
         
     }
 
     @ApiAction
     public Result getView(String name) throws Exception {
-        HudsonmodelListView obj = imp.getView(name);
+        ListView obj = imp.getView(name);
+        obj.validate();
         JsonNode result = mapper.valueToTree(obj);
         return ok(result);
+        
         
     }
 
@@ -128,6 +152,7 @@ public class RemoteAccessApiController extends Controller {
         JsonNode result = mapper.valueToTree(obj);
         return ok(result);
         
+        
     }
 
     @ApiAction
@@ -135,6 +160,7 @@ public class RemoteAccessApiController extends Controller {
         imp.headJenkins();
         
         return ok();
+        
     }
 
     @ApiAction
@@ -144,6 +170,7 @@ public class RemoteAccessApiController extends Controller {
         if (nodebody != null) {
             body = mapper.readValue(nodebody.toString(), String.class);
         
+        body.validate();
         } else {
             body = null;
         }
@@ -158,7 +185,7 @@ public class RemoteAccessApiController extends Controller {
             from = (String)valuefrom;
         
         } else {
-            from = "";
+            from = null;
         }
         String valuemode = request().getQueryString("mode");
         String mode;
@@ -166,7 +193,7 @@ public class RemoteAccessApiController extends Controller {
             mode = (String)valuemode;
         
         } else {
-            mode = "";
+            mode = null;
         }
         String valuejenkinsCrumb = request().getHeader("Jenkins-Crumb");
         String jenkinsCrumb;
@@ -174,7 +201,7 @@ public class RemoteAccessApiController extends Controller {
             jenkinsCrumb = (String)valuejenkinsCrumb;
         
         } else {
-            jenkinsCrumb = "";
+            jenkinsCrumb = null;
         }
         String valuecontentType = request().getHeader("Content-Type");
         String contentType;
@@ -182,11 +209,12 @@ public class RemoteAccessApiController extends Controller {
             contentType = (String)valuecontentType;
         
         } else {
-            contentType = "";
+            contentType = null;
         }
         imp.postCreateItem(name, from, mode, body, jenkinsCrumb, contentType);
         
         return ok();
+        
     }
 
     @ApiAction
@@ -196,6 +224,7 @@ public class RemoteAccessApiController extends Controller {
         if (nodebody != null) {
             body = mapper.readValue(nodebody.toString(), String.class);
         
+        body.validate();
         } else {
             body = null;
         }
@@ -210,7 +239,7 @@ public class RemoteAccessApiController extends Controller {
             jenkinsCrumb = (String)valuejenkinsCrumb;
         
         } else {
-            jenkinsCrumb = "";
+            jenkinsCrumb = null;
         }
         String valuecontentType = request().getHeader("Content-Type");
         String contentType;
@@ -218,11 +247,12 @@ public class RemoteAccessApiController extends Controller {
             contentType = (String)valuecontentType;
         
         } else {
-            contentType = "";
+            contentType = null;
         }
         imp.postCreateView(name, body, jenkinsCrumb, contentType);
         
         return ok();
+        
     }
 
     @ApiAction
@@ -238,7 +268,7 @@ public class RemoteAccessApiController extends Controller {
             token = (String)valuetoken;
         
         } else {
-            token = "";
+            token = null;
         }
         String valuejenkinsCrumb = request().getHeader("Jenkins-Crumb");
         String jenkinsCrumb;
@@ -246,11 +276,12 @@ public class RemoteAccessApiController extends Controller {
             jenkinsCrumb = (String)valuejenkinsCrumb;
         
         } else {
-            jenkinsCrumb = "";
+            jenkinsCrumb = null;
         }
         imp.postJobBuild(name, json, token, jenkinsCrumb);
         
         return ok();
+        
     }
 
     @ApiAction
@@ -259,6 +290,7 @@ public class RemoteAccessApiController extends Controller {
         String body;
 
         body = mapper.readValue(nodebody.toString(), String.class);
+        body.validate();
 
         String valuejenkinsCrumb = request().getHeader("Jenkins-Crumb");
         String jenkinsCrumb;
@@ -266,11 +298,12 @@ public class RemoteAccessApiController extends Controller {
             jenkinsCrumb = (String)valuejenkinsCrumb;
         
         } else {
-            jenkinsCrumb = "";
+            jenkinsCrumb = null;
         }
         imp.postJobConfig(name, body, jenkinsCrumb);
         
         return ok();
+        
     }
 
     @ApiAction
@@ -281,11 +314,12 @@ public class RemoteAccessApiController extends Controller {
             jenkinsCrumb = (String)valuejenkinsCrumb;
         
         } else {
-            jenkinsCrumb = "";
+            jenkinsCrumb = null;
         }
         imp.postJobDelete(name, jenkinsCrumb);
         
         return ok();
+        
     }
 
     @ApiAction
@@ -296,11 +330,12 @@ public class RemoteAccessApiController extends Controller {
             jenkinsCrumb = (String)valuejenkinsCrumb;
         
         } else {
-            jenkinsCrumb = "";
+            jenkinsCrumb = null;
         }
         imp.postJobDisable(name, jenkinsCrumb);
         
         return ok();
+        
     }
 
     @ApiAction
@@ -311,11 +346,12 @@ public class RemoteAccessApiController extends Controller {
             jenkinsCrumb = (String)valuejenkinsCrumb;
         
         } else {
-            jenkinsCrumb = "";
+            jenkinsCrumb = null;
         }
         imp.postJobEnable(name, jenkinsCrumb);
         
         return ok();
+        
     }
 
     @ApiAction
@@ -326,11 +362,12 @@ public class RemoteAccessApiController extends Controller {
             jenkinsCrumb = (String)valuejenkinsCrumb;
         
         } else {
-            jenkinsCrumb = "";
+            jenkinsCrumb = null;
         }
         imp.postJobLastBuildStop(name, jenkinsCrumb);
         
         return ok();
+        
     }
 
     @ApiAction
@@ -339,6 +376,7 @@ public class RemoteAccessApiController extends Controller {
         String body;
 
         body = mapper.readValue(nodebody.toString(), String.class);
+        body.validate();
 
         String valuejenkinsCrumb = request().getHeader("Jenkins-Crumb");
         String jenkinsCrumb;
@@ -346,10 +384,11 @@ public class RemoteAccessApiController extends Controller {
             jenkinsCrumb = (String)valuejenkinsCrumb;
         
         } else {
-            jenkinsCrumb = "";
+            jenkinsCrumb = null;
         }
         imp.postViewConfig(name, body, jenkinsCrumb);
         
         return ok();
+        
     }
 }

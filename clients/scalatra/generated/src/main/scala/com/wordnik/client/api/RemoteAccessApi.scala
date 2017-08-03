@@ -13,13 +13,13 @@
 
 package com.wordnik.client.api
 
-import com.wordnik.client.model.HudsonmodelComputerSet
-import com.wordnik.client.model.HudsonmodelFreeStyleBuild
-import com.wordnik.client.model.HudsonmodelFreeStyleProject
-import com.wordnik.client.model.HudsonmodelHudson
-import com.wordnik.client.model.HudsonmodelListView
-import com.wordnik.client.model.HudsonmodelQueue
-import com.wordnik.client.model.HudsonsecuritycsrfDefaultCrumbIssuer
+import com.wordnik.client.model.ComputerSet
+import com.wordnik.client.model.DefaultCrumbIssuer
+import com.wordnik.client.model.FreeStyleBuild
+import com.wordnik.client.model.FreeStyleProject
+import com.wordnik.client.model.Hudson
+import com.wordnik.client.model.ListView
+import com.wordnik.client.model.Queue
 
 import java.io.File
 
@@ -47,17 +47,22 @@ class RemoteAccessApi (implicit val swagger: Swagger) extends ScalatraServlet
   }
   
 
-  val getComputerOperation = (apiOperation[HudsonmodelComputerSet]("getComputer")
+  val getComputerOperation = (apiOperation[ComputerSet]("getComputer")
       summary ""
-      parameters()
+      parameters(queryParam[Int]("depth").description(""))
   )
 
-  get("/computer/api/json?depth=1",operation(getComputerOperation)) {
+  get("/computer/api/json",operation(getComputerOperation)) {
+    
+    
+                val depth = params.getAs[Int]("depth")
+
+    println("depth: " + depth)
   }
 
   
 
-  val getCrumbOperation = (apiOperation[HudsonsecuritycsrfDefaultCrumbIssuer]("getCrumb")
+  val getCrumbOperation = (apiOperation[DefaultCrumbIssuer]("getCrumb")
       summary ""
       parameters()
   )
@@ -67,7 +72,7 @@ class RemoteAccessApi (implicit val swagger: Swagger) extends ScalatraServlet
 
   
 
-  val getJenkinsOperation = (apiOperation[HudsonmodelHudson]("getJenkins")
+  val getJenkinsOperation = (apiOperation[Hudson]("getJenkins")
       summary ""
       parameters()
   )
@@ -77,7 +82,7 @@ class RemoteAccessApi (implicit val swagger: Swagger) extends ScalatraServlet
 
   
 
-  val getJobOperation = (apiOperation[HudsonmodelFreeStyleProject]("getJob")
+  val getJobOperation = (apiOperation[FreeStyleProject]("getJob")
       summary ""
       parameters(pathParam[String]("name").description(""))
   )
@@ -107,7 +112,7 @@ class RemoteAccessApi (implicit val swagger: Swagger) extends ScalatraServlet
 
   
 
-  val getJobLastBuildOperation = (apiOperation[HudsonmodelFreeStyleBuild]("getJobLastBuild")
+  val getJobLastBuildOperation = (apiOperation[FreeStyleBuild]("getJobLastBuild")
       summary ""
       parameters(pathParam[String]("name").description(""))
   )
@@ -147,7 +152,7 @@ class RemoteAccessApi (implicit val swagger: Swagger) extends ScalatraServlet
 
   
 
-  val getQueueOperation = (apiOperation[HudsonmodelQueue]("getQueue")
+  val getQueueOperation = (apiOperation[Queue]("getQueue")
       summary ""
       parameters()
   )
@@ -157,7 +162,7 @@ class RemoteAccessApi (implicit val swagger: Swagger) extends ScalatraServlet
 
   
 
-  val getQueueItemOperation = (apiOperation[HudsonmodelQueue]("getQueueItem")
+  val getQueueItemOperation = (apiOperation[Queue]("getQueueItem")
       summary ""
       parameters(pathParam[String]("number").description(""))
   )
@@ -172,7 +177,7 @@ class RemoteAccessApi (implicit val swagger: Swagger) extends ScalatraServlet
 
   
 
-  val getViewOperation = (apiOperation[HudsonmodelListView]("getView")
+  val getViewOperation = (apiOperation[ListView]("getView")
       summary ""
       parameters(pathParam[String]("name").description(""))
   )

@@ -1,12 +1,12 @@
 package io.swagger.api;
 
-import io.swagger.model.HudsonmodelComputerSet;
-import io.swagger.model.HudsonmodelFreeStyleBuild;
-import io.swagger.model.HudsonmodelFreeStyleProject;
-import io.swagger.model.HudsonmodelHudson;
-import io.swagger.model.HudsonmodelListView;
-import io.swagger.model.HudsonmodelQueue;
-import io.swagger.model.HudsonsecuritycsrfDefaultCrumbIssuer;
+import io.swagger.model.ComputerSet;
+import io.swagger.model.DefaultCrumbIssuer;
+import io.swagger.model.FreeStyleBuild;
+import io.swagger.model.FreeStyleProject;
+import io.swagger.model.Hudson;
+import io.swagger.model.ListView;
+import io.swagger.model.Queue;
 
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -30,45 +30,45 @@ import javax.validation.Valid;
 public interface RemoteAccessApi  {
 
     @GET
-    @Path("/computer/api/json?depth=1")
+    @Path("/computer/api/json")
     @Produces({ "application/json" })
     @ApiOperation(value = "", tags={ "remoteAccess",  })
     @ApiResponses(value = { 
-        @ApiResponse(code = 200, message = "Successfully retrieved computer details", response = HudsonmodelComputerSet.class),
+        @ApiResponse(code = 200, message = "Successfully retrieved computer details", response = ComputerSet.class),
         @ApiResponse(code = 401, message = "Authentication failed - incorrect username and/or password"),
         @ApiResponse(code = 403, message = "Jenkins requires authentication - please set username and password") })
-    public HudsonmodelComputerSet getComputer();
+    public ComputerSet getComputer(@QueryParam("depth") @NotNull Integer depth);
 
     @GET
     @Path("/crumbIssuer/api/json")
     @Produces({ "application/json" })
     @ApiOperation(value = "", tags={ "remoteAccess",  })
     @ApiResponses(value = { 
-        @ApiResponse(code = 200, message = "Successfully retrieved CSRF protection token", response = HudsonsecuritycsrfDefaultCrumbIssuer.class),
+        @ApiResponse(code = 200, message = "Successfully retrieved CSRF protection token", response = DefaultCrumbIssuer.class),
         @ApiResponse(code = 401, message = "Authentication failed - incorrect username and/or password"),
         @ApiResponse(code = 403, message = "Jenkins requires authentication - please set username and password") })
-    public HudsonsecuritycsrfDefaultCrumbIssuer getCrumb();
+    public DefaultCrumbIssuer getCrumb();
 
     @GET
     @Path("/api/json")
     @Produces({ "application/json" })
     @ApiOperation(value = "", tags={ "remoteAccess",  })
     @ApiResponses(value = { 
-        @ApiResponse(code = 200, message = "Successfully retrieved Jenkins details", response = HudsonmodelHudson.class),
+        @ApiResponse(code = 200, message = "Successfully retrieved Jenkins details", response = Hudson.class),
         @ApiResponse(code = 401, message = "Authentication failed - incorrect username and/or password"),
         @ApiResponse(code = 403, message = "Jenkins requires authentication - please set username and password") })
-    public HudsonmodelHudson getJenkins();
+    public Hudson getJenkins();
 
     @GET
     @Path("/job/{name}/api/json")
     @Produces({ "application/json" })
     @ApiOperation(value = "", tags={ "remoteAccess",  })
     @ApiResponses(value = { 
-        @ApiResponse(code = 200, message = "Successfully retrieved job details", response = HudsonmodelFreeStyleProject.class),
+        @ApiResponse(code = 200, message = "Successfully retrieved job details", response = FreeStyleProject.class),
         @ApiResponse(code = 401, message = "Authentication failed - incorrect username and/or password"),
         @ApiResponse(code = 403, message = "Jenkins requires authentication - please set username and password"),
         @ApiResponse(code = 404, message = "Job cannot be found on Jenkins instance") })
-    public HudsonmodelFreeStyleProject getJob(@PathParam("name") String name);
+    public FreeStyleProject getJob(@PathParam("name") String name);
 
     @GET
     @Path("/job/{name}/config.xml")
@@ -86,11 +86,11 @@ public interface RemoteAccessApi  {
     @Produces({ "application/json" })
     @ApiOperation(value = "", tags={ "remoteAccess",  })
     @ApiResponses(value = { 
-        @ApiResponse(code = 200, message = "Successfully retrieved job's last build details", response = HudsonmodelFreeStyleBuild.class),
+        @ApiResponse(code = 200, message = "Successfully retrieved job's last build details", response = FreeStyleBuild.class),
         @ApiResponse(code = 401, message = "Authentication failed - incorrect username and/or password"),
         @ApiResponse(code = 403, message = "Jenkins requires authentication - please set username and password"),
         @ApiResponse(code = 404, message = "Job cannot be found on Jenkins instance") })
-    public HudsonmodelFreeStyleBuild getJobLastBuild(@PathParam("name") String name);
+    public FreeStyleBuild getJobLastBuild(@PathParam("name") String name);
 
     @GET
     @Path("/job/{name}/{number}/logText/progressiveText")
@@ -107,31 +107,31 @@ public interface RemoteAccessApi  {
     @Produces({ "application/json" })
     @ApiOperation(value = "", tags={ "remoteAccess",  })
     @ApiResponses(value = { 
-        @ApiResponse(code = 200, message = "Successfully retrieved queue details", response = HudsonmodelQueue.class),
+        @ApiResponse(code = 200, message = "Successfully retrieved queue details", response = Queue.class),
         @ApiResponse(code = 401, message = "Authentication failed - incorrect username and/or password"),
         @ApiResponse(code = 403, message = "Jenkins requires authentication - please set username and password") })
-    public HudsonmodelQueue getQueue();
+    public Queue getQueue();
 
     @GET
     @Path("/queue/item/{number}/api/json")
     @Produces({ "application/json" })
     @ApiOperation(value = "", tags={ "remoteAccess",  })
     @ApiResponses(value = { 
-        @ApiResponse(code = 200, message = "Successfully retrieved queued item details", response = HudsonmodelQueue.class),
+        @ApiResponse(code = 200, message = "Successfully retrieved queued item details", response = Queue.class),
         @ApiResponse(code = 401, message = "Authentication failed - incorrect username and/or password"),
         @ApiResponse(code = 403, message = "Jenkins requires authentication - please set username and password") })
-    public HudsonmodelQueue getQueueItem(@PathParam("number") String number);
+    public Queue getQueueItem(@PathParam("number") String number);
 
     @GET
     @Path("/view/{name}/api/json")
     @Produces({ "application/json" })
     @ApiOperation(value = "", tags={ "remoteAccess",  })
     @ApiResponses(value = { 
-        @ApiResponse(code = 200, message = "Successfully retrieved view details", response = HudsonmodelListView.class),
+        @ApiResponse(code = 200, message = "Successfully retrieved view details", response = ListView.class),
         @ApiResponse(code = 401, message = "Authentication failed - incorrect username and/or password"),
         @ApiResponse(code = 403, message = "Jenkins requires authentication - please set username and password"),
         @ApiResponse(code = 404, message = "View cannot be found on Jenkins instance") })
-    public HudsonmodelListView getView(@PathParam("name") String name);
+    public ListView getView(@PathParam("name") String name);
 
     @GET
     @Path("/view/{name}/config.xml")

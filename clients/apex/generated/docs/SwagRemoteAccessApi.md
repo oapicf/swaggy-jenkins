@@ -4,7 +4,7 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**getComputer**](SwagRemoteAccessApi.md#getComputer) | **GET** /computer/api/json?depth&#x3D;1 | 
+[**getComputer**](SwagRemoteAccessApi.md#getComputer) | **GET** /computer/api/json | 
 [**getCrumb**](SwagRemoteAccessApi.md#getCrumb) | **GET** /crumbIssuer/api/json | 
 [**getJenkins**](SwagRemoteAccessApi.md#getJenkins) | **GET** /api/json | 
 [**getJob**](SwagRemoteAccessApi.md#getJob) | **GET** /job/{name}/api/json | 
@@ -29,7 +29,7 @@ Method | HTTP request | Description
 
 <a name="getComputer"></a>
 # **getComputer**
-> SwagHudsonmodelComputerSet getComputer()
+> SwagComputerSet getComputer(depth)
 
 
 
@@ -38,10 +38,23 @@ Retrieve computer details
 ### Example
 ```java
 SwagRemoteAccessApi api = new SwagRemoteAccessApi();
+SwagClient client = api.getClient();
+
+// Configure HTTP basic authorization: jenkins_auth
+HttpBasicAuth jenkins_auth = (HttpBasicAuth) client.getAuthentication('jenkins_auth');
+jenkins_auth.setUsername('YOUR USERNAME');
+jenkins_auth.setPassword('YOUR PASSWORD');
+
+// You can also set your username and password in one line
+jenkins_auth.setCredentials('YOUR USERNAME', 'YOUR PASSWORD');
+
+Map<String, Object> params = new Map<String, Object>{
+    'depth' => 56
+};
 
 try {
     // cross your fingers
-    SwagHudsonmodelComputerSet result = api.getComputer();
+    SwagComputerSet result = api.getComputer(params);
     System.debug(result);
 } catch (Swagger.ApiException e) {
     // ...handle your exceptions
@@ -49,15 +62,18 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **depth** | **Integer**| Recursion depth in response model |
 
 ### Return type
 
-[**SwagHudsonmodelComputerSet**](SwagHudsonmodelComputerSet.md)
+[**SwagComputerSet**](SwagComputerSet.md)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -66,7 +82,7 @@ No authorization required
 
 <a name="getCrumb"></a>
 # **getCrumb**
-> SwagHudsonsecuritycsrfDefaultCrumbIs getCrumb()
+> SwagDefaultCrumbIssuer getCrumb()
 
 
 
@@ -75,10 +91,19 @@ Retrieve CSRF protection token
 ### Example
 ```java
 SwagRemoteAccessApi api = new SwagRemoteAccessApi();
+SwagClient client = api.getClient();
+
+// Configure HTTP basic authorization: jenkins_auth
+HttpBasicAuth jenkins_auth = (HttpBasicAuth) client.getAuthentication('jenkins_auth');
+jenkins_auth.setUsername('YOUR USERNAME');
+jenkins_auth.setPassword('YOUR PASSWORD');
+
+// You can also set your username and password in one line
+jenkins_auth.setCredentials('YOUR USERNAME', 'YOUR PASSWORD');
 
 try {
     // cross your fingers
-    SwagHudsonsecuritycsrfDefaultCrumbIs result = api.getCrumb();
+    SwagDefaultCrumbIssuer result = api.getCrumb();
     System.debug(result);
 } catch (Swagger.ApiException e) {
     // ...handle your exceptions
@@ -90,11 +115,11 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**SwagHudsonsecuritycsrfDefaultCrumbIs**](SwagHudsonsecuritycsrfDefaultCrumbIs.md)
+[**SwagDefaultCrumbIssuer**](SwagDefaultCrumbIssuer.md)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -103,7 +128,7 @@ No authorization required
 
 <a name="getJenkins"></a>
 # **getJenkins**
-> SwagHudsonmodelHudson getJenkins()
+> SwagHudson getJenkins()
 
 
 
@@ -112,10 +137,19 @@ Retrieve Jenkins details
 ### Example
 ```java
 SwagRemoteAccessApi api = new SwagRemoteAccessApi();
+SwagClient client = api.getClient();
+
+// Configure HTTP basic authorization: jenkins_auth
+HttpBasicAuth jenkins_auth = (HttpBasicAuth) client.getAuthentication('jenkins_auth');
+jenkins_auth.setUsername('YOUR USERNAME');
+jenkins_auth.setPassword('YOUR PASSWORD');
+
+// You can also set your username and password in one line
+jenkins_auth.setCredentials('YOUR USERNAME', 'YOUR PASSWORD');
 
 try {
     // cross your fingers
-    SwagHudsonmodelHudson result = api.getJenkins();
+    SwagHudson result = api.getJenkins();
     System.debug(result);
 } catch (Swagger.ApiException e) {
     // ...handle your exceptions
@@ -127,11 +161,11 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**SwagHudsonmodelHudson**](SwagHudsonmodelHudson.md)
+[**SwagHudson**](SwagHudson.md)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -140,7 +174,7 @@ No authorization required
 
 <a name="getJob"></a>
 # **getJob**
-> SwagHudsonmodelFreeStyleProject getJob(name)
+> SwagFreeStyleProject getJob(name)
 
 
 
@@ -149,6 +183,15 @@ Retrieve job details
 ### Example
 ```java
 SwagRemoteAccessApi api = new SwagRemoteAccessApi();
+SwagClient client = api.getClient();
+
+// Configure HTTP basic authorization: jenkins_auth
+HttpBasicAuth jenkins_auth = (HttpBasicAuth) client.getAuthentication('jenkins_auth');
+jenkins_auth.setUsername('YOUR USERNAME');
+jenkins_auth.setPassword('YOUR PASSWORD');
+
+// You can also set your username and password in one line
+jenkins_auth.setCredentials('YOUR USERNAME', 'YOUR PASSWORD');
 
 Map<String, Object> params = new Map<String, Object>{
     'name' => 'name_example'
@@ -156,7 +199,7 @@ Map<String, Object> params = new Map<String, Object>{
 
 try {
     // cross your fingers
-    SwagHudsonmodelFreeStyleProject result = api.getJob(params);
+    SwagFreeStyleProject result = api.getJob(params);
     System.debug(result);
 } catch (Swagger.ApiException e) {
     // ...handle your exceptions
@@ -171,11 +214,11 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**SwagHudsonmodelFreeStyleProject**](SwagHudsonmodelFreeStyleProject.md)
+[**SwagFreeStyleProject**](SwagFreeStyleProject.md)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -193,6 +236,15 @@ Retrieve job configuration
 ### Example
 ```java
 SwagRemoteAccessApi api = new SwagRemoteAccessApi();
+SwagClient client = api.getClient();
+
+// Configure HTTP basic authorization: jenkins_auth
+HttpBasicAuth jenkins_auth = (HttpBasicAuth) client.getAuthentication('jenkins_auth');
+jenkins_auth.setUsername('YOUR USERNAME');
+jenkins_auth.setPassword('YOUR PASSWORD');
+
+// You can also set your username and password in one line
+jenkins_auth.setCredentials('YOUR USERNAME', 'YOUR PASSWORD');
 
 Map<String, Object> params = new Map<String, Object>{
     'name' => 'name_example'
@@ -219,7 +271,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -228,7 +280,7 @@ No authorization required
 
 <a name="getJobLastBuild"></a>
 # **getJobLastBuild**
-> SwagHudsonmodelFreeStyleBuild getJobLastBuild(name)
+> SwagFreeStyleBuild getJobLastBuild(name)
 
 
 
@@ -237,6 +289,15 @@ Retrieve job\&#39;s last build details
 ### Example
 ```java
 SwagRemoteAccessApi api = new SwagRemoteAccessApi();
+SwagClient client = api.getClient();
+
+// Configure HTTP basic authorization: jenkins_auth
+HttpBasicAuth jenkins_auth = (HttpBasicAuth) client.getAuthentication('jenkins_auth');
+jenkins_auth.setUsername('YOUR USERNAME');
+jenkins_auth.setPassword('YOUR PASSWORD');
+
+// You can also set your username and password in one line
+jenkins_auth.setCredentials('YOUR USERNAME', 'YOUR PASSWORD');
 
 Map<String, Object> params = new Map<String, Object>{
     'name' => 'name_example'
@@ -244,7 +305,7 @@ Map<String, Object> params = new Map<String, Object>{
 
 try {
     // cross your fingers
-    SwagHudsonmodelFreeStyleBuild result = api.getJobLastBuild(params);
+    SwagFreeStyleBuild result = api.getJobLastBuild(params);
     System.debug(result);
 } catch (Swagger.ApiException e) {
     // ...handle your exceptions
@@ -259,11 +320,11 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**SwagHudsonmodelFreeStyleBuild**](SwagHudsonmodelFreeStyleBuild.md)
+[**SwagFreeStyleBuild**](SwagFreeStyleBuild.md)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -281,6 +342,15 @@ Retrieve job\&#39;s build progressive text output
 ### Example
 ```java
 SwagRemoteAccessApi api = new SwagRemoteAccessApi();
+SwagClient client = api.getClient();
+
+// Configure HTTP basic authorization: jenkins_auth
+HttpBasicAuth jenkins_auth = (HttpBasicAuth) client.getAuthentication('jenkins_auth');
+jenkins_auth.setUsername('YOUR USERNAME');
+jenkins_auth.setPassword('YOUR PASSWORD');
+
+// You can also set your username and password in one line
+jenkins_auth.setCredentials('YOUR USERNAME', 'YOUR PASSWORD');
 
 Map<String, Object> params = new Map<String, Object>{
     'name' => 'name_example',
@@ -310,7 +380,7 @@ null (empty response body)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -319,7 +389,7 @@ No authorization required
 
 <a name="getQueue"></a>
 # **getQueue**
-> SwagHudsonmodelQueue getQueue()
+> SwagQueue getQueue()
 
 
 
@@ -328,10 +398,19 @@ Retrieve queue details
 ### Example
 ```java
 SwagRemoteAccessApi api = new SwagRemoteAccessApi();
+SwagClient client = api.getClient();
+
+// Configure HTTP basic authorization: jenkins_auth
+HttpBasicAuth jenkins_auth = (HttpBasicAuth) client.getAuthentication('jenkins_auth');
+jenkins_auth.setUsername('YOUR USERNAME');
+jenkins_auth.setPassword('YOUR PASSWORD');
+
+// You can also set your username and password in one line
+jenkins_auth.setCredentials('YOUR USERNAME', 'YOUR PASSWORD');
 
 try {
     // cross your fingers
-    SwagHudsonmodelQueue result = api.getQueue();
+    SwagQueue result = api.getQueue();
     System.debug(result);
 } catch (Swagger.ApiException e) {
     // ...handle your exceptions
@@ -343,11 +422,11 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**SwagHudsonmodelQueue**](SwagHudsonmodelQueue.md)
+[**SwagQueue**](SwagQueue.md)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -356,7 +435,7 @@ No authorization required
 
 <a name="getQueueItem"></a>
 # **getQueueItem**
-> SwagHudsonmodelQueue getQueueItem(r_number)
+> SwagQueue getQueueItem(r_number)
 
 
 
@@ -365,6 +444,15 @@ Retrieve queued item details
 ### Example
 ```java
 SwagRemoteAccessApi api = new SwagRemoteAccessApi();
+SwagClient client = api.getClient();
+
+// Configure HTTP basic authorization: jenkins_auth
+HttpBasicAuth jenkins_auth = (HttpBasicAuth) client.getAuthentication('jenkins_auth');
+jenkins_auth.setUsername('YOUR USERNAME');
+jenkins_auth.setPassword('YOUR PASSWORD');
+
+// You can also set your username and password in one line
+jenkins_auth.setCredentials('YOUR USERNAME', 'YOUR PASSWORD');
 
 Map<String, Object> params = new Map<String, Object>{
     'r_number' => 'r_number_example'
@@ -372,7 +460,7 @@ Map<String, Object> params = new Map<String, Object>{
 
 try {
     // cross your fingers
-    SwagHudsonmodelQueue result = api.getQueueItem(params);
+    SwagQueue result = api.getQueueItem(params);
     System.debug(result);
 } catch (Swagger.ApiException e) {
     // ...handle your exceptions
@@ -387,11 +475,11 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**SwagHudsonmodelQueue**](SwagHudsonmodelQueue.md)
+[**SwagQueue**](SwagQueue.md)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -400,7 +488,7 @@ No authorization required
 
 <a name="getView"></a>
 # **getView**
-> SwagHudsonmodelListView getView(name)
+> SwagListView getView(name)
 
 
 
@@ -409,6 +497,15 @@ Retrieve view details
 ### Example
 ```java
 SwagRemoteAccessApi api = new SwagRemoteAccessApi();
+SwagClient client = api.getClient();
+
+// Configure HTTP basic authorization: jenkins_auth
+HttpBasicAuth jenkins_auth = (HttpBasicAuth) client.getAuthentication('jenkins_auth');
+jenkins_auth.setUsername('YOUR USERNAME');
+jenkins_auth.setPassword('YOUR PASSWORD');
+
+// You can also set your username and password in one line
+jenkins_auth.setCredentials('YOUR USERNAME', 'YOUR PASSWORD');
 
 Map<String, Object> params = new Map<String, Object>{
     'name' => 'name_example'
@@ -416,7 +513,7 @@ Map<String, Object> params = new Map<String, Object>{
 
 try {
     // cross your fingers
-    SwagHudsonmodelListView result = api.getView(params);
+    SwagListView result = api.getView(params);
     System.debug(result);
 } catch (Swagger.ApiException e) {
     // ...handle your exceptions
@@ -431,11 +528,11 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**SwagHudsonmodelListView**](SwagHudsonmodelListView.md)
+[**SwagListView**](SwagListView.md)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -453,6 +550,15 @@ Retrieve view configuration
 ### Example
 ```java
 SwagRemoteAccessApi api = new SwagRemoteAccessApi();
+SwagClient client = api.getClient();
+
+// Configure HTTP basic authorization: jenkins_auth
+HttpBasicAuth jenkins_auth = (HttpBasicAuth) client.getAuthentication('jenkins_auth');
+jenkins_auth.setUsername('YOUR USERNAME');
+jenkins_auth.setPassword('YOUR PASSWORD');
+
+// You can also set your username and password in one line
+jenkins_auth.setCredentials('YOUR USERNAME', 'YOUR PASSWORD');
 
 Map<String, Object> params = new Map<String, Object>{
     'name' => 'name_example'
@@ -479,7 +585,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -497,6 +603,15 @@ Retrieve Jenkins headers
 ### Example
 ```java
 SwagRemoteAccessApi api = new SwagRemoteAccessApi();
+SwagClient client = api.getClient();
+
+// Configure HTTP basic authorization: jenkins_auth
+HttpBasicAuth jenkins_auth = (HttpBasicAuth) client.getAuthentication('jenkins_auth');
+jenkins_auth.setUsername('YOUR USERNAME');
+jenkins_auth.setPassword('YOUR PASSWORD');
+
+// You can also set your username and password in one line
+jenkins_auth.setCredentials('YOUR USERNAME', 'YOUR PASSWORD');
 
 try {
     // cross your fingers
@@ -515,7 +630,7 @@ null (empty response body)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -533,6 +648,15 @@ Create a new job using job configuration, or copied from an existing job
 ### Example
 ```java
 SwagRemoteAccessApi api = new SwagRemoteAccessApi();
+SwagClient client = api.getClient();
+
+// Configure HTTP basic authorization: jenkins_auth
+HttpBasicAuth jenkins_auth = (HttpBasicAuth) client.getAuthentication('jenkins_auth');
+jenkins_auth.setUsername('YOUR USERNAME');
+jenkins_auth.setPassword('YOUR PASSWORD');
+
+// You can also set your username and password in one line
+jenkins_auth.setCredentials('YOUR USERNAME', 'YOUR PASSWORD');
 
 Map<String, Object> params = new Map<String, Object>{
     'name' => 'name_example',
@@ -568,7 +692,7 @@ null (empty response body)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -586,6 +710,15 @@ Create a new view using view configuration
 ### Example
 ```java
 SwagRemoteAccessApi api = new SwagRemoteAccessApi();
+SwagClient client = api.getClient();
+
+// Configure HTTP basic authorization: jenkins_auth
+HttpBasicAuth jenkins_auth = (HttpBasicAuth) client.getAuthentication('jenkins_auth');
+jenkins_auth.setUsername('YOUR USERNAME');
+jenkins_auth.setPassword('YOUR PASSWORD');
+
+// You can also set your username and password in one line
+jenkins_auth.setCredentials('YOUR USERNAME', 'YOUR PASSWORD');
 
 Map<String, Object> params = new Map<String, Object>{
     'name' => 'name_example',
@@ -617,7 +750,7 @@ null (empty response body)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -635,6 +768,15 @@ Build a job
 ### Example
 ```java
 SwagRemoteAccessApi api = new SwagRemoteAccessApi();
+SwagClient client = api.getClient();
+
+// Configure HTTP basic authorization: jenkins_auth
+HttpBasicAuth jenkins_auth = (HttpBasicAuth) client.getAuthentication('jenkins_auth');
+jenkins_auth.setUsername('YOUR USERNAME');
+jenkins_auth.setPassword('YOUR PASSWORD');
+
+// You can also set your username and password in one line
+jenkins_auth.setCredentials('YOUR USERNAME', 'YOUR PASSWORD');
 
 Map<String, Object> params = new Map<String, Object>{
     'name' => 'name_example',
@@ -666,7 +808,7 @@ null (empty response body)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -684,6 +826,15 @@ Update job configuration
 ### Example
 ```java
 SwagRemoteAccessApi api = new SwagRemoteAccessApi();
+SwagClient client = api.getClient();
+
+// Configure HTTP basic authorization: jenkins_auth
+HttpBasicAuth jenkins_auth = (HttpBasicAuth) client.getAuthentication('jenkins_auth');
+jenkins_auth.setUsername('YOUR USERNAME');
+jenkins_auth.setPassword('YOUR PASSWORD');
+
+// You can also set your username and password in one line
+jenkins_auth.setCredentials('YOUR USERNAME', 'YOUR PASSWORD');
 
 Map<String, Object> params = new Map<String, Object>{
     'name' => 'name_example',
@@ -713,7 +864,7 @@ null (empty response body)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -731,6 +882,15 @@ Delete a job
 ### Example
 ```java
 SwagRemoteAccessApi api = new SwagRemoteAccessApi();
+SwagClient client = api.getClient();
+
+// Configure HTTP basic authorization: jenkins_auth
+HttpBasicAuth jenkins_auth = (HttpBasicAuth) client.getAuthentication('jenkins_auth');
+jenkins_auth.setUsername('YOUR USERNAME');
+jenkins_auth.setPassword('YOUR PASSWORD');
+
+// You can also set your username and password in one line
+jenkins_auth.setCredentials('YOUR USERNAME', 'YOUR PASSWORD');
 
 Map<String, Object> params = new Map<String, Object>{
     'name' => 'name_example',
@@ -758,7 +918,7 @@ null (empty response body)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -776,6 +936,15 @@ Disable a job
 ### Example
 ```java
 SwagRemoteAccessApi api = new SwagRemoteAccessApi();
+SwagClient client = api.getClient();
+
+// Configure HTTP basic authorization: jenkins_auth
+HttpBasicAuth jenkins_auth = (HttpBasicAuth) client.getAuthentication('jenkins_auth');
+jenkins_auth.setUsername('YOUR USERNAME');
+jenkins_auth.setPassword('YOUR PASSWORD');
+
+// You can also set your username and password in one line
+jenkins_auth.setCredentials('YOUR USERNAME', 'YOUR PASSWORD');
 
 Map<String, Object> params = new Map<String, Object>{
     'name' => 'name_example',
@@ -803,7 +972,7 @@ null (empty response body)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -821,6 +990,15 @@ Enable a job
 ### Example
 ```java
 SwagRemoteAccessApi api = new SwagRemoteAccessApi();
+SwagClient client = api.getClient();
+
+// Configure HTTP basic authorization: jenkins_auth
+HttpBasicAuth jenkins_auth = (HttpBasicAuth) client.getAuthentication('jenkins_auth');
+jenkins_auth.setUsername('YOUR USERNAME');
+jenkins_auth.setPassword('YOUR PASSWORD');
+
+// You can also set your username and password in one line
+jenkins_auth.setCredentials('YOUR USERNAME', 'YOUR PASSWORD');
 
 Map<String, Object> params = new Map<String, Object>{
     'name' => 'name_example',
@@ -848,7 +1026,7 @@ null (empty response body)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -866,6 +1044,15 @@ Stop a job
 ### Example
 ```java
 SwagRemoteAccessApi api = new SwagRemoteAccessApi();
+SwagClient client = api.getClient();
+
+// Configure HTTP basic authorization: jenkins_auth
+HttpBasicAuth jenkins_auth = (HttpBasicAuth) client.getAuthentication('jenkins_auth');
+jenkins_auth.setUsername('YOUR USERNAME');
+jenkins_auth.setPassword('YOUR PASSWORD');
+
+// You can also set your username and password in one line
+jenkins_auth.setCredentials('YOUR USERNAME', 'YOUR PASSWORD');
 
 Map<String, Object> params = new Map<String, Object>{
     'name' => 'name_example',
@@ -893,7 +1080,7 @@ null (empty response body)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 
@@ -911,6 +1098,15 @@ Update view configuration
 ### Example
 ```java
 SwagRemoteAccessApi api = new SwagRemoteAccessApi();
+SwagClient client = api.getClient();
+
+// Configure HTTP basic authorization: jenkins_auth
+HttpBasicAuth jenkins_auth = (HttpBasicAuth) client.getAuthentication('jenkins_auth');
+jenkins_auth.setUsername('YOUR USERNAME');
+jenkins_auth.setPassword('YOUR PASSWORD');
+
+// You can also set your username and password in one line
+jenkins_auth.setCredentials('YOUR USERNAME', 'YOUR PASSWORD');
 
 Map<String, Object> params = new Map<String, Object>{
     'name' => 'name_example',
@@ -940,7 +1136,7 @@ null (empty response body)
 
 ### Authorization
 
-No authorization required
+[jenkins_auth](../README.md#jenkins_auth)
 
 ### HTTP request headers
 

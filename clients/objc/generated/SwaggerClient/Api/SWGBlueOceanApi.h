@@ -1,13 +1,27 @@
 #import <Foundation/Foundation.h>
-#import "SWGGetMultibranchPipeline.h"
-#import "SWGGetOrganisations.h"
-#import "SWGGetPipelines.h"
-#import "SWGIojenkinsblueoceanrestimplpipelineBranchImpl.h"
-#import "SWGIojenkinsblueoceanserviceembeddedrestPipelineFolderImpl.h"
-#import "SWGIojenkinsblueoceanserviceembeddedrestPipelineImpl.h"
-#import "SWGSwaggyjenkinsOrganisation.h"
-#import "SWGSwaggyjenkinsPipeline.h"
-#import "SWGSwaggyjenkinsUser.h"
+#import "SWGBody.h"
+#import "SWGBranchImpl.h"
+#import "SWGFavoriteImpl.h"
+#import "SWGGithubScm.h"
+#import "SWGMultibranchPipeline.h"
+#import "SWGOrganisation.h"
+#import "SWGOrganisations.h"
+#import "SWGPipeline.h"
+#import "SWGPipelineActivities.h"
+#import "SWGPipelineFolderImpl.h"
+#import "SWGPipelineImpl.h"
+#import "SWGPipelineQueue.h"
+#import "SWGPipelineRun.h"
+#import "SWGPipelineRunNode.h"
+#import "SWGPipelineRunNodeSteps.h"
+#import "SWGPipelineRunNodes.h"
+#import "SWGPipelineRuns.h"
+#import "SWGPipelineStepImpl.h"
+#import "SWGPipelines.h"
+#import "SWGQueueItemImpl.h"
+#import "SWGScmOrganisations.h"
+#import "SWGUser.h"
+#import "SWGUserFavorites.h"
 #import "SWGApi.h"
 
 /**
@@ -32,17 +46,35 @@ extern NSInteger kSWGBlueOceanApiMissingParamErrorCode;
 -(instancetype) initWithApiClient:(SWGApiClient *)apiClient NS_DESIGNATED_INITIALIZER;
 
 /// 
-/// Retrieve authenticated user details for an organisation
+/// Delete queue item from an organization pipeline queue
 ///
-/// @param organisation Name of the organisation
+/// @param organization Name of the organization
+/// @param pipeline Name of the pipeline
+/// @param queue Name of the queue item
+/// 
+///  code:200 message:"Successfully deleted queue item",
+///  code:401 message:"Authentication failed - incorrect username and/or password",
+///  code:403 message:"Jenkins requires authentication - please set username and password"
+///
+/// @return void
+-(NSURLSessionTask*) deletePipelineQueueItemWithOrganization: (NSString*) organization
+    pipeline: (NSString*) pipeline
+    queue: (NSString*) queue
+    completionHandler: (void (^)(NSError* error)) handler;
+
+
+/// 
+/// Retrieve authenticated user details for an organization
+///
+/// @param organization Name of the organization
 /// 
 ///  code:200 message:"Successfully retrieved authenticated user details",
 ///  code:401 message:"Authentication failed - incorrect username and/or password",
 ///  code:403 message:"Jenkins requires authentication - please set username and password"
 ///
-/// @return SWGSwaggyjenkinsUser*
--(NSURLSessionTask*) getAuthenticatedUserWithOrganisation: (NSString*) organisation
-    completionHandler: (void (^)(SWGSwaggyjenkinsUser* output, NSError* error)) handler;
+/// @return SWGUser*
+-(NSURLSessionTask*) getAuthenticatedUserWithOrganization: (NSString*) organization
+    completionHandler: (void (^)(SWGUser* output, NSError* error)) handler;
 
 
 /// 
@@ -60,37 +92,70 @@ extern NSInteger kSWGBlueOceanApiMissingParamErrorCode;
 
 
 /// 
-/// Retrieve organisation details
+/// Retrieve organization details
 ///
-/// @param organisation Name of the organisation
+/// @param organization Name of the organization
 /// 
 ///  code:200 message:"Successfully retrieved pipeline details",
 ///  code:401 message:"Authentication failed - incorrect username and/or password",
 ///  code:403 message:"Jenkins requires authentication - please set username and password",
 ///  code:404 message:"Pipeline cannot be found on Jenkins instance"
 ///
-/// @return SWGSwaggyjenkinsOrganisation*
--(NSURLSessionTask*) getOrganisationWithOrganisation: (NSString*) organisation
-    completionHandler: (void (^)(SWGSwaggyjenkinsOrganisation* output, NSError* error)) handler;
+/// @return SWGOrganisation*
+-(NSURLSessionTask*) getOrganisationWithOrganization: (NSString*) organization
+    completionHandler: (void (^)(SWGOrganisation* output, NSError* error)) handler;
 
 
 /// 
-/// Retrieve all organisations details
+/// Retrieve all organizations details
 ///
 /// 
 ///  code:200 message:"Successfully retrieved pipelines details",
 ///  code:401 message:"Authentication failed - incorrect username and/or password",
 ///  code:403 message:"Jenkins requires authentication - please set username and password"
 ///
-/// @return SWGGetOrganisations*
+/// @return SWGOrganisations*
 -(NSURLSessionTask*) getOrganisationsWithCompletionHandler: 
-    (void (^)(SWGGetOrganisations* output, NSError* error)) handler;
+    (void (^)(SWGOrganisations* output, NSError* error)) handler;
 
 
 /// 
-/// Retrieve branch details for an organisation pipeline
+/// Retrieve pipeline details for an organization
 ///
-/// @param organisation Name of the organisation
+/// @param organization Name of the organization
+/// @param pipeline Name of the pipeline
+/// 
+///  code:200 message:"Successfully retrieved pipeline details",
+///  code:401 message:"Authentication failed - incorrect username and/or password",
+///  code:403 message:"Jenkins requires authentication - please set username and password",
+///  code:404 message:"Pipeline cannot be found on Jenkins instance"
+///
+/// @return SWGPipeline*
+-(NSURLSessionTask*) getPipelineWithOrganization: (NSString*) organization
+    pipeline: (NSString*) pipeline
+    completionHandler: (void (^)(SWGPipeline* output, NSError* error)) handler;
+
+
+/// 
+/// Retrieve all activities details for an organization pipeline
+///
+/// @param organization Name of the organization
+/// @param pipeline Name of the pipeline
+/// 
+///  code:200 message:"Successfully retrieved all activities details",
+///  code:401 message:"Authentication failed - incorrect username and/or password",
+///  code:403 message:"Jenkins requires authentication - please set username and password"
+///
+/// @return SWGPipelineActivities*
+-(NSURLSessionTask*) getPipelineActivitiesWithOrganization: (NSString*) organization
+    pipeline: (NSString*) pipeline
+    completionHandler: (void (^)(SWGPipelineActivities* output, NSError* error)) handler;
+
+
+/// 
+/// Retrieve branch details for an organization pipeline
+///
+/// @param organization Name of the organization
 /// @param pipeline Name of the pipeline
 /// @param branch Name of the branch
 /// 
@@ -98,66 +163,69 @@ extern NSInteger kSWGBlueOceanApiMissingParamErrorCode;
 ///  code:401 message:"Authentication failed - incorrect username and/or password",
 ///  code:403 message:"Jenkins requires authentication - please set username and password"
 ///
-/// @return SWGIojenkinsblueoceanrestimplpipelineBranchImpl*
--(NSURLSessionTask*) getPipelineBranchByOrgWithOrganisation: (NSString*) organisation
+/// @return SWGBranchImpl*
+-(NSURLSessionTask*) getPipelineBranchWithOrganization: (NSString*) organization
     pipeline: (NSString*) pipeline
     branch: (NSString*) branch
-    completionHandler: (void (^)(SWGIojenkinsblueoceanrestimplpipelineBranchImpl* output, NSError* error)) handler;
+    completionHandler: (void (^)(SWGBranchImpl* output, NSError* error)) handler;
 
 
 /// 
-/// Retrieve all branches details for an organisation pipeline
+/// Retrieve branch run details for an organization pipeline
 ///
-/// @param organisation Name of the organisation
+/// @param organization Name of the organization
+/// @param pipeline Name of the pipeline
+/// @param branch Name of the branch
+/// @param run Name of the run
+/// 
+///  code:200 message:"Successfully retrieved run details",
+///  code:401 message:"Authentication failed - incorrect username and/or password",
+///  code:403 message:"Jenkins requires authentication - please set username and password"
+///
+/// @return SWGPipelineRun*
+-(NSURLSessionTask*) getPipelineBranchRunWithOrganization: (NSString*) organization
+    pipeline: (NSString*) pipeline
+    branch: (NSString*) branch
+    run: (NSString*) run
+    completionHandler: (void (^)(SWGPipelineRun* output, NSError* error)) handler;
+
+
+/// 
+/// Retrieve all branches details for an organization pipeline
+///
+/// @param organization Name of the organization
 /// @param pipeline Name of the pipeline
 /// 
 ///  code:200 message:"Successfully retrieved all branches details",
 ///  code:401 message:"Authentication failed - incorrect username and/or password",
 ///  code:403 message:"Jenkins requires authentication - please set username and password"
 ///
-/// @return SWGGetMultibranchPipeline*
--(NSURLSessionTask*) getPipelineBranchesByOrgWithOrganisation: (NSString*) organisation
+/// @return SWGMultibranchPipeline*
+-(NSURLSessionTask*) getPipelineBranchesWithOrganization: (NSString*) organization
     pipeline: (NSString*) pipeline
-    completionHandler: (void (^)(SWGGetMultibranchPipeline* output, NSError* error)) handler;
+    completionHandler: (void (^)(SWGMultibranchPipeline* output, NSError* error)) handler;
 
 
 /// 
-/// Retrieve pipeline details for an organisation
+/// Retrieve pipeline folder for an organization
 ///
-/// @param organisation Name of the organisation
-/// @param pipeline Name of the pipeline
-/// 
-///  code:200 message:"Successfully retrieved pipeline details",
-///  code:401 message:"Authentication failed - incorrect username and/or password",
-///  code:403 message:"Jenkins requires authentication - please set username and password",
-///  code:404 message:"Pipeline cannot be found on Jenkins instance"
-///
-/// @return SWGSwaggyjenkinsPipeline*
--(NSURLSessionTask*) getPipelineByOrgWithOrganisation: (NSString*) organisation
-    pipeline: (NSString*) pipeline
-    completionHandler: (void (^)(SWGSwaggyjenkinsPipeline* output, NSError* error)) handler;
-
-
-/// 
-/// Retrieve pipeline folder for an organisation
-///
-/// @param organisation Name of the organisation
+/// @param organization Name of the organization
 /// @param folder Name of the folder
 /// 
 ///  code:200 message:"Successfully retrieved folder details",
 ///  code:401 message:"Authentication failed - incorrect username and/or password",
 ///  code:403 message:"Jenkins requires authentication - please set username and password"
 ///
-/// @return SWGIojenkinsblueoceanserviceembeddedrestPipelineFolderImpl*
--(NSURLSessionTask*) getPipelineFolderByOrgWithOrganisation: (NSString*) organisation
+/// @return SWGPipelineFolderImpl*
+-(NSURLSessionTask*) getPipelineFolderWithOrganization: (NSString*) organization
     folder: (NSString*) folder
-    completionHandler: (void (^)(SWGIojenkinsblueoceanserviceembeddedrestPipelineFolderImpl* output, NSError* error)) handler;
+    completionHandler: (void (^)(SWGPipelineFolderImpl* output, NSError* error)) handler;
 
 
 /// 
-/// Retrieve pipeline details for an organisation folder
+/// Retrieve pipeline details for an organization folder
 ///
-/// @param organisation Name of the organisation
+/// @param organization Name of the organization
 /// @param pipeline Name of the pipeline
 /// @param folder Name of the folder
 /// 
@@ -165,69 +233,397 @@ extern NSInteger kSWGBlueOceanApiMissingParamErrorCode;
 ///  code:401 message:"Authentication failed - incorrect username and/or password",
 ///  code:403 message:"Jenkins requires authentication - please set username and password"
 ///
-/// @return SWGIojenkinsblueoceanserviceembeddedrestPipelineImpl*
--(NSURLSessionTask*) getPipelineFolderByOrg_1WithOrganisation: (NSString*) organisation
+/// @return SWGPipelineImpl*
+-(NSURLSessionTask*) getPipelineFolderPipelineWithOrganization: (NSString*) organization
     pipeline: (NSString*) pipeline
     folder: (NSString*) folder
-    completionHandler: (void (^)(SWGIojenkinsblueoceanserviceembeddedrestPipelineImpl* output, NSError* error)) handler;
+    completionHandler: (void (^)(SWGPipelineImpl* output, NSError* error)) handler;
 
 
 /// 
-/// Retrieve all pipelines details for an organisation
+/// Retrieve queue details for an organization pipeline
 ///
-/// @param organisation Name of the organisation
+/// @param organization Name of the organization
+/// @param pipeline Name of the pipeline
+/// 
+///  code:200 message:"Successfully retrieved queue details",
+///  code:401 message:"Authentication failed - incorrect username and/or password",
+///  code:403 message:"Jenkins requires authentication - please set username and password"
+///
+/// @return SWGPipelineQueue*
+-(NSURLSessionTask*) getPipelineQueueWithOrganization: (NSString*) organization
+    pipeline: (NSString*) pipeline
+    completionHandler: (void (^)(SWGPipelineQueue* output, NSError* error)) handler;
+
+
+/// 
+/// Retrieve run details for an organization pipeline
+///
+/// @param organization Name of the organization
+/// @param pipeline Name of the pipeline
+/// @param run Name of the run
+/// 
+///  code:200 message:"Successfully retrieved run details",
+///  code:401 message:"Authentication failed - incorrect username and/or password",
+///  code:403 message:"Jenkins requires authentication - please set username and password"
+///
+/// @return SWGPipelineRun*
+-(NSURLSessionTask*) getPipelineRunWithOrganization: (NSString*) organization
+    pipeline: (NSString*) pipeline
+    run: (NSString*) run
+    completionHandler: (void (^)(SWGPipelineRun* output, NSError* error)) handler;
+
+
+/// 
+/// Get log for a pipeline run
+///
+/// @param organization Name of the organization
+/// @param pipeline Name of the pipeline
+/// @param run Name of the run
+/// @param start Start position of the log (optional)
+/// @param download Set to true in order to download the file, otherwise it&#39;s passed as a response body (optional)
+/// 
+///  code:200 message:"Successfully retrieved pipeline run log",
+///  code:401 message:"Authentication failed - incorrect username and/or password",
+///  code:403 message:"Jenkins requires authentication - please set username and password"
+///
+/// @return NSString*
+-(NSURLSessionTask*) getPipelineRunLogWithOrganization: (NSString*) organization
+    pipeline: (NSString*) pipeline
+    run: (NSString*) run
+    start: (NSNumber*) start
+    download: (NSNumber*) download
+    completionHandler: (void (^)(NSString* output, NSError* error)) handler;
+
+
+/// 
+/// Retrieve run node details for an organization pipeline
+///
+/// @param organization Name of the organization
+/// @param pipeline Name of the pipeline
+/// @param run Name of the run
+/// @param node Name of the node
+/// 
+///  code:200 message:"Successfully retrieved run node details",
+///  code:401 message:"Authentication failed - incorrect username and/or password",
+///  code:403 message:"Jenkins requires authentication - please set username and password"
+///
+/// @return SWGPipelineRunNode*
+-(NSURLSessionTask*) getPipelineRunNodeWithOrganization: (NSString*) organization
+    pipeline: (NSString*) pipeline
+    run: (NSString*) run
+    node: (NSString*) node
+    completionHandler: (void (^)(SWGPipelineRunNode* output, NSError* error)) handler;
+
+
+/// 
+/// Retrieve run node details for an organization pipeline
+///
+/// @param organization Name of the organization
+/// @param pipeline Name of the pipeline
+/// @param run Name of the run
+/// @param node Name of the node
+/// @param step Name of the step
+/// 
+///  code:200 message:"Successfully retrieved run node step details",
+///  code:401 message:"Authentication failed - incorrect username and/or password",
+///  code:403 message:"Jenkins requires authentication - please set username and password"
+///
+/// @return SWGPipelineStepImpl*
+-(NSURLSessionTask*) getPipelineRunNodeStepWithOrganization: (NSString*) organization
+    pipeline: (NSString*) pipeline
+    run: (NSString*) run
+    node: (NSString*) node
+    step: (NSString*) step
+    completionHandler: (void (^)(SWGPipelineStepImpl* output, NSError* error)) handler;
+
+
+/// 
+/// Get log for a pipeline run node step
+///
+/// @param organization Name of the organization
+/// @param pipeline Name of the pipeline
+/// @param run Name of the run
+/// @param node Name of the node
+/// @param step Name of the step
+/// 
+///  code:200 message:"Successfully retrieved pipeline run node step log",
+///  code:401 message:"Authentication failed - incorrect username and/or password",
+///  code:403 message:"Jenkins requires authentication - please set username and password"
+///
+/// @return NSString*
+-(NSURLSessionTask*) getPipelineRunNodeStepLogWithOrganization: (NSString*) organization
+    pipeline: (NSString*) pipeline
+    run: (NSString*) run
+    node: (NSString*) node
+    step: (NSString*) step
+    completionHandler: (void (^)(NSString* output, NSError* error)) handler;
+
+
+/// 
+/// Retrieve run node steps details for an organization pipeline
+///
+/// @param organization Name of the organization
+/// @param pipeline Name of the pipeline
+/// @param run Name of the run
+/// @param node Name of the node
+/// 
+///  code:200 message:"Successfully retrieved run node steps details",
+///  code:401 message:"Authentication failed - incorrect username and/or password",
+///  code:403 message:"Jenkins requires authentication - please set username and password"
+///
+/// @return SWGPipelineRunNodeSteps*
+-(NSURLSessionTask*) getPipelineRunNodeStepsWithOrganization: (NSString*) organization
+    pipeline: (NSString*) pipeline
+    run: (NSString*) run
+    node: (NSString*) node
+    completionHandler: (void (^)(SWGPipelineRunNodeSteps* output, NSError* error)) handler;
+
+
+/// 
+/// Retrieve run nodes details for an organization pipeline
+///
+/// @param organization Name of the organization
+/// @param pipeline Name of the pipeline
+/// @param run Name of the run
+/// 
+///  code:200 message:"Successfully retrieved run nodes details",
+///  code:401 message:"Authentication failed - incorrect username and/or password",
+///  code:403 message:"Jenkins requires authentication - please set username and password"
+///
+/// @return SWGPipelineRunNodes*
+-(NSURLSessionTask*) getPipelineRunNodesWithOrganization: (NSString*) organization
+    pipeline: (NSString*) pipeline
+    run: (NSString*) run
+    completionHandler: (void (^)(SWGPipelineRunNodes* output, NSError* error)) handler;
+
+
+/// 
+/// Retrieve all runs details for an organization pipeline
+///
+/// @param organization Name of the organization
+/// @param pipeline Name of the pipeline
+/// 
+///  code:200 message:"Successfully retrieved runs details",
+///  code:401 message:"Authentication failed - incorrect username and/or password",
+///  code:403 message:"Jenkins requires authentication - please set username and password"
+///
+/// @return SWGPipelineRuns*
+-(NSURLSessionTask*) getPipelineRunsWithOrganization: (NSString*) organization
+    pipeline: (NSString*) pipeline
+    completionHandler: (void (^)(SWGPipelineRuns* output, NSError* error)) handler;
+
+
+/// 
+/// Retrieve all pipelines details for an organization
+///
+/// @param organization Name of the organization
 /// 
 ///  code:200 message:"Successfully retrieved pipelines details",
 ///  code:401 message:"Authentication failed - incorrect username and/or password",
 ///  code:403 message:"Jenkins requires authentication - please set username and password"
 ///
-/// @return SWGGetPipelines*
--(NSURLSessionTask*) getPipelinesByOrgWithOrganisation: (NSString*) organisation
-    completionHandler: (void (^)(SWGGetPipelines* output, NSError* error)) handler;
+/// @return SWGPipelines*
+-(NSURLSessionTask*) getPipelinesWithOrganization: (NSString*) organization
+    completionHandler: (void (^)(SWGPipelines* output, NSError* error)) handler;
 
 
 /// 
-/// Retrieve user details for an organisation
+/// Retrieve SCM details for an organization
 ///
-/// @param organisation Name of the organisation
+/// @param organization Name of the organization
+/// @param scm Name of SCM
+/// 
+///  code:200 message:"Successfully retrieved SCM details",
+///  code:401 message:"Authentication failed - incorrect username and/or password",
+///  code:403 message:"Jenkins requires authentication - please set username and password"
+///
+/// @return SWGGithubScm*
+-(NSURLSessionTask*) getSCMWithOrganization: (NSString*) organization
+    scm: (NSString*) scm
+    completionHandler: (void (^)(SWGGithubScm* output, NSError* error)) handler;
+
+
+/// 
+/// Retrieve SCM organization repositories details for an organization
+///
+/// @param organization Name of the organization
+/// @param scm Name of SCM
+/// @param scmOrganisation Name of the SCM organization
+/// @param credentialId Credential ID (optional)
+/// @param pageSize Number of items in a page (optional)
+/// @param pageNumber Page number (optional)
+/// 
+///  code:200 message:"Successfully retrieved SCM organization repositories details",
+///  code:401 message:"Authentication failed - incorrect username and/or password",
+///  code:403 message:"Jenkins requires authentication - please set username and password"
+///
+/// @return SWGScmOrganisations*
+-(NSURLSessionTask*) getSCMOrganisationRepositoriesWithOrganization: (NSString*) organization
+    scm: (NSString*) scm
+    scmOrganisation: (NSString*) scmOrganisation
+    credentialId: (NSString*) credentialId
+    pageSize: (NSNumber*) pageSize
+    pageNumber: (NSNumber*) pageNumber
+    completionHandler: (void (^)(SWGScmOrganisations* output, NSError* error)) handler;
+
+
+/// 
+/// Retrieve SCM organization repository details for an organization
+///
+/// @param organization Name of the organization
+/// @param scm Name of SCM
+/// @param scmOrganisation Name of the SCM organization
+/// @param repository Name of the SCM repository
+/// @param credentialId Credential ID (optional)
+/// 
+///  code:200 message:"Successfully retrieved SCM organizations details",
+///  code:401 message:"Authentication failed - incorrect username and/or password",
+///  code:403 message:"Jenkins requires authentication - please set username and password"
+///
+/// @return SWGScmOrganisations*
+-(NSURLSessionTask*) getSCMOrganisationRepositoryWithOrganization: (NSString*) organization
+    scm: (NSString*) scm
+    scmOrganisation: (NSString*) scmOrganisation
+    repository: (NSString*) repository
+    credentialId: (NSString*) credentialId
+    completionHandler: (void (^)(SWGScmOrganisations* output, NSError* error)) handler;
+
+
+/// 
+/// Retrieve SCM organizations details for an organization
+///
+/// @param organization Name of the organization
+/// @param scm Name of SCM
+/// @param credentialId Credential ID (optional)
+/// 
+///  code:200 message:"Successfully retrieved SCM organizations details",
+///  code:401 message:"Authentication failed - incorrect username and/or password",
+///  code:403 message:"Jenkins requires authentication - please set username and password"
+///
+/// @return SWGScmOrganisations*
+-(NSURLSessionTask*) getSCMOrganisationsWithOrganization: (NSString*) organization
+    scm: (NSString*) scm
+    credentialId: (NSString*) credentialId
+    completionHandler: (void (^)(SWGScmOrganisations* output, NSError* error)) handler;
+
+
+/// 
+/// Retrieve user details for an organization
+///
+/// @param organization Name of the organization
 /// @param user Name of the user
 /// 
 ///  code:200 message:"Successfully retrieved users details",
 ///  code:401 message:"Authentication failed - incorrect username and/or password",
 ///  code:403 message:"Jenkins requires authentication - please set username and password"
 ///
-/// @return SWGSwaggyjenkinsUser*
--(NSURLSessionTask*) getUserWithOrganisation: (NSString*) organisation
+/// @return SWGUser*
+-(NSURLSessionTask*) getUserWithOrganization: (NSString*) organization
     user: (NSString*) user
-    completionHandler: (void (^)(SWGSwaggyjenkinsUser* output, NSError* error)) handler;
+    completionHandler: (void (^)(SWGUser* output, NSError* error)) handler;
 
 
 /// 
-/// Retrieve users details for an organisation
+/// Retrieve user favorites details for an organization
 ///
-/// @param organisation Name of the organisation
+/// @param user Name of the user
+/// 
+///  code:200 message:"Successfully retrieved users favorites details",
+///  code:401 message:"Authentication failed - incorrect username and/or password",
+///  code:403 message:"Jenkins requires authentication - please set username and password"
+///
+/// @return SWGUserFavorites*
+-(NSURLSessionTask*) getUserFavoritesWithUser: (NSString*) user
+    completionHandler: (void (^)(SWGUserFavorites* output, NSError* error)) handler;
+
+
+/// 
+/// Retrieve users details for an organization
+///
+/// @param organization Name of the organization
 /// 
 ///  code:200 message:"Successfully retrieved users details",
 ///  code:401 message:"Authentication failed - incorrect username and/or password",
 ///  code:403 message:"Jenkins requires authentication - please set username and password"
 ///
-/// @return SWGSwaggyjenkinsUser*
--(NSURLSessionTask*) getUsersWithOrganisation: (NSString*) organisation
-    completionHandler: (void (^)(SWGSwaggyjenkinsUser* output, NSError* error)) handler;
+/// @return SWGUser*
+-(NSURLSessionTask*) getUsersWithOrganization: (NSString*) organization
+    completionHandler: (void (^)(SWGUser* output, NSError* error)) handler;
 
 
 /// 
-/// Get classes details
+/// Replay an organization pipeline run
 ///
-/// @param q Query string containing an array of class names
+/// @param organization Name of the organization
+/// @param pipeline Name of the pipeline
+/// @param run Name of the run
 /// 
-///  code:200 message:"Successfully retrieved search result",
+///  code:200 message:"Successfully replayed a pipeline run",
 ///  code:401 message:"Authentication failed - incorrect username and/or password",
 ///  code:403 message:"Jenkins requires authentication - please set username and password"
 ///
-/// @return NSString*
--(NSURLSessionTask*) searchWithQ: (NSString*) q
-    completionHandler: (void (^)(NSString* output, NSError* error)) handler;
+/// @return SWGQueueItemImpl*
+-(NSURLSessionTask*) postPipelineRunWithOrganization: (NSString*) organization
+    pipeline: (NSString*) pipeline
+    run: (NSString*) run
+    completionHandler: (void (^)(SWGQueueItemImpl* output, NSError* error)) handler;
+
+
+/// 
+/// Start a build for an organization pipeline
+///
+/// @param organization Name of the organization
+/// @param pipeline Name of the pipeline
+/// 
+///  code:200 message:"Successfully started a build",
+///  code:401 message:"Authentication failed - incorrect username and/or password",
+///  code:403 message:"Jenkins requires authentication - please set username and password"
+///
+/// @return SWGQueueItemImpl*
+-(NSURLSessionTask*) postPipelineRunsWithOrganization: (NSString*) organization
+    pipeline: (NSString*) pipeline
+    completionHandler: (void (^)(SWGQueueItemImpl* output, NSError* error)) handler;
+
+
+/// 
+/// Favorite/unfavorite a pipeline
+///
+/// @param organization Name of the organization
+/// @param pipeline Name of the pipeline
+/// @param body Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite
+/// 
+///  code:200 message:"Successfully favorited/unfavorited a pipeline",
+///  code:401 message:"Authentication failed - incorrect username and/or password",
+///  code:403 message:"Jenkins requires authentication - please set username and password"
+///
+/// @return SWGFavoriteImpl*
+-(NSURLSessionTask*) putPipelineFavoriteWithOrganization: (NSString*) organization
+    pipeline: (NSString*) pipeline
+    body: (SWGBody*) body
+    completionHandler: (void (^)(SWGFavoriteImpl* output, NSError* error)) handler;
+
+
+/// 
+/// Stop a build of an organization pipeline
+///
+/// @param organization Name of the organization
+/// @param pipeline Name of the pipeline
+/// @param run Name of the run
+/// @param blocking Set to true to make blocking stop, default: false (optional)
+/// @param timeOutInSecs Timeout in seconds, default: 10 seconds (optional)
+/// 
+///  code:200 message:"Successfully stopped a build",
+///  code:401 message:"Authentication failed - incorrect username and/or password",
+///  code:403 message:"Jenkins requires authentication - please set username and password"
+///
+/// @return SWGPipelineRun*
+-(NSURLSessionTask*) putPipelineRunWithOrganization: (NSString*) organization
+    pipeline: (NSString*) pipeline
+    run: (NSString*) run
+    blocking: (NSString*) blocking
+    timeOutInSecs: (NSNumber*) timeOutInSecs
+    completionHandler: (void (^)(SWGPipelineRun* output, NSError* error)) handler;
 
 
 /// 
@@ -240,7 +636,21 @@ extern NSInteger kSWGBlueOceanApiMissingParamErrorCode;
 ///  code:403 message:"Jenkins requires authentication - please set username and password"
 ///
 /// @return NSString*
--(NSURLSessionTask*) search_2WithQ: (NSString*) q
+-(NSURLSessionTask*) searchWithQ: (NSString*) q
+    completionHandler: (void (^)(NSString* output, NSError* error)) handler;
+
+
+/// 
+/// Get classes details
+///
+/// @param q Query string containing an array of class names
+/// 
+///  code:200 message:"Successfully retrieved search result",
+///  code:401 message:"Authentication failed - incorrect username and/or password",
+///  code:403 message:"Jenkins requires authentication - please set username and password"
+///
+/// @return NSString*
+-(NSURLSessionTask*) searchClassesWithQ: (NSString*) q
     completionHandler: (void (^)(NSString* output, NSError* error)) handler;
 
 

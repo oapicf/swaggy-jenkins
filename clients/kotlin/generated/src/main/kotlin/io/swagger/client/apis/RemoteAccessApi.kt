@@ -11,13 +11,13 @@
 */
 package io.swagger.client.apis
 
-import io.swagger.client.models.HudsonmodelComputerSet
-import io.swagger.client.models.HudsonmodelFreeStyleBuild
-import io.swagger.client.models.HudsonmodelFreeStyleProject
-import io.swagger.client.models.HudsonmodelHudson
-import io.swagger.client.models.HudsonmodelListView
-import io.swagger.client.models.HudsonmodelQueue
-import io.swagger.client.models.HudsonsecuritycsrfDefaultCrumbIssuer
+import io.swagger.client.models.ComputerSet
+import io.swagger.client.models.DefaultCrumbIssuer
+import io.swagger.client.models.FreeStyleBuild
+import io.swagger.client.models.FreeStyleProject
+import io.swagger.client.models.Hudson
+import io.swagger.client.models.ListView
+import io.swagger.client.models.Queue
 
 import io.swagger.client.infrastructure.*
 
@@ -26,26 +26,27 @@ class RemoteAccessApi(basePath: kotlin.String = "http://localhost") : ApiClient(
     /**
     * 
     * Retrieve computer details
-    * @return HudsonmodelComputerSet
+    * @param depth Recursion depth in response model 
+    * @return ComputerSet
     */
     @Suppress("UNCHECKED_CAST")
-    fun getComputer() : HudsonmodelComputerSet {
+    fun getComputer(depth: kotlin.Int) : ComputerSet {
         val localVariableBody: kotlin.Any? = null
-        val localVariableQuery: kotlin.collections.Map<kotlin.String,kotlin.String> = mapOf()
+        val localVariableQuery: MultiValueMap = mapOf("depth" to listOf("$depth"))
         val localVariableHeaders: kotlin.collections.Map<kotlin.String,kotlin.String> = mapOf()
         val localVariableConfig = RequestConfig(
             RequestMethod.GET,
-            "/computer/api/json?depth&#x3D;1",
+            "/computer/api/json",
             query = localVariableQuery,
             headers = localVariableHeaders
         )
-        val response = request<HudsonmodelComputerSet>(
+        val response = request<ComputerSet>(
             localVariableConfig,
             localVariableBody
         )
 
         return when (response.responseType) {
-            ResponseType.Success -> (response as Success<*>).data as HudsonmodelComputerSet
+            ResponseType.Success -> (response as Success<*>).data as ComputerSet
             ResponseType.Informational -> TODO()
             ResponseType.Redirection -> TODO()
             ResponseType.ClientError -> throw ClientException((response as ClientError<*>).body as? String ?: "Client error")
@@ -57,12 +58,12 @@ class RemoteAccessApi(basePath: kotlin.String = "http://localhost") : ApiClient(
     /**
     * 
     * Retrieve CSRF protection token
-    * @return HudsonsecuritycsrfDefaultCrumbIssuer
+    * @return DefaultCrumbIssuer
     */
     @Suppress("UNCHECKED_CAST")
-    fun getCrumb() : HudsonsecuritycsrfDefaultCrumbIssuer {
+    fun getCrumb() : DefaultCrumbIssuer {
         val localVariableBody: kotlin.Any? = null
-        val localVariableQuery: kotlin.collections.Map<kotlin.String,kotlin.String> = mapOf()
+        val localVariableQuery: MultiValueMap = mapOf()
         val localVariableHeaders: kotlin.collections.Map<kotlin.String,kotlin.String> = mapOf()
         val localVariableConfig = RequestConfig(
             RequestMethod.GET,
@@ -70,13 +71,13 @@ class RemoteAccessApi(basePath: kotlin.String = "http://localhost") : ApiClient(
             query = localVariableQuery,
             headers = localVariableHeaders
         )
-        val response = request<HudsonsecuritycsrfDefaultCrumbIssuer>(
+        val response = request<DefaultCrumbIssuer>(
             localVariableConfig,
             localVariableBody
         )
 
         return when (response.responseType) {
-            ResponseType.Success -> (response as Success<*>).data as HudsonsecuritycsrfDefaultCrumbIssuer
+            ResponseType.Success -> (response as Success<*>).data as DefaultCrumbIssuer
             ResponseType.Informational -> TODO()
             ResponseType.Redirection -> TODO()
             ResponseType.ClientError -> throw ClientException((response as ClientError<*>).body as? String ?: "Client error")
@@ -88,12 +89,12 @@ class RemoteAccessApi(basePath: kotlin.String = "http://localhost") : ApiClient(
     /**
     * 
     * Retrieve Jenkins details
-    * @return HudsonmodelHudson
+    * @return Hudson
     */
     @Suppress("UNCHECKED_CAST")
-    fun getJenkins() : HudsonmodelHudson {
+    fun getJenkins() : Hudson {
         val localVariableBody: kotlin.Any? = null
-        val localVariableQuery: kotlin.collections.Map<kotlin.String,kotlin.String> = mapOf()
+        val localVariableQuery: MultiValueMap = mapOf()
         val localVariableHeaders: kotlin.collections.Map<kotlin.String,kotlin.String> = mapOf()
         val localVariableConfig = RequestConfig(
             RequestMethod.GET,
@@ -101,13 +102,13 @@ class RemoteAccessApi(basePath: kotlin.String = "http://localhost") : ApiClient(
             query = localVariableQuery,
             headers = localVariableHeaders
         )
-        val response = request<HudsonmodelHudson>(
+        val response = request<Hudson>(
             localVariableConfig,
             localVariableBody
         )
 
         return when (response.responseType) {
-            ResponseType.Success -> (response as Success<*>).data as HudsonmodelHudson
+            ResponseType.Success -> (response as Success<*>).data as Hudson
             ResponseType.Informational -> TODO()
             ResponseType.Redirection -> TODO()
             ResponseType.ClientError -> throw ClientException((response as ClientError<*>).body as? String ?: "Client error")
@@ -120,12 +121,12 @@ class RemoteAccessApi(basePath: kotlin.String = "http://localhost") : ApiClient(
     * 
     * Retrieve job details
     * @param name Name of the job 
-    * @return HudsonmodelFreeStyleProject
+    * @return FreeStyleProject
     */
     @Suppress("UNCHECKED_CAST")
-    fun getJob(name: kotlin.String) : HudsonmodelFreeStyleProject {
+    fun getJob(name: kotlin.String) : FreeStyleProject {
         val localVariableBody: kotlin.Any? = null
-        val localVariableQuery: kotlin.collections.Map<kotlin.String,kotlin.String> = mapOf()
+        val localVariableQuery: MultiValueMap = mapOf()
         val localVariableHeaders: kotlin.collections.Map<kotlin.String,kotlin.String> = mapOf()
         val localVariableConfig = RequestConfig(
             RequestMethod.GET,
@@ -133,13 +134,13 @@ class RemoteAccessApi(basePath: kotlin.String = "http://localhost") : ApiClient(
             query = localVariableQuery,
             headers = localVariableHeaders
         )
-        val response = request<HudsonmodelFreeStyleProject>(
+        val response = request<FreeStyleProject>(
             localVariableConfig,
             localVariableBody
         )
 
         return when (response.responseType) {
-            ResponseType.Success -> (response as Success<*>).data as HudsonmodelFreeStyleProject
+            ResponseType.Success -> (response as Success<*>).data as FreeStyleProject
             ResponseType.Informational -> TODO()
             ResponseType.Redirection -> TODO()
             ResponseType.ClientError -> throw ClientException((response as ClientError<*>).body as? String ?: "Client error")
@@ -157,7 +158,7 @@ class RemoteAccessApi(basePath: kotlin.String = "http://localhost") : ApiClient(
     @Suppress("UNCHECKED_CAST")
     fun getJobConfig(name: kotlin.String) : kotlin.String {
         val localVariableBody: kotlin.Any? = null
-        val localVariableQuery: kotlin.collections.Map<kotlin.String,kotlin.String> = mapOf()
+        val localVariableQuery: MultiValueMap = mapOf()
         val localVariableHeaders: kotlin.collections.Map<kotlin.String,kotlin.String> = mapOf()
         val localVariableConfig = RequestConfig(
             RequestMethod.GET,
@@ -184,12 +185,12 @@ class RemoteAccessApi(basePath: kotlin.String = "http://localhost") : ApiClient(
     * 
     * Retrieve job&#39;s last build details
     * @param name Name of the job 
-    * @return HudsonmodelFreeStyleBuild
+    * @return FreeStyleBuild
     */
     @Suppress("UNCHECKED_CAST")
-    fun getJobLastBuild(name: kotlin.String) : HudsonmodelFreeStyleBuild {
+    fun getJobLastBuild(name: kotlin.String) : FreeStyleBuild {
         val localVariableBody: kotlin.Any? = null
-        val localVariableQuery: kotlin.collections.Map<kotlin.String,kotlin.String> = mapOf()
+        val localVariableQuery: MultiValueMap = mapOf()
         val localVariableHeaders: kotlin.collections.Map<kotlin.String,kotlin.String> = mapOf()
         val localVariableConfig = RequestConfig(
             RequestMethod.GET,
@@ -197,13 +198,13 @@ class RemoteAccessApi(basePath: kotlin.String = "http://localhost") : ApiClient(
             query = localVariableQuery,
             headers = localVariableHeaders
         )
-        val response = request<HudsonmodelFreeStyleBuild>(
+        val response = request<FreeStyleBuild>(
             localVariableConfig,
             localVariableBody
         )
 
         return when (response.responseType) {
-            ResponseType.Success -> (response as Success<*>).data as HudsonmodelFreeStyleBuild
+            ResponseType.Success -> (response as Success<*>).data as FreeStyleBuild
             ResponseType.Informational -> TODO()
             ResponseType.Redirection -> TODO()
             ResponseType.ClientError -> throw ClientException((response as ClientError<*>).body as? String ?: "Client error")
@@ -222,7 +223,7 @@ class RemoteAccessApi(basePath: kotlin.String = "http://localhost") : ApiClient(
     */
     fun getJobProgressiveText(name: kotlin.String, number: kotlin.String, start: kotlin.String) : Unit {
         val localVariableBody: kotlin.Any? = null
-        val localVariableQuery: kotlin.collections.Map<kotlin.String,kotlin.String> = mapOf("start" to start)
+        val localVariableQuery: MultiValueMap = mapOf("start" to listOf("$start"))
         val localVariableHeaders: kotlin.collections.Map<kotlin.String,kotlin.String> = mapOf()
         val localVariableConfig = RequestConfig(
             RequestMethod.GET,
@@ -248,12 +249,12 @@ class RemoteAccessApi(basePath: kotlin.String = "http://localhost") : ApiClient(
     /**
     * 
     * Retrieve queue details
-    * @return HudsonmodelQueue
+    * @return Queue
     */
     @Suppress("UNCHECKED_CAST")
-    fun getQueue() : HudsonmodelQueue {
+    fun getQueue() : Queue {
         val localVariableBody: kotlin.Any? = null
-        val localVariableQuery: kotlin.collections.Map<kotlin.String,kotlin.String> = mapOf()
+        val localVariableQuery: MultiValueMap = mapOf()
         val localVariableHeaders: kotlin.collections.Map<kotlin.String,kotlin.String> = mapOf()
         val localVariableConfig = RequestConfig(
             RequestMethod.GET,
@@ -261,13 +262,13 @@ class RemoteAccessApi(basePath: kotlin.String = "http://localhost") : ApiClient(
             query = localVariableQuery,
             headers = localVariableHeaders
         )
-        val response = request<HudsonmodelQueue>(
+        val response = request<Queue>(
             localVariableConfig,
             localVariableBody
         )
 
         return when (response.responseType) {
-            ResponseType.Success -> (response as Success<*>).data as HudsonmodelQueue
+            ResponseType.Success -> (response as Success<*>).data as Queue
             ResponseType.Informational -> TODO()
             ResponseType.Redirection -> TODO()
             ResponseType.ClientError -> throw ClientException((response as ClientError<*>).body as? String ?: "Client error")
@@ -280,12 +281,12 @@ class RemoteAccessApi(basePath: kotlin.String = "http://localhost") : ApiClient(
     * 
     * Retrieve queued item details
     * @param number Queue number 
-    * @return HudsonmodelQueue
+    * @return Queue
     */
     @Suppress("UNCHECKED_CAST")
-    fun getQueueItem(number: kotlin.String) : HudsonmodelQueue {
+    fun getQueueItem(number: kotlin.String) : Queue {
         val localVariableBody: kotlin.Any? = null
-        val localVariableQuery: kotlin.collections.Map<kotlin.String,kotlin.String> = mapOf()
+        val localVariableQuery: MultiValueMap = mapOf()
         val localVariableHeaders: kotlin.collections.Map<kotlin.String,kotlin.String> = mapOf()
         val localVariableConfig = RequestConfig(
             RequestMethod.GET,
@@ -293,13 +294,13 @@ class RemoteAccessApi(basePath: kotlin.String = "http://localhost") : ApiClient(
             query = localVariableQuery,
             headers = localVariableHeaders
         )
-        val response = request<HudsonmodelQueue>(
+        val response = request<Queue>(
             localVariableConfig,
             localVariableBody
         )
 
         return when (response.responseType) {
-            ResponseType.Success -> (response as Success<*>).data as HudsonmodelQueue
+            ResponseType.Success -> (response as Success<*>).data as Queue
             ResponseType.Informational -> TODO()
             ResponseType.Redirection -> TODO()
             ResponseType.ClientError -> throw ClientException((response as ClientError<*>).body as? String ?: "Client error")
@@ -312,12 +313,12 @@ class RemoteAccessApi(basePath: kotlin.String = "http://localhost") : ApiClient(
     * 
     * Retrieve view details
     * @param name Name of the view 
-    * @return HudsonmodelListView
+    * @return ListView
     */
     @Suppress("UNCHECKED_CAST")
-    fun getView(name: kotlin.String) : HudsonmodelListView {
+    fun getView(name: kotlin.String) : ListView {
         val localVariableBody: kotlin.Any? = null
-        val localVariableQuery: kotlin.collections.Map<kotlin.String,kotlin.String> = mapOf()
+        val localVariableQuery: MultiValueMap = mapOf()
         val localVariableHeaders: kotlin.collections.Map<kotlin.String,kotlin.String> = mapOf()
         val localVariableConfig = RequestConfig(
             RequestMethod.GET,
@@ -325,13 +326,13 @@ class RemoteAccessApi(basePath: kotlin.String = "http://localhost") : ApiClient(
             query = localVariableQuery,
             headers = localVariableHeaders
         )
-        val response = request<HudsonmodelListView>(
+        val response = request<ListView>(
             localVariableConfig,
             localVariableBody
         )
 
         return when (response.responseType) {
-            ResponseType.Success -> (response as Success<*>).data as HudsonmodelListView
+            ResponseType.Success -> (response as Success<*>).data as ListView
             ResponseType.Informational -> TODO()
             ResponseType.Redirection -> TODO()
             ResponseType.ClientError -> throw ClientException((response as ClientError<*>).body as? String ?: "Client error")
@@ -349,7 +350,7 @@ class RemoteAccessApi(basePath: kotlin.String = "http://localhost") : ApiClient(
     @Suppress("UNCHECKED_CAST")
     fun getViewConfig(name: kotlin.String) : kotlin.String {
         val localVariableBody: kotlin.Any? = null
-        val localVariableQuery: kotlin.collections.Map<kotlin.String,kotlin.String> = mapOf()
+        val localVariableQuery: MultiValueMap = mapOf()
         val localVariableHeaders: kotlin.collections.Map<kotlin.String,kotlin.String> = mapOf()
         val localVariableConfig = RequestConfig(
             RequestMethod.GET,
@@ -379,7 +380,7 @@ class RemoteAccessApi(basePath: kotlin.String = "http://localhost") : ApiClient(
     */
     fun headJenkins() : Unit {
         val localVariableBody: kotlin.Any? = null
-        val localVariableQuery: kotlin.collections.Map<kotlin.String,kotlin.String> = mapOf()
+        val localVariableQuery: MultiValueMap = mapOf()
         val localVariableHeaders: kotlin.collections.Map<kotlin.String,kotlin.String> = mapOf()
         val localVariableConfig = RequestConfig(
             RequestMethod.HEAD,
@@ -415,7 +416,7 @@ class RemoteAccessApi(basePath: kotlin.String = "http://localhost") : ApiClient(
     */
     fun postCreateItem(name: kotlin.String, from: kotlin.String, mode: kotlin.String, body: kotlin.String, jenkinsCrumb: kotlin.String, contentType: kotlin.String) : Unit {
         val localVariableBody: kotlin.Any? = body
-        val localVariableQuery: kotlin.collections.Map<kotlin.String,kotlin.String> = mapOf("name" to name, "from" to from, "mode" to mode)
+        val localVariableQuery: MultiValueMap = mapOf("name" to listOf("$name"), "from" to listOf("$from"), "mode" to listOf("$mode"))
         val localVariableHeaders: kotlin.collections.Map<kotlin.String,kotlin.String> = mapOf("jenkinsCrumb" to jenkinsCrumb)mapOf("contentType" to contentType)
         val localVariableConfig = RequestConfig(
             RequestMethod.POST,
@@ -449,7 +450,7 @@ class RemoteAccessApi(basePath: kotlin.String = "http://localhost") : ApiClient(
     */
     fun postCreateView(name: kotlin.String, body: kotlin.String, jenkinsCrumb: kotlin.String, contentType: kotlin.String) : Unit {
         val localVariableBody: kotlin.Any? = body
-        val localVariableQuery: kotlin.collections.Map<kotlin.String,kotlin.String> = mapOf("name" to name)
+        val localVariableQuery: MultiValueMap = mapOf("name" to listOf("$name"))
         val localVariableHeaders: kotlin.collections.Map<kotlin.String,kotlin.String> = mapOf("jenkinsCrumb" to jenkinsCrumb)mapOf("contentType" to contentType)
         val localVariableConfig = RequestConfig(
             RequestMethod.POST,
@@ -483,7 +484,7 @@ class RemoteAccessApi(basePath: kotlin.String = "http://localhost") : ApiClient(
     */
     fun postJobBuild(name: kotlin.String, json: kotlin.String, token: kotlin.String, jenkinsCrumb: kotlin.String) : Unit {
         val localVariableBody: kotlin.Any? = null
-        val localVariableQuery: kotlin.collections.Map<kotlin.String,kotlin.String> = mapOf("json" to json, "token" to token)
+        val localVariableQuery: MultiValueMap = mapOf("json" to listOf("$json"), "token" to listOf("$token"))
         val localVariableHeaders: kotlin.collections.Map<kotlin.String,kotlin.String> = mapOf("jenkinsCrumb" to jenkinsCrumb)
         val localVariableConfig = RequestConfig(
             RequestMethod.POST,
@@ -516,7 +517,7 @@ class RemoteAccessApi(basePath: kotlin.String = "http://localhost") : ApiClient(
     */
     fun postJobConfig(name: kotlin.String, body: kotlin.String, jenkinsCrumb: kotlin.String) : Unit {
         val localVariableBody: kotlin.Any? = body
-        val localVariableQuery: kotlin.collections.Map<kotlin.String,kotlin.String> = mapOf()
+        val localVariableQuery: MultiValueMap = mapOf()
         val localVariableHeaders: kotlin.collections.Map<kotlin.String,kotlin.String> = mapOf("jenkinsCrumb" to jenkinsCrumb)
         val localVariableConfig = RequestConfig(
             RequestMethod.POST,
@@ -548,7 +549,7 @@ class RemoteAccessApi(basePath: kotlin.String = "http://localhost") : ApiClient(
     */
     fun postJobDelete(name: kotlin.String, jenkinsCrumb: kotlin.String) : Unit {
         val localVariableBody: kotlin.Any? = null
-        val localVariableQuery: kotlin.collections.Map<kotlin.String,kotlin.String> = mapOf()
+        val localVariableQuery: MultiValueMap = mapOf()
         val localVariableHeaders: kotlin.collections.Map<kotlin.String,kotlin.String> = mapOf("jenkinsCrumb" to jenkinsCrumb)
         val localVariableConfig = RequestConfig(
             RequestMethod.POST,
@@ -580,7 +581,7 @@ class RemoteAccessApi(basePath: kotlin.String = "http://localhost") : ApiClient(
     */
     fun postJobDisable(name: kotlin.String, jenkinsCrumb: kotlin.String) : Unit {
         val localVariableBody: kotlin.Any? = null
-        val localVariableQuery: kotlin.collections.Map<kotlin.String,kotlin.String> = mapOf()
+        val localVariableQuery: MultiValueMap = mapOf()
         val localVariableHeaders: kotlin.collections.Map<kotlin.String,kotlin.String> = mapOf("jenkinsCrumb" to jenkinsCrumb)
         val localVariableConfig = RequestConfig(
             RequestMethod.POST,
@@ -612,7 +613,7 @@ class RemoteAccessApi(basePath: kotlin.String = "http://localhost") : ApiClient(
     */
     fun postJobEnable(name: kotlin.String, jenkinsCrumb: kotlin.String) : Unit {
         val localVariableBody: kotlin.Any? = null
-        val localVariableQuery: kotlin.collections.Map<kotlin.String,kotlin.String> = mapOf()
+        val localVariableQuery: MultiValueMap = mapOf()
         val localVariableHeaders: kotlin.collections.Map<kotlin.String,kotlin.String> = mapOf("jenkinsCrumb" to jenkinsCrumb)
         val localVariableConfig = RequestConfig(
             RequestMethod.POST,
@@ -644,7 +645,7 @@ class RemoteAccessApi(basePath: kotlin.String = "http://localhost") : ApiClient(
     */
     fun postJobLastBuildStop(name: kotlin.String, jenkinsCrumb: kotlin.String) : Unit {
         val localVariableBody: kotlin.Any? = null
-        val localVariableQuery: kotlin.collections.Map<kotlin.String,kotlin.String> = mapOf()
+        val localVariableQuery: MultiValueMap = mapOf()
         val localVariableHeaders: kotlin.collections.Map<kotlin.String,kotlin.String> = mapOf("jenkinsCrumb" to jenkinsCrumb)
         val localVariableConfig = RequestConfig(
             RequestMethod.POST,
@@ -677,7 +678,7 @@ class RemoteAccessApi(basePath: kotlin.String = "http://localhost") : ApiClient(
     */
     fun postViewConfig(name: kotlin.String, body: kotlin.String, jenkinsCrumb: kotlin.String) : Unit {
         val localVariableBody: kotlin.Any? = body
-        val localVariableQuery: kotlin.collections.Map<kotlin.String,kotlin.String> = mapOf()
+        val localVariableQuery: MultiValueMap = mapOf()
         val localVariableHeaders: kotlin.collections.Map<kotlin.String,kotlin.String> = mapOf("jenkinsCrumb" to jenkinsCrumb)
         val localVariableConfig = RequestConfig(
             RequestMethod.POST,
@@ -700,12 +701,4 @@ class RemoteAccessApi(basePath: kotlin.String = "http://localhost") : ApiClient(
         }
     }
 
-
-    private fun collectionDelimiter(collectionFormat: kotlin.String) = when(collectionFormat) {
-        "csv" -> ","
-        "tsv" -> "\t"
-        "pipes" -> "|"
-        "ssv" -> " "
-        else -> ""
-    }
 }

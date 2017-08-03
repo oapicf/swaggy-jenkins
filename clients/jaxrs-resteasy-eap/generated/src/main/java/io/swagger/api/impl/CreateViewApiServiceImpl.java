@@ -12,7 +12,7 @@ import java.io.InputStream;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
 
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaResteasyEapServerCodegen", date = "2017-07-25T10:45:10.773+10:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaResteasyEapServerCodegen", date = "2017-08-03T23:34:59.445Z")
 public class CreateViewApiServiceImpl implements CreateViewApi {
       public Response postCreateView(String name,String body,String jenkinsCrumb,String contentType,SecurityContext securityContext) {
       // do some magic!

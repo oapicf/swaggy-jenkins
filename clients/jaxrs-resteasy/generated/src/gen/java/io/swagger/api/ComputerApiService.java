@@ -4,7 +4,7 @@ import io.swagger.api.*;
 import io.swagger.model.*;
 
 
-import io.swagger.model.HudsonmodelComputerSet;
+import io.swagger.model.ComputerSet;
 
 import java.util.List;
 import io.swagger.api.NotFoundException;
@@ -14,8 +14,8 @@ import java.io.InputStream;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
 
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaResteasyServerCodegen", date = "2017-07-25T10:45:08.057+10:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaResteasyServerCodegen", date = "2017-08-03T23:34:55.006Z")
 public abstract class ComputerApiService {
-      public abstract Response getComputer(SecurityContext securityContext)
+      public abstract Response getComputer(Integer depth,SecurityContext securityContext)
       throws NotFoundException;
 }

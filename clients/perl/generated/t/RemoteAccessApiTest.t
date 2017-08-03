@@ -33,7 +33,8 @@ isa_ok($api, 'WWW::SwaggerClient::RemoteAccessApi');
 # get_computer test
 #
 {
-    my $result = $api->get_computer();
+    my $depth = undef; # replace NULL with a proper value
+    my $result = $api->get_computer(depth => $depth);
 }
 
 #

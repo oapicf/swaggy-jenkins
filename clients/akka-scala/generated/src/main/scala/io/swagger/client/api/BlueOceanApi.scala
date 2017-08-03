@@ -5,15 +5,29 @@
  */
 package io.swagger.client.api
 
-import io.swagger.client.model.GetMultibranchPipeline
-import io.swagger.client.model.GetOrganisations
-import io.swagger.client.model.GetPipelines
-import io.swagger.client.model.IojenkinsblueoceanrestimplpipelineBranchImpl
-import io.swagger.client.model.IojenkinsblueoceanserviceembeddedrestPipelineFolderImpl
-import io.swagger.client.model.IojenkinsblueoceanserviceembeddedrestPipelineImpl
-import io.swagger.client.model.SwaggyjenkinsOrganisation
-import io.swagger.client.model.SwaggyjenkinsPipeline
-import io.swagger.client.model.SwaggyjenkinsUser
+import io.swagger.client.model.Body
+import io.swagger.client.model.BranchImpl
+import io.swagger.client.model.FavoriteImpl
+import io.swagger.client.model.GithubScm
+import io.swagger.client.model.MultibranchPipeline
+import io.swagger.client.model.Organisation
+import io.swagger.client.model.Organisations
+import io.swagger.client.model.Pipeline
+import io.swagger.client.model.PipelineActivities
+import io.swagger.client.model.PipelineFolderImpl
+import io.swagger.client.model.PipelineImpl
+import io.swagger.client.model.PipelineQueue
+import io.swagger.client.model.PipelineRun
+import io.swagger.client.model.PipelineRunNode
+import io.swagger.client.model.PipelineRunNodeSteps
+import io.swagger.client.model.PipelineRunNodes
+import io.swagger.client.model.PipelineRuns
+import io.swagger.client.model.PipelineStepImpl
+import io.swagger.client.model.Pipelines
+import io.swagger.client.model.QueueItemImpl
+import io.swagger.client.model.ScmOrganisations
+import io.swagger.client.model.User
+import io.swagger.client.model.UserFavorites
 import io.swagger.client.core._
 import io.swagger.client.core.CollectionFormats._
 import io.swagger.client.core.ApiKeyLocations._
@@ -21,19 +35,47 @@ import io.swagger.client.core.ApiKeyLocations._
 object BlueOceanApi {
 
   /**
-   * Retrieve authenticated user details for an organisation
+   * Delete queue item from an organization pipeline queue
    * 
    * Expected answers:
-   *   code 200 : SwaggyjenkinsUser (Successfully retrieved authenticated user details)
+   *   code 200 :  (Successfully deleted queue item)
    *   code 401 :  (Authentication failed - incorrect username and/or password)
    *   code 403 :  (Jenkins requires authentication - please set username and password)
    * 
-   * @param organisation Name of the organisation
+   * Available security schemes:
+   *   jenkins_auth (basic)
+   * 
+   * @param organization Name of the organization
+   * @param pipeline Name of the pipeline
+   * @param queue Name of the queue item
    */
-  def getAuthenticatedUser(organisation: String): ApiRequest[SwaggyjenkinsUser] =
-    ApiRequest[SwaggyjenkinsUser](ApiMethods.GET, "http://localhost", "/blue/rest/organizations/{organisation}/user/", "application/json")
-      .withPathParam("organisation", organisation)
-      .withSuccessResponse[SwaggyjenkinsUser](200)
+  def deletePipelineQueueItem(organization: String, pipeline: String, queue: String)(implicit basicAuth: BasicCredentials): ApiRequest[Unit] =
+    ApiRequest[Unit](ApiMethods.DELETE, "http://localhost", "/blue/rest/organizations/{organization}/pipelines/{pipeline}/queue/{queue}", "application/json")
+      .withCredentials(basicAuth)
+      .withPathParam("organization", organization)
+      .withPathParam("pipeline", pipeline)
+      .withPathParam("queue", queue)
+      .withSuccessResponse[Unit](200)
+      .withErrorResponse[Unit](401)
+      .withErrorResponse[Unit](403)
+        /**
+   * Retrieve authenticated user details for an organization
+   * 
+   * Expected answers:
+   *   code 200 : User (Successfully retrieved authenticated user details)
+   *   code 401 :  (Authentication failed - incorrect username and/or password)
+   *   code 403 :  (Jenkins requires authentication - please set username and password)
+   * 
+   * Available security schemes:
+   *   jenkins_auth (basic)
+   * 
+   * @param organization Name of the organization
+   */
+  def getAuthenticatedUser(organization: String)(implicit basicAuth: BasicCredentials): ApiRequest[User] =
+    ApiRequest[User](ApiMethods.GET, "http://localhost", "/blue/rest/organizations/{organization}/user/", "application/json")
+      .withCredentials(basicAuth)
+      .withPathParam("organization", organization)
+      .withSuccessResponse[User](200)
       .withErrorResponse[Unit](401)
       .withErrorResponse[Unit](403)
         /**
@@ -44,205 +86,731 @@ object BlueOceanApi {
    *   code 401 :  (Authentication failed - incorrect username and/or password)
    *   code 403 :  (Jenkins requires authentication - please set username and password)
    * 
+   * Available security schemes:
+   *   jenkins_auth (basic)
+   * 
    * @param &#x60;class&#x60; Name of the class
    */
-  def getClasses(&#x60;class&#x60;: String): ApiRequest[String] =
+  def getClasses(&#x60;class&#x60;: String)(implicit basicAuth: BasicCredentials): ApiRequest[String] =
     ApiRequest[String](ApiMethods.GET, "http://localhost", "/blue/rest/classes/{class}", "application/json")
+      .withCredentials(basicAuth)
       .withPathParam("class", `class`)
       .withSuccessResponse[String](200)
       .withErrorResponse[Unit](401)
       .withErrorResponse[Unit](403)
         /**
-   * Retrieve organisation details
+   * Retrieve organization details
    * 
    * Expected answers:
-   *   code 200 : SwaggyjenkinsOrganisation (Successfully retrieved pipeline details)
+   *   code 200 : Organisation (Successfully retrieved pipeline details)
    *   code 401 :  (Authentication failed - incorrect username and/or password)
    *   code 403 :  (Jenkins requires authentication - please set username and password)
    *   code 404 :  (Pipeline cannot be found on Jenkins instance)
    * 
-   * @param organisation Name of the organisation
+   * Available security schemes:
+   *   jenkins_auth (basic)
+   * 
+   * @param organization Name of the organization
    */
-  def getOrganisation(organisation: String): ApiRequest[SwaggyjenkinsOrganisation] =
-    ApiRequest[SwaggyjenkinsOrganisation](ApiMethods.GET, "http://localhost", "/blue/rest/organizations/{organisation}", "application/json")
-      .withPathParam("organisation", organisation)
-      .withSuccessResponse[SwaggyjenkinsOrganisation](200)
+  def getOrganisation(organization: String)(implicit basicAuth: BasicCredentials): ApiRequest[Organisation] =
+    ApiRequest[Organisation](ApiMethods.GET, "http://localhost", "/blue/rest/organizations/{organization}", "application/json")
+      .withCredentials(basicAuth)
+      .withPathParam("organization", organization)
+      .withSuccessResponse[Organisation](200)
       .withErrorResponse[Unit](401)
       .withErrorResponse[Unit](403)
       .withErrorResponse[Unit](404)
         /**
-   * Retrieve all organisations details
+   * Retrieve all organizations details
    * 
    * Expected answers:
-   *   code 200 : GetOrganisations (Successfully retrieved pipelines details)
+   *   code 200 : Organisations (Successfully retrieved pipelines details)
    *   code 401 :  (Authentication failed - incorrect username and/or password)
    *   code 403 :  (Jenkins requires authentication - please set username and password)
+   * 
+   * Available security schemes:
+   *   jenkins_auth (basic)
    */
-  def getOrganisations(): ApiRequest[GetOrganisations] =
-    ApiRequest[GetOrganisations](ApiMethods.GET, "http://localhost", "/blue/rest/organizations/", "application/json")
-      .withSuccessResponse[GetOrganisations](200)
+  def getOrganisations()(implicit basicAuth: BasicCredentials): ApiRequest[Organisations] =
+    ApiRequest[Organisations](ApiMethods.GET, "http://localhost", "/blue/rest/organizations/", "application/json")
+      .withCredentials(basicAuth)
+      .withSuccessResponse[Organisations](200)
       .withErrorResponse[Unit](401)
       .withErrorResponse[Unit](403)
         /**
-   * Retrieve branch details for an organisation pipeline
+   * Retrieve pipeline details for an organization
    * 
    * Expected answers:
-   *   code 200 : IojenkinsblueoceanrestimplpipelineBranchImpl (Successfully retrieved branch details)
+   *   code 200 : Pipeline (Successfully retrieved pipeline details)
+   *   code 401 :  (Authentication failed - incorrect username and/or password)
+   *   code 403 :  (Jenkins requires authentication - please set username and password)
+   *   code 404 :  (Pipeline cannot be found on Jenkins instance)
+   * 
+   * Available security schemes:
+   *   jenkins_auth (basic)
+   * 
+   * @param organization Name of the organization
+   * @param pipeline Name of the pipeline
+   */
+  def getPipeline(organization: String, pipeline: String)(implicit basicAuth: BasicCredentials): ApiRequest[Pipeline] =
+    ApiRequest[Pipeline](ApiMethods.GET, "http://localhost", "/blue/rest/organizations/{organization}/pipelines/{pipeline}", "application/json")
+      .withCredentials(basicAuth)
+      .withPathParam("organization", organization)
+      .withPathParam("pipeline", pipeline)
+      .withSuccessResponse[Pipeline](200)
+      .withErrorResponse[Unit](401)
+      .withErrorResponse[Unit](403)
+      .withErrorResponse[Unit](404)
+        /**
+   * Retrieve all activities details for an organization pipeline
+   * 
+   * Expected answers:
+   *   code 200 : PipelineActivities (Successfully retrieved all activities details)
    *   code 401 :  (Authentication failed - incorrect username and/or password)
    *   code 403 :  (Jenkins requires authentication - please set username and password)
    * 
-   * @param organisation Name of the organisation
+   * Available security schemes:
+   *   jenkins_auth (basic)
+   * 
+   * @param organization Name of the organization
+   * @param pipeline Name of the pipeline
+   */
+  def getPipelineActivities(organization: String, pipeline: String)(implicit basicAuth: BasicCredentials): ApiRequest[PipelineActivities] =
+    ApiRequest[PipelineActivities](ApiMethods.GET, "http://localhost", "/blue/rest/organizations/{organization}/pipelines/{pipeline}/activities", "application/json")
+      .withCredentials(basicAuth)
+      .withPathParam("organization", organization)
+      .withPathParam("pipeline", pipeline)
+      .withSuccessResponse[PipelineActivities](200)
+      .withErrorResponse[Unit](401)
+      .withErrorResponse[Unit](403)
+        /**
+   * Retrieve branch details for an organization pipeline
+   * 
+   * Expected answers:
+   *   code 200 : BranchImpl (Successfully retrieved branch details)
+   *   code 401 :  (Authentication failed - incorrect username and/or password)
+   *   code 403 :  (Jenkins requires authentication - please set username and password)
+   * 
+   * Available security schemes:
+   *   jenkins_auth (basic)
+   * 
+   * @param organization Name of the organization
    * @param pipeline Name of the pipeline
    * @param branch Name of the branch
    */
-  def getPipelineBranchByOrg(organisation: String, pipeline: String, branch: String): ApiRequest[IojenkinsblueoceanrestimplpipelineBranchImpl] =
-    ApiRequest[IojenkinsblueoceanrestimplpipelineBranchImpl](ApiMethods.GET, "http://localhost", "/blue/rest/organizations/{organisation}/pipelines/{pipeline}/branches/{branch}/", "application/json")
-      .withPathParam("organisation", organisation)
+  def getPipelineBranch(organization: String, pipeline: String, branch: String)(implicit basicAuth: BasicCredentials): ApiRequest[BranchImpl] =
+    ApiRequest[BranchImpl](ApiMethods.GET, "http://localhost", "/blue/rest/organizations/{organization}/pipelines/{pipeline}/branches/{branch}/", "application/json")
+      .withCredentials(basicAuth)
+      .withPathParam("organization", organization)
       .withPathParam("pipeline", pipeline)
       .withPathParam("branch", branch)
-      .withSuccessResponse[IojenkinsblueoceanrestimplpipelineBranchImpl](200)
+      .withSuccessResponse[BranchImpl](200)
       .withErrorResponse[Unit](401)
       .withErrorResponse[Unit](403)
         /**
-   * Retrieve all branches details for an organisation pipeline
+   * Retrieve branch run details for an organization pipeline
    * 
    * Expected answers:
-   *   code 200 : GetMultibranchPipeline (Successfully retrieved all branches details)
+   *   code 200 : PipelineRun (Successfully retrieved run details)
    *   code 401 :  (Authentication failed - incorrect username and/or password)
    *   code 403 :  (Jenkins requires authentication - please set username and password)
    * 
-   * @param organisation Name of the organisation
+   * Available security schemes:
+   *   jenkins_auth (basic)
+   * 
+   * @param organization Name of the organization
+   * @param pipeline Name of the pipeline
+   * @param branch Name of the branch
+   * @param run Name of the run
+   */
+  def getPipelineBranchRun(organization: String, pipeline: String, branch: String, run: String)(implicit basicAuth: BasicCredentials): ApiRequest[PipelineRun] =
+    ApiRequest[PipelineRun](ApiMethods.GET, "http://localhost", "/blue/rest/organizations/{organization}/pipelines/{pipeline}/branches/{branch}/runs/{run}", "application/json")
+      .withCredentials(basicAuth)
+      .withPathParam("organization", organization)
+      .withPathParam("pipeline", pipeline)
+      .withPathParam("branch", branch)
+      .withPathParam("run", run)
+      .withSuccessResponse[PipelineRun](200)
+      .withErrorResponse[Unit](401)
+      .withErrorResponse[Unit](403)
+        /**
+   * Retrieve all branches details for an organization pipeline
+   * 
+   * Expected answers:
+   *   code 200 : MultibranchPipeline (Successfully retrieved all branches details)
+   *   code 401 :  (Authentication failed - incorrect username and/or password)
+   *   code 403 :  (Jenkins requires authentication - please set username and password)
+   * 
+   * Available security schemes:
+   *   jenkins_auth (basic)
+   * 
+   * @param organization Name of the organization
    * @param pipeline Name of the pipeline
    */
-  def getPipelineBranchesByOrg(organisation: String, pipeline: String): ApiRequest[GetMultibranchPipeline] =
-    ApiRequest[GetMultibranchPipeline](ApiMethods.GET, "http://localhost", "/blue/rest/organizations/{organisation}/pipelines/{pipeline}/branches", "application/json")
-      .withPathParam("organisation", organisation)
+  def getPipelineBranches(organization: String, pipeline: String)(implicit basicAuth: BasicCredentials): ApiRequest[MultibranchPipeline] =
+    ApiRequest[MultibranchPipeline](ApiMethods.GET, "http://localhost", "/blue/rest/organizations/{organization}/pipelines/{pipeline}/branches", "application/json")
+      .withCredentials(basicAuth)
+      .withPathParam("organization", organization)
       .withPathParam("pipeline", pipeline)
-      .withSuccessResponse[GetMultibranchPipeline](200)
+      .withSuccessResponse[MultibranchPipeline](200)
       .withErrorResponse[Unit](401)
       .withErrorResponse[Unit](403)
         /**
-   * Retrieve pipeline details for an organisation
+   * Retrieve pipeline folder for an organization
    * 
    * Expected answers:
-   *   code 200 : SwaggyjenkinsPipeline (Successfully retrieved pipeline details)
-   *   code 401 :  (Authentication failed - incorrect username and/or password)
-   *   code 403 :  (Jenkins requires authentication - please set username and password)
-   *   code 404 :  (Pipeline cannot be found on Jenkins instance)
-   * 
-   * @param organisation Name of the organisation
-   * @param pipeline Name of the pipeline
-   */
-  def getPipelineByOrg(organisation: String, pipeline: String): ApiRequest[SwaggyjenkinsPipeline] =
-    ApiRequest[SwaggyjenkinsPipeline](ApiMethods.GET, "http://localhost", "/blue/rest/organizations/{organisation}/pipelines/{pipeline}", "application/json")
-      .withPathParam("organisation", organisation)
-      .withPathParam("pipeline", pipeline)
-      .withSuccessResponse[SwaggyjenkinsPipeline](200)
-      .withErrorResponse[Unit](401)
-      .withErrorResponse[Unit](403)
-      .withErrorResponse[Unit](404)
-        /**
-   * Retrieve pipeline folder for an organisation
-   * 
-   * Expected answers:
-   *   code 200 : IojenkinsblueoceanserviceembeddedrestPipelineFolderImpl (Successfully retrieved folder details)
+   *   code 200 : PipelineFolderImpl (Successfully retrieved folder details)
    *   code 401 :  (Authentication failed - incorrect username and/or password)
    *   code 403 :  (Jenkins requires authentication - please set username and password)
    * 
-   * @param organisation Name of the organisation
+   * Available security schemes:
+   *   jenkins_auth (basic)
+   * 
+   * @param organization Name of the organization
    * @param folder Name of the folder
    */
-  def getPipelineFolderByOrg(organisation: String, folder: String): ApiRequest[IojenkinsblueoceanserviceembeddedrestPipelineFolderImpl] =
-    ApiRequest[IojenkinsblueoceanserviceembeddedrestPipelineFolderImpl](ApiMethods.GET, "http://localhost", "/blue/rest/organizations/{organisation}/pipelines/{folder}/", "application/json")
-      .withPathParam("organisation", organisation)
+  def getPipelineFolder(organization: String, folder: String)(implicit basicAuth: BasicCredentials): ApiRequest[PipelineFolderImpl] =
+    ApiRequest[PipelineFolderImpl](ApiMethods.GET, "http://localhost", "/blue/rest/organizations/{organization}/pipelines/{folder}/", "application/json")
+      .withCredentials(basicAuth)
+      .withPathParam("organization", organization)
       .withPathParam("folder", folder)
-      .withSuccessResponse[IojenkinsblueoceanserviceembeddedrestPipelineFolderImpl](200)
+      .withSuccessResponse[PipelineFolderImpl](200)
       .withErrorResponse[Unit](401)
       .withErrorResponse[Unit](403)
         /**
-   * Retrieve pipeline details for an organisation folder
+   * Retrieve pipeline details for an organization folder
    * 
    * Expected answers:
-   *   code 200 : IojenkinsblueoceanserviceembeddedrestPipelineImpl (Successfully retrieved pipeline details)
+   *   code 200 : PipelineImpl (Successfully retrieved pipeline details)
    *   code 401 :  (Authentication failed - incorrect username and/or password)
    *   code 403 :  (Jenkins requires authentication - please set username and password)
    * 
-   * @param organisation Name of the organisation
+   * Available security schemes:
+   *   jenkins_auth (basic)
+   * 
+   * @param organization Name of the organization
    * @param pipeline Name of the pipeline
    * @param folder Name of the folder
    */
-  def getPipelineFolderByOrg_0(organisation: String, pipeline: String, folder: String): ApiRequest[IojenkinsblueoceanserviceembeddedrestPipelineImpl] =
-    ApiRequest[IojenkinsblueoceanserviceembeddedrestPipelineImpl](ApiMethods.GET, "http://localhost", "/blue/rest/organizations/{organisation}/pipelines/{folder}/pipelines/{pipeline}", "application/json")
-      .withPathParam("organisation", organisation)
+  def getPipelineFolderPipeline(organization: String, pipeline: String, folder: String)(implicit basicAuth: BasicCredentials): ApiRequest[PipelineImpl] =
+    ApiRequest[PipelineImpl](ApiMethods.GET, "http://localhost", "/blue/rest/organizations/{organization}/pipelines/{folder}/pipelines/{pipeline}", "application/json")
+      .withCredentials(basicAuth)
+      .withPathParam("organization", organization)
       .withPathParam("pipeline", pipeline)
       .withPathParam("folder", folder)
-      .withSuccessResponse[IojenkinsblueoceanserviceembeddedrestPipelineImpl](200)
+      .withSuccessResponse[PipelineImpl](200)
       .withErrorResponse[Unit](401)
       .withErrorResponse[Unit](403)
         /**
-   * Retrieve all pipelines details for an organisation
+   * Retrieve queue details for an organization pipeline
    * 
    * Expected answers:
-   *   code 200 : GetPipelines (Successfully retrieved pipelines details)
+   *   code 200 : PipelineQueue (Successfully retrieved queue details)
    *   code 401 :  (Authentication failed - incorrect username and/or password)
    *   code 403 :  (Jenkins requires authentication - please set username and password)
    * 
-   * @param organisation Name of the organisation
+   * Available security schemes:
+   *   jenkins_auth (basic)
+   * 
+   * @param organization Name of the organization
+   * @param pipeline Name of the pipeline
    */
-  def getPipelinesByOrg(organisation: String): ApiRequest[GetPipelines] =
-    ApiRequest[GetPipelines](ApiMethods.GET, "http://localhost", "/blue/rest/organizations/{organisation}/pipelines/", "application/json")
-      .withPathParam("organisation", organisation)
-      .withSuccessResponse[GetPipelines](200)
+  def getPipelineQueue(organization: String, pipeline: String)(implicit basicAuth: BasicCredentials): ApiRequest[PipelineQueue] =
+    ApiRequest[PipelineQueue](ApiMethods.GET, "http://localhost", "/blue/rest/organizations/{organization}/pipelines/{pipeline}/queue", "application/json")
+      .withCredentials(basicAuth)
+      .withPathParam("organization", organization)
+      .withPathParam("pipeline", pipeline)
+      .withSuccessResponse[PipelineQueue](200)
       .withErrorResponse[Unit](401)
       .withErrorResponse[Unit](403)
         /**
-   * Retrieve user details for an organisation
+   * Retrieve run details for an organization pipeline
    * 
    * Expected answers:
-   *   code 200 : SwaggyjenkinsUser (Successfully retrieved users details)
+   *   code 200 : PipelineRun (Successfully retrieved run details)
    *   code 401 :  (Authentication failed - incorrect username and/or password)
    *   code 403 :  (Jenkins requires authentication - please set username and password)
    * 
-   * @param organisation Name of the organisation
+   * Available security schemes:
+   *   jenkins_auth (basic)
+   * 
+   * @param organization Name of the organization
+   * @param pipeline Name of the pipeline
+   * @param run Name of the run
+   */
+  def getPipelineRun(organization: String, pipeline: String, run: String)(implicit basicAuth: BasicCredentials): ApiRequest[PipelineRun] =
+    ApiRequest[PipelineRun](ApiMethods.GET, "http://localhost", "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}", "application/json")
+      .withCredentials(basicAuth)
+      .withPathParam("organization", organization)
+      .withPathParam("pipeline", pipeline)
+      .withPathParam("run", run)
+      .withSuccessResponse[PipelineRun](200)
+      .withErrorResponse[Unit](401)
+      .withErrorResponse[Unit](403)
+        /**
+   * Get log for a pipeline run
+   * 
+   * Expected answers:
+   *   code 200 : String (Successfully retrieved pipeline run log)
+   *   code 401 :  (Authentication failed - incorrect username and/or password)
+   *   code 403 :  (Jenkins requires authentication - please set username and password)
+   * 
+   * Available security schemes:
+   *   jenkins_auth (basic)
+   * 
+   * @param organization Name of the organization
+   * @param pipeline Name of the pipeline
+   * @param run Name of the run
+   * @param start Start position of the log
+   * @param download Set to true in order to download the file, otherwise it&#39;s passed as a response body
+   */
+  def getPipelineRunLog(organization: String, pipeline: String, run: String, start: Option[Int] = None, download: Option[Boolean] = None)(implicit basicAuth: BasicCredentials): ApiRequest[String] =
+    ApiRequest[String](ApiMethods.GET, "http://localhost", "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/log", "application/json")
+      .withCredentials(basicAuth)
+      .withQueryParam("start", start)
+      .withQueryParam("download", download)
+      .withPathParam("organization", organization)
+      .withPathParam("pipeline", pipeline)
+      .withPathParam("run", run)
+      .withSuccessResponse[String](200)
+      .withErrorResponse[Unit](401)
+      .withErrorResponse[Unit](403)
+        /**
+   * Retrieve run node details for an organization pipeline
+   * 
+   * Expected answers:
+   *   code 200 : PipelineRunNode (Successfully retrieved run node details)
+   *   code 401 :  (Authentication failed - incorrect username and/or password)
+   *   code 403 :  (Jenkins requires authentication - please set username and password)
+   * 
+   * Available security schemes:
+   *   jenkins_auth (basic)
+   * 
+   * @param organization Name of the organization
+   * @param pipeline Name of the pipeline
+   * @param run Name of the run
+   * @param node Name of the node
+   */
+  def getPipelineRunNode(organization: String, pipeline: String, run: String, node: String)(implicit basicAuth: BasicCredentials): ApiRequest[PipelineRunNode] =
+    ApiRequest[PipelineRunNode](ApiMethods.GET, "http://localhost", "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}", "application/json")
+      .withCredentials(basicAuth)
+      .withPathParam("organization", organization)
+      .withPathParam("pipeline", pipeline)
+      .withPathParam("run", run)
+      .withPathParam("node", node)
+      .withSuccessResponse[PipelineRunNode](200)
+      .withErrorResponse[Unit](401)
+      .withErrorResponse[Unit](403)
+        /**
+   * Retrieve run node details for an organization pipeline
+   * 
+   * Expected answers:
+   *   code 200 : PipelineStepImpl (Successfully retrieved run node step details)
+   *   code 401 :  (Authentication failed - incorrect username and/or password)
+   *   code 403 :  (Jenkins requires authentication - please set username and password)
+   * 
+   * Available security schemes:
+   *   jenkins_auth (basic)
+   * 
+   * @param organization Name of the organization
+   * @param pipeline Name of the pipeline
+   * @param run Name of the run
+   * @param node Name of the node
+   * @param step Name of the step
+   */
+  def getPipelineRunNodeStep(organization: String, pipeline: String, run: String, node: String, step: String)(implicit basicAuth: BasicCredentials): ApiRequest[PipelineStepImpl] =
+    ApiRequest[PipelineStepImpl](ApiMethods.GET, "http://localhost", "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps/{step}", "application/json")
+      .withCredentials(basicAuth)
+      .withPathParam("organization", organization)
+      .withPathParam("pipeline", pipeline)
+      .withPathParam("run", run)
+      .withPathParam("node", node)
+      .withPathParam("step", step)
+      .withSuccessResponse[PipelineStepImpl](200)
+      .withErrorResponse[Unit](401)
+      .withErrorResponse[Unit](403)
+        /**
+   * Get log for a pipeline run node step
+   * 
+   * Expected answers:
+   *   code 200 : String (Successfully retrieved pipeline run node step log)
+   *   code 401 :  (Authentication failed - incorrect username and/or password)
+   *   code 403 :  (Jenkins requires authentication - please set username and password)
+   * 
+   * Available security schemes:
+   *   jenkins_auth (basic)
+   * 
+   * @param organization Name of the organization
+   * @param pipeline Name of the pipeline
+   * @param run Name of the run
+   * @param node Name of the node
+   * @param step Name of the step
+   */
+  def getPipelineRunNodeStepLog(organization: String, pipeline: String, run: String, node: String, step: String)(implicit basicAuth: BasicCredentials): ApiRequest[String] =
+    ApiRequest[String](ApiMethods.GET, "http://localhost", "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps/{step}/log", "application/json")
+      .withCredentials(basicAuth)
+      .withPathParam("organization", organization)
+      .withPathParam("pipeline", pipeline)
+      .withPathParam("run", run)
+      .withPathParam("node", node)
+      .withPathParam("step", step)
+      .withSuccessResponse[String](200)
+      .withErrorResponse[Unit](401)
+      .withErrorResponse[Unit](403)
+        /**
+   * Retrieve run node steps details for an organization pipeline
+   * 
+   * Expected answers:
+   *   code 200 : PipelineRunNodeSteps (Successfully retrieved run node steps details)
+   *   code 401 :  (Authentication failed - incorrect username and/or password)
+   *   code 403 :  (Jenkins requires authentication - please set username and password)
+   * 
+   * Available security schemes:
+   *   jenkins_auth (basic)
+   * 
+   * @param organization Name of the organization
+   * @param pipeline Name of the pipeline
+   * @param run Name of the run
+   * @param node Name of the node
+   */
+  def getPipelineRunNodeSteps(organization: String, pipeline: String, run: String, node: String)(implicit basicAuth: BasicCredentials): ApiRequest[PipelineRunNodeSteps] =
+    ApiRequest[PipelineRunNodeSteps](ApiMethods.GET, "http://localhost", "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps", "application/json")
+      .withCredentials(basicAuth)
+      .withPathParam("organization", organization)
+      .withPathParam("pipeline", pipeline)
+      .withPathParam("run", run)
+      .withPathParam("node", node)
+      .withSuccessResponse[PipelineRunNodeSteps](200)
+      .withErrorResponse[Unit](401)
+      .withErrorResponse[Unit](403)
+        /**
+   * Retrieve run nodes details for an organization pipeline
+   * 
+   * Expected answers:
+   *   code 200 : PipelineRunNodes (Successfully retrieved run nodes details)
+   *   code 401 :  (Authentication failed - incorrect username and/or password)
+   *   code 403 :  (Jenkins requires authentication - please set username and password)
+   * 
+   * Available security schemes:
+   *   jenkins_auth (basic)
+   * 
+   * @param organization Name of the organization
+   * @param pipeline Name of the pipeline
+   * @param run Name of the run
+   */
+  def getPipelineRunNodes(organization: String, pipeline: String, run: String)(implicit basicAuth: BasicCredentials): ApiRequest[PipelineRunNodes] =
+    ApiRequest[PipelineRunNodes](ApiMethods.GET, "http://localhost", "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes", "application/json")
+      .withCredentials(basicAuth)
+      .withPathParam("organization", organization)
+      .withPathParam("pipeline", pipeline)
+      .withPathParam("run", run)
+      .withSuccessResponse[PipelineRunNodes](200)
+      .withErrorResponse[Unit](401)
+      .withErrorResponse[Unit](403)
+        /**
+   * Retrieve all runs details for an organization pipeline
+   * 
+   * Expected answers:
+   *   code 200 : PipelineRuns (Successfully retrieved runs details)
+   *   code 401 :  (Authentication failed - incorrect username and/or password)
+   *   code 403 :  (Jenkins requires authentication - please set username and password)
+   * 
+   * Available security schemes:
+   *   jenkins_auth (basic)
+   * 
+   * @param organization Name of the organization
+   * @param pipeline Name of the pipeline
+   */
+  def getPipelineRuns(organization: String, pipeline: String)(implicit basicAuth: BasicCredentials): ApiRequest[PipelineRuns] =
+    ApiRequest[PipelineRuns](ApiMethods.GET, "http://localhost", "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs", "application/json")
+      .withCredentials(basicAuth)
+      .withPathParam("organization", organization)
+      .withPathParam("pipeline", pipeline)
+      .withSuccessResponse[PipelineRuns](200)
+      .withErrorResponse[Unit](401)
+      .withErrorResponse[Unit](403)
+        /**
+   * Retrieve all pipelines details for an organization
+   * 
+   * Expected answers:
+   *   code 200 : Pipelines (Successfully retrieved pipelines details)
+   *   code 401 :  (Authentication failed - incorrect username and/or password)
+   *   code 403 :  (Jenkins requires authentication - please set username and password)
+   * 
+   * Available security schemes:
+   *   jenkins_auth (basic)
+   * 
+   * @param organization Name of the organization
+   */
+  def getPipelines(organization: String)(implicit basicAuth: BasicCredentials): ApiRequest[Pipelines] =
+    ApiRequest[Pipelines](ApiMethods.GET, "http://localhost", "/blue/rest/organizations/{organization}/pipelines/", "application/json")
+      .withCredentials(basicAuth)
+      .withPathParam("organization", organization)
+      .withSuccessResponse[Pipelines](200)
+      .withErrorResponse[Unit](401)
+      .withErrorResponse[Unit](403)
+        /**
+   * Retrieve SCM details for an organization
+   * 
+   * Expected answers:
+   *   code 200 : GithubScm (Successfully retrieved SCM details)
+   *   code 401 :  (Authentication failed - incorrect username and/or password)
+   *   code 403 :  (Jenkins requires authentication - please set username and password)
+   * 
+   * Available security schemes:
+   *   jenkins_auth (basic)
+   * 
+   * @param organization Name of the organization
+   * @param scm Name of SCM
+   */
+  def getSCM(organization: String, scm: String)(implicit basicAuth: BasicCredentials): ApiRequest[GithubScm] =
+    ApiRequest[GithubScm](ApiMethods.GET, "http://localhost", "/blue/rest/organizations/{organization}/scm/{scm}", "application/json")
+      .withCredentials(basicAuth)
+      .withPathParam("organization", organization)
+      .withPathParam("scm", scm)
+      .withSuccessResponse[GithubScm](200)
+      .withErrorResponse[Unit](401)
+      .withErrorResponse[Unit](403)
+        /**
+   * Retrieve SCM organization repositories details for an organization
+   * 
+   * Expected answers:
+   *   code 200 : ScmOrganisations (Successfully retrieved SCM organization repositories details)
+   *   code 401 :  (Authentication failed - incorrect username and/or password)
+   *   code 403 :  (Jenkins requires authentication - please set username and password)
+   * 
+   * Available security schemes:
+   *   jenkins_auth (basic)
+   * 
+   * @param organization Name of the organization
+   * @param scm Name of SCM
+   * @param scmOrganisation Name of the SCM organization
+   * @param credentialId Credential ID
+   * @param pageSize Number of items in a page
+   * @param pageNumber Page number
+   */
+  def getSCMOrganisationRepositories(organization: String, scm: String, scmOrganisation: String, credentialId: Option[String] = None, pageSize: Option[Int] = None, pageNumber: Option[Int] = None)(implicit basicAuth: BasicCredentials): ApiRequest[ScmOrganisations] =
+    ApiRequest[ScmOrganisations](ApiMethods.GET, "http://localhost", "/blue/rest/organizations/{organization}/scm/{scm}/organizations/{scmOrganisation}/repositories", "application/json")
+      .withCredentials(basicAuth)
+      .withQueryParam("credentialId", credentialId)
+      .withQueryParam("pageSize", pageSize)
+      .withQueryParam("pageNumber", pageNumber)
+      .withPathParam("organization", organization)
+      .withPathParam("scm", scm)
+      .withPathParam("scmOrganisation", scmOrganisation)
+      .withSuccessResponse[ScmOrganisations](200)
+      .withErrorResponse[Unit](401)
+      .withErrorResponse[Unit](403)
+        /**
+   * Retrieve SCM organization repository details for an organization
+   * 
+   * Expected answers:
+   *   code 200 : ScmOrganisations (Successfully retrieved SCM organizations details)
+   *   code 401 :  (Authentication failed - incorrect username and/or password)
+   *   code 403 :  (Jenkins requires authentication - please set username and password)
+   * 
+   * Available security schemes:
+   *   jenkins_auth (basic)
+   * 
+   * @param organization Name of the organization
+   * @param scm Name of SCM
+   * @param scmOrganisation Name of the SCM organization
+   * @param repository Name of the SCM repository
+   * @param credentialId Credential ID
+   */
+  def getSCMOrganisationRepository(organization: String, scm: String, scmOrganisation: String, repository: String, credentialId: Option[String] = None)(implicit basicAuth: BasicCredentials): ApiRequest[ScmOrganisations] =
+    ApiRequest[ScmOrganisations](ApiMethods.GET, "http://localhost", "/blue/rest/organizations/{organization}/scm/{scm}/organizations/{scmOrganisation}/repositories/{repository}", "application/json")
+      .withCredentials(basicAuth)
+      .withQueryParam("credentialId", credentialId)
+      .withPathParam("organization", organization)
+      .withPathParam("scm", scm)
+      .withPathParam("scmOrganisation", scmOrganisation)
+      .withPathParam("repository", repository)
+      .withSuccessResponse[ScmOrganisations](200)
+      .withErrorResponse[Unit](401)
+      .withErrorResponse[Unit](403)
+        /**
+   * Retrieve SCM organizations details for an organization
+   * 
+   * Expected answers:
+   *   code 200 : ScmOrganisations (Successfully retrieved SCM organizations details)
+   *   code 401 :  (Authentication failed - incorrect username and/or password)
+   *   code 403 :  (Jenkins requires authentication - please set username and password)
+   * 
+   * Available security schemes:
+   *   jenkins_auth (basic)
+   * 
+   * @param organization Name of the organization
+   * @param scm Name of SCM
+   * @param credentialId Credential ID
+   */
+  def getSCMOrganisations(organization: String, scm: String, credentialId: Option[String] = None)(implicit basicAuth: BasicCredentials): ApiRequest[ScmOrganisations] =
+    ApiRequest[ScmOrganisations](ApiMethods.GET, "http://localhost", "/blue/rest/organizations/{organization}/scm/{scm}/organizations", "application/json")
+      .withCredentials(basicAuth)
+      .withQueryParam("credentialId", credentialId)
+      .withPathParam("organization", organization)
+      .withPathParam("scm", scm)
+      .withSuccessResponse[ScmOrganisations](200)
+      .withErrorResponse[Unit](401)
+      .withErrorResponse[Unit](403)
+        /**
+   * Retrieve user details for an organization
+   * 
+   * Expected answers:
+   *   code 200 : User (Successfully retrieved users details)
+   *   code 401 :  (Authentication failed - incorrect username and/or password)
+   *   code 403 :  (Jenkins requires authentication - please set username and password)
+   * 
+   * Available security schemes:
+   *   jenkins_auth (basic)
+   * 
+   * @param organization Name of the organization
    * @param user Name of the user
    */
-  def getUser(organisation: String, user: String): ApiRequest[SwaggyjenkinsUser] =
-    ApiRequest[SwaggyjenkinsUser](ApiMethods.GET, "http://localhost", "/blue/rest/organizations/{organisation}/users/{user}", "application/json")
-      .withPathParam("organisation", organisation)
+  def getUser(organization: String, user: String)(implicit basicAuth: BasicCredentials): ApiRequest[User] =
+    ApiRequest[User](ApiMethods.GET, "http://localhost", "/blue/rest/organizations/{organization}/users/{user}", "application/json")
+      .withCredentials(basicAuth)
+      .withPathParam("organization", organization)
       .withPathParam("user", user)
-      .withSuccessResponse[SwaggyjenkinsUser](200)
+      .withSuccessResponse[User](200)
       .withErrorResponse[Unit](401)
       .withErrorResponse[Unit](403)
         /**
-   * Retrieve users details for an organisation
+   * Retrieve user favorites details for an organization
    * 
    * Expected answers:
-   *   code 200 : SwaggyjenkinsUser (Successfully retrieved users details)
+   *   code 200 : UserFavorites (Successfully retrieved users favorites details)
    *   code 401 :  (Authentication failed - incorrect username and/or password)
    *   code 403 :  (Jenkins requires authentication - please set username and password)
    * 
-   * @param organisation Name of the organisation
+   * Available security schemes:
+   *   jenkins_auth (basic)
+   * 
+   * @param user Name of the user
    */
-  def getUsers(organisation: String): ApiRequest[SwaggyjenkinsUser] =
-    ApiRequest[SwaggyjenkinsUser](ApiMethods.GET, "http://localhost", "/blue/rest/organizations/{organisation}/users/", "application/json")
-      .withPathParam("organisation", organisation)
-      .withSuccessResponse[SwaggyjenkinsUser](200)
+  def getUserFavorites(user: String)(implicit basicAuth: BasicCredentials): ApiRequest[UserFavorites] =
+    ApiRequest[UserFavorites](ApiMethods.GET, "http://localhost", "/blue/rest/users/{user}/favorites", "application/json")
+      .withCredentials(basicAuth)
+      .withPathParam("user", user)
+      .withSuccessResponse[UserFavorites](200)
       .withErrorResponse[Unit](401)
       .withErrorResponse[Unit](403)
         /**
-   * Get classes details
+   * Retrieve users details for an organization
    * 
    * Expected answers:
-   *   code 200 : String (Successfully retrieved search result)
+   *   code 200 : User (Successfully retrieved users details)
    *   code 401 :  (Authentication failed - incorrect username and/or password)
    *   code 403 :  (Jenkins requires authentication - please set username and password)
    * 
-   * @param &#x60;q&#x60; Query string containing an array of class names
+   * Available security schemes:
+   *   jenkins_auth (basic)
+   * 
+   * @param organization Name of the organization
    */
-  def search(&#x60;q&#x60;: String): ApiRequest[String] =
-    ApiRequest[String](ApiMethods.GET, "http://localhost", "/blue/rest/classes/", "application/json")
-      .withQueryParam("q", `q`)
-      .withSuccessResponse[String](200)
+  def getUsers(organization: String)(implicit basicAuth: BasicCredentials): ApiRequest[User] =
+    ApiRequest[User](ApiMethods.GET, "http://localhost", "/blue/rest/organizations/{organization}/users/", "application/json")
+      .withCredentials(basicAuth)
+      .withPathParam("organization", organization)
+      .withSuccessResponse[User](200)
+      .withErrorResponse[Unit](401)
+      .withErrorResponse[Unit](403)
+        /**
+   * Replay an organization pipeline run
+   * 
+   * Expected answers:
+   *   code 200 : QueueItemImpl (Successfully replayed a pipeline run)
+   *   code 401 :  (Authentication failed - incorrect username and/or password)
+   *   code 403 :  (Jenkins requires authentication - please set username and password)
+   * 
+   * Available security schemes:
+   *   jenkins_auth (basic)
+   * 
+   * @param organization Name of the organization
+   * @param pipeline Name of the pipeline
+   * @param run Name of the run
+   */
+  def postPipelineRun(organization: String, pipeline: String, run: String)(implicit basicAuth: BasicCredentials): ApiRequest[QueueItemImpl] =
+    ApiRequest[QueueItemImpl](ApiMethods.POST, "http://localhost", "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/replay", "application/json")
+      .withCredentials(basicAuth)
+      .withPathParam("organization", organization)
+      .withPathParam("pipeline", pipeline)
+      .withPathParam("run", run)
+      .withSuccessResponse[QueueItemImpl](200)
+      .withErrorResponse[Unit](401)
+      .withErrorResponse[Unit](403)
+        /**
+   * Start a build for an organization pipeline
+   * 
+   * Expected answers:
+   *   code 200 : QueueItemImpl (Successfully started a build)
+   *   code 401 :  (Authentication failed - incorrect username and/or password)
+   *   code 403 :  (Jenkins requires authentication - please set username and password)
+   * 
+   * Available security schemes:
+   *   jenkins_auth (basic)
+   * 
+   * @param organization Name of the organization
+   * @param pipeline Name of the pipeline
+   */
+  def postPipelineRuns(organization: String, pipeline: String)(implicit basicAuth: BasicCredentials): ApiRequest[QueueItemImpl] =
+    ApiRequest[QueueItemImpl](ApiMethods.POST, "http://localhost", "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs", "application/json")
+      .withCredentials(basicAuth)
+      .withPathParam("organization", organization)
+      .withPathParam("pipeline", pipeline)
+      .withSuccessResponse[QueueItemImpl](200)
+      .withErrorResponse[Unit](401)
+      .withErrorResponse[Unit](403)
+        /**
+   * Favorite/unfavorite a pipeline
+   * 
+   * Expected answers:
+   *   code 200 : FavoriteImpl (Successfully favorited/unfavorited a pipeline)
+   *   code 401 :  (Authentication failed - incorrect username and/or password)
+   *   code 403 :  (Jenkins requires authentication - please set username and password)
+   * 
+   * Available security schemes:
+   *   jenkins_auth (basic)
+   * 
+   * @param organization Name of the organization
+   * @param pipeline Name of the pipeline
+   * @param body Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite
+   */
+  def putPipelineFavorite(organization: String, pipeline: String, body: Body)(implicit basicAuth: BasicCredentials): ApiRequest[FavoriteImpl] =
+    ApiRequest[FavoriteImpl](ApiMethods.PUT, "http://localhost", "/blue/rest/organizations/{organization}/pipelines/{pipeline}/favorite", "application/json")
+      .withCredentials(basicAuth)
+      .withBody(body)
+      .withPathParam("organization", organization)
+      .withPathParam("pipeline", pipeline)
+      .withSuccessResponse[FavoriteImpl](200)
+      .withErrorResponse[Unit](401)
+      .withErrorResponse[Unit](403)
+        /**
+   * Stop a build of an organization pipeline
+   * 
+   * Expected answers:
+   *   code 200 : PipelineRun (Successfully stopped a build)
+   *   code 401 :  (Authentication failed - incorrect username and/or password)
+   *   code 403 :  (Jenkins requires authentication - please set username and password)
+   * 
+   * Available security schemes:
+   *   jenkins_auth (basic)
+   * 
+   * @param organization Name of the organization
+   * @param pipeline Name of the pipeline
+   * @param run Name of the run
+   * @param blocking Set to true to make blocking stop, default: false
+   * @param timeOutInSecs Timeout in seconds, default: 10 seconds
+   */
+  def putPipelineRun(organization: String, pipeline: String, run: String, blocking: Option[String] = None, timeOutInSecs: Option[Int] = None)(implicit basicAuth: BasicCredentials): ApiRequest[PipelineRun] =
+    ApiRequest[PipelineRun](ApiMethods.PUT, "http://localhost", "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/stop", "application/json")
+      .withCredentials(basicAuth)
+      .withQueryParam("blocking", blocking)
+      .withQueryParam("timeOutInSecs", timeOutInSecs)
+      .withPathParam("organization", organization)
+      .withPathParam("pipeline", pipeline)
+      .withPathParam("run", run)
+      .withSuccessResponse[PipelineRun](200)
       .withErrorResponse[Unit](401)
       .withErrorResponse[Unit](403)
         /**
@@ -253,10 +821,34 @@ object BlueOceanApi {
    *   code 401 :  (Authentication failed - incorrect username and/or password)
    *   code 403 :  (Jenkins requires authentication - please set username and password)
    * 
+   * Available security schemes:
+   *   jenkins_auth (basic)
+   * 
    * @param &#x60;q&#x60; Query string
    */
-  def search_0(&#x60;q&#x60;: String): ApiRequest[String] =
+  def search(&#x60;q&#x60;: String)(implicit basicAuth: BasicCredentials): ApiRequest[String] =
     ApiRequest[String](ApiMethods.GET, "http://localhost", "/blue/rest/search/", "application/json")
+      .withCredentials(basicAuth)
+      .withQueryParam("q", `q`)
+      .withSuccessResponse[String](200)
+      .withErrorResponse[Unit](401)
+      .withErrorResponse[Unit](403)
+        /**
+   * Get classes details
+   * 
+   * Expected answers:
+   *   code 200 : String (Successfully retrieved search result)
+   *   code 401 :  (Authentication failed - incorrect username and/or password)
+   *   code 403 :  (Jenkins requires authentication - please set username and password)
+   * 
+   * Available security schemes:
+   *   jenkins_auth (basic)
+   * 
+   * @param &#x60;q&#x60; Query string containing an array of class names
+   */
+  def searchClasses(&#x60;q&#x60;: String)(implicit basicAuth: BasicCredentials): ApiRequest[String] =
+    ApiRequest[String](ApiMethods.GET, "http://localhost", "/blue/rest/classes/", "application/json")
+      .withCredentials(basicAuth)
       .withQueryParam("q", `q`)
       .withSuccessResponse[String](200)
       .withErrorResponse[Unit](401)

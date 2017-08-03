@@ -27,13 +27,13 @@ import com.google.gson.reflect.TypeToken;
 import java.io.IOException;
 
 
-import com.cliffano.swaggyjenkins.model.HudsonmodelComputerSet;
-import com.cliffano.swaggyjenkins.model.HudsonmodelFreeStyleBuild;
-import com.cliffano.swaggyjenkins.model.HudsonmodelFreeStyleProject;
-import com.cliffano.swaggyjenkins.model.HudsonmodelHudson;
-import com.cliffano.swaggyjenkins.model.HudsonmodelListView;
-import com.cliffano.swaggyjenkins.model.HudsonmodelQueue;
-import com.cliffano.swaggyjenkins.model.HudsonsecuritycsrfDefaultCrumbIssuer;
+import com.cliffano.swaggyjenkins.model.ComputerSet;
+import com.cliffano.swaggyjenkins.model.DefaultCrumbIssuer;
+import com.cliffano.swaggyjenkins.model.FreeStyleBuild;
+import com.cliffano.swaggyjenkins.model.FreeStyleProject;
+import com.cliffano.swaggyjenkins.model.Hudson;
+import com.cliffano.swaggyjenkins.model.ListView;
+import com.cliffano.swaggyjenkins.model.Queue;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -62,18 +62,22 @@ public class RemoteAccessApi {
 
     /**
      * Build call for getComputer
+     * @param depth Recursion depth in response model (required)
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call getComputerCall(final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call getComputerCall(Integer depth, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
         
         // create path and map variables
-        String localVarPath = "/computer/api/json?depth=1";
+        String localVarPath = "/computer/api/json";
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        if (depth != null)
+        localVarQueryParams.addAll(apiClient.parameterToPair("depth", depth));
 
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
 
@@ -103,15 +107,20 @@ public class RemoteAccessApi {
             });
         }
 
-        String[] localVarAuthNames = new String[] {  };
-        return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+        String[] localVarAuthNames = new String[] { "jenkins_auth" };
+        return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
     
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call getComputerValidateBeforeCall(final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call getComputerValidateBeforeCall(Integer depth, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        
+        // verify the required parameter 'depth' is set
+        if (depth == null) {
+            throw new ApiException("Missing the required parameter 'depth' when calling getComputer(Async)");
+        }
         
         
-        com.squareup.okhttp.Call call = getComputerCall(progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = getComputerCall(depth, progressListener, progressRequestListener);
         return call;
 
         
@@ -123,34 +132,37 @@ public class RemoteAccessApi {
     /**
      * 
      * Retrieve computer details
-     * @return HudsonmodelComputerSet
+     * @param depth Recursion depth in response model (required)
+     * @return ComputerSet
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public HudsonmodelComputerSet getComputer() throws ApiException {
-        ApiResponse<HudsonmodelComputerSet> resp = getComputerWithHttpInfo();
+    public ComputerSet getComputer(Integer depth) throws ApiException {
+        ApiResponse<ComputerSet> resp = getComputerWithHttpInfo(depth);
         return resp.getData();
     }
 
     /**
      * 
      * Retrieve computer details
-     * @return ApiResponse&lt;HudsonmodelComputerSet&gt;
+     * @param depth Recursion depth in response model (required)
+     * @return ApiResponse&lt;ComputerSet&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<HudsonmodelComputerSet> getComputerWithHttpInfo() throws ApiException {
-        com.squareup.okhttp.Call call = getComputerValidateBeforeCall(null, null);
-        Type localVarReturnType = new TypeToken<HudsonmodelComputerSet>(){}.getType();
+    public ApiResponse<ComputerSet> getComputerWithHttpInfo(Integer depth) throws ApiException {
+        com.squareup.okhttp.Call call = getComputerValidateBeforeCall(depth, null, null);
+        Type localVarReturnType = new TypeToken<ComputerSet>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
     /**
      *  (asynchronously)
      * Retrieve computer details
+     * @param depth Recursion depth in response model (required)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call getComputerAsync(final ApiCallback<HudsonmodelComputerSet> callback) throws ApiException {
+    public com.squareup.okhttp.Call getComputerAsync(Integer depth, final ApiCallback<ComputerSet> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -171,8 +183,8 @@ public class RemoteAccessApi {
             };
         }
 
-        com.squareup.okhttp.Call call = getComputerValidateBeforeCall(progressListener, progressRequestListener);
-        Type localVarReturnType = new TypeToken<HudsonmodelComputerSet>(){}.getType();
+        com.squareup.okhttp.Call call = getComputerValidateBeforeCall(depth, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<ComputerSet>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
@@ -190,6 +202,7 @@ public class RemoteAccessApi {
         String localVarPath = "/crumbIssuer/api/json";
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
 
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
 
@@ -219,8 +232,8 @@ public class RemoteAccessApi {
             });
         }
 
-        String[] localVarAuthNames = new String[] {  };
-        return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+        String[] localVarAuthNames = new String[] { "jenkins_auth" };
+        return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
     
     @SuppressWarnings("rawtypes")
@@ -239,23 +252,23 @@ public class RemoteAccessApi {
     /**
      * 
      * Retrieve CSRF protection token
-     * @return HudsonsecuritycsrfDefaultCrumbIssuer
+     * @return DefaultCrumbIssuer
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public HudsonsecuritycsrfDefaultCrumbIssuer getCrumb() throws ApiException {
-        ApiResponse<HudsonsecuritycsrfDefaultCrumbIssuer> resp = getCrumbWithHttpInfo();
+    public DefaultCrumbIssuer getCrumb() throws ApiException {
+        ApiResponse<DefaultCrumbIssuer> resp = getCrumbWithHttpInfo();
         return resp.getData();
     }
 
     /**
      * 
      * Retrieve CSRF protection token
-     * @return ApiResponse&lt;HudsonsecuritycsrfDefaultCrumbIssuer&gt;
+     * @return ApiResponse&lt;DefaultCrumbIssuer&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<HudsonsecuritycsrfDefaultCrumbIssuer> getCrumbWithHttpInfo() throws ApiException {
+    public ApiResponse<DefaultCrumbIssuer> getCrumbWithHttpInfo() throws ApiException {
         com.squareup.okhttp.Call call = getCrumbValidateBeforeCall(null, null);
-        Type localVarReturnType = new TypeToken<HudsonsecuritycsrfDefaultCrumbIssuer>(){}.getType();
+        Type localVarReturnType = new TypeToken<DefaultCrumbIssuer>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
@@ -266,7 +279,7 @@ public class RemoteAccessApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call getCrumbAsync(final ApiCallback<HudsonsecuritycsrfDefaultCrumbIssuer> callback) throws ApiException {
+    public com.squareup.okhttp.Call getCrumbAsync(final ApiCallback<DefaultCrumbIssuer> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -288,7 +301,7 @@ public class RemoteAccessApi {
         }
 
         com.squareup.okhttp.Call call = getCrumbValidateBeforeCall(progressListener, progressRequestListener);
-        Type localVarReturnType = new TypeToken<HudsonsecuritycsrfDefaultCrumbIssuer>(){}.getType();
+        Type localVarReturnType = new TypeToken<DefaultCrumbIssuer>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
@@ -306,6 +319,7 @@ public class RemoteAccessApi {
         String localVarPath = "/api/json";
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
 
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
 
@@ -335,8 +349,8 @@ public class RemoteAccessApi {
             });
         }
 
-        String[] localVarAuthNames = new String[] {  };
-        return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+        String[] localVarAuthNames = new String[] { "jenkins_auth" };
+        return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
     
     @SuppressWarnings("rawtypes")
@@ -355,23 +369,23 @@ public class RemoteAccessApi {
     /**
      * 
      * Retrieve Jenkins details
-     * @return HudsonmodelHudson
+     * @return Hudson
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public HudsonmodelHudson getJenkins() throws ApiException {
-        ApiResponse<HudsonmodelHudson> resp = getJenkinsWithHttpInfo();
+    public Hudson getJenkins() throws ApiException {
+        ApiResponse<Hudson> resp = getJenkinsWithHttpInfo();
         return resp.getData();
     }
 
     /**
      * 
      * Retrieve Jenkins details
-     * @return ApiResponse&lt;HudsonmodelHudson&gt;
+     * @return ApiResponse&lt;Hudson&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<HudsonmodelHudson> getJenkinsWithHttpInfo() throws ApiException {
+    public ApiResponse<Hudson> getJenkinsWithHttpInfo() throws ApiException {
         com.squareup.okhttp.Call call = getJenkinsValidateBeforeCall(null, null);
-        Type localVarReturnType = new TypeToken<HudsonmodelHudson>(){}.getType();
+        Type localVarReturnType = new TypeToken<Hudson>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
@@ -382,7 +396,7 @@ public class RemoteAccessApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call getJenkinsAsync(final ApiCallback<HudsonmodelHudson> callback) throws ApiException {
+    public com.squareup.okhttp.Call getJenkinsAsync(final ApiCallback<Hudson> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -404,7 +418,7 @@ public class RemoteAccessApi {
         }
 
         com.squareup.okhttp.Call call = getJenkinsValidateBeforeCall(progressListener, progressRequestListener);
-        Type localVarReturnType = new TypeToken<HudsonmodelHudson>(){}.getType();
+        Type localVarReturnType = new TypeToken<Hudson>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
@@ -424,6 +438,7 @@ public class RemoteAccessApi {
             .replaceAll("\\{" + "name" + "\\}", apiClient.escapeString(name.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
 
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
 
@@ -453,8 +468,8 @@ public class RemoteAccessApi {
             });
         }
 
-        String[] localVarAuthNames = new String[] {  };
-        return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+        String[] localVarAuthNames = new String[] { "jenkins_auth" };
+        return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
     
     @SuppressWarnings("rawtypes")
@@ -479,11 +494,11 @@ public class RemoteAccessApi {
      * 
      * Retrieve job details
      * @param name Name of the job (required)
-     * @return HudsonmodelFreeStyleProject
+     * @return FreeStyleProject
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public HudsonmodelFreeStyleProject getJob(String name) throws ApiException {
-        ApiResponse<HudsonmodelFreeStyleProject> resp = getJobWithHttpInfo(name);
+    public FreeStyleProject getJob(String name) throws ApiException {
+        ApiResponse<FreeStyleProject> resp = getJobWithHttpInfo(name);
         return resp.getData();
     }
 
@@ -491,12 +506,12 @@ public class RemoteAccessApi {
      * 
      * Retrieve job details
      * @param name Name of the job (required)
-     * @return ApiResponse&lt;HudsonmodelFreeStyleProject&gt;
+     * @return ApiResponse&lt;FreeStyleProject&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<HudsonmodelFreeStyleProject> getJobWithHttpInfo(String name) throws ApiException {
+    public ApiResponse<FreeStyleProject> getJobWithHttpInfo(String name) throws ApiException {
         com.squareup.okhttp.Call call = getJobValidateBeforeCall(name, null, null);
-        Type localVarReturnType = new TypeToken<HudsonmodelFreeStyleProject>(){}.getType();
+        Type localVarReturnType = new TypeToken<FreeStyleProject>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
@@ -508,7 +523,7 @@ public class RemoteAccessApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call getJobAsync(String name, final ApiCallback<HudsonmodelFreeStyleProject> callback) throws ApiException {
+    public com.squareup.okhttp.Call getJobAsync(String name, final ApiCallback<FreeStyleProject> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -530,7 +545,7 @@ public class RemoteAccessApi {
         }
 
         com.squareup.okhttp.Call call = getJobValidateBeforeCall(name, progressListener, progressRequestListener);
-        Type localVarReturnType = new TypeToken<HudsonmodelFreeStyleProject>(){}.getType();
+        Type localVarReturnType = new TypeToken<FreeStyleProject>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
@@ -550,6 +565,7 @@ public class RemoteAccessApi {
             .replaceAll("\\{" + "name" + "\\}", apiClient.escapeString(name.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
 
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
 
@@ -579,8 +595,8 @@ public class RemoteAccessApi {
             });
         }
 
-        String[] localVarAuthNames = new String[] {  };
-        return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+        String[] localVarAuthNames = new String[] { "jenkins_auth" };
+        return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
     
     @SuppressWarnings("rawtypes")
@@ -676,6 +692,7 @@ public class RemoteAccessApi {
             .replaceAll("\\{" + "name" + "\\}", apiClient.escapeString(name.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
 
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
 
@@ -705,8 +722,8 @@ public class RemoteAccessApi {
             });
         }
 
-        String[] localVarAuthNames = new String[] {  };
-        return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+        String[] localVarAuthNames = new String[] { "jenkins_auth" };
+        return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
     
     @SuppressWarnings("rawtypes")
@@ -731,11 +748,11 @@ public class RemoteAccessApi {
      * 
      * Retrieve job&#39;s last build details
      * @param name Name of the job (required)
-     * @return HudsonmodelFreeStyleBuild
+     * @return FreeStyleBuild
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public HudsonmodelFreeStyleBuild getJobLastBuild(String name) throws ApiException {
-        ApiResponse<HudsonmodelFreeStyleBuild> resp = getJobLastBuildWithHttpInfo(name);
+    public FreeStyleBuild getJobLastBuild(String name) throws ApiException {
+        ApiResponse<FreeStyleBuild> resp = getJobLastBuildWithHttpInfo(name);
         return resp.getData();
     }
 
@@ -743,12 +760,12 @@ public class RemoteAccessApi {
      * 
      * Retrieve job&#39;s last build details
      * @param name Name of the job (required)
-     * @return ApiResponse&lt;HudsonmodelFreeStyleBuild&gt;
+     * @return ApiResponse&lt;FreeStyleBuild&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<HudsonmodelFreeStyleBuild> getJobLastBuildWithHttpInfo(String name) throws ApiException {
+    public ApiResponse<FreeStyleBuild> getJobLastBuildWithHttpInfo(String name) throws ApiException {
         com.squareup.okhttp.Call call = getJobLastBuildValidateBeforeCall(name, null, null);
-        Type localVarReturnType = new TypeToken<HudsonmodelFreeStyleBuild>(){}.getType();
+        Type localVarReturnType = new TypeToken<FreeStyleBuild>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
@@ -760,7 +777,7 @@ public class RemoteAccessApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call getJobLastBuildAsync(String name, final ApiCallback<HudsonmodelFreeStyleBuild> callback) throws ApiException {
+    public com.squareup.okhttp.Call getJobLastBuildAsync(String name, final ApiCallback<FreeStyleBuild> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -782,7 +799,7 @@ public class RemoteAccessApi {
         }
 
         com.squareup.okhttp.Call call = getJobLastBuildValidateBeforeCall(name, progressListener, progressRequestListener);
-        Type localVarReturnType = new TypeToken<HudsonmodelFreeStyleBuild>(){}.getType();
+        Type localVarReturnType = new TypeToken<FreeStyleBuild>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
@@ -805,8 +822,9 @@ public class RemoteAccessApi {
             .replaceAll("\\{" + "number" + "\\}", apiClient.escapeString(number.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
         if (start != null)
-        localVarQueryParams.addAll(apiClient.parameterToPairs("", "start", start));
+        localVarQueryParams.addAll(apiClient.parameterToPair("start", start));
 
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
 
@@ -836,8 +854,8 @@ public class RemoteAccessApi {
             });
         }
 
-        String[] localVarAuthNames = new String[] {  };
-        return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+        String[] localVarAuthNames = new String[] { "jenkins_auth" };
+        return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
     
     @SuppressWarnings("rawtypes")
@@ -943,6 +961,7 @@ public class RemoteAccessApi {
         String localVarPath = "/queue/api/json";
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
 
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
 
@@ -972,8 +991,8 @@ public class RemoteAccessApi {
             });
         }
 
-        String[] localVarAuthNames = new String[] {  };
-        return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+        String[] localVarAuthNames = new String[] { "jenkins_auth" };
+        return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
     
     @SuppressWarnings("rawtypes")
@@ -992,23 +1011,23 @@ public class RemoteAccessApi {
     /**
      * 
      * Retrieve queue details
-     * @return HudsonmodelQueue
+     * @return Queue
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public HudsonmodelQueue getQueue() throws ApiException {
-        ApiResponse<HudsonmodelQueue> resp = getQueueWithHttpInfo();
+    public Queue getQueue() throws ApiException {
+        ApiResponse<Queue> resp = getQueueWithHttpInfo();
         return resp.getData();
     }
 
     /**
      * 
      * Retrieve queue details
-     * @return ApiResponse&lt;HudsonmodelQueue&gt;
+     * @return ApiResponse&lt;Queue&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<HudsonmodelQueue> getQueueWithHttpInfo() throws ApiException {
+    public ApiResponse<Queue> getQueueWithHttpInfo() throws ApiException {
         com.squareup.okhttp.Call call = getQueueValidateBeforeCall(null, null);
-        Type localVarReturnType = new TypeToken<HudsonmodelQueue>(){}.getType();
+        Type localVarReturnType = new TypeToken<Queue>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
@@ -1019,7 +1038,7 @@ public class RemoteAccessApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call getQueueAsync(final ApiCallback<HudsonmodelQueue> callback) throws ApiException {
+    public com.squareup.okhttp.Call getQueueAsync(final ApiCallback<Queue> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -1041,7 +1060,7 @@ public class RemoteAccessApi {
         }
 
         com.squareup.okhttp.Call call = getQueueValidateBeforeCall(progressListener, progressRequestListener);
-        Type localVarReturnType = new TypeToken<HudsonmodelQueue>(){}.getType();
+        Type localVarReturnType = new TypeToken<Queue>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
@@ -1061,6 +1080,7 @@ public class RemoteAccessApi {
             .replaceAll("\\{" + "number" + "\\}", apiClient.escapeString(number.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
 
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
 
@@ -1090,8 +1110,8 @@ public class RemoteAccessApi {
             });
         }
 
-        String[] localVarAuthNames = new String[] {  };
-        return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+        String[] localVarAuthNames = new String[] { "jenkins_auth" };
+        return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
     
     @SuppressWarnings("rawtypes")
@@ -1116,11 +1136,11 @@ public class RemoteAccessApi {
      * 
      * Retrieve queued item details
      * @param number Queue number (required)
-     * @return HudsonmodelQueue
+     * @return Queue
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public HudsonmodelQueue getQueueItem(String number) throws ApiException {
-        ApiResponse<HudsonmodelQueue> resp = getQueueItemWithHttpInfo(number);
+    public Queue getQueueItem(String number) throws ApiException {
+        ApiResponse<Queue> resp = getQueueItemWithHttpInfo(number);
         return resp.getData();
     }
 
@@ -1128,12 +1148,12 @@ public class RemoteAccessApi {
      * 
      * Retrieve queued item details
      * @param number Queue number (required)
-     * @return ApiResponse&lt;HudsonmodelQueue&gt;
+     * @return ApiResponse&lt;Queue&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<HudsonmodelQueue> getQueueItemWithHttpInfo(String number) throws ApiException {
+    public ApiResponse<Queue> getQueueItemWithHttpInfo(String number) throws ApiException {
         com.squareup.okhttp.Call call = getQueueItemValidateBeforeCall(number, null, null);
-        Type localVarReturnType = new TypeToken<HudsonmodelQueue>(){}.getType();
+        Type localVarReturnType = new TypeToken<Queue>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
@@ -1145,7 +1165,7 @@ public class RemoteAccessApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call getQueueItemAsync(String number, final ApiCallback<HudsonmodelQueue> callback) throws ApiException {
+    public com.squareup.okhttp.Call getQueueItemAsync(String number, final ApiCallback<Queue> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -1167,7 +1187,7 @@ public class RemoteAccessApi {
         }
 
         com.squareup.okhttp.Call call = getQueueItemValidateBeforeCall(number, progressListener, progressRequestListener);
-        Type localVarReturnType = new TypeToken<HudsonmodelQueue>(){}.getType();
+        Type localVarReturnType = new TypeToken<Queue>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
@@ -1187,6 +1207,7 @@ public class RemoteAccessApi {
             .replaceAll("\\{" + "name" + "\\}", apiClient.escapeString(name.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
 
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
 
@@ -1216,8 +1237,8 @@ public class RemoteAccessApi {
             });
         }
 
-        String[] localVarAuthNames = new String[] {  };
-        return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+        String[] localVarAuthNames = new String[] { "jenkins_auth" };
+        return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
     
     @SuppressWarnings("rawtypes")
@@ -1242,11 +1263,11 @@ public class RemoteAccessApi {
      * 
      * Retrieve view details
      * @param name Name of the view (required)
-     * @return HudsonmodelListView
+     * @return ListView
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public HudsonmodelListView getView(String name) throws ApiException {
-        ApiResponse<HudsonmodelListView> resp = getViewWithHttpInfo(name);
+    public ListView getView(String name) throws ApiException {
+        ApiResponse<ListView> resp = getViewWithHttpInfo(name);
         return resp.getData();
     }
 
@@ -1254,12 +1275,12 @@ public class RemoteAccessApi {
      * 
      * Retrieve view details
      * @param name Name of the view (required)
-     * @return ApiResponse&lt;HudsonmodelListView&gt;
+     * @return ApiResponse&lt;ListView&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<HudsonmodelListView> getViewWithHttpInfo(String name) throws ApiException {
+    public ApiResponse<ListView> getViewWithHttpInfo(String name) throws ApiException {
         com.squareup.okhttp.Call call = getViewValidateBeforeCall(name, null, null);
-        Type localVarReturnType = new TypeToken<HudsonmodelListView>(){}.getType();
+        Type localVarReturnType = new TypeToken<ListView>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
@@ -1271,7 +1292,7 @@ public class RemoteAccessApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call getViewAsync(String name, final ApiCallback<HudsonmodelListView> callback) throws ApiException {
+    public com.squareup.okhttp.Call getViewAsync(String name, final ApiCallback<ListView> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -1293,7 +1314,7 @@ public class RemoteAccessApi {
         }
 
         com.squareup.okhttp.Call call = getViewValidateBeforeCall(name, progressListener, progressRequestListener);
-        Type localVarReturnType = new TypeToken<HudsonmodelListView>(){}.getType();
+        Type localVarReturnType = new TypeToken<ListView>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
@@ -1313,6 +1334,7 @@ public class RemoteAccessApi {
             .replaceAll("\\{" + "name" + "\\}", apiClient.escapeString(name.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
 
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
 
@@ -1342,8 +1364,8 @@ public class RemoteAccessApi {
             });
         }
 
-        String[] localVarAuthNames = new String[] {  };
-        return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+        String[] localVarAuthNames = new String[] { "jenkins_auth" };
+        return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
     
     @SuppressWarnings("rawtypes")
@@ -1437,6 +1459,7 @@ public class RemoteAccessApi {
         String localVarPath = "/api/json";
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
 
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
 
@@ -1466,8 +1489,8 @@ public class RemoteAccessApi {
             });
         }
 
-        String[] localVarAuthNames = new String[] {  };
-        return apiClient.buildCall(localVarPath, "HEAD", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+        String[] localVarAuthNames = new String[] { "jenkins_auth" };
+        return apiClient.buildCall(localVarPath, "HEAD", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
     
     @SuppressWarnings("rawtypes")
@@ -1555,12 +1578,13 @@ public class RemoteAccessApi {
         String localVarPath = "/createItem";
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
         if (name != null)
-        localVarQueryParams.addAll(apiClient.parameterToPairs("", "name", name));
+        localVarQueryParams.addAll(apiClient.parameterToPair("name", name));
         if (from != null)
-        localVarQueryParams.addAll(apiClient.parameterToPairs("", "from", from));
+        localVarQueryParams.addAll(apiClient.parameterToPair("from", from));
         if (mode != null)
-        localVarQueryParams.addAll(apiClient.parameterToPairs("", "mode", mode));
+        localVarQueryParams.addAll(apiClient.parameterToPair("mode", mode));
 
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
         if (jenkinsCrumb != null)
@@ -1594,8 +1618,8 @@ public class RemoteAccessApi {
             });
         }
 
-        String[] localVarAuthNames = new String[] {  };
-        return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+        String[] localVarAuthNames = new String[] { "jenkins_auth" };
+        return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
     
     @SuppressWarnings("rawtypes")
@@ -1704,8 +1728,9 @@ public class RemoteAccessApi {
         String localVarPath = "/createView";
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
         if (name != null)
-        localVarQueryParams.addAll(apiClient.parameterToPairs("", "name", name));
+        localVarQueryParams.addAll(apiClient.parameterToPair("name", name));
 
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
         if (jenkinsCrumb != null)
@@ -1739,8 +1764,8 @@ public class RemoteAccessApi {
             });
         }
 
-        String[] localVarAuthNames = new String[] {  };
-        return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+        String[] localVarAuthNames = new String[] { "jenkins_auth" };
+        return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
     
     @SuppressWarnings("rawtypes")
@@ -1844,10 +1869,11 @@ public class RemoteAccessApi {
             .replaceAll("\\{" + "name" + "\\}", apiClient.escapeString(name.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
         if (json != null)
-        localVarQueryParams.addAll(apiClient.parameterToPairs("", "json", json));
+        localVarQueryParams.addAll(apiClient.parameterToPair("json", json));
         if (token != null)
-        localVarQueryParams.addAll(apiClient.parameterToPairs("", "token", token));
+        localVarQueryParams.addAll(apiClient.parameterToPair("token", token));
 
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
         if (jenkinsCrumb != null)
@@ -1879,8 +1905,8 @@ public class RemoteAccessApi {
             });
         }
 
-        String[] localVarAuthNames = new String[] {  };
-        return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+        String[] localVarAuthNames = new String[] { "jenkins_auth" };
+        return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
     
     @SuppressWarnings("rawtypes")
@@ -1988,6 +2014,7 @@ public class RemoteAccessApi {
             .replaceAll("\\{" + "name" + "\\}", apiClient.escapeString(name.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
 
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
         if (jenkinsCrumb != null)
@@ -2019,8 +2046,8 @@ public class RemoteAccessApi {
             });
         }
 
-        String[] localVarAuthNames = new String[] {  };
-        return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+        String[] localVarAuthNames = new String[] { "jenkins_auth" };
+        return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
     
     @SuppressWarnings("rawtypes")
@@ -2124,6 +2151,7 @@ public class RemoteAccessApi {
             .replaceAll("\\{" + "name" + "\\}", apiClient.escapeString(name.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
 
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
         if (jenkinsCrumb != null)
@@ -2155,8 +2183,8 @@ public class RemoteAccessApi {
             });
         }
 
-        String[] localVarAuthNames = new String[] {  };
-        return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+        String[] localVarAuthNames = new String[] { "jenkins_auth" };
+        return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
     
     @SuppressWarnings("rawtypes")
@@ -2252,6 +2280,7 @@ public class RemoteAccessApi {
             .replaceAll("\\{" + "name" + "\\}", apiClient.escapeString(name.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
 
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
         if (jenkinsCrumb != null)
@@ -2283,8 +2312,8 @@ public class RemoteAccessApi {
             });
         }
 
-        String[] localVarAuthNames = new String[] {  };
-        return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+        String[] localVarAuthNames = new String[] { "jenkins_auth" };
+        return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
     
     @SuppressWarnings("rawtypes")
@@ -2380,6 +2409,7 @@ public class RemoteAccessApi {
             .replaceAll("\\{" + "name" + "\\}", apiClient.escapeString(name.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
 
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
         if (jenkinsCrumb != null)
@@ -2411,8 +2441,8 @@ public class RemoteAccessApi {
             });
         }
 
-        String[] localVarAuthNames = new String[] {  };
-        return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+        String[] localVarAuthNames = new String[] { "jenkins_auth" };
+        return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
     
     @SuppressWarnings("rawtypes")
@@ -2508,6 +2538,7 @@ public class RemoteAccessApi {
             .replaceAll("\\{" + "name" + "\\}", apiClient.escapeString(name.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
 
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
         if (jenkinsCrumb != null)
@@ -2539,8 +2570,8 @@ public class RemoteAccessApi {
             });
         }
 
-        String[] localVarAuthNames = new String[] {  };
-        return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+        String[] localVarAuthNames = new String[] { "jenkins_auth" };
+        return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
     
     @SuppressWarnings("rawtypes")
@@ -2637,6 +2668,7 @@ public class RemoteAccessApi {
             .replaceAll("\\{" + "name" + "\\}", apiClient.escapeString(name.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
 
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
         if (jenkinsCrumb != null)
@@ -2668,8 +2700,8 @@ public class RemoteAccessApi {
             });
         }
 
-        String[] localVarAuthNames = new String[] {  };
-        return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+        String[] localVarAuthNames = new String[] { "jenkins_auth" };
+        return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
     
     @SuppressWarnings("rawtypes")

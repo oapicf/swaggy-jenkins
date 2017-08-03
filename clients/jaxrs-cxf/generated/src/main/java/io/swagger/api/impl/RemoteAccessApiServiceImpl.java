@@ -1,13 +1,13 @@
 package io.swagger.api.impl;
 
 import io.swagger.api.*;
-import io.swagger.model.HudsonmodelComputerSet;
-import io.swagger.model.HudsonmodelFreeStyleBuild;
-import io.swagger.model.HudsonmodelFreeStyleProject;
-import io.swagger.model.HudsonmodelHudson;
-import io.swagger.model.HudsonmodelListView;
-import io.swagger.model.HudsonmodelQueue;
-import io.swagger.model.HudsonsecuritycsrfDefaultCrumbIssuer;
+import io.swagger.model.ComputerSet;
+import io.swagger.model.DefaultCrumbIssuer;
+import io.swagger.model.FreeStyleBuild;
+import io.swagger.model.FreeStyleProject;
+import io.swagger.model.Hudson;
+import io.swagger.model.ListView;
+import io.swagger.model.Queue;
 
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -23,25 +23,25 @@ import org.apache.cxf.jaxrs.ext.multipart.*;
 import io.swagger.annotations.Api;
 
 public class RemoteAccessApiServiceImpl implements RemoteAccessApi {
-    public HudsonmodelComputerSet getComputer() {
+    public ComputerSet getComputer(Integer depth) {
         // TODO: Implement...
         
         return null;
     }
     
-    public HudsonsecuritycsrfDefaultCrumbIssuer getCrumb() {
+    public DefaultCrumbIssuer getCrumb() {
         // TODO: Implement...
         
         return null;
     }
     
-    public HudsonmodelHudson getJenkins() {
+    public Hudson getJenkins() {
         // TODO: Implement...
         
         return null;
     }
     
-    public HudsonmodelFreeStyleProject getJob(String name) {
+    public FreeStyleProject getJob(String name) {
         // TODO: Implement...
         
         return null;
@@ -53,7 +53,7 @@ public class RemoteAccessApiServiceImpl implements RemoteAccessApi {
         return null;
     }
     
-    public HudsonmodelFreeStyleBuild getJobLastBuild(String name) {
+    public FreeStyleBuild getJobLastBuild(String name) {
         // TODO: Implement...
         
         return null;
@@ -65,19 +65,19 @@ public class RemoteAccessApiServiceImpl implements RemoteAccessApi {
         
     }
     
-    public HudsonmodelQueue getQueue() {
+    public Queue getQueue() {
         // TODO: Implement...
         
         return null;
     }
     
-    public HudsonmodelQueue getQueueItem(String number) {
+    public Queue getQueueItem(String number) {
         // TODO: Implement...
         
         return null;
     }
     
-    public HudsonmodelListView getView(String name) {
+    public ListView getView(String name) {
         // TODO: Implement...
         
         return null;

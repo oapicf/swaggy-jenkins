@@ -15,14 +15,14 @@
 
 #include "SWGHttpRequest.h"
 
+#include "ComputerSet.h"
+#include "DefaultCrumbIssuer.h"
+#include "FreeStyleBuild.h"
+#include "FreeStyleProject.h"
+#include "Hudson.h"
+#include "ListView.h"
 #include <QString>
-#include "SWGHudsonmodelComputerSet.h"
-#include "SWGHudsonmodelFreeStyleBuild.h"
-#include "SWGHudsonmodelFreeStyleProject.h"
-#include "SWGHudsonmodelHudson.h"
-#include "SWGHudsonmodelListView.h"
-#include "SWGHudsonmodelQueue.h"
-#include "SWGHudsonsecuritycsrfDefaultCrumbIssuer.h"
+#include "Queue.h"
 
 #include <QObject>
 
@@ -38,8 +38,9 @@ public:
 
     QString host;
     QString basePath;
+    QMap<QString, QString> defaultHeaders;
 
-    void getComputer();
+    void getComputer(qint32 depth);
     void getCrumb();
     void getJenkins();
     void getJob(QString* name);
@@ -85,16 +86,16 @@ private:
     void postViewConfigCallback (HttpRequestWorker * worker);
     
 signals:
-    void getComputerSignal(SWGHudsonmodelComputerSet* summary);
-    void getCrumbSignal(SWGHudsonsecuritycsrfDefaultCrumbIssuer* summary);
-    void getJenkinsSignal(SWGHudsonmodelHudson* summary);
-    void getJobSignal(SWGHudsonmodelFreeStyleProject* summary);
+    void getComputerSignal(ComputerSet* summary);
+    void getCrumbSignal(DefaultCrumbIssuer* summary);
+    void getJenkinsSignal(Hudson* summary);
+    void getJobSignal(FreeStyleProject* summary);
     void getJobConfigSignal(QString* summary);
-    void getJobLastBuildSignal(SWGHudsonmodelFreeStyleBuild* summary);
+    void getJobLastBuildSignal(FreeStyleBuild* summary);
     void getJobProgressiveTextSignal();
-    void getQueueSignal(SWGHudsonmodelQueue* summary);
-    void getQueueItemSignal(SWGHudsonmodelQueue* summary);
-    void getViewSignal(SWGHudsonmodelListView* summary);
+    void getQueueSignal(Queue* summary);
+    void getQueueItemSignal(Queue* summary);
+    void getViewSignal(ListView* summary);
     void getViewConfigSignal(QString* summary);
     void headJenkinsSignal();
     void postCreateItemSignal();
@@ -107,16 +108,16 @@ signals:
     void postJobLastBuildStopSignal();
     void postViewConfigSignal();
     
-    void getComputerSignalE(SWGHudsonmodelComputerSet* summary, QNetworkReply::NetworkError error_type, QString& error_str);
-    void getCrumbSignalE(SWGHudsonsecuritycsrfDefaultCrumbIssuer* summary, QNetworkReply::NetworkError error_type, QString& error_str);
-    void getJenkinsSignalE(SWGHudsonmodelHudson* summary, QNetworkReply::NetworkError error_type, QString& error_str);
-    void getJobSignalE(SWGHudsonmodelFreeStyleProject* summary, QNetworkReply::NetworkError error_type, QString& error_str);
+    void getComputerSignalE(ComputerSet* summary, QNetworkReply::NetworkError error_type, QString& error_str);
+    void getCrumbSignalE(DefaultCrumbIssuer* summary, QNetworkReply::NetworkError error_type, QString& error_str);
+    void getJenkinsSignalE(Hudson* summary, QNetworkReply::NetworkError error_type, QString& error_str);
+    void getJobSignalE(FreeStyleProject* summary, QNetworkReply::NetworkError error_type, QString& error_str);
     void getJobConfigSignalE(QString* summary, QNetworkReply::NetworkError error_type, QString& error_str);
-    void getJobLastBuildSignalE(SWGHudsonmodelFreeStyleBuild* summary, QNetworkReply::NetworkError error_type, QString& error_str);
+    void getJobLastBuildSignalE(FreeStyleBuild* summary, QNetworkReply::NetworkError error_type, QString& error_str);
     void getJobProgressiveTextSignalE(QNetworkReply::NetworkError error_type, QString& error_str);
-    void getQueueSignalE(SWGHudsonmodelQueue* summary, QNetworkReply::NetworkError error_type, QString& error_str);
-    void getQueueItemSignalE(SWGHudsonmodelQueue* summary, QNetworkReply::NetworkError error_type, QString& error_str);
-    void getViewSignalE(SWGHudsonmodelListView* summary, QNetworkReply::NetworkError error_type, QString& error_str);
+    void getQueueSignalE(Queue* summary, QNetworkReply::NetworkError error_type, QString& error_str);
+    void getQueueItemSignalE(Queue* summary, QNetworkReply::NetworkError error_type, QString& error_str);
+    void getViewSignalE(ListView* summary, QNetworkReply::NetworkError error_type, QString& error_str);
     void getViewConfigSignalE(QString* summary, QNetworkReply::NetworkError error_type, QString& error_str);
     void headJenkinsSignalE(QNetworkReply::NetworkError error_type, QString& error_str);
     void postCreateItemSignalE(QNetworkReply::NetworkError error_type, QString& error_str);

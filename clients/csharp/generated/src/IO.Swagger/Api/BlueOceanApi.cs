@@ -28,23 +28,48 @@ namespace IO.Swagger.Api
         /// 
         /// </summary>
         /// <remarks>
-        /// Retrieve authenticated user details for an organisation
+        /// Delete queue item from an organization pipeline queue
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="organisation">Name of the organisation</param>
-        /// <returns>SwaggyjenkinsUser</returns>
-        SwaggyjenkinsUser GetAuthenticatedUser (string organisation);
+        /// <param name="organization">Name of the organization</param>
+        /// <param name="pipeline">Name of the pipeline</param>
+        /// <param name="queue">Name of the queue item</param>
+        /// <returns></returns>
+        void DeletePipelineQueueItem (string organization, string pipeline, string queue);
 
         /// <summary>
         /// 
         /// </summary>
         /// <remarks>
-        /// Retrieve authenticated user details for an organisation
+        /// Delete queue item from an organization pipeline queue
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="organisation">Name of the organisation</param>
-        /// <returns>ApiResponse of SwaggyjenkinsUser</returns>
-        ApiResponse<SwaggyjenkinsUser> GetAuthenticatedUserWithHttpInfo (string organisation);
+        /// <param name="organization">Name of the organization</param>
+        /// <param name="pipeline">Name of the pipeline</param>
+        /// <param name="queue">Name of the queue item</param>
+        /// <returns>ApiResponse of Object(void)</returns>
+        ApiResponse<Object> DeletePipelineQueueItemWithHttpInfo (string organization, string pipeline, string queue);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// Retrieve authenticated user details for an organization
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="organization">Name of the organization</param>
+        /// <returns>User</returns>
+        User GetAuthenticatedUser (string organization);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// Retrieve authenticated user details for an organization
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="organization">Name of the organization</param>
+        /// <returns>ApiResponse of User</returns>
+        ApiResponse<User> GetAuthenticatedUserWithHttpInfo (string organization);
         /// <summary>
         /// 
         /// </summary>
@@ -70,234 +95,752 @@ namespace IO.Swagger.Api
         /// 
         /// </summary>
         /// <remarks>
-        /// Retrieve organisation details
+        /// Retrieve organization details
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="organisation">Name of the organisation</param>
-        /// <returns>SwaggyjenkinsOrganisation</returns>
-        SwaggyjenkinsOrganisation GetOrganisation (string organisation);
+        /// <param name="organization">Name of the organization</param>
+        /// <returns>Organisation</returns>
+        Organisation GetOrganisation (string organization);
 
         /// <summary>
         /// 
         /// </summary>
         /// <remarks>
-        /// Retrieve organisation details
+        /// Retrieve organization details
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="organisation">Name of the organisation</param>
-        /// <returns>ApiResponse of SwaggyjenkinsOrganisation</returns>
-        ApiResponse<SwaggyjenkinsOrganisation> GetOrganisationWithHttpInfo (string organisation);
+        /// <param name="organization">Name of the organization</param>
+        /// <returns>ApiResponse of Organisation</returns>
+        ApiResponse<Organisation> GetOrganisationWithHttpInfo (string organization);
         /// <summary>
         /// 
         /// </summary>
         /// <remarks>
-        /// Retrieve all organisations details
+        /// Retrieve all organizations details
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>GetOrganisations</returns>
-        GetOrganisations GetOrganisations ();
+        /// <returns>Organisations</returns>
+        Organisations GetOrganisations ();
 
         /// <summary>
         /// 
         /// </summary>
         /// <remarks>
-        /// Retrieve all organisations details
+        /// Retrieve all organizations details
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of GetOrganisations</returns>
-        ApiResponse<GetOrganisations> GetOrganisationsWithHttpInfo ();
+        /// <returns>ApiResponse of Organisations</returns>
+        ApiResponse<Organisations> GetOrganisationsWithHttpInfo ();
         /// <summary>
         /// 
         /// </summary>
         /// <remarks>
-        /// Retrieve branch details for an organisation pipeline
+        /// Retrieve pipeline details for an organization
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="organisation">Name of the organisation</param>
+        /// <param name="organization">Name of the organization</param>
+        /// <param name="pipeline">Name of the pipeline</param>
+        /// <returns>Pipeline</returns>
+        Pipeline GetPipeline (string organization, string pipeline);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// Retrieve pipeline details for an organization
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="organization">Name of the organization</param>
+        /// <param name="pipeline">Name of the pipeline</param>
+        /// <returns>ApiResponse of Pipeline</returns>
+        ApiResponse<Pipeline> GetPipelineWithHttpInfo (string organization, string pipeline);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// Retrieve all activities details for an organization pipeline
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="organization">Name of the organization</param>
+        /// <param name="pipeline">Name of the pipeline</param>
+        /// <returns>PipelineActivities</returns>
+        PipelineActivities GetPipelineActivities (string organization, string pipeline);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// Retrieve all activities details for an organization pipeline
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="organization">Name of the organization</param>
+        /// <param name="pipeline">Name of the pipeline</param>
+        /// <returns>ApiResponse of PipelineActivities</returns>
+        ApiResponse<PipelineActivities> GetPipelineActivitiesWithHttpInfo (string organization, string pipeline);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// Retrieve branch details for an organization pipeline
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="organization">Name of the organization</param>
         /// <param name="pipeline">Name of the pipeline</param>
         /// <param name="branch">Name of the branch</param>
-        /// <returns>IojenkinsblueoceanrestimplpipelineBranchImpl</returns>
-        IojenkinsblueoceanrestimplpipelineBranchImpl GetPipelineBranchByOrg (string organisation, string pipeline, string branch);
+        /// <returns>BranchImpl</returns>
+        BranchImpl GetPipelineBranch (string organization, string pipeline, string branch);
 
         /// <summary>
         /// 
         /// </summary>
         /// <remarks>
-        /// Retrieve branch details for an organisation pipeline
+        /// Retrieve branch details for an organization pipeline
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="organisation">Name of the organisation</param>
+        /// <param name="organization">Name of the organization</param>
         /// <param name="pipeline">Name of the pipeline</param>
         /// <param name="branch">Name of the branch</param>
-        /// <returns>ApiResponse of IojenkinsblueoceanrestimplpipelineBranchImpl</returns>
-        ApiResponse<IojenkinsblueoceanrestimplpipelineBranchImpl> GetPipelineBranchByOrgWithHttpInfo (string organisation, string pipeline, string branch);
+        /// <returns>ApiResponse of BranchImpl</returns>
+        ApiResponse<BranchImpl> GetPipelineBranchWithHttpInfo (string organization, string pipeline, string branch);
         /// <summary>
         /// 
         /// </summary>
         /// <remarks>
-        /// Retrieve all branches details for an organisation pipeline
+        /// Retrieve branch run details for an organization pipeline
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="organisation">Name of the organisation</param>
+        /// <param name="organization">Name of the organization</param>
         /// <param name="pipeline">Name of the pipeline</param>
-        /// <returns>GetMultibranchPipeline</returns>
-        GetMultibranchPipeline GetPipelineBranchesByOrg (string organisation, string pipeline);
+        /// <param name="branch">Name of the branch</param>
+        /// <param name="run">Name of the run</param>
+        /// <returns>PipelineRun</returns>
+        PipelineRun GetPipelineBranchRun (string organization, string pipeline, string branch, string run);
 
         /// <summary>
         /// 
         /// </summary>
         /// <remarks>
-        /// Retrieve all branches details for an organisation pipeline
+        /// Retrieve branch run details for an organization pipeline
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="organisation">Name of the organisation</param>
+        /// <param name="organization">Name of the organization</param>
         /// <param name="pipeline">Name of the pipeline</param>
-        /// <returns>ApiResponse of GetMultibranchPipeline</returns>
-        ApiResponse<GetMultibranchPipeline> GetPipelineBranchesByOrgWithHttpInfo (string organisation, string pipeline);
+        /// <param name="branch">Name of the branch</param>
+        /// <param name="run">Name of the run</param>
+        /// <returns>ApiResponse of PipelineRun</returns>
+        ApiResponse<PipelineRun> GetPipelineBranchRunWithHttpInfo (string organization, string pipeline, string branch, string run);
         /// <summary>
         /// 
         /// </summary>
         /// <remarks>
-        /// Retrieve pipeline details for an organisation
+        /// Retrieve all branches details for an organization pipeline
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="organisation">Name of the organisation</param>
+        /// <param name="organization">Name of the organization</param>
         /// <param name="pipeline">Name of the pipeline</param>
-        /// <returns>SwaggyjenkinsPipeline</returns>
-        SwaggyjenkinsPipeline GetPipelineByOrg (string organisation, string pipeline);
+        /// <returns>MultibranchPipeline</returns>
+        MultibranchPipeline GetPipelineBranches (string organization, string pipeline);
 
         /// <summary>
         /// 
         /// </summary>
         /// <remarks>
-        /// Retrieve pipeline details for an organisation
+        /// Retrieve all branches details for an organization pipeline
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="organisation">Name of the organisation</param>
+        /// <param name="organization">Name of the organization</param>
         /// <param name="pipeline">Name of the pipeline</param>
-        /// <returns>ApiResponse of SwaggyjenkinsPipeline</returns>
-        ApiResponse<SwaggyjenkinsPipeline> GetPipelineByOrgWithHttpInfo (string organisation, string pipeline);
+        /// <returns>ApiResponse of MultibranchPipeline</returns>
+        ApiResponse<MultibranchPipeline> GetPipelineBranchesWithHttpInfo (string organization, string pipeline);
         /// <summary>
         /// 
         /// </summary>
         /// <remarks>
-        /// Retrieve pipeline folder for an organisation
+        /// Retrieve pipeline folder for an organization
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="organisation">Name of the organisation</param>
+        /// <param name="organization">Name of the organization</param>
         /// <param name="folder">Name of the folder</param>
-        /// <returns>IojenkinsblueoceanserviceembeddedrestPipelineFolderImpl</returns>
-        IojenkinsblueoceanserviceembeddedrestPipelineFolderImpl GetPipelineFolderByOrg (string organisation, string folder);
+        /// <returns>PipelineFolderImpl</returns>
+        PipelineFolderImpl GetPipelineFolder (string organization, string folder);
 
         /// <summary>
         /// 
         /// </summary>
         /// <remarks>
-        /// Retrieve pipeline folder for an organisation
+        /// Retrieve pipeline folder for an organization
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="organisation">Name of the organisation</param>
+        /// <param name="organization">Name of the organization</param>
         /// <param name="folder">Name of the folder</param>
-        /// <returns>ApiResponse of IojenkinsblueoceanserviceembeddedrestPipelineFolderImpl</returns>
-        ApiResponse<IojenkinsblueoceanserviceembeddedrestPipelineFolderImpl> GetPipelineFolderByOrgWithHttpInfo (string organisation, string folder);
+        /// <returns>ApiResponse of PipelineFolderImpl</returns>
+        ApiResponse<PipelineFolderImpl> GetPipelineFolderWithHttpInfo (string organization, string folder);
         /// <summary>
         /// 
         /// </summary>
         /// <remarks>
-        /// Retrieve pipeline details for an organisation folder
+        /// Retrieve pipeline details for an organization folder
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="organisation">Name of the organisation</param>
-        /// <param name="pipeline">Name of the pipeline</param>
-        /// <param name="folder">Name of the folder</param>
-        /// <returns>IojenkinsblueoceanserviceembeddedrestPipelineImpl</returns>
-        IojenkinsblueoceanserviceembeddedrestPipelineImpl GetPipelineFolderByOrg_0 (string organisation, string pipeline, string folder);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// Retrieve pipeline details for an organisation folder
-        /// </remarks>
-        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="organisation">Name of the organisation</param>
+        /// <param name="organization">Name of the organization</param>
         /// <param name="pipeline">Name of the pipeline</param>
         /// <param name="folder">Name of the folder</param>
-        /// <returns>ApiResponse of IojenkinsblueoceanserviceembeddedrestPipelineImpl</returns>
-        ApiResponse<IojenkinsblueoceanserviceembeddedrestPipelineImpl> GetPipelineFolderByOrg_0WithHttpInfo (string organisation, string pipeline, string folder);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// Retrieve all pipelines details for an organisation
-        /// </remarks>
-        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="organisation">Name of the organisation</param>
-        /// <returns>GetPipelines</returns>
-        GetPipelines GetPipelinesByOrg (string organisation);
+        /// <returns>PipelineImpl</returns>
+        PipelineImpl GetPipelineFolderPipeline (string organization, string pipeline, string folder);
 
         /// <summary>
         /// 
         /// </summary>
         /// <remarks>
-        /// Retrieve all pipelines details for an organisation
+        /// Retrieve pipeline details for an organization folder
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="organisation">Name of the organisation</param>
-        /// <returns>ApiResponse of GetPipelines</returns>
-        ApiResponse<GetPipelines> GetPipelinesByOrgWithHttpInfo (string organisation);
+        /// <param name="organization">Name of the organization</param>
+        /// <param name="pipeline">Name of the pipeline</param>
+        /// <param name="folder">Name of the folder</param>
+        /// <returns>ApiResponse of PipelineImpl</returns>
+        ApiResponse<PipelineImpl> GetPipelineFolderPipelineWithHttpInfo (string organization, string pipeline, string folder);
         /// <summary>
         /// 
         /// </summary>
         /// <remarks>
-        /// Retrieve user details for an organisation
+        /// Retrieve queue details for an organization pipeline
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="organisation">Name of the organisation</param>
+        /// <param name="organization">Name of the organization</param>
+        /// <param name="pipeline">Name of the pipeline</param>
+        /// <returns>PipelineQueue</returns>
+        PipelineQueue GetPipelineQueue (string organization, string pipeline);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// Retrieve queue details for an organization pipeline
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="organization">Name of the organization</param>
+        /// <param name="pipeline">Name of the pipeline</param>
+        /// <returns>ApiResponse of PipelineQueue</returns>
+        ApiResponse<PipelineQueue> GetPipelineQueueWithHttpInfo (string organization, string pipeline);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// Retrieve run details for an organization pipeline
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="organization">Name of the organization</param>
+        /// <param name="pipeline">Name of the pipeline</param>
+        /// <param name="run">Name of the run</param>
+        /// <returns>PipelineRun</returns>
+        PipelineRun GetPipelineRun (string organization, string pipeline, string run);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// Retrieve run details for an organization pipeline
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="organization">Name of the organization</param>
+        /// <param name="pipeline">Name of the pipeline</param>
+        /// <param name="run">Name of the run</param>
+        /// <returns>ApiResponse of PipelineRun</returns>
+        ApiResponse<PipelineRun> GetPipelineRunWithHttpInfo (string organization, string pipeline, string run);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// Get log for a pipeline run
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="organization">Name of the organization</param>
+        /// <param name="pipeline">Name of the pipeline</param>
+        /// <param name="run">Name of the run</param>
+        /// <param name="start">Start position of the log (optional)</param>
+        /// <param name="download">Set to true in order to download the file, otherwise it&#39;s passed as a response body (optional)</param>
+        /// <returns>string</returns>
+        string GetPipelineRunLog (string organization, string pipeline, string run, int? start = null, bool? download = null);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// Get log for a pipeline run
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="organization">Name of the organization</param>
+        /// <param name="pipeline">Name of the pipeline</param>
+        /// <param name="run">Name of the run</param>
+        /// <param name="start">Start position of the log (optional)</param>
+        /// <param name="download">Set to true in order to download the file, otherwise it&#39;s passed as a response body (optional)</param>
+        /// <returns>ApiResponse of string</returns>
+        ApiResponse<string> GetPipelineRunLogWithHttpInfo (string organization, string pipeline, string run, int? start = null, bool? download = null);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// Retrieve run node details for an organization pipeline
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="organization">Name of the organization</param>
+        /// <param name="pipeline">Name of the pipeline</param>
+        /// <param name="run">Name of the run</param>
+        /// <param name="node">Name of the node</param>
+        /// <returns>PipelineRunNode</returns>
+        PipelineRunNode GetPipelineRunNode (string organization, string pipeline, string run, string node);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// Retrieve run node details for an organization pipeline
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="organization">Name of the organization</param>
+        /// <param name="pipeline">Name of the pipeline</param>
+        /// <param name="run">Name of the run</param>
+        /// <param name="node">Name of the node</param>
+        /// <returns>ApiResponse of PipelineRunNode</returns>
+        ApiResponse<PipelineRunNode> GetPipelineRunNodeWithHttpInfo (string organization, string pipeline, string run, string node);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// Retrieve run node details for an organization pipeline
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="organization">Name of the organization</param>
+        /// <param name="pipeline">Name of the pipeline</param>
+        /// <param name="run">Name of the run</param>
+        /// <param name="node">Name of the node</param>
+        /// <param name="step">Name of the step</param>
+        /// <returns>PipelineStepImpl</returns>
+        PipelineStepImpl GetPipelineRunNodeStep (string organization, string pipeline, string run, string node, string step);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// Retrieve run node details for an organization pipeline
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="organization">Name of the organization</param>
+        /// <param name="pipeline">Name of the pipeline</param>
+        /// <param name="run">Name of the run</param>
+        /// <param name="node">Name of the node</param>
+        /// <param name="step">Name of the step</param>
+        /// <returns>ApiResponse of PipelineStepImpl</returns>
+        ApiResponse<PipelineStepImpl> GetPipelineRunNodeStepWithHttpInfo (string organization, string pipeline, string run, string node, string step);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// Get log for a pipeline run node step
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="organization">Name of the organization</param>
+        /// <param name="pipeline">Name of the pipeline</param>
+        /// <param name="run">Name of the run</param>
+        /// <param name="node">Name of the node</param>
+        /// <param name="step">Name of the step</param>
+        /// <returns>string</returns>
+        string GetPipelineRunNodeStepLog (string organization, string pipeline, string run, string node, string step);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// Get log for a pipeline run node step
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="organization">Name of the organization</param>
+        /// <param name="pipeline">Name of the pipeline</param>
+        /// <param name="run">Name of the run</param>
+        /// <param name="node">Name of the node</param>
+        /// <param name="step">Name of the step</param>
+        /// <returns>ApiResponse of string</returns>
+        ApiResponse<string> GetPipelineRunNodeStepLogWithHttpInfo (string organization, string pipeline, string run, string node, string step);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// Retrieve run node steps details for an organization pipeline
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="organization">Name of the organization</param>
+        /// <param name="pipeline">Name of the pipeline</param>
+        /// <param name="run">Name of the run</param>
+        /// <param name="node">Name of the node</param>
+        /// <returns>PipelineRunNodeSteps</returns>
+        PipelineRunNodeSteps GetPipelineRunNodeSteps (string organization, string pipeline, string run, string node);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// Retrieve run node steps details for an organization pipeline
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="organization">Name of the organization</param>
+        /// <param name="pipeline">Name of the pipeline</param>
+        /// <param name="run">Name of the run</param>
+        /// <param name="node">Name of the node</param>
+        /// <returns>ApiResponse of PipelineRunNodeSteps</returns>
+        ApiResponse<PipelineRunNodeSteps> GetPipelineRunNodeStepsWithHttpInfo (string organization, string pipeline, string run, string node);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// Retrieve run nodes details for an organization pipeline
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="organization">Name of the organization</param>
+        /// <param name="pipeline">Name of the pipeline</param>
+        /// <param name="run">Name of the run</param>
+        /// <returns>PipelineRunNodes</returns>
+        PipelineRunNodes GetPipelineRunNodes (string organization, string pipeline, string run);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// Retrieve run nodes details for an organization pipeline
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="organization">Name of the organization</param>
+        /// <param name="pipeline">Name of the pipeline</param>
+        /// <param name="run">Name of the run</param>
+        /// <returns>ApiResponse of PipelineRunNodes</returns>
+        ApiResponse<PipelineRunNodes> GetPipelineRunNodesWithHttpInfo (string organization, string pipeline, string run);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// Retrieve all runs details for an organization pipeline
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="organization">Name of the organization</param>
+        /// <param name="pipeline">Name of the pipeline</param>
+        /// <returns>PipelineRuns</returns>
+        PipelineRuns GetPipelineRuns (string organization, string pipeline);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// Retrieve all runs details for an organization pipeline
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="organization">Name of the organization</param>
+        /// <param name="pipeline">Name of the pipeline</param>
+        /// <returns>ApiResponse of PipelineRuns</returns>
+        ApiResponse<PipelineRuns> GetPipelineRunsWithHttpInfo (string organization, string pipeline);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// Retrieve all pipelines details for an organization
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="organization">Name of the organization</param>
+        /// <returns>Pipelines</returns>
+        Pipelines GetPipelines (string organization);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// Retrieve all pipelines details for an organization
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="organization">Name of the organization</param>
+        /// <returns>ApiResponse of Pipelines</returns>
+        ApiResponse<Pipelines> GetPipelinesWithHttpInfo (string organization);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// Retrieve SCM details for an organization
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="organization">Name of the organization</param>
+        /// <param name="scm">Name of SCM</param>
+        /// <returns>GithubScm</returns>
+        GithubScm GetSCM (string organization, string scm);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// Retrieve SCM details for an organization
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="organization">Name of the organization</param>
+        /// <param name="scm">Name of SCM</param>
+        /// <returns>ApiResponse of GithubScm</returns>
+        ApiResponse<GithubScm> GetSCMWithHttpInfo (string organization, string scm);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// Retrieve SCM organization repositories details for an organization
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="organization">Name of the organization</param>
+        /// <param name="scm">Name of SCM</param>
+        /// <param name="scmOrganisation">Name of the SCM organization</param>
+        /// <param name="credentialId">Credential ID (optional)</param>
+        /// <param name="pageSize">Number of items in a page (optional)</param>
+        /// <param name="pageNumber">Page number (optional)</param>
+        /// <returns>ScmOrganisations</returns>
+        ScmOrganisations GetSCMOrganisationRepositories (string organization, string scm, string scmOrganisation, string credentialId = null, int? pageSize = null, int? pageNumber = null);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// Retrieve SCM organization repositories details for an organization
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="organization">Name of the organization</param>
+        /// <param name="scm">Name of SCM</param>
+        /// <param name="scmOrganisation">Name of the SCM organization</param>
+        /// <param name="credentialId">Credential ID (optional)</param>
+        /// <param name="pageSize">Number of items in a page (optional)</param>
+        /// <param name="pageNumber">Page number (optional)</param>
+        /// <returns>ApiResponse of ScmOrganisations</returns>
+        ApiResponse<ScmOrganisations> GetSCMOrganisationRepositoriesWithHttpInfo (string organization, string scm, string scmOrganisation, string credentialId = null, int? pageSize = null, int? pageNumber = null);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// Retrieve SCM organization repository details for an organization
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="organization">Name of the organization</param>
+        /// <param name="scm">Name of SCM</param>
+        /// <param name="scmOrganisation">Name of the SCM organization</param>
+        /// <param name="repository">Name of the SCM repository</param>
+        /// <param name="credentialId">Credential ID (optional)</param>
+        /// <returns>ScmOrganisations</returns>
+        ScmOrganisations GetSCMOrganisationRepository (string organization, string scm, string scmOrganisation, string repository, string credentialId = null);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// Retrieve SCM organization repository details for an organization
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="organization">Name of the organization</param>
+        /// <param name="scm">Name of SCM</param>
+        /// <param name="scmOrganisation">Name of the SCM organization</param>
+        /// <param name="repository">Name of the SCM repository</param>
+        /// <param name="credentialId">Credential ID (optional)</param>
+        /// <returns>ApiResponse of ScmOrganisations</returns>
+        ApiResponse<ScmOrganisations> GetSCMOrganisationRepositoryWithHttpInfo (string organization, string scm, string scmOrganisation, string repository, string credentialId = null);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// Retrieve SCM organizations details for an organization
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="organization">Name of the organization</param>
+        /// <param name="scm">Name of SCM</param>
+        /// <param name="credentialId">Credential ID (optional)</param>
+        /// <returns>ScmOrganisations</returns>
+        ScmOrganisations GetSCMOrganisations (string organization, string scm, string credentialId = null);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// Retrieve SCM organizations details for an organization
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="organization">Name of the organization</param>
+        /// <param name="scm">Name of SCM</param>
+        /// <param name="credentialId">Credential ID (optional)</param>
+        /// <returns>ApiResponse of ScmOrganisations</returns>
+        ApiResponse<ScmOrganisations> GetSCMOrganisationsWithHttpInfo (string organization, string scm, string credentialId = null);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// Retrieve user details for an organization
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="organization">Name of the organization</param>
         /// <param name="user">Name of the user</param>
-        /// <returns>SwaggyjenkinsUser</returns>
-        SwaggyjenkinsUser GetUser (string organisation, string user);
+        /// <returns>User</returns>
+        User GetUser (string organization, string user);
 
         /// <summary>
         /// 
         /// </summary>
         /// <remarks>
-        /// Retrieve user details for an organisation
+        /// Retrieve user details for an organization
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="organisation">Name of the organisation</param>
+        /// <param name="organization">Name of the organization</param>
         /// <param name="user">Name of the user</param>
-        /// <returns>ApiResponse of SwaggyjenkinsUser</returns>
-        ApiResponse<SwaggyjenkinsUser> GetUserWithHttpInfo (string organisation, string user);
+        /// <returns>ApiResponse of User</returns>
+        ApiResponse<User> GetUserWithHttpInfo (string organization, string user);
         /// <summary>
         /// 
         /// </summary>
         /// <remarks>
-        /// Retrieve users details for an organisation
+        /// Retrieve user favorites details for an organization
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="organisation">Name of the organisation</param>
-        /// <returns>SwaggyjenkinsUser</returns>
-        SwaggyjenkinsUser GetUsers (string organisation);
+        /// <param name="user">Name of the user</param>
+        /// <returns>UserFavorites</returns>
+        UserFavorites GetUserFavorites (string user);
 
         /// <summary>
         /// 
         /// </summary>
         /// <remarks>
-        /// Retrieve users details for an organisation
+        /// Retrieve user favorites details for an organization
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="organisation">Name of the organisation</param>
-        /// <returns>ApiResponse of SwaggyjenkinsUser</returns>
-        ApiResponse<SwaggyjenkinsUser> GetUsersWithHttpInfo (string organisation);
+        /// <param name="user">Name of the user</param>
+        /// <returns>ApiResponse of UserFavorites</returns>
+        ApiResponse<UserFavorites> GetUserFavoritesWithHttpInfo (string user);
         /// <summary>
         /// 
         /// </summary>
         /// <remarks>
-        /// Get classes details
+        /// Retrieve users details for an organization
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="q">Query string containing an array of class names</param>
+        /// <param name="organization">Name of the organization</param>
+        /// <returns>User</returns>
+        User GetUsers (string organization);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// Retrieve users details for an organization
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="organization">Name of the organization</param>
+        /// <returns>ApiResponse of User</returns>
+        ApiResponse<User> GetUsersWithHttpInfo (string organization);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// Replay an organization pipeline run
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="organization">Name of the organization</param>
+        /// <param name="pipeline">Name of the pipeline</param>
+        /// <param name="run">Name of the run</param>
+        /// <returns>QueueItemImpl</returns>
+        QueueItemImpl PostPipelineRun (string organization, string pipeline, string run);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// Replay an organization pipeline run
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="organization">Name of the organization</param>
+        /// <param name="pipeline">Name of the pipeline</param>
+        /// <param name="run">Name of the run</param>
+        /// <returns>ApiResponse of QueueItemImpl</returns>
+        ApiResponse<QueueItemImpl> PostPipelineRunWithHttpInfo (string organization, string pipeline, string run);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// Start a build for an organization pipeline
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="organization">Name of the organization</param>
+        /// <param name="pipeline">Name of the pipeline</param>
+        /// <returns>QueueItemImpl</returns>
+        QueueItemImpl PostPipelineRuns (string organization, string pipeline);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// Start a build for an organization pipeline
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="organization">Name of the organization</param>
+        /// <param name="pipeline">Name of the pipeline</param>
+        /// <returns>ApiResponse of QueueItemImpl</returns>
+        ApiResponse<QueueItemImpl> PostPipelineRunsWithHttpInfo (string organization, string pipeline);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// Favorite/unfavorite a pipeline
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="organization">Name of the organization</param>
+        /// <param name="pipeline">Name of the pipeline</param>
+        /// <param name="body">Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite</param>
+        /// <returns>FavoriteImpl</returns>
+        FavoriteImpl PutPipelineFavorite (string organization, string pipeline, Body body);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// Favorite/unfavorite a pipeline
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="organization">Name of the organization</param>
+        /// <param name="pipeline">Name of the pipeline</param>
+        /// <param name="body">Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite</param>
+        /// <returns>ApiResponse of FavoriteImpl</returns>
+        ApiResponse<FavoriteImpl> PutPipelineFavoriteWithHttpInfo (string organization, string pipeline, Body body);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// Stop a build of an organization pipeline
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="organization">Name of the organization</param>
+        /// <param name="pipeline">Name of the pipeline</param>
+        /// <param name="run">Name of the run</param>
+        /// <param name="blocking">Set to true to make blocking stop, default: false (optional)</param>
+        /// <param name="timeOutInSecs">Timeout in seconds, default: 10 seconds (optional)</param>
+        /// <returns>PipelineRun</returns>
+        PipelineRun PutPipelineRun (string organization, string pipeline, string run, string blocking = null, int? timeOutInSecs = null);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// Stop a build of an organization pipeline
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="organization">Name of the organization</param>
+        /// <param name="pipeline">Name of the pipeline</param>
+        /// <param name="run">Name of the run</param>
+        /// <param name="blocking">Set to true to make blocking stop, default: false (optional)</param>
+        /// <param name="timeOutInSecs">Timeout in seconds, default: 10 seconds (optional)</param>
+        /// <returns>ApiResponse of PipelineRun</returns>
+        ApiResponse<PipelineRun> PutPipelineRunWithHttpInfo (string organization, string pipeline, string run, string blocking = null, int? timeOutInSecs = null);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// Search for any resource details
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="q">Query string</param>
         /// <returns>string</returns>
         string Search (string q);
 
@@ -305,56 +848,81 @@ namespace IO.Swagger.Api
         /// 
         /// </summary>
         /// <remarks>
-        /// Get classes details
+        /// Search for any resource details
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="q">Query string containing an array of class names</param>
+        /// <param name="q">Query string</param>
         /// <returns>ApiResponse of string</returns>
         ApiResponse<string> SearchWithHttpInfo (string q);
         /// <summary>
         /// 
         /// </summary>
         /// <remarks>
-        /// Search for any resource details
+        /// Get classes details
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="q">Query string</param>
+        /// <param name="q">Query string containing an array of class names</param>
         /// <returns>string</returns>
-        string Search_0 (string q);
+        string SearchClasses (string q);
 
         /// <summary>
         /// 
         /// </summary>
         /// <remarks>
-        /// Search for any resource details
+        /// Get classes details
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="q">Query string</param>
+        /// <param name="q">Query string containing an array of class names</param>
         /// <returns>ApiResponse of string</returns>
-        ApiResponse<string> Search_0WithHttpInfo (string q);
+        ApiResponse<string> SearchClassesWithHttpInfo (string q);
         #endregion Synchronous Operations
         #region Asynchronous Operations
         /// <summary>
         /// 
         /// </summary>
         /// <remarks>
-        /// Retrieve authenticated user details for an organisation
+        /// Delete queue item from an organization pipeline queue
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="organisation">Name of the organisation</param>
-        /// <returns>Task of SwaggyjenkinsUser</returns>
-        System.Threading.Tasks.Task<SwaggyjenkinsUser> GetAuthenticatedUserAsync (string organisation);
+        /// <param name="organization">Name of the organization</param>
+        /// <param name="pipeline">Name of the pipeline</param>
+        /// <param name="queue">Name of the queue item</param>
+        /// <returns>Task of void</returns>
+        System.Threading.Tasks.Task DeletePipelineQueueItemAsync (string organization, string pipeline, string queue);
 
         /// <summary>
         /// 
         /// </summary>
         /// <remarks>
-        /// Retrieve authenticated user details for an organisation
+        /// Delete queue item from an organization pipeline queue
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="organisation">Name of the organisation</param>
-        /// <returns>Task of ApiResponse (SwaggyjenkinsUser)</returns>
-        System.Threading.Tasks.Task<ApiResponse<SwaggyjenkinsUser>> GetAuthenticatedUserAsyncWithHttpInfo (string organisation);
+        /// <param name="organization">Name of the organization</param>
+        /// <param name="pipeline">Name of the pipeline</param>
+        /// <param name="queue">Name of the queue item</param>
+        /// <returns>Task of ApiResponse</returns>
+        System.Threading.Tasks.Task<ApiResponse<Object>> DeletePipelineQueueItemAsyncWithHttpInfo (string organization, string pipeline, string queue);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// Retrieve authenticated user details for an organization
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="organization">Name of the organization</param>
+        /// <returns>Task of User</returns>
+        System.Threading.Tasks.Task<User> GetAuthenticatedUserAsync (string organization);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// Retrieve authenticated user details for an organization
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="organization">Name of the organization</param>
+        /// <returns>Task of ApiResponse (User)</returns>
+        System.Threading.Tasks.Task<ApiResponse<User>> GetAuthenticatedUserAsyncWithHttpInfo (string organization);
         /// <summary>
         /// 
         /// </summary>
@@ -380,234 +948,752 @@ namespace IO.Swagger.Api
         /// 
         /// </summary>
         /// <remarks>
-        /// Retrieve organisation details
+        /// Retrieve organization details
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="organisation">Name of the organisation</param>
-        /// <returns>Task of SwaggyjenkinsOrganisation</returns>
-        System.Threading.Tasks.Task<SwaggyjenkinsOrganisation> GetOrganisationAsync (string organisation);
+        /// <param name="organization">Name of the organization</param>
+        /// <returns>Task of Organisation</returns>
+        System.Threading.Tasks.Task<Organisation> GetOrganisationAsync (string organization);
 
         /// <summary>
         /// 
         /// </summary>
         /// <remarks>
-        /// Retrieve organisation details
+        /// Retrieve organization details
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="organisation">Name of the organisation</param>
-        /// <returns>Task of ApiResponse (SwaggyjenkinsOrganisation)</returns>
-        System.Threading.Tasks.Task<ApiResponse<SwaggyjenkinsOrganisation>> GetOrganisationAsyncWithHttpInfo (string organisation);
+        /// <param name="organization">Name of the organization</param>
+        /// <returns>Task of ApiResponse (Organisation)</returns>
+        System.Threading.Tasks.Task<ApiResponse<Organisation>> GetOrganisationAsyncWithHttpInfo (string organization);
         /// <summary>
         /// 
         /// </summary>
         /// <remarks>
-        /// Retrieve all organisations details
+        /// Retrieve all organizations details
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>Task of GetOrganisations</returns>
-        System.Threading.Tasks.Task<GetOrganisations> GetOrganisationsAsync ();
+        /// <returns>Task of Organisations</returns>
+        System.Threading.Tasks.Task<Organisations> GetOrganisationsAsync ();
 
         /// <summary>
         /// 
         /// </summary>
         /// <remarks>
-        /// Retrieve all organisations details
+        /// Retrieve all organizations details
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>Task of ApiResponse (GetOrganisations)</returns>
-        System.Threading.Tasks.Task<ApiResponse<GetOrganisations>> GetOrganisationsAsyncWithHttpInfo ();
+        /// <returns>Task of ApiResponse (Organisations)</returns>
+        System.Threading.Tasks.Task<ApiResponse<Organisations>> GetOrganisationsAsyncWithHttpInfo ();
         /// <summary>
         /// 
         /// </summary>
         /// <remarks>
-        /// Retrieve branch details for an organisation pipeline
+        /// Retrieve pipeline details for an organization
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="organisation">Name of the organisation</param>
+        /// <param name="organization">Name of the organization</param>
+        /// <param name="pipeline">Name of the pipeline</param>
+        /// <returns>Task of Pipeline</returns>
+        System.Threading.Tasks.Task<Pipeline> GetPipelineAsync (string organization, string pipeline);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// Retrieve pipeline details for an organization
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="organization">Name of the organization</param>
+        /// <param name="pipeline">Name of the pipeline</param>
+        /// <returns>Task of ApiResponse (Pipeline)</returns>
+        System.Threading.Tasks.Task<ApiResponse<Pipeline>> GetPipelineAsyncWithHttpInfo (string organization, string pipeline);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// Retrieve all activities details for an organization pipeline
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="organization">Name of the organization</param>
+        /// <param name="pipeline">Name of the pipeline</param>
+        /// <returns>Task of PipelineActivities</returns>
+        System.Threading.Tasks.Task<PipelineActivities> GetPipelineActivitiesAsync (string organization, string pipeline);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// Retrieve all activities details for an organization pipeline
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="organization">Name of the organization</param>
+        /// <param name="pipeline">Name of the pipeline</param>
+        /// <returns>Task of ApiResponse (PipelineActivities)</returns>
+        System.Threading.Tasks.Task<ApiResponse<PipelineActivities>> GetPipelineActivitiesAsyncWithHttpInfo (string organization, string pipeline);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// Retrieve branch details for an organization pipeline
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="organization">Name of the organization</param>
         /// <param name="pipeline">Name of the pipeline</param>
         /// <param name="branch">Name of the branch</param>
-        /// <returns>Task of IojenkinsblueoceanrestimplpipelineBranchImpl</returns>
-        System.Threading.Tasks.Task<IojenkinsblueoceanrestimplpipelineBranchImpl> GetPipelineBranchByOrgAsync (string organisation, string pipeline, string branch);
+        /// <returns>Task of BranchImpl</returns>
+        System.Threading.Tasks.Task<BranchImpl> GetPipelineBranchAsync (string organization, string pipeline, string branch);
 
         /// <summary>
         /// 
         /// </summary>
         /// <remarks>
-        /// Retrieve branch details for an organisation pipeline
+        /// Retrieve branch details for an organization pipeline
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="organisation">Name of the organisation</param>
+        /// <param name="organization">Name of the organization</param>
         /// <param name="pipeline">Name of the pipeline</param>
         /// <param name="branch">Name of the branch</param>
-        /// <returns>Task of ApiResponse (IojenkinsblueoceanrestimplpipelineBranchImpl)</returns>
-        System.Threading.Tasks.Task<ApiResponse<IojenkinsblueoceanrestimplpipelineBranchImpl>> GetPipelineBranchByOrgAsyncWithHttpInfo (string organisation, string pipeline, string branch);
+        /// <returns>Task of ApiResponse (BranchImpl)</returns>
+        System.Threading.Tasks.Task<ApiResponse<BranchImpl>> GetPipelineBranchAsyncWithHttpInfo (string organization, string pipeline, string branch);
         /// <summary>
         /// 
         /// </summary>
         /// <remarks>
-        /// Retrieve all branches details for an organisation pipeline
+        /// Retrieve branch run details for an organization pipeline
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="organisation">Name of the organisation</param>
+        /// <param name="organization">Name of the organization</param>
         /// <param name="pipeline">Name of the pipeline</param>
-        /// <returns>Task of GetMultibranchPipeline</returns>
-        System.Threading.Tasks.Task<GetMultibranchPipeline> GetPipelineBranchesByOrgAsync (string organisation, string pipeline);
+        /// <param name="branch">Name of the branch</param>
+        /// <param name="run">Name of the run</param>
+        /// <returns>Task of PipelineRun</returns>
+        System.Threading.Tasks.Task<PipelineRun> GetPipelineBranchRunAsync (string organization, string pipeline, string branch, string run);
 
         /// <summary>
         /// 
         /// </summary>
         /// <remarks>
-        /// Retrieve all branches details for an organisation pipeline
+        /// Retrieve branch run details for an organization pipeline
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="organisation">Name of the organisation</param>
+        /// <param name="organization">Name of the organization</param>
         /// <param name="pipeline">Name of the pipeline</param>
-        /// <returns>Task of ApiResponse (GetMultibranchPipeline)</returns>
-        System.Threading.Tasks.Task<ApiResponse<GetMultibranchPipeline>> GetPipelineBranchesByOrgAsyncWithHttpInfo (string organisation, string pipeline);
+        /// <param name="branch">Name of the branch</param>
+        /// <param name="run">Name of the run</param>
+        /// <returns>Task of ApiResponse (PipelineRun)</returns>
+        System.Threading.Tasks.Task<ApiResponse<PipelineRun>> GetPipelineBranchRunAsyncWithHttpInfo (string organization, string pipeline, string branch, string run);
         /// <summary>
         /// 
         /// </summary>
         /// <remarks>
-        /// Retrieve pipeline details for an organisation
+        /// Retrieve all branches details for an organization pipeline
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="organisation">Name of the organisation</param>
+        /// <param name="organization">Name of the organization</param>
         /// <param name="pipeline">Name of the pipeline</param>
-        /// <returns>Task of SwaggyjenkinsPipeline</returns>
-        System.Threading.Tasks.Task<SwaggyjenkinsPipeline> GetPipelineByOrgAsync (string organisation, string pipeline);
+        /// <returns>Task of MultibranchPipeline</returns>
+        System.Threading.Tasks.Task<MultibranchPipeline> GetPipelineBranchesAsync (string organization, string pipeline);
 
         /// <summary>
         /// 
         /// </summary>
         /// <remarks>
-        /// Retrieve pipeline details for an organisation
+        /// Retrieve all branches details for an organization pipeline
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="organisation">Name of the organisation</param>
+        /// <param name="organization">Name of the organization</param>
         /// <param name="pipeline">Name of the pipeline</param>
-        /// <returns>Task of ApiResponse (SwaggyjenkinsPipeline)</returns>
-        System.Threading.Tasks.Task<ApiResponse<SwaggyjenkinsPipeline>> GetPipelineByOrgAsyncWithHttpInfo (string organisation, string pipeline);
+        /// <returns>Task of ApiResponse (MultibranchPipeline)</returns>
+        System.Threading.Tasks.Task<ApiResponse<MultibranchPipeline>> GetPipelineBranchesAsyncWithHttpInfo (string organization, string pipeline);
         /// <summary>
         /// 
         /// </summary>
         /// <remarks>
-        /// Retrieve pipeline folder for an organisation
+        /// Retrieve pipeline folder for an organization
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="organisation">Name of the organisation</param>
+        /// <param name="organization">Name of the organization</param>
         /// <param name="folder">Name of the folder</param>
-        /// <returns>Task of IojenkinsblueoceanserviceembeddedrestPipelineFolderImpl</returns>
-        System.Threading.Tasks.Task<IojenkinsblueoceanserviceembeddedrestPipelineFolderImpl> GetPipelineFolderByOrgAsync (string organisation, string folder);
+        /// <returns>Task of PipelineFolderImpl</returns>
+        System.Threading.Tasks.Task<PipelineFolderImpl> GetPipelineFolderAsync (string organization, string folder);
 
         /// <summary>
         /// 
         /// </summary>
         /// <remarks>
-        /// Retrieve pipeline folder for an organisation
+        /// Retrieve pipeline folder for an organization
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="organisation">Name of the organisation</param>
+        /// <param name="organization">Name of the organization</param>
         /// <param name="folder">Name of the folder</param>
-        /// <returns>Task of ApiResponse (IojenkinsblueoceanserviceembeddedrestPipelineFolderImpl)</returns>
-        System.Threading.Tasks.Task<ApiResponse<IojenkinsblueoceanserviceembeddedrestPipelineFolderImpl>> GetPipelineFolderByOrgAsyncWithHttpInfo (string organisation, string folder);
+        /// <returns>Task of ApiResponse (PipelineFolderImpl)</returns>
+        System.Threading.Tasks.Task<ApiResponse<PipelineFolderImpl>> GetPipelineFolderAsyncWithHttpInfo (string organization, string folder);
         /// <summary>
         /// 
         /// </summary>
         /// <remarks>
-        /// Retrieve pipeline details for an organisation folder
+        /// Retrieve pipeline details for an organization folder
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="organisation">Name of the organisation</param>
-        /// <param name="pipeline">Name of the pipeline</param>
-        /// <param name="folder">Name of the folder</param>
-        /// <returns>Task of IojenkinsblueoceanserviceembeddedrestPipelineImpl</returns>
-        System.Threading.Tasks.Task<IojenkinsblueoceanserviceembeddedrestPipelineImpl> GetPipelineFolderByOrg_0Async (string organisation, string pipeline, string folder);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// Retrieve pipeline details for an organisation folder
-        /// </remarks>
-        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="organisation">Name of the organisation</param>
+        /// <param name="organization">Name of the organization</param>
         /// <param name="pipeline">Name of the pipeline</param>
         /// <param name="folder">Name of the folder</param>
-        /// <returns>Task of ApiResponse (IojenkinsblueoceanserviceembeddedrestPipelineImpl)</returns>
-        System.Threading.Tasks.Task<ApiResponse<IojenkinsblueoceanserviceembeddedrestPipelineImpl>> GetPipelineFolderByOrg_0AsyncWithHttpInfo (string organisation, string pipeline, string folder);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// Retrieve all pipelines details for an organisation
-        /// </remarks>
-        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="organisation">Name of the organisation</param>
-        /// <returns>Task of GetPipelines</returns>
-        System.Threading.Tasks.Task<GetPipelines> GetPipelinesByOrgAsync (string organisation);
+        /// <returns>Task of PipelineImpl</returns>
+        System.Threading.Tasks.Task<PipelineImpl> GetPipelineFolderPipelineAsync (string organization, string pipeline, string folder);
 
         /// <summary>
         /// 
         /// </summary>
         /// <remarks>
-        /// Retrieve all pipelines details for an organisation
+        /// Retrieve pipeline details for an organization folder
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="organisation">Name of the organisation</param>
-        /// <returns>Task of ApiResponse (GetPipelines)</returns>
-        System.Threading.Tasks.Task<ApiResponse<GetPipelines>> GetPipelinesByOrgAsyncWithHttpInfo (string organisation);
+        /// <param name="organization">Name of the organization</param>
+        /// <param name="pipeline">Name of the pipeline</param>
+        /// <param name="folder">Name of the folder</param>
+        /// <returns>Task of ApiResponse (PipelineImpl)</returns>
+        System.Threading.Tasks.Task<ApiResponse<PipelineImpl>> GetPipelineFolderPipelineAsyncWithHttpInfo (string organization, string pipeline, string folder);
         /// <summary>
         /// 
         /// </summary>
         /// <remarks>
-        /// Retrieve user details for an organisation
+        /// Retrieve queue details for an organization pipeline
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="organisation">Name of the organisation</param>
+        /// <param name="organization">Name of the organization</param>
+        /// <param name="pipeline">Name of the pipeline</param>
+        /// <returns>Task of PipelineQueue</returns>
+        System.Threading.Tasks.Task<PipelineQueue> GetPipelineQueueAsync (string organization, string pipeline);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// Retrieve queue details for an organization pipeline
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="organization">Name of the organization</param>
+        /// <param name="pipeline">Name of the pipeline</param>
+        /// <returns>Task of ApiResponse (PipelineQueue)</returns>
+        System.Threading.Tasks.Task<ApiResponse<PipelineQueue>> GetPipelineQueueAsyncWithHttpInfo (string organization, string pipeline);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// Retrieve run details for an organization pipeline
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="organization">Name of the organization</param>
+        /// <param name="pipeline">Name of the pipeline</param>
+        /// <param name="run">Name of the run</param>
+        /// <returns>Task of PipelineRun</returns>
+        System.Threading.Tasks.Task<PipelineRun> GetPipelineRunAsync (string organization, string pipeline, string run);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// Retrieve run details for an organization pipeline
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="organization">Name of the organization</param>
+        /// <param name="pipeline">Name of the pipeline</param>
+        /// <param name="run">Name of the run</param>
+        /// <returns>Task of ApiResponse (PipelineRun)</returns>
+        System.Threading.Tasks.Task<ApiResponse<PipelineRun>> GetPipelineRunAsyncWithHttpInfo (string organization, string pipeline, string run);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// Get log for a pipeline run
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="organization">Name of the organization</param>
+        /// <param name="pipeline">Name of the pipeline</param>
+        /// <param name="run">Name of the run</param>
+        /// <param name="start">Start position of the log (optional)</param>
+        /// <param name="download">Set to true in order to download the file, otherwise it&#39;s passed as a response body (optional)</param>
+        /// <returns>Task of string</returns>
+        System.Threading.Tasks.Task<string> GetPipelineRunLogAsync (string organization, string pipeline, string run, int? start = null, bool? download = null);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// Get log for a pipeline run
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="organization">Name of the organization</param>
+        /// <param name="pipeline">Name of the pipeline</param>
+        /// <param name="run">Name of the run</param>
+        /// <param name="start">Start position of the log (optional)</param>
+        /// <param name="download">Set to true in order to download the file, otherwise it&#39;s passed as a response body (optional)</param>
+        /// <returns>Task of ApiResponse (string)</returns>
+        System.Threading.Tasks.Task<ApiResponse<string>> GetPipelineRunLogAsyncWithHttpInfo (string organization, string pipeline, string run, int? start = null, bool? download = null);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// Retrieve run node details for an organization pipeline
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="organization">Name of the organization</param>
+        /// <param name="pipeline">Name of the pipeline</param>
+        /// <param name="run">Name of the run</param>
+        /// <param name="node">Name of the node</param>
+        /// <returns>Task of PipelineRunNode</returns>
+        System.Threading.Tasks.Task<PipelineRunNode> GetPipelineRunNodeAsync (string organization, string pipeline, string run, string node);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// Retrieve run node details for an organization pipeline
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="organization">Name of the organization</param>
+        /// <param name="pipeline">Name of the pipeline</param>
+        /// <param name="run">Name of the run</param>
+        /// <param name="node">Name of the node</param>
+        /// <returns>Task of ApiResponse (PipelineRunNode)</returns>
+        System.Threading.Tasks.Task<ApiResponse<PipelineRunNode>> GetPipelineRunNodeAsyncWithHttpInfo (string organization, string pipeline, string run, string node);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// Retrieve run node details for an organization pipeline
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="organization">Name of the organization</param>
+        /// <param name="pipeline">Name of the pipeline</param>
+        /// <param name="run">Name of the run</param>
+        /// <param name="node">Name of the node</param>
+        /// <param name="step">Name of the step</param>
+        /// <returns>Task of PipelineStepImpl</returns>
+        System.Threading.Tasks.Task<PipelineStepImpl> GetPipelineRunNodeStepAsync (string organization, string pipeline, string run, string node, string step);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// Retrieve run node details for an organization pipeline
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="organization">Name of the organization</param>
+        /// <param name="pipeline">Name of the pipeline</param>
+        /// <param name="run">Name of the run</param>
+        /// <param name="node">Name of the node</param>
+        /// <param name="step">Name of the step</param>
+        /// <returns>Task of ApiResponse (PipelineStepImpl)</returns>
+        System.Threading.Tasks.Task<ApiResponse<PipelineStepImpl>> GetPipelineRunNodeStepAsyncWithHttpInfo (string organization, string pipeline, string run, string node, string step);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// Get log for a pipeline run node step
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="organization">Name of the organization</param>
+        /// <param name="pipeline">Name of the pipeline</param>
+        /// <param name="run">Name of the run</param>
+        /// <param name="node">Name of the node</param>
+        /// <param name="step">Name of the step</param>
+        /// <returns>Task of string</returns>
+        System.Threading.Tasks.Task<string> GetPipelineRunNodeStepLogAsync (string organization, string pipeline, string run, string node, string step);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// Get log for a pipeline run node step
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="organization">Name of the organization</param>
+        /// <param name="pipeline">Name of the pipeline</param>
+        /// <param name="run">Name of the run</param>
+        /// <param name="node">Name of the node</param>
+        /// <param name="step">Name of the step</param>
+        /// <returns>Task of ApiResponse (string)</returns>
+        System.Threading.Tasks.Task<ApiResponse<string>> GetPipelineRunNodeStepLogAsyncWithHttpInfo (string organization, string pipeline, string run, string node, string step);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// Retrieve run node steps details for an organization pipeline
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="organization">Name of the organization</param>
+        /// <param name="pipeline">Name of the pipeline</param>
+        /// <param name="run">Name of the run</param>
+        /// <param name="node">Name of the node</param>
+        /// <returns>Task of PipelineRunNodeSteps</returns>
+        System.Threading.Tasks.Task<PipelineRunNodeSteps> GetPipelineRunNodeStepsAsync (string organization, string pipeline, string run, string node);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// Retrieve run node steps details for an organization pipeline
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="organization">Name of the organization</param>
+        /// <param name="pipeline">Name of the pipeline</param>
+        /// <param name="run">Name of the run</param>
+        /// <param name="node">Name of the node</param>
+        /// <returns>Task of ApiResponse (PipelineRunNodeSteps)</returns>
+        System.Threading.Tasks.Task<ApiResponse<PipelineRunNodeSteps>> GetPipelineRunNodeStepsAsyncWithHttpInfo (string organization, string pipeline, string run, string node);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// Retrieve run nodes details for an organization pipeline
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="organization">Name of the organization</param>
+        /// <param name="pipeline">Name of the pipeline</param>
+        /// <param name="run">Name of the run</param>
+        /// <returns>Task of PipelineRunNodes</returns>
+        System.Threading.Tasks.Task<PipelineRunNodes> GetPipelineRunNodesAsync (string organization, string pipeline, string run);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// Retrieve run nodes details for an organization pipeline
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="organization">Name of the organization</param>
+        /// <param name="pipeline">Name of the pipeline</param>
+        /// <param name="run">Name of the run</param>
+        /// <returns>Task of ApiResponse (PipelineRunNodes)</returns>
+        System.Threading.Tasks.Task<ApiResponse<PipelineRunNodes>> GetPipelineRunNodesAsyncWithHttpInfo (string organization, string pipeline, string run);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// Retrieve all runs details for an organization pipeline
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="organization">Name of the organization</param>
+        /// <param name="pipeline">Name of the pipeline</param>
+        /// <returns>Task of PipelineRuns</returns>
+        System.Threading.Tasks.Task<PipelineRuns> GetPipelineRunsAsync (string organization, string pipeline);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// Retrieve all runs details for an organization pipeline
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="organization">Name of the organization</param>
+        /// <param name="pipeline">Name of the pipeline</param>
+        /// <returns>Task of ApiResponse (PipelineRuns)</returns>
+        System.Threading.Tasks.Task<ApiResponse<PipelineRuns>> GetPipelineRunsAsyncWithHttpInfo (string organization, string pipeline);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// Retrieve all pipelines details for an organization
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="organization">Name of the organization</param>
+        /// <returns>Task of Pipelines</returns>
+        System.Threading.Tasks.Task<Pipelines> GetPipelinesAsync (string organization);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// Retrieve all pipelines details for an organization
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="organization">Name of the organization</param>
+        /// <returns>Task of ApiResponse (Pipelines)</returns>
+        System.Threading.Tasks.Task<ApiResponse<Pipelines>> GetPipelinesAsyncWithHttpInfo (string organization);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// Retrieve SCM details for an organization
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="organization">Name of the organization</param>
+        /// <param name="scm">Name of SCM</param>
+        /// <returns>Task of GithubScm</returns>
+        System.Threading.Tasks.Task<GithubScm> GetSCMAsync (string organization, string scm);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// Retrieve SCM details for an organization
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="organization">Name of the organization</param>
+        /// <param name="scm">Name of SCM</param>
+        /// <returns>Task of ApiResponse (GithubScm)</returns>
+        System.Threading.Tasks.Task<ApiResponse<GithubScm>> GetSCMAsyncWithHttpInfo (string organization, string scm);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// Retrieve SCM organization repositories details for an organization
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="organization">Name of the organization</param>
+        /// <param name="scm">Name of SCM</param>
+        /// <param name="scmOrganisation">Name of the SCM organization</param>
+        /// <param name="credentialId">Credential ID (optional)</param>
+        /// <param name="pageSize">Number of items in a page (optional)</param>
+        /// <param name="pageNumber">Page number (optional)</param>
+        /// <returns>Task of ScmOrganisations</returns>
+        System.Threading.Tasks.Task<ScmOrganisations> GetSCMOrganisationRepositoriesAsync (string organization, string scm, string scmOrganisation, string credentialId = null, int? pageSize = null, int? pageNumber = null);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// Retrieve SCM organization repositories details for an organization
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="organization">Name of the organization</param>
+        /// <param name="scm">Name of SCM</param>
+        /// <param name="scmOrganisation">Name of the SCM organization</param>
+        /// <param name="credentialId">Credential ID (optional)</param>
+        /// <param name="pageSize">Number of items in a page (optional)</param>
+        /// <param name="pageNumber">Page number (optional)</param>
+        /// <returns>Task of ApiResponse (ScmOrganisations)</returns>
+        System.Threading.Tasks.Task<ApiResponse<ScmOrganisations>> GetSCMOrganisationRepositoriesAsyncWithHttpInfo (string organization, string scm, string scmOrganisation, string credentialId = null, int? pageSize = null, int? pageNumber = null);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// Retrieve SCM organization repository details for an organization
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="organization">Name of the organization</param>
+        /// <param name="scm">Name of SCM</param>
+        /// <param name="scmOrganisation">Name of the SCM organization</param>
+        /// <param name="repository">Name of the SCM repository</param>
+        /// <param name="credentialId">Credential ID (optional)</param>
+        /// <returns>Task of ScmOrganisations</returns>
+        System.Threading.Tasks.Task<ScmOrganisations> GetSCMOrganisationRepositoryAsync (string organization, string scm, string scmOrganisation, string repository, string credentialId = null);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// Retrieve SCM organization repository details for an organization
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="organization">Name of the organization</param>
+        /// <param name="scm">Name of SCM</param>
+        /// <param name="scmOrganisation">Name of the SCM organization</param>
+        /// <param name="repository">Name of the SCM repository</param>
+        /// <param name="credentialId">Credential ID (optional)</param>
+        /// <returns>Task of ApiResponse (ScmOrganisations)</returns>
+        System.Threading.Tasks.Task<ApiResponse<ScmOrganisations>> GetSCMOrganisationRepositoryAsyncWithHttpInfo (string organization, string scm, string scmOrganisation, string repository, string credentialId = null);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// Retrieve SCM organizations details for an organization
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="organization">Name of the organization</param>
+        /// <param name="scm">Name of SCM</param>
+        /// <param name="credentialId">Credential ID (optional)</param>
+        /// <returns>Task of ScmOrganisations</returns>
+        System.Threading.Tasks.Task<ScmOrganisations> GetSCMOrganisationsAsync (string organization, string scm, string credentialId = null);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// Retrieve SCM organizations details for an organization
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="organization">Name of the organization</param>
+        /// <param name="scm">Name of SCM</param>
+        /// <param name="credentialId">Credential ID (optional)</param>
+        /// <returns>Task of ApiResponse (ScmOrganisations)</returns>
+        System.Threading.Tasks.Task<ApiResponse<ScmOrganisations>> GetSCMOrganisationsAsyncWithHttpInfo (string organization, string scm, string credentialId = null);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// Retrieve user details for an organization
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="organization">Name of the organization</param>
         /// <param name="user">Name of the user</param>
-        /// <returns>Task of SwaggyjenkinsUser</returns>
-        System.Threading.Tasks.Task<SwaggyjenkinsUser> GetUserAsync (string organisation, string user);
+        /// <returns>Task of User</returns>
+        System.Threading.Tasks.Task<User> GetUserAsync (string organization, string user);
 
         /// <summary>
         /// 
         /// </summary>
         /// <remarks>
-        /// Retrieve user details for an organisation
+        /// Retrieve user details for an organization
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="organisation">Name of the organisation</param>
+        /// <param name="organization">Name of the organization</param>
         /// <param name="user">Name of the user</param>
-        /// <returns>Task of ApiResponse (SwaggyjenkinsUser)</returns>
-        System.Threading.Tasks.Task<ApiResponse<SwaggyjenkinsUser>> GetUserAsyncWithHttpInfo (string organisation, string user);
+        /// <returns>Task of ApiResponse (User)</returns>
+        System.Threading.Tasks.Task<ApiResponse<User>> GetUserAsyncWithHttpInfo (string organization, string user);
         /// <summary>
         /// 
         /// </summary>
         /// <remarks>
-        /// Retrieve users details for an organisation
+        /// Retrieve user favorites details for an organization
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="organisation">Name of the organisation</param>
-        /// <returns>Task of SwaggyjenkinsUser</returns>
-        System.Threading.Tasks.Task<SwaggyjenkinsUser> GetUsersAsync (string organisation);
+        /// <param name="user">Name of the user</param>
+        /// <returns>Task of UserFavorites</returns>
+        System.Threading.Tasks.Task<UserFavorites> GetUserFavoritesAsync (string user);
 
         /// <summary>
         /// 
         /// </summary>
         /// <remarks>
-        /// Retrieve users details for an organisation
+        /// Retrieve user favorites details for an organization
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="organisation">Name of the organisation</param>
-        /// <returns>Task of ApiResponse (SwaggyjenkinsUser)</returns>
-        System.Threading.Tasks.Task<ApiResponse<SwaggyjenkinsUser>> GetUsersAsyncWithHttpInfo (string organisation);
+        /// <param name="user">Name of the user</param>
+        /// <returns>Task of ApiResponse (UserFavorites)</returns>
+        System.Threading.Tasks.Task<ApiResponse<UserFavorites>> GetUserFavoritesAsyncWithHttpInfo (string user);
         /// <summary>
         /// 
         /// </summary>
         /// <remarks>
-        /// Get classes details
+        /// Retrieve users details for an organization
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="q">Query string containing an array of class names</param>
+        /// <param name="organization">Name of the organization</param>
+        /// <returns>Task of User</returns>
+        System.Threading.Tasks.Task<User> GetUsersAsync (string organization);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// Retrieve users details for an organization
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="organization">Name of the organization</param>
+        /// <returns>Task of ApiResponse (User)</returns>
+        System.Threading.Tasks.Task<ApiResponse<User>> GetUsersAsyncWithHttpInfo (string organization);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// Replay an organization pipeline run
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="organization">Name of the organization</param>
+        /// <param name="pipeline">Name of the pipeline</param>
+        /// <param name="run">Name of the run</param>
+        /// <returns>Task of QueueItemImpl</returns>
+        System.Threading.Tasks.Task<QueueItemImpl> PostPipelineRunAsync (string organization, string pipeline, string run);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// Replay an organization pipeline run
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="organization">Name of the organization</param>
+        /// <param name="pipeline">Name of the pipeline</param>
+        /// <param name="run">Name of the run</param>
+        /// <returns>Task of ApiResponse (QueueItemImpl)</returns>
+        System.Threading.Tasks.Task<ApiResponse<QueueItemImpl>> PostPipelineRunAsyncWithHttpInfo (string organization, string pipeline, string run);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// Start a build for an organization pipeline
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="organization">Name of the organization</param>
+        /// <param name="pipeline">Name of the pipeline</param>
+        /// <returns>Task of QueueItemImpl</returns>
+        System.Threading.Tasks.Task<QueueItemImpl> PostPipelineRunsAsync (string organization, string pipeline);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// Start a build for an organization pipeline
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="organization">Name of the organization</param>
+        /// <param name="pipeline">Name of the pipeline</param>
+        /// <returns>Task of ApiResponse (QueueItemImpl)</returns>
+        System.Threading.Tasks.Task<ApiResponse<QueueItemImpl>> PostPipelineRunsAsyncWithHttpInfo (string organization, string pipeline);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// Favorite/unfavorite a pipeline
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="organization">Name of the organization</param>
+        /// <param name="pipeline">Name of the pipeline</param>
+        /// <param name="body">Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite</param>
+        /// <returns>Task of FavoriteImpl</returns>
+        System.Threading.Tasks.Task<FavoriteImpl> PutPipelineFavoriteAsync (string organization, string pipeline, Body body);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// Favorite/unfavorite a pipeline
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="organization">Name of the organization</param>
+        /// <param name="pipeline">Name of the pipeline</param>
+        /// <param name="body">Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite</param>
+        /// <returns>Task of ApiResponse (FavoriteImpl)</returns>
+        System.Threading.Tasks.Task<ApiResponse<FavoriteImpl>> PutPipelineFavoriteAsyncWithHttpInfo (string organization, string pipeline, Body body);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// Stop a build of an organization pipeline
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="organization">Name of the organization</param>
+        /// <param name="pipeline">Name of the pipeline</param>
+        /// <param name="run">Name of the run</param>
+        /// <param name="blocking">Set to true to make blocking stop, default: false (optional)</param>
+        /// <param name="timeOutInSecs">Timeout in seconds, default: 10 seconds (optional)</param>
+        /// <returns>Task of PipelineRun</returns>
+        System.Threading.Tasks.Task<PipelineRun> PutPipelineRunAsync (string organization, string pipeline, string run, string blocking = null, int? timeOutInSecs = null);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// Stop a build of an organization pipeline
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="organization">Name of the organization</param>
+        /// <param name="pipeline">Name of the pipeline</param>
+        /// <param name="run">Name of the run</param>
+        /// <param name="blocking">Set to true to make blocking stop, default: false (optional)</param>
+        /// <param name="timeOutInSecs">Timeout in seconds, default: 10 seconds (optional)</param>
+        /// <returns>Task of ApiResponse (PipelineRun)</returns>
+        System.Threading.Tasks.Task<ApiResponse<PipelineRun>> PutPipelineRunAsyncWithHttpInfo (string organization, string pipeline, string run, string blocking = null, int? timeOutInSecs = null);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// Search for any resource details
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="q">Query string</param>
         /// <returns>Task of string</returns>
         System.Threading.Tasks.Task<string> SearchAsync (string q);
 
@@ -615,33 +1701,33 @@ namespace IO.Swagger.Api
         /// 
         /// </summary>
         /// <remarks>
-        /// Get classes details
+        /// Search for any resource details
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="q">Query string containing an array of class names</param>
+        /// <param name="q">Query string</param>
         /// <returns>Task of ApiResponse (string)</returns>
         System.Threading.Tasks.Task<ApiResponse<string>> SearchAsyncWithHttpInfo (string q);
         /// <summary>
         /// 
         /// </summary>
         /// <remarks>
-        /// Search for any resource details
+        /// Get classes details
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="q">Query string</param>
+        /// <param name="q">Query string containing an array of class names</param>
         /// <returns>Task of string</returns>
-        System.Threading.Tasks.Task<string> Search_0Async (string q);
+        System.Threading.Tasks.Task<string> SearchClassesAsync (string q);
 
         /// <summary>
         /// 
         /// </summary>
         /// <remarks>
-        /// Search for any resource details
+        /// Get classes details
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="q">Query string</param>
+        /// <param name="q">Query string containing an array of class names</param>
         /// <returns>Task of ApiResponse (string)</returns>
-        System.Threading.Tasks.Task<ApiResponse<string>> Search_0AsyncWithHttpInfo (string q);
+        System.Threading.Tasks.Task<ApiResponse<string>> SearchClassesAsyncWithHttpInfo (string q);
         #endregion Asynchronous Operations
     }
 
@@ -658,15 +1744,9 @@ namespace IO.Swagger.Api
         /// <returns></returns>
         public BlueOceanApi(String basePath)
         {
-            this.Configuration = new Configuration(new ApiClient(basePath));
+            this.Configuration = new Configuration { BasePath = basePath };
 
             ExceptionFactory = IO.Swagger.Client.Configuration.DefaultExceptionFactory;
-
-            // ensure API client has configuration ready
-            if (Configuration.ApiClient.Configuration == null)
-            {
-                this.Configuration.ApiClient.Configuration = this.Configuration;
-            }
         }
 
         /// <summary>
@@ -683,12 +1763,6 @@ namespace IO.Swagger.Api
                 this.Configuration = configuration;
 
             ExceptionFactory = IO.Swagger.Client.Configuration.DefaultExceptionFactory;
-
-            // ensure API client has configuration ready
-            if (Configuration.ApiClient.Configuration == null)
-            {
-                this.Configuration.ApiClient.Configuration = this.Configuration;
-            }
         }
 
         /// <summary>
@@ -737,9 +1811,9 @@ namespace IO.Swagger.Api
         /// </summary>
         /// <returns>Dictionary of HTTP header</returns>
         [Obsolete("DefaultHeader is deprecated, please use Configuration.DefaultHeader instead.")]
-        public Dictionary<String, String> DefaultHeader()
+        public IDictionary<String, String> DefaultHeader()
         {
-            return this.Configuration.DefaultHeader;
+            return new ReadOnlyDictionary<string, string>(this.Configuration.DefaultHeader);
         }
 
         /// <summary>
@@ -755,32 +1829,41 @@ namespace IO.Swagger.Api
         }
 
         /// <summary>
-        ///  Retrieve authenticated user details for an organisation
+        ///  Delete queue item from an organization pipeline queue
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="organisation">Name of the organisation</param>
-        /// <returns>SwaggyjenkinsUser</returns>
-        public SwaggyjenkinsUser GetAuthenticatedUser (string organisation)
+        /// <param name="organization">Name of the organization</param>
+        /// <param name="pipeline">Name of the pipeline</param>
+        /// <param name="queue">Name of the queue item</param>
+        /// <returns></returns>
+        public void DeletePipelineQueueItem (string organization, string pipeline, string queue)
         {
-             ApiResponse<SwaggyjenkinsUser> localVarResponse = GetAuthenticatedUserWithHttpInfo(organisation);
-             return localVarResponse.Data;
+             DeletePipelineQueueItemWithHttpInfo(organization, pipeline, queue);
         }
 
         /// <summary>
-        ///  Retrieve authenticated user details for an organisation
+        ///  Delete queue item from an organization pipeline queue
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="organisation">Name of the organisation</param>
-        /// <returns>ApiResponse of SwaggyjenkinsUser</returns>
-        public ApiResponse< SwaggyjenkinsUser > GetAuthenticatedUserWithHttpInfo (string organisation)
+        /// <param name="organization">Name of the organization</param>
+        /// <param name="pipeline">Name of the pipeline</param>
+        /// <param name="queue">Name of the queue item</param>
+        /// <returns>ApiResponse of Object(void)</returns>
+        public ApiResponse<Object> DeletePipelineQueueItemWithHttpInfo (string organization, string pipeline, string queue)
         {
-            // verify the required parameter 'organisation' is set
-            if (organisation == null)
-                throw new ApiException(400, "Missing required parameter 'organisation' when calling BlueOceanApi->GetAuthenticatedUser");
+            // verify the required parameter 'organization' is set
+            if (organization == null)
+                throw new ApiException(400, "Missing required parameter 'organization' when calling BlueOceanApi->DeletePipelineQueueItem");
+            // verify the required parameter 'pipeline' is set
+            if (pipeline == null)
+                throw new ApiException(400, "Missing required parameter 'pipeline' when calling BlueOceanApi->DeletePipelineQueueItem");
+            // verify the required parameter 'queue' is set
+            if (queue == null)
+                throw new ApiException(400, "Missing required parameter 'queue' when calling BlueOceanApi->DeletePipelineQueueItem");
 
-            var localVarPath = "/blue/rest/organizations/{organisation}/user/";
+            var localVarPath = "/blue/rest/organizations/{organization}/pipelines/{pipeline}/queue/{queue}";
             var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
             var localVarFormParams = new Dictionary<String, String>();
             var localVarFileParams = new Dictionary<String, FileParameter>();
@@ -799,8 +1882,172 @@ namespace IO.Swagger.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            if (organisation != null) localVarPathParams.Add("organisation", Configuration.ApiClient.ParameterToString(organisation)); // path parameter
+            if (organization != null) localVarPathParams.Add("organization", Configuration.ApiClient.ParameterToString(organization)); // path parameter
+            if (pipeline != null) localVarPathParams.Add("pipeline", Configuration.ApiClient.ParameterToString(pipeline)); // path parameter
+            if (queue != null) localVarPathParams.Add("queue", Configuration.ApiClient.ParameterToString(queue)); // path parameter
 
+            // authentication (jenkins_auth) required
+            // http basic authentication required
+            if (!String.IsNullOrEmpty(Configuration.Username) || !String.IsNullOrEmpty(Configuration.Password))
+            {
+                localVarHeaderParams["Authorization"] = "Basic " + ApiClient.Base64Encode(Configuration.Username + ":" + Configuration.Password);
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
+                Method.DELETE, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("DeletePipelineQueueItem", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<Object>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                null);
+        }
+
+        /// <summary>
+        ///  Delete queue item from an organization pipeline queue
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="organization">Name of the organization</param>
+        /// <param name="pipeline">Name of the pipeline</param>
+        /// <param name="queue">Name of the queue item</param>
+        /// <returns>Task of void</returns>
+        public async System.Threading.Tasks.Task DeletePipelineQueueItemAsync (string organization, string pipeline, string queue)
+        {
+             await DeletePipelineQueueItemAsyncWithHttpInfo(organization, pipeline, queue);
+
+        }
+
+        /// <summary>
+        ///  Delete queue item from an organization pipeline queue
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="organization">Name of the organization</param>
+        /// <param name="pipeline">Name of the pipeline</param>
+        /// <param name="queue">Name of the queue item</param>
+        /// <returns>Task of ApiResponse</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<Object>> DeletePipelineQueueItemAsyncWithHttpInfo (string organization, string pipeline, string queue)
+        {
+            // verify the required parameter 'organization' is set
+            if (organization == null)
+                throw new ApiException(400, "Missing required parameter 'organization' when calling BlueOceanApi->DeletePipelineQueueItem");
+            // verify the required parameter 'pipeline' is set
+            if (pipeline == null)
+                throw new ApiException(400, "Missing required parameter 'pipeline' when calling BlueOceanApi->DeletePipelineQueueItem");
+            // verify the required parameter 'queue' is set
+            if (queue == null)
+                throw new ApiException(400, "Missing required parameter 'queue' when calling BlueOceanApi->DeletePipelineQueueItem");
+
+            var localVarPath = "/blue/rest/organizations/{organization}/pipelines/{pipeline}/queue/{queue}";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (organization != null) localVarPathParams.Add("organization", Configuration.ApiClient.ParameterToString(organization)); // path parameter
+            if (pipeline != null) localVarPathParams.Add("pipeline", Configuration.ApiClient.ParameterToString(pipeline)); // path parameter
+            if (queue != null) localVarPathParams.Add("queue", Configuration.ApiClient.ParameterToString(queue)); // path parameter
+
+            // authentication (jenkins_auth) required
+            // http basic authentication required
+            if (!String.IsNullOrEmpty(Configuration.Username) || !String.IsNullOrEmpty(Configuration.Password))
+            {
+                localVarHeaderParams["Authorization"] = "Basic " + ApiClient.Base64Encode(Configuration.Username + ":" + Configuration.Password);
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.DELETE, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("DeletePipelineQueueItem", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<Object>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                null);
+        }
+
+        /// <summary>
+        ///  Retrieve authenticated user details for an organization
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="organization">Name of the organization</param>
+        /// <returns>User</returns>
+        public User GetAuthenticatedUser (string organization)
+        {
+             ApiResponse<User> localVarResponse = GetAuthenticatedUserWithHttpInfo(organization);
+             return localVarResponse.Data;
+        }
+
+        /// <summary>
+        ///  Retrieve authenticated user details for an organization
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="organization">Name of the organization</param>
+        /// <returns>ApiResponse of User</returns>
+        public ApiResponse< User > GetAuthenticatedUserWithHttpInfo (string organization)
+        {
+            // verify the required parameter 'organization' is set
+            if (organization == null)
+                throw new ApiException(400, "Missing required parameter 'organization' when calling BlueOceanApi->GetAuthenticatedUser");
+
+            var localVarPath = "/blue/rest/organizations/{organization}/user/";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (organization != null) localVarPathParams.Add("organization", Configuration.ApiClient.ParameterToString(organization)); // path parameter
+
+            // authentication (jenkins_auth) required
+            // http basic authentication required
+            if (!String.IsNullOrEmpty(Configuration.Username) || !String.IsNullOrEmpty(Configuration.Password))
+            {
+                localVarHeaderParams["Authorization"] = "Basic " + ApiClient.Base64Encode(Configuration.Username + ":" + Configuration.Password);
+            }
 
             // make the HTTP request
             IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
@@ -815,39 +2062,39 @@ namespace IO.Swagger.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<SwaggyjenkinsUser>(localVarStatusCode,
+            return new ApiResponse<User>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (SwaggyjenkinsUser) Configuration.ApiClient.Deserialize(localVarResponse, typeof(SwaggyjenkinsUser)));
+                (User) Configuration.ApiClient.Deserialize(localVarResponse, typeof(User)));
         }
 
         /// <summary>
-        ///  Retrieve authenticated user details for an organisation
+        ///  Retrieve authenticated user details for an organization
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="organisation">Name of the organisation</param>
-        /// <returns>Task of SwaggyjenkinsUser</returns>
-        public async System.Threading.Tasks.Task<SwaggyjenkinsUser> GetAuthenticatedUserAsync (string organisation)
+        /// <param name="organization">Name of the organization</param>
+        /// <returns>Task of User</returns>
+        public async System.Threading.Tasks.Task<User> GetAuthenticatedUserAsync (string organization)
         {
-             ApiResponse<SwaggyjenkinsUser> localVarResponse = await GetAuthenticatedUserAsyncWithHttpInfo(organisation);
+             ApiResponse<User> localVarResponse = await GetAuthenticatedUserAsyncWithHttpInfo(organization);
              return localVarResponse.Data;
 
         }
 
         /// <summary>
-        ///  Retrieve authenticated user details for an organisation
+        ///  Retrieve authenticated user details for an organization
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="organisation">Name of the organisation</param>
-        /// <returns>Task of ApiResponse (SwaggyjenkinsUser)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<SwaggyjenkinsUser>> GetAuthenticatedUserAsyncWithHttpInfo (string organisation)
+        /// <param name="organization">Name of the organization</param>
+        /// <returns>Task of ApiResponse (User)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<User>> GetAuthenticatedUserAsyncWithHttpInfo (string organization)
         {
-            // verify the required parameter 'organisation' is set
-            if (organisation == null)
-                throw new ApiException(400, "Missing required parameter 'organisation' when calling BlueOceanApi->GetAuthenticatedUser");
+            // verify the required parameter 'organization' is set
+            if (organization == null)
+                throw new ApiException(400, "Missing required parameter 'organization' when calling BlueOceanApi->GetAuthenticatedUser");
 
-            var localVarPath = "/blue/rest/organizations/{organisation}/user/";
+            var localVarPath = "/blue/rest/organizations/{organization}/user/";
             var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
             var localVarFormParams = new Dictionary<String, String>();
             var localVarFileParams = new Dictionary<String, FileParameter>();
@@ -866,8 +2113,14 @@ namespace IO.Swagger.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            if (organisation != null) localVarPathParams.Add("organisation", Configuration.ApiClient.ParameterToString(organisation)); // path parameter
+            if (organization != null) localVarPathParams.Add("organization", Configuration.ApiClient.ParameterToString(organization)); // path parameter
 
+            // authentication (jenkins_auth) required
+            // http basic authentication required
+            if (!String.IsNullOrEmpty(Configuration.Username) || !String.IsNullOrEmpty(Configuration.Password))
+            {
+                localVarHeaderParams["Authorization"] = "Basic " + ApiClient.Base64Encode(Configuration.Username + ":" + Configuration.Password);
+            }
 
             // make the HTTP request
             IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
@@ -882,9 +2135,9 @@ namespace IO.Swagger.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<SwaggyjenkinsUser>(localVarStatusCode,
+            return new ApiResponse<User>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (SwaggyjenkinsUser) Configuration.ApiClient.Deserialize(localVarResponse, typeof(SwaggyjenkinsUser)));
+                (User) Configuration.ApiClient.Deserialize(localVarResponse, typeof(User)));
         }
 
         /// <summary>
@@ -913,7 +2166,7 @@ namespace IO.Swagger.Api
 
             var localVarPath = "/blue/rest/classes/{class}";
             var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
             var localVarFormParams = new Dictionary<String, String>();
             var localVarFileParams = new Dictionary<String, FileParameter>();
@@ -934,6 +2187,12 @@ namespace IO.Swagger.Api
 
             if (_class != null) localVarPathParams.Add("class", Configuration.ApiClient.ParameterToString(_class)); // path parameter
 
+            // authentication (jenkins_auth) required
+            // http basic authentication required
+            if (!String.IsNullOrEmpty(Configuration.Username) || !String.IsNullOrEmpty(Configuration.Password))
+            {
+                localVarHeaderParams["Authorization"] = "Basic " + ApiClient.Base64Encode(Configuration.Username + ":" + Configuration.Password);
+            }
 
             // make the HTTP request
             IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
@@ -980,7 +2239,7 @@ namespace IO.Swagger.Api
 
             var localVarPath = "/blue/rest/classes/{class}";
             var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
             var localVarFormParams = new Dictionary<String, String>();
             var localVarFileParams = new Dictionary<String, FileParameter>();
@@ -1001,6 +2260,12 @@ namespace IO.Swagger.Api
 
             if (_class != null) localVarPathParams.Add("class", Configuration.ApiClient.ParameterToString(_class)); // path parameter
 
+            // authentication (jenkins_auth) required
+            // http basic authentication required
+            if (!String.IsNullOrEmpty(Configuration.Username) || !String.IsNullOrEmpty(Configuration.Password))
+            {
+                localVarHeaderParams["Authorization"] = "Basic " + ApiClient.Base64Encode(Configuration.Username + ":" + Configuration.Password);
+            }
 
             // make the HTTP request
             IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
@@ -1021,32 +2286,32 @@ namespace IO.Swagger.Api
         }
 
         /// <summary>
-        ///  Retrieve organisation details
+        ///  Retrieve organization details
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="organisation">Name of the organisation</param>
-        /// <returns>SwaggyjenkinsOrganisation</returns>
-        public SwaggyjenkinsOrganisation GetOrganisation (string organisation)
+        /// <param name="organization">Name of the organization</param>
+        /// <returns>Organisation</returns>
+        public Organisation GetOrganisation (string organization)
         {
-             ApiResponse<SwaggyjenkinsOrganisation> localVarResponse = GetOrganisationWithHttpInfo(organisation);
+             ApiResponse<Organisation> localVarResponse = GetOrganisationWithHttpInfo(organization);
              return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  Retrieve organisation details
+        ///  Retrieve organization details
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="organisation">Name of the organisation</param>
-        /// <returns>ApiResponse of SwaggyjenkinsOrganisation</returns>
-        public ApiResponse< SwaggyjenkinsOrganisation > GetOrganisationWithHttpInfo (string organisation)
+        /// <param name="organization">Name of the organization</param>
+        /// <returns>ApiResponse of Organisation</returns>
+        public ApiResponse< Organisation > GetOrganisationWithHttpInfo (string organization)
         {
-            // verify the required parameter 'organisation' is set
-            if (organisation == null)
-                throw new ApiException(400, "Missing required parameter 'organisation' when calling BlueOceanApi->GetOrganisation");
+            // verify the required parameter 'organization' is set
+            if (organization == null)
+                throw new ApiException(400, "Missing required parameter 'organization' when calling BlueOceanApi->GetOrganisation");
 
-            var localVarPath = "/blue/rest/organizations/{organisation}";
+            var localVarPath = "/blue/rest/organizations/{organization}";
             var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
             var localVarFormParams = new Dictionary<String, String>();
             var localVarFileParams = new Dictionary<String, FileParameter>();
@@ -1065,8 +2330,14 @@ namespace IO.Swagger.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            if (organisation != null) localVarPathParams.Add("organisation", Configuration.ApiClient.ParameterToString(organisation)); // path parameter
+            if (organization != null) localVarPathParams.Add("organization", Configuration.ApiClient.ParameterToString(organization)); // path parameter
 
+            // authentication (jenkins_auth) required
+            // http basic authentication required
+            if (!String.IsNullOrEmpty(Configuration.Username) || !String.IsNullOrEmpty(Configuration.Password))
+            {
+                localVarHeaderParams["Authorization"] = "Basic " + ApiClient.Base64Encode(Configuration.Username + ":" + Configuration.Password);
+            }
 
             // make the HTTP request
             IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
@@ -1081,39 +2352,39 @@ namespace IO.Swagger.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<SwaggyjenkinsOrganisation>(localVarStatusCode,
+            return new ApiResponse<Organisation>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (SwaggyjenkinsOrganisation) Configuration.ApiClient.Deserialize(localVarResponse, typeof(SwaggyjenkinsOrganisation)));
+                (Organisation) Configuration.ApiClient.Deserialize(localVarResponse, typeof(Organisation)));
         }
 
         /// <summary>
-        ///  Retrieve organisation details
+        ///  Retrieve organization details
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="organisation">Name of the organisation</param>
-        /// <returns>Task of SwaggyjenkinsOrganisation</returns>
-        public async System.Threading.Tasks.Task<SwaggyjenkinsOrganisation> GetOrganisationAsync (string organisation)
+        /// <param name="organization">Name of the organization</param>
+        /// <returns>Task of Organisation</returns>
+        public async System.Threading.Tasks.Task<Organisation> GetOrganisationAsync (string organization)
         {
-             ApiResponse<SwaggyjenkinsOrganisation> localVarResponse = await GetOrganisationAsyncWithHttpInfo(organisation);
+             ApiResponse<Organisation> localVarResponse = await GetOrganisationAsyncWithHttpInfo(organization);
              return localVarResponse.Data;
 
         }
 
         /// <summary>
-        ///  Retrieve organisation details
+        ///  Retrieve organization details
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="organisation">Name of the organisation</param>
-        /// <returns>Task of ApiResponse (SwaggyjenkinsOrganisation)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<SwaggyjenkinsOrganisation>> GetOrganisationAsyncWithHttpInfo (string organisation)
+        /// <param name="organization">Name of the organization</param>
+        /// <returns>Task of ApiResponse (Organisation)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<Organisation>> GetOrganisationAsyncWithHttpInfo (string organization)
         {
-            // verify the required parameter 'organisation' is set
-            if (organisation == null)
-                throw new ApiException(400, "Missing required parameter 'organisation' when calling BlueOceanApi->GetOrganisation");
+            // verify the required parameter 'organization' is set
+            if (organization == null)
+                throw new ApiException(400, "Missing required parameter 'organization' when calling BlueOceanApi->GetOrganisation");
 
-            var localVarPath = "/blue/rest/organizations/{organisation}";
+            var localVarPath = "/blue/rest/organizations/{organization}";
             var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
             var localVarFormParams = new Dictionary<String, String>();
             var localVarFileParams = new Dictionary<String, FileParameter>();
@@ -1132,8 +2403,14 @@ namespace IO.Swagger.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            if (organisation != null) localVarPathParams.Add("organisation", Configuration.ApiClient.ParameterToString(organisation)); // path parameter
+            if (organization != null) localVarPathParams.Add("organization", Configuration.ApiClient.ParameterToString(organization)); // path parameter
 
+            // authentication (jenkins_auth) required
+            // http basic authentication required
+            if (!String.IsNullOrEmpty(Configuration.Username) || !String.IsNullOrEmpty(Configuration.Password))
+            {
+                localVarHeaderParams["Authorization"] = "Basic " + ApiClient.Base64Encode(Configuration.Username + ":" + Configuration.Password);
+            }
 
             // make the HTTP request
             IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
@@ -1148,33 +2425,33 @@ namespace IO.Swagger.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<SwaggyjenkinsOrganisation>(localVarStatusCode,
+            return new ApiResponse<Organisation>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (SwaggyjenkinsOrganisation) Configuration.ApiClient.Deserialize(localVarResponse, typeof(SwaggyjenkinsOrganisation)));
+                (Organisation) Configuration.ApiClient.Deserialize(localVarResponse, typeof(Organisation)));
         }
 
         /// <summary>
-        ///  Retrieve all organisations details
+        ///  Retrieve all organizations details
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>GetOrganisations</returns>
-        public GetOrganisations GetOrganisations ()
+        /// <returns>Organisations</returns>
+        public Organisations GetOrganisations ()
         {
-             ApiResponse<GetOrganisations> localVarResponse = GetOrganisationsWithHttpInfo();
+             ApiResponse<Organisations> localVarResponse = GetOrganisationsWithHttpInfo();
              return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  Retrieve all organisations details
+        ///  Retrieve all organizations details
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of GetOrganisations</returns>
-        public ApiResponse< GetOrganisations > GetOrganisationsWithHttpInfo ()
+        /// <returns>ApiResponse of Organisations</returns>
+        public ApiResponse< Organisations > GetOrganisationsWithHttpInfo ()
         {
 
             var localVarPath = "/blue/rest/organizations/";
             var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
             var localVarFormParams = new Dictionary<String, String>();
             var localVarFileParams = new Dictionary<String, FileParameter>();
@@ -1194,6 +2471,12 @@ namespace IO.Swagger.Api
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
 
+            // authentication (jenkins_auth) required
+            // http basic authentication required
+            if (!String.IsNullOrEmpty(Configuration.Username) || !String.IsNullOrEmpty(Configuration.Password))
+            {
+                localVarHeaderParams["Authorization"] = "Basic " + ApiClient.Base64Encode(Configuration.Username + ":" + Configuration.Password);
+            }
 
             // make the HTTP request
             IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
@@ -1208,34 +2491,34 @@ namespace IO.Swagger.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<GetOrganisations>(localVarStatusCode,
+            return new ApiResponse<Organisations>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (GetOrganisations) Configuration.ApiClient.Deserialize(localVarResponse, typeof(GetOrganisations)));
+                (Organisations) Configuration.ApiClient.Deserialize(localVarResponse, typeof(Organisations)));
         }
 
         /// <summary>
-        ///  Retrieve all organisations details
+        ///  Retrieve all organizations details
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>Task of GetOrganisations</returns>
-        public async System.Threading.Tasks.Task<GetOrganisations> GetOrganisationsAsync ()
+        /// <returns>Task of Organisations</returns>
+        public async System.Threading.Tasks.Task<Organisations> GetOrganisationsAsync ()
         {
-             ApiResponse<GetOrganisations> localVarResponse = await GetOrganisationsAsyncWithHttpInfo();
+             ApiResponse<Organisations> localVarResponse = await GetOrganisationsAsyncWithHttpInfo();
              return localVarResponse.Data;
 
         }
 
         /// <summary>
-        ///  Retrieve all organisations details
+        ///  Retrieve all organizations details
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>Task of ApiResponse (GetOrganisations)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<GetOrganisations>> GetOrganisationsAsyncWithHttpInfo ()
+        /// <returns>Task of ApiResponse (Organisations)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<Organisations>> GetOrganisationsAsyncWithHttpInfo ()
         {
 
             var localVarPath = "/blue/rest/organizations/";
             var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
             var localVarFormParams = new Dictionary<String, String>();
             var localVarFileParams = new Dictionary<String, FileParameter>();
@@ -1255,6 +2538,12 @@ namespace IO.Swagger.Api
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
 
+            // authentication (jenkins_auth) required
+            // http basic authentication required
+            if (!String.IsNullOrEmpty(Configuration.Username) || !String.IsNullOrEmpty(Configuration.Password))
+            {
+                localVarHeaderParams["Authorization"] = "Basic " + ApiClient.Base64Encode(Configuration.Username + ":" + Configuration.Password);
+            }
 
             // make the HTTP request
             IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
@@ -1269,48 +2558,43 @@ namespace IO.Swagger.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<GetOrganisations>(localVarStatusCode,
+            return new ApiResponse<Organisations>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (GetOrganisations) Configuration.ApiClient.Deserialize(localVarResponse, typeof(GetOrganisations)));
+                (Organisations) Configuration.ApiClient.Deserialize(localVarResponse, typeof(Organisations)));
         }
 
         /// <summary>
-        ///  Retrieve branch details for an organisation pipeline
+        ///  Retrieve pipeline details for an organization
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="organisation">Name of the organisation</param>
+        /// <param name="organization">Name of the organization</param>
         /// <param name="pipeline">Name of the pipeline</param>
-        /// <param name="branch">Name of the branch</param>
-        /// <returns>IojenkinsblueoceanrestimplpipelineBranchImpl</returns>
-        public IojenkinsblueoceanrestimplpipelineBranchImpl GetPipelineBranchByOrg (string organisation, string pipeline, string branch)
+        /// <returns>Pipeline</returns>
+        public Pipeline GetPipeline (string organization, string pipeline)
         {
-             ApiResponse<IojenkinsblueoceanrestimplpipelineBranchImpl> localVarResponse = GetPipelineBranchByOrgWithHttpInfo(organisation, pipeline, branch);
+             ApiResponse<Pipeline> localVarResponse = GetPipelineWithHttpInfo(organization, pipeline);
              return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  Retrieve branch details for an organisation pipeline
+        ///  Retrieve pipeline details for an organization
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="organisation">Name of the organisation</param>
+        /// <param name="organization">Name of the organization</param>
         /// <param name="pipeline">Name of the pipeline</param>
-        /// <param name="branch">Name of the branch</param>
-        /// <returns>ApiResponse of IojenkinsblueoceanrestimplpipelineBranchImpl</returns>
-        public ApiResponse< IojenkinsblueoceanrestimplpipelineBranchImpl > GetPipelineBranchByOrgWithHttpInfo (string organisation, string pipeline, string branch)
+        /// <returns>ApiResponse of Pipeline</returns>
+        public ApiResponse< Pipeline > GetPipelineWithHttpInfo (string organization, string pipeline)
         {
-            // verify the required parameter 'organisation' is set
-            if (organisation == null)
-                throw new ApiException(400, "Missing required parameter 'organisation' when calling BlueOceanApi->GetPipelineBranchByOrg");
+            // verify the required parameter 'organization' is set
+            if (organization == null)
+                throw new ApiException(400, "Missing required parameter 'organization' when calling BlueOceanApi->GetPipeline");
             // verify the required parameter 'pipeline' is set
             if (pipeline == null)
-                throw new ApiException(400, "Missing required parameter 'pipeline' when calling BlueOceanApi->GetPipelineBranchByOrg");
-            // verify the required parameter 'branch' is set
-            if (branch == null)
-                throw new ApiException(400, "Missing required parameter 'branch' when calling BlueOceanApi->GetPipelineBranchByOrg");
+                throw new ApiException(400, "Missing required parameter 'pipeline' when calling BlueOceanApi->GetPipeline");
 
-            var localVarPath = "/blue/rest/organizations/{organisation}/pipelines/{pipeline}/branches/{branch}/";
+            var localVarPath = "/blue/rest/organizations/{organization}/pipelines/{pipeline}";
             var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
             var localVarFormParams = new Dictionary<String, String>();
             var localVarFileParams = new Dictionary<String, FileParameter>();
@@ -1329,10 +2613,335 @@ namespace IO.Swagger.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            if (organisation != null) localVarPathParams.Add("organisation", Configuration.ApiClient.ParameterToString(organisation)); // path parameter
+            if (organization != null) localVarPathParams.Add("organization", Configuration.ApiClient.ParameterToString(organization)); // path parameter
+            if (pipeline != null) localVarPathParams.Add("pipeline", Configuration.ApiClient.ParameterToString(pipeline)); // path parameter
+
+            // authentication (jenkins_auth) required
+            // http basic authentication required
+            if (!String.IsNullOrEmpty(Configuration.Username) || !String.IsNullOrEmpty(Configuration.Password))
+            {
+                localVarHeaderParams["Authorization"] = "Basic " + ApiClient.Base64Encode(Configuration.Username + ":" + Configuration.Password);
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("GetPipeline", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<Pipeline>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (Pipeline) Configuration.ApiClient.Deserialize(localVarResponse, typeof(Pipeline)));
+        }
+
+        /// <summary>
+        ///  Retrieve pipeline details for an organization
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="organization">Name of the organization</param>
+        /// <param name="pipeline">Name of the pipeline</param>
+        /// <returns>Task of Pipeline</returns>
+        public async System.Threading.Tasks.Task<Pipeline> GetPipelineAsync (string organization, string pipeline)
+        {
+             ApiResponse<Pipeline> localVarResponse = await GetPipelineAsyncWithHttpInfo(organization, pipeline);
+             return localVarResponse.Data;
+
+        }
+
+        /// <summary>
+        ///  Retrieve pipeline details for an organization
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="organization">Name of the organization</param>
+        /// <param name="pipeline">Name of the pipeline</param>
+        /// <returns>Task of ApiResponse (Pipeline)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<Pipeline>> GetPipelineAsyncWithHttpInfo (string organization, string pipeline)
+        {
+            // verify the required parameter 'organization' is set
+            if (organization == null)
+                throw new ApiException(400, "Missing required parameter 'organization' when calling BlueOceanApi->GetPipeline");
+            // verify the required parameter 'pipeline' is set
+            if (pipeline == null)
+                throw new ApiException(400, "Missing required parameter 'pipeline' when calling BlueOceanApi->GetPipeline");
+
+            var localVarPath = "/blue/rest/organizations/{organization}/pipelines/{pipeline}";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (organization != null) localVarPathParams.Add("organization", Configuration.ApiClient.ParameterToString(organization)); // path parameter
+            if (pipeline != null) localVarPathParams.Add("pipeline", Configuration.ApiClient.ParameterToString(pipeline)); // path parameter
+
+            // authentication (jenkins_auth) required
+            // http basic authentication required
+            if (!String.IsNullOrEmpty(Configuration.Username) || !String.IsNullOrEmpty(Configuration.Password))
+            {
+                localVarHeaderParams["Authorization"] = "Basic " + ApiClient.Base64Encode(Configuration.Username + ":" + Configuration.Password);
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("GetPipeline", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<Pipeline>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (Pipeline) Configuration.ApiClient.Deserialize(localVarResponse, typeof(Pipeline)));
+        }
+
+        /// <summary>
+        ///  Retrieve all activities details for an organization pipeline
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="organization">Name of the organization</param>
+        /// <param name="pipeline">Name of the pipeline</param>
+        /// <returns>PipelineActivities</returns>
+        public PipelineActivities GetPipelineActivities (string organization, string pipeline)
+        {
+             ApiResponse<PipelineActivities> localVarResponse = GetPipelineActivitiesWithHttpInfo(organization, pipeline);
+             return localVarResponse.Data;
+        }
+
+        /// <summary>
+        ///  Retrieve all activities details for an organization pipeline
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="organization">Name of the organization</param>
+        /// <param name="pipeline">Name of the pipeline</param>
+        /// <returns>ApiResponse of PipelineActivities</returns>
+        public ApiResponse< PipelineActivities > GetPipelineActivitiesWithHttpInfo (string organization, string pipeline)
+        {
+            // verify the required parameter 'organization' is set
+            if (organization == null)
+                throw new ApiException(400, "Missing required parameter 'organization' when calling BlueOceanApi->GetPipelineActivities");
+            // verify the required parameter 'pipeline' is set
+            if (pipeline == null)
+                throw new ApiException(400, "Missing required parameter 'pipeline' when calling BlueOceanApi->GetPipelineActivities");
+
+            var localVarPath = "/blue/rest/organizations/{organization}/pipelines/{pipeline}/activities";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (organization != null) localVarPathParams.Add("organization", Configuration.ApiClient.ParameterToString(organization)); // path parameter
+            if (pipeline != null) localVarPathParams.Add("pipeline", Configuration.ApiClient.ParameterToString(pipeline)); // path parameter
+
+            // authentication (jenkins_auth) required
+            // http basic authentication required
+            if (!String.IsNullOrEmpty(Configuration.Username) || !String.IsNullOrEmpty(Configuration.Password))
+            {
+                localVarHeaderParams["Authorization"] = "Basic " + ApiClient.Base64Encode(Configuration.Username + ":" + Configuration.Password);
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("GetPipelineActivities", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<PipelineActivities>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (PipelineActivities) Configuration.ApiClient.Deserialize(localVarResponse, typeof(PipelineActivities)));
+        }
+
+        /// <summary>
+        ///  Retrieve all activities details for an organization pipeline
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="organization">Name of the organization</param>
+        /// <param name="pipeline">Name of the pipeline</param>
+        /// <returns>Task of PipelineActivities</returns>
+        public async System.Threading.Tasks.Task<PipelineActivities> GetPipelineActivitiesAsync (string organization, string pipeline)
+        {
+             ApiResponse<PipelineActivities> localVarResponse = await GetPipelineActivitiesAsyncWithHttpInfo(organization, pipeline);
+             return localVarResponse.Data;
+
+        }
+
+        /// <summary>
+        ///  Retrieve all activities details for an organization pipeline
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="organization">Name of the organization</param>
+        /// <param name="pipeline">Name of the pipeline</param>
+        /// <returns>Task of ApiResponse (PipelineActivities)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<PipelineActivities>> GetPipelineActivitiesAsyncWithHttpInfo (string organization, string pipeline)
+        {
+            // verify the required parameter 'organization' is set
+            if (organization == null)
+                throw new ApiException(400, "Missing required parameter 'organization' when calling BlueOceanApi->GetPipelineActivities");
+            // verify the required parameter 'pipeline' is set
+            if (pipeline == null)
+                throw new ApiException(400, "Missing required parameter 'pipeline' when calling BlueOceanApi->GetPipelineActivities");
+
+            var localVarPath = "/blue/rest/organizations/{organization}/pipelines/{pipeline}/activities";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (organization != null) localVarPathParams.Add("organization", Configuration.ApiClient.ParameterToString(organization)); // path parameter
+            if (pipeline != null) localVarPathParams.Add("pipeline", Configuration.ApiClient.ParameterToString(pipeline)); // path parameter
+
+            // authentication (jenkins_auth) required
+            // http basic authentication required
+            if (!String.IsNullOrEmpty(Configuration.Username) || !String.IsNullOrEmpty(Configuration.Password))
+            {
+                localVarHeaderParams["Authorization"] = "Basic " + ApiClient.Base64Encode(Configuration.Username + ":" + Configuration.Password);
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("GetPipelineActivities", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<PipelineActivities>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (PipelineActivities) Configuration.ApiClient.Deserialize(localVarResponse, typeof(PipelineActivities)));
+        }
+
+        /// <summary>
+        ///  Retrieve branch details for an organization pipeline
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="organization">Name of the organization</param>
+        /// <param name="pipeline">Name of the pipeline</param>
+        /// <param name="branch">Name of the branch</param>
+        /// <returns>BranchImpl</returns>
+        public BranchImpl GetPipelineBranch (string organization, string pipeline, string branch)
+        {
+             ApiResponse<BranchImpl> localVarResponse = GetPipelineBranchWithHttpInfo(organization, pipeline, branch);
+             return localVarResponse.Data;
+        }
+
+        /// <summary>
+        ///  Retrieve branch details for an organization pipeline
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="organization">Name of the organization</param>
+        /// <param name="pipeline">Name of the pipeline</param>
+        /// <param name="branch">Name of the branch</param>
+        /// <returns>ApiResponse of BranchImpl</returns>
+        public ApiResponse< BranchImpl > GetPipelineBranchWithHttpInfo (string organization, string pipeline, string branch)
+        {
+            // verify the required parameter 'organization' is set
+            if (organization == null)
+                throw new ApiException(400, "Missing required parameter 'organization' when calling BlueOceanApi->GetPipelineBranch");
+            // verify the required parameter 'pipeline' is set
+            if (pipeline == null)
+                throw new ApiException(400, "Missing required parameter 'pipeline' when calling BlueOceanApi->GetPipelineBranch");
+            // verify the required parameter 'branch' is set
+            if (branch == null)
+                throw new ApiException(400, "Missing required parameter 'branch' when calling BlueOceanApi->GetPipelineBranch");
+
+            var localVarPath = "/blue/rest/organizations/{organization}/pipelines/{pipeline}/branches/{branch}/";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (organization != null) localVarPathParams.Add("organization", Configuration.ApiClient.ParameterToString(organization)); // path parameter
             if (pipeline != null) localVarPathParams.Add("pipeline", Configuration.ApiClient.ParameterToString(pipeline)); // path parameter
             if (branch != null) localVarPathParams.Add("branch", Configuration.ApiClient.ParameterToString(branch)); // path parameter
 
+            // authentication (jenkins_auth) required
+            // http basic authentication required
+            if (!String.IsNullOrEmpty(Configuration.Username) || !String.IsNullOrEmpty(Configuration.Password))
+            {
+                localVarHeaderParams["Authorization"] = "Basic " + ApiClient.Base64Encode(Configuration.Username + ":" + Configuration.Password);
+            }
 
             // make the HTTP request
             IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
@@ -1343,53 +2952,53 @@ namespace IO.Swagger.Api
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("GetPipelineBranchByOrg", localVarResponse);
+                Exception exception = ExceptionFactory("GetPipelineBranch", localVarResponse);
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<IojenkinsblueoceanrestimplpipelineBranchImpl>(localVarStatusCode,
+            return new ApiResponse<BranchImpl>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (IojenkinsblueoceanrestimplpipelineBranchImpl) Configuration.ApiClient.Deserialize(localVarResponse, typeof(IojenkinsblueoceanrestimplpipelineBranchImpl)));
+                (BranchImpl) Configuration.ApiClient.Deserialize(localVarResponse, typeof(BranchImpl)));
         }
 
         /// <summary>
-        ///  Retrieve branch details for an organisation pipeline
+        ///  Retrieve branch details for an organization pipeline
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="organisation">Name of the organisation</param>
+        /// <param name="organization">Name of the organization</param>
         /// <param name="pipeline">Name of the pipeline</param>
         /// <param name="branch">Name of the branch</param>
-        /// <returns>Task of IojenkinsblueoceanrestimplpipelineBranchImpl</returns>
-        public async System.Threading.Tasks.Task<IojenkinsblueoceanrestimplpipelineBranchImpl> GetPipelineBranchByOrgAsync (string organisation, string pipeline, string branch)
+        /// <returns>Task of BranchImpl</returns>
+        public async System.Threading.Tasks.Task<BranchImpl> GetPipelineBranchAsync (string organization, string pipeline, string branch)
         {
-             ApiResponse<IojenkinsblueoceanrestimplpipelineBranchImpl> localVarResponse = await GetPipelineBranchByOrgAsyncWithHttpInfo(organisation, pipeline, branch);
+             ApiResponse<BranchImpl> localVarResponse = await GetPipelineBranchAsyncWithHttpInfo(organization, pipeline, branch);
              return localVarResponse.Data;
 
         }
 
         /// <summary>
-        ///  Retrieve branch details for an organisation pipeline
+        ///  Retrieve branch details for an organization pipeline
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="organisation">Name of the organisation</param>
+        /// <param name="organization">Name of the organization</param>
         /// <param name="pipeline">Name of the pipeline</param>
         /// <param name="branch">Name of the branch</param>
-        /// <returns>Task of ApiResponse (IojenkinsblueoceanrestimplpipelineBranchImpl)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<IojenkinsblueoceanrestimplpipelineBranchImpl>> GetPipelineBranchByOrgAsyncWithHttpInfo (string organisation, string pipeline, string branch)
+        /// <returns>Task of ApiResponse (BranchImpl)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<BranchImpl>> GetPipelineBranchAsyncWithHttpInfo (string organization, string pipeline, string branch)
         {
-            // verify the required parameter 'organisation' is set
-            if (organisation == null)
-                throw new ApiException(400, "Missing required parameter 'organisation' when calling BlueOceanApi->GetPipelineBranchByOrg");
+            // verify the required parameter 'organization' is set
+            if (organization == null)
+                throw new ApiException(400, "Missing required parameter 'organization' when calling BlueOceanApi->GetPipelineBranch");
             // verify the required parameter 'pipeline' is set
             if (pipeline == null)
-                throw new ApiException(400, "Missing required parameter 'pipeline' when calling BlueOceanApi->GetPipelineBranchByOrg");
+                throw new ApiException(400, "Missing required parameter 'pipeline' when calling BlueOceanApi->GetPipelineBranch");
             // verify the required parameter 'branch' is set
             if (branch == null)
-                throw new ApiException(400, "Missing required parameter 'branch' when calling BlueOceanApi->GetPipelineBranchByOrg");
+                throw new ApiException(400, "Missing required parameter 'branch' when calling BlueOceanApi->GetPipelineBranch");
 
-            var localVarPath = "/blue/rest/organizations/{organisation}/pipelines/{pipeline}/branches/{branch}/";
+            var localVarPath = "/blue/rest/organizations/{organization}/pipelines/{pipeline}/branches/{branch}/";
             var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
             var localVarFormParams = new Dictionary<String, String>();
             var localVarFileParams = new Dictionary<String, FileParameter>();
@@ -1408,10 +3017,16 @@ namespace IO.Swagger.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            if (organisation != null) localVarPathParams.Add("organisation", Configuration.ApiClient.ParameterToString(organisation)); // path parameter
+            if (organization != null) localVarPathParams.Add("organization", Configuration.ApiClient.ParameterToString(organization)); // path parameter
             if (pipeline != null) localVarPathParams.Add("pipeline", Configuration.ApiClient.ParameterToString(pipeline)); // path parameter
             if (branch != null) localVarPathParams.Add("branch", Configuration.ApiClient.ParameterToString(branch)); // path parameter
 
+            // authentication (jenkins_auth) required
+            // http basic authentication required
+            if (!String.IsNullOrEmpty(Configuration.Username) || !String.IsNullOrEmpty(Configuration.Password))
+            {
+                localVarHeaderParams["Authorization"] = "Basic " + ApiClient.Base64Encode(Configuration.Username + ":" + Configuration.Password);
+            }
 
             // make the HTTP request
             IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
@@ -1422,47 +3037,57 @@ namespace IO.Swagger.Api
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("GetPipelineBranchByOrg", localVarResponse);
+                Exception exception = ExceptionFactory("GetPipelineBranch", localVarResponse);
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<IojenkinsblueoceanrestimplpipelineBranchImpl>(localVarStatusCode,
+            return new ApiResponse<BranchImpl>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (IojenkinsblueoceanrestimplpipelineBranchImpl) Configuration.ApiClient.Deserialize(localVarResponse, typeof(IojenkinsblueoceanrestimplpipelineBranchImpl)));
+                (BranchImpl) Configuration.ApiClient.Deserialize(localVarResponse, typeof(BranchImpl)));
         }
 
         /// <summary>
-        ///  Retrieve all branches details for an organisation pipeline
+        ///  Retrieve branch run details for an organization pipeline
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="organisation">Name of the organisation</param>
+        /// <param name="organization">Name of the organization</param>
         /// <param name="pipeline">Name of the pipeline</param>
-        /// <returns>GetMultibranchPipeline</returns>
-        public GetMultibranchPipeline GetPipelineBranchesByOrg (string organisation, string pipeline)
+        /// <param name="branch">Name of the branch</param>
+        /// <param name="run">Name of the run</param>
+        /// <returns>PipelineRun</returns>
+        public PipelineRun GetPipelineBranchRun (string organization, string pipeline, string branch, string run)
         {
-             ApiResponse<GetMultibranchPipeline> localVarResponse = GetPipelineBranchesByOrgWithHttpInfo(organisation, pipeline);
+             ApiResponse<PipelineRun> localVarResponse = GetPipelineBranchRunWithHttpInfo(organization, pipeline, branch, run);
              return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  Retrieve all branches details for an organisation pipeline
+        ///  Retrieve branch run details for an organization pipeline
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="organisation">Name of the organisation</param>
+        /// <param name="organization">Name of the organization</param>
         /// <param name="pipeline">Name of the pipeline</param>
-        /// <returns>ApiResponse of GetMultibranchPipeline</returns>
-        public ApiResponse< GetMultibranchPipeline > GetPipelineBranchesByOrgWithHttpInfo (string organisation, string pipeline)
+        /// <param name="branch">Name of the branch</param>
+        /// <param name="run">Name of the run</param>
+        /// <returns>ApiResponse of PipelineRun</returns>
+        public ApiResponse< PipelineRun > GetPipelineBranchRunWithHttpInfo (string organization, string pipeline, string branch, string run)
         {
-            // verify the required parameter 'organisation' is set
-            if (organisation == null)
-                throw new ApiException(400, "Missing required parameter 'organisation' when calling BlueOceanApi->GetPipelineBranchesByOrg");
+            // verify the required parameter 'organization' is set
+            if (organization == null)
+                throw new ApiException(400, "Missing required parameter 'organization' when calling BlueOceanApi->GetPipelineBranchRun");
             // verify the required parameter 'pipeline' is set
             if (pipeline == null)
-                throw new ApiException(400, "Missing required parameter 'pipeline' when calling BlueOceanApi->GetPipelineBranchesByOrg");
+                throw new ApiException(400, "Missing required parameter 'pipeline' when calling BlueOceanApi->GetPipelineBranchRun");
+            // verify the required parameter 'branch' is set
+            if (branch == null)
+                throw new ApiException(400, "Missing required parameter 'branch' when calling BlueOceanApi->GetPipelineBranchRun");
+            // verify the required parameter 'run' is set
+            if (run == null)
+                throw new ApiException(400, "Missing required parameter 'run' when calling BlueOceanApi->GetPipelineBranchRun");
 
-            var localVarPath = "/blue/rest/organizations/{organisation}/pipelines/{pipeline}/branches";
+            var localVarPath = "/blue/rest/organizations/{organization}/pipelines/{pipeline}/branches/{branch}/runs/{run}";
             var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
             var localVarFormParams = new Dictionary<String, String>();
             var localVarFileParams = new Dictionary<String, FileParameter>();
@@ -1481,9 +3106,17 @@ namespace IO.Swagger.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            if (organisation != null) localVarPathParams.Add("organisation", Configuration.ApiClient.ParameterToString(organisation)); // path parameter
+            if (organization != null) localVarPathParams.Add("organization", Configuration.ApiClient.ParameterToString(organization)); // path parameter
             if (pipeline != null) localVarPathParams.Add("pipeline", Configuration.ApiClient.ParameterToString(pipeline)); // path parameter
+            if (branch != null) localVarPathParams.Add("branch", Configuration.ApiClient.ParameterToString(branch)); // path parameter
+            if (run != null) localVarPathParams.Add("run", Configuration.ApiClient.ParameterToString(run)); // path parameter
 
+            // authentication (jenkins_auth) required
+            // http basic authentication required
+            if (!String.IsNullOrEmpty(Configuration.Username) || !String.IsNullOrEmpty(Configuration.Password))
+            {
+                localVarHeaderParams["Authorization"] = "Basic " + ApiClient.Base64Encode(Configuration.Username + ":" + Configuration.Password);
+            }
 
             // make the HTTP request
             IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
@@ -1494,48 +3127,58 @@ namespace IO.Swagger.Api
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("GetPipelineBranchesByOrg", localVarResponse);
+                Exception exception = ExceptionFactory("GetPipelineBranchRun", localVarResponse);
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<GetMultibranchPipeline>(localVarStatusCode,
+            return new ApiResponse<PipelineRun>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (GetMultibranchPipeline) Configuration.ApiClient.Deserialize(localVarResponse, typeof(GetMultibranchPipeline)));
+                (PipelineRun) Configuration.ApiClient.Deserialize(localVarResponse, typeof(PipelineRun)));
         }
 
         /// <summary>
-        ///  Retrieve all branches details for an organisation pipeline
+        ///  Retrieve branch run details for an organization pipeline
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="organisation">Name of the organisation</param>
+        /// <param name="organization">Name of the organization</param>
         /// <param name="pipeline">Name of the pipeline</param>
-        /// <returns>Task of GetMultibranchPipeline</returns>
-        public async System.Threading.Tasks.Task<GetMultibranchPipeline> GetPipelineBranchesByOrgAsync (string organisation, string pipeline)
+        /// <param name="branch">Name of the branch</param>
+        /// <param name="run">Name of the run</param>
+        /// <returns>Task of PipelineRun</returns>
+        public async System.Threading.Tasks.Task<PipelineRun> GetPipelineBranchRunAsync (string organization, string pipeline, string branch, string run)
         {
-             ApiResponse<GetMultibranchPipeline> localVarResponse = await GetPipelineBranchesByOrgAsyncWithHttpInfo(organisation, pipeline);
+             ApiResponse<PipelineRun> localVarResponse = await GetPipelineBranchRunAsyncWithHttpInfo(organization, pipeline, branch, run);
              return localVarResponse.Data;
 
         }
 
         /// <summary>
-        ///  Retrieve all branches details for an organisation pipeline
+        ///  Retrieve branch run details for an organization pipeline
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="organisation">Name of the organisation</param>
+        /// <param name="organization">Name of the organization</param>
         /// <param name="pipeline">Name of the pipeline</param>
-        /// <returns>Task of ApiResponse (GetMultibranchPipeline)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<GetMultibranchPipeline>> GetPipelineBranchesByOrgAsyncWithHttpInfo (string organisation, string pipeline)
+        /// <param name="branch">Name of the branch</param>
+        /// <param name="run">Name of the run</param>
+        /// <returns>Task of ApiResponse (PipelineRun)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<PipelineRun>> GetPipelineBranchRunAsyncWithHttpInfo (string organization, string pipeline, string branch, string run)
         {
-            // verify the required parameter 'organisation' is set
-            if (organisation == null)
-                throw new ApiException(400, "Missing required parameter 'organisation' when calling BlueOceanApi->GetPipelineBranchesByOrg");
+            // verify the required parameter 'organization' is set
+            if (organization == null)
+                throw new ApiException(400, "Missing required parameter 'organization' when calling BlueOceanApi->GetPipelineBranchRun");
             // verify the required parameter 'pipeline' is set
             if (pipeline == null)
-                throw new ApiException(400, "Missing required parameter 'pipeline' when calling BlueOceanApi->GetPipelineBranchesByOrg");
+                throw new ApiException(400, "Missing required parameter 'pipeline' when calling BlueOceanApi->GetPipelineBranchRun");
+            // verify the required parameter 'branch' is set
+            if (branch == null)
+                throw new ApiException(400, "Missing required parameter 'branch' when calling BlueOceanApi->GetPipelineBranchRun");
+            // verify the required parameter 'run' is set
+            if (run == null)
+                throw new ApiException(400, "Missing required parameter 'run' when calling BlueOceanApi->GetPipelineBranchRun");
 
-            var localVarPath = "/blue/rest/organizations/{organisation}/pipelines/{pipeline}/branches";
+            var localVarPath = "/blue/rest/organizations/{organization}/pipelines/{pipeline}/branches/{branch}/runs/{run}";
             var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
             var localVarFormParams = new Dictionary<String, String>();
             var localVarFileParams = new Dictionary<String, FileParameter>();
@@ -1554,9 +3197,17 @@ namespace IO.Swagger.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            if (organisation != null) localVarPathParams.Add("organisation", Configuration.ApiClient.ParameterToString(organisation)); // path parameter
+            if (organization != null) localVarPathParams.Add("organization", Configuration.ApiClient.ParameterToString(organization)); // path parameter
             if (pipeline != null) localVarPathParams.Add("pipeline", Configuration.ApiClient.ParameterToString(pipeline)); // path parameter
+            if (branch != null) localVarPathParams.Add("branch", Configuration.ApiClient.ParameterToString(branch)); // path parameter
+            if (run != null) localVarPathParams.Add("run", Configuration.ApiClient.ParameterToString(run)); // path parameter
 
+            // authentication (jenkins_auth) required
+            // http basic authentication required
+            if (!String.IsNullOrEmpty(Configuration.Username) || !String.IsNullOrEmpty(Configuration.Password))
+            {
+                localVarHeaderParams["Authorization"] = "Basic " + ApiClient.Base64Encode(Configuration.Username + ":" + Configuration.Password);
+            }
 
             // make the HTTP request
             IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
@@ -1567,47 +3218,47 @@ namespace IO.Swagger.Api
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("GetPipelineBranchesByOrg", localVarResponse);
+                Exception exception = ExceptionFactory("GetPipelineBranchRun", localVarResponse);
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<GetMultibranchPipeline>(localVarStatusCode,
+            return new ApiResponse<PipelineRun>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (GetMultibranchPipeline) Configuration.ApiClient.Deserialize(localVarResponse, typeof(GetMultibranchPipeline)));
+                (PipelineRun) Configuration.ApiClient.Deserialize(localVarResponse, typeof(PipelineRun)));
         }
 
         /// <summary>
-        ///  Retrieve pipeline details for an organisation
+        ///  Retrieve all branches details for an organization pipeline
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="organisation">Name of the organisation</param>
+        /// <param name="organization">Name of the organization</param>
         /// <param name="pipeline">Name of the pipeline</param>
-        /// <returns>SwaggyjenkinsPipeline</returns>
-        public SwaggyjenkinsPipeline GetPipelineByOrg (string organisation, string pipeline)
+        /// <returns>MultibranchPipeline</returns>
+        public MultibranchPipeline GetPipelineBranches (string organization, string pipeline)
         {
-             ApiResponse<SwaggyjenkinsPipeline> localVarResponse = GetPipelineByOrgWithHttpInfo(organisation, pipeline);
+             ApiResponse<MultibranchPipeline> localVarResponse = GetPipelineBranchesWithHttpInfo(organization, pipeline);
              return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  Retrieve pipeline details for an organisation
+        ///  Retrieve all branches details for an organization pipeline
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="organisation">Name of the organisation</param>
+        /// <param name="organization">Name of the organization</param>
         /// <param name="pipeline">Name of the pipeline</param>
-        /// <returns>ApiResponse of SwaggyjenkinsPipeline</returns>
-        public ApiResponse< SwaggyjenkinsPipeline > GetPipelineByOrgWithHttpInfo (string organisation, string pipeline)
+        /// <returns>ApiResponse of MultibranchPipeline</returns>
+        public ApiResponse< MultibranchPipeline > GetPipelineBranchesWithHttpInfo (string organization, string pipeline)
         {
-            // verify the required parameter 'organisation' is set
-            if (organisation == null)
-                throw new ApiException(400, "Missing required parameter 'organisation' when calling BlueOceanApi->GetPipelineByOrg");
+            // verify the required parameter 'organization' is set
+            if (organization == null)
+                throw new ApiException(400, "Missing required parameter 'organization' when calling BlueOceanApi->GetPipelineBranches");
             // verify the required parameter 'pipeline' is set
             if (pipeline == null)
-                throw new ApiException(400, "Missing required parameter 'pipeline' when calling BlueOceanApi->GetPipelineByOrg");
+                throw new ApiException(400, "Missing required parameter 'pipeline' when calling BlueOceanApi->GetPipelineBranches");
 
-            var localVarPath = "/blue/rest/organizations/{organisation}/pipelines/{pipeline}";
+            var localVarPath = "/blue/rest/organizations/{organization}/pipelines/{pipeline}/branches";
             var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
             var localVarFormParams = new Dictionary<String, String>();
             var localVarFileParams = new Dictionary<String, FileParameter>();
@@ -1626,9 +3277,15 @@ namespace IO.Swagger.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            if (organisation != null) localVarPathParams.Add("organisation", Configuration.ApiClient.ParameterToString(organisation)); // path parameter
+            if (organization != null) localVarPathParams.Add("organization", Configuration.ApiClient.ParameterToString(organization)); // path parameter
             if (pipeline != null) localVarPathParams.Add("pipeline", Configuration.ApiClient.ParameterToString(pipeline)); // path parameter
 
+            // authentication (jenkins_auth) required
+            // http basic authentication required
+            if (!String.IsNullOrEmpty(Configuration.Username) || !String.IsNullOrEmpty(Configuration.Password))
+            {
+                localVarHeaderParams["Authorization"] = "Basic " + ApiClient.Base64Encode(Configuration.Username + ":" + Configuration.Password);
+            }
 
             // make the HTTP request
             IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
@@ -1639,48 +3296,48 @@ namespace IO.Swagger.Api
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("GetPipelineByOrg", localVarResponse);
+                Exception exception = ExceptionFactory("GetPipelineBranches", localVarResponse);
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<SwaggyjenkinsPipeline>(localVarStatusCode,
+            return new ApiResponse<MultibranchPipeline>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (SwaggyjenkinsPipeline) Configuration.ApiClient.Deserialize(localVarResponse, typeof(SwaggyjenkinsPipeline)));
+                (MultibranchPipeline) Configuration.ApiClient.Deserialize(localVarResponse, typeof(MultibranchPipeline)));
         }
 
         /// <summary>
-        ///  Retrieve pipeline details for an organisation
+        ///  Retrieve all branches details for an organization pipeline
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="organisation">Name of the organisation</param>
+        /// <param name="organization">Name of the organization</param>
         /// <param name="pipeline">Name of the pipeline</param>
-        /// <returns>Task of SwaggyjenkinsPipeline</returns>
-        public async System.Threading.Tasks.Task<SwaggyjenkinsPipeline> GetPipelineByOrgAsync (string organisation, string pipeline)
+        /// <returns>Task of MultibranchPipeline</returns>
+        public async System.Threading.Tasks.Task<MultibranchPipeline> GetPipelineBranchesAsync (string organization, string pipeline)
         {
-             ApiResponse<SwaggyjenkinsPipeline> localVarResponse = await GetPipelineByOrgAsyncWithHttpInfo(organisation, pipeline);
+             ApiResponse<MultibranchPipeline> localVarResponse = await GetPipelineBranchesAsyncWithHttpInfo(organization, pipeline);
              return localVarResponse.Data;
 
         }
 
         /// <summary>
-        ///  Retrieve pipeline details for an organisation
+        ///  Retrieve all branches details for an organization pipeline
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="organisation">Name of the organisation</param>
+        /// <param name="organization">Name of the organization</param>
         /// <param name="pipeline">Name of the pipeline</param>
-        /// <returns>Task of ApiResponse (SwaggyjenkinsPipeline)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<SwaggyjenkinsPipeline>> GetPipelineByOrgAsyncWithHttpInfo (string organisation, string pipeline)
+        /// <returns>Task of ApiResponse (MultibranchPipeline)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<MultibranchPipeline>> GetPipelineBranchesAsyncWithHttpInfo (string organization, string pipeline)
         {
-            // verify the required parameter 'organisation' is set
-            if (organisation == null)
-                throw new ApiException(400, "Missing required parameter 'organisation' when calling BlueOceanApi->GetPipelineByOrg");
+            // verify the required parameter 'organization' is set
+            if (organization == null)
+                throw new ApiException(400, "Missing required parameter 'organization' when calling BlueOceanApi->GetPipelineBranches");
             // verify the required parameter 'pipeline' is set
             if (pipeline == null)
-                throw new ApiException(400, "Missing required parameter 'pipeline' when calling BlueOceanApi->GetPipelineByOrg");
+                throw new ApiException(400, "Missing required parameter 'pipeline' when calling BlueOceanApi->GetPipelineBranches");
 
-            var localVarPath = "/blue/rest/organizations/{organisation}/pipelines/{pipeline}";
+            var localVarPath = "/blue/rest/organizations/{organization}/pipelines/{pipeline}/branches";
             var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
             var localVarFormParams = new Dictionary<String, String>();
             var localVarFileParams = new Dictionary<String, FileParameter>();
@@ -1699,9 +3356,15 @@ namespace IO.Swagger.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            if (organisation != null) localVarPathParams.Add("organisation", Configuration.ApiClient.ParameterToString(organisation)); // path parameter
+            if (organization != null) localVarPathParams.Add("organization", Configuration.ApiClient.ParameterToString(organization)); // path parameter
             if (pipeline != null) localVarPathParams.Add("pipeline", Configuration.ApiClient.ParameterToString(pipeline)); // path parameter
 
+            // authentication (jenkins_auth) required
+            // http basic authentication required
+            if (!String.IsNullOrEmpty(Configuration.Username) || !String.IsNullOrEmpty(Configuration.Password))
+            {
+                localVarHeaderParams["Authorization"] = "Basic " + ApiClient.Base64Encode(Configuration.Username + ":" + Configuration.Password);
+            }
 
             // make the HTTP request
             IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
@@ -1712,47 +3375,47 @@ namespace IO.Swagger.Api
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("GetPipelineByOrg", localVarResponse);
+                Exception exception = ExceptionFactory("GetPipelineBranches", localVarResponse);
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<SwaggyjenkinsPipeline>(localVarStatusCode,
+            return new ApiResponse<MultibranchPipeline>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (SwaggyjenkinsPipeline) Configuration.ApiClient.Deserialize(localVarResponse, typeof(SwaggyjenkinsPipeline)));
+                (MultibranchPipeline) Configuration.ApiClient.Deserialize(localVarResponse, typeof(MultibranchPipeline)));
         }
 
         /// <summary>
-        ///  Retrieve pipeline folder for an organisation
+        ///  Retrieve pipeline folder for an organization
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="organisation">Name of the organisation</param>
+        /// <param name="organization">Name of the organization</param>
         /// <param name="folder">Name of the folder</param>
-        /// <returns>IojenkinsblueoceanserviceembeddedrestPipelineFolderImpl</returns>
-        public IojenkinsblueoceanserviceembeddedrestPipelineFolderImpl GetPipelineFolderByOrg (string organisation, string folder)
+        /// <returns>PipelineFolderImpl</returns>
+        public PipelineFolderImpl GetPipelineFolder (string organization, string folder)
         {
-             ApiResponse<IojenkinsblueoceanserviceembeddedrestPipelineFolderImpl> localVarResponse = GetPipelineFolderByOrgWithHttpInfo(organisation, folder);
+             ApiResponse<PipelineFolderImpl> localVarResponse = GetPipelineFolderWithHttpInfo(organization, folder);
              return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  Retrieve pipeline folder for an organisation
+        ///  Retrieve pipeline folder for an organization
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="organisation">Name of the organisation</param>
+        /// <param name="organization">Name of the organization</param>
         /// <param name="folder">Name of the folder</param>
-        /// <returns>ApiResponse of IojenkinsblueoceanserviceembeddedrestPipelineFolderImpl</returns>
-        public ApiResponse< IojenkinsblueoceanserviceembeddedrestPipelineFolderImpl > GetPipelineFolderByOrgWithHttpInfo (string organisation, string folder)
+        /// <returns>ApiResponse of PipelineFolderImpl</returns>
+        public ApiResponse< PipelineFolderImpl > GetPipelineFolderWithHttpInfo (string organization, string folder)
         {
-            // verify the required parameter 'organisation' is set
-            if (organisation == null)
-                throw new ApiException(400, "Missing required parameter 'organisation' when calling BlueOceanApi->GetPipelineFolderByOrg");
+            // verify the required parameter 'organization' is set
+            if (organization == null)
+                throw new ApiException(400, "Missing required parameter 'organization' when calling BlueOceanApi->GetPipelineFolder");
             // verify the required parameter 'folder' is set
             if (folder == null)
-                throw new ApiException(400, "Missing required parameter 'folder' when calling BlueOceanApi->GetPipelineFolderByOrg");
+                throw new ApiException(400, "Missing required parameter 'folder' when calling BlueOceanApi->GetPipelineFolder");
 
-            var localVarPath = "/blue/rest/organizations/{organisation}/pipelines/{folder}/";
+            var localVarPath = "/blue/rest/organizations/{organization}/pipelines/{folder}/";
             var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
             var localVarFormParams = new Dictionary<String, String>();
             var localVarFileParams = new Dictionary<String, FileParameter>();
@@ -1771,9 +3434,15 @@ namespace IO.Swagger.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            if (organisation != null) localVarPathParams.Add("organisation", Configuration.ApiClient.ParameterToString(organisation)); // path parameter
+            if (organization != null) localVarPathParams.Add("organization", Configuration.ApiClient.ParameterToString(organization)); // path parameter
             if (folder != null) localVarPathParams.Add("folder", Configuration.ApiClient.ParameterToString(folder)); // path parameter
 
+            // authentication (jenkins_auth) required
+            // http basic authentication required
+            if (!String.IsNullOrEmpty(Configuration.Username) || !String.IsNullOrEmpty(Configuration.Password))
+            {
+                localVarHeaderParams["Authorization"] = "Basic " + ApiClient.Base64Encode(Configuration.Username + ":" + Configuration.Password);
+            }
 
             // make the HTTP request
             IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
@@ -1784,48 +3453,48 @@ namespace IO.Swagger.Api
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("GetPipelineFolderByOrg", localVarResponse);
+                Exception exception = ExceptionFactory("GetPipelineFolder", localVarResponse);
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<IojenkinsblueoceanserviceembeddedrestPipelineFolderImpl>(localVarStatusCode,
+            return new ApiResponse<PipelineFolderImpl>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (IojenkinsblueoceanserviceembeddedrestPipelineFolderImpl) Configuration.ApiClient.Deserialize(localVarResponse, typeof(IojenkinsblueoceanserviceembeddedrestPipelineFolderImpl)));
+                (PipelineFolderImpl) Configuration.ApiClient.Deserialize(localVarResponse, typeof(PipelineFolderImpl)));
         }
 
         /// <summary>
-        ///  Retrieve pipeline folder for an organisation
+        ///  Retrieve pipeline folder for an organization
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="organisation">Name of the organisation</param>
+        /// <param name="organization">Name of the organization</param>
         /// <param name="folder">Name of the folder</param>
-        /// <returns>Task of IojenkinsblueoceanserviceembeddedrestPipelineFolderImpl</returns>
-        public async System.Threading.Tasks.Task<IojenkinsblueoceanserviceembeddedrestPipelineFolderImpl> GetPipelineFolderByOrgAsync (string organisation, string folder)
+        /// <returns>Task of PipelineFolderImpl</returns>
+        public async System.Threading.Tasks.Task<PipelineFolderImpl> GetPipelineFolderAsync (string organization, string folder)
         {
-             ApiResponse<IojenkinsblueoceanserviceembeddedrestPipelineFolderImpl> localVarResponse = await GetPipelineFolderByOrgAsyncWithHttpInfo(organisation, folder);
+             ApiResponse<PipelineFolderImpl> localVarResponse = await GetPipelineFolderAsyncWithHttpInfo(organization, folder);
              return localVarResponse.Data;
 
         }
 
         /// <summary>
-        ///  Retrieve pipeline folder for an organisation
+        ///  Retrieve pipeline folder for an organization
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="organisation">Name of the organisation</param>
+        /// <param name="organization">Name of the organization</param>
         /// <param name="folder">Name of the folder</param>
-        /// <returns>Task of ApiResponse (IojenkinsblueoceanserviceembeddedrestPipelineFolderImpl)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<IojenkinsblueoceanserviceembeddedrestPipelineFolderImpl>> GetPipelineFolderByOrgAsyncWithHttpInfo (string organisation, string folder)
+        /// <returns>Task of ApiResponse (PipelineFolderImpl)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<PipelineFolderImpl>> GetPipelineFolderAsyncWithHttpInfo (string organization, string folder)
         {
-            // verify the required parameter 'organisation' is set
-            if (organisation == null)
-                throw new ApiException(400, "Missing required parameter 'organisation' when calling BlueOceanApi->GetPipelineFolderByOrg");
+            // verify the required parameter 'organization' is set
+            if (organization == null)
+                throw new ApiException(400, "Missing required parameter 'organization' when calling BlueOceanApi->GetPipelineFolder");
             // verify the required parameter 'folder' is set
             if (folder == null)
-                throw new ApiException(400, "Missing required parameter 'folder' when calling BlueOceanApi->GetPipelineFolderByOrg");
+                throw new ApiException(400, "Missing required parameter 'folder' when calling BlueOceanApi->GetPipelineFolder");
 
-            var localVarPath = "/blue/rest/organizations/{organisation}/pipelines/{folder}/";
+            var localVarPath = "/blue/rest/organizations/{organization}/pipelines/{folder}/";
             var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
             var localVarFormParams = new Dictionary<String, String>();
             var localVarFileParams = new Dictionary<String, FileParameter>();
@@ -1844,9 +3513,15 @@ namespace IO.Swagger.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            if (organisation != null) localVarPathParams.Add("organisation", Configuration.ApiClient.ParameterToString(organisation)); // path parameter
+            if (organization != null) localVarPathParams.Add("organization", Configuration.ApiClient.ParameterToString(organization)); // path parameter
             if (folder != null) localVarPathParams.Add("folder", Configuration.ApiClient.ParameterToString(folder)); // path parameter
 
+            // authentication (jenkins_auth) required
+            // http basic authentication required
+            if (!String.IsNullOrEmpty(Configuration.Username) || !String.IsNullOrEmpty(Configuration.Password))
+            {
+                localVarHeaderParams["Authorization"] = "Basic " + ApiClient.Base64Encode(Configuration.Username + ":" + Configuration.Password);
+            }
 
             // make the HTTP request
             IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
@@ -1857,52 +3532,52 @@ namespace IO.Swagger.Api
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("GetPipelineFolderByOrg", localVarResponse);
+                Exception exception = ExceptionFactory("GetPipelineFolder", localVarResponse);
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<IojenkinsblueoceanserviceembeddedrestPipelineFolderImpl>(localVarStatusCode,
+            return new ApiResponse<PipelineFolderImpl>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (IojenkinsblueoceanserviceembeddedrestPipelineFolderImpl) Configuration.ApiClient.Deserialize(localVarResponse, typeof(IojenkinsblueoceanserviceembeddedrestPipelineFolderImpl)));
+                (PipelineFolderImpl) Configuration.ApiClient.Deserialize(localVarResponse, typeof(PipelineFolderImpl)));
         }
 
         /// <summary>
-        ///  Retrieve pipeline details for an organisation folder
+        ///  Retrieve pipeline details for an organization folder
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="organisation">Name of the organisation</param>
+        /// <param name="organization">Name of the organization</param>
         /// <param name="pipeline">Name of the pipeline</param>
         /// <param name="folder">Name of the folder</param>
-        /// <returns>IojenkinsblueoceanserviceembeddedrestPipelineImpl</returns>
-        public IojenkinsblueoceanserviceembeddedrestPipelineImpl GetPipelineFolderByOrg_0 (string organisation, string pipeline, string folder)
+        /// <returns>PipelineImpl</returns>
+        public PipelineImpl GetPipelineFolderPipeline (string organization, string pipeline, string folder)
         {
-             ApiResponse<IojenkinsblueoceanserviceembeddedrestPipelineImpl> localVarResponse = GetPipelineFolderByOrg_0WithHttpInfo(organisation, pipeline, folder);
+             ApiResponse<PipelineImpl> localVarResponse = GetPipelineFolderPipelineWithHttpInfo(organization, pipeline, folder);
              return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  Retrieve pipeline details for an organisation folder
+        ///  Retrieve pipeline details for an organization folder
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="organisation">Name of the organisation</param>
+        /// <param name="organization">Name of the organization</param>
         /// <param name="pipeline">Name of the pipeline</param>
         /// <param name="folder">Name of the folder</param>
-        /// <returns>ApiResponse of IojenkinsblueoceanserviceembeddedrestPipelineImpl</returns>
-        public ApiResponse< IojenkinsblueoceanserviceembeddedrestPipelineImpl > GetPipelineFolderByOrg_0WithHttpInfo (string organisation, string pipeline, string folder)
+        /// <returns>ApiResponse of PipelineImpl</returns>
+        public ApiResponse< PipelineImpl > GetPipelineFolderPipelineWithHttpInfo (string organization, string pipeline, string folder)
         {
-            // verify the required parameter 'organisation' is set
-            if (organisation == null)
-                throw new ApiException(400, "Missing required parameter 'organisation' when calling BlueOceanApi->GetPipelineFolderByOrg_0");
+            // verify the required parameter 'organization' is set
+            if (organization == null)
+                throw new ApiException(400, "Missing required parameter 'organization' when calling BlueOceanApi->GetPipelineFolderPipeline");
             // verify the required parameter 'pipeline' is set
             if (pipeline == null)
-                throw new ApiException(400, "Missing required parameter 'pipeline' when calling BlueOceanApi->GetPipelineFolderByOrg_0");
+                throw new ApiException(400, "Missing required parameter 'pipeline' when calling BlueOceanApi->GetPipelineFolderPipeline");
             // verify the required parameter 'folder' is set
             if (folder == null)
-                throw new ApiException(400, "Missing required parameter 'folder' when calling BlueOceanApi->GetPipelineFolderByOrg_0");
+                throw new ApiException(400, "Missing required parameter 'folder' when calling BlueOceanApi->GetPipelineFolderPipeline");
 
-            var localVarPath = "/blue/rest/organizations/{organisation}/pipelines/{folder}/pipelines/{pipeline}";
+            var localVarPath = "/blue/rest/organizations/{organization}/pipelines/{folder}/pipelines/{pipeline}";
             var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
             var localVarFormParams = new Dictionary<String, String>();
             var localVarFileParams = new Dictionary<String, FileParameter>();
@@ -1921,155 +3596,16 @@ namespace IO.Swagger.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            if (organisation != null) localVarPathParams.Add("organisation", Configuration.ApiClient.ParameterToString(organisation)); // path parameter
-            if (pipeline != null) localVarPathParams.Add("pipeline", Configuration.ApiClient.ParameterToString(pipeline)); // path parameter
-            if (folder != null) localVarPathParams.Add("folder", Configuration.ApiClient.ParameterToString(folder)); // path parameter
-
-
-            // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
-                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("GetPipelineFolderByOrg_0", localVarResponse);
-                if (exception != null) throw exception;
-            }
-
-            return new ApiResponse<IojenkinsblueoceanserviceembeddedrestPipelineImpl>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (IojenkinsblueoceanserviceembeddedrestPipelineImpl) Configuration.ApiClient.Deserialize(localVarResponse, typeof(IojenkinsblueoceanserviceembeddedrestPipelineImpl)));
-        }
-
-        /// <summary>
-        ///  Retrieve pipeline details for an organisation folder
-        /// </summary>
-        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="organisation">Name of the organisation</param>
-        /// <param name="pipeline">Name of the pipeline</param>
-        /// <param name="folder">Name of the folder</param>
-        /// <returns>Task of IojenkinsblueoceanserviceembeddedrestPipelineImpl</returns>
-        public async System.Threading.Tasks.Task<IojenkinsblueoceanserviceembeddedrestPipelineImpl> GetPipelineFolderByOrg_0Async (string organisation, string pipeline, string folder)
-        {
-             ApiResponse<IojenkinsblueoceanserviceembeddedrestPipelineImpl> localVarResponse = await GetPipelineFolderByOrg_0AsyncWithHttpInfo(organisation, pipeline, folder);
-             return localVarResponse.Data;
-
-        }
-
-        /// <summary>
-        ///  Retrieve pipeline details for an organisation folder
-        /// </summary>
-        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="organisation">Name of the organisation</param>
-        /// <param name="pipeline">Name of the pipeline</param>
-        /// <param name="folder">Name of the folder</param>
-        /// <returns>Task of ApiResponse (IojenkinsblueoceanserviceembeddedrestPipelineImpl)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<IojenkinsblueoceanserviceembeddedrestPipelineImpl>> GetPipelineFolderByOrg_0AsyncWithHttpInfo (string organisation, string pipeline, string folder)
-        {
-            // verify the required parameter 'organisation' is set
-            if (organisation == null)
-                throw new ApiException(400, "Missing required parameter 'organisation' when calling BlueOceanApi->GetPipelineFolderByOrg_0");
-            // verify the required parameter 'pipeline' is set
-            if (pipeline == null)
-                throw new ApiException(400, "Missing required parameter 'pipeline' when calling BlueOceanApi->GetPipelineFolderByOrg_0");
-            // verify the required parameter 'folder' is set
-            if (folder == null)
-                throw new ApiException(400, "Missing required parameter 'folder' when calling BlueOceanApi->GetPipelineFolderByOrg_0");
-
-            var localVarPath = "/blue/rest/organizations/{organisation}/pipelines/{folder}/pipelines/{pipeline}";
-            var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new Dictionary<String, String>();
-            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<String, String>();
-            var localVarFileParams = new Dictionary<String, FileParameter>();
-            Object localVarPostBody = null;
-
-            // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
-            };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
-                "application/json"
-            };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-
-            if (organisation != null) localVarPathParams.Add("organisation", Configuration.ApiClient.ParameterToString(organisation)); // path parameter
+            if (organization != null) localVarPathParams.Add("organization", Configuration.ApiClient.ParameterToString(organization)); // path parameter
             if (pipeline != null) localVarPathParams.Add("pipeline", Configuration.ApiClient.ParameterToString(pipeline)); // path parameter
             if (folder != null) localVarPathParams.Add("folder", Configuration.ApiClient.ParameterToString(folder)); // path parameter
 
-
-            // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
-                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            if (ExceptionFactory != null)
+            // authentication (jenkins_auth) required
+            // http basic authentication required
+            if (!String.IsNullOrEmpty(Configuration.Username) || !String.IsNullOrEmpty(Configuration.Password))
             {
-                Exception exception = ExceptionFactory("GetPipelineFolderByOrg_0", localVarResponse);
-                if (exception != null) throw exception;
+                localVarHeaderParams["Authorization"] = "Basic " + ApiClient.Base64Encode(Configuration.Username + ":" + Configuration.Password);
             }
-
-            return new ApiResponse<IojenkinsblueoceanserviceembeddedrestPipelineImpl>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (IojenkinsblueoceanserviceembeddedrestPipelineImpl) Configuration.ApiClient.Deserialize(localVarResponse, typeof(IojenkinsblueoceanserviceembeddedrestPipelineImpl)));
-        }
-
-        /// <summary>
-        ///  Retrieve all pipelines details for an organisation
-        /// </summary>
-        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="organisation">Name of the organisation</param>
-        /// <returns>GetPipelines</returns>
-        public GetPipelines GetPipelinesByOrg (string organisation)
-        {
-             ApiResponse<GetPipelines> localVarResponse = GetPipelinesByOrgWithHttpInfo(organisation);
-             return localVarResponse.Data;
-        }
-
-        /// <summary>
-        ///  Retrieve all pipelines details for an organisation
-        /// </summary>
-        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="organisation">Name of the organisation</param>
-        /// <returns>ApiResponse of GetPipelines</returns>
-        public ApiResponse< GetPipelines > GetPipelinesByOrgWithHttpInfo (string organisation)
-        {
-            // verify the required parameter 'organisation' is set
-            if (organisation == null)
-                throw new ApiException(400, "Missing required parameter 'organisation' when calling BlueOceanApi->GetPipelinesByOrg");
-
-            var localVarPath = "/blue/rest/organizations/{organisation}/pipelines/";
-            var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new Dictionary<String, String>();
-            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<String, String>();
-            var localVarFileParams = new Dictionary<String, FileParameter>();
-            Object localVarPostBody = null;
-
-            // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
-            };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
-                "application/json"
-            };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-
-            if (organisation != null) localVarPathParams.Add("organisation", Configuration.ApiClient.ParameterToString(organisation)); // path parameter
-
 
             // make the HTTP request
             IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
@@ -2080,43 +3616,53 @@ namespace IO.Swagger.Api
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("GetPipelinesByOrg", localVarResponse);
+                Exception exception = ExceptionFactory("GetPipelineFolderPipeline", localVarResponse);
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<GetPipelines>(localVarStatusCode,
+            return new ApiResponse<PipelineImpl>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (GetPipelines) Configuration.ApiClient.Deserialize(localVarResponse, typeof(GetPipelines)));
+                (PipelineImpl) Configuration.ApiClient.Deserialize(localVarResponse, typeof(PipelineImpl)));
         }
 
         /// <summary>
-        ///  Retrieve all pipelines details for an organisation
+        ///  Retrieve pipeline details for an organization folder
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="organisation">Name of the organisation</param>
-        /// <returns>Task of GetPipelines</returns>
-        public async System.Threading.Tasks.Task<GetPipelines> GetPipelinesByOrgAsync (string organisation)
+        /// <param name="organization">Name of the organization</param>
+        /// <param name="pipeline">Name of the pipeline</param>
+        /// <param name="folder">Name of the folder</param>
+        /// <returns>Task of PipelineImpl</returns>
+        public async System.Threading.Tasks.Task<PipelineImpl> GetPipelineFolderPipelineAsync (string organization, string pipeline, string folder)
         {
-             ApiResponse<GetPipelines> localVarResponse = await GetPipelinesByOrgAsyncWithHttpInfo(organisation);
+             ApiResponse<PipelineImpl> localVarResponse = await GetPipelineFolderPipelineAsyncWithHttpInfo(organization, pipeline, folder);
              return localVarResponse.Data;
 
         }
 
         /// <summary>
-        ///  Retrieve all pipelines details for an organisation
+        ///  Retrieve pipeline details for an organization folder
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="organisation">Name of the organisation</param>
-        /// <returns>Task of ApiResponse (GetPipelines)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<GetPipelines>> GetPipelinesByOrgAsyncWithHttpInfo (string organisation)
+        /// <param name="organization">Name of the organization</param>
+        /// <param name="pipeline">Name of the pipeline</param>
+        /// <param name="folder">Name of the folder</param>
+        /// <returns>Task of ApiResponse (PipelineImpl)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<PipelineImpl>> GetPipelineFolderPipelineAsyncWithHttpInfo (string organization, string pipeline, string folder)
         {
-            // verify the required parameter 'organisation' is set
-            if (organisation == null)
-                throw new ApiException(400, "Missing required parameter 'organisation' when calling BlueOceanApi->GetPipelinesByOrg");
+            // verify the required parameter 'organization' is set
+            if (organization == null)
+                throw new ApiException(400, "Missing required parameter 'organization' when calling BlueOceanApi->GetPipelineFolderPipeline");
+            // verify the required parameter 'pipeline' is set
+            if (pipeline == null)
+                throw new ApiException(400, "Missing required parameter 'pipeline' when calling BlueOceanApi->GetPipelineFolderPipeline");
+            // verify the required parameter 'folder' is set
+            if (folder == null)
+                throw new ApiException(400, "Missing required parameter 'folder' when calling BlueOceanApi->GetPipelineFolderPipeline");
 
-            var localVarPath = "/blue/rest/organizations/{organisation}/pipelines/";
+            var localVarPath = "/blue/rest/organizations/{organization}/pipelines/{folder}/pipelines/{pipeline}";
             var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
             var localVarFormParams = new Dictionary<String, String>();
             var localVarFileParams = new Dictionary<String, FileParameter>();
@@ -2135,8 +3681,16 @@ namespace IO.Swagger.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            if (organisation != null) localVarPathParams.Add("organisation", Configuration.ApiClient.ParameterToString(organisation)); // path parameter
+            if (organization != null) localVarPathParams.Add("organization", Configuration.ApiClient.ParameterToString(organization)); // path parameter
+            if (pipeline != null) localVarPathParams.Add("pipeline", Configuration.ApiClient.ParameterToString(pipeline)); // path parameter
+            if (folder != null) localVarPathParams.Add("folder", Configuration.ApiClient.ParameterToString(folder)); // path parameter
 
+            // authentication (jenkins_auth) required
+            // http basic authentication required
+            if (!String.IsNullOrEmpty(Configuration.Username) || !String.IsNullOrEmpty(Configuration.Password))
+            {
+                localVarHeaderParams["Authorization"] = "Basic " + ApiClient.Base64Encode(Configuration.Username + ":" + Configuration.Password);
+            }
 
             // make the HTTP request
             IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
@@ -2147,47 +3701,2467 @@ namespace IO.Swagger.Api
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("GetPipelinesByOrg", localVarResponse);
+                Exception exception = ExceptionFactory("GetPipelineFolderPipeline", localVarResponse);
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<GetPipelines>(localVarStatusCode,
+            return new ApiResponse<PipelineImpl>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (GetPipelines) Configuration.ApiClient.Deserialize(localVarResponse, typeof(GetPipelines)));
+                (PipelineImpl) Configuration.ApiClient.Deserialize(localVarResponse, typeof(PipelineImpl)));
         }
 
         /// <summary>
-        ///  Retrieve user details for an organisation
+        ///  Retrieve queue details for an organization pipeline
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="organisation">Name of the organisation</param>
+        /// <param name="organization">Name of the organization</param>
+        /// <param name="pipeline">Name of the pipeline</param>
+        /// <returns>PipelineQueue</returns>
+        public PipelineQueue GetPipelineQueue (string organization, string pipeline)
+        {
+             ApiResponse<PipelineQueue> localVarResponse = GetPipelineQueueWithHttpInfo(organization, pipeline);
+             return localVarResponse.Data;
+        }
+
+        /// <summary>
+        ///  Retrieve queue details for an organization pipeline
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="organization">Name of the organization</param>
+        /// <param name="pipeline">Name of the pipeline</param>
+        /// <returns>ApiResponse of PipelineQueue</returns>
+        public ApiResponse< PipelineQueue > GetPipelineQueueWithHttpInfo (string organization, string pipeline)
+        {
+            // verify the required parameter 'organization' is set
+            if (organization == null)
+                throw new ApiException(400, "Missing required parameter 'organization' when calling BlueOceanApi->GetPipelineQueue");
+            // verify the required parameter 'pipeline' is set
+            if (pipeline == null)
+                throw new ApiException(400, "Missing required parameter 'pipeline' when calling BlueOceanApi->GetPipelineQueue");
+
+            var localVarPath = "/blue/rest/organizations/{organization}/pipelines/{pipeline}/queue";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (organization != null) localVarPathParams.Add("organization", Configuration.ApiClient.ParameterToString(organization)); // path parameter
+            if (pipeline != null) localVarPathParams.Add("pipeline", Configuration.ApiClient.ParameterToString(pipeline)); // path parameter
+
+            // authentication (jenkins_auth) required
+            // http basic authentication required
+            if (!String.IsNullOrEmpty(Configuration.Username) || !String.IsNullOrEmpty(Configuration.Password))
+            {
+                localVarHeaderParams["Authorization"] = "Basic " + ApiClient.Base64Encode(Configuration.Username + ":" + Configuration.Password);
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("GetPipelineQueue", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<PipelineQueue>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (PipelineQueue) Configuration.ApiClient.Deserialize(localVarResponse, typeof(PipelineQueue)));
+        }
+
+        /// <summary>
+        ///  Retrieve queue details for an organization pipeline
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="organization">Name of the organization</param>
+        /// <param name="pipeline">Name of the pipeline</param>
+        /// <returns>Task of PipelineQueue</returns>
+        public async System.Threading.Tasks.Task<PipelineQueue> GetPipelineQueueAsync (string organization, string pipeline)
+        {
+             ApiResponse<PipelineQueue> localVarResponse = await GetPipelineQueueAsyncWithHttpInfo(organization, pipeline);
+             return localVarResponse.Data;
+
+        }
+
+        /// <summary>
+        ///  Retrieve queue details for an organization pipeline
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="organization">Name of the organization</param>
+        /// <param name="pipeline">Name of the pipeline</param>
+        /// <returns>Task of ApiResponse (PipelineQueue)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<PipelineQueue>> GetPipelineQueueAsyncWithHttpInfo (string organization, string pipeline)
+        {
+            // verify the required parameter 'organization' is set
+            if (organization == null)
+                throw new ApiException(400, "Missing required parameter 'organization' when calling BlueOceanApi->GetPipelineQueue");
+            // verify the required parameter 'pipeline' is set
+            if (pipeline == null)
+                throw new ApiException(400, "Missing required parameter 'pipeline' when calling BlueOceanApi->GetPipelineQueue");
+
+            var localVarPath = "/blue/rest/organizations/{organization}/pipelines/{pipeline}/queue";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (organization != null) localVarPathParams.Add("organization", Configuration.ApiClient.ParameterToString(organization)); // path parameter
+            if (pipeline != null) localVarPathParams.Add("pipeline", Configuration.ApiClient.ParameterToString(pipeline)); // path parameter
+
+            // authentication (jenkins_auth) required
+            // http basic authentication required
+            if (!String.IsNullOrEmpty(Configuration.Username) || !String.IsNullOrEmpty(Configuration.Password))
+            {
+                localVarHeaderParams["Authorization"] = "Basic " + ApiClient.Base64Encode(Configuration.Username + ":" + Configuration.Password);
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("GetPipelineQueue", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<PipelineQueue>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (PipelineQueue) Configuration.ApiClient.Deserialize(localVarResponse, typeof(PipelineQueue)));
+        }
+
+        /// <summary>
+        ///  Retrieve run details for an organization pipeline
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="organization">Name of the organization</param>
+        /// <param name="pipeline">Name of the pipeline</param>
+        /// <param name="run">Name of the run</param>
+        /// <returns>PipelineRun</returns>
+        public PipelineRun GetPipelineRun (string organization, string pipeline, string run)
+        {
+             ApiResponse<PipelineRun> localVarResponse = GetPipelineRunWithHttpInfo(organization, pipeline, run);
+             return localVarResponse.Data;
+        }
+
+        /// <summary>
+        ///  Retrieve run details for an organization pipeline
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="organization">Name of the organization</param>
+        /// <param name="pipeline">Name of the pipeline</param>
+        /// <param name="run">Name of the run</param>
+        /// <returns>ApiResponse of PipelineRun</returns>
+        public ApiResponse< PipelineRun > GetPipelineRunWithHttpInfo (string organization, string pipeline, string run)
+        {
+            // verify the required parameter 'organization' is set
+            if (organization == null)
+                throw new ApiException(400, "Missing required parameter 'organization' when calling BlueOceanApi->GetPipelineRun");
+            // verify the required parameter 'pipeline' is set
+            if (pipeline == null)
+                throw new ApiException(400, "Missing required parameter 'pipeline' when calling BlueOceanApi->GetPipelineRun");
+            // verify the required parameter 'run' is set
+            if (run == null)
+                throw new ApiException(400, "Missing required parameter 'run' when calling BlueOceanApi->GetPipelineRun");
+
+            var localVarPath = "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (organization != null) localVarPathParams.Add("organization", Configuration.ApiClient.ParameterToString(organization)); // path parameter
+            if (pipeline != null) localVarPathParams.Add("pipeline", Configuration.ApiClient.ParameterToString(pipeline)); // path parameter
+            if (run != null) localVarPathParams.Add("run", Configuration.ApiClient.ParameterToString(run)); // path parameter
+
+            // authentication (jenkins_auth) required
+            // http basic authentication required
+            if (!String.IsNullOrEmpty(Configuration.Username) || !String.IsNullOrEmpty(Configuration.Password))
+            {
+                localVarHeaderParams["Authorization"] = "Basic " + ApiClient.Base64Encode(Configuration.Username + ":" + Configuration.Password);
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("GetPipelineRun", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<PipelineRun>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (PipelineRun) Configuration.ApiClient.Deserialize(localVarResponse, typeof(PipelineRun)));
+        }
+
+        /// <summary>
+        ///  Retrieve run details for an organization pipeline
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="organization">Name of the organization</param>
+        /// <param name="pipeline">Name of the pipeline</param>
+        /// <param name="run">Name of the run</param>
+        /// <returns>Task of PipelineRun</returns>
+        public async System.Threading.Tasks.Task<PipelineRun> GetPipelineRunAsync (string organization, string pipeline, string run)
+        {
+             ApiResponse<PipelineRun> localVarResponse = await GetPipelineRunAsyncWithHttpInfo(organization, pipeline, run);
+             return localVarResponse.Data;
+
+        }
+
+        /// <summary>
+        ///  Retrieve run details for an organization pipeline
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="organization">Name of the organization</param>
+        /// <param name="pipeline">Name of the pipeline</param>
+        /// <param name="run">Name of the run</param>
+        /// <returns>Task of ApiResponse (PipelineRun)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<PipelineRun>> GetPipelineRunAsyncWithHttpInfo (string organization, string pipeline, string run)
+        {
+            // verify the required parameter 'organization' is set
+            if (organization == null)
+                throw new ApiException(400, "Missing required parameter 'organization' when calling BlueOceanApi->GetPipelineRun");
+            // verify the required parameter 'pipeline' is set
+            if (pipeline == null)
+                throw new ApiException(400, "Missing required parameter 'pipeline' when calling BlueOceanApi->GetPipelineRun");
+            // verify the required parameter 'run' is set
+            if (run == null)
+                throw new ApiException(400, "Missing required parameter 'run' when calling BlueOceanApi->GetPipelineRun");
+
+            var localVarPath = "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (organization != null) localVarPathParams.Add("organization", Configuration.ApiClient.ParameterToString(organization)); // path parameter
+            if (pipeline != null) localVarPathParams.Add("pipeline", Configuration.ApiClient.ParameterToString(pipeline)); // path parameter
+            if (run != null) localVarPathParams.Add("run", Configuration.ApiClient.ParameterToString(run)); // path parameter
+
+            // authentication (jenkins_auth) required
+            // http basic authentication required
+            if (!String.IsNullOrEmpty(Configuration.Username) || !String.IsNullOrEmpty(Configuration.Password))
+            {
+                localVarHeaderParams["Authorization"] = "Basic " + ApiClient.Base64Encode(Configuration.Username + ":" + Configuration.Password);
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("GetPipelineRun", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<PipelineRun>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (PipelineRun) Configuration.ApiClient.Deserialize(localVarResponse, typeof(PipelineRun)));
+        }
+
+        /// <summary>
+        ///  Get log for a pipeline run
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="organization">Name of the organization</param>
+        /// <param name="pipeline">Name of the pipeline</param>
+        /// <param name="run">Name of the run</param>
+        /// <param name="start">Start position of the log (optional)</param>
+        /// <param name="download">Set to true in order to download the file, otherwise it&#39;s passed as a response body (optional)</param>
+        /// <returns>string</returns>
+        public string GetPipelineRunLog (string organization, string pipeline, string run, int? start = null, bool? download = null)
+        {
+             ApiResponse<string> localVarResponse = GetPipelineRunLogWithHttpInfo(organization, pipeline, run, start, download);
+             return localVarResponse.Data;
+        }
+
+        /// <summary>
+        ///  Get log for a pipeline run
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="organization">Name of the organization</param>
+        /// <param name="pipeline">Name of the pipeline</param>
+        /// <param name="run">Name of the run</param>
+        /// <param name="start">Start position of the log (optional)</param>
+        /// <param name="download">Set to true in order to download the file, otherwise it&#39;s passed as a response body (optional)</param>
+        /// <returns>ApiResponse of string</returns>
+        public ApiResponse< string > GetPipelineRunLogWithHttpInfo (string organization, string pipeline, string run, int? start = null, bool? download = null)
+        {
+            // verify the required parameter 'organization' is set
+            if (organization == null)
+                throw new ApiException(400, "Missing required parameter 'organization' when calling BlueOceanApi->GetPipelineRunLog");
+            // verify the required parameter 'pipeline' is set
+            if (pipeline == null)
+                throw new ApiException(400, "Missing required parameter 'pipeline' when calling BlueOceanApi->GetPipelineRunLog");
+            // verify the required parameter 'run' is set
+            if (run == null)
+                throw new ApiException(400, "Missing required parameter 'run' when calling BlueOceanApi->GetPipelineRunLog");
+
+            var localVarPath = "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/log";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (organization != null) localVarPathParams.Add("organization", Configuration.ApiClient.ParameterToString(organization)); // path parameter
+            if (pipeline != null) localVarPathParams.Add("pipeline", Configuration.ApiClient.ParameterToString(pipeline)); // path parameter
+            if (run != null) localVarPathParams.Add("run", Configuration.ApiClient.ParameterToString(run)); // path parameter
+            if (start != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "start", start)); // query parameter
+            if (download != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "download", download)); // query parameter
+
+            // authentication (jenkins_auth) required
+            // http basic authentication required
+            if (!String.IsNullOrEmpty(Configuration.Username) || !String.IsNullOrEmpty(Configuration.Password))
+            {
+                localVarHeaderParams["Authorization"] = "Basic " + ApiClient.Base64Encode(Configuration.Username + ":" + Configuration.Password);
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("GetPipelineRunLog", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<string>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (string) Configuration.ApiClient.Deserialize(localVarResponse, typeof(string)));
+        }
+
+        /// <summary>
+        ///  Get log for a pipeline run
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="organization">Name of the organization</param>
+        /// <param name="pipeline">Name of the pipeline</param>
+        /// <param name="run">Name of the run</param>
+        /// <param name="start">Start position of the log (optional)</param>
+        /// <param name="download">Set to true in order to download the file, otherwise it&#39;s passed as a response body (optional)</param>
+        /// <returns>Task of string</returns>
+        public async System.Threading.Tasks.Task<string> GetPipelineRunLogAsync (string organization, string pipeline, string run, int? start = null, bool? download = null)
+        {
+             ApiResponse<string> localVarResponse = await GetPipelineRunLogAsyncWithHttpInfo(organization, pipeline, run, start, download);
+             return localVarResponse.Data;
+
+        }
+
+        /// <summary>
+        ///  Get log for a pipeline run
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="organization">Name of the organization</param>
+        /// <param name="pipeline">Name of the pipeline</param>
+        /// <param name="run">Name of the run</param>
+        /// <param name="start">Start position of the log (optional)</param>
+        /// <param name="download">Set to true in order to download the file, otherwise it&#39;s passed as a response body (optional)</param>
+        /// <returns>Task of ApiResponse (string)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<string>> GetPipelineRunLogAsyncWithHttpInfo (string organization, string pipeline, string run, int? start = null, bool? download = null)
+        {
+            // verify the required parameter 'organization' is set
+            if (organization == null)
+                throw new ApiException(400, "Missing required parameter 'organization' when calling BlueOceanApi->GetPipelineRunLog");
+            // verify the required parameter 'pipeline' is set
+            if (pipeline == null)
+                throw new ApiException(400, "Missing required parameter 'pipeline' when calling BlueOceanApi->GetPipelineRunLog");
+            // verify the required parameter 'run' is set
+            if (run == null)
+                throw new ApiException(400, "Missing required parameter 'run' when calling BlueOceanApi->GetPipelineRunLog");
+
+            var localVarPath = "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/log";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (organization != null) localVarPathParams.Add("organization", Configuration.ApiClient.ParameterToString(organization)); // path parameter
+            if (pipeline != null) localVarPathParams.Add("pipeline", Configuration.ApiClient.ParameterToString(pipeline)); // path parameter
+            if (run != null) localVarPathParams.Add("run", Configuration.ApiClient.ParameterToString(run)); // path parameter
+            if (start != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "start", start)); // query parameter
+            if (download != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "download", download)); // query parameter
+
+            // authentication (jenkins_auth) required
+            // http basic authentication required
+            if (!String.IsNullOrEmpty(Configuration.Username) || !String.IsNullOrEmpty(Configuration.Password))
+            {
+                localVarHeaderParams["Authorization"] = "Basic " + ApiClient.Base64Encode(Configuration.Username + ":" + Configuration.Password);
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("GetPipelineRunLog", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<string>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (string) Configuration.ApiClient.Deserialize(localVarResponse, typeof(string)));
+        }
+
+        /// <summary>
+        ///  Retrieve run node details for an organization pipeline
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="organization">Name of the organization</param>
+        /// <param name="pipeline">Name of the pipeline</param>
+        /// <param name="run">Name of the run</param>
+        /// <param name="node">Name of the node</param>
+        /// <returns>PipelineRunNode</returns>
+        public PipelineRunNode GetPipelineRunNode (string organization, string pipeline, string run, string node)
+        {
+             ApiResponse<PipelineRunNode> localVarResponse = GetPipelineRunNodeWithHttpInfo(organization, pipeline, run, node);
+             return localVarResponse.Data;
+        }
+
+        /// <summary>
+        ///  Retrieve run node details for an organization pipeline
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="organization">Name of the organization</param>
+        /// <param name="pipeline">Name of the pipeline</param>
+        /// <param name="run">Name of the run</param>
+        /// <param name="node">Name of the node</param>
+        /// <returns>ApiResponse of PipelineRunNode</returns>
+        public ApiResponse< PipelineRunNode > GetPipelineRunNodeWithHttpInfo (string organization, string pipeline, string run, string node)
+        {
+            // verify the required parameter 'organization' is set
+            if (organization == null)
+                throw new ApiException(400, "Missing required parameter 'organization' when calling BlueOceanApi->GetPipelineRunNode");
+            // verify the required parameter 'pipeline' is set
+            if (pipeline == null)
+                throw new ApiException(400, "Missing required parameter 'pipeline' when calling BlueOceanApi->GetPipelineRunNode");
+            // verify the required parameter 'run' is set
+            if (run == null)
+                throw new ApiException(400, "Missing required parameter 'run' when calling BlueOceanApi->GetPipelineRunNode");
+            // verify the required parameter 'node' is set
+            if (node == null)
+                throw new ApiException(400, "Missing required parameter 'node' when calling BlueOceanApi->GetPipelineRunNode");
+
+            var localVarPath = "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (organization != null) localVarPathParams.Add("organization", Configuration.ApiClient.ParameterToString(organization)); // path parameter
+            if (pipeline != null) localVarPathParams.Add("pipeline", Configuration.ApiClient.ParameterToString(pipeline)); // path parameter
+            if (run != null) localVarPathParams.Add("run", Configuration.ApiClient.ParameterToString(run)); // path parameter
+            if (node != null) localVarPathParams.Add("node", Configuration.ApiClient.ParameterToString(node)); // path parameter
+
+            // authentication (jenkins_auth) required
+            // http basic authentication required
+            if (!String.IsNullOrEmpty(Configuration.Username) || !String.IsNullOrEmpty(Configuration.Password))
+            {
+                localVarHeaderParams["Authorization"] = "Basic " + ApiClient.Base64Encode(Configuration.Username + ":" + Configuration.Password);
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("GetPipelineRunNode", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<PipelineRunNode>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (PipelineRunNode) Configuration.ApiClient.Deserialize(localVarResponse, typeof(PipelineRunNode)));
+        }
+
+        /// <summary>
+        ///  Retrieve run node details for an organization pipeline
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="organization">Name of the organization</param>
+        /// <param name="pipeline">Name of the pipeline</param>
+        /// <param name="run">Name of the run</param>
+        /// <param name="node">Name of the node</param>
+        /// <returns>Task of PipelineRunNode</returns>
+        public async System.Threading.Tasks.Task<PipelineRunNode> GetPipelineRunNodeAsync (string organization, string pipeline, string run, string node)
+        {
+             ApiResponse<PipelineRunNode> localVarResponse = await GetPipelineRunNodeAsyncWithHttpInfo(organization, pipeline, run, node);
+             return localVarResponse.Data;
+
+        }
+
+        /// <summary>
+        ///  Retrieve run node details for an organization pipeline
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="organization">Name of the organization</param>
+        /// <param name="pipeline">Name of the pipeline</param>
+        /// <param name="run">Name of the run</param>
+        /// <param name="node">Name of the node</param>
+        /// <returns>Task of ApiResponse (PipelineRunNode)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<PipelineRunNode>> GetPipelineRunNodeAsyncWithHttpInfo (string organization, string pipeline, string run, string node)
+        {
+            // verify the required parameter 'organization' is set
+            if (organization == null)
+                throw new ApiException(400, "Missing required parameter 'organization' when calling BlueOceanApi->GetPipelineRunNode");
+            // verify the required parameter 'pipeline' is set
+            if (pipeline == null)
+                throw new ApiException(400, "Missing required parameter 'pipeline' when calling BlueOceanApi->GetPipelineRunNode");
+            // verify the required parameter 'run' is set
+            if (run == null)
+                throw new ApiException(400, "Missing required parameter 'run' when calling BlueOceanApi->GetPipelineRunNode");
+            // verify the required parameter 'node' is set
+            if (node == null)
+                throw new ApiException(400, "Missing required parameter 'node' when calling BlueOceanApi->GetPipelineRunNode");
+
+            var localVarPath = "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (organization != null) localVarPathParams.Add("organization", Configuration.ApiClient.ParameterToString(organization)); // path parameter
+            if (pipeline != null) localVarPathParams.Add("pipeline", Configuration.ApiClient.ParameterToString(pipeline)); // path parameter
+            if (run != null) localVarPathParams.Add("run", Configuration.ApiClient.ParameterToString(run)); // path parameter
+            if (node != null) localVarPathParams.Add("node", Configuration.ApiClient.ParameterToString(node)); // path parameter
+
+            // authentication (jenkins_auth) required
+            // http basic authentication required
+            if (!String.IsNullOrEmpty(Configuration.Username) || !String.IsNullOrEmpty(Configuration.Password))
+            {
+                localVarHeaderParams["Authorization"] = "Basic " + ApiClient.Base64Encode(Configuration.Username + ":" + Configuration.Password);
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("GetPipelineRunNode", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<PipelineRunNode>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (PipelineRunNode) Configuration.ApiClient.Deserialize(localVarResponse, typeof(PipelineRunNode)));
+        }
+
+        /// <summary>
+        ///  Retrieve run node details for an organization pipeline
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="organization">Name of the organization</param>
+        /// <param name="pipeline">Name of the pipeline</param>
+        /// <param name="run">Name of the run</param>
+        /// <param name="node">Name of the node</param>
+        /// <param name="step">Name of the step</param>
+        /// <returns>PipelineStepImpl</returns>
+        public PipelineStepImpl GetPipelineRunNodeStep (string organization, string pipeline, string run, string node, string step)
+        {
+             ApiResponse<PipelineStepImpl> localVarResponse = GetPipelineRunNodeStepWithHttpInfo(organization, pipeline, run, node, step);
+             return localVarResponse.Data;
+        }
+
+        /// <summary>
+        ///  Retrieve run node details for an organization pipeline
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="organization">Name of the organization</param>
+        /// <param name="pipeline">Name of the pipeline</param>
+        /// <param name="run">Name of the run</param>
+        /// <param name="node">Name of the node</param>
+        /// <param name="step">Name of the step</param>
+        /// <returns>ApiResponse of PipelineStepImpl</returns>
+        public ApiResponse< PipelineStepImpl > GetPipelineRunNodeStepWithHttpInfo (string organization, string pipeline, string run, string node, string step)
+        {
+            // verify the required parameter 'organization' is set
+            if (organization == null)
+                throw new ApiException(400, "Missing required parameter 'organization' when calling BlueOceanApi->GetPipelineRunNodeStep");
+            // verify the required parameter 'pipeline' is set
+            if (pipeline == null)
+                throw new ApiException(400, "Missing required parameter 'pipeline' when calling BlueOceanApi->GetPipelineRunNodeStep");
+            // verify the required parameter 'run' is set
+            if (run == null)
+                throw new ApiException(400, "Missing required parameter 'run' when calling BlueOceanApi->GetPipelineRunNodeStep");
+            // verify the required parameter 'node' is set
+            if (node == null)
+                throw new ApiException(400, "Missing required parameter 'node' when calling BlueOceanApi->GetPipelineRunNodeStep");
+            // verify the required parameter 'step' is set
+            if (step == null)
+                throw new ApiException(400, "Missing required parameter 'step' when calling BlueOceanApi->GetPipelineRunNodeStep");
+
+            var localVarPath = "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps/{step}";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (organization != null) localVarPathParams.Add("organization", Configuration.ApiClient.ParameterToString(organization)); // path parameter
+            if (pipeline != null) localVarPathParams.Add("pipeline", Configuration.ApiClient.ParameterToString(pipeline)); // path parameter
+            if (run != null) localVarPathParams.Add("run", Configuration.ApiClient.ParameterToString(run)); // path parameter
+            if (node != null) localVarPathParams.Add("node", Configuration.ApiClient.ParameterToString(node)); // path parameter
+            if (step != null) localVarPathParams.Add("step", Configuration.ApiClient.ParameterToString(step)); // path parameter
+
+            // authentication (jenkins_auth) required
+            // http basic authentication required
+            if (!String.IsNullOrEmpty(Configuration.Username) || !String.IsNullOrEmpty(Configuration.Password))
+            {
+                localVarHeaderParams["Authorization"] = "Basic " + ApiClient.Base64Encode(Configuration.Username + ":" + Configuration.Password);
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("GetPipelineRunNodeStep", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<PipelineStepImpl>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (PipelineStepImpl) Configuration.ApiClient.Deserialize(localVarResponse, typeof(PipelineStepImpl)));
+        }
+
+        /// <summary>
+        ///  Retrieve run node details for an organization pipeline
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="organization">Name of the organization</param>
+        /// <param name="pipeline">Name of the pipeline</param>
+        /// <param name="run">Name of the run</param>
+        /// <param name="node">Name of the node</param>
+        /// <param name="step">Name of the step</param>
+        /// <returns>Task of PipelineStepImpl</returns>
+        public async System.Threading.Tasks.Task<PipelineStepImpl> GetPipelineRunNodeStepAsync (string organization, string pipeline, string run, string node, string step)
+        {
+             ApiResponse<PipelineStepImpl> localVarResponse = await GetPipelineRunNodeStepAsyncWithHttpInfo(organization, pipeline, run, node, step);
+             return localVarResponse.Data;
+
+        }
+
+        /// <summary>
+        ///  Retrieve run node details for an organization pipeline
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="organization">Name of the organization</param>
+        /// <param name="pipeline">Name of the pipeline</param>
+        /// <param name="run">Name of the run</param>
+        /// <param name="node">Name of the node</param>
+        /// <param name="step">Name of the step</param>
+        /// <returns>Task of ApiResponse (PipelineStepImpl)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<PipelineStepImpl>> GetPipelineRunNodeStepAsyncWithHttpInfo (string organization, string pipeline, string run, string node, string step)
+        {
+            // verify the required parameter 'organization' is set
+            if (organization == null)
+                throw new ApiException(400, "Missing required parameter 'organization' when calling BlueOceanApi->GetPipelineRunNodeStep");
+            // verify the required parameter 'pipeline' is set
+            if (pipeline == null)
+                throw new ApiException(400, "Missing required parameter 'pipeline' when calling BlueOceanApi->GetPipelineRunNodeStep");
+            // verify the required parameter 'run' is set
+            if (run == null)
+                throw new ApiException(400, "Missing required parameter 'run' when calling BlueOceanApi->GetPipelineRunNodeStep");
+            // verify the required parameter 'node' is set
+            if (node == null)
+                throw new ApiException(400, "Missing required parameter 'node' when calling BlueOceanApi->GetPipelineRunNodeStep");
+            // verify the required parameter 'step' is set
+            if (step == null)
+                throw new ApiException(400, "Missing required parameter 'step' when calling BlueOceanApi->GetPipelineRunNodeStep");
+
+            var localVarPath = "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps/{step}";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (organization != null) localVarPathParams.Add("organization", Configuration.ApiClient.ParameterToString(organization)); // path parameter
+            if (pipeline != null) localVarPathParams.Add("pipeline", Configuration.ApiClient.ParameterToString(pipeline)); // path parameter
+            if (run != null) localVarPathParams.Add("run", Configuration.ApiClient.ParameterToString(run)); // path parameter
+            if (node != null) localVarPathParams.Add("node", Configuration.ApiClient.ParameterToString(node)); // path parameter
+            if (step != null) localVarPathParams.Add("step", Configuration.ApiClient.ParameterToString(step)); // path parameter
+
+            // authentication (jenkins_auth) required
+            // http basic authentication required
+            if (!String.IsNullOrEmpty(Configuration.Username) || !String.IsNullOrEmpty(Configuration.Password))
+            {
+                localVarHeaderParams["Authorization"] = "Basic " + ApiClient.Base64Encode(Configuration.Username + ":" + Configuration.Password);
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("GetPipelineRunNodeStep", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<PipelineStepImpl>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (PipelineStepImpl) Configuration.ApiClient.Deserialize(localVarResponse, typeof(PipelineStepImpl)));
+        }
+
+        /// <summary>
+        ///  Get log for a pipeline run node step
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="organization">Name of the organization</param>
+        /// <param name="pipeline">Name of the pipeline</param>
+        /// <param name="run">Name of the run</param>
+        /// <param name="node">Name of the node</param>
+        /// <param name="step">Name of the step</param>
+        /// <returns>string</returns>
+        public string GetPipelineRunNodeStepLog (string organization, string pipeline, string run, string node, string step)
+        {
+             ApiResponse<string> localVarResponse = GetPipelineRunNodeStepLogWithHttpInfo(organization, pipeline, run, node, step);
+             return localVarResponse.Data;
+        }
+
+        /// <summary>
+        ///  Get log for a pipeline run node step
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="organization">Name of the organization</param>
+        /// <param name="pipeline">Name of the pipeline</param>
+        /// <param name="run">Name of the run</param>
+        /// <param name="node">Name of the node</param>
+        /// <param name="step">Name of the step</param>
+        /// <returns>ApiResponse of string</returns>
+        public ApiResponse< string > GetPipelineRunNodeStepLogWithHttpInfo (string organization, string pipeline, string run, string node, string step)
+        {
+            // verify the required parameter 'organization' is set
+            if (organization == null)
+                throw new ApiException(400, "Missing required parameter 'organization' when calling BlueOceanApi->GetPipelineRunNodeStepLog");
+            // verify the required parameter 'pipeline' is set
+            if (pipeline == null)
+                throw new ApiException(400, "Missing required parameter 'pipeline' when calling BlueOceanApi->GetPipelineRunNodeStepLog");
+            // verify the required parameter 'run' is set
+            if (run == null)
+                throw new ApiException(400, "Missing required parameter 'run' when calling BlueOceanApi->GetPipelineRunNodeStepLog");
+            // verify the required parameter 'node' is set
+            if (node == null)
+                throw new ApiException(400, "Missing required parameter 'node' when calling BlueOceanApi->GetPipelineRunNodeStepLog");
+            // verify the required parameter 'step' is set
+            if (step == null)
+                throw new ApiException(400, "Missing required parameter 'step' when calling BlueOceanApi->GetPipelineRunNodeStepLog");
+
+            var localVarPath = "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps/{step}/log";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (organization != null) localVarPathParams.Add("organization", Configuration.ApiClient.ParameterToString(organization)); // path parameter
+            if (pipeline != null) localVarPathParams.Add("pipeline", Configuration.ApiClient.ParameterToString(pipeline)); // path parameter
+            if (run != null) localVarPathParams.Add("run", Configuration.ApiClient.ParameterToString(run)); // path parameter
+            if (node != null) localVarPathParams.Add("node", Configuration.ApiClient.ParameterToString(node)); // path parameter
+            if (step != null) localVarPathParams.Add("step", Configuration.ApiClient.ParameterToString(step)); // path parameter
+
+            // authentication (jenkins_auth) required
+            // http basic authentication required
+            if (!String.IsNullOrEmpty(Configuration.Username) || !String.IsNullOrEmpty(Configuration.Password))
+            {
+                localVarHeaderParams["Authorization"] = "Basic " + ApiClient.Base64Encode(Configuration.Username + ":" + Configuration.Password);
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("GetPipelineRunNodeStepLog", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<string>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (string) Configuration.ApiClient.Deserialize(localVarResponse, typeof(string)));
+        }
+
+        /// <summary>
+        ///  Get log for a pipeline run node step
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="organization">Name of the organization</param>
+        /// <param name="pipeline">Name of the pipeline</param>
+        /// <param name="run">Name of the run</param>
+        /// <param name="node">Name of the node</param>
+        /// <param name="step">Name of the step</param>
+        /// <returns>Task of string</returns>
+        public async System.Threading.Tasks.Task<string> GetPipelineRunNodeStepLogAsync (string organization, string pipeline, string run, string node, string step)
+        {
+             ApiResponse<string> localVarResponse = await GetPipelineRunNodeStepLogAsyncWithHttpInfo(organization, pipeline, run, node, step);
+             return localVarResponse.Data;
+
+        }
+
+        /// <summary>
+        ///  Get log for a pipeline run node step
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="organization">Name of the organization</param>
+        /// <param name="pipeline">Name of the pipeline</param>
+        /// <param name="run">Name of the run</param>
+        /// <param name="node">Name of the node</param>
+        /// <param name="step">Name of the step</param>
+        /// <returns>Task of ApiResponse (string)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<string>> GetPipelineRunNodeStepLogAsyncWithHttpInfo (string organization, string pipeline, string run, string node, string step)
+        {
+            // verify the required parameter 'organization' is set
+            if (organization == null)
+                throw new ApiException(400, "Missing required parameter 'organization' when calling BlueOceanApi->GetPipelineRunNodeStepLog");
+            // verify the required parameter 'pipeline' is set
+            if (pipeline == null)
+                throw new ApiException(400, "Missing required parameter 'pipeline' when calling BlueOceanApi->GetPipelineRunNodeStepLog");
+            // verify the required parameter 'run' is set
+            if (run == null)
+                throw new ApiException(400, "Missing required parameter 'run' when calling BlueOceanApi->GetPipelineRunNodeStepLog");
+            // verify the required parameter 'node' is set
+            if (node == null)
+                throw new ApiException(400, "Missing required parameter 'node' when calling BlueOceanApi->GetPipelineRunNodeStepLog");
+            // verify the required parameter 'step' is set
+            if (step == null)
+                throw new ApiException(400, "Missing required parameter 'step' when calling BlueOceanApi->GetPipelineRunNodeStepLog");
+
+            var localVarPath = "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps/{step}/log";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (organization != null) localVarPathParams.Add("organization", Configuration.ApiClient.ParameterToString(organization)); // path parameter
+            if (pipeline != null) localVarPathParams.Add("pipeline", Configuration.ApiClient.ParameterToString(pipeline)); // path parameter
+            if (run != null) localVarPathParams.Add("run", Configuration.ApiClient.ParameterToString(run)); // path parameter
+            if (node != null) localVarPathParams.Add("node", Configuration.ApiClient.ParameterToString(node)); // path parameter
+            if (step != null) localVarPathParams.Add("step", Configuration.ApiClient.ParameterToString(step)); // path parameter
+
+            // authentication (jenkins_auth) required
+            // http basic authentication required
+            if (!String.IsNullOrEmpty(Configuration.Username) || !String.IsNullOrEmpty(Configuration.Password))
+            {
+                localVarHeaderParams["Authorization"] = "Basic " + ApiClient.Base64Encode(Configuration.Username + ":" + Configuration.Password);
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("GetPipelineRunNodeStepLog", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<string>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (string) Configuration.ApiClient.Deserialize(localVarResponse, typeof(string)));
+        }
+
+        /// <summary>
+        ///  Retrieve run node steps details for an organization pipeline
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="organization">Name of the organization</param>
+        /// <param name="pipeline">Name of the pipeline</param>
+        /// <param name="run">Name of the run</param>
+        /// <param name="node">Name of the node</param>
+        /// <returns>PipelineRunNodeSteps</returns>
+        public PipelineRunNodeSteps GetPipelineRunNodeSteps (string organization, string pipeline, string run, string node)
+        {
+             ApiResponse<PipelineRunNodeSteps> localVarResponse = GetPipelineRunNodeStepsWithHttpInfo(organization, pipeline, run, node);
+             return localVarResponse.Data;
+        }
+
+        /// <summary>
+        ///  Retrieve run node steps details for an organization pipeline
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="organization">Name of the organization</param>
+        /// <param name="pipeline">Name of the pipeline</param>
+        /// <param name="run">Name of the run</param>
+        /// <param name="node">Name of the node</param>
+        /// <returns>ApiResponse of PipelineRunNodeSteps</returns>
+        public ApiResponse< PipelineRunNodeSteps > GetPipelineRunNodeStepsWithHttpInfo (string organization, string pipeline, string run, string node)
+        {
+            // verify the required parameter 'organization' is set
+            if (organization == null)
+                throw new ApiException(400, "Missing required parameter 'organization' when calling BlueOceanApi->GetPipelineRunNodeSteps");
+            // verify the required parameter 'pipeline' is set
+            if (pipeline == null)
+                throw new ApiException(400, "Missing required parameter 'pipeline' when calling BlueOceanApi->GetPipelineRunNodeSteps");
+            // verify the required parameter 'run' is set
+            if (run == null)
+                throw new ApiException(400, "Missing required parameter 'run' when calling BlueOceanApi->GetPipelineRunNodeSteps");
+            // verify the required parameter 'node' is set
+            if (node == null)
+                throw new ApiException(400, "Missing required parameter 'node' when calling BlueOceanApi->GetPipelineRunNodeSteps");
+
+            var localVarPath = "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (organization != null) localVarPathParams.Add("organization", Configuration.ApiClient.ParameterToString(organization)); // path parameter
+            if (pipeline != null) localVarPathParams.Add("pipeline", Configuration.ApiClient.ParameterToString(pipeline)); // path parameter
+            if (run != null) localVarPathParams.Add("run", Configuration.ApiClient.ParameterToString(run)); // path parameter
+            if (node != null) localVarPathParams.Add("node", Configuration.ApiClient.ParameterToString(node)); // path parameter
+
+            // authentication (jenkins_auth) required
+            // http basic authentication required
+            if (!String.IsNullOrEmpty(Configuration.Username) || !String.IsNullOrEmpty(Configuration.Password))
+            {
+                localVarHeaderParams["Authorization"] = "Basic " + ApiClient.Base64Encode(Configuration.Username + ":" + Configuration.Password);
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("GetPipelineRunNodeSteps", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<PipelineRunNodeSteps>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (PipelineRunNodeSteps) Configuration.ApiClient.Deserialize(localVarResponse, typeof(PipelineRunNodeSteps)));
+        }
+
+        /// <summary>
+        ///  Retrieve run node steps details for an organization pipeline
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="organization">Name of the organization</param>
+        /// <param name="pipeline">Name of the pipeline</param>
+        /// <param name="run">Name of the run</param>
+        /// <param name="node">Name of the node</param>
+        /// <returns>Task of PipelineRunNodeSteps</returns>
+        public async System.Threading.Tasks.Task<PipelineRunNodeSteps> GetPipelineRunNodeStepsAsync (string organization, string pipeline, string run, string node)
+        {
+             ApiResponse<PipelineRunNodeSteps> localVarResponse = await GetPipelineRunNodeStepsAsyncWithHttpInfo(organization, pipeline, run, node);
+             return localVarResponse.Data;
+
+        }
+
+        /// <summary>
+        ///  Retrieve run node steps details for an organization pipeline
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="organization">Name of the organization</param>
+        /// <param name="pipeline">Name of the pipeline</param>
+        /// <param name="run">Name of the run</param>
+        /// <param name="node">Name of the node</param>
+        /// <returns>Task of ApiResponse (PipelineRunNodeSteps)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<PipelineRunNodeSteps>> GetPipelineRunNodeStepsAsyncWithHttpInfo (string organization, string pipeline, string run, string node)
+        {
+            // verify the required parameter 'organization' is set
+            if (organization == null)
+                throw new ApiException(400, "Missing required parameter 'organization' when calling BlueOceanApi->GetPipelineRunNodeSteps");
+            // verify the required parameter 'pipeline' is set
+            if (pipeline == null)
+                throw new ApiException(400, "Missing required parameter 'pipeline' when calling BlueOceanApi->GetPipelineRunNodeSteps");
+            // verify the required parameter 'run' is set
+            if (run == null)
+                throw new ApiException(400, "Missing required parameter 'run' when calling BlueOceanApi->GetPipelineRunNodeSteps");
+            // verify the required parameter 'node' is set
+            if (node == null)
+                throw new ApiException(400, "Missing required parameter 'node' when calling BlueOceanApi->GetPipelineRunNodeSteps");
+
+            var localVarPath = "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (organization != null) localVarPathParams.Add("organization", Configuration.ApiClient.ParameterToString(organization)); // path parameter
+            if (pipeline != null) localVarPathParams.Add("pipeline", Configuration.ApiClient.ParameterToString(pipeline)); // path parameter
+            if (run != null) localVarPathParams.Add("run", Configuration.ApiClient.ParameterToString(run)); // path parameter
+            if (node != null) localVarPathParams.Add("node", Configuration.ApiClient.ParameterToString(node)); // path parameter
+
+            // authentication (jenkins_auth) required
+            // http basic authentication required
+            if (!String.IsNullOrEmpty(Configuration.Username) || !String.IsNullOrEmpty(Configuration.Password))
+            {
+                localVarHeaderParams["Authorization"] = "Basic " + ApiClient.Base64Encode(Configuration.Username + ":" + Configuration.Password);
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("GetPipelineRunNodeSteps", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<PipelineRunNodeSteps>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (PipelineRunNodeSteps) Configuration.ApiClient.Deserialize(localVarResponse, typeof(PipelineRunNodeSteps)));
+        }
+
+        /// <summary>
+        ///  Retrieve run nodes details for an organization pipeline
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="organization">Name of the organization</param>
+        /// <param name="pipeline">Name of the pipeline</param>
+        /// <param name="run">Name of the run</param>
+        /// <returns>PipelineRunNodes</returns>
+        public PipelineRunNodes GetPipelineRunNodes (string organization, string pipeline, string run)
+        {
+             ApiResponse<PipelineRunNodes> localVarResponse = GetPipelineRunNodesWithHttpInfo(organization, pipeline, run);
+             return localVarResponse.Data;
+        }
+
+        /// <summary>
+        ///  Retrieve run nodes details for an organization pipeline
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="organization">Name of the organization</param>
+        /// <param name="pipeline">Name of the pipeline</param>
+        /// <param name="run">Name of the run</param>
+        /// <returns>ApiResponse of PipelineRunNodes</returns>
+        public ApiResponse< PipelineRunNodes > GetPipelineRunNodesWithHttpInfo (string organization, string pipeline, string run)
+        {
+            // verify the required parameter 'organization' is set
+            if (organization == null)
+                throw new ApiException(400, "Missing required parameter 'organization' when calling BlueOceanApi->GetPipelineRunNodes");
+            // verify the required parameter 'pipeline' is set
+            if (pipeline == null)
+                throw new ApiException(400, "Missing required parameter 'pipeline' when calling BlueOceanApi->GetPipelineRunNodes");
+            // verify the required parameter 'run' is set
+            if (run == null)
+                throw new ApiException(400, "Missing required parameter 'run' when calling BlueOceanApi->GetPipelineRunNodes");
+
+            var localVarPath = "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (organization != null) localVarPathParams.Add("organization", Configuration.ApiClient.ParameterToString(organization)); // path parameter
+            if (pipeline != null) localVarPathParams.Add("pipeline", Configuration.ApiClient.ParameterToString(pipeline)); // path parameter
+            if (run != null) localVarPathParams.Add("run", Configuration.ApiClient.ParameterToString(run)); // path parameter
+
+            // authentication (jenkins_auth) required
+            // http basic authentication required
+            if (!String.IsNullOrEmpty(Configuration.Username) || !String.IsNullOrEmpty(Configuration.Password))
+            {
+                localVarHeaderParams["Authorization"] = "Basic " + ApiClient.Base64Encode(Configuration.Username + ":" + Configuration.Password);
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("GetPipelineRunNodes", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<PipelineRunNodes>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (PipelineRunNodes) Configuration.ApiClient.Deserialize(localVarResponse, typeof(PipelineRunNodes)));
+        }
+
+        /// <summary>
+        ///  Retrieve run nodes details for an organization pipeline
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="organization">Name of the organization</param>
+        /// <param name="pipeline">Name of the pipeline</param>
+        /// <param name="run">Name of the run</param>
+        /// <returns>Task of PipelineRunNodes</returns>
+        public async System.Threading.Tasks.Task<PipelineRunNodes> GetPipelineRunNodesAsync (string organization, string pipeline, string run)
+        {
+             ApiResponse<PipelineRunNodes> localVarResponse = await GetPipelineRunNodesAsyncWithHttpInfo(organization, pipeline, run);
+             return localVarResponse.Data;
+
+        }
+
+        /// <summary>
+        ///  Retrieve run nodes details for an organization pipeline
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="organization">Name of the organization</param>
+        /// <param name="pipeline">Name of the pipeline</param>
+        /// <param name="run">Name of the run</param>
+        /// <returns>Task of ApiResponse (PipelineRunNodes)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<PipelineRunNodes>> GetPipelineRunNodesAsyncWithHttpInfo (string organization, string pipeline, string run)
+        {
+            // verify the required parameter 'organization' is set
+            if (organization == null)
+                throw new ApiException(400, "Missing required parameter 'organization' when calling BlueOceanApi->GetPipelineRunNodes");
+            // verify the required parameter 'pipeline' is set
+            if (pipeline == null)
+                throw new ApiException(400, "Missing required parameter 'pipeline' when calling BlueOceanApi->GetPipelineRunNodes");
+            // verify the required parameter 'run' is set
+            if (run == null)
+                throw new ApiException(400, "Missing required parameter 'run' when calling BlueOceanApi->GetPipelineRunNodes");
+
+            var localVarPath = "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (organization != null) localVarPathParams.Add("organization", Configuration.ApiClient.ParameterToString(organization)); // path parameter
+            if (pipeline != null) localVarPathParams.Add("pipeline", Configuration.ApiClient.ParameterToString(pipeline)); // path parameter
+            if (run != null) localVarPathParams.Add("run", Configuration.ApiClient.ParameterToString(run)); // path parameter
+
+            // authentication (jenkins_auth) required
+            // http basic authentication required
+            if (!String.IsNullOrEmpty(Configuration.Username) || !String.IsNullOrEmpty(Configuration.Password))
+            {
+                localVarHeaderParams["Authorization"] = "Basic " + ApiClient.Base64Encode(Configuration.Username + ":" + Configuration.Password);
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("GetPipelineRunNodes", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<PipelineRunNodes>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (PipelineRunNodes) Configuration.ApiClient.Deserialize(localVarResponse, typeof(PipelineRunNodes)));
+        }
+
+        /// <summary>
+        ///  Retrieve all runs details for an organization pipeline
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="organization">Name of the organization</param>
+        /// <param name="pipeline">Name of the pipeline</param>
+        /// <returns>PipelineRuns</returns>
+        public PipelineRuns GetPipelineRuns (string organization, string pipeline)
+        {
+             ApiResponse<PipelineRuns> localVarResponse = GetPipelineRunsWithHttpInfo(organization, pipeline);
+             return localVarResponse.Data;
+        }
+
+        /// <summary>
+        ///  Retrieve all runs details for an organization pipeline
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="organization">Name of the organization</param>
+        /// <param name="pipeline">Name of the pipeline</param>
+        /// <returns>ApiResponse of PipelineRuns</returns>
+        public ApiResponse< PipelineRuns > GetPipelineRunsWithHttpInfo (string organization, string pipeline)
+        {
+            // verify the required parameter 'organization' is set
+            if (organization == null)
+                throw new ApiException(400, "Missing required parameter 'organization' when calling BlueOceanApi->GetPipelineRuns");
+            // verify the required parameter 'pipeline' is set
+            if (pipeline == null)
+                throw new ApiException(400, "Missing required parameter 'pipeline' when calling BlueOceanApi->GetPipelineRuns");
+
+            var localVarPath = "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (organization != null) localVarPathParams.Add("organization", Configuration.ApiClient.ParameterToString(organization)); // path parameter
+            if (pipeline != null) localVarPathParams.Add("pipeline", Configuration.ApiClient.ParameterToString(pipeline)); // path parameter
+
+            // authentication (jenkins_auth) required
+            // http basic authentication required
+            if (!String.IsNullOrEmpty(Configuration.Username) || !String.IsNullOrEmpty(Configuration.Password))
+            {
+                localVarHeaderParams["Authorization"] = "Basic " + ApiClient.Base64Encode(Configuration.Username + ":" + Configuration.Password);
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("GetPipelineRuns", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<PipelineRuns>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (PipelineRuns) Configuration.ApiClient.Deserialize(localVarResponse, typeof(PipelineRuns)));
+        }
+
+        /// <summary>
+        ///  Retrieve all runs details for an organization pipeline
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="organization">Name of the organization</param>
+        /// <param name="pipeline">Name of the pipeline</param>
+        /// <returns>Task of PipelineRuns</returns>
+        public async System.Threading.Tasks.Task<PipelineRuns> GetPipelineRunsAsync (string organization, string pipeline)
+        {
+             ApiResponse<PipelineRuns> localVarResponse = await GetPipelineRunsAsyncWithHttpInfo(organization, pipeline);
+             return localVarResponse.Data;
+
+        }
+
+        /// <summary>
+        ///  Retrieve all runs details for an organization pipeline
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="organization">Name of the organization</param>
+        /// <param name="pipeline">Name of the pipeline</param>
+        /// <returns>Task of ApiResponse (PipelineRuns)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<PipelineRuns>> GetPipelineRunsAsyncWithHttpInfo (string organization, string pipeline)
+        {
+            // verify the required parameter 'organization' is set
+            if (organization == null)
+                throw new ApiException(400, "Missing required parameter 'organization' when calling BlueOceanApi->GetPipelineRuns");
+            // verify the required parameter 'pipeline' is set
+            if (pipeline == null)
+                throw new ApiException(400, "Missing required parameter 'pipeline' when calling BlueOceanApi->GetPipelineRuns");
+
+            var localVarPath = "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (organization != null) localVarPathParams.Add("organization", Configuration.ApiClient.ParameterToString(organization)); // path parameter
+            if (pipeline != null) localVarPathParams.Add("pipeline", Configuration.ApiClient.ParameterToString(pipeline)); // path parameter
+
+            // authentication (jenkins_auth) required
+            // http basic authentication required
+            if (!String.IsNullOrEmpty(Configuration.Username) || !String.IsNullOrEmpty(Configuration.Password))
+            {
+                localVarHeaderParams["Authorization"] = "Basic " + ApiClient.Base64Encode(Configuration.Username + ":" + Configuration.Password);
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("GetPipelineRuns", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<PipelineRuns>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (PipelineRuns) Configuration.ApiClient.Deserialize(localVarResponse, typeof(PipelineRuns)));
+        }
+
+        /// <summary>
+        ///  Retrieve all pipelines details for an organization
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="organization">Name of the organization</param>
+        /// <returns>Pipelines</returns>
+        public Pipelines GetPipelines (string organization)
+        {
+             ApiResponse<Pipelines> localVarResponse = GetPipelinesWithHttpInfo(organization);
+             return localVarResponse.Data;
+        }
+
+        /// <summary>
+        ///  Retrieve all pipelines details for an organization
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="organization">Name of the organization</param>
+        /// <returns>ApiResponse of Pipelines</returns>
+        public ApiResponse< Pipelines > GetPipelinesWithHttpInfo (string organization)
+        {
+            // verify the required parameter 'organization' is set
+            if (organization == null)
+                throw new ApiException(400, "Missing required parameter 'organization' when calling BlueOceanApi->GetPipelines");
+
+            var localVarPath = "/blue/rest/organizations/{organization}/pipelines/";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (organization != null) localVarPathParams.Add("organization", Configuration.ApiClient.ParameterToString(organization)); // path parameter
+
+            // authentication (jenkins_auth) required
+            // http basic authentication required
+            if (!String.IsNullOrEmpty(Configuration.Username) || !String.IsNullOrEmpty(Configuration.Password))
+            {
+                localVarHeaderParams["Authorization"] = "Basic " + ApiClient.Base64Encode(Configuration.Username + ":" + Configuration.Password);
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("GetPipelines", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<Pipelines>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (Pipelines) Configuration.ApiClient.Deserialize(localVarResponse, typeof(Pipelines)));
+        }
+
+        /// <summary>
+        ///  Retrieve all pipelines details for an organization
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="organization">Name of the organization</param>
+        /// <returns>Task of Pipelines</returns>
+        public async System.Threading.Tasks.Task<Pipelines> GetPipelinesAsync (string organization)
+        {
+             ApiResponse<Pipelines> localVarResponse = await GetPipelinesAsyncWithHttpInfo(organization);
+             return localVarResponse.Data;
+
+        }
+
+        /// <summary>
+        ///  Retrieve all pipelines details for an organization
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="organization">Name of the organization</param>
+        /// <returns>Task of ApiResponse (Pipelines)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<Pipelines>> GetPipelinesAsyncWithHttpInfo (string organization)
+        {
+            // verify the required parameter 'organization' is set
+            if (organization == null)
+                throw new ApiException(400, "Missing required parameter 'organization' when calling BlueOceanApi->GetPipelines");
+
+            var localVarPath = "/blue/rest/organizations/{organization}/pipelines/";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (organization != null) localVarPathParams.Add("organization", Configuration.ApiClient.ParameterToString(organization)); // path parameter
+
+            // authentication (jenkins_auth) required
+            // http basic authentication required
+            if (!String.IsNullOrEmpty(Configuration.Username) || !String.IsNullOrEmpty(Configuration.Password))
+            {
+                localVarHeaderParams["Authorization"] = "Basic " + ApiClient.Base64Encode(Configuration.Username + ":" + Configuration.Password);
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("GetPipelines", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<Pipelines>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (Pipelines) Configuration.ApiClient.Deserialize(localVarResponse, typeof(Pipelines)));
+        }
+
+        /// <summary>
+        ///  Retrieve SCM details for an organization
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="organization">Name of the organization</param>
+        /// <param name="scm">Name of SCM</param>
+        /// <returns>GithubScm</returns>
+        public GithubScm GetSCM (string organization, string scm)
+        {
+             ApiResponse<GithubScm> localVarResponse = GetSCMWithHttpInfo(organization, scm);
+             return localVarResponse.Data;
+        }
+
+        /// <summary>
+        ///  Retrieve SCM details for an organization
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="organization">Name of the organization</param>
+        /// <param name="scm">Name of SCM</param>
+        /// <returns>ApiResponse of GithubScm</returns>
+        public ApiResponse< GithubScm > GetSCMWithHttpInfo (string organization, string scm)
+        {
+            // verify the required parameter 'organization' is set
+            if (organization == null)
+                throw new ApiException(400, "Missing required parameter 'organization' when calling BlueOceanApi->GetSCM");
+            // verify the required parameter 'scm' is set
+            if (scm == null)
+                throw new ApiException(400, "Missing required parameter 'scm' when calling BlueOceanApi->GetSCM");
+
+            var localVarPath = "/blue/rest/organizations/{organization}/scm/{scm}";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (organization != null) localVarPathParams.Add("organization", Configuration.ApiClient.ParameterToString(organization)); // path parameter
+            if (scm != null) localVarPathParams.Add("scm", Configuration.ApiClient.ParameterToString(scm)); // path parameter
+
+            // authentication (jenkins_auth) required
+            // http basic authentication required
+            if (!String.IsNullOrEmpty(Configuration.Username) || !String.IsNullOrEmpty(Configuration.Password))
+            {
+                localVarHeaderParams["Authorization"] = "Basic " + ApiClient.Base64Encode(Configuration.Username + ":" + Configuration.Password);
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("GetSCM", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<GithubScm>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (GithubScm) Configuration.ApiClient.Deserialize(localVarResponse, typeof(GithubScm)));
+        }
+
+        /// <summary>
+        ///  Retrieve SCM details for an organization
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="organization">Name of the organization</param>
+        /// <param name="scm">Name of SCM</param>
+        /// <returns>Task of GithubScm</returns>
+        public async System.Threading.Tasks.Task<GithubScm> GetSCMAsync (string organization, string scm)
+        {
+             ApiResponse<GithubScm> localVarResponse = await GetSCMAsyncWithHttpInfo(organization, scm);
+             return localVarResponse.Data;
+
+        }
+
+        /// <summary>
+        ///  Retrieve SCM details for an organization
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="organization">Name of the organization</param>
+        /// <param name="scm">Name of SCM</param>
+        /// <returns>Task of ApiResponse (GithubScm)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<GithubScm>> GetSCMAsyncWithHttpInfo (string organization, string scm)
+        {
+            // verify the required parameter 'organization' is set
+            if (organization == null)
+                throw new ApiException(400, "Missing required parameter 'organization' when calling BlueOceanApi->GetSCM");
+            // verify the required parameter 'scm' is set
+            if (scm == null)
+                throw new ApiException(400, "Missing required parameter 'scm' when calling BlueOceanApi->GetSCM");
+
+            var localVarPath = "/blue/rest/organizations/{organization}/scm/{scm}";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (organization != null) localVarPathParams.Add("organization", Configuration.ApiClient.ParameterToString(organization)); // path parameter
+            if (scm != null) localVarPathParams.Add("scm", Configuration.ApiClient.ParameterToString(scm)); // path parameter
+
+            // authentication (jenkins_auth) required
+            // http basic authentication required
+            if (!String.IsNullOrEmpty(Configuration.Username) || !String.IsNullOrEmpty(Configuration.Password))
+            {
+                localVarHeaderParams["Authorization"] = "Basic " + ApiClient.Base64Encode(Configuration.Username + ":" + Configuration.Password);
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("GetSCM", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<GithubScm>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (GithubScm) Configuration.ApiClient.Deserialize(localVarResponse, typeof(GithubScm)));
+        }
+
+        /// <summary>
+        ///  Retrieve SCM organization repositories details for an organization
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="organization">Name of the organization</param>
+        /// <param name="scm">Name of SCM</param>
+        /// <param name="scmOrganisation">Name of the SCM organization</param>
+        /// <param name="credentialId">Credential ID (optional)</param>
+        /// <param name="pageSize">Number of items in a page (optional)</param>
+        /// <param name="pageNumber">Page number (optional)</param>
+        /// <returns>ScmOrganisations</returns>
+        public ScmOrganisations GetSCMOrganisationRepositories (string organization, string scm, string scmOrganisation, string credentialId = null, int? pageSize = null, int? pageNumber = null)
+        {
+             ApiResponse<ScmOrganisations> localVarResponse = GetSCMOrganisationRepositoriesWithHttpInfo(organization, scm, scmOrganisation, credentialId, pageSize, pageNumber);
+             return localVarResponse.Data;
+        }
+
+        /// <summary>
+        ///  Retrieve SCM organization repositories details for an organization
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="organization">Name of the organization</param>
+        /// <param name="scm">Name of SCM</param>
+        /// <param name="scmOrganisation">Name of the SCM organization</param>
+        /// <param name="credentialId">Credential ID (optional)</param>
+        /// <param name="pageSize">Number of items in a page (optional)</param>
+        /// <param name="pageNumber">Page number (optional)</param>
+        /// <returns>ApiResponse of ScmOrganisations</returns>
+        public ApiResponse< ScmOrganisations > GetSCMOrganisationRepositoriesWithHttpInfo (string organization, string scm, string scmOrganisation, string credentialId = null, int? pageSize = null, int? pageNumber = null)
+        {
+            // verify the required parameter 'organization' is set
+            if (organization == null)
+                throw new ApiException(400, "Missing required parameter 'organization' when calling BlueOceanApi->GetSCMOrganisationRepositories");
+            // verify the required parameter 'scm' is set
+            if (scm == null)
+                throw new ApiException(400, "Missing required parameter 'scm' when calling BlueOceanApi->GetSCMOrganisationRepositories");
+            // verify the required parameter 'scmOrganisation' is set
+            if (scmOrganisation == null)
+                throw new ApiException(400, "Missing required parameter 'scmOrganisation' when calling BlueOceanApi->GetSCMOrganisationRepositories");
+
+            var localVarPath = "/blue/rest/organizations/{organization}/scm/{scm}/organizations/{scmOrganisation}/repositories";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (organization != null) localVarPathParams.Add("organization", Configuration.ApiClient.ParameterToString(organization)); // path parameter
+            if (scm != null) localVarPathParams.Add("scm", Configuration.ApiClient.ParameterToString(scm)); // path parameter
+            if (scmOrganisation != null) localVarPathParams.Add("scmOrganisation", Configuration.ApiClient.ParameterToString(scmOrganisation)); // path parameter
+            if (credentialId != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "credentialId", credentialId)); // query parameter
+            if (pageSize != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "pageSize", pageSize)); // query parameter
+            if (pageNumber != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "pageNumber", pageNumber)); // query parameter
+
+            // authentication (jenkins_auth) required
+            // http basic authentication required
+            if (!String.IsNullOrEmpty(Configuration.Username) || !String.IsNullOrEmpty(Configuration.Password))
+            {
+                localVarHeaderParams["Authorization"] = "Basic " + ApiClient.Base64Encode(Configuration.Username + ":" + Configuration.Password);
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("GetSCMOrganisationRepositories", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<ScmOrganisations>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (ScmOrganisations) Configuration.ApiClient.Deserialize(localVarResponse, typeof(ScmOrganisations)));
+        }
+
+        /// <summary>
+        ///  Retrieve SCM organization repositories details for an organization
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="organization">Name of the organization</param>
+        /// <param name="scm">Name of SCM</param>
+        /// <param name="scmOrganisation">Name of the SCM organization</param>
+        /// <param name="credentialId">Credential ID (optional)</param>
+        /// <param name="pageSize">Number of items in a page (optional)</param>
+        /// <param name="pageNumber">Page number (optional)</param>
+        /// <returns>Task of ScmOrganisations</returns>
+        public async System.Threading.Tasks.Task<ScmOrganisations> GetSCMOrganisationRepositoriesAsync (string organization, string scm, string scmOrganisation, string credentialId = null, int? pageSize = null, int? pageNumber = null)
+        {
+             ApiResponse<ScmOrganisations> localVarResponse = await GetSCMOrganisationRepositoriesAsyncWithHttpInfo(organization, scm, scmOrganisation, credentialId, pageSize, pageNumber);
+             return localVarResponse.Data;
+
+        }
+
+        /// <summary>
+        ///  Retrieve SCM organization repositories details for an organization
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="organization">Name of the organization</param>
+        /// <param name="scm">Name of SCM</param>
+        /// <param name="scmOrganisation">Name of the SCM organization</param>
+        /// <param name="credentialId">Credential ID (optional)</param>
+        /// <param name="pageSize">Number of items in a page (optional)</param>
+        /// <param name="pageNumber">Page number (optional)</param>
+        /// <returns>Task of ApiResponse (ScmOrganisations)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<ScmOrganisations>> GetSCMOrganisationRepositoriesAsyncWithHttpInfo (string organization, string scm, string scmOrganisation, string credentialId = null, int? pageSize = null, int? pageNumber = null)
+        {
+            // verify the required parameter 'organization' is set
+            if (organization == null)
+                throw new ApiException(400, "Missing required parameter 'organization' when calling BlueOceanApi->GetSCMOrganisationRepositories");
+            // verify the required parameter 'scm' is set
+            if (scm == null)
+                throw new ApiException(400, "Missing required parameter 'scm' when calling BlueOceanApi->GetSCMOrganisationRepositories");
+            // verify the required parameter 'scmOrganisation' is set
+            if (scmOrganisation == null)
+                throw new ApiException(400, "Missing required parameter 'scmOrganisation' when calling BlueOceanApi->GetSCMOrganisationRepositories");
+
+            var localVarPath = "/blue/rest/organizations/{organization}/scm/{scm}/organizations/{scmOrganisation}/repositories";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (organization != null) localVarPathParams.Add("organization", Configuration.ApiClient.ParameterToString(organization)); // path parameter
+            if (scm != null) localVarPathParams.Add("scm", Configuration.ApiClient.ParameterToString(scm)); // path parameter
+            if (scmOrganisation != null) localVarPathParams.Add("scmOrganisation", Configuration.ApiClient.ParameterToString(scmOrganisation)); // path parameter
+            if (credentialId != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "credentialId", credentialId)); // query parameter
+            if (pageSize != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "pageSize", pageSize)); // query parameter
+            if (pageNumber != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "pageNumber", pageNumber)); // query parameter
+
+            // authentication (jenkins_auth) required
+            // http basic authentication required
+            if (!String.IsNullOrEmpty(Configuration.Username) || !String.IsNullOrEmpty(Configuration.Password))
+            {
+                localVarHeaderParams["Authorization"] = "Basic " + ApiClient.Base64Encode(Configuration.Username + ":" + Configuration.Password);
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("GetSCMOrganisationRepositories", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<ScmOrganisations>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (ScmOrganisations) Configuration.ApiClient.Deserialize(localVarResponse, typeof(ScmOrganisations)));
+        }
+
+        /// <summary>
+        ///  Retrieve SCM organization repository details for an organization
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="organization">Name of the organization</param>
+        /// <param name="scm">Name of SCM</param>
+        /// <param name="scmOrganisation">Name of the SCM organization</param>
+        /// <param name="repository">Name of the SCM repository</param>
+        /// <param name="credentialId">Credential ID (optional)</param>
+        /// <returns>ScmOrganisations</returns>
+        public ScmOrganisations GetSCMOrganisationRepository (string organization, string scm, string scmOrganisation, string repository, string credentialId = null)
+        {
+             ApiResponse<ScmOrganisations> localVarResponse = GetSCMOrganisationRepositoryWithHttpInfo(organization, scm, scmOrganisation, repository, credentialId);
+             return localVarResponse.Data;
+        }
+
+        /// <summary>
+        ///  Retrieve SCM organization repository details for an organization
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="organization">Name of the organization</param>
+        /// <param name="scm">Name of SCM</param>
+        /// <param name="scmOrganisation">Name of the SCM organization</param>
+        /// <param name="repository">Name of the SCM repository</param>
+        /// <param name="credentialId">Credential ID (optional)</param>
+        /// <returns>ApiResponse of ScmOrganisations</returns>
+        public ApiResponse< ScmOrganisations > GetSCMOrganisationRepositoryWithHttpInfo (string organization, string scm, string scmOrganisation, string repository, string credentialId = null)
+        {
+            // verify the required parameter 'organization' is set
+            if (organization == null)
+                throw new ApiException(400, "Missing required parameter 'organization' when calling BlueOceanApi->GetSCMOrganisationRepository");
+            // verify the required parameter 'scm' is set
+            if (scm == null)
+                throw new ApiException(400, "Missing required parameter 'scm' when calling BlueOceanApi->GetSCMOrganisationRepository");
+            // verify the required parameter 'scmOrganisation' is set
+            if (scmOrganisation == null)
+                throw new ApiException(400, "Missing required parameter 'scmOrganisation' when calling BlueOceanApi->GetSCMOrganisationRepository");
+            // verify the required parameter 'repository' is set
+            if (repository == null)
+                throw new ApiException(400, "Missing required parameter 'repository' when calling BlueOceanApi->GetSCMOrganisationRepository");
+
+            var localVarPath = "/blue/rest/organizations/{organization}/scm/{scm}/organizations/{scmOrganisation}/repositories/{repository}";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (organization != null) localVarPathParams.Add("organization", Configuration.ApiClient.ParameterToString(organization)); // path parameter
+            if (scm != null) localVarPathParams.Add("scm", Configuration.ApiClient.ParameterToString(scm)); // path parameter
+            if (scmOrganisation != null) localVarPathParams.Add("scmOrganisation", Configuration.ApiClient.ParameterToString(scmOrganisation)); // path parameter
+            if (repository != null) localVarPathParams.Add("repository", Configuration.ApiClient.ParameterToString(repository)); // path parameter
+            if (credentialId != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "credentialId", credentialId)); // query parameter
+
+            // authentication (jenkins_auth) required
+            // http basic authentication required
+            if (!String.IsNullOrEmpty(Configuration.Username) || !String.IsNullOrEmpty(Configuration.Password))
+            {
+                localVarHeaderParams["Authorization"] = "Basic " + ApiClient.Base64Encode(Configuration.Username + ":" + Configuration.Password);
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("GetSCMOrganisationRepository", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<ScmOrganisations>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (ScmOrganisations) Configuration.ApiClient.Deserialize(localVarResponse, typeof(ScmOrganisations)));
+        }
+
+        /// <summary>
+        ///  Retrieve SCM organization repository details for an organization
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="organization">Name of the organization</param>
+        /// <param name="scm">Name of SCM</param>
+        /// <param name="scmOrganisation">Name of the SCM organization</param>
+        /// <param name="repository">Name of the SCM repository</param>
+        /// <param name="credentialId">Credential ID (optional)</param>
+        /// <returns>Task of ScmOrganisations</returns>
+        public async System.Threading.Tasks.Task<ScmOrganisations> GetSCMOrganisationRepositoryAsync (string organization, string scm, string scmOrganisation, string repository, string credentialId = null)
+        {
+             ApiResponse<ScmOrganisations> localVarResponse = await GetSCMOrganisationRepositoryAsyncWithHttpInfo(organization, scm, scmOrganisation, repository, credentialId);
+             return localVarResponse.Data;
+
+        }
+
+        /// <summary>
+        ///  Retrieve SCM organization repository details for an organization
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="organization">Name of the organization</param>
+        /// <param name="scm">Name of SCM</param>
+        /// <param name="scmOrganisation">Name of the SCM organization</param>
+        /// <param name="repository">Name of the SCM repository</param>
+        /// <param name="credentialId">Credential ID (optional)</param>
+        /// <returns>Task of ApiResponse (ScmOrganisations)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<ScmOrganisations>> GetSCMOrganisationRepositoryAsyncWithHttpInfo (string organization, string scm, string scmOrganisation, string repository, string credentialId = null)
+        {
+            // verify the required parameter 'organization' is set
+            if (organization == null)
+                throw new ApiException(400, "Missing required parameter 'organization' when calling BlueOceanApi->GetSCMOrganisationRepository");
+            // verify the required parameter 'scm' is set
+            if (scm == null)
+                throw new ApiException(400, "Missing required parameter 'scm' when calling BlueOceanApi->GetSCMOrganisationRepository");
+            // verify the required parameter 'scmOrganisation' is set
+            if (scmOrganisation == null)
+                throw new ApiException(400, "Missing required parameter 'scmOrganisation' when calling BlueOceanApi->GetSCMOrganisationRepository");
+            // verify the required parameter 'repository' is set
+            if (repository == null)
+                throw new ApiException(400, "Missing required parameter 'repository' when calling BlueOceanApi->GetSCMOrganisationRepository");
+
+            var localVarPath = "/blue/rest/organizations/{organization}/scm/{scm}/organizations/{scmOrganisation}/repositories/{repository}";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (organization != null) localVarPathParams.Add("organization", Configuration.ApiClient.ParameterToString(organization)); // path parameter
+            if (scm != null) localVarPathParams.Add("scm", Configuration.ApiClient.ParameterToString(scm)); // path parameter
+            if (scmOrganisation != null) localVarPathParams.Add("scmOrganisation", Configuration.ApiClient.ParameterToString(scmOrganisation)); // path parameter
+            if (repository != null) localVarPathParams.Add("repository", Configuration.ApiClient.ParameterToString(repository)); // path parameter
+            if (credentialId != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "credentialId", credentialId)); // query parameter
+
+            // authentication (jenkins_auth) required
+            // http basic authentication required
+            if (!String.IsNullOrEmpty(Configuration.Username) || !String.IsNullOrEmpty(Configuration.Password))
+            {
+                localVarHeaderParams["Authorization"] = "Basic " + ApiClient.Base64Encode(Configuration.Username + ":" + Configuration.Password);
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("GetSCMOrganisationRepository", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<ScmOrganisations>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (ScmOrganisations) Configuration.ApiClient.Deserialize(localVarResponse, typeof(ScmOrganisations)));
+        }
+
+        /// <summary>
+        ///  Retrieve SCM organizations details for an organization
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="organization">Name of the organization</param>
+        /// <param name="scm">Name of SCM</param>
+        /// <param name="credentialId">Credential ID (optional)</param>
+        /// <returns>ScmOrganisations</returns>
+        public ScmOrganisations GetSCMOrganisations (string organization, string scm, string credentialId = null)
+        {
+             ApiResponse<ScmOrganisations> localVarResponse = GetSCMOrganisationsWithHttpInfo(organization, scm, credentialId);
+             return localVarResponse.Data;
+        }
+
+        /// <summary>
+        ///  Retrieve SCM organizations details for an organization
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="organization">Name of the organization</param>
+        /// <param name="scm">Name of SCM</param>
+        /// <param name="credentialId">Credential ID (optional)</param>
+        /// <returns>ApiResponse of ScmOrganisations</returns>
+        public ApiResponse< ScmOrganisations > GetSCMOrganisationsWithHttpInfo (string organization, string scm, string credentialId = null)
+        {
+            // verify the required parameter 'organization' is set
+            if (organization == null)
+                throw new ApiException(400, "Missing required parameter 'organization' when calling BlueOceanApi->GetSCMOrganisations");
+            // verify the required parameter 'scm' is set
+            if (scm == null)
+                throw new ApiException(400, "Missing required parameter 'scm' when calling BlueOceanApi->GetSCMOrganisations");
+
+            var localVarPath = "/blue/rest/organizations/{organization}/scm/{scm}/organizations";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (organization != null) localVarPathParams.Add("organization", Configuration.ApiClient.ParameterToString(organization)); // path parameter
+            if (scm != null) localVarPathParams.Add("scm", Configuration.ApiClient.ParameterToString(scm)); // path parameter
+            if (credentialId != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "credentialId", credentialId)); // query parameter
+
+            // authentication (jenkins_auth) required
+            // http basic authentication required
+            if (!String.IsNullOrEmpty(Configuration.Username) || !String.IsNullOrEmpty(Configuration.Password))
+            {
+                localVarHeaderParams["Authorization"] = "Basic " + ApiClient.Base64Encode(Configuration.Username + ":" + Configuration.Password);
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("GetSCMOrganisations", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<ScmOrganisations>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (ScmOrganisations) Configuration.ApiClient.Deserialize(localVarResponse, typeof(ScmOrganisations)));
+        }
+
+        /// <summary>
+        ///  Retrieve SCM organizations details for an organization
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="organization">Name of the organization</param>
+        /// <param name="scm">Name of SCM</param>
+        /// <param name="credentialId">Credential ID (optional)</param>
+        /// <returns>Task of ScmOrganisations</returns>
+        public async System.Threading.Tasks.Task<ScmOrganisations> GetSCMOrganisationsAsync (string organization, string scm, string credentialId = null)
+        {
+             ApiResponse<ScmOrganisations> localVarResponse = await GetSCMOrganisationsAsyncWithHttpInfo(organization, scm, credentialId);
+             return localVarResponse.Data;
+
+        }
+
+        /// <summary>
+        ///  Retrieve SCM organizations details for an organization
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="organization">Name of the organization</param>
+        /// <param name="scm">Name of SCM</param>
+        /// <param name="credentialId">Credential ID (optional)</param>
+        /// <returns>Task of ApiResponse (ScmOrganisations)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<ScmOrganisations>> GetSCMOrganisationsAsyncWithHttpInfo (string organization, string scm, string credentialId = null)
+        {
+            // verify the required parameter 'organization' is set
+            if (organization == null)
+                throw new ApiException(400, "Missing required parameter 'organization' when calling BlueOceanApi->GetSCMOrganisations");
+            // verify the required parameter 'scm' is set
+            if (scm == null)
+                throw new ApiException(400, "Missing required parameter 'scm' when calling BlueOceanApi->GetSCMOrganisations");
+
+            var localVarPath = "/blue/rest/organizations/{organization}/scm/{scm}/organizations";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (organization != null) localVarPathParams.Add("organization", Configuration.ApiClient.ParameterToString(organization)); // path parameter
+            if (scm != null) localVarPathParams.Add("scm", Configuration.ApiClient.ParameterToString(scm)); // path parameter
+            if (credentialId != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "credentialId", credentialId)); // query parameter
+
+            // authentication (jenkins_auth) required
+            // http basic authentication required
+            if (!String.IsNullOrEmpty(Configuration.Username) || !String.IsNullOrEmpty(Configuration.Password))
+            {
+                localVarHeaderParams["Authorization"] = "Basic " + ApiClient.Base64Encode(Configuration.Username + ":" + Configuration.Password);
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("GetSCMOrganisations", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<ScmOrganisations>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (ScmOrganisations) Configuration.ApiClient.Deserialize(localVarResponse, typeof(ScmOrganisations)));
+        }
+
+        /// <summary>
+        ///  Retrieve user details for an organization
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="organization">Name of the organization</param>
         /// <param name="user">Name of the user</param>
-        /// <returns>SwaggyjenkinsUser</returns>
-        public SwaggyjenkinsUser GetUser (string organisation, string user)
+        /// <returns>User</returns>
+        public User GetUser (string organization, string user)
         {
-             ApiResponse<SwaggyjenkinsUser> localVarResponse = GetUserWithHttpInfo(organisation, user);
+             ApiResponse<User> localVarResponse = GetUserWithHttpInfo(organization, user);
              return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  Retrieve user details for an organisation
+        ///  Retrieve user details for an organization
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="organisation">Name of the organisation</param>
+        /// <param name="organization">Name of the organization</param>
         /// <param name="user">Name of the user</param>
-        /// <returns>ApiResponse of SwaggyjenkinsUser</returns>
-        public ApiResponse< SwaggyjenkinsUser > GetUserWithHttpInfo (string organisation, string user)
+        /// <returns>ApiResponse of User</returns>
+        public ApiResponse< User > GetUserWithHttpInfo (string organization, string user)
         {
-            // verify the required parameter 'organisation' is set
-            if (organisation == null)
-                throw new ApiException(400, "Missing required parameter 'organisation' when calling BlueOceanApi->GetUser");
+            // verify the required parameter 'organization' is set
+            if (organization == null)
+                throw new ApiException(400, "Missing required parameter 'organization' when calling BlueOceanApi->GetUser");
             // verify the required parameter 'user' is set
             if (user == null)
                 throw new ApiException(400, "Missing required parameter 'user' when calling BlueOceanApi->GetUser");
 
-            var localVarPath = "/blue/rest/organizations/{organisation}/users/{user}";
+            var localVarPath = "/blue/rest/organizations/{organization}/users/{user}";
             var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
             var localVarFormParams = new Dictionary<String, String>();
             var localVarFileParams = new Dictionary<String, FileParameter>();
@@ -2206,9 +6180,15 @@ namespace IO.Swagger.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            if (organisation != null) localVarPathParams.Add("organisation", Configuration.ApiClient.ParameterToString(organisation)); // path parameter
+            if (organization != null) localVarPathParams.Add("organization", Configuration.ApiClient.ParameterToString(organization)); // path parameter
             if (user != null) localVarPathParams.Add("user", Configuration.ApiClient.ParameterToString(user)); // path parameter
 
+            // authentication (jenkins_auth) required
+            // http basic authentication required
+            if (!String.IsNullOrEmpty(Configuration.Username) || !String.IsNullOrEmpty(Configuration.Password))
+            {
+                localVarHeaderParams["Authorization"] = "Basic " + ApiClient.Base64Encode(Configuration.Username + ":" + Configuration.Password);
+            }
 
             // make the HTTP request
             IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
@@ -2223,44 +6203,44 @@ namespace IO.Swagger.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<SwaggyjenkinsUser>(localVarStatusCode,
+            return new ApiResponse<User>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (SwaggyjenkinsUser) Configuration.ApiClient.Deserialize(localVarResponse, typeof(SwaggyjenkinsUser)));
+                (User) Configuration.ApiClient.Deserialize(localVarResponse, typeof(User)));
         }
 
         /// <summary>
-        ///  Retrieve user details for an organisation
+        ///  Retrieve user details for an organization
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="organisation">Name of the organisation</param>
+        /// <param name="organization">Name of the organization</param>
         /// <param name="user">Name of the user</param>
-        /// <returns>Task of SwaggyjenkinsUser</returns>
-        public async System.Threading.Tasks.Task<SwaggyjenkinsUser> GetUserAsync (string organisation, string user)
+        /// <returns>Task of User</returns>
+        public async System.Threading.Tasks.Task<User> GetUserAsync (string organization, string user)
         {
-             ApiResponse<SwaggyjenkinsUser> localVarResponse = await GetUserAsyncWithHttpInfo(organisation, user);
+             ApiResponse<User> localVarResponse = await GetUserAsyncWithHttpInfo(organization, user);
              return localVarResponse.Data;
 
         }
 
         /// <summary>
-        ///  Retrieve user details for an organisation
+        ///  Retrieve user details for an organization
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="organisation">Name of the organisation</param>
+        /// <param name="organization">Name of the organization</param>
         /// <param name="user">Name of the user</param>
-        /// <returns>Task of ApiResponse (SwaggyjenkinsUser)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<SwaggyjenkinsUser>> GetUserAsyncWithHttpInfo (string organisation, string user)
+        /// <returns>Task of ApiResponse (User)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<User>> GetUserAsyncWithHttpInfo (string organization, string user)
         {
-            // verify the required parameter 'organisation' is set
-            if (organisation == null)
-                throw new ApiException(400, "Missing required parameter 'organisation' when calling BlueOceanApi->GetUser");
+            // verify the required parameter 'organization' is set
+            if (organization == null)
+                throw new ApiException(400, "Missing required parameter 'organization' when calling BlueOceanApi->GetUser");
             // verify the required parameter 'user' is set
             if (user == null)
                 throw new ApiException(400, "Missing required parameter 'user' when calling BlueOceanApi->GetUser");
 
-            var localVarPath = "/blue/rest/organizations/{organisation}/users/{user}";
+            var localVarPath = "/blue/rest/organizations/{organization}/users/{user}";
             var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
             var localVarFormParams = new Dictionary<String, String>();
             var localVarFileParams = new Dictionary<String, FileParameter>();
@@ -2279,9 +6259,15 @@ namespace IO.Swagger.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            if (organisation != null) localVarPathParams.Add("organisation", Configuration.ApiClient.ParameterToString(organisation)); // path parameter
+            if (organization != null) localVarPathParams.Add("organization", Configuration.ApiClient.ParameterToString(organization)); // path parameter
             if (user != null) localVarPathParams.Add("user", Configuration.ApiClient.ParameterToString(user)); // path parameter
 
+            // authentication (jenkins_auth) required
+            // http basic authentication required
+            if (!String.IsNullOrEmpty(Configuration.Username) || !String.IsNullOrEmpty(Configuration.Password))
+            {
+                localVarHeaderParams["Authorization"] = "Basic " + ApiClient.Base64Encode(Configuration.Username + ":" + Configuration.Password);
+            }
 
             // make the HTTP request
             IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
@@ -2296,38 +6282,38 @@ namespace IO.Swagger.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<SwaggyjenkinsUser>(localVarStatusCode,
+            return new ApiResponse<User>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (SwaggyjenkinsUser) Configuration.ApiClient.Deserialize(localVarResponse, typeof(SwaggyjenkinsUser)));
+                (User) Configuration.ApiClient.Deserialize(localVarResponse, typeof(User)));
         }
 
         /// <summary>
-        ///  Retrieve users details for an organisation
+        ///  Retrieve user favorites details for an organization
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="organisation">Name of the organisation</param>
-        /// <returns>SwaggyjenkinsUser</returns>
-        public SwaggyjenkinsUser GetUsers (string organisation)
+        /// <param name="user">Name of the user</param>
+        /// <returns>UserFavorites</returns>
+        public UserFavorites GetUserFavorites (string user)
         {
-             ApiResponse<SwaggyjenkinsUser> localVarResponse = GetUsersWithHttpInfo(organisation);
+             ApiResponse<UserFavorites> localVarResponse = GetUserFavoritesWithHttpInfo(user);
              return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  Retrieve users details for an organisation
+        ///  Retrieve user favorites details for an organization
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="organisation">Name of the organisation</param>
-        /// <returns>ApiResponse of SwaggyjenkinsUser</returns>
-        public ApiResponse< SwaggyjenkinsUser > GetUsersWithHttpInfo (string organisation)
+        /// <param name="user">Name of the user</param>
+        /// <returns>ApiResponse of UserFavorites</returns>
+        public ApiResponse< UserFavorites > GetUserFavoritesWithHttpInfo (string user)
         {
-            // verify the required parameter 'organisation' is set
-            if (organisation == null)
-                throw new ApiException(400, "Missing required parameter 'organisation' when calling BlueOceanApi->GetUsers");
+            // verify the required parameter 'user' is set
+            if (user == null)
+                throw new ApiException(400, "Missing required parameter 'user' when calling BlueOceanApi->GetUserFavorites");
 
-            var localVarPath = "/blue/rest/organizations/{organisation}/users/";
+            var localVarPath = "/blue/rest/users/{user}/favorites";
             var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
             var localVarFormParams = new Dictionary<String, String>();
             var localVarFileParams = new Dictionary<String, FileParameter>();
@@ -2346,8 +6332,159 @@ namespace IO.Swagger.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            if (organisation != null) localVarPathParams.Add("organisation", Configuration.ApiClient.ParameterToString(organisation)); // path parameter
+            if (user != null) localVarPathParams.Add("user", Configuration.ApiClient.ParameterToString(user)); // path parameter
 
+            // authentication (jenkins_auth) required
+            // http basic authentication required
+            if (!String.IsNullOrEmpty(Configuration.Username) || !String.IsNullOrEmpty(Configuration.Password))
+            {
+                localVarHeaderParams["Authorization"] = "Basic " + ApiClient.Base64Encode(Configuration.Username + ":" + Configuration.Password);
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("GetUserFavorites", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<UserFavorites>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (UserFavorites) Configuration.ApiClient.Deserialize(localVarResponse, typeof(UserFavorites)));
+        }
+
+        /// <summary>
+        ///  Retrieve user favorites details for an organization
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="user">Name of the user</param>
+        /// <returns>Task of UserFavorites</returns>
+        public async System.Threading.Tasks.Task<UserFavorites> GetUserFavoritesAsync (string user)
+        {
+             ApiResponse<UserFavorites> localVarResponse = await GetUserFavoritesAsyncWithHttpInfo(user);
+             return localVarResponse.Data;
+
+        }
+
+        /// <summary>
+        ///  Retrieve user favorites details for an organization
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="user">Name of the user</param>
+        /// <returns>Task of ApiResponse (UserFavorites)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<UserFavorites>> GetUserFavoritesAsyncWithHttpInfo (string user)
+        {
+            // verify the required parameter 'user' is set
+            if (user == null)
+                throw new ApiException(400, "Missing required parameter 'user' when calling BlueOceanApi->GetUserFavorites");
+
+            var localVarPath = "/blue/rest/users/{user}/favorites";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (user != null) localVarPathParams.Add("user", Configuration.ApiClient.ParameterToString(user)); // path parameter
+
+            // authentication (jenkins_auth) required
+            // http basic authentication required
+            if (!String.IsNullOrEmpty(Configuration.Username) || !String.IsNullOrEmpty(Configuration.Password))
+            {
+                localVarHeaderParams["Authorization"] = "Basic " + ApiClient.Base64Encode(Configuration.Username + ":" + Configuration.Password);
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("GetUserFavorites", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<UserFavorites>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (UserFavorites) Configuration.ApiClient.Deserialize(localVarResponse, typeof(UserFavorites)));
+        }
+
+        /// <summary>
+        ///  Retrieve users details for an organization
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="organization">Name of the organization</param>
+        /// <returns>User</returns>
+        public User GetUsers (string organization)
+        {
+             ApiResponse<User> localVarResponse = GetUsersWithHttpInfo(organization);
+             return localVarResponse.Data;
+        }
+
+        /// <summary>
+        ///  Retrieve users details for an organization
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="organization">Name of the organization</param>
+        /// <returns>ApiResponse of User</returns>
+        public ApiResponse< User > GetUsersWithHttpInfo (string organization)
+        {
+            // verify the required parameter 'organization' is set
+            if (organization == null)
+                throw new ApiException(400, "Missing required parameter 'organization' when calling BlueOceanApi->GetUsers");
+
+            var localVarPath = "/blue/rest/organizations/{organization}/users/";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (organization != null) localVarPathParams.Add("organization", Configuration.ApiClient.ParameterToString(organization)); // path parameter
+
+            // authentication (jenkins_auth) required
+            // http basic authentication required
+            if (!String.IsNullOrEmpty(Configuration.Username) || !String.IsNullOrEmpty(Configuration.Password))
+            {
+                localVarHeaderParams["Authorization"] = "Basic " + ApiClient.Base64Encode(Configuration.Username + ":" + Configuration.Password);
+            }
 
             // make the HTTP request
             IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
@@ -2362,39 +6499,39 @@ namespace IO.Swagger.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<SwaggyjenkinsUser>(localVarStatusCode,
+            return new ApiResponse<User>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (SwaggyjenkinsUser) Configuration.ApiClient.Deserialize(localVarResponse, typeof(SwaggyjenkinsUser)));
+                (User) Configuration.ApiClient.Deserialize(localVarResponse, typeof(User)));
         }
 
         /// <summary>
-        ///  Retrieve users details for an organisation
+        ///  Retrieve users details for an organization
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="organisation">Name of the organisation</param>
-        /// <returns>Task of SwaggyjenkinsUser</returns>
-        public async System.Threading.Tasks.Task<SwaggyjenkinsUser> GetUsersAsync (string organisation)
+        /// <param name="organization">Name of the organization</param>
+        /// <returns>Task of User</returns>
+        public async System.Threading.Tasks.Task<User> GetUsersAsync (string organization)
         {
-             ApiResponse<SwaggyjenkinsUser> localVarResponse = await GetUsersAsyncWithHttpInfo(organisation);
+             ApiResponse<User> localVarResponse = await GetUsersAsyncWithHttpInfo(organization);
              return localVarResponse.Data;
 
         }
 
         /// <summary>
-        ///  Retrieve users details for an organisation
+        ///  Retrieve users details for an organization
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="organisation">Name of the organisation</param>
-        /// <returns>Task of ApiResponse (SwaggyjenkinsUser)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<SwaggyjenkinsUser>> GetUsersAsyncWithHttpInfo (string organisation)
+        /// <param name="organization">Name of the organization</param>
+        /// <returns>Task of ApiResponse (User)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<User>> GetUsersAsyncWithHttpInfo (string organization)
         {
-            // verify the required parameter 'organisation' is set
-            if (organisation == null)
-                throw new ApiException(400, "Missing required parameter 'organisation' when calling BlueOceanApi->GetUsers");
+            // verify the required parameter 'organization' is set
+            if (organization == null)
+                throw new ApiException(400, "Missing required parameter 'organization' when calling BlueOceanApi->GetUsers");
 
-            var localVarPath = "/blue/rest/organizations/{organisation}/users/";
+            var localVarPath = "/blue/rest/organizations/{organization}/users/";
             var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
             var localVarFormParams = new Dictionary<String, String>();
             var localVarFileParams = new Dictionary<String, FileParameter>();
@@ -2413,8 +6550,14 @@ namespace IO.Swagger.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            if (organisation != null) localVarPathParams.Add("organisation", Configuration.ApiClient.ParameterToString(organisation)); // path parameter
+            if (organization != null) localVarPathParams.Add("organization", Configuration.ApiClient.ParameterToString(organization)); // path parameter
 
+            // authentication (jenkins_auth) required
+            // http basic authentication required
+            if (!String.IsNullOrEmpty(Configuration.Username) || !String.IsNullOrEmpty(Configuration.Password))
+            {
+                localVarHeaderParams["Authorization"] = "Basic " + ApiClient.Base64Encode(Configuration.Username + ":" + Configuration.Password);
+            }
 
             // make the HTTP request
             IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
@@ -2429,16 +6572,706 @@ namespace IO.Swagger.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<SwaggyjenkinsUser>(localVarStatusCode,
+            return new ApiResponse<User>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (SwaggyjenkinsUser) Configuration.ApiClient.Deserialize(localVarResponse, typeof(SwaggyjenkinsUser)));
+                (User) Configuration.ApiClient.Deserialize(localVarResponse, typeof(User)));
         }
 
         /// <summary>
-        ///  Get classes details
+        ///  Replay an organization pipeline run
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="q">Query string containing an array of class names</param>
+        /// <param name="organization">Name of the organization</param>
+        /// <param name="pipeline">Name of the pipeline</param>
+        /// <param name="run">Name of the run</param>
+        /// <returns>QueueItemImpl</returns>
+        public QueueItemImpl PostPipelineRun (string organization, string pipeline, string run)
+        {
+             ApiResponse<QueueItemImpl> localVarResponse = PostPipelineRunWithHttpInfo(organization, pipeline, run);
+             return localVarResponse.Data;
+        }
+
+        /// <summary>
+        ///  Replay an organization pipeline run
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="organization">Name of the organization</param>
+        /// <param name="pipeline">Name of the pipeline</param>
+        /// <param name="run">Name of the run</param>
+        /// <returns>ApiResponse of QueueItemImpl</returns>
+        public ApiResponse< QueueItemImpl > PostPipelineRunWithHttpInfo (string organization, string pipeline, string run)
+        {
+            // verify the required parameter 'organization' is set
+            if (organization == null)
+                throw new ApiException(400, "Missing required parameter 'organization' when calling BlueOceanApi->PostPipelineRun");
+            // verify the required parameter 'pipeline' is set
+            if (pipeline == null)
+                throw new ApiException(400, "Missing required parameter 'pipeline' when calling BlueOceanApi->PostPipelineRun");
+            // verify the required parameter 'run' is set
+            if (run == null)
+                throw new ApiException(400, "Missing required parameter 'run' when calling BlueOceanApi->PostPipelineRun");
+
+            var localVarPath = "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/replay";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (organization != null) localVarPathParams.Add("organization", Configuration.ApiClient.ParameterToString(organization)); // path parameter
+            if (pipeline != null) localVarPathParams.Add("pipeline", Configuration.ApiClient.ParameterToString(pipeline)); // path parameter
+            if (run != null) localVarPathParams.Add("run", Configuration.ApiClient.ParameterToString(run)); // path parameter
+
+            // authentication (jenkins_auth) required
+            // http basic authentication required
+            if (!String.IsNullOrEmpty(Configuration.Username) || !String.IsNullOrEmpty(Configuration.Password))
+            {
+                localVarHeaderParams["Authorization"] = "Basic " + ApiClient.Base64Encode(Configuration.Username + ":" + Configuration.Password);
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
+                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("PostPipelineRun", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<QueueItemImpl>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (QueueItemImpl) Configuration.ApiClient.Deserialize(localVarResponse, typeof(QueueItemImpl)));
+        }
+
+        /// <summary>
+        ///  Replay an organization pipeline run
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="organization">Name of the organization</param>
+        /// <param name="pipeline">Name of the pipeline</param>
+        /// <param name="run">Name of the run</param>
+        /// <returns>Task of QueueItemImpl</returns>
+        public async System.Threading.Tasks.Task<QueueItemImpl> PostPipelineRunAsync (string organization, string pipeline, string run)
+        {
+             ApiResponse<QueueItemImpl> localVarResponse = await PostPipelineRunAsyncWithHttpInfo(organization, pipeline, run);
+             return localVarResponse.Data;
+
+        }
+
+        /// <summary>
+        ///  Replay an organization pipeline run
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="organization">Name of the organization</param>
+        /// <param name="pipeline">Name of the pipeline</param>
+        /// <param name="run">Name of the run</param>
+        /// <returns>Task of ApiResponse (QueueItemImpl)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<QueueItemImpl>> PostPipelineRunAsyncWithHttpInfo (string organization, string pipeline, string run)
+        {
+            // verify the required parameter 'organization' is set
+            if (organization == null)
+                throw new ApiException(400, "Missing required parameter 'organization' when calling BlueOceanApi->PostPipelineRun");
+            // verify the required parameter 'pipeline' is set
+            if (pipeline == null)
+                throw new ApiException(400, "Missing required parameter 'pipeline' when calling BlueOceanApi->PostPipelineRun");
+            // verify the required parameter 'run' is set
+            if (run == null)
+                throw new ApiException(400, "Missing required parameter 'run' when calling BlueOceanApi->PostPipelineRun");
+
+            var localVarPath = "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/replay";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (organization != null) localVarPathParams.Add("organization", Configuration.ApiClient.ParameterToString(organization)); // path parameter
+            if (pipeline != null) localVarPathParams.Add("pipeline", Configuration.ApiClient.ParameterToString(pipeline)); // path parameter
+            if (run != null) localVarPathParams.Add("run", Configuration.ApiClient.ParameterToString(run)); // path parameter
+
+            // authentication (jenkins_auth) required
+            // http basic authentication required
+            if (!String.IsNullOrEmpty(Configuration.Username) || !String.IsNullOrEmpty(Configuration.Password))
+            {
+                localVarHeaderParams["Authorization"] = "Basic " + ApiClient.Base64Encode(Configuration.Username + ":" + Configuration.Password);
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("PostPipelineRun", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<QueueItemImpl>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (QueueItemImpl) Configuration.ApiClient.Deserialize(localVarResponse, typeof(QueueItemImpl)));
+        }
+
+        /// <summary>
+        ///  Start a build for an organization pipeline
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="organization">Name of the organization</param>
+        /// <param name="pipeline">Name of the pipeline</param>
+        /// <returns>QueueItemImpl</returns>
+        public QueueItemImpl PostPipelineRuns (string organization, string pipeline)
+        {
+             ApiResponse<QueueItemImpl> localVarResponse = PostPipelineRunsWithHttpInfo(organization, pipeline);
+             return localVarResponse.Data;
+        }
+
+        /// <summary>
+        ///  Start a build for an organization pipeline
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="organization">Name of the organization</param>
+        /// <param name="pipeline">Name of the pipeline</param>
+        /// <returns>ApiResponse of QueueItemImpl</returns>
+        public ApiResponse< QueueItemImpl > PostPipelineRunsWithHttpInfo (string organization, string pipeline)
+        {
+            // verify the required parameter 'organization' is set
+            if (organization == null)
+                throw new ApiException(400, "Missing required parameter 'organization' when calling BlueOceanApi->PostPipelineRuns");
+            // verify the required parameter 'pipeline' is set
+            if (pipeline == null)
+                throw new ApiException(400, "Missing required parameter 'pipeline' when calling BlueOceanApi->PostPipelineRuns");
+
+            var localVarPath = "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (organization != null) localVarPathParams.Add("organization", Configuration.ApiClient.ParameterToString(organization)); // path parameter
+            if (pipeline != null) localVarPathParams.Add("pipeline", Configuration.ApiClient.ParameterToString(pipeline)); // path parameter
+
+            // authentication (jenkins_auth) required
+            // http basic authentication required
+            if (!String.IsNullOrEmpty(Configuration.Username) || !String.IsNullOrEmpty(Configuration.Password))
+            {
+                localVarHeaderParams["Authorization"] = "Basic " + ApiClient.Base64Encode(Configuration.Username + ":" + Configuration.Password);
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
+                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("PostPipelineRuns", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<QueueItemImpl>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (QueueItemImpl) Configuration.ApiClient.Deserialize(localVarResponse, typeof(QueueItemImpl)));
+        }
+
+        /// <summary>
+        ///  Start a build for an organization pipeline
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="organization">Name of the organization</param>
+        /// <param name="pipeline">Name of the pipeline</param>
+        /// <returns>Task of QueueItemImpl</returns>
+        public async System.Threading.Tasks.Task<QueueItemImpl> PostPipelineRunsAsync (string organization, string pipeline)
+        {
+             ApiResponse<QueueItemImpl> localVarResponse = await PostPipelineRunsAsyncWithHttpInfo(organization, pipeline);
+             return localVarResponse.Data;
+
+        }
+
+        /// <summary>
+        ///  Start a build for an organization pipeline
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="organization">Name of the organization</param>
+        /// <param name="pipeline">Name of the pipeline</param>
+        /// <returns>Task of ApiResponse (QueueItemImpl)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<QueueItemImpl>> PostPipelineRunsAsyncWithHttpInfo (string organization, string pipeline)
+        {
+            // verify the required parameter 'organization' is set
+            if (organization == null)
+                throw new ApiException(400, "Missing required parameter 'organization' when calling BlueOceanApi->PostPipelineRuns");
+            // verify the required parameter 'pipeline' is set
+            if (pipeline == null)
+                throw new ApiException(400, "Missing required parameter 'pipeline' when calling BlueOceanApi->PostPipelineRuns");
+
+            var localVarPath = "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (organization != null) localVarPathParams.Add("organization", Configuration.ApiClient.ParameterToString(organization)); // path parameter
+            if (pipeline != null) localVarPathParams.Add("pipeline", Configuration.ApiClient.ParameterToString(pipeline)); // path parameter
+
+            // authentication (jenkins_auth) required
+            // http basic authentication required
+            if (!String.IsNullOrEmpty(Configuration.Username) || !String.IsNullOrEmpty(Configuration.Password))
+            {
+                localVarHeaderParams["Authorization"] = "Basic " + ApiClient.Base64Encode(Configuration.Username + ":" + Configuration.Password);
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("PostPipelineRuns", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<QueueItemImpl>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (QueueItemImpl) Configuration.ApiClient.Deserialize(localVarResponse, typeof(QueueItemImpl)));
+        }
+
+        /// <summary>
+        ///  Favorite/unfavorite a pipeline
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="organization">Name of the organization</param>
+        /// <param name="pipeline">Name of the pipeline</param>
+        /// <param name="body">Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite</param>
+        /// <returns>FavoriteImpl</returns>
+        public FavoriteImpl PutPipelineFavorite (string organization, string pipeline, Body body)
+        {
+             ApiResponse<FavoriteImpl> localVarResponse = PutPipelineFavoriteWithHttpInfo(organization, pipeline, body);
+             return localVarResponse.Data;
+        }
+
+        /// <summary>
+        ///  Favorite/unfavorite a pipeline
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="organization">Name of the organization</param>
+        /// <param name="pipeline">Name of the pipeline</param>
+        /// <param name="body">Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite</param>
+        /// <returns>ApiResponse of FavoriteImpl</returns>
+        public ApiResponse< FavoriteImpl > PutPipelineFavoriteWithHttpInfo (string organization, string pipeline, Body body)
+        {
+            // verify the required parameter 'organization' is set
+            if (organization == null)
+                throw new ApiException(400, "Missing required parameter 'organization' when calling BlueOceanApi->PutPipelineFavorite");
+            // verify the required parameter 'pipeline' is set
+            if (pipeline == null)
+                throw new ApiException(400, "Missing required parameter 'pipeline' when calling BlueOceanApi->PutPipelineFavorite");
+            // verify the required parameter 'body' is set
+            if (body == null)
+                throw new ApiException(400, "Missing required parameter 'body' when calling BlueOceanApi->PutPipelineFavorite");
+
+            var localVarPath = "/blue/rest/organizations/{organization}/pipelines/{pipeline}/favorite";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (organization != null) localVarPathParams.Add("organization", Configuration.ApiClient.ParameterToString(organization)); // path parameter
+            if (pipeline != null) localVarPathParams.Add("pipeline", Configuration.ApiClient.ParameterToString(pipeline)); // path parameter
+            if (body != null && body.GetType() != typeof(byte[]))
+            {
+                localVarPostBody = Configuration.ApiClient.Serialize(body); // http body (model) parameter
+            }
+            else
+            {
+                localVarPostBody = body; // byte array
+            }
+
+            // authentication (jenkins_auth) required
+            // http basic authentication required
+            if (!String.IsNullOrEmpty(Configuration.Username) || !String.IsNullOrEmpty(Configuration.Password))
+            {
+                localVarHeaderParams["Authorization"] = "Basic " + ApiClient.Base64Encode(Configuration.Username + ":" + Configuration.Password);
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
+                Method.PUT, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("PutPipelineFavorite", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<FavoriteImpl>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (FavoriteImpl) Configuration.ApiClient.Deserialize(localVarResponse, typeof(FavoriteImpl)));
+        }
+
+        /// <summary>
+        ///  Favorite/unfavorite a pipeline
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="organization">Name of the organization</param>
+        /// <param name="pipeline">Name of the pipeline</param>
+        /// <param name="body">Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite</param>
+        /// <returns>Task of FavoriteImpl</returns>
+        public async System.Threading.Tasks.Task<FavoriteImpl> PutPipelineFavoriteAsync (string organization, string pipeline, Body body)
+        {
+             ApiResponse<FavoriteImpl> localVarResponse = await PutPipelineFavoriteAsyncWithHttpInfo(organization, pipeline, body);
+             return localVarResponse.Data;
+
+        }
+
+        /// <summary>
+        ///  Favorite/unfavorite a pipeline
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="organization">Name of the organization</param>
+        /// <param name="pipeline">Name of the pipeline</param>
+        /// <param name="body">Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite</param>
+        /// <returns>Task of ApiResponse (FavoriteImpl)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<FavoriteImpl>> PutPipelineFavoriteAsyncWithHttpInfo (string organization, string pipeline, Body body)
+        {
+            // verify the required parameter 'organization' is set
+            if (organization == null)
+                throw new ApiException(400, "Missing required parameter 'organization' when calling BlueOceanApi->PutPipelineFavorite");
+            // verify the required parameter 'pipeline' is set
+            if (pipeline == null)
+                throw new ApiException(400, "Missing required parameter 'pipeline' when calling BlueOceanApi->PutPipelineFavorite");
+            // verify the required parameter 'body' is set
+            if (body == null)
+                throw new ApiException(400, "Missing required parameter 'body' when calling BlueOceanApi->PutPipelineFavorite");
+
+            var localVarPath = "/blue/rest/organizations/{organization}/pipelines/{pipeline}/favorite";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (organization != null) localVarPathParams.Add("organization", Configuration.ApiClient.ParameterToString(organization)); // path parameter
+            if (pipeline != null) localVarPathParams.Add("pipeline", Configuration.ApiClient.ParameterToString(pipeline)); // path parameter
+            if (body != null && body.GetType() != typeof(byte[]))
+            {
+                localVarPostBody = Configuration.ApiClient.Serialize(body); // http body (model) parameter
+            }
+            else
+            {
+                localVarPostBody = body; // byte array
+            }
+
+            // authentication (jenkins_auth) required
+            // http basic authentication required
+            if (!String.IsNullOrEmpty(Configuration.Username) || !String.IsNullOrEmpty(Configuration.Password))
+            {
+                localVarHeaderParams["Authorization"] = "Basic " + ApiClient.Base64Encode(Configuration.Username + ":" + Configuration.Password);
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.PUT, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("PutPipelineFavorite", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<FavoriteImpl>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (FavoriteImpl) Configuration.ApiClient.Deserialize(localVarResponse, typeof(FavoriteImpl)));
+        }
+
+        /// <summary>
+        ///  Stop a build of an organization pipeline
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="organization">Name of the organization</param>
+        /// <param name="pipeline">Name of the pipeline</param>
+        /// <param name="run">Name of the run</param>
+        /// <param name="blocking">Set to true to make blocking stop, default: false (optional)</param>
+        /// <param name="timeOutInSecs">Timeout in seconds, default: 10 seconds (optional)</param>
+        /// <returns>PipelineRun</returns>
+        public PipelineRun PutPipelineRun (string organization, string pipeline, string run, string blocking = null, int? timeOutInSecs = null)
+        {
+             ApiResponse<PipelineRun> localVarResponse = PutPipelineRunWithHttpInfo(organization, pipeline, run, blocking, timeOutInSecs);
+             return localVarResponse.Data;
+        }
+
+        /// <summary>
+        ///  Stop a build of an organization pipeline
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="organization">Name of the organization</param>
+        /// <param name="pipeline">Name of the pipeline</param>
+        /// <param name="run">Name of the run</param>
+        /// <param name="blocking">Set to true to make blocking stop, default: false (optional)</param>
+        /// <param name="timeOutInSecs">Timeout in seconds, default: 10 seconds (optional)</param>
+        /// <returns>ApiResponse of PipelineRun</returns>
+        public ApiResponse< PipelineRun > PutPipelineRunWithHttpInfo (string organization, string pipeline, string run, string blocking = null, int? timeOutInSecs = null)
+        {
+            // verify the required parameter 'organization' is set
+            if (organization == null)
+                throw new ApiException(400, "Missing required parameter 'organization' when calling BlueOceanApi->PutPipelineRun");
+            // verify the required parameter 'pipeline' is set
+            if (pipeline == null)
+                throw new ApiException(400, "Missing required parameter 'pipeline' when calling BlueOceanApi->PutPipelineRun");
+            // verify the required parameter 'run' is set
+            if (run == null)
+                throw new ApiException(400, "Missing required parameter 'run' when calling BlueOceanApi->PutPipelineRun");
+
+            var localVarPath = "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/stop";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (organization != null) localVarPathParams.Add("organization", Configuration.ApiClient.ParameterToString(organization)); // path parameter
+            if (pipeline != null) localVarPathParams.Add("pipeline", Configuration.ApiClient.ParameterToString(pipeline)); // path parameter
+            if (run != null) localVarPathParams.Add("run", Configuration.ApiClient.ParameterToString(run)); // path parameter
+            if (blocking != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "blocking", blocking)); // query parameter
+            if (timeOutInSecs != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "timeOutInSecs", timeOutInSecs)); // query parameter
+
+            // authentication (jenkins_auth) required
+            // http basic authentication required
+            if (!String.IsNullOrEmpty(Configuration.Username) || !String.IsNullOrEmpty(Configuration.Password))
+            {
+                localVarHeaderParams["Authorization"] = "Basic " + ApiClient.Base64Encode(Configuration.Username + ":" + Configuration.Password);
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
+                Method.PUT, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("PutPipelineRun", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<PipelineRun>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (PipelineRun) Configuration.ApiClient.Deserialize(localVarResponse, typeof(PipelineRun)));
+        }
+
+        /// <summary>
+        ///  Stop a build of an organization pipeline
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="organization">Name of the organization</param>
+        /// <param name="pipeline">Name of the pipeline</param>
+        /// <param name="run">Name of the run</param>
+        /// <param name="blocking">Set to true to make blocking stop, default: false (optional)</param>
+        /// <param name="timeOutInSecs">Timeout in seconds, default: 10 seconds (optional)</param>
+        /// <returns>Task of PipelineRun</returns>
+        public async System.Threading.Tasks.Task<PipelineRun> PutPipelineRunAsync (string organization, string pipeline, string run, string blocking = null, int? timeOutInSecs = null)
+        {
+             ApiResponse<PipelineRun> localVarResponse = await PutPipelineRunAsyncWithHttpInfo(organization, pipeline, run, blocking, timeOutInSecs);
+             return localVarResponse.Data;
+
+        }
+
+        /// <summary>
+        ///  Stop a build of an organization pipeline
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="organization">Name of the organization</param>
+        /// <param name="pipeline">Name of the pipeline</param>
+        /// <param name="run">Name of the run</param>
+        /// <param name="blocking">Set to true to make blocking stop, default: false (optional)</param>
+        /// <param name="timeOutInSecs">Timeout in seconds, default: 10 seconds (optional)</param>
+        /// <returns>Task of ApiResponse (PipelineRun)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<PipelineRun>> PutPipelineRunAsyncWithHttpInfo (string organization, string pipeline, string run, string blocking = null, int? timeOutInSecs = null)
+        {
+            // verify the required parameter 'organization' is set
+            if (organization == null)
+                throw new ApiException(400, "Missing required parameter 'organization' when calling BlueOceanApi->PutPipelineRun");
+            // verify the required parameter 'pipeline' is set
+            if (pipeline == null)
+                throw new ApiException(400, "Missing required parameter 'pipeline' when calling BlueOceanApi->PutPipelineRun");
+            // verify the required parameter 'run' is set
+            if (run == null)
+                throw new ApiException(400, "Missing required parameter 'run' when calling BlueOceanApi->PutPipelineRun");
+
+            var localVarPath = "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/stop";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (organization != null) localVarPathParams.Add("organization", Configuration.ApiClient.ParameterToString(organization)); // path parameter
+            if (pipeline != null) localVarPathParams.Add("pipeline", Configuration.ApiClient.ParameterToString(pipeline)); // path parameter
+            if (run != null) localVarPathParams.Add("run", Configuration.ApiClient.ParameterToString(run)); // path parameter
+            if (blocking != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "blocking", blocking)); // query parameter
+            if (timeOutInSecs != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "timeOutInSecs", timeOutInSecs)); // query parameter
+
+            // authentication (jenkins_auth) required
+            // http basic authentication required
+            if (!String.IsNullOrEmpty(Configuration.Username) || !String.IsNullOrEmpty(Configuration.Password))
+            {
+                localVarHeaderParams["Authorization"] = "Basic " + ApiClient.Base64Encode(Configuration.Username + ":" + Configuration.Password);
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.PUT, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("PutPipelineRun", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<PipelineRun>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (PipelineRun) Configuration.ApiClient.Deserialize(localVarResponse, typeof(PipelineRun)));
+        }
+
+        /// <summary>
+        ///  Search for any resource details
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="q">Query string</param>
         /// <returns>string</returns>
         public string Search (string q)
         {
@@ -2447,10 +7280,10 @@ namespace IO.Swagger.Api
         }
 
         /// <summary>
-        ///  Get classes details
+        ///  Search for any resource details
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="q">Query string containing an array of class names</param>
+        /// <param name="q">Query string</param>
         /// <returns>ApiResponse of string</returns>
         public ApiResponse< string > SearchWithHttpInfo (string q)
         {
@@ -2458,9 +7291,9 @@ namespace IO.Swagger.Api
             if (q == null)
                 throw new ApiException(400, "Missing required parameter 'q' when calling BlueOceanApi->Search");
 
-            var localVarPath = "/blue/rest/classes/";
+            var localVarPath = "/blue/rest/search/";
             var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
             var localVarFormParams = new Dictionary<String, String>();
             var localVarFileParams = new Dictionary<String, FileParameter>();
@@ -2479,8 +7312,14 @@ namespace IO.Swagger.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            if (q != null) localVarQueryParams.Add("q", Configuration.ApiClient.ParameterToString(q)); // query parameter
+            if (q != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "q", q)); // query parameter
 
+            // authentication (jenkins_auth) required
+            // http basic authentication required
+            if (!String.IsNullOrEmpty(Configuration.Username) || !String.IsNullOrEmpty(Configuration.Password))
+            {
+                localVarHeaderParams["Authorization"] = "Basic " + ApiClient.Base64Encode(Configuration.Username + ":" + Configuration.Password);
+            }
 
             // make the HTTP request
             IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
@@ -2501,10 +7340,10 @@ namespace IO.Swagger.Api
         }
 
         /// <summary>
-        ///  Get classes details
+        ///  Search for any resource details
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="q">Query string containing an array of class names</param>
+        /// <param name="q">Query string</param>
         /// <returns>Task of string</returns>
         public async System.Threading.Tasks.Task<string> SearchAsync (string q)
         {
@@ -2514,10 +7353,10 @@ namespace IO.Swagger.Api
         }
 
         /// <summary>
-        ///  Get classes details
+        ///  Search for any resource details
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="q">Query string containing an array of class names</param>
+        /// <param name="q">Query string</param>
         /// <returns>Task of ApiResponse (string)</returns>
         public async System.Threading.Tasks.Task<ApiResponse<string>> SearchAsyncWithHttpInfo (string q)
         {
@@ -2525,9 +7364,9 @@ namespace IO.Swagger.Api
             if (q == null)
                 throw new ApiException(400, "Missing required parameter 'q' when calling BlueOceanApi->Search");
 
-            var localVarPath = "/blue/rest/classes/";
+            var localVarPath = "/blue/rest/search/";
             var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
             var localVarFormParams = new Dictionary<String, String>();
             var localVarFileParams = new Dictionary<String, FileParameter>();
@@ -2546,8 +7385,14 @@ namespace IO.Swagger.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            if (q != null) localVarQueryParams.Add("q", Configuration.ApiClient.ParameterToString(q)); // query parameter
+            if (q != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "q", q)); // query parameter
 
+            // authentication (jenkins_auth) required
+            // http basic authentication required
+            if (!String.IsNullOrEmpty(Configuration.Username) || !String.IsNullOrEmpty(Configuration.Password))
+            {
+                localVarHeaderParams["Authorization"] = "Basic " + ApiClient.Base64Encode(Configuration.Username + ":" + Configuration.Password);
+            }
 
             // make the HTTP request
             IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
@@ -2568,32 +7413,32 @@ namespace IO.Swagger.Api
         }
 
         /// <summary>
-        ///  Search for any resource details
+        ///  Get classes details
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="q">Query string</param>
+        /// <param name="q">Query string containing an array of class names</param>
         /// <returns>string</returns>
-        public string Search_0 (string q)
+        public string SearchClasses (string q)
         {
-             ApiResponse<string> localVarResponse = Search_0WithHttpInfo(q);
+             ApiResponse<string> localVarResponse = SearchClassesWithHttpInfo(q);
              return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  Search for any resource details
+        ///  Get classes details
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="q">Query string</param>
+        /// <param name="q">Query string containing an array of class names</param>
         /// <returns>ApiResponse of string</returns>
-        public ApiResponse< string > Search_0WithHttpInfo (string q)
+        public ApiResponse< string > SearchClassesWithHttpInfo (string q)
         {
             // verify the required parameter 'q' is set
             if (q == null)
-                throw new ApiException(400, "Missing required parameter 'q' when calling BlueOceanApi->Search_0");
+                throw new ApiException(400, "Missing required parameter 'q' when calling BlueOceanApi->SearchClasses");
 
-            var localVarPath = "/blue/rest/search/";
+            var localVarPath = "/blue/rest/classes/";
             var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
             var localVarFormParams = new Dictionary<String, String>();
             var localVarFileParams = new Dictionary<String, FileParameter>();
@@ -2612,8 +7457,14 @@ namespace IO.Swagger.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            if (q != null) localVarQueryParams.Add("q", Configuration.ApiClient.ParameterToString(q)); // query parameter
+            if (q != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "q", q)); // query parameter
 
+            // authentication (jenkins_auth) required
+            // http basic authentication required
+            if (!String.IsNullOrEmpty(Configuration.Username) || !String.IsNullOrEmpty(Configuration.Password))
+            {
+                localVarHeaderParams["Authorization"] = "Basic " + ApiClient.Base64Encode(Configuration.Username + ":" + Configuration.Password);
+            }
 
             // make the HTTP request
             IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
@@ -2624,7 +7475,7 @@ namespace IO.Swagger.Api
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("Search_0", localVarResponse);
+                Exception exception = ExceptionFactory("SearchClasses", localVarResponse);
                 if (exception != null) throw exception;
             }
 
@@ -2634,33 +7485,33 @@ namespace IO.Swagger.Api
         }
 
         /// <summary>
-        ///  Search for any resource details
+        ///  Get classes details
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="q">Query string</param>
+        /// <param name="q">Query string containing an array of class names</param>
         /// <returns>Task of string</returns>
-        public async System.Threading.Tasks.Task<string> Search_0Async (string q)
+        public async System.Threading.Tasks.Task<string> SearchClassesAsync (string q)
         {
-             ApiResponse<string> localVarResponse = await Search_0AsyncWithHttpInfo(q);
+             ApiResponse<string> localVarResponse = await SearchClassesAsyncWithHttpInfo(q);
              return localVarResponse.Data;
 
         }
 
         /// <summary>
-        ///  Search for any resource details
+        ///  Get classes details
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="q">Query string</param>
+        /// <param name="q">Query string containing an array of class names</param>
         /// <returns>Task of ApiResponse (string)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<string>> Search_0AsyncWithHttpInfo (string q)
+        public async System.Threading.Tasks.Task<ApiResponse<string>> SearchClassesAsyncWithHttpInfo (string q)
         {
             // verify the required parameter 'q' is set
             if (q == null)
-                throw new ApiException(400, "Missing required parameter 'q' when calling BlueOceanApi->Search_0");
+                throw new ApiException(400, "Missing required parameter 'q' when calling BlueOceanApi->SearchClasses");
 
-            var localVarPath = "/blue/rest/search/";
+            var localVarPath = "/blue/rest/classes/";
             var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
             var localVarFormParams = new Dictionary<String, String>();
             var localVarFileParams = new Dictionary<String, FileParameter>();
@@ -2679,8 +7530,14 @@ namespace IO.Swagger.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            if (q != null) localVarQueryParams.Add("q", Configuration.ApiClient.ParameterToString(q)); // query parameter
+            if (q != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "q", q)); // query parameter
 
+            // authentication (jenkins_auth) required
+            // http basic authentication required
+            if (!String.IsNullOrEmpty(Configuration.Username) || !String.IsNullOrEmpty(Configuration.Password))
+            {
+                localVarHeaderParams["Authorization"] = "Basic " + ApiClient.Base64Encode(Configuration.Username + ":" + Configuration.Password);
+            }
 
             // make the HTTP request
             IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
@@ -2691,7 +7548,7 @@ namespace IO.Swagger.Api
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("Search_0", localVarResponse);
+                Exception exception = ExceptionFactory("SearchClasses", localVarResponse);
                 if (exception != null) throw exception;
             }
 

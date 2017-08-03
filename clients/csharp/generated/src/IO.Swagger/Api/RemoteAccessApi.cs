@@ -31,8 +31,9 @@ namespace IO.Swagger.Api
         /// Retrieve computer details
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>HudsonmodelComputerSet</returns>
-        HudsonmodelComputerSet GetComputer ();
+        /// <param name="depth">Recursion depth in response model</param>
+        /// <returns>ComputerSet</returns>
+        ComputerSet GetComputer (int? depth);
 
         /// <summary>
         /// 
@@ -41,8 +42,9 @@ namespace IO.Swagger.Api
         /// Retrieve computer details
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of HudsonmodelComputerSet</returns>
-        ApiResponse<HudsonmodelComputerSet> GetComputerWithHttpInfo ();
+        /// <param name="depth">Recursion depth in response model</param>
+        /// <returns>ApiResponse of ComputerSet</returns>
+        ApiResponse<ComputerSet> GetComputerWithHttpInfo (int? depth);
         /// <summary>
         /// 
         /// </summary>
@@ -50,8 +52,8 @@ namespace IO.Swagger.Api
         /// Retrieve CSRF protection token
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>HudsonsecuritycsrfDefaultCrumbIssuer</returns>
-        HudsonsecuritycsrfDefaultCrumbIssuer GetCrumb ();
+        /// <returns>DefaultCrumbIssuer</returns>
+        DefaultCrumbIssuer GetCrumb ();
 
         /// <summary>
         /// 
@@ -60,8 +62,8 @@ namespace IO.Swagger.Api
         /// Retrieve CSRF protection token
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of HudsonsecuritycsrfDefaultCrumbIssuer</returns>
-        ApiResponse<HudsonsecuritycsrfDefaultCrumbIssuer> GetCrumbWithHttpInfo ();
+        /// <returns>ApiResponse of DefaultCrumbIssuer</returns>
+        ApiResponse<DefaultCrumbIssuer> GetCrumbWithHttpInfo ();
         /// <summary>
         /// 
         /// </summary>
@@ -69,8 +71,8 @@ namespace IO.Swagger.Api
         /// Retrieve Jenkins details
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>HudsonmodelHudson</returns>
-        HudsonmodelHudson GetJenkins ();
+        /// <returns>Hudson</returns>
+        Hudson GetJenkins ();
 
         /// <summary>
         /// 
@@ -79,8 +81,8 @@ namespace IO.Swagger.Api
         /// Retrieve Jenkins details
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of HudsonmodelHudson</returns>
-        ApiResponse<HudsonmodelHudson> GetJenkinsWithHttpInfo ();
+        /// <returns>ApiResponse of Hudson</returns>
+        ApiResponse<Hudson> GetJenkinsWithHttpInfo ();
         /// <summary>
         /// 
         /// </summary>
@@ -89,8 +91,8 @@ namespace IO.Swagger.Api
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="name">Name of the job</param>
-        /// <returns>HudsonmodelFreeStyleProject</returns>
-        HudsonmodelFreeStyleProject GetJob (string name);
+        /// <returns>FreeStyleProject</returns>
+        FreeStyleProject GetJob (string name);
 
         /// <summary>
         /// 
@@ -100,8 +102,8 @@ namespace IO.Swagger.Api
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="name">Name of the job</param>
-        /// <returns>ApiResponse of HudsonmodelFreeStyleProject</returns>
-        ApiResponse<HudsonmodelFreeStyleProject> GetJobWithHttpInfo (string name);
+        /// <returns>ApiResponse of FreeStyleProject</returns>
+        ApiResponse<FreeStyleProject> GetJobWithHttpInfo (string name);
         /// <summary>
         /// 
         /// </summary>
@@ -131,8 +133,8 @@ namespace IO.Swagger.Api
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="name">Name of the job</param>
-        /// <returns>HudsonmodelFreeStyleBuild</returns>
-        HudsonmodelFreeStyleBuild GetJobLastBuild (string name);
+        /// <returns>FreeStyleBuild</returns>
+        FreeStyleBuild GetJobLastBuild (string name);
 
         /// <summary>
         /// 
@@ -142,8 +144,8 @@ namespace IO.Swagger.Api
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="name">Name of the job</param>
-        /// <returns>ApiResponse of HudsonmodelFreeStyleBuild</returns>
-        ApiResponse<HudsonmodelFreeStyleBuild> GetJobLastBuildWithHttpInfo (string name);
+        /// <returns>ApiResponse of FreeStyleBuild</returns>
+        ApiResponse<FreeStyleBuild> GetJobLastBuildWithHttpInfo (string name);
         /// <summary>
         /// 
         /// </summary>
@@ -176,8 +178,8 @@ namespace IO.Swagger.Api
         /// Retrieve queue details
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>HudsonmodelQueue</returns>
-        HudsonmodelQueue GetQueue ();
+        /// <returns>Queue</returns>
+        Queue GetQueue ();
 
         /// <summary>
         /// 
@@ -186,8 +188,8 @@ namespace IO.Swagger.Api
         /// Retrieve queue details
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of HudsonmodelQueue</returns>
-        ApiResponse<HudsonmodelQueue> GetQueueWithHttpInfo ();
+        /// <returns>ApiResponse of Queue</returns>
+        ApiResponse<Queue> GetQueueWithHttpInfo ();
         /// <summary>
         /// 
         /// </summary>
@@ -196,8 +198,8 @@ namespace IO.Swagger.Api
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="number">Queue number</param>
-        /// <returns>HudsonmodelQueue</returns>
-        HudsonmodelQueue GetQueueItem (string number);
+        /// <returns>Queue</returns>
+        Queue GetQueueItem (string number);
 
         /// <summary>
         /// 
@@ -207,8 +209,8 @@ namespace IO.Swagger.Api
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="number">Queue number</param>
-        /// <returns>ApiResponse of HudsonmodelQueue</returns>
-        ApiResponse<HudsonmodelQueue> GetQueueItemWithHttpInfo (string number);
+        /// <returns>ApiResponse of Queue</returns>
+        ApiResponse<Queue> GetQueueItemWithHttpInfo (string number);
         /// <summary>
         /// 
         /// </summary>
@@ -217,8 +219,8 @@ namespace IO.Swagger.Api
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="name">Name of the view</param>
-        /// <returns>HudsonmodelListView</returns>
-        HudsonmodelListView GetView (string name);
+        /// <returns>ListView</returns>
+        ListView GetView (string name);
 
         /// <summary>
         /// 
@@ -228,8 +230,8 @@ namespace IO.Swagger.Api
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="name">Name of the view</param>
-        /// <returns>ApiResponse of HudsonmodelListView</returns>
-        ApiResponse<HudsonmodelListView> GetViewWithHttpInfo (string name);
+        /// <returns>ApiResponse of ListView</returns>
+        ApiResponse<ListView> GetViewWithHttpInfo (string name);
         /// <summary>
         /// 
         /// </summary>
@@ -506,8 +508,9 @@ namespace IO.Swagger.Api
         /// Retrieve computer details
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>Task of HudsonmodelComputerSet</returns>
-        System.Threading.Tasks.Task<HudsonmodelComputerSet> GetComputerAsync ();
+        /// <param name="depth">Recursion depth in response model</param>
+        /// <returns>Task of ComputerSet</returns>
+        System.Threading.Tasks.Task<ComputerSet> GetComputerAsync (int? depth);
 
         /// <summary>
         /// 
@@ -516,8 +519,9 @@ namespace IO.Swagger.Api
         /// Retrieve computer details
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>Task of ApiResponse (HudsonmodelComputerSet)</returns>
-        System.Threading.Tasks.Task<ApiResponse<HudsonmodelComputerSet>> GetComputerAsyncWithHttpInfo ();
+        /// <param name="depth">Recursion depth in response model</param>
+        /// <returns>Task of ApiResponse (ComputerSet)</returns>
+        System.Threading.Tasks.Task<ApiResponse<ComputerSet>> GetComputerAsyncWithHttpInfo (int? depth);
         /// <summary>
         /// 
         /// </summary>
@@ -525,8 +529,8 @@ namespace IO.Swagger.Api
         /// Retrieve CSRF protection token
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>Task of HudsonsecuritycsrfDefaultCrumbIssuer</returns>
-        System.Threading.Tasks.Task<HudsonsecuritycsrfDefaultCrumbIssuer> GetCrumbAsync ();
+        /// <returns>Task of DefaultCrumbIssuer</returns>
+        System.Threading.Tasks.Task<DefaultCrumbIssuer> GetCrumbAsync ();
 
         /// <summary>
         /// 
@@ -535,8 +539,8 @@ namespace IO.Swagger.Api
         /// Retrieve CSRF protection token
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>Task of ApiResponse (HudsonsecuritycsrfDefaultCrumbIssuer)</returns>
-        System.Threading.Tasks.Task<ApiResponse<HudsonsecuritycsrfDefaultCrumbIssuer>> GetCrumbAsyncWithHttpInfo ();
+        /// <returns>Task of ApiResponse (DefaultCrumbIssuer)</returns>
+        System.Threading.Tasks.Task<ApiResponse<DefaultCrumbIssuer>> GetCrumbAsyncWithHttpInfo ();
         /// <summary>
         /// 
         /// </summary>
@@ -544,8 +548,8 @@ namespace IO.Swagger.Api
         /// Retrieve Jenkins details
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>Task of HudsonmodelHudson</returns>
-        System.Threading.Tasks.Task<HudsonmodelHudson> GetJenkinsAsync ();
+        /// <returns>Task of Hudson</returns>
+        System.Threading.Tasks.Task<Hudson> GetJenkinsAsync ();
 
         /// <summary>
         /// 
@@ -554,8 +558,8 @@ namespace IO.Swagger.Api
         /// Retrieve Jenkins details
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>Task of ApiResponse (HudsonmodelHudson)</returns>
-        System.Threading.Tasks.Task<ApiResponse<HudsonmodelHudson>> GetJenkinsAsyncWithHttpInfo ();
+        /// <returns>Task of ApiResponse (Hudson)</returns>
+        System.Threading.Tasks.Task<ApiResponse<Hudson>> GetJenkinsAsyncWithHttpInfo ();
         /// <summary>
         /// 
         /// </summary>
@@ -564,8 +568,8 @@ namespace IO.Swagger.Api
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="name">Name of the job</param>
-        /// <returns>Task of HudsonmodelFreeStyleProject</returns>
-        System.Threading.Tasks.Task<HudsonmodelFreeStyleProject> GetJobAsync (string name);
+        /// <returns>Task of FreeStyleProject</returns>
+        System.Threading.Tasks.Task<FreeStyleProject> GetJobAsync (string name);
 
         /// <summary>
         /// 
@@ -575,8 +579,8 @@ namespace IO.Swagger.Api
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="name">Name of the job</param>
-        /// <returns>Task of ApiResponse (HudsonmodelFreeStyleProject)</returns>
-        System.Threading.Tasks.Task<ApiResponse<HudsonmodelFreeStyleProject>> GetJobAsyncWithHttpInfo (string name);
+        /// <returns>Task of ApiResponse (FreeStyleProject)</returns>
+        System.Threading.Tasks.Task<ApiResponse<FreeStyleProject>> GetJobAsyncWithHttpInfo (string name);
         /// <summary>
         /// 
         /// </summary>
@@ -606,8 +610,8 @@ namespace IO.Swagger.Api
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="name">Name of the job</param>
-        /// <returns>Task of HudsonmodelFreeStyleBuild</returns>
-        System.Threading.Tasks.Task<HudsonmodelFreeStyleBuild> GetJobLastBuildAsync (string name);
+        /// <returns>Task of FreeStyleBuild</returns>
+        System.Threading.Tasks.Task<FreeStyleBuild> GetJobLastBuildAsync (string name);
 
         /// <summary>
         /// 
@@ -617,8 +621,8 @@ namespace IO.Swagger.Api
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="name">Name of the job</param>
-        /// <returns>Task of ApiResponse (HudsonmodelFreeStyleBuild)</returns>
-        System.Threading.Tasks.Task<ApiResponse<HudsonmodelFreeStyleBuild>> GetJobLastBuildAsyncWithHttpInfo (string name);
+        /// <returns>Task of ApiResponse (FreeStyleBuild)</returns>
+        System.Threading.Tasks.Task<ApiResponse<FreeStyleBuild>> GetJobLastBuildAsyncWithHttpInfo (string name);
         /// <summary>
         /// 
         /// </summary>
@@ -651,8 +655,8 @@ namespace IO.Swagger.Api
         /// Retrieve queue details
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>Task of HudsonmodelQueue</returns>
-        System.Threading.Tasks.Task<HudsonmodelQueue> GetQueueAsync ();
+        /// <returns>Task of Queue</returns>
+        System.Threading.Tasks.Task<Queue> GetQueueAsync ();
 
         /// <summary>
         /// 
@@ -661,8 +665,8 @@ namespace IO.Swagger.Api
         /// Retrieve queue details
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>Task of ApiResponse (HudsonmodelQueue)</returns>
-        System.Threading.Tasks.Task<ApiResponse<HudsonmodelQueue>> GetQueueAsyncWithHttpInfo ();
+        /// <returns>Task of ApiResponse (Queue)</returns>
+        System.Threading.Tasks.Task<ApiResponse<Queue>> GetQueueAsyncWithHttpInfo ();
         /// <summary>
         /// 
         /// </summary>
@@ -671,8 +675,8 @@ namespace IO.Swagger.Api
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="number">Queue number</param>
-        /// <returns>Task of HudsonmodelQueue</returns>
-        System.Threading.Tasks.Task<HudsonmodelQueue> GetQueueItemAsync (string number);
+        /// <returns>Task of Queue</returns>
+        System.Threading.Tasks.Task<Queue> GetQueueItemAsync (string number);
 
         /// <summary>
         /// 
@@ -682,8 +686,8 @@ namespace IO.Swagger.Api
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="number">Queue number</param>
-        /// <returns>Task of ApiResponse (HudsonmodelQueue)</returns>
-        System.Threading.Tasks.Task<ApiResponse<HudsonmodelQueue>> GetQueueItemAsyncWithHttpInfo (string number);
+        /// <returns>Task of ApiResponse (Queue)</returns>
+        System.Threading.Tasks.Task<ApiResponse<Queue>> GetQueueItemAsyncWithHttpInfo (string number);
         /// <summary>
         /// 
         /// </summary>
@@ -692,8 +696,8 @@ namespace IO.Swagger.Api
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="name">Name of the view</param>
-        /// <returns>Task of HudsonmodelListView</returns>
-        System.Threading.Tasks.Task<HudsonmodelListView> GetViewAsync (string name);
+        /// <returns>Task of ListView</returns>
+        System.Threading.Tasks.Task<ListView> GetViewAsync (string name);
 
         /// <summary>
         /// 
@@ -703,8 +707,8 @@ namespace IO.Swagger.Api
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="name">Name of the view</param>
-        /// <returns>Task of ApiResponse (HudsonmodelListView)</returns>
-        System.Threading.Tasks.Task<ApiResponse<HudsonmodelListView>> GetViewAsyncWithHttpInfo (string name);
+        /// <returns>Task of ApiResponse (ListView)</returns>
+        System.Threading.Tasks.Task<ApiResponse<ListView>> GetViewAsyncWithHttpInfo (string name);
         /// <summary>
         /// 
         /// </summary>
@@ -988,15 +992,9 @@ namespace IO.Swagger.Api
         /// <returns></returns>
         public RemoteAccessApi(String basePath)
         {
-            this.Configuration = new Configuration(new ApiClient(basePath));
+            this.Configuration = new Configuration { BasePath = basePath };
 
             ExceptionFactory = IO.Swagger.Client.Configuration.DefaultExceptionFactory;
-
-            // ensure API client has configuration ready
-            if (Configuration.ApiClient.Configuration == null)
-            {
-                this.Configuration.ApiClient.Configuration = this.Configuration;
-            }
         }
 
         /// <summary>
@@ -1013,12 +1011,6 @@ namespace IO.Swagger.Api
                 this.Configuration = configuration;
 
             ExceptionFactory = IO.Swagger.Client.Configuration.DefaultExceptionFactory;
-
-            // ensure API client has configuration ready
-            if (Configuration.ApiClient.Configuration == null)
-            {
-                this.Configuration.ApiClient.Configuration = this.Configuration;
-            }
         }
 
         /// <summary>
@@ -1067,9 +1059,9 @@ namespace IO.Swagger.Api
         /// </summary>
         /// <returns>Dictionary of HTTP header</returns>
         [Obsolete("DefaultHeader is deprecated, please use Configuration.DefaultHeader instead.")]
-        public Dictionary<String, String> DefaultHeader()
+        public IDictionary<String, String> DefaultHeader()
         {
-            return this.Configuration.DefaultHeader;
+            return new ReadOnlyDictionary<string, string>(this.Configuration.DefaultHeader);
         }
 
         /// <summary>
@@ -1088,10 +1080,11 @@ namespace IO.Swagger.Api
         ///  Retrieve computer details
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>HudsonmodelComputerSet</returns>
-        public HudsonmodelComputerSet GetComputer ()
+        /// <param name="depth">Recursion depth in response model</param>
+        /// <returns>ComputerSet</returns>
+        public ComputerSet GetComputer (int? depth)
         {
-             ApiResponse<HudsonmodelComputerSet> localVarResponse = GetComputerWithHttpInfo();
+             ApiResponse<ComputerSet> localVarResponse = GetComputerWithHttpInfo(depth);
              return localVarResponse.Data;
         }
 
@@ -1099,13 +1092,17 @@ namespace IO.Swagger.Api
         ///  Retrieve computer details
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of HudsonmodelComputerSet</returns>
-        public ApiResponse< HudsonmodelComputerSet > GetComputerWithHttpInfo ()
+        /// <param name="depth">Recursion depth in response model</param>
+        /// <returns>ApiResponse of ComputerSet</returns>
+        public ApiResponse< ComputerSet > GetComputerWithHttpInfo (int? depth)
         {
+            // verify the required parameter 'depth' is set
+            if (depth == null)
+                throw new ApiException(400, "Missing required parameter 'depth' when calling RemoteAccessApi->GetComputer");
 
-            var localVarPath = "/computer/api/json?depth=1";
+            var localVarPath = "/computer/api/json";
             var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
             var localVarFormParams = new Dictionary<String, String>();
             var localVarFileParams = new Dictionary<String, FileParameter>();
@@ -1124,7 +1121,14 @@ namespace IO.Swagger.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
+            if (depth != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "depth", depth)); // query parameter
 
+            // authentication (jenkins_auth) required
+            // http basic authentication required
+            if (!String.IsNullOrEmpty(Configuration.Username) || !String.IsNullOrEmpty(Configuration.Password))
+            {
+                localVarHeaderParams["Authorization"] = "Basic " + ApiClient.Base64Encode(Configuration.Username + ":" + Configuration.Password);
+            }
 
             // make the HTTP request
             IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
@@ -1139,19 +1143,20 @@ namespace IO.Swagger.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<HudsonmodelComputerSet>(localVarStatusCode,
+            return new ApiResponse<ComputerSet>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (HudsonmodelComputerSet) Configuration.ApiClient.Deserialize(localVarResponse, typeof(HudsonmodelComputerSet)));
+                (ComputerSet) Configuration.ApiClient.Deserialize(localVarResponse, typeof(ComputerSet)));
         }
 
         /// <summary>
         ///  Retrieve computer details
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>Task of HudsonmodelComputerSet</returns>
-        public async System.Threading.Tasks.Task<HudsonmodelComputerSet> GetComputerAsync ()
+        /// <param name="depth">Recursion depth in response model</param>
+        /// <returns>Task of ComputerSet</returns>
+        public async System.Threading.Tasks.Task<ComputerSet> GetComputerAsync (int? depth)
         {
-             ApiResponse<HudsonmodelComputerSet> localVarResponse = await GetComputerAsyncWithHttpInfo();
+             ApiResponse<ComputerSet> localVarResponse = await GetComputerAsyncWithHttpInfo(depth);
              return localVarResponse.Data;
 
         }
@@ -1160,13 +1165,17 @@ namespace IO.Swagger.Api
         ///  Retrieve computer details
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>Task of ApiResponse (HudsonmodelComputerSet)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<HudsonmodelComputerSet>> GetComputerAsyncWithHttpInfo ()
+        /// <param name="depth">Recursion depth in response model</param>
+        /// <returns>Task of ApiResponse (ComputerSet)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<ComputerSet>> GetComputerAsyncWithHttpInfo (int? depth)
         {
+            // verify the required parameter 'depth' is set
+            if (depth == null)
+                throw new ApiException(400, "Missing required parameter 'depth' when calling RemoteAccessApi->GetComputer");
 
-            var localVarPath = "/computer/api/json?depth=1";
+            var localVarPath = "/computer/api/json";
             var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
             var localVarFormParams = new Dictionary<String, String>();
             var localVarFileParams = new Dictionary<String, FileParameter>();
@@ -1185,7 +1194,14 @@ namespace IO.Swagger.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
+            if (depth != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "depth", depth)); // query parameter
 
+            // authentication (jenkins_auth) required
+            // http basic authentication required
+            if (!String.IsNullOrEmpty(Configuration.Username) || !String.IsNullOrEmpty(Configuration.Password))
+            {
+                localVarHeaderParams["Authorization"] = "Basic " + ApiClient.Base64Encode(Configuration.Username + ":" + Configuration.Password);
+            }
 
             // make the HTTP request
             IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
@@ -1200,19 +1216,19 @@ namespace IO.Swagger.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<HudsonmodelComputerSet>(localVarStatusCode,
+            return new ApiResponse<ComputerSet>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (HudsonmodelComputerSet) Configuration.ApiClient.Deserialize(localVarResponse, typeof(HudsonmodelComputerSet)));
+                (ComputerSet) Configuration.ApiClient.Deserialize(localVarResponse, typeof(ComputerSet)));
         }
 
         /// <summary>
         ///  Retrieve CSRF protection token
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>HudsonsecuritycsrfDefaultCrumbIssuer</returns>
-        public HudsonsecuritycsrfDefaultCrumbIssuer GetCrumb ()
+        /// <returns>DefaultCrumbIssuer</returns>
+        public DefaultCrumbIssuer GetCrumb ()
         {
-             ApiResponse<HudsonsecuritycsrfDefaultCrumbIssuer> localVarResponse = GetCrumbWithHttpInfo();
+             ApiResponse<DefaultCrumbIssuer> localVarResponse = GetCrumbWithHttpInfo();
              return localVarResponse.Data;
         }
 
@@ -1220,13 +1236,13 @@ namespace IO.Swagger.Api
         ///  Retrieve CSRF protection token
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of HudsonsecuritycsrfDefaultCrumbIssuer</returns>
-        public ApiResponse< HudsonsecuritycsrfDefaultCrumbIssuer > GetCrumbWithHttpInfo ()
+        /// <returns>ApiResponse of DefaultCrumbIssuer</returns>
+        public ApiResponse< DefaultCrumbIssuer > GetCrumbWithHttpInfo ()
         {
 
             var localVarPath = "/crumbIssuer/api/json";
             var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
             var localVarFormParams = new Dictionary<String, String>();
             var localVarFileParams = new Dictionary<String, FileParameter>();
@@ -1246,6 +1262,12 @@ namespace IO.Swagger.Api
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
 
+            // authentication (jenkins_auth) required
+            // http basic authentication required
+            if (!String.IsNullOrEmpty(Configuration.Username) || !String.IsNullOrEmpty(Configuration.Password))
+            {
+                localVarHeaderParams["Authorization"] = "Basic " + ApiClient.Base64Encode(Configuration.Username + ":" + Configuration.Password);
+            }
 
             // make the HTTP request
             IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
@@ -1260,19 +1282,19 @@ namespace IO.Swagger.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<HudsonsecuritycsrfDefaultCrumbIssuer>(localVarStatusCode,
+            return new ApiResponse<DefaultCrumbIssuer>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (HudsonsecuritycsrfDefaultCrumbIssuer) Configuration.ApiClient.Deserialize(localVarResponse, typeof(HudsonsecuritycsrfDefaultCrumbIssuer)));
+                (DefaultCrumbIssuer) Configuration.ApiClient.Deserialize(localVarResponse, typeof(DefaultCrumbIssuer)));
         }
 
         /// <summary>
         ///  Retrieve CSRF protection token
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>Task of HudsonsecuritycsrfDefaultCrumbIssuer</returns>
-        public async System.Threading.Tasks.Task<HudsonsecuritycsrfDefaultCrumbIssuer> GetCrumbAsync ()
+        /// <returns>Task of DefaultCrumbIssuer</returns>
+        public async System.Threading.Tasks.Task<DefaultCrumbIssuer> GetCrumbAsync ()
         {
-             ApiResponse<HudsonsecuritycsrfDefaultCrumbIssuer> localVarResponse = await GetCrumbAsyncWithHttpInfo();
+             ApiResponse<DefaultCrumbIssuer> localVarResponse = await GetCrumbAsyncWithHttpInfo();
              return localVarResponse.Data;
 
         }
@@ -1281,13 +1303,13 @@ namespace IO.Swagger.Api
         ///  Retrieve CSRF protection token
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>Task of ApiResponse (HudsonsecuritycsrfDefaultCrumbIssuer)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<HudsonsecuritycsrfDefaultCrumbIssuer>> GetCrumbAsyncWithHttpInfo ()
+        /// <returns>Task of ApiResponse (DefaultCrumbIssuer)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<DefaultCrumbIssuer>> GetCrumbAsyncWithHttpInfo ()
         {
 
             var localVarPath = "/crumbIssuer/api/json";
             var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
             var localVarFormParams = new Dictionary<String, String>();
             var localVarFileParams = new Dictionary<String, FileParameter>();
@@ -1307,6 +1329,12 @@ namespace IO.Swagger.Api
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
 
+            // authentication (jenkins_auth) required
+            // http basic authentication required
+            if (!String.IsNullOrEmpty(Configuration.Username) || !String.IsNullOrEmpty(Configuration.Password))
+            {
+                localVarHeaderParams["Authorization"] = "Basic " + ApiClient.Base64Encode(Configuration.Username + ":" + Configuration.Password);
+            }
 
             // make the HTTP request
             IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
@@ -1321,19 +1349,19 @@ namespace IO.Swagger.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<HudsonsecuritycsrfDefaultCrumbIssuer>(localVarStatusCode,
+            return new ApiResponse<DefaultCrumbIssuer>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (HudsonsecuritycsrfDefaultCrumbIssuer) Configuration.ApiClient.Deserialize(localVarResponse, typeof(HudsonsecuritycsrfDefaultCrumbIssuer)));
+                (DefaultCrumbIssuer) Configuration.ApiClient.Deserialize(localVarResponse, typeof(DefaultCrumbIssuer)));
         }
 
         /// <summary>
         ///  Retrieve Jenkins details
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>HudsonmodelHudson</returns>
-        public HudsonmodelHudson GetJenkins ()
+        /// <returns>Hudson</returns>
+        public Hudson GetJenkins ()
         {
-             ApiResponse<HudsonmodelHudson> localVarResponse = GetJenkinsWithHttpInfo();
+             ApiResponse<Hudson> localVarResponse = GetJenkinsWithHttpInfo();
              return localVarResponse.Data;
         }
 
@@ -1341,13 +1369,13 @@ namespace IO.Swagger.Api
         ///  Retrieve Jenkins details
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of HudsonmodelHudson</returns>
-        public ApiResponse< HudsonmodelHudson > GetJenkinsWithHttpInfo ()
+        /// <returns>ApiResponse of Hudson</returns>
+        public ApiResponse< Hudson > GetJenkinsWithHttpInfo ()
         {
 
             var localVarPath = "/api/json";
             var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
             var localVarFormParams = new Dictionary<String, String>();
             var localVarFileParams = new Dictionary<String, FileParameter>();
@@ -1367,6 +1395,12 @@ namespace IO.Swagger.Api
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
 
+            // authentication (jenkins_auth) required
+            // http basic authentication required
+            if (!String.IsNullOrEmpty(Configuration.Username) || !String.IsNullOrEmpty(Configuration.Password))
+            {
+                localVarHeaderParams["Authorization"] = "Basic " + ApiClient.Base64Encode(Configuration.Username + ":" + Configuration.Password);
+            }
 
             // make the HTTP request
             IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
@@ -1381,19 +1415,19 @@ namespace IO.Swagger.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<HudsonmodelHudson>(localVarStatusCode,
+            return new ApiResponse<Hudson>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (HudsonmodelHudson) Configuration.ApiClient.Deserialize(localVarResponse, typeof(HudsonmodelHudson)));
+                (Hudson) Configuration.ApiClient.Deserialize(localVarResponse, typeof(Hudson)));
         }
 
         /// <summary>
         ///  Retrieve Jenkins details
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>Task of HudsonmodelHudson</returns>
-        public async System.Threading.Tasks.Task<HudsonmodelHudson> GetJenkinsAsync ()
+        /// <returns>Task of Hudson</returns>
+        public async System.Threading.Tasks.Task<Hudson> GetJenkinsAsync ()
         {
-             ApiResponse<HudsonmodelHudson> localVarResponse = await GetJenkinsAsyncWithHttpInfo();
+             ApiResponse<Hudson> localVarResponse = await GetJenkinsAsyncWithHttpInfo();
              return localVarResponse.Data;
 
         }
@@ -1402,13 +1436,13 @@ namespace IO.Swagger.Api
         ///  Retrieve Jenkins details
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>Task of ApiResponse (HudsonmodelHudson)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<HudsonmodelHudson>> GetJenkinsAsyncWithHttpInfo ()
+        /// <returns>Task of ApiResponse (Hudson)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<Hudson>> GetJenkinsAsyncWithHttpInfo ()
         {
 
             var localVarPath = "/api/json";
             var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
             var localVarFormParams = new Dictionary<String, String>();
             var localVarFileParams = new Dictionary<String, FileParameter>();
@@ -1428,6 +1462,12 @@ namespace IO.Swagger.Api
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
 
+            // authentication (jenkins_auth) required
+            // http basic authentication required
+            if (!String.IsNullOrEmpty(Configuration.Username) || !String.IsNullOrEmpty(Configuration.Password))
+            {
+                localVarHeaderParams["Authorization"] = "Basic " + ApiClient.Base64Encode(Configuration.Username + ":" + Configuration.Password);
+            }
 
             // make the HTTP request
             IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
@@ -1442,9 +1482,9 @@ namespace IO.Swagger.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<HudsonmodelHudson>(localVarStatusCode,
+            return new ApiResponse<Hudson>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (HudsonmodelHudson) Configuration.ApiClient.Deserialize(localVarResponse, typeof(HudsonmodelHudson)));
+                (Hudson) Configuration.ApiClient.Deserialize(localVarResponse, typeof(Hudson)));
         }
 
         /// <summary>
@@ -1452,10 +1492,10 @@ namespace IO.Swagger.Api
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="name">Name of the job</param>
-        /// <returns>HudsonmodelFreeStyleProject</returns>
-        public HudsonmodelFreeStyleProject GetJob (string name)
+        /// <returns>FreeStyleProject</returns>
+        public FreeStyleProject GetJob (string name)
         {
-             ApiResponse<HudsonmodelFreeStyleProject> localVarResponse = GetJobWithHttpInfo(name);
+             ApiResponse<FreeStyleProject> localVarResponse = GetJobWithHttpInfo(name);
              return localVarResponse.Data;
         }
 
@@ -1464,8 +1504,8 @@ namespace IO.Swagger.Api
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="name">Name of the job</param>
-        /// <returns>ApiResponse of HudsonmodelFreeStyleProject</returns>
-        public ApiResponse< HudsonmodelFreeStyleProject > GetJobWithHttpInfo (string name)
+        /// <returns>ApiResponse of FreeStyleProject</returns>
+        public ApiResponse< FreeStyleProject > GetJobWithHttpInfo (string name)
         {
             // verify the required parameter 'name' is set
             if (name == null)
@@ -1473,7 +1513,7 @@ namespace IO.Swagger.Api
 
             var localVarPath = "/job/{name}/api/json";
             var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
             var localVarFormParams = new Dictionary<String, String>();
             var localVarFileParams = new Dictionary<String, FileParameter>();
@@ -1494,6 +1534,12 @@ namespace IO.Swagger.Api
 
             if (name != null) localVarPathParams.Add("name", Configuration.ApiClient.ParameterToString(name)); // path parameter
 
+            // authentication (jenkins_auth) required
+            // http basic authentication required
+            if (!String.IsNullOrEmpty(Configuration.Username) || !String.IsNullOrEmpty(Configuration.Password))
+            {
+                localVarHeaderParams["Authorization"] = "Basic " + ApiClient.Base64Encode(Configuration.Username + ":" + Configuration.Password);
+            }
 
             // make the HTTP request
             IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
@@ -1508,9 +1554,9 @@ namespace IO.Swagger.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<HudsonmodelFreeStyleProject>(localVarStatusCode,
+            return new ApiResponse<FreeStyleProject>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (HudsonmodelFreeStyleProject) Configuration.ApiClient.Deserialize(localVarResponse, typeof(HudsonmodelFreeStyleProject)));
+                (FreeStyleProject) Configuration.ApiClient.Deserialize(localVarResponse, typeof(FreeStyleProject)));
         }
 
         /// <summary>
@@ -1518,10 +1564,10 @@ namespace IO.Swagger.Api
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="name">Name of the job</param>
-        /// <returns>Task of HudsonmodelFreeStyleProject</returns>
-        public async System.Threading.Tasks.Task<HudsonmodelFreeStyleProject> GetJobAsync (string name)
+        /// <returns>Task of FreeStyleProject</returns>
+        public async System.Threading.Tasks.Task<FreeStyleProject> GetJobAsync (string name)
         {
-             ApiResponse<HudsonmodelFreeStyleProject> localVarResponse = await GetJobAsyncWithHttpInfo(name);
+             ApiResponse<FreeStyleProject> localVarResponse = await GetJobAsyncWithHttpInfo(name);
              return localVarResponse.Data;
 
         }
@@ -1531,8 +1577,8 @@ namespace IO.Swagger.Api
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="name">Name of the job</param>
-        /// <returns>Task of ApiResponse (HudsonmodelFreeStyleProject)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<HudsonmodelFreeStyleProject>> GetJobAsyncWithHttpInfo (string name)
+        /// <returns>Task of ApiResponse (FreeStyleProject)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<FreeStyleProject>> GetJobAsyncWithHttpInfo (string name)
         {
             // verify the required parameter 'name' is set
             if (name == null)
@@ -1540,7 +1586,7 @@ namespace IO.Swagger.Api
 
             var localVarPath = "/job/{name}/api/json";
             var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
             var localVarFormParams = new Dictionary<String, String>();
             var localVarFileParams = new Dictionary<String, FileParameter>();
@@ -1561,6 +1607,12 @@ namespace IO.Swagger.Api
 
             if (name != null) localVarPathParams.Add("name", Configuration.ApiClient.ParameterToString(name)); // path parameter
 
+            // authentication (jenkins_auth) required
+            // http basic authentication required
+            if (!String.IsNullOrEmpty(Configuration.Username) || !String.IsNullOrEmpty(Configuration.Password))
+            {
+                localVarHeaderParams["Authorization"] = "Basic " + ApiClient.Base64Encode(Configuration.Username + ":" + Configuration.Password);
+            }
 
             // make the HTTP request
             IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
@@ -1575,9 +1627,9 @@ namespace IO.Swagger.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<HudsonmodelFreeStyleProject>(localVarStatusCode,
+            return new ApiResponse<FreeStyleProject>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (HudsonmodelFreeStyleProject) Configuration.ApiClient.Deserialize(localVarResponse, typeof(HudsonmodelFreeStyleProject)));
+                (FreeStyleProject) Configuration.ApiClient.Deserialize(localVarResponse, typeof(FreeStyleProject)));
         }
 
         /// <summary>
@@ -1606,7 +1658,7 @@ namespace IO.Swagger.Api
 
             var localVarPath = "/job/{name}/config.xml";
             var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
             var localVarFormParams = new Dictionary<String, String>();
             var localVarFileParams = new Dictionary<String, FileParameter>();
@@ -1627,6 +1679,12 @@ namespace IO.Swagger.Api
 
             if (name != null) localVarPathParams.Add("name", Configuration.ApiClient.ParameterToString(name)); // path parameter
 
+            // authentication (jenkins_auth) required
+            // http basic authentication required
+            if (!String.IsNullOrEmpty(Configuration.Username) || !String.IsNullOrEmpty(Configuration.Password))
+            {
+                localVarHeaderParams["Authorization"] = "Basic " + ApiClient.Base64Encode(Configuration.Username + ":" + Configuration.Password);
+            }
 
             // make the HTTP request
             IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
@@ -1673,7 +1731,7 @@ namespace IO.Swagger.Api
 
             var localVarPath = "/job/{name}/config.xml";
             var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
             var localVarFormParams = new Dictionary<String, String>();
             var localVarFileParams = new Dictionary<String, FileParameter>();
@@ -1694,6 +1752,12 @@ namespace IO.Swagger.Api
 
             if (name != null) localVarPathParams.Add("name", Configuration.ApiClient.ParameterToString(name)); // path parameter
 
+            // authentication (jenkins_auth) required
+            // http basic authentication required
+            if (!String.IsNullOrEmpty(Configuration.Username) || !String.IsNullOrEmpty(Configuration.Password))
+            {
+                localVarHeaderParams["Authorization"] = "Basic " + ApiClient.Base64Encode(Configuration.Username + ":" + Configuration.Password);
+            }
 
             // make the HTTP request
             IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
@@ -1718,10 +1782,10 @@ namespace IO.Swagger.Api
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="name">Name of the job</param>
-        /// <returns>HudsonmodelFreeStyleBuild</returns>
-        public HudsonmodelFreeStyleBuild GetJobLastBuild (string name)
+        /// <returns>FreeStyleBuild</returns>
+        public FreeStyleBuild GetJobLastBuild (string name)
         {
-             ApiResponse<HudsonmodelFreeStyleBuild> localVarResponse = GetJobLastBuildWithHttpInfo(name);
+             ApiResponse<FreeStyleBuild> localVarResponse = GetJobLastBuildWithHttpInfo(name);
              return localVarResponse.Data;
         }
 
@@ -1730,8 +1794,8 @@ namespace IO.Swagger.Api
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="name">Name of the job</param>
-        /// <returns>ApiResponse of HudsonmodelFreeStyleBuild</returns>
-        public ApiResponse< HudsonmodelFreeStyleBuild > GetJobLastBuildWithHttpInfo (string name)
+        /// <returns>ApiResponse of FreeStyleBuild</returns>
+        public ApiResponse< FreeStyleBuild > GetJobLastBuildWithHttpInfo (string name)
         {
             // verify the required parameter 'name' is set
             if (name == null)
@@ -1739,7 +1803,7 @@ namespace IO.Swagger.Api
 
             var localVarPath = "/job/{name}/lastBuild/api/json";
             var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
             var localVarFormParams = new Dictionary<String, String>();
             var localVarFileParams = new Dictionary<String, FileParameter>();
@@ -1760,6 +1824,12 @@ namespace IO.Swagger.Api
 
             if (name != null) localVarPathParams.Add("name", Configuration.ApiClient.ParameterToString(name)); // path parameter
 
+            // authentication (jenkins_auth) required
+            // http basic authentication required
+            if (!String.IsNullOrEmpty(Configuration.Username) || !String.IsNullOrEmpty(Configuration.Password))
+            {
+                localVarHeaderParams["Authorization"] = "Basic " + ApiClient.Base64Encode(Configuration.Username + ":" + Configuration.Password);
+            }
 
             // make the HTTP request
             IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
@@ -1774,9 +1844,9 @@ namespace IO.Swagger.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<HudsonmodelFreeStyleBuild>(localVarStatusCode,
+            return new ApiResponse<FreeStyleBuild>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (HudsonmodelFreeStyleBuild) Configuration.ApiClient.Deserialize(localVarResponse, typeof(HudsonmodelFreeStyleBuild)));
+                (FreeStyleBuild) Configuration.ApiClient.Deserialize(localVarResponse, typeof(FreeStyleBuild)));
         }
 
         /// <summary>
@@ -1784,10 +1854,10 @@ namespace IO.Swagger.Api
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="name">Name of the job</param>
-        /// <returns>Task of HudsonmodelFreeStyleBuild</returns>
-        public async System.Threading.Tasks.Task<HudsonmodelFreeStyleBuild> GetJobLastBuildAsync (string name)
+        /// <returns>Task of FreeStyleBuild</returns>
+        public async System.Threading.Tasks.Task<FreeStyleBuild> GetJobLastBuildAsync (string name)
         {
-             ApiResponse<HudsonmodelFreeStyleBuild> localVarResponse = await GetJobLastBuildAsyncWithHttpInfo(name);
+             ApiResponse<FreeStyleBuild> localVarResponse = await GetJobLastBuildAsyncWithHttpInfo(name);
              return localVarResponse.Data;
 
         }
@@ -1797,8 +1867,8 @@ namespace IO.Swagger.Api
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="name">Name of the job</param>
-        /// <returns>Task of ApiResponse (HudsonmodelFreeStyleBuild)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<HudsonmodelFreeStyleBuild>> GetJobLastBuildAsyncWithHttpInfo (string name)
+        /// <returns>Task of ApiResponse (FreeStyleBuild)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<FreeStyleBuild>> GetJobLastBuildAsyncWithHttpInfo (string name)
         {
             // verify the required parameter 'name' is set
             if (name == null)
@@ -1806,7 +1876,7 @@ namespace IO.Swagger.Api
 
             var localVarPath = "/job/{name}/lastBuild/api/json";
             var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
             var localVarFormParams = new Dictionary<String, String>();
             var localVarFileParams = new Dictionary<String, FileParameter>();
@@ -1827,6 +1897,12 @@ namespace IO.Swagger.Api
 
             if (name != null) localVarPathParams.Add("name", Configuration.ApiClient.ParameterToString(name)); // path parameter
 
+            // authentication (jenkins_auth) required
+            // http basic authentication required
+            if (!String.IsNullOrEmpty(Configuration.Username) || !String.IsNullOrEmpty(Configuration.Password))
+            {
+                localVarHeaderParams["Authorization"] = "Basic " + ApiClient.Base64Encode(Configuration.Username + ":" + Configuration.Password);
+            }
 
             // make the HTTP request
             IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
@@ -1841,9 +1917,9 @@ namespace IO.Swagger.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<HudsonmodelFreeStyleBuild>(localVarStatusCode,
+            return new ApiResponse<FreeStyleBuild>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (HudsonmodelFreeStyleBuild) Configuration.ApiClient.Deserialize(localVarResponse, typeof(HudsonmodelFreeStyleBuild)));
+                (FreeStyleBuild) Configuration.ApiClient.Deserialize(localVarResponse, typeof(FreeStyleBuild)));
         }
 
         /// <summary>
@@ -1881,7 +1957,7 @@ namespace IO.Swagger.Api
 
             var localVarPath = "/job/{name}/{number}/logText/progressiveText";
             var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
             var localVarFormParams = new Dictionary<String, String>();
             var localVarFileParams = new Dictionary<String, FileParameter>();
@@ -1901,8 +1977,14 @@ namespace IO.Swagger.Api
 
             if (name != null) localVarPathParams.Add("name", Configuration.ApiClient.ParameterToString(name)); // path parameter
             if (number != null) localVarPathParams.Add("number", Configuration.ApiClient.ParameterToString(number)); // path parameter
-            if (start != null) localVarQueryParams.Add("start", Configuration.ApiClient.ParameterToString(start)); // query parameter
+            if (start != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "start", start)); // query parameter
 
+            // authentication (jenkins_auth) required
+            // http basic authentication required
+            if (!String.IsNullOrEmpty(Configuration.Username) || !String.IsNullOrEmpty(Configuration.Password))
+            {
+                localVarHeaderParams["Authorization"] = "Basic " + ApiClient.Base64Encode(Configuration.Username + ":" + Configuration.Password);
+            }
 
             // make the HTTP request
             IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
@@ -1958,7 +2040,7 @@ namespace IO.Swagger.Api
 
             var localVarPath = "/job/{name}/{number}/logText/progressiveText";
             var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
             var localVarFormParams = new Dictionary<String, String>();
             var localVarFileParams = new Dictionary<String, FileParameter>();
@@ -1978,8 +2060,14 @@ namespace IO.Swagger.Api
 
             if (name != null) localVarPathParams.Add("name", Configuration.ApiClient.ParameterToString(name)); // path parameter
             if (number != null) localVarPathParams.Add("number", Configuration.ApiClient.ParameterToString(number)); // path parameter
-            if (start != null) localVarQueryParams.Add("start", Configuration.ApiClient.ParameterToString(start)); // query parameter
+            if (start != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "start", start)); // query parameter
 
+            // authentication (jenkins_auth) required
+            // http basic authentication required
+            if (!String.IsNullOrEmpty(Configuration.Username) || !String.IsNullOrEmpty(Configuration.Password))
+            {
+                localVarHeaderParams["Authorization"] = "Basic " + ApiClient.Base64Encode(Configuration.Username + ":" + Configuration.Password);
+            }
 
             // make the HTTP request
             IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
@@ -2003,10 +2091,10 @@ namespace IO.Swagger.Api
         ///  Retrieve queue details
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>HudsonmodelQueue</returns>
-        public HudsonmodelQueue GetQueue ()
+        /// <returns>Queue</returns>
+        public Queue GetQueue ()
         {
-             ApiResponse<HudsonmodelQueue> localVarResponse = GetQueueWithHttpInfo();
+             ApiResponse<Queue> localVarResponse = GetQueueWithHttpInfo();
              return localVarResponse.Data;
         }
 
@@ -2014,13 +2102,13 @@ namespace IO.Swagger.Api
         ///  Retrieve queue details
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of HudsonmodelQueue</returns>
-        public ApiResponse< HudsonmodelQueue > GetQueueWithHttpInfo ()
+        /// <returns>ApiResponse of Queue</returns>
+        public ApiResponse< Queue > GetQueueWithHttpInfo ()
         {
 
             var localVarPath = "/queue/api/json";
             var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
             var localVarFormParams = new Dictionary<String, String>();
             var localVarFileParams = new Dictionary<String, FileParameter>();
@@ -2040,6 +2128,12 @@ namespace IO.Swagger.Api
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
 
+            // authentication (jenkins_auth) required
+            // http basic authentication required
+            if (!String.IsNullOrEmpty(Configuration.Username) || !String.IsNullOrEmpty(Configuration.Password))
+            {
+                localVarHeaderParams["Authorization"] = "Basic " + ApiClient.Base64Encode(Configuration.Username + ":" + Configuration.Password);
+            }
 
             // make the HTTP request
             IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
@@ -2054,19 +2148,19 @@ namespace IO.Swagger.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<HudsonmodelQueue>(localVarStatusCode,
+            return new ApiResponse<Queue>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (HudsonmodelQueue) Configuration.ApiClient.Deserialize(localVarResponse, typeof(HudsonmodelQueue)));
+                (Queue) Configuration.ApiClient.Deserialize(localVarResponse, typeof(Queue)));
         }
 
         /// <summary>
         ///  Retrieve queue details
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>Task of HudsonmodelQueue</returns>
-        public async System.Threading.Tasks.Task<HudsonmodelQueue> GetQueueAsync ()
+        /// <returns>Task of Queue</returns>
+        public async System.Threading.Tasks.Task<Queue> GetQueueAsync ()
         {
-             ApiResponse<HudsonmodelQueue> localVarResponse = await GetQueueAsyncWithHttpInfo();
+             ApiResponse<Queue> localVarResponse = await GetQueueAsyncWithHttpInfo();
              return localVarResponse.Data;
 
         }
@@ -2075,13 +2169,13 @@ namespace IO.Swagger.Api
         ///  Retrieve queue details
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>Task of ApiResponse (HudsonmodelQueue)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<HudsonmodelQueue>> GetQueueAsyncWithHttpInfo ()
+        /// <returns>Task of ApiResponse (Queue)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<Queue>> GetQueueAsyncWithHttpInfo ()
         {
 
             var localVarPath = "/queue/api/json";
             var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
             var localVarFormParams = new Dictionary<String, String>();
             var localVarFileParams = new Dictionary<String, FileParameter>();
@@ -2101,6 +2195,12 @@ namespace IO.Swagger.Api
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
 
+            // authentication (jenkins_auth) required
+            // http basic authentication required
+            if (!String.IsNullOrEmpty(Configuration.Username) || !String.IsNullOrEmpty(Configuration.Password))
+            {
+                localVarHeaderParams["Authorization"] = "Basic " + ApiClient.Base64Encode(Configuration.Username + ":" + Configuration.Password);
+            }
 
             // make the HTTP request
             IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
@@ -2115,9 +2215,9 @@ namespace IO.Swagger.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<HudsonmodelQueue>(localVarStatusCode,
+            return new ApiResponse<Queue>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (HudsonmodelQueue) Configuration.ApiClient.Deserialize(localVarResponse, typeof(HudsonmodelQueue)));
+                (Queue) Configuration.ApiClient.Deserialize(localVarResponse, typeof(Queue)));
         }
 
         /// <summary>
@@ -2125,10 +2225,10 @@ namespace IO.Swagger.Api
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="number">Queue number</param>
-        /// <returns>HudsonmodelQueue</returns>
-        public HudsonmodelQueue GetQueueItem (string number)
+        /// <returns>Queue</returns>
+        public Queue GetQueueItem (string number)
         {
-             ApiResponse<HudsonmodelQueue> localVarResponse = GetQueueItemWithHttpInfo(number);
+             ApiResponse<Queue> localVarResponse = GetQueueItemWithHttpInfo(number);
              return localVarResponse.Data;
         }
 
@@ -2137,8 +2237,8 @@ namespace IO.Swagger.Api
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="number">Queue number</param>
-        /// <returns>ApiResponse of HudsonmodelQueue</returns>
-        public ApiResponse< HudsonmodelQueue > GetQueueItemWithHttpInfo (string number)
+        /// <returns>ApiResponse of Queue</returns>
+        public ApiResponse< Queue > GetQueueItemWithHttpInfo (string number)
         {
             // verify the required parameter 'number' is set
             if (number == null)
@@ -2146,7 +2246,7 @@ namespace IO.Swagger.Api
 
             var localVarPath = "/queue/item/{number}/api/json";
             var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
             var localVarFormParams = new Dictionary<String, String>();
             var localVarFileParams = new Dictionary<String, FileParameter>();
@@ -2167,6 +2267,12 @@ namespace IO.Swagger.Api
 
             if (number != null) localVarPathParams.Add("number", Configuration.ApiClient.ParameterToString(number)); // path parameter
 
+            // authentication (jenkins_auth) required
+            // http basic authentication required
+            if (!String.IsNullOrEmpty(Configuration.Username) || !String.IsNullOrEmpty(Configuration.Password))
+            {
+                localVarHeaderParams["Authorization"] = "Basic " + ApiClient.Base64Encode(Configuration.Username + ":" + Configuration.Password);
+            }
 
             // make the HTTP request
             IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
@@ -2181,9 +2287,9 @@ namespace IO.Swagger.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<HudsonmodelQueue>(localVarStatusCode,
+            return new ApiResponse<Queue>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (HudsonmodelQueue) Configuration.ApiClient.Deserialize(localVarResponse, typeof(HudsonmodelQueue)));
+                (Queue) Configuration.ApiClient.Deserialize(localVarResponse, typeof(Queue)));
         }
 
         /// <summary>
@@ -2191,10 +2297,10 @@ namespace IO.Swagger.Api
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="number">Queue number</param>
-        /// <returns>Task of HudsonmodelQueue</returns>
-        public async System.Threading.Tasks.Task<HudsonmodelQueue> GetQueueItemAsync (string number)
+        /// <returns>Task of Queue</returns>
+        public async System.Threading.Tasks.Task<Queue> GetQueueItemAsync (string number)
         {
-             ApiResponse<HudsonmodelQueue> localVarResponse = await GetQueueItemAsyncWithHttpInfo(number);
+             ApiResponse<Queue> localVarResponse = await GetQueueItemAsyncWithHttpInfo(number);
              return localVarResponse.Data;
 
         }
@@ -2204,8 +2310,8 @@ namespace IO.Swagger.Api
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="number">Queue number</param>
-        /// <returns>Task of ApiResponse (HudsonmodelQueue)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<HudsonmodelQueue>> GetQueueItemAsyncWithHttpInfo (string number)
+        /// <returns>Task of ApiResponse (Queue)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<Queue>> GetQueueItemAsyncWithHttpInfo (string number)
         {
             // verify the required parameter 'number' is set
             if (number == null)
@@ -2213,7 +2319,7 @@ namespace IO.Swagger.Api
 
             var localVarPath = "/queue/item/{number}/api/json";
             var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
             var localVarFormParams = new Dictionary<String, String>();
             var localVarFileParams = new Dictionary<String, FileParameter>();
@@ -2234,6 +2340,12 @@ namespace IO.Swagger.Api
 
             if (number != null) localVarPathParams.Add("number", Configuration.ApiClient.ParameterToString(number)); // path parameter
 
+            // authentication (jenkins_auth) required
+            // http basic authentication required
+            if (!String.IsNullOrEmpty(Configuration.Username) || !String.IsNullOrEmpty(Configuration.Password))
+            {
+                localVarHeaderParams["Authorization"] = "Basic " + ApiClient.Base64Encode(Configuration.Username + ":" + Configuration.Password);
+            }
 
             // make the HTTP request
             IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
@@ -2248,9 +2360,9 @@ namespace IO.Swagger.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<HudsonmodelQueue>(localVarStatusCode,
+            return new ApiResponse<Queue>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (HudsonmodelQueue) Configuration.ApiClient.Deserialize(localVarResponse, typeof(HudsonmodelQueue)));
+                (Queue) Configuration.ApiClient.Deserialize(localVarResponse, typeof(Queue)));
         }
 
         /// <summary>
@@ -2258,10 +2370,10 @@ namespace IO.Swagger.Api
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="name">Name of the view</param>
-        /// <returns>HudsonmodelListView</returns>
-        public HudsonmodelListView GetView (string name)
+        /// <returns>ListView</returns>
+        public ListView GetView (string name)
         {
-             ApiResponse<HudsonmodelListView> localVarResponse = GetViewWithHttpInfo(name);
+             ApiResponse<ListView> localVarResponse = GetViewWithHttpInfo(name);
              return localVarResponse.Data;
         }
 
@@ -2270,8 +2382,8 @@ namespace IO.Swagger.Api
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="name">Name of the view</param>
-        /// <returns>ApiResponse of HudsonmodelListView</returns>
-        public ApiResponse< HudsonmodelListView > GetViewWithHttpInfo (string name)
+        /// <returns>ApiResponse of ListView</returns>
+        public ApiResponse< ListView > GetViewWithHttpInfo (string name)
         {
             // verify the required parameter 'name' is set
             if (name == null)
@@ -2279,7 +2391,7 @@ namespace IO.Swagger.Api
 
             var localVarPath = "/view/{name}/api/json";
             var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
             var localVarFormParams = new Dictionary<String, String>();
             var localVarFileParams = new Dictionary<String, FileParameter>();
@@ -2300,6 +2412,12 @@ namespace IO.Swagger.Api
 
             if (name != null) localVarPathParams.Add("name", Configuration.ApiClient.ParameterToString(name)); // path parameter
 
+            // authentication (jenkins_auth) required
+            // http basic authentication required
+            if (!String.IsNullOrEmpty(Configuration.Username) || !String.IsNullOrEmpty(Configuration.Password))
+            {
+                localVarHeaderParams["Authorization"] = "Basic " + ApiClient.Base64Encode(Configuration.Username + ":" + Configuration.Password);
+            }
 
             // make the HTTP request
             IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
@@ -2314,9 +2432,9 @@ namespace IO.Swagger.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<HudsonmodelListView>(localVarStatusCode,
+            return new ApiResponse<ListView>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (HudsonmodelListView) Configuration.ApiClient.Deserialize(localVarResponse, typeof(HudsonmodelListView)));
+                (ListView) Configuration.ApiClient.Deserialize(localVarResponse, typeof(ListView)));
         }
 
         /// <summary>
@@ -2324,10 +2442,10 @@ namespace IO.Swagger.Api
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="name">Name of the view</param>
-        /// <returns>Task of HudsonmodelListView</returns>
-        public async System.Threading.Tasks.Task<HudsonmodelListView> GetViewAsync (string name)
+        /// <returns>Task of ListView</returns>
+        public async System.Threading.Tasks.Task<ListView> GetViewAsync (string name)
         {
-             ApiResponse<HudsonmodelListView> localVarResponse = await GetViewAsyncWithHttpInfo(name);
+             ApiResponse<ListView> localVarResponse = await GetViewAsyncWithHttpInfo(name);
              return localVarResponse.Data;
 
         }
@@ -2337,8 +2455,8 @@ namespace IO.Swagger.Api
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="name">Name of the view</param>
-        /// <returns>Task of ApiResponse (HudsonmodelListView)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<HudsonmodelListView>> GetViewAsyncWithHttpInfo (string name)
+        /// <returns>Task of ApiResponse (ListView)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<ListView>> GetViewAsyncWithHttpInfo (string name)
         {
             // verify the required parameter 'name' is set
             if (name == null)
@@ -2346,7 +2464,7 @@ namespace IO.Swagger.Api
 
             var localVarPath = "/view/{name}/api/json";
             var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
             var localVarFormParams = new Dictionary<String, String>();
             var localVarFileParams = new Dictionary<String, FileParameter>();
@@ -2367,6 +2485,12 @@ namespace IO.Swagger.Api
 
             if (name != null) localVarPathParams.Add("name", Configuration.ApiClient.ParameterToString(name)); // path parameter
 
+            // authentication (jenkins_auth) required
+            // http basic authentication required
+            if (!String.IsNullOrEmpty(Configuration.Username) || !String.IsNullOrEmpty(Configuration.Password))
+            {
+                localVarHeaderParams["Authorization"] = "Basic " + ApiClient.Base64Encode(Configuration.Username + ":" + Configuration.Password);
+            }
 
             // make the HTTP request
             IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
@@ -2381,9 +2505,9 @@ namespace IO.Swagger.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<HudsonmodelListView>(localVarStatusCode,
+            return new ApiResponse<ListView>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (HudsonmodelListView) Configuration.ApiClient.Deserialize(localVarResponse, typeof(HudsonmodelListView)));
+                (ListView) Configuration.ApiClient.Deserialize(localVarResponse, typeof(ListView)));
         }
 
         /// <summary>
@@ -2412,7 +2536,7 @@ namespace IO.Swagger.Api
 
             var localVarPath = "/view/{name}/config.xml";
             var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
             var localVarFormParams = new Dictionary<String, String>();
             var localVarFileParams = new Dictionary<String, FileParameter>();
@@ -2433,6 +2557,12 @@ namespace IO.Swagger.Api
 
             if (name != null) localVarPathParams.Add("name", Configuration.ApiClient.ParameterToString(name)); // path parameter
 
+            // authentication (jenkins_auth) required
+            // http basic authentication required
+            if (!String.IsNullOrEmpty(Configuration.Username) || !String.IsNullOrEmpty(Configuration.Password))
+            {
+                localVarHeaderParams["Authorization"] = "Basic " + ApiClient.Base64Encode(Configuration.Username + ":" + Configuration.Password);
+            }
 
             // make the HTTP request
             IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
@@ -2479,7 +2609,7 @@ namespace IO.Swagger.Api
 
             var localVarPath = "/view/{name}/config.xml";
             var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
             var localVarFormParams = new Dictionary<String, String>();
             var localVarFileParams = new Dictionary<String, FileParameter>();
@@ -2500,6 +2630,12 @@ namespace IO.Swagger.Api
 
             if (name != null) localVarPathParams.Add("name", Configuration.ApiClient.ParameterToString(name)); // path parameter
 
+            // authentication (jenkins_auth) required
+            // http basic authentication required
+            if (!String.IsNullOrEmpty(Configuration.Username) || !String.IsNullOrEmpty(Configuration.Password))
+            {
+                localVarHeaderParams["Authorization"] = "Basic " + ApiClient.Base64Encode(Configuration.Username + ":" + Configuration.Password);
+            }
 
             // make the HTTP request
             IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
@@ -2539,7 +2675,7 @@ namespace IO.Swagger.Api
 
             var localVarPath = "/api/json";
             var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
             var localVarFormParams = new Dictionary<String, String>();
             var localVarFileParams = new Dictionary<String, FileParameter>();
@@ -2558,6 +2694,12 @@ namespace IO.Swagger.Api
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
 
+            // authentication (jenkins_auth) required
+            // http basic authentication required
+            if (!String.IsNullOrEmpty(Configuration.Username) || !String.IsNullOrEmpty(Configuration.Password))
+            {
+                localVarHeaderParams["Authorization"] = "Basic " + ApiClient.Base64Encode(Configuration.Username + ":" + Configuration.Password);
+            }
 
             // make the HTTP request
             IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
@@ -2598,7 +2740,7 @@ namespace IO.Swagger.Api
 
             var localVarPath = "/api/json";
             var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
             var localVarFormParams = new Dictionary<String, String>();
             var localVarFileParams = new Dictionary<String, FileParameter>();
@@ -2617,6 +2759,12 @@ namespace IO.Swagger.Api
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
 
+            // authentication (jenkins_auth) required
+            // http basic authentication required
+            if (!String.IsNullOrEmpty(Configuration.Username) || !String.IsNullOrEmpty(Configuration.Password))
+            {
+                localVarHeaderParams["Authorization"] = "Basic " + ApiClient.Base64Encode(Configuration.Username + ":" + Configuration.Password);
+            }
 
             // make the HTTP request
             IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
@@ -2671,7 +2819,7 @@ namespace IO.Swagger.Api
 
             var localVarPath = "/createItem";
             var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
             var localVarFormParams = new Dictionary<String, String>();
             var localVarFileParams = new Dictionary<String, FileParameter>();
@@ -2690,9 +2838,9 @@ namespace IO.Swagger.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            if (name != null) localVarQueryParams.Add("name", Configuration.ApiClient.ParameterToString(name)); // query parameter
-            if (from != null) localVarQueryParams.Add("from", Configuration.ApiClient.ParameterToString(from)); // query parameter
-            if (mode != null) localVarQueryParams.Add("mode", Configuration.ApiClient.ParameterToString(mode)); // query parameter
+            if (name != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "name", name)); // query parameter
+            if (from != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "from", from)); // query parameter
+            if (mode != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "mode", mode)); // query parameter
             if (jenkinsCrumb != null) localVarHeaderParams.Add("Jenkins-Crumb", Configuration.ApiClient.ParameterToString(jenkinsCrumb)); // header parameter
             if (contentType != null) localVarHeaderParams.Add("Content-Type", Configuration.ApiClient.ParameterToString(contentType)); // header parameter
             if (body != null && body.GetType() != typeof(byte[]))
@@ -2704,6 +2852,12 @@ namespace IO.Swagger.Api
                 localVarPostBody = body; // byte array
             }
 
+            // authentication (jenkins_auth) required
+            // http basic authentication required
+            if (!String.IsNullOrEmpty(Configuration.Username) || !String.IsNullOrEmpty(Configuration.Password))
+            {
+                localVarHeaderParams["Authorization"] = "Basic " + ApiClient.Base64Encode(Configuration.Username + ":" + Configuration.Password);
+            }
 
             // make the HTTP request
             IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
@@ -2759,7 +2913,7 @@ namespace IO.Swagger.Api
 
             var localVarPath = "/createItem";
             var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
             var localVarFormParams = new Dictionary<String, String>();
             var localVarFileParams = new Dictionary<String, FileParameter>();
@@ -2778,9 +2932,9 @@ namespace IO.Swagger.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            if (name != null) localVarQueryParams.Add("name", Configuration.ApiClient.ParameterToString(name)); // query parameter
-            if (from != null) localVarQueryParams.Add("from", Configuration.ApiClient.ParameterToString(from)); // query parameter
-            if (mode != null) localVarQueryParams.Add("mode", Configuration.ApiClient.ParameterToString(mode)); // query parameter
+            if (name != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "name", name)); // query parameter
+            if (from != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "from", from)); // query parameter
+            if (mode != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "mode", mode)); // query parameter
             if (jenkinsCrumb != null) localVarHeaderParams.Add("Jenkins-Crumb", Configuration.ApiClient.ParameterToString(jenkinsCrumb)); // header parameter
             if (contentType != null) localVarHeaderParams.Add("Content-Type", Configuration.ApiClient.ParameterToString(contentType)); // header parameter
             if (body != null && body.GetType() != typeof(byte[]))
@@ -2792,6 +2946,12 @@ namespace IO.Swagger.Api
                 localVarPostBody = body; // byte array
             }
 
+            // authentication (jenkins_auth) required
+            // http basic authentication required
+            if (!String.IsNullOrEmpty(Configuration.Username) || !String.IsNullOrEmpty(Configuration.Password))
+            {
+                localVarHeaderParams["Authorization"] = "Basic " + ApiClient.Base64Encode(Configuration.Username + ":" + Configuration.Password);
+            }
 
             // make the HTTP request
             IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
@@ -2842,7 +3002,7 @@ namespace IO.Swagger.Api
 
             var localVarPath = "/createView";
             var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
             var localVarFormParams = new Dictionary<String, String>();
             var localVarFileParams = new Dictionary<String, FileParameter>();
@@ -2861,7 +3021,7 @@ namespace IO.Swagger.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            if (name != null) localVarQueryParams.Add("name", Configuration.ApiClient.ParameterToString(name)); // query parameter
+            if (name != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "name", name)); // query parameter
             if (jenkinsCrumb != null) localVarHeaderParams.Add("Jenkins-Crumb", Configuration.ApiClient.ParameterToString(jenkinsCrumb)); // header parameter
             if (contentType != null) localVarHeaderParams.Add("Content-Type", Configuration.ApiClient.ParameterToString(contentType)); // header parameter
             if (body != null && body.GetType() != typeof(byte[]))
@@ -2873,6 +3033,12 @@ namespace IO.Swagger.Api
                 localVarPostBody = body; // byte array
             }
 
+            // authentication (jenkins_auth) required
+            // http basic authentication required
+            if (!String.IsNullOrEmpty(Configuration.Username) || !String.IsNullOrEmpty(Configuration.Password))
+            {
+                localVarHeaderParams["Authorization"] = "Basic " + ApiClient.Base64Encode(Configuration.Username + ":" + Configuration.Password);
+            }
 
             // make the HTTP request
             IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
@@ -2924,7 +3090,7 @@ namespace IO.Swagger.Api
 
             var localVarPath = "/createView";
             var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
             var localVarFormParams = new Dictionary<String, String>();
             var localVarFileParams = new Dictionary<String, FileParameter>();
@@ -2943,7 +3109,7 @@ namespace IO.Swagger.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            if (name != null) localVarQueryParams.Add("name", Configuration.ApiClient.ParameterToString(name)); // query parameter
+            if (name != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "name", name)); // query parameter
             if (jenkinsCrumb != null) localVarHeaderParams.Add("Jenkins-Crumb", Configuration.ApiClient.ParameterToString(jenkinsCrumb)); // header parameter
             if (contentType != null) localVarHeaderParams.Add("Content-Type", Configuration.ApiClient.ParameterToString(contentType)); // header parameter
             if (body != null && body.GetType() != typeof(byte[]))
@@ -2955,6 +3121,12 @@ namespace IO.Swagger.Api
                 localVarPostBody = body; // byte array
             }
 
+            // authentication (jenkins_auth) required
+            // http basic authentication required
+            if (!String.IsNullOrEmpty(Configuration.Username) || !String.IsNullOrEmpty(Configuration.Password))
+            {
+                localVarHeaderParams["Authorization"] = "Basic " + ApiClient.Base64Encode(Configuration.Username + ":" + Configuration.Password);
+            }
 
             // make the HTTP request
             IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
@@ -3008,7 +3180,7 @@ namespace IO.Swagger.Api
 
             var localVarPath = "/job/{name}/build";
             var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
             var localVarFormParams = new Dictionary<String, String>();
             var localVarFileParams = new Dictionary<String, FileParameter>();
@@ -3027,10 +3199,16 @@ namespace IO.Swagger.Api
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
             if (name != null) localVarPathParams.Add("name", Configuration.ApiClient.ParameterToString(name)); // path parameter
-            if (json != null) localVarQueryParams.Add("json", Configuration.ApiClient.ParameterToString(json)); // query parameter
-            if (token != null) localVarQueryParams.Add("token", Configuration.ApiClient.ParameterToString(token)); // query parameter
+            if (json != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "json", json)); // query parameter
+            if (token != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "token", token)); // query parameter
             if (jenkinsCrumb != null) localVarHeaderParams.Add("Jenkins-Crumb", Configuration.ApiClient.ParameterToString(jenkinsCrumb)); // header parameter
 
+            // authentication (jenkins_auth) required
+            // http basic authentication required
+            if (!String.IsNullOrEmpty(Configuration.Username) || !String.IsNullOrEmpty(Configuration.Password))
+            {
+                localVarHeaderParams["Authorization"] = "Basic " + ApiClient.Base64Encode(Configuration.Username + ":" + Configuration.Password);
+            }
 
             // make the HTTP request
             IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
@@ -3085,7 +3263,7 @@ namespace IO.Swagger.Api
 
             var localVarPath = "/job/{name}/build";
             var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
             var localVarFormParams = new Dictionary<String, String>();
             var localVarFileParams = new Dictionary<String, FileParameter>();
@@ -3104,10 +3282,16 @@ namespace IO.Swagger.Api
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
             if (name != null) localVarPathParams.Add("name", Configuration.ApiClient.ParameterToString(name)); // path parameter
-            if (json != null) localVarQueryParams.Add("json", Configuration.ApiClient.ParameterToString(json)); // query parameter
-            if (token != null) localVarQueryParams.Add("token", Configuration.ApiClient.ParameterToString(token)); // query parameter
+            if (json != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "json", json)); // query parameter
+            if (token != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "token", token)); // query parameter
             if (jenkinsCrumb != null) localVarHeaderParams.Add("Jenkins-Crumb", Configuration.ApiClient.ParameterToString(jenkinsCrumb)); // header parameter
 
+            // authentication (jenkins_auth) required
+            // http basic authentication required
+            if (!String.IsNullOrEmpty(Configuration.Username) || !String.IsNullOrEmpty(Configuration.Password))
+            {
+                localVarHeaderParams["Authorization"] = "Basic " + ApiClient.Base64Encode(Configuration.Username + ":" + Configuration.Password);
+            }
 
             // make the HTTP request
             IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
@@ -3159,7 +3343,7 @@ namespace IO.Swagger.Api
 
             var localVarPath = "/job/{name}/config.xml";
             var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
             var localVarFormParams = new Dictionary<String, String>();
             var localVarFileParams = new Dictionary<String, FileParameter>();
@@ -3189,6 +3373,12 @@ namespace IO.Swagger.Api
                 localVarPostBody = body; // byte array
             }
 
+            // authentication (jenkins_auth) required
+            // http basic authentication required
+            if (!String.IsNullOrEmpty(Configuration.Username) || !String.IsNullOrEmpty(Configuration.Password))
+            {
+                localVarHeaderParams["Authorization"] = "Basic " + ApiClient.Base64Encode(Configuration.Username + ":" + Configuration.Password);
+            }
 
             // make the HTTP request
             IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
@@ -3241,7 +3431,7 @@ namespace IO.Swagger.Api
 
             var localVarPath = "/job/{name}/config.xml";
             var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
             var localVarFormParams = new Dictionary<String, String>();
             var localVarFileParams = new Dictionary<String, FileParameter>();
@@ -3271,6 +3461,12 @@ namespace IO.Swagger.Api
                 localVarPostBody = body; // byte array
             }
 
+            // authentication (jenkins_auth) required
+            // http basic authentication required
+            if (!String.IsNullOrEmpty(Configuration.Username) || !String.IsNullOrEmpty(Configuration.Password))
+            {
+                localVarHeaderParams["Authorization"] = "Basic " + ApiClient.Base64Encode(Configuration.Username + ":" + Configuration.Password);
+            }
 
             // make the HTTP request
             IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
@@ -3317,7 +3513,7 @@ namespace IO.Swagger.Api
 
             var localVarPath = "/job/{name}/doDelete";
             var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
             var localVarFormParams = new Dictionary<String, String>();
             var localVarFileParams = new Dictionary<String, FileParameter>();
@@ -3338,6 +3534,12 @@ namespace IO.Swagger.Api
             if (name != null) localVarPathParams.Add("name", Configuration.ApiClient.ParameterToString(name)); // path parameter
             if (jenkinsCrumb != null) localVarHeaderParams.Add("Jenkins-Crumb", Configuration.ApiClient.ParameterToString(jenkinsCrumb)); // header parameter
 
+            // authentication (jenkins_auth) required
+            // http basic authentication required
+            if (!String.IsNullOrEmpty(Configuration.Username) || !String.IsNullOrEmpty(Configuration.Password))
+            {
+                localVarHeaderParams["Authorization"] = "Basic " + ApiClient.Base64Encode(Configuration.Username + ":" + Configuration.Password);
+            }
 
             // make the HTTP request
             IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
@@ -3385,7 +3587,7 @@ namespace IO.Swagger.Api
 
             var localVarPath = "/job/{name}/doDelete";
             var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
             var localVarFormParams = new Dictionary<String, String>();
             var localVarFileParams = new Dictionary<String, FileParameter>();
@@ -3406,6 +3608,12 @@ namespace IO.Swagger.Api
             if (name != null) localVarPathParams.Add("name", Configuration.ApiClient.ParameterToString(name)); // path parameter
             if (jenkinsCrumb != null) localVarHeaderParams.Add("Jenkins-Crumb", Configuration.ApiClient.ParameterToString(jenkinsCrumb)); // header parameter
 
+            // authentication (jenkins_auth) required
+            // http basic authentication required
+            if (!String.IsNullOrEmpty(Configuration.Username) || !String.IsNullOrEmpty(Configuration.Password))
+            {
+                localVarHeaderParams["Authorization"] = "Basic " + ApiClient.Base64Encode(Configuration.Username + ":" + Configuration.Password);
+            }
 
             // make the HTTP request
             IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
@@ -3452,7 +3660,7 @@ namespace IO.Swagger.Api
 
             var localVarPath = "/job/{name}/disable";
             var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
             var localVarFormParams = new Dictionary<String, String>();
             var localVarFileParams = new Dictionary<String, FileParameter>();
@@ -3473,6 +3681,12 @@ namespace IO.Swagger.Api
             if (name != null) localVarPathParams.Add("name", Configuration.ApiClient.ParameterToString(name)); // path parameter
             if (jenkinsCrumb != null) localVarHeaderParams.Add("Jenkins-Crumb", Configuration.ApiClient.ParameterToString(jenkinsCrumb)); // header parameter
 
+            // authentication (jenkins_auth) required
+            // http basic authentication required
+            if (!String.IsNullOrEmpty(Configuration.Username) || !String.IsNullOrEmpty(Configuration.Password))
+            {
+                localVarHeaderParams["Authorization"] = "Basic " + ApiClient.Base64Encode(Configuration.Username + ":" + Configuration.Password);
+            }
 
             // make the HTTP request
             IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
@@ -3520,7 +3734,7 @@ namespace IO.Swagger.Api
 
             var localVarPath = "/job/{name}/disable";
             var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
             var localVarFormParams = new Dictionary<String, String>();
             var localVarFileParams = new Dictionary<String, FileParameter>();
@@ -3541,6 +3755,12 @@ namespace IO.Swagger.Api
             if (name != null) localVarPathParams.Add("name", Configuration.ApiClient.ParameterToString(name)); // path parameter
             if (jenkinsCrumb != null) localVarHeaderParams.Add("Jenkins-Crumb", Configuration.ApiClient.ParameterToString(jenkinsCrumb)); // header parameter
 
+            // authentication (jenkins_auth) required
+            // http basic authentication required
+            if (!String.IsNullOrEmpty(Configuration.Username) || !String.IsNullOrEmpty(Configuration.Password))
+            {
+                localVarHeaderParams["Authorization"] = "Basic " + ApiClient.Base64Encode(Configuration.Username + ":" + Configuration.Password);
+            }
 
             // make the HTTP request
             IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
@@ -3587,7 +3807,7 @@ namespace IO.Swagger.Api
 
             var localVarPath = "/job/{name}/enable";
             var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
             var localVarFormParams = new Dictionary<String, String>();
             var localVarFileParams = new Dictionary<String, FileParameter>();
@@ -3608,6 +3828,12 @@ namespace IO.Swagger.Api
             if (name != null) localVarPathParams.Add("name", Configuration.ApiClient.ParameterToString(name)); // path parameter
             if (jenkinsCrumb != null) localVarHeaderParams.Add("Jenkins-Crumb", Configuration.ApiClient.ParameterToString(jenkinsCrumb)); // header parameter
 
+            // authentication (jenkins_auth) required
+            // http basic authentication required
+            if (!String.IsNullOrEmpty(Configuration.Username) || !String.IsNullOrEmpty(Configuration.Password))
+            {
+                localVarHeaderParams["Authorization"] = "Basic " + ApiClient.Base64Encode(Configuration.Username + ":" + Configuration.Password);
+            }
 
             // make the HTTP request
             IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
@@ -3655,7 +3881,7 @@ namespace IO.Swagger.Api
 
             var localVarPath = "/job/{name}/enable";
             var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
             var localVarFormParams = new Dictionary<String, String>();
             var localVarFileParams = new Dictionary<String, FileParameter>();
@@ -3676,6 +3902,12 @@ namespace IO.Swagger.Api
             if (name != null) localVarPathParams.Add("name", Configuration.ApiClient.ParameterToString(name)); // path parameter
             if (jenkinsCrumb != null) localVarHeaderParams.Add("Jenkins-Crumb", Configuration.ApiClient.ParameterToString(jenkinsCrumb)); // header parameter
 
+            // authentication (jenkins_auth) required
+            // http basic authentication required
+            if (!String.IsNullOrEmpty(Configuration.Username) || !String.IsNullOrEmpty(Configuration.Password))
+            {
+                localVarHeaderParams["Authorization"] = "Basic " + ApiClient.Base64Encode(Configuration.Username + ":" + Configuration.Password);
+            }
 
             // make the HTTP request
             IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
@@ -3722,7 +3954,7 @@ namespace IO.Swagger.Api
 
             var localVarPath = "/job/{name}/lastBuild/stop";
             var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
             var localVarFormParams = new Dictionary<String, String>();
             var localVarFileParams = new Dictionary<String, FileParameter>();
@@ -3743,6 +3975,12 @@ namespace IO.Swagger.Api
             if (name != null) localVarPathParams.Add("name", Configuration.ApiClient.ParameterToString(name)); // path parameter
             if (jenkinsCrumb != null) localVarHeaderParams.Add("Jenkins-Crumb", Configuration.ApiClient.ParameterToString(jenkinsCrumb)); // header parameter
 
+            // authentication (jenkins_auth) required
+            // http basic authentication required
+            if (!String.IsNullOrEmpty(Configuration.Username) || !String.IsNullOrEmpty(Configuration.Password))
+            {
+                localVarHeaderParams["Authorization"] = "Basic " + ApiClient.Base64Encode(Configuration.Username + ":" + Configuration.Password);
+            }
 
             // make the HTTP request
             IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
@@ -3790,7 +4028,7 @@ namespace IO.Swagger.Api
 
             var localVarPath = "/job/{name}/lastBuild/stop";
             var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
             var localVarFormParams = new Dictionary<String, String>();
             var localVarFileParams = new Dictionary<String, FileParameter>();
@@ -3811,6 +4049,12 @@ namespace IO.Swagger.Api
             if (name != null) localVarPathParams.Add("name", Configuration.ApiClient.ParameterToString(name)); // path parameter
             if (jenkinsCrumb != null) localVarHeaderParams.Add("Jenkins-Crumb", Configuration.ApiClient.ParameterToString(jenkinsCrumb)); // header parameter
 
+            // authentication (jenkins_auth) required
+            // http basic authentication required
+            if (!String.IsNullOrEmpty(Configuration.Username) || !String.IsNullOrEmpty(Configuration.Password))
+            {
+                localVarHeaderParams["Authorization"] = "Basic " + ApiClient.Base64Encode(Configuration.Username + ":" + Configuration.Password);
+            }
 
             // make the HTTP request
             IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
@@ -3862,7 +4106,7 @@ namespace IO.Swagger.Api
 
             var localVarPath = "/view/{name}/config.xml";
             var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
             var localVarFormParams = new Dictionary<String, String>();
             var localVarFileParams = new Dictionary<String, FileParameter>();
@@ -3891,6 +4135,12 @@ namespace IO.Swagger.Api
                 localVarPostBody = body; // byte array
             }
 
+            // authentication (jenkins_auth) required
+            // http basic authentication required
+            if (!String.IsNullOrEmpty(Configuration.Username) || !String.IsNullOrEmpty(Configuration.Password))
+            {
+                localVarHeaderParams["Authorization"] = "Basic " + ApiClient.Base64Encode(Configuration.Username + ":" + Configuration.Password);
+            }
 
             // make the HTTP request
             IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
@@ -3943,7 +4193,7 @@ namespace IO.Swagger.Api
 
             var localVarPath = "/view/{name}/config.xml";
             var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
             var localVarFormParams = new Dictionary<String, String>();
             var localVarFileParams = new Dictionary<String, FileParameter>();
@@ -3972,6 +4222,12 @@ namespace IO.Swagger.Api
                 localVarPostBody = body; // byte array
             }
 
+            // authentication (jenkins_auth) required
+            // http basic authentication required
+            if (!String.IsNullOrEmpty(Configuration.Username) || !String.IsNullOrEmpty(Configuration.Password))
+            {
+                localVarHeaderParams["Authorization"] = "Basic " + ApiClient.Base64Encode(Configuration.Username + ":" + Configuration.Password);
+            }
 
             // make the HTTP request
             IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,

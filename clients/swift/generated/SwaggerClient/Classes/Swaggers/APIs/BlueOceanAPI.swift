@@ -12,34 +12,36 @@ import Alamofire
 public class BlueOceanAPI: APIBase {
     /**
 
-     - parameter organisation: (path) Name of the organisation 
+     - parameter organization: (path) Name of the organization 
+     - parameter pipeline: (path) Name of the pipeline 
+     - parameter queue: (path) Name of the queue item 
      - parameter completion: completion handler to receive the data and the error objects
      */
-    public class func getAuthenticatedUser(organisation organisation: String, completion: ((data: SwaggyjenkinsUser?, error: ErrorType?) -> Void)) {
-        getAuthenticatedUserWithRequestBuilder(organisation: organisation).execute { (response, error) -> Void in
-            completion(data: response?.body, error: error);
+    public class func deletePipelineQueueItem(organization organization: String, pipeline: String, queue: String, completion: ((error: ErrorType?) -> Void)) {
+        deletePipelineQueueItemWithRequestBuilder(organization: organization, pipeline: pipeline, queue: queue).execute { (response, error) -> Void in
+            completion(error: error);
         }
     }
 
 
     /**
-     - GET /blue/rest/organizations/{organisation}/user/
-     - Retrieve authenticated user details for an organisation
-     - examples: [{contentType=application/json, example={
-  "name" : "aeiou",
-  "fullName" : "aeiou",
-  "_class" : "aeiou",
-  "id" : "aeiou",
-  "email" : "aeiou"
-}}]
+     - DELETE /blue/rest/organizations/{organization}/pipelines/{pipeline}/queue/{queue}
+     - Delete queue item from an organization pipeline queue
+     - BASIC:
+       - type: basic
+       - name: jenkins_auth
      
-     - parameter organisation: (path) Name of the organisation 
+     - parameter organization: (path) Name of the organization 
+     - parameter pipeline: (path) Name of the pipeline 
+     - parameter queue: (path) Name of the queue item 
 
-     - returns: RequestBuilder<SwaggyjenkinsUser> 
+     - returns: RequestBuilder<Void> 
      */
-    public class func getAuthenticatedUserWithRequestBuilder(organisation organisation: String) -> RequestBuilder<SwaggyjenkinsUser> {
-        var path = "/blue/rest/organizations/{organisation}/user/"
-        path = path.stringByReplacingOccurrencesOfString("{organisation}", withString: "\(organisation)", options: .LiteralSearch, range: nil)
+    public class func deletePipelineQueueItemWithRequestBuilder(organization organization: String, pipeline: String, queue: String) -> RequestBuilder<Void> {
+        var path = "/blue/rest/organizations/{organization}/pipelines/{pipeline}/queue/{queue}"
+        path = path.stringByReplacingOccurrencesOfString("{organization}", withString: "\(organization)", options: .LiteralSearch, range: nil)
+        path = path.stringByReplacingOccurrencesOfString("{pipeline}", withString: "\(pipeline)", options: .LiteralSearch, range: nil)
+        path = path.stringByReplacingOccurrencesOfString("{queue}", withString: "\(queue)", options: .LiteralSearch, range: nil)
         let URLString = SwaggerClientAPI.basePath + path
 
         let nillableParameters: [String:AnyObject?] = [:]
@@ -48,7 +50,53 @@ public class BlueOceanAPI: APIBase {
  
         let convertedParameters = APIHelper.convertBoolToString(parameters)
  
-        let requestBuilder: RequestBuilder<SwaggyjenkinsUser>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
+        let requestBuilder: RequestBuilder<Void>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
+
+        return requestBuilder.init(method: "DELETE", URLString: URLString, parameters: convertedParameters, isBody: true)
+    }
+
+    /**
+
+     - parameter organization: (path) Name of the organization 
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    public class func getAuthenticatedUser(organization organization: String, completion: ((data: User?, error: ErrorType?) -> Void)) {
+        getAuthenticatedUserWithRequestBuilder(organization: organization).execute { (response, error) -> Void in
+            completion(data: response?.body, error: error);
+        }
+    }
+
+
+    /**
+     - GET /blue/rest/organizations/{organization}/user/
+     - Retrieve authenticated user details for an organization
+     - BASIC:
+       - type: basic
+       - name: jenkins_auth
+     - examples: [{contentType=application/json, example={
+  "name" : "name",
+  "fullName" : "fullName",
+  "_class" : "_class",
+  "id" : "id",
+  "email" : "email"
+}}]
+     
+     - parameter organization: (path) Name of the organization 
+
+     - returns: RequestBuilder<User> 
+     */
+    public class func getAuthenticatedUserWithRequestBuilder(organization organization: String) -> RequestBuilder<User> {
+        var path = "/blue/rest/organizations/{organization}/user/"
+        path = path.stringByReplacingOccurrencesOfString("{organization}", withString: "\(organization)", options: .LiteralSearch, range: nil)
+        let URLString = SwaggerClientAPI.basePath + path
+
+        let nillableParameters: [String:AnyObject?] = [:]
+ 
+        let parameters = APIHelper.rejectNil(nillableParameters)
+ 
+        let convertedParameters = APIHelper.convertBoolToString(parameters)
+ 
+        let requestBuilder: RequestBuilder<User>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
 
         return requestBuilder.init(method: "GET", URLString: URLString, parameters: convertedParameters, isBody: true)
     }
@@ -68,7 +116,10 @@ public class BlueOceanAPI: APIBase {
     /**
      - GET /blue/rest/classes/{class}
      - Get a list of class names supported by a given class
-     - examples: [{contentType=application/json, example="aeiou"}]
+     - BASIC:
+       - type: basic
+       - name: jenkins_auth
+     - examples: [{contentType=application/json, example=""}]
      
      - parameter _class: (path) Name of the class 
 
@@ -92,31 +143,34 @@ public class BlueOceanAPI: APIBase {
 
     /**
 
-     - parameter organisation: (path) Name of the organisation 
+     - parameter organization: (path) Name of the organization 
      - parameter completion: completion handler to receive the data and the error objects
      */
-    public class func getOrganisation(organisation organisation: String, completion: ((data: SwaggyjenkinsOrganisation?, error: ErrorType?) -> Void)) {
-        getOrganisationWithRequestBuilder(organisation: organisation).execute { (response, error) -> Void in
+    public class func getOrganisation(organization organization: String, completion: ((data: Organisation?, error: ErrorType?) -> Void)) {
+        getOrganisationWithRequestBuilder(organization: organization).execute { (response, error) -> Void in
             completion(data: response?.body, error: error);
         }
     }
 
 
     /**
-     - GET /blue/rest/organizations/{organisation}
-     - Retrieve organisation details
+     - GET /blue/rest/organizations/{organization}
+     - Retrieve organization details
+     - BASIC:
+       - type: basic
+       - name: jenkins_auth
      - examples: [{contentType=application/json, example={
-  "name" : "aeiou",
-  "_class" : "aeiou"
+  "name" : "name",
+  "_class" : "_class"
 }}]
      
-     - parameter organisation: (path) Name of the organisation 
+     - parameter organization: (path) Name of the organization 
 
-     - returns: RequestBuilder<SwaggyjenkinsOrganisation> 
+     - returns: RequestBuilder<Organisation> 
      */
-    public class func getOrganisationWithRequestBuilder(organisation organisation: String) -> RequestBuilder<SwaggyjenkinsOrganisation> {
-        var path = "/blue/rest/organizations/{organisation}"
-        path = path.stringByReplacingOccurrencesOfString("{organisation}", withString: "\(organisation)", options: .LiteralSearch, range: nil)
+    public class func getOrganisationWithRequestBuilder(organization organization: String) -> RequestBuilder<Organisation> {
+        var path = "/blue/rest/organizations/{organization}"
+        path = path.stringByReplacingOccurrencesOfString("{organization}", withString: "\(organization)", options: .LiteralSearch, range: nil)
         let URLString = SwaggerClientAPI.basePath + path
 
         let nillableParameters: [String:AnyObject?] = [:]
@@ -125,7 +179,7 @@ public class BlueOceanAPI: APIBase {
  
         let convertedParameters = APIHelper.convertBoolToString(parameters)
  
-        let requestBuilder: RequestBuilder<SwaggyjenkinsOrganisation>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
+        let requestBuilder: RequestBuilder<Organisation>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
 
         return requestBuilder.init(method: "GET", URLString: URLString, parameters: convertedParameters, isBody: true)
     }
@@ -134,7 +188,7 @@ public class BlueOceanAPI: APIBase {
 
      - parameter completion: completion handler to receive the data and the error objects
      */
-    public class func getOrganisations(completion: ((data: GetOrganisations?, error: ErrorType?) -> Void)) {
+    public class func getOrganisations(completion: ((data: Organisations?, error: ErrorType?) -> Void)) {
         getOrganisationsWithRequestBuilder().execute { (response, error) -> Void in
             completion(data: response?.body, error: error);
         }
@@ -143,12 +197,15 @@ public class BlueOceanAPI: APIBase {
 
     /**
      - GET /blue/rest/organizations/
-     - Retrieve all organisations details
+     - Retrieve all organizations details
+     - BASIC:
+       - type: basic
+       - name: jenkins_auth
      - examples: [{contentType=application/json, example=""}]
 
-     - returns: RequestBuilder<GetOrganisations> 
+     - returns: RequestBuilder<Organisations> 
      */
-    public class func getOrganisationsWithRequestBuilder() -> RequestBuilder<GetOrganisations> {
+    public class func getOrganisationsWithRequestBuilder() -> RequestBuilder<Organisations> {
         let path = "/blue/rest/organizations/"
         let URLString = SwaggerClientAPI.basePath + path
 
@@ -158,67 +215,259 @@ public class BlueOceanAPI: APIBase {
  
         let convertedParameters = APIHelper.convertBoolToString(parameters)
  
-        let requestBuilder: RequestBuilder<GetOrganisations>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
+        let requestBuilder: RequestBuilder<Organisations>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
 
         return requestBuilder.init(method: "GET", URLString: URLString, parameters: convertedParameters, isBody: true)
     }
 
     /**
 
-     - parameter organisation: (path) Name of the organisation 
+     - parameter organization: (path) Name of the organization 
      - parameter pipeline: (path) Name of the pipeline 
-     - parameter branch: (path) Name of the branch 
      - parameter completion: completion handler to receive the data and the error objects
      */
-    public class func getPipelineBranchByOrg(organisation organisation: String, pipeline: String, branch: String, completion: ((data: IojenkinsblueoceanrestimplpipelineBranchImpl?, error: ErrorType?) -> Void)) {
-        getPipelineBranchByOrgWithRequestBuilder(organisation: organisation, pipeline: pipeline, branch: branch).execute { (response, error) -> Void in
+    public class func getPipeline(organization organization: String, pipeline: String, completion: ((data: Pipeline?, error: ErrorType?) -> Void)) {
+        getPipelineWithRequestBuilder(organization: organization, pipeline: pipeline).execute { (response, error) -> Void in
             completion(data: response?.body, error: error);
         }
     }
 
 
     /**
-     - GET /blue/rest/organizations/{organisation}/pipelines/{pipeline}/branches/{branch}/
-     - Retrieve branch details for an organisation pipeline
+     - GET /blue/rest/organizations/{organization}/pipelines/{pipeline}
+     - Retrieve pipeline details for an organization
+     - BASIC:
+       - type: basic
+       - name: jenkins_auth
+     - examples: [{contentType=application/json, example={
+  "weatherScore" : 0,
+  "latestRun" : {
+    "runSummary" : "runSummary",
+    "durationInMillis" : 5,
+    "commitId" : "commitId",
+    "type" : "type",
+    "pipeline" : "pipeline",
+    "result" : "result",
+    "organization" : "organization",
+    "estimatedDurationInMillis" : 5,
+    "enQueueTime" : "enQueueTime",
+    "startTime" : "startTime",
+    "endTime" : "endTime",
+    "id" : "id",
+    "state" : "state",
+    "_class" : "_class",
+    "artifacts" : [ {
+      "size" : 1,
+      "name" : "name",
+      "_class" : "_class",
+      "url" : "url"
+    }, {
+      "size" : 1,
+      "name" : "name",
+      "_class" : "_class",
+      "url" : "url"
+    } ]
+  },
+  "displayName" : "displayName",
+  "organization" : "organization",
+  "name" : "name",
+  "estimatedDurationInMillis" : 6,
+  "fullName" : "fullName",
+  "_class" : "_class"
+}}]
+     
+     - parameter organization: (path) Name of the organization 
+     - parameter pipeline: (path) Name of the pipeline 
+
+     - returns: RequestBuilder<Pipeline> 
+     */
+    public class func getPipelineWithRequestBuilder(organization organization: String, pipeline: String) -> RequestBuilder<Pipeline> {
+        var path = "/blue/rest/organizations/{organization}/pipelines/{pipeline}"
+        path = path.stringByReplacingOccurrencesOfString("{organization}", withString: "\(organization)", options: .LiteralSearch, range: nil)
+        path = path.stringByReplacingOccurrencesOfString("{pipeline}", withString: "\(pipeline)", options: .LiteralSearch, range: nil)
+        let URLString = SwaggerClientAPI.basePath + path
+
+        let nillableParameters: [String:AnyObject?] = [:]
+ 
+        let parameters = APIHelper.rejectNil(nillableParameters)
+ 
+        let convertedParameters = APIHelper.convertBoolToString(parameters)
+ 
+        let requestBuilder: RequestBuilder<Pipeline>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
+
+        return requestBuilder.init(method: "GET", URLString: URLString, parameters: convertedParameters, isBody: true)
+    }
+
+    /**
+
+     - parameter organization: (path) Name of the organization 
+     - parameter pipeline: (path) Name of the pipeline 
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    public class func getPipelineActivities(organization organization: String, pipeline: String, completion: ((data: PipelineActivities?, error: ErrorType?) -> Void)) {
+        getPipelineActivitiesWithRequestBuilder(organization: organization, pipeline: pipeline).execute { (response, error) -> Void in
+            completion(data: response?.body, error: error);
+        }
+    }
+
+
+    /**
+     - GET /blue/rest/organizations/{organization}/pipelines/{pipeline}/activities
+     - Retrieve all activities details for an organization pipeline
+     - BASIC:
+       - type: basic
+       - name: jenkins_auth
+     - examples: [{contentType=application/json, example=""}]
+     
+     - parameter organization: (path) Name of the organization 
+     - parameter pipeline: (path) Name of the pipeline 
+
+     - returns: RequestBuilder<PipelineActivities> 
+     */
+    public class func getPipelineActivitiesWithRequestBuilder(organization organization: String, pipeline: String) -> RequestBuilder<PipelineActivities> {
+        var path = "/blue/rest/organizations/{organization}/pipelines/{pipeline}/activities"
+        path = path.stringByReplacingOccurrencesOfString("{organization}", withString: "\(organization)", options: .LiteralSearch, range: nil)
+        path = path.stringByReplacingOccurrencesOfString("{pipeline}", withString: "\(pipeline)", options: .LiteralSearch, range: nil)
+        let URLString = SwaggerClientAPI.basePath + path
+
+        let nillableParameters: [String:AnyObject?] = [:]
+ 
+        let parameters = APIHelper.rejectNil(nillableParameters)
+ 
+        let convertedParameters = APIHelper.convertBoolToString(parameters)
+ 
+        let requestBuilder: RequestBuilder<PipelineActivities>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
+
+        return requestBuilder.init(method: "GET", URLString: URLString, parameters: convertedParameters, isBody: true)
+    }
+
+    /**
+
+     - parameter organization: (path) Name of the organization 
+     - parameter pipeline: (path) Name of the pipeline 
+     - parameter branch: (path) Name of the branch 
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    public class func getPipelineBranch(organization organization: String, pipeline: String, branch: String, completion: ((data: BranchImpl?, error: ErrorType?) -> Void)) {
+        getPipelineBranchWithRequestBuilder(organization: organization, pipeline: pipeline, branch: branch).execute { (response, error) -> Void in
+            completion(data: response?.body, error: error);
+        }
+    }
+
+
+    /**
+     - GET /blue/rest/organizations/{organization}/pipelines/{pipeline}/branches/{branch}/
+     - Retrieve branch details for an organization pipeline
+     - BASIC:
+       - type: basic
+       - name: jenkins_auth
      - examples: [{contentType=application/json, example={
   "weatherScore" : 6,
-  "displayName" : "aeiou",
+  "latestRun" : {
+    "runSummary" : "runSummary",
+    "_links" : {
+      "nodes" : {
+        "_class" : "_class",
+        "href" : "href"
+      },
+      "log" : {
+        "_class" : "_class",
+        "href" : "href"
+      },
+      "self" : {
+        "_class" : "_class",
+        "href" : "href"
+      },
+      "_class" : "_class",
+      "actions" : {
+        "_class" : "_class",
+        "href" : "href"
+      },
+      "steps" : {
+        "_class" : "_class",
+        "href" : "href"
+      }
+    },
+    "durationInMillis" : 1,
+    "commitId" : "commitId",
+    "type" : "type",
+    "pipeline" : "pipeline",
+    "result" : "result",
+    "organization" : "organization",
+    "enQueueTime" : "enQueueTime",
+    "estimatedDurationInMillis" : 5,
+    "startTime" : "startTime",
+    "_class" : "_class",
+    "endTime" : "endTime",
+    "id" : "id",
+    "state" : "state"
+  },
+  "_links" : {
+    "self" : {
+      "_class" : "_class",
+      "href" : "href"
+    },
+    "_class" : "_class",
+    "actions" : {
+      "_class" : "_class",
+      "href" : "href"
+    },
+    "runs" : {
+      "_class" : "_class",
+      "href" : "href"
+    },
+    "queue" : {
+      "_class" : "_class",
+      "href" : "href"
+    }
+  },
+  "displayName" : "displayName",
+  "fullDisplayName" : "fullDisplayName",
+  "fullName" : "fullName",
+  "pullRequest" : "pullRequest",
   "permissions" : {
     "read" : true,
     "stop" : true,
     "start" : true,
     "create" : true,
-    "_class" : "aeiou"
+    "_class" : "_class"
   },
-  "organization" : "aeiou",
+  "organization" : "organization",
   "estimatedDurationInMillis" : 0,
-  "name" : "aeiou",
-  "fullDisplayName" : "aeiou",
-  "fullName" : "aeiou",
-  "_class" : "aeiou",
+  "name" : "name",
+  "_class" : "_class",
   "parameters" : [ {
-    "name" : "aeiou",
-    "description" : "aeiou",
-    "_class" : "aeiou",
-    "type" : "aeiou",
+    "name" : "name",
+    "description" : "description",
+    "_class" : "_class",
+    "type" : "type",
     "defaultParameterValue" : {
-      "name" : "aeiou",
-      "_class" : "aeiou",
-      "value" : "aeiou"
+      "name" : "name",
+      "_class" : "_class",
+      "value" : "value"
     }
-  } ],
-  "pullRequest" : "aeiou"
+  }, {
+    "name" : "name",
+    "description" : "description",
+    "_class" : "_class",
+    "type" : "type",
+    "defaultParameterValue" : {
+      "name" : "name",
+      "_class" : "_class",
+      "value" : "value"
+    }
+  } ]
 }}]
      
-     - parameter organisation: (path) Name of the organisation 
+     - parameter organization: (path) Name of the organization 
      - parameter pipeline: (path) Name of the pipeline 
      - parameter branch: (path) Name of the branch 
 
-     - returns: RequestBuilder<IojenkinsblueoceanrestimplpipelineBranchImpl> 
+     - returns: RequestBuilder<BranchImpl> 
      */
-    public class func getPipelineBranchByOrgWithRequestBuilder(organisation organisation: String, pipeline: String, branch: String) -> RequestBuilder<IojenkinsblueoceanrestimplpipelineBranchImpl> {
-        var path = "/blue/rest/organizations/{organisation}/pipelines/{pipeline}/branches/{branch}/"
-        path = path.stringByReplacingOccurrencesOfString("{organisation}", withString: "\(organisation)", options: .LiteralSearch, range: nil)
+    public class func getPipelineBranchWithRequestBuilder(organization organization: String, pipeline: String, branch: String) -> RequestBuilder<BranchImpl> {
+        var path = "/blue/rest/organizations/{organization}/pipelines/{pipeline}/branches/{branch}/"
+        path = path.stringByReplacingOccurrencesOfString("{organization}", withString: "\(organization)", options: .LiteralSearch, range: nil)
         path = path.stringByReplacingOccurrencesOfString("{pipeline}", withString: "\(pipeline)", options: .LiteralSearch, range: nil)
         path = path.stringByReplacingOccurrencesOfString("{branch}", withString: "\(branch)", options: .LiteralSearch, range: nil)
         let URLString = SwaggerClientAPI.basePath + path
@@ -229,52 +478,130 @@ public class BlueOceanAPI: APIBase {
  
         let convertedParameters = APIHelper.convertBoolToString(parameters)
  
-        let requestBuilder: RequestBuilder<IojenkinsblueoceanrestimplpipelineBranchImpl>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
+        let requestBuilder: RequestBuilder<BranchImpl>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
 
         return requestBuilder.init(method: "GET", URLString: URLString, parameters: convertedParameters, isBody: true)
     }
 
     /**
 
-     - parameter organisation: (path) Name of the organisation 
+     - parameter organization: (path) Name of the organization 
      - parameter pipeline: (path) Name of the pipeline 
+     - parameter branch: (path) Name of the branch 
+     - parameter run: (path) Name of the run 
      - parameter completion: completion handler to receive the data and the error objects
      */
-    public class func getPipelineBranchesByOrg(organisation organisation: String, pipeline: String, completion: ((data: GetMultibranchPipeline?, error: ErrorType?) -> Void)) {
-        getPipelineBranchesByOrgWithRequestBuilder(organisation: organisation, pipeline: pipeline).execute { (response, error) -> Void in
+    public class func getPipelineBranchRun(organization organization: String, pipeline: String, branch: String, run: String, completion: ((data: PipelineRun?, error: ErrorType?) -> Void)) {
+        getPipelineBranchRunWithRequestBuilder(organization: organization, pipeline: pipeline, branch: branch, run: run).execute { (response, error) -> Void in
             completion(data: response?.body, error: error);
         }
     }
 
 
     /**
-     - GET /blue/rest/organizations/{organisation}/pipelines/{pipeline}/branches
-     - Retrieve all branches details for an organisation pipeline
+     - GET /blue/rest/organizations/{organization}/pipelines/{pipeline}/branches/{branch}/runs/{run}
+     - Retrieve branch run details for an organization pipeline
+     - BASIC:
+       - type: basic
+       - name: jenkins_auth
+     - examples: [{contentType=application/json, example={
+  "runSummary" : "runSummary",
+  "durationInMillis" : 6,
+  "commitId" : "commitId",
+  "type" : "type",
+  "pipeline" : "pipeline",
+  "result" : "result",
+  "organization" : "organization",
+  "estimatedDurationInMillis" : 1,
+  "enQueueTime" : "enQueueTime",
+  "startTime" : "startTime",
+  "_class" : "_class",
+  "endTime" : "endTime",
+  "id" : "id",
+  "state" : "state",
+  "artifacts" : [ {
+    "size" : 0,
+    "name" : "name",
+    "_class" : "_class",
+    "url" : "url"
+  }, {
+    "size" : 0,
+    "name" : "name",
+    "_class" : "_class",
+    "url" : "url"
+  } ]
+}}]
+     
+     - parameter organization: (path) Name of the organization 
+     - parameter pipeline: (path) Name of the pipeline 
+     - parameter branch: (path) Name of the branch 
+     - parameter run: (path) Name of the run 
+
+     - returns: RequestBuilder<PipelineRun> 
+     */
+    public class func getPipelineBranchRunWithRequestBuilder(organization organization: String, pipeline: String, branch: String, run: String) -> RequestBuilder<PipelineRun> {
+        var path = "/blue/rest/organizations/{organization}/pipelines/{pipeline}/branches/{branch}/runs/{run}"
+        path = path.stringByReplacingOccurrencesOfString("{organization}", withString: "\(organization)", options: .LiteralSearch, range: nil)
+        path = path.stringByReplacingOccurrencesOfString("{pipeline}", withString: "\(pipeline)", options: .LiteralSearch, range: nil)
+        path = path.stringByReplacingOccurrencesOfString("{branch}", withString: "\(branch)", options: .LiteralSearch, range: nil)
+        path = path.stringByReplacingOccurrencesOfString("{run}", withString: "\(run)", options: .LiteralSearch, range: nil)
+        let URLString = SwaggerClientAPI.basePath + path
+
+        let nillableParameters: [String:AnyObject?] = [:]
+ 
+        let parameters = APIHelper.rejectNil(nillableParameters)
+ 
+        let convertedParameters = APIHelper.convertBoolToString(parameters)
+ 
+        let requestBuilder: RequestBuilder<PipelineRun>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
+
+        return requestBuilder.init(method: "GET", URLString: URLString, parameters: convertedParameters, isBody: true)
+    }
+
+    /**
+
+     - parameter organization: (path) Name of the organization 
+     - parameter pipeline: (path) Name of the pipeline 
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    public class func getPipelineBranches(organization organization: String, pipeline: String, completion: ((data: MultibranchPipeline?, error: ErrorType?) -> Void)) {
+        getPipelineBranchesWithRequestBuilder(organization: organization, pipeline: pipeline).execute { (response, error) -> Void in
+            completion(data: response?.body, error: error);
+        }
+    }
+
+
+    /**
+     - GET /blue/rest/organizations/{organization}/pipelines/{pipeline}/branches
+     - Retrieve all branches details for an organization pipeline
+     - BASIC:
+       - type: basic
+       - name: jenkins_auth
      - examples: [{contentType=application/json, example={
   "weatherScore" : 6,
-  "latestRun" : "aeiou",
-  "displayName" : "aeiou",
+  "latestRun" : "latestRun",
+  "displayName" : "displayName",
   "totalNumberOfPullRequests" : 9,
   "numberOfFailingPullRequests" : 5,
-  "branchNames" : [ "aeiou" ],
-  "organization" : "aeiou",
+  "branchNames" : [ "branchNames", "branchNames" ],
+  "organization" : "organization",
   "totalNumberOfBranches" : 7,
   "estimatedDurationInMillis" : 0,
-  "name" : "aeiou",
+  "name" : "name",
   "numberOfSuccessfulPullRequests" : 2,
   "numberOfSuccessfulBranches" : 5,
   "numberOfFailingBranches" : 1,
-  "_class" : "aeiou"
+  "_class" : "_class"
 }}]
      
-     - parameter organisation: (path) Name of the organisation 
+     - parameter organization: (path) Name of the organization 
      - parameter pipeline: (path) Name of the pipeline 
 
-     - returns: RequestBuilder<GetMultibranchPipeline> 
+     - returns: RequestBuilder<MultibranchPipeline> 
      */
-    public class func getPipelineBranchesByOrgWithRequestBuilder(organisation organisation: String, pipeline: String) -> RequestBuilder<GetMultibranchPipeline> {
-        var path = "/blue/rest/organizations/{organisation}/pipelines/{pipeline}/branches"
-        path = path.stringByReplacingOccurrencesOfString("{organisation}", withString: "\(organisation)", options: .LiteralSearch, range: nil)
+    public class func getPipelineBranchesWithRequestBuilder(organization organization: String, pipeline: String) -> RequestBuilder<MultibranchPipeline> {
+        var path = "/blue/rest/organizations/{organization}/pipelines/{pipeline}/branches"
+        path = path.stringByReplacingOccurrencesOfString("{organization}", withString: "\(organization)", options: .LiteralSearch, range: nil)
         path = path.stringByReplacingOccurrencesOfString("{pipeline}", withString: "\(pipeline)", options: .LiteralSearch, range: nil)
         let URLString = SwaggerClientAPI.basePath + path
 
@@ -284,115 +611,48 @@ public class BlueOceanAPI: APIBase {
  
         let convertedParameters = APIHelper.convertBoolToString(parameters)
  
-        let requestBuilder: RequestBuilder<GetMultibranchPipeline>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
+        let requestBuilder: RequestBuilder<MultibranchPipeline>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
 
         return requestBuilder.init(method: "GET", URLString: URLString, parameters: convertedParameters, isBody: true)
     }
 
     /**
 
-     - parameter organisation: (path) Name of the organisation 
-     - parameter pipeline: (path) Name of the pipeline 
-     - parameter completion: completion handler to receive the data and the error objects
-     */
-    public class func getPipelineByOrg(organisation organisation: String, pipeline: String, completion: ((data: SwaggyjenkinsPipeline?, error: ErrorType?) -> Void)) {
-        getPipelineByOrgWithRequestBuilder(organisation: organisation, pipeline: pipeline).execute { (response, error) -> Void in
-            completion(data: response?.body, error: error);
-        }
-    }
-
-
-    /**
-     - GET /blue/rest/organizations/{organisation}/pipelines/{pipeline}
-     - Retrieve pipeline details for an organisation
-     - examples: [{contentType=application/json, example={
-  "weatherScore" : 0,
-  "latestRun" : {
-    "runSummary" : "aeiou",
-    "durationInMillis" : 5,
-    "commitId" : "aeiou",
-    "type" : "aeiou",
-    "pipeline" : "aeiou",
-    "result" : "aeiou",
-    "organization" : "aeiou",
-    "estimatedDurationInMillis" : 5,
-    "enQueueTime" : "aeiou",
-    "startTime" : "aeiou",
-    "endTime" : "aeiou",
-    "id" : "aeiou",
-    "state" : "aeiou",
-    "_class" : "aeiou",
-    "artifacts" : [ {
-      "size" : 1,
-      "name" : "aeiou",
-      "_class" : "aeiou",
-      "url" : "aeiou"
-    } ]
-  },
-  "displayName" : "aeiou",
-  "organization" : "aeiou",
-  "name" : "aeiou",
-  "estimatedDurationInMillis" : 6,
-  "fullName" : "aeiou",
-  "_class" : "aeiou"
-}}]
-     
-     - parameter organisation: (path) Name of the organisation 
-     - parameter pipeline: (path) Name of the pipeline 
-
-     - returns: RequestBuilder<SwaggyjenkinsPipeline> 
-     */
-    public class func getPipelineByOrgWithRequestBuilder(organisation organisation: String, pipeline: String) -> RequestBuilder<SwaggyjenkinsPipeline> {
-        var path = "/blue/rest/organizations/{organisation}/pipelines/{pipeline}"
-        path = path.stringByReplacingOccurrencesOfString("{organisation}", withString: "\(organisation)", options: .LiteralSearch, range: nil)
-        path = path.stringByReplacingOccurrencesOfString("{pipeline}", withString: "\(pipeline)", options: .LiteralSearch, range: nil)
-        let URLString = SwaggerClientAPI.basePath + path
-
-        let nillableParameters: [String:AnyObject?] = [:]
- 
-        let parameters = APIHelper.rejectNil(nillableParameters)
- 
-        let convertedParameters = APIHelper.convertBoolToString(parameters)
- 
-        let requestBuilder: RequestBuilder<SwaggyjenkinsPipeline>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
-
-        return requestBuilder.init(method: "GET", URLString: URLString, parameters: convertedParameters, isBody: true)
-    }
-
-    /**
-
-     - parameter organisation: (path) Name of the organisation 
+     - parameter organization: (path) Name of the organization 
      - parameter folder: (path) Name of the folder 
      - parameter completion: completion handler to receive the data and the error objects
      */
-    public class func getPipelineFolderByOrg(organisation organisation: String, folder: String, completion: ((data: IojenkinsblueoceanserviceembeddedrestPipelineFolderImpl?, error: ErrorType?) -> Void)) {
-        getPipelineFolderByOrgWithRequestBuilder(organisation: organisation, folder: folder).execute { (response, error) -> Void in
+    public class func getPipelineFolder(organization organization: String, folder: String, completion: ((data: PipelineFolderImpl?, error: ErrorType?) -> Void)) {
+        getPipelineFolderWithRequestBuilder(organization: organization, folder: folder).execute { (response, error) -> Void in
             completion(data: response?.body, error: error);
         }
     }
 
 
     /**
-     - GET /blue/rest/organizations/{organisation}/pipelines/{folder}/
-     - Retrieve pipeline folder for an organisation
+     - GET /blue/rest/organizations/{organization}/pipelines/{folder}/
+     - Retrieve pipeline folder for an organization
+     - BASIC:
+       - type: basic
+       - name: jenkins_auth
      - examples: [{contentType=application/json, example={
   "numberOfPipelines" : 6,
-  "displayName" : "aeiou",
+  "displayName" : "displayName",
   "numberOfFolders" : 0,
-  "organization" : "aeiou",
-  "name" : "aeiou",
-  "fullName" : "aeiou",
-  "_class" : "aeiou"
+  "organization" : "organization",
+  "name" : "name",
+  "fullName" : "fullName",
+  "_class" : "_class"
 }}]
      
-     - parameter organisation: (path) Name of the organisation 
+     - parameter organization: (path) Name of the organization 
      - parameter folder: (path) Name of the folder 
 
-     - returns: RequestBuilder<IojenkinsblueoceanserviceembeddedrestPipelineFolderImpl> 
+     - returns: RequestBuilder<PipelineFolderImpl> 
      */
-    public class func getPipelineFolderByOrgWithRequestBuilder(organisation organisation: String, folder: String) -> RequestBuilder<IojenkinsblueoceanserviceembeddedrestPipelineFolderImpl> {
-        var path = "/blue/rest/organizations/{organisation}/pipelines/{folder}/"
-        path = path.stringByReplacingOccurrencesOfString("{organisation}", withString: "\(organisation)", options: .LiteralSearch, range: nil)
+    public class func getPipelineFolderWithRequestBuilder(organization organization: String, folder: String) -> RequestBuilder<PipelineFolderImpl> {
+        var path = "/blue/rest/organizations/{organization}/pipelines/{folder}/"
+        path = path.stringByReplacingOccurrencesOfString("{organization}", withString: "\(organization)", options: .LiteralSearch, range: nil)
         path = path.stringByReplacingOccurrencesOfString("{folder}", withString: "\(folder)", options: .LiteralSearch, range: nil)
         let URLString = SwaggerClientAPI.basePath + path
 
@@ -402,48 +662,70 @@ public class BlueOceanAPI: APIBase {
  
         let convertedParameters = APIHelper.convertBoolToString(parameters)
  
-        let requestBuilder: RequestBuilder<IojenkinsblueoceanserviceembeddedrestPipelineFolderImpl>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
+        let requestBuilder: RequestBuilder<PipelineFolderImpl>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
 
         return requestBuilder.init(method: "GET", URLString: URLString, parameters: convertedParameters, isBody: true)
     }
 
     /**
 
-     - parameter organisation: (path) Name of the organisation 
+     - parameter organization: (path) Name of the organization 
      - parameter pipeline: (path) Name of the pipeline 
      - parameter folder: (path) Name of the folder 
      - parameter completion: completion handler to receive the data and the error objects
      */
-    public class func getPipelineFolderByOrg_0(organisation organisation: String, pipeline: String, folder: String, completion: ((data: IojenkinsblueoceanserviceembeddedrestPipelineImpl?, error: ErrorType?) -> Void)) {
-        getPipelineFolderByOrg_0WithRequestBuilder(organisation: organisation, pipeline: pipeline, folder: folder).execute { (response, error) -> Void in
+    public class func getPipelineFolderPipeline(organization organization: String, pipeline: String, folder: String, completion: ((data: PipelineImpl?, error: ErrorType?) -> Void)) {
+        getPipelineFolderPipelineWithRequestBuilder(organization: organization, pipeline: pipeline, folder: folder).execute { (response, error) -> Void in
             completion(data: response?.body, error: error);
         }
     }
 
 
     /**
-     - GET /blue/rest/organizations/{organisation}/pipelines/{folder}/pipelines/{pipeline}
-     - Retrieve pipeline details for an organisation folder
+     - GET /blue/rest/organizations/{organization}/pipelines/{folder}/pipelines/{pipeline}
+     - Retrieve pipeline details for an organization folder
+     - BASIC:
+       - type: basic
+       - name: jenkins_auth
      - examples: [{contentType=application/json, example={
   "weatherScore" : 6,
-  "latestRun" : "aeiou",
-  "displayName" : "aeiou",
-  "organization" : "aeiou",
+  "latestRun" : "latestRun",
+  "_links" : {
+    "self" : {
+      "_class" : "_class",
+      "href" : "href"
+    },
+    "_class" : "_class",
+    "runs" : {
+      "_class" : "_class",
+      "href" : "href"
+    },
+    "actions" : {
+      "_class" : "_class",
+      "href" : "href"
+    },
+    "queue" : {
+      "_class" : "_class",
+      "href" : "href"
+    }
+  },
+  "displayName" : "displayName",
+  "organization" : "organization",
   "estimatedDurationInMillis" : 0,
-  "name" : "aeiou",
-  "fullName" : "aeiou",
-  "_class" : "aeiou"
+  "name" : "name",
+  "fullName" : "fullName",
+  "_class" : "_class"
 }}]
      
-     - parameter organisation: (path) Name of the organisation 
+     - parameter organization: (path) Name of the organization 
      - parameter pipeline: (path) Name of the pipeline 
      - parameter folder: (path) Name of the folder 
 
-     - returns: RequestBuilder<IojenkinsblueoceanserviceembeddedrestPipelineImpl> 
+     - returns: RequestBuilder<PipelineImpl> 
      */
-    public class func getPipelineFolderByOrg_0WithRequestBuilder(organisation organisation: String, pipeline: String, folder: String) -> RequestBuilder<IojenkinsblueoceanserviceembeddedrestPipelineImpl> {
-        var path = "/blue/rest/organizations/{organisation}/pipelines/{folder}/pipelines/{pipeline}"
-        path = path.stringByReplacingOccurrencesOfString("{organisation}", withString: "\(organisation)", options: .LiteralSearch, range: nil)
+    public class func getPipelineFolderPipelineWithRequestBuilder(organization organization: String, pipeline: String, folder: String) -> RequestBuilder<PipelineImpl> {
+        var path = "/blue/rest/organizations/{organization}/pipelines/{folder}/pipelines/{pipeline}"
+        path = path.stringByReplacingOccurrencesOfString("{organization}", withString: "\(organization)", options: .LiteralSearch, range: nil)
         path = path.stringByReplacingOccurrencesOfString("{pipeline}", withString: "\(pipeline)", options: .LiteralSearch, range: nil)
         path = path.stringByReplacingOccurrencesOfString("{folder}", withString: "\(folder)", options: .LiteralSearch, range: nil)
         let URLString = SwaggerClientAPI.basePath + path
@@ -454,35 +736,41 @@ public class BlueOceanAPI: APIBase {
  
         let convertedParameters = APIHelper.convertBoolToString(parameters)
  
-        let requestBuilder: RequestBuilder<IojenkinsblueoceanserviceembeddedrestPipelineImpl>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
+        let requestBuilder: RequestBuilder<PipelineImpl>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
 
         return requestBuilder.init(method: "GET", URLString: URLString, parameters: convertedParameters, isBody: true)
     }
 
     /**
 
-     - parameter organisation: (path) Name of the organisation 
+     - parameter organization: (path) Name of the organization 
+     - parameter pipeline: (path) Name of the pipeline 
      - parameter completion: completion handler to receive the data and the error objects
      */
-    public class func getPipelinesByOrg(organisation organisation: String, completion: ((data: GetPipelines?, error: ErrorType?) -> Void)) {
-        getPipelinesByOrgWithRequestBuilder(organisation: organisation).execute { (response, error) -> Void in
+    public class func getPipelineQueue(organization organization: String, pipeline: String, completion: ((data: PipelineQueue?, error: ErrorType?) -> Void)) {
+        getPipelineQueueWithRequestBuilder(organization: organization, pipeline: pipeline).execute { (response, error) -> Void in
             completion(data: response?.body, error: error);
         }
     }
 
 
     /**
-     - GET /blue/rest/organizations/{organisation}/pipelines/
-     - Retrieve all pipelines details for an organisation
+     - GET /blue/rest/organizations/{organization}/pipelines/{pipeline}/queue
+     - Retrieve queue details for an organization pipeline
+     - BASIC:
+       - type: basic
+       - name: jenkins_auth
      - examples: [{contentType=application/json, example=""}]
      
-     - parameter organisation: (path) Name of the organisation 
+     - parameter organization: (path) Name of the organization 
+     - parameter pipeline: (path) Name of the pipeline 
 
-     - returns: RequestBuilder<GetPipelines> 
+     - returns: RequestBuilder<PipelineQueue> 
      */
-    public class func getPipelinesByOrgWithRequestBuilder(organisation organisation: String) -> RequestBuilder<GetPipelines> {
-        var path = "/blue/rest/organizations/{organisation}/pipelines/"
-        path = path.stringByReplacingOccurrencesOfString("{organisation}", withString: "\(organisation)", options: .LiteralSearch, range: nil)
+    public class func getPipelineQueueWithRequestBuilder(organization organization: String, pipeline: String) -> RequestBuilder<PipelineQueue> {
+        var path = "/blue/rest/organizations/{organization}/pipelines/{pipeline}/queue"
+        path = path.stringByReplacingOccurrencesOfString("{organization}", withString: "\(organization)", options: .LiteralSearch, range: nil)
+        path = path.stringByReplacingOccurrencesOfString("{pipeline}", withString: "\(pipeline)", options: .LiteralSearch, range: nil)
         let URLString = SwaggerClientAPI.basePath + path
 
         let nillableParameters: [String:AnyObject?] = [:]
@@ -491,43 +779,782 @@ public class BlueOceanAPI: APIBase {
  
         let convertedParameters = APIHelper.convertBoolToString(parameters)
  
-        let requestBuilder: RequestBuilder<GetPipelines>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
+        let requestBuilder: RequestBuilder<PipelineQueue>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
 
         return requestBuilder.init(method: "GET", URLString: URLString, parameters: convertedParameters, isBody: true)
     }
 
     /**
 
-     - parameter organisation: (path) Name of the organisation 
-     - parameter user: (path) Name of the user 
+     - parameter organization: (path) Name of the organization 
+     - parameter pipeline: (path) Name of the pipeline 
+     - parameter run: (path) Name of the run 
      - parameter completion: completion handler to receive the data and the error objects
      */
-    public class func getUser(organisation organisation: String, user: String, completion: ((data: SwaggyjenkinsUser?, error: ErrorType?) -> Void)) {
-        getUserWithRequestBuilder(organisation: organisation, user: user).execute { (response, error) -> Void in
+    public class func getPipelineRun(organization organization: String, pipeline: String, run: String, completion: ((data: PipelineRun?, error: ErrorType?) -> Void)) {
+        getPipelineRunWithRequestBuilder(organization: organization, pipeline: pipeline, run: run).execute { (response, error) -> Void in
             completion(data: response?.body, error: error);
         }
     }
 
 
     /**
-     - GET /blue/rest/organizations/{organisation}/users/{user}
-     - Retrieve user details for an organisation
+     - GET /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}
+     - Retrieve run details for an organization pipeline
+     - BASIC:
+       - type: basic
+       - name: jenkins_auth
      - examples: [{contentType=application/json, example={
-  "name" : "aeiou",
-  "fullName" : "aeiou",
-  "_class" : "aeiou",
-  "id" : "aeiou",
-  "email" : "aeiou"
+  "runSummary" : "runSummary",
+  "durationInMillis" : 6,
+  "commitId" : "commitId",
+  "type" : "type",
+  "pipeline" : "pipeline",
+  "result" : "result",
+  "organization" : "organization",
+  "estimatedDurationInMillis" : 1,
+  "enQueueTime" : "enQueueTime",
+  "startTime" : "startTime",
+  "_class" : "_class",
+  "endTime" : "endTime",
+  "id" : "id",
+  "state" : "state",
+  "artifacts" : [ {
+    "size" : 0,
+    "name" : "name",
+    "_class" : "_class",
+    "url" : "url"
+  }, {
+    "size" : 0,
+    "name" : "name",
+    "_class" : "_class",
+    "url" : "url"
+  } ]
 }}]
      
-     - parameter organisation: (path) Name of the organisation 
+     - parameter organization: (path) Name of the organization 
+     - parameter pipeline: (path) Name of the pipeline 
+     - parameter run: (path) Name of the run 
+
+     - returns: RequestBuilder<PipelineRun> 
+     */
+    public class func getPipelineRunWithRequestBuilder(organization organization: String, pipeline: String, run: String) -> RequestBuilder<PipelineRun> {
+        var path = "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}"
+        path = path.stringByReplacingOccurrencesOfString("{organization}", withString: "\(organization)", options: .LiteralSearch, range: nil)
+        path = path.stringByReplacingOccurrencesOfString("{pipeline}", withString: "\(pipeline)", options: .LiteralSearch, range: nil)
+        path = path.stringByReplacingOccurrencesOfString("{run}", withString: "\(run)", options: .LiteralSearch, range: nil)
+        let URLString = SwaggerClientAPI.basePath + path
+
+        let nillableParameters: [String:AnyObject?] = [:]
+ 
+        let parameters = APIHelper.rejectNil(nillableParameters)
+ 
+        let convertedParameters = APIHelper.convertBoolToString(parameters)
+ 
+        let requestBuilder: RequestBuilder<PipelineRun>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
+
+        return requestBuilder.init(method: "GET", URLString: URLString, parameters: convertedParameters, isBody: true)
+    }
+
+    /**
+
+     - parameter organization: (path) Name of the organization 
+     - parameter pipeline: (path) Name of the pipeline 
+     - parameter run: (path) Name of the run 
+     - parameter start: (query) Start position of the log (optional)
+     - parameter download: (query) Set to true in order to download the file, otherwise it&#39;s passed as a response body (optional)
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    public class func getPipelineRunLog(organization organization: String, pipeline: String, run: String, start: Int32? = nil, download: Bool? = nil, completion: ((data: String?, error: ErrorType?) -> Void)) {
+        getPipelineRunLogWithRequestBuilder(organization: organization, pipeline: pipeline, run: run, start: start, download: download).execute { (response, error) -> Void in
+            completion(data: response?.body, error: error);
+        }
+    }
+
+
+    /**
+     - GET /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/log
+     - Get log for a pipeline run
+     - BASIC:
+       - type: basic
+       - name: jenkins_auth
+     - examples: [{contentType=application/json, example=""}]
+     
+     - parameter organization: (path) Name of the organization 
+     - parameter pipeline: (path) Name of the pipeline 
+     - parameter run: (path) Name of the run 
+     - parameter start: (query) Start position of the log (optional)
+     - parameter download: (query) Set to true in order to download the file, otherwise it&#39;s passed as a response body (optional)
+
+     - returns: RequestBuilder<String> 
+     */
+    public class func getPipelineRunLogWithRequestBuilder(organization organization: String, pipeline: String, run: String, start: Int32? = nil, download: Bool? = nil) -> RequestBuilder<String> {
+        var path = "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/log"
+        path = path.stringByReplacingOccurrencesOfString("{organization}", withString: "\(organization)", options: .LiteralSearch, range: nil)
+        path = path.stringByReplacingOccurrencesOfString("{pipeline}", withString: "\(pipeline)", options: .LiteralSearch, range: nil)
+        path = path.stringByReplacingOccurrencesOfString("{run}", withString: "\(run)", options: .LiteralSearch, range: nil)
+        let URLString = SwaggerClientAPI.basePath + path
+
+        let nillableParameters: [String:AnyObject?] = [
+            "start": start?.encodeToJSON(),
+            "download": download
+        ]
+ 
+        let parameters = APIHelper.rejectNil(nillableParameters)
+ 
+        let convertedParameters = APIHelper.convertBoolToString(parameters)
+ 
+        let requestBuilder: RequestBuilder<String>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
+
+        return requestBuilder.init(method: "GET", URLString: URLString, parameters: convertedParameters, isBody: false)
+    }
+
+    /**
+
+     - parameter organization: (path) Name of the organization 
+     - parameter pipeline: (path) Name of the pipeline 
+     - parameter run: (path) Name of the run 
+     - parameter node: (path) Name of the node 
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    public class func getPipelineRunNode(organization organization: String, pipeline: String, run: String, node: String, completion: ((data: PipelineRunNode?, error: ErrorType?) -> Void)) {
+        getPipelineRunNodeWithRequestBuilder(organization: organization, pipeline: pipeline, run: run, node: node).execute { (response, error) -> Void in
+            completion(data: response?.body, error: error);
+        }
+    }
+
+
+    /**
+     - GET /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}
+     - Retrieve run node details for an organization pipeline
+     - BASIC:
+       - type: basic
+       - name: jenkins_auth
+     - examples: [{contentType=application/json, example={
+  "result" : "result",
+  "durationInMillis" : 0,
+  "displayName" : "displayName",
+  "edges" : [ {
+    "id" : "id",
+    "_class" : "_class"
+  }, {
+    "id" : "id",
+    "_class" : "_class"
+  } ],
+  "startTime" : "startTime",
+  "_class" : "_class",
+  "id" : "id",
+  "state" : "state"
+}}]
+     
+     - parameter organization: (path) Name of the organization 
+     - parameter pipeline: (path) Name of the pipeline 
+     - parameter run: (path) Name of the run 
+     - parameter node: (path) Name of the node 
+
+     - returns: RequestBuilder<PipelineRunNode> 
+     */
+    public class func getPipelineRunNodeWithRequestBuilder(organization organization: String, pipeline: String, run: String, node: String) -> RequestBuilder<PipelineRunNode> {
+        var path = "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}"
+        path = path.stringByReplacingOccurrencesOfString("{organization}", withString: "\(organization)", options: .LiteralSearch, range: nil)
+        path = path.stringByReplacingOccurrencesOfString("{pipeline}", withString: "\(pipeline)", options: .LiteralSearch, range: nil)
+        path = path.stringByReplacingOccurrencesOfString("{run}", withString: "\(run)", options: .LiteralSearch, range: nil)
+        path = path.stringByReplacingOccurrencesOfString("{node}", withString: "\(node)", options: .LiteralSearch, range: nil)
+        let URLString = SwaggerClientAPI.basePath + path
+
+        let nillableParameters: [String:AnyObject?] = [:]
+ 
+        let parameters = APIHelper.rejectNil(nillableParameters)
+ 
+        let convertedParameters = APIHelper.convertBoolToString(parameters)
+ 
+        let requestBuilder: RequestBuilder<PipelineRunNode>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
+
+        return requestBuilder.init(method: "GET", URLString: URLString, parameters: convertedParameters, isBody: true)
+    }
+
+    /**
+
+     - parameter organization: (path) Name of the organization 
+     - parameter pipeline: (path) Name of the pipeline 
+     - parameter run: (path) Name of the run 
+     - parameter node: (path) Name of the node 
+     - parameter step: (path) Name of the step 
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    public class func getPipelineRunNodeStep(organization organization: String, pipeline: String, run: String, node: String, step: String, completion: ((data: PipelineStepImpl?, error: ErrorType?) -> Void)) {
+        getPipelineRunNodeStepWithRequestBuilder(organization: organization, pipeline: pipeline, run: run, node: node, step: step).execute { (response, error) -> Void in
+            completion(data: response?.body, error: error);
+        }
+    }
+
+
+    /**
+     - GET /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps/{step}
+     - Retrieve run node details for an organization pipeline
+     - BASIC:
+       - type: basic
+       - name: jenkins_auth
+     - examples: [{contentType=application/json, example={
+  "result" : "result",
+  "input" : {
+    "submitter" : "submitter",
+    "_links" : {
+      "self" : {
+        "_class" : "_class",
+        "href" : "href"
+      },
+      "_class" : "_class"
+    },
+    "_class" : "_class",
+    "id" : "id",
+    "message" : "message",
+    "ok" : "ok",
+    "parameters" : [ {
+      "name" : "name",
+      "description" : "description",
+      "_class" : "_class",
+      "type" : "type",
+      "defaultParameterValue" : {
+        "name" : "name",
+        "_class" : "_class",
+        "value" : "value"
+      }
+    }, {
+      "name" : "name",
+      "description" : "description",
+      "_class" : "_class",
+      "type" : "type",
+      "defaultParameterValue" : {
+        "name" : "name",
+        "_class" : "_class",
+        "value" : "value"
+      }
+    } ]
+  },
+  "_links" : {
+    "self" : {
+      "_class" : "_class",
+      "href" : "href"
+    },
+    "_class" : "_class",
+    "actions" : {
+      "_class" : "_class",
+      "href" : "href"
+    }
+  },
+  "durationInMillis" : 0,
+  "displayName" : "displayName",
+  "startTime" : "startTime",
+  "_class" : "_class",
+  "id" : "id",
+  "state" : "state"
+}}]
+     
+     - parameter organization: (path) Name of the organization 
+     - parameter pipeline: (path) Name of the pipeline 
+     - parameter run: (path) Name of the run 
+     - parameter node: (path) Name of the node 
+     - parameter step: (path) Name of the step 
+
+     - returns: RequestBuilder<PipelineStepImpl> 
+     */
+    public class func getPipelineRunNodeStepWithRequestBuilder(organization organization: String, pipeline: String, run: String, node: String, step: String) -> RequestBuilder<PipelineStepImpl> {
+        var path = "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps/{step}"
+        path = path.stringByReplacingOccurrencesOfString("{organization}", withString: "\(organization)", options: .LiteralSearch, range: nil)
+        path = path.stringByReplacingOccurrencesOfString("{pipeline}", withString: "\(pipeline)", options: .LiteralSearch, range: nil)
+        path = path.stringByReplacingOccurrencesOfString("{run}", withString: "\(run)", options: .LiteralSearch, range: nil)
+        path = path.stringByReplacingOccurrencesOfString("{node}", withString: "\(node)", options: .LiteralSearch, range: nil)
+        path = path.stringByReplacingOccurrencesOfString("{step}", withString: "\(step)", options: .LiteralSearch, range: nil)
+        let URLString = SwaggerClientAPI.basePath + path
+
+        let nillableParameters: [String:AnyObject?] = [:]
+ 
+        let parameters = APIHelper.rejectNil(nillableParameters)
+ 
+        let convertedParameters = APIHelper.convertBoolToString(parameters)
+ 
+        let requestBuilder: RequestBuilder<PipelineStepImpl>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
+
+        return requestBuilder.init(method: "GET", URLString: URLString, parameters: convertedParameters, isBody: true)
+    }
+
+    /**
+
+     - parameter organization: (path) Name of the organization 
+     - parameter pipeline: (path) Name of the pipeline 
+     - parameter run: (path) Name of the run 
+     - parameter node: (path) Name of the node 
+     - parameter step: (path) Name of the step 
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    public class func getPipelineRunNodeStepLog(organization organization: String, pipeline: String, run: String, node: String, step: String, completion: ((data: String?, error: ErrorType?) -> Void)) {
+        getPipelineRunNodeStepLogWithRequestBuilder(organization: organization, pipeline: pipeline, run: run, node: node, step: step).execute { (response, error) -> Void in
+            completion(data: response?.body, error: error);
+        }
+    }
+
+
+    /**
+     - GET /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps/{step}/log
+     - Get log for a pipeline run node step
+     - BASIC:
+       - type: basic
+       - name: jenkins_auth
+     - examples: [{contentType=application/json, example=""}]
+     
+     - parameter organization: (path) Name of the organization 
+     - parameter pipeline: (path) Name of the pipeline 
+     - parameter run: (path) Name of the run 
+     - parameter node: (path) Name of the node 
+     - parameter step: (path) Name of the step 
+
+     - returns: RequestBuilder<String> 
+     */
+    public class func getPipelineRunNodeStepLogWithRequestBuilder(organization organization: String, pipeline: String, run: String, node: String, step: String) -> RequestBuilder<String> {
+        var path = "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps/{step}/log"
+        path = path.stringByReplacingOccurrencesOfString("{organization}", withString: "\(organization)", options: .LiteralSearch, range: nil)
+        path = path.stringByReplacingOccurrencesOfString("{pipeline}", withString: "\(pipeline)", options: .LiteralSearch, range: nil)
+        path = path.stringByReplacingOccurrencesOfString("{run}", withString: "\(run)", options: .LiteralSearch, range: nil)
+        path = path.stringByReplacingOccurrencesOfString("{node}", withString: "\(node)", options: .LiteralSearch, range: nil)
+        path = path.stringByReplacingOccurrencesOfString("{step}", withString: "\(step)", options: .LiteralSearch, range: nil)
+        let URLString = SwaggerClientAPI.basePath + path
+
+        let nillableParameters: [String:AnyObject?] = [:]
+ 
+        let parameters = APIHelper.rejectNil(nillableParameters)
+ 
+        let convertedParameters = APIHelper.convertBoolToString(parameters)
+ 
+        let requestBuilder: RequestBuilder<String>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
+
+        return requestBuilder.init(method: "GET", URLString: URLString, parameters: convertedParameters, isBody: true)
+    }
+
+    /**
+
+     - parameter organization: (path) Name of the organization 
+     - parameter pipeline: (path) Name of the pipeline 
+     - parameter run: (path) Name of the run 
+     - parameter node: (path) Name of the node 
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    public class func getPipelineRunNodeSteps(organization organization: String, pipeline: String, run: String, node: String, completion: ((data: PipelineRunNodeSteps?, error: ErrorType?) -> Void)) {
+        getPipelineRunNodeStepsWithRequestBuilder(organization: organization, pipeline: pipeline, run: run, node: node).execute { (response, error) -> Void in
+            completion(data: response?.body, error: error);
+        }
+    }
+
+
+    /**
+     - GET /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps
+     - Retrieve run node steps details for an organization pipeline
+     - BASIC:
+       - type: basic
+       - name: jenkins_auth
+     - examples: [{contentType=application/json, example=""}]
+     
+     - parameter organization: (path) Name of the organization 
+     - parameter pipeline: (path) Name of the pipeline 
+     - parameter run: (path) Name of the run 
+     - parameter node: (path) Name of the node 
+
+     - returns: RequestBuilder<PipelineRunNodeSteps> 
+     */
+    public class func getPipelineRunNodeStepsWithRequestBuilder(organization organization: String, pipeline: String, run: String, node: String) -> RequestBuilder<PipelineRunNodeSteps> {
+        var path = "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps"
+        path = path.stringByReplacingOccurrencesOfString("{organization}", withString: "\(organization)", options: .LiteralSearch, range: nil)
+        path = path.stringByReplacingOccurrencesOfString("{pipeline}", withString: "\(pipeline)", options: .LiteralSearch, range: nil)
+        path = path.stringByReplacingOccurrencesOfString("{run}", withString: "\(run)", options: .LiteralSearch, range: nil)
+        path = path.stringByReplacingOccurrencesOfString("{node}", withString: "\(node)", options: .LiteralSearch, range: nil)
+        let URLString = SwaggerClientAPI.basePath + path
+
+        let nillableParameters: [String:AnyObject?] = [:]
+ 
+        let parameters = APIHelper.rejectNil(nillableParameters)
+ 
+        let convertedParameters = APIHelper.convertBoolToString(parameters)
+ 
+        let requestBuilder: RequestBuilder<PipelineRunNodeSteps>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
+
+        return requestBuilder.init(method: "GET", URLString: URLString, parameters: convertedParameters, isBody: true)
+    }
+
+    /**
+
+     - parameter organization: (path) Name of the organization 
+     - parameter pipeline: (path) Name of the pipeline 
+     - parameter run: (path) Name of the run 
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    public class func getPipelineRunNodes(organization organization: String, pipeline: String, run: String, completion: ((data: PipelineRunNodes?, error: ErrorType?) -> Void)) {
+        getPipelineRunNodesWithRequestBuilder(organization: organization, pipeline: pipeline, run: run).execute { (response, error) -> Void in
+            completion(data: response?.body, error: error);
+        }
+    }
+
+
+    /**
+     - GET /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes
+     - Retrieve run nodes details for an organization pipeline
+     - BASIC:
+       - type: basic
+       - name: jenkins_auth
+     - examples: [{contentType=application/json, example=""}]
+     
+     - parameter organization: (path) Name of the organization 
+     - parameter pipeline: (path) Name of the pipeline 
+     - parameter run: (path) Name of the run 
+
+     - returns: RequestBuilder<PipelineRunNodes> 
+     */
+    public class func getPipelineRunNodesWithRequestBuilder(organization organization: String, pipeline: String, run: String) -> RequestBuilder<PipelineRunNodes> {
+        var path = "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes"
+        path = path.stringByReplacingOccurrencesOfString("{organization}", withString: "\(organization)", options: .LiteralSearch, range: nil)
+        path = path.stringByReplacingOccurrencesOfString("{pipeline}", withString: "\(pipeline)", options: .LiteralSearch, range: nil)
+        path = path.stringByReplacingOccurrencesOfString("{run}", withString: "\(run)", options: .LiteralSearch, range: nil)
+        let URLString = SwaggerClientAPI.basePath + path
+
+        let nillableParameters: [String:AnyObject?] = [:]
+ 
+        let parameters = APIHelper.rejectNil(nillableParameters)
+ 
+        let convertedParameters = APIHelper.convertBoolToString(parameters)
+ 
+        let requestBuilder: RequestBuilder<PipelineRunNodes>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
+
+        return requestBuilder.init(method: "GET", URLString: URLString, parameters: convertedParameters, isBody: true)
+    }
+
+    /**
+
+     - parameter organization: (path) Name of the organization 
+     - parameter pipeline: (path) Name of the pipeline 
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    public class func getPipelineRuns(organization organization: String, pipeline: String, completion: ((data: PipelineRuns?, error: ErrorType?) -> Void)) {
+        getPipelineRunsWithRequestBuilder(organization: organization, pipeline: pipeline).execute { (response, error) -> Void in
+            completion(data: response?.body, error: error);
+        }
+    }
+
+
+    /**
+     - GET /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs
+     - Retrieve all runs details for an organization pipeline
+     - BASIC:
+       - type: basic
+       - name: jenkins_auth
+     - examples: [{contentType=application/json, example=""}]
+     
+     - parameter organization: (path) Name of the organization 
+     - parameter pipeline: (path) Name of the pipeline 
+
+     - returns: RequestBuilder<PipelineRuns> 
+     */
+    public class func getPipelineRunsWithRequestBuilder(organization organization: String, pipeline: String) -> RequestBuilder<PipelineRuns> {
+        var path = "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs"
+        path = path.stringByReplacingOccurrencesOfString("{organization}", withString: "\(organization)", options: .LiteralSearch, range: nil)
+        path = path.stringByReplacingOccurrencesOfString("{pipeline}", withString: "\(pipeline)", options: .LiteralSearch, range: nil)
+        let URLString = SwaggerClientAPI.basePath + path
+
+        let nillableParameters: [String:AnyObject?] = [:]
+ 
+        let parameters = APIHelper.rejectNil(nillableParameters)
+ 
+        let convertedParameters = APIHelper.convertBoolToString(parameters)
+ 
+        let requestBuilder: RequestBuilder<PipelineRuns>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
+
+        return requestBuilder.init(method: "GET", URLString: URLString, parameters: convertedParameters, isBody: true)
+    }
+
+    /**
+
+     - parameter organization: (path) Name of the organization 
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    public class func getPipelines(organization organization: String, completion: ((data: Pipelines?, error: ErrorType?) -> Void)) {
+        getPipelinesWithRequestBuilder(organization: organization).execute { (response, error) -> Void in
+            completion(data: response?.body, error: error);
+        }
+    }
+
+
+    /**
+     - GET /blue/rest/organizations/{organization}/pipelines/
+     - Retrieve all pipelines details for an organization
+     - BASIC:
+       - type: basic
+       - name: jenkins_auth
+     - examples: [{contentType=application/json, example=""}]
+     
+     - parameter organization: (path) Name of the organization 
+
+     - returns: RequestBuilder<Pipelines> 
+     */
+    public class func getPipelinesWithRequestBuilder(organization organization: String) -> RequestBuilder<Pipelines> {
+        var path = "/blue/rest/organizations/{organization}/pipelines/"
+        path = path.stringByReplacingOccurrencesOfString("{organization}", withString: "\(organization)", options: .LiteralSearch, range: nil)
+        let URLString = SwaggerClientAPI.basePath + path
+
+        let nillableParameters: [String:AnyObject?] = [:]
+ 
+        let parameters = APIHelper.rejectNil(nillableParameters)
+ 
+        let convertedParameters = APIHelper.convertBoolToString(parameters)
+ 
+        let requestBuilder: RequestBuilder<Pipelines>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
+
+        return requestBuilder.init(method: "GET", URLString: URLString, parameters: convertedParameters, isBody: true)
+    }
+
+    /**
+
+     - parameter organization: (path) Name of the organization 
+     - parameter scm: (path) Name of SCM 
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    public class func getSCM(organization organization: String, scm: String, completion: ((data: GithubScm?, error: ErrorType?) -> Void)) {
+        getSCMWithRequestBuilder(organization: organization, scm: scm).execute { (response, error) -> Void in
+            completion(data: response?.body, error: error);
+        }
+    }
+
+
+    /**
+     - GET /blue/rest/organizations/{organization}/scm/{scm}
+     - Retrieve SCM details for an organization
+     - BASIC:
+       - type: basic
+       - name: jenkins_auth
+     - examples: [{contentType=application/json, example={
+  "_links" : {
+    "self" : {
+      "_class" : "_class",
+      "href" : "href"
+    },
+    "_class" : "_class"
+  },
+  "credentialId" : "credentialId",
+  "_class" : "_class",
+  "id" : "id",
+  "uri" : "uri"
+}}]
+     
+     - parameter organization: (path) Name of the organization 
+     - parameter scm: (path) Name of SCM 
+
+     - returns: RequestBuilder<GithubScm> 
+     */
+    public class func getSCMWithRequestBuilder(organization organization: String, scm: String) -> RequestBuilder<GithubScm> {
+        var path = "/blue/rest/organizations/{organization}/scm/{scm}"
+        path = path.stringByReplacingOccurrencesOfString("{organization}", withString: "\(organization)", options: .LiteralSearch, range: nil)
+        path = path.stringByReplacingOccurrencesOfString("{scm}", withString: "\(scm)", options: .LiteralSearch, range: nil)
+        let URLString = SwaggerClientAPI.basePath + path
+
+        let nillableParameters: [String:AnyObject?] = [:]
+ 
+        let parameters = APIHelper.rejectNil(nillableParameters)
+ 
+        let convertedParameters = APIHelper.convertBoolToString(parameters)
+ 
+        let requestBuilder: RequestBuilder<GithubScm>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
+
+        return requestBuilder.init(method: "GET", URLString: URLString, parameters: convertedParameters, isBody: true)
+    }
+
+    /**
+
+     - parameter organization: (path) Name of the organization 
+     - parameter scm: (path) Name of SCM 
+     - parameter scmOrganisation: (path) Name of the SCM organization 
+     - parameter credentialId: (query) Credential ID (optional)
+     - parameter pageSize: (query) Number of items in a page (optional)
+     - parameter pageNumber: (query) Page number (optional)
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    public class func getSCMOrganisationRepositories(organization organization: String, scm: String, scmOrganisation: String, credentialId: String? = nil, pageSize: Int32? = nil, pageNumber: Int32? = nil, completion: ((data: ScmOrganisations?, error: ErrorType?) -> Void)) {
+        getSCMOrganisationRepositoriesWithRequestBuilder(organization: organization, scm: scm, scmOrganisation: scmOrganisation, credentialId: credentialId, pageSize: pageSize, pageNumber: pageNumber).execute { (response, error) -> Void in
+            completion(data: response?.body, error: error);
+        }
+    }
+
+
+    /**
+     - GET /blue/rest/organizations/{organization}/scm/{scm}/organizations/{scmOrganisation}/repositories
+     - Retrieve SCM organization repositories details for an organization
+     - BASIC:
+       - type: basic
+       - name: jenkins_auth
+     - examples: [{contentType=application/json, example=""}]
+     
+     - parameter organization: (path) Name of the organization 
+     - parameter scm: (path) Name of SCM 
+     - parameter scmOrganisation: (path) Name of the SCM organization 
+     - parameter credentialId: (query) Credential ID (optional)
+     - parameter pageSize: (query) Number of items in a page (optional)
+     - parameter pageNumber: (query) Page number (optional)
+
+     - returns: RequestBuilder<ScmOrganisations> 
+     */
+    public class func getSCMOrganisationRepositoriesWithRequestBuilder(organization organization: String, scm: String, scmOrganisation: String, credentialId: String? = nil, pageSize: Int32? = nil, pageNumber: Int32? = nil) -> RequestBuilder<ScmOrganisations> {
+        var path = "/blue/rest/organizations/{organization}/scm/{scm}/organizations/{scmOrganisation}/repositories"
+        path = path.stringByReplacingOccurrencesOfString("{organization}", withString: "\(organization)", options: .LiteralSearch, range: nil)
+        path = path.stringByReplacingOccurrencesOfString("{scm}", withString: "\(scm)", options: .LiteralSearch, range: nil)
+        path = path.stringByReplacingOccurrencesOfString("{scmOrganisation}", withString: "\(scmOrganisation)", options: .LiteralSearch, range: nil)
+        let URLString = SwaggerClientAPI.basePath + path
+
+        let nillableParameters: [String:AnyObject?] = [
+            "credentialId": credentialId,
+            "pageSize": pageSize?.encodeToJSON(),
+            "pageNumber": pageNumber?.encodeToJSON()
+        ]
+ 
+        let parameters = APIHelper.rejectNil(nillableParameters)
+ 
+        let convertedParameters = APIHelper.convertBoolToString(parameters)
+ 
+        let requestBuilder: RequestBuilder<ScmOrganisations>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
+
+        return requestBuilder.init(method: "GET", URLString: URLString, parameters: convertedParameters, isBody: false)
+    }
+
+    /**
+
+     - parameter organization: (path) Name of the organization 
+     - parameter scm: (path) Name of SCM 
+     - parameter scmOrganisation: (path) Name of the SCM organization 
+     - parameter repository: (path) Name of the SCM repository 
+     - parameter credentialId: (query) Credential ID (optional)
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    public class func getSCMOrganisationRepository(organization organization: String, scm: String, scmOrganisation: String, repository: String, credentialId: String? = nil, completion: ((data: ScmOrganisations?, error: ErrorType?) -> Void)) {
+        getSCMOrganisationRepositoryWithRequestBuilder(organization: organization, scm: scm, scmOrganisation: scmOrganisation, repository: repository, credentialId: credentialId).execute { (response, error) -> Void in
+            completion(data: response?.body, error: error);
+        }
+    }
+
+
+    /**
+     - GET /blue/rest/organizations/{organization}/scm/{scm}/organizations/{scmOrganisation}/repositories/{repository}
+     - Retrieve SCM organization repository details for an organization
+     - BASIC:
+       - type: basic
+       - name: jenkins_auth
+     - examples: [{contentType=application/json, example=""}]
+     
+     - parameter organization: (path) Name of the organization 
+     - parameter scm: (path) Name of SCM 
+     - parameter scmOrganisation: (path) Name of the SCM organization 
+     - parameter repository: (path) Name of the SCM repository 
+     - parameter credentialId: (query) Credential ID (optional)
+
+     - returns: RequestBuilder<ScmOrganisations> 
+     */
+    public class func getSCMOrganisationRepositoryWithRequestBuilder(organization organization: String, scm: String, scmOrganisation: String, repository: String, credentialId: String? = nil) -> RequestBuilder<ScmOrganisations> {
+        var path = "/blue/rest/organizations/{organization}/scm/{scm}/organizations/{scmOrganisation}/repositories/{repository}"
+        path = path.stringByReplacingOccurrencesOfString("{organization}", withString: "\(organization)", options: .LiteralSearch, range: nil)
+        path = path.stringByReplacingOccurrencesOfString("{scm}", withString: "\(scm)", options: .LiteralSearch, range: nil)
+        path = path.stringByReplacingOccurrencesOfString("{scmOrganisation}", withString: "\(scmOrganisation)", options: .LiteralSearch, range: nil)
+        path = path.stringByReplacingOccurrencesOfString("{repository}", withString: "\(repository)", options: .LiteralSearch, range: nil)
+        let URLString = SwaggerClientAPI.basePath + path
+
+        let nillableParameters: [String:AnyObject?] = [
+            "credentialId": credentialId
+        ]
+ 
+        let parameters = APIHelper.rejectNil(nillableParameters)
+ 
+        let convertedParameters = APIHelper.convertBoolToString(parameters)
+ 
+        let requestBuilder: RequestBuilder<ScmOrganisations>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
+
+        return requestBuilder.init(method: "GET", URLString: URLString, parameters: convertedParameters, isBody: false)
+    }
+
+    /**
+
+     - parameter organization: (path) Name of the organization 
+     - parameter scm: (path) Name of SCM 
+     - parameter credentialId: (query) Credential ID (optional)
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    public class func getSCMOrganisations(organization organization: String, scm: String, credentialId: String? = nil, completion: ((data: ScmOrganisations?, error: ErrorType?) -> Void)) {
+        getSCMOrganisationsWithRequestBuilder(organization: organization, scm: scm, credentialId: credentialId).execute { (response, error) -> Void in
+            completion(data: response?.body, error: error);
+        }
+    }
+
+
+    /**
+     - GET /blue/rest/organizations/{organization}/scm/{scm}/organizations
+     - Retrieve SCM organizations details for an organization
+     - BASIC:
+       - type: basic
+       - name: jenkins_auth
+     - examples: [{contentType=application/json, example=""}]
+     
+     - parameter organization: (path) Name of the organization 
+     - parameter scm: (path) Name of SCM 
+     - parameter credentialId: (query) Credential ID (optional)
+
+     - returns: RequestBuilder<ScmOrganisations> 
+     */
+    public class func getSCMOrganisationsWithRequestBuilder(organization organization: String, scm: String, credentialId: String? = nil) -> RequestBuilder<ScmOrganisations> {
+        var path = "/blue/rest/organizations/{organization}/scm/{scm}/organizations"
+        path = path.stringByReplacingOccurrencesOfString("{organization}", withString: "\(organization)", options: .LiteralSearch, range: nil)
+        path = path.stringByReplacingOccurrencesOfString("{scm}", withString: "\(scm)", options: .LiteralSearch, range: nil)
+        let URLString = SwaggerClientAPI.basePath + path
+
+        let nillableParameters: [String:AnyObject?] = [
+            "credentialId": credentialId
+        ]
+ 
+        let parameters = APIHelper.rejectNil(nillableParameters)
+ 
+        let convertedParameters = APIHelper.convertBoolToString(parameters)
+ 
+        let requestBuilder: RequestBuilder<ScmOrganisations>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
+
+        return requestBuilder.init(method: "GET", URLString: URLString, parameters: convertedParameters, isBody: false)
+    }
+
+    /**
+
+     - parameter organization: (path) Name of the organization 
+     - parameter user: (path) Name of the user 
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    public class func getUser(organization organization: String, user: String, completion: ((data: User?, error: ErrorType?) -> Void)) {
+        getUserWithRequestBuilder(organization: organization, user: user).execute { (response, error) -> Void in
+            completion(data: response?.body, error: error);
+        }
+    }
+
+
+    /**
+     - GET /blue/rest/organizations/{organization}/users/{user}
+     - Retrieve user details for an organization
+     - BASIC:
+       - type: basic
+       - name: jenkins_auth
+     - examples: [{contentType=application/json, example={
+  "name" : "name",
+  "fullName" : "fullName",
+  "_class" : "_class",
+  "id" : "id",
+  "email" : "email"
+}}]
+     
+     - parameter organization: (path) Name of the organization 
      - parameter user: (path) Name of the user 
 
-     - returns: RequestBuilder<SwaggyjenkinsUser> 
+     - returns: RequestBuilder<User> 
      */
-    public class func getUserWithRequestBuilder(organisation organisation: String, user: String) -> RequestBuilder<SwaggyjenkinsUser> {
-        var path = "/blue/rest/organizations/{organisation}/users/{user}"
-        path = path.stringByReplacingOccurrencesOfString("{organisation}", withString: "\(organisation)", options: .LiteralSearch, range: nil)
+    public class func getUserWithRequestBuilder(organization organization: String, user: String) -> RequestBuilder<User> {
+        var path = "/blue/rest/organizations/{organization}/users/{user}"
+        path = path.stringByReplacingOccurrencesOfString("{organization}", withString: "\(organization)", options: .LiteralSearch, range: nil)
         path = path.stringByReplacingOccurrencesOfString("{user}", withString: "\(user)", options: .LiteralSearch, range: nil)
         let URLString = SwaggerClientAPI.basePath + path
 
@@ -537,41 +1564,38 @@ public class BlueOceanAPI: APIBase {
  
         let convertedParameters = APIHelper.convertBoolToString(parameters)
  
-        let requestBuilder: RequestBuilder<SwaggyjenkinsUser>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
+        let requestBuilder: RequestBuilder<User>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
 
         return requestBuilder.init(method: "GET", URLString: URLString, parameters: convertedParameters, isBody: true)
     }
 
     /**
 
-     - parameter organisation: (path) Name of the organisation 
+     - parameter user: (path) Name of the user 
      - parameter completion: completion handler to receive the data and the error objects
      */
-    public class func getUsers(organisation organisation: String, completion: ((data: SwaggyjenkinsUser?, error: ErrorType?) -> Void)) {
-        getUsersWithRequestBuilder(organisation: organisation).execute { (response, error) -> Void in
+    public class func getUserFavorites(user user: String, completion: ((data: UserFavorites?, error: ErrorType?) -> Void)) {
+        getUserFavoritesWithRequestBuilder(user: user).execute { (response, error) -> Void in
             completion(data: response?.body, error: error);
         }
     }
 
 
     /**
-     - GET /blue/rest/organizations/{organisation}/users/
-     - Retrieve users details for an organisation
-     - examples: [{contentType=application/json, example={
-  "name" : "aeiou",
-  "fullName" : "aeiou",
-  "_class" : "aeiou",
-  "id" : "aeiou",
-  "email" : "aeiou"
-}}]
+     - GET /blue/rest/users/{user}/favorites
+     - Retrieve user favorites details for an organization
+     - BASIC:
+       - type: basic
+       - name: jenkins_auth
+     - examples: [{contentType=application/json, example=""}]
      
-     - parameter organisation: (path) Name of the organisation 
+     - parameter user: (path) Name of the user 
 
-     - returns: RequestBuilder<SwaggyjenkinsUser> 
+     - returns: RequestBuilder<UserFavorites> 
      */
-    public class func getUsersWithRequestBuilder(organisation organisation: String) -> RequestBuilder<SwaggyjenkinsUser> {
-        var path = "/blue/rest/organizations/{organisation}/users/"
-        path = path.stringByReplacingOccurrencesOfString("{organisation}", withString: "\(organisation)", options: .LiteralSearch, range: nil)
+    public class func getUserFavoritesWithRequestBuilder(user user: String) -> RequestBuilder<UserFavorites> {
+        var path = "/blue/rest/users/{user}/favorites"
+        path = path.stringByReplacingOccurrencesOfString("{user}", withString: "\(user)", options: .LiteralSearch, range: nil)
         let URLString = SwaggerClientAPI.basePath + path
 
         let nillableParameters: [String:AnyObject?] = [:]
@@ -580,14 +1604,320 @@ public class BlueOceanAPI: APIBase {
  
         let convertedParameters = APIHelper.convertBoolToString(parameters)
  
-        let requestBuilder: RequestBuilder<SwaggyjenkinsUser>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
+        let requestBuilder: RequestBuilder<UserFavorites>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
 
         return requestBuilder.init(method: "GET", URLString: URLString, parameters: convertedParameters, isBody: true)
     }
 
     /**
 
-     - parameter q: (query) Query string containing an array of class names 
+     - parameter organization: (path) Name of the organization 
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    public class func getUsers(organization organization: String, completion: ((data: User?, error: ErrorType?) -> Void)) {
+        getUsersWithRequestBuilder(organization: organization).execute { (response, error) -> Void in
+            completion(data: response?.body, error: error);
+        }
+    }
+
+
+    /**
+     - GET /blue/rest/organizations/{organization}/users/
+     - Retrieve users details for an organization
+     - BASIC:
+       - type: basic
+       - name: jenkins_auth
+     - examples: [{contentType=application/json, example={
+  "name" : "name",
+  "fullName" : "fullName",
+  "_class" : "_class",
+  "id" : "id",
+  "email" : "email"
+}}]
+     
+     - parameter organization: (path) Name of the organization 
+
+     - returns: RequestBuilder<User> 
+     */
+    public class func getUsersWithRequestBuilder(organization organization: String) -> RequestBuilder<User> {
+        var path = "/blue/rest/organizations/{organization}/users/"
+        path = path.stringByReplacingOccurrencesOfString("{organization}", withString: "\(organization)", options: .LiteralSearch, range: nil)
+        let URLString = SwaggerClientAPI.basePath + path
+
+        let nillableParameters: [String:AnyObject?] = [:]
+ 
+        let parameters = APIHelper.rejectNil(nillableParameters)
+ 
+        let convertedParameters = APIHelper.convertBoolToString(parameters)
+ 
+        let requestBuilder: RequestBuilder<User>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
+
+        return requestBuilder.init(method: "GET", URLString: URLString, parameters: convertedParameters, isBody: true)
+    }
+
+    /**
+
+     - parameter organization: (path) Name of the organization 
+     - parameter pipeline: (path) Name of the pipeline 
+     - parameter run: (path) Name of the run 
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    public class func postPipelineRun(organization organization: String, pipeline: String, run: String, completion: ((data: QueueItemImpl?, error: ErrorType?) -> Void)) {
+        postPipelineRunWithRequestBuilder(organization: organization, pipeline: pipeline, run: run).execute { (response, error) -> Void in
+            completion(data: response?.body, error: error);
+        }
+    }
+
+
+    /**
+     - POST /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/replay
+     - Replay an organization pipeline run
+     - BASIC:
+       - type: basic
+       - name: jenkins_auth
+     - examples: [{contentType=application/json, example={
+  "pipeline" : "pipeline",
+  "expectedBuildNumber" : 0,
+  "queuedTime" : 6,
+  "_class" : "_class",
+  "id" : "id"
+}}]
+     
+     - parameter organization: (path) Name of the organization 
+     - parameter pipeline: (path) Name of the pipeline 
+     - parameter run: (path) Name of the run 
+
+     - returns: RequestBuilder<QueueItemImpl> 
+     */
+    public class func postPipelineRunWithRequestBuilder(organization organization: String, pipeline: String, run: String) -> RequestBuilder<QueueItemImpl> {
+        var path = "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/replay"
+        path = path.stringByReplacingOccurrencesOfString("{organization}", withString: "\(organization)", options: .LiteralSearch, range: nil)
+        path = path.stringByReplacingOccurrencesOfString("{pipeline}", withString: "\(pipeline)", options: .LiteralSearch, range: nil)
+        path = path.stringByReplacingOccurrencesOfString("{run}", withString: "\(run)", options: .LiteralSearch, range: nil)
+        let URLString = SwaggerClientAPI.basePath + path
+
+        let nillableParameters: [String:AnyObject?] = [:]
+ 
+        let parameters = APIHelper.rejectNil(nillableParameters)
+ 
+        let convertedParameters = APIHelper.convertBoolToString(parameters)
+ 
+        let requestBuilder: RequestBuilder<QueueItemImpl>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
+
+        return requestBuilder.init(method: "POST", URLString: URLString, parameters: convertedParameters, isBody: true)
+    }
+
+    /**
+
+     - parameter organization: (path) Name of the organization 
+     - parameter pipeline: (path) Name of the pipeline 
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    public class func postPipelineRuns(organization organization: String, pipeline: String, completion: ((data: QueueItemImpl?, error: ErrorType?) -> Void)) {
+        postPipelineRunsWithRequestBuilder(organization: organization, pipeline: pipeline).execute { (response, error) -> Void in
+            completion(data: response?.body, error: error);
+        }
+    }
+
+
+    /**
+     - POST /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs
+     - Start a build for an organization pipeline
+     - BASIC:
+       - type: basic
+       - name: jenkins_auth
+     - examples: [{contentType=application/json, example={
+  "pipeline" : "pipeline",
+  "expectedBuildNumber" : 0,
+  "queuedTime" : 6,
+  "_class" : "_class",
+  "id" : "id"
+}}]
+     
+     - parameter organization: (path) Name of the organization 
+     - parameter pipeline: (path) Name of the pipeline 
+
+     - returns: RequestBuilder<QueueItemImpl> 
+     */
+    public class func postPipelineRunsWithRequestBuilder(organization organization: String, pipeline: String) -> RequestBuilder<QueueItemImpl> {
+        var path = "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs"
+        path = path.stringByReplacingOccurrencesOfString("{organization}", withString: "\(organization)", options: .LiteralSearch, range: nil)
+        path = path.stringByReplacingOccurrencesOfString("{pipeline}", withString: "\(pipeline)", options: .LiteralSearch, range: nil)
+        let URLString = SwaggerClientAPI.basePath + path
+
+        let nillableParameters: [String:AnyObject?] = [:]
+ 
+        let parameters = APIHelper.rejectNil(nillableParameters)
+ 
+        let convertedParameters = APIHelper.convertBoolToString(parameters)
+ 
+        let requestBuilder: RequestBuilder<QueueItemImpl>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
+
+        return requestBuilder.init(method: "POST", URLString: URLString, parameters: convertedParameters, isBody: true)
+    }
+
+    /**
+
+     - parameter organization: (path) Name of the organization 
+     - parameter pipeline: (path) Name of the pipeline 
+     - parameter body: (body) Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite 
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    public class func putPipelineFavorite(organization organization: String, pipeline: String, body: Body, completion: ((data: FavoriteImpl?, error: ErrorType?) -> Void)) {
+        putPipelineFavoriteWithRequestBuilder(organization: organization, pipeline: pipeline, body: body).execute { (response, error) -> Void in
+            completion(data: response?.body, error: error);
+        }
+    }
+
+
+    /**
+     - PUT /blue/rest/organizations/{organization}/pipelines/{pipeline}/favorite
+     - Favorite/unfavorite a pipeline
+     - BASIC:
+       - type: basic
+       - name: jenkins_auth
+     - examples: [{contentType=application/json, example={
+  "item" : {
+    "weatherScore" : 6,
+    "latestRun" : "latestRun",
+    "_links" : {
+      "self" : {
+        "_class" : "_class",
+        "href" : "href"
+      },
+      "_class" : "_class",
+      "runs" : {
+        "_class" : "_class",
+        "href" : "href"
+      },
+      "actions" : {
+        "_class" : "_class",
+        "href" : "href"
+      },
+      "queue" : {
+        "_class" : "_class",
+        "href" : "href"
+      }
+    },
+    "displayName" : "displayName",
+    "organization" : "organization",
+    "estimatedDurationInMillis" : 0,
+    "name" : "name",
+    "fullName" : "fullName",
+    "_class" : "_class"
+  },
+  "_links" : {
+    "self" : {
+      "_class" : "_class",
+      "href" : "href"
+    },
+    "_class" : "_class"
+  },
+  "_class" : "_class"
+}}]
+     
+     - parameter organization: (path) Name of the organization 
+     - parameter pipeline: (path) Name of the pipeline 
+     - parameter body: (body) Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite 
+
+     - returns: RequestBuilder<FavoriteImpl> 
+     */
+    public class func putPipelineFavoriteWithRequestBuilder(organization organization: String, pipeline: String, body: Body) -> RequestBuilder<FavoriteImpl> {
+        var path = "/blue/rest/organizations/{organization}/pipelines/{pipeline}/favorite"
+        path = path.stringByReplacingOccurrencesOfString("{organization}", withString: "\(organization)", options: .LiteralSearch, range: nil)
+        path = path.stringByReplacingOccurrencesOfString("{pipeline}", withString: "\(pipeline)", options: .LiteralSearch, range: nil)
+        let URLString = SwaggerClientAPI.basePath + path
+        let parameters = body.encodeToJSON() as? [String:AnyObject]
+ 
+        let convertedParameters = APIHelper.convertBoolToString(parameters)
+ 
+        let requestBuilder: RequestBuilder<FavoriteImpl>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
+
+        return requestBuilder.init(method: "PUT", URLString: URLString, parameters: convertedParameters, isBody: true)
+    }
+
+    /**
+
+     - parameter organization: (path) Name of the organization 
+     - parameter pipeline: (path) Name of the pipeline 
+     - parameter run: (path) Name of the run 
+     - parameter blocking: (query) Set to true to make blocking stop, default: false (optional)
+     - parameter timeOutInSecs: (query) Timeout in seconds, default: 10 seconds (optional)
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    public class func putPipelineRun(organization organization: String, pipeline: String, run: String, blocking: String? = nil, timeOutInSecs: Int32? = nil, completion: ((data: PipelineRun?, error: ErrorType?) -> Void)) {
+        putPipelineRunWithRequestBuilder(organization: organization, pipeline: pipeline, run: run, blocking: blocking, timeOutInSecs: timeOutInSecs).execute { (response, error) -> Void in
+            completion(data: response?.body, error: error);
+        }
+    }
+
+
+    /**
+     - PUT /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/stop
+     - Stop a build of an organization pipeline
+     - BASIC:
+       - type: basic
+       - name: jenkins_auth
+     - examples: [{contentType=application/json, example={
+  "runSummary" : "runSummary",
+  "durationInMillis" : 6,
+  "commitId" : "commitId",
+  "type" : "type",
+  "pipeline" : "pipeline",
+  "result" : "result",
+  "organization" : "organization",
+  "estimatedDurationInMillis" : 1,
+  "enQueueTime" : "enQueueTime",
+  "startTime" : "startTime",
+  "_class" : "_class",
+  "endTime" : "endTime",
+  "id" : "id",
+  "state" : "state",
+  "artifacts" : [ {
+    "size" : 0,
+    "name" : "name",
+    "_class" : "_class",
+    "url" : "url"
+  }, {
+    "size" : 0,
+    "name" : "name",
+    "_class" : "_class",
+    "url" : "url"
+  } ]
+}}]
+     
+     - parameter organization: (path) Name of the organization 
+     - parameter pipeline: (path) Name of the pipeline 
+     - parameter run: (path) Name of the run 
+     - parameter blocking: (query) Set to true to make blocking stop, default: false (optional)
+     - parameter timeOutInSecs: (query) Timeout in seconds, default: 10 seconds (optional)
+
+     - returns: RequestBuilder<PipelineRun> 
+     */
+    public class func putPipelineRunWithRequestBuilder(organization organization: String, pipeline: String, run: String, blocking: String? = nil, timeOutInSecs: Int32? = nil) -> RequestBuilder<PipelineRun> {
+        var path = "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/stop"
+        path = path.stringByReplacingOccurrencesOfString("{organization}", withString: "\(organization)", options: .LiteralSearch, range: nil)
+        path = path.stringByReplacingOccurrencesOfString("{pipeline}", withString: "\(pipeline)", options: .LiteralSearch, range: nil)
+        path = path.stringByReplacingOccurrencesOfString("{run}", withString: "\(run)", options: .LiteralSearch, range: nil)
+        let URLString = SwaggerClientAPI.basePath + path
+
+        let nillableParameters: [String:AnyObject?] = [
+            "blocking": blocking,
+            "timeOutInSecs": timeOutInSecs?.encodeToJSON()
+        ]
+ 
+        let parameters = APIHelper.rejectNil(nillableParameters)
+ 
+        let convertedParameters = APIHelper.convertBoolToString(parameters)
+ 
+        let requestBuilder: RequestBuilder<PipelineRun>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
+
+        return requestBuilder.init(method: "PUT", URLString: URLString, parameters: convertedParameters, isBody: false)
+    }
+
+    /**
+
+     - parameter q: (query) Query string 
      - parameter completion: completion handler to receive the data and the error objects
      */
     public class func search(q q: String, completion: ((data: String?, error: ErrorType?) -> Void)) {
@@ -598,16 +1928,19 @@ public class BlueOceanAPI: APIBase {
 
 
     /**
-     - GET /blue/rest/classes/
-     - Get classes details
-     - examples: [{contentType=application/json, example="aeiou"}]
+     - GET /blue/rest/search/
+     - Search for any resource details
+     - BASIC:
+       - type: basic
+       - name: jenkins_auth
+     - examples: [{contentType=application/json, example=""}]
      
-     - parameter q: (query) Query string containing an array of class names 
+     - parameter q: (query) Query string 
 
      - returns: RequestBuilder<String> 
      */
     public class func searchWithRequestBuilder(q q: String) -> RequestBuilder<String> {
-        let path = "/blue/rest/classes/"
+        let path = "/blue/rest/search/"
         let URLString = SwaggerClientAPI.basePath + path
 
         let nillableParameters: [String:AnyObject?] = [
@@ -625,27 +1958,30 @@ public class BlueOceanAPI: APIBase {
 
     /**
 
-     - parameter q: (query) Query string 
+     - parameter q: (query) Query string containing an array of class names 
      - parameter completion: completion handler to receive the data and the error objects
      */
-    public class func search_0(q q: String, completion: ((data: String?, error: ErrorType?) -> Void)) {
-        search_0WithRequestBuilder(q: q).execute { (response, error) -> Void in
+    public class func searchClasses(q q: String, completion: ((data: String?, error: ErrorType?) -> Void)) {
+        searchClassesWithRequestBuilder(q: q).execute { (response, error) -> Void in
             completion(data: response?.body, error: error);
         }
     }
 
 
     /**
-     - GET /blue/rest/search/
-     - Search for any resource details
-     - examples: [{contentType=application/json, example="aeiou"}]
+     - GET /blue/rest/classes/
+     - Get classes details
+     - BASIC:
+       - type: basic
+       - name: jenkins_auth
+     - examples: [{contentType=application/json, example=""}]
      
-     - parameter q: (query) Query string 
+     - parameter q: (query) Query string containing an array of class names 
 
      - returns: RequestBuilder<String> 
      */
-    public class func search_0WithRequestBuilder(q q: String) -> RequestBuilder<String> {
-        let path = "/blue/rest/search/"
+    public class func searchClassesWithRequestBuilder(q q: String) -> RequestBuilder<String> {
+        let path = "/blue/rest/classes/"
         let URLString = SwaggerClientAPI.basePath + path
 
         let nillableParameters: [String:AnyObject?] = [

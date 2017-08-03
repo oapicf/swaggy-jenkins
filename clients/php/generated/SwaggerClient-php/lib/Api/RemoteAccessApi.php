@@ -28,10 +28,15 @@
 
 namespace Swagger\Client\Api;
 
-use \Swagger\Client\ApiClient;
-use \Swagger\Client\ApiException;
-use \Swagger\Client\Configuration;
-use \Swagger\Client\ObjectSerializer;
+use GuzzleHttp\Client;
+use GuzzleHttp\ClientInterface;
+use GuzzleHttp\Exception\RequestException;
+use GuzzleHttp\Psr7\MultipartStream;
+use GuzzleHttp\Psr7\Request;
+use Swagger\Client\ApiException;
+use Swagger\Client\Configuration;
+use Swagger\Client\HeaderSelector;
+use Swagger\Client\ObjectSerializer;
 
 /**
  * RemoteAccessApi Class Doc Comment
@@ -44,124 +49,268 @@ use \Swagger\Client\ObjectSerializer;
 class RemoteAccessApi
 {
     /**
-     * API Client
-     *
-     * @var \Swagger\Client\ApiClient instance of the ApiClient
+     * @var ClientInterface
      */
-    protected $apiClient;
+    protected $client;
 
     /**
-     * Constructor
-     *
-     * @param \Swagger\Client\ApiClient|null $apiClient The api client to use
+     * @var Configuration
      */
-    public function __construct(\Swagger\Client\ApiClient $apiClient = null)
-    {
-        if ($apiClient === null) {
-            $apiClient = new ApiClient();
-        }
+    protected $config;
 
-        $this->apiClient = $apiClient;
+    /**
+     * @param ClientInterface $client
+     * @param Configuration $config
+     * @param HeaderSelector $selector
+     */
+    public function __construct(
+        ClientInterface $client = null,
+        Configuration $config = null,
+        HeaderSelector $selector = null
+    ) {
+        $this->client = $client ?: new Client();
+        $this->config = $config ?: new Configuration();
+        $this->headerSelector = $selector ?: new HeaderSelector();
     }
 
     /**
-     * Get API client
-     *
-     * @return \Swagger\Client\ApiClient get the API client
+     * @return Configuration
      */
-    public function getApiClient()
+    public function getConfig()
     {
-        return $this->apiClient;
-    }
-
-    /**
-     * Set the API client
-     *
-     * @param \Swagger\Client\ApiClient $apiClient set the API client
-     *
-     * @return RemoteAccessApi
-     */
-    public function setApiClient(\Swagger\Client\ApiClient $apiClient)
-    {
-        $this->apiClient = $apiClient;
-        return $this;
+        return $this->config;
     }
 
     /**
      * Operation getComputer
      *
-     * 
-     *
+     * @param int $depth Recursion depth in response model (required)
      * @throws \Swagger\Client\ApiException on non-2xx response
-     * @return \Swagger\Client\Model\HudsonmodelComputerSet
+     * @throws \InvalidArgumentException
+     * @return \Swagger\Client\Model\ComputerSet
      */
-    public function getComputer()
+    public function getComputer($depth)
     {
-        list($response) = $this->getComputerWithHttpInfo();
+        list($response) = $this->getComputerWithHttpInfo($depth);
         return $response;
     }
 
     /**
      * Operation getComputerWithHttpInfo
      *
-     * 
-     *
+     * @param int $depth Recursion depth in response model (required)
      * @throws \Swagger\Client\ApiException on non-2xx response
-     * @return array of \Swagger\Client\Model\HudsonmodelComputerSet, HTTP status code, HTTP response headers (array of strings)
+     * @throws \InvalidArgumentException
+     * @return array of \Swagger\Client\Model\ComputerSet, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getComputerWithHttpInfo()
+    public function getComputerWithHttpInfo($depth)
     {
-        // parse inputs
-        $resourcePath = "/computer/api/json?depth=1";
-        $httpBody = '';
-        $queryParams = [];
-        $headerParams = [];
-        $formParams = [];
-        $_header_accept = $this->apiClient->selectHeaderAccept(['application/json']);
-        if (!is_null($_header_accept)) {
-            $headerParams['Accept'] = $_header_accept;
-        }
-        $headerParams['Content-Type'] = $this->apiClient->selectHeaderContentType([]);
+        $returnType = '\Swagger\Client\Model\ComputerSet';
+        $request = $this->getComputerRequest($depth);
 
-
-        // for model (json/xml)
-        if (isset($_tempBody)) {
-            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
-        } elseif (count($formParams) > 0) {
-            $httpBody = $formParams; // for HTTP post (form)
-        }
-        // make the API Call
         try {
-            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
-                $resourcePath,
-                'GET',
-                $queryParams,
-                $httpBody,
-                $headerParams,
-                '\Swagger\Client\Model\HudsonmodelComputerSet',
-                '/computer/api/json?depth=1'
-            );
 
-            return [$this->apiClient->getSerializer()->deserialize($response, '\Swagger\Client\Model\HudsonmodelComputerSet', $httpHeader), $statusCode, $httpHeader];
+            try {
+                $response = $this->client->send($request);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    "[$statusCode] Error connecting to the API ({$request->getUri()})",
+                    $statusCode,
+                    $response->getHeaders(),
+                    $response->getBody()
+                );
+            }
+
+            $responseBody = $response->getBody();
+            if ($returnType === '\SplFileObject') {
+                $content = $responseBody; //stream goes to serializer
+            } else {
+                $content = $responseBody->getContents();
+                if ($returnType !== 'string') {
+                    $content = json_decode($content);
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 case 200:
-                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\Swagger\Client\Model\HudsonmodelComputerSet', $e->getResponseHeaders());
+                    $data = ObjectSerializer::deserialize($e->getResponseBody(), '\Swagger\Client\Model\ComputerSet', $e->getResponseHeaders());
                     $e->setResponseObject($data);
                     break;
             }
-
             throw $e;
         }
     }
 
     /**
-     * Operation getCrumb
+     * Operation getComputerAsync
      *
      * 
      *
+     * @param int $depth Recursion depth in response model (required)
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function getComputerAsync($depth)
+    {
+        return $this->getComputerAsyncWithHttpInfo($depth)->then(function ($response) {
+            return $response[0];
+        });
+    }
+
+    /**
+     * Operation getComputerAsyncWithHttpInfo
+     *
+     * 
+     *
+     * @param int $depth Recursion depth in response model (required)
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function getComputerAsyncWithHttpInfo($depth)
+    {
+        $returnType = '\Swagger\Client\Model\ComputerSet';
+        $request = $this->getComputerRequest($depth);
+
+        return $this->client->sendAsync($request)->then(function ($response) use ($returnType) {
+            $responseBody = $response->getBody();
+            if ($returnType === '\SplFileObject') {
+                $content = $responseBody; //stream goes to serializer
+            } else {
+                $content = $responseBody->getContents();
+                if ($returnType !== 'string') {
+                    $content = json_decode($content);
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+        }, function ($exception) {
+            $response = $exception->getResponse();
+            $statusCode = $response->getStatusCode();
+            throw new ApiException(
+                "[$statusCode] Error connecting to the API ({$exception->getRequest()->getUri()})",
+                $statusCode,
+                $response->getHeaders(),
+                $response->getBody()
+            );
+        });
+    }
+
+    /**
+     * Create request for operation 'getComputer'
+     *
+     * @param int $depth Recursion depth in response model (required)
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    protected function getComputerRequest($depth)
+    {
+        // verify the required parameter 'depth' is set
+        if ($depth === null) {
+            throw new \InvalidArgumentException('Missing the required parameter $depth when calling getComputer');
+        }
+
+        $resourcePath = '/computer/api/json';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // query params
+        if ($depth !== null) {
+            $queryParams['depth'] = ObjectSerializer::toQueryValue($depth);
+        }
+
+
+
+        if ($multipart) {
+            $headers= $this->headerSelector->selectHeadersForMultipart(
+                ['application/json']
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                ['application/json'],
+                []
+            );
+        }
+
+        // for model (json/xml)
+        if (isset($_tempBody)) {
+            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
+
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $multipartContents[] = [
+                        'name' => $formParamName,
+                        'contents' => $formParamValue
+                    ];
+                }
+                $httpBody = new MultipartStream($multipartContents); // for HTTP post (form)
+
+            } elseif ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode($formParams);
+
+            } else {
+                $httpBody = \GuzzleHttp\Psr7\build_query($formParams); // for HTTP post (form)
+            }
+        }
+
+        // this endpoint requires HTTP basic authentication
+        if ($this->config->getUsername() !== null || $this->config->getPassword() !== null) {
+            $headers['Authorization'] = 'Basic ' . base64_encode($this->config->getUsername() . ":" . $this->config->getPassword());
+        }
+
+        $query = \GuzzleHttp\Psr7\build_query($queryParams);
+        $url = $this->config->getHost() . $resourcePath . ($query ? '?' . $query : '');
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        return new Request(
+            'GET',
+            $url,
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation getCrumb
+     *
      * @throws \Swagger\Client\ApiException on non-2xx response
-     * @return \Swagger\Client\Model\HudsonsecuritycsrfDefaultCrumbIssuer
+     * @throws \InvalidArgumentException
+     * @return \Swagger\Client\Model\DefaultCrumbIssuer
      */
     public function getCrumb()
     {
@@ -172,64 +321,207 @@ class RemoteAccessApi
     /**
      * Operation getCrumbWithHttpInfo
      *
-     * 
-     *
      * @throws \Swagger\Client\ApiException on non-2xx response
-     * @return array of \Swagger\Client\Model\HudsonsecuritycsrfDefaultCrumbIssuer, HTTP status code, HTTP response headers (array of strings)
+     * @throws \InvalidArgumentException
+     * @return array of \Swagger\Client\Model\DefaultCrumbIssuer, HTTP status code, HTTP response headers (array of strings)
      */
     public function getCrumbWithHttpInfo()
     {
-        // parse inputs
-        $resourcePath = "/crumbIssuer/api/json";
-        $httpBody = '';
-        $queryParams = [];
-        $headerParams = [];
-        $formParams = [];
-        $_header_accept = $this->apiClient->selectHeaderAccept(['application/json']);
-        if (!is_null($_header_accept)) {
-            $headerParams['Accept'] = $_header_accept;
-        }
-        $headerParams['Content-Type'] = $this->apiClient->selectHeaderContentType([]);
+        $returnType = '\Swagger\Client\Model\DefaultCrumbIssuer';
+        $request = $this->getCrumbRequest();
 
-
-        // for model (json/xml)
-        if (isset($_tempBody)) {
-            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
-        } elseif (count($formParams) > 0) {
-            $httpBody = $formParams; // for HTTP post (form)
-        }
-        // make the API Call
         try {
-            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
-                $resourcePath,
-                'GET',
-                $queryParams,
-                $httpBody,
-                $headerParams,
-                '\Swagger\Client\Model\HudsonsecuritycsrfDefaultCrumbIssuer',
-                '/crumbIssuer/api/json'
-            );
 
-            return [$this->apiClient->getSerializer()->deserialize($response, '\Swagger\Client\Model\HudsonsecuritycsrfDefaultCrumbIssuer', $httpHeader), $statusCode, $httpHeader];
+            try {
+                $response = $this->client->send($request);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    "[$statusCode] Error connecting to the API ({$request->getUri()})",
+                    $statusCode,
+                    $response->getHeaders(),
+                    $response->getBody()
+                );
+            }
+
+            $responseBody = $response->getBody();
+            if ($returnType === '\SplFileObject') {
+                $content = $responseBody; //stream goes to serializer
+            } else {
+                $content = $responseBody->getContents();
+                if ($returnType !== 'string') {
+                    $content = json_decode($content);
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 case 200:
-                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\Swagger\Client\Model\HudsonsecuritycsrfDefaultCrumbIssuer', $e->getResponseHeaders());
+                    $data = ObjectSerializer::deserialize($e->getResponseBody(), '\Swagger\Client\Model\DefaultCrumbIssuer', $e->getResponseHeaders());
                     $e->setResponseObject($data);
                     break;
             }
-
             throw $e;
         }
     }
 
     /**
-     * Operation getJenkins
+     * Operation getCrumbAsync
      *
      * 
      *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function getCrumbAsync()
+    {
+        return $this->getCrumbAsyncWithHttpInfo()->then(function ($response) {
+            return $response[0];
+        });
+    }
+
+    /**
+     * Operation getCrumbAsyncWithHttpInfo
+     *
+     * 
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function getCrumbAsyncWithHttpInfo()
+    {
+        $returnType = '\Swagger\Client\Model\DefaultCrumbIssuer';
+        $request = $this->getCrumbRequest();
+
+        return $this->client->sendAsync($request)->then(function ($response) use ($returnType) {
+            $responseBody = $response->getBody();
+            if ($returnType === '\SplFileObject') {
+                $content = $responseBody; //stream goes to serializer
+            } else {
+                $content = $responseBody->getContents();
+                if ($returnType !== 'string') {
+                    $content = json_decode($content);
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+        }, function ($exception) {
+            $response = $exception->getResponse();
+            $statusCode = $response->getStatusCode();
+            throw new ApiException(
+                "[$statusCode] Error connecting to the API ({$exception->getRequest()->getUri()})",
+                $statusCode,
+                $response->getHeaders(),
+                $response->getBody()
+            );
+        });
+    }
+
+    /**
+     * Create request for operation 'getCrumb'
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    protected function getCrumbRequest()
+    {
+
+        $resourcePath = '/crumbIssuer/api/json';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+
+
+        if ($multipart) {
+            $headers= $this->headerSelector->selectHeadersForMultipart(
+                ['application/json']
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                ['application/json'],
+                []
+            );
+        }
+
+        // for model (json/xml)
+        if (isset($_tempBody)) {
+            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
+
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $multipartContents[] = [
+                        'name' => $formParamName,
+                        'contents' => $formParamValue
+                    ];
+                }
+                $httpBody = new MultipartStream($multipartContents); // for HTTP post (form)
+
+            } elseif ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode($formParams);
+
+            } else {
+                $httpBody = \GuzzleHttp\Psr7\build_query($formParams); // for HTTP post (form)
+            }
+        }
+
+        // this endpoint requires HTTP basic authentication
+        if ($this->config->getUsername() !== null || $this->config->getPassword() !== null) {
+            $headers['Authorization'] = 'Basic ' . base64_encode($this->config->getUsername() . ":" . $this->config->getPassword());
+        }
+
+        $query = \GuzzleHttp\Psr7\build_query($queryParams);
+        $url = $this->config->getHost() . $resourcePath . ($query ? '?' . $query : '');
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        return new Request(
+            'GET',
+            $url,
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation getJenkins
+     *
      * @throws \Swagger\Client\ApiException on non-2xx response
-     * @return \Swagger\Client\Model\HudsonmodelHudson
+     * @throws \InvalidArgumentException
+     * @return \Swagger\Client\Model\Hudson
      */
     public function getJenkins()
     {
@@ -240,65 +532,208 @@ class RemoteAccessApi
     /**
      * Operation getJenkinsWithHttpInfo
      *
-     * 
-     *
      * @throws \Swagger\Client\ApiException on non-2xx response
-     * @return array of \Swagger\Client\Model\HudsonmodelHudson, HTTP status code, HTTP response headers (array of strings)
+     * @throws \InvalidArgumentException
+     * @return array of \Swagger\Client\Model\Hudson, HTTP status code, HTTP response headers (array of strings)
      */
     public function getJenkinsWithHttpInfo()
     {
-        // parse inputs
-        $resourcePath = "/api/json";
-        $httpBody = '';
-        $queryParams = [];
-        $headerParams = [];
-        $formParams = [];
-        $_header_accept = $this->apiClient->selectHeaderAccept(['application/json']);
-        if (!is_null($_header_accept)) {
-            $headerParams['Accept'] = $_header_accept;
-        }
-        $headerParams['Content-Type'] = $this->apiClient->selectHeaderContentType([]);
+        $returnType = '\Swagger\Client\Model\Hudson';
+        $request = $this->getJenkinsRequest();
 
-
-        // for model (json/xml)
-        if (isset($_tempBody)) {
-            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
-        } elseif (count($formParams) > 0) {
-            $httpBody = $formParams; // for HTTP post (form)
-        }
-        // make the API Call
         try {
-            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
-                $resourcePath,
-                'GET',
-                $queryParams,
-                $httpBody,
-                $headerParams,
-                '\Swagger\Client\Model\HudsonmodelHudson',
-                '/api/json'
-            );
 
-            return [$this->apiClient->getSerializer()->deserialize($response, '\Swagger\Client\Model\HudsonmodelHudson', $httpHeader), $statusCode, $httpHeader];
+            try {
+                $response = $this->client->send($request);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    "[$statusCode] Error connecting to the API ({$request->getUri()})",
+                    $statusCode,
+                    $response->getHeaders(),
+                    $response->getBody()
+                );
+            }
+
+            $responseBody = $response->getBody();
+            if ($returnType === '\SplFileObject') {
+                $content = $responseBody; //stream goes to serializer
+            } else {
+                $content = $responseBody->getContents();
+                if ($returnType !== 'string') {
+                    $content = json_decode($content);
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 case 200:
-                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\Swagger\Client\Model\HudsonmodelHudson', $e->getResponseHeaders());
+                    $data = ObjectSerializer::deserialize($e->getResponseBody(), '\Swagger\Client\Model\Hudson', $e->getResponseHeaders());
                     $e->setResponseObject($data);
                     break;
             }
-
             throw $e;
         }
     }
 
     /**
-     * Operation getJob
+     * Operation getJenkinsAsync
      *
      * 
      *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function getJenkinsAsync()
+    {
+        return $this->getJenkinsAsyncWithHttpInfo()->then(function ($response) {
+            return $response[0];
+        });
+    }
+
+    /**
+     * Operation getJenkinsAsyncWithHttpInfo
+     *
+     * 
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function getJenkinsAsyncWithHttpInfo()
+    {
+        $returnType = '\Swagger\Client\Model\Hudson';
+        $request = $this->getJenkinsRequest();
+
+        return $this->client->sendAsync($request)->then(function ($response) use ($returnType) {
+            $responseBody = $response->getBody();
+            if ($returnType === '\SplFileObject') {
+                $content = $responseBody; //stream goes to serializer
+            } else {
+                $content = $responseBody->getContents();
+                if ($returnType !== 'string') {
+                    $content = json_decode($content);
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+        }, function ($exception) {
+            $response = $exception->getResponse();
+            $statusCode = $response->getStatusCode();
+            throw new ApiException(
+                "[$statusCode] Error connecting to the API ({$exception->getRequest()->getUri()})",
+                $statusCode,
+                $response->getHeaders(),
+                $response->getBody()
+            );
+        });
+    }
+
+    /**
+     * Create request for operation 'getJenkins'
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    protected function getJenkinsRequest()
+    {
+
+        $resourcePath = '/api/json';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+
+
+        if ($multipart) {
+            $headers= $this->headerSelector->selectHeadersForMultipart(
+                ['application/json']
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                ['application/json'],
+                []
+            );
+        }
+
+        // for model (json/xml)
+        if (isset($_tempBody)) {
+            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
+
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $multipartContents[] = [
+                        'name' => $formParamName,
+                        'contents' => $formParamValue
+                    ];
+                }
+                $httpBody = new MultipartStream($multipartContents); // for HTTP post (form)
+
+            } elseif ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode($formParams);
+
+            } else {
+                $httpBody = \GuzzleHttp\Psr7\build_query($formParams); // for HTTP post (form)
+            }
+        }
+
+        // this endpoint requires HTTP basic authentication
+        if ($this->config->getUsername() !== null || $this->config->getPassword() !== null) {
+            $headers['Authorization'] = 'Basic ' . base64_encode($this->config->getUsername() . ":" . $this->config->getPassword());
+        }
+
+        $query = \GuzzleHttp\Psr7\build_query($queryParams);
+        $url = $this->config->getHost() . $resourcePath . ($query ? '?' . $query : '');
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        return new Request(
+            'GET',
+            $url,
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation getJob
+     *
      * @param string $name Name of the job (required)
      * @throws \Swagger\Client\ApiException on non-2xx response
-     * @return \Swagger\Client\Model\HudsonmodelFreeStyleProject
+     * @throws \InvalidArgumentException
+     * @return \Swagger\Client\Model\FreeStyleProject
      */
     public function getJob($name)
     {
@@ -309,77 +744,219 @@ class RemoteAccessApi
     /**
      * Operation getJobWithHttpInfo
      *
+     * @param string $name Name of the job (required)
+     * @throws \Swagger\Client\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return array of \Swagger\Client\Model\FreeStyleProject, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function getJobWithHttpInfo($name)
+    {
+        $returnType = '\Swagger\Client\Model\FreeStyleProject';
+        $request = $this->getJobRequest($name);
+
+        try {
+
+            try {
+                $response = $this->client->send($request);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    "[$statusCode] Error connecting to the API ({$request->getUri()})",
+                    $statusCode,
+                    $response->getHeaders(),
+                    $response->getBody()
+                );
+            }
+
+            $responseBody = $response->getBody();
+            if ($returnType === '\SplFileObject') {
+                $content = $responseBody; //stream goes to serializer
+            } else {
+                $content = $responseBody->getContents();
+                if ($returnType !== 'string') {
+                    $content = json_decode($content);
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize($e->getResponseBody(), '\Swagger\Client\Model\FreeStyleProject', $e->getResponseHeaders());
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation getJobAsync
+     *
      * 
      *
      * @param string $name Name of the job (required)
-     * @throws \Swagger\Client\ApiException on non-2xx response
-     * @return array of \Swagger\Client\Model\HudsonmodelFreeStyleProject, HTTP status code, HTTP response headers (array of strings)
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getJobWithHttpInfo($name)
+    public function getJobAsync($name)
+    {
+        return $this->getJobAsyncWithHttpInfo($name)->then(function ($response) {
+            return $response[0];
+        });
+    }
+
+    /**
+     * Operation getJobAsyncWithHttpInfo
+     *
+     * 
+     *
+     * @param string $name Name of the job (required)
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function getJobAsyncWithHttpInfo($name)
+    {
+        $returnType = '\Swagger\Client\Model\FreeStyleProject';
+        $request = $this->getJobRequest($name);
+
+        return $this->client->sendAsync($request)->then(function ($response) use ($returnType) {
+            $responseBody = $response->getBody();
+            if ($returnType === '\SplFileObject') {
+                $content = $responseBody; //stream goes to serializer
+            } else {
+                $content = $responseBody->getContents();
+                if ($returnType !== 'string') {
+                    $content = json_decode($content);
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+        }, function ($exception) {
+            $response = $exception->getResponse();
+            $statusCode = $response->getStatusCode();
+            throw new ApiException(
+                "[$statusCode] Error connecting to the API ({$exception->getRequest()->getUri()})",
+                $statusCode,
+                $response->getHeaders(),
+                $response->getBody()
+            );
+        });
+    }
+
+    /**
+     * Create request for operation 'getJob'
+     *
+     * @param string $name Name of the job (required)
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    protected function getJobRequest($name)
     {
         // verify the required parameter 'name' is set
         if ($name === null) {
             throw new \InvalidArgumentException('Missing the required parameter $name when calling getJob');
         }
-        // parse inputs
-        $resourcePath = "/job/{name}/api/json";
-        $httpBody = '';
+
+        $resourcePath = '/job/{name}/api/json';
+        $formParams = [];
         $queryParams = [];
         $headerParams = [];
-        $formParams = [];
-        $_header_accept = $this->apiClient->selectHeaderAccept(['application/json']);
-        if (!is_null($_header_accept)) {
-            $headerParams['Accept'] = $_header_accept;
-        }
-        $headerParams['Content-Type'] = $this->apiClient->selectHeaderContentType([]);
+        $httpBody = '';
+        $multipart = false;
+
 
         // path params
         if ($name !== null) {
-            $resourcePath = str_replace(
-                "{" . "name" . "}",
-                $this->apiClient->getSerializer()->toPathValue($name),
-                $resourcePath
+            $resourcePath = str_replace('{' . 'name' . '}', ObjectSerializer::toPathValue($name), $resourcePath);
+        }
+
+
+        if ($multipart) {
+            $headers= $this->headerSelector->selectHeadersForMultipart(
+                ['application/json']
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                ['application/json'],
+                []
             );
         }
 
         // for model (json/xml)
         if (isset($_tempBody)) {
             $httpBody = $_tempBody; // $_tempBody is the method argument, if present
+
         } elseif (count($formParams) > 0) {
-            $httpBody = $formParams; // for HTTP post (form)
-        }
-        // make the API Call
-        try {
-            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
-                $resourcePath,
-                'GET',
-                $queryParams,
-                $httpBody,
-                $headerParams,
-                '\Swagger\Client\Model\HudsonmodelFreeStyleProject',
-                '/job/{name}/api/json'
-            );
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $multipartContents[] = [
+                        'name' => $formParamName,
+                        'contents' => $formParamValue
+                    ];
+                }
+                $httpBody = new MultipartStream($multipartContents); // for HTTP post (form)
 
-            return [$this->apiClient->getSerializer()->deserialize($response, '\Swagger\Client\Model\HudsonmodelFreeStyleProject', $httpHeader), $statusCode, $httpHeader];
-        } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\Swagger\Client\Model\HudsonmodelFreeStyleProject', $e->getResponseHeaders());
-                    $e->setResponseObject($data);
-                    break;
+            } elseif ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode($formParams);
+
+            } else {
+                $httpBody = \GuzzleHttp\Psr7\build_query($formParams); // for HTTP post (form)
             }
-
-            throw $e;
         }
+
+        // this endpoint requires HTTP basic authentication
+        if ($this->config->getUsername() !== null || $this->config->getPassword() !== null) {
+            $headers['Authorization'] = 'Basic ' . base64_encode($this->config->getUsername() . ":" . $this->config->getPassword());
+        }
+
+        $query = \GuzzleHttp\Psr7\build_query($queryParams);
+        $url = $this->config->getHost() . $resourcePath . ($query ? '?' . $query : '');
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        return new Request(
+            'GET',
+            $url,
+            $headers,
+            $httpBody
+        );
     }
 
     /**
      * Operation getJobConfig
      *
-     * 
-     *
      * @param string $name Name of the job (required)
      * @throws \Swagger\Client\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
      * @return string
      */
     public function getJobConfig($name)
@@ -391,78 +968,220 @@ class RemoteAccessApi
     /**
      * Operation getJobConfigWithHttpInfo
      *
-     * 
-     *
      * @param string $name Name of the job (required)
      * @throws \Swagger\Client\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
      * @return array of string, HTTP status code, HTTP response headers (array of strings)
      */
     public function getJobConfigWithHttpInfo($name)
+    {
+        $returnType = 'string';
+        $request = $this->getJobConfigRequest($name);
+
+        try {
+
+            try {
+                $response = $this->client->send($request);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    "[$statusCode] Error connecting to the API ({$request->getUri()})",
+                    $statusCode,
+                    $response->getHeaders(),
+                    $response->getBody()
+                );
+            }
+
+            $responseBody = $response->getBody();
+            if ($returnType === '\SplFileObject') {
+                $content = $responseBody; //stream goes to serializer
+            } else {
+                $content = $responseBody->getContents();
+                if ($returnType !== 'string') {
+                    $content = json_decode($content);
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize($e->getResponseBody(), 'string', $e->getResponseHeaders());
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation getJobConfigAsync
+     *
+     * 
+     *
+     * @param string $name Name of the job (required)
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function getJobConfigAsync($name)
+    {
+        return $this->getJobConfigAsyncWithHttpInfo($name)->then(function ($response) {
+            return $response[0];
+        });
+    }
+
+    /**
+     * Operation getJobConfigAsyncWithHttpInfo
+     *
+     * 
+     *
+     * @param string $name Name of the job (required)
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function getJobConfigAsyncWithHttpInfo($name)
+    {
+        $returnType = 'string';
+        $request = $this->getJobConfigRequest($name);
+
+        return $this->client->sendAsync($request)->then(function ($response) use ($returnType) {
+            $responseBody = $response->getBody();
+            if ($returnType === '\SplFileObject') {
+                $content = $responseBody; //stream goes to serializer
+            } else {
+                $content = $responseBody->getContents();
+                if ($returnType !== 'string') {
+                    $content = json_decode($content);
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+        }, function ($exception) {
+            $response = $exception->getResponse();
+            $statusCode = $response->getStatusCode();
+            throw new ApiException(
+                "[$statusCode] Error connecting to the API ({$exception->getRequest()->getUri()})",
+                $statusCode,
+                $response->getHeaders(),
+                $response->getBody()
+            );
+        });
+    }
+
+    /**
+     * Create request for operation 'getJobConfig'
+     *
+     * @param string $name Name of the job (required)
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    protected function getJobConfigRequest($name)
     {
         // verify the required parameter 'name' is set
         if ($name === null) {
             throw new \InvalidArgumentException('Missing the required parameter $name when calling getJobConfig');
         }
-        // parse inputs
-        $resourcePath = "/job/{name}/config.xml";
-        $httpBody = '';
+
+        $resourcePath = '/job/{name}/config.xml';
+        $formParams = [];
         $queryParams = [];
         $headerParams = [];
-        $formParams = [];
-        $_header_accept = $this->apiClient->selectHeaderAccept(['text/xml']);
-        if (!is_null($_header_accept)) {
-            $headerParams['Accept'] = $_header_accept;
-        }
-        $headerParams['Content-Type'] = $this->apiClient->selectHeaderContentType([]);
+        $httpBody = '';
+        $multipart = false;
+
 
         // path params
         if ($name !== null) {
-            $resourcePath = str_replace(
-                "{" . "name" . "}",
-                $this->apiClient->getSerializer()->toPathValue($name),
-                $resourcePath
+            $resourcePath = str_replace('{' . 'name' . '}', ObjectSerializer::toPathValue($name), $resourcePath);
+        }
+
+
+        if ($multipart) {
+            $headers= $this->headerSelector->selectHeadersForMultipart(
+                ['text/xml']
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                ['text/xml'],
+                []
             );
         }
 
         // for model (json/xml)
         if (isset($_tempBody)) {
             $httpBody = $_tempBody; // $_tempBody is the method argument, if present
+
         } elseif (count($formParams) > 0) {
-            $httpBody = $formParams; // for HTTP post (form)
-        }
-        // make the API Call
-        try {
-            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
-                $resourcePath,
-                'GET',
-                $queryParams,
-                $httpBody,
-                $headerParams,
-                'string',
-                '/job/{name}/config.xml'
-            );
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $multipartContents[] = [
+                        'name' => $formParamName,
+                        'contents' => $formParamValue
+                    ];
+                }
+                $httpBody = new MultipartStream($multipartContents); // for HTTP post (form)
 
-            return [$this->apiClient->getSerializer()->deserialize($response, 'string', $httpHeader), $statusCode, $httpHeader];
-        } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), 'string', $e->getResponseHeaders());
-                    $e->setResponseObject($data);
-                    break;
+            } elseif ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode($formParams);
+
+            } else {
+                $httpBody = \GuzzleHttp\Psr7\build_query($formParams); // for HTTP post (form)
             }
-
-            throw $e;
         }
+
+        // this endpoint requires HTTP basic authentication
+        if ($this->config->getUsername() !== null || $this->config->getPassword() !== null) {
+            $headers['Authorization'] = 'Basic ' . base64_encode($this->config->getUsername() . ":" . $this->config->getPassword());
+        }
+
+        $query = \GuzzleHttp\Psr7\build_query($queryParams);
+        $url = $this->config->getHost() . $resourcePath . ($query ? '?' . $query : '');
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        return new Request(
+            'GET',
+            $url,
+            $headers,
+            $httpBody
+        );
     }
 
     /**
      * Operation getJobLastBuild
      *
-     * 
-     *
      * @param string $name Name of the job (required)
      * @throws \Swagger\Client\ApiException on non-2xx response
-     * @return \Swagger\Client\Model\HudsonmodelFreeStyleBuild
+     * @throws \InvalidArgumentException
+     * @return \Swagger\Client\Model\FreeStyleBuild
      */
     public function getJobLastBuild($name)
     {
@@ -473,99 +1192,333 @@ class RemoteAccessApi
     /**
      * Operation getJobLastBuildWithHttpInfo
      *
+     * @param string $name Name of the job (required)
+     * @throws \Swagger\Client\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return array of \Swagger\Client\Model\FreeStyleBuild, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function getJobLastBuildWithHttpInfo($name)
+    {
+        $returnType = '\Swagger\Client\Model\FreeStyleBuild';
+        $request = $this->getJobLastBuildRequest($name);
+
+        try {
+
+            try {
+                $response = $this->client->send($request);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    "[$statusCode] Error connecting to the API ({$request->getUri()})",
+                    $statusCode,
+                    $response->getHeaders(),
+                    $response->getBody()
+                );
+            }
+
+            $responseBody = $response->getBody();
+            if ($returnType === '\SplFileObject') {
+                $content = $responseBody; //stream goes to serializer
+            } else {
+                $content = $responseBody->getContents();
+                if ($returnType !== 'string') {
+                    $content = json_decode($content);
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize($e->getResponseBody(), '\Swagger\Client\Model\FreeStyleBuild', $e->getResponseHeaders());
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation getJobLastBuildAsync
+     *
      * 
      *
      * @param string $name Name of the job (required)
-     * @throws \Swagger\Client\ApiException on non-2xx response
-     * @return array of \Swagger\Client\Model\HudsonmodelFreeStyleBuild, HTTP status code, HTTP response headers (array of strings)
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getJobLastBuildWithHttpInfo($name)
+    public function getJobLastBuildAsync($name)
+    {
+        return $this->getJobLastBuildAsyncWithHttpInfo($name)->then(function ($response) {
+            return $response[0];
+        });
+    }
+
+    /**
+     * Operation getJobLastBuildAsyncWithHttpInfo
+     *
+     * 
+     *
+     * @param string $name Name of the job (required)
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function getJobLastBuildAsyncWithHttpInfo($name)
+    {
+        $returnType = '\Swagger\Client\Model\FreeStyleBuild';
+        $request = $this->getJobLastBuildRequest($name);
+
+        return $this->client->sendAsync($request)->then(function ($response) use ($returnType) {
+            $responseBody = $response->getBody();
+            if ($returnType === '\SplFileObject') {
+                $content = $responseBody; //stream goes to serializer
+            } else {
+                $content = $responseBody->getContents();
+                if ($returnType !== 'string') {
+                    $content = json_decode($content);
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+        }, function ($exception) {
+            $response = $exception->getResponse();
+            $statusCode = $response->getStatusCode();
+            throw new ApiException(
+                "[$statusCode] Error connecting to the API ({$exception->getRequest()->getUri()})",
+                $statusCode,
+                $response->getHeaders(),
+                $response->getBody()
+            );
+        });
+    }
+
+    /**
+     * Create request for operation 'getJobLastBuild'
+     *
+     * @param string $name Name of the job (required)
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    protected function getJobLastBuildRequest($name)
     {
         // verify the required parameter 'name' is set
         if ($name === null) {
             throw new \InvalidArgumentException('Missing the required parameter $name when calling getJobLastBuild');
         }
-        // parse inputs
-        $resourcePath = "/job/{name}/lastBuild/api/json";
-        $httpBody = '';
+
+        $resourcePath = '/job/{name}/lastBuild/api/json';
+        $formParams = [];
         $queryParams = [];
         $headerParams = [];
-        $formParams = [];
-        $_header_accept = $this->apiClient->selectHeaderAccept(['application/json']);
-        if (!is_null($_header_accept)) {
-            $headerParams['Accept'] = $_header_accept;
-        }
-        $headerParams['Content-Type'] = $this->apiClient->selectHeaderContentType([]);
+        $httpBody = '';
+        $multipart = false;
+
 
         // path params
         if ($name !== null) {
-            $resourcePath = str_replace(
-                "{" . "name" . "}",
-                $this->apiClient->getSerializer()->toPathValue($name),
-                $resourcePath
+            $resourcePath = str_replace('{' . 'name' . '}', ObjectSerializer::toPathValue($name), $resourcePath);
+        }
+
+
+        if ($multipart) {
+            $headers= $this->headerSelector->selectHeadersForMultipart(
+                ['application/json']
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                ['application/json'],
+                []
             );
         }
 
         // for model (json/xml)
         if (isset($_tempBody)) {
             $httpBody = $_tempBody; // $_tempBody is the method argument, if present
+
         } elseif (count($formParams) > 0) {
-            $httpBody = $formParams; // for HTTP post (form)
-        }
-        // make the API Call
-        try {
-            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
-                $resourcePath,
-                'GET',
-                $queryParams,
-                $httpBody,
-                $headerParams,
-                '\Swagger\Client\Model\HudsonmodelFreeStyleBuild',
-                '/job/{name}/lastBuild/api/json'
-            );
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $multipartContents[] = [
+                        'name' => $formParamName,
+                        'contents' => $formParamValue
+                    ];
+                }
+                $httpBody = new MultipartStream($multipartContents); // for HTTP post (form)
 
-            return [$this->apiClient->getSerializer()->deserialize($response, '\Swagger\Client\Model\HudsonmodelFreeStyleBuild', $httpHeader), $statusCode, $httpHeader];
-        } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\Swagger\Client\Model\HudsonmodelFreeStyleBuild', $e->getResponseHeaders());
-                    $e->setResponseObject($data);
-                    break;
+            } elseif ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode($formParams);
+
+            } else {
+                $httpBody = \GuzzleHttp\Psr7\build_query($formParams); // for HTTP post (form)
             }
-
-            throw $e;
         }
+
+        // this endpoint requires HTTP basic authentication
+        if ($this->config->getUsername() !== null || $this->config->getPassword() !== null) {
+            $headers['Authorization'] = 'Basic ' . base64_encode($this->config->getUsername() . ":" . $this->config->getPassword());
+        }
+
+        $query = \GuzzleHttp\Psr7\build_query($queryParams);
+        $url = $this->config->getHost() . $resourcePath . ($query ? '?' . $query : '');
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        return new Request(
+            'GET',
+            $url,
+            $headers,
+            $httpBody
+        );
     }
 
     /**
      * Operation getJobProgressiveText
      *
-     * 
-     *
      * @param string $name Name of the job (required)
      * @param string $number Build number (required)
      * @param string $start Starting point of progressive text output (required)
      * @throws \Swagger\Client\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
      * @return void
      */
     public function getJobProgressiveText($name, $number, $start)
     {
-        list($response) = $this->getJobProgressiveTextWithHttpInfo($name, $number, $start);
-        return $response;
+        $this->getJobProgressiveTextWithHttpInfo($name, $number, $start);
     }
 
     /**
      * Operation getJobProgressiveTextWithHttpInfo
      *
+     * @param string $name Name of the job (required)
+     * @param string $number Build number (required)
+     * @param string $start Starting point of progressive text output (required)
+     * @throws \Swagger\Client\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return array of null, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function getJobProgressiveTextWithHttpInfo($name, $number, $start)
+    {
+        $returnType = '';
+        $request = $this->getJobProgressiveTextRequest($name, $number, $start);
+
+        try {
+
+            try {
+                $response = $this->client->send($request);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    "[$statusCode] Error connecting to the API ({$request->getUri()})",
+                    $statusCode,
+                    $response->getHeaders(),
+                    $response->getBody()
+                );
+            }
+
+            return [null, $statusCode, $response->getHeaders()];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation getJobProgressiveTextAsync
+     *
      * 
      *
      * @param string $name Name of the job (required)
      * @param string $number Build number (required)
      * @param string $start Starting point of progressive text output (required)
-     * @throws \Swagger\Client\ApiException on non-2xx response
-     * @return array of null, HTTP status code, HTTP response headers (array of strings)
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getJobProgressiveTextWithHttpInfo($name, $number, $start)
+    public function getJobProgressiveTextAsync($name, $number, $start)
+    {
+        return $this->getJobProgressiveTextAsyncWithHttpInfo($name, $number, $start)->then(function ($response) {
+            return $response[0];
+        });
+    }
+
+    /**
+     * Operation getJobProgressiveTextAsyncWithHttpInfo
+     *
+     * 
+     *
+     * @param string $name Name of the job (required)
+     * @param string $number Build number (required)
+     * @param string $start Starting point of progressive text output (required)
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function getJobProgressiveTextAsyncWithHttpInfo($name, $number, $start)
+    {
+        $returnType = '';
+        $request = $this->getJobProgressiveTextRequest($name, $number, $start);
+
+        return $this->client->sendAsync($request)->then(function ($response) use ($returnType) {
+            return [null, $response->getStatusCode(), $response->getHeaders()];
+        }, function ($exception) {
+            $response = $exception->getResponse();
+            $statusCode = $response->getStatusCode();
+            throw new ApiException(
+                "[$statusCode] Error connecting to the API ({$exception->getRequest()->getUri()})",
+                $statusCode,
+                $response->getHeaders(),
+                $response->getBody()
+            );
+        });
+    }
+
+    /**
+     * Create request for operation 'getJobProgressiveText'
+     *
+     * @param string $name Name of the job (required)
+     * @param string $number Build number (required)
+     * @param string $start Starting point of progressive text output (required)
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    protected function getJobProgressiveTextRequest($name, $number, $start)
     {
         // verify the required parameter 'name' is set
         if ($name === null) {
@@ -579,73 +1532,96 @@ class RemoteAccessApi
         if ($start === null) {
             throw new \InvalidArgumentException('Missing the required parameter $start when calling getJobProgressiveText');
         }
-        // parse inputs
-        $resourcePath = "/job/{name}/{number}/logText/progressiveText";
-        $httpBody = '';
+
+        $resourcePath = '/job/{name}/{number}/logText/progressiveText';
+        $formParams = [];
         $queryParams = [];
         $headerParams = [];
-        $formParams = [];
-        $_header_accept = $this->apiClient->selectHeaderAccept([]);
-        if (!is_null($_header_accept)) {
-            $headerParams['Accept'] = $_header_accept;
-        }
-        $headerParams['Content-Type'] = $this->apiClient->selectHeaderContentType([]);
+        $httpBody = '';
+        $multipart = false;
 
         // query params
         if ($start !== null) {
-            $queryParams['start'] = $this->apiClient->getSerializer()->toQueryValue($start);
+            $queryParams['start'] = ObjectSerializer::toQueryValue($start);
         }
+
         // path params
         if ($name !== null) {
-            $resourcePath = str_replace(
-                "{" . "name" . "}",
-                $this->apiClient->getSerializer()->toPathValue($name),
-                $resourcePath
-            );
+            $resourcePath = str_replace('{' . 'name' . '}', ObjectSerializer::toPathValue($name), $resourcePath);
         }
         // path params
         if ($number !== null) {
-            $resourcePath = str_replace(
-                "{" . "number" . "}",
-                $this->apiClient->getSerializer()->toPathValue($number),
-                $resourcePath
+            $resourcePath = str_replace('{' . 'number' . '}', ObjectSerializer::toPathValue($number), $resourcePath);
+        }
+
+
+        if ($multipart) {
+            $headers= $this->headerSelector->selectHeadersForMultipart(
+                []
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                [],
+                []
             );
         }
 
         // for model (json/xml)
         if (isset($_tempBody)) {
             $httpBody = $_tempBody; // $_tempBody is the method argument, if present
+
         } elseif (count($formParams) > 0) {
-            $httpBody = $formParams; // for HTTP post (form)
-        }
-        // make the API Call
-        try {
-            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
-                $resourcePath,
-                'GET',
-                $queryParams,
-                $httpBody,
-                $headerParams,
-                null,
-                '/job/{name}/{number}/logText/progressiveText'
-            );
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $multipartContents[] = [
+                        'name' => $formParamName,
+                        'contents' => $formParamValue
+                    ];
+                }
+                $httpBody = new MultipartStream($multipartContents); // for HTTP post (form)
 
-            return [null, $statusCode, $httpHeader];
-        } catch (ApiException $e) {
-            switch ($e->getCode()) {
+            } elseif ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode($formParams);
+
+            } else {
+                $httpBody = \GuzzleHttp\Psr7\build_query($formParams); // for HTTP post (form)
             }
-
-            throw $e;
         }
+
+        // this endpoint requires HTTP basic authentication
+        if ($this->config->getUsername() !== null || $this->config->getPassword() !== null) {
+            $headers['Authorization'] = 'Basic ' . base64_encode($this->config->getUsername() . ":" . $this->config->getPassword());
+        }
+
+        $query = \GuzzleHttp\Psr7\build_query($queryParams);
+        $url = $this->config->getHost() . $resourcePath . ($query ? '?' . $query : '');
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        return new Request(
+            'GET',
+            $url,
+            $headers,
+            $httpBody
+        );
     }
 
     /**
      * Operation getQueue
      *
-     * 
-     *
      * @throws \Swagger\Client\ApiException on non-2xx response
-     * @return \Swagger\Client\Model\HudsonmodelQueue
+     * @throws \InvalidArgumentException
+     * @return \Swagger\Client\Model\Queue
      */
     public function getQueue()
     {
@@ -656,65 +1632,208 @@ class RemoteAccessApi
     /**
      * Operation getQueueWithHttpInfo
      *
-     * 
-     *
      * @throws \Swagger\Client\ApiException on non-2xx response
-     * @return array of \Swagger\Client\Model\HudsonmodelQueue, HTTP status code, HTTP response headers (array of strings)
+     * @throws \InvalidArgumentException
+     * @return array of \Swagger\Client\Model\Queue, HTTP status code, HTTP response headers (array of strings)
      */
     public function getQueueWithHttpInfo()
     {
-        // parse inputs
-        $resourcePath = "/queue/api/json";
-        $httpBody = '';
-        $queryParams = [];
-        $headerParams = [];
-        $formParams = [];
-        $_header_accept = $this->apiClient->selectHeaderAccept(['application/json']);
-        if (!is_null($_header_accept)) {
-            $headerParams['Accept'] = $_header_accept;
-        }
-        $headerParams['Content-Type'] = $this->apiClient->selectHeaderContentType([]);
+        $returnType = '\Swagger\Client\Model\Queue';
+        $request = $this->getQueueRequest();
 
-
-        // for model (json/xml)
-        if (isset($_tempBody)) {
-            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
-        } elseif (count($formParams) > 0) {
-            $httpBody = $formParams; // for HTTP post (form)
-        }
-        // make the API Call
         try {
-            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
-                $resourcePath,
-                'GET',
-                $queryParams,
-                $httpBody,
-                $headerParams,
-                '\Swagger\Client\Model\HudsonmodelQueue',
-                '/queue/api/json'
-            );
 
-            return [$this->apiClient->getSerializer()->deserialize($response, '\Swagger\Client\Model\HudsonmodelQueue', $httpHeader), $statusCode, $httpHeader];
+            try {
+                $response = $this->client->send($request);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    "[$statusCode] Error connecting to the API ({$request->getUri()})",
+                    $statusCode,
+                    $response->getHeaders(),
+                    $response->getBody()
+                );
+            }
+
+            $responseBody = $response->getBody();
+            if ($returnType === '\SplFileObject') {
+                $content = $responseBody; //stream goes to serializer
+            } else {
+                $content = $responseBody->getContents();
+                if ($returnType !== 'string') {
+                    $content = json_decode($content);
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 case 200:
-                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\Swagger\Client\Model\HudsonmodelQueue', $e->getResponseHeaders());
+                    $data = ObjectSerializer::deserialize($e->getResponseBody(), '\Swagger\Client\Model\Queue', $e->getResponseHeaders());
                     $e->setResponseObject($data);
                     break;
             }
-
             throw $e;
         }
     }
 
     /**
-     * Operation getQueueItem
+     * Operation getQueueAsync
      *
      * 
      *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function getQueueAsync()
+    {
+        return $this->getQueueAsyncWithHttpInfo()->then(function ($response) {
+            return $response[0];
+        });
+    }
+
+    /**
+     * Operation getQueueAsyncWithHttpInfo
+     *
+     * 
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function getQueueAsyncWithHttpInfo()
+    {
+        $returnType = '\Swagger\Client\Model\Queue';
+        $request = $this->getQueueRequest();
+
+        return $this->client->sendAsync($request)->then(function ($response) use ($returnType) {
+            $responseBody = $response->getBody();
+            if ($returnType === '\SplFileObject') {
+                $content = $responseBody; //stream goes to serializer
+            } else {
+                $content = $responseBody->getContents();
+                if ($returnType !== 'string') {
+                    $content = json_decode($content);
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+        }, function ($exception) {
+            $response = $exception->getResponse();
+            $statusCode = $response->getStatusCode();
+            throw new ApiException(
+                "[$statusCode] Error connecting to the API ({$exception->getRequest()->getUri()})",
+                $statusCode,
+                $response->getHeaders(),
+                $response->getBody()
+            );
+        });
+    }
+
+    /**
+     * Create request for operation 'getQueue'
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    protected function getQueueRequest()
+    {
+
+        $resourcePath = '/queue/api/json';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+
+
+        if ($multipart) {
+            $headers= $this->headerSelector->selectHeadersForMultipart(
+                ['application/json']
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                ['application/json'],
+                []
+            );
+        }
+
+        // for model (json/xml)
+        if (isset($_tempBody)) {
+            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
+
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $multipartContents[] = [
+                        'name' => $formParamName,
+                        'contents' => $formParamValue
+                    ];
+                }
+                $httpBody = new MultipartStream($multipartContents); // for HTTP post (form)
+
+            } elseif ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode($formParams);
+
+            } else {
+                $httpBody = \GuzzleHttp\Psr7\build_query($formParams); // for HTTP post (form)
+            }
+        }
+
+        // this endpoint requires HTTP basic authentication
+        if ($this->config->getUsername() !== null || $this->config->getPassword() !== null) {
+            $headers['Authorization'] = 'Basic ' . base64_encode($this->config->getUsername() . ":" . $this->config->getPassword());
+        }
+
+        $query = \GuzzleHttp\Psr7\build_query($queryParams);
+        $url = $this->config->getHost() . $resourcePath . ($query ? '?' . $query : '');
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        return new Request(
+            'GET',
+            $url,
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation getQueueItem
+     *
      * @param string $number Queue number (required)
      * @throws \Swagger\Client\ApiException on non-2xx response
-     * @return \Swagger\Client\Model\HudsonmodelQueue
+     * @throws \InvalidArgumentException
+     * @return \Swagger\Client\Model\Queue
      */
     public function getQueueItem($number)
     {
@@ -725,78 +1844,220 @@ class RemoteAccessApi
     /**
      * Operation getQueueItemWithHttpInfo
      *
+     * @param string $number Queue number (required)
+     * @throws \Swagger\Client\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return array of \Swagger\Client\Model\Queue, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function getQueueItemWithHttpInfo($number)
+    {
+        $returnType = '\Swagger\Client\Model\Queue';
+        $request = $this->getQueueItemRequest($number);
+
+        try {
+
+            try {
+                $response = $this->client->send($request);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    "[$statusCode] Error connecting to the API ({$request->getUri()})",
+                    $statusCode,
+                    $response->getHeaders(),
+                    $response->getBody()
+                );
+            }
+
+            $responseBody = $response->getBody();
+            if ($returnType === '\SplFileObject') {
+                $content = $responseBody; //stream goes to serializer
+            } else {
+                $content = $responseBody->getContents();
+                if ($returnType !== 'string') {
+                    $content = json_decode($content);
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize($e->getResponseBody(), '\Swagger\Client\Model\Queue', $e->getResponseHeaders());
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation getQueueItemAsync
+     *
      * 
      *
      * @param string $number Queue number (required)
-     * @throws \Swagger\Client\ApiException on non-2xx response
-     * @return array of \Swagger\Client\Model\HudsonmodelQueue, HTTP status code, HTTP response headers (array of strings)
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getQueueItemWithHttpInfo($number)
+    public function getQueueItemAsync($number)
+    {
+        return $this->getQueueItemAsyncWithHttpInfo($number)->then(function ($response) {
+            return $response[0];
+        });
+    }
+
+    /**
+     * Operation getQueueItemAsyncWithHttpInfo
+     *
+     * 
+     *
+     * @param string $number Queue number (required)
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function getQueueItemAsyncWithHttpInfo($number)
+    {
+        $returnType = '\Swagger\Client\Model\Queue';
+        $request = $this->getQueueItemRequest($number);
+
+        return $this->client->sendAsync($request)->then(function ($response) use ($returnType) {
+            $responseBody = $response->getBody();
+            if ($returnType === '\SplFileObject') {
+                $content = $responseBody; //stream goes to serializer
+            } else {
+                $content = $responseBody->getContents();
+                if ($returnType !== 'string') {
+                    $content = json_decode($content);
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+        }, function ($exception) {
+            $response = $exception->getResponse();
+            $statusCode = $response->getStatusCode();
+            throw new ApiException(
+                "[$statusCode] Error connecting to the API ({$exception->getRequest()->getUri()})",
+                $statusCode,
+                $response->getHeaders(),
+                $response->getBody()
+            );
+        });
+    }
+
+    /**
+     * Create request for operation 'getQueueItem'
+     *
+     * @param string $number Queue number (required)
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    protected function getQueueItemRequest($number)
     {
         // verify the required parameter 'number' is set
         if ($number === null) {
             throw new \InvalidArgumentException('Missing the required parameter $number when calling getQueueItem');
         }
-        // parse inputs
-        $resourcePath = "/queue/item/{number}/api/json";
-        $httpBody = '';
+
+        $resourcePath = '/queue/item/{number}/api/json';
+        $formParams = [];
         $queryParams = [];
         $headerParams = [];
-        $formParams = [];
-        $_header_accept = $this->apiClient->selectHeaderAccept(['application/json']);
-        if (!is_null($_header_accept)) {
-            $headerParams['Accept'] = $_header_accept;
-        }
-        $headerParams['Content-Type'] = $this->apiClient->selectHeaderContentType([]);
+        $httpBody = '';
+        $multipart = false;
+
 
         // path params
         if ($number !== null) {
-            $resourcePath = str_replace(
-                "{" . "number" . "}",
-                $this->apiClient->getSerializer()->toPathValue($number),
-                $resourcePath
+            $resourcePath = str_replace('{' . 'number' . '}', ObjectSerializer::toPathValue($number), $resourcePath);
+        }
+
+
+        if ($multipart) {
+            $headers= $this->headerSelector->selectHeadersForMultipart(
+                ['application/json']
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                ['application/json'],
+                []
             );
         }
 
         // for model (json/xml)
         if (isset($_tempBody)) {
             $httpBody = $_tempBody; // $_tempBody is the method argument, if present
+
         } elseif (count($formParams) > 0) {
-            $httpBody = $formParams; // for HTTP post (form)
-        }
-        // make the API Call
-        try {
-            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
-                $resourcePath,
-                'GET',
-                $queryParams,
-                $httpBody,
-                $headerParams,
-                '\Swagger\Client\Model\HudsonmodelQueue',
-                '/queue/item/{number}/api/json'
-            );
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $multipartContents[] = [
+                        'name' => $formParamName,
+                        'contents' => $formParamValue
+                    ];
+                }
+                $httpBody = new MultipartStream($multipartContents); // for HTTP post (form)
 
-            return [$this->apiClient->getSerializer()->deserialize($response, '\Swagger\Client\Model\HudsonmodelQueue', $httpHeader), $statusCode, $httpHeader];
-        } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\Swagger\Client\Model\HudsonmodelQueue', $e->getResponseHeaders());
-                    $e->setResponseObject($data);
-                    break;
+            } elseif ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode($formParams);
+
+            } else {
+                $httpBody = \GuzzleHttp\Psr7\build_query($formParams); // for HTTP post (form)
             }
-
-            throw $e;
         }
+
+        // this endpoint requires HTTP basic authentication
+        if ($this->config->getUsername() !== null || $this->config->getPassword() !== null) {
+            $headers['Authorization'] = 'Basic ' . base64_encode($this->config->getUsername() . ":" . $this->config->getPassword());
+        }
+
+        $query = \GuzzleHttp\Psr7\build_query($queryParams);
+        $url = $this->config->getHost() . $resourcePath . ($query ? '?' . $query : '');
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        return new Request(
+            'GET',
+            $url,
+            $headers,
+            $httpBody
+        );
     }
 
     /**
      * Operation getView
      *
-     * 
-     *
      * @param string $name Name of the view (required)
      * @throws \Swagger\Client\ApiException on non-2xx response
-     * @return \Swagger\Client\Model\HudsonmodelListView
+     * @throws \InvalidArgumentException
+     * @return \Swagger\Client\Model\ListView
      */
     public function getView($name)
     {
@@ -807,77 +2068,219 @@ class RemoteAccessApi
     /**
      * Operation getViewWithHttpInfo
      *
+     * @param string $name Name of the view (required)
+     * @throws \Swagger\Client\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return array of \Swagger\Client\Model\ListView, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function getViewWithHttpInfo($name)
+    {
+        $returnType = '\Swagger\Client\Model\ListView';
+        $request = $this->getViewRequest($name);
+
+        try {
+
+            try {
+                $response = $this->client->send($request);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    "[$statusCode] Error connecting to the API ({$request->getUri()})",
+                    $statusCode,
+                    $response->getHeaders(),
+                    $response->getBody()
+                );
+            }
+
+            $responseBody = $response->getBody();
+            if ($returnType === '\SplFileObject') {
+                $content = $responseBody; //stream goes to serializer
+            } else {
+                $content = $responseBody->getContents();
+                if ($returnType !== 'string') {
+                    $content = json_decode($content);
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize($e->getResponseBody(), '\Swagger\Client\Model\ListView', $e->getResponseHeaders());
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation getViewAsync
+     *
      * 
      *
      * @param string $name Name of the view (required)
-     * @throws \Swagger\Client\ApiException on non-2xx response
-     * @return array of \Swagger\Client\Model\HudsonmodelListView, HTTP status code, HTTP response headers (array of strings)
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getViewWithHttpInfo($name)
+    public function getViewAsync($name)
+    {
+        return $this->getViewAsyncWithHttpInfo($name)->then(function ($response) {
+            return $response[0];
+        });
+    }
+
+    /**
+     * Operation getViewAsyncWithHttpInfo
+     *
+     * 
+     *
+     * @param string $name Name of the view (required)
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function getViewAsyncWithHttpInfo($name)
+    {
+        $returnType = '\Swagger\Client\Model\ListView';
+        $request = $this->getViewRequest($name);
+
+        return $this->client->sendAsync($request)->then(function ($response) use ($returnType) {
+            $responseBody = $response->getBody();
+            if ($returnType === '\SplFileObject') {
+                $content = $responseBody; //stream goes to serializer
+            } else {
+                $content = $responseBody->getContents();
+                if ($returnType !== 'string') {
+                    $content = json_decode($content);
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+        }, function ($exception) {
+            $response = $exception->getResponse();
+            $statusCode = $response->getStatusCode();
+            throw new ApiException(
+                "[$statusCode] Error connecting to the API ({$exception->getRequest()->getUri()})",
+                $statusCode,
+                $response->getHeaders(),
+                $response->getBody()
+            );
+        });
+    }
+
+    /**
+     * Create request for operation 'getView'
+     *
+     * @param string $name Name of the view (required)
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    protected function getViewRequest($name)
     {
         // verify the required parameter 'name' is set
         if ($name === null) {
             throw new \InvalidArgumentException('Missing the required parameter $name when calling getView');
         }
-        // parse inputs
-        $resourcePath = "/view/{name}/api/json";
-        $httpBody = '';
+
+        $resourcePath = '/view/{name}/api/json';
+        $formParams = [];
         $queryParams = [];
         $headerParams = [];
-        $formParams = [];
-        $_header_accept = $this->apiClient->selectHeaderAccept(['application/json']);
-        if (!is_null($_header_accept)) {
-            $headerParams['Accept'] = $_header_accept;
-        }
-        $headerParams['Content-Type'] = $this->apiClient->selectHeaderContentType([]);
+        $httpBody = '';
+        $multipart = false;
+
 
         // path params
         if ($name !== null) {
-            $resourcePath = str_replace(
-                "{" . "name" . "}",
-                $this->apiClient->getSerializer()->toPathValue($name),
-                $resourcePath
+            $resourcePath = str_replace('{' . 'name' . '}', ObjectSerializer::toPathValue($name), $resourcePath);
+        }
+
+
+        if ($multipart) {
+            $headers= $this->headerSelector->selectHeadersForMultipart(
+                ['application/json']
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                ['application/json'],
+                []
             );
         }
 
         // for model (json/xml)
         if (isset($_tempBody)) {
             $httpBody = $_tempBody; // $_tempBody is the method argument, if present
+
         } elseif (count($formParams) > 0) {
-            $httpBody = $formParams; // for HTTP post (form)
-        }
-        // make the API Call
-        try {
-            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
-                $resourcePath,
-                'GET',
-                $queryParams,
-                $httpBody,
-                $headerParams,
-                '\Swagger\Client\Model\HudsonmodelListView',
-                '/view/{name}/api/json'
-            );
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $multipartContents[] = [
+                        'name' => $formParamName,
+                        'contents' => $formParamValue
+                    ];
+                }
+                $httpBody = new MultipartStream($multipartContents); // for HTTP post (form)
 
-            return [$this->apiClient->getSerializer()->deserialize($response, '\Swagger\Client\Model\HudsonmodelListView', $httpHeader), $statusCode, $httpHeader];
-        } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\Swagger\Client\Model\HudsonmodelListView', $e->getResponseHeaders());
-                    $e->setResponseObject($data);
-                    break;
+            } elseif ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode($formParams);
+
+            } else {
+                $httpBody = \GuzzleHttp\Psr7\build_query($formParams); // for HTTP post (form)
             }
-
-            throw $e;
         }
+
+        // this endpoint requires HTTP basic authentication
+        if ($this->config->getUsername() !== null || $this->config->getPassword() !== null) {
+            $headers['Authorization'] = 'Basic ' . base64_encode($this->config->getUsername() . ":" . $this->config->getPassword());
+        }
+
+        $query = \GuzzleHttp\Psr7\build_query($queryParams);
+        $url = $this->config->getHost() . $resourcePath . ($query ? '?' . $query : '');
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        return new Request(
+            'GET',
+            $url,
+            $headers,
+            $httpBody
+        );
     }
 
     /**
      * Operation getViewConfig
      *
-     * 
-     *
      * @param string $name Name of the view (required)
      * @throws \Swagger\Client\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
      * @return string
      */
     public function getViewConfig($name)
@@ -889,139 +2292,394 @@ class RemoteAccessApi
     /**
      * Operation getViewConfigWithHttpInfo
      *
-     * 
-     *
      * @param string $name Name of the view (required)
      * @throws \Swagger\Client\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
      * @return array of string, HTTP status code, HTTP response headers (array of strings)
      */
     public function getViewConfigWithHttpInfo($name)
+    {
+        $returnType = 'string';
+        $request = $this->getViewConfigRequest($name);
+
+        try {
+
+            try {
+                $response = $this->client->send($request);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    "[$statusCode] Error connecting to the API ({$request->getUri()})",
+                    $statusCode,
+                    $response->getHeaders(),
+                    $response->getBody()
+                );
+            }
+
+            $responseBody = $response->getBody();
+            if ($returnType === '\SplFileObject') {
+                $content = $responseBody; //stream goes to serializer
+            } else {
+                $content = $responseBody->getContents();
+                if ($returnType !== 'string') {
+                    $content = json_decode($content);
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize($e->getResponseBody(), 'string', $e->getResponseHeaders());
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation getViewConfigAsync
+     *
+     * 
+     *
+     * @param string $name Name of the view (required)
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function getViewConfigAsync($name)
+    {
+        return $this->getViewConfigAsyncWithHttpInfo($name)->then(function ($response) {
+            return $response[0];
+        });
+    }
+
+    /**
+     * Operation getViewConfigAsyncWithHttpInfo
+     *
+     * 
+     *
+     * @param string $name Name of the view (required)
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function getViewConfigAsyncWithHttpInfo($name)
+    {
+        $returnType = 'string';
+        $request = $this->getViewConfigRequest($name);
+
+        return $this->client->sendAsync($request)->then(function ($response) use ($returnType) {
+            $responseBody = $response->getBody();
+            if ($returnType === '\SplFileObject') {
+                $content = $responseBody; //stream goes to serializer
+            } else {
+                $content = $responseBody->getContents();
+                if ($returnType !== 'string') {
+                    $content = json_decode($content);
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+        }, function ($exception) {
+            $response = $exception->getResponse();
+            $statusCode = $response->getStatusCode();
+            throw new ApiException(
+                "[$statusCode] Error connecting to the API ({$exception->getRequest()->getUri()})",
+                $statusCode,
+                $response->getHeaders(),
+                $response->getBody()
+            );
+        });
+    }
+
+    /**
+     * Create request for operation 'getViewConfig'
+     *
+     * @param string $name Name of the view (required)
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    protected function getViewConfigRequest($name)
     {
         // verify the required parameter 'name' is set
         if ($name === null) {
             throw new \InvalidArgumentException('Missing the required parameter $name when calling getViewConfig');
         }
-        // parse inputs
-        $resourcePath = "/view/{name}/config.xml";
-        $httpBody = '';
+
+        $resourcePath = '/view/{name}/config.xml';
+        $formParams = [];
         $queryParams = [];
         $headerParams = [];
-        $formParams = [];
-        $_header_accept = $this->apiClient->selectHeaderAccept(['text/xml']);
-        if (!is_null($_header_accept)) {
-            $headerParams['Accept'] = $_header_accept;
-        }
-        $headerParams['Content-Type'] = $this->apiClient->selectHeaderContentType([]);
+        $httpBody = '';
+        $multipart = false;
+
 
         // path params
         if ($name !== null) {
-            $resourcePath = str_replace(
-                "{" . "name" . "}",
-                $this->apiClient->getSerializer()->toPathValue($name),
-                $resourcePath
+            $resourcePath = str_replace('{' . 'name' . '}', ObjectSerializer::toPathValue($name), $resourcePath);
+        }
+
+
+        if ($multipart) {
+            $headers= $this->headerSelector->selectHeadersForMultipart(
+                ['text/xml']
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                ['text/xml'],
+                []
             );
         }
 
         // for model (json/xml)
         if (isset($_tempBody)) {
             $httpBody = $_tempBody; // $_tempBody is the method argument, if present
+
         } elseif (count($formParams) > 0) {
-            $httpBody = $formParams; // for HTTP post (form)
-        }
-        // make the API Call
-        try {
-            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
-                $resourcePath,
-                'GET',
-                $queryParams,
-                $httpBody,
-                $headerParams,
-                'string',
-                '/view/{name}/config.xml'
-            );
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $multipartContents[] = [
+                        'name' => $formParamName,
+                        'contents' => $formParamValue
+                    ];
+                }
+                $httpBody = new MultipartStream($multipartContents); // for HTTP post (form)
 
-            return [$this->apiClient->getSerializer()->deserialize($response, 'string', $httpHeader), $statusCode, $httpHeader];
-        } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), 'string', $e->getResponseHeaders());
-                    $e->setResponseObject($data);
-                    break;
+            } elseif ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode($formParams);
+
+            } else {
+                $httpBody = \GuzzleHttp\Psr7\build_query($formParams); // for HTTP post (form)
             }
-
-            throw $e;
         }
+
+        // this endpoint requires HTTP basic authentication
+        if ($this->config->getUsername() !== null || $this->config->getPassword() !== null) {
+            $headers['Authorization'] = 'Basic ' . base64_encode($this->config->getUsername() . ":" . $this->config->getPassword());
+        }
+
+        $query = \GuzzleHttp\Psr7\build_query($queryParams);
+        $url = $this->config->getHost() . $resourcePath . ($query ? '?' . $query : '');
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        return new Request(
+            'GET',
+            $url,
+            $headers,
+            $httpBody
+        );
     }
 
     /**
      * Operation headJenkins
      *
-     * 
-     *
      * @throws \Swagger\Client\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
      * @return void
      */
     public function headJenkins()
     {
-        list($response) = $this->headJenkinsWithHttpInfo();
-        return $response;
+        $this->headJenkinsWithHttpInfo();
     }
 
     /**
      * Operation headJenkinsWithHttpInfo
      *
-     * 
-     *
      * @throws \Swagger\Client\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
      * @return array of null, HTTP status code, HTTP response headers (array of strings)
      */
     public function headJenkinsWithHttpInfo()
     {
-        // parse inputs
-        $resourcePath = "/api/json";
-        $httpBody = '';
+        $returnType = '';
+        $request = $this->headJenkinsRequest();
+
+        try {
+
+            try {
+                $response = $this->client->send($request);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    "[$statusCode] Error connecting to the API ({$request->getUri()})",
+                    $statusCode,
+                    $response->getHeaders(),
+                    $response->getBody()
+                );
+            }
+
+            return [null, $statusCode, $response->getHeaders()];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation headJenkinsAsync
+     *
+     * 
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function headJenkinsAsync()
+    {
+        return $this->headJenkinsAsyncWithHttpInfo()->then(function ($response) {
+            return $response[0];
+        });
+    }
+
+    /**
+     * Operation headJenkinsAsyncWithHttpInfo
+     *
+     * 
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function headJenkinsAsyncWithHttpInfo()
+    {
+        $returnType = '';
+        $request = $this->headJenkinsRequest();
+
+        return $this->client->sendAsync($request)->then(function ($response) use ($returnType) {
+            return [null, $response->getStatusCode(), $response->getHeaders()];
+        }, function ($exception) {
+            $response = $exception->getResponse();
+            $statusCode = $response->getStatusCode();
+            throw new ApiException(
+                "[$statusCode] Error connecting to the API ({$exception->getRequest()->getUri()})",
+                $statusCode,
+                $response->getHeaders(),
+                $response->getBody()
+            );
+        });
+    }
+
+    /**
+     * Create request for operation 'headJenkins'
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    protected function headJenkinsRequest()
+    {
+
+        $resourcePath = '/api/json';
+        $formParams = [];
         $queryParams = [];
         $headerParams = [];
-        $formParams = [];
-        $_header_accept = $this->apiClient->selectHeaderAccept([]);
-        if (!is_null($_header_accept)) {
-            $headerParams['Accept'] = $_header_accept;
-        }
-        $headerParams['Content-Type'] = $this->apiClient->selectHeaderContentType([]);
+        $httpBody = '';
+        $multipart = false;
 
+
+
+
+        if ($multipart) {
+            $headers= $this->headerSelector->selectHeadersForMultipart(
+                []
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                [],
+                []
+            );
+        }
 
         // for model (json/xml)
         if (isset($_tempBody)) {
             $httpBody = $_tempBody; // $_tempBody is the method argument, if present
+
         } elseif (count($formParams) > 0) {
-            $httpBody = $formParams; // for HTTP post (form)
-        }
-        // make the API Call
-        try {
-            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
-                $resourcePath,
-                'HEAD',
-                $queryParams,
-                $httpBody,
-                $headerParams,
-                null,
-                '/api/json'
-            );
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $multipartContents[] = [
+                        'name' => $formParamName,
+                        'contents' => $formParamValue
+                    ];
+                }
+                $httpBody = new MultipartStream($multipartContents); // for HTTP post (form)
 
-            return [null, $statusCode, $httpHeader];
-        } catch (ApiException $e) {
-            switch ($e->getCode()) {
+            } elseif ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode($formParams);
+
+            } else {
+                $httpBody = \GuzzleHttp\Psr7\build_query($formParams); // for HTTP post (form)
             }
-
-            throw $e;
         }
+
+        // this endpoint requires HTTP basic authentication
+        if ($this->config->getUsername() !== null || $this->config->getPassword() !== null) {
+            $headers['Authorization'] = 'Basic ' . base64_encode($this->config->getUsername() . ":" . $this->config->getPassword());
+        }
+
+        $query = \GuzzleHttp\Psr7\build_query($queryParams);
+        $url = $this->config->getHost() . $resourcePath . ($query ? '?' . $query : '');
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        return new Request(
+            'HEAD',
+            $url,
+            $headers,
+            $httpBody
+        );
     }
 
     /**
      * Operation postCreateItem
      *
-     * 
-     *
      * @param string $name Name of the new job (required)
      * @param string $from Existing job to copy from (optional)
      * @param string $mode Set to &#39;copy&#39; for copying an existing job (optional)
@@ -1029,17 +2687,71 @@ class RemoteAccessApi
      * @param string $jenkins_crumb CSRF protection token (optional)
      * @param string $content_type Content type header application/xml (optional)
      * @throws \Swagger\Client\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
      * @return void
      */
     public function postCreateItem($name, $from = null, $mode = null, $body = null, $jenkins_crumb = null, $content_type = null)
     {
-        list($response) = $this->postCreateItemWithHttpInfo($name, $from, $mode, $body, $jenkins_crumb, $content_type);
-        return $response;
+        $this->postCreateItemWithHttpInfo($name, $from, $mode, $body, $jenkins_crumb, $content_type);
     }
 
     /**
      * Operation postCreateItemWithHttpInfo
      *
+     * @param string $name Name of the new job (required)
+     * @param string $from Existing job to copy from (optional)
+     * @param string $mode Set to &#39;copy&#39; for copying an existing job (optional)
+     * @param string $body Job configuration in config.xml format (optional)
+     * @param string $jenkins_crumb CSRF protection token (optional)
+     * @param string $content_type Content type header application/xml (optional)
+     * @throws \Swagger\Client\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return array of null, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function postCreateItemWithHttpInfo($name, $from = null, $mode = null, $body = null, $jenkins_crumb = null, $content_type = null)
+    {
+        $returnType = '';
+        $request = $this->postCreateItemRequest($name, $from, $mode, $body, $jenkins_crumb, $content_type);
+
+        try {
+
+            try {
+                $response = $this->client->send($request);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    "[$statusCode] Error connecting to the API ({$request->getUri()})",
+                    $statusCode,
+                    $response->getHeaders(),
+                    $response->getBody()
+                );
+            }
+
+            return [null, $statusCode, $response->getHeaders()];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 400:
+                    $data = ObjectSerializer::deserialize($e->getResponseBody(), 'string', $e->getResponseHeaders());
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation postCreateItemAsync
+     *
      * 
      *
      * @param string $name Name of the new job (required)
@@ -1048,212 +2760,512 @@ class RemoteAccessApi
      * @param string $body Job configuration in config.xml format (optional)
      * @param string $jenkins_crumb CSRF protection token (optional)
      * @param string $content_type Content type header application/xml (optional)
-     * @throws \Swagger\Client\ApiException on non-2xx response
-     * @return array of null, HTTP status code, HTTP response headers (array of strings)
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function postCreateItemWithHttpInfo($name, $from = null, $mode = null, $body = null, $jenkins_crumb = null, $content_type = null)
+    public function postCreateItemAsync($name, $from = null, $mode = null, $body = null, $jenkins_crumb = null, $content_type = null)
+    {
+        return $this->postCreateItemAsyncWithHttpInfo($name, $from, $mode, $body, $jenkins_crumb, $content_type)->then(function ($response) {
+            return $response[0];
+        });
+    }
+
+    /**
+     * Operation postCreateItemAsyncWithHttpInfo
+     *
+     * 
+     *
+     * @param string $name Name of the new job (required)
+     * @param string $from Existing job to copy from (optional)
+     * @param string $mode Set to &#39;copy&#39; for copying an existing job (optional)
+     * @param string $body Job configuration in config.xml format (optional)
+     * @param string $jenkins_crumb CSRF protection token (optional)
+     * @param string $content_type Content type header application/xml (optional)
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function postCreateItemAsyncWithHttpInfo($name, $from = null, $mode = null, $body = null, $jenkins_crumb = null, $content_type = null)
+    {
+        $returnType = '';
+        $request = $this->postCreateItemRequest($name, $from, $mode, $body, $jenkins_crumb, $content_type);
+
+        return $this->client->sendAsync($request)->then(function ($response) use ($returnType) {
+            return [null, $response->getStatusCode(), $response->getHeaders()];
+        }, function ($exception) {
+            $response = $exception->getResponse();
+            $statusCode = $response->getStatusCode();
+            throw new ApiException(
+                "[$statusCode] Error connecting to the API ({$exception->getRequest()->getUri()})",
+                $statusCode,
+                $response->getHeaders(),
+                $response->getBody()
+            );
+        });
+    }
+
+    /**
+     * Create request for operation 'postCreateItem'
+     *
+     * @param string $name Name of the new job (required)
+     * @param string $from Existing job to copy from (optional)
+     * @param string $mode Set to &#39;copy&#39; for copying an existing job (optional)
+     * @param string $body Job configuration in config.xml format (optional)
+     * @param string $jenkins_crumb CSRF protection token (optional)
+     * @param string $content_type Content type header application/xml (optional)
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    protected function postCreateItemRequest($name, $from = null, $mode = null, $body = null, $jenkins_crumb = null, $content_type = null)
     {
         // verify the required parameter 'name' is set
         if ($name === null) {
             throw new \InvalidArgumentException('Missing the required parameter $name when calling postCreateItem');
         }
-        // parse inputs
-        $resourcePath = "/createItem";
-        $httpBody = '';
+
+        $resourcePath = '/createItem';
+        $formParams = [];
         $queryParams = [];
         $headerParams = [];
-        $formParams = [];
-        $_header_accept = $this->apiClient->selectHeaderAccept(['text/html']);
-        if (!is_null($_header_accept)) {
-            $headerParams['Accept'] = $_header_accept;
-        }
-        $headerParams['Content-Type'] = $this->apiClient->selectHeaderContentType([]);
+        $httpBody = '';
+        $multipart = false;
 
         // query params
         if ($name !== null) {
-            $queryParams['name'] = $this->apiClient->getSerializer()->toQueryValue($name);
+            $queryParams['name'] = ObjectSerializer::toQueryValue($name);
         }
         // query params
         if ($from !== null) {
-            $queryParams['from'] = $this->apiClient->getSerializer()->toQueryValue($from);
+            $queryParams['from'] = ObjectSerializer::toQueryValue($from);
         }
         // query params
         if ($mode !== null) {
-            $queryParams['mode'] = $this->apiClient->getSerializer()->toQueryValue($mode);
+            $queryParams['mode'] = ObjectSerializer::toQueryValue($mode);
         }
         // header params
         if ($jenkins_crumb !== null) {
-            $headerParams['Jenkins-Crumb'] = $this->apiClient->getSerializer()->toHeaderValue($jenkins_crumb);
+            $headerParams['Jenkins-Crumb'] = ObjectSerializer::toHeaderValue($jenkins_crumb);
         }
         // header params
         if ($content_type !== null) {
-            $headerParams['Content-Type'] = $this->apiClient->getSerializer()->toHeaderValue($content_type);
+            $headerParams['Content-Type'] = ObjectSerializer::toHeaderValue($content_type);
         }
+
+
         // body params
         $_tempBody = null;
         if (isset($body)) {
             $_tempBody = $body;
         }
 
+        if ($multipart) {
+            $headers= $this->headerSelector->selectHeadersForMultipart(
+                ['text/html']
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                ['text/html'],
+                []
+            );
+        }
+
         // for model (json/xml)
         if (isset($_tempBody)) {
             $httpBody = $_tempBody; // $_tempBody is the method argument, if present
+
         } elseif (count($formParams) > 0) {
-            $httpBody = $formParams; // for HTTP post (form)
-        }
-        // make the API Call
-        try {
-            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
-                $resourcePath,
-                'POST',
-                $queryParams,
-                $httpBody,
-                $headerParams,
-                null,
-                '/createItem'
-            );
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $multipartContents[] = [
+                        'name' => $formParamName,
+                        'contents' => $formParamValue
+                    ];
+                }
+                $httpBody = new MultipartStream($multipartContents); // for HTTP post (form)
 
-            return [null, $statusCode, $httpHeader];
-        } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 400:
-                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), 'string', $e->getResponseHeaders());
-                    $e->setResponseObject($data);
-                    break;
+            } elseif ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode($formParams);
+
+            } else {
+                $httpBody = \GuzzleHttp\Psr7\build_query($formParams); // for HTTP post (form)
             }
-
-            throw $e;
         }
+
+        // this endpoint requires HTTP basic authentication
+        if ($this->config->getUsername() !== null || $this->config->getPassword() !== null) {
+            $headers['Authorization'] = 'Basic ' . base64_encode($this->config->getUsername() . ":" . $this->config->getPassword());
+        }
+
+        $query = \GuzzleHttp\Psr7\build_query($queryParams);
+        $url = $this->config->getHost() . $resourcePath . ($query ? '?' . $query : '');
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        return new Request(
+            'POST',
+            $url,
+            $headers,
+            $httpBody
+        );
     }
 
     /**
      * Operation postCreateView
      *
-     * 
-     *
      * @param string $name Name of the new view (required)
      * @param string $body View configuration in config.xml format (optional)
      * @param string $jenkins_crumb CSRF protection token (optional)
      * @param string $content_type Content type header application/xml (optional)
      * @throws \Swagger\Client\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
      * @return void
      */
     public function postCreateView($name, $body = null, $jenkins_crumb = null, $content_type = null)
     {
-        list($response) = $this->postCreateViewWithHttpInfo($name, $body, $jenkins_crumb, $content_type);
-        return $response;
+        $this->postCreateViewWithHttpInfo($name, $body, $jenkins_crumb, $content_type);
     }
 
     /**
      * Operation postCreateViewWithHttpInfo
      *
+     * @param string $name Name of the new view (required)
+     * @param string $body View configuration in config.xml format (optional)
+     * @param string $jenkins_crumb CSRF protection token (optional)
+     * @param string $content_type Content type header application/xml (optional)
+     * @throws \Swagger\Client\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return array of null, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function postCreateViewWithHttpInfo($name, $body = null, $jenkins_crumb = null, $content_type = null)
+    {
+        $returnType = '';
+        $request = $this->postCreateViewRequest($name, $body, $jenkins_crumb, $content_type);
+
+        try {
+
+            try {
+                $response = $this->client->send($request);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    "[$statusCode] Error connecting to the API ({$request->getUri()})",
+                    $statusCode,
+                    $response->getHeaders(),
+                    $response->getBody()
+                );
+            }
+
+            return [null, $statusCode, $response->getHeaders()];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 400:
+                    $data = ObjectSerializer::deserialize($e->getResponseBody(), 'string', $e->getResponseHeaders());
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation postCreateViewAsync
+     *
      * 
      *
      * @param string $name Name of the new view (required)
      * @param string $body View configuration in config.xml format (optional)
      * @param string $jenkins_crumb CSRF protection token (optional)
      * @param string $content_type Content type header application/xml (optional)
-     * @throws \Swagger\Client\ApiException on non-2xx response
-     * @return array of null, HTTP status code, HTTP response headers (array of strings)
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function postCreateViewWithHttpInfo($name, $body = null, $jenkins_crumb = null, $content_type = null)
+    public function postCreateViewAsync($name, $body = null, $jenkins_crumb = null, $content_type = null)
+    {
+        return $this->postCreateViewAsyncWithHttpInfo($name, $body, $jenkins_crumb, $content_type)->then(function ($response) {
+            return $response[0];
+        });
+    }
+
+    /**
+     * Operation postCreateViewAsyncWithHttpInfo
+     *
+     * 
+     *
+     * @param string $name Name of the new view (required)
+     * @param string $body View configuration in config.xml format (optional)
+     * @param string $jenkins_crumb CSRF protection token (optional)
+     * @param string $content_type Content type header application/xml (optional)
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function postCreateViewAsyncWithHttpInfo($name, $body = null, $jenkins_crumb = null, $content_type = null)
+    {
+        $returnType = '';
+        $request = $this->postCreateViewRequest($name, $body, $jenkins_crumb, $content_type);
+
+        return $this->client->sendAsync($request)->then(function ($response) use ($returnType) {
+            return [null, $response->getStatusCode(), $response->getHeaders()];
+        }, function ($exception) {
+            $response = $exception->getResponse();
+            $statusCode = $response->getStatusCode();
+            throw new ApiException(
+                "[$statusCode] Error connecting to the API ({$exception->getRequest()->getUri()})",
+                $statusCode,
+                $response->getHeaders(),
+                $response->getBody()
+            );
+        });
+    }
+
+    /**
+     * Create request for operation 'postCreateView'
+     *
+     * @param string $name Name of the new view (required)
+     * @param string $body View configuration in config.xml format (optional)
+     * @param string $jenkins_crumb CSRF protection token (optional)
+     * @param string $content_type Content type header application/xml (optional)
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    protected function postCreateViewRequest($name, $body = null, $jenkins_crumb = null, $content_type = null)
     {
         // verify the required parameter 'name' is set
         if ($name === null) {
             throw new \InvalidArgumentException('Missing the required parameter $name when calling postCreateView');
         }
-        // parse inputs
-        $resourcePath = "/createView";
-        $httpBody = '';
+
+        $resourcePath = '/createView';
+        $formParams = [];
         $queryParams = [];
         $headerParams = [];
-        $formParams = [];
-        $_header_accept = $this->apiClient->selectHeaderAccept(['text/html']);
-        if (!is_null($_header_accept)) {
-            $headerParams['Accept'] = $_header_accept;
-        }
-        $headerParams['Content-Type'] = $this->apiClient->selectHeaderContentType([]);
+        $httpBody = '';
+        $multipart = false;
 
         // query params
         if ($name !== null) {
-            $queryParams['name'] = $this->apiClient->getSerializer()->toQueryValue($name);
+            $queryParams['name'] = ObjectSerializer::toQueryValue($name);
         }
         // header params
         if ($jenkins_crumb !== null) {
-            $headerParams['Jenkins-Crumb'] = $this->apiClient->getSerializer()->toHeaderValue($jenkins_crumb);
+            $headerParams['Jenkins-Crumb'] = ObjectSerializer::toHeaderValue($jenkins_crumb);
         }
         // header params
         if ($content_type !== null) {
-            $headerParams['Content-Type'] = $this->apiClient->getSerializer()->toHeaderValue($content_type);
+            $headerParams['Content-Type'] = ObjectSerializer::toHeaderValue($content_type);
         }
+
+
         // body params
         $_tempBody = null;
         if (isset($body)) {
             $_tempBody = $body;
         }
 
+        if ($multipart) {
+            $headers= $this->headerSelector->selectHeadersForMultipart(
+                ['text/html']
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                ['text/html'],
+                []
+            );
+        }
+
         // for model (json/xml)
         if (isset($_tempBody)) {
             $httpBody = $_tempBody; // $_tempBody is the method argument, if present
+
         } elseif (count($formParams) > 0) {
-            $httpBody = $formParams; // for HTTP post (form)
-        }
-        // make the API Call
-        try {
-            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
-                $resourcePath,
-                'POST',
-                $queryParams,
-                $httpBody,
-                $headerParams,
-                null,
-                '/createView'
-            );
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $multipartContents[] = [
+                        'name' => $formParamName,
+                        'contents' => $formParamValue
+                    ];
+                }
+                $httpBody = new MultipartStream($multipartContents); // for HTTP post (form)
 
-            return [null, $statusCode, $httpHeader];
-        } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 400:
-                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), 'string', $e->getResponseHeaders());
-                    $e->setResponseObject($data);
-                    break;
+            } elseif ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode($formParams);
+
+            } else {
+                $httpBody = \GuzzleHttp\Psr7\build_query($formParams); // for HTTP post (form)
             }
-
-            throw $e;
         }
+
+        // this endpoint requires HTTP basic authentication
+        if ($this->config->getUsername() !== null || $this->config->getPassword() !== null) {
+            $headers['Authorization'] = 'Basic ' . base64_encode($this->config->getUsername() . ":" . $this->config->getPassword());
+        }
+
+        $query = \GuzzleHttp\Psr7\build_query($queryParams);
+        $url = $this->config->getHost() . $resourcePath . ($query ? '?' . $query : '');
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        return new Request(
+            'POST',
+            $url,
+            $headers,
+            $httpBody
+        );
     }
 
     /**
      * Operation postJobBuild
      *
-     * 
-     *
      * @param string $name Name of the job (required)
      * @param string $json  (required)
      * @param string $token  (optional)
      * @param string $jenkins_crumb CSRF protection token (optional)
      * @throws \Swagger\Client\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
      * @return void
      */
     public function postJobBuild($name, $json, $token = null, $jenkins_crumb = null)
     {
-        list($response) = $this->postJobBuildWithHttpInfo($name, $json, $token, $jenkins_crumb);
-        return $response;
+        $this->postJobBuildWithHttpInfo($name, $json, $token, $jenkins_crumb);
     }
 
     /**
      * Operation postJobBuildWithHttpInfo
      *
+     * @param string $name Name of the job (required)
+     * @param string $json  (required)
+     * @param string $token  (optional)
+     * @param string $jenkins_crumb CSRF protection token (optional)
+     * @throws \Swagger\Client\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return array of null, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function postJobBuildWithHttpInfo($name, $json, $token = null, $jenkins_crumb = null)
+    {
+        $returnType = '';
+        $request = $this->postJobBuildRequest($name, $json, $token, $jenkins_crumb);
+
+        try {
+
+            try {
+                $response = $this->client->send($request);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    "[$statusCode] Error connecting to the API ({$request->getUri()})",
+                    $statusCode,
+                    $response->getHeaders(),
+                    $response->getBody()
+                );
+            }
+
+            return [null, $statusCode, $response->getHeaders()];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation postJobBuildAsync
+     *
      * 
      *
      * @param string $name Name of the job (required)
      * @param string $json  (required)
      * @param string $token  (optional)
      * @param string $jenkins_crumb CSRF protection token (optional)
-     * @throws \Swagger\Client\ApiException on non-2xx response
-     * @return array of null, HTTP status code, HTTP response headers (array of strings)
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function postJobBuildWithHttpInfo($name, $json, $token = null, $jenkins_crumb = null)
+    public function postJobBuildAsync($name, $json, $token = null, $jenkins_crumb = null)
+    {
+        return $this->postJobBuildAsyncWithHttpInfo($name, $json, $token, $jenkins_crumb)->then(function ($response) {
+            return $response[0];
+        });
+    }
+
+    /**
+     * Operation postJobBuildAsyncWithHttpInfo
+     *
+     * 
+     *
+     * @param string $name Name of the job (required)
+     * @param string $json  (required)
+     * @param string $token  (optional)
+     * @param string $jenkins_crumb CSRF protection token (optional)
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function postJobBuildAsyncWithHttpInfo($name, $json, $token = null, $jenkins_crumb = null)
+    {
+        $returnType = '';
+        $request = $this->postJobBuildRequest($name, $json, $token, $jenkins_crumb);
+
+        return $this->client->sendAsync($request)->then(function ($response) use ($returnType) {
+            return [null, $response->getStatusCode(), $response->getHeaders()];
+        }, function ($exception) {
+            $response = $exception->getResponse();
+            $statusCode = $response->getStatusCode();
+            throw new ApiException(
+                "[$statusCode] Error connecting to the API ({$exception->getRequest()->getUri()})",
+                $statusCode,
+                $response->getHeaders(),
+                $response->getBody()
+            );
+        });
+    }
+
+    /**
+     * Create request for operation 'postJobBuild'
+     *
+     * @param string $name Name of the job (required)
+     * @param string $json  (required)
+     * @param string $token  (optional)
+     * @param string $jenkins_crumb CSRF protection token (optional)
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    protected function postJobBuildRequest($name, $json, $token = null, $jenkins_crumb = null)
     {
         // verify the required parameter 'name' is set
         if ($name === null) {
@@ -1263,95 +3275,218 @@ class RemoteAccessApi
         if ($json === null) {
             throw new \InvalidArgumentException('Missing the required parameter $json when calling postJobBuild');
         }
-        // parse inputs
-        $resourcePath = "/job/{name}/build";
-        $httpBody = '';
+
+        $resourcePath = '/job/{name}/build';
+        $formParams = [];
         $queryParams = [];
         $headerParams = [];
-        $formParams = [];
-        $_header_accept = $this->apiClient->selectHeaderAccept([]);
-        if (!is_null($_header_accept)) {
-            $headerParams['Accept'] = $_header_accept;
-        }
-        $headerParams['Content-Type'] = $this->apiClient->selectHeaderContentType([]);
+        $httpBody = '';
+        $multipart = false;
 
         // query params
         if ($json !== null) {
-            $queryParams['json'] = $this->apiClient->getSerializer()->toQueryValue($json);
+            $queryParams['json'] = ObjectSerializer::toQueryValue($json);
         }
         // query params
         if ($token !== null) {
-            $queryParams['token'] = $this->apiClient->getSerializer()->toQueryValue($token);
+            $queryParams['token'] = ObjectSerializer::toQueryValue($token);
         }
         // header params
         if ($jenkins_crumb !== null) {
-            $headerParams['Jenkins-Crumb'] = $this->apiClient->getSerializer()->toHeaderValue($jenkins_crumb);
+            $headerParams['Jenkins-Crumb'] = ObjectSerializer::toHeaderValue($jenkins_crumb);
         }
+
         // path params
         if ($name !== null) {
-            $resourcePath = str_replace(
-                "{" . "name" . "}",
-                $this->apiClient->getSerializer()->toPathValue($name),
-                $resourcePath
+            $resourcePath = str_replace('{' . 'name' . '}', ObjectSerializer::toPathValue($name), $resourcePath);
+        }
+
+
+        if ($multipart) {
+            $headers= $this->headerSelector->selectHeadersForMultipart(
+                []
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                [],
+                []
             );
         }
 
         // for model (json/xml)
         if (isset($_tempBody)) {
             $httpBody = $_tempBody; // $_tempBody is the method argument, if present
+
         } elseif (count($formParams) > 0) {
-            $httpBody = $formParams; // for HTTP post (form)
-        }
-        // make the API Call
-        try {
-            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
-                $resourcePath,
-                'POST',
-                $queryParams,
-                $httpBody,
-                $headerParams,
-                null,
-                '/job/{name}/build'
-            );
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $multipartContents[] = [
+                        'name' => $formParamName,
+                        'contents' => $formParamValue
+                    ];
+                }
+                $httpBody = new MultipartStream($multipartContents); // for HTTP post (form)
 
-            return [null, $statusCode, $httpHeader];
-        } catch (ApiException $e) {
-            switch ($e->getCode()) {
+            } elseif ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode($formParams);
+
+            } else {
+                $httpBody = \GuzzleHttp\Psr7\build_query($formParams); // for HTTP post (form)
             }
-
-            throw $e;
         }
+
+        // this endpoint requires HTTP basic authentication
+        if ($this->config->getUsername() !== null || $this->config->getPassword() !== null) {
+            $headers['Authorization'] = 'Basic ' . base64_encode($this->config->getUsername() . ":" . $this->config->getPassword());
+        }
+
+        $query = \GuzzleHttp\Psr7\build_query($queryParams);
+        $url = $this->config->getHost() . $resourcePath . ($query ? '?' . $query : '');
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        return new Request(
+            'POST',
+            $url,
+            $headers,
+            $httpBody
+        );
     }
 
     /**
      * Operation postJobConfig
      *
-     * 
-     *
      * @param string $name Name of the job (required)
      * @param string $body Job configuration in config.xml format (required)
      * @param string $jenkins_crumb CSRF protection token (optional)
      * @throws \Swagger\Client\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
      * @return void
      */
     public function postJobConfig($name, $body, $jenkins_crumb = null)
     {
-        list($response) = $this->postJobConfigWithHttpInfo($name, $body, $jenkins_crumb);
-        return $response;
+        $this->postJobConfigWithHttpInfo($name, $body, $jenkins_crumb);
     }
 
     /**
      * Operation postJobConfigWithHttpInfo
      *
+     * @param string $name Name of the job (required)
+     * @param string $body Job configuration in config.xml format (required)
+     * @param string $jenkins_crumb CSRF protection token (optional)
+     * @throws \Swagger\Client\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return array of null, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function postJobConfigWithHttpInfo($name, $body, $jenkins_crumb = null)
+    {
+        $returnType = '';
+        $request = $this->postJobConfigRequest($name, $body, $jenkins_crumb);
+
+        try {
+
+            try {
+                $response = $this->client->send($request);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    "[$statusCode] Error connecting to the API ({$request->getUri()})",
+                    $statusCode,
+                    $response->getHeaders(),
+                    $response->getBody()
+                );
+            }
+
+            return [null, $statusCode, $response->getHeaders()];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 400:
+                    $data = ObjectSerializer::deserialize($e->getResponseBody(), 'string', $e->getResponseHeaders());
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation postJobConfigAsync
+     *
      * 
      *
      * @param string $name Name of the job (required)
      * @param string $body Job configuration in config.xml format (required)
      * @param string $jenkins_crumb CSRF protection token (optional)
-     * @throws \Swagger\Client\ApiException on non-2xx response
-     * @return array of null, HTTP status code, HTTP response headers (array of strings)
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function postJobConfigWithHttpInfo($name, $body, $jenkins_crumb = null)
+    public function postJobConfigAsync($name, $body, $jenkins_crumb = null)
+    {
+        return $this->postJobConfigAsyncWithHttpInfo($name, $body, $jenkins_crumb)->then(function ($response) {
+            return $response[0];
+        });
+    }
+
+    /**
+     * Operation postJobConfigAsyncWithHttpInfo
+     *
+     * 
+     *
+     * @param string $name Name of the job (required)
+     * @param string $body Job configuration in config.xml format (required)
+     * @param string $jenkins_crumb CSRF protection token (optional)
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function postJobConfigAsyncWithHttpInfo($name, $body, $jenkins_crumb = null)
+    {
+        $returnType = '';
+        $request = $this->postJobConfigRequest($name, $body, $jenkins_crumb);
+
+        return $this->client->sendAsync($request)->then(function ($response) use ($returnType) {
+            return [null, $response->getStatusCode(), $response->getHeaders()];
+        }, function ($exception) {
+            $response = $exception->getResponse();
+            $statusCode = $response->getStatusCode();
+            throw new ApiException(
+                "[$statusCode] Error connecting to the API ({$exception->getRequest()->getUri()})",
+                $statusCode,
+                $response->getHeaders(),
+                $response->getBody()
+            );
+        });
+    }
+
+    /**
+     * Create request for operation 'postJobConfig'
+     *
+     * @param string $name Name of the job (required)
+     * @param string $body Job configuration in config.xml format (required)
+     * @param string $jenkins_crumb CSRF protection token (optional)
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    protected function postJobConfigRequest($name, $body, $jenkins_crumb = null)
     {
         // verify the required parameter 'name' is set
         if ($name === null) {
@@ -1361,432 +3496,1015 @@ class RemoteAccessApi
         if ($body === null) {
             throw new \InvalidArgumentException('Missing the required parameter $body when calling postJobConfig');
         }
-        // parse inputs
-        $resourcePath = "/job/{name}/config.xml";
-        $httpBody = '';
+
+        $resourcePath = '/job/{name}/config.xml';
+        $formParams = [];
         $queryParams = [];
         $headerParams = [];
-        $formParams = [];
-        $_header_accept = $this->apiClient->selectHeaderAccept(['text/xml']);
-        if (!is_null($_header_accept)) {
-            $headerParams['Accept'] = $_header_accept;
-        }
-        $headerParams['Content-Type'] = $this->apiClient->selectHeaderContentType([]);
+        $httpBody = '';
+        $multipart = false;
 
         // header params
         if ($jenkins_crumb !== null) {
-            $headerParams['Jenkins-Crumb'] = $this->apiClient->getSerializer()->toHeaderValue($jenkins_crumb);
+            $headerParams['Jenkins-Crumb'] = ObjectSerializer::toHeaderValue($jenkins_crumb);
         }
+
         // path params
         if ($name !== null) {
-            $resourcePath = str_replace(
-                "{" . "name" . "}",
-                $this->apiClient->getSerializer()->toPathValue($name),
-                $resourcePath
-            );
+            $resourcePath = str_replace('{' . 'name' . '}', ObjectSerializer::toPathValue($name), $resourcePath);
         }
+
         // body params
         $_tempBody = null;
         if (isset($body)) {
             $_tempBody = $body;
         }
 
+        if ($multipart) {
+            $headers= $this->headerSelector->selectHeadersForMultipart(
+                ['text/xml']
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                ['text/xml'],
+                []
+            );
+        }
+
         // for model (json/xml)
         if (isset($_tempBody)) {
             $httpBody = $_tempBody; // $_tempBody is the method argument, if present
+
         } elseif (count($formParams) > 0) {
-            $httpBody = $formParams; // for HTTP post (form)
-        }
-        // make the API Call
-        try {
-            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
-                $resourcePath,
-                'POST',
-                $queryParams,
-                $httpBody,
-                $headerParams,
-                null,
-                '/job/{name}/config.xml'
-            );
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $multipartContents[] = [
+                        'name' => $formParamName,
+                        'contents' => $formParamValue
+                    ];
+                }
+                $httpBody = new MultipartStream($multipartContents); // for HTTP post (form)
 
-            return [null, $statusCode, $httpHeader];
-        } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 400:
-                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), 'string', $e->getResponseHeaders());
-                    $e->setResponseObject($data);
-                    break;
+            } elseif ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode($formParams);
+
+            } else {
+                $httpBody = \GuzzleHttp\Psr7\build_query($formParams); // for HTTP post (form)
             }
-
-            throw $e;
         }
+
+        // this endpoint requires HTTP basic authentication
+        if ($this->config->getUsername() !== null || $this->config->getPassword() !== null) {
+            $headers['Authorization'] = 'Basic ' . base64_encode($this->config->getUsername() . ":" . $this->config->getPassword());
+        }
+
+        $query = \GuzzleHttp\Psr7\build_query($queryParams);
+        $url = $this->config->getHost() . $resourcePath . ($query ? '?' . $query : '');
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        return new Request(
+            'POST',
+            $url,
+            $headers,
+            $httpBody
+        );
     }
 
     /**
      * Operation postJobDelete
      *
-     * 
-     *
      * @param string $name Name of the job (required)
      * @param string $jenkins_crumb CSRF protection token (optional)
      * @throws \Swagger\Client\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
      * @return void
      */
     public function postJobDelete($name, $jenkins_crumb = null)
     {
-        list($response) = $this->postJobDeleteWithHttpInfo($name, $jenkins_crumb);
-        return $response;
+        $this->postJobDeleteWithHttpInfo($name, $jenkins_crumb);
     }
 
     /**
      * Operation postJobDeleteWithHttpInfo
      *
+     * @param string $name Name of the job (required)
+     * @param string $jenkins_crumb CSRF protection token (optional)
+     * @throws \Swagger\Client\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return array of null, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function postJobDeleteWithHttpInfo($name, $jenkins_crumb = null)
+    {
+        $returnType = '';
+        $request = $this->postJobDeleteRequest($name, $jenkins_crumb);
+
+        try {
+
+            try {
+                $response = $this->client->send($request);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    "[$statusCode] Error connecting to the API ({$request->getUri()})",
+                    $statusCode,
+                    $response->getHeaders(),
+                    $response->getBody()
+                );
+            }
+
+            return [null, $statusCode, $response->getHeaders()];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation postJobDeleteAsync
+     *
      * 
      *
      * @param string $name Name of the job (required)
      * @param string $jenkins_crumb CSRF protection token (optional)
-     * @throws \Swagger\Client\ApiException on non-2xx response
-     * @return array of null, HTTP status code, HTTP response headers (array of strings)
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function postJobDeleteWithHttpInfo($name, $jenkins_crumb = null)
+    public function postJobDeleteAsync($name, $jenkins_crumb = null)
+    {
+        return $this->postJobDeleteAsyncWithHttpInfo($name, $jenkins_crumb)->then(function ($response) {
+            return $response[0];
+        });
+    }
+
+    /**
+     * Operation postJobDeleteAsyncWithHttpInfo
+     *
+     * 
+     *
+     * @param string $name Name of the job (required)
+     * @param string $jenkins_crumb CSRF protection token (optional)
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function postJobDeleteAsyncWithHttpInfo($name, $jenkins_crumb = null)
+    {
+        $returnType = '';
+        $request = $this->postJobDeleteRequest($name, $jenkins_crumb);
+
+        return $this->client->sendAsync($request)->then(function ($response) use ($returnType) {
+            return [null, $response->getStatusCode(), $response->getHeaders()];
+        }, function ($exception) {
+            $response = $exception->getResponse();
+            $statusCode = $response->getStatusCode();
+            throw new ApiException(
+                "[$statusCode] Error connecting to the API ({$exception->getRequest()->getUri()})",
+                $statusCode,
+                $response->getHeaders(),
+                $response->getBody()
+            );
+        });
+    }
+
+    /**
+     * Create request for operation 'postJobDelete'
+     *
+     * @param string $name Name of the job (required)
+     * @param string $jenkins_crumb CSRF protection token (optional)
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    protected function postJobDeleteRequest($name, $jenkins_crumb = null)
     {
         // verify the required parameter 'name' is set
         if ($name === null) {
             throw new \InvalidArgumentException('Missing the required parameter $name when calling postJobDelete');
         }
-        // parse inputs
-        $resourcePath = "/job/{name}/doDelete";
-        $httpBody = '';
+
+        $resourcePath = '/job/{name}/doDelete';
+        $formParams = [];
         $queryParams = [];
         $headerParams = [];
-        $formParams = [];
-        $_header_accept = $this->apiClient->selectHeaderAccept([]);
-        if (!is_null($_header_accept)) {
-            $headerParams['Accept'] = $_header_accept;
-        }
-        $headerParams['Content-Type'] = $this->apiClient->selectHeaderContentType([]);
+        $httpBody = '';
+        $multipart = false;
 
         // header params
         if ($jenkins_crumb !== null) {
-            $headerParams['Jenkins-Crumb'] = $this->apiClient->getSerializer()->toHeaderValue($jenkins_crumb);
+            $headerParams['Jenkins-Crumb'] = ObjectSerializer::toHeaderValue($jenkins_crumb);
         }
+
         // path params
         if ($name !== null) {
-            $resourcePath = str_replace(
-                "{" . "name" . "}",
-                $this->apiClient->getSerializer()->toPathValue($name),
-                $resourcePath
+            $resourcePath = str_replace('{' . 'name' . '}', ObjectSerializer::toPathValue($name), $resourcePath);
+        }
+
+
+        if ($multipart) {
+            $headers= $this->headerSelector->selectHeadersForMultipart(
+                []
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                [],
+                []
             );
         }
 
         // for model (json/xml)
         if (isset($_tempBody)) {
             $httpBody = $_tempBody; // $_tempBody is the method argument, if present
+
         } elseif (count($formParams) > 0) {
-            $httpBody = $formParams; // for HTTP post (form)
-        }
-        // make the API Call
-        try {
-            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
-                $resourcePath,
-                'POST',
-                $queryParams,
-                $httpBody,
-                $headerParams,
-                null,
-                '/job/{name}/doDelete'
-            );
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $multipartContents[] = [
+                        'name' => $formParamName,
+                        'contents' => $formParamValue
+                    ];
+                }
+                $httpBody = new MultipartStream($multipartContents); // for HTTP post (form)
 
-            return [null, $statusCode, $httpHeader];
-        } catch (ApiException $e) {
-            switch ($e->getCode()) {
+            } elseif ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode($formParams);
+
+            } else {
+                $httpBody = \GuzzleHttp\Psr7\build_query($formParams); // for HTTP post (form)
             }
-
-            throw $e;
         }
+
+        // this endpoint requires HTTP basic authentication
+        if ($this->config->getUsername() !== null || $this->config->getPassword() !== null) {
+            $headers['Authorization'] = 'Basic ' . base64_encode($this->config->getUsername() . ":" . $this->config->getPassword());
+        }
+
+        $query = \GuzzleHttp\Psr7\build_query($queryParams);
+        $url = $this->config->getHost() . $resourcePath . ($query ? '?' . $query : '');
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        return new Request(
+            'POST',
+            $url,
+            $headers,
+            $httpBody
+        );
     }
 
     /**
      * Operation postJobDisable
      *
-     * 
-     *
      * @param string $name Name of the job (required)
      * @param string $jenkins_crumb CSRF protection token (optional)
      * @throws \Swagger\Client\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
      * @return void
      */
     public function postJobDisable($name, $jenkins_crumb = null)
     {
-        list($response) = $this->postJobDisableWithHttpInfo($name, $jenkins_crumb);
-        return $response;
+        $this->postJobDisableWithHttpInfo($name, $jenkins_crumb);
     }
 
     /**
      * Operation postJobDisableWithHttpInfo
      *
+     * @param string $name Name of the job (required)
+     * @param string $jenkins_crumb CSRF protection token (optional)
+     * @throws \Swagger\Client\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return array of null, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function postJobDisableWithHttpInfo($name, $jenkins_crumb = null)
+    {
+        $returnType = '';
+        $request = $this->postJobDisableRequest($name, $jenkins_crumb);
+
+        try {
+
+            try {
+                $response = $this->client->send($request);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    "[$statusCode] Error connecting to the API ({$request->getUri()})",
+                    $statusCode,
+                    $response->getHeaders(),
+                    $response->getBody()
+                );
+            }
+
+            return [null, $statusCode, $response->getHeaders()];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation postJobDisableAsync
+     *
      * 
      *
      * @param string $name Name of the job (required)
      * @param string $jenkins_crumb CSRF protection token (optional)
-     * @throws \Swagger\Client\ApiException on non-2xx response
-     * @return array of null, HTTP status code, HTTP response headers (array of strings)
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function postJobDisableWithHttpInfo($name, $jenkins_crumb = null)
+    public function postJobDisableAsync($name, $jenkins_crumb = null)
+    {
+        return $this->postJobDisableAsyncWithHttpInfo($name, $jenkins_crumb)->then(function ($response) {
+            return $response[0];
+        });
+    }
+
+    /**
+     * Operation postJobDisableAsyncWithHttpInfo
+     *
+     * 
+     *
+     * @param string $name Name of the job (required)
+     * @param string $jenkins_crumb CSRF protection token (optional)
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function postJobDisableAsyncWithHttpInfo($name, $jenkins_crumb = null)
+    {
+        $returnType = '';
+        $request = $this->postJobDisableRequest($name, $jenkins_crumb);
+
+        return $this->client->sendAsync($request)->then(function ($response) use ($returnType) {
+            return [null, $response->getStatusCode(), $response->getHeaders()];
+        }, function ($exception) {
+            $response = $exception->getResponse();
+            $statusCode = $response->getStatusCode();
+            throw new ApiException(
+                "[$statusCode] Error connecting to the API ({$exception->getRequest()->getUri()})",
+                $statusCode,
+                $response->getHeaders(),
+                $response->getBody()
+            );
+        });
+    }
+
+    /**
+     * Create request for operation 'postJobDisable'
+     *
+     * @param string $name Name of the job (required)
+     * @param string $jenkins_crumb CSRF protection token (optional)
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    protected function postJobDisableRequest($name, $jenkins_crumb = null)
     {
         // verify the required parameter 'name' is set
         if ($name === null) {
             throw new \InvalidArgumentException('Missing the required parameter $name when calling postJobDisable');
         }
-        // parse inputs
-        $resourcePath = "/job/{name}/disable";
-        $httpBody = '';
+
+        $resourcePath = '/job/{name}/disable';
+        $formParams = [];
         $queryParams = [];
         $headerParams = [];
-        $formParams = [];
-        $_header_accept = $this->apiClient->selectHeaderAccept([]);
-        if (!is_null($_header_accept)) {
-            $headerParams['Accept'] = $_header_accept;
-        }
-        $headerParams['Content-Type'] = $this->apiClient->selectHeaderContentType([]);
+        $httpBody = '';
+        $multipart = false;
 
         // header params
         if ($jenkins_crumb !== null) {
-            $headerParams['Jenkins-Crumb'] = $this->apiClient->getSerializer()->toHeaderValue($jenkins_crumb);
+            $headerParams['Jenkins-Crumb'] = ObjectSerializer::toHeaderValue($jenkins_crumb);
         }
+
         // path params
         if ($name !== null) {
-            $resourcePath = str_replace(
-                "{" . "name" . "}",
-                $this->apiClient->getSerializer()->toPathValue($name),
-                $resourcePath
+            $resourcePath = str_replace('{' . 'name' . '}', ObjectSerializer::toPathValue($name), $resourcePath);
+        }
+
+
+        if ($multipart) {
+            $headers= $this->headerSelector->selectHeadersForMultipart(
+                []
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                [],
+                []
             );
         }
 
         // for model (json/xml)
         if (isset($_tempBody)) {
             $httpBody = $_tempBody; // $_tempBody is the method argument, if present
+
         } elseif (count($formParams) > 0) {
-            $httpBody = $formParams; // for HTTP post (form)
-        }
-        // make the API Call
-        try {
-            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
-                $resourcePath,
-                'POST',
-                $queryParams,
-                $httpBody,
-                $headerParams,
-                null,
-                '/job/{name}/disable'
-            );
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $multipartContents[] = [
+                        'name' => $formParamName,
+                        'contents' => $formParamValue
+                    ];
+                }
+                $httpBody = new MultipartStream($multipartContents); // for HTTP post (form)
 
-            return [null, $statusCode, $httpHeader];
-        } catch (ApiException $e) {
-            switch ($e->getCode()) {
+            } elseif ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode($formParams);
+
+            } else {
+                $httpBody = \GuzzleHttp\Psr7\build_query($formParams); // for HTTP post (form)
             }
-
-            throw $e;
         }
+
+        // this endpoint requires HTTP basic authentication
+        if ($this->config->getUsername() !== null || $this->config->getPassword() !== null) {
+            $headers['Authorization'] = 'Basic ' . base64_encode($this->config->getUsername() . ":" . $this->config->getPassword());
+        }
+
+        $query = \GuzzleHttp\Psr7\build_query($queryParams);
+        $url = $this->config->getHost() . $resourcePath . ($query ? '?' . $query : '');
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        return new Request(
+            'POST',
+            $url,
+            $headers,
+            $httpBody
+        );
     }
 
     /**
      * Operation postJobEnable
      *
-     * 
-     *
      * @param string $name Name of the job (required)
      * @param string $jenkins_crumb CSRF protection token (optional)
      * @throws \Swagger\Client\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
      * @return void
      */
     public function postJobEnable($name, $jenkins_crumb = null)
     {
-        list($response) = $this->postJobEnableWithHttpInfo($name, $jenkins_crumb);
-        return $response;
+        $this->postJobEnableWithHttpInfo($name, $jenkins_crumb);
     }
 
     /**
      * Operation postJobEnableWithHttpInfo
      *
+     * @param string $name Name of the job (required)
+     * @param string $jenkins_crumb CSRF protection token (optional)
+     * @throws \Swagger\Client\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return array of null, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function postJobEnableWithHttpInfo($name, $jenkins_crumb = null)
+    {
+        $returnType = '';
+        $request = $this->postJobEnableRequest($name, $jenkins_crumb);
+
+        try {
+
+            try {
+                $response = $this->client->send($request);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    "[$statusCode] Error connecting to the API ({$request->getUri()})",
+                    $statusCode,
+                    $response->getHeaders(),
+                    $response->getBody()
+                );
+            }
+
+            return [null, $statusCode, $response->getHeaders()];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation postJobEnableAsync
+     *
      * 
      *
      * @param string $name Name of the job (required)
      * @param string $jenkins_crumb CSRF protection token (optional)
-     * @throws \Swagger\Client\ApiException on non-2xx response
-     * @return array of null, HTTP status code, HTTP response headers (array of strings)
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function postJobEnableWithHttpInfo($name, $jenkins_crumb = null)
+    public function postJobEnableAsync($name, $jenkins_crumb = null)
+    {
+        return $this->postJobEnableAsyncWithHttpInfo($name, $jenkins_crumb)->then(function ($response) {
+            return $response[0];
+        });
+    }
+
+    /**
+     * Operation postJobEnableAsyncWithHttpInfo
+     *
+     * 
+     *
+     * @param string $name Name of the job (required)
+     * @param string $jenkins_crumb CSRF protection token (optional)
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function postJobEnableAsyncWithHttpInfo($name, $jenkins_crumb = null)
+    {
+        $returnType = '';
+        $request = $this->postJobEnableRequest($name, $jenkins_crumb);
+
+        return $this->client->sendAsync($request)->then(function ($response) use ($returnType) {
+            return [null, $response->getStatusCode(), $response->getHeaders()];
+        }, function ($exception) {
+            $response = $exception->getResponse();
+            $statusCode = $response->getStatusCode();
+            throw new ApiException(
+                "[$statusCode] Error connecting to the API ({$exception->getRequest()->getUri()})",
+                $statusCode,
+                $response->getHeaders(),
+                $response->getBody()
+            );
+        });
+    }
+
+    /**
+     * Create request for operation 'postJobEnable'
+     *
+     * @param string $name Name of the job (required)
+     * @param string $jenkins_crumb CSRF protection token (optional)
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    protected function postJobEnableRequest($name, $jenkins_crumb = null)
     {
         // verify the required parameter 'name' is set
         if ($name === null) {
             throw new \InvalidArgumentException('Missing the required parameter $name when calling postJobEnable');
         }
-        // parse inputs
-        $resourcePath = "/job/{name}/enable";
-        $httpBody = '';
+
+        $resourcePath = '/job/{name}/enable';
+        $formParams = [];
         $queryParams = [];
         $headerParams = [];
-        $formParams = [];
-        $_header_accept = $this->apiClient->selectHeaderAccept([]);
-        if (!is_null($_header_accept)) {
-            $headerParams['Accept'] = $_header_accept;
-        }
-        $headerParams['Content-Type'] = $this->apiClient->selectHeaderContentType([]);
+        $httpBody = '';
+        $multipart = false;
 
         // header params
         if ($jenkins_crumb !== null) {
-            $headerParams['Jenkins-Crumb'] = $this->apiClient->getSerializer()->toHeaderValue($jenkins_crumb);
+            $headerParams['Jenkins-Crumb'] = ObjectSerializer::toHeaderValue($jenkins_crumb);
         }
+
         // path params
         if ($name !== null) {
-            $resourcePath = str_replace(
-                "{" . "name" . "}",
-                $this->apiClient->getSerializer()->toPathValue($name),
-                $resourcePath
+            $resourcePath = str_replace('{' . 'name' . '}', ObjectSerializer::toPathValue($name), $resourcePath);
+        }
+
+
+        if ($multipart) {
+            $headers= $this->headerSelector->selectHeadersForMultipart(
+                []
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                [],
+                []
             );
         }
 
         // for model (json/xml)
         if (isset($_tempBody)) {
             $httpBody = $_tempBody; // $_tempBody is the method argument, if present
+
         } elseif (count($formParams) > 0) {
-            $httpBody = $formParams; // for HTTP post (form)
-        }
-        // make the API Call
-        try {
-            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
-                $resourcePath,
-                'POST',
-                $queryParams,
-                $httpBody,
-                $headerParams,
-                null,
-                '/job/{name}/enable'
-            );
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $multipartContents[] = [
+                        'name' => $formParamName,
+                        'contents' => $formParamValue
+                    ];
+                }
+                $httpBody = new MultipartStream($multipartContents); // for HTTP post (form)
 
-            return [null, $statusCode, $httpHeader];
-        } catch (ApiException $e) {
-            switch ($e->getCode()) {
+            } elseif ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode($formParams);
+
+            } else {
+                $httpBody = \GuzzleHttp\Psr7\build_query($formParams); // for HTTP post (form)
             }
-
-            throw $e;
         }
+
+        // this endpoint requires HTTP basic authentication
+        if ($this->config->getUsername() !== null || $this->config->getPassword() !== null) {
+            $headers['Authorization'] = 'Basic ' . base64_encode($this->config->getUsername() . ":" . $this->config->getPassword());
+        }
+
+        $query = \GuzzleHttp\Psr7\build_query($queryParams);
+        $url = $this->config->getHost() . $resourcePath . ($query ? '?' . $query : '');
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        return new Request(
+            'POST',
+            $url,
+            $headers,
+            $httpBody
+        );
     }
 
     /**
      * Operation postJobLastBuildStop
      *
-     * 
-     *
      * @param string $name Name of the job (required)
      * @param string $jenkins_crumb CSRF protection token (optional)
      * @throws \Swagger\Client\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
      * @return void
      */
     public function postJobLastBuildStop($name, $jenkins_crumb = null)
     {
-        list($response) = $this->postJobLastBuildStopWithHttpInfo($name, $jenkins_crumb);
-        return $response;
+        $this->postJobLastBuildStopWithHttpInfo($name, $jenkins_crumb);
     }
 
     /**
      * Operation postJobLastBuildStopWithHttpInfo
      *
+     * @param string $name Name of the job (required)
+     * @param string $jenkins_crumb CSRF protection token (optional)
+     * @throws \Swagger\Client\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return array of null, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function postJobLastBuildStopWithHttpInfo($name, $jenkins_crumb = null)
+    {
+        $returnType = '';
+        $request = $this->postJobLastBuildStopRequest($name, $jenkins_crumb);
+
+        try {
+
+            try {
+                $response = $this->client->send($request);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    "[$statusCode] Error connecting to the API ({$request->getUri()})",
+                    $statusCode,
+                    $response->getHeaders(),
+                    $response->getBody()
+                );
+            }
+
+            return [null, $statusCode, $response->getHeaders()];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation postJobLastBuildStopAsync
+     *
      * 
      *
      * @param string $name Name of the job (required)
      * @param string $jenkins_crumb CSRF protection token (optional)
-     * @throws \Swagger\Client\ApiException on non-2xx response
-     * @return array of null, HTTP status code, HTTP response headers (array of strings)
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function postJobLastBuildStopWithHttpInfo($name, $jenkins_crumb = null)
+    public function postJobLastBuildStopAsync($name, $jenkins_crumb = null)
+    {
+        return $this->postJobLastBuildStopAsyncWithHttpInfo($name, $jenkins_crumb)->then(function ($response) {
+            return $response[0];
+        });
+    }
+
+    /**
+     * Operation postJobLastBuildStopAsyncWithHttpInfo
+     *
+     * 
+     *
+     * @param string $name Name of the job (required)
+     * @param string $jenkins_crumb CSRF protection token (optional)
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function postJobLastBuildStopAsyncWithHttpInfo($name, $jenkins_crumb = null)
+    {
+        $returnType = '';
+        $request = $this->postJobLastBuildStopRequest($name, $jenkins_crumb);
+
+        return $this->client->sendAsync($request)->then(function ($response) use ($returnType) {
+            return [null, $response->getStatusCode(), $response->getHeaders()];
+        }, function ($exception) {
+            $response = $exception->getResponse();
+            $statusCode = $response->getStatusCode();
+            throw new ApiException(
+                "[$statusCode] Error connecting to the API ({$exception->getRequest()->getUri()})",
+                $statusCode,
+                $response->getHeaders(),
+                $response->getBody()
+            );
+        });
+    }
+
+    /**
+     * Create request for operation 'postJobLastBuildStop'
+     *
+     * @param string $name Name of the job (required)
+     * @param string $jenkins_crumb CSRF protection token (optional)
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    protected function postJobLastBuildStopRequest($name, $jenkins_crumb = null)
     {
         // verify the required parameter 'name' is set
         if ($name === null) {
             throw new \InvalidArgumentException('Missing the required parameter $name when calling postJobLastBuildStop');
         }
-        // parse inputs
-        $resourcePath = "/job/{name}/lastBuild/stop";
-        $httpBody = '';
+
+        $resourcePath = '/job/{name}/lastBuild/stop';
+        $formParams = [];
         $queryParams = [];
         $headerParams = [];
-        $formParams = [];
-        $_header_accept = $this->apiClient->selectHeaderAccept([]);
-        if (!is_null($_header_accept)) {
-            $headerParams['Accept'] = $_header_accept;
-        }
-        $headerParams['Content-Type'] = $this->apiClient->selectHeaderContentType([]);
+        $httpBody = '';
+        $multipart = false;
 
         // header params
         if ($jenkins_crumb !== null) {
-            $headerParams['Jenkins-Crumb'] = $this->apiClient->getSerializer()->toHeaderValue($jenkins_crumb);
+            $headerParams['Jenkins-Crumb'] = ObjectSerializer::toHeaderValue($jenkins_crumb);
         }
+
         // path params
         if ($name !== null) {
-            $resourcePath = str_replace(
-                "{" . "name" . "}",
-                $this->apiClient->getSerializer()->toPathValue($name),
-                $resourcePath
+            $resourcePath = str_replace('{' . 'name' . '}', ObjectSerializer::toPathValue($name), $resourcePath);
+        }
+
+
+        if ($multipart) {
+            $headers= $this->headerSelector->selectHeadersForMultipart(
+                []
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                [],
+                []
             );
         }
 
         // for model (json/xml)
         if (isset($_tempBody)) {
             $httpBody = $_tempBody; // $_tempBody is the method argument, if present
+
         } elseif (count($formParams) > 0) {
-            $httpBody = $formParams; // for HTTP post (form)
-        }
-        // make the API Call
-        try {
-            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
-                $resourcePath,
-                'POST',
-                $queryParams,
-                $httpBody,
-                $headerParams,
-                null,
-                '/job/{name}/lastBuild/stop'
-            );
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $multipartContents[] = [
+                        'name' => $formParamName,
+                        'contents' => $formParamValue
+                    ];
+                }
+                $httpBody = new MultipartStream($multipartContents); // for HTTP post (form)
 
-            return [null, $statusCode, $httpHeader];
-        } catch (ApiException $e) {
-            switch ($e->getCode()) {
+            } elseif ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode($formParams);
+
+            } else {
+                $httpBody = \GuzzleHttp\Psr7\build_query($formParams); // for HTTP post (form)
             }
-
-            throw $e;
         }
+
+        // this endpoint requires HTTP basic authentication
+        if ($this->config->getUsername() !== null || $this->config->getPassword() !== null) {
+            $headers['Authorization'] = 'Basic ' . base64_encode($this->config->getUsername() . ":" . $this->config->getPassword());
+        }
+
+        $query = \GuzzleHttp\Psr7\build_query($queryParams);
+        $url = $this->config->getHost() . $resourcePath . ($query ? '?' . $query : '');
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        return new Request(
+            'POST',
+            $url,
+            $headers,
+            $httpBody
+        );
     }
 
     /**
      * Operation postViewConfig
      *
-     * 
-     *
      * @param string $name Name of the view (required)
      * @param string $body View configuration in config.xml format (required)
      * @param string $jenkins_crumb CSRF protection token (optional)
      * @throws \Swagger\Client\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
      * @return void
      */
     public function postViewConfig($name, $body, $jenkins_crumb = null)
     {
-        list($response) = $this->postViewConfigWithHttpInfo($name, $body, $jenkins_crumb);
-        return $response;
+        $this->postViewConfigWithHttpInfo($name, $body, $jenkins_crumb);
     }
 
     /**
      * Operation postViewConfigWithHttpInfo
      *
+     * @param string $name Name of the view (required)
+     * @param string $body View configuration in config.xml format (required)
+     * @param string $jenkins_crumb CSRF protection token (optional)
+     * @throws \Swagger\Client\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return array of null, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function postViewConfigWithHttpInfo($name, $body, $jenkins_crumb = null)
+    {
+        $returnType = '';
+        $request = $this->postViewConfigRequest($name, $body, $jenkins_crumb);
+
+        try {
+
+            try {
+                $response = $this->client->send($request);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    "[$statusCode] Error connecting to the API ({$request->getUri()})",
+                    $statusCode,
+                    $response->getHeaders(),
+                    $response->getBody()
+                );
+            }
+
+            return [null, $statusCode, $response->getHeaders()];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 400:
+                    $data = ObjectSerializer::deserialize($e->getResponseBody(), 'string', $e->getResponseHeaders());
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation postViewConfigAsync
+     *
      * 
      *
      * @param string $name Name of the view (required)
      * @param string $body View configuration in config.xml format (required)
      * @param string $jenkins_crumb CSRF protection token (optional)
-     * @throws \Swagger\Client\ApiException on non-2xx response
-     * @return array of null, HTTP status code, HTTP response headers (array of strings)
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function postViewConfigWithHttpInfo($name, $body, $jenkins_crumb = null)
+    public function postViewConfigAsync($name, $body, $jenkins_crumb = null)
+    {
+        return $this->postViewConfigAsyncWithHttpInfo($name, $body, $jenkins_crumb)->then(function ($response) {
+            return $response[0];
+        });
+    }
+
+    /**
+     * Operation postViewConfigAsyncWithHttpInfo
+     *
+     * 
+     *
+     * @param string $name Name of the view (required)
+     * @param string $body View configuration in config.xml format (required)
+     * @param string $jenkins_crumb CSRF protection token (optional)
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function postViewConfigAsyncWithHttpInfo($name, $body, $jenkins_crumb = null)
+    {
+        $returnType = '';
+        $request = $this->postViewConfigRequest($name, $body, $jenkins_crumb);
+
+        return $this->client->sendAsync($request)->then(function ($response) use ($returnType) {
+            return [null, $response->getStatusCode(), $response->getHeaders()];
+        }, function ($exception) {
+            $response = $exception->getResponse();
+            $statusCode = $response->getStatusCode();
+            throw new ApiException(
+                "[$statusCode] Error connecting to the API ({$exception->getRequest()->getUri()})",
+                $statusCode,
+                $response->getHeaders(),
+                $response->getBody()
+            );
+        });
+    }
+
+    /**
+     * Create request for operation 'postViewConfig'
+     *
+     * @param string $name Name of the view (required)
+     * @param string $body View configuration in config.xml format (required)
+     * @param string $jenkins_crumb CSRF protection token (optional)
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    protected function postViewConfigRequest($name, $body, $jenkins_crumb = null)
     {
         // verify the required parameter 'name' is set
         if ($name === null) {
@@ -1796,64 +4514,89 @@ class RemoteAccessApi
         if ($body === null) {
             throw new \InvalidArgumentException('Missing the required parameter $body when calling postViewConfig');
         }
-        // parse inputs
-        $resourcePath = "/view/{name}/config.xml";
-        $httpBody = '';
+
+        $resourcePath = '/view/{name}/config.xml';
+        $formParams = [];
         $queryParams = [];
         $headerParams = [];
-        $formParams = [];
-        $_header_accept = $this->apiClient->selectHeaderAccept([]);
-        if (!is_null($_header_accept)) {
-            $headerParams['Accept'] = $_header_accept;
-        }
-        $headerParams['Content-Type'] = $this->apiClient->selectHeaderContentType([]);
+        $httpBody = '';
+        $multipart = false;
 
         // header params
         if ($jenkins_crumb !== null) {
-            $headerParams['Jenkins-Crumb'] = $this->apiClient->getSerializer()->toHeaderValue($jenkins_crumb);
+            $headerParams['Jenkins-Crumb'] = ObjectSerializer::toHeaderValue($jenkins_crumb);
         }
+
         // path params
         if ($name !== null) {
-            $resourcePath = str_replace(
-                "{" . "name" . "}",
-                $this->apiClient->getSerializer()->toPathValue($name),
-                $resourcePath
-            );
+            $resourcePath = str_replace('{' . 'name' . '}', ObjectSerializer::toPathValue($name), $resourcePath);
         }
+
         // body params
         $_tempBody = null;
         if (isset($body)) {
             $_tempBody = $body;
         }
 
+        if ($multipart) {
+            $headers= $this->headerSelector->selectHeadersForMultipart(
+                []
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                [],
+                []
+            );
+        }
+
         // for model (json/xml)
         if (isset($_tempBody)) {
             $httpBody = $_tempBody; // $_tempBody is the method argument, if present
+
         } elseif (count($formParams) > 0) {
-            $httpBody = $formParams; // for HTTP post (form)
-        }
-        // make the API Call
-        try {
-            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
-                $resourcePath,
-                'POST',
-                $queryParams,
-                $httpBody,
-                $headerParams,
-                null,
-                '/view/{name}/config.xml'
-            );
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $multipartContents[] = [
+                        'name' => $formParamName,
+                        'contents' => $formParamValue
+                    ];
+                }
+                $httpBody = new MultipartStream($multipartContents); // for HTTP post (form)
 
-            return [null, $statusCode, $httpHeader];
-        } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 400:
-                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), 'string', $e->getResponseHeaders());
-                    $e->setResponseObject($data);
-                    break;
+            } elseif ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode($formParams);
+
+            } else {
+                $httpBody = \GuzzleHttp\Psr7\build_query($formParams); // for HTTP post (form)
             }
-
-            throw $e;
         }
+
+        // this endpoint requires HTTP basic authentication
+        if ($this->config->getUsername() !== null || $this->config->getPassword() !== null) {
+            $headers['Authorization'] = 'Basic ' . base64_encode($this->config->getUsername() . ":" . $this->config->getPassword());
+        }
+
+        $query = \GuzzleHttp\Psr7\build_query($queryParams);
+        $url = $this->config->getHost() . $resourcePath . ($query ? '?' . $query : '');
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        return new Request(
+            'POST',
+            $url,
+            $headers,
+            $httpBody
+        );
     }
+
 }

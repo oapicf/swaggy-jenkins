@@ -23,7 +23,7 @@ import javax.validation.constraints.*;
 @Api(description = "the createView API")
 
 
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaJAXRSCXFCDIServerCodegen", date = "2017-07-25T10:45:05.448+10:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaJAXRSCXFCDIServerCodegen", date = "2017-08-03T23:34:47.267Z")
 
 public class CreateViewApi  {
 
@@ -36,7 +36,9 @@ public class CreateViewApi  {
     
     
     @Produces({ "text/html" })
-    @ApiOperation(value = "", notes = "Create a new view using view configuration", response = void.class, tags={ "remoteAccess" })
+    @ApiOperation(value = "", notes = "Create a new view using view configuration", response = void.class, authorizations = {
+        @Authorization(value = "jenkins_auth")
+    }, tags={ "remoteAccess" })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "Successfully created the view", response = void.class),
         @ApiResponse(code = 400, message = "An error has occurred - error message is embedded inside the HTML response", response = void.class),

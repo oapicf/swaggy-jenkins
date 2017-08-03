@@ -69,17 +69,22 @@ namespace Example
         public void main()
         {
 
+            // Configure HTTP basic authorization: jenkins_auth
+            Configuration.Default.Username = "YOUR_USERNAME";
+            Configuration.Default.Password = "YOUR_PASSWORD";
+
             var apiInstance = new BlueOceanApi();
-            var organisation = organisation_example;  // string | Name of the organisation
+            var organization = organization_example;  // string | Name of the organization
+            var pipeline = pipeline_example;  // string | Name of the pipeline
+            var queue = queue_example;  // string | Name of the queue item
 
             try
             {
-                SwaggyjenkinsUser result = apiInstance.GetAuthenticatedUser(organisation);
-                Debug.WriteLine(result);
+                apiInstance.DeletePipelineQueueItem(organization, pipeline, queue);
             }
             catch (Exception e)
             {
-                Debug.Print("Exception when calling BlueOceanApi.GetAuthenticatedUser: " + e.Message );
+                Debug.Print("Exception when calling BlueOceanApi.DeletePipelineQueueItem: " + e.Message );
             }
 
         }
@@ -94,21 +99,42 @@ All URIs are relative to *http://localhost*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*BlueOceanApi* | [**GetAuthenticatedUser**](docs/BlueOceanApi.md#getauthenticateduser) | **GET** /blue/rest/organizations/{organisation}/user/ | 
+*BlueOceanApi* | [**DeletePipelineQueueItem**](docs/BlueOceanApi.md#deletepipelinequeueitem) | **DELETE** /blue/rest/organizations/{organization}/pipelines/{pipeline}/queue/{queue} | 
+*BlueOceanApi* | [**GetAuthenticatedUser**](docs/BlueOceanApi.md#getauthenticateduser) | **GET** /blue/rest/organizations/{organization}/user/ | 
 *BlueOceanApi* | [**GetClasses**](docs/BlueOceanApi.md#getclasses) | **GET** /blue/rest/classes/{class} | 
-*BlueOceanApi* | [**GetOrganisation**](docs/BlueOceanApi.md#getorganisation) | **GET** /blue/rest/organizations/{organisation} | 
+*BlueOceanApi* | [**GetOrganisation**](docs/BlueOceanApi.md#getorganisation) | **GET** /blue/rest/organizations/{organization} | 
 *BlueOceanApi* | [**GetOrganisations**](docs/BlueOceanApi.md#getorganisations) | **GET** /blue/rest/organizations/ | 
-*BlueOceanApi* | [**GetPipelineBranchByOrg**](docs/BlueOceanApi.md#getpipelinebranchbyorg) | **GET** /blue/rest/organizations/{organisation}/pipelines/{pipeline}/branches/{branch}/ | 
-*BlueOceanApi* | [**GetPipelineBranchesByOrg**](docs/BlueOceanApi.md#getpipelinebranchesbyorg) | **GET** /blue/rest/organizations/{organisation}/pipelines/{pipeline}/branches | 
-*BlueOceanApi* | [**GetPipelineByOrg**](docs/BlueOceanApi.md#getpipelinebyorg) | **GET** /blue/rest/organizations/{organisation}/pipelines/{pipeline} | 
-*BlueOceanApi* | [**GetPipelineFolderByOrg**](docs/BlueOceanApi.md#getpipelinefolderbyorg) | **GET** /blue/rest/organizations/{organisation}/pipelines/{folder}/ | 
-*BlueOceanApi* | [**GetPipelineFolderByOrg_0**](docs/BlueOceanApi.md#getpipelinefolderbyorg_0) | **GET** /blue/rest/organizations/{organisation}/pipelines/{folder}/pipelines/{pipeline} | 
-*BlueOceanApi* | [**GetPipelinesByOrg**](docs/BlueOceanApi.md#getpipelinesbyorg) | **GET** /blue/rest/organizations/{organisation}/pipelines/ | 
-*BlueOceanApi* | [**GetUser**](docs/BlueOceanApi.md#getuser) | **GET** /blue/rest/organizations/{organisation}/users/{user} | 
-*BlueOceanApi* | [**GetUsers**](docs/BlueOceanApi.md#getusers) | **GET** /blue/rest/organizations/{organisation}/users/ | 
-*BlueOceanApi* | [**Search**](docs/BlueOceanApi.md#search) | **GET** /blue/rest/classes/ | 
-*BlueOceanApi* | [**Search_0**](docs/BlueOceanApi.md#search_0) | **GET** /blue/rest/search/ | 
-*RemoteAccessApi* | [**GetComputer**](docs/RemoteAccessApi.md#getcomputer) | **GET** /computer/api/json?depth&#x3D;1 | 
+*BlueOceanApi* | [**GetPipeline**](docs/BlueOceanApi.md#getpipeline) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline} | 
+*BlueOceanApi* | [**GetPipelineActivities**](docs/BlueOceanApi.md#getpipelineactivities) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/activities | 
+*BlueOceanApi* | [**GetPipelineBranch**](docs/BlueOceanApi.md#getpipelinebranch) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/branches/{branch}/ | 
+*BlueOceanApi* | [**GetPipelineBranchRun**](docs/BlueOceanApi.md#getpipelinebranchrun) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/branches/{branch}/runs/{run} | 
+*BlueOceanApi* | [**GetPipelineBranches**](docs/BlueOceanApi.md#getpipelinebranches) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/branches | 
+*BlueOceanApi* | [**GetPipelineFolder**](docs/BlueOceanApi.md#getpipelinefolder) | **GET** /blue/rest/organizations/{organization}/pipelines/{folder}/ | 
+*BlueOceanApi* | [**GetPipelineFolderPipeline**](docs/BlueOceanApi.md#getpipelinefolderpipeline) | **GET** /blue/rest/organizations/{organization}/pipelines/{folder}/pipelines/{pipeline} | 
+*BlueOceanApi* | [**GetPipelineQueue**](docs/BlueOceanApi.md#getpipelinequeue) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/queue | 
+*BlueOceanApi* | [**GetPipelineRun**](docs/BlueOceanApi.md#getpipelinerun) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run} | 
+*BlueOceanApi* | [**GetPipelineRunLog**](docs/BlueOceanApi.md#getpipelinerunlog) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/log | 
+*BlueOceanApi* | [**GetPipelineRunNode**](docs/BlueOceanApi.md#getpipelinerunnode) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node} | 
+*BlueOceanApi* | [**GetPipelineRunNodeStep**](docs/BlueOceanApi.md#getpipelinerunnodestep) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps/{step} | 
+*BlueOceanApi* | [**GetPipelineRunNodeStepLog**](docs/BlueOceanApi.md#getpipelinerunnodesteplog) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps/{step}/log | 
+*BlueOceanApi* | [**GetPipelineRunNodeSteps**](docs/BlueOceanApi.md#getpipelinerunnodesteps) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps | 
+*BlueOceanApi* | [**GetPipelineRunNodes**](docs/BlueOceanApi.md#getpipelinerunnodes) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes | 
+*BlueOceanApi* | [**GetPipelineRuns**](docs/BlueOceanApi.md#getpipelineruns) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs | 
+*BlueOceanApi* | [**GetPipelines**](docs/BlueOceanApi.md#getpipelines) | **GET** /blue/rest/organizations/{organization}/pipelines/ | 
+*BlueOceanApi* | [**GetSCM**](docs/BlueOceanApi.md#getscm) | **GET** /blue/rest/organizations/{organization}/scm/{scm} | 
+*BlueOceanApi* | [**GetSCMOrganisationRepositories**](docs/BlueOceanApi.md#getscmorganisationrepositories) | **GET** /blue/rest/organizations/{organization}/scm/{scm}/organizations/{scmOrganisation}/repositories | 
+*BlueOceanApi* | [**GetSCMOrganisationRepository**](docs/BlueOceanApi.md#getscmorganisationrepository) | **GET** /blue/rest/organizations/{organization}/scm/{scm}/organizations/{scmOrganisation}/repositories/{repository} | 
+*BlueOceanApi* | [**GetSCMOrganisations**](docs/BlueOceanApi.md#getscmorganisations) | **GET** /blue/rest/organizations/{organization}/scm/{scm}/organizations | 
+*BlueOceanApi* | [**GetUser**](docs/BlueOceanApi.md#getuser) | **GET** /blue/rest/organizations/{organization}/users/{user} | 
+*BlueOceanApi* | [**GetUserFavorites**](docs/BlueOceanApi.md#getuserfavorites) | **GET** /blue/rest/users/{user}/favorites | 
+*BlueOceanApi* | [**GetUsers**](docs/BlueOceanApi.md#getusers) | **GET** /blue/rest/organizations/{organization}/users/ | 
+*BlueOceanApi* | [**PostPipelineRun**](docs/BlueOceanApi.md#postpipelinerun) | **POST** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/replay | 
+*BlueOceanApi* | [**PostPipelineRuns**](docs/BlueOceanApi.md#postpipelineruns) | **POST** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs | 
+*BlueOceanApi* | [**PutPipelineFavorite**](docs/BlueOceanApi.md#putpipelinefavorite) | **PUT** /blue/rest/organizations/{organization}/pipelines/{pipeline}/favorite | 
+*BlueOceanApi* | [**PutPipelineRun**](docs/BlueOceanApi.md#putpipelinerun) | **PUT** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/stop | 
+*BlueOceanApi* | [**Search**](docs/BlueOceanApi.md#search) | **GET** /blue/rest/search/ | 
+*BlueOceanApi* | [**SearchClasses**](docs/BlueOceanApi.md#searchclasses) | **GET** /blue/rest/classes/ | 
+*RemoteAccessApi* | [**GetComputer**](docs/RemoteAccessApi.md#getcomputer) | **GET** /computer/api/json | 
 *RemoteAccessApi* | [**GetCrumb**](docs/RemoteAccessApi.md#getcrumb) | **GET** /crumbIssuer/api/json | 
 *RemoteAccessApi* | [**GetJenkins**](docs/RemoteAccessApi.md#getjenkins) | **GET** /api/json | 
 *RemoteAccessApi* | [**GetJob**](docs/RemoteAccessApi.md#getjob) | **GET** /job/{name}/api/json | 
@@ -134,59 +160,99 @@ Class | Method | HTTP request | Description
 <a name="documentation-for-models"></a>
 ## Documentation for Models
 
- - [Model.GetClassesByClass](docs/GetClassesByClass.md)
- - [Model.GetMultibranchPipeline](docs/GetMultibranchPipeline.md)
- - [Model.GetOrganisations](docs/GetOrganisations.md)
- - [Model.GetPipelineBranches](docs/GetPipelineBranches.md)
- - [Model.GetPipelineBranchesitem](docs/GetPipelineBranchesitem.md)
- - [Model.GetPipelineBranchesitemLatestRun](docs/GetPipelineBranchesitemLatestRun.md)
- - [Model.GetPipelineBranchesitemPullRequest](docs/GetPipelineBranchesitemPullRequest.md)
- - [Model.GetPipelineBranchesitemPullRequestLinks](docs/GetPipelineBranchesitemPullRequestLinks.md)
- - [Model.GetPipelines](docs/GetPipelines.md)
- - [Model.GetUsers](docs/GetUsers.md)
- - [Model.HudsonmodelAllView](docs/HudsonmodelAllView.md)
- - [Model.HudsonmodelCauseAction](docs/HudsonmodelCauseAction.md)
- - [Model.HudsonmodelCauseUserIdCause](docs/HudsonmodelCauseUserIdCause.md)
- - [Model.HudsonmodelComputerSet](docs/HudsonmodelComputerSet.md)
- - [Model.HudsonmodelFreeStyleBuild](docs/HudsonmodelFreeStyleBuild.md)
- - [Model.HudsonmodelFreeStyleProject](docs/HudsonmodelFreeStyleProject.md)
- - [Model.HudsonmodelFreeStyleProjectactions](docs/HudsonmodelFreeStyleProjectactions.md)
- - [Model.HudsonmodelFreeStyleProjecthealthReport](docs/HudsonmodelFreeStyleProjecthealthReport.md)
- - [Model.HudsonmodelHudson](docs/HudsonmodelHudson.md)
- - [Model.HudsonmodelHudsonMasterComputer](docs/HudsonmodelHudsonMasterComputer.md)
- - [Model.HudsonmodelHudsonMasterComputerMonitorData](docs/HudsonmodelHudsonMasterComputerMonitorData.md)
- - [Model.HudsonmodelHudsonMasterComputerexecutors](docs/HudsonmodelHudsonMasterComputerexecutors.md)
- - [Model.HudsonmodelHudsonassignedLabels](docs/HudsonmodelHudsonassignedLabels.md)
- - [Model.HudsonmodelLabel1](docs/HudsonmodelLabel1.md)
- - [Model.HudsonmodelListView](docs/HudsonmodelListView.md)
- - [Model.HudsonmodelQueue](docs/HudsonmodelQueue.md)
- - [Model.HudsonmodelQueueBlockedItem](docs/HudsonmodelQueueBlockedItem.md)
- - [Model.HudsonmodelQueueLeftItem](docs/HudsonmodelQueueLeftItem.md)
- - [Model.HudsonmodelStringParameterDefinition](docs/HudsonmodelStringParameterDefinition.md)
- - [Model.HudsonmodelStringParameterValue](docs/HudsonmodelStringParameterValue.md)
- - [Model.HudsonnodeMonitorsDiskSpaceMonitorDescriptorDiskSpace](docs/HudsonnodeMonitorsDiskSpaceMonitorDescriptorDiskSpace.md)
- - [Model.HudsonnodeMonitorsResponseTimeMonitorData](docs/HudsonnodeMonitorsResponseTimeMonitorData.md)
- - [Model.HudsonnodeMonitorsSwapSpaceMonitorMemoryUsage2](docs/HudsonnodeMonitorsSwapSpaceMonitorMemoryUsage2.md)
- - [Model.HudsonscmEmptyChangeLogSet](docs/HudsonscmEmptyChangeLogSet.md)
- - [Model.HudsonscmNullSCM](docs/HudsonscmNullSCM.md)
- - [Model.HudsonsecuritycsrfDefaultCrumbIssuer](docs/HudsonsecuritycsrfDefaultCrumbIssuer.md)
- - [Model.HudsonutilClockDifference](docs/HudsonutilClockDifference.md)
- - [Model.IojenkinsblueoceanresthalLink](docs/IojenkinsblueoceanresthalLink.md)
- - [Model.IojenkinsblueoceanrestimplpipelineBranchImpl](docs/IojenkinsblueoceanrestimplpipelineBranchImpl.md)
- - [Model.IojenkinsblueoceanrestimplpipelineBranchImplPermissions](docs/IojenkinsblueoceanrestimplpipelineBranchImplPermissions.md)
- - [Model.IojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1](docs/IojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1.md)
- - [Model.IojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1Links](docs/IojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1Links.md)
- - [Model.IojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1Map](docs/IojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1Map.md)
- - [Model.IojenkinsblueoceanserviceembeddedrestExtensionClassImpl](docs/IojenkinsblueoceanserviceembeddedrestExtensionClassImpl.md)
- - [Model.IojenkinsblueoceanserviceembeddedrestExtensionClassImplLinks](docs/IojenkinsblueoceanserviceembeddedrestExtensionClassImplLinks.md)
- - [Model.IojenkinsblueoceanserviceembeddedrestPipelineFolderImpl](docs/IojenkinsblueoceanserviceembeddedrestPipelineFolderImpl.md)
- - [Model.IojenkinsblueoceanserviceembeddedrestPipelineImpl](docs/IojenkinsblueoceanserviceembeddedrestPipelineImpl.md)
- - [Model.JenkinsmodelUnlabeledLoadStatistics](docs/JenkinsmodelUnlabeledLoadStatistics.md)
- - [Model.SwaggyjenkinsOrganisation](docs/SwaggyjenkinsOrganisation.md)
- - [Model.SwaggyjenkinsPipeline](docs/SwaggyjenkinsPipeline.md)
- - [Model.SwaggyjenkinsPipelineLatestRun](docs/SwaggyjenkinsPipelineLatestRun.md)
- - [Model.SwaggyjenkinsPipelineLatestRunartifacts](docs/SwaggyjenkinsPipelineLatestRunartifacts.md)
- - [Model.SwaggyjenkinsUser](docs/SwaggyjenkinsUser.md)
+ - [Model.AllView](docs/AllView.md)
+ - [Model.Body](docs/Body.md)
+ - [Model.BranchImpl](docs/BranchImpl.md)
+ - [Model.BranchImpllinks](docs/BranchImpllinks.md)
+ - [Model.BranchImplpermissions](docs/BranchImplpermissions.md)
+ - [Model.CauseAction](docs/CauseAction.md)
+ - [Model.CauseUserIdCause](docs/CauseUserIdCause.md)
+ - [Model.ClassesByClass](docs/ClassesByClass.md)
+ - [Model.ClockDifference](docs/ClockDifference.md)
+ - [Model.ComputerSet](docs/ComputerSet.md)
+ - [Model.DefaultCrumbIssuer](docs/DefaultCrumbIssuer.md)
+ - [Model.DiskSpaceMonitorDescriptorDiskSpace](docs/DiskSpaceMonitorDescriptorDiskSpace.md)
+ - [Model.EmptyChangeLogSet](docs/EmptyChangeLogSet.md)
+ - [Model.ExtensionClassContainerImpl1](docs/ExtensionClassContainerImpl1.md)
+ - [Model.ExtensionClassContainerImpl1links](docs/ExtensionClassContainerImpl1links.md)
+ - [Model.ExtensionClassContainerImpl1map](docs/ExtensionClassContainerImpl1map.md)
+ - [Model.ExtensionClassImpl](docs/ExtensionClassImpl.md)
+ - [Model.ExtensionClassImpllinks](docs/ExtensionClassImpllinks.md)
+ - [Model.FavoriteImpl](docs/FavoriteImpl.md)
+ - [Model.FavoriteImpllinks](docs/FavoriteImpllinks.md)
+ - [Model.FreeStyleBuild](docs/FreeStyleBuild.md)
+ - [Model.FreeStyleProject](docs/FreeStyleProject.md)
+ - [Model.FreeStyleProjectactions](docs/FreeStyleProjectactions.md)
+ - [Model.FreeStyleProjecthealthReport](docs/FreeStyleProjecthealthReport.md)
+ - [Model.GenericResource](docs/GenericResource.md)
+ - [Model.GithubContent](docs/GithubContent.md)
+ - [Model.GithubFile](docs/GithubFile.md)
+ - [Model.GithubOrganization](docs/GithubOrganization.md)
+ - [Model.GithubOrganizationlinks](docs/GithubOrganizationlinks.md)
+ - [Model.GithubRepositories](docs/GithubRepositories.md)
+ - [Model.GithubRepositorieslinks](docs/GithubRepositorieslinks.md)
+ - [Model.GithubRepository](docs/GithubRepository.md)
+ - [Model.GithubRepositorylinks](docs/GithubRepositorylinks.md)
+ - [Model.GithubRepositorypermissions](docs/GithubRepositorypermissions.md)
+ - [Model.GithubRespositoryContainer](docs/GithubRespositoryContainer.md)
+ - [Model.GithubRespositoryContainerlinks](docs/GithubRespositoryContainerlinks.md)
+ - [Model.GithubScm](docs/GithubScm.md)
+ - [Model.GithubScmlinks](docs/GithubScmlinks.md)
+ - [Model.Hudson](docs/Hudson.md)
+ - [Model.HudsonMasterComputer](docs/HudsonMasterComputer.md)
+ - [Model.HudsonMasterComputerexecutors](docs/HudsonMasterComputerexecutors.md)
+ - [Model.HudsonMasterComputermonitorData](docs/HudsonMasterComputermonitorData.md)
+ - [Model.HudsonassignedLabels](docs/HudsonassignedLabels.md)
+ - [Model.InputStepImpl](docs/InputStepImpl.md)
+ - [Model.InputStepImpllinks](docs/InputStepImpllinks.md)
+ - [Model.Label1](docs/Label1.md)
+ - [Model.Link](docs/Link.md)
+ - [Model.ListView](docs/ListView.md)
+ - [Model.MultibranchPipeline](docs/MultibranchPipeline.md)
+ - [Model.NullSCM](docs/NullSCM.md)
+ - [Model.Organisation](docs/Organisation.md)
+ - [Model.Organisations](docs/Organisations.md)
+ - [Model.Pipeline](docs/Pipeline.md)
+ - [Model.PipelineActivities](docs/PipelineActivities.md)
+ - [Model.PipelineActivity](docs/PipelineActivity.md)
+ - [Model.PipelineActivityartifacts](docs/PipelineActivityartifacts.md)
+ - [Model.PipelineBranches](docs/PipelineBranches.md)
+ - [Model.PipelineBranchesitem](docs/PipelineBranchesitem.md)
+ - [Model.PipelineBranchesitemlatestRun](docs/PipelineBranchesitemlatestRun.md)
+ - [Model.PipelineBranchesitempullRequest](docs/PipelineBranchesitempullRequest.md)
+ - [Model.PipelineBranchesitempullRequestlinks](docs/PipelineBranchesitempullRequestlinks.md)
+ - [Model.PipelineFolderImpl](docs/PipelineFolderImpl.md)
+ - [Model.PipelineImpl](docs/PipelineImpl.md)
+ - [Model.PipelineImpllinks](docs/PipelineImpllinks.md)
+ - [Model.PipelineQueue](docs/PipelineQueue.md)
+ - [Model.PipelineRun](docs/PipelineRun.md)
+ - [Model.PipelineRunImpl](docs/PipelineRunImpl.md)
+ - [Model.PipelineRunImpllinks](docs/PipelineRunImpllinks.md)
+ - [Model.PipelineRunNode](docs/PipelineRunNode.md)
+ - [Model.PipelineRunNodeSteps](docs/PipelineRunNodeSteps.md)
+ - [Model.PipelineRunNodeedges](docs/PipelineRunNodeedges.md)
+ - [Model.PipelineRunNodes](docs/PipelineRunNodes.md)
+ - [Model.PipelineRunSteps](docs/PipelineRunSteps.md)
+ - [Model.PipelineRunartifacts](docs/PipelineRunartifacts.md)
+ - [Model.PipelineRuns](docs/PipelineRuns.md)
+ - [Model.PipelineStepImpl](docs/PipelineStepImpl.md)
+ - [Model.PipelineStepImpllinks](docs/PipelineStepImpllinks.md)
+ - [Model.PipelinelatestRun](docs/PipelinelatestRun.md)
+ - [Model.PipelinelatestRunartifacts](docs/PipelinelatestRunartifacts.md)
+ - [Model.Pipelines](docs/Pipelines.md)
+ - [Model.Queue](docs/Queue.md)
+ - [Model.QueueBlockedItem](docs/QueueBlockedItem.md)
+ - [Model.QueueItemImpl](docs/QueueItemImpl.md)
+ - [Model.QueueLeftItem](docs/QueueLeftItem.md)
+ - [Model.ResponseTimeMonitorData](docs/ResponseTimeMonitorData.md)
+ - [Model.ScmOrganisations](docs/ScmOrganisations.md)
+ - [Model.StringParameterDefinition](docs/StringParameterDefinition.md)
+ - [Model.StringParameterValue](docs/StringParameterValue.md)
+ - [Model.SwapSpaceMonitorMemoryUsage2](docs/SwapSpaceMonitorMemoryUsage2.md)
+ - [Model.UnlabeledLoadStatistics](docs/UnlabeledLoadStatistics.md)
+ - [Model.User](docs/User.md)
+ - [Model.UserFavorites](docs/UserFavorites.md)
+ - [Model.Users](docs/Users.md)
 
 
 <a name="documentation-for-authorization"></a>

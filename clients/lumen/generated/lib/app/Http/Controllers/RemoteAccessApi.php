@@ -80,6 +80,11 @@ class RemoteAccessApi extends Controller
 
 
         //not path params validation
+        if (!isset($input['depth'])) {
+            throw new \InvalidArgumentException('Missing the required parameter $depth when calling getComputer');
+        }
+        $depth = $input['depth'];
+
 
         return response('How about implementing getComputer as a GET method ?');
     }

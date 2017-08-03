@@ -13,15 +13,29 @@
 
 package com.wordnik.client.api
 
-import com.wordnik.client.model.GetMultibranchPipeline
-import com.wordnik.client.model.GetOrganisations
-import com.wordnik.client.model.GetPipelines
-import com.wordnik.client.model.IojenkinsblueoceanrestimplpipelineBranchImpl
-import com.wordnik.client.model.IojenkinsblueoceanserviceembeddedrestPipelineFolderImpl
-import com.wordnik.client.model.IojenkinsblueoceanserviceembeddedrestPipelineImpl
-import com.wordnik.client.model.SwaggyjenkinsOrganisation
-import com.wordnik.client.model.SwaggyjenkinsPipeline
-import com.wordnik.client.model.SwaggyjenkinsUser
+import com.wordnik.client.model.Body
+import com.wordnik.client.model.BranchImpl
+import com.wordnik.client.model.FavoriteImpl
+import com.wordnik.client.model.GithubScm
+import com.wordnik.client.model.MultibranchPipeline
+import com.wordnik.client.model.Organisation
+import com.wordnik.client.model.Organisations
+import com.wordnik.client.model.Pipeline
+import com.wordnik.client.model.PipelineActivities
+import com.wordnik.client.model.PipelineFolderImpl
+import com.wordnik.client.model.PipelineImpl
+import com.wordnik.client.model.PipelineQueue
+import com.wordnik.client.model.PipelineRun
+import com.wordnik.client.model.PipelineRunNode
+import com.wordnik.client.model.PipelineRunNodeSteps
+import com.wordnik.client.model.PipelineRunNodes
+import com.wordnik.client.model.PipelineRuns
+import com.wordnik.client.model.PipelineStepImpl
+import com.wordnik.client.model.Pipelines
+import com.wordnik.client.model.QueueItemImpl
+import com.wordnik.client.model.ScmOrganisations
+import com.wordnik.client.model.User
+import com.wordnik.client.model.UserFavorites
 
 import java.io.File
 
@@ -49,17 +63,42 @@ class BlueOceanApi (implicit val swagger: Swagger) extends ScalatraServlet
   }
   
 
-  val getAuthenticatedUserOperation = (apiOperation[SwaggyjenkinsUser]("getAuthenticatedUser")
+  val deletePipelineQueueItemOperation = (apiOperation[Unit]("deletePipelineQueueItem")
       summary ""
-      parameters(pathParam[String]("organisation").description(""))
+      parameters(pathParam[String]("organization").description(""), pathParam[String]("pipeline").description(""), pathParam[String]("queue").description(""))
   )
 
-  get("/blue/rest/organizations/:organisation/user/",operation(getAuthenticatedUserOperation)) {
+  delete("/blue/rest/organizations/:organization/pipelines/:pipeline/queue/:queue",operation(deletePipelineQueueItemOperation)) {
     
     
-      val organisation = params.getOrElse("organisation", halt(400))
+      val organization = params.getOrElse("organization", halt(400))
     
-    println("organisation: " + organisation)
+    println("organization: " + organization)
+    
+    
+      val pipeline = params.getOrElse("pipeline", halt(400))
+    
+    println("pipeline: " + pipeline)
+    
+    
+      val queue = params.getOrElse("queue", halt(400))
+    
+    println("queue: " + queue)
+  }
+
+  
+
+  val getAuthenticatedUserOperation = (apiOperation[User]("getAuthenticatedUser")
+      summary ""
+      parameters(pathParam[String]("organization").description(""))
+  )
+
+  get("/blue/rest/organizations/:organization/user/",operation(getAuthenticatedUserOperation)) {
+    
+    
+      val organization = params.getOrElse("organization", halt(400))
+    
+    println("organization: " + organization)
   }
 
   
@@ -79,22 +118,22 @@ class BlueOceanApi (implicit val swagger: Swagger) extends ScalatraServlet
 
   
 
-  val getOrganisationOperation = (apiOperation[SwaggyjenkinsOrganisation]("getOrganisation")
+  val getOrganisationOperation = (apiOperation[Organisation]("getOrganisation")
       summary ""
-      parameters(pathParam[String]("organisation").description(""))
+      parameters(pathParam[String]("organization").description(""))
   )
 
-  get("/blue/rest/organizations/:organisation",operation(getOrganisationOperation)) {
+  get("/blue/rest/organizations/:organization",operation(getOrganisationOperation)) {
     
     
-      val organisation = params.getOrElse("organisation", halt(400))
+      val organization = params.getOrElse("organization", halt(400))
     
-    println("organisation: " + organisation)
+    println("organization: " + organization)
   }
 
   
 
-  val getOrganisationsOperation = (apiOperation[GetOrganisations]("getOrganisations")
+  val getOrganisationsOperation = (apiOperation[Organisations]("getOrganisations")
       summary ""
       parameters()
   )
@@ -104,17 +143,57 @@ class BlueOceanApi (implicit val swagger: Swagger) extends ScalatraServlet
 
   
 
-  val getPipelineBranchByOrgOperation = (apiOperation[IojenkinsblueoceanrestimplpipelineBranchImpl]("getPipelineBranchByOrg")
+  val getPipelineOperation = (apiOperation[Pipeline]("getPipeline")
       summary ""
-      parameters(pathParam[String]("organisation").description(""), pathParam[String]("pipeline").description(""), pathParam[String]("branch").description(""))
+      parameters(pathParam[String]("organization").description(""), pathParam[String]("pipeline").description(""))
   )
 
-  get("/blue/rest/organizations/:organisation/pipelines/:pipeline/branches/:branch/",operation(getPipelineBranchByOrgOperation)) {
+  get("/blue/rest/organizations/:organization/pipelines/:pipeline",operation(getPipelineOperation)) {
     
     
-      val organisation = params.getOrElse("organisation", halt(400))
+      val organization = params.getOrElse("organization", halt(400))
     
-    println("organisation: " + organisation)
+    println("organization: " + organization)
+    
+    
+      val pipeline = params.getOrElse("pipeline", halt(400))
+    
+    println("pipeline: " + pipeline)
+  }
+
+  
+
+  val getPipelineActivitiesOperation = (apiOperation[PipelineActivities]("getPipelineActivities")
+      summary ""
+      parameters(pathParam[String]("organization").description(""), pathParam[String]("pipeline").description(""))
+  )
+
+  get("/blue/rest/organizations/:organization/pipelines/:pipeline/activities",operation(getPipelineActivitiesOperation)) {
+    
+    
+      val organization = params.getOrElse("organization", halt(400))
+    
+    println("organization: " + organization)
+    
+    
+      val pipeline = params.getOrElse("pipeline", halt(400))
+    
+    println("pipeline: " + pipeline)
+  }
+
+  
+
+  val getPipelineBranchOperation = (apiOperation[BranchImpl]("getPipelineBranch")
+      summary ""
+      parameters(pathParam[String]("organization").description(""), pathParam[String]("pipeline").description(""), pathParam[String]("branch").description(""))
+  )
+
+  get("/blue/rest/organizations/:organization/pipelines/:pipeline/branches/:branch/",operation(getPipelineBranchOperation)) {
+    
+    
+      val organization = params.getOrElse("organization", halt(400))
+    
+    println("organization: " + organization)
     
     
       val pipeline = params.getOrElse("pipeline", halt(400))
@@ -129,17 +208,47 @@ class BlueOceanApi (implicit val swagger: Swagger) extends ScalatraServlet
 
   
 
-  val getPipelineBranchesByOrgOperation = (apiOperation[GetMultibranchPipeline]("getPipelineBranchesByOrg")
+  val getPipelineBranchRunOperation = (apiOperation[PipelineRun]("getPipelineBranchRun")
       summary ""
-      parameters(pathParam[String]("organisation").description(""), pathParam[String]("pipeline").description(""))
+      parameters(pathParam[String]("organization").description(""), pathParam[String]("pipeline").description(""), pathParam[String]("branch").description(""), pathParam[String]("run").description(""))
   )
 
-  get("/blue/rest/organizations/:organisation/pipelines/:pipeline/branches",operation(getPipelineBranchesByOrgOperation)) {
+  get("/blue/rest/organizations/:organization/pipelines/:pipeline/branches/:branch/runs/:run",operation(getPipelineBranchRunOperation)) {
     
     
-      val organisation = params.getOrElse("organisation", halt(400))
+      val organization = params.getOrElse("organization", halt(400))
     
-    println("organisation: " + organisation)
+    println("organization: " + organization)
+    
+    
+      val pipeline = params.getOrElse("pipeline", halt(400))
+    
+    println("pipeline: " + pipeline)
+    
+    
+      val branch = params.getOrElse("branch", halt(400))
+    
+    println("branch: " + branch)
+    
+    
+      val run = params.getOrElse("run", halt(400))
+    
+    println("run: " + run)
+  }
+
+  
+
+  val getPipelineBranchesOperation = (apiOperation[MultibranchPipeline]("getPipelineBranches")
+      summary ""
+      parameters(pathParam[String]("organization").description(""), pathParam[String]("pipeline").description(""))
+  )
+
+  get("/blue/rest/organizations/:organization/pipelines/:pipeline/branches",operation(getPipelineBranchesOperation)) {
+    
+    
+      val organization = params.getOrElse("organization", halt(400))
+    
+    println("organization: " + organization)
     
     
       val pipeline = params.getOrElse("pipeline", halt(400))
@@ -149,37 +258,17 @@ class BlueOceanApi (implicit val swagger: Swagger) extends ScalatraServlet
 
   
 
-  val getPipelineByOrgOperation = (apiOperation[SwaggyjenkinsPipeline]("getPipelineByOrg")
+  val getPipelineFolderOperation = (apiOperation[PipelineFolderImpl]("getPipelineFolder")
       summary ""
-      parameters(pathParam[String]("organisation").description(""), pathParam[String]("pipeline").description(""))
+      parameters(pathParam[String]("organization").description(""), pathParam[String]("folder").description(""))
   )
 
-  get("/blue/rest/organizations/:organisation/pipelines/:pipeline",operation(getPipelineByOrgOperation)) {
+  get("/blue/rest/organizations/:organization/pipelines/:folder/",operation(getPipelineFolderOperation)) {
     
     
-      val organisation = params.getOrElse("organisation", halt(400))
+      val organization = params.getOrElse("organization", halt(400))
     
-    println("organisation: " + organisation)
-    
-    
-      val pipeline = params.getOrElse("pipeline", halt(400))
-    
-    println("pipeline: " + pipeline)
-  }
-
-  
-
-  val getPipelineFolderByOrgOperation = (apiOperation[IojenkinsblueoceanserviceembeddedrestPipelineFolderImpl]("getPipelineFolderByOrg")
-      summary ""
-      parameters(pathParam[String]("organisation").description(""), pathParam[String]("folder").description(""))
-  )
-
-  get("/blue/rest/organizations/:organisation/pipelines/:folder/",operation(getPipelineFolderByOrgOperation)) {
-    
-    
-      val organisation = params.getOrElse("organisation", halt(400))
-    
-    println("organisation: " + organisation)
+    println("organization: " + organization)
     
     
       val folder = params.getOrElse("folder", halt(400))
@@ -189,17 +278,17 @@ class BlueOceanApi (implicit val swagger: Swagger) extends ScalatraServlet
 
   
 
-  val getPipelineFolderByOrg_1Operation = (apiOperation[IojenkinsblueoceanserviceembeddedrestPipelineImpl]("getPipelineFolderByOrg_1")
+  val getPipelineFolderPipelineOperation = (apiOperation[PipelineImpl]("getPipelineFolderPipeline")
       summary ""
-      parameters(pathParam[String]("organisation").description(""), pathParam[String]("pipeline").description(""), pathParam[String]("folder").description(""))
+      parameters(pathParam[String]("organization").description(""), pathParam[String]("pipeline").description(""), pathParam[String]("folder").description(""))
   )
 
-  get("/blue/rest/organizations/:organisation/pipelines/:folder/pipelines/:pipeline",operation(getPipelineFolderByOrg_1Operation)) {
+  get("/blue/rest/organizations/:organization/pipelines/:folder/pipelines/:pipeline",operation(getPipelineFolderPipelineOperation)) {
     
     
-      val organisation = params.getOrElse("organisation", halt(400))
+      val organization = params.getOrElse("organization", halt(400))
     
-    println("organisation: " + organisation)
+    println("organization: " + organization)
     
     
       val pipeline = params.getOrElse("pipeline", halt(400))
@@ -214,32 +303,407 @@ class BlueOceanApi (implicit val swagger: Swagger) extends ScalatraServlet
 
   
 
-  val getPipelinesByOrgOperation = (apiOperation[GetPipelines]("getPipelinesByOrg")
+  val getPipelineQueueOperation = (apiOperation[PipelineQueue]("getPipelineQueue")
       summary ""
-      parameters(pathParam[String]("organisation").description(""))
+      parameters(pathParam[String]("organization").description(""), pathParam[String]("pipeline").description(""))
   )
 
-  get("/blue/rest/organizations/:organisation/pipelines/",operation(getPipelinesByOrgOperation)) {
+  get("/blue/rest/organizations/:organization/pipelines/:pipeline/queue",operation(getPipelineQueueOperation)) {
     
     
-      val organisation = params.getOrElse("organisation", halt(400))
+      val organization = params.getOrElse("organization", halt(400))
     
-    println("organisation: " + organisation)
+    println("organization: " + organization)
+    
+    
+      val pipeline = params.getOrElse("pipeline", halt(400))
+    
+    println("pipeline: " + pipeline)
   }
 
   
 
-  val getUserOperation = (apiOperation[SwaggyjenkinsUser]("getUser")
+  val getPipelineRunOperation = (apiOperation[PipelineRun]("getPipelineRun")
       summary ""
-      parameters(pathParam[String]("organisation").description(""), pathParam[String]("user").description(""))
+      parameters(pathParam[String]("organization").description(""), pathParam[String]("pipeline").description(""), pathParam[String]("run").description(""))
   )
 
-  get("/blue/rest/organizations/:organisation/users/:user",operation(getUserOperation)) {
+  get("/blue/rest/organizations/:organization/pipelines/:pipeline/runs/:run",operation(getPipelineRunOperation)) {
     
     
-      val organisation = params.getOrElse("organisation", halt(400))
+      val organization = params.getOrElse("organization", halt(400))
     
-    println("organisation: " + organisation)
+    println("organization: " + organization)
+    
+    
+      val pipeline = params.getOrElse("pipeline", halt(400))
+    
+    println("pipeline: " + pipeline)
+    
+    
+      val run = params.getOrElse("run", halt(400))
+    
+    println("run: " + run)
+  }
+
+  
+
+  val getPipelineRunLogOperation = (apiOperation[String]("getPipelineRunLog")
+      summary ""
+      parameters(pathParam[String]("organization").description(""), pathParam[String]("pipeline").description(""), pathParam[String]("run").description(""), queryParam[Int]("start").description("").optional, queryParam[Boolean]("download").description("").optional)
+  )
+
+  get("/blue/rest/organizations/:organization/pipelines/:pipeline/runs/:run/log",operation(getPipelineRunLogOperation)) {
+    
+    
+      val organization = params.getOrElse("organization", halt(400))
+    
+    println("organization: " + organization)
+    
+    
+      val pipeline = params.getOrElse("pipeline", halt(400))
+    
+    println("pipeline: " + pipeline)
+    
+    
+      val run = params.getOrElse("run", halt(400))
+    
+    println("run: " + run)
+    
+    
+                val start = params.getAs[Int]("start")
+
+    println("start: " + start)
+    
+    
+                val download = params.getAs[Boolean]("download")
+
+    println("download: " + download)
+  }
+
+  
+
+  val getPipelineRunNodeOperation = (apiOperation[PipelineRunNode]("getPipelineRunNode")
+      summary ""
+      parameters(pathParam[String]("organization").description(""), pathParam[String]("pipeline").description(""), pathParam[String]("run").description(""), pathParam[String]("node").description(""))
+  )
+
+  get("/blue/rest/organizations/:organization/pipelines/:pipeline/runs/:run/nodes/:node",operation(getPipelineRunNodeOperation)) {
+    
+    
+      val organization = params.getOrElse("organization", halt(400))
+    
+    println("organization: " + organization)
+    
+    
+      val pipeline = params.getOrElse("pipeline", halt(400))
+    
+    println("pipeline: " + pipeline)
+    
+    
+      val run = params.getOrElse("run", halt(400))
+    
+    println("run: " + run)
+    
+    
+      val node = params.getOrElse("node", halt(400))
+    
+    println("node: " + node)
+  }
+
+  
+
+  val getPipelineRunNodeStepOperation = (apiOperation[PipelineStepImpl]("getPipelineRunNodeStep")
+      summary ""
+      parameters(pathParam[String]("organization").description(""), pathParam[String]("pipeline").description(""), pathParam[String]("run").description(""), pathParam[String]("node").description(""), pathParam[String]("step").description(""))
+  )
+
+  get("/blue/rest/organizations/:organization/pipelines/:pipeline/runs/:run/nodes/:node/steps/:step",operation(getPipelineRunNodeStepOperation)) {
+    
+    
+      val organization = params.getOrElse("organization", halt(400))
+    
+    println("organization: " + organization)
+    
+    
+      val pipeline = params.getOrElse("pipeline", halt(400))
+    
+    println("pipeline: " + pipeline)
+    
+    
+      val run = params.getOrElse("run", halt(400))
+    
+    println("run: " + run)
+    
+    
+      val node = params.getOrElse("node", halt(400))
+    
+    println("node: " + node)
+    
+    
+      val step = params.getOrElse("step", halt(400))
+    
+    println("step: " + step)
+  }
+
+  
+
+  val getPipelineRunNodeStepLogOperation = (apiOperation[String]("getPipelineRunNodeStepLog")
+      summary ""
+      parameters(pathParam[String]("organization").description(""), pathParam[String]("pipeline").description(""), pathParam[String]("run").description(""), pathParam[String]("node").description(""), pathParam[String]("step").description(""))
+  )
+
+  get("/blue/rest/organizations/:organization/pipelines/:pipeline/runs/:run/nodes/:node/steps/:step/log",operation(getPipelineRunNodeStepLogOperation)) {
+    
+    
+      val organization = params.getOrElse("organization", halt(400))
+    
+    println("organization: " + organization)
+    
+    
+      val pipeline = params.getOrElse("pipeline", halt(400))
+    
+    println("pipeline: " + pipeline)
+    
+    
+      val run = params.getOrElse("run", halt(400))
+    
+    println("run: " + run)
+    
+    
+      val node = params.getOrElse("node", halt(400))
+    
+    println("node: " + node)
+    
+    
+      val step = params.getOrElse("step", halt(400))
+    
+    println("step: " + step)
+  }
+
+  
+
+  val getPipelineRunNodeStepsOperation = (apiOperation[PipelineRunNodeSteps]("getPipelineRunNodeSteps")
+      summary ""
+      parameters(pathParam[String]("organization").description(""), pathParam[String]("pipeline").description(""), pathParam[String]("run").description(""), pathParam[String]("node").description(""))
+  )
+
+  get("/blue/rest/organizations/:organization/pipelines/:pipeline/runs/:run/nodes/:node/steps",operation(getPipelineRunNodeStepsOperation)) {
+    
+    
+      val organization = params.getOrElse("organization", halt(400))
+    
+    println("organization: " + organization)
+    
+    
+      val pipeline = params.getOrElse("pipeline", halt(400))
+    
+    println("pipeline: " + pipeline)
+    
+    
+      val run = params.getOrElse("run", halt(400))
+    
+    println("run: " + run)
+    
+    
+      val node = params.getOrElse("node", halt(400))
+    
+    println("node: " + node)
+  }
+
+  
+
+  val getPipelineRunNodesOperation = (apiOperation[PipelineRunNodes]("getPipelineRunNodes")
+      summary ""
+      parameters(pathParam[String]("organization").description(""), pathParam[String]("pipeline").description(""), pathParam[String]("run").description(""))
+  )
+
+  get("/blue/rest/organizations/:organization/pipelines/:pipeline/runs/:run/nodes",operation(getPipelineRunNodesOperation)) {
+    
+    
+      val organization = params.getOrElse("organization", halt(400))
+    
+    println("organization: " + organization)
+    
+    
+      val pipeline = params.getOrElse("pipeline", halt(400))
+    
+    println("pipeline: " + pipeline)
+    
+    
+      val run = params.getOrElse("run", halt(400))
+    
+    println("run: " + run)
+  }
+
+  
+
+  val getPipelineRunsOperation = (apiOperation[PipelineRuns]("getPipelineRuns")
+      summary ""
+      parameters(pathParam[String]("organization").description(""), pathParam[String]("pipeline").description(""))
+  )
+
+  get("/blue/rest/organizations/:organization/pipelines/:pipeline/runs",operation(getPipelineRunsOperation)) {
+    
+    
+      val organization = params.getOrElse("organization", halt(400))
+    
+    println("organization: " + organization)
+    
+    
+      val pipeline = params.getOrElse("pipeline", halt(400))
+    
+    println("pipeline: " + pipeline)
+  }
+
+  
+
+  val getPipelinesOperation = (apiOperation[Pipelines]("getPipelines")
+      summary ""
+      parameters(pathParam[String]("organization").description(""))
+  )
+
+  get("/blue/rest/organizations/:organization/pipelines/",operation(getPipelinesOperation)) {
+    
+    
+      val organization = params.getOrElse("organization", halt(400))
+    
+    println("organization: " + organization)
+  }
+
+  
+
+  val getSCMOperation = (apiOperation[GithubScm]("getSCM")
+      summary ""
+      parameters(pathParam[String]("organization").description(""), pathParam[String]("scm").description(""))
+  )
+
+  get("/blue/rest/organizations/:organization/scm/:scm",operation(getSCMOperation)) {
+    
+    
+      val organization = params.getOrElse("organization", halt(400))
+    
+    println("organization: " + organization)
+    
+    
+      val scm = params.getOrElse("scm", halt(400))
+    
+    println("scm: " + scm)
+  }
+
+  
+
+  val getSCMOrganisationRepositoriesOperation = (apiOperation[ScmOrganisations]("getSCMOrganisationRepositories")
+      summary ""
+      parameters(pathParam[String]("organization").description(""), pathParam[String]("scm").description(""), pathParam[String]("scmOrganisation").description(""), queryParam[String]("credentialId").description("").optional, queryParam[Int]("pageSize").description("").optional, queryParam[Int]("pageNumber").description("").optional)
+  )
+
+  get("/blue/rest/organizations/:organization/scm/:scm/organizations/:scmOrganisation/repositories",operation(getSCMOrganisationRepositoriesOperation)) {
+    
+    
+      val organization = params.getOrElse("organization", halt(400))
+    
+    println("organization: " + organization)
+    
+    
+      val scm = params.getOrElse("scm", halt(400))
+    
+    println("scm: " + scm)
+    
+    
+      val scmOrganisation = params.getOrElse("scmOrganisation", halt(400))
+    
+    println("scmOrganisation: " + scmOrganisation)
+    
+    
+                val credentialId = params.getAs[String]("credentialId")
+
+    println("credentialId: " + credentialId)
+    
+    
+                val pageSize = params.getAs[Int]("pageSize")
+
+    println("pageSize: " + pageSize)
+    
+    
+                val pageNumber = params.getAs[Int]("pageNumber")
+
+    println("pageNumber: " + pageNumber)
+  }
+
+  
+
+  val getSCMOrganisationRepositoryOperation = (apiOperation[ScmOrganisations]("getSCMOrganisationRepository")
+      summary ""
+      parameters(pathParam[String]("organization").description(""), pathParam[String]("scm").description(""), pathParam[String]("scmOrganisation").description(""), pathParam[String]("repository").description(""), queryParam[String]("credentialId").description("").optional)
+  )
+
+  get("/blue/rest/organizations/:organization/scm/:scm/organizations/:scmOrganisation/repositories/:repository",operation(getSCMOrganisationRepositoryOperation)) {
+    
+    
+      val organization = params.getOrElse("organization", halt(400))
+    
+    println("organization: " + organization)
+    
+    
+      val scm = params.getOrElse("scm", halt(400))
+    
+    println("scm: " + scm)
+    
+    
+      val scmOrganisation = params.getOrElse("scmOrganisation", halt(400))
+    
+    println("scmOrganisation: " + scmOrganisation)
+    
+    
+      val repository = params.getOrElse("repository", halt(400))
+    
+    println("repository: " + repository)
+    
+    
+                val credentialId = params.getAs[String]("credentialId")
+
+    println("credentialId: " + credentialId)
+  }
+
+  
+
+  val getSCMOrganisationsOperation = (apiOperation[ScmOrganisations]("getSCMOrganisations")
+      summary ""
+      parameters(pathParam[String]("organization").description(""), pathParam[String]("scm").description(""), queryParam[String]("credentialId").description("").optional)
+  )
+
+  get("/blue/rest/organizations/:organization/scm/:scm/organizations",operation(getSCMOrganisationsOperation)) {
+    
+    
+      val organization = params.getOrElse("organization", halt(400))
+    
+    println("organization: " + organization)
+    
+    
+      val scm = params.getOrElse("scm", halt(400))
+    
+    println("scm: " + scm)
+    
+    
+                val credentialId = params.getAs[String]("credentialId")
+
+    println("credentialId: " + credentialId)
+  }
+
+  
+
+  val getUserOperation = (apiOperation[User]("getUser")
+      summary ""
+      parameters(pathParam[String]("organization").description(""), pathParam[String]("user").description(""))
+  )
+
+  get("/blue/rest/organizations/:organization/users/:user",operation(getUserOperation)) {
+    
+    
+      val organization = params.getOrElse("organization", halt(400))
+    
+    println("organization: " + organization)
     
     
       val user = params.getOrElse("user", halt(400))
@@ -249,17 +713,137 @@ class BlueOceanApi (implicit val swagger: Swagger) extends ScalatraServlet
 
   
 
-  val getUsersOperation = (apiOperation[SwaggyjenkinsUser]("getUsers")
+  val getUserFavoritesOperation = (apiOperation[UserFavorites]("getUserFavorites")
       summary ""
-      parameters(pathParam[String]("organisation").description(""))
+      parameters(pathParam[String]("user").description(""))
   )
 
-  get("/blue/rest/organizations/:organisation/users/",operation(getUsersOperation)) {
+  get("/blue/rest/users/:user/favorites",operation(getUserFavoritesOperation)) {
     
     
-      val organisation = params.getOrElse("organisation", halt(400))
+      val user = params.getOrElse("user", halt(400))
     
-    println("organisation: " + organisation)
+    println("user: " + user)
+  }
+
+  
+
+  val getUsersOperation = (apiOperation[User]("getUsers")
+      summary ""
+      parameters(pathParam[String]("organization").description(""))
+  )
+
+  get("/blue/rest/organizations/:organization/users/",operation(getUsersOperation)) {
+    
+    
+      val organization = params.getOrElse("organization", halt(400))
+    
+    println("organization: " + organization)
+  }
+
+  
+
+  val postPipelineRunOperation = (apiOperation[QueueItemImpl]("postPipelineRun")
+      summary ""
+      parameters(pathParam[String]("organization").description(""), pathParam[String]("pipeline").description(""), pathParam[String]("run").description(""))
+  )
+
+  post("/blue/rest/organizations/:organization/pipelines/:pipeline/runs/:run/replay",operation(postPipelineRunOperation)) {
+    
+    
+      val organization = params.getOrElse("organization", halt(400))
+    
+    println("organization: " + organization)
+    
+    
+      val pipeline = params.getOrElse("pipeline", halt(400))
+    
+    println("pipeline: " + pipeline)
+    
+    
+      val run = params.getOrElse("run", halt(400))
+    
+    println("run: " + run)
+  }
+
+  
+
+  val postPipelineRunsOperation = (apiOperation[QueueItemImpl]("postPipelineRuns")
+      summary ""
+      parameters(pathParam[String]("organization").description(""), pathParam[String]("pipeline").description(""))
+  )
+
+  post("/blue/rest/organizations/:organization/pipelines/:pipeline/runs",operation(postPipelineRunsOperation)) {
+    
+    
+      val organization = params.getOrElse("organization", halt(400))
+    
+    println("organization: " + organization)
+    
+    
+      val pipeline = params.getOrElse("pipeline", halt(400))
+    
+    println("pipeline: " + pipeline)
+  }
+
+  
+
+  val putPipelineFavoriteOperation = (apiOperation[FavoriteImpl]("putPipelineFavorite")
+      summary ""
+      parameters(pathParam[String]("organization").description(""), pathParam[String]("pipeline").description(""), bodyParam[Body]("body").description(""))
+  )
+
+  put("/blue/rest/organizations/:organization/pipelines/:pipeline/favorite",operation(putPipelineFavoriteOperation)) {
+    
+    
+      val organization = params.getOrElse("organization", halt(400))
+    
+    println("organization: " + organization)
+    
+    
+      val pipeline = params.getOrElse("pipeline", halt(400))
+    
+    println("pipeline: " + pipeline)
+    
+    
+          val body = parsedBody.extract[Body]
+
+    println("body: " + body)
+  }
+
+  
+
+  val putPipelineRunOperation = (apiOperation[PipelineRun]("putPipelineRun")
+      summary ""
+      parameters(pathParam[String]("organization").description(""), pathParam[String]("pipeline").description(""), pathParam[String]("run").description(""), queryParam[String]("blocking").description("").optional, queryParam[Int]("timeOutInSecs").description("").optional)
+  )
+
+  put("/blue/rest/organizations/:organization/pipelines/:pipeline/runs/:run/stop",operation(putPipelineRunOperation)) {
+    
+    
+      val organization = params.getOrElse("organization", halt(400))
+    
+    println("organization: " + organization)
+    
+    
+      val pipeline = params.getOrElse("pipeline", halt(400))
+    
+    println("pipeline: " + pipeline)
+    
+    
+      val run = params.getOrElse("run", halt(400))
+    
+    println("run: " + run)
+    
+    
+                val blocking = params.getAs[String]("blocking")
+
+    println("blocking: " + blocking)
+    
+    
+                val timeOutInSecs = params.getAs[Int]("timeOutInSecs")
+
+    println("timeOutInSecs: " + timeOutInSecs)
   }
 
   
@@ -269,7 +853,7 @@ class BlueOceanApi (implicit val swagger: Swagger) extends ScalatraServlet
       parameters(queryParam[String]("q").description(""))
   )
 
-  get("/blue/rest/classes/",operation(searchOperation)) {
+  get("/blue/rest/search/",operation(searchOperation)) {
     
     
                 val q = params.getAs[String]("q")
@@ -279,12 +863,12 @@ class BlueOceanApi (implicit val swagger: Swagger) extends ScalatraServlet
 
   
 
-  val search_2Operation = (apiOperation[String]("search_2")
+  val searchClassesOperation = (apiOperation[String]("searchClasses")
       summary ""
       parameters(queryParam[String]("q").description(""))
   )
 
-  get("/blue/rest/search/",operation(search_2Operation)) {
+  get("/blue/rest/classes/",operation(searchClassesOperation)) {
     
     
                 val q = params.getAs[String]("q")

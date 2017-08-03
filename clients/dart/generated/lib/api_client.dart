@@ -41,112 +41,192 @@ class ApiClient {
           return value is bool ? value : '$value'.toLowerCase() == 'true';
         case 'double':
           return value is double ? value : double.parse('$value');
-        case 'GetClassesByClass':
-          return dson.map(value, new GetClassesByClass());
-        case 'GetMultibranchPipeline':
-          return dson.map(value, new GetMultibranchPipeline());
-        case 'GetOrganisations':
-          return dson.map(value, new GetOrganisations());
-        case 'GetPipelineBranches':
-          return dson.map(value, new GetPipelineBranches());
-        case 'GetPipelineBranchesitem':
-          return dson.map(value, new GetPipelineBranchesitem());
-        case 'GetPipelineBranchesitemLatestRun':
-          return dson.map(value, new GetPipelineBranchesitemLatestRun());
-        case 'GetPipelineBranchesitemPullRequest':
-          return dson.map(value, new GetPipelineBranchesitemPullRequest());
-        case 'GetPipelineBranchesitemPullRequestLinks':
-          return dson.map(value, new GetPipelineBranchesitemPullRequestLinks());
-        case 'GetPipelines':
-          return dson.map(value, new GetPipelines());
-        case 'GetUsers':
-          return dson.map(value, new GetUsers());
-        case 'HudsonmodelAllView':
-          return dson.map(value, new HudsonmodelAllView());
-        case 'HudsonmodelCauseAction':
-          return dson.map(value, new HudsonmodelCauseAction());
-        case 'HudsonmodelCauseUserIdCause':
-          return dson.map(value, new HudsonmodelCauseUserIdCause());
-        case 'HudsonmodelComputerSet':
-          return dson.map(value, new HudsonmodelComputerSet());
-        case 'HudsonmodelFreeStyleBuild':
-          return dson.map(value, new HudsonmodelFreeStyleBuild());
-        case 'HudsonmodelFreeStyleProject':
-          return dson.map(value, new HudsonmodelFreeStyleProject());
-        case 'HudsonmodelFreeStyleProjectactions':
-          return dson.map(value, new HudsonmodelFreeStyleProjectactions());
-        case 'HudsonmodelFreeStyleProjecthealthReport':
-          return dson.map(value, new HudsonmodelFreeStyleProjecthealthReport());
-        case 'HudsonmodelHudson':
-          return dson.map(value, new HudsonmodelHudson());
-        case 'HudsonmodelHudsonMasterComputer':
-          return dson.map(value, new HudsonmodelHudsonMasterComputer());
-        case 'HudsonmodelHudsonMasterComputerMonitorData':
-          return dson.map(value, new HudsonmodelHudsonMasterComputerMonitorData());
-        case 'HudsonmodelHudsonMasterComputerexecutors':
-          return dson.map(value, new HudsonmodelHudsonMasterComputerexecutors());
-        case 'HudsonmodelHudsonassignedLabels':
-          return dson.map(value, new HudsonmodelHudsonassignedLabels());
-        case 'HudsonmodelLabel1':
-          return dson.map(value, new HudsonmodelLabel1());
-        case 'HudsonmodelListView':
-          return dson.map(value, new HudsonmodelListView());
-        case 'HudsonmodelQueue':
-          return dson.map(value, new HudsonmodelQueue());
-        case 'HudsonmodelQueueBlockedItem':
-          return dson.map(value, new HudsonmodelQueueBlockedItem());
-        case 'HudsonmodelQueueLeftItem':
-          return dson.map(value, new HudsonmodelQueueLeftItem());
-        case 'HudsonmodelStringParameterDefinition':
-          return dson.map(value, new HudsonmodelStringParameterDefinition());
-        case 'HudsonmodelStringParameterValue':
-          return dson.map(value, new HudsonmodelStringParameterValue());
-        case 'HudsonnodeMonitorsDiskSpaceMonitorDescriptorDiskSpace':
-          return dson.map(value, new HudsonnodeMonitorsDiskSpaceMonitorDescriptorDiskSpace());
-        case 'HudsonnodeMonitorsResponseTimeMonitorData':
-          return dson.map(value, new HudsonnodeMonitorsResponseTimeMonitorData());
-        case 'HudsonnodeMonitorsSwapSpaceMonitorMemoryUsage2':
-          return dson.map(value, new HudsonnodeMonitorsSwapSpaceMonitorMemoryUsage2());
-        case 'HudsonscmEmptyChangeLogSet':
-          return dson.map(value, new HudsonscmEmptyChangeLogSet());
-        case 'HudsonscmNullSCM':
-          return dson.map(value, new HudsonscmNullSCM());
-        case 'HudsonsecuritycsrfDefaultCrumbIssuer':
-          return dson.map(value, new HudsonsecuritycsrfDefaultCrumbIssuer());
-        case 'HudsonutilClockDifference':
-          return dson.map(value, new HudsonutilClockDifference());
-        case 'IojenkinsblueoceanresthalLink':
-          return dson.map(value, new IojenkinsblueoceanresthalLink());
-        case 'IojenkinsblueoceanrestimplpipelineBranchImpl':
-          return dson.map(value, new IojenkinsblueoceanrestimplpipelineBranchImpl());
-        case 'IojenkinsblueoceanrestimplpipelineBranchImplPermissions':
-          return dson.map(value, new IojenkinsblueoceanrestimplpipelineBranchImplPermissions());
-        case 'IojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1':
-          return dson.map(value, new IojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1());
-        case 'IojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1Links':
-          return dson.map(value, new IojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1Links());
-        case 'IojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1Map':
-          return dson.map(value, new IojenkinsblueoceanserviceembeddedrestExtensionClassContainerImpl1Map());
-        case 'IojenkinsblueoceanserviceembeddedrestExtensionClassImpl':
-          return dson.map(value, new IojenkinsblueoceanserviceembeddedrestExtensionClassImpl());
-        case 'IojenkinsblueoceanserviceembeddedrestExtensionClassImplLinks':
-          return dson.map(value, new IojenkinsblueoceanserviceembeddedrestExtensionClassImplLinks());
-        case 'IojenkinsblueoceanserviceembeddedrestPipelineFolderImpl':
-          return dson.map(value, new IojenkinsblueoceanserviceembeddedrestPipelineFolderImpl());
-        case 'IojenkinsblueoceanserviceembeddedrestPipelineImpl':
-          return dson.map(value, new IojenkinsblueoceanserviceembeddedrestPipelineImpl());
-        case 'JenkinsmodelUnlabeledLoadStatistics':
-          return dson.map(value, new JenkinsmodelUnlabeledLoadStatistics());
-        case 'SwaggyjenkinsOrganisation':
-          return dson.map(value, new SwaggyjenkinsOrganisation());
-        case 'SwaggyjenkinsPipeline':
-          return dson.map(value, new SwaggyjenkinsPipeline());
-        case 'SwaggyjenkinsPipelineLatestRun':
-          return dson.map(value, new SwaggyjenkinsPipelineLatestRun());
-        case 'SwaggyjenkinsPipelineLatestRunartifacts':
-          return dson.map(value, new SwaggyjenkinsPipelineLatestRunartifacts());
-        case 'SwaggyjenkinsUser':
-          return dson.map(value, new SwaggyjenkinsUser());
+        case 'AllView':
+          return dson.map(value, new AllView());
+        case 'Body':
+          return dson.map(value, new Body());
+        case 'BranchImpl':
+          return dson.map(value, new BranchImpl());
+        case 'BranchImpllinks':
+          return dson.map(value, new BranchImpllinks());
+        case 'BranchImplpermissions':
+          return dson.map(value, new BranchImplpermissions());
+        case 'CauseAction':
+          return dson.map(value, new CauseAction());
+        case 'CauseUserIdCause':
+          return dson.map(value, new CauseUserIdCause());
+        case 'ClassesByClass':
+          return dson.map(value, new ClassesByClass());
+        case 'ClockDifference':
+          return dson.map(value, new ClockDifference());
+        case 'ComputerSet':
+          return dson.map(value, new ComputerSet());
+        case 'DefaultCrumbIssuer':
+          return dson.map(value, new DefaultCrumbIssuer());
+        case 'DiskSpaceMonitorDescriptorDiskSpace':
+          return dson.map(value, new DiskSpaceMonitorDescriptorDiskSpace());
+        case 'EmptyChangeLogSet':
+          return dson.map(value, new EmptyChangeLogSet());
+        case 'ExtensionClassContainerImpl1':
+          return dson.map(value, new ExtensionClassContainerImpl1());
+        case 'ExtensionClassContainerImpl1links':
+          return dson.map(value, new ExtensionClassContainerImpl1links());
+        case 'ExtensionClassContainerImpl1map':
+          return dson.map(value, new ExtensionClassContainerImpl1map());
+        case 'ExtensionClassImpl':
+          return dson.map(value, new ExtensionClassImpl());
+        case 'ExtensionClassImpllinks':
+          return dson.map(value, new ExtensionClassImpllinks());
+        case 'FavoriteImpl':
+          return dson.map(value, new FavoriteImpl());
+        case 'FavoriteImpllinks':
+          return dson.map(value, new FavoriteImpllinks());
+        case 'FreeStyleBuild':
+          return dson.map(value, new FreeStyleBuild());
+        case 'FreeStyleProject':
+          return dson.map(value, new FreeStyleProject());
+        case 'FreeStyleProjectactions':
+          return dson.map(value, new FreeStyleProjectactions());
+        case 'FreeStyleProjecthealthReport':
+          return dson.map(value, new FreeStyleProjecthealthReport());
+        case 'GenericResource':
+          return dson.map(value, new GenericResource());
+        case 'GithubContent':
+          return dson.map(value, new GithubContent());
+        case 'GithubFile':
+          return dson.map(value, new GithubFile());
+        case 'GithubOrganization':
+          return dson.map(value, new GithubOrganization());
+        case 'GithubOrganizationlinks':
+          return dson.map(value, new GithubOrganizationlinks());
+        case 'GithubRepositories':
+          return dson.map(value, new GithubRepositories());
+        case 'GithubRepositorieslinks':
+          return dson.map(value, new GithubRepositorieslinks());
+        case 'GithubRepository':
+          return dson.map(value, new GithubRepository());
+        case 'GithubRepositorylinks':
+          return dson.map(value, new GithubRepositorylinks());
+        case 'GithubRepositorypermissions':
+          return dson.map(value, new GithubRepositorypermissions());
+        case 'GithubRespositoryContainer':
+          return dson.map(value, new GithubRespositoryContainer());
+        case 'GithubRespositoryContainerlinks':
+          return dson.map(value, new GithubRespositoryContainerlinks());
+        case 'GithubScm':
+          return dson.map(value, new GithubScm());
+        case 'GithubScmlinks':
+          return dson.map(value, new GithubScmlinks());
+        case 'Hudson':
+          return dson.map(value, new Hudson());
+        case 'HudsonMasterComputer':
+          return dson.map(value, new HudsonMasterComputer());
+        case 'HudsonMasterComputerexecutors':
+          return dson.map(value, new HudsonMasterComputerexecutors());
+        case 'HudsonMasterComputermonitorData':
+          return dson.map(value, new HudsonMasterComputermonitorData());
+        case 'HudsonassignedLabels':
+          return dson.map(value, new HudsonassignedLabels());
+        case 'InputStepImpl':
+          return dson.map(value, new InputStepImpl());
+        case 'InputStepImpllinks':
+          return dson.map(value, new InputStepImpllinks());
+        case 'Label1':
+          return dson.map(value, new Label1());
+        case 'Link':
+          return dson.map(value, new Link());
+        case 'ListView':
+          return dson.map(value, new ListView());
+        case 'MultibranchPipeline':
+          return dson.map(value, new MultibranchPipeline());
+        case 'NullSCM':
+          return dson.map(value, new NullSCM());
+        case 'Organisation':
+          return dson.map(value, new Organisation());
+        case 'Organisations':
+          return dson.map(value, new Organisations());
+        case 'Pipeline':
+          return dson.map(value, new Pipeline());
+        case 'PipelineActivities':
+          return dson.map(value, new PipelineActivities());
+        case 'PipelineActivity':
+          return dson.map(value, new PipelineActivity());
+        case 'PipelineActivityartifacts':
+          return dson.map(value, new PipelineActivityartifacts());
+        case 'PipelineBranches':
+          return dson.map(value, new PipelineBranches());
+        case 'PipelineBranchesitem':
+          return dson.map(value, new PipelineBranchesitem());
+        case 'PipelineBranchesitemlatestRun':
+          return dson.map(value, new PipelineBranchesitemlatestRun());
+        case 'PipelineBranchesitempullRequest':
+          return dson.map(value, new PipelineBranchesitempullRequest());
+        case 'PipelineBranchesitempullRequestlinks':
+          return dson.map(value, new PipelineBranchesitempullRequestlinks());
+        case 'PipelineFolderImpl':
+          return dson.map(value, new PipelineFolderImpl());
+        case 'PipelineImpl':
+          return dson.map(value, new PipelineImpl());
+        case 'PipelineImpllinks':
+          return dson.map(value, new PipelineImpllinks());
+        case 'PipelineQueue':
+          return dson.map(value, new PipelineQueue());
+        case 'PipelineRun':
+          return dson.map(value, new PipelineRun());
+        case 'PipelineRunImpl':
+          return dson.map(value, new PipelineRunImpl());
+        case 'PipelineRunImpllinks':
+          return dson.map(value, new PipelineRunImpllinks());
+        case 'PipelineRunNode':
+          return dson.map(value, new PipelineRunNode());
+        case 'PipelineRunNodeSteps':
+          return dson.map(value, new PipelineRunNodeSteps());
+        case 'PipelineRunNodeedges':
+          return dson.map(value, new PipelineRunNodeedges());
+        case 'PipelineRunNodes':
+          return dson.map(value, new PipelineRunNodes());
+        case 'PipelineRunSteps':
+          return dson.map(value, new PipelineRunSteps());
+        case 'PipelineRunartifacts':
+          return dson.map(value, new PipelineRunartifacts());
+        case 'PipelineRuns':
+          return dson.map(value, new PipelineRuns());
+        case 'PipelineStepImpl':
+          return dson.map(value, new PipelineStepImpl());
+        case 'PipelineStepImpllinks':
+          return dson.map(value, new PipelineStepImpllinks());
+        case 'PipelinelatestRun':
+          return dson.map(value, new PipelinelatestRun());
+        case 'PipelinelatestRunartifacts':
+          return dson.map(value, new PipelinelatestRunartifacts());
+        case 'Pipelines':
+          return dson.map(value, new Pipelines());
+        case 'Queue':
+          return dson.map(value, new Queue());
+        case 'QueueBlockedItem':
+          return dson.map(value, new QueueBlockedItem());
+        case 'QueueItemImpl':
+          return dson.map(value, new QueueItemImpl());
+        case 'QueueLeftItem':
+          return dson.map(value, new QueueLeftItem());
+        case 'ResponseTimeMonitorData':
+          return dson.map(value, new ResponseTimeMonitorData());
+        case 'ScmOrganisations':
+          return dson.map(value, new ScmOrganisations());
+        case 'StringParameterDefinition':
+          return dson.map(value, new StringParameterDefinition());
+        case 'StringParameterValue':
+          return dson.map(value, new StringParameterValue());
+        case 'SwapSpaceMonitorMemoryUsage2':
+          return dson.map(value, new SwapSpaceMonitorMemoryUsage2());
+        case 'UnlabeledLoadStatistics':
+          return dson.map(value, new UnlabeledLoadStatistics());
+        case 'User':
+          return dson.map(value, new User());
+        case 'UserFavorites':
+          return dson.map(value, new UserFavorites());
+        case 'Users':
+          return dson.map(value, new Users());
         default:
           {
             Match match;
