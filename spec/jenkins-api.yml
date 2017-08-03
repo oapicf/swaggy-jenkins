@@ -656,7 +656,7 @@ paths:
   /blue/rest/organizations/{organization}/pipelines/:
     get:
       description: Retrieve all pipelines details for an organization
-      operationId: getPipelinesByOrg
+      operationId: getPipelines
       produces:
         - application/json
       parameters:
@@ -677,7 +677,7 @@ paths:
   /blue/rest/organizations/{organization}/pipelines/{pipeline}:
     get:
       description: Retrieve pipeline details for an organization
-      operationId: getPipelineByOrg
+      operationId: getPipeline
       produces:
         - application/json
       parameters:
@@ -701,7 +701,7 @@ paths:
   /blue/rest/organizations/{organization}/pipelines/{pipeline}/activities:
     get:
       description: Retrieve all activities details for an organization pipeline
-      operationId: getPipelineActivitiesByOrg
+      operationId: getPipelineActivities
       produces:
         - application/json
       parameters:
@@ -723,7 +723,7 @@ paths:
   /blue/rest/organizations/{organization}/pipelines/{pipeline}/branches:
     get:
       description: Retrieve all branches details for an organization pipeline
-      operationId: getPipelineBranchesByOrg
+      operationId: getPipelineBranches
       produces:
         - application/json
       parameters:
@@ -745,7 +745,7 @@ paths:
   /blue/rest/organizations/{organization}/pipelines/{pipeline}/branches/{branch}/:
     get:
       description: Retrieve branch details for an organization pipeline
-      operationId: getPipelineBranchByOrg
+      operationId: getPipelineBranch
       produces:
         - application/json
       parameters:
@@ -768,7 +768,7 @@ paths:
   /blue/rest/organizations/{organization}/pipelines/{pipeline}/branches/{branch}/runs/{run}:
     get:
       description: Retrieve branch run details for an organization pipeline
-      operationId: getPipelineBranchRunByOrg
+      operationId: getPipelineBranchRun
       produces:
         - application/json
       parameters:
@@ -792,7 +792,7 @@ paths:
   /blue/rest/organizations/{organization}/pipelines/{folder}/:
     get:
       description: Retrieve pipeline folder for an organization
-      operationId: getPipelineFolderByOrg
+      operationId: getPipelineFolder
       produces:
         - application/json
       parameters:
@@ -814,7 +814,7 @@ paths:
   /blue/rest/organizations/{organization}/pipelines/{folder}/pipelines/{pipeline}:
     get:
       description: Retrieve pipeline details for an organization folder
-      operationId: getPipelineFolderPipelineByOrg
+      operationId: getPipelineFolderPipeline
       produces:
         - application/json
       parameters:
@@ -837,7 +837,7 @@ paths:
   /blue/rest/organizations/{organization}/pipelines/{pipeline}/favorite:
     put:
       description: Favorite/unfavorite a pipeline
-      operationId: putPipelineFavoriteByOrg
+      operationId: putPipelineFavorite
       produces:
         - application/json
       parameters:
@@ -869,7 +869,7 @@ paths:
   /blue/rest/organizations/{organization}/pipelines/{pipeline}/queue:
     get:
       description: Retrieve queue details for an organization pipeline
-      operationId: getPipelineQueueByOrg
+      operationId: getPipelineQueue
       produces:
         - application/json
       parameters:
@@ -891,7 +891,7 @@ paths:
   /blue/rest/organizations/{organization}/pipelines/{pipeline}/queue/{queue}:
     delete:
       description: Delete queue item from an organization pipeline queue
-      operationId: deletePipelineQueueItemByOrg
+      operationId: deletePipelineQueueItem
       produces:
         - application/json
       parameters:
@@ -912,7 +912,7 @@ paths:
   /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs:
     get:
       description: Retrieve all runs details for an organization pipeline
-      operationId: getPipelineRunsByOrg
+      operationId: getPipelineRuns
       produces:
         - application/json
       parameters:
@@ -933,7 +933,7 @@ paths:
         - blueOcean
     post:
       description: Start a build for an organization pipeline
-      operationId: postPipelineRunsByOrg
+      operationId: postPipelineRuns
       produces:
         - application/json
       parameters:
@@ -955,7 +955,7 @@ paths:
   /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}:
     get:
       description: Retrieve run details for an organization pipeline
-      operationId: getPipelineRunByOrg
+      operationId: getPipelineRun
       produces:
         - application/json
       parameters:
@@ -978,7 +978,7 @@ paths:
   /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes:
     get:
       description: Retrieve run nodes details for an organization pipeline
-      operationId: getPipelineRunNodesByOrg
+      operationId: getPipelineRunNodes
       produces:
         - application/json
       parameters:
@@ -1001,7 +1001,7 @@ paths:
   /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}:
     get:
       description: Retrieve run node details for an organization pipeline
-      operationId: getPipelineRunNodeByOrg
+      operationId: getPipelineRunNode
       produces:
         - application/json
       parameters:
@@ -1025,7 +1025,7 @@ paths:
   /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps:
     get:
       description: Retrieve run node steps details for an organization pipeline
-      operationId: getPipelineRunNodeStepsByOrg
+      operationId: getPipelineRunNodeSteps
       produces:
         - application/json
       parameters:
@@ -1049,7 +1049,7 @@ paths:
   /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps/{step}:
     get:
       description: Retrieve run node details for an organization pipeline
-      operationId: getPipelineRunNodeStepByOrg
+      operationId: getPipelineRunNodeStep
       produces:
         - application/json
       parameters:
@@ -1074,7 +1074,7 @@ paths:
   /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps/{step}/log:
     get:
       description: Get log for a pipeline run node step
-      operationId: getPipelineRunNodeStepLogByOrg
+      operationId: getPipelineRunNodeStepLog
       produces:
         - application/json
       parameters:
@@ -1099,7 +1099,7 @@ paths:
   /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/log:
     get:
       description: Get log for a pipeline run
-      operationId: getPipelineRunLogByOrg
+      operationId: getPipelineRunLog
       produces:
         - application/json
       parameters:
@@ -1132,7 +1132,7 @@ paths:
   /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/replay:
     post:
       description: Replay an organization pipeline run
-      operationId: postPipelineRunByOrg
+      operationId: postPipelineRun
       produces:
         - application/json
       parameters:
@@ -1155,7 +1155,7 @@ paths:
   /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/stop:
     put:
       description: Stop a build of an organization pipeline
-      operationId: putPipelineRunByOrg
+      operationId: putPipelineRun
       produces:
         - application/json
       parameters:
