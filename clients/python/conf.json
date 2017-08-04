@@ -1,6 +1,6 @@
 {
   "packageName": "swaggyjenkins",
-  "packageVersion": "0.0.2",
+  "packageVersion": "0.0.3",
   "packageUrl": "https://github.com/cliffano/swaggy-jenkins/tree/master/clients/python",
   "gitUserId": "cliffano",
   "gitRepoId": "swaggy-jenkins"

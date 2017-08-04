@@ -15,7 +15,7 @@ import sys
 from setuptools import setup, find_packages
 
 NAME = "swaggyjenkins"
-VERSION = "0.0.2"
+VERSION = "0.0.3"
 # To install the library, run the following
 #
 # python setup.py install
