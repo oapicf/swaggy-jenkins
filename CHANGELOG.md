@@ -1,5 +1,5 @@
 ### 0.2.0
-*
+* Add JWT auth security definition and paths
 
 ### 0.1.0
 * Add Blue Ocean API

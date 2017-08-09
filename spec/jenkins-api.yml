@@ -14,6 +14,12 @@ basePath: /
 securityDefinitions:
   jenkins_auth:
     type: basic
+  # Temporary workaround of using JWT in OpenAPI 2.0, value has to be prefixed with 'Bearer'
+  # Switch to proper JWT support after upgrading to OpenAPI 3.0
+  jwt_auth:
+    type: apiKey
+    in: header
+    name: Authorization
 paths:
   ########################################
   # Remote Access API paths
@@ -540,6 +546,57 @@ paths:
   ########################################
   # Blue Ocean API paths
   ########################################
+  /jwt-auth/token:
+    get:
+      description: Retrieve JWT token
+      operationId: getJwtToken
+      produces:
+        - application/json
+      parameters:
+        - name: expiryTimeInMins
+          description: Token expiry time in minutes, default: 30 minutes
+          in: query
+          required: false
+          type: integer
+        - name: maxExpiryTimeInMins
+          description: Maximum token expiry time in minutes, default: 480 minutes
+          in: query
+          required: false
+          type: integer
+      responses:
+        200:
+          description: Successfully retrieved JWT token
+          schema:
+            type: string
+        401:
+          $ref: "#/responses/unauthorized"
+        403:
+          $ref: "#/responses/forbidden"
+      tags:
+        - blueOcean
+  /jwt-auth/jwks/{key}:
+    get:
+      description: Retrieve JSON web key
+      operationId: getJwtToken
+      produces:
+        - application/json
+      parameters:
+        - name: key
+          description: Key ID received as part of JWT header field kid
+          in: path
+          required: false
+          type: integer
+      responses:
+        200:
+          description: Successfully retrieved JWT token
+          schema:
+            type: string
+        401:
+          $ref: "#/responses/unauthorized"
+        403:
+          $ref: "#/responses/forbidden"
+      tags:
+        - blueOcean
   /blue/rest/classes/:
     get:
       description: Get classes details
