@@ -554,12 +554,12 @@ paths:
         - application/json
       parameters:
         - name: expiryTimeInMins
-          description: Token expiry time in minutes, default: 30 minutes
+          description: 'Token expiry time in minutes, default: 30 minutes'
           in: query
           required: false
           type: integer
         - name: maxExpiryTimeInMins
-          description: Maximum token expiry time in minutes, default: 480 minutes
+          description: 'Maximum token expiry time in minutes, default: 480 minutes'
           in: query
           required: false
           type: integer
@@ -584,7 +584,7 @@ paths:
         - name: key
           description: Key ID received as part of JWT header field kid
           in: path
-          required: false
+          required: true
           type: integer
       responses:
         200:
