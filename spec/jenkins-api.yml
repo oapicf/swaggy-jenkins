@@ -548,8 +548,8 @@ paths:
   ########################################
   /jwt-auth/token:
     get:
-      description: Retrieve JWT token
-      operationId: getJwtToken
+      description: Retrieve JSON Web Token
+      operationId: getJsonWebToken
       produces:
         - application/json
       parameters:
@@ -576,8 +576,8 @@ paths:
         - blueOcean
   /jwt-auth/jwks/{key}:
     get:
-      description: Retrieve JSON web key
-      operationId: getJwtToken
+      description: Retrieve JSON Web Key
+      operationId: getJsonWebKey
       produces:
         - application/json
       parameters:
