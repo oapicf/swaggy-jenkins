@@ -27,6 +27,10 @@ Generate API clients of the currently supported languages:
 Colophon
 --------
 
+Presentation:
+
+* [Bringing Jenkins Remote Access API To The Masses](https://www.slideshare.net/cliffano/bringing-jenkins-remote-access-api-to-the-masses)
+
 Related Projects:
 
 * [swaggy-jenkins-cli](http://github.com/cliffano/swaggy-jenkins-cli) - CLI utility tool for Swaggy Jenkins
