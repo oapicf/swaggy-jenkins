@@ -27,7 +27,11 @@ Generate API clients of the currently supported languages:
 Colophon
 --------
 
-Presentation:
+Videos:
+
+* [Jenkins World 2017: Bringing Jenkins Remote Access API To The Masses](https://www.youtube.com/watch?v=D93t1jElt4Q)
+
+Presentations:
 
 * [Bringing Jenkins Remote Access API To The Masses](https://www.slideshare.net/cliffano/bringing-jenkins-remote-access-api-to-the-masses)
 
