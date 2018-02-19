@@ -22,7 +22,7 @@ define build
 endef
 
 lint:
-	swagger validate spec/*.yml
+	swagger-cli validate spec/*.yml
 
 build-docker:
 	docker run \
