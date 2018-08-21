@@ -1,3 +1,6 @@
+### 1.0.1
+*
+
 ### 1.0.0
 * Upgrade spec to OpenAPI v3
 * Replace Swagger CodeGen with OpenAPI Generator
