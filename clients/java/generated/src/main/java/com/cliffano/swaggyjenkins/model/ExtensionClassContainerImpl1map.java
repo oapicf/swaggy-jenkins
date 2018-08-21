@@ -28,7 +28,7 @@ import java.io.IOException;
 /**
  * ExtensionClassContainerImpl1map
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2018-08-21T02:11:40.359Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2018-08-21T04:38:01.616Z[GMT]")
 public class ExtensionClassContainerImpl1map {
   public static final String SERIALIZED_NAME_IO_JENKINS_BLUEOCEAN_SERVICE_EMBEDDED_REST_PIPELINE_IMPL = "io.jenkins.blueocean.service.embedded.rest.PipelineImpl";
   @SerializedName(SERIALIZED_NAME_IO_JENKINS_BLUEOCEAN_SERVICE_EMBEDDED_REST_PIPELINE_IMPL)

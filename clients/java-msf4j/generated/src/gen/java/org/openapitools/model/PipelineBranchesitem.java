@@ -11,7 +11,7 @@ import org.openapitools.model.PipelineBranchesitempullRequest;
 /**
  * PipelineBranchesitem
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2018-08-21T02:11:56.740Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2018-08-21T04:38:21.382Z[GMT]")
 public class PipelineBranchesitem   {
   @JsonProperty("displayName")
   private String displayName = null;

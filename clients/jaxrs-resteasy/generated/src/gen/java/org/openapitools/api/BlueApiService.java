@@ -36,7 +36,7 @@ import java.io.InputStream;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyServerCodegen", date = "2018-08-21T02:12:32.019Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyServerCodegen", date = "2018-08-21T04:39:10.881Z[GMT]")
 public interface BlueApiService {
       Response deletePipelineQueueItem(String organization,String pipeline,String queue,SecurityContext securityContext)
       throws NotFoundException;

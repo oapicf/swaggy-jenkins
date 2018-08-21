@@ -11,7 +11,7 @@ import javax.validation.constraints.*;
 import io.swagger.annotations.*;
 
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyServerCodegen", date = "2018-08-21T02:12:32.019Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyServerCodegen", date = "2018-08-21T04:39:10.881Z[GMT]")
 public class FreeStyleBuild   {
   
   private String propertyClass = null;

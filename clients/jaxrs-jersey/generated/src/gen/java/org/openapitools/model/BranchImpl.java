@@ -29,7 +29,7 @@ import javax.validation.constraints.*;
 /**
  * BranchImpl
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJerseyServerCodegen", date = "2018-08-21T02:12:27.523Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJerseyServerCodegen", date = "2018-08-21T04:39:03.702Z[GMT]")
 public class BranchImpl   {
   @JsonProperty("_class")
   private String propertyClass = null;

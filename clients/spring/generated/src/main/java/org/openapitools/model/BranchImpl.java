@@ -17,7 +17,7 @@ import javax.validation.constraints.*;
 /**
  * BranchImpl
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2018-08-21T02:15:19.934Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2018-08-21T04:42:22.775Z[GMT]")
 
 public class BranchImpl   {
   @JsonProperty("_class")

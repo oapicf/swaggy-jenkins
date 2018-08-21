@@ -25,7 +25,7 @@ import javax.validation.constraints.*;
 @Api(description = "the crumbIssuer API")
 
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSCXFCDIServerCodegen", date = "2018-08-21T02:12:22.737Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSCXFCDIServerCodegen", date = "2018-08-21T04:38:56.735Z[GMT]")
 
 public class CrumbIssuerApi  {
 

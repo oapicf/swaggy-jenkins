@@ -13,7 +13,7 @@ import org.openapitools.model.PipelineRunNodeedges;
 
 
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaInflectorServerCodegen", date = "2018-08-21T02:11:51.947Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaInflectorServerCodegen", date = "2018-08-21T04:38:15.192Z[GMT]")
 public class PipelineRunNode   {
   @JsonProperty("_class")
   private String propertyClass = null;

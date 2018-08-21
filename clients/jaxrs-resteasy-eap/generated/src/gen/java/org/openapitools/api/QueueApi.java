@@ -22,7 +22,7 @@ import javax.validation.constraints.*;
 
 
 @io.swagger.annotations.Api(description = "the queue API")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyEapServerCodegen", date = "2018-08-21T02:12:36.592Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyEapServerCodegen", date = "2018-08-21T04:39:17.079Z[GMT]")
 public interface QueueApi  {
    
     @GET

@@ -15,7 +15,7 @@ import org.openapitools.model.FreeStyleProject;
 
 
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaInflectorServerCodegen", date = "2018-08-21T02:11:51.947Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaInflectorServerCodegen", date = "2018-08-21T04:38:15.192Z[GMT]")
 public class QueueLeftItem   {
   @JsonProperty("_class")
   private String propertyClass = null;

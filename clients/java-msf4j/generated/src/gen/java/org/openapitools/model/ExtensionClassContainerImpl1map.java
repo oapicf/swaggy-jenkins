@@ -10,7 +10,7 @@ import org.openapitools.model.ExtensionClassImpl;
 /**
  * ExtensionClassContainerImpl1map
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2018-08-21T02:11:56.740Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2018-08-21T04:38:21.382Z[GMT]")
 public class ExtensionClassContainerImpl1map   {
   @JsonProperty("io.jenkins.blueocean.service.embedded.rest.PipelineImpl")
   private ExtensionClassImpl ioJenkinsBlueoceanServiceEmbeddedRestPipelineImpl = null;

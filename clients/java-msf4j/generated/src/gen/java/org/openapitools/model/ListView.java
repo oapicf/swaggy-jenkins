@@ -12,7 +12,7 @@ import org.openapitools.model.FreeStyleProject;
 /**
  * ListView
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2018-08-21T02:11:56.740Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2018-08-21T04:38:21.382Z[GMT]")
 public class ListView   {
   @JsonProperty("_class")
   private String propertyClass = null;

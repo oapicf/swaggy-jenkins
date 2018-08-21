@@ -13,7 +13,7 @@ import java.util.List;
  * UserFavorites
  */
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPKMSTServerCodegen", date = "2018-08-21T02:12:01.227Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPKMSTServerCodegen", date = "2018-08-21T04:38:28.156Z[GMT]")
 
 public class UserFavorites extends ArrayList<FavoriteImpl>  {
 

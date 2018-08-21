@@ -27,7 +27,7 @@ import java.io.IOException;
 /**
  * UnlabeledLoadStatistics
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2018-08-21T02:11:40.359Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2018-08-21T04:38:01.616Z[GMT]")
 public class UnlabeledLoadStatistics {
   public static final String SERIALIZED_NAME_PROPERTY_CLASS = "_class";
   @SerializedName(SERIALIZED_NAME_PROPERTY_CLASS)

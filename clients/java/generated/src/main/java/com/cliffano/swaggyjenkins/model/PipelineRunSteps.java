@@ -22,7 +22,7 @@ import java.util.List;
 /**
  * PipelineRunSteps
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2018-08-21T02:11:40.359Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2018-08-21T04:38:01.616Z[GMT]")
 public class PipelineRunSteps extends ArrayList<GenericResource> {
 
   @Override

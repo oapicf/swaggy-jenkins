@@ -11,7 +11,7 @@ import javax.validation.constraints.*;
 import io.swagger.annotations.*;
 
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyEapServerCodegen", date = "2018-08-21T02:12:36.592Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyEapServerCodegen", date = "2018-08-21T04:39:17.079Z[GMT]")
 public class Pipeline   {
   
 

@@ -10,7 +10,7 @@ import javax.validation.constraints.*;
 /**
  * FavoriteImpl
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2018-08-21T02:12:05.971Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2018-08-21T04:38:33.847Z[GMT]")
 
 @SuppressWarnings({"UnusedReturnValue", "WeakerAccess"})
 public class FavoriteImpl   {

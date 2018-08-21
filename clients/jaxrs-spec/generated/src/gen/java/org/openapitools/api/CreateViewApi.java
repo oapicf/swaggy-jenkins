@@ -13,7 +13,7 @@ import javax.validation.Valid;
 
 @Path("/createView")
 @Api(description = "the createView API")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2018-08-21T02:12:41.341Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2018-08-21T04:39:23.029Z[GMT]")
 public class CreateViewApi {
 
     @POST
