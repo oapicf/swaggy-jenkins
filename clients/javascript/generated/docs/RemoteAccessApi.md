@@ -46,10 +46,7 @@ jenkins_auth.username = 'YOUR USERNAME';
 jenkins_auth.password = 'YOUR PASSWORD';
 
 var apiInstance = new SwaggyJenkins.RemoteAccessApi();
-
 var depth = 56; // Number | Recursion depth in response model
-
-
 var callback = function(error, data, response) {
   if (error) {
     console.error(error);
@@ -98,7 +95,6 @@ jenkins_auth.username = 'YOUR USERNAME';
 jenkins_auth.password = 'YOUR PASSWORD';
 
 var apiInstance = new SwaggyJenkins.RemoteAccessApi();
-
 var callback = function(error, data, response) {
   if (error) {
     console.error(error);
@@ -144,7 +140,6 @@ jenkins_auth.username = 'YOUR USERNAME';
 jenkins_auth.password = 'YOUR PASSWORD';
 
 var apiInstance = new SwaggyJenkins.RemoteAccessApi();
-
 var callback = function(error, data, response) {
   if (error) {
     console.error(error);
@@ -173,7 +168,7 @@ This endpoint does not need any parameter.
 
 <a name="getJob"></a>
 # **getJob**
-> FreeStyleProject getJob(name, )
+> FreeStyleProject getJob(name)
 
 
 
@@ -190,10 +185,7 @@ jenkins_auth.username = 'YOUR USERNAME';
 jenkins_auth.password = 'YOUR PASSWORD';
 
 var apiInstance = new SwaggyJenkins.RemoteAccessApi();
-
 var name = "name_example"; // String | Name of the job
-
-
 var callback = function(error, data, response) {
   if (error) {
     console.error(error);
@@ -201,7 +193,7 @@ var callback = function(error, data, response) {
     console.log('API called successfully. Returned data: ' + data);
   }
 };
-apiInstance.getJob(name, , callback);
+apiInstance.getJob(name, callback);
 ```
 
 ### Parameters
@@ -225,7 +217,7 @@ Name | Type | Description  | Notes
 
 <a name="getJobConfig"></a>
 # **getJobConfig**
-> &#39;String&#39; getJobConfig(name, )
+> String getJobConfig(name)
 
 
 
@@ -242,10 +234,7 @@ jenkins_auth.username = 'YOUR USERNAME';
 jenkins_auth.password = 'YOUR PASSWORD';
 
 var apiInstance = new SwaggyJenkins.RemoteAccessApi();
-
 var name = "name_example"; // String | Name of the job
-
-
 var callback = function(error, data, response) {
   if (error) {
     console.error(error);
@@ -253,7 +242,7 @@ var callback = function(error, data, response) {
     console.log('API called successfully. Returned data: ' + data);
   }
 };
-apiInstance.getJobConfig(name, , callback);
+apiInstance.getJobConfig(name, callback);
 ```
 
 ### Parameters
@@ -264,7 +253,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**&#39;String&#39;**
+**String**
 
 ### Authorization
 
@@ -277,7 +266,7 @@ Name | Type | Description  | Notes
 
 <a name="getJobLastBuild"></a>
 # **getJobLastBuild**
-> FreeStyleBuild getJobLastBuild(name, )
+> FreeStyleBuild getJobLastBuild(name)
 
 
 
@@ -294,10 +283,7 @@ jenkins_auth.username = 'YOUR USERNAME';
 jenkins_auth.password = 'YOUR PASSWORD';
 
 var apiInstance = new SwaggyJenkins.RemoteAccessApi();
-
 var name = "name_example"; // String | Name of the job
-
-
 var callback = function(error, data, response) {
   if (error) {
     console.error(error);
@@ -305,7 +291,7 @@ var callback = function(error, data, response) {
     console.log('API called successfully. Returned data: ' + data);
   }
 };
-apiInstance.getJobLastBuild(name, , callback);
+apiInstance.getJobLastBuild(name, callback);
 ```
 
 ### Parameters
@@ -346,14 +332,9 @@ jenkins_auth.username = 'YOUR USERNAME';
 jenkins_auth.password = 'YOUR PASSWORD';
 
 var apiInstance = new SwaggyJenkins.RemoteAccessApi();
-
 var name = "name_example"; // String | Name of the job
-
 var _number = "_number_example"; // String | Build number
-
 var start = "start_example"; // String | Starting point of progressive text output
-
-
 var callback = function(error, data, response) {
   if (error) {
     console.error(error);
@@ -404,7 +385,6 @@ jenkins_auth.username = 'YOUR USERNAME';
 jenkins_auth.password = 'YOUR PASSWORD';
 
 var apiInstance = new SwaggyJenkins.RemoteAccessApi();
-
 var callback = function(error, data, response) {
   if (error) {
     console.error(error);
@@ -450,10 +430,7 @@ jenkins_auth.username = 'YOUR USERNAME';
 jenkins_auth.password = 'YOUR PASSWORD';
 
 var apiInstance = new SwaggyJenkins.RemoteAccessApi();
-
 var _number = "_number_example"; // String | Queue number
-
-
 var callback = function(error, data, response) {
   if (error) {
     console.error(error);
@@ -485,7 +462,7 @@ Name | Type | Description  | Notes
 
 <a name="getView"></a>
 # **getView**
-> ListView getView(name, )
+> ListView getView(name)
 
 
 
@@ -502,10 +479,7 @@ jenkins_auth.username = 'YOUR USERNAME';
 jenkins_auth.password = 'YOUR PASSWORD';
 
 var apiInstance = new SwaggyJenkins.RemoteAccessApi();
-
 var name = "name_example"; // String | Name of the view
-
-
 var callback = function(error, data, response) {
   if (error) {
     console.error(error);
@@ -513,7 +487,7 @@ var callback = function(error, data, response) {
     console.log('API called successfully. Returned data: ' + data);
   }
 };
-apiInstance.getView(name, , callback);
+apiInstance.getView(name, callback);
 ```
 
 ### Parameters
@@ -537,7 +511,7 @@ Name | Type | Description  | Notes
 
 <a name="getViewConfig"></a>
 # **getViewConfig**
-> &#39;String&#39; getViewConfig(name, )
+> String getViewConfig(name)
 
 
 
@@ -554,10 +528,7 @@ jenkins_auth.username = 'YOUR USERNAME';
 jenkins_auth.password = 'YOUR PASSWORD';
 
 var apiInstance = new SwaggyJenkins.RemoteAccessApi();
-
 var name = "name_example"; // String | Name of the view
-
-
 var callback = function(error, data, response) {
   if (error) {
     console.error(error);
@@ -565,7 +536,7 @@ var callback = function(error, data, response) {
     console.log('API called successfully. Returned data: ' + data);
   }
 };
-apiInstance.getViewConfig(name, , callback);
+apiInstance.getViewConfig(name, callback);
 ```
 
 ### Parameters
@@ -576,7 +547,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**&#39;String&#39;**
+**String**
 
 ### Authorization
 
@@ -606,7 +577,6 @@ jenkins_auth.username = 'YOUR USERNAME';
 jenkins_auth.password = 'YOUR PASSWORD';
 
 var apiInstance = new SwaggyJenkins.RemoteAccessApi();
-
 var callback = function(error, data, response) {
   if (error) {
     console.error(error);
@@ -652,17 +622,14 @@ jenkins_auth.username = 'YOUR USERNAME';
 jenkins_auth.password = 'YOUR PASSWORD';
 
 var apiInstance = new SwaggyJenkins.RemoteAccessApi();
-
 var name = "name_example"; // String | Name of the new job
-
-var opts = { 
+var opts = {
   'from': "from_example", // String | Existing job to copy from
   'mode': "mode_example", // String | Set to 'copy' for copying an existing job
-  'body': "body_example", // String | Job configuration in config.xml format
-  'jenkinsCrumb': "jenkinsCrumb_example" // String | CSRF protection token
-  'contentType': "contentType_example" // String | Content type header application/xml
+  'jenkinsCrumb': "jenkinsCrumb_example", // String | CSRF protection token
+  'contentType': "contentType_example", // String | Content type header application/xml
+  'body': "body_example" // String | Job configuration in config.xml format
 };
-
 var callback = function(error, data, response) {
   if (error) {
     console.error(error);
@@ -680,9 +647,9 @@ Name | Type | Description  | Notes
  **name** | **String**| Name of the new job | 
  **from** | **String**| Existing job to copy from | [optional] 
  **mode** | **String**| Set to &#39;copy&#39; for copying an existing job | [optional] 
- **body** | **String**| Job configuration in config.xml format | [optional] 
  **jenkinsCrumb** | **String**| CSRF protection token | [optional] 
  **contentType** | **String**| Content type header application/xml | [optional] 
+ **body** | **String**| Job configuration in config.xml format | [optional] 
 
 ### Return type
 
@@ -694,8 +661,8 @@ null (empty response body)
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: text/html
+ - **Content-Type**: application/json
+ - **Accept**: */*
 
 <a name="postCreateView"></a>
 # **postCreateView**
@@ -716,15 +683,12 @@ jenkins_auth.username = 'YOUR USERNAME';
 jenkins_auth.password = 'YOUR PASSWORD';
 
 var apiInstance = new SwaggyJenkins.RemoteAccessApi();
-
 var name = "name_example"; // String | Name of the new view
-
-var opts = { 
-  'body': "body_example", // String | View configuration in config.xml format
-  'jenkinsCrumb': "jenkinsCrumb_example" // String | CSRF protection token
-  'contentType': "contentType_example" // String | Content type header application/xml
+var opts = {
+  'jenkinsCrumb': "jenkinsCrumb_example", // String | CSRF protection token
+  'contentType': "contentType_example", // String | Content type header application/xml
+  'body': "body_example" // String | View configuration in config.xml format
 };
-
 var callback = function(error, data, response) {
   if (error) {
     console.error(error);
@@ -740,9 +704,9 @@ apiInstance.postCreateView(name, opts, callback);
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **name** | **String**| Name of the new view | 
- **body** | **String**| View configuration in config.xml format | [optional] 
  **jenkinsCrumb** | **String**| CSRF protection token | [optional] 
  **contentType** | **String**| Content type header application/xml | [optional] 
+ **body** | **String**| View configuration in config.xml format | [optional] 
 
 ### Return type
 
@@ -754,8 +718,8 @@ null (empty response body)
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: text/html
+ - **Content-Type**: application/json
+ - **Accept**: */*
 
 <a name="postJobBuild"></a>
 # **postJobBuild**
@@ -776,16 +740,12 @@ jenkins_auth.username = 'YOUR USERNAME';
 jenkins_auth.password = 'YOUR PASSWORD';
 
 var apiInstance = new SwaggyJenkins.RemoteAccessApi();
-
 var name = "name_example"; // String | Name of the job
-
 var json = "json_example"; // String | 
-
-var opts = { 
+var opts = {
   'token': "token_example", // String | 
   'jenkinsCrumb': "jenkinsCrumb_example" // String | CSRF protection token
 };
-
 var callback = function(error, data, response) {
   if (error) {
     console.error(error);
@@ -837,15 +797,11 @@ jenkins_auth.username = 'YOUR USERNAME';
 jenkins_auth.password = 'YOUR PASSWORD';
 
 var apiInstance = new SwaggyJenkins.RemoteAccessApi();
-
 var name = "name_example"; // String | Name of the job
-
 var body = "body_example"; // String | Job configuration in config.xml format
-
-var opts = { 
+var opts = {
   'jenkinsCrumb': "jenkinsCrumb_example" // String | CSRF protection token
 };
-
 var callback = function(error, data, response) {
   if (error) {
     console.error(error);
@@ -874,12 +830,12 @@ null (empty response body)
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: text/xml
+ - **Content-Type**: application/json
+ - **Accept**: */*
 
 <a name="postJobDelete"></a>
 # **postJobDelete**
-> postJobDelete(name, , opts)
+> postJobDelete(name, opts)
 
 
 
@@ -896,13 +852,10 @@ jenkins_auth.username = 'YOUR USERNAME';
 jenkins_auth.password = 'YOUR PASSWORD';
 
 var apiInstance = new SwaggyJenkins.RemoteAccessApi();
-
 var name = "name_example"; // String | Name of the job
-
-var opts = { 
+var opts = {
   'jenkinsCrumb': "jenkinsCrumb_example" // String | CSRF protection token
 };
-
 var callback = function(error, data, response) {
   if (error) {
     console.error(error);
@@ -910,7 +863,7 @@ var callback = function(error, data, response) {
     console.log('API called successfully.');
   }
 };
-apiInstance.postJobDelete(name, , opts, callback);
+apiInstance.postJobDelete(name, opts, callback);
 ```
 
 ### Parameters
@@ -935,7 +888,7 @@ null (empty response body)
 
 <a name="postJobDisable"></a>
 # **postJobDisable**
-> postJobDisable(name, , opts)
+> postJobDisable(name, opts)
 
 
 
@@ -952,13 +905,10 @@ jenkins_auth.username = 'YOUR USERNAME';
 jenkins_auth.password = 'YOUR PASSWORD';
 
 var apiInstance = new SwaggyJenkins.RemoteAccessApi();
-
 var name = "name_example"; // String | Name of the job
-
-var opts = { 
+var opts = {
   'jenkinsCrumb': "jenkinsCrumb_example" // String | CSRF protection token
 };
-
 var callback = function(error, data, response) {
   if (error) {
     console.error(error);
@@ -966,7 +916,7 @@ var callback = function(error, data, response) {
     console.log('API called successfully.');
   }
 };
-apiInstance.postJobDisable(name, , opts, callback);
+apiInstance.postJobDisable(name, opts, callback);
 ```
 
 ### Parameters
@@ -991,7 +941,7 @@ null (empty response body)
 
 <a name="postJobEnable"></a>
 # **postJobEnable**
-> postJobEnable(name, , opts)
+> postJobEnable(name, opts)
 
 
 
@@ -1008,13 +958,10 @@ jenkins_auth.username = 'YOUR USERNAME';
 jenkins_auth.password = 'YOUR PASSWORD';
 
 var apiInstance = new SwaggyJenkins.RemoteAccessApi();
-
 var name = "name_example"; // String | Name of the job
-
-var opts = { 
+var opts = {
   'jenkinsCrumb': "jenkinsCrumb_example" // String | CSRF protection token
 };
-
 var callback = function(error, data, response) {
   if (error) {
     console.error(error);
@@ -1022,7 +969,7 @@ var callback = function(error, data, response) {
     console.log('API called successfully.');
   }
 };
-apiInstance.postJobEnable(name, , opts, callback);
+apiInstance.postJobEnable(name, opts, callback);
 ```
 
 ### Parameters
@@ -1047,7 +994,7 @@ null (empty response body)
 
 <a name="postJobLastBuildStop"></a>
 # **postJobLastBuildStop**
-> postJobLastBuildStop(name, , opts)
+> postJobLastBuildStop(name, opts)
 
 
 
@@ -1064,13 +1011,10 @@ jenkins_auth.username = 'YOUR USERNAME';
 jenkins_auth.password = 'YOUR PASSWORD';
 
 var apiInstance = new SwaggyJenkins.RemoteAccessApi();
-
 var name = "name_example"; // String | Name of the job
-
-var opts = { 
+var opts = {
   'jenkinsCrumb': "jenkinsCrumb_example" // String | CSRF protection token
 };
-
 var callback = function(error, data, response) {
   if (error) {
     console.error(error);
@@ -1078,7 +1022,7 @@ var callback = function(error, data, response) {
     console.log('API called successfully.');
   }
 };
-apiInstance.postJobLastBuildStop(name, , opts, callback);
+apiInstance.postJobLastBuildStop(name, opts, callback);
 ```
 
 ### Parameters
@@ -1120,15 +1064,11 @@ jenkins_auth.username = 'YOUR USERNAME';
 jenkins_auth.password = 'YOUR PASSWORD';
 
 var apiInstance = new SwaggyJenkins.RemoteAccessApi();
-
 var name = "name_example"; // String | Name of the view
-
 var body = "body_example"; // String | View configuration in config.xml format
-
-var opts = { 
+var opts = {
   'jenkinsCrumb': "jenkinsCrumb_example" // String | CSRF protection token
 };
-
 var callback = function(error, data, response) {
   if (error) {
     console.error(error);
@@ -1157,6 +1097,6 @@ null (empty response body)
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Content-Type**: application/json
+ - **Accept**: */*
 

@@ -7,6 +7,8 @@ Method | HTTP request | Description
 [**deletePipelineQueueItem**](BlueOceanApi.md#deletePipelineQueueItem) | **DELETE** /blue/rest/organizations/{organization}/pipelines/{pipeline}/queue/{queue} | 
 [**getAuthenticatedUser**](BlueOceanApi.md#getAuthenticatedUser) | **GET** /blue/rest/organizations/{organization}/user/ | 
 [**getClasses**](BlueOceanApi.md#getClasses) | **GET** /blue/rest/classes/{class} | 
+[**getJsonWebKey**](BlueOceanApi.md#getJsonWebKey) | **GET** /jwt-auth/jwks/{key} | 
+[**getJsonWebToken**](BlueOceanApi.md#getJsonWebToken) | **GET** /jwt-auth/token | 
 [**getOrganisation**](BlueOceanApi.md#getOrganisation) | **GET** /blue/rest/organizations/{organization} | 
 [**getOrganisations**](BlueOceanApi.md#getOrganisations) | **GET** /blue/rest/organizations/ | 
 [**getPipeline**](BlueOceanApi.md#getPipeline) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline} | 
@@ -60,14 +62,9 @@ jenkins_auth.username = 'YOUR USERNAME';
 jenkins_auth.password = 'YOUR PASSWORD';
 
 var apiInstance = new SwaggyJenkins.BlueOceanApi();
-
 var organization = "organization_example"; // String | Name of the organization
-
 var pipeline = "pipeline_example"; // String | Name of the pipeline
-
 var queue = "queue_example"; // String | Name of the queue item
-
-
 var callback = function(error, data, response) {
   if (error) {
     console.error(error);
@@ -97,11 +94,11 @@ null (empty response body)
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json
+ - **Accept**: Not defined
 
 <a name="getAuthenticatedUser"></a>
 # **getAuthenticatedUser**
-> User getAuthenticatedUser(organization, )
+> User getAuthenticatedUser(organization)
 
 
 
@@ -118,10 +115,7 @@ jenkins_auth.username = 'YOUR USERNAME';
 jenkins_auth.password = 'YOUR PASSWORD';
 
 var apiInstance = new SwaggyJenkins.BlueOceanApi();
-
 var organization = "organization_example"; // String | Name of the organization
-
-
 var callback = function(error, data, response) {
   if (error) {
     console.error(error);
@@ -129,7 +123,7 @@ var callback = function(error, data, response) {
     console.log('API called successfully. Returned data: ' + data);
   }
 };
-apiInstance.getAuthenticatedUser(organization, , callback);
+apiInstance.getAuthenticatedUser(organization, callback);
 ```
 
 ### Parameters
@@ -153,7 +147,7 @@ Name | Type | Description  | Notes
 
 <a name="getClasses"></a>
 # **getClasses**
-> &#39;String&#39; getClasses(_class)
+> String getClasses(_class)
 
 
 
@@ -170,10 +164,7 @@ jenkins_auth.username = 'YOUR USERNAME';
 jenkins_auth.password = 'YOUR PASSWORD';
 
 var apiInstance = new SwaggyJenkins.BlueOceanApi();
-
 var _class = "_class_example"; // String | Name of the class
-
-
 var callback = function(error, data, response) {
   if (error) {
     console.error(error);
@@ -192,7 +183,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**&#39;String&#39;**
+**String**
 
 ### Authorization
 
@@ -203,9 +194,99 @@ Name | Type | Description  | Notes
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
+<a name="getJsonWebKey"></a>
+# **getJsonWebKey**
+> String getJsonWebKey(key)
+
+
+
+Retrieve JSON Web Key
+
+### Example
+```javascript
+var SwaggyJenkins = require('swaggy-jenkins');
+
+var apiInstance = new SwaggyJenkins.BlueOceanApi();
+var key = 56; // Number | Key ID received as part of JWT header field kid
+var callback = function(error, data, response) {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully. Returned data: ' + data);
+  }
+};
+apiInstance.getJsonWebKey(key, callback);
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **key** | **Number**| Key ID received as part of JWT header field kid | 
+
+### Return type
+
+**String**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+<a name="getJsonWebToken"></a>
+# **getJsonWebToken**
+> String getJsonWebToken(opts)
+
+
+
+Retrieve JSON Web Token
+
+### Example
+```javascript
+var SwaggyJenkins = require('swaggy-jenkins');
+
+var apiInstance = new SwaggyJenkins.BlueOceanApi();
+var opts = {
+  'expiryTimeInMins': 56, // Number | Token expiry time in minutes, default: 30 minutes
+  'maxExpiryTimeInMins': 56 // Number | Maximum token expiry time in minutes, default: 480 minutes
+};
+var callback = function(error, data, response) {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully. Returned data: ' + data);
+  }
+};
+apiInstance.getJsonWebToken(opts, callback);
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **expiryTimeInMins** | **Number**| Token expiry time in minutes, default: 30 minutes | [optional] 
+ **maxExpiryTimeInMins** | **Number**| Maximum token expiry time in minutes, default: 480 minutes | [optional] 
+
+### Return type
+
+**String**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
 <a name="getOrganisation"></a>
 # **getOrganisation**
-> Organisation getOrganisation(organization, )
+> Organisation getOrganisation(organization)
 
 
 
@@ -222,10 +303,7 @@ jenkins_auth.username = 'YOUR USERNAME';
 jenkins_auth.password = 'YOUR PASSWORD';
 
 var apiInstance = new SwaggyJenkins.BlueOceanApi();
-
 var organization = "organization_example"; // String | Name of the organization
-
-
 var callback = function(error, data, response) {
   if (error) {
     console.error(error);
@@ -233,7 +311,7 @@ var callback = function(error, data, response) {
     console.log('API called successfully. Returned data: ' + data);
   }
 };
-apiInstance.getOrganisation(organization, , callback);
+apiInstance.getOrganisation(organization, callback);
 ```
 
 ### Parameters
@@ -274,7 +352,6 @@ jenkins_auth.username = 'YOUR USERNAME';
 jenkins_auth.password = 'YOUR PASSWORD';
 
 var apiInstance = new SwaggyJenkins.BlueOceanApi();
-
 var callback = function(error, data, response) {
   if (error) {
     console.error(error);
@@ -303,7 +380,7 @@ This endpoint does not need any parameter.
 
 <a name="getPipeline"></a>
 # **getPipeline**
-> Pipeline getPipeline(organization, pipeline, )
+> Pipeline getPipeline(organization, pipeline)
 
 
 
@@ -320,12 +397,8 @@ jenkins_auth.username = 'YOUR USERNAME';
 jenkins_auth.password = 'YOUR PASSWORD';
 
 var apiInstance = new SwaggyJenkins.BlueOceanApi();
-
 var organization = "organization_example"; // String | Name of the organization
-
 var pipeline = "pipeline_example"; // String | Name of the pipeline
-
-
 var callback = function(error, data, response) {
   if (error) {
     console.error(error);
@@ -333,7 +406,7 @@ var callback = function(error, data, response) {
     console.log('API called successfully. Returned data: ' + data);
   }
 };
-apiInstance.getPipeline(organization, pipeline, , callback);
+apiInstance.getPipeline(organization, pipeline, callback);
 ```
 
 ### Parameters
@@ -358,7 +431,7 @@ Name | Type | Description  | Notes
 
 <a name="getPipelineActivities"></a>
 # **getPipelineActivities**
-> PipelineActivities getPipelineActivities(organization, pipeline, )
+> PipelineActivities getPipelineActivities(organization, pipeline)
 
 
 
@@ -375,12 +448,8 @@ jenkins_auth.username = 'YOUR USERNAME';
 jenkins_auth.password = 'YOUR PASSWORD';
 
 var apiInstance = new SwaggyJenkins.BlueOceanApi();
-
 var organization = "organization_example"; // String | Name of the organization
-
 var pipeline = "pipeline_example"; // String | Name of the pipeline
-
-
 var callback = function(error, data, response) {
   if (error) {
     console.error(error);
@@ -388,7 +457,7 @@ var callback = function(error, data, response) {
     console.log('API called successfully. Returned data: ' + data);
   }
 };
-apiInstance.getPipelineActivities(organization, pipeline, , callback);
+apiInstance.getPipelineActivities(organization, pipeline, callback);
 ```
 
 ### Parameters
@@ -413,7 +482,7 @@ Name | Type | Description  | Notes
 
 <a name="getPipelineBranch"></a>
 # **getPipelineBranch**
-> BranchImpl getPipelineBranch(organization, pipeline, branch, )
+> BranchImpl getPipelineBranch(organization, pipeline, branch)
 
 
 
@@ -430,14 +499,9 @@ jenkins_auth.username = 'YOUR USERNAME';
 jenkins_auth.password = 'YOUR PASSWORD';
 
 var apiInstance = new SwaggyJenkins.BlueOceanApi();
-
 var organization = "organization_example"; // String | Name of the organization
-
 var pipeline = "pipeline_example"; // String | Name of the pipeline
-
 var branch = "branch_example"; // String | Name of the branch
-
-
 var callback = function(error, data, response) {
   if (error) {
     console.error(error);
@@ -445,7 +509,7 @@ var callback = function(error, data, response) {
     console.log('API called successfully. Returned data: ' + data);
   }
 };
-apiInstance.getPipelineBranch(organization, pipeline, branch, , callback);
+apiInstance.getPipelineBranch(organization, pipeline, branch, callback);
 ```
 
 ### Parameters
@@ -488,16 +552,10 @@ jenkins_auth.username = 'YOUR USERNAME';
 jenkins_auth.password = 'YOUR PASSWORD';
 
 var apiInstance = new SwaggyJenkins.BlueOceanApi();
-
 var organization = "organization_example"; // String | Name of the organization
-
 var pipeline = "pipeline_example"; // String | Name of the pipeline
-
 var branch = "branch_example"; // String | Name of the branch
-
 var run = "run_example"; // String | Name of the run
-
-
 var callback = function(error, data, response) {
   if (error) {
     console.error(error);
@@ -532,7 +590,7 @@ Name | Type | Description  | Notes
 
 <a name="getPipelineBranches"></a>
 # **getPipelineBranches**
-> MultibranchPipeline getPipelineBranches(organization, pipeline, )
+> MultibranchPipeline getPipelineBranches(organization, pipeline)
 
 
 
@@ -549,12 +607,8 @@ jenkins_auth.username = 'YOUR USERNAME';
 jenkins_auth.password = 'YOUR PASSWORD';
 
 var apiInstance = new SwaggyJenkins.BlueOceanApi();
-
 var organization = "organization_example"; // String | Name of the organization
-
 var pipeline = "pipeline_example"; // String | Name of the pipeline
-
-
 var callback = function(error, data, response) {
   if (error) {
     console.error(error);
@@ -562,7 +616,7 @@ var callback = function(error, data, response) {
     console.log('API called successfully. Returned data: ' + data);
   }
 };
-apiInstance.getPipelineBranches(organization, pipeline, , callback);
+apiInstance.getPipelineBranches(organization, pipeline, callback);
 ```
 
 ### Parameters
@@ -604,12 +658,8 @@ jenkins_auth.username = 'YOUR USERNAME';
 jenkins_auth.password = 'YOUR PASSWORD';
 
 var apiInstance = new SwaggyJenkins.BlueOceanApi();
-
 var organization = "organization_example"; // String | Name of the organization
-
 var folder = "folder_example"; // String | Name of the folder
-
-
 var callback = function(error, data, response) {
   if (error) {
     console.error(error);
@@ -659,14 +709,9 @@ jenkins_auth.username = 'YOUR USERNAME';
 jenkins_auth.password = 'YOUR PASSWORD';
 
 var apiInstance = new SwaggyJenkins.BlueOceanApi();
-
 var organization = "organization_example"; // String | Name of the organization
-
 var pipeline = "pipeline_example"; // String | Name of the pipeline
-
 var folder = "folder_example"; // String | Name of the folder
-
-
 var callback = function(error, data, response) {
   if (error) {
     console.error(error);
@@ -700,7 +745,7 @@ Name | Type | Description  | Notes
 
 <a name="getPipelineQueue"></a>
 # **getPipelineQueue**
-> PipelineQueue getPipelineQueue(organization, pipeline, )
+> PipelineQueue getPipelineQueue(organization, pipeline)
 
 
 
@@ -717,12 +762,8 @@ jenkins_auth.username = 'YOUR USERNAME';
 jenkins_auth.password = 'YOUR PASSWORD';
 
 var apiInstance = new SwaggyJenkins.BlueOceanApi();
-
 var organization = "organization_example"; // String | Name of the organization
-
 var pipeline = "pipeline_example"; // String | Name of the pipeline
-
-
 var callback = function(error, data, response) {
   if (error) {
     console.error(error);
@@ -730,7 +771,7 @@ var callback = function(error, data, response) {
     console.log('API called successfully. Returned data: ' + data);
   }
 };
-apiInstance.getPipelineQueue(organization, pipeline, , callback);
+apiInstance.getPipelineQueue(organization, pipeline, callback);
 ```
 
 ### Parameters
@@ -772,14 +813,9 @@ jenkins_auth.username = 'YOUR USERNAME';
 jenkins_auth.password = 'YOUR PASSWORD';
 
 var apiInstance = new SwaggyJenkins.BlueOceanApi();
-
 var organization = "organization_example"; // String | Name of the organization
-
 var pipeline = "pipeline_example"; // String | Name of the pipeline
-
 var run = "run_example"; // String | Name of the run
-
-
 var callback = function(error, data, response) {
   if (error) {
     console.error(error);
@@ -813,7 +849,7 @@ Name | Type | Description  | Notes
 
 <a name="getPipelineRunLog"></a>
 # **getPipelineRunLog**
-> &#39;String&#39; getPipelineRunLog(organization, pipeline, run, opts)
+> String getPipelineRunLog(organization, pipeline, run, opts)
 
 
 
@@ -830,18 +866,13 @@ jenkins_auth.username = 'YOUR USERNAME';
 jenkins_auth.password = 'YOUR PASSWORD';
 
 var apiInstance = new SwaggyJenkins.BlueOceanApi();
-
 var organization = "organization_example"; // String | Name of the organization
-
 var pipeline = "pipeline_example"; // String | Name of the pipeline
-
 var run = "run_example"; // String | Name of the run
-
-var opts = { 
+var opts = {
   'start': 56, // Number | Start position of the log
   'download': true // Boolean | Set to true in order to download the file, otherwise it's passed as a response body
 };
-
 var callback = function(error, data, response) {
   if (error) {
     console.error(error);
@@ -864,7 +895,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**&#39;String&#39;**
+**String**
 
 ### Authorization
 
@@ -877,7 +908,7 @@ Name | Type | Description  | Notes
 
 <a name="getPipelineRunNode"></a>
 # **getPipelineRunNode**
-> PipelineRunNode getPipelineRunNode(organization, pipeline, runnode, )
+> PipelineRunNode getPipelineRunNode(organization, pipeline, run, node)
 
 
 
@@ -894,16 +925,10 @@ jenkins_auth.username = 'YOUR USERNAME';
 jenkins_auth.password = 'YOUR PASSWORD';
 
 var apiInstance = new SwaggyJenkins.BlueOceanApi();
-
 var organization = "organization_example"; // String | Name of the organization
-
 var pipeline = "pipeline_example"; // String | Name of the pipeline
-
 var run = "run_example"; // String | Name of the run
-
 var node = "node_example"; // String | Name of the node
-
-
 var callback = function(error, data, response) {
   if (error) {
     console.error(error);
@@ -911,7 +936,7 @@ var callback = function(error, data, response) {
     console.log('API called successfully. Returned data: ' + data);
   }
 };
-apiInstance.getPipelineRunNode(organization, pipeline, runnode, , callback);
+apiInstance.getPipelineRunNode(organization, pipeline, run, node, callback);
 ```
 
 ### Parameters
@@ -938,7 +963,7 @@ Name | Type | Description  | Notes
 
 <a name="getPipelineRunNodeStep"></a>
 # **getPipelineRunNodeStep**
-> PipelineStepImpl getPipelineRunNodeStep(organization, pipeline, runnode, step)
+> PipelineStepImpl getPipelineRunNodeStep(organization, pipeline, run, node, step)
 
 
 
@@ -955,18 +980,11 @@ jenkins_auth.username = 'YOUR USERNAME';
 jenkins_auth.password = 'YOUR PASSWORD';
 
 var apiInstance = new SwaggyJenkins.BlueOceanApi();
-
 var organization = "organization_example"; // String | Name of the organization
-
 var pipeline = "pipeline_example"; // String | Name of the pipeline
-
 var run = "run_example"; // String | Name of the run
-
 var node = "node_example"; // String | Name of the node
-
 var step = "step_example"; // String | Name of the step
-
-
 var callback = function(error, data, response) {
   if (error) {
     console.error(error);
@@ -974,7 +992,7 @@ var callback = function(error, data, response) {
     console.log('API called successfully. Returned data: ' + data);
   }
 };
-apiInstance.getPipelineRunNodeStep(organization, pipeline, runnode, step, callback);
+apiInstance.getPipelineRunNodeStep(organization, pipeline, run, node, step, callback);
 ```
 
 ### Parameters
@@ -1002,7 +1020,7 @@ Name | Type | Description  | Notes
 
 <a name="getPipelineRunNodeStepLog"></a>
 # **getPipelineRunNodeStepLog**
-> &#39;String&#39; getPipelineRunNodeStepLog(organization, pipeline, runnode, step)
+> String getPipelineRunNodeStepLog(organization, pipeline, run, node, step)
 
 
 
@@ -1019,18 +1037,11 @@ jenkins_auth.username = 'YOUR USERNAME';
 jenkins_auth.password = 'YOUR PASSWORD';
 
 var apiInstance = new SwaggyJenkins.BlueOceanApi();
-
 var organization = "organization_example"; // String | Name of the organization
-
 var pipeline = "pipeline_example"; // String | Name of the pipeline
-
 var run = "run_example"; // String | Name of the run
-
 var node = "node_example"; // String | Name of the node
-
 var step = "step_example"; // String | Name of the step
-
-
 var callback = function(error, data, response) {
   if (error) {
     console.error(error);
@@ -1038,7 +1049,7 @@ var callback = function(error, data, response) {
     console.log('API called successfully. Returned data: ' + data);
   }
 };
-apiInstance.getPipelineRunNodeStepLog(organization, pipeline, runnode, step, callback);
+apiInstance.getPipelineRunNodeStepLog(organization, pipeline, run, node, step, callback);
 ```
 
 ### Parameters
@@ -1053,7 +1064,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**&#39;String&#39;**
+**String**
 
 ### Authorization
 
@@ -1066,7 +1077,7 @@ Name | Type | Description  | Notes
 
 <a name="getPipelineRunNodeSteps"></a>
 # **getPipelineRunNodeSteps**
-> PipelineRunNodeSteps getPipelineRunNodeSteps(organization, pipeline, runnode, )
+> PipelineRunNodeSteps getPipelineRunNodeSteps(organization, pipeline, run, node)
 
 
 
@@ -1083,16 +1094,10 @@ jenkins_auth.username = 'YOUR USERNAME';
 jenkins_auth.password = 'YOUR PASSWORD';
 
 var apiInstance = new SwaggyJenkins.BlueOceanApi();
-
 var organization = "organization_example"; // String | Name of the organization
-
 var pipeline = "pipeline_example"; // String | Name of the pipeline
-
 var run = "run_example"; // String | Name of the run
-
 var node = "node_example"; // String | Name of the node
-
-
 var callback = function(error, data, response) {
   if (error) {
     console.error(error);
@@ -1100,7 +1105,7 @@ var callback = function(error, data, response) {
     console.log('API called successfully. Returned data: ' + data);
   }
 };
-apiInstance.getPipelineRunNodeSteps(organization, pipeline, runnode, , callback);
+apiInstance.getPipelineRunNodeSteps(organization, pipeline, run, node, callback);
 ```
 
 ### Parameters
@@ -1144,14 +1149,9 @@ jenkins_auth.username = 'YOUR USERNAME';
 jenkins_auth.password = 'YOUR PASSWORD';
 
 var apiInstance = new SwaggyJenkins.BlueOceanApi();
-
 var organization = "organization_example"; // String | Name of the organization
-
 var pipeline = "pipeline_example"; // String | Name of the pipeline
-
 var run = "run_example"; // String | Name of the run
-
-
 var callback = function(error, data, response) {
   if (error) {
     console.error(error);
@@ -1185,7 +1185,7 @@ Name | Type | Description  | Notes
 
 <a name="getPipelineRuns"></a>
 # **getPipelineRuns**
-> PipelineRuns getPipelineRuns(organization, pipeline, )
+> PipelineRuns getPipelineRuns(organization, pipeline)
 
 
 
@@ -1202,12 +1202,8 @@ jenkins_auth.username = 'YOUR USERNAME';
 jenkins_auth.password = 'YOUR PASSWORD';
 
 var apiInstance = new SwaggyJenkins.BlueOceanApi();
-
 var organization = "organization_example"; // String | Name of the organization
-
 var pipeline = "pipeline_example"; // String | Name of the pipeline
-
-
 var callback = function(error, data, response) {
   if (error) {
     console.error(error);
@@ -1215,7 +1211,7 @@ var callback = function(error, data, response) {
     console.log('API called successfully. Returned data: ' + data);
   }
 };
-apiInstance.getPipelineRuns(organization, pipeline, , callback);
+apiInstance.getPipelineRuns(organization, pipeline, callback);
 ```
 
 ### Parameters
@@ -1240,7 +1236,7 @@ Name | Type | Description  | Notes
 
 <a name="getPipelines"></a>
 # **getPipelines**
-> Pipelines getPipelines(organization, )
+> Pipelines getPipelines(organization)
 
 
 
@@ -1257,10 +1253,7 @@ jenkins_auth.username = 'YOUR USERNAME';
 jenkins_auth.password = 'YOUR PASSWORD';
 
 var apiInstance = new SwaggyJenkins.BlueOceanApi();
-
 var organization = "organization_example"; // String | Name of the organization
-
-
 var callback = function(error, data, response) {
   if (error) {
     console.error(error);
@@ -1268,7 +1261,7 @@ var callback = function(error, data, response) {
     console.log('API called successfully. Returned data: ' + data);
   }
 };
-apiInstance.getPipelines(organization, , callback);
+apiInstance.getPipelines(organization, callback);
 ```
 
 ### Parameters
@@ -1292,7 +1285,7 @@ Name | Type | Description  | Notes
 
 <a name="getSCM"></a>
 # **getSCM**
-> GithubScm getSCM(organization, scm, )
+> GithubScm getSCM(organization, scm)
 
 
 
@@ -1309,12 +1302,8 @@ jenkins_auth.username = 'YOUR USERNAME';
 jenkins_auth.password = 'YOUR PASSWORD';
 
 var apiInstance = new SwaggyJenkins.BlueOceanApi();
-
 var organization = "organization_example"; // String | Name of the organization
-
 var scm = "scm_example"; // String | Name of SCM
-
-
 var callback = function(error, data, response) {
   if (error) {
     console.error(error);
@@ -1322,7 +1311,7 @@ var callback = function(error, data, response) {
     console.log('API called successfully. Returned data: ' + data);
   }
 };
-apiInstance.getSCM(organization, scm, , callback);
+apiInstance.getSCM(organization, scm, callback);
 ```
 
 ### Parameters
@@ -1347,7 +1336,7 @@ Name | Type | Description  | Notes
 
 <a name="getSCMOrganisationRepositories"></a>
 # **getSCMOrganisationRepositories**
-> ScmOrganisations getSCMOrganisationRepositories(organization, scm, scmOrganisation, , opts)
+> ScmOrganisations getSCMOrganisationRepositories(organization, scm, scmOrganisation, opts)
 
 
 
@@ -1364,19 +1353,14 @@ jenkins_auth.username = 'YOUR USERNAME';
 jenkins_auth.password = 'YOUR PASSWORD';
 
 var apiInstance = new SwaggyJenkins.BlueOceanApi();
-
 var organization = "organization_example"; // String | Name of the organization
-
 var scm = "scm_example"; // String | Name of SCM
-
 var scmOrganisation = "scmOrganisation_example"; // String | Name of the SCM organization
-
-var opts = { 
+var opts = {
   'credentialId': "credentialId_example", // String | Credential ID
   'pageSize': 56, // Number | Number of items in a page
   'pageNumber': 56 // Number | Page number
 };
-
 var callback = function(error, data, response) {
   if (error) {
     console.error(error);
@@ -1384,7 +1368,7 @@ var callback = function(error, data, response) {
     console.log('API called successfully. Returned data: ' + data);
   }
 };
-apiInstance.getSCMOrganisationRepositories(organization, scm, scmOrganisation, , opts, callback);
+apiInstance.getSCMOrganisationRepositories(organization, scm, scmOrganisation, opts, callback);
 ```
 
 ### Parameters
@@ -1430,19 +1414,13 @@ jenkins_auth.username = 'YOUR USERNAME';
 jenkins_auth.password = 'YOUR PASSWORD';
 
 var apiInstance = new SwaggyJenkins.BlueOceanApi();
-
 var organization = "organization_example"; // String | Name of the organization
-
 var scm = "scm_example"; // String | Name of SCM
-
 var scmOrganisation = "scmOrganisation_example"; // String | Name of the SCM organization
-
 var repository = "repository_example"; // String | Name of the SCM repository
-
-var opts = { 
+var opts = {
   'credentialId': "credentialId_example" // String | Credential ID
 };
-
 var callback = function(error, data, response) {
   if (error) {
     console.error(error);
@@ -1478,7 +1456,7 @@ Name | Type | Description  | Notes
 
 <a name="getSCMOrganisations"></a>
 # **getSCMOrganisations**
-> ScmOrganisations getSCMOrganisations(organization, scm, , opts)
+> ScmOrganisations getSCMOrganisations(organization, scm, opts)
 
 
 
@@ -1495,15 +1473,11 @@ jenkins_auth.username = 'YOUR USERNAME';
 jenkins_auth.password = 'YOUR PASSWORD';
 
 var apiInstance = new SwaggyJenkins.BlueOceanApi();
-
 var organization = "organization_example"; // String | Name of the organization
-
 var scm = "scm_example"; // String | Name of SCM
-
-var opts = { 
+var opts = {
   'credentialId': "credentialId_example" // String | Credential ID
 };
-
 var callback = function(error, data, response) {
   if (error) {
     console.error(error);
@@ -1511,7 +1485,7 @@ var callback = function(error, data, response) {
     console.log('API called successfully. Returned data: ' + data);
   }
 };
-apiInstance.getSCMOrganisations(organization, scm, , opts, callback);
+apiInstance.getSCMOrganisations(organization, scm, opts, callback);
 ```
 
 ### Parameters
@@ -1554,12 +1528,8 @@ jenkins_auth.username = 'YOUR USERNAME';
 jenkins_auth.password = 'YOUR PASSWORD';
 
 var apiInstance = new SwaggyJenkins.BlueOceanApi();
-
 var organization = "organization_example"; // String | Name of the organization
-
 var user = "user_example"; // String | Name of the user
-
-
 var callback = function(error, data, response) {
   if (error) {
     console.error(error);
@@ -1609,10 +1579,7 @@ jenkins_auth.username = 'YOUR USERNAME';
 jenkins_auth.password = 'YOUR PASSWORD';
 
 var apiInstance = new SwaggyJenkins.BlueOceanApi();
-
 var user = "user_example"; // String | Name of the user
-
-
 var callback = function(error, data, response) {
   if (error) {
     console.error(error);
@@ -1644,7 +1611,7 @@ Name | Type | Description  | Notes
 
 <a name="getUsers"></a>
 # **getUsers**
-> User getUsers(organization, )
+> User getUsers(organization)
 
 
 
@@ -1661,10 +1628,7 @@ jenkins_auth.username = 'YOUR USERNAME';
 jenkins_auth.password = 'YOUR PASSWORD';
 
 var apiInstance = new SwaggyJenkins.BlueOceanApi();
-
 var organization = "organization_example"; // String | Name of the organization
-
-
 var callback = function(error, data, response) {
   if (error) {
     console.error(error);
@@ -1672,7 +1636,7 @@ var callback = function(error, data, response) {
     console.log('API called successfully. Returned data: ' + data);
   }
 };
-apiInstance.getUsers(organization, , callback);
+apiInstance.getUsers(organization, callback);
 ```
 
 ### Parameters
@@ -1713,14 +1677,9 @@ jenkins_auth.username = 'YOUR USERNAME';
 jenkins_auth.password = 'YOUR PASSWORD';
 
 var apiInstance = new SwaggyJenkins.BlueOceanApi();
-
 var organization = "organization_example"; // String | Name of the organization
-
 var pipeline = "pipeline_example"; // String | Name of the pipeline
-
 var run = "run_example"; // String | Name of the run
-
-
 var callback = function(error, data, response) {
   if (error) {
     console.error(error);
@@ -1754,7 +1713,7 @@ Name | Type | Description  | Notes
 
 <a name="postPipelineRuns"></a>
 # **postPipelineRuns**
-> QueueItemImpl postPipelineRuns(organization, pipeline, )
+> QueueItemImpl postPipelineRuns(organization, pipeline)
 
 
 
@@ -1771,12 +1730,8 @@ jenkins_auth.username = 'YOUR USERNAME';
 jenkins_auth.password = 'YOUR PASSWORD';
 
 var apiInstance = new SwaggyJenkins.BlueOceanApi();
-
 var organization = "organization_example"; // String | Name of the organization
-
 var pipeline = "pipeline_example"; // String | Name of the pipeline
-
-
 var callback = function(error, data, response) {
   if (error) {
     console.error(error);
@@ -1784,7 +1739,7 @@ var callback = function(error, data, response) {
     console.log('API called successfully. Returned data: ' + data);
   }
 };
-apiInstance.postPipelineRuns(organization, pipeline, , callback);
+apiInstance.postPipelineRuns(organization, pipeline, callback);
 ```
 
 ### Parameters
@@ -1826,14 +1781,9 @@ jenkins_auth.username = 'YOUR USERNAME';
 jenkins_auth.password = 'YOUR PASSWORD';
 
 var apiInstance = new SwaggyJenkins.BlueOceanApi();
-
 var organization = "organization_example"; // String | Name of the organization
-
 var pipeline = "pipeline_example"; // String | Name of the pipeline
-
-var body = new SwaggyJenkins.body(); // Body | Set JSON string body to {\"favorite\": true} to favorite, set value to false to unfavorite
-
-
+var body = new SwaggyJenkins.Body(); // Body | Set JSON string body to {"favorite": true} to favorite, set value to false to unfavorite
 var callback = function(error, data, response) {
   if (error) {
     console.error(error);
@@ -1850,7 +1800,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **organization** | **String**| Name of the organization | 
  **pipeline** | **String**| Name of the pipeline | 
- **body** | [**Body**](body.md)| Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite | 
+ **body** | [**Body**](Body.md)| Set JSON string body to {&quot;favorite&quot;: true} to favorite, set value to false to unfavorite | 
 
 ### Return type
 
@@ -1862,7 +1812,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 <a name="putPipelineRun"></a>
@@ -1884,18 +1834,13 @@ jenkins_auth.username = 'YOUR USERNAME';
 jenkins_auth.password = 'YOUR PASSWORD';
 
 var apiInstance = new SwaggyJenkins.BlueOceanApi();
-
 var organization = "organization_example"; // String | Name of the organization
-
 var pipeline = "pipeline_example"; // String | Name of the pipeline
-
 var run = "run_example"; // String | Name of the run
-
-var opts = { 
+var opts = {
   'blocking': "blocking_example", // String | Set to true to make blocking stop, default: false
   'timeOutInSecs': 56 // Number | Timeout in seconds, default: 10 seconds
 };
-
 var callback = function(error, data, response) {
   if (error) {
     console.error(error);
@@ -1931,7 +1876,7 @@ Name | Type | Description  | Notes
 
 <a name="search"></a>
 # **search**
-> &#39;String&#39; search(q)
+> String search(q)
 
 
 
@@ -1948,10 +1893,7 @@ jenkins_auth.username = 'YOUR USERNAME';
 jenkins_auth.password = 'YOUR PASSWORD';
 
 var apiInstance = new SwaggyJenkins.BlueOceanApi();
-
 var q = "q_example"; // String | Query string
-
-
 var callback = function(error, data, response) {
   if (error) {
     console.error(error);
@@ -1970,7 +1912,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**&#39;String&#39;**
+**String**
 
 ### Authorization
 
@@ -1983,7 +1925,7 @@ Name | Type | Description  | Notes
 
 <a name="searchClasses"></a>
 # **searchClasses**
-> &#39;String&#39; searchClasses(q)
+> String searchClasses(q)
 
 
 
@@ -2000,10 +1942,7 @@ jenkins_auth.username = 'YOUR USERNAME';
 jenkins_auth.password = 'YOUR PASSWORD';
 
 var apiInstance = new SwaggyJenkins.BlueOceanApi();
-
 var q = "q_example"; // String | Query string containing an array of class names
-
-
 var callback = function(error, data, response) {
   if (error) {
     console.error(error);
@@ -2022,7 +1961,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**&#39;String&#39;**
+**String**
 
 ### Authorization
 
