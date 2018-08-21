@@ -1,3 +1,6 @@
+### 1.0.0
+* Upgrade spec to OpenAPI v3
+
 ### 0.2.0
 * Add JWT auth security definition and paths
 * Fix duplicated JWT-related operation IDs #2
