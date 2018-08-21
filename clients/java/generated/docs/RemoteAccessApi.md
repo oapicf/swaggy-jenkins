@@ -663,7 +663,7 @@ null (empty response body)
 
 <a name="postCreateItem"></a>
 # **postCreateItem**
-> postCreateItem(name, from, mode, body, jenkinsCrumb, contentType)
+> postCreateItem(name, from, mode, jenkinsCrumb, contentType, body)
 
 
 
@@ -689,11 +689,11 @@ RemoteAccessApi apiInstance = new RemoteAccessApi();
 String name = "name_example"; // String | Name of the new job
 String from = "from_example"; // String | Existing job to copy from
 String mode = "mode_example"; // String | Set to 'copy' for copying an existing job
-String body = "body_example"; // String | Job configuration in config.xml format
 String jenkinsCrumb = "jenkinsCrumb_example"; // String | CSRF protection token
 String contentType = "contentType_example"; // String | Content type header application/xml
+String body = "body_example"; // String | Job configuration in config.xml format
 try {
-    apiInstance.postCreateItem(name, from, mode, body, jenkinsCrumb, contentType);
+    apiInstance.postCreateItem(name, from, mode, jenkinsCrumb, contentType, body);
 } catch (ApiException e) {
     System.err.println("Exception when calling RemoteAccessApi#postCreateItem");
     e.printStackTrace();
@@ -707,9 +707,9 @@ Name | Type | Description  | Notes
  **name** | **String**| Name of the new job |
  **from** | **String**| Existing job to copy from | [optional]
  **mode** | **String**| Set to &#39;copy&#39; for copying an existing job | [optional]
- **body** | **String**| Job configuration in config.xml format | [optional]
  **jenkinsCrumb** | **String**| CSRF protection token | [optional]
  **contentType** | **String**| Content type header application/xml | [optional]
+ **body** | **String**| Job configuration in config.xml format | [optional]
 
 ### Return type
 
@@ -721,12 +721,12 @@ null (empty response body)
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: text/html
+ - **Content-Type**: application/json
+ - **Accept**: */*
 
 <a name="postCreateView"></a>
 # **postCreateView**
-> postCreateView(name, body, jenkinsCrumb, contentType)
+> postCreateView(name, jenkinsCrumb, contentType, body)
 
 
 
@@ -750,11 +750,11 @@ jenkins_auth.setPassword("YOUR PASSWORD");
 
 RemoteAccessApi apiInstance = new RemoteAccessApi();
 String name = "name_example"; // String | Name of the new view
-String body = "body_example"; // String | View configuration in config.xml format
 String jenkinsCrumb = "jenkinsCrumb_example"; // String | CSRF protection token
 String contentType = "contentType_example"; // String | Content type header application/xml
+String body = "body_example"; // String | View configuration in config.xml format
 try {
-    apiInstance.postCreateView(name, body, jenkinsCrumb, contentType);
+    apiInstance.postCreateView(name, jenkinsCrumb, contentType, body);
 } catch (ApiException e) {
     System.err.println("Exception when calling RemoteAccessApi#postCreateView");
     e.printStackTrace();
@@ -766,9 +766,9 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **name** | **String**| Name of the new view |
- **body** | **String**| View configuration in config.xml format | [optional]
  **jenkinsCrumb** | **String**| CSRF protection token | [optional]
  **contentType** | **String**| Content type header application/xml | [optional]
+ **body** | **String**| View configuration in config.xml format | [optional]
 
 ### Return type
 
@@ -780,8 +780,8 @@ null (empty response body)
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: text/html
+ - **Content-Type**: application/json
+ - **Accept**: */*
 
 <a name="postJobBuild"></a>
 # **postJobBuild**
@@ -896,8 +896,8 @@ null (empty response body)
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: text/xml
+ - **Content-Type**: application/json
+ - **Accept**: */*
 
 <a name="postJobDelete"></a>
 # **postJobDelete**
@@ -1173,6 +1173,6 @@ null (empty response body)
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Content-Type**: application/json
+ - **Accept**: */*
 

@@ -46,9 +46,7 @@ SwaggyJenkinsClient.configure do |config|
 end
 
 api_instance = SwaggyJenkinsClient::RemoteAccessApi.new
-
 depth = 56 # Integer | Recursion depth in response model
-
 
 begin
   result = api_instance.get_computer(depth)
@@ -172,7 +170,7 @@ This endpoint does not need any parameter.
 
 
 # **get_job**
-> FreeStyleProject get_job(name, )
+> FreeStyleProject get_job(name)
 
 
 
@@ -190,12 +188,10 @@ SwaggyJenkinsClient.configure do |config|
 end
 
 api_instance = SwaggyJenkinsClient::RemoteAccessApi.new
-
-name = "name_example" # String | Name of the job
-
+name = 'name_example' # String | Name of the job
 
 begin
-  result = api_instance.get_job(name, )
+  result = api_instance.get_job(name)
   p result
 rescue SwaggyJenkinsClient::ApiError => e
   puts "Exception when calling RemoteAccessApi->get_job: #{e}"
@@ -224,7 +220,7 @@ Name | Type | Description  | Notes
 
 
 # **get_job_config**
-> String get_job_config(name, )
+> String get_job_config(name)
 
 
 
@@ -242,12 +238,10 @@ SwaggyJenkinsClient.configure do |config|
 end
 
 api_instance = SwaggyJenkinsClient::RemoteAccessApi.new
-
-name = "name_example" # String | Name of the job
-
+name = 'name_example' # String | Name of the job
 
 begin
-  result = api_instance.get_job_config(name, )
+  result = api_instance.get_job_config(name)
   p result
 rescue SwaggyJenkinsClient::ApiError => e
   puts "Exception when calling RemoteAccessApi->get_job_config: #{e}"
@@ -276,7 +270,7 @@ Name | Type | Description  | Notes
 
 
 # **get_job_last_build**
-> FreeStyleBuild get_job_last_build(name, )
+> FreeStyleBuild get_job_last_build(name)
 
 
 
@@ -294,12 +288,10 @@ SwaggyJenkinsClient.configure do |config|
 end
 
 api_instance = SwaggyJenkinsClient::RemoteAccessApi.new
-
-name = "name_example" # String | Name of the job
-
+name = 'name_example' # String | Name of the job
 
 begin
-  result = api_instance.get_job_last_build(name, )
+  result = api_instance.get_job_last_build(name)
   p result
 rescue SwaggyJenkinsClient::ApiError => e
   puts "Exception when calling RemoteAccessApi->get_job_last_build: #{e}"
@@ -346,13 +338,9 @@ SwaggyJenkinsClient.configure do |config|
 end
 
 api_instance = SwaggyJenkinsClient::RemoteAccessApi.new
-
-name = "name_example" # String | Name of the job
-
-number = "number_example" # String | Build number
-
-start = "start_example" # String | Starting point of progressive text output
-
+name = 'name_example' # String | Name of the job
+number = 'number_example' # String | Build number
+start = 'start_example' # String | Starting point of progressive text output
 
 begin
   api_instance.get_job_progressive_text(name, number, start)
@@ -449,9 +437,7 @@ SwaggyJenkinsClient.configure do |config|
 end
 
 api_instance = SwaggyJenkinsClient::RemoteAccessApi.new
-
-number = "number_example" # String | Queue number
-
+number = 'number_example' # String | Queue number
 
 begin
   result = api_instance.get_queue_item(number)
@@ -483,7 +469,7 @@ Name | Type | Description  | Notes
 
 
 # **get_view**
-> ListView get_view(name, )
+> ListView get_view(name)
 
 
 
@@ -501,12 +487,10 @@ SwaggyJenkinsClient.configure do |config|
 end
 
 api_instance = SwaggyJenkinsClient::RemoteAccessApi.new
-
-name = "name_example" # String | Name of the view
-
+name = 'name_example' # String | Name of the view
 
 begin
-  result = api_instance.get_view(name, )
+  result = api_instance.get_view(name)
   p result
 rescue SwaggyJenkinsClient::ApiError => e
   puts "Exception when calling RemoteAccessApi->get_view: #{e}"
@@ -535,7 +519,7 @@ Name | Type | Description  | Notes
 
 
 # **get_view_config**
-> String get_view_config(name, )
+> String get_view_config(name)
 
 
 
@@ -553,12 +537,10 @@ SwaggyJenkinsClient.configure do |config|
 end
 
 api_instance = SwaggyJenkinsClient::RemoteAccessApi.new
-
-name = "name_example" # String | Name of the view
-
+name = 'name_example' # String | Name of the view
 
 begin
-  result = api_instance.get_view_config(name, )
+  result = api_instance.get_view_config(name)
   p result
 rescue SwaggyJenkinsClient::ApiError => e
   puts "Exception when calling RemoteAccessApi->get_view_config: #{e}"
@@ -650,15 +632,13 @@ SwaggyJenkinsClient.configure do |config|
 end
 
 api_instance = SwaggyJenkinsClient::RemoteAccessApi.new
-
-name = "name_example" # String | Name of the new job
-
-opts = { 
-  from: "from_example", # String | Existing job to copy from
-  mode: "mode_example", # String | Set to 'copy' for copying an existing job
-  body: "body_example", # String | Job configuration in config.xml format
-  jenkins_crumb: "jenkins_crumb_example" # String | CSRF protection token
-  content_type: "content_type_example" # String | Content type header application/xml
+name = 'name_example' # String | Name of the new job
+opts = {
+  from: 'from_example', # String | Existing job to copy from
+  mode: 'mode_example', # String | Set to 'copy' for copying an existing job
+  jenkins_crumb: 'jenkins_crumb_example', # String | CSRF protection token
+  content_type: 'content_type_example', # String | Content type header application/xml
+  body: 'body_example' # String | Job configuration in config.xml format
 }
 
 begin
@@ -675,9 +655,9 @@ Name | Type | Description  | Notes
  **name** | **String**| Name of the new job | 
  **from** | **String**| Existing job to copy from | [optional] 
  **mode** | **String**| Set to &#39;copy&#39; for copying an existing job | [optional] 
- **body** | **String**| Job configuration in config.xml format | [optional] 
  **jenkins_crumb** | **String**| CSRF protection token | [optional] 
  **content_type** | **String**| Content type header application/xml | [optional] 
+ **body** | **String**| Job configuration in config.xml format | [optional] 
 
 ### Return type
 
@@ -689,8 +669,8 @@ nil (empty response body)
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: text/html
+ - **Content-Type**: application/json
+ - **Accept**: */*
 
 
 
@@ -713,13 +693,11 @@ SwaggyJenkinsClient.configure do |config|
 end
 
 api_instance = SwaggyJenkinsClient::RemoteAccessApi.new
-
-name = "name_example" # String | Name of the new view
-
-opts = { 
-  body: "body_example", # String | View configuration in config.xml format
-  jenkins_crumb: "jenkins_crumb_example" # String | CSRF protection token
-  content_type: "content_type_example" # String | Content type header application/xml
+name = 'name_example' # String | Name of the new view
+opts = {
+  jenkins_crumb: 'jenkins_crumb_example', # String | CSRF protection token
+  content_type: 'content_type_example', # String | Content type header application/xml
+  body: 'body_example' # String | View configuration in config.xml format
 }
 
 begin
@@ -734,9 +712,9 @@ end
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **name** | **String**| Name of the new view | 
- **body** | **String**| View configuration in config.xml format | [optional] 
  **jenkins_crumb** | **String**| CSRF protection token | [optional] 
  **content_type** | **String**| Content type header application/xml | [optional] 
+ **body** | **String**| View configuration in config.xml format | [optional] 
 
 ### Return type
 
@@ -748,8 +726,8 @@ nil (empty response body)
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: text/html
+ - **Content-Type**: application/json
+ - **Accept**: */*
 
 
 
@@ -772,14 +750,11 @@ SwaggyJenkinsClient.configure do |config|
 end
 
 api_instance = SwaggyJenkinsClient::RemoteAccessApi.new
-
-name = "name_example" # String | Name of the job
-
-json = "json_example" # String | 
-
-opts = { 
-  token: "token_example", # String | 
-  jenkins_crumb: "jenkins_crumb_example" # String | CSRF protection token
+name = 'name_example' # String | Name of the job
+json = 'json_example' # String | 
+opts = {
+  token: 'token_example', # String | 
+  jenkins_crumb: 'jenkins_crumb_example' # String | CSRF protection token
 }
 
 begin
@@ -832,13 +807,10 @@ SwaggyJenkinsClient.configure do |config|
 end
 
 api_instance = SwaggyJenkinsClient::RemoteAccessApi.new
-
-name = "name_example" # String | Name of the job
-
-body = "body_example" # String | Job configuration in config.xml format
-
-opts = { 
-  jenkins_crumb: "jenkins_crumb_example" # String | CSRF protection token
+name = 'name_example' # String | Name of the job
+body = 'body_example' # String | Job configuration in config.xml format
+opts = {
+  jenkins_crumb: 'jenkins_crumb_example' # String | CSRF protection token
 }
 
 begin
@@ -866,13 +838,13 @@ nil (empty response body)
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: text/xml
+ - **Content-Type**: application/json
+ - **Accept**: */*
 
 
 
 # **post_job_delete**
-> post_job_delete(name, , opts)
+> post_job_delete(name, opts)
 
 
 
@@ -890,15 +862,13 @@ SwaggyJenkinsClient.configure do |config|
 end
 
 api_instance = SwaggyJenkinsClient::RemoteAccessApi.new
-
-name = "name_example" # String | Name of the job
-
-opts = { 
-  jenkins_crumb: "jenkins_crumb_example" # String | CSRF protection token
+name = 'name_example' # String | Name of the job
+opts = {
+  jenkins_crumb: 'jenkins_crumb_example' # String | CSRF protection token
 }
 
 begin
-  api_instance.post_job_delete(name, , opts)
+  api_instance.post_job_delete(name, opts)
 rescue SwaggyJenkinsClient::ApiError => e
   puts "Exception when calling RemoteAccessApi->post_job_delete: #{e}"
 end
@@ -927,7 +897,7 @@ nil (empty response body)
 
 
 # **post_job_disable**
-> post_job_disable(name, , opts)
+> post_job_disable(name, opts)
 
 
 
@@ -945,15 +915,13 @@ SwaggyJenkinsClient.configure do |config|
 end
 
 api_instance = SwaggyJenkinsClient::RemoteAccessApi.new
-
-name = "name_example" # String | Name of the job
-
-opts = { 
-  jenkins_crumb: "jenkins_crumb_example" # String | CSRF protection token
+name = 'name_example' # String | Name of the job
+opts = {
+  jenkins_crumb: 'jenkins_crumb_example' # String | CSRF protection token
 }
 
 begin
-  api_instance.post_job_disable(name, , opts)
+  api_instance.post_job_disable(name, opts)
 rescue SwaggyJenkinsClient::ApiError => e
   puts "Exception when calling RemoteAccessApi->post_job_disable: #{e}"
 end
@@ -982,7 +950,7 @@ nil (empty response body)
 
 
 # **post_job_enable**
-> post_job_enable(name, , opts)
+> post_job_enable(name, opts)
 
 
 
@@ -1000,15 +968,13 @@ SwaggyJenkinsClient.configure do |config|
 end
 
 api_instance = SwaggyJenkinsClient::RemoteAccessApi.new
-
-name = "name_example" # String | Name of the job
-
-opts = { 
-  jenkins_crumb: "jenkins_crumb_example" # String | CSRF protection token
+name = 'name_example' # String | Name of the job
+opts = {
+  jenkins_crumb: 'jenkins_crumb_example' # String | CSRF protection token
 }
 
 begin
-  api_instance.post_job_enable(name, , opts)
+  api_instance.post_job_enable(name, opts)
 rescue SwaggyJenkinsClient::ApiError => e
   puts "Exception when calling RemoteAccessApi->post_job_enable: #{e}"
 end
@@ -1037,7 +1003,7 @@ nil (empty response body)
 
 
 # **post_job_last_build_stop**
-> post_job_last_build_stop(name, , opts)
+> post_job_last_build_stop(name, opts)
 
 
 
@@ -1055,15 +1021,13 @@ SwaggyJenkinsClient.configure do |config|
 end
 
 api_instance = SwaggyJenkinsClient::RemoteAccessApi.new
-
-name = "name_example" # String | Name of the job
-
-opts = { 
-  jenkins_crumb: "jenkins_crumb_example" # String | CSRF protection token
+name = 'name_example' # String | Name of the job
+opts = {
+  jenkins_crumb: 'jenkins_crumb_example' # String | CSRF protection token
 }
 
 begin
-  api_instance.post_job_last_build_stop(name, , opts)
+  api_instance.post_job_last_build_stop(name, opts)
 rescue SwaggyJenkinsClient::ApiError => e
   puts "Exception when calling RemoteAccessApi->post_job_last_build_stop: #{e}"
 end
@@ -1110,13 +1074,10 @@ SwaggyJenkinsClient.configure do |config|
 end
 
 api_instance = SwaggyJenkinsClient::RemoteAccessApi.new
-
-name = "name_example" # String | Name of the view
-
-body = "body_example" # String | View configuration in config.xml format
-
-opts = { 
-  jenkins_crumb: "jenkins_crumb_example" # String | CSRF protection token
+name = 'name_example' # String | Name of the view
+body = 'body_example' # String | View configuration in config.xml format
+opts = {
+  jenkins_crumb: 'jenkins_crumb_example' # String | CSRF protection token
 }
 
 begin
@@ -1144,8 +1105,8 @@ nil (empty response body)
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Content-Type**: application/json
+ - **Accept**: */*
 
 
 

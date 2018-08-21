@@ -34,7 +34,7 @@ Method | HTTP request | Description
 
 Retrieve computer details
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -51,7 +51,7 @@ configuration.password = 'YOUR_PASSWORD'
 api_instance = swaggyjenkins.RemoteAccessApi(swaggyjenkins.ApiClient(configuration))
 depth = 56 # int | Recursion depth in response model
 
-try: 
+try:
     api_response = api_instance.get_computer(depth)
     pprint(api_response)
 except ApiException as e:
@@ -86,7 +86,7 @@ Name | Type | Description  | Notes
 
 Retrieve CSRF protection token
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -102,7 +102,7 @@ configuration.password = 'YOUR_PASSWORD'
 # create an instance of the API class
 api_instance = swaggyjenkins.RemoteAccessApi(swaggyjenkins.ApiClient(configuration))
 
-try: 
+try:
     api_response = api_instance.get_crumb()
     pprint(api_response)
 except ApiException as e:
@@ -134,7 +134,7 @@ This endpoint does not need any parameter.
 
 Retrieve Jenkins details
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -150,7 +150,7 @@ configuration.password = 'YOUR_PASSWORD'
 # create an instance of the API class
 api_instance = swaggyjenkins.RemoteAccessApi(swaggyjenkins.ApiClient(configuration))
 
-try: 
+try:
     api_response = api_instance.get_jenkins()
     pprint(api_response)
 except ApiException as e:
@@ -182,7 +182,7 @@ This endpoint does not need any parameter.
 
 Retrieve job details
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -199,7 +199,7 @@ configuration.password = 'YOUR_PASSWORD'
 api_instance = swaggyjenkins.RemoteAccessApi(swaggyjenkins.ApiClient(configuration))
 name = 'name_example' # str | Name of the job
 
-try: 
+try:
     api_response = api_instance.get_job(name)
     pprint(api_response)
 except ApiException as e:
@@ -234,7 +234,7 @@ Name | Type | Description  | Notes
 
 Retrieve job configuration
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -251,7 +251,7 @@ configuration.password = 'YOUR_PASSWORD'
 api_instance = swaggyjenkins.RemoteAccessApi(swaggyjenkins.ApiClient(configuration))
 name = 'name_example' # str | Name of the job
 
-try: 
+try:
     api_response = api_instance.get_job_config(name)
     pprint(api_response)
 except ApiException as e:
@@ -286,7 +286,7 @@ Name | Type | Description  | Notes
 
 Retrieve job's last build details
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -303,7 +303,7 @@ configuration.password = 'YOUR_PASSWORD'
 api_instance = swaggyjenkins.RemoteAccessApi(swaggyjenkins.ApiClient(configuration))
 name = 'name_example' # str | Name of the job
 
-try: 
+try:
     api_response = api_instance.get_job_last_build(name)
     pprint(api_response)
 except ApiException as e:
@@ -338,7 +338,7 @@ Name | Type | Description  | Notes
 
 Retrieve job's build progressive text output
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -357,7 +357,7 @@ name = 'name_example' # str | Name of the job
 number = 'number_example' # str | Build number
 start = 'start_example' # str | Starting point of progressive text output
 
-try: 
+try:
     api_instance.get_job_progressive_text(name, number, start)
 except ApiException as e:
     print("Exception when calling RemoteAccessApi->get_job_progressive_text: %s\n" % e)
@@ -393,7 +393,7 @@ void (empty response body)
 
 Retrieve queue details
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -409,7 +409,7 @@ configuration.password = 'YOUR_PASSWORD'
 # create an instance of the API class
 api_instance = swaggyjenkins.RemoteAccessApi(swaggyjenkins.ApiClient(configuration))
 
-try: 
+try:
     api_response = api_instance.get_queue()
     pprint(api_response)
 except ApiException as e:
@@ -441,7 +441,7 @@ This endpoint does not need any parameter.
 
 Retrieve queued item details
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -458,7 +458,7 @@ configuration.password = 'YOUR_PASSWORD'
 api_instance = swaggyjenkins.RemoteAccessApi(swaggyjenkins.ApiClient(configuration))
 number = 'number_example' # str | Queue number
 
-try: 
+try:
     api_response = api_instance.get_queue_item(number)
     pprint(api_response)
 except ApiException as e:
@@ -493,7 +493,7 @@ Name | Type | Description  | Notes
 
 Retrieve view details
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -510,7 +510,7 @@ configuration.password = 'YOUR_PASSWORD'
 api_instance = swaggyjenkins.RemoteAccessApi(swaggyjenkins.ApiClient(configuration))
 name = 'name_example' # str | Name of the view
 
-try: 
+try:
     api_response = api_instance.get_view(name)
     pprint(api_response)
 except ApiException as e:
@@ -545,7 +545,7 @@ Name | Type | Description  | Notes
 
 Retrieve view configuration
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -562,7 +562,7 @@ configuration.password = 'YOUR_PASSWORD'
 api_instance = swaggyjenkins.RemoteAccessApi(swaggyjenkins.ApiClient(configuration))
 name = 'name_example' # str | Name of the view
 
-try: 
+try:
     api_response = api_instance.get_view_config(name)
     pprint(api_response)
 except ApiException as e:
@@ -597,7 +597,7 @@ Name | Type | Description  | Notes
 
 Retrieve Jenkins headers
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -613,7 +613,7 @@ configuration.password = 'YOUR_PASSWORD'
 # create an instance of the API class
 api_instance = swaggyjenkins.RemoteAccessApi(swaggyjenkins.ApiClient(configuration))
 
-try: 
+try:
     api_instance.head_jenkins()
 except ApiException as e:
     print("Exception when calling RemoteAccessApi->head_jenkins: %s\n" % e)
@@ -638,13 +638,13 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **post_create_item**
-> post_create_item(name, _from=_from, mode=mode, body=body, jenkins_crumb=jenkins_crumb, content_type=content_type)
+> post_create_item(name, _from=_from, mode=mode, jenkins_crumb=jenkins_crumb, content_type=content_type, body=body)
 
 
 
 Create a new job using job configuration, or copied from an existing job
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -662,12 +662,12 @@ api_instance = swaggyjenkins.RemoteAccessApi(swaggyjenkins.ApiClient(configurati
 name = 'name_example' # str | Name of the new job
 _from = '_from_example' # str | Existing job to copy from (optional)
 mode = 'mode_example' # str | Set to 'copy' for copying an existing job (optional)
-body = 'body_example' # str | Job configuration in config.xml format (optional)
 jenkins_crumb = 'jenkins_crumb_example' # str | CSRF protection token (optional)
 content_type = 'content_type_example' # str | Content type header application/xml (optional)
+body = 'body_example' # str | Job configuration in config.xml format (optional)
 
-try: 
-    api_instance.post_create_item(name, _from=_from, mode=mode, body=body, jenkins_crumb=jenkins_crumb, content_type=content_type)
+try:
+    api_instance.post_create_item(name, _from=_from, mode=mode, jenkins_crumb=jenkins_crumb, content_type=content_type, body=body)
 except ApiException as e:
     print("Exception when calling RemoteAccessApi->post_create_item: %s\n" % e)
 ```
@@ -679,9 +679,9 @@ Name | Type | Description  | Notes
  **name** | **str**| Name of the new job | 
  **_from** | **str**| Existing job to copy from | [optional] 
  **mode** | **str**| Set to &#39;copy&#39; for copying an existing job | [optional] 
- **body** | **str**| Job configuration in config.xml format | [optional] 
  **jenkins_crumb** | **str**| CSRF protection token | [optional] 
  **content_type** | **str**| Content type header application/xml | [optional] 
+ **body** | **str**| Job configuration in config.xml format | [optional] 
 
 ### Return type
 
@@ -693,19 +693,19 @@ void (empty response body)
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: text/html
+ - **Content-Type**: application/json
+ - **Accept**: */*
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **post_create_view**
-> post_create_view(name, body=body, jenkins_crumb=jenkins_crumb, content_type=content_type)
+> post_create_view(name, jenkins_crumb=jenkins_crumb, content_type=content_type, body=body)
 
 
 
 Create a new view using view configuration
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -721,12 +721,12 @@ configuration.password = 'YOUR_PASSWORD'
 # create an instance of the API class
 api_instance = swaggyjenkins.RemoteAccessApi(swaggyjenkins.ApiClient(configuration))
 name = 'name_example' # str | Name of the new view
-body = 'body_example' # str | View configuration in config.xml format (optional)
 jenkins_crumb = 'jenkins_crumb_example' # str | CSRF protection token (optional)
 content_type = 'content_type_example' # str | Content type header application/xml (optional)
+body = 'body_example' # str | View configuration in config.xml format (optional)
 
-try: 
-    api_instance.post_create_view(name, body=body, jenkins_crumb=jenkins_crumb, content_type=content_type)
+try:
+    api_instance.post_create_view(name, jenkins_crumb=jenkins_crumb, content_type=content_type, body=body)
 except ApiException as e:
     print("Exception when calling RemoteAccessApi->post_create_view: %s\n" % e)
 ```
@@ -736,9 +736,9 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **name** | **str**| Name of the new view | 
- **body** | **str**| View configuration in config.xml format | [optional] 
  **jenkins_crumb** | **str**| CSRF protection token | [optional] 
  **content_type** | **str**| Content type header application/xml | [optional] 
+ **body** | **str**| View configuration in config.xml format | [optional] 
 
 ### Return type
 
@@ -750,8 +750,8 @@ void (empty response body)
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: text/html
+ - **Content-Type**: application/json
+ - **Accept**: */*
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -762,7 +762,7 @@ void (empty response body)
 
 Build a job
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -782,7 +782,7 @@ json = 'json_example' # str |
 token = 'token_example' # str |  (optional)
 jenkins_crumb = 'jenkins_crumb_example' # str | CSRF protection token (optional)
 
-try: 
+try:
     api_instance.post_job_build(name, json, token=token, jenkins_crumb=jenkins_crumb)
 except ApiException as e:
     print("Exception when calling RemoteAccessApi->post_job_build: %s\n" % e)
@@ -819,7 +819,7 @@ void (empty response body)
 
 Update job configuration
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -838,7 +838,7 @@ name = 'name_example' # str | Name of the job
 body = 'body_example' # str | Job configuration in config.xml format
 jenkins_crumb = 'jenkins_crumb_example' # str | CSRF protection token (optional)
 
-try: 
+try:
     api_instance.post_job_config(name, body, jenkins_crumb=jenkins_crumb)
 except ApiException as e:
     print("Exception when calling RemoteAccessApi->post_job_config: %s\n" % e)
@@ -862,8 +862,8 @@ void (empty response body)
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: text/xml
+ - **Content-Type**: application/json
+ - **Accept**: */*
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -874,7 +874,7 @@ void (empty response body)
 
 Delete a job
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -892,7 +892,7 @@ api_instance = swaggyjenkins.RemoteAccessApi(swaggyjenkins.ApiClient(configurati
 name = 'name_example' # str | Name of the job
 jenkins_crumb = 'jenkins_crumb_example' # str | CSRF protection token (optional)
 
-try: 
+try:
     api_instance.post_job_delete(name, jenkins_crumb=jenkins_crumb)
 except ApiException as e:
     print("Exception when calling RemoteAccessApi->post_job_delete: %s\n" % e)
@@ -927,7 +927,7 @@ void (empty response body)
 
 Disable a job
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -945,7 +945,7 @@ api_instance = swaggyjenkins.RemoteAccessApi(swaggyjenkins.ApiClient(configurati
 name = 'name_example' # str | Name of the job
 jenkins_crumb = 'jenkins_crumb_example' # str | CSRF protection token (optional)
 
-try: 
+try:
     api_instance.post_job_disable(name, jenkins_crumb=jenkins_crumb)
 except ApiException as e:
     print("Exception when calling RemoteAccessApi->post_job_disable: %s\n" % e)
@@ -980,7 +980,7 @@ void (empty response body)
 
 Enable a job
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -998,7 +998,7 @@ api_instance = swaggyjenkins.RemoteAccessApi(swaggyjenkins.ApiClient(configurati
 name = 'name_example' # str | Name of the job
 jenkins_crumb = 'jenkins_crumb_example' # str | CSRF protection token (optional)
 
-try: 
+try:
     api_instance.post_job_enable(name, jenkins_crumb=jenkins_crumb)
 except ApiException as e:
     print("Exception when calling RemoteAccessApi->post_job_enable: %s\n" % e)
@@ -1033,7 +1033,7 @@ void (empty response body)
 
 Stop a job
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -1051,7 +1051,7 @@ api_instance = swaggyjenkins.RemoteAccessApi(swaggyjenkins.ApiClient(configurati
 name = 'name_example' # str | Name of the job
 jenkins_crumb = 'jenkins_crumb_example' # str | CSRF protection token (optional)
 
-try: 
+try:
     api_instance.post_job_last_build_stop(name, jenkins_crumb=jenkins_crumb)
 except ApiException as e:
     print("Exception when calling RemoteAccessApi->post_job_last_build_stop: %s\n" % e)
@@ -1086,7 +1086,7 @@ void (empty response body)
 
 Update view configuration
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -1105,7 +1105,7 @@ name = 'name_example' # str | Name of the view
 body = 'body_example' # str | View configuration in config.xml format
 jenkins_crumb = 'jenkins_crumb_example' # str | CSRF protection token (optional)
 
-try: 
+try:
     api_instance.post_view_config(name, body, jenkins_crumb=jenkins_crumb)
 except ApiException as e:
     print("Exception when calling RemoteAccessApi->post_view_config: %s\n" % e)
@@ -1129,8 +1129,8 @@ void (empty response body)
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Content-Type**: application/json
+ - **Accept**: */*
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

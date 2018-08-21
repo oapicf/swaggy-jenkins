@@ -7,6 +7,8 @@ Method | HTTP request | Description
 [**delete_pipeline_queue_item**](BlueOceanApi.md#delete_pipeline_queue_item) | **DELETE** /blue/rest/organizations/{organization}/pipelines/{pipeline}/queue/{queue} | 
 [**get_authenticated_user**](BlueOceanApi.md#get_authenticated_user) | **GET** /blue/rest/organizations/{organization}/user/ | 
 [**get_classes**](BlueOceanApi.md#get_classes) | **GET** /blue/rest/classes/{class} | 
+[**get_json_web_key**](BlueOceanApi.md#get_json_web_key) | **GET** /jwt-auth/jwks/{key} | 
+[**get_json_web_token**](BlueOceanApi.md#get_json_web_token) | **GET** /jwt-auth/token | 
 [**get_organisation**](BlueOceanApi.md#get_organisation) | **GET** /blue/rest/organizations/{organization} | 
 [**get_organisations**](BlueOceanApi.md#get_organisations) | **GET** /blue/rest/organizations/ | 
 [**get_pipeline**](BlueOceanApi.md#get_pipeline) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline} | 
@@ -60,13 +62,9 @@ SwaggyJenkinsClient.configure do |config|
 end
 
 api_instance = SwaggyJenkinsClient::BlueOceanApi.new
-
-organization = "organization_example" # String | Name of the organization
-
-pipeline = "pipeline_example" # String | Name of the pipeline
-
-queue = "queue_example" # String | Name of the queue item
-
+organization = 'organization_example' # String | Name of the organization
+pipeline = 'pipeline_example' # String | Name of the pipeline
+queue = 'queue_example' # String | Name of the queue item
 
 begin
   api_instance.delete_pipeline_queue_item(organization, pipeline, queue)
@@ -94,12 +92,12 @@ nil (empty response body)
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json
+ - **Accept**: Not defined
 
 
 
 # **get_authenticated_user**
-> User get_authenticated_user(organization, )
+> User get_authenticated_user(organization)
 
 
 
@@ -117,12 +115,10 @@ SwaggyJenkinsClient.configure do |config|
 end
 
 api_instance = SwaggyJenkinsClient::BlueOceanApi.new
-
-organization = "organization_example" # String | Name of the organization
-
+organization = 'organization_example' # String | Name of the organization
 
 begin
-  result = api_instance.get_authenticated_user(organization, )
+  result = api_instance.get_authenticated_user(organization)
   p result
 rescue SwaggyJenkinsClient::ApiError => e
   puts "Exception when calling BlueOceanApi->get_authenticated_user: #{e}"
@@ -169,9 +165,7 @@ SwaggyJenkinsClient.configure do |config|
 end
 
 api_instance = SwaggyJenkinsClient::BlueOceanApi.new
-
-_class = "_class_example" # String | Name of the class
-
+_class = '_class_example' # String | Name of the class
 
 begin
   result = api_instance.get_classes(_class)
@@ -202,8 +196,100 @@ Name | Type | Description  | Notes
 
 
 
+# **get_json_web_key**
+> String get_json_web_key(key)
+
+
+
+Retrieve JSON Web Key
+
+### Example
+```ruby
+# load the gem
+require 'swaggy_jenkins'
+
+api_instance = SwaggyJenkinsClient::BlueOceanApi.new
+key = 56 # Integer | Key ID received as part of JWT header field kid
+
+begin
+  result = api_instance.get_json_web_key(key)
+  p result
+rescue SwaggyJenkinsClient::ApiError => e
+  puts "Exception when calling BlueOceanApi->get_json_web_key: #{e}"
+end
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **key** | **Integer**| Key ID received as part of JWT header field kid | 
+
+### Return type
+
+**String**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+
+# **get_json_web_token**
+> String get_json_web_token(opts)
+
+
+
+Retrieve JSON Web Token
+
+### Example
+```ruby
+# load the gem
+require 'swaggy_jenkins'
+
+api_instance = SwaggyJenkinsClient::BlueOceanApi.new
+opts = {
+  expiry_time_in_mins: 56, # Integer | Token expiry time in minutes, default: 30 minutes
+  max_expiry_time_in_mins: 56 # Integer | Maximum token expiry time in minutes, default: 480 minutes
+}
+
+begin
+  result = api_instance.get_json_web_token(opts)
+  p result
+rescue SwaggyJenkinsClient::ApiError => e
+  puts "Exception when calling BlueOceanApi->get_json_web_token: #{e}"
+end
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **expiry_time_in_mins** | **Integer**| Token expiry time in minutes, default: 30 minutes | [optional] 
+ **max_expiry_time_in_mins** | **Integer**| Maximum token expiry time in minutes, default: 480 minutes | [optional] 
+
+### Return type
+
+**String**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+
 # **get_organisation**
-> Organisation get_organisation(organization, )
+> Organisation get_organisation(organization)
 
 
 
@@ -221,12 +307,10 @@ SwaggyJenkinsClient.configure do |config|
 end
 
 api_instance = SwaggyJenkinsClient::BlueOceanApi.new
-
-organization = "organization_example" # String | Name of the organization
-
+organization = 'organization_example' # String | Name of the organization
 
 begin
-  result = api_instance.get_organisation(organization, )
+  result = api_instance.get_organisation(organization)
   p result
 rescue SwaggyJenkinsClient::ApiError => e
   puts "Exception when calling BlueOceanApi->get_organisation: #{e}"
@@ -301,7 +385,7 @@ This endpoint does not need any parameter.
 
 
 # **get_pipeline**
-> Pipeline get_pipeline(organization, pipeline, )
+> Pipeline get_pipeline(organization, pipeline)
 
 
 
@@ -319,14 +403,11 @@ SwaggyJenkinsClient.configure do |config|
 end
 
 api_instance = SwaggyJenkinsClient::BlueOceanApi.new
-
-organization = "organization_example" # String | Name of the organization
-
-pipeline = "pipeline_example" # String | Name of the pipeline
-
+organization = 'organization_example' # String | Name of the organization
+pipeline = 'pipeline_example' # String | Name of the pipeline
 
 begin
-  result = api_instance.get_pipeline(organization, pipeline, )
+  result = api_instance.get_pipeline(organization, pipeline)
   p result
 rescue SwaggyJenkinsClient::ApiError => e
   puts "Exception when calling BlueOceanApi->get_pipeline: #{e}"
@@ -356,7 +437,7 @@ Name | Type | Description  | Notes
 
 
 # **get_pipeline_activities**
-> PipelineActivities get_pipeline_activities(organization, pipeline, )
+> PipelineActivities get_pipeline_activities(organization, pipeline)
 
 
 
@@ -374,14 +455,11 @@ SwaggyJenkinsClient.configure do |config|
 end
 
 api_instance = SwaggyJenkinsClient::BlueOceanApi.new
-
-organization = "organization_example" # String | Name of the organization
-
-pipeline = "pipeline_example" # String | Name of the pipeline
-
+organization = 'organization_example' # String | Name of the organization
+pipeline = 'pipeline_example' # String | Name of the pipeline
 
 begin
-  result = api_instance.get_pipeline_activities(organization, pipeline, )
+  result = api_instance.get_pipeline_activities(organization, pipeline)
   p result
 rescue SwaggyJenkinsClient::ApiError => e
   puts "Exception when calling BlueOceanApi->get_pipeline_activities: #{e}"
@@ -411,7 +489,7 @@ Name | Type | Description  | Notes
 
 
 # **get_pipeline_branch**
-> BranchImpl get_pipeline_branch(organization, pipeline, branch, )
+> BranchImpl get_pipeline_branch(organization, pipeline, branch)
 
 
 
@@ -429,16 +507,12 @@ SwaggyJenkinsClient.configure do |config|
 end
 
 api_instance = SwaggyJenkinsClient::BlueOceanApi.new
-
-organization = "organization_example" # String | Name of the organization
-
-pipeline = "pipeline_example" # String | Name of the pipeline
-
-branch = "branch_example" # String | Name of the branch
-
+organization = 'organization_example' # String | Name of the organization
+pipeline = 'pipeline_example' # String | Name of the pipeline
+branch = 'branch_example' # String | Name of the branch
 
 begin
-  result = api_instance.get_pipeline_branch(organization, pipeline, branch, )
+  result = api_instance.get_pipeline_branch(organization, pipeline, branch)
   p result
 rescue SwaggyJenkinsClient::ApiError => e
   puts "Exception when calling BlueOceanApi->get_pipeline_branch: #{e}"
@@ -487,15 +561,10 @@ SwaggyJenkinsClient.configure do |config|
 end
 
 api_instance = SwaggyJenkinsClient::BlueOceanApi.new
-
-organization = "organization_example" # String | Name of the organization
-
-pipeline = "pipeline_example" # String | Name of the pipeline
-
-branch = "branch_example" # String | Name of the branch
-
-run = "run_example" # String | Name of the run
-
+organization = 'organization_example' # String | Name of the organization
+pipeline = 'pipeline_example' # String | Name of the pipeline
+branch = 'branch_example' # String | Name of the branch
+run = 'run_example' # String | Name of the run
 
 begin
   result = api_instance.get_pipeline_branch_run(organization, pipeline, branch, run)
@@ -530,7 +599,7 @@ Name | Type | Description  | Notes
 
 
 # **get_pipeline_branches**
-> MultibranchPipeline get_pipeline_branches(organization, pipeline, )
+> MultibranchPipeline get_pipeline_branches(organization, pipeline)
 
 
 
@@ -548,14 +617,11 @@ SwaggyJenkinsClient.configure do |config|
 end
 
 api_instance = SwaggyJenkinsClient::BlueOceanApi.new
-
-organization = "organization_example" # String | Name of the organization
-
-pipeline = "pipeline_example" # String | Name of the pipeline
-
+organization = 'organization_example' # String | Name of the organization
+pipeline = 'pipeline_example' # String | Name of the pipeline
 
 begin
-  result = api_instance.get_pipeline_branches(organization, pipeline, )
+  result = api_instance.get_pipeline_branches(organization, pipeline)
   p result
 rescue SwaggyJenkinsClient::ApiError => e
   puts "Exception when calling BlueOceanApi->get_pipeline_branches: #{e}"
@@ -603,11 +669,8 @@ SwaggyJenkinsClient.configure do |config|
 end
 
 api_instance = SwaggyJenkinsClient::BlueOceanApi.new
-
-organization = "organization_example" # String | Name of the organization
-
-folder = "folder_example" # String | Name of the folder
-
+organization = 'organization_example' # String | Name of the organization
+folder = 'folder_example' # String | Name of the folder
 
 begin
   result = api_instance.get_pipeline_folder(organization, folder)
@@ -658,13 +721,9 @@ SwaggyJenkinsClient.configure do |config|
 end
 
 api_instance = SwaggyJenkinsClient::BlueOceanApi.new
-
-organization = "organization_example" # String | Name of the organization
-
-pipeline = "pipeline_example" # String | Name of the pipeline
-
-folder = "folder_example" # String | Name of the folder
-
+organization = 'organization_example' # String | Name of the organization
+pipeline = 'pipeline_example' # String | Name of the pipeline
+folder = 'folder_example' # String | Name of the folder
 
 begin
   result = api_instance.get_pipeline_folder_pipeline(organization, pipeline, folder)
@@ -698,7 +757,7 @@ Name | Type | Description  | Notes
 
 
 # **get_pipeline_queue**
-> PipelineQueue get_pipeline_queue(organization, pipeline, )
+> PipelineQueue get_pipeline_queue(organization, pipeline)
 
 
 
@@ -716,14 +775,11 @@ SwaggyJenkinsClient.configure do |config|
 end
 
 api_instance = SwaggyJenkinsClient::BlueOceanApi.new
-
-organization = "organization_example" # String | Name of the organization
-
-pipeline = "pipeline_example" # String | Name of the pipeline
-
+organization = 'organization_example' # String | Name of the organization
+pipeline = 'pipeline_example' # String | Name of the pipeline
 
 begin
-  result = api_instance.get_pipeline_queue(organization, pipeline, )
+  result = api_instance.get_pipeline_queue(organization, pipeline)
   p result
 rescue SwaggyJenkinsClient::ApiError => e
   puts "Exception when calling BlueOceanApi->get_pipeline_queue: #{e}"
@@ -771,13 +827,9 @@ SwaggyJenkinsClient.configure do |config|
 end
 
 api_instance = SwaggyJenkinsClient::BlueOceanApi.new
-
-organization = "organization_example" # String | Name of the organization
-
-pipeline = "pipeline_example" # String | Name of the pipeline
-
-run = "run_example" # String | Name of the run
-
+organization = 'organization_example' # String | Name of the organization
+pipeline = 'pipeline_example' # String | Name of the pipeline
+run = 'run_example' # String | Name of the run
 
 begin
   result = api_instance.get_pipeline_run(organization, pipeline, run)
@@ -829,14 +881,10 @@ SwaggyJenkinsClient.configure do |config|
 end
 
 api_instance = SwaggyJenkinsClient::BlueOceanApi.new
-
-organization = "organization_example" # String | Name of the organization
-
-pipeline = "pipeline_example" # String | Name of the pipeline
-
-run = "run_example" # String | Name of the run
-
-opts = { 
+organization = 'organization_example' # String | Name of the organization
+pipeline = 'pipeline_example' # String | Name of the pipeline
+run = 'run_example' # String | Name of the run
+opts = {
   start: 56, # Integer | Start position of the log
   download: true # BOOLEAN | Set to true in order to download the file, otherwise it's passed as a response body
 }
@@ -875,7 +923,7 @@ Name | Type | Description  | Notes
 
 
 # **get_pipeline_run_node**
-> PipelineRunNode get_pipeline_run_node(organization, pipeline, runnode, )
+> PipelineRunNode get_pipeline_run_node(organization, pipeline, run, node)
 
 
 
@@ -893,18 +941,13 @@ SwaggyJenkinsClient.configure do |config|
 end
 
 api_instance = SwaggyJenkinsClient::BlueOceanApi.new
-
-organization = "organization_example" # String | Name of the organization
-
-pipeline = "pipeline_example" # String | Name of the pipeline
-
-run = "run_example" # String | Name of the run
-
-node = "node_example" # String | Name of the node
-
+organization = 'organization_example' # String | Name of the organization
+pipeline = 'pipeline_example' # String | Name of the pipeline
+run = 'run_example' # String | Name of the run
+node = 'node_example' # String | Name of the node
 
 begin
-  result = api_instance.get_pipeline_run_node(organization, pipeline, runnode, )
+  result = api_instance.get_pipeline_run_node(organization, pipeline, run, node)
   p result
 rescue SwaggyJenkinsClient::ApiError => e
   puts "Exception when calling BlueOceanApi->get_pipeline_run_node: #{e}"
@@ -936,7 +979,7 @@ Name | Type | Description  | Notes
 
 
 # **get_pipeline_run_node_step**
-> PipelineStepImpl get_pipeline_run_node_step(organization, pipeline, runnode, step)
+> PipelineStepImpl get_pipeline_run_node_step(organization, pipeline, run, node, step)
 
 
 
@@ -954,20 +997,14 @@ SwaggyJenkinsClient.configure do |config|
 end
 
 api_instance = SwaggyJenkinsClient::BlueOceanApi.new
-
-organization = "organization_example" # String | Name of the organization
-
-pipeline = "pipeline_example" # String | Name of the pipeline
-
-run = "run_example" # String | Name of the run
-
-node = "node_example" # String | Name of the node
-
-step = "step_example" # String | Name of the step
-
+organization = 'organization_example' # String | Name of the organization
+pipeline = 'pipeline_example' # String | Name of the pipeline
+run = 'run_example' # String | Name of the run
+node = 'node_example' # String | Name of the node
+step = 'step_example' # String | Name of the step
 
 begin
-  result = api_instance.get_pipeline_run_node_step(organization, pipeline, runnode, step)
+  result = api_instance.get_pipeline_run_node_step(organization, pipeline, run, node, step)
   p result
 rescue SwaggyJenkinsClient::ApiError => e
   puts "Exception when calling BlueOceanApi->get_pipeline_run_node_step: #{e}"
@@ -1000,7 +1037,7 @@ Name | Type | Description  | Notes
 
 
 # **get_pipeline_run_node_step_log**
-> String get_pipeline_run_node_step_log(organization, pipeline, runnode, step)
+> String get_pipeline_run_node_step_log(organization, pipeline, run, node, step)
 
 
 
@@ -1018,20 +1055,14 @@ SwaggyJenkinsClient.configure do |config|
 end
 
 api_instance = SwaggyJenkinsClient::BlueOceanApi.new
-
-organization = "organization_example" # String | Name of the organization
-
-pipeline = "pipeline_example" # String | Name of the pipeline
-
-run = "run_example" # String | Name of the run
-
-node = "node_example" # String | Name of the node
-
-step = "step_example" # String | Name of the step
-
+organization = 'organization_example' # String | Name of the organization
+pipeline = 'pipeline_example' # String | Name of the pipeline
+run = 'run_example' # String | Name of the run
+node = 'node_example' # String | Name of the node
+step = 'step_example' # String | Name of the step
 
 begin
-  result = api_instance.get_pipeline_run_node_step_log(organization, pipeline, runnode, step)
+  result = api_instance.get_pipeline_run_node_step_log(organization, pipeline, run, node, step)
   p result
 rescue SwaggyJenkinsClient::ApiError => e
   puts "Exception when calling BlueOceanApi->get_pipeline_run_node_step_log: #{e}"
@@ -1064,7 +1095,7 @@ Name | Type | Description  | Notes
 
 
 # **get_pipeline_run_node_steps**
-> PipelineRunNodeSteps get_pipeline_run_node_steps(organization, pipeline, runnode, )
+> PipelineRunNodeSteps get_pipeline_run_node_steps(organization, pipeline, run, node)
 
 
 
@@ -1082,18 +1113,13 @@ SwaggyJenkinsClient.configure do |config|
 end
 
 api_instance = SwaggyJenkinsClient::BlueOceanApi.new
-
-organization = "organization_example" # String | Name of the organization
-
-pipeline = "pipeline_example" # String | Name of the pipeline
-
-run = "run_example" # String | Name of the run
-
-node = "node_example" # String | Name of the node
-
+organization = 'organization_example' # String | Name of the organization
+pipeline = 'pipeline_example' # String | Name of the pipeline
+run = 'run_example' # String | Name of the run
+node = 'node_example' # String | Name of the node
 
 begin
-  result = api_instance.get_pipeline_run_node_steps(organization, pipeline, runnode, )
+  result = api_instance.get_pipeline_run_node_steps(organization, pipeline, run, node)
   p result
 rescue SwaggyJenkinsClient::ApiError => e
   puts "Exception when calling BlueOceanApi->get_pipeline_run_node_steps: #{e}"
@@ -1143,13 +1169,9 @@ SwaggyJenkinsClient.configure do |config|
 end
 
 api_instance = SwaggyJenkinsClient::BlueOceanApi.new
-
-organization = "organization_example" # String | Name of the organization
-
-pipeline = "pipeline_example" # String | Name of the pipeline
-
-run = "run_example" # String | Name of the run
-
+organization = 'organization_example' # String | Name of the organization
+pipeline = 'pipeline_example' # String | Name of the pipeline
+run = 'run_example' # String | Name of the run
 
 begin
   result = api_instance.get_pipeline_run_nodes(organization, pipeline, run)
@@ -1183,7 +1205,7 @@ Name | Type | Description  | Notes
 
 
 # **get_pipeline_runs**
-> PipelineRuns get_pipeline_runs(organization, pipeline, )
+> PipelineRuns get_pipeline_runs(organization, pipeline)
 
 
 
@@ -1201,14 +1223,11 @@ SwaggyJenkinsClient.configure do |config|
 end
 
 api_instance = SwaggyJenkinsClient::BlueOceanApi.new
-
-organization = "organization_example" # String | Name of the organization
-
-pipeline = "pipeline_example" # String | Name of the pipeline
-
+organization = 'organization_example' # String | Name of the organization
+pipeline = 'pipeline_example' # String | Name of the pipeline
 
 begin
-  result = api_instance.get_pipeline_runs(organization, pipeline, )
+  result = api_instance.get_pipeline_runs(organization, pipeline)
   p result
 rescue SwaggyJenkinsClient::ApiError => e
   puts "Exception when calling BlueOceanApi->get_pipeline_runs: #{e}"
@@ -1238,7 +1257,7 @@ Name | Type | Description  | Notes
 
 
 # **get_pipelines**
-> Pipelines get_pipelines(organization, )
+> Pipelines get_pipelines(organization)
 
 
 
@@ -1256,12 +1275,10 @@ SwaggyJenkinsClient.configure do |config|
 end
 
 api_instance = SwaggyJenkinsClient::BlueOceanApi.new
-
-organization = "organization_example" # String | Name of the organization
-
+organization = 'organization_example' # String | Name of the organization
 
 begin
-  result = api_instance.get_pipelines(organization, )
+  result = api_instance.get_pipelines(organization)
   p result
 rescue SwaggyJenkinsClient::ApiError => e
   puts "Exception when calling BlueOceanApi->get_pipelines: #{e}"
@@ -1290,7 +1307,7 @@ Name | Type | Description  | Notes
 
 
 # **get_scm**
-> GithubScm get_scm(organization, scm, )
+> GithubScm get_scm(organization, scm)
 
 
 
@@ -1308,14 +1325,11 @@ SwaggyJenkinsClient.configure do |config|
 end
 
 api_instance = SwaggyJenkinsClient::BlueOceanApi.new
-
-organization = "organization_example" # String | Name of the organization
-
-scm = "scm_example" # String | Name of SCM
-
+organization = 'organization_example' # String | Name of the organization
+scm = 'scm_example' # String | Name of SCM
 
 begin
-  result = api_instance.get_scm(organization, scm, )
+  result = api_instance.get_scm(organization, scm)
   p result
 rescue SwaggyJenkinsClient::ApiError => e
   puts "Exception when calling BlueOceanApi->get_scm: #{e}"
@@ -1345,7 +1359,7 @@ Name | Type | Description  | Notes
 
 
 # **get_scm_organisation_repositories**
-> ScmOrganisations get_scm_organisation_repositories(organization, scm, scm_organisation, , opts)
+> ScmOrganisations get_scm_organisation_repositories(organization, scm, scm_organisation, opts)
 
 
 
@@ -1363,21 +1377,17 @@ SwaggyJenkinsClient.configure do |config|
 end
 
 api_instance = SwaggyJenkinsClient::BlueOceanApi.new
-
-organization = "organization_example" # String | Name of the organization
-
-scm = "scm_example" # String | Name of SCM
-
-scm_organisation = "scm_organisation_example" # String | Name of the SCM organization
-
-opts = { 
-  credential_id: "credential_id_example", # String | Credential ID
+organization = 'organization_example' # String | Name of the organization
+scm = 'scm_example' # String | Name of SCM
+scm_organisation = 'scm_organisation_example' # String | Name of the SCM organization
+opts = {
+  credential_id: 'credential_id_example', # String | Credential ID
   page_size: 56, # Integer | Number of items in a page
   page_number: 56 # Integer | Page number
 }
 
 begin
-  result = api_instance.get_scm_organisation_repositories(organization, scm, scm_organisation, , opts)
+  result = api_instance.get_scm_organisation_repositories(organization, scm, scm_organisation, opts)
   p result
 rescue SwaggyJenkinsClient::ApiError => e
   puts "Exception when calling BlueOceanApi->get_scm_organisation_repositories: #{e}"
@@ -1429,17 +1439,12 @@ SwaggyJenkinsClient.configure do |config|
 end
 
 api_instance = SwaggyJenkinsClient::BlueOceanApi.new
-
-organization = "organization_example" # String | Name of the organization
-
-scm = "scm_example" # String | Name of SCM
-
-scm_organisation = "scm_organisation_example" # String | Name of the SCM organization
-
-repository = "repository_example" # String | Name of the SCM repository
-
-opts = { 
-  credential_id: "credential_id_example" # String | Credential ID
+organization = 'organization_example' # String | Name of the organization
+scm = 'scm_example' # String | Name of SCM
+scm_organisation = 'scm_organisation_example' # String | Name of the SCM organization
+repository = 'repository_example' # String | Name of the SCM repository
+opts = {
+  credential_id: 'credential_id_example' # String | Credential ID
 }
 
 begin
@@ -1476,7 +1481,7 @@ Name | Type | Description  | Notes
 
 
 # **get_scm_organisations**
-> ScmOrganisations get_scm_organisations(organization, scm, , opts)
+> ScmOrganisations get_scm_organisations(organization, scm, opts)
 
 
 
@@ -1494,17 +1499,14 @@ SwaggyJenkinsClient.configure do |config|
 end
 
 api_instance = SwaggyJenkinsClient::BlueOceanApi.new
-
-organization = "organization_example" # String | Name of the organization
-
-scm = "scm_example" # String | Name of SCM
-
-opts = { 
-  credential_id: "credential_id_example" # String | Credential ID
+organization = 'organization_example' # String | Name of the organization
+scm = 'scm_example' # String | Name of SCM
+opts = {
+  credential_id: 'credential_id_example' # String | Credential ID
 }
 
 begin
-  result = api_instance.get_scm_organisations(organization, scm, , opts)
+  result = api_instance.get_scm_organisations(organization, scm, opts)
   p result
 rescue SwaggyJenkinsClient::ApiError => e
   puts "Exception when calling BlueOceanApi->get_scm_organisations: #{e}"
@@ -1553,11 +1555,8 @@ SwaggyJenkinsClient.configure do |config|
 end
 
 api_instance = SwaggyJenkinsClient::BlueOceanApi.new
-
-organization = "organization_example" # String | Name of the organization
-
-user = "user_example" # String | Name of the user
-
+organization = 'organization_example' # String | Name of the organization
+user = 'user_example' # String | Name of the user
 
 begin
   result = api_instance.get_user(organization, user)
@@ -1608,9 +1607,7 @@ SwaggyJenkinsClient.configure do |config|
 end
 
 api_instance = SwaggyJenkinsClient::BlueOceanApi.new
-
-user = "user_example" # String | Name of the user
-
+user = 'user_example' # String | Name of the user
 
 begin
   result = api_instance.get_user_favorites(user)
@@ -1642,7 +1639,7 @@ Name | Type | Description  | Notes
 
 
 # **get_users**
-> User get_users(organization, )
+> User get_users(organization)
 
 
 
@@ -1660,12 +1657,10 @@ SwaggyJenkinsClient.configure do |config|
 end
 
 api_instance = SwaggyJenkinsClient::BlueOceanApi.new
-
-organization = "organization_example" # String | Name of the organization
-
+organization = 'organization_example' # String | Name of the organization
 
 begin
-  result = api_instance.get_users(organization, )
+  result = api_instance.get_users(organization)
   p result
 rescue SwaggyJenkinsClient::ApiError => e
   puts "Exception when calling BlueOceanApi->get_users: #{e}"
@@ -1712,13 +1707,9 @@ SwaggyJenkinsClient.configure do |config|
 end
 
 api_instance = SwaggyJenkinsClient::BlueOceanApi.new
-
-organization = "organization_example" # String | Name of the organization
-
-pipeline = "pipeline_example" # String | Name of the pipeline
-
-run = "run_example" # String | Name of the run
-
+organization = 'organization_example' # String | Name of the organization
+pipeline = 'pipeline_example' # String | Name of the pipeline
+run = 'run_example' # String | Name of the run
 
 begin
   result = api_instance.post_pipeline_run(organization, pipeline, run)
@@ -1752,7 +1743,7 @@ Name | Type | Description  | Notes
 
 
 # **post_pipeline_runs**
-> QueueItemImpl post_pipeline_runs(organization, pipeline, )
+> QueueItemImpl post_pipeline_runs(organization, pipeline)
 
 
 
@@ -1770,14 +1761,11 @@ SwaggyJenkinsClient.configure do |config|
 end
 
 api_instance = SwaggyJenkinsClient::BlueOceanApi.new
-
-organization = "organization_example" # String | Name of the organization
-
-pipeline = "pipeline_example" # String | Name of the pipeline
-
+organization = 'organization_example' # String | Name of the organization
+pipeline = 'pipeline_example' # String | Name of the pipeline
 
 begin
-  result = api_instance.post_pipeline_runs(organization, pipeline, )
+  result = api_instance.post_pipeline_runs(organization, pipeline)
   p result
 rescue SwaggyJenkinsClient::ApiError => e
   puts "Exception when calling BlueOceanApi->post_pipeline_runs: #{e}"
@@ -1825,13 +1813,9 @@ SwaggyJenkinsClient.configure do |config|
 end
 
 api_instance = SwaggyJenkinsClient::BlueOceanApi.new
-
-organization = "organization_example" # String | Name of the organization
-
-pipeline = "pipeline_example" # String | Name of the pipeline
-
-body = SwaggyJenkinsClient::Body.new # Body | Set JSON string body to {\"favorite\": true} to favorite, set value to false to unfavorite
-
+organization = 'organization_example' # String | Name of the organization
+pipeline = 'pipeline_example' # String | Name of the pipeline
+body = SwaggyJenkinsClient::Body.new # Body | Set JSON string body to {"favorite": true} to favorite, set value to false to unfavorite
 
 begin
   result = api_instance.put_pipeline_favorite(organization, pipeline, body)
@@ -1847,7 +1831,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **organization** | **String**| Name of the organization | 
  **pipeline** | **String**| Name of the pipeline | 
- **body** | [**Body**](Body.md)| Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite | 
+ **body** | [**Body**](Body.md)| Set JSON string body to {&quot;favorite&quot;: true} to favorite, set value to false to unfavorite | 
 
 ### Return type
 
@@ -1859,7 +1843,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 
@@ -1883,15 +1867,11 @@ SwaggyJenkinsClient.configure do |config|
 end
 
 api_instance = SwaggyJenkinsClient::BlueOceanApi.new
-
-organization = "organization_example" # String | Name of the organization
-
-pipeline = "pipeline_example" # String | Name of the pipeline
-
-run = "run_example" # String | Name of the run
-
-opts = { 
-  blocking: "blocking_example", # String | Set to true to make blocking stop, default: false
+organization = 'organization_example' # String | Name of the organization
+pipeline = 'pipeline_example' # String | Name of the pipeline
+run = 'run_example' # String | Name of the run
+opts = {
+  blocking: 'blocking_example', # String | Set to true to make blocking stop, default: false
   time_out_in_secs: 56 # Integer | Timeout in seconds, default: 10 seconds
 }
 
@@ -1947,9 +1927,7 @@ SwaggyJenkinsClient.configure do |config|
 end
 
 api_instance = SwaggyJenkinsClient::BlueOceanApi.new
-
-q = "q_example" # String | Query string
-
+q = 'q_example' # String | Query string
 
 begin
   result = api_instance.search(q)
@@ -1999,9 +1977,7 @@ SwaggyJenkinsClient.configure do |config|
 end
 
 api_instance = SwaggyJenkinsClient::BlueOceanApi.new
-
-q = "q_example" # String | Query string containing an array of class names
-
+q = 'q_example' # String | Query string containing an array of class names
 
 begin
   result = api_instance.search_classes(q)

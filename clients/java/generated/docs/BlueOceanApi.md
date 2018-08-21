@@ -7,6 +7,8 @@ Method | HTTP request | Description
 [**deletePipelineQueueItem**](BlueOceanApi.md#deletePipelineQueueItem) | **DELETE** /blue/rest/organizations/{organization}/pipelines/{pipeline}/queue/{queue} | 
 [**getAuthenticatedUser**](BlueOceanApi.md#getAuthenticatedUser) | **GET** /blue/rest/organizations/{organization}/user/ | 
 [**getClasses**](BlueOceanApi.md#getClasses) | **GET** /blue/rest/classes/{class} | 
+[**getJsonWebKey**](BlueOceanApi.md#getJsonWebKey) | **GET** /jwt-auth/jwks/{key} | 
+[**getJsonWebToken**](BlueOceanApi.md#getJsonWebToken) | **GET** /jwt-auth/token | 
 [**getOrganisation**](BlueOceanApi.md#getOrganisation) | **GET** /blue/rest/organizations/{organization} | 
 [**getOrganisations**](BlueOceanApi.md#getOrganisations) | **GET** /blue/rest/organizations/ | 
 [**getPipeline**](BlueOceanApi.md#getPipeline) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline} | 
@@ -96,7 +98,7 @@ null (empty response body)
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json
+ - **Accept**: Not defined
 
 <a name="getAuthenticatedUser"></a>
 # **getAuthenticatedUser**
@@ -200,6 +202,98 @@ Name | Type | Description  | Notes
 ### Authorization
 
 [jenkins_auth](../README.md#jenkins_auth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+<a name="getJsonWebKey"></a>
+# **getJsonWebKey**
+> String getJsonWebKey(key)
+
+
+
+Retrieve JSON Web Key
+
+### Example
+```java
+// Import classes:
+//import com.cliffano.swaggyjenkins.ApiException;
+//import com.cliffano.swaggyjenkins.api.BlueOceanApi;
+
+
+BlueOceanApi apiInstance = new BlueOceanApi();
+Integer key = 56; // Integer | Key ID received as part of JWT header field kid
+try {
+    String result = apiInstance.getJsonWebKey(key);
+    System.out.println(result);
+} catch (ApiException e) {
+    System.err.println("Exception when calling BlueOceanApi#getJsonWebKey");
+    e.printStackTrace();
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **key** | **Integer**| Key ID received as part of JWT header field kid |
+
+### Return type
+
+**String**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+<a name="getJsonWebToken"></a>
+# **getJsonWebToken**
+> String getJsonWebToken(expiryTimeInMins, maxExpiryTimeInMins)
+
+
+
+Retrieve JSON Web Token
+
+### Example
+```java
+// Import classes:
+//import com.cliffano.swaggyjenkins.ApiException;
+//import com.cliffano.swaggyjenkins.api.BlueOceanApi;
+
+
+BlueOceanApi apiInstance = new BlueOceanApi();
+Integer expiryTimeInMins = 56; // Integer | Token expiry time in minutes, default: 30 minutes
+Integer maxExpiryTimeInMins = 56; // Integer | Maximum token expiry time in minutes, default: 480 minutes
+try {
+    String result = apiInstance.getJsonWebToken(expiryTimeInMins, maxExpiryTimeInMins);
+    System.out.println(result);
+} catch (ApiException e) {
+    System.err.println("Exception when calling BlueOceanApi#getJsonWebToken");
+    e.printStackTrace();
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **expiryTimeInMins** | **Integer**| Token expiry time in minutes, default: 30 minutes | [optional]
+ **maxExpiryTimeInMins** | **Integer**| Maximum token expiry time in minutes, default: 480 minutes | [optional]
+
+### Return type
+
+**String**
+
+### Authorization
+
+No authorization required
 
 ### HTTP request headers
 
@@ -1843,7 +1937,7 @@ jenkins_auth.setPassword("YOUR PASSWORD");
 BlueOceanApi apiInstance = new BlueOceanApi();
 String organization = "organization_example"; // String | Name of the organization
 String pipeline = "pipeline_example"; // String | Name of the pipeline
-String body = "body_example"; // String | Set JSON string body to {\"favorite\": true} to favorite, set value to false to unfavorite
+Body body = new Body(); // Body | Set JSON string body to {"favorite": true} to favorite, set value to false to unfavorite
 try {
     FavoriteImpl result = apiInstance.putPipelineFavorite(organization, pipeline, body);
     System.out.println(result);
@@ -1859,7 +1953,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **organization** | **String**| Name of the organization |
  **pipeline** | **String**| Name of the pipeline |
- **body** | [**String**](String.md)| Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite |
+ **body** | [**Body**](Body.md)| Set JSON string body to {&quot;favorite&quot;: true} to favorite, set value to false to unfavorite |
 
 ### Return type
 
@@ -1871,7 +1965,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 <a name="putPipelineRun"></a>

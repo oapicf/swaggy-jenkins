@@ -1,0 +1,19 @@
+{application, openapi, [
+    {description, "Jenkins API clients generated from Swagger / Open API specification"},
+    {vsn, "1.0.0"},
+    {registered, []},
+    {applications, [
+        kernel,
+        stdlib,
+        ssl,
+        inets,
+        jsx,
+        jesse,
+        cowboy
+    ]},
+    {env, [
+    ]},
+    {modules, []},
+    {licenses, []},
+    {links, ["http://github.com/cliffano/swaggy-jenkins"]}
+]}.

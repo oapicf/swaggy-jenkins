@@ -7,6 +7,8 @@ Method | HTTP request | Description
 [**delete_pipeline_queue_item**](BlueOceanApi.md#delete_pipeline_queue_item) | **DELETE** /blue/rest/organizations/{organization}/pipelines/{pipeline}/queue/{queue} | 
 [**get_authenticated_user**](BlueOceanApi.md#get_authenticated_user) | **GET** /blue/rest/organizations/{organization}/user/ | 
 [**get_classes**](BlueOceanApi.md#get_classes) | **GET** /blue/rest/classes/{class} | 
+[**get_json_web_key**](BlueOceanApi.md#get_json_web_key) | **GET** /jwt-auth/jwks/{key} | 
+[**get_json_web_token**](BlueOceanApi.md#get_json_web_token) | **GET** /jwt-auth/token | 
 [**get_organisation**](BlueOceanApi.md#get_organisation) | **GET** /blue/rest/organizations/{organization} | 
 [**get_organisations**](BlueOceanApi.md#get_organisations) | **GET** /blue/rest/organizations/ | 
 [**get_pipeline**](BlueOceanApi.md#get_pipeline) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline} | 
@@ -48,7 +50,7 @@ Method | HTTP request | Description
 
 Delete queue item from an organization pipeline queue
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -67,7 +69,7 @@ organization = 'organization_example' # str | Name of the organization
 pipeline = 'pipeline_example' # str | Name of the pipeline
 queue = 'queue_example' # str | Name of the queue item
 
-try: 
+try:
     api_instance.delete_pipeline_queue_item(organization, pipeline, queue)
 except ApiException as e:
     print("Exception when calling BlueOceanApi->delete_pipeline_queue_item: %s\n" % e)
@@ -92,7 +94,7 @@ void (empty response body)
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json
+ - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -103,7 +105,7 @@ void (empty response body)
 
 Retrieve authenticated user details for an organization
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -120,7 +122,7 @@ configuration.password = 'YOUR_PASSWORD'
 api_instance = swaggyjenkins.BlueOceanApi(swaggyjenkins.ApiClient(configuration))
 organization = 'organization_example' # str | Name of the organization
 
-try: 
+try:
     api_response = api_instance.get_authenticated_user(organization)
     pprint(api_response)
 except ApiException as e:
@@ -155,7 +157,7 @@ Name | Type | Description  | Notes
 
 Get a list of class names supported by a given class
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -172,7 +174,7 @@ configuration.password = 'YOUR_PASSWORD'
 api_instance = swaggyjenkins.BlueOceanApi(swaggyjenkins.ApiClient(configuration))
 _class = '_class_example' # str | Name of the class
 
-try: 
+try:
     api_response = api_instance.get_classes(_class)
     pprint(api_response)
 except ApiException as e:
@@ -200,6 +202,102 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **get_json_web_key**
+> str get_json_web_key(key)
+
+
+
+Retrieve JSON Web Key
+
+### Example
+```python
+from __future__ import print_function
+import time
+import swaggyjenkins
+from swaggyjenkins.rest import ApiException
+from pprint import pprint
+
+# create an instance of the API class
+api_instance = swaggyjenkins.BlueOceanApi()
+key = 56 # int | Key ID received as part of JWT header field kid
+
+try:
+    api_response = api_instance.get_json_web_key(key)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling BlueOceanApi->get_json_web_key: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **key** | **int**| Key ID received as part of JWT header field kid | 
+
+### Return type
+
+**str**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_json_web_token**
+> str get_json_web_token(expiry_time_in_mins=expiry_time_in_mins, max_expiry_time_in_mins=max_expiry_time_in_mins)
+
+
+
+Retrieve JSON Web Token
+
+### Example
+```python
+from __future__ import print_function
+import time
+import swaggyjenkins
+from swaggyjenkins.rest import ApiException
+from pprint import pprint
+
+# create an instance of the API class
+api_instance = swaggyjenkins.BlueOceanApi()
+expiry_time_in_mins = 56 # int | Token expiry time in minutes, default: 30 minutes (optional)
+max_expiry_time_in_mins = 56 # int | Maximum token expiry time in minutes, default: 480 minutes (optional)
+
+try:
+    api_response = api_instance.get_json_web_token(expiry_time_in_mins=expiry_time_in_mins, max_expiry_time_in_mins=max_expiry_time_in_mins)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling BlueOceanApi->get_json_web_token: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **expiry_time_in_mins** | **int**| Token expiry time in minutes, default: 30 minutes | [optional] 
+ **max_expiry_time_in_mins** | **int**| Maximum token expiry time in minutes, default: 480 minutes | [optional] 
+
+### Return type
+
+**str**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **get_organisation**
 > Organisation get_organisation(organization)
 
@@ -207,7 +305,7 @@ Name | Type | Description  | Notes
 
 Retrieve organization details
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -224,7 +322,7 @@ configuration.password = 'YOUR_PASSWORD'
 api_instance = swaggyjenkins.BlueOceanApi(swaggyjenkins.ApiClient(configuration))
 organization = 'organization_example' # str | Name of the organization
 
-try: 
+try:
     api_response = api_instance.get_organisation(organization)
     pprint(api_response)
 except ApiException as e:
@@ -259,7 +357,7 @@ Name | Type | Description  | Notes
 
 Retrieve all organizations details
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -275,7 +373,7 @@ configuration.password = 'YOUR_PASSWORD'
 # create an instance of the API class
 api_instance = swaggyjenkins.BlueOceanApi(swaggyjenkins.ApiClient(configuration))
 
-try: 
+try:
     api_response = api_instance.get_organisations()
     pprint(api_response)
 except ApiException as e:
@@ -307,7 +405,7 @@ This endpoint does not need any parameter.
 
 Retrieve pipeline details for an organization
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -325,7 +423,7 @@ api_instance = swaggyjenkins.BlueOceanApi(swaggyjenkins.ApiClient(configuration)
 organization = 'organization_example' # str | Name of the organization
 pipeline = 'pipeline_example' # str | Name of the pipeline
 
-try: 
+try:
     api_response = api_instance.get_pipeline(organization, pipeline)
     pprint(api_response)
 except ApiException as e:
@@ -361,7 +459,7 @@ Name | Type | Description  | Notes
 
 Retrieve all activities details for an organization pipeline
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -379,7 +477,7 @@ api_instance = swaggyjenkins.BlueOceanApi(swaggyjenkins.ApiClient(configuration)
 organization = 'organization_example' # str | Name of the organization
 pipeline = 'pipeline_example' # str | Name of the pipeline
 
-try: 
+try:
     api_response = api_instance.get_pipeline_activities(organization, pipeline)
     pprint(api_response)
 except ApiException as e:
@@ -415,7 +513,7 @@ Name | Type | Description  | Notes
 
 Retrieve branch details for an organization pipeline
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -434,7 +532,7 @@ organization = 'organization_example' # str | Name of the organization
 pipeline = 'pipeline_example' # str | Name of the pipeline
 branch = 'branch_example' # str | Name of the branch
 
-try: 
+try:
     api_response = api_instance.get_pipeline_branch(organization, pipeline, branch)
     pprint(api_response)
 except ApiException as e:
@@ -471,7 +569,7 @@ Name | Type | Description  | Notes
 
 Retrieve branch run details for an organization pipeline
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -491,7 +589,7 @@ pipeline = 'pipeline_example' # str | Name of the pipeline
 branch = 'branch_example' # str | Name of the branch
 run = 'run_example' # str | Name of the run
 
-try: 
+try:
     api_response = api_instance.get_pipeline_branch_run(organization, pipeline, branch, run)
     pprint(api_response)
 except ApiException as e:
@@ -529,7 +627,7 @@ Name | Type | Description  | Notes
 
 Retrieve all branches details for an organization pipeline
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -547,7 +645,7 @@ api_instance = swaggyjenkins.BlueOceanApi(swaggyjenkins.ApiClient(configuration)
 organization = 'organization_example' # str | Name of the organization
 pipeline = 'pipeline_example' # str | Name of the pipeline
 
-try: 
+try:
     api_response = api_instance.get_pipeline_branches(organization, pipeline)
     pprint(api_response)
 except ApiException as e:
@@ -583,7 +681,7 @@ Name | Type | Description  | Notes
 
 Retrieve pipeline folder for an organization
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -601,7 +699,7 @@ api_instance = swaggyjenkins.BlueOceanApi(swaggyjenkins.ApiClient(configuration)
 organization = 'organization_example' # str | Name of the organization
 folder = 'folder_example' # str | Name of the folder
 
-try: 
+try:
     api_response = api_instance.get_pipeline_folder(organization, folder)
     pprint(api_response)
 except ApiException as e:
@@ -637,7 +735,7 @@ Name | Type | Description  | Notes
 
 Retrieve pipeline details for an organization folder
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -656,7 +754,7 @@ organization = 'organization_example' # str | Name of the organization
 pipeline = 'pipeline_example' # str | Name of the pipeline
 folder = 'folder_example' # str | Name of the folder
 
-try: 
+try:
     api_response = api_instance.get_pipeline_folder_pipeline(organization, pipeline, folder)
     pprint(api_response)
 except ApiException as e:
@@ -693,7 +791,7 @@ Name | Type | Description  | Notes
 
 Retrieve queue details for an organization pipeline
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -711,7 +809,7 @@ api_instance = swaggyjenkins.BlueOceanApi(swaggyjenkins.ApiClient(configuration)
 organization = 'organization_example' # str | Name of the organization
 pipeline = 'pipeline_example' # str | Name of the pipeline
 
-try: 
+try:
     api_response = api_instance.get_pipeline_queue(organization, pipeline)
     pprint(api_response)
 except ApiException as e:
@@ -747,7 +845,7 @@ Name | Type | Description  | Notes
 
 Retrieve run details for an organization pipeline
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -766,7 +864,7 @@ organization = 'organization_example' # str | Name of the organization
 pipeline = 'pipeline_example' # str | Name of the pipeline
 run = 'run_example' # str | Name of the run
 
-try: 
+try:
     api_response = api_instance.get_pipeline_run(organization, pipeline, run)
     pprint(api_response)
 except ApiException as e:
@@ -803,7 +901,7 @@ Name | Type | Description  | Notes
 
 Get log for a pipeline run
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -822,9 +920,9 @@ organization = 'organization_example' # str | Name of the organization
 pipeline = 'pipeline_example' # str | Name of the pipeline
 run = 'run_example' # str | Name of the run
 start = 56 # int | Start position of the log (optional)
-download = true # bool | Set to true in order to download the file, otherwise it's passed as a response body (optional)
+download = True # bool | Set to true in order to download the file, otherwise it's passed as a response body (optional)
 
-try: 
+try:
     api_response = api_instance.get_pipeline_run_log(organization, pipeline, run, start=start, download=download)
     pprint(api_response)
 except ApiException as e:
@@ -863,7 +961,7 @@ Name | Type | Description  | Notes
 
 Retrieve run node details for an organization pipeline
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -883,7 +981,7 @@ pipeline = 'pipeline_example' # str | Name of the pipeline
 run = 'run_example' # str | Name of the run
 node = 'node_example' # str | Name of the node
 
-try: 
+try:
     api_response = api_instance.get_pipeline_run_node(organization, pipeline, run, node)
     pprint(api_response)
 except ApiException as e:
@@ -921,7 +1019,7 @@ Name | Type | Description  | Notes
 
 Retrieve run node details for an organization pipeline
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -942,7 +1040,7 @@ run = 'run_example' # str | Name of the run
 node = 'node_example' # str | Name of the node
 step = 'step_example' # str | Name of the step
 
-try: 
+try:
     api_response = api_instance.get_pipeline_run_node_step(organization, pipeline, run, node, step)
     pprint(api_response)
 except ApiException as e:
@@ -981,7 +1079,7 @@ Name | Type | Description  | Notes
 
 Get log for a pipeline run node step
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -1002,7 +1100,7 @@ run = 'run_example' # str | Name of the run
 node = 'node_example' # str | Name of the node
 step = 'step_example' # str | Name of the step
 
-try: 
+try:
     api_response = api_instance.get_pipeline_run_node_step_log(organization, pipeline, run, node, step)
     pprint(api_response)
 except ApiException as e:
@@ -1041,7 +1139,7 @@ Name | Type | Description  | Notes
 
 Retrieve run node steps details for an organization pipeline
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -1061,7 +1159,7 @@ pipeline = 'pipeline_example' # str | Name of the pipeline
 run = 'run_example' # str | Name of the run
 node = 'node_example' # str | Name of the node
 
-try: 
+try:
     api_response = api_instance.get_pipeline_run_node_steps(organization, pipeline, run, node)
     pprint(api_response)
 except ApiException as e:
@@ -1099,7 +1197,7 @@ Name | Type | Description  | Notes
 
 Retrieve run nodes details for an organization pipeline
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -1118,7 +1216,7 @@ organization = 'organization_example' # str | Name of the organization
 pipeline = 'pipeline_example' # str | Name of the pipeline
 run = 'run_example' # str | Name of the run
 
-try: 
+try:
     api_response = api_instance.get_pipeline_run_nodes(organization, pipeline, run)
     pprint(api_response)
 except ApiException as e:
@@ -1155,7 +1253,7 @@ Name | Type | Description  | Notes
 
 Retrieve all runs details for an organization pipeline
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -1173,7 +1271,7 @@ api_instance = swaggyjenkins.BlueOceanApi(swaggyjenkins.ApiClient(configuration)
 organization = 'organization_example' # str | Name of the organization
 pipeline = 'pipeline_example' # str | Name of the pipeline
 
-try: 
+try:
     api_response = api_instance.get_pipeline_runs(organization, pipeline)
     pprint(api_response)
 except ApiException as e:
@@ -1209,7 +1307,7 @@ Name | Type | Description  | Notes
 
 Retrieve all pipelines details for an organization
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -1226,7 +1324,7 @@ configuration.password = 'YOUR_PASSWORD'
 api_instance = swaggyjenkins.BlueOceanApi(swaggyjenkins.ApiClient(configuration))
 organization = 'organization_example' # str | Name of the organization
 
-try: 
+try:
     api_response = api_instance.get_pipelines(organization)
     pprint(api_response)
 except ApiException as e:
@@ -1261,7 +1359,7 @@ Name | Type | Description  | Notes
 
 Retrieve SCM details for an organization
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -1279,7 +1377,7 @@ api_instance = swaggyjenkins.BlueOceanApi(swaggyjenkins.ApiClient(configuration)
 organization = 'organization_example' # str | Name of the organization
 scm = 'scm_example' # str | Name of SCM
 
-try: 
+try:
     api_response = api_instance.get_scm(organization, scm)
     pprint(api_response)
 except ApiException as e:
@@ -1315,7 +1413,7 @@ Name | Type | Description  | Notes
 
 Retrieve SCM organization repositories details for an organization
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -1337,7 +1435,7 @@ credential_id = 'credential_id_example' # str | Credential ID (optional)
 page_size = 56 # int | Number of items in a page (optional)
 page_number = 56 # int | Page number (optional)
 
-try: 
+try:
     api_response = api_instance.get_scm_organisation_repositories(organization, scm, scm_organisation, credential_id=credential_id, page_size=page_size, page_number=page_number)
     pprint(api_response)
 except ApiException as e:
@@ -1377,7 +1475,7 @@ Name | Type | Description  | Notes
 
 Retrieve SCM organization repository details for an organization
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -1398,7 +1496,7 @@ scm_organisation = 'scm_organisation_example' # str | Name of the SCM organizati
 repository = 'repository_example' # str | Name of the SCM repository
 credential_id = 'credential_id_example' # str | Credential ID (optional)
 
-try: 
+try:
     api_response = api_instance.get_scm_organisation_repository(organization, scm, scm_organisation, repository, credential_id=credential_id)
     pprint(api_response)
 except ApiException as e:
@@ -1437,7 +1535,7 @@ Name | Type | Description  | Notes
 
 Retrieve SCM organizations details for an organization
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -1456,7 +1554,7 @@ organization = 'organization_example' # str | Name of the organization
 scm = 'scm_example' # str | Name of SCM
 credential_id = 'credential_id_example' # str | Credential ID (optional)
 
-try: 
+try:
     api_response = api_instance.get_scm_organisations(organization, scm, credential_id=credential_id)
     pprint(api_response)
 except ApiException as e:
@@ -1493,7 +1591,7 @@ Name | Type | Description  | Notes
 
 Retrieve user details for an organization
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -1511,7 +1609,7 @@ api_instance = swaggyjenkins.BlueOceanApi(swaggyjenkins.ApiClient(configuration)
 organization = 'organization_example' # str | Name of the organization
 user = 'user_example' # str | Name of the user
 
-try: 
+try:
     api_response = api_instance.get_user(organization, user)
     pprint(api_response)
 except ApiException as e:
@@ -1547,7 +1645,7 @@ Name | Type | Description  | Notes
 
 Retrieve user favorites details for an organization
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -1564,7 +1662,7 @@ configuration.password = 'YOUR_PASSWORD'
 api_instance = swaggyjenkins.BlueOceanApi(swaggyjenkins.ApiClient(configuration))
 user = 'user_example' # str | Name of the user
 
-try: 
+try:
     api_response = api_instance.get_user_favorites(user)
     pprint(api_response)
 except ApiException as e:
@@ -1599,7 +1697,7 @@ Name | Type | Description  | Notes
 
 Retrieve users details for an organization
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -1616,7 +1714,7 @@ configuration.password = 'YOUR_PASSWORD'
 api_instance = swaggyjenkins.BlueOceanApi(swaggyjenkins.ApiClient(configuration))
 organization = 'organization_example' # str | Name of the organization
 
-try: 
+try:
     api_response = api_instance.get_users(organization)
     pprint(api_response)
 except ApiException as e:
@@ -1651,7 +1749,7 @@ Name | Type | Description  | Notes
 
 Replay an organization pipeline run
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -1670,7 +1768,7 @@ organization = 'organization_example' # str | Name of the organization
 pipeline = 'pipeline_example' # str | Name of the pipeline
 run = 'run_example' # str | Name of the run
 
-try: 
+try:
     api_response = api_instance.post_pipeline_run(organization, pipeline, run)
     pprint(api_response)
 except ApiException as e:
@@ -1707,7 +1805,7 @@ Name | Type | Description  | Notes
 
 Start a build for an organization pipeline
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -1725,7 +1823,7 @@ api_instance = swaggyjenkins.BlueOceanApi(swaggyjenkins.ApiClient(configuration)
 organization = 'organization_example' # str | Name of the organization
 pipeline = 'pipeline_example' # str | Name of the pipeline
 
-try: 
+try:
     api_response = api_instance.post_pipeline_runs(organization, pipeline)
     pprint(api_response)
 except ApiException as e:
@@ -1761,7 +1859,7 @@ Name | Type | Description  | Notes
 
 Favorite/unfavorite a pipeline
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -1778,9 +1876,9 @@ configuration.password = 'YOUR_PASSWORD'
 api_instance = swaggyjenkins.BlueOceanApi(swaggyjenkins.ApiClient(configuration))
 organization = 'organization_example' # str | Name of the organization
 pipeline = 'pipeline_example' # str | Name of the pipeline
-body = swaggyjenkins.Body() # Body | Set JSON string body to {\"favorite\": true} to favorite, set value to false to unfavorite
+body = swaggyjenkins.Body() # Body | Set JSON string body to {"favorite": true} to favorite, set value to false to unfavorite
 
-try: 
+try:
     api_response = api_instance.put_pipeline_favorite(organization, pipeline, body)
     pprint(api_response)
 except ApiException as e:
@@ -1793,7 +1891,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **organization** | **str**| Name of the organization | 
  **pipeline** | **str**| Name of the pipeline | 
- **body** | [**Body**](Body.md)| Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite | 
+ **body** | [**Body**](Body.md)| Set JSON string body to {&quot;favorite&quot;: true} to favorite, set value to false to unfavorite | 
 
 ### Return type
 
@@ -1805,7 +1903,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -1817,7 +1915,7 @@ Name | Type | Description  | Notes
 
 Stop a build of an organization pipeline
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -1838,7 +1936,7 @@ run = 'run_example' # str | Name of the run
 blocking = 'blocking_example' # str | Set to true to make blocking stop, default: false (optional)
 time_out_in_secs = 56 # int | Timeout in seconds, default: 10 seconds (optional)
 
-try: 
+try:
     api_response = api_instance.put_pipeline_run(organization, pipeline, run, blocking=blocking, time_out_in_secs=time_out_in_secs)
     pprint(api_response)
 except ApiException as e:
@@ -1877,7 +1975,7 @@ Name | Type | Description  | Notes
 
 Search for any resource details
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -1894,7 +1992,7 @@ configuration.password = 'YOUR_PASSWORD'
 api_instance = swaggyjenkins.BlueOceanApi(swaggyjenkins.ApiClient(configuration))
 q = 'q_example' # str | Query string
 
-try: 
+try:
     api_response = api_instance.search(q)
     pprint(api_response)
 except ApiException as e:
@@ -1929,7 +2027,7 @@ Name | Type | Description  | Notes
 
 Get classes details
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -1946,7 +2044,7 @@ configuration.password = 'YOUR_PASSWORD'
 api_instance = swaggyjenkins.BlueOceanApi(swaggyjenkins.ApiClient(configuration))
 q = 'q_example' # str | Query string containing an array of class names
 
-try: 
+try:
     api_response = api_instance.search_classes(q)
     pprint(api_response)
 except ApiException as e:
