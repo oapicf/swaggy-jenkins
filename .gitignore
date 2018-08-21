@@ -1,3 +1,4 @@
 .DS_Store
 clients/*/log/*
 clients/javascript/generated/node_modules
+test/javascript/node_modules
