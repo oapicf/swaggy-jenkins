@@ -1,5 +1,6 @@
 ### 1.0.0
 * Upgrade spec to OpenAPI v3
+* Replace Swagger CodeGen with OpenAPI Generator
 
 ### 0.2.0
 * Add JWT auth security definition and paths
