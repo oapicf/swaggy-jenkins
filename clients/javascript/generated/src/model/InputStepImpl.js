@@ -37,7 +37,7 @@
   /**
    * The InputStepImpl model module.
    * @module model/InputStepImpl
-   * @version 0.0.2
+   * @version 1.0.0
    */
 
   /**

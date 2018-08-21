@@ -37,7 +37,7 @@
   /**
    * The UnlabeledLoadStatistics model module.
    * @module model/UnlabeledLoadStatistics
-   * @version 0.0.2
+   * @version 1.0.0
    */
 
   /**

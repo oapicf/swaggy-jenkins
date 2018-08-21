@@ -37,7 +37,7 @@
   /**
    * The PipelineActivities model module.
    * @module model/PipelineActivities
-   * @version 0.0.2
+   * @version 1.0.0
    */
 
   /**

@@ -37,7 +37,7 @@
   /**
    * The MultibranchPipeline model module.
    * @module model/MultibranchPipeline
-   * @version 0.0.2
+   * @version 1.0.0
    */
 
   /**

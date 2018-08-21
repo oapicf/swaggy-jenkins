@@ -37,7 +37,7 @@
   /**
    * The Users model module.
    * @module model/Users
-   * @version 0.0.2
+   * @version 1.0.0
    */
 
   /**

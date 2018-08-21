@@ -37,7 +37,7 @@
   /**
    * The DiskSpaceMonitorDescriptorDiskSpace model module.
    * @module model/DiskSpaceMonitorDescriptorDiskSpace
-   * @version 0.0.2
+   * @version 1.0.0
    */
 
   /**

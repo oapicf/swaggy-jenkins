@@ -37,7 +37,7 @@
   /**
    * The QueueLeftItem model module.
    * @module model/QueueLeftItem
-   * @version 0.0.2
+   * @version 1.0.0
    */
 
   /**

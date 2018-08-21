@@ -37,7 +37,7 @@
   /**
    * The QueueItemImpl model module.
    * @module model/QueueItemImpl
-   * @version 0.0.2
+   * @version 1.0.0
    */
 
   /**

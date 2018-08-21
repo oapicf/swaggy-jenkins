@@ -37,7 +37,7 @@
   /**
    * The GithubContent model module.
    * @module model/GithubContent
-   * @version 0.0.2
+   * @version 1.0.0
    */
 
   /**

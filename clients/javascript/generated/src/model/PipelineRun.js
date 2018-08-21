@@ -37,7 +37,7 @@
   /**
    * The PipelineRun model module.
    * @module model/PipelineRun
-   * @version 0.0.2
+   * @version 1.0.0
    */
 
   /**

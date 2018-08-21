@@ -34,7 +34,7 @@
   /**
    * RemoteAccess service.
    * @module api/RemoteAccessApi
-   * @version 0.0.2
+   * @version 1.0.0
    */
 
   /**

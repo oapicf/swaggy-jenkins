@@ -37,7 +37,7 @@
   /**
    * The ClassesByClass model module.
    * @module model/ClassesByClass
-   * @version 0.0.2
+   * @version 1.0.0
    */
 
   /**

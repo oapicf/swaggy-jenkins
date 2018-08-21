@@ -37,7 +37,7 @@
   /**
    * The UserFavorites model module.
    * @module model/UserFavorites
-   * @version 0.0.2
+   * @version 1.0.0
    */
 
   /**

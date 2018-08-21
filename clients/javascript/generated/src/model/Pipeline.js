@@ -37,7 +37,7 @@
   /**
    * The Pipeline model module.
    * @module model/Pipeline
-   * @version 0.0.2
+   * @version 1.0.0
    */
 
   /**

@@ -37,7 +37,7 @@
   /**
    * The PipelineRunImpllinks model module.
    * @module model/PipelineRunImpllinks
-   * @version 0.0.2
+   * @version 1.0.0
    */
 
   /**

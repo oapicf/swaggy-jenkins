@@ -37,7 +37,7 @@
   /**
    * The PipelinelatestRun model module.
    * @module model/PipelinelatestRun
-   * @version 0.0.2
+   * @version 1.0.0
    */
 
   /**

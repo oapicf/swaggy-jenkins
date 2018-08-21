@@ -37,7 +37,7 @@
   /**
    * The DefaultCrumbIssuer model module.
    * @module model/DefaultCrumbIssuer
-   * @version 0.0.2
+   * @version 1.0.0
    */
 
   /**

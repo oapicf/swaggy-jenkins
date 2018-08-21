@@ -37,7 +37,7 @@
   /**
    * The GithubRepositories model module.
    * @module model/GithubRepositories
-   * @version 0.0.2
+   * @version 1.0.0
    */
 
   /**

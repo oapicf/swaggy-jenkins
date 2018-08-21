@@ -37,7 +37,7 @@
   /**
    * The PipelinelatestRunartifacts model module.
    * @module model/PipelinelatestRunartifacts
-   * @version 0.0.2
+   * @version 1.0.0
    */
 
   /**

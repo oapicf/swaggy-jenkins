@@ -37,7 +37,7 @@
   /**
    * The PipelineQueue model module.
    * @module model/PipelineQueue
-   * @version 0.0.2
+   * @version 1.0.0
    */
 
   /**

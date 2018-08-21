@@ -37,7 +37,7 @@
   /**
    * The PipelineRunNodeSteps model module.
    * @module model/PipelineRunNodeSteps
-   * @version 0.0.2
+   * @version 1.0.0
    */
 
   /**

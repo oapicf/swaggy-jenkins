@@ -37,7 +37,7 @@
   /**
    * The GithubOrganizationlinks model module.
    * @module model/GithubOrganizationlinks
-   * @version 0.0.2
+   * @version 1.0.0
    */
 
   /**

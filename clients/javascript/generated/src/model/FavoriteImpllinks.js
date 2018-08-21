@@ -37,7 +37,7 @@
   /**
    * The FavoriteImpllinks model module.
    * @module model/FavoriteImpllinks
-   * @version 0.0.2
+   * @version 1.0.0
    */
 
   /**

@@ -37,7 +37,7 @@
   /**
    * The PipelineBranchesitempullRequest model module.
    * @module model/PipelineBranchesitempullRequest
-   * @version 0.0.2
+   * @version 1.0.0
    */
 
   /**

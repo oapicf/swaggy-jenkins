@@ -37,7 +37,7 @@
   /**
    * The Label1 model module.
    * @module model/Label1
-   * @version 0.0.2
+   * @version 1.0.0
    */
 
   /**

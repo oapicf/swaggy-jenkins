@@ -37,7 +37,7 @@
   /**
    * The CauseAction model module.
    * @module model/CauseAction
-   * @version 0.0.2
+   * @version 1.0.0
    */
 
   /**

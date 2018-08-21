@@ -37,7 +37,7 @@
   /**
    * The Body model module.
    * @module model/Body
-   * @version 0.0.2
+   * @version 1.0.0
    */
 
   /**

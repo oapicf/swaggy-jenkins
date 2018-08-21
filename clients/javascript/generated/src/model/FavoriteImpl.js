@@ -37,7 +37,7 @@
   /**
    * The FavoriteImpl model module.
    * @module model/FavoriteImpl
-   * @version 0.0.2
+   * @version 1.0.0
    */
 
   /**

@@ -37,7 +37,7 @@
   /**
    * The StringParameterValue model module.
    * @module model/StringParameterValue
-   * @version 0.0.2
+   * @version 1.0.0
    */
 
   /**

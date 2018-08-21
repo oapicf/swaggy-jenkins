@@ -37,7 +37,7 @@
   /**
    * The GithubOrganization model module.
    * @module model/GithubOrganization
-   * @version 0.0.2
+   * @version 1.0.0
    */
 
   /**

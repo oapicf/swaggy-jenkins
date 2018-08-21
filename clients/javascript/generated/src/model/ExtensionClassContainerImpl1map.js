@@ -37,7 +37,7 @@
   /**
    * The ExtensionClassContainerImpl1map model module.
    * @module model/ExtensionClassContainerImpl1map
-   * @version 0.0.2
+   * @version 1.0.0
    */
 
   /**

@@ -37,7 +37,7 @@
   /**
    * The PipelineStepImpllinks model module.
    * @module model/PipelineStepImpllinks
-   * @version 0.0.2
+   * @version 1.0.0
    */
 
   /**
