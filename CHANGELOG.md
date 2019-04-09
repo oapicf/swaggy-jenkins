@@ -1,5 +1,6 @@
-### 1.0.1
+### 1.1.0
 * Add baseRemoteAccess tag to getCrumb operation
+* Upgrade OpenAPI Generator to v3.3.4
 
 ### 1.0.0
 * Upgrade spec to OpenAPI v3
