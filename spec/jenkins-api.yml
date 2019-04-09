@@ -182,6 +182,7 @@ paths:
         - jenkins_auth: []
       tags:
         - remoteAccess
+        - baseRemoteAccess
   '/job/{name}/api/json':
     get:
       description: Retrieve job details
