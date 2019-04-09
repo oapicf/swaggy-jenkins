@@ -6,7 +6,7 @@ clean:
 	rm -rf clients/*/generated
 
 deps:
-	docker pull openapitools/openapi-generator-cli:v3.2.0
+	docker pull openapitools/openapi-generator-cli:v3.3.4
 
 tools:
 	npm install -g bootprint bootprint-openapi gh-pages mocha
