@@ -16,6 +16,12 @@ trait DataAccessor {
 
         /**
         * 
+        * @return A DefaultCrumbIssuer
+        */
+        def BaseRemoteAccess_getCrumb(): Either[CommonError,DefaultCrumbIssuer] = Left(TODO)
+
+        /**
+        * 
         * @return A Unit
         */
         def BlueOcean_deletePipelineQueueItem(organization: String, pipeline: String, queue: String): Either[CommonError,Unit] = Left(TODO)

@@ -13,7 +13,7 @@ import javax.validation.Valid;
 
 @Path("/jwt-auth")
 @Api(description = "the jwt-auth API")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2018-08-21T04:39:23.029Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2019-04-09T15:09:11.945Z[GMT]")
 public class JwtAuthApi {
 
     @GET

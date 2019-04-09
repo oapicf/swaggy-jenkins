@@ -48,7 +48,7 @@ public interface RemoteAccessApi  {
     @GET
     @Path("/crumbIssuer/api/json")
     @Produces({ "application/json" })
-    @ApiOperation(value = "", tags={ "remoteAccess",  })
+    @ApiOperation(value = "", tags={ "remoteAccess", "baseRemoteAccess",  })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "Successfully retrieved CSRF protection token", response = DefaultCrumbIssuer.class),
         @ApiResponse(code = 401, message = "Authentication failed - incorrect username and/or password"),

@@ -58,19 +58,17 @@ Please follow the [installation](#installation) instruction and execute the foll
 
 ```java
 
-import org.openapitools.client.api.BlueOceanApi;
+import org.openapitools.client.api.BaseRemoteAccessApi;
 
-public class BlueOceanApiExample {
+public class BaseRemoteAccessApiExample {
 
     public static void main(String[] args) {
-        BlueOceanApi apiInstance = new BlueOceanApi();
-        String organization = "organization_example"; // String | Name of the organization
-        String pipeline = "pipeline_example"; // String | Name of the pipeline
-        String queue = "queue_example"; // String | Name of the queue item
+        BaseRemoteAccessApi apiInstance = new BaseRemoteAccessApi();
         try {
-            apiInstance.deletePipelineQueueItem(organization, pipeline, queue);
+            DefaultCrumbIssuer result = apiInstance.getCrumb();
+            System.out.println(result);
         } catch (ApiException e) {
-            System.err.println("Exception when calling BlueOceanApi#deletePipelineQueueItem");
+            System.err.println("Exception when calling BaseRemoteAccessApi#getCrumb");
             e.printStackTrace();
         }
     }
@@ -84,6 +82,7 @@ All URIs are relative to *http://localhost*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
+*BaseRemoteAccessApi* | [**getCrumb**](docs/BaseRemoteAccessApi.md#getCrumb) | **GET** /crumbIssuer/api/json | 
 *BlueOceanApi* | [**deletePipelineQueueItem**](docs/BlueOceanApi.md#deletePipelineQueueItem) | **DELETE** /blue/rest/organizations/{organization}/pipelines/{pipeline}/queue/{queue} | 
 *BlueOceanApi* | [**getAuthenticatedUser**](docs/BlueOceanApi.md#getAuthenticatedUser) | **GET** /blue/rest/organizations/{organization}/user/ | 
 *BlueOceanApi* | [**getClasses**](docs/BlueOceanApi.md#getClasses) | **GET** /blue/rest/classes/{class} | 

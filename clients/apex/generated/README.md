@@ -42,17 +42,13 @@ If everything is set correctly:
 Please follow the [installation](#installation) instruction and execute the following Apex code:
 
 ```java
-OASBlueOceanApi api = new OASBlueOceanApi();
+OASBaseRemoteAccessApi api = new OASBaseRemoteAccessApi();
 OASClient client = api.getClient();
 
 
-Map<String, Object> params = new Map<String, Object>{
-    'q' => 'null'
-};
-
 try {
     // cross your fingers
-    String result = api.callSearch(params);
+    OASDefaultCrumbIssuer result = api.getCrumb();
     System.debug(result);
 } catch (OAS.ApiException e) {
     // ...handle your exceptions
@@ -65,6 +61,7 @@ All URIs are relative to *http://localhost*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
+*OASBaseRemoteAccessApi* | [**getCrumb**](OASBaseRemoteAccessApi.md#getCrumb) | **GET** /crumbIssuer/api/json | 
 *OASBlueOceanApi* | [**callSearch**](OASBlueOceanApi.md#callSearch) | **GET** /blue/rest/search/ | 
 *OASBlueOceanApi* | [**deletePipelineQueueItem**](OASBlueOceanApi.md#deletePipelineQueueItem) | **DELETE** /blue/rest/organizations/{organization}/pipelines/{pipeline}/queue/{queue} | 
 *OASBlueOceanApi* | [**getAuthenticatedUser**](OASBlueOceanApi.md#getAuthenticatedUser) | **GET** /blue/rest/organizations/{organization}/user/ | 

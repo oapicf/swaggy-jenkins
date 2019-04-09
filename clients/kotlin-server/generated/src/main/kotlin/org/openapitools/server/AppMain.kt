@@ -40,6 +40,7 @@ fun Application.main() {
     install(Compression, ApplicationCompressionConfiguration()) // see http://ktor.io/features/compression.html
     install(Locations) // see http://ktor.io/features/locations.html
     install(Routing) {
+        BaseRemoteAccessApi()
         BlueOceanApi()
         RemoteAccessApi()
     }

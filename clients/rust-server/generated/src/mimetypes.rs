@@ -4,6 +4,10 @@ pub mod responses {
     use hyper::mime::*;
 
     // The macro is called per-operation to beat the recursion limit
+    /// Create Mime objects for the response content types for GetCrumb
+    lazy_static! {
+        pub static ref GET_CRUMB_SUCCESSFULLY_RETRIEVED_CSRF_PROTECTION_TOKEN: Mime = "application/json".parse().unwrap();
+    }
     /// Create Mime objects for the response content types for GetAuthenticatedUser
     lazy_static! {
         pub static ref GET_AUTHENTICATED_USER_SUCCESSFULLY_RETRIEVED_AUTHENTICATED_USER_DETAILS: Mime = "application/json".parse().unwrap();

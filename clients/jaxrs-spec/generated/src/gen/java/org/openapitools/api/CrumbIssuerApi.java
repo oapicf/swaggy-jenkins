@@ -14,7 +14,7 @@ import javax.validation.Valid;
 
 @Path("/crumbIssuer")
 @Api(description = "the crumbIssuer API")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2018-08-21T04:39:23.029Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2019-04-09T15:09:11.945Z[GMT]")
 public class CrumbIssuerApi {
 
     @GET
@@ -22,7 +22,7 @@ public class CrumbIssuerApi {
     @Produces({ "application/json" })
     @ApiOperation(value = "", notes = "Retrieve CSRF protection token", response = DefaultCrumbIssuer.class, authorizations = {
         @Authorization(value = "jenkins_auth")
-    }, tags={ "remoteAccess" })
+    }, tags={ "remoteAccess", "baseRemoteAccess" })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "Successfully retrieved CSRF protection token", response = DefaultCrumbIssuer.class),
         @ApiResponse(code = 401, message = "Authentication failed - incorrect username and/or password", response = Void.class),

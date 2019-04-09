@@ -8,6 +8,11 @@ use Silex\Application;
 $app = new Silex\Application();
 
 
+$app->GET('//crumbIssuer/api/json', function(Application $app, Request $request) {
+            return new Response('How about implementing getCrumb as a GET method ?');
+            });
+
+
 $app->DELETE('//blue/rest/organizations/{organization}/pipelines/{pipeline}/queue/{queue}', function(Application $app, Request $request, $organization, $pipeline, $queue) {
             return new Response('How about implementing deletePipelineQueueItem as a DELETE method ?');
             });

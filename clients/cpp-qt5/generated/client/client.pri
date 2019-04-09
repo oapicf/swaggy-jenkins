@@ -96,6 +96,7 @@ HEADERS += \
     $${PWD}/OAIUserFavorites.h \
     $${PWD}/OAIUsers.h \
 # APIs
+    $${PWD}/OAIBaseRemoteAccessApi.h \
     $${PWD}/OAIBlueOceanApi.h \
     $${PWD}/OAIRemoteAccessApi.h \
 # Others
@@ -201,6 +202,7 @@ SOURCES += \
     $${PWD}/OAIUserFavorites.cpp \
     $${PWD}/OAIUsers.cpp \
 # APIs
+    $${PWD}/OAIBaseRemoteAccessApi.cpp \
     $${PWD}/OAIBlueOceanApi.cpp \
     $${PWD}/OAIRemoteAccessApi.cpp \
 # Others

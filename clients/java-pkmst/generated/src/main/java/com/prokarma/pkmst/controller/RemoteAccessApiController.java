@@ -29,7 +29,7 @@ import java.io.IOException;
  * @author pkmst
  *
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPKMSTServerCodegen", date = "2018-08-21T04:38:28.156Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPKMSTServerCodegen", date = "2019-04-09T15:08:32.540Z[GMT]")
 
 @Controller
 public class RemoteAccessApiController implements RemoteAccessApi {

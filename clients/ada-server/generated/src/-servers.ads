@@ -18,6 +18,15 @@ package .Servers is
 
 
    --  
+   --  Retrieve CSRF protection token
+   overriding
+   procedure Get_Crumb
+      (Server : in out Server_Type
+       ;
+       Result  : out .Models.DefaultCrumbIssuer_Type;
+       Context : in out Swagger.Servers.Context_Type);
+
+   --  
    --  Delete queue item from an organization pipeline queue
    overriding
    procedure Delete_Pipeline_Queue_Item

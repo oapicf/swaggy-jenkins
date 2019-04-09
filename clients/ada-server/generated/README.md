@@ -73,6 +73,7 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**Get_Crumb**](BaseRemoteAccessApi.md#Get_Crumb) | **GET** /crumbIssuer/api/json | 
 [**Delete_Pipeline_Queue_Item**](BlueOceanApi.md#Delete_Pipeline_Queue_Item) | **DELETE** /blue/rest/organizations/{organization}/pipelines/{pipeline}/queue/{queue} | 
 [**Get_Authenticated_User**](BlueOceanApi.md#Get_Authenticated_User) | **GET** /blue/rest/organizations/{organization}/user/ | 
 [**Get_Classes**](BlueOceanApi.md#Get_Classes) | **GET** /blue/rest/classes/{class} | 

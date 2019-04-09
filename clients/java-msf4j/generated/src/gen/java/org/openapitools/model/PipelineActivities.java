@@ -8,7 +8,7 @@ import org.openapitools.model.PipelineActivity;
 /**
  * PipelineActivities
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2018-08-21T04:38:21.382Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2019-04-09T15:08:27.959Z[GMT]")
 public class PipelineActivities extends ArrayList<PipelineActivity>  {
 
   @Override

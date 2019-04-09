@@ -1,7 +1,7 @@
 # openapi-client
 
 Swaggy Jenkins
-- API version: 1.0.0
+- API version: 1.1.0
 
 Jenkins API clients generated from Swagger / Open API specification
 
@@ -66,6 +66,7 @@ All URIs are relative to *http://localhost*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
+*BaseRemoteAccessApi* | **getCrumb** | **GET** /crumbIssuer/api/json | 
 *BlueOceanApi* | **deletePipelineQueueItem** | **DELETE** /blue/rest/organizations/{organization}/pipelines/{pipeline}/queue/{queue} | 
 *BlueOceanApi* | **getAuthenticatedUser** | **GET** /blue/rest/organizations/{organization}/user/ | 
 *BlueOceanApi* | **getClasses** | **GET** /blue/rest/classes/{class} | 

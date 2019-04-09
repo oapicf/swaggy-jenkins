@@ -64,7 +64,8 @@ lookupEither key assocs =
 
 -- | Servant type-level API, generated from the OpenAPI spec for SwaggyJenkins.
 type SwaggyJenkinsAPI
-    =    "blue" :> "rest" :> "organizations" :> Capture "organization" Text :> "pipelines" :> Capture "pipeline" Text :> "queue" :> Capture "queue" Text :> Verb 'DELETE 200 '[JSON] () -- 'deletePipelineQueueItem' route
+    =    "crumbIssuer" :> "api" :> "json" :> Verb 'GET 200 '[JSON] DefaultCrumbIssuer -- 'getCrumb' route
+    :<|> "blue" :> "rest" :> "organizations" :> Capture "organization" Text :> "pipelines" :> Capture "pipeline" Text :> "queue" :> Capture "queue" Text :> Verb 'DELETE 200 '[JSON] () -- 'deletePipelineQueueItem' route
     :<|> "blue" :> "rest" :> "organizations" :> Capture "organization" Text :> "user" :> Verb 'GET 200 '[JSON] User -- 'getAuthenticatedUser' route
     :<|> "blue" :> "rest" :> "classes" :> Capture "class" Text :> Verb 'GET 200 '[JSON] Text -- 'getClasses' route
     :<|> "jwt-auth" :> "jwks" :> Capture "key" Int :> Verb 'GET 200 '[JSON] Text -- 'getJsonWebKey' route
@@ -184,7 +185,8 @@ formatSeparatedQueryList char = T.intercalate (T.singleton char) . map toQueryPa
 -- is a backend that executes actions by sending HTTP requests (see @createSwaggyJenkinsClient@). Alternatively, provided
 -- a backend, the API can be served using @runSwaggyJenkinsServer@.
 data SwaggyJenkinsBackend m = SwaggyJenkinsBackend
-  { deletePipelineQueueItem :: Text -> Text -> Text -> m (){- ^ Delete queue item from an organization pipeline queue -}
+  { getCrumb :: m DefaultCrumbIssuer{- ^ Retrieve CSRF protection token -}
+  , deletePipelineQueueItem :: Text -> Text -> Text -> m (){- ^ Delete queue item from an organization pipeline queue -}
   , getAuthenticatedUser :: Text -> m User{- ^ Retrieve authenticated user details for an organization -}
   , getClasses :: Text -> m Text{- ^ Get a list of class names supported by a given class -}
   , getJsonWebKey :: Int -> m Text{- ^ Retrieve JSON Web Key -}
@@ -265,7 +267,8 @@ instance MonadIO SwaggyJenkinsClient where
 createSwaggyJenkinsClient :: SwaggyJenkinsBackend SwaggyJenkinsClient
 createSwaggyJenkinsClient = SwaggyJenkinsBackend{..}
   where
-    ((coerce -> deletePipelineQueueItem) :<|>
+    ((coerce -> getCrumb) :<|>
+     (coerce -> deletePipelineQueueItem) :<|>
      (coerce -> getAuthenticatedUser) :<|>
      (coerce -> getClasses) :<|>
      (coerce -> getJsonWebKey) :<|>
@@ -342,7 +345,8 @@ runSwaggyJenkinsServer ServerConfig{..} backend =
   where
     warpSettings = Warp.defaultSettings & Warp.setPort configPort & Warp.setHost (fromString configHost)
     serverFromBackend SwaggyJenkinsBackend{..} =
-      (coerce deletePipelineQueueItem :<|>
+      (coerce getCrumb :<|>
+       coerce deletePipelineQueueItem :<|>
        coerce getAuthenticatedUser :<|>
        coerce getClasses :<|>
        coerce getJsonWebKey :<|>

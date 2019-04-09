@@ -19,6 +19,7 @@ use tokio_core::reactor;
 #[allow(unused_imports)]
 use swagger_client::{ApiNoContext, ContextWrapperExt,
                       ApiError,
+                      GetCrumbResponse,
                       DeletePipelineQueueItemResponse,
                       GetAuthenticatedUserResponse,
                       GetClassesResponse,
@@ -85,6 +86,7 @@ fn main() {
         .arg(Arg::with_name("operation")
             .help("Sets the operation to run")
             .possible_values(&[
+    "GetCrumb",
     "DeletePipelineQueueItem",
     "GetAuthenticatedUser",
     "GetClasses",
@@ -181,6 +183,11 @@ fn main() {
     let client = client.with_context(context);
 
     match matches.value_of("operation") {
+
+        Some("GetCrumb") => {
+            let result = core.run(client.get_crumb());
+            println!("{:?} (X-Span-ID: {:?})", result, (client.context() as &Has<XSpanIdString>).get().clone());
+         },
 
         Some("DeletePipelineQueueItem") => {
             let result = core.run(client.delete_pipeline_queue_item("organization_example".to_string(), "pipeline_example".to_string(), "queue_example".to_string()));

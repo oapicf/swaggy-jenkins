@@ -38,7 +38,7 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
 
 @RequestScoped
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSCXFCDIServerCodegen", date = "2018-08-21T04:38:56.735Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSCXFCDIServerCodegen", date = "2019-04-09T15:08:54.033Z[GMT]")
 public class BlueApiServiceImpl implements BlueApiService {
       @Override
       public Response deletePipelineQueueItem(String organization, String pipeline, String queue, SecurityContext securityContext) {

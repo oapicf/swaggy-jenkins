@@ -12,8 +12,8 @@ To see how to make this your own, look here:
 
 [README]((https://openapi-generator.tech))
 
-- API version: 1.0.0
-- Build date: 2018-08-21T02:11:14.668Z[GMT]
+- API version: 1.0.1
+- Build date: 2019-04-09T13:12:10.762Z[GMT]
 For more information, please visit [http://github.com/cliffano/swaggy-jenkins](http://github.com/cliffano/swaggy-jenkins)
 
 

@@ -11,7 +11,7 @@ import javax.validation.constraints.*;
 /**
  * PipelineRunSteps
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2018-08-21T04:38:33.847Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2019-04-09T15:08:36.893Z[GMT]")
 
 @SuppressWarnings({"UnusedReturnValue", "WeakerAccess"})
 public class PipelineRunSteps extends ArrayList<GenericResource>  {

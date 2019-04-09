@@ -11,6 +11,7 @@ use swagger;
 use swagger::{Has, XSpanIdString};
 
 use swagger_client::{Api, ApiError,
+                      GetCrumbResponse,
                       DeletePipelineQueueItemResponse,
                       GetAuthenticatedUserResponse,
                       GetClassesResponse,
@@ -84,6 +85,13 @@ impl<C> Server<C> {
 }
 
 impl<C> Api<C> for Server<C> where C: Has<XSpanIdString>{
+
+
+    fn get_crumb(&self, context: &C) -> Box<Future<Item=GetCrumbResponse, Error=ApiError>> {
+        let context = context.clone();
+        println!("get_crumb() - X-Span-ID: {:?}", context.get().0.clone());
+        Box::new(futures::failed("Generic failure".into()))
+    }
 
 
     fn delete_pipeline_queue_item(&self, organization: String, pipeline: String, queue: String, context: &C) -> Box<Future<Item=DeletePipelineQueueItemResponse, Error=ApiError>> {

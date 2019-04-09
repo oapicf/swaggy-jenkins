@@ -53,6 +53,8 @@ use super::models::*;
 
 mod request;
 
+mod base_remote_access_api;
+pub use self::base_remote_access_api::{ BaseRemoteAccessApi, BaseRemoteAccessApiClient };
 mod blue_ocean_api;
 pub use self::blue_ocean_api::{ BlueOceanApi, BlueOceanApiClient };
 mod remote_access_api;

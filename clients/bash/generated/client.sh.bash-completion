@@ -68,6 +68,7 @@ _()
     # The list of available operation in the REST service
     # It's modelled as an associative array for efficient key lookup
     declare -A operations
+    operations["getCrumb"]=1
     operations["deletePipelineQueueItem"]=1
     operations["getAuthenticatedUser"]=1
     operations["getClasses"]=1
@@ -130,6 +131,7 @@ _()
     # An associative array of operations to their parameters
     # Only include path, query and header parameters
     declare -A operation_parameters
+    operation_parameters["getCrumb"]=""
     operation_parameters["deletePipelineQueueItem"]="organization= pipeline= queue= "
     operation_parameters["getAuthenticatedUser"]="organization= "
     operation_parameters["getClasses"]="class= "

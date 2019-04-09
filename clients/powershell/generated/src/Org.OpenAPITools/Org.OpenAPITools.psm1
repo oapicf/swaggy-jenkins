@@ -16,6 +16,9 @@
 
 #region Initialize APIs
 
+'Creating object: Org.OpenAPITools.Api.BaseRemoteAccessApi' | Write-Verbose
+$Script:BaseRemoteAccessApi= New-Object -TypeName Org.OpenAPITools.Api.BaseRemoteAccessApi -ArgumentList @($null)
+
 'Creating object: Org.OpenAPITools.Api.BlueOceanApi' | Write-Verbose
 $Script:BlueOceanApi= New-Object -TypeName Org.OpenAPITools.Api.BlueOceanApi -ArgumentList @($null)
 

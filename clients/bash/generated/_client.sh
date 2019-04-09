@@ -296,7 +296,7 @@ case $state in
   ops)
     # Operations
     _values "Operations" \
-            "deletePipelineQueueItem[]" \
+            "getCrumb[]"             "deletePipelineQueueItem[]" \
             "getAuthenticatedUser[]" \
             "getClasses[]" \
             "getJsonWebKey[]" \
@@ -359,6 +359,12 @@ case $state in
     ;;
   args)
     case $line[1] in
+      getCrumb)
+        local -a _op_arguments
+        _op_arguments=(
+                              )
+        _describe -t actions 'operations' _op_arguments -S '' && ret=0
+        ;;
       deletePipelineQueueItem)
         local -a _op_arguments
         _op_arguments=(

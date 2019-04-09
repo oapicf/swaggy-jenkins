@@ -13,6 +13,13 @@ public class PathHandlerProvider implements HandlerProvider {
         HttpHandler handler = Handlers.routing()
 
 
+            .add(Methods.GET, "//crumbIssuer/api/json", new HttpHandler() {
+                        public void handleRequest(HttpServerExchange exchange) throws Exception {
+                            exchange.getResponseSender().send("getCrumb");
+                        }
+                    })
+
+
             .add(Methods.DELETE, "//blue/rest/organizations/{organization}/pipelines/{pipeline}/queue/{queue}", new HttpHandler() {
                         public void handleRequest(HttpServerExchange exchange) throws Exception {
                             exchange.getResponseSender().send("deletePipelineQueueItem");

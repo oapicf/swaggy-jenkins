@@ -34,7 +34,7 @@ import org.openapitools.model.ScmOrganisations;
 import org.openapitools.model.User;
 import org.openapitools.model.UserFavorites;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaInflectorServerCodegen", date = "2018-08-21T04:38:15.192Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaInflectorServerCodegen", date = "2019-04-09T15:08:23.683Z[GMT]")
 public class BlueController  {
   /** 
    * Uncomment and implement as you see fit.  These operations will map

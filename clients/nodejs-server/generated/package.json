@@ -1,6 +1,6 @@
 {
   "name": "swaggy-jenkins",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Jenkins API clients generated from Swagger / Open API specification",
   "main": "index.js",
   "scripts": {

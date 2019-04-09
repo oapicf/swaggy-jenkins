@@ -31,7 +31,7 @@ import java.util.List;
  * @author pkmst
  *
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPKMSTServerCodegen", date = "2018-08-21T04:38:28.156Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPKMSTServerCodegen", date = "2019-04-09T15:08:32.540Z[GMT]")
 
 @Api(value = "RemoteAccess", description = "the RemoteAccess API")
 public interface RemoteAccessApi {
@@ -51,7 +51,7 @@ public interface RemoteAccessApi {
 
     @ApiOperation(value = "", notes = "Retrieve CSRF protection token", response = DefaultCrumbIssuer.class, authorizations = {
         @Authorization(value = "jenkins_auth")
-    }, tags={ "remoteAccess", })
+    }, tags={ "remoteAccess","baseRemoteAccess", })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "Successfully retrieved CSRF protection token", response = DefaultCrumbIssuer.class),
         @ApiResponse(code = 401, message = "Authentication failed - incorrect username and/or password"),

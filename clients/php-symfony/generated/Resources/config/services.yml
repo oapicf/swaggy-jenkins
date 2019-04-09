@@ -19,6 +19,13 @@ services:
     open_apiserver.service.validator:
         class: %open_apiserver.validator%
 
+    open_apiserver.controller.baseRemoteAccess:
+        class: OpenAPI\Server\Controller\BaseRemoteAccessController
+        calls:
+         - [setSerializer, ['@open_apiserver.service.serializer']]
+         - [setValidator,  ['@open_apiserver.service.validator']]
+         - [setApiServer,  ['@open_apiserver.api.api_server']]
+
     open_apiserver.controller.blueOcean:
         class: OpenAPI\Server\Controller\BlueOceanController
         calls:

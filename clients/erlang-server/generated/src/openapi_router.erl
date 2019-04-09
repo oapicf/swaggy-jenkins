@@ -55,6 +55,11 @@ group_paths() ->
 
 get_operations() ->
     #{ 
+        'GetCrumb' => #{
+            path => "//crumbIssuer/api/json",
+            method => <<"GET">>,
+            handler => 'openapi_base_remote_access_handler'
+        },
         'DeletePipelineQueueItem' => #{
             path => "//blue/rest/organizations/:organization/pipelines/:pipeline/queue/:queue",
             method => <<"DELETE">>,

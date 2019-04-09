@@ -11,7 +11,7 @@ import javax.validation.constraints.*;
 /**
  * PipelineRunNodeedges
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2018-08-21T04:42:22.775Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-04-09T15:11:28.342Z[GMT]")
 
 public class PipelineRunNodeedges   {
   @JsonProperty("id")

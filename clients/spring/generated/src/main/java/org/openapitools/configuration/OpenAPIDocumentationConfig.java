@@ -17,7 +17,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 import javax.servlet.ServletContext;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2018-08-21T04:42:22.775Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-04-09T15:11:28.342Z[GMT]")
 
 @Configuration
 @EnableSwagger2
@@ -30,7 +30,7 @@ public class OpenAPIDocumentationConfig {
             .license("")
             .licenseUrl("http://unlicense.org")
             .termsOfServiceUrl("http://github.com/cliffano/swaggy-jenkins")
-            .version("1.0.0")
+            .version("1.1.0")
             .contact(new Contact("","", "blah@cliffano.com"))
             .build();
     }

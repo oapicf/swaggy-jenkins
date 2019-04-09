@@ -15,6 +15,11 @@
 -spec request_params(OperationID :: operation_id()) -> [Param :: request_param()].
 
 
+request_params('GetCrumb') ->
+    [
+    ];
+
+
 request_params('DeletePipelineQueueItem') ->
     [
         'organization',
@@ -409,6 +414,7 @@ request_params(_) ->
     source => qs_val | binding | header | body,
     rules => [rule()]
 }.
+
 
 
 
@@ -1668,6 +1674,14 @@ populate_request_param(OperationID, Name, Req0, ValidatorState) ->
     Body :: jesse:json_term(),
     ValidatorState :: jesse_state:state()
 ) -> ok | no_return().
+
+
+validate_response('GetCrumb', 200, Body, ValidatorState) ->
+    validate_response_body('DefaultCrumbIssuer', 'DefaultCrumbIssuer', Body, ValidatorState);
+validate_response('GetCrumb', 401, Body, ValidatorState) ->
+    validate_response_body('', '', Body, ValidatorState);
+validate_response('GetCrumb', 403, Body, ValidatorState) ->
+    validate_response_body('', '', Body, ValidatorState);
 
 
 validate_response('DeletePipelineQueueItem', 200, Body, ValidatorState) ->

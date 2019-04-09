@@ -36,8 +36,18 @@ mod mimetypes;
 pub use swagger::{ApiError, ContextWrapper};
 
 pub const BASE_PATH: &'static str = "/";
-pub const API_VERSION: &'static str = "1.0.0";
+pub const API_VERSION: &'static str = "1.1.0";
 
+
+#[derive(Debug, PartialEq)]
+pub enum GetCrumbResponse {
+    /// Successfully retrieved CSRF protection token
+    SuccessfullyRetrievedCSRFProtectionToken ( models::DefaultCrumbIssuer ) ,
+    /// Authentication failed - incorrect username and/or password
+    AuthenticationFailed ,
+    /// Jenkins requires authentication - please set username and password
+    JenkinsRequiresAuthentication ,
+}
 
 #[derive(Debug, PartialEq)]
 pub enum DeletePipelineQueueItemResponse {
@@ -664,6 +674,9 @@ pub enum PostViewConfigResponse {
 pub trait Api<C> {
 
 
+    fn get_crumb(&self, context: &C) -> Box<Future<Item=GetCrumbResponse, Error=ApiError>>;
+
+
     fn delete_pipeline_queue_item(&self, organization: String, pipeline: String, queue: String, context: &C) -> Box<Future<Item=DeletePipelineQueueItemResponse, Error=ApiError>>;
 
 
@@ -841,6 +854,9 @@ pub trait Api<C> {
 
 /// API without a `Context`
 pub trait ApiNoContext {
+
+
+    fn get_crumb(&self) -> Box<Future<Item=GetCrumbResponse, Error=ApiError>>;
 
 
     fn delete_pipeline_queue_item(&self, organization: String, pipeline: String, queue: String) -> Box<Future<Item=DeletePipelineQueueItemResponse, Error=ApiError>>;
@@ -1031,6 +1047,11 @@ impl<'a, T: Api<C> + Sized, C> ContextWrapperExt<'a, C> for T {
 }
 
 impl<'a, T: Api<C>, C> ApiNoContext for ContextWrapper<'a, T, C> {
+
+
+    fn get_crumb(&self) -> Box<Future<Item=GetCrumbResponse, Error=ApiError>> {
+        self.api().get_crumb(&self.context())
+    }
 
 
     fn delete_pipeline_queue_item(&self, organization: String, pipeline: String, queue: String) -> Box<Future<Item=DeletePipelineQueueItemResponse, Error=ApiError>> {

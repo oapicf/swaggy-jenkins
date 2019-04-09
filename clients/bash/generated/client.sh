@@ -855,7 +855,7 @@ build_request_path() {
 print_help() {
 cat <<EOF
 
-${BOLD}${WHITE}Swaggy Jenkins command line client (API version 1.0.0)${OFF}
+${BOLD}${WHITE}Swaggy Jenkins command line client (API version 1.1.0)${OFF}
 
 ${BOLD}${WHITE}Usage${OFF}
 
@@ -890,6 +890,12 @@ EOF
     
     echo ""
     echo -e "${BOLD}${WHITE}Operations (grouped by tags)${OFF}"
+    echo ""
+    echo -e "${BOLD}${WHITE}[baseRemoteAccess]${OFF}"
+read -r -d '' ops <<EOF
+  ${CYAN}getCrumb${OFF}; (AUTH)
+EOF
+echo "  $ops" | column -t -s ';'
     echo ""
     echo -e "${BOLD}${WHITE}[blueOcean]${OFF}"
 read -r -d '' ops <<EOF
@@ -985,7 +991,7 @@ echo -e "              \\t\\t\\t\\t(e.g. 'https://localhost')"
 ##############################################################################
 print_about() {
     echo ""
-    echo -e "${BOLD}${WHITE}Swaggy Jenkins command line client (API version 1.0.0)${OFF}"
+    echo -e "${BOLD}${WHITE}Swaggy Jenkins command line client (API version 1.1.0)${OFF}"
     echo ""
     echo -e "License: "
     echo -e "Contact: blah@cliffano.com"
@@ -1005,10 +1011,30 @@ echo "$appdescription" | paste -sd' ' | fold -sw 80
 ##############################################################################
 print_version() {
     echo ""
-    echo -e "${BOLD}Swaggy Jenkins command line client (API version 1.0.0)${OFF}"
+    echo -e "${BOLD}Swaggy Jenkins command line client (API version 1.1.0)${OFF}"
     echo ""
 }
 
+##############################################################################
+#
+# Print help for getCrumb operation
+#
+##############################################################################
+print_getCrumb_help() {
+    echo ""
+    echo -e "${BOLD}${WHITE}getCrumb - ${OFF}${BLUE}(AUTH - BASIC)${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e ""
+    echo -e "Retrieve CSRF protection token" | paste -sd' ' | fold -sw 80
+    echo -e ""
+    echo ""
+    echo -e "${BOLD}${WHITE}Responses${OFF}"
+    code=200
+    echo -e "${result_color_table[${code:0:1}]}  200;Successfully retrieved CSRF protection token${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    code=401
+    echo -e "${result_color_table[${code:0:1}]}  401;Authentication failed - incorrect username and/or password${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    code=403
+    echo -e "${result_color_table[${code:0:1}]}  403;Jenkins requires authentication - please set username and password${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+}
 ##############################################################################
 #
 # Print help for deletePipelineQueueItem operation
@@ -2425,6 +2451,42 @@ print_postViewConfig_help() {
     echo -e "${result_color_table[${code:0:1}]}  404;View cannot be found on Jenkins instance${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
 }
 
+
+##############################################################################
+#
+# Call getCrumb operation
+#
+##############################################################################
+call_getCrumb() {
+    # ignore error about 'path_parameter_names' being unused; passed by reference
+    # shellcheck disable=SC2034
+    local path_parameter_names=()
+    # ignore error about 'query_parameter_names' being unused; passed by reference
+    # shellcheck disable=SC2034
+    local query_parameter_names=(  )
+    local path
+
+    if ! path=$(build_request_path "//crumbIssuer/api/json" path_parameter_names query_parameter_names); then
+        ERROR_MSG=$path
+        exit 1
+    fi
+    local method="GET"
+    local headers_curl
+    headers_curl=$(header_arguments_to_curl)
+    if [[ -n $header_accept ]]; then
+        headers_curl="${headers_curl} -H 'Accept: ${header_accept}'"
+    fi
+
+    local basic_auth_option=""
+    if [[ -n $basic_auth_credential ]]; then
+        basic_auth_option="-u ${basic_auth_credential}"
+    fi
+    if [[ "$print_curl" = true ]]; then
+        echo "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+    else
+        eval "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+    fi
+}
 
 ##############################################################################
 #
@@ -4821,6 +4883,9 @@ case $key in
         OFF=""
         result_color_table=( "" "" "" "" "" "" "" )
     ;;
+    getCrumb)
+    operation="getCrumb"
+    ;;
     deletePipelineQueueItem)
     operation="deletePipelineQueueItem"
     ;;
@@ -5079,6 +5144,9 @@ fi
 
 # Run cURL command based on the operation ID
 case $operation in
+    getCrumb)
+    call_getCrumb
+    ;;
     deletePipelineQueueItem)
     call_deletePipelineQueueItem
     ;;
