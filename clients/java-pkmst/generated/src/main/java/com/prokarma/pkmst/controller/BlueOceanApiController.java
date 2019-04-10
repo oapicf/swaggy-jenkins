@@ -45,7 +45,7 @@ import java.io.IOException;
  * @author pkmst
  *
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPKMSTServerCodegen", date = "2019-04-10T13:18:21.348Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPKMSTServerCodegen", date = "2019-04-10T13:31:21.733Z[GMT]")
 
 @Controller
 public class BlueOceanApiController implements BlueOceanApi {

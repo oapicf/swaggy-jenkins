@@ -15,7 +15,7 @@ import javax.validation.Valid;
 
 @Path("/job")
 @Api(description = "the job API")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2019-04-10T13:19:11.816Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2019-04-10T13:32:03.603Z[GMT]")
 public class JobApi {
 
     @GET

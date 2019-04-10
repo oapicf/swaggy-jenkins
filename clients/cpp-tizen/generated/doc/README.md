@@ -38,7 +38,7 @@ Check out [Doxygen](https://www.doxygen.org/) for additional information about t
 ## I Don't want to run Doxygen. What are the API files for accessing the REST endpoints?
 All URIs are relative to http://localhosthttp://localhost
 
-### BaseAccessManager
+### BaseManager
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 *getCrumbSync* | *GET* /crumbIssuer/api/json | .

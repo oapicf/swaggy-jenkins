@@ -3637,10 +3637,10 @@ export type Users = {
 
 
 /**
- * BaseAccessApi - fetch parameter creator
+ * BaseApi - fetch parameter creator
  * @export
  */
-export const BaseAccessApiFetchParamCreator = function (configuration?: Configuration) {
+export const BaseApiFetchParamCreator = function (configuration?: Configuration) {
     return {
         /**
          * Retrieve CSRF protection token
@@ -3672,15 +3672,15 @@ export const BaseAccessApiFetchParamCreator = function (configuration?: Configur
     }
 };
 
-export type BaseAccessApiType = { 
+export type BaseApiType = { 
     getCrumb(options?: RequestOptions): Promise<DefaultCrumbIssuer>,
 }
 
 /**
- * BaseAccessApi - factory function to inject configuration 
+ * BaseApi - factory function to inject configuration 
  * @export
  */
-export const BaseAccessApi = function(configuration?: Configuration, fetch: FetchAPI = portableFetch): BaseAccessApiType {
+export const BaseApi = function(configuration?: Configuration, fetch: FetchAPI = portableFetch): BaseApiType {
     const basePath: string = (configuration && configuration.basePath) || BASE_PATH;
     return {
         /**
@@ -3688,7 +3688,7 @@ export const BaseAccessApi = function(configuration?: Configuration, fetch: Fetc
          * @throws {RequiredError}
          */
         getCrumb(options?: RequestOptions = {}): Promise<DefaultCrumbIssuer> {
-            const localVarFetchArgs = BaseAccessApiFetchParamCreator(configuration).getCrumb(options);
+            const localVarFetchArgs = BaseApiFetchParamCreator(configuration).getCrumb(options);
             return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
                 if (response.status >= 200 && response.status < 300) {
                     return response.json();
@@ -6855,7 +6855,7 @@ export const RemoteAccessApi = function(configuration?: Configuration, fetch: Fe
 };
 
 export type ApiTypes = { 
-    BaseAccessApi: BaseAccessApiType,
+    BaseApi: BaseApiType,
 
     BlueOceanApi: BlueOceanApiType,
 

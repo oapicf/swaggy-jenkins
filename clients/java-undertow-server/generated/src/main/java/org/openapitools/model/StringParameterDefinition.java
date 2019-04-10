@@ -11,7 +11,7 @@ import org.openapitools.model.StringParameterValue;
 
 
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaUndertowServerCodegen", date = "2019-04-10T13:18:32.656Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaUndertowServerCodegen", date = "2019-04-10T13:31:30.965Z[GMT]")
 public class StringParameterDefinition   {
   
   private String propertyClass = null;

@@ -28,7 +28,7 @@ import java.io.IOException;
 /**
  * GithubOrganizationlinks
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-04-10T13:17:56.095Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-04-10T13:31:03.355Z[GMT]")
 public class GithubOrganizationlinks {
   public static final String SERIALIZED_NAME_REPOSITORIES = "repositories";
   @SerializedName(SERIALIZED_NAME_REPOSITORIES)

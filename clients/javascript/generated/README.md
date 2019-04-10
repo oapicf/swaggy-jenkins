@@ -103,7 +103,7 @@ var jenkins_auth = defaultClient.authentications['jenkins_auth'];
 jenkins_auth.username = 'YOUR USERNAME'
 jenkins_auth.password = 'YOUR PASSWORD'
 
-var api = new SwaggyJenkins.BaseAccessApi()
+var api = new SwaggyJenkins.BaseApi()
 
 var callback = function(error, data, response) {
   if (error) {
@@ -122,7 +122,7 @@ All URIs are relative to *http://localhost*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*SwaggyJenkins.BaseAccessApi* | [**getCrumb**](docs/BaseAccessApi.md#getCrumb) | **GET** /crumbIssuer/api/json | 
+*SwaggyJenkins.BaseApi* | [**getCrumb**](docs/BaseApi.md#getCrumb) | **GET** /crumbIssuer/api/json | 
 *SwaggyJenkins.BlueOceanApi* | [**deletePipelineQueueItem**](docs/BlueOceanApi.md#deletePipelineQueueItem) | **DELETE** /blue/rest/organizations/{organization}/pipelines/{pipeline}/queue/{queue} | 
 *SwaggyJenkins.BlueOceanApi* | [**getAuthenticatedUser**](docs/BlueOceanApi.md#getAuthenticatedUser) | **GET** /blue/rest/organizations/{organization}/user/ | 
 *SwaggyJenkins.BlueOceanApi* | [**getClasses**](docs/BlueOceanApi.md#getClasses) | **GET** /blue/rest/classes/{class} | 

@@ -27,7 +27,7 @@ import java.io.IOException;
 /**
  * PipelineRunNodeedges
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-04-10T13:17:56.095Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-04-10T13:31:03.355Z[GMT]")
 public class PipelineRunNodeedges {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)

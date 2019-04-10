@@ -26,7 +26,7 @@
  */
 namespace OpenAPIServer;
 
-use OpenAPIServer\Api\BaseAccessApi;
+use OpenAPIServer\Api\BaseApi;
 use OpenAPIServer\Api\BlueOceanApi;
 use OpenAPIServer\Api\RemoteAccessApi;
 use Slim\App;
@@ -70,7 +70,7 @@ class SlimRouter {
         ]);
 
         $app->GET(
-            '//crumbIssuer/api/json', BaseAccessApi::class . ':getCrumb'
+            '//crumbIssuer/api/json', BaseApi::class . ':getCrumb'
         )->add(
             $basicAuth
         );

@@ -58,13 +58,13 @@ configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
 
 # create an instance of the API class
-api_instance = swaggyjenkins.BaseAccessApi(swaggyjenkins.ApiClient(configuration))
+api_instance = swaggyjenkins.BaseApi(swaggyjenkins.ApiClient(configuration))
 
 try:
     api_response = api_instance.get_crumb()
     pprint(api_response)
 except ApiException as e:
-    print("Exception when calling BaseAccessApi->get_crumb: %s\n" % e)
+    print("Exception when calling BaseApi->get_crumb: %s\n" % e)
 
 ```
 
@@ -74,7 +74,7 @@ All URIs are relative to *http://localhost*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*BaseAccessApi* | [**get_crumb**](docs/BaseAccessApi.md#get_crumb) | **GET** /crumbIssuer/api/json | 
+*BaseApi* | [**get_crumb**](docs/BaseApi.md#get_crumb) | **GET** /crumbIssuer/api/json | 
 *BlueOceanApi* | [**delete_pipeline_queue_item**](docs/BlueOceanApi.md#delete_pipeline_queue_item) | **DELETE** /blue/rest/organizations/{organization}/pipelines/{pipeline}/queue/{queue} | 
 *BlueOceanApi* | [**get_authenticated_user**](docs/BlueOceanApi.md#get_authenticated_user) | **GET** /blue/rest/organizations/{organization}/user/ | 
 *BlueOceanApi* | [**get_classes**](docs/BlueOceanApi.md#get_classes) | **GET** /blue/rest/classes/{class} | 

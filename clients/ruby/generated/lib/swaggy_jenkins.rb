@@ -112,7 +112,7 @@ require 'swaggy_jenkins/models/user_favorites'
 require 'swaggy_jenkins/models/users'
 
 # APIs
-require 'swaggy_jenkins/api/base_access_api'
+require 'swaggy_jenkins/api/base_api'
 require 'swaggy_jenkins/api/blue_ocean_api'
 require 'swaggy_jenkins/api/remote_access_api'
 

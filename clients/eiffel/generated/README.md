@@ -22,7 +22,7 @@ All URIs are relative to *http://localhost*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*BASEACCESS_API* | [**crumb**](docs/BASEACCESS_API.md#crumb) | **Get** /crumbIssuer/api/json | 
+*BASE_API* | [**crumb**](docs/BASE_API.md#crumb) | **Get** /crumbIssuer/api/json | 
 *BLUEOCEAN_API* | [**authenticated_user**](docs/BLUEOCEAN_API.md#authenticated_user) | **Get** /blue/rest/organizations/{organization}/user/ | 
 *BLUEOCEAN_API* | [**classes**](docs/BLUEOCEAN_API.md#classes) | **Get** /blue/rest/classes/{class} | 
 *BLUEOCEAN_API* | [**delete_pipeline_queue_item**](docs/BLUEOCEAN_API.md#delete_pipeline_queue_item) | **Delete** /blue/rest/organizations/{organization}/pipelines/{pipeline}/queue/{queue} | 

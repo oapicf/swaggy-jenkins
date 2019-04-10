@@ -25,11 +25,11 @@ link_directories(${EXTERNAL_INSTALL_LOCATION}/lib)
 link_directories(/usr/local/lib/)
 
 aux_source_directory(model MODEL_SOURCES)
-file(GLOB BASE_ACCESS_API_SOURCES
-"api/BaseAccessApi.h"
-"api/BaseAccessApi.cpp"
-"impl/BaseAccessApiImpl.h"
-"impl/BaseAccessApiImpl.cpp"
+file(GLOB BASE_API_SOURCES
+"api/BaseApi.h"
+"api/BaseApi.cpp"
+"impl/BaseApiImpl.h"
+"impl/BaseApiImpl.cpp"
 )
 file(GLOB BLUE_OCEAN_API_SOURCES
 "api/BlueOceanApi.h"
@@ -48,10 +48,10 @@ include_directories(model)
 include_directories(api)
 include_directories(impl)
 
-set(BASE_ACCESS_API_SERVER_SOURCES
-BaseAccessApiMainServer.cpp
+set(BASE_API_SERVER_SOURCES
+BaseApiMainServer.cpp
     ${MODEL_SOURCES}
-    ${BASE_ACCESS_API_SOURCES})
+    ${BASE_API_SOURCES})
 set(BLUE_OCEAN_API_SERVER_SOURCES
 BlueOceanApiMainServer.cpp
     ${MODEL_SOURCES}
@@ -61,14 +61,14 @@ RemoteAccessApiMainServer.cpp
     ${MODEL_SOURCES}
     ${REMOTE_ACCESS_API_SOURCES})
 
-add_executable(base_access_api_server
-${BASE_ACCESS_API_SERVER_SOURCES})
+add_executable(base_api_server
+${BASE_API_SERVER_SOURCES})
 add_executable(blue_ocean_api_server
 ${BLUE_OCEAN_API_SERVER_SOURCES})
 add_executable(remote_access_api_server
 ${REMOTE_ACCESS_API_SERVER_SOURCES})
 
-target_link_libraries(base_access_api_server pistache pthread)
+target_link_libraries(base_api_server pistache pthread)
 target_link_libraries(blue_ocean_api_server pistache pthread)
 target_link_libraries(remote_access_api_server pistache pthread)
 

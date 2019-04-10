@@ -18,7 +18,7 @@ trait DataAccessor {
         * 
         * @return A DefaultCrumbIssuer
         */
-        def BaseAccess_getCrumb(): Either[CommonError,DefaultCrumbIssuer] = Left(TODO)
+        def Base_getCrumb(): Either[CommonError,DefaultCrumbIssuer] = Left(TODO)
 
         /**
         * 

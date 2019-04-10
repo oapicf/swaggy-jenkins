@@ -14,11 +14,11 @@ Module : SwaggyJenkins.API
 -}
 
 module SwaggyJenkins.API
-  ( module SwaggyJenkins.API.BaseAccess
+  ( module SwaggyJenkins.API.Base
   , module SwaggyJenkins.API.BlueOcean
   , module SwaggyJenkins.API.RemoteAccess
   ) where
 
-import SwaggyJenkins.API.BaseAccess
+import SwaggyJenkins.API.Base
 import SwaggyJenkins.API.BlueOcean
 import SwaggyJenkins.API.RemoteAccess

@@ -13,7 +13,7 @@ import java.util.List;
  * PipelineRunNodeSteps
  */
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPKMSTServerCodegen", date = "2019-04-10T13:18:21.348Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPKMSTServerCodegen", date = "2019-04-10T13:31:21.733Z[GMT]")
 
 public class PipelineRunNodeSteps extends ArrayList<PipelineStepImpl>  {
 

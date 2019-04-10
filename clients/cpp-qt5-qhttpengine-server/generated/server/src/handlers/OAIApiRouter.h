@@ -23,7 +23,7 @@
 #include <qhttpengine/handler.h>
 #include <qhttpengine/qobjecthandler.h>
 
-#include "OAIBaseAccessApiHandler.h"
+#include "OAIBaseApiHandler.h"
 #include "OAIBlueOceanApiHandler.h"
 #include "OAIRemoteAccessApiHandler.h"
 
@@ -55,7 +55,7 @@ public:
 private:
     QMultiMap<QString, std::function<void(QHttpEngine::Socket *)>> Routes;  
     
-    OAIBaseAccessApiHandler *OAIBaseAccessApiApiHandler;
+    OAIBaseApiHandler *OAIBaseApiApiHandler;
     OAIBlueOceanApiHandler *OAIBlueOceanApiApiHandler;
     OAIRemoteAccessApiHandler *OAIRemoteAccessApiApiHandler; 
 };

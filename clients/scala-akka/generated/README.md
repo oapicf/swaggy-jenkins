@@ -66,7 +66,7 @@ All URIs are relative to *http://localhost*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*BaseAccessApi* | **getCrumb** | **GET** /crumbIssuer/api/json | 
+*BaseApi* | **getCrumb** | **GET** /crumbIssuer/api/json | 
 *BlueOceanApi* | **deletePipelineQueueItem** | **DELETE** /blue/rest/organizations/{organization}/pipelines/{pipeline}/queue/{queue} | 
 *BlueOceanApi* | **getAuthenticatedUser** | **GET** /blue/rest/organizations/{organization}/user/ | 
 *BlueOceanApi* | **getClasses** | **GET** /blue/rest/classes/{class} | 

@@ -38,7 +38,7 @@ object endpoint {
   * @return A service that contains all provided endpoints of the API.
   */
   def makeService(da: DataAccessor): Service[Request, Response] = (
-          BaseAccessApi.endpoints(da)  :+:
+          BaseApi.endpoints(da)  :+:
           BlueOceanApi.endpoints(da)  :+:
           RemoteAccessApi.endpoints(da) 
   ).handle({

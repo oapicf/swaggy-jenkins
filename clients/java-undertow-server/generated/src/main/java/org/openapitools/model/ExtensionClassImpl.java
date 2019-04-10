@@ -13,7 +13,7 @@ import org.openapitools.model.ExtensionClassImpllinks;
 
 
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaUndertowServerCodegen", date = "2019-04-10T13:18:32.656Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaUndertowServerCodegen", date = "2019-04-10T13:31:30.965Z[GMT]")
 public class ExtensionClassImpl   {
   
   private String propertyClass = null;

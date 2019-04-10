@@ -2862,9 +2862,9 @@ ul.nav-tabs {
             -->
             <li class="nav-fixed nav-header active" data-group="_"><a href="#api-_">API Summary</a></li>
 
-                  <li class="nav-header" data-group="BaseAccess"><a href="#api-BaseAccess">API Methods - BaseAccess</a></li>
-                    <li data-group="BaseAccess" data-name="getCrumb" class="">
-                      <a href="#api-BaseAccess-getCrumb">getCrumb</a>
+                  <li class="nav-header" data-group="Base"><a href="#api-Base">API Methods - Base</a></li>
+                    <li data-group="Base" data-name="getCrumb" class="">
+                      <a href="#api-Base-getCrumb">getCrumb</a>
                     </li>
                   <li class="nav-header" data-group="BlueOcean"><a href="#api-BlueOcean">API Methods - BlueOcean</a></li>
                     <li data-group="BlueOcean" data-name="deletePipelineQueueItem" class="">
@@ -3060,10 +3060,10 @@ ul.nav-tabs {
           </div>
         </div>
         <div id="sections">
-                <section id="api-BaseAccess">
-                  <h1>BaseAccess</h1>
-                    <div id="api-BaseAccess-getCrumb">
-                      <article id="api-BaseAccess-getCrumb-0" data-group="User" data-name="getCrumb" data-version="0">
+                <section id="api-Base">
+                  <h1>Base</h1>
+                    <div id="api-Base-getCrumb">
+                      <article id="api-Base-getCrumb-0" data-group="User" data-name="getCrumb" data-version="0">
                         <div class="pull-left">
                           <h1>getCrumb</h1>
                           <p></p>
@@ -3079,34 +3079,34 @@ ul.nav-tabs {
                           <h3>Usage and SDK Samples</h3>
                         </p>
                         <ul class="nav nav-tabs nav-tabs-examples">
-                          <li class="active"><a href="#examples-BaseAccess-getCrumb-0-curl">Curl</a></li>
-                          <li class=""><a href="#examples-BaseAccess-getCrumb-0-java">Java</a></li>
-                          <li class=""><a href="#examples-BaseAccess-getCrumb-0-android">Android</a></li>
-                          <!--<li class=""><a href="#examples-BaseAccess-getCrumb-0-groovy">Groovy</a></li>-->
-                          <li class=""><a href="#examples-BaseAccess-getCrumb-0-objc">Obj-C</a></li>
-                          <li class=""><a href="#examples-BaseAccess-getCrumb-0-javascript">JavaScript</a></li>
-                          <!--<li class=""><a href="#examples-BaseAccess-getCrumb-0-angular">Angular</a></li>-->
-                          <li class=""><a href="#examples-BaseAccess-getCrumb-0-csharp">C#</a></li>
-                          <li class=""><a href="#examples-BaseAccess-getCrumb-0-php">PHP</a></li>
-                          <li class=""><a href="#examples-BaseAccess-getCrumb-0-perl">Perl</a></li>
-                          <li class=""><a href="#examples-BaseAccess-getCrumb-0-python">Python</a></li>
-                          <li class=""><a href="#examples-BaseAccess-getCrumb-0-rust">Rust</a></li>
+                          <li class="active"><a href="#examples-Base-getCrumb-0-curl">Curl</a></li>
+                          <li class=""><a href="#examples-Base-getCrumb-0-java">Java</a></li>
+                          <li class=""><a href="#examples-Base-getCrumb-0-android">Android</a></li>
+                          <!--<li class=""><a href="#examples-Base-getCrumb-0-groovy">Groovy</a></li>-->
+                          <li class=""><a href="#examples-Base-getCrumb-0-objc">Obj-C</a></li>
+                          <li class=""><a href="#examples-Base-getCrumb-0-javascript">JavaScript</a></li>
+                          <!--<li class=""><a href="#examples-Base-getCrumb-0-angular">Angular</a></li>-->
+                          <li class=""><a href="#examples-Base-getCrumb-0-csharp">C#</a></li>
+                          <li class=""><a href="#examples-Base-getCrumb-0-php">PHP</a></li>
+                          <li class=""><a href="#examples-Base-getCrumb-0-perl">Perl</a></li>
+                          <li class=""><a href="#examples-Base-getCrumb-0-python">Python</a></li>
+                          <li class=""><a href="#examples-Base-getCrumb-0-rust">Rust</a></li>
                         </ul>
 
                         <div class="tab-content">
-                          <div class="tab-pane active" id="examples-BaseAccess-getCrumb-0-curl">
+                          <div class="tab-pane active" id="examples-Base-getCrumb-0-curl">
                             <pre class="prettyprint"><code class="language-bsh">curl -X GET -H "Accept: application/json" -H "Authorization: Basic [[basicHash]]" "http://localhost/crumbIssuer/api/json"</code></pre>
                           </div>
-                          <div class="tab-pane" id="examples-BaseAccess-getCrumb-0-java">
+                          <div class="tab-pane" id="examples-Base-getCrumb-0-java">
                             <pre class="prettyprint"><code class="language-java">import org.openapitools.client.*;
 import org.openapitools.client.auth.*;
 import org.openapitools.client.model.*;
-import org.openapitools.client.api.BaseAccessApi;
+import org.openapitools.client.api.BaseApi;
 
 import java.io.File;
 import java.util.*;
 
-public class BaseAccessApiExample {
+public class BaseApiExample {
 
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
@@ -3116,47 +3116,47 @@ public class BaseAccessApiExample {
         jenkins_auth.setUsername("YOUR USERNAME");
         jenkins_auth.setPassword("YOUR PASSWORD");
 
-        BaseAccessApi apiInstance = new BaseAccessApi();
+        BaseApi apiInstance = new BaseApi();
         try {
             DefaultCrumbIssuer result = apiInstance.getCrumb();
             System.out.println(result);
         } catch (ApiException e) {
-            System.err.println("Exception when calling BaseAccessApi#getCrumb");
+            System.err.println("Exception when calling BaseApi#getCrumb");
             e.printStackTrace();
         }
     }
 }</code></pre>
                           </div>
 
-                          <div class="tab-pane" id="examples-BaseAccess-getCrumb-0-android">
-                            <pre class="prettyprint"><code class="language-java">import org.openapitools.client.api.BaseAccessApi;
+                          <div class="tab-pane" id="examples-Base-getCrumb-0-android">
+                            <pre class="prettyprint"><code class="language-java">import org.openapitools.client.api.BaseApi;
 
-public class BaseAccessApiExample {
+public class BaseApiExample {
 
     public static void main(String[] args) {
-        BaseAccessApi apiInstance = new BaseAccessApi();
+        BaseApi apiInstance = new BaseApi();
         try {
             DefaultCrumbIssuer result = apiInstance.getCrumb();
             System.out.println(result);
         } catch (ApiException e) {
-            System.err.println("Exception when calling BaseAccessApi#getCrumb");
+            System.err.println("Exception when calling BaseApi#getCrumb");
             e.printStackTrace();
         }
     }
 }</code></pre>
                           </div>
   <!--
-  <div class="tab-pane" id="examples-BaseAccess-getCrumb-0-groovy">
+  <div class="tab-pane" id="examples-Base-getCrumb-0-groovy">
   <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
   </div> -->
-                            <div class="tab-pane" id="examples-BaseAccess-getCrumb-0-objc">
+                            <div class="tab-pane" id="examples-Base-getCrumb-0-objc">
                               <pre class="prettyprint"><code class="language-cpp">Configuration *apiConfig = [Configuration sharedConfig];
 // Configure HTTP basic authorization (authentication scheme: jenkins_auth)
 [apiConfig setUsername:@"YOUR_USERNAME"];
 [apiConfig setPassword:@"YOUR_PASSWORD"];
 
 
-BaseAccessApi *apiInstance = [[BaseAccessApi alloc] init];
+BaseApi *apiInstance = [[BaseApi alloc] init];
 
 [apiInstance getCrumbWithCompletionHandler: 
               ^(DefaultCrumbIssuer output, NSError* error) {
@@ -3170,7 +3170,7 @@ BaseAccessApi *apiInstance = [[BaseAccessApi alloc] init];
 </code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-BaseAccess-getCrumb-0-javascript">
+                            <div class="tab-pane" id="examples-Base-getCrumb-0-javascript">
                               <pre class="prettyprint"><code class="language-js">var SwaggyJenkins = require('swaggy_jenkins');
 var defaultClient = SwaggyJenkins.ApiClient.instance;
 
@@ -3179,7 +3179,7 @@ var jenkins_auth = defaultClient.authentications['jenkins_auth'];
 jenkins_auth.username = 'YOUR USERNAME'
 jenkins_auth.password = 'YOUR PASSWORD'
 
-var api = new SwaggyJenkins.BaseAccessApi()
+var api = new SwaggyJenkins.BaseApi()
 var callback = function(error, data, response) {
   if (error) {
     console.error(error);
@@ -3191,10 +3191,10 @@ api.getCrumb(callback);
 </code></pre>
                             </div>
 
-                            <!--<div class="tab-pane" id="examples-BaseAccess-getCrumb-0-angular">
+                            <!--<div class="tab-pane" id="examples-Base-getCrumb-0-angular">
               <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
             </div>-->
-                            <div class="tab-pane" id="examples-BaseAccess-getCrumb-0-csharp">
+                            <div class="tab-pane" id="examples-Base-getCrumb-0-csharp">
                               <pre class="prettyprint"><code class="language-cs">using System;
 using System.Diagnostics;
 using Org.OpenAPITools.Api;
@@ -3212,7 +3212,7 @@ namespace Example
             Configuration.Default.Username = "YOUR_USERNAME";
             Configuration.Default.Password = "YOUR_PASSWORD";
 
-            var apiInstance = new BaseAccessApi();
+            var apiInstance = new BaseApi();
 
             try
             {
@@ -3221,7 +3221,7 @@ namespace Example
             }
             catch (Exception e)
             {
-                Debug.Print("Exception when calling BaseAccessApi.getCrumb: " + e.Message );
+                Debug.Print("Exception when calling BaseApi.getCrumb: " + e.Message );
             }
         }
     }
@@ -3229,7 +3229,7 @@ namespace Example
 </code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-BaseAccess-getCrumb-0-php">
+                            <div class="tab-pane" id="examples-Base-getCrumb-0-php">
                               <pre class="prettyprint"><code class="language-php"><&#63;php
 require_once(__DIR__ . '/vendor/autoload.php');
 
@@ -3237,38 +3237,38 @@ require_once(__DIR__ . '/vendor/autoload.php');
 OpenAPITools\Client\Configuration::getDefaultConfiguration()->setUsername('YOUR_USERNAME');
 OpenAPITools\Client\Configuration::getDefaultConfiguration()->setPassword('YOUR_PASSWORD');
 
-$api_instance = new OpenAPITools\Client\Api\BaseAccessApi();
+$api_instance = new OpenAPITools\Client\Api\BaseApi();
 
 try {
     $result = $api_instance->getCrumb();
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling BaseAccessApi->getCrumb: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling BaseApi->getCrumb: ', $e->getMessage(), PHP_EOL;
 }
 ?></code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-BaseAccess-getCrumb-0-perl">
+                            <div class="tab-pane" id="examples-Base-getCrumb-0-perl">
                               <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
 use WWW::OPenAPIClient::Configuration;
-use WWW::OPenAPIClient::BaseAccessApi;
+use WWW::OPenAPIClient::BaseApi;
 
 # Configure HTTP basic authorization: jenkins_auth
 $WWW::OPenAPIClient::Configuration::username = 'YOUR_USERNAME';
 $WWW::OPenAPIClient::Configuration::password = 'YOUR_PASSWORD';
 
-my $api_instance = WWW::OPenAPIClient::BaseAccessApi->new();
+my $api_instance = WWW::OPenAPIClient::BaseApi->new();
 
 eval { 
     my $result = $api_instance->getCrumb();
     print Dumper($result);
 };
 if ($@) {
-    warn "Exception when calling BaseAccessApi->getCrumb: $@\n";
+    warn "Exception when calling BaseApi->getCrumb: $@\n";
 }</code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-BaseAccess-getCrumb-0-python">
+                            <div class="tab-pane" id="examples-Base-getCrumb-0-python">
                               <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
 import time
 import openapi_client
@@ -3280,21 +3280,21 @@ openapi_client.configuration.username = 'YOUR_USERNAME'
 openapi_client.configuration.password = 'YOUR_PASSWORD'
 
 # create an instance of the API class
-api_instance = openapi_client.BaseAccessApi()
+api_instance = openapi_client.BaseApi()
 
 try: 
     api_response = api_instance.get_crumb()
     pprint(api_response)
 except ApiException as e:
-    print("Exception when calling BaseAccessApi->getCrumb: %s\n" % e)</code></pre>
+    print("Exception when calling BaseApi->getCrumb: %s\n" % e)</code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-BaseAccess-getCrumb-0-rust">
-                              <pre class="prettyprint"><code class="language-rust">extern crate BaseAccessApi;
+                            <div class="tab-pane" id="examples-Base-getCrumb-0-rust">
+                              <pre class="prettyprint"><code class="language-rust">extern crate BaseApi;
 
 pub fn main() {
 
-    let mut context = BaseAccessApi::Context::default();
+    let mut context = BaseApi::Context::default();
     let result = client.getCrumb(&context).wait();
     println!("{:?}", result);
 
@@ -3316,23 +3316,23 @@ pub fn main() {
 
 
                           <h2>Responses</h2>
-                            <h3 id="examples-BaseAccess-getCrumb-title-200"></h3>
-                            <p id="examples-BaseAccess-getCrumb-description-200" class="marked"></p>
+                            <h3 id="examples-Base-getCrumb-title-200"></h3>
+                            <p id="examples-Base-getCrumb-description-200" class="marked"></p>
                             <script>
-                              var responseBaseAccess200_description = `Successfully retrieved CSRF protection token`;
-                              var responseBaseAccess200_description_break = responseBaseAccess200_description.indexOf('\n');
-                              if (responseBaseAccess200_description_break == -1) {
-                                $("#examples-BaseAccess-getCrumb-title-200").text("Status: 200 - " + responseBaseAccess200_description);
+                              var responseBase200_description = `Successfully retrieved CSRF protection token`;
+                              var responseBase200_description_break = responseBase200_description.indexOf('\n');
+                              if (responseBase200_description_break == -1) {
+                                $("#examples-Base-getCrumb-title-200").text("Status: 200 - " + responseBase200_description);
                               } else {
-                                $("#examples-BaseAccess-getCrumb-title-200").text("Status: 200 - " + responseBaseAccess200_description.substring(0, responseBaseAccess200_description_break));
-                                $("#examples-BaseAccess-getCrumb-description-200").html(responseBaseAccess200_description.substring(responseBaseAccess200_description_break));
+                                $("#examples-Base-getCrumb-title-200").text("Status: 200 - " + responseBase200_description.substring(0, responseBase200_description_break));
+                                $("#examples-Base-getCrumb-description-200").html(responseBase200_description.substring(responseBase200_description_break));
                               }
                             </script>
 
 
-                            <ul id="responses-detail-BaseAccess-getCrumb-200" class="nav nav-tabs nav-tabs-examples" >
+                            <ul id="responses-detail-Base-getCrumb-200" class="nav nav-tabs nav-tabs-examples" >
                                 <li class="active">
-                                  <a data-toggle="tab" href="#responses-BaseAccess-getCrumb-200-schema">Schema</a>
+                                  <a data-toggle="tab" href="#responses-Base-getCrumb-200-schema">Schema</a>
                                 </li>
 
 
@@ -3341,9 +3341,9 @@ pub fn main() {
                             </ul>
 
 
-                            <div class="tab-content" id="responses-BaseAccess-getCrumb-200-wrapper" style='margin-bottom: 10px;'>
-                                <div class="tab-pane active" id="responses-BaseAccess-getCrumb-200-schema">
-                                  <div id="responses-BaseAccess-getCrumb-schema-200" class="exampleStyle">
+                            <div class="tab-content" id="responses-Base-getCrumb-200-wrapper" style='margin-bottom: 10px;'>
+                                <div class="tab-pane active" id="responses-Base-getCrumb-200-schema">
+                                  <div id="responses-Base-getCrumb-schema-200" class="exampleStyle">
                                     <script>
                                       $(document).ready(function() {
                                         var schemaWrapper = {
@@ -3367,59 +3367,59 @@ pub fn main() {
                                         }
 
                                         var view = new JSONSchemaView(schema, 3);
-                                        $('#responses-BaseAccess-getCrumb-200-schema-data').val(JSON.stringify(schema));
-                                        var result = $('#responses-BaseAccess-getCrumb-schema-200');
+                                        $('#responses-Base-getCrumb-200-schema-data').val(JSON.stringify(schema));
+                                        var result = $('#responses-Base-getCrumb-schema-200');
                                         result.empty();
                                         result.append(view.render());
                                       });
                                     </script>
                                   </div>
-                                  <input id='responses-BaseAccess-getCrumb-200-schema-data' type='hidden' value=''></input>
+                                  <input id='responses-Base-getCrumb-200-schema-data' type='hidden' value=''></input>
                                 </div>
                             </div>
-                            <h3 id="examples-BaseAccess-getCrumb-title-401"></h3>
-                            <p id="examples-BaseAccess-getCrumb-description-401" class="marked"></p>
+                            <h3 id="examples-Base-getCrumb-title-401"></h3>
+                            <p id="examples-Base-getCrumb-description-401" class="marked"></p>
                             <script>
-                              var responseBaseAccess401_description = `Authentication failed - incorrect username and/or password`;
-                              var responseBaseAccess401_description_break = responseBaseAccess401_description.indexOf('\n');
-                              if (responseBaseAccess401_description_break == -1) {
-                                $("#examples-BaseAccess-getCrumb-title-401").text("Status: 401 - " + responseBaseAccess401_description);
+                              var responseBase401_description = `Authentication failed - incorrect username and/or password`;
+                              var responseBase401_description_break = responseBase401_description.indexOf('\n');
+                              if (responseBase401_description_break == -1) {
+                                $("#examples-Base-getCrumb-title-401").text("Status: 401 - " + responseBase401_description);
                               } else {
-                                $("#examples-BaseAccess-getCrumb-title-401").text("Status: 401 - " + responseBaseAccess401_description.substring(0, responseBaseAccess401_description_break));
-                                $("#examples-BaseAccess-getCrumb-description-401").html(responseBaseAccess401_description.substring(responseBaseAccess401_description_break));
+                                $("#examples-Base-getCrumb-title-401").text("Status: 401 - " + responseBase401_description.substring(0, responseBase401_description_break));
+                                $("#examples-Base-getCrumb-description-401").html(responseBase401_description.substring(responseBase401_description_break));
                               }
                             </script>
 
 
-                            <ul id="responses-detail-BaseAccess-getCrumb-401" class="nav nav-tabs nav-tabs-examples" >
+                            <ul id="responses-detail-Base-getCrumb-401" class="nav nav-tabs nav-tabs-examples" >
 
 
                             </ul>
 
 
-                            <div class="tab-content" id="responses-BaseAccess-getCrumb-401-wrapper" style='margin-bottom: 10px;'>
+                            <div class="tab-content" id="responses-Base-getCrumb-401-wrapper" style='margin-bottom: 10px;'>
                             </div>
-                            <h3 id="examples-BaseAccess-getCrumb-title-403"></h3>
-                            <p id="examples-BaseAccess-getCrumb-description-403" class="marked"></p>
+                            <h3 id="examples-Base-getCrumb-title-403"></h3>
+                            <p id="examples-Base-getCrumb-description-403" class="marked"></p>
                             <script>
-                              var responseBaseAccess403_description = `Jenkins requires authentication - please set username and password`;
-                              var responseBaseAccess403_description_break = responseBaseAccess403_description.indexOf('\n');
-                              if (responseBaseAccess403_description_break == -1) {
-                                $("#examples-BaseAccess-getCrumb-title-403").text("Status: 403 - " + responseBaseAccess403_description);
+                              var responseBase403_description = `Jenkins requires authentication - please set username and password`;
+                              var responseBase403_description_break = responseBase403_description.indexOf('\n');
+                              if (responseBase403_description_break == -1) {
+                                $("#examples-Base-getCrumb-title-403").text("Status: 403 - " + responseBase403_description);
                               } else {
-                                $("#examples-BaseAccess-getCrumb-title-403").text("Status: 403 - " + responseBaseAccess403_description.substring(0, responseBaseAccess403_description_break));
-                                $("#examples-BaseAccess-getCrumb-description-403").html(responseBaseAccess403_description.substring(responseBaseAccess403_description_break));
+                                $("#examples-Base-getCrumb-title-403").text("Status: 403 - " + responseBase403_description.substring(0, responseBase403_description_break));
+                                $("#examples-Base-getCrumb-description-403").html(responseBase403_description.substring(responseBase403_description_break));
                               }
                             </script>
 
 
-                            <ul id="responses-detail-BaseAccess-getCrumb-403" class="nav nav-tabs nav-tabs-examples" >
+                            <ul id="responses-detail-Base-getCrumb-403" class="nav nav-tabs nav-tabs-examples" >
 
 
                             </ul>
 
 
-                            <div class="tab-content" id="responses-BaseAccess-getCrumb-403-wrapper" style='margin-bottom: 10px;'>
+                            <div class="tab-content" id="responses-Base-getCrumb-403-wrapper" style='margin-bottom: 10px;'>
                             </div>
                         </article>
                       </div>

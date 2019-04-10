@@ -54,7 +54,7 @@ namespace Example
             Configuration.Default.Username = "YOUR_USERNAME";
             Configuration.Default.Password = "YOUR_PASSWORD";
 
-            var apiInstance = new BaseAccessApi();
+            var apiInstance = new BaseApi();
 
             try
             {
@@ -63,7 +63,7 @@ namespace Example
             }
             catch (Exception e)
             {
-                Debug.Print("Exception when calling BaseAccessApi.GetCrumb: " + e.Message );
+                Debug.Print("Exception when calling BaseApi.GetCrumb: " + e.Message );
             }
         }
     }
@@ -77,7 +77,7 @@ All URIs are relative to *http://localhost*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*BaseAccessApi* | [**GetCrumb**](docs/BaseAccessApi.md#getcrumb) | **GET** /crumbIssuer/api/json | 
+*BaseApi* | [**GetCrumb**](docs/BaseApi.md#getcrumb) | **GET** /crumbIssuer/api/json | 
 *BlueOceanApi* | [**DeletePipelineQueueItem**](docs/BlueOceanApi.md#deletepipelinequeueitem) | **DELETE** /blue/rest/organizations/{organization}/pipelines/{pipeline}/queue/{queue} | 
 *BlueOceanApi* | [**GetAuthenticatedUser**](docs/BlueOceanApi.md#getauthenticateduser) | **GET** /blue/rest/organizations/{organization}/user/ | 
 *BlueOceanApi* | [**GetClasses**](docs/BlueOceanApi.md#getclasses) | **GET** /blue/rest/classes/{class} | 

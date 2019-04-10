@@ -5,8 +5,8 @@
 GET     /api                        controllers.ApiDocController.api
 
 
-#Functions for BaseAccess API
-GET     //crumbIssuer/api/json                     controllers.BaseAccessApiController.getCrumb()
+#Functions for Base API
+GET     //crumbIssuer/api/json                     controllers.BaseApiController.getCrumb()
 
 #Functions for BlueOcean API
 DELETE     //blue/rest/organizations/:organization/pipelines/:pipeline/queue/:queue                     controllers.BlueOceanApiController.deletePipelineQueueItem(organization: String, pipeline: String, queue: String)

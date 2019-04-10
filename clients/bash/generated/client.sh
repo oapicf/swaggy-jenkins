@@ -891,7 +891,7 @@ EOF
     echo ""
     echo -e "${BOLD}${WHITE}Operations (grouped by tags)${OFF}"
     echo ""
-    echo -e "${BOLD}${WHITE}[baseAccess]${OFF}"
+    echo -e "${BOLD}${WHITE}[base]${OFF}"
 read -r -d '' ops <<EOF
   ${CYAN}getCrumb${OFF}; (AUTH)
 EOF

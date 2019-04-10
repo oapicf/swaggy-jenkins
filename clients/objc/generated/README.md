@@ -136,7 +136,7 @@ Import the following:
 #import <OpenAPIClient/OAIUserFavorites.h>
 #import <OpenAPIClient/OAIUsers.h>
 // load API classes for accessing endpoints
-#import <OpenAPIClient/OAIBaseAccessApi.h>
+#import <OpenAPIClient/OAIBaseApi.h>
 #import <OpenAPIClient/OAIBlueOceanApi.h>
 #import <OpenAPIClient/OAIRemoteAccessApi.h>
 
@@ -159,7 +159,7 @@ OAIDefaultConfiguration *apiConfig = [OAIDefaultConfiguration sharedConfig];
 
 
 
-OAIBaseAccessApi *apiInstance = [[OAIBaseAccessApi alloc] init];
+OAIBaseApi *apiInstance = [[OAIBaseApi alloc] init];
 
 [apiInstance getCrumbWithCompletionHandler: 
               ^(OAIDefaultCrumbIssuer* output, NSError* error) {
@@ -179,7 +179,7 @@ All URIs are relative to *http://localhost*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*OAIBaseAccessApi* | [**getCrumb**](docs/OAIBaseAccessApi.md#getcrumb) | **GET** /crumbIssuer/api/json | 
+*OAIBaseApi* | [**getCrumb**](docs/OAIBaseApi.md#getcrumb) | **GET** /crumbIssuer/api/json | 
 *OAIBlueOceanApi* | [**deletePipelineQueueItem**](docs/OAIBlueOceanApi.md#deletepipelinequeueitem) | **DELETE** /blue/rest/organizations/{organization}/pipelines/{pipeline}/queue/{queue} | 
 *OAIBlueOceanApi* | [**getAuthenticatedUser**](docs/OAIBlueOceanApi.md#getauthenticateduser) | **GET** /blue/rest/organizations/{organization}/user/ | 
 *OAIBlueOceanApi* | [**getClasses**](docs/OAIBlueOceanApi.md#getclasses) | **GET** /blue/rest/classes/{class} | 

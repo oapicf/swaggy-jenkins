@@ -46,7 +46,7 @@ type APIClient struct {
 
 	// API Services
 
-	BaseAccessApi *BaseAccessApiService
+	BaseApi *BaseApiService
 
 	BlueOceanApi *BlueOceanApiService
 
@@ -69,7 +69,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.common.client = c
 
 	// API Services
-	c.BaseAccessApi = (*BaseAccessApiService)(&c.common)
+	c.BaseApi = (*BaseApiService)(&c.common)
 	c.BlueOceanApi = (*BlueOceanApiService)(&c.common)
 	c.RemoteAccessApi = (*RemoteAccessApiService)(&c.common)
 

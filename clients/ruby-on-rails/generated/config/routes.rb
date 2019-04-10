@@ -15,7 +15,7 @@ Rails.application.routes.draw do
     match full_path, to: "#{opts.fetch(:controller_name)}##{opts[:action_name]}", via: http_method
   end
 
-  add_openapi_route 'GET', '//crumbIssuer/api/json', controller_name: 'base_access', action_name: 'get_crumb'
+  add_openapi_route 'GET', '//crumbIssuer/api/json', controller_name: 'base', action_name: 'get_crumb'
   add_openapi_route 'DELETE', '//blue/rest/organizations/{organization}/pipelines/{pipeline}/queue/{queue}', controller_name: 'blue_ocean', action_name: 'delete_pipeline_queue_item'
   add_openapi_route 'GET', '//blue/rest/organizations/{organization}/user/', controller_name: 'blue_ocean', action_name: 'get_authenticated_user'
   add_openapi_route 'GET', '//blue/rest/classes/{class}', controller_name: 'blue_ocean', action_name: 'get_classes'

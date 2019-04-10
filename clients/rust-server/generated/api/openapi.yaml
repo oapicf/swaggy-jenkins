@@ -217,7 +217,7 @@ paths:
       security:
       - jenkins_auth: []
       tags:
-      - baseAccess
+      - base
   /job/{name}/api/json:
     get:
       description: Retrieve job details

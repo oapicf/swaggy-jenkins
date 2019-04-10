@@ -14,7 +14,7 @@ import org.glassfish.jersey.media.multipart.FormDataContentDisposition;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
 import javax.validation.constraints.*;
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJerseyServerCodegen", date = "2019-04-10T13:18:53.975Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJerseyServerCodegen", date = "2019-04-10T13:31:48.444Z[GMT]")
 public class CreateItemApiServiceImpl extends CreateItemApiService {
     @Override
     public Response postCreateItem( @NotNull String name,  String from,  String mode, String jenkinsCrumb, String contentType, String body, SecurityContext securityContext) throws NotFoundException {

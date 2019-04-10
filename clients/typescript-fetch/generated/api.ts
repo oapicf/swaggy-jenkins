@@ -3644,10 +3644,10 @@ export interface Users extends Array<User> {
 
 
 /**
- * BaseAccessApi - fetch parameter creator
+ * BaseApi - fetch parameter creator
  * @export
  */
-export const BaseAccessApiFetchParamCreator = function (configuration?: Configuration) {
+export const BaseApiFetchParamCreator = function (configuration?: Configuration) {
     return {
         /**
          * Retrieve CSRF protection token
@@ -3681,10 +3681,10 @@ export const BaseAccessApiFetchParamCreator = function (configuration?: Configur
 };
 
 /**
- * BaseAccessApi - functional programming interface
+ * BaseApi - functional programming interface
  * @export
  */
-export const BaseAccessApiFp = function(configuration?: Configuration) {
+export const BaseApiFp = function(configuration?: Configuration) {
     return {
         /**
          * Retrieve CSRF protection token
@@ -3692,7 +3692,7 @@ export const BaseAccessApiFp = function(configuration?: Configuration) {
          * @throws {RequiredError}
          */
         getCrumb(options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<DefaultCrumbIssuer> {
-            const localVarFetchArgs = BaseAccessApiFetchParamCreator(configuration).getCrumb(options);
+            const localVarFetchArgs = BaseApiFetchParamCreator(configuration).getCrumb(options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
                     if (response.status >= 200 && response.status < 300) {
@@ -3707,10 +3707,10 @@ export const BaseAccessApiFp = function(configuration?: Configuration) {
 };
 
 /**
- * BaseAccessApi - factory interface
+ * BaseApi - factory interface
  * @export
  */
-export const BaseAccessApiFactory = function (configuration?: Configuration, fetch?: FetchAPI, basePath?: string) {
+export const BaseApiFactory = function (configuration?: Configuration, fetch?: FetchAPI, basePath?: string) {
     return {
         /**
          * Retrieve CSRF protection token
@@ -3718,26 +3718,26 @@ export const BaseAccessApiFactory = function (configuration?: Configuration, fet
          * @throws {RequiredError}
          */
         getCrumb(options?: any) {
-            return BaseAccessApiFp(configuration).getCrumb(options)(fetch, basePath);
+            return BaseApiFp(configuration).getCrumb(options)(fetch, basePath);
         },
     };
 };
 
 /**
- * BaseAccessApi - object-oriented interface
+ * BaseApi - object-oriented interface
  * @export
- * @class BaseAccessApi
+ * @class BaseApi
  * @extends {BaseAPI}
  */
-export class BaseAccessApi extends BaseAPI {
+export class BaseApi extends BaseAPI {
     /**
      * Retrieve CSRF protection token
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof BaseAccessApi
+     * @memberof BaseApi
      */
     public getCrumb(options?: any) {
-        return BaseAccessApiFp(this.configuration).getCrumb(options)(this.fetch, this.basePath);
+        return BaseApiFp(this.configuration).getCrumb(options)(this.fetch, this.basePath);
     }
 
 }

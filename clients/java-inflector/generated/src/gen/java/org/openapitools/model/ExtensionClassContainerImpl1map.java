@@ -11,7 +11,7 @@ import org.openapitools.model.ExtensionClassImpl;
 
 
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaInflectorServerCodegen", date = "2019-04-10T13:18:07.561Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaInflectorServerCodegen", date = "2019-04-10T13:31:12.702Z[GMT]")
 public class ExtensionClassContainerImpl1map   {
   @JsonProperty("io.jenkins.blueocean.service.embedded.rest.PipelineImpl")
   private ExtensionClassImpl ioJenkinsBlueoceanServiceEmbeddedRestPipelineImpl = null;

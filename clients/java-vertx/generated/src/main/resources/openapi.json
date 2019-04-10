@@ -294,7 +294,7 @@
     },
     "/crumbIssuer/api/json" : {
       "get" : {
-        "tags" : [ "baseAccess" ],
+        "tags" : [ "base" ],
         "description" : "Retrieve CSRF protection token",
         "operationId" : "getCrumb",
         "responses" : {

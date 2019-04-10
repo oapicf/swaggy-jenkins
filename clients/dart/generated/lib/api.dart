@@ -13,7 +13,7 @@ part 'auth/api_key_auth.dart';
 part 'auth/oauth.dart';
 part 'auth/http_basic_auth.dart';
 
-part 'api/base_access_api.dart';
+part 'api/base_api.dart';
 part 'api/blue_ocean_api.dart';
 part 'api/remote_access_api.dart';
 

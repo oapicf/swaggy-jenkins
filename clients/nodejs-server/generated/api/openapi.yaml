@@ -222,8 +222,8 @@ paths:
       security:
       - jenkins_auth: []
       tags:
-      - baseAccess
-      x-swagger-router-controller: BaseAccess
+      - base
+      x-swagger-router-controller: Base
   /job/{name}/api/json:
     get:
       description: Retrieve job details

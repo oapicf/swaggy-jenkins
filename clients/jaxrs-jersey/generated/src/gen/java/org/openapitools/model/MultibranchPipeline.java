@@ -25,7 +25,7 @@ import javax.validation.constraints.*;
 /**
  * MultibranchPipeline
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJerseyServerCodegen", date = "2019-04-10T13:18:53.975Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJerseyServerCodegen", date = "2019-04-10T13:31:48.444Z[GMT]")
 public class MultibranchPipeline   {
   @JsonProperty("displayName")
   private String displayName = null;

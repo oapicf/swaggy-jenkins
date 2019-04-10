@@ -58,17 +58,17 @@ Please follow the [installation](#installation) instruction and execute the foll
 
 ```java
 
-import org.openapitools.client.api.BaseAccessApi;
+import org.openapitools.client.api.BaseApi;
 
-public class BaseAccessApiExample {
+public class BaseApiExample {
 
     public static void main(String[] args) {
-        BaseAccessApi apiInstance = new BaseAccessApi();
+        BaseApi apiInstance = new BaseApi();
         try {
             DefaultCrumbIssuer result = apiInstance.getCrumb();
             System.out.println(result);
         } catch (ApiException e) {
-            System.err.println("Exception when calling BaseAccessApi#getCrumb");
+            System.err.println("Exception when calling BaseApi#getCrumb");
             e.printStackTrace();
         }
     }
@@ -82,7 +82,7 @@ All URIs are relative to *http://localhost*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*BaseAccessApi* | [**getCrumb**](docs/BaseAccessApi.md#getCrumb) | **GET** /crumbIssuer/api/json | 
+*BaseApi* | [**getCrumb**](docs/BaseApi.md#getCrumb) | **GET** /crumbIssuer/api/json | 
 *BlueOceanApi* | [**deletePipelineQueueItem**](docs/BlueOceanApi.md#deletePipelineQueueItem) | **DELETE** /blue/rest/organizations/{organization}/pipelines/{pipeline}/queue/{queue} | 
 *BlueOceanApi* | [**getAuthenticatedUser**](docs/BlueOceanApi.md#getAuthenticatedUser) | **GET** /blue/rest/organizations/{organization}/user/ | 
 *BlueOceanApi* | [**getClasses**](docs/BlueOceanApi.md#getClasses) | **GET** /blue/rest/classes/{class} | 

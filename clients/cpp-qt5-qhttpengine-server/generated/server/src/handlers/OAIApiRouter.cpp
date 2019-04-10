@@ -17,7 +17,7 @@
 #include <QRegularExpression>
 
 #include "OAIApiRouter.h"
-#include "OAIBaseAccessApiRequest.h"
+#include "OAIBaseApiRequest.h"
 #include "OAIBlueOceanApiRequest.h"
 #include "OAIRemoteAccessApiRequest.h"
 
@@ -47,7 +47,7 @@ inline QHttpEngine::Socket::Method toQHttpEngineMethod(QString method){
 }
 
 ApiRouter::ApiRouter() {    
-    OAIBaseAccessApiApiHandler = new OAIBaseAccessApiHandler();
+    OAIBaseApiApiHandler = new OAIBaseApiHandler();
     OAIBlueOceanApiApiHandler = new OAIBlueOceanApiHandler();
     OAIRemoteAccessApiApiHandler = new OAIRemoteAccessApiHandler();
      
@@ -55,7 +55,7 @@ ApiRouter::ApiRouter() {
 
 ApiRouter::~ApiRouter(){
     qDebug() << "~ApiRouter()";    
-    delete OAIBaseAccessApiApiHandler;
+    delete OAIBaseApiApiHandler;
     delete OAIBlueOceanApiApiHandler;
     delete OAIRemoteAccessApiApiHandler;
          
@@ -65,7 +65,7 @@ void ApiRouter::setUpRoutes() {
     
     Routes.insert("//crumbIssuer/api/json",[this](QHttpEngine::Socket *socket) {
         if(toQHttpEngineMethod("GET") == socket->method()){
-            auto reqObj = new OAIBaseAccessApiRequest(socket, OAIBaseAccessApiApiHandler);
+            auto reqObj = new OAIBaseApiRequest(socket, OAIBaseApiApiHandler);
             reqObj->getCrumbRequest();
         }
     });

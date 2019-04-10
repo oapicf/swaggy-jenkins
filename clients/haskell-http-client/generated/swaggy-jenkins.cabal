@@ -60,7 +60,7 @@ library
   exposed-modules:
       SwaggyJenkins
       SwaggyJenkins.API
-      SwaggyJenkins.API.BaseAccess
+      SwaggyJenkins.API.Base
       SwaggyJenkins.API.BlueOcean
       SwaggyJenkins.API.RemoteAccess
       SwaggyJenkins.Client

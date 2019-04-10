@@ -12,7 +12,7 @@
 
 export { Api } from './Api';
 export { AuthStorage } from './AuthStorage';
-export { BaseAccessApi } from './BaseAccessApi';
+export { BaseApi } from './BaseApi';
 export { BlueOceanApi } from './BlueOceanApi';
 export { RemoteAccessApi } from './RemoteAccessApi';
 export {

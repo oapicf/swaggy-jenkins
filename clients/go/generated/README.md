@@ -31,7 +31,7 @@ All URIs are relative to *http://localhost*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*BaseAccessApi* | [**GetCrumb**](docs/BaseAccessApi.md#getcrumb) | **Get** /crumbIssuer/api/json | 
+*BaseApi* | [**GetCrumb**](docs/BaseApi.md#getcrumb) | **Get** /crumbIssuer/api/json | 
 *BlueOceanApi* | [**DeletePipelineQueueItem**](docs/BlueOceanApi.md#deletepipelinequeueitem) | **Delete** /blue/rest/organizations/{organization}/pipelines/{pipeline}/queue/{queue} | 
 *BlueOceanApi* | [**GetAuthenticatedUser**](docs/BlueOceanApi.md#getauthenticateduser) | **Get** /blue/rest/organizations/{organization}/user/ | 
 *BlueOceanApi* | [**GetClasses**](docs/BlueOceanApi.md#getclasses) | **Get** /blue/rest/classes/{class} | 

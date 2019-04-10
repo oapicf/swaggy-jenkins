@@ -222,8 +222,8 @@ paths:
       security:
       - jenkins_auth: []
       tags:
-      - baseAccess
-      x-openapi-router-controller: openapi_server.controllers.base_access_controller
+      - base
+      x-openapi-router-controller: openapi_server.controllers.base_controller
   /job/{name}/api/json:
     get:
       description: Retrieve job details

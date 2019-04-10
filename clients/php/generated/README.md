@@ -62,7 +62,7 @@ $config = OpenAPI\Client\Configuration::getDefaultConfiguration()
     ->setUsername('YOUR_USERNAME')
     ->setPassword('YOUR_PASSWORD');
 
-$apiInstance = new OpenAPI\Client\Api\BaseAccessApi(
+$apiInstance = new OpenAPI\Client\Api\BaseApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -73,7 +73,7 @@ try {
     $result = $apiInstance->getCrumb();
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling BaseAccessApi->getCrumb: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling BaseApi->getCrumb: ', $e->getMessage(), PHP_EOL;
 }
 
 ?>
@@ -85,7 +85,7 @@ All URIs are relative to *http://localhost*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*BaseAccessApi* | [**getCrumb**](docs/Api/BaseAccessApi.md#getcrumb) | **GET** /crumbIssuer/api/json | 
+*BaseApi* | [**getCrumb**](docs/Api/BaseApi.md#getcrumb) | **GET** /crumbIssuer/api/json | 
 *BlueOceanApi* | [**deletePipelineQueueItem**](docs/Api/BlueOceanApi.md#deletepipelinequeueitem) | **DELETE** /blue/rest/organizations/{organization}/pipelines/{pipeline}/queue/{queue} | 
 *BlueOceanApi* | [**getAuthenticatedUser**](docs/Api/BlueOceanApi.md#getauthenticateduser) | **GET** /blue/rest/organizations/{organization}/user/ | 
 *BlueOceanApi* | [**getClasses**](docs/Api/BlueOceanApi.md#getclasses) | **GET** /blue/rest/classes/{class} | 

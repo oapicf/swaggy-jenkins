@@ -13,7 +13,7 @@ import org.openapitools.model.GithubRepository;
 /**
  * GithubRepositories
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2019-04-10T13:18:13.557Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2019-04-10T13:31:17.047Z[GMT]")
 public class GithubRepositories   {
   @JsonProperty("_class")
   private String propertyClass = null;

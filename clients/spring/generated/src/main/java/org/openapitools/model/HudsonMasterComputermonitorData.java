@@ -15,7 +15,7 @@ import javax.validation.constraints.*;
 /**
  * HudsonMasterComputermonitorData
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-04-10T13:22:06.378Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-04-10T13:34:37.094Z[GMT]")
 
 public class HudsonMasterComputermonitorData   {
   @JsonProperty("hudson.node_monitors.SwapSpaceMonitor")

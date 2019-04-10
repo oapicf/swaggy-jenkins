@@ -224,7 +224,7 @@ paths:
       security:
       - jenkins_auth: []
       tags:
-      - baseAccess
+      - base
       x-accepts: application/json
   /job/{name}/api/json:
     get:

@@ -18,7 +18,7 @@ from __future__ import absolute_import
 __version__ = "0.0.3"
 
 # import apis into sdk package
-from swaggyjenkins.api.base_access_api import BaseAccessApi
+from swaggyjenkins.api.base_api import BaseApi
 from swaggyjenkins.api.blue_ocean_api import BlueOceanApi
 from swaggyjenkins.api.remote_access_api import RemoteAccessApi
 

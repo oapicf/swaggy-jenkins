@@ -3,7 +3,7 @@ import { Configuration } from './configuration';
 import { HttpClient } from '@angular/common/http';
 
 
-import { BaseAccessService } from './api/baseAccess.service';
+import { BaseService } from './api/base.service';
 import { BlueOceanService } from './api/blueOcean.service';
 import { RemoteAccessService } from './api/remoteAccess.service';
 
@@ -12,7 +12,7 @@ import { RemoteAccessService } from './api/remoteAccess.service';
   declarations: [],
   exports:      [],
   providers: [
-    BaseAccessService,
+    BaseService,
     BlueOceanService,
     RemoteAccessService ]
 })

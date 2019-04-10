@@ -2,12 +2,12 @@
 # https://github.com/openapitools/openapi-generator
 # Do not edit the class manually.
 
-# baseAccess
-open_apiserver_baseAccess_getcrumb:
+# base
+open_apiserver_base_getcrumb:
     path:     /crumbIssuer/api/json
     methods:  [GET]
     defaults:
-        _controller: open_apiserver.controller.baseAccess:getCrumbAction
+        _controller: open_apiserver.controller.base:getCrumbAction
 
 # blueOcean
 open_apiserver_blueOcean_deletepipelinequeueitem:

@@ -48,13 +48,13 @@ import 'package:openapi/api.dart';
 //openapi.api.Configuration.username = 'YOUR_USERNAME';
 //openapi.api.Configuration.password = 'YOUR_PASSWORD';
 
-var api_instance = new BaseAccessApi();
+var api_instance = new BaseApi();
 
 try {
     var result = api_instance.getCrumb();
     print(result);
 } catch (e) {
-    print("Exception when calling BaseAccessApi->getCrumb: $e\n");
+    print("Exception when calling BaseApi->getCrumb: $e\n");
 }
 
 ```
@@ -65,7 +65,7 @@ All URIs are relative to *http://localhost*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*BaseAccessApi* | [**getCrumb**](docs//BaseAccessApi.md#getcrumb) | **GET** /crumbIssuer/api/json | 
+*BaseApi* | [**getCrumb**](docs//BaseApi.md#getcrumb) | **GET** /crumbIssuer/api/json | 
 *BlueOceanApi* | [**deletePipelineQueueItem**](docs//BlueOceanApi.md#deletepipelinequeueitem) | **DELETE** /blue/rest/organizations/{organization}/pipelines/{pipeline}/queue/{queue} | 
 *BlueOceanApi* | [**getAuthenticatedUser**](docs//BlueOceanApi.md#getauthenticateduser) | **GET** /blue/rest/organizations/{organization}/user/ | 
 *BlueOceanApi* | [**getClasses**](docs//BlueOceanApi.md#getclasses) | **GET** /blue/rest/classes/{class} | 

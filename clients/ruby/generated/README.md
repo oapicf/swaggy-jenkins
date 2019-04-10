@@ -62,13 +62,13 @@ SwaggyJenkinsClient.configure do |config|
   config.password = 'YOUR PASSWORD'
 end
 
-api_instance = SwaggyJenkinsClient::BaseAccessApi.new
+api_instance = SwaggyJenkinsClient::BaseApi.new
 
 begin
   result = api_instance.get_crumb
   p result
 rescue SwaggyJenkinsClient::ApiError => e
-  puts "Exception when calling BaseAccessApi->get_crumb: #{e}"
+  puts "Exception when calling BaseApi->get_crumb: #{e}"
 end
 
 ```
@@ -79,7 +79,7 @@ All URIs are relative to *http://localhost*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*SwaggyJenkinsClient::BaseAccessApi* | [**get_crumb**](docs/BaseAccessApi.md#get_crumb) | **GET** /crumbIssuer/api/json | 
+*SwaggyJenkinsClient::BaseApi* | [**get_crumb**](docs/BaseApi.md#get_crumb) | **GET** /crumbIssuer/api/json | 
 *SwaggyJenkinsClient::BlueOceanApi* | [**delete_pipeline_queue_item**](docs/BlueOceanApi.md#delete_pipeline_queue_item) | **DELETE** /blue/rest/organizations/{organization}/pipelines/{pipeline}/queue/{queue} | 
 *SwaggyJenkinsClient::BlueOceanApi* | [**get_authenticated_user**](docs/BlueOceanApi.md#get_authenticated_user) | **GET** /blue/rest/organizations/{organization}/user/ | 
 *SwaggyJenkinsClient::BlueOceanApi* | [**get_classes**](docs/BlueOceanApi.md#get_classes) | **GET** /blue/rest/classes/{class} | 

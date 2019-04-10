@@ -13,7 +13,7 @@ import org.openapitools.model.HudsonMasterComputer;
 
 
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaInflectorServerCodegen", date = "2019-04-10T13:18:07.561Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaInflectorServerCodegen", date = "2019-04-10T13:31:12.702Z[GMT]")
 public class ComputerSet   {
   @JsonProperty("_class")
   private String propertyClass = null;
