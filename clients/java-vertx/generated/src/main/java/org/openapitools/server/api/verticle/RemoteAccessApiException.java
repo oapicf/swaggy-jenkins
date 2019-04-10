@@ -1,7 +1,6 @@
 package org.openapitools.server.api.verticle;
 
 import org.openapitools.server.api.model.ComputerSet;
-import org.openapitools.server.api.model.DefaultCrumbIssuer;
 import org.openapitools.server.api.model.FreeStyleBuild;
 import org.openapitools.server.api.model.FreeStyleProject;
 import org.openapitools.server.api.model.Hudson;
@@ -16,8 +15,6 @@ public final class RemoteAccessApiException extends MainApiException {
     
     public static final RemoteAccessApiException RemoteAccess_getComputer_401_Exception = new RemoteAccessApiException(401, "Authentication failed - incorrect username and/or password");
     public static final RemoteAccessApiException RemoteAccess_getComputer_403_Exception = new RemoteAccessApiException(403, "Jenkins requires authentication - please set username and password");
-    public static final RemoteAccessApiException RemoteAccess_getCrumb_401_Exception = new RemoteAccessApiException(401, "Authentication failed - incorrect username and/or password");
-    public static final RemoteAccessApiException RemoteAccess_getCrumb_403_Exception = new RemoteAccessApiException(403, "Jenkins requires authentication - please set username and password");
     public static final RemoteAccessApiException RemoteAccess_getJenkins_401_Exception = new RemoteAccessApiException(401, "Authentication failed - incorrect username and/or password");
     public static final RemoteAccessApiException RemoteAccess_getJenkins_403_Exception = new RemoteAccessApiException(403, "Jenkins requires authentication - please set username and password");
     public static final RemoteAccessApiException RemoteAccess_getJob_401_Exception = new RemoteAccessApiException(401, "Authentication failed - incorrect username and/or password");

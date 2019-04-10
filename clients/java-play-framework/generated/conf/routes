@@ -5,8 +5,8 @@
 GET     /api                        controllers.ApiDocController.api
 
 
-#Functions for BaseRemoteAccess API
-GET     //crumbIssuer/api/json                     controllers.BaseRemoteAccessApiController.getCrumb()
+#Functions for BaseAccess API
+GET     //crumbIssuer/api/json                     controllers.BaseAccessApiController.getCrumb()
 
 #Functions for BlueOcean API
 DELETE     //blue/rest/organizations/:organization/pipelines/:pipeline/queue/:queue                     controllers.BlueOceanApiController.deletePipelineQueueItem(organization: String, pipeline: String, queue: String)
@@ -49,7 +49,6 @@ GET     //blue/rest/classes/                     controllers.BlueOceanApiControl
 
 #Functions for RemoteAccess API
 GET     //computer/api/json                     controllers.RemoteAccessApiController.getComputer()
-GET     //crumbIssuer/api/json                     controllers.RemoteAccessApiController.getCrumb()
 GET     //api/json                     controllers.RemoteAccessApiController.getJenkins()
 GET     //job/:name/api/json                     controllers.RemoteAccessApiController.getJob(name: String)
 GET     //job/:name/config.xml                     controllers.RemoteAccessApiController.getJobConfig(name: String)

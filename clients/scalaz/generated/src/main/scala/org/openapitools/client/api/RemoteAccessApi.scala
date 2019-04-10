@@ -48,27 +48,6 @@ object RemoteAccessApi {
     } yield resp
   }
   
-  def getCrumb(host: String): Task[DefaultCrumbIssuer] = {
-    implicit val returnTypeDecoder: EntityDecoder[DefaultCrumbIssuer] = jsonOf[DefaultCrumbIssuer]
-
-    val path = "/crumbIssuer/api/json"
-    
-    val httpMethod = Method.GET
-    val contentType = `Content-Type`(MediaType.`application/json`)
-    val headers = Headers(
-      )
-    val queryParams = Query(
-      )
-
-    for {
-      uri           <- Task.fromDisjunction(Uri.fromString(host + path))
-      uriWithParams =  uri.copy(query = queryParams)
-      req           =  Request(method = httpMethod, uri = uriWithParams, headers = headers.put(contentType))
-      resp          <- client.expect[DefaultCrumbIssuer](req)
-
-    } yield resp
-  }
-  
   def getJenkins(host: String): Task[Hudson] = {
     implicit val returnTypeDecoder: EntityDecoder[Hudson] = jsonOf[Hudson]
 
@@ -470,27 +449,6 @@ class HttpServiceRemoteAccessApi(service: HttpService) {
       uriWithParams =  uri.copy(query = queryParams)
       req           =  Request(method = httpMethod, uri = uriWithParams, headers = headers.put(contentType))
       resp          <- client.expect[ComputerSet](req)
-
-    } yield resp
-  }
-  
-  def getCrumb(): Task[DefaultCrumbIssuer] = {
-    implicit val returnTypeDecoder: EntityDecoder[DefaultCrumbIssuer] = jsonOf[DefaultCrumbIssuer]
-
-    val path = "/crumbIssuer/api/json"
-    
-    val httpMethod = Method.GET
-    val contentType = `Content-Type`(MediaType.`application/json`)
-    val headers = Headers(
-      )
-    val queryParams = Query(
-      )
-
-    for {
-      uri           <- Task.fromDisjunction(Uri.fromString(path))
-      uriWithParams =  uri.copy(query = queryParams)
-      req           =  Request(method = httpMethod, uri = uriWithParams, headers = headers.put(contentType))
-      resp          <- client.expect[DefaultCrumbIssuer](req)
 
     } yield resp
   }

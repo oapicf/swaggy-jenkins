@@ -36,7 +36,7 @@ mod mimetypes;
 pub use swagger::{ApiError, ContextWrapper};
 
 pub const BASE_PATH: &'static str = "/";
-pub const API_VERSION: &'static str = "1.1.0";
+pub const API_VERSION: &'static str = "1.1.1";
 
 
 #[derive(Debug, PartialEq)]
@@ -434,16 +434,6 @@ pub enum GetComputerResponse {
 }
 
 #[derive(Debug, PartialEq)]
-pub enum GetCrumbResponse {
-    /// Successfully retrieved CSRF protection token
-    SuccessfullyRetrievedCSRFProtectionToken ( models::DefaultCrumbIssuer ) ,
-    /// Authentication failed - incorrect username and/or password
-    AuthenticationFailed ,
-    /// Jenkins requires authentication - please set username and password
-    JenkinsRequiresAuthentication ,
-}
-
-#[derive(Debug, PartialEq)]
 pub enum GetJenkinsResponse {
     /// Successfully retrieved Jenkins details
     SuccessfullyRetrievedJenkinsDetails ( models::Hudson ) ,
@@ -791,9 +781,6 @@ pub trait Api<C> {
     fn get_computer(&self, depth: i32, context: &C) -> Box<Future<Item=GetComputerResponse, Error=ApiError>>;
 
 
-    fn get_crumb(&self, context: &C) -> Box<Future<Item=GetCrumbResponse, Error=ApiError>>;
-
-
     fn get_jenkins(&self, context: &C) -> Box<Future<Item=GetJenkinsResponse, Error=ApiError>>;
 
 
@@ -971,9 +958,6 @@ pub trait ApiNoContext {
 
 
     fn get_computer(&self, depth: i32) -> Box<Future<Item=GetComputerResponse, Error=ApiError>>;
-
-
-    fn get_crumb(&self) -> Box<Future<Item=GetCrumbResponse, Error=ApiError>>;
 
 
     fn get_jenkins(&self) -> Box<Future<Item=GetJenkinsResponse, Error=ApiError>>;
@@ -1241,11 +1225,6 @@ impl<'a, T: Api<C>, C> ApiNoContext for ContextWrapper<'a, T, C> {
 
     fn get_computer(&self, depth: i32) -> Box<Future<Item=GetComputerResponse, Error=ApiError>> {
         self.api().get_computer(depth, &self.context())
-    }
-
-
-    fn get_crumb(&self) -> Box<Future<Item=GetCrumbResponse, Error=ApiError>> {
-        self.api().get_crumb(&self.context())
     }
 
 

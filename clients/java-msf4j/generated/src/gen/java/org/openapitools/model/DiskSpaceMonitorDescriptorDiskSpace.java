@@ -9,7 +9,7 @@ import io.swagger.annotations.ApiModelProperty;
 /**
  * DiskSpaceMonitorDescriptorDiskSpace
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2019-04-10T03:54:11.067Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2019-04-10T13:18:13.557Z[GMT]")
 public class DiskSpaceMonitorDescriptorDiskSpace   {
   @JsonProperty("_class")
   private String propertyClass = null;

@@ -8,7 +8,7 @@
       "url" : "http://github.com/cliffano/swaggy-jenkins",
       "email" : "blah@cliffano.com"
     },
-    "version" : "1.1.0"
+    "version" : "1.1.1"
   },
   "servers" : [ {
     "url" : "/"
@@ -294,7 +294,7 @@
     },
     "/crumbIssuer/api/json" : {
       "get" : {
-        "tags" : [ "remoteAccess", "baseRemoteAccess" ],
+        "tags" : [ "baseAccess" ],
         "description" : "Retrieve CSRF protection token",
         "operationId" : "getCrumb",
         "responses" : {

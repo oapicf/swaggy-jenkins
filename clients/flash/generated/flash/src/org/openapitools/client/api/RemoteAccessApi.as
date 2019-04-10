@@ -7,7 +7,6 @@ import org.openapitools.common.ApiUserCredentials;
 import org.openapitools.event.Response;
 import org.openapitools.common.OpenApi;
 import org.openapitools.client.model.ComputerSet;
-import org.openapitools.client.model.DefaultCrumbIssuer;
 import org.openapitools.client.model.FreeStyleBuild;
 import org.openapitools.client.model.FreeStyleProject;
 import org.openapitools.client.model.Hudson;
@@ -30,7 +29,6 @@ public class RemoteAccessApi extends OpenApi {
     }
 
         public static const event_get_computer: String = "get_computer";
-        public static const event_get_crumb: String = "get_crumb";
         public static const event_get_jenkins: String = "get_jenkins";
         public static const event_get_job: String = "get_job";
         public static const event_get_job_config: String = "get_job_config";
@@ -80,32 +78,6 @@ public class RemoteAccessApi extends OpenApi {
         token.completionEventType = "get_computer";
 
         token.returnType = ComputerSet;
-        return requestId;
-
-    }
-
-    /*
-     * Returns DefaultCrumbIssuer 
-     */
-    public function get_crumb (): String {
-        // create path and map variables
-        var path: String = "/crumbIssuer/api/json".replace(/{format}/g,"xml");
-
-        // query params
-        var queryParams: Dictionary = new Dictionary();
-        var headerParams: Dictionary = new Dictionary();
-
-
-        
-        
-        var token:AsyncToken = getApiInvoker().invokeAPI(path, "GET", queryParams, null, headerParams);
-
-        var requestId: String = getUniqueId();
-
-        token.requestId = requestId;
-        token.completionEventType = "get_crumb";
-
-        token.returnType = DefaultCrumbIssuer;
         return requestId;
 
     }

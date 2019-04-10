@@ -1,7 +1,6 @@
 package controllers;
 
 import apimodels.ComputerSet;
-import apimodels.DefaultCrumbIssuer;
 import apimodels.FreeStyleBuild;
 import apimodels.FreeStyleProject;
 import apimodels.Hudson;
@@ -14,19 +13,13 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.io.FileInputStream;
 import javax.validation.constraints.*;
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2019-04-10T03:54:21.169Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2019-04-10T13:18:27.094Z[GMT]")
 
 public class RemoteAccessApiControllerImp implements RemoteAccessApiControllerImpInterface {
     @Override
     public ComputerSet getComputer( @NotNull Integer depth) throws Exception {
         //Do your magic!!!
         return new ComputerSet();
-    }
-
-    @Override
-    public DefaultCrumbIssuer getCrumb() throws Exception {
-        //Do your magic!!!
-        return new DefaultCrumbIssuer();
     }
 
     @Override

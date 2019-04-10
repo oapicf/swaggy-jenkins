@@ -76,7 +76,6 @@ use {Api,
      SearchResponse,
      SearchClassesResponse,
      GetComputerResponse,
-     GetCrumbResponse,
      GetJenkinsResponse,
      GetJobResponse,
      GetJobConfigResponse,
@@ -4397,83 +4396,6 @@ where
 
                                                 },
                                                 GetComputerResponse::JenkinsRequiresAuthentication
-
-
-                                                => {
-                                                    response.set_status(StatusCode::try_from(403).unwrap());
-
-                                                },
-                                            },
-                                            Err(_) => {
-                                                // Application code returned an error. This should not happen, as the implementation should
-                                                // return a valid response.
-                                                response.set_status(StatusCode::InternalServerError);
-                                                response.set_body("An internal error occurred");
-                                            },
-                                        }
-
-                                        future::ok(response)
-                                    }
-                                ))
-
-                        }}
-                }) as Box<Future<Item=Response, Error=Error>>
-
-
-            },
-
-
-            // GetCrumb - GET /crumbIssuer/api/json
-            &hyper::Method::Get if path.matched(paths::ID_CRUMBISSUER_API_JSON) => {
-                {
-                    let authorization = match (&context as &Has<Option<Authorization>>).get() {
-                        &Some(ref authorization) => authorization,
-                        &None => return Box::new(future::ok(Response::new()
-                                                .with_status(StatusCode::Forbidden)
-                                                .with_body("Unauthenticated"))),
-                    };
-
-                }
-
-
-
-
-
-
-
-                Box::new({
-                        {{
-
-                                Box::new(api_impl.get_crumb(&context)
-                                    .then(move |result| {
-                                        let mut response = Response::new();
-                                        response.headers_mut().set(XSpanId((&context as &Has<XSpanIdString>).get().0.to_string()));
-
-                                        match result {
-                                            Ok(rsp) => match rsp {
-                                                GetCrumbResponse::SuccessfullyRetrievedCSRFProtectionToken
-
-                                                    (body)
-
-
-                                                => {
-                                                    response.set_status(StatusCode::try_from(200).unwrap());
-
-                                                    response.headers_mut().set(ContentType(mimetypes::responses::GET_CRUMB_SUCCESSFULLY_RETRIEVED_CSRF_PROTECTION_TOKEN.clone()));
-
-
-                                                    let body = serde_json::to_string(&body).expect("impossible to fail to serialize");
-
-                                                    response.set_body(body);
-                                                },
-                                                GetCrumbResponse::AuthenticationFailed
-
-
-                                                => {
-                                                    response.set_status(StatusCode::try_from(401).unwrap());
-
-                                                },
-                                                GetCrumbResponse::JenkinsRequiresAuthentication
 
 
                                                 => {

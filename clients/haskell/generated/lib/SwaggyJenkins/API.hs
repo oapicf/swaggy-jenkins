@@ -103,7 +103,6 @@ type SwaggyJenkinsAPI
     :<|> "blue" :> "rest" :> "search" :> QueryParam "q" Text :> Verb 'GET 200 '[JSON] Text -- 'search' route
     :<|> "blue" :> "rest" :> "classes" :> QueryParam "q" Text :> Verb 'GET 200 '[JSON] Text -- 'searchClasses' route
     :<|> "computer" :> "api" :> "json" :> QueryParam "depth" Int :> Verb 'GET 200 '[JSON] ComputerSet -- 'getComputer' route
-    :<|> "crumbIssuer" :> "api" :> "json" :> Verb 'GET 200 '[JSON] DefaultCrumbIssuer -- 'getCrumb' route
     :<|> "api" :> "json" :> Verb 'GET 200 '[JSON] Hudson -- 'getJenkins' route
     :<|> "job" :> Capture "name" Text :> "api" :> "json" :> Verb 'GET 200 '[JSON] FreeStyleProject -- 'getJob' route
     :<|> "job" :> Capture "name" Text :> "config.xml" :> Verb 'GET 200 '[JSON] Text -- 'getJobConfig' route
@@ -224,7 +223,6 @@ data SwaggyJenkinsBackend m = SwaggyJenkinsBackend
   , search :: Maybe Text -> m Text{- ^ Search for any resource details -}
   , searchClasses :: Maybe Text -> m Text{- ^ Get classes details -}
   , getComputer :: Maybe Int -> m ComputerSet{- ^ Retrieve computer details -}
-  , getCrumb :: m DefaultCrumbIssuer{- ^ Retrieve CSRF protection token -}
   , getJenkins :: m Hudson{- ^ Retrieve Jenkins details -}
   , getJob :: Text -> m FreeStyleProject{- ^ Retrieve job details -}
   , getJobConfig :: Text -> m Text{- ^ Retrieve job configuration -}
@@ -306,7 +304,6 @@ createSwaggyJenkinsClient = SwaggyJenkinsBackend{..}
      (coerce -> search) :<|>
      (coerce -> searchClasses) :<|>
      (coerce -> getComputer) :<|>
-     (coerce -> getCrumb) :<|>
      (coerce -> getJenkins) :<|>
      (coerce -> getJob) :<|>
      (coerce -> getJobConfig) :<|>
@@ -384,7 +381,6 @@ runSwaggyJenkinsServer ServerConfig{..} backend =
        coerce search :<|>
        coerce searchClasses :<|>
        coerce getComputer :<|>
-       coerce getCrumb :<|>
        coerce getJenkins :<|>
        coerce getJob :<|>
        coerce getJobConfig :<|>

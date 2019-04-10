@@ -379,45 +379,6 @@ public class RemoteAccessAPI: APIBase {
 
      - parameter completion: completion handler to receive the data and the error objects
      */
-    public class func getCrumb(completion: ((data: DefaultCrumbIssuer?, error: ErrorType?) -> Void)) {
-        getCrumbWithRequestBuilder().execute { (response, error) -> Void in
-            completion(data: response?.body, error: error);
-        }
-    }
-
-
-    /**
-     - GET /crumbIssuer/api/json
-     - Retrieve CSRF protection token     - BASIC:
-       - type: http
-       - name: jenkins_auth
-     - examples: [{contentType=application/json, example={
-  "crumb" : "crumb",
-  "_class" : "_class",
-  "crumbRequestField" : "crumbRequestField"
-}}]
-
-     - returns: RequestBuilder<DefaultCrumbIssuer> 
-     */
-    public class func getCrumbWithRequestBuilder() -> RequestBuilder<DefaultCrumbIssuer> {
-        let path = "/crumbIssuer/api/json"
-        let URLString = OpenAPIClientAPI.basePath + path
-
-        let nillableParameters: [String:AnyObject?] = [:]
- 
-        let parameters = APIHelper.rejectNil(nillableParameters)
- 
-        let convertedParameters = APIHelper.convertBoolToString(parameters)
- 
-        let requestBuilder: RequestBuilder<DefaultCrumbIssuer>.Type = OpenAPIClientAPI.requestBuilderFactory.getBuilder()
-
-        return requestBuilder.init(method: "GET", URLString: URLString, parameters: convertedParameters, isBody: true)
-    }
-
-    /**
-
-     - parameter completion: completion handler to receive the data and the error objects
-     */
     public class func getJenkins(completion: ((data: Hudson?, error: ErrorType?) -> Void)) {
         getJenkinsWithRequestBuilder().execute { (response, error) -> Void in
             completion(data: response?.body, error: error);

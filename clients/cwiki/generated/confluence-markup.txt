@@ -1,6 +1,6 @@
 h1. Swaggy Jenkins Jenkins API clients generated from Swagger / Open API specification
 
-*Version:* 1.1.0
+*Version:* 1.1.1
 
 ----
 
@@ -2965,75 +2965,6 @@ ComputerSet
     "application/json" : {
       "schema" : {
         "$ref" : "#/components/schemas/ComputerSet"
-      }
-    }
-  }
-}
-        {code}
-        *Status Code:* 401
-        *Message:*     Authentication failed - incorrect username and/or password
-        {code:title=Response Type}
-
-        {code}
-        See [#models]
-
-
-
-        {code:title=Response Schema |collapse=true}
-{
-  "description" : "Authentication failed - incorrect username and/or password"
-}
-        {code}
-        *Status Code:* 403
-        *Message:*     Jenkins requires authentication - please set username and password
-        {code:title=Response Type}
-
-        {code}
-        See [#models]
-
-
-
-        {code:title=Response Schema |collapse=true}
-{
-  "description" : "Jenkins requires authentication - please set username and password"
-}
-        {code}
-    ----
-
-    h3. getCrumb
-    {status:colour=Yellow|title=get|subtle=false}
-    {code}
-    get /crumbIssuer/api/json
-    {code}
-    *Summary:* 
-    *Description:* Retrieve CSRF protection token
-
-
-    h4. Parameters
-
-
-
-
-
-
-
-    h4. Responses
-        *Status Code:* 200
-        *Message:*     Successfully retrieved CSRF protection token
-        {code:title=Response Type}
-DefaultCrumbIssuer
-        {code}
-        See [#models]
-
-
-
-        {code:title=Response Schema |collapse=true}
-{
-  "description" : "Successfully retrieved CSRF protection token",
-  "content" : {
-    "application/json" : {
-      "schema" : {
-        "$ref" : "#/components/schemas/DefaultCrumbIssuer"
       }
     }
   }

@@ -14,16 +14,6 @@ module.exports.getComputer = function getComputer (req, res, next) {
     });
 };
 
-module.exports.getCrumb = function getCrumb (req, res, next) {
-  RemoteAccess.getCrumb()
-    .then(function (response) {
-      utils.writeJson(res, response);
-    })
-    .catch(function (response) {
-      utils.writeJson(res, response);
-    });
-};
-
 module.exports.getJenkins = function getJenkins (req, res, next) {
   RemoteAccess.getJenkins()
     .then(function (response) {

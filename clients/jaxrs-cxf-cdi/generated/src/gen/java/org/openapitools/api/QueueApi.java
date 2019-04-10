@@ -25,7 +25,7 @@ import javax.validation.constraints.*;
 @Api(description = "the queue API")
 
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSCXFCDIServerCodegen", date = "2019-04-10T03:54:40.179Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSCXFCDIServerCodegen", date = "2019-04-10T13:18:48.200Z[GMT]")
 
 public class QueueApi  {
 

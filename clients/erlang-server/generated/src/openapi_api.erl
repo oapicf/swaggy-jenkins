@@ -270,10 +270,6 @@ request_params('GetComputer') ->
         'depth'
     ];
 
-request_params('GetCrumb') ->
-    [
-    ];
-
 request_params('GetJenkins') ->
     [
     ];
@@ -1953,13 +1949,6 @@ validate_response('GetComputer', 200, Body, ValidatorState) ->
 validate_response('GetComputer', 401, Body, ValidatorState) ->
     validate_response_body('', '', Body, ValidatorState);
 validate_response('GetComputer', 403, Body, ValidatorState) ->
-    validate_response_body('', '', Body, ValidatorState);
-
-validate_response('GetCrumb', 200, Body, ValidatorState) ->
-    validate_response_body('DefaultCrumbIssuer', 'DefaultCrumbIssuer', Body, ValidatorState);
-validate_response('GetCrumb', 401, Body, ValidatorState) ->
-    validate_response_body('', '', Body, ValidatorState);
-validate_response('GetCrumb', 403, Body, ValidatorState) ->
     validate_response_body('', '', Body, ValidatorState);
 
 validate_response('GetJenkins', 200, Body, ValidatorState) ->

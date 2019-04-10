@@ -58,17 +58,17 @@ Please follow the [installation](#installation) instruction and execute the foll
 
 ```java
 
-import org.openapitools.client.api.BaseRemoteAccessApi;
+import org.openapitools.client.api.BaseAccessApi;
 
-public class BaseRemoteAccessApiExample {
+public class BaseAccessApiExample {
 
     public static void main(String[] args) {
-        BaseRemoteAccessApi apiInstance = new BaseRemoteAccessApi();
+        BaseAccessApi apiInstance = new BaseAccessApi();
         try {
             DefaultCrumbIssuer result = apiInstance.getCrumb();
             System.out.println(result);
         } catch (ApiException e) {
-            System.err.println("Exception when calling BaseRemoteAccessApi#getCrumb");
+            System.err.println("Exception when calling BaseAccessApi#getCrumb");
             e.printStackTrace();
         }
     }
@@ -82,7 +82,7 @@ All URIs are relative to *http://localhost*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*BaseRemoteAccessApi* | [**getCrumb**](docs/BaseRemoteAccessApi.md#getCrumb) | **GET** /crumbIssuer/api/json | 
+*BaseAccessApi* | [**getCrumb**](docs/BaseAccessApi.md#getCrumb) | **GET** /crumbIssuer/api/json | 
 *BlueOceanApi* | [**deletePipelineQueueItem**](docs/BlueOceanApi.md#deletePipelineQueueItem) | **DELETE** /blue/rest/organizations/{organization}/pipelines/{pipeline}/queue/{queue} | 
 *BlueOceanApi* | [**getAuthenticatedUser**](docs/BlueOceanApi.md#getAuthenticatedUser) | **GET** /blue/rest/organizations/{organization}/user/ | 
 *BlueOceanApi* | [**getClasses**](docs/BlueOceanApi.md#getClasses) | **GET** /blue/rest/classes/{class} | 
@@ -121,7 +121,6 @@ Class | Method | HTTP request | Description
 *BlueOceanApi* | [**search**](docs/BlueOceanApi.md#search) | **GET** /blue/rest/search/ | 
 *BlueOceanApi* | [**searchClasses**](docs/BlueOceanApi.md#searchClasses) | **GET** /blue/rest/classes/ | 
 *RemoteAccessApi* | [**getComputer**](docs/RemoteAccessApi.md#getComputer) | **GET** /computer/api/json | 
-*RemoteAccessApi* | [**getCrumb**](docs/RemoteAccessApi.md#getCrumb) | **GET** /crumbIssuer/api/json | 
 *RemoteAccessApi* | [**getJenkins**](docs/RemoteAccessApi.md#getJenkins) | **GET** /api/json | 
 *RemoteAccessApi* | [**getJob**](docs/RemoteAccessApi.md#getJob) | **GET** /job/{name}/api/json | 
 *RemoteAccessApi* | [**getJobConfig**](docs/RemoteAccessApi.md#getJobConfig) | **GET** /job/{name}/config.xml | 

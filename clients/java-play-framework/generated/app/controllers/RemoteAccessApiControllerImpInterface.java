@@ -1,7 +1,6 @@
 package controllers;
 
 import apimodels.ComputerSet;
-import apimodels.DefaultCrumbIssuer;
 import apimodels.FreeStyleBuild;
 import apimodels.FreeStyleProject;
 import apimodels.Hudson;
@@ -18,8 +17,6 @@ import javax.validation.constraints.*;
 @SuppressWarnings("RedundantThrows")
 public interface RemoteAccessApiControllerImpInterface {
     ComputerSet getComputer( @NotNull Integer depth) throws Exception;
-
-    DefaultCrumbIssuer getCrumb() throws Exception;
 
     Hudson getJenkins() throws Exception;
 

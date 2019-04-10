@@ -156,10 +156,6 @@ pub mod responses {
     lazy_static! {
         pub static ref GET_COMPUTER_SUCCESSFULLY_RETRIEVED_COMPUTER_DETAILS: Mime = "application/json".parse().unwrap();
     }
-    /// Create Mime objects for the response content types for GetCrumb
-    lazy_static! {
-        pub static ref GET_CRUMB_SUCCESSFULLY_RETRIEVED_CSRF_PROTECTION_TOKEN: Mime = "application/json".parse().unwrap();
-    }
     /// Create Mime objects for the response content types for GetJenkins
     lazy_static! {
         pub static ref GET_JENKINS_SUCCESSFULLY_RETRIEVED_JENKINS_DETAILS: Mime = "application/json".parse().unwrap();

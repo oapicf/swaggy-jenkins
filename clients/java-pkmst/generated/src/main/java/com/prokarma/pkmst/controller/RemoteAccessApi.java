@@ -6,7 +6,6 @@
 package com.prokarma.pkmst.controller;
 
 import com.prokarma.pkmst.model.ComputerSet;
-import com.prokarma.pkmst.model.DefaultCrumbIssuer;
 import com.prokarma.pkmst.model.FreeStyleBuild;
 import com.prokarma.pkmst.model.FreeStyleProject;
 import com.prokarma.pkmst.model.Hudson;
@@ -31,7 +30,7 @@ import java.util.List;
  * @author pkmst
  *
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPKMSTServerCodegen", date = "2019-04-10T03:54:16.217Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPKMSTServerCodegen", date = "2019-04-10T13:18:21.348Z[GMT]")
 
 @Api(value = "RemoteAccess", description = "the RemoteAccess API")
 public interface RemoteAccessApi {
@@ -47,19 +46,6 @@ public interface RemoteAccessApi {
         produces = { "application/json" }, 
         method = RequestMethod.GET)
     ResponseEntity<ComputerSet> getComputer(@ApiParam(value = "Recursion depth in response model", required = true)  @RequestParam(value = "depth", required = true) Integer depth, @RequestHeader(value = "Accept", required = false) String accept) throws Exception;
-
-
-    @ApiOperation(value = "", notes = "Retrieve CSRF protection token", response = DefaultCrumbIssuer.class, authorizations = {
-        @Authorization(value = "jenkins_auth")
-    }, tags={ "remoteAccess","baseRemoteAccess", })
-    @ApiResponses(value = { 
-        @ApiResponse(code = 200, message = "Successfully retrieved CSRF protection token", response = DefaultCrumbIssuer.class),
-        @ApiResponse(code = 401, message = "Authentication failed - incorrect username and/or password"),
-        @ApiResponse(code = 403, message = "Jenkins requires authentication - please set username and password") })
-    @RequestMapping(value = "/crumbIssuer/api/json",
-        produces = { "application/json" }, 
-        method = RequestMethod.GET)
-    ResponseEntity<DefaultCrumbIssuer> getCrumb( @RequestHeader(value = "Accept", required = false) String accept) throws Exception;
 
 
     @ApiOperation(value = "", notes = "Retrieve Jenkins details", response = Hudson.class, authorizations = {

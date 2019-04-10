@@ -58,7 +58,7 @@ get_operations() ->
         'GetCrumb' => #{
             path => "//crumbIssuer/api/json",
             method => <<"GET">>,
-            handler => 'openapi_base_remote_access_handler'
+            handler => 'openapi_base_access_handler'
         },
         'DeletePipelineQueueItem' => #{
             path => "//blue/rest/organizations/:organization/pipelines/:pipeline/queue/:queue",
@@ -247,11 +247,6 @@ get_operations() ->
         },
         'GetComputer' => #{
             path => "//computer/api/json",
-            method => <<"GET">>,
-            handler => 'openapi_remote_access_handler'
-        },
-        'GetCrumb' => #{
-            path => "//crumbIssuer/api/json",
             method => <<"GET">>,
             handler => 'openapi_remote_access_handler'
         },

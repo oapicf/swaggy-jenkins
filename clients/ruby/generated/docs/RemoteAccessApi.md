@@ -5,7 +5,6 @@ All URIs are relative to *http://localhost*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**get_computer**](RemoteAccessApi.md#get_computer) | **GET** /computer/api/json | 
-[**get_crumb**](RemoteAccessApi.md#get_crumb) | **GET** /crumbIssuer/api/json | 
 [**get_jenkins**](RemoteAccessApi.md#get_jenkins) | **GET** /api/json | 
 [**get_job**](RemoteAccessApi.md#get_job) | **GET** /job/{name}/api/json | 
 [**get_job_config**](RemoteAccessApi.md#get_job_config) | **GET** /job/{name}/config.xml | 
@@ -65,52 +64,6 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**ComputerSet**](ComputerSet.md)
-
-### Authorization
-
-[jenkins_auth](../README.md#jenkins_auth)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-
-
-# **get_crumb**
-> DefaultCrumbIssuer get_crumb
-
-
-
-Retrieve CSRF protection token
-
-### Example
-```ruby
-# load the gem
-require 'swaggy_jenkins'
-# setup authorization
-SwaggyJenkinsClient.configure do |config|
-  # Configure HTTP basic authorization: jenkins_auth
-  config.username = 'YOUR USERNAME'
-  config.password = 'YOUR PASSWORD'
-end
-
-api_instance = SwaggyJenkinsClient::RemoteAccessApi.new
-
-begin
-  result = api_instance.get_crumb
-  p result
-rescue SwaggyJenkinsClient::ApiError => e
-  puts "Exception when calling RemoteAccessApi->get_crumb: #{e}"
-end
-```
-
-### Parameters
-This endpoint does not need any parameter.
-
-### Return type
-
-[**DefaultCrumbIssuer**](DefaultCrumbIssuer.md)
 
 ### Authorization
 

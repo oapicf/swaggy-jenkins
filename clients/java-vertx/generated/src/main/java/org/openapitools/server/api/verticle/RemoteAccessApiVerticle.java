@@ -9,7 +9,6 @@ import io.vertx.core.logging.Logger;
 import io.vertx.core.logging.LoggerFactory;
 
 import org.openapitools.server.api.model.ComputerSet;
-import org.openapitools.server.api.model.DefaultCrumbIssuer;
 import org.openapitools.server.api.model.FreeStyleBuild;
 import org.openapitools.server.api.model.FreeStyleProject;
 import org.openapitools.server.api.model.Hudson;
@@ -24,7 +23,6 @@ public class RemoteAccessApiVerticle extends AbstractVerticle {
     final static Logger LOGGER = LoggerFactory.getLogger(RemoteAccessApiVerticle.class); 
     
     final static String GETCOMPUTER_SERVICE_ID = "getComputer";
-    final static String GETCRUMB_SERVICE_ID = "getCrumb";
     final static String GETJENKINS_SERVICE_ID = "getJenkins";
     final static String GETJOB_SERVICE_ID = "getJob";
     final static String GETJOBCONFIG_SERVICE_ID = "getJobConfig";
@@ -81,25 +79,6 @@ public class RemoteAccessApiVerticle extends AbstractVerticle {
                 });
             } catch (Exception e) {
                 logUnexpectedError("getComputer", e);
-                message.fail(MainApiException.INTERNAL_SERVER_ERROR.getStatusCode(), MainApiException.INTERNAL_SERVER_ERROR.getStatusMessage());
-            }
-        });
-        
-        //Consumer for getCrumb
-        vertx.eventBus().<JsonObject> consumer(GETCRUMB_SERVICE_ID).handler(message -> {
-            try {
-                // Workaround for #allParams section clearing the vendorExtensions map
-                String serviceId = "getCrumb";
-                service.getCrumb(result -> {
-                    if (result.succeeded())
-                        message.reply(new JsonObject(Json.encode(result.result())).encodePrettily());
-                    else {
-                        Throwable cause = result.cause();
-                        manageError(message, cause, "getCrumb");
-                    }
-                });
-            } catch (Exception e) {
-                logUnexpectedError("getCrumb", e);
                 message.fail(MainApiException.INTERNAL_SERVER_ERROR.getStatusCode(), MainApiException.INTERNAL_SERVER_ERROR.getStatusMessage());
             }
         });

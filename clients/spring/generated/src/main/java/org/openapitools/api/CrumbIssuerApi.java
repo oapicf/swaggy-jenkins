@@ -26,7 +26,7 @@ import javax.validation.constraints.*;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-04-10T03:57:34.567Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-04-10T13:22:06.378Z[GMT]")
 
 @Validated
 @Api(value = "crumbIssuer", description = "the crumbIssuer API")
@@ -38,7 +38,7 @@ public interface CrumbIssuerApi {
 
     @ApiOperation(value = "", nickname = "getCrumb", notes = "Retrieve CSRF protection token", response = DefaultCrumbIssuer.class, authorizations = {
         @Authorization(value = "jenkins_auth")
-    }, tags={ "remoteAccess","baseRemoteAccess", })
+    }, tags={ "baseAccess", })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "Successfully retrieved CSRF protection token", response = DefaultCrumbIssuer.class),
         @ApiResponse(code = 401, message = "Authentication failed - incorrect username and/or password"),

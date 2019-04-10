@@ -17,7 +17,7 @@ import javax.validation.constraints.*;
 /**
  * FreeStyleProject
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-04-10T03:57:34.567Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-04-10T13:22:06.378Z[GMT]")
 
 public class FreeStyleProject   {
   @JsonProperty("_class")

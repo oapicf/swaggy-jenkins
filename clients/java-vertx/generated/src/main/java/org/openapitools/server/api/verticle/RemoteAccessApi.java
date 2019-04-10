@@ -1,7 +1,6 @@
 package org.openapitools.server.api.verticle;
 
 import org.openapitools.server.api.model.ComputerSet;
-import org.openapitools.server.api.model.DefaultCrumbIssuer;
 import org.openapitools.server.api.model.FreeStyleBuild;
 import org.openapitools.server.api.model.FreeStyleProject;
 import org.openapitools.server.api.model.Hudson;
@@ -18,9 +17,6 @@ import java.util.Map;
 public interface RemoteAccessApi  {
     //getComputer
     void getComputer(Integer depth, Handler<AsyncResult<ComputerSet>> handler);
-    
-    //getCrumb
-    void getCrumb(Handler<AsyncResult<DefaultCrumbIssuer>> handler);
     
     //getJenkins
     void getJenkins(Handler<AsyncResult<Hudson>> handler);

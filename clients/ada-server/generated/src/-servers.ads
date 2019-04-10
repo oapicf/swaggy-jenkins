@@ -428,15 +428,6 @@ package .Servers is
        Context : in out Swagger.Servers.Context_Type);
 
    --  
-   --  Retrieve CSRF protection token
-   overriding
-   procedure Get_Crumb
-      (Server : in out Server_Type
-       ;
-       Result  : out .Models.DefaultCrumbIssuer_Type;
-       Context : in out Swagger.Servers.Context_Type);
-
-   --  
    --  Retrieve Jenkins details
    overriding
    procedure Get_Jenkins

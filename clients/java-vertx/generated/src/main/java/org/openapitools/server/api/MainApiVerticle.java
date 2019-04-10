@@ -66,12 +66,12 @@ public class MainApiVerticle extends AbstractVerticle {
       
     public void deployVerticles(Future<Void> startFuture) {
         
-        vertx.deployVerticle("org.openapitools.server.api.verticle.BaseRemoteAccessApiVerticle", res -> {
+        vertx.deployVerticle("org.openapitools.server.api.verticle.BaseAccessApiVerticle", res -> {
             if (res.succeeded()) {
-                LOGGER.info("BaseRemoteAccessApiVerticle : Deployed");
+                LOGGER.info("BaseAccessApiVerticle : Deployed");
             } else {
                 startFuture.fail(res.cause());
-                LOGGER.error("BaseRemoteAccessApiVerticle : Deployment failed");
+                LOGGER.error("BaseAccessApiVerticle : Deployment failed");
             }
         });
         

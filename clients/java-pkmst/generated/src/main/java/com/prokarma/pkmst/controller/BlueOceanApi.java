@@ -47,7 +47,7 @@ import java.util.List;
  * @author pkmst
  *
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPKMSTServerCodegen", date = "2019-04-10T03:54:16.217Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPKMSTServerCodegen", date = "2019-04-10T13:18:21.348Z[GMT]")
 
 @Api(value = "BlueOcean", description = "the BlueOcean API")
 public interface BlueOceanApi {

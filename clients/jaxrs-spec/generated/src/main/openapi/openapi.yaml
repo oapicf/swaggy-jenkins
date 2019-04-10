@@ -6,7 +6,7 @@ info:
     url: http://github.com/cliffano/swaggy-jenkins
   description: Jenkins API clients generated from Swagger / Open API specification
   title: Swaggy Jenkins
-  version: 1.1.0
+  version: 1.1.1
 servers:
 - url: /
 paths:
@@ -227,11 +227,9 @@ paths:
       security:
       - jenkins_auth: []
       tags:
-      - remoteAccess
+      - baseAccess
       x-tags:
-      - hasMore: "true"
-        tag: remoteAccess
-      - tag: baseRemoteAccess
+      - tag: baseAccess
   /job/{name}/api/json:
     get:
       description: Retrieve job details

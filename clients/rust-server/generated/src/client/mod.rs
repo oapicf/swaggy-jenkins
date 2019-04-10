@@ -78,7 +78,6 @@ use {Api,
      SearchResponse,
      SearchClassesResponse,
      GetComputerResponse,
-     GetCrumbResponse,
      GetJenkinsResponse,
      GetJobResponse,
      GetJobConfigResponse,
@@ -3873,97 +3872,6 @@ impl<F, C> Api<C> for Client<F> where
 
                         future::ok(
                             GetComputerResponse::JenkinsRequiresAuthentication
-                        )
-                    ) as Box<Future<Item=_, Error=_>>
-                },
-                code => {
-                    let headers = response.headers().clone();
-                    Box::new(response.body()
-                            .take(100)
-                            .concat2()
-                            .then(move |body|
-                                future::err(ApiError(format!("Unexpected response code {}:\n{:?}\n\n{}",
-                                    code,
-                                    headers,
-                                    match body {
-                                        Ok(ref body) => match str::from_utf8(body) {
-                                            Ok(body) => Cow::from(body),
-                                            Err(e) => Cow::from(format!("<Body was not UTF8: {:?}>", e)),
-                                        },
-                                        Err(e) => Cow::from(format!("<Failed to read body: {}>", e)),
-                                    })))
-                            )
-                    ) as Box<Future<Item=_, Error=_>>
-                }
-            }
-        }))
-
-    }
-
-    fn get_crumb(&self, context: &C) -> Box<Future<Item=GetCrumbResponse, Error=ApiError>> {
-
-
-        let uri = format!(
-            "{}//crumbIssuer/api/json",
-            self.base_path
-        );
-
-        let uri = match Uri::from_str(&uri) {
-            Ok(uri) => uri,
-            Err(err) => return Box::new(futures::done(Err(ApiError(format!("Unable to build URI: {}", err))))),
-        };
-
-        let mut request = hyper::Request::new(hyper::Method::Get, uri);
-
-
-
-        request.headers_mut().set(XSpanId((context as &Has<XSpanIdString>).get().0.clone()));
-        (context as &Has<Option<AuthData>>).get().as_ref().map(|auth_data| {
-            if let &AuthData::Basic(ref basic_header) = auth_data {
-                request.headers_mut().set(hyper::header::Authorization(
-                    basic_header.clone(),
-                ))
-            }
-        });
-
-        Box::new(self.client_service.call(request)
-                             .map_err(|e| ApiError(format!("No response received: {}", e)))
-                             .and_then(|mut response| {
-            match response.status().as_u16() {
-                200 => {
-                    let body = response.body();
-                    Box::new(
-                        body
-                        .concat2()
-                        .map_err(|e| ApiError(format!("Failed to read response: {}", e)))
-                        .and_then(|body| str::from_utf8(&body)
-                                             .map_err(|e| ApiError(format!("Response was not valid UTF8: {}", e)))
-                                             .and_then(|body|
-
-                                                 serde_json::from_str::<models::DefaultCrumbIssuer>(body)
-                                                     .map_err(|e| e.into())
-
-                                             ))
-                        .map(move |body|
-                            GetCrumbResponse::SuccessfullyRetrievedCSRFProtectionToken(body)
-                        )
-                    ) as Box<Future<Item=_, Error=_>>
-                },
-                401 => {
-                    let body = response.body();
-                    Box::new(
-
-                        future::ok(
-                            GetCrumbResponse::AuthenticationFailed
-                        )
-                    ) as Box<Future<Item=_, Error=_>>
-                },
-                403 => {
-                    let body = response.body();
-                    Box::new(
-
-                        future::ok(
-                            GetCrumbResponse::JenkinsRequiresAuthentication
                         )
                     ) as Box<Future<Item=_, Error=_>>
                 },

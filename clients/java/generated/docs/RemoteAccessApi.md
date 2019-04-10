@@ -5,7 +5,6 @@ All URIs are relative to *http://localhost*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**getComputer**](RemoteAccessApi.md#getComputer) | **GET** /computer/api/json | 
-[**getCrumb**](RemoteAccessApi.md#getCrumb) | **GET** /crumbIssuer/api/json | 
 [**getJenkins**](RemoteAccessApi.md#getJenkins) | **GET** /api/json | 
 [**getJob**](RemoteAccessApi.md#getJob) | **GET** /job/{name}/api/json | 
 [**getJobConfig**](RemoteAccessApi.md#getJobConfig) | **GET** /job/{name}/config.xml | 
@@ -71,56 +70,6 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**ComputerSet**](ComputerSet.md)
-
-### Authorization
-
-[jenkins_auth](../README.md#jenkins_auth)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-<a name="getCrumb"></a>
-# **getCrumb**
-> DefaultCrumbIssuer getCrumb()
-
-
-
-Retrieve CSRF protection token
-
-### Example
-```java
-// Import classes:
-//import com.cliffano.swaggyjenkins.ApiClient;
-//import com.cliffano.swaggyjenkins.ApiException;
-//import com.cliffano.swaggyjenkins.Configuration;
-//import com.cliffano.swaggyjenkins.auth.*;
-//import com.cliffano.swaggyjenkins.api.RemoteAccessApi;
-
-ApiClient defaultClient = Configuration.getDefaultApiClient();
-
-// Configure HTTP basic authorization: jenkins_auth
-HttpBasicAuth jenkins_auth = (HttpBasicAuth) defaultClient.getAuthentication("jenkins_auth");
-jenkins_auth.setUsername("YOUR USERNAME");
-jenkins_auth.setPassword("YOUR PASSWORD");
-
-RemoteAccessApi apiInstance = new RemoteAccessApi();
-try {
-    DefaultCrumbIssuer result = apiInstance.getCrumb();
-    System.out.println(result);
-} catch (ApiException e) {
-    System.err.println("Exception when calling RemoteAccessApi#getCrumb");
-    e.printStackTrace();
-}
-```
-
-### Parameters
-This endpoint does not need any parameter.
-
-### Return type
-
-[**DefaultCrumbIssuer**](DefaultCrumbIssuer.md)
 
 ### Authorization
 

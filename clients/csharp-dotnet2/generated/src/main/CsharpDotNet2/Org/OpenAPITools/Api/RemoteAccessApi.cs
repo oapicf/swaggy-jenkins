@@ -18,11 +18,6 @@ namespace Org.OpenAPITools.Api
         /// <returns>ComputerSet</returns>
         ComputerSet GetComputer (int? depth);
         /// <summary>
-        ///  Retrieve CSRF protection token
-        /// </summary>
-        /// <returns>DefaultCrumbIssuer</returns>
-        DefaultCrumbIssuer GetCrumb ();
-        /// <summary>
         ///  Retrieve Jenkins details
         /// </summary>
         /// <returns>Hudson</returns>
@@ -244,38 +239,6 @@ namespace Org.OpenAPITools.Api
                 throw new ApiException ((int)response.StatusCode, "Error calling GetComputer: " + response.ErrorMessage, response.ErrorMessage);
     
             return (ComputerSet) ApiClient.Deserialize(response.Content, typeof(ComputerSet), response.Headers);
-        }
-    
-        /// <summary>
-        ///  Retrieve CSRF protection token
-        /// </summary>
-        /// <returns>DefaultCrumbIssuer</returns>            
-        public DefaultCrumbIssuer GetCrumb ()
-        {
-            
-    
-            var path = "/crumbIssuer/api/json";
-            path = path.Replace("{format}", "json");
-                
-            var queryParams = new Dictionary<String, String>();
-            var headerParams = new Dictionary<String, String>();
-            var formParams = new Dictionary<String, String>();
-            var fileParams = new Dictionary<String, FileParameter>();
-            String postBody = null;
-    
-                                                    
-            // authentication setting, if any
-            String[] authSettings = new String[] { "jenkins_auth" };
-    
-            // make the HTTP request
-            IRestResponse response = (IRestResponse) ApiClient.CallApi(path, Method.GET, queryParams, postBody, headerParams, formParams, fileParams, authSettings);
-    
-            if (((int)response.StatusCode) >= 400)
-                throw new ApiException ((int)response.StatusCode, "Error calling GetCrumb: " + response.Content, response.Content);
-            else if (((int)response.StatusCode) == 0)
-                throw new ApiException ((int)response.StatusCode, "Error calling GetCrumb: " + response.ErrorMessage, response.ErrorMessage);
-    
-            return (DefaultCrumbIssuer) ApiClient.Deserialize(response.Content, typeof(DefaultCrumbIssuer), response.Headers);
         }
     
         /// <summary>

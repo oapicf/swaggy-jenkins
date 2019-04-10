@@ -50,7 +50,6 @@ use swagger_client::{Api, ApiError,
                       SearchResponse,
                       SearchClassesResponse,
                       GetComputerResponse,
-                      GetCrumbResponse,
                       GetJenkinsResponse,
                       GetJobResponse,
                       GetJobConfigResponse,
@@ -356,13 +355,6 @@ impl<C> Api<C> for Server<C> where C: Has<XSpanIdString>{
     fn get_computer(&self, depth: i32, context: &C) -> Box<Future<Item=GetComputerResponse, Error=ApiError>> {
         let context = context.clone();
         println!("get_computer({}) - X-Span-ID: {:?}", depth, context.get().0.clone());
-        Box::new(futures::failed("Generic failure".into()))
-    }
-
-
-    fn get_crumb(&self, context: &C) -> Box<Future<Item=GetCrumbResponse, Error=ApiError>> {
-        let context = context.clone();
-        println!("get_crumb() - X-Span-ID: {:?}", context.get().0.clone());
         Box::new(futures::failed("Generic failure".into()))
     }
 

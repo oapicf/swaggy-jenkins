@@ -6,7 +6,6 @@
 #include <list>
 #include <glib.h>
 #include "ComputerSet.h"
-#include "DefaultCrumbIssuer.h"
 #include "FreeStyleBuild.h"
 #include "FreeStyleProject.h"
 #include "Hudson.h"
@@ -54,31 +53,6 @@ bool getComputerSync(char * accessToken,
 bool getComputerAsync(char * accessToken,
 	int depth, 
 	void(* handler)(ComputerSet, Error, void* )
-	, void* userData);
-
-
-/*! \brief . *Synchronous*
- *
- * Retrieve CSRF protection token
- * \param handler The callback function to be invoked on completion. *Required*
- * \param accessToken The Authorization token. *Required*
- * \param userData The user data to be passed to the callback function.
- */
-bool getCrumbSync(char * accessToken,
-	
-	void(* handler)(DefaultCrumbIssuer, Error, void* )
-	, void* userData);
-
-/*! \brief . *Asynchronous*
- *
- * Retrieve CSRF protection token
- * \param handler The callback function to be invoked on completion. *Required*
- * \param accessToken The Authorization token. *Required*
- * \param userData The user data to be passed to the callback function.
- */
-bool getCrumbAsync(char * accessToken,
-	
-	void(* handler)(DefaultCrumbIssuer, Error, void* )
 	, void* userData);
 
 

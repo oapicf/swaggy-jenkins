@@ -5,7 +5,6 @@ All URIs are relative to *http://localhost*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**GetComputer**](RemoteAccessApi.md#GetComputer) | **Get** /computer/api/json | 
-[**GetCrumb**](RemoteAccessApi.md#GetCrumb) | **Get** /crumbIssuer/api/json | 
 [**GetJenkins**](RemoteAccessApi.md#GetJenkins) | **Get** /api/json | 
 [**GetJob**](RemoteAccessApi.md#GetJob) | **Get** /job/{name}/api/json | 
 [**GetJobConfig**](RemoteAccessApi.md#GetJobConfig) | **Get** /job/{name}/config.xml | 
@@ -43,30 +42,6 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**ComputerSet**](ComputerSet.md)
-
-### Authorization
-
-[jenkins_auth](../README.md#jenkins_auth)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **GetCrumb**
-> DefaultCrumbIssuer GetCrumb(ctx, )
-
-
-Retrieve CSRF protection token
-
-### Required Parameters
-This endpoint does not need any parameter.
-
-### Return type
-
-[**DefaultCrumbIssuer**](DefaultCrumbIssuer.md)
 
 ### Authorization
 

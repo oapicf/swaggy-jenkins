@@ -1,7 +1,6 @@
 package org.openapitools.api;
 
 import org.openapitools.model.ComputerSet;
-import org.openapitools.model.DefaultCrumbIssuer;
 import org.openapitools.model.FreeStyleBuild;
 import org.openapitools.model.FreeStyleProject;
 import org.openapitools.model.Hudson;
@@ -42,16 +41,6 @@ public interface RemoteAccessApi  {
         @ApiResponse(code = 401, message = "Authentication failed - incorrect username and/or password"),
         @ApiResponse(code = 403, message = "Jenkins requires authentication - please set username and password") })
     public ComputerSet getComputer(@QueryParam("depth")Integer depth);
-
-    @GET
-    @Path("/crumbIssuer/api/json")
-    @Produces({ "application/json" })
-    @ApiOperation(value = "", tags={  })
-    @ApiResponses(value = { 
-        @ApiResponse(code = 200, message = "Successfully retrieved CSRF protection token", response = DefaultCrumbIssuer.class),
-        @ApiResponse(code = 401, message = "Authentication failed - incorrect username and/or password"),
-        @ApiResponse(code = 403, message = "Jenkins requires authentication - please set username and password") })
-    public DefaultCrumbIssuer getCrumb();
 
     @GET
     @Path("/api/json")

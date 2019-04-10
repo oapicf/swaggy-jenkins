@@ -18,7 +18,7 @@ trait DataAccessor {
         * 
         * @return A DefaultCrumbIssuer
         */
-        def BaseRemoteAccess_getCrumb(): Either[CommonError,DefaultCrumbIssuer] = Left(TODO)
+        def BaseAccess_getCrumb(): Either[CommonError,DefaultCrumbIssuer] = Left(TODO)
 
         /**
         * 
@@ -247,12 +247,6 @@ trait DataAccessor {
         * @return A ComputerSet
         */
         def RemoteAccess_getComputer(depth: Int): Either[CommonError,ComputerSet] = Left(TODO)
-
-        /**
-        * 
-        * @return A DefaultCrumbIssuer
-        */
-        def RemoteAccess_getCrumb(): Either[CommonError,DefaultCrumbIssuer] = Left(TODO)
 
         /**
         * 

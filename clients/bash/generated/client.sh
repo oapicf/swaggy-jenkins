@@ -855,7 +855,7 @@ build_request_path() {
 print_help() {
 cat <<EOF
 
-${BOLD}${WHITE}Swaggy Jenkins command line client (API version 1.1.0)${OFF}
+${BOLD}${WHITE}Swaggy Jenkins command line client (API version 1.1.1)${OFF}
 
 ${BOLD}${WHITE}Usage${OFF}
 
@@ -891,7 +891,7 @@ EOF
     echo ""
     echo -e "${BOLD}${WHITE}Operations (grouped by tags)${OFF}"
     echo ""
-    echo -e "${BOLD}${WHITE}[baseRemoteAccess]${OFF}"
+    echo -e "${BOLD}${WHITE}[baseAccess]${OFF}"
 read -r -d '' ops <<EOF
   ${CYAN}getCrumb${OFF}; (AUTH)
 EOF
@@ -942,7 +942,6 @@ echo "  $ops" | column -t -s ';'
     echo -e "${BOLD}${WHITE}[remoteAccess]${OFF}"
 read -r -d '' ops <<EOF
   ${CYAN}getComputer${OFF}; (AUTH)
-  ${CYAN}getCrumb${OFF}; (AUTH)
   ${CYAN}getJenkins${OFF}; (AUTH)
   ${CYAN}getJob${OFF}; (AUTH)
   ${CYAN}getJobConfig${OFF}; (AUTH)
@@ -991,7 +990,7 @@ echo -e "              \\t\\t\\t\\t(e.g. 'https://localhost')"
 ##############################################################################
 print_about() {
     echo ""
-    echo -e "${BOLD}${WHITE}Swaggy Jenkins command line client (API version 1.1.0)${OFF}"
+    echo -e "${BOLD}${WHITE}Swaggy Jenkins command line client (API version 1.1.1)${OFF}"
     echo ""
     echo -e "License: "
     echo -e "Contact: blah@cliffano.com"
@@ -1011,7 +1010,7 @@ echo "$appdescription" | paste -sd' ' | fold -sw 80
 ##############################################################################
 print_version() {
     echo ""
-    echo -e "${BOLD}Swaggy Jenkins command line client (API version 1.1.0)${OFF}"
+    echo -e "${BOLD}Swaggy Jenkins command line client (API version 1.1.1)${OFF}"
     echo ""
 }
 
@@ -1943,26 +1942,6 @@ print_getComputer_help() {
     echo -e "${BOLD}${WHITE}Responses${OFF}"
     code=200
     echo -e "${result_color_table[${code:0:1}]}  200;Successfully retrieved computer details${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-    code=401
-    echo -e "${result_color_table[${code:0:1}]}  401;Authentication failed - incorrect username and/or password${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-    code=403
-    echo -e "${result_color_table[${code:0:1}]}  403;Jenkins requires authentication - please set username and password${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-}
-##############################################################################
-#
-# Print help for getCrumb operation
-#
-##############################################################################
-print_getCrumb_help() {
-    echo ""
-    echo -e "${BOLD}${WHITE}getCrumb - ${OFF}${BLUE}(AUTH - BASIC)${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
-    echo -e ""
-    echo -e "Retrieve CSRF protection token" | paste -sd' ' | fold -sw 80
-    echo -e ""
-    echo ""
-    echo -e "${BOLD}${WHITE}Responses${OFF}"
-    code=200
-    echo -e "${result_color_table[${code:0:1}]}  200;Successfully retrieved CSRF protection token${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
     code=401
     echo -e "${result_color_table[${code:0:1}]}  401;Authentication failed - incorrect username and/or password${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
     code=403
@@ -3900,42 +3879,6 @@ call_getComputer() {
 
 ##############################################################################
 #
-# Call getCrumb operation
-#
-##############################################################################
-call_getCrumb() {
-    # ignore error about 'path_parameter_names' being unused; passed by reference
-    # shellcheck disable=SC2034
-    local path_parameter_names=()
-    # ignore error about 'query_parameter_names' being unused; passed by reference
-    # shellcheck disable=SC2034
-    local query_parameter_names=(  )
-    local path
-
-    if ! path=$(build_request_path "//crumbIssuer/api/json" path_parameter_names query_parameter_names); then
-        ERROR_MSG=$path
-        exit 1
-    fi
-    local method="GET"
-    local headers_curl
-    headers_curl=$(header_arguments_to_curl)
-    if [[ -n $header_accept ]]; then
-        headers_curl="${headers_curl} -H 'Accept: ${header_accept}'"
-    fi
-
-    local basic_auth_option=""
-    if [[ -n $basic_auth_credential ]]; then
-        basic_auth_option="-u ${basic_auth_credential}"
-    fi
-    if [[ "$print_curl" = true ]]; then
-        echo "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
-    else
-        eval "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
-    fi
-}
-
-##############################################################################
-#
 # Call getJenkins operation
 #
 ##############################################################################
@@ -5000,9 +4943,6 @@ case $key in
     getComputer)
     operation="getComputer"
     ;;
-    getCrumb)
-    operation="getCrumb"
-    ;;
     getJenkins)
     operation="getJenkins"
     ;;
@@ -5260,9 +5200,6 @@ case $operation in
     ;;
     getComputer)
     call_getComputer
-    ;;
-    getCrumb)
-    call_getCrumb
     ;;
     getJenkins)
     call_getJenkins

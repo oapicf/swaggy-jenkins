@@ -11,7 +11,7 @@ import org.openapitools.model.Link;
 
 
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaUndertowServerCodegen", date = "2019-04-10T03:54:26.112Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaUndertowServerCodegen", date = "2019-04-10T13:18:32.656Z[GMT]")
 public class GithubScmlinks   {
   
   private Link self = null;

@@ -4,7 +4,6 @@ import java.io._
 import org.openapitools._
 import org.openapitools.models._
 import org.openapitools.models.ComputerSet
-import org.openapitools.models.DefaultCrumbIssuer
 import org.openapitools.models.FreeStyleBuild
 import org.openapitools.models.FreeStyleProject
 import org.openapitools.models.Hudson
@@ -30,7 +29,6 @@ object RemoteAccessApi {
     */
     def endpoints(da: DataAccessor) =
         getComputer(da) :+:
-        getCrumb(da) :+:
         getJenkins(da) :+:
         getJob(da) :+:
         getJobConfig(da) :+:
@@ -79,20 +77,6 @@ object RemoteAccessApi {
         private def getComputer(da: DataAccessor): Endpoint[ComputerSet] =
         get("computer" :: "api" :: "json" :: param("depth").map(_.toInt)) { (depth: Int) =>
           da.RemoteAccess_getComputer(depth) match {
-            case Left(error) => checkError(error)
-            case Right(data) => Ok(data)
-          }
-        } handle {
-          case e: Exception => BadRequest(e)
-        }
-
-        /**
-        * 
-        * @return An endpoint representing a DefaultCrumbIssuer
-        */
-        private def getCrumb(da: DataAccessor): Endpoint[DefaultCrumbIssuer] =
-        get("crumbIssuer" :: "api" :: "json") { () =>
-          da.RemoteAccess_getCrumb() match {
             case Left(error) => checkError(error)
             case Right(data) => Ok(data)
           }

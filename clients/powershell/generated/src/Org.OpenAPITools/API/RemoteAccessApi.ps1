@@ -16,20 +16,6 @@ function Invoke-RemoteAccessApiGetComputer {
     }
 }
 
-function Invoke-RemoteAccessApiGetCrumb {
-    [CmdletBinding()]
-    Param (
-    )
-
-    Process {
-        'Calling method: RemoteAccessApi-GetCrumb' | Write-Verbose
-        $PSBoundParameters | Out-DebugParameter | Write-Debug
-
-        $Script:RemoteAccessApi.GetCrumb(
-        )
-    }
-}
-
 function Invoke-RemoteAccessApiGetJenkins {
     [CmdletBinding()]
     Param (

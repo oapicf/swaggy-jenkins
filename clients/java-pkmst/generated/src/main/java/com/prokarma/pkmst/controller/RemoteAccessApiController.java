@@ -1,7 +1,6 @@
 package com.prokarma.pkmst.controller;
 
 import com.prokarma.pkmst.model.ComputerSet;
-import com.prokarma.pkmst.model.DefaultCrumbIssuer;
 import com.prokarma.pkmst.model.FreeStyleBuild;
 import com.prokarma.pkmst.model.FreeStyleProject;
 import com.prokarma.pkmst.model.Hudson;
@@ -29,7 +28,7 @@ import java.io.IOException;
  * @author pkmst
  *
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPKMSTServerCodegen", date = "2019-04-10T03:54:16.217Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPKMSTServerCodegen", date = "2019-04-10T13:18:21.348Z[GMT]")
 
 @Controller
 public class RemoteAccessApiController implements RemoteAccessApi {
@@ -48,16 +47,6 @@ public class RemoteAccessApiController implements RemoteAccessApi {
         }
 
         return new ResponseEntity<ComputerSet>(HttpStatus.OK);
-    }
-
-    public ResponseEntity<DefaultCrumbIssuer> getCrumb(@RequestHeader(value = "Accept", required = false) String accept) throws Exception {
-        // do some magic!
-
-        if (accept != null && accept.contains("application/json")) {
-            return new ResponseEntity<DefaultCrumbIssuer>(objectMapper.readValue("", DefaultCrumbIssuer.class), HttpStatus.OK);
-        }
-
-        return new ResponseEntity<DefaultCrumbIssuer>(HttpStatus.OK);
     }
 
     public ResponseEntity<Hudson> getJenkins(@RequestHeader(value = "Accept", required = false) String accept) throws Exception {

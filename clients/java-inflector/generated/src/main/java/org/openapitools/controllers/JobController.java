@@ -13,7 +13,7 @@ import org.openapitools.model.*;
 import org.openapitools.model.FreeStyleBuild;
 import org.openapitools.model.FreeStyleProject;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaInflectorServerCodegen", date = "2019-04-10T03:54:06.228Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaInflectorServerCodegen", date = "2019-04-10T13:18:07.561Z[GMT]")
 public class JobController  {
   /** 
    * Uncomment and implement as you see fit.  These operations will map

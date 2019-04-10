@@ -1,4 +1,4 @@
-# Documentation for Swaggy Jenkins 1.1.0 Tizen Client SDK
+# Documentation for Swaggy Jenkins 1.1.1 Tizen Client SDK
 
 ## How do I get the doc files?
 First generate source code by running `openapi-generator`
@@ -38,7 +38,7 @@ Check out [Doxygen](https://www.doxygen.org/) for additional information about t
 ## I Don't want to run Doxygen. What are the API files for accessing the REST endpoints?
 All URIs are relative to http://localhosthttp://localhost
 
-### BaseRemoteAccessManager
+### BaseAccessManager
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 *getCrumbSync* | *GET* /crumbIssuer/api/json | .
@@ -127,8 +127,6 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 *getComputerSync* | *GET* /computer/api/json | .
 *getComputerASync* | *GET* /computer/api/json | .
-*getCrumbSync* | *GET* /crumbIssuer/api/json | .
-*getCrumbASync* | *GET* /crumbIssuer/api/json | .
 *getJenkinsSync* | *GET* /api/json | .
 *getJenkinsASync* | *GET* /api/json | .
 *getJobSync* | *GET* /job/{name}/api/json | .

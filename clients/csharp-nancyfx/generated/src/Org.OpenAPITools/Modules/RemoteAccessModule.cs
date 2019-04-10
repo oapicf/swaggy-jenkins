@@ -29,12 +29,6 @@ namespace Org.OpenAPITools..Modules
                 return service.GetComputer(Context, depth);
             };
 
-            Get["/crumbIssuer/api/json"] = parameters =>
-            {
-                
-                return service.GetCrumb(Context);
-            };
-
             Get["/api/json"] = parameters =>
             {
                 
@@ -237,13 +231,6 @@ namespace Org.OpenAPITools..Modules
         ComputerSet GetComputer(NancyContext context, int? depth);
 
         /// <summary>
-        /// Retrieve CSRF protection token
-        /// </summary>
-        /// <param name="context">Context of request</param>
-        /// <returns>DefaultCrumbIssuer</returns>
-        DefaultCrumbIssuer GetCrumb(NancyContext context);
-
-        /// <summary>
         /// Retrieve Jenkins details
         /// </summary>
         /// <param name="context">Context of request</param>
@@ -424,11 +411,6 @@ namespace Org.OpenAPITools..Modules
             return GetComputer(depth);
         }
 
-        public virtual DefaultCrumbIssuer GetCrumb(NancyContext context)
-        {
-            return GetCrumb();
-        }
-
         public virtual Hudson GetJenkins(NancyContext context)
         {
             return GetJenkins();
@@ -525,8 +507,6 @@ namespace Org.OpenAPITools..Modules
         }
 
         protected abstract ComputerSet GetComputer(int? depth);
-
-        protected abstract DefaultCrumbIssuer GetCrumb();
 
         protected abstract Hudson GetJenkins();
 

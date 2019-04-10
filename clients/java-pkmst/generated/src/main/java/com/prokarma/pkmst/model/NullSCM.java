@@ -14,7 +14,7 @@ import io.swagger.annotations.ApiModelProperty;
  * NullSCM
  */
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPKMSTServerCodegen", date = "2019-04-10T03:54:16.217Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPKMSTServerCodegen", date = "2019-04-10T13:18:21.348Z[GMT]")
 
 public class NullSCM   {
   @JsonProperty("_class")

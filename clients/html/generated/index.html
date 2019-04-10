@@ -183,7 +183,7 @@ font-style: italic;
     <div class="app-desc">Jenkins API clients generated from Swagger / Open API specification</div>
     <div class="app-desc">More information: <a href="http://github.com/cliffano/swaggy-jenkins">http://github.com/cliffano/swaggy-jenkins</a></div>
     <div class="app-desc">Contact Info: <a href="blah@cliffano.com">blah@cliffano.com</a></div>
-    <div class="app-desc">Version: 1.1.0</div>
+    <div class="app-desc">Version: 1.1.1</div>
     <div class="app-desc">BasePath:/</div>
     <div class="license-info">All rights reserved</div>
     <div class="license-url">http://apache.org/licenses/LICENSE-2.0.html</div>
@@ -198,7 +198,7 @@ font-style: italic;
 
   <h3>Table of Contents </h3>
   <div class="method-summary"></div>
-  <h4><a href="#BaseRemoteAccess">BaseRemoteAccess</a></h4>
+  <h4><a href="#BaseAccess">BaseAccess</a></h4>
   <ul>
   <li><a href="#getCrumb"><code><span class="http-method">get</span> /crumbIssuer/api/json</code></a></li>
   </ul>
@@ -245,7 +245,6 @@ font-style: italic;
   <h4><a href="#RemoteAccess">RemoteAccess</a></h4>
   <ul>
   <li><a href="#getComputer"><code><span class="http-method">get</span> /computer/api/json</code></a></li>
-  <li><a href="#getCrumb"><code><span class="http-method">get</span> /crumbIssuer/api/json</code></a></li>
   <li><a href="#getJenkins"><code><span class="http-method">get</span> /api/json</code></a></li>
   <li><a href="#getJob"><code><span class="http-method">get</span> /job/{name}/api/json</code></a></li>
   <li><a href="#getJobConfig"><code><span class="http-method">get</span> /job/{name}/config.xml</code></a></li>
@@ -267,7 +266,7 @@ font-style: italic;
   <li><a href="#postViewConfig"><code><span class="http-method">post</span> /view/{name}/config.xml</code></a></li>
   </ul>
 
-  <h1><a name="BaseRemoteAccess">BaseRemoteAccess</a></h1>
+  <h1><a name="BaseAccess">BaseAccess</a></h1>
   <div class="method"><a name="getCrumb"/>
     <div class="method-path">
     <a class="up" href="#__Methods">Up</a>
@@ -3063,54 +3062,6 @@ font-style: italic;
     <h4 class="field-label">200</h4>
     Successfully retrieved computer details
         <a href="#ComputerSet">ComputerSet</a>
-    <h4 class="field-label">401</h4>
-    Authentication failed - incorrect username and/or password
-        <a href="#"></a>
-    <h4 class="field-label">403</h4>
-    Jenkins requires authentication - please set username and password
-        <a href="#"></a>
-  </div> <!-- method -->
-  <hr/>
-  <div class="method"><a name="getCrumb"/>
-    <div class="method-path">
-    <a class="up" href="#__Methods">Up</a>
-    <pre class="get"><code class="huge"><span class="http-method">get</span> /crumbIssuer/api/json</code></pre></div>
-    <div class="method-summary"> (<span class="nickname">getCrumb</span>)</div>
-    <div class="method-notes">Retrieve CSRF protection token</div>
-
-
-
-
-
-
-
-    <h3 class="field-label">Return type</h3>
-    <div class="return-type">
-      <a href="#DefaultCrumbIssuer">DefaultCrumbIssuer</a>
-      
-    </div>
-
-    <!--Todo: process Response Object and its headers, schema, examples -->
-
-    <h3 class="field-label">Example data</h3>
-    <div class="example-data-content-type">Content-Type: application/json</div>
-    <pre class="example"><code>{
-  "crumb" : "crumb",
-  "_class" : "_class",
-  "crumbRequestField" : "crumbRequestField"
-}</code></pre>
-
-    <h3 class="field-label">Produces</h3>
-    This API call produces the following media types according to the <span class="header">Accept</span> request header;
-    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
-    <ul>
-      <li><code>application/json</code></li>
-    </ul>
-
-    <h3 class="field-label">Responses</h3>
-    <h4 class="field-label">200</h4>
-    Successfully retrieved CSRF protection token
-        <a href="#DefaultCrumbIssuer">DefaultCrumbIssuer</a>
     <h4 class="field-label">401</h4>
     Authentication failed - incorrect username and/or password
         <a href="#"></a>

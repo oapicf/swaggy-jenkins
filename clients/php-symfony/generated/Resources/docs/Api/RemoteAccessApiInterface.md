@@ -5,7 +5,6 @@ All URIs are relative to *http://localhost*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**getComputer**](RemoteAccessApiInterface.md#getComputer) | **GET** /computer/api/json | 
-[**getCrumb**](RemoteAccessApiInterface.md#getCrumb) | **GET** /crumbIssuer/api/json | 
 [**getJenkins**](RemoteAccessApiInterface.md#getJenkins) | **GET** /api/json | 
 [**getJob**](RemoteAccessApiInterface.md#getJob) | **GET** /job/{name}/api/json | 
 [**getJobConfig**](RemoteAccessApiInterface.md#getJobConfig) | **GET** /job/{name}/config.xml | 
@@ -81,57 +80,6 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**OpenAPI\Server\Model\ComputerSet**](../Model/ComputerSet.md)
-
-### Authorization
-
-[jenkins_auth](../../README.md#jenkins_auth)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
-
-## **getCrumb**
-> OpenAPI\Server\Model\DefaultCrumbIssuer getCrumb()
-
-
-
-Retrieve CSRF protection token
-
-### Example Implementation
-```php
-<?php
-// src/Acme/MyBundle/Api/RemoteAccessApiInterface.php
-
-namespace Acme\MyBundle\Api;
-
-use OpenAPI\Server\Api\RemoteAccessApiInterface;
-
-class RemoteAccessApi implements RemoteAccessApiInterface
-{
-
-    // ...
-
-    /**
-     * Implementation of RemoteAccessApiInterface#getCrumb
-     */
-    public function getCrumb()
-    {
-        // Implement the operation ...
-    }
-
-    // ...
-}
-```
-
-### Parameters
-This endpoint does not need any parameter.
-
-### Return type
-
-[**OpenAPI\Server\Model\DefaultCrumbIssuer**](../Model/DefaultCrumbIssuer.md)
 
 ### Authorization
 

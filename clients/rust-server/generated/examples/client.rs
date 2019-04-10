@@ -58,7 +58,6 @@ use swagger_client::{ApiNoContext, ContextWrapperExt,
                       SearchResponse,
                       SearchClassesResponse,
                       GetComputerResponse,
-                      GetCrumbResponse,
                       GetJenkinsResponse,
                       GetJobResponse,
                       GetJobConfigResponse,
@@ -124,7 +123,6 @@ fn main() {
     "Search",
     "SearchClasses",
     "GetComputer",
-    "GetCrumb",
     "GetJenkins",
     "GetJob",
     "GetJobConfig",
@@ -377,11 +375,6 @@ fn main() {
 
         Some("GetComputer") => {
             let result = core.run(client.get_computer(56));
-            println!("{:?} (X-Span-ID: {:?})", result, (client.context() as &Has<XSpanIdString>).get().clone());
-         },
-
-        Some("GetCrumb") => {
-            let result = core.run(client.get_crumb());
             println!("{:?} (X-Span-ID: {:?})", result, (client.context() as &Has<XSpanIdString>).get().clone());
          },
 

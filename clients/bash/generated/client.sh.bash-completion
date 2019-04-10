@@ -107,7 +107,6 @@ _()
     operations["search"]=1
     operations["searchClasses"]=1
     operations["getComputer"]=1
-    operations["getCrumb"]=1
     operations["getJenkins"]=1
     operations["getJob"]=1
     operations["getJobConfig"]=1
@@ -170,7 +169,6 @@ _()
     operation_parameters["search"]="q= "
     operation_parameters["searchClasses"]="q= "
     operation_parameters["getComputer"]="depth= "
-    operation_parameters["getCrumb"]=""
     operation_parameters["getJenkins"]=""
     operation_parameters["getJob"]="name= "
     operation_parameters["getJobConfig"]="name= "

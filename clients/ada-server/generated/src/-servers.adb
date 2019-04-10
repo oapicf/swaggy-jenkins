@@ -540,18 +540,6 @@ package body .Servers is
    end Get_Computer;
 
    --  
-   --  Retrieve CSRF protection token
-   overriding
-   procedure Get_Crumb
-      (Server : in out Server_Type
-       ;
-       Result  : out .Models.DefaultCrumbIssuer_Type;
-       Context : in out Swagger.Servers.Context_Type) is
-   begin
-      null;
-   end Get_Crumb;
-
-   --  
    --  Retrieve Jenkins details
    overriding
    procedure Get_Jenkins

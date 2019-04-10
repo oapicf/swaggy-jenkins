@@ -11,7 +11,7 @@ import org.openapitools.model.PipelineBranchesitempullRequestlinks;
 
 
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaInflectorServerCodegen", date = "2019-04-10T03:54:06.228Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaInflectorServerCodegen", date = "2019-04-10T13:18:07.561Z[GMT]")
 public class PipelineBranchesitempullRequest   {
   @JsonProperty("_links")
   private PipelineBranchesitempullRequestlinks links = null;

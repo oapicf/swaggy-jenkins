@@ -286,13 +286,6 @@ public class PathHandlerProvider implements HandlerProvider {
                     })
 
 
-            .add(Methods.GET, "//crumbIssuer/api/json", new HttpHandler() {
-                        public void handleRequest(HttpServerExchange exchange) throws Exception {
-                            exchange.getResponseSender().send("getCrumb");
-                        }
-                    })
-
-
             .add(Methods.GET, "//api/json", new HttpHandler() {
                         public void handleRequest(HttpServerExchange exchange) throws Exception {
                             exchange.getResponseSender().send("getJenkins");

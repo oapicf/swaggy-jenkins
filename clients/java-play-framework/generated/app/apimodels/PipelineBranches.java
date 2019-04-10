@@ -11,7 +11,7 @@ import javax.validation.constraints.*;
 /**
  * PipelineBranches
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2019-04-10T03:54:21.169Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2019-04-10T13:18:27.094Z[GMT]")
 
 @SuppressWarnings({"UnusedReturnValue", "WeakerAccess"})
 public class PipelineBranches extends ArrayList<PipelineBranchesitem>  {

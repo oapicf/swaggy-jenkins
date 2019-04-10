@@ -333,7 +333,6 @@ case $state in
             "putPipelineRun[]" \
             "search[]" \
             "searchClasses[]"             "getComputer[]" \
-            "getCrumb[]" \
             "getJenkins[]" \
             "getJob[]" \
             "getJobConfig[]" \
@@ -688,12 +687,6 @@ case $state in
         _op_arguments=(
                     "depth=:[QUERY] Recursion depth in response model"
           )
-        _describe -t actions 'operations' _op_arguments -S '' && ret=0
-        ;;
-      getCrumb)
-        local -a _op_arguments
-        _op_arguments=(
-                              )
         _describe -t actions 'operations' _op_arguments -S '' && ret=0
         ;;
       getJenkins)

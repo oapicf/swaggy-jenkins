@@ -58,7 +58,7 @@ $Manifest = @{
     Description = 'Org.OpenAPITools - the PowerShell module for Swaggy Jenkins'
 
     RootModule = 'Org.OpenAPITools.psm1'
-    Guid = '{38C9892C-7889-4566-9194-64CD0250B114}' # Has to be static, otherwise each new build will be considered different module
+    Guid = '{E83A0F76-1A34-4810-9B4D-3D625105735C}' # Has to be static, otherwise each new build will be considered different module
 
     PowerShellVersion = '3.0'
 

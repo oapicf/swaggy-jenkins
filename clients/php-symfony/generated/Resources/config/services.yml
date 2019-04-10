@@ -19,8 +19,8 @@ services:
     open_apiserver.service.validator:
         class: %open_apiserver.validator%
 
-    open_apiserver.controller.baseRemoteAccess:
-        class: OpenAPI\Server\Controller\BaseRemoteAccessController
+    open_apiserver.controller.baseAccess:
+        class: OpenAPI\Server\Controller\BaseAccessController
         calls:
          - [setSerializer, ['@open_apiserver.service.serializer']]
          - [setValidator,  ['@open_apiserver.service.validator']]

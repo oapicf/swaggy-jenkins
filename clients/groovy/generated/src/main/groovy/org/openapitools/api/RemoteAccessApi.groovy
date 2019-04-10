@@ -6,7 +6,6 @@ import static groovyx.net.http.Method.*
 import org.openapitools.api.ApiUtils
 
 import org.openapitools.model.ComputerSet
-import org.openapitools.model.DefaultCrumbIssuer
 import org.openapitools.model.FreeStyleBuild
 import org.openapitools.model.FreeStyleProject
 import org.openapitools.model.Hudson
@@ -41,22 +40,6 @@ class RemoteAccessApi {
         invokeApi(onSuccess, onFailure, basePath, versionPath, resourcePath, queryParams, headerParams,
                     "GET", "",
                     ComputerSet.class )
-
-    }
-
-    def getCrumb ( Closure onSuccess, Closure onFailure)  {
-        // create path and map path parameters (TODO)
-        String resourcePath = "/crumbIssuer/api/json"
-
-        // query params
-        def queryParams = [:]
-        def headerParams = [:]
-
-        // TODO: form params, body param not yet support
-
-        invokeApi(onSuccess, onFailure, basePath, versionPath, resourcePath, queryParams, headerParams,
-                    "GET", "",
-                    DefaultCrumbIssuer.class )
 
     }
 

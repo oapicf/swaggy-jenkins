@@ -73,7 +73,7 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**Get_Crumb**](BaseRemoteAccessApi.md#Get_Crumb) | **GET** /crumbIssuer/api/json | 
+[**Get_Crumb**](BaseAccessApi.md#Get_Crumb) | **GET** /crumbIssuer/api/json | 
 [**Delete_Pipeline_Queue_Item**](BlueOceanApi.md#Delete_Pipeline_Queue_Item) | **DELETE** /blue/rest/organizations/{organization}/pipelines/{pipeline}/queue/{queue} | 
 [**Get_Authenticated_User**](BlueOceanApi.md#Get_Authenticated_User) | **GET** /blue/rest/organizations/{organization}/user/ | 
 [**Get_Classes**](BlueOceanApi.md#Get_Classes) | **GET** /blue/rest/classes/{class} | 
@@ -112,7 +112,6 @@ Method | HTTP request | Description
 [**Search**](BlueOceanApi.md#Search) | **GET** /blue/rest/search/ | 
 [**Search_Classes**](BlueOceanApi.md#Search_Classes) | **GET** /blue/rest/classes/ | 
 [**Get_Computer**](RemoteAccessApi.md#Get_Computer) | **GET** /computer/api/json | 
-[**Get_Crumb**](RemoteAccessApi.md#Get_Crumb) | **GET** /crumbIssuer/api/json | 
 [**Get_Jenkins**](RemoteAccessApi.md#Get_Jenkins) | **GET** /api/json | 
 [**Get_Job**](RemoteAccessApi.md#Get_Job) | **GET** /job/{name}/api/json | 
 [**Get_Job_Config**](RemoteAccessApi.md#Get_Job_Config) | **GET** /job/{name}/config.xml | 

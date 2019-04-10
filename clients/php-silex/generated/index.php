@@ -217,11 +217,6 @@ $app->GET('//computer/api/json', function(Application $app, Request $request) {
             });
 
 
-$app->GET('//crumbIssuer/api/json', function(Application $app, Request $request) {
-            return new Response('How about implementing getCrumb as a GET method ?');
-            });
-
-
 $app->GET('//api/json', function(Application $app, Request $request) {
             return new Response('How about implementing getJenkins as a GET method ?');
             });

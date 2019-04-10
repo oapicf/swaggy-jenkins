@@ -3,7 +3,7 @@
     <metadata>
         <id>Org.OpenAPITools</id>
         <title>Org.OpenAPITools</title>
-        <version>1.1.0</version>
+        <version>1.1.1</version>
         <authors>openapi-generator</authors>
         <owners>openapi-generator</owners>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>

@@ -10,7 +10,6 @@ All URIs are relative to *http://localhost*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**getComputer**](RemoteAccessApi.md#getComputer) | **GET** /computer/api/json | 
-[**getCrumb**](RemoteAccessApi.md#getCrumb) | **GET** /crumbIssuer/api/json | 
 [**getJenkins**](RemoteAccessApi.md#getJenkins) | **GET** /api/json | 
 [**getJob**](RemoteAccessApi.md#getJob) | **GET** /job/{name}/api/json | 
 [**getJobConfig**](RemoteAccessApi.md#getJobConfig) | **GET** /job/{name}/config.xml | 
@@ -66,48 +65,6 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**ComputerSet**](ComputerSet.md)
-
-### Authorization
-
-[jenkins_auth](../README.md#jenkins_auth)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **getCrumb**
-> DefaultCrumbIssuer getCrumb()
-
-
-
-Retrieve CSRF protection token
-
-### Example 
-```dart
-import 'package:openapi/api.dart';
-// TODO Configure HTTP basic authorization: jenkins_auth
-//openapi.api.Configuration.username = 'YOUR_USERNAME';
-//openapi.api.Configuration.password = 'YOUR_PASSWORD';
-
-var api_instance = new RemoteAccessApi();
-
-try { 
-    var result = api_instance.getCrumb();
-    print(result);
-} catch (e) {
-    print("Exception when calling RemoteAccessApi->getCrumb: $e\n");
-}
-```
-
-### Parameters
-This endpoint does not need any parameter.
-
-### Return type
-
-[**DefaultCrumbIssuer**](DefaultCrumbIssuer.md)
 
 ### Authorization
 

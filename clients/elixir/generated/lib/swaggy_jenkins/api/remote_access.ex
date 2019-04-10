@@ -36,28 +36,6 @@ defmodule SwaggyJenkins.Api.RemoteAccess do
   end
 
   @doc """
-  Retrieve CSRF protection token
-
-  ## Parameters
-
-  - connection (SwaggyJenkins.Connection): Connection to server
-  - opts (KeywordList): [optional] Optional parameters
-  ## Returns
-
-  {:ok, %SwaggyJenkins.Model.DefaultCrumbIssuer{}} on success
-  {:error, info} on failure
-  """
-  @spec get_crumb(Tesla.Env.client, keyword()) :: {:ok, SwaggyJenkins.Model.DefaultCrumbIssuer.t} | {:error, Tesla.Env.t}
-  def get_crumb(connection, _opts \\ []) do
-    %{}
-    |> method(:get)
-    |> url("/crumbIssuer/api/json")
-    |> Enum.into([])
-    |> (&Connection.request(connection, &1)).()
-    |> decode(%SwaggyJenkins.Model.DefaultCrumbIssuer{})
-  end
-
-  @doc """
   Retrieve Jenkins details
 
   ## Parameters

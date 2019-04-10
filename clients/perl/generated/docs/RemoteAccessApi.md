@@ -10,7 +10,6 @@ All URIs are relative to *http://localhost*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**get_computer**](RemoteAccessApi.md#get_computer) | **GET** /computer/api/json | 
-[**get_crumb**](RemoteAccessApi.md#get_crumb) | **GET** /crumbIssuer/api/json | 
 [**get_jenkins**](RemoteAccessApi.md#get_jenkins) | **GET** /api/json | 
 [**get_job**](RemoteAccessApi.md#get_job) | **GET** /job/{name}/api/json | 
 [**get_job_config**](RemoteAccessApi.md#get_job_config) | **GET** /job/{name}/config.xml | 
@@ -70,52 +69,6 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**ComputerSet**](ComputerSet.md)
-
-### Authorization
-
-[jenkins_auth](../README.md#jenkins_auth)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **get_crumb**
-> DefaultCrumbIssuer get_crumb()
-
-
-
-Retrieve CSRF protection token
-
-### Example 
-```perl
-use Data::Dumper;
-use WWW::OpenAPIClient::RemoteAccessApi;
-my $api_instance = WWW::OpenAPIClient::RemoteAccessApi->new(
-
-    # Configure HTTP basic authorization: jenkins_auth
-    username => 'YOUR_USERNAME',
-    password => 'YOUR_PASSWORD',
-);
-
-
-eval { 
-    my $result = $api_instance->get_crumb();
-    print Dumper($result);
-};
-if ($@) {
-    warn "Exception when calling RemoteAccessApi->get_crumb: $@\n";
-}
-```
-
-### Parameters
-This endpoint does not need any parameter.
-
-### Return type
-
-[**DefaultCrumbIssuer**](DefaultCrumbIssuer.md)
 
 ### Authorization
 

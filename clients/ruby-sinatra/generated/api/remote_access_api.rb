@@ -24,22 +24,6 @@ MyApp.add_route('GET', '//computer/api/json', {
 end
 
 
-MyApp.add_route('GET', '//crumbIssuer/api/json', {
-  "resourcePath" => "/RemoteAccess",
-  "summary" => "",
-  "nickname" => "get_crumb", 
-  "responseClass" => "DefaultCrumbIssuer",
-  "endpoint" => "/crumbIssuer/api/json", 
-  "notes" => "Retrieve CSRF protection token",
-  "parameters" => [
-    ]}) do
-  cross_origin
-  # the guts live here
-
-  {"message" => "yes, it worked"}.to_json
-end
-
-
 MyApp.add_route('GET', '//api/json', {
   "resourcePath" => "/RemoteAccess",
   "summary" => "",

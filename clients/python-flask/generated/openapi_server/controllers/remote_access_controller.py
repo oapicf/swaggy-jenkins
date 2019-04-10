@@ -2,7 +2,6 @@ import connexion
 import six
 
 from openapi_server.models.computer_set import ComputerSet  # noqa: E501
-from openapi_server.models.default_crumb_issuer import DefaultCrumbIssuer  # noqa: E501
 from openapi_server.models.free_style_build import FreeStyleBuild  # noqa: E501
 from openapi_server.models.free_style_project import FreeStyleProject  # noqa: E501
 from openapi_server.models.hudson import Hudson  # noqa: E501
@@ -20,17 +19,6 @@ def get_computer(depth):  # noqa: E501
     :type depth: int
 
     :rtype: ComputerSet
-    """
-    return 'do some magic!'
-
-
-def get_crumb():  # noqa: E501
-    """get_crumb
-
-    Retrieve CSRF protection token # noqa: E501
-
-
-    :rtype: DefaultCrumbIssuer
     """
     return 'do some magic!'
 

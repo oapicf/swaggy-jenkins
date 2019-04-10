@@ -64,14 +64,6 @@ allowed_methods(
 allowed_methods(
     Req,
     State = #state{
-        operation_id = 'GetCrumb'
-    }
-) ->
-    {[<<"GET">>], Req, State};
-
-allowed_methods(
-    Req,
-    State = #state{
         operation_id = 'GetJenkins'
     }
 ) ->
@@ -240,13 +232,6 @@ is_authorized(
 is_authorized(
     Req0,
     State = #state{
-        operation_id = 'GetCrumb' = OperationID,
-        logic_handler = LogicHandler
-    }
-) ->
-is_authorized(
-    Req0,
-    State = #state{
         operation_id = 'GetJenkins' = OperationID,
         logic_handler = LogicHandler
     }
@@ -399,16 +384,6 @@ valid_content_headers(
     Req0,
     State = #state{
         operation_id = 'GetComputer'
-    }
-) ->
-    Headers = [],
-    {Result, Req} = validate_headers(Headers, Req0),
-    {Result, Req, State};
-
-valid_content_headers(
-    Req0,
-    State = #state{
-        operation_id = 'GetCrumb'
     }
 ) ->
     Headers = [],

@@ -8,7 +8,7 @@ import org.openapitools.model.QueueItemImpl;
 /**
  * PipelineQueue
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2019-04-10T03:54:11.067Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2019-04-10T13:18:13.557Z[GMT]")
 public class PipelineQueue extends ArrayList<QueueItemImpl>  {
 
   @Override

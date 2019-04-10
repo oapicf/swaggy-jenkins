@@ -5,7 +5,6 @@ All URIs are relative to *http://localhost*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**getComputer**](RemoteAccessApi.md#getComputer) | **GET** /computer/api/json | 
-[**getCrumb**](RemoteAccessApi.md#getCrumb) | **GET** /crumbIssuer/api/json | 
 [**getJenkins**](RemoteAccessApi.md#getJenkins) | **GET** /api/json | 
 [**getJob**](RemoteAccessApi.md#getJob) | **GET** /job/{name}/api/json | 
 [**getJobConfig**](RemoteAccessApi.md#getJobConfig) | **GET** /job/{name}/config.xml | 
@@ -66,51 +65,6 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**ComputerSet**](ComputerSet.md)
-
-### Authorization
-
-[jenkins_auth](../README.md#jenkins_auth)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-<a name="getCrumb"></a>
-# **getCrumb**
-> DefaultCrumbIssuer getCrumb()
-
-
-
-Retrieve CSRF protection token
-
-### Example
-```javascript
-var SwaggyJenkins = require('swaggy-jenkins');
-var defaultClient = SwaggyJenkins.ApiClient.instance;
-
-// Configure HTTP basic authorization: jenkins_auth
-var jenkins_auth = defaultClient.authentications['jenkins_auth'];
-jenkins_auth.username = 'YOUR USERNAME';
-jenkins_auth.password = 'YOUR PASSWORD';
-
-var apiInstance = new SwaggyJenkins.RemoteAccessApi();
-var callback = function(error, data, response) {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully. Returned data: ' + data);
-  }
-};
-apiInstance.getCrumb(callback);
-```
-
-### Parameters
-This endpoint does not need any parameter.
-
-### Return type
-
-[**DefaultCrumbIssuer**](DefaultCrumbIssuer.md)
 
 ### Authorization
 

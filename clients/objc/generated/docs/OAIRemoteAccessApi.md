@@ -5,7 +5,6 @@ All URIs are relative to *http://localhost*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**getComputer**](OAIRemoteAccessApi.md#getcomputer) | **GET** /computer/api/json | 
-[**getCrumb**](OAIRemoteAccessApi.md#getcrumb) | **GET** /crumbIssuer/api/json | 
 [**getJenkins**](OAIRemoteAccessApi.md#getjenkins) | **GET** /api/json | 
 [**getJob**](OAIRemoteAccessApi.md#getjob) | **GET** /job/{name}/api/json | 
 [**getJobConfig**](OAIRemoteAccessApi.md#getjobconfig) | **GET** /job/{name}/config.xml | 
@@ -69,56 +68,6 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**OAIComputerSet***](OAIComputerSet.md)
-
-### Authorization
-
-[jenkins_auth](../README.md#jenkins_auth)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **getCrumb**
-```objc
--(NSURLSessionTask*) getCrumbWithCompletionHandler: 
-        (void (^)(OAIDefaultCrumbIssuer* output, NSError* error)) handler;
-```
-
-
-
-Retrieve CSRF protection token
-
-### Example 
-```objc
-OAIDefaultConfiguration *apiConfig = [OAIDefaultConfiguration sharedConfig];
-// Configure HTTP basic authorization (authentication scheme: jenkins_auth)
-[apiConfig setUsername:@"YOUR_USERNAME"];
-[apiConfig setPassword:@"YOUR_PASSWORD"];
-
-
-
-OAIRemoteAccessApi*apiInstance = [[OAIRemoteAccessApi alloc] init];
-
-[apiInstance getCrumbWithCompletionHandler: 
-          ^(OAIDefaultCrumbIssuer* output, NSError* error) {
-                        if (output) {
-                            NSLog(@"%@", output);
-                        }
-                        if (error) {
-                            NSLog(@"Error calling OAIRemoteAccessApi->getCrumb: %@", error);
-                        }
-                    }];
-```
-
-### Parameters
-This endpoint does not need any parameter.
-
-### Return type
-
-[**OAIDefaultCrumbIssuer***](OAIDefaultCrumbIssuer.md)
 
 ### Authorization
 

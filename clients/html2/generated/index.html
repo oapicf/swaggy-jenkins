@@ -2862,9 +2862,9 @@ ul.nav-tabs {
             -->
             <li class="nav-fixed nav-header active" data-group="_"><a href="#api-_">API Summary</a></li>
 
-                  <li class="nav-header" data-group="BaseRemoteAccess"><a href="#api-BaseRemoteAccess">API Methods - BaseRemoteAccess</a></li>
-                    <li data-group="BaseRemoteAccess" data-name="getCrumb" class="">
-                      <a href="#api-BaseRemoteAccess-getCrumb">getCrumb</a>
+                  <li class="nav-header" data-group="BaseAccess"><a href="#api-BaseAccess">API Methods - BaseAccess</a></li>
+                    <li data-group="BaseAccess" data-name="getCrumb" class="">
+                      <a href="#api-BaseAccess-getCrumb">getCrumb</a>
                     </li>
                   <li class="nav-header" data-group="BlueOcean"><a href="#api-BlueOcean">API Methods - BlueOcean</a></li>
                     <li data-group="BlueOcean" data-name="deletePipelineQueueItem" class="">
@@ -2982,9 +2982,6 @@ ul.nav-tabs {
                     <li data-group="RemoteAccess" data-name="getComputer" class="">
                       <a href="#api-RemoteAccess-getComputer">getComputer</a>
                     </li>
-                    <li data-group="RemoteAccess" data-name="getCrumb" class="">
-                      <a href="#api-RemoteAccess-getCrumb">getCrumb</a>
-                    </li>
                     <li data-group="RemoteAccess" data-name="getJenkins" class="">
                       <a href="#api-RemoteAccess-getJenkins">getJenkins</a>
                     </li>
@@ -3055,7 +3052,7 @@ ul.nav-tabs {
         <div id="header">
           <div id="api-_">
             <h2 id="welcome-to-apidoc">API and SDK Documentation</h2>
-              <div class="app-desc">Version: 1.1.0</div>
+              <div class="app-desc">Version: 1.1.1</div>
             <hr>
             <div id="app-description" class="app-desc">
                 Jenkins API clients generated from Swagger / Open API specification
@@ -3063,10 +3060,10 @@ ul.nav-tabs {
           </div>
         </div>
         <div id="sections">
-                <section id="api-BaseRemoteAccess">
-                  <h1>BaseRemoteAccess</h1>
-                    <div id="api-BaseRemoteAccess-getCrumb">
-                      <article id="api-BaseRemoteAccess-getCrumb-0" data-group="User" data-name="getCrumb" data-version="0">
+                <section id="api-BaseAccess">
+                  <h1>BaseAccess</h1>
+                    <div id="api-BaseAccess-getCrumb">
+                      <article id="api-BaseAccess-getCrumb-0" data-group="User" data-name="getCrumb" data-version="0">
                         <div class="pull-left">
                           <h1>getCrumb</h1>
                           <p></p>
@@ -3082,34 +3079,34 @@ ul.nav-tabs {
                           <h3>Usage and SDK Samples</h3>
                         </p>
                         <ul class="nav nav-tabs nav-tabs-examples">
-                          <li class="active"><a href="#examples-BaseRemoteAccess-getCrumb-0-curl">Curl</a></li>
-                          <li class=""><a href="#examples-BaseRemoteAccess-getCrumb-0-java">Java</a></li>
-                          <li class=""><a href="#examples-BaseRemoteAccess-getCrumb-0-android">Android</a></li>
-                          <!--<li class=""><a href="#examples-BaseRemoteAccess-getCrumb-0-groovy">Groovy</a></li>-->
-                          <li class=""><a href="#examples-BaseRemoteAccess-getCrumb-0-objc">Obj-C</a></li>
-                          <li class=""><a href="#examples-BaseRemoteAccess-getCrumb-0-javascript">JavaScript</a></li>
-                          <!--<li class=""><a href="#examples-BaseRemoteAccess-getCrumb-0-angular">Angular</a></li>-->
-                          <li class=""><a href="#examples-BaseRemoteAccess-getCrumb-0-csharp">C#</a></li>
-                          <li class=""><a href="#examples-BaseRemoteAccess-getCrumb-0-php">PHP</a></li>
-                          <li class=""><a href="#examples-BaseRemoteAccess-getCrumb-0-perl">Perl</a></li>
-                          <li class=""><a href="#examples-BaseRemoteAccess-getCrumb-0-python">Python</a></li>
-                          <li class=""><a href="#examples-BaseRemoteAccess-getCrumb-0-rust">Rust</a></li>
+                          <li class="active"><a href="#examples-BaseAccess-getCrumb-0-curl">Curl</a></li>
+                          <li class=""><a href="#examples-BaseAccess-getCrumb-0-java">Java</a></li>
+                          <li class=""><a href="#examples-BaseAccess-getCrumb-0-android">Android</a></li>
+                          <!--<li class=""><a href="#examples-BaseAccess-getCrumb-0-groovy">Groovy</a></li>-->
+                          <li class=""><a href="#examples-BaseAccess-getCrumb-0-objc">Obj-C</a></li>
+                          <li class=""><a href="#examples-BaseAccess-getCrumb-0-javascript">JavaScript</a></li>
+                          <!--<li class=""><a href="#examples-BaseAccess-getCrumb-0-angular">Angular</a></li>-->
+                          <li class=""><a href="#examples-BaseAccess-getCrumb-0-csharp">C#</a></li>
+                          <li class=""><a href="#examples-BaseAccess-getCrumb-0-php">PHP</a></li>
+                          <li class=""><a href="#examples-BaseAccess-getCrumb-0-perl">Perl</a></li>
+                          <li class=""><a href="#examples-BaseAccess-getCrumb-0-python">Python</a></li>
+                          <li class=""><a href="#examples-BaseAccess-getCrumb-0-rust">Rust</a></li>
                         </ul>
 
                         <div class="tab-content">
-                          <div class="tab-pane active" id="examples-BaseRemoteAccess-getCrumb-0-curl">
+                          <div class="tab-pane active" id="examples-BaseAccess-getCrumb-0-curl">
                             <pre class="prettyprint"><code class="language-bsh">curl -X GET -H "Accept: application/json" -H "Authorization: Basic [[basicHash]]" "http://localhost/crumbIssuer/api/json"</code></pre>
                           </div>
-                          <div class="tab-pane" id="examples-BaseRemoteAccess-getCrumb-0-java">
+                          <div class="tab-pane" id="examples-BaseAccess-getCrumb-0-java">
                             <pre class="prettyprint"><code class="language-java">import org.openapitools.client.*;
 import org.openapitools.client.auth.*;
 import org.openapitools.client.model.*;
-import org.openapitools.client.api.BaseRemoteAccessApi;
+import org.openapitools.client.api.BaseAccessApi;
 
 import java.io.File;
 import java.util.*;
 
-public class BaseRemoteAccessApiExample {
+public class BaseAccessApiExample {
 
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
@@ -3119,47 +3116,47 @@ public class BaseRemoteAccessApiExample {
         jenkins_auth.setUsername("YOUR USERNAME");
         jenkins_auth.setPassword("YOUR PASSWORD");
 
-        BaseRemoteAccessApi apiInstance = new BaseRemoteAccessApi();
+        BaseAccessApi apiInstance = new BaseAccessApi();
         try {
             DefaultCrumbIssuer result = apiInstance.getCrumb();
             System.out.println(result);
         } catch (ApiException e) {
-            System.err.println("Exception when calling BaseRemoteAccessApi#getCrumb");
+            System.err.println("Exception when calling BaseAccessApi#getCrumb");
             e.printStackTrace();
         }
     }
 }</code></pre>
                           </div>
 
-                          <div class="tab-pane" id="examples-BaseRemoteAccess-getCrumb-0-android">
-                            <pre class="prettyprint"><code class="language-java">import org.openapitools.client.api.BaseRemoteAccessApi;
+                          <div class="tab-pane" id="examples-BaseAccess-getCrumb-0-android">
+                            <pre class="prettyprint"><code class="language-java">import org.openapitools.client.api.BaseAccessApi;
 
-public class BaseRemoteAccessApiExample {
+public class BaseAccessApiExample {
 
     public static void main(String[] args) {
-        BaseRemoteAccessApi apiInstance = new BaseRemoteAccessApi();
+        BaseAccessApi apiInstance = new BaseAccessApi();
         try {
             DefaultCrumbIssuer result = apiInstance.getCrumb();
             System.out.println(result);
         } catch (ApiException e) {
-            System.err.println("Exception when calling BaseRemoteAccessApi#getCrumb");
+            System.err.println("Exception when calling BaseAccessApi#getCrumb");
             e.printStackTrace();
         }
     }
 }</code></pre>
                           </div>
   <!--
-  <div class="tab-pane" id="examples-BaseRemoteAccess-getCrumb-0-groovy">
+  <div class="tab-pane" id="examples-BaseAccess-getCrumb-0-groovy">
   <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
   </div> -->
-                            <div class="tab-pane" id="examples-BaseRemoteAccess-getCrumb-0-objc">
+                            <div class="tab-pane" id="examples-BaseAccess-getCrumb-0-objc">
                               <pre class="prettyprint"><code class="language-cpp">Configuration *apiConfig = [Configuration sharedConfig];
 // Configure HTTP basic authorization (authentication scheme: jenkins_auth)
 [apiConfig setUsername:@"YOUR_USERNAME"];
 [apiConfig setPassword:@"YOUR_PASSWORD"];
 
 
-BaseRemoteAccessApi *apiInstance = [[BaseRemoteAccessApi alloc] init];
+BaseAccessApi *apiInstance = [[BaseAccessApi alloc] init];
 
 [apiInstance getCrumbWithCompletionHandler: 
               ^(DefaultCrumbIssuer output, NSError* error) {
@@ -3173,7 +3170,7 @@ BaseRemoteAccessApi *apiInstance = [[BaseRemoteAccessApi alloc] init];
 </code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-BaseRemoteAccess-getCrumb-0-javascript">
+                            <div class="tab-pane" id="examples-BaseAccess-getCrumb-0-javascript">
                               <pre class="prettyprint"><code class="language-js">var SwaggyJenkins = require('swaggy_jenkins');
 var defaultClient = SwaggyJenkins.ApiClient.instance;
 
@@ -3182,7 +3179,7 @@ var jenkins_auth = defaultClient.authentications['jenkins_auth'];
 jenkins_auth.username = 'YOUR USERNAME'
 jenkins_auth.password = 'YOUR PASSWORD'
 
-var api = new SwaggyJenkins.BaseRemoteAccessApi()
+var api = new SwaggyJenkins.BaseAccessApi()
 var callback = function(error, data, response) {
   if (error) {
     console.error(error);
@@ -3194,10 +3191,10 @@ api.getCrumb(callback);
 </code></pre>
                             </div>
 
-                            <!--<div class="tab-pane" id="examples-BaseRemoteAccess-getCrumb-0-angular">
+                            <!--<div class="tab-pane" id="examples-BaseAccess-getCrumb-0-angular">
               <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
             </div>-->
-                            <div class="tab-pane" id="examples-BaseRemoteAccess-getCrumb-0-csharp">
+                            <div class="tab-pane" id="examples-BaseAccess-getCrumb-0-csharp">
                               <pre class="prettyprint"><code class="language-cs">using System;
 using System.Diagnostics;
 using Org.OpenAPITools.Api;
@@ -3215,7 +3212,7 @@ namespace Example
             Configuration.Default.Username = "YOUR_USERNAME";
             Configuration.Default.Password = "YOUR_PASSWORD";
 
-            var apiInstance = new BaseRemoteAccessApi();
+            var apiInstance = new BaseAccessApi();
 
             try
             {
@@ -3224,7 +3221,7 @@ namespace Example
             }
             catch (Exception e)
             {
-                Debug.Print("Exception when calling BaseRemoteAccessApi.getCrumb: " + e.Message );
+                Debug.Print("Exception when calling BaseAccessApi.getCrumb: " + e.Message );
             }
         }
     }
@@ -3232,7 +3229,7 @@ namespace Example
 </code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-BaseRemoteAccess-getCrumb-0-php">
+                            <div class="tab-pane" id="examples-BaseAccess-getCrumb-0-php">
                               <pre class="prettyprint"><code class="language-php"><&#63;php
 require_once(__DIR__ . '/vendor/autoload.php');
 
@@ -3240,38 +3237,38 @@ require_once(__DIR__ . '/vendor/autoload.php');
 OpenAPITools\Client\Configuration::getDefaultConfiguration()->setUsername('YOUR_USERNAME');
 OpenAPITools\Client\Configuration::getDefaultConfiguration()->setPassword('YOUR_PASSWORD');
 
-$api_instance = new OpenAPITools\Client\Api\BaseRemoteAccessApi();
+$api_instance = new OpenAPITools\Client\Api\BaseAccessApi();
 
 try {
     $result = $api_instance->getCrumb();
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling BaseRemoteAccessApi->getCrumb: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling BaseAccessApi->getCrumb: ', $e->getMessage(), PHP_EOL;
 }
 ?></code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-BaseRemoteAccess-getCrumb-0-perl">
+                            <div class="tab-pane" id="examples-BaseAccess-getCrumb-0-perl">
                               <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
 use WWW::OPenAPIClient::Configuration;
-use WWW::OPenAPIClient::BaseRemoteAccessApi;
+use WWW::OPenAPIClient::BaseAccessApi;
 
 # Configure HTTP basic authorization: jenkins_auth
 $WWW::OPenAPIClient::Configuration::username = 'YOUR_USERNAME';
 $WWW::OPenAPIClient::Configuration::password = 'YOUR_PASSWORD';
 
-my $api_instance = WWW::OPenAPIClient::BaseRemoteAccessApi->new();
+my $api_instance = WWW::OPenAPIClient::BaseAccessApi->new();
 
 eval { 
     my $result = $api_instance->getCrumb();
     print Dumper($result);
 };
 if ($@) {
-    warn "Exception when calling BaseRemoteAccessApi->getCrumb: $@\n";
+    warn "Exception when calling BaseAccessApi->getCrumb: $@\n";
 }</code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-BaseRemoteAccess-getCrumb-0-python">
+                            <div class="tab-pane" id="examples-BaseAccess-getCrumb-0-python">
                               <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
 import time
 import openapi_client
@@ -3283,21 +3280,21 @@ openapi_client.configuration.username = 'YOUR_USERNAME'
 openapi_client.configuration.password = 'YOUR_PASSWORD'
 
 # create an instance of the API class
-api_instance = openapi_client.BaseRemoteAccessApi()
+api_instance = openapi_client.BaseAccessApi()
 
 try: 
     api_response = api_instance.get_crumb()
     pprint(api_response)
 except ApiException as e:
-    print("Exception when calling BaseRemoteAccessApi->getCrumb: %s\n" % e)</code></pre>
+    print("Exception when calling BaseAccessApi->getCrumb: %s\n" % e)</code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-BaseRemoteAccess-getCrumb-0-rust">
-                              <pre class="prettyprint"><code class="language-rust">extern crate BaseRemoteAccessApi;
+                            <div class="tab-pane" id="examples-BaseAccess-getCrumb-0-rust">
+                              <pre class="prettyprint"><code class="language-rust">extern crate BaseAccessApi;
 
 pub fn main() {
 
-    let mut context = BaseRemoteAccessApi::Context::default();
+    let mut context = BaseAccessApi::Context::default();
     let result = client.getCrumb(&context).wait();
     println!("{:?}", result);
 
@@ -3319,23 +3316,23 @@ pub fn main() {
 
 
                           <h2>Responses</h2>
-                            <h3 id="examples-BaseRemoteAccess-getCrumb-title-200"></h3>
-                            <p id="examples-BaseRemoteAccess-getCrumb-description-200" class="marked"></p>
+                            <h3 id="examples-BaseAccess-getCrumb-title-200"></h3>
+                            <p id="examples-BaseAccess-getCrumb-description-200" class="marked"></p>
                             <script>
-                              var responseBaseRemoteAccess200_description = `Successfully retrieved CSRF protection token`;
-                              var responseBaseRemoteAccess200_description_break = responseBaseRemoteAccess200_description.indexOf('\n');
-                              if (responseBaseRemoteAccess200_description_break == -1) {
-                                $("#examples-BaseRemoteAccess-getCrumb-title-200").text("Status: 200 - " + responseBaseRemoteAccess200_description);
+                              var responseBaseAccess200_description = `Successfully retrieved CSRF protection token`;
+                              var responseBaseAccess200_description_break = responseBaseAccess200_description.indexOf('\n');
+                              if (responseBaseAccess200_description_break == -1) {
+                                $("#examples-BaseAccess-getCrumb-title-200").text("Status: 200 - " + responseBaseAccess200_description);
                               } else {
-                                $("#examples-BaseRemoteAccess-getCrumb-title-200").text("Status: 200 - " + responseBaseRemoteAccess200_description.substring(0, responseBaseRemoteAccess200_description_break));
-                                $("#examples-BaseRemoteAccess-getCrumb-description-200").html(responseBaseRemoteAccess200_description.substring(responseBaseRemoteAccess200_description_break));
+                                $("#examples-BaseAccess-getCrumb-title-200").text("Status: 200 - " + responseBaseAccess200_description.substring(0, responseBaseAccess200_description_break));
+                                $("#examples-BaseAccess-getCrumb-description-200").html(responseBaseAccess200_description.substring(responseBaseAccess200_description_break));
                               }
                             </script>
 
 
-                            <ul id="responses-detail-BaseRemoteAccess-getCrumb-200" class="nav nav-tabs nav-tabs-examples" >
+                            <ul id="responses-detail-BaseAccess-getCrumb-200" class="nav nav-tabs nav-tabs-examples" >
                                 <li class="active">
-                                  <a data-toggle="tab" href="#responses-BaseRemoteAccess-getCrumb-200-schema">Schema</a>
+                                  <a data-toggle="tab" href="#responses-BaseAccess-getCrumb-200-schema">Schema</a>
                                 </li>
 
 
@@ -3344,9 +3341,9 @@ pub fn main() {
                             </ul>
 
 
-                            <div class="tab-content" id="responses-BaseRemoteAccess-getCrumb-200-wrapper" style='margin-bottom: 10px;'>
-                                <div class="tab-pane active" id="responses-BaseRemoteAccess-getCrumb-200-schema">
-                                  <div id="responses-BaseRemoteAccess-getCrumb-schema-200" class="exampleStyle">
+                            <div class="tab-content" id="responses-BaseAccess-getCrumb-200-wrapper" style='margin-bottom: 10px;'>
+                                <div class="tab-pane active" id="responses-BaseAccess-getCrumb-200-schema">
+                                  <div id="responses-BaseAccess-getCrumb-schema-200" class="exampleStyle">
                                     <script>
                                       $(document).ready(function() {
                                         var schemaWrapper = {
@@ -3370,59 +3367,59 @@ pub fn main() {
                                         }
 
                                         var view = new JSONSchemaView(schema, 3);
-                                        $('#responses-BaseRemoteAccess-getCrumb-200-schema-data').val(JSON.stringify(schema));
-                                        var result = $('#responses-BaseRemoteAccess-getCrumb-schema-200');
+                                        $('#responses-BaseAccess-getCrumb-200-schema-data').val(JSON.stringify(schema));
+                                        var result = $('#responses-BaseAccess-getCrumb-schema-200');
                                         result.empty();
                                         result.append(view.render());
                                       });
                                     </script>
                                   </div>
-                                  <input id='responses-BaseRemoteAccess-getCrumb-200-schema-data' type='hidden' value=''></input>
+                                  <input id='responses-BaseAccess-getCrumb-200-schema-data' type='hidden' value=''></input>
                                 </div>
                             </div>
-                            <h3 id="examples-BaseRemoteAccess-getCrumb-title-401"></h3>
-                            <p id="examples-BaseRemoteAccess-getCrumb-description-401" class="marked"></p>
+                            <h3 id="examples-BaseAccess-getCrumb-title-401"></h3>
+                            <p id="examples-BaseAccess-getCrumb-description-401" class="marked"></p>
                             <script>
-                              var responseBaseRemoteAccess401_description = `Authentication failed - incorrect username and/or password`;
-                              var responseBaseRemoteAccess401_description_break = responseBaseRemoteAccess401_description.indexOf('\n');
-                              if (responseBaseRemoteAccess401_description_break == -1) {
-                                $("#examples-BaseRemoteAccess-getCrumb-title-401").text("Status: 401 - " + responseBaseRemoteAccess401_description);
+                              var responseBaseAccess401_description = `Authentication failed - incorrect username and/or password`;
+                              var responseBaseAccess401_description_break = responseBaseAccess401_description.indexOf('\n');
+                              if (responseBaseAccess401_description_break == -1) {
+                                $("#examples-BaseAccess-getCrumb-title-401").text("Status: 401 - " + responseBaseAccess401_description);
                               } else {
-                                $("#examples-BaseRemoteAccess-getCrumb-title-401").text("Status: 401 - " + responseBaseRemoteAccess401_description.substring(0, responseBaseRemoteAccess401_description_break));
-                                $("#examples-BaseRemoteAccess-getCrumb-description-401").html(responseBaseRemoteAccess401_description.substring(responseBaseRemoteAccess401_description_break));
+                                $("#examples-BaseAccess-getCrumb-title-401").text("Status: 401 - " + responseBaseAccess401_description.substring(0, responseBaseAccess401_description_break));
+                                $("#examples-BaseAccess-getCrumb-description-401").html(responseBaseAccess401_description.substring(responseBaseAccess401_description_break));
                               }
                             </script>
 
 
-                            <ul id="responses-detail-BaseRemoteAccess-getCrumb-401" class="nav nav-tabs nav-tabs-examples" >
+                            <ul id="responses-detail-BaseAccess-getCrumb-401" class="nav nav-tabs nav-tabs-examples" >
 
 
                             </ul>
 
 
-                            <div class="tab-content" id="responses-BaseRemoteAccess-getCrumb-401-wrapper" style='margin-bottom: 10px;'>
+                            <div class="tab-content" id="responses-BaseAccess-getCrumb-401-wrapper" style='margin-bottom: 10px;'>
                             </div>
-                            <h3 id="examples-BaseRemoteAccess-getCrumb-title-403"></h3>
-                            <p id="examples-BaseRemoteAccess-getCrumb-description-403" class="marked"></p>
+                            <h3 id="examples-BaseAccess-getCrumb-title-403"></h3>
+                            <p id="examples-BaseAccess-getCrumb-description-403" class="marked"></p>
                             <script>
-                              var responseBaseRemoteAccess403_description = `Jenkins requires authentication - please set username and password`;
-                              var responseBaseRemoteAccess403_description_break = responseBaseRemoteAccess403_description.indexOf('\n');
-                              if (responseBaseRemoteAccess403_description_break == -1) {
-                                $("#examples-BaseRemoteAccess-getCrumb-title-403").text("Status: 403 - " + responseBaseRemoteAccess403_description);
+                              var responseBaseAccess403_description = `Jenkins requires authentication - please set username and password`;
+                              var responseBaseAccess403_description_break = responseBaseAccess403_description.indexOf('\n');
+                              if (responseBaseAccess403_description_break == -1) {
+                                $("#examples-BaseAccess-getCrumb-title-403").text("Status: 403 - " + responseBaseAccess403_description);
                               } else {
-                                $("#examples-BaseRemoteAccess-getCrumb-title-403").text("Status: 403 - " + responseBaseRemoteAccess403_description.substring(0, responseBaseRemoteAccess403_description_break));
-                                $("#examples-BaseRemoteAccess-getCrumb-description-403").html(responseBaseRemoteAccess403_description.substring(responseBaseRemoteAccess403_description_break));
+                                $("#examples-BaseAccess-getCrumb-title-403").text("Status: 403 - " + responseBaseAccess403_description.substring(0, responseBaseAccess403_description_break));
+                                $("#examples-BaseAccess-getCrumb-description-403").html(responseBaseAccess403_description.substring(responseBaseAccess403_description_break));
                               }
                             </script>
 
 
-                            <ul id="responses-detail-BaseRemoteAccess-getCrumb-403" class="nav nav-tabs nav-tabs-examples" >
+                            <ul id="responses-detail-BaseAccess-getCrumb-403" class="nav nav-tabs nav-tabs-examples" >
 
 
                             </ul>
 
 
-                            <div class="tab-content" id="responses-BaseRemoteAccess-getCrumb-403-wrapper" style='margin-bottom: 10px;'>
+                            <div class="tab-content" id="responses-BaseAccess-getCrumb-403-wrapper" style='margin-bottom: 10px;'>
                             </div>
                         </article>
                       </div>
@@ -20623,368 +20620,6 @@ Recursion depth in response model
 
 
                             <div class="tab-content" id="responses-RemoteAccess-getComputer-403-wrapper" style='margin-bottom: 10px;'>
-                            </div>
-                        </article>
-                      </div>
-                      <hr>
-                    <div id="api-RemoteAccess-getCrumb">
-                      <article id="api-RemoteAccess-getCrumb-0" data-group="User" data-name="getCrumb" data-version="0">
-                        <div class="pull-left">
-                          <h1>getCrumb</h1>
-                          <p></p>
-                        </div>
-                        <div class="pull-right"></div>
-                        <div class="clearfix"></div>
-                        <p></p>
-                        <p class="marked">Retrieve CSRF protection token</p>
-                        <p></p>
-                        <br />
-                        <pre class="prettyprint language-html prettyprinted" data-type="get"><code><span class="pln">/crumbIssuer/api/json</span></code></pre>
-                        <p>
-                          <h3>Usage and SDK Samples</h3>
-                        </p>
-                        <ul class="nav nav-tabs nav-tabs-examples">
-                          <li class="active"><a href="#examples-RemoteAccess-getCrumb-0-curl">Curl</a></li>
-                          <li class=""><a href="#examples-RemoteAccess-getCrumb-0-java">Java</a></li>
-                          <li class=""><a href="#examples-RemoteAccess-getCrumb-0-android">Android</a></li>
-                          <!--<li class=""><a href="#examples-RemoteAccess-getCrumb-0-groovy">Groovy</a></li>-->
-                          <li class=""><a href="#examples-RemoteAccess-getCrumb-0-objc">Obj-C</a></li>
-                          <li class=""><a href="#examples-RemoteAccess-getCrumb-0-javascript">JavaScript</a></li>
-                          <!--<li class=""><a href="#examples-RemoteAccess-getCrumb-0-angular">Angular</a></li>-->
-                          <li class=""><a href="#examples-RemoteAccess-getCrumb-0-csharp">C#</a></li>
-                          <li class=""><a href="#examples-RemoteAccess-getCrumb-0-php">PHP</a></li>
-                          <li class=""><a href="#examples-RemoteAccess-getCrumb-0-perl">Perl</a></li>
-                          <li class=""><a href="#examples-RemoteAccess-getCrumb-0-python">Python</a></li>
-                          <li class=""><a href="#examples-RemoteAccess-getCrumb-0-rust">Rust</a></li>
-                        </ul>
-
-                        <div class="tab-content">
-                          <div class="tab-pane active" id="examples-RemoteAccess-getCrumb-0-curl">
-                            <pre class="prettyprint"><code class="language-bsh">curl -X GET -H "Accept: application/json" -H "Authorization: Basic [[basicHash]]" "http://localhost/crumbIssuer/api/json"</code></pre>
-                          </div>
-                          <div class="tab-pane" id="examples-RemoteAccess-getCrumb-0-java">
-                            <pre class="prettyprint"><code class="language-java">import org.openapitools.client.*;
-import org.openapitools.client.auth.*;
-import org.openapitools.client.model.*;
-import org.openapitools.client.api.RemoteAccessApi;
-
-import java.io.File;
-import java.util.*;
-
-public class RemoteAccessApiExample {
-
-    public static void main(String[] args) {
-        ApiClient defaultClient = Configuration.getDefaultApiClient();
-        
-        // Configure HTTP basic authorization: jenkins_auth
-        HttpBasicAuth jenkins_auth = (HttpBasicAuth) defaultClient.getAuthentication("jenkins_auth");
-        jenkins_auth.setUsername("YOUR USERNAME");
-        jenkins_auth.setPassword("YOUR PASSWORD");
-
-        RemoteAccessApi apiInstance = new RemoteAccessApi();
-        try {
-            DefaultCrumbIssuer result = apiInstance.getCrumb();
-            System.out.println(result);
-        } catch (ApiException e) {
-            System.err.println("Exception when calling RemoteAccessApi#getCrumb");
-            e.printStackTrace();
-        }
-    }
-}</code></pre>
-                          </div>
-
-                          <div class="tab-pane" id="examples-RemoteAccess-getCrumb-0-android">
-                            <pre class="prettyprint"><code class="language-java">import org.openapitools.client.api.RemoteAccessApi;
-
-public class RemoteAccessApiExample {
-
-    public static void main(String[] args) {
-        RemoteAccessApi apiInstance = new RemoteAccessApi();
-        try {
-            DefaultCrumbIssuer result = apiInstance.getCrumb();
-            System.out.println(result);
-        } catch (ApiException e) {
-            System.err.println("Exception when calling RemoteAccessApi#getCrumb");
-            e.printStackTrace();
-        }
-    }
-}</code></pre>
-                          </div>
-  <!--
-  <div class="tab-pane" id="examples-RemoteAccess-getCrumb-0-groovy">
-  <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
-  </div> -->
-                            <div class="tab-pane" id="examples-RemoteAccess-getCrumb-0-objc">
-                              <pre class="prettyprint"><code class="language-cpp">Configuration *apiConfig = [Configuration sharedConfig];
-// Configure HTTP basic authorization (authentication scheme: jenkins_auth)
-[apiConfig setUsername:@"YOUR_USERNAME"];
-[apiConfig setPassword:@"YOUR_PASSWORD"];
-
-
-RemoteAccessApi *apiInstance = [[RemoteAccessApi alloc] init];
-
-[apiInstance getCrumbWithCompletionHandler: 
-              ^(DefaultCrumbIssuer output, NSError* error) {
-                            if (output) {
-                                NSLog(@"%@", output);
-                            }
-                            if (error) {
-                                NSLog(@"Error: %@", error);
-                            }
-                        }];
-</code></pre>
-                            </div>
-
-                            <div class="tab-pane" id="examples-RemoteAccess-getCrumb-0-javascript">
-                              <pre class="prettyprint"><code class="language-js">var SwaggyJenkins = require('swaggy_jenkins');
-var defaultClient = SwaggyJenkins.ApiClient.instance;
-
-// Configure HTTP basic authorization: jenkins_auth
-var jenkins_auth = defaultClient.authentications['jenkins_auth'];
-jenkins_auth.username = 'YOUR USERNAME'
-jenkins_auth.password = 'YOUR PASSWORD'
-
-var api = new SwaggyJenkins.RemoteAccessApi()
-var callback = function(error, data, response) {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully. Returned data: ' + data);
-  }
-};
-api.getCrumb(callback);
-</code></pre>
-                            </div>
-
-                            <!--<div class="tab-pane" id="examples-RemoteAccess-getCrumb-0-angular">
-              <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
-            </div>-->
-                            <div class="tab-pane" id="examples-RemoteAccess-getCrumb-0-csharp">
-                              <pre class="prettyprint"><code class="language-cs">using System;
-using System.Diagnostics;
-using Org.OpenAPITools.Api;
-using Org.OpenAPITools.Client;
-using Org.OpenAPITools.Model;
-
-namespace Example
-{
-    public class getCrumbExample
-    {
-        public void main()
-        {
-            
-            // Configure HTTP basic authorization: jenkins_auth
-            Configuration.Default.Username = "YOUR_USERNAME";
-            Configuration.Default.Password = "YOUR_PASSWORD";
-
-            var apiInstance = new RemoteAccessApi();
-
-            try
-            {
-                DefaultCrumbIssuer result = apiInstance.getCrumb();
-                Debug.WriteLine(result);
-            }
-            catch (Exception e)
-            {
-                Debug.Print("Exception when calling RemoteAccessApi.getCrumb: " + e.Message );
-            }
-        }
-    }
-}
-</code></pre>
-                            </div>
-
-                            <div class="tab-pane" id="examples-RemoteAccess-getCrumb-0-php">
-                              <pre class="prettyprint"><code class="language-php"><&#63;php
-require_once(__DIR__ . '/vendor/autoload.php');
-
-// Configure HTTP basic authorization: jenkins_auth
-OpenAPITools\Client\Configuration::getDefaultConfiguration()->setUsername('YOUR_USERNAME');
-OpenAPITools\Client\Configuration::getDefaultConfiguration()->setPassword('YOUR_PASSWORD');
-
-$api_instance = new OpenAPITools\Client\Api\RemoteAccessApi();
-
-try {
-    $result = $api_instance->getCrumb();
-    print_r($result);
-} catch (Exception $e) {
-    echo 'Exception when calling RemoteAccessApi->getCrumb: ', $e->getMessage(), PHP_EOL;
-}
-?></code></pre>
-                            </div>
-
-                            <div class="tab-pane" id="examples-RemoteAccess-getCrumb-0-perl">
-                              <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
-use WWW::OPenAPIClient::Configuration;
-use WWW::OPenAPIClient::RemoteAccessApi;
-
-# Configure HTTP basic authorization: jenkins_auth
-$WWW::OPenAPIClient::Configuration::username = 'YOUR_USERNAME';
-$WWW::OPenAPIClient::Configuration::password = 'YOUR_PASSWORD';
-
-my $api_instance = WWW::OPenAPIClient::RemoteAccessApi->new();
-
-eval { 
-    my $result = $api_instance->getCrumb();
-    print Dumper($result);
-};
-if ($@) {
-    warn "Exception when calling RemoteAccessApi->getCrumb: $@\n";
-}</code></pre>
-                            </div>
-
-                            <div class="tab-pane" id="examples-RemoteAccess-getCrumb-0-python">
-                              <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
-import time
-import openapi_client
-from openapi_client.rest import ApiException
-from pprint import pprint
-
-# Configure HTTP basic authorization: jenkins_auth
-openapi_client.configuration.username = 'YOUR_USERNAME'
-openapi_client.configuration.password = 'YOUR_PASSWORD'
-
-# create an instance of the API class
-api_instance = openapi_client.RemoteAccessApi()
-
-try: 
-    api_response = api_instance.get_crumb()
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling RemoteAccessApi->getCrumb: %s\n" % e)</code></pre>
-                            </div>
-
-                            <div class="tab-pane" id="examples-RemoteAccess-getCrumb-0-rust">
-                              <pre class="prettyprint"><code class="language-rust">extern crate RemoteAccessApi;
-
-pub fn main() {
-
-    let mut context = RemoteAccessApi::Context::default();
-    let result = client.getCrumb(&context).wait();
-    println!("{:?}", result);
-
-}
-</code></pre>
-                            </div>
-                          </div>
-
-                          <h2>Scopes</h2>
-                          <table>
-                            
-                          </table>
-
-                          <h2>Parameters</h2>
-
-
-
-
-
-
-                          <h2>Responses</h2>
-                            <h3 id="examples-RemoteAccess-getCrumb-title-200"></h3>
-                            <p id="examples-RemoteAccess-getCrumb-description-200" class="marked"></p>
-                            <script>
-                              var responseRemoteAccess200_description = `Successfully retrieved CSRF protection token`;
-                              var responseRemoteAccess200_description_break = responseRemoteAccess200_description.indexOf('\n');
-                              if (responseRemoteAccess200_description_break == -1) {
-                                $("#examples-RemoteAccess-getCrumb-title-200").text("Status: 200 - " + responseRemoteAccess200_description);
-                              } else {
-                                $("#examples-RemoteAccess-getCrumb-title-200").text("Status: 200 - " + responseRemoteAccess200_description.substring(0, responseRemoteAccess200_description_break));
-                                $("#examples-RemoteAccess-getCrumb-description-200").html(responseRemoteAccess200_description.substring(responseRemoteAccess200_description_break));
-                              }
-                            </script>
-
-
-                            <ul id="responses-detail-RemoteAccess-getCrumb-200" class="nav nav-tabs nav-tabs-examples" >
-                                <li class="active">
-                                  <a data-toggle="tab" href="#responses-RemoteAccess-getCrumb-200-schema">Schema</a>
-                                </li>
-
-
-
-
-                            </ul>
-
-
-                            <div class="tab-content" id="responses-RemoteAccess-getCrumb-200-wrapper" style='margin-bottom: 10px;'>
-                                <div class="tab-pane active" id="responses-RemoteAccess-getCrumb-200-schema">
-                                  <div id="responses-RemoteAccess-getCrumb-schema-200" class="exampleStyle">
-                                    <script>
-                                      $(document).ready(function() {
-                                        var schemaWrapper = {
-  "description" : "Successfully retrieved CSRF protection token",
-  "content" : {
-    "application/json" : {
-      "schema" : {
-        "$ref" : "#/components/schemas/DefaultCrumbIssuer"
-      }
-    }
-  }
-};
-                                        var schema = schemaWrapper.schema;
-                                        if (schema.$ref != null) {
-                                          schema = defsParser.$refs.get(schema.$ref);
-                                        } else {
-                                          schemaWrapper.definitions = Object.assign({}, defs);
-                                          $RefParser.dereference(schemaWrapper).catch(function(err) {
-                                            console.log(err);
-                                          });
-                                        }
-
-                                        var view = new JSONSchemaView(schema, 3);
-                                        $('#responses-RemoteAccess-getCrumb-200-schema-data').val(JSON.stringify(schema));
-                                        var result = $('#responses-RemoteAccess-getCrumb-schema-200');
-                                        result.empty();
-                                        result.append(view.render());
-                                      });
-                                    </script>
-                                  </div>
-                                  <input id='responses-RemoteAccess-getCrumb-200-schema-data' type='hidden' value=''></input>
-                                </div>
-                            </div>
-                            <h3 id="examples-RemoteAccess-getCrumb-title-401"></h3>
-                            <p id="examples-RemoteAccess-getCrumb-description-401" class="marked"></p>
-                            <script>
-                              var responseRemoteAccess401_description = `Authentication failed - incorrect username and/or password`;
-                              var responseRemoteAccess401_description_break = responseRemoteAccess401_description.indexOf('\n');
-                              if (responseRemoteAccess401_description_break == -1) {
-                                $("#examples-RemoteAccess-getCrumb-title-401").text("Status: 401 - " + responseRemoteAccess401_description);
-                              } else {
-                                $("#examples-RemoteAccess-getCrumb-title-401").text("Status: 401 - " + responseRemoteAccess401_description.substring(0, responseRemoteAccess401_description_break));
-                                $("#examples-RemoteAccess-getCrumb-description-401").html(responseRemoteAccess401_description.substring(responseRemoteAccess401_description_break));
-                              }
-                            </script>
-
-
-                            <ul id="responses-detail-RemoteAccess-getCrumb-401" class="nav nav-tabs nav-tabs-examples" >
-
-
-                            </ul>
-
-
-                            <div class="tab-content" id="responses-RemoteAccess-getCrumb-401-wrapper" style='margin-bottom: 10px;'>
-                            </div>
-                            <h3 id="examples-RemoteAccess-getCrumb-title-403"></h3>
-                            <p id="examples-RemoteAccess-getCrumb-description-403" class="marked"></p>
-                            <script>
-                              var responseRemoteAccess403_description = `Jenkins requires authentication - please set username and password`;
-                              var responseRemoteAccess403_description_break = responseRemoteAccess403_description.indexOf('\n');
-                              if (responseRemoteAccess403_description_break == -1) {
-                                $("#examples-RemoteAccess-getCrumb-title-403").text("Status: 403 - " + responseRemoteAccess403_description);
-                              } else {
-                                $("#examples-RemoteAccess-getCrumb-title-403").text("Status: 403 - " + responseRemoteAccess403_description.substring(0, responseRemoteAccess403_description_break));
-                                $("#examples-RemoteAccess-getCrumb-description-403").html(responseRemoteAccess403_description.substring(responseRemoteAccess403_description_break));
-                              }
-                            </script>
-
-
-                            <ul id="responses-detail-RemoteAccess-getCrumb-403" class="nav nav-tabs nav-tabs-examples" >
-
-
-                            </ul>
-
-
-                            <div class="tab-content" id="responses-RemoteAccess-getCrumb-403-wrapper" style='margin-bottom: 10px;'>
                             </div>
                         </article>
                       </div>
