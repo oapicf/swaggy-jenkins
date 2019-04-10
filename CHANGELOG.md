@@ -1,5 +1,6 @@
 ### 1.1.1
 * Remove remoteAccess tag from getCrumb operation
+* Rename baseRemoteAccess to base tag for getCrumb operation
 
 ### 1.1.0
 * Add baseRemoteAccess tag to getCrumb operation
