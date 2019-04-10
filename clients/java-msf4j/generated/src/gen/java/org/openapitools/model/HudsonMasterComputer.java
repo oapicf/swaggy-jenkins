@@ -14,7 +14,7 @@ import org.openapitools.model.Label1;
 /**
  * HudsonMasterComputer
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2019-04-09T15:08:27.959Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2019-04-10T03:54:11.067Z[GMT]")
 public class HudsonMasterComputer   {
   @JsonProperty("_class")
   private String propertyClass = null;

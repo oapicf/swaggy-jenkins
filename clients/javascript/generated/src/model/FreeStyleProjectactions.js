@@ -37,7 +37,7 @@
   /**
    * The FreeStyleProjectactions model module.
    * @module model/FreeStyleProjectactions
-   * @version 1.0.0
+   * @version 1.1.0
    */
 
   /**

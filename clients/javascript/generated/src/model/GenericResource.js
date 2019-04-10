@@ -37,7 +37,7 @@
   /**
    * The GenericResource model module.
    * @module model/GenericResource
-   * @version 1.0.0
+   * @version 1.1.0
    */
 
   /**

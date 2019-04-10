@@ -37,7 +37,7 @@
   /**
    * The PipelineActivityartifacts model module.
    * @module model/PipelineActivityartifacts
-   * @version 1.0.0
+   * @version 1.1.0
    */
 
   /**

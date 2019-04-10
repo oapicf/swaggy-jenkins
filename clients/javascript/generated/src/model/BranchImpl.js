@@ -37,7 +37,7 @@
   /**
    * The BranchImpl model module.
    * @module model/BranchImpl
-   * @version 1.0.0
+   * @version 1.1.0
    */
 
   /**

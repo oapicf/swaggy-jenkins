@@ -14,7 +14,7 @@ import org.openapitools.model.FreeStyleProject;
 /**
  * QueueLeftItem
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2019-04-09T15:08:27.959Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2019-04-10T03:54:11.067Z[GMT]")
 public class QueueLeftItem   {
   @JsonProperty("_class")
   private String propertyClass = null;

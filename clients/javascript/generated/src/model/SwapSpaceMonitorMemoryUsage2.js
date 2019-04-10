@@ -37,7 +37,7 @@
   /**
    * The SwapSpaceMonitorMemoryUsage2 model module.
    * @module model/SwapSpaceMonitorMemoryUsage2
-   * @version 1.0.0
+   * @version 1.1.0
    */
 
   /**

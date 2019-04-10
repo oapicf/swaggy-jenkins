@@ -30,7 +30,7 @@ import java.util.List;
 /**
  * PipelinelatestRun
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-04-09T15:08:14.438Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-04-10T03:53:55.760Z[GMT]")
 public class PipelinelatestRun {
   public static final String SERIALIZED_NAME_ARTIFACTS = "artifacts";
   @SerializedName(SERIALIZED_NAME_ARTIFACTS)

@@ -9,7 +9,7 @@ import javax.validation.constraints.*;
 /**
  * GithubFile
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2019-04-09T15:08:36.893Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2019-04-10T03:54:21.169Z[GMT]")
 
 @SuppressWarnings({"UnusedReturnValue", "WeakerAccess"})
 public class GithubFile   {

@@ -16,7 +16,7 @@ import javax.validation.constraints.*;
 /**
  * HudsonMasterComputer
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-04-09T15:11:28.342Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-04-10T03:57:34.567Z[GMT]")
 
 public class HudsonMasterComputer   {
   @JsonProperty("_class")

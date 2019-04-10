@@ -37,7 +37,7 @@
   /**
    * The PipelineBranchesitem model module.
    * @module model/PipelineBranchesitem
-   * @version 1.0.0
+   * @version 1.1.0
    */
 
   /**

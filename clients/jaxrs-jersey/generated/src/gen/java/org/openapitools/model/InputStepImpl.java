@@ -27,7 +27,7 @@ import javax.validation.constraints.*;
 /**
  * InputStepImpl
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJerseyServerCodegen", date = "2019-04-09T15:08:58.477Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJerseyServerCodegen", date = "2019-04-10T03:54:45.282Z[GMT]")
 public class InputStepImpl   {
   @JsonProperty("_class")
   private String propertyClass = null;

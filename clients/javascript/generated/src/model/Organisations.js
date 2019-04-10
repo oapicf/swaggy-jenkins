@@ -37,7 +37,7 @@
   /**
    * The Organisations model module.
    * @module model/Organisations
-   * @version 1.0.0
+   * @version 1.1.0
    */
 
   /**

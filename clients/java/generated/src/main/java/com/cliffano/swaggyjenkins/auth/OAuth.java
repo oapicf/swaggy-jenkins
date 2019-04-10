@@ -18,7 +18,7 @@ import com.cliffano.swaggyjenkins.Pair;
 import java.util.Map;
 import java.util.List;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-04-09T15:08:14.438Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-04-10T03:53:55.760Z[GMT]")
 public class OAuth implements Authentication {
   private String accessToken;
 

@@ -26,7 +26,7 @@ import javax.ws.rs.*;
 
 
 @io.swagger.annotations.Api(description = "the crumbIssuer API")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2019-04-09T15:08:27.959Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2019-04-10T03:54:11.067Z[GMT]")
 public class CrumbIssuerApi  {
    private final CrumbIssuerApiService delegate = CrumbIssuerApiServiceFactory.getCrumbIssuerApi();
 

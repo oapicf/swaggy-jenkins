@@ -37,7 +37,7 @@
   /**
    * The BranchImplpermissions model module.
    * @module model/BranchImplpermissions
-   * @version 1.0.0
+   * @version 1.1.0
    */
 
   /**

@@ -21,7 +21,7 @@ import javax.validation.constraints.*;
 
 
 @io.swagger.annotations.Api(description = "the createItem API")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyEapServerCodegen", date = "2019-04-09T15:09:07.842Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyEapServerCodegen", date = "2019-04-10T03:54:55.413Z[GMT]")
 public interface CreateItemApi  {
    
     @POST

@@ -37,7 +37,7 @@
   /**
    * The PipelineBranches model module.
    * @module model/PipelineBranches
-   * @version 1.0.0
+   * @version 1.1.0
    */
 
   /**

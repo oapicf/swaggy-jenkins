@@ -12,7 +12,7 @@ Contact: blah@cliffano.com
     
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{D8B05B31-3060-4A20-B0E8-5D62CFE4FEAF}</ProjectGuid>
+    <ProjectGuid>{210707EE-51DD-484C-AF4B-3FACEAFEF18E}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Org.OpenAPITools</RootNamespace>

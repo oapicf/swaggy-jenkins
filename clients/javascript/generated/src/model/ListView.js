@@ -37,7 +37,7 @@
   /**
    * The ListView model module.
    * @module model/ListView
-   * @version 1.0.0
+   * @version 1.1.0
    */
 
   /**

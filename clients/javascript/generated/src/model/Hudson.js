@@ -37,7 +37,7 @@
   /**
    * The Hudson model module.
    * @module model/Hudson
-   * @version 1.0.0
+   * @version 1.1.0
    */
 
   /**

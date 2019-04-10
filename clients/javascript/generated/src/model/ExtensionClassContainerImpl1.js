@@ -37,7 +37,7 @@
   /**
    * The ExtensionClassContainerImpl1 model module.
    * @module model/ExtensionClassContainerImpl1
-   * @version 1.0.0
+   * @version 1.1.0
    */
 
   /**

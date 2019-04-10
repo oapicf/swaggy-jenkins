@@ -11,7 +11,7 @@ import java.util.List;
 import org.openapitools.model.*;
 
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaInflectorServerCodegen", date = "2019-04-09T15:08:23.683Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaInflectorServerCodegen", date = "2019-04-10T03:54:06.228Z[GMT]")
 public class CreateViewController  {
   /** 
    * Uncomment and implement as you see fit.  These operations will map

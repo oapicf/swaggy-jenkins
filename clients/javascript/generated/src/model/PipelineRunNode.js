@@ -37,7 +37,7 @@
   /**
    * The PipelineRunNode model module.
    * @module model/PipelineRunNode
-   * @version 1.0.0
+   * @version 1.1.0
    */
 
   /**

@@ -12,7 +12,7 @@ import org.openapitools.model.GithubRepositorypermissions;
 
 
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaUndertowServerCodegen", date = "2019-04-09T15:08:41.179Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaUndertowServerCodegen", date = "2019-04-10T03:54:26.112Z[GMT]")
 public class GithubRepository   {
   
   private String propertyClass = null;

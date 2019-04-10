@@ -37,7 +37,7 @@
   /**
    * The FreeStyleBuild model module.
    * @module model/FreeStyleBuild
-   * @version 1.0.0
+   * @version 1.1.0
    */
 
   /**

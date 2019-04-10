@@ -14,7 +14,7 @@ import javax.validation.Valid;
 
 @Path("/crumbIssuer")
 @Api(description = "the crumbIssuer API")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2019-04-09T15:09:11.945Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2019-04-10T03:55:00.323Z[GMT]")
 public class CrumbIssuerApi {
 
     @GET
