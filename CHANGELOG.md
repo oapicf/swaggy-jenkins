@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased
 
+### Removed
+- Remove Travic CI config
+
 ## 1.1.1 - 2019-04-10
 ### Changed 
 - Rename baseRemoteAccess to base tag for getCrumb operation

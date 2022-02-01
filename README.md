@@ -1,6 +1,5 @@
 <img align="right" src="https://raw.github.com/cliffano/swaggy-jenkins/master/avatar.jpg" alt="Avatar"/>
 
-[![Build Status](https://img.shields.io/travis/cliffano/swaggy-jenkins.svg)](http://travis-ci.org/cliffano/swaggy-jenkins)
 <br/>
 
 Swaggy Jenkins
