@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased
 
+### Changed
+- Upgrade OpenAPI Generator to v5.4.0
+
 ### Removed
 - Remove Travic CI config
 
