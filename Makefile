@@ -1,14 +1,12 @@
 LANGS = ada ada-server android apache2 apex aspnetcore bash clojure cwiki cpp-qt5 cpp-qt5-qhttpengine-server cpp-pistache-server cpp-restbed-server cpp-restsdk cpp-tizen csharp csharp-dotnet2 csharp-nancyfx dart eiffel elixir elm erlang-client erlang-server flash scala-finch go go-server groovy kotlin kotlin-server haskell-http-client haskell java jaxrs-cxf-client java-inflector java-msf4j java-pkmst java-play-framework java-undertow-server java-vertx jaxrs-cxf jaxrs-cxf-cdi jaxrs-jersey jaxrs-resteasy jaxrs-resteasy-eap jaxrs-spec javascript javascript-flowtyped javascript-closure-angular jmeter lua nodejs-server objc openapi openapi-yaml perl php php-laravel php-lumen php-slim php-silex php-symfony php-ze-ph powershell python python-flask r ruby ruby-on-rails ruby-sinatra rust rust-server scalatra scala-akka scala-httpclient scala-gatling scala-lagom-server scalaz spring dynamic-html html html2 swift2-deprecated swift3 swift4 typescript-angular typescript-angularjs typescript-aurelia typescript-fetch typescript-inversify typescript-jquery typescript-node
 
-ci: clean deps tools generate test-ci doc
+ci: clean deps generate test-ci doc
 
 clean:
 	rm -rf clients/*/generated
 
 deps:
 	docker pull openapitools/openapi-generator-cli:v5.4.0
-
-tools:
 	npm install -g bootprint bootprint-openapi gh-pages mocha
 
 generate:
@@ -16,10 +14,10 @@ generate:
 	  docker \
 		  run \
 		  --rm \
-		  -v ${PWD}:/local openapitools/openapi-generator-cli \
+		  -v ${PWD}:/local openapitools/openapi-generator-cli:v5.4.0 \
 		  generate \
 		  --input-spec /local/spec/jenkins-api.yml \
-			--config /local/clients/$$lang/conf.json \
+		  --config /local/clients/$$lang/conf.json \
 		  --generator-name $$lang \
 		  --output /local/clients/$$lang/generated; \
 	done
@@ -41,4 +39,4 @@ doc:
 doc-publish:
 	gh-pages --dist doc/
 
-.PHONY: clean deps tools generate test doc doc-publish
+.PHONY: clean deps generate test doc doc-publish
