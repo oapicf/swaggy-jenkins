@@ -1,0 +1,6 @@
+README.md
+Setup.hs
+lib/SwaggyJenkins/API.hs
+lib/SwaggyJenkins/Types.hs
+stack.yaml
+swaggy-jenkins.cabal

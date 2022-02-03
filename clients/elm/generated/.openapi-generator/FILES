@@ -1,0 +1,9 @@
+.gitignore
+README.md
+elm.json
+src/Api.elm
+src/Api/Data.elm
+src/Api/Request/Base.elm
+src/Api/Request/BlueOcean.elm
+src/Api/Request/RemoteAccess.elm
+src/Api/Time.elm

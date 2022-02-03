@@ -1,0 +1,18 @@
+# PipelineStepImpl
+
+## Properties
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**_class** | **String** |  | [optional] [default to None]
+**_links** | [***models::PipelineStepImpllinks**](PipelineStepImpllinks.md) |  | [optional] [default to None]
+**display_name** | **String** |  | [optional] [default to None]
+**duration_in_millis** | **isize** |  | [optional] [default to None]
+**id** | **String** |  | [optional] [default to None]
+**input** | [***models::InputStepImpl**](InputStepImpl.md) |  | [optional] [default to None]
+**result** | **String** |  | [optional] [default to None]
+**start_time** | **String** |  | [optional] [default to None]
+**state** | **String** |  | [optional] [default to None]
+
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+
