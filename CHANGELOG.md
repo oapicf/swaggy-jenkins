@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased
 
+### Added
+- Add RTK to manage versioning
+
 ### Changed
 - Upgrade OpenAPI Generator to v5.4.0
 
